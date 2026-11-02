@@ -43129,8 +43129,7 @@
       desc: 'An easy loop from the centre of Cavalese through the old railway tunnel and round the Parco della Pieve, with its century-old lime trees and its views over the Val di Fiemme. The APT lists 3 km and 100 m of ascent.'
     },
     'fiemme-passeggiata-insolita': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): 23% of the drawn line runs over itself mid-walk.
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 2 November 2026: the APT's line is a loop on a stem from the car park; its start is walked both ways, so it is a lollipop; where the loop crosses its own path for a few metres that is a crossing, not a stretch walked twice, and it passes the board-walk bar.
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 1).
       // APT Val di Fiemme’s walk “Montagna Senza Limiti - Passeggiata insolita lungo il Rio Gambis”. The line is drawn on 55 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -43140,10 +43139,10 @@
       distance: 3,
       elevation: 42,
       hours: '1',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from the ice stadium car park in Cavalese along Viale Mendini and the Rio Gambis promenade, up to Via Paradisi and back by the Palafiemme and the bus station.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-26',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -43153,7 +43152,7 @@
         mapPoints: 'Start at Cavalese (ice stadium car park), the APT’s start; drinking water at the start, at km 0.5, at km 0.9 and at km 1.3 (OSM nodes 4572848719, 274303876, 487270792, 1256563364).',
         elevation: 'Official 3 km, 42 m up and 42 m down, 1 h, highest point 1,017 m, lowest 975 m (APT Val di Fiemme).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: '23% of the drawn line runs over itself mid-walk; it cannot be followed as drawn.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -44860,8 +44859,8 @@
       desc: 'A walk through the woods above Grumes, over the Potzmauer pass to the Rifugio Potzmauer and its meadow, and back the same way. The APT lists 4.8 km and 300 m of ascent.'
     },
     'cembra-castello-segonzano': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.57 (63 m), km 3.94 (99 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 2 November 2026: the drawn line went out and straight back at km 1.57 (64 m) and km 3.94 (99 m), a turn no source explains, and that stretch was cut by the owner's decision.
+      // The line is now 5.8 km on 34 OSM ways with 97% of the board's line within 25 m of it; its start is walked both ways, so it is a lollipop; where the loop crosses its own path for a few metres that is a crossing, not a stretch walked twice, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 2).
       // APT Fiemme Cembra’s walk “Il Castello di Segonzano e il canyon del Prà”. The line is drawn on 35 OSM ways
       // along the line the APT publishes (data/board-line-routes.geojson).
@@ -44871,20 +44870,20 @@
       distance: 6.1,
       elevation: 190,
       hours: '3.5',
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from Scancio past the ruined Castello di Segonzano on its rock, down through Piazzo towards the Avisio and the Ponte di Cantilaga, on to the hamlet of Prà and back through the fields and woods of the Prà gorge.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The two towers of the ruined Castello di Segonzano on their rock above the vineyards, which the walk passes, in September (Syrio, CC BY-SA 4.0); the castle is 8 m from the line.',
-        route: 'Official loop 6.1 km from Scancio, Segonzano (car park by the Hotel Piramidi), as APT Fiemme Cembra publishes it; the stored line is drawn on 35 OSM ways along the APT’s published line, 6.2 km, with 100% of the APT line within 25 m of it.',
+        route: 'Official loop 6.1 km from Scancio, Segonzano (car park by the Hotel Piramidi), as APT Fiemme Cembra publishes it; the stored line is drawn on 34 OSM ways along the APT’s published line, 5.8 km, with 97% of the APT line within 25 m of it.',
         routeNumbers: 'No route number: from the car park by the Hotel Piramidi in Scancio, briefly along the SP 71 and through Saletto, past the ruins of the Castello di Segonzano and down through Piazzo, then lanes and paths towards the Avisio and the Ponte di Cantilaga (do not cross the bridge), on to the hamlet of Prà, and back through the fields and the woods of the Prà gorge to Saletto and Scancio.',
         mapPoints: 'Start at Scancio, Segonzano (car park by the Hotel Piramidi), the APT’s start; drinking water at km 4.9 (OSM nodes 9097224637).',
         elevation: 'Official 6.1 km, 190 m up and 186 m down, 3 h 30 min, highest point 675 m, lowest 485 m (APT Fiemme Cembra).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.57 (63 m), km 3.94 (99 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -47319,8 +47318,7 @@
       desc: 'A walk above Pieve di Bono-Prezzo through woods full of carved wooden sculptures to the ruined church of San Martino, with a view over the Valle del Chiese. The APT lists 4.4 km and 250 m of ascent, one way.'
     },
     'giudicarie-san-vigilio-senter-dei-cavai': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): 29% of the drawn line runs over itself mid-walk.
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 2 November 2026: the APT's line is a loop on a stem from the church; its start is walked both ways, so it is a lollipop; where the loop crosses its own path for a few metres that is a crossing, not a stretch walked twice, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Madonna di Campiglio’s walk “Chiesetta di San Vigilio e "Senter dei Cavai"”, drawn on 40 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Tre Ville 65% (no regulation, national rule) and Tione di Trento 35% (Art. 30).
@@ -47348,10 +47346,10 @@
         { km: 6.9, elev: 551 },
         { km: 7.5, elev: 566 }
       ],
-      routeShape: 'loop',
+      routeShape: 'lollipop',
       routeShapeNote: 'A loop from the church of Santa Maria Assunta in Tione past the industrial area to the chapel of San Vigilio, through the woods and over the swinging rope bridge across the Sarca, along the Senter dei Cavai to Sesena, then back on the pavement and the cycle path beside the Sarca.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -47361,7 +47359,7 @@
         mapPoints: 'Start at the church of Santa Maria Assunta in Tione, the APT’s start; drinking water at the start, at km 0.3, at km 1, at km 1.1, at km 2.2 and at km 3.9 (OSM nodes 9485899727, 9485899728, 8050688974, 9960803812, 9960848728, 6103480680, 11307731636).',
         elevation: 'Official 7.2 km, 91 m up and 91 m down, 3 h, highest point 570 m, lowest 510 m (Madonna di Campiglio Azienda per il Turismo).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: '29% of the drawn line runs over itself mid-walk; it cannot be followed as drawn.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [

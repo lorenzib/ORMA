@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-30T21:14:37.394Z",
+  "generatedAt": "2026-11-02T09:18:34.997Z",
   "regions": {
     "dolomites": {
       "trailCount": 307,
-      "trails": "data/regions/dolomites-trails.js?v=0796109684e9",
+      "trails": "data/regions/dolomites-trails.js?v=340fea590016",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -193,7 +193,7 @@
         "cembra-giro-monte-corona": "data/trail-details/cembra-giro-monte-corona.js?v=43e622d3689b",
         "cembra-giro-masi-grumes": "data/trail-details/cembra-giro-masi-grumes.js?v=55016db87e37",
         "cembra-erbe-della-salute": "data/trail-details/cembra-erbe-della-salute.js?v=66ab2854e039",
-        "cembra-castello-segonzano": "data/trail-details/cembra-castello-segonzano.js?v=9569dbd66b94",
+        "cembra-castello-segonzano": "data/trail-details/cembra-castello-segonzano.js?v=3ff61e7d70b9",
         "cembra-paese-beghei": "data/trail-details/cembra-paese-beghei.js?v=35e5bc55bfba",
         "fiemme-scalata-alle-malghette": "data/trail-details/fiemme-scalata-alle-malghette.js?v=9616575fabcd",
         "cembra-piz-de-le-agole": "data/trail-details/cembra-piz-de-le-agole.js?v=d0f0fb067623",
