@@ -3,6 +3,57 @@
   "updatedAt": "2026-10-24T12:17:31.000Z",
   "trails": [
     {
+      "id": "ahrntal-escursione-rifugio-ponte-di-ghiaccio",
+      "approvedReviewId": "commons-ahrntal-escursione-rifugio-ponte-di-ghiaccio-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/ahrntal-escursione-rifugio-ponte-di-ghiaccio-path-above-lake-neves.jpg",
+        "heroImage": "images/trails/ahrntal-escursione-rifugio-ponte-di-ghiaccio-path-above-lake-neves.jpg",
+        "imageAlt": "A stony path across open alpine pasture above Lake Neves, with dark peaks of the Zillertal Alps beyond",
+        "imageCredit": "The path above Lake Neves",
+        "imageCreditText": "The path above Lake Neves by Giorgio Galeotti",
+        "imageCreator": "Giorgio Galeotti",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Neves_-_Selva_dei_Molini,_Bolzano,_Italia_-_Agosto_1994_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "ahrntal-sentiero-del-conte-cadipietra",
+      "approvedReviewId": "commons-ahrntal-sentiero-del-conte-cadipietra-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/ahrntal-sentiero-del-conte-cadipietra-meadow-curves.jpg",
+        "heroImage": "images/trails/ahrntal-sentiero-del-conte-cadipietra-meadow-curves.jpg",
+        "imageAlt": "Curving rows of young crops at the foot of a steep green meadow above Steinhaus",
+        "imageCredit": "Fields and meadows above Steinhaus",
+        "imageCreditText": "Fields and meadows above Steinhaus by Stiller Beobachter",
+        "imageCreator": "Stiller Beobachter",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Curves_-_Flickr_-_Stiller_Beobachter.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "ahrntal-sentiero-panoramico-cadipietra",
+      "approvedReviewId": "commons-ahrntal-sentiero-panoramico-cadipietra-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/ahrntal-sentiero-panoramico-cadipietra-valley-view.jpg",
+        "heroImage": "images/trails/ahrntal-sentiero-panoramico-cadipietra-valley-view.jpg",
+        "imageAlt": "Green meadows and farmhouses along the floor of the Ahrntal, with forested slopes and dark storm clouds over the valley",
+        "imageCredit": "The Ahrntal from the slope above Steinhaus",
+        "imageCreditText": "The Ahrntal from the slope above Steinhaus by Stiller Beobachter",
+        "imageCreator": "Stiller Beobachter",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Brewing_storm_-_Flickr_-_Stiller_Beobachter.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "alpe-siusi",
       "approvedReviewId": "aWdy0ikCoO8Dud0tseoI",
       "approvedAt": "2026-09-03T21:24:03.637Z",

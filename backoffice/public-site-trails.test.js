@@ -173,9 +173,11 @@ describe('the existing-site verification boundary',()=>{
     // Passo delle Erbe and Dolorama stage 3, Rifugio Genova to Resciesa.
     // Then 425 and 423 with four Brixen-area walks: the Latzfons high trail,
     // Mühlbach to Spinges, the Altfasstal and Fane Alm to the Brixner Hütte.
+    // Then 428 and 426 with three Ahrntal walks: the Steinhaus panoramic path, the
+    // Count’s path above Steinhaus and Lake Neves to the Ponte di Ghiaccio hut.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(425);
-    expect(currentSiteTrails(catalogue)).toHaveLength(423);
+    expect(catalogue).toHaveLength(428);
+    expect(currentSiteTrails(catalogue)).toHaveLength(426);
   });
 
   test('requires the artwork the public trail page needs',()=>{

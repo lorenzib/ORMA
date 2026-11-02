@@ -3081,6 +3081,30 @@
       "quote": "Distanza 4,3 km · Durata 1:50 h · Salita 580 m · Discesa 5 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "ahrntal-sentiero-panoramico-cadipietra": {
+      "url": "https://www.outdooractive.com/it/r/810055139",
+      "publisher": "Tauferer Ahrntal tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero panoramico Cadipietra",
+      "quote": "Distanza 3,3 km · Durata 0:53 h · Salita 80 m · Discesa 81 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "ahrntal-sentiero-del-conte-cadipietra": {
+      "url": "https://www.outdooractive.com/it/r/805426773",
+      "publisher": "Tauferer Ahrntal tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero del Conte Cadipietra",
+      "quote": "Distanza 2,1 km · Durata 0:45 h · Salita 86 m · Discesa 86 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "ahrntal-escursione-rifugio-ponte-di-ghiaccio": {
+      "url": "https://www.outdooractive.com/it/r/810055959",
+      "publisher": "Sand in Taufers tourist board (Outdooractive, suedtirol.info)",
+      "name": "Escursione Rifugio Ponte di Ghiaccio",
+      "quote": "Distanza 5,2 km · Durata 2:32 h · Salita 678 m · Discesa 2 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
     }
   }
 }

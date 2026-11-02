@@ -61,6 +61,9 @@
     // town, up to 31 km away.
     ['Naturno / Naturns', 46.6499, 11.0042, 'Val Venosta – Vinschgau', 'dolomites', 'alto-adige'],
     ['Malles Venosta / Mals', 46.6887, 10.5466, 'Val Venosta – Vinschgau', 'dolomites', 'alto-adige'],
+    ['Campo Tures / Sand in Taufers', 46.9206, 11.9547, 'Valle Aurina – Ahrntal', 'dolomites', 'alto-adige'],
+    ['Cadipietra / Steinhaus', 46.9937, 11.9727, 'Valle Aurina – Ahrntal', 'dolomites', 'alto-adige'],
+    ['Lappago / Lappach', 46.9264, 11.8136, 'Valle Aurina – Ahrntal', 'dolomites', 'alto-adige'],
     ['Ultimo / Ulten', 46.5486, 11.0042, 'Val d\'Ultimo – Ultental', 'dolomites', 'alto-adige'],
     ['Merano / Meran', 46.6714, 11.1646, 'Burgraviato – Merano', 'dolomites', 'alto-adige'],
     ['Avelengo / Hafling', 46.6626, 11.2542, 'Burgraviato – Merano', 'dolomites', 'alto-adige'],
