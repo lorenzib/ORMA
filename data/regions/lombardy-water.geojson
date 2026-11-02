@@ -1,1 +1,1 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"@id":"node/1356391250","amenity":"drinking_water"},"geometry":{"type":"Point","coordinates":[10.466124,46.5327869]},"id":"node/1356391250"},{"type":"Feature","properties":{"@id":"node/1802753273","natural":"spring"},"geometry":{"type":"Point","coordinates":[10.4671461,46.532833]},"id":"node/1802753273"}]}
+{"type":"FeatureCollection","features":[]}

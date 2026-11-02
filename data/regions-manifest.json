@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-02T14:27:51.036Z",
+  "generatedAt": "2026-11-02T16:02:42.131Z",
   "regions": {
     "dolomites": {
-      "trailCount": 312,
-      "trails": "data/regions/dolomites-trails.js?v=00b9639e67f6",
+      "trailCount": 315,
+      "trails": "data/regions/dolomites-trails.js?v=049e5a1d5379",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -317,6 +317,9 @@
         "vinschgau-sentiero-della-roggia-kastanienwaal": "data/trail-details/vinschgau-sentiero-della-roggia-kastanienwaal.js?v=803183242867",
         "vinschgau-escursione-al-lago-bergsee-da-burgusio": "data/trail-details/vinschgau-escursione-al-lago-bergsee-da-burgusio.js?v=a0fb67d98e71",
         "vinschgau-sentiero-della-roggia-stabnerwaal": "data/trail-details/vinschgau-sentiero-della-roggia-stabnerwaal.js?v=e6ad767efb94",
+        "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal": "data/trail-details/vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal.js?v=aed3b3100736",
+        "vinschgau-sentiero-della-roggia-schnalswaal": "data/trail-details/vinschgau-sentiero-della-roggia-schnalswaal.js?v=a90fe33dd6fc",
+        "vinschgau-piani-di-annenberg": "data/trail-details/vinschgau-piani-di-annenberg.js?v=393549e9e7c0",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -793,6 +796,9 @@
     "vinschgau-sentiero-della-roggia-kastanienwaal": "dolomites",
     "vinschgau-escursione-al-lago-bergsee-da-burgusio": "dolomites",
     "vinschgau-sentiero-della-roggia-stabnerwaal": "dolomites",
+    "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal": "dolomites",
+    "vinschgau-sentiero-della-roggia-schnalswaal": "dolomites",
+    "vinschgau-piani-di-annenberg": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1319,6 +1325,9 @@
     "vinschgau-sentiero-della-roggia-kastanienwaal": "kastanienwaal-schlanders",
     "vinschgau-escursione-al-lago-bergsee-da-burgusio": "lake-bergsee-from-burgeis",
     "vinschgau-sentiero-della-roggia-stabnerwaal": "stabnerwaal-staben-to-tschars",
+    "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal": "leitenwaal-berkwaal-schluderns",
+    "vinschgau-sentiero-della-roggia-schnalswaal": "schnalswaal-kastelbell-to-staben",
+    "vinschgau-piani-di-annenberg": "annaberger-boden-from-latsch",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1739,6 +1748,9 @@
     "kastanienwaal-schlanders": "vinschgau-sentiero-della-roggia-kastanienwaal",
     "lake-bergsee-from-burgeis": "vinschgau-escursione-al-lago-bergsee-da-burgusio",
     "stabnerwaal-staben-to-tschars": "vinschgau-sentiero-della-roggia-stabnerwaal",
+    "leitenwaal-berkwaal-schluderns": "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal",
+    "schnalswaal-kastelbell-to-staben": "vinschgau-sentiero-della-roggia-schnalswaal",
+    "annaberger-boden-from-latsch": "vinschgau-piani-di-annenberg",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
