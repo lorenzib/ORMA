@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-02T12:26:41.368Z",
+  "generatedAt": "2026-11-02T15:48:56.246Z",
   "regions": {
     "dolomites": {
-      "trailCount": 312,
-      "trails": "data/regions/dolomites-trails.js?v=00b9639e67f6",
+      "trailCount": 316,
+      "trails": "data/regions/dolomites-trails.js?v=881cf3961c9f",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -317,6 +317,10 @@
         "vinschgau-sentiero-della-roggia-kastanienwaal": "data/trail-details/vinschgau-sentiero-della-roggia-kastanienwaal.js?v=803183242867",
         "vinschgau-escursione-al-lago-bergsee-da-burgusio": "data/trail-details/vinschgau-escursione-al-lago-bergsee-da-burgusio.js?v=a0fb67d98e71",
         "vinschgau-sentiero-della-roggia-stabnerwaal": "data/trail-details/vinschgau-sentiero-della-roggia-stabnerwaal.js?v=e6ad767efb94",
+        "brixen-alto-sentiero-di-lazfons": "data/trail-details/brixen-alto-sentiero-di-lazfons.js?v=f587fb245c15",
+        "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": "data/trail-details/brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl.js?v=1fbc015741ca",
+        "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": "data/trail-details/brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia.js?v=a6465e0e3509",
+        "brixen-escursione-al-rifugio-bressanone": "data/trail-details/brixen-escursione-al-rifugio-bressanone.js?v=176abcee6424",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -793,6 +797,10 @@
     "vinschgau-sentiero-della-roggia-kastanienwaal": "dolomites",
     "vinschgau-escursione-al-lago-bergsee-da-burgusio": "dolomites",
     "vinschgau-sentiero-della-roggia-stabnerwaal": "dolomites",
+    "brixen-alto-sentiero-di-lazfons": "dolomites",
+    "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": "dolomites",
+    "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": "dolomites",
+    "brixen-escursione-al-rifugio-bressanone": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1319,6 +1327,10 @@
     "vinschgau-sentiero-della-roggia-kastanienwaal": "kastanienwaal-schlanders",
     "vinschgau-escursione-al-lago-bergsee-da-burgusio": "lake-bergsee-from-burgeis",
     "vinschgau-sentiero-della-roggia-stabnerwaal": "stabnerwaal-staben-to-tschars",
+    "brixen-alto-sentiero-di-lazfons": "latzfons-high-trail",
+    "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": "muehlbach-to-spinges",
+    "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": "altfasstal-to-wieserhuette",
+    "brixen-escursione-al-rifugio-bressanone": "fane-alm-to-brixner-huette",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1739,6 +1751,10 @@
     "kastanienwaal-schlanders": "vinschgau-sentiero-della-roggia-kastanienwaal",
     "lake-bergsee-from-burgeis": "vinschgau-escursione-al-lago-bergsee-da-burgusio",
     "stabnerwaal-staben-to-tschars": "vinschgau-sentiero-della-roggia-stabnerwaal",
+    "latzfons-high-trail": "brixen-alto-sentiero-di-lazfons",
+    "muehlbach-to-spinges": "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl",
+    "altfasstal-to-wieserhuette": "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia",
+    "fane-alm-to-brixner-huette": "brixen-escursione-al-rifugio-bressanone",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

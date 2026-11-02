@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "trailId": "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl",
+  "generatedAt": "2026-11-02T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 3.4,
+    "ascentM": 596,
+    "highestPointM": 1384,
+    "expectedDuration": "2 hours",
+    "difficulty": "Hard",
+    "shadePercent": 6
+  },
+  "trailhead": {
+    "lat": 46.79613,
+    "lng": 11.66654,
+    "label": "Mühlbach village centre, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.795642,
+      "lng": 11.6673247,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7961036,
+      "lng": 11.666724,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7970847,
+      "lng": 11.6679304,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7960271,
+      "lng": 11.6653934,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7974284,
+      "lng": 11.647025,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Steep lanes, mostly paved, shared with local traffic: keep your dog on a lead.",
+    "Very little shade on the south-facing slope: go early in summer.",
+    "Meadows are farmed: keep your dog on the path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-02"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-02",
+      "licence": "ODbL"
+    }
+  ]
+}

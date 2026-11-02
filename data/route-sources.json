@@ -3025,6 +3025,38 @@
       "quote": "Distanza 4,9 km · Durata 2:00 h · Salita 160 m · Discesa 160 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "brixen-alto-sentiero-di-lazfons": {
+      "url": "https://www.outdooractive.com/it/r/811220560",
+      "publisher": "Klausen, Barbian, Villanders and Feldthurns tourist board (Outdooractive, suedtirol.info)",
+      "name": "Alto sentiero di Lazfons",
+      "quote": "Distanza 10,6 km · Durata 3:36 h · Salita 558 m · Discesa 558 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": {
+      "url": "https://www.outdooractive.com/it/r/60357933",
+      "publisher": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal) (Outdooractive, suedtirol.info)",
+      "name": "Da Rio di Pusteria al Bunker di Spinga: Escursione per Famiglie con Panorama",
+      "quote": "Distanza 3,4 km · Durata 2:00 h · Salita 596 m · Discesa 16 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": {
+      "url": "https://www.outdooractive.com/it/r/802415362",
+      "publisher": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal) (Outdooractive, suedtirol.info)",
+      "name": "La valle d’Altafossa: un’escursione per tutta la famiglia",
+      "quote": "Distanza 5 km · Durata 1:40 h · Salita 253 m · Discesa 16 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "brixen-escursione-al-rifugio-bressanone": {
+      "url": "https://www.outdooractive.com/it/r/802415364",
+      "publisher": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal) (Outdooractive, suedtirol.info)",
+      "name": "Escursione al rifugio Bressanone",
+      "quote": "Distanza 4,3 km · Durata 1:50 h · Salita 580 m · Discesa 5 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
     }
   }
 }

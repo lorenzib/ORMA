@@ -167,11 +167,13 @@ describe('the existing-site verification boundary',()=>{
     // Sonne, Passo Nigra to Tiers, the Umes loop and the Kastelruth bear-trap loop.
     // Then 418 and 416 with five Vinschgau walks: Rifugio Sesvenna to Mals, the
     // Latschanderwaal, the Kastanienwaal, Lake Bergsee from Burgeis and the Stabnerwaal.
+    // Then 422 and 420 with four Brixen-area walks: the Latzfons high trail,
+    // Mühlbach to Spinges, the Altfasstal and Fane Alm to the Brixner Hütte.
     // Then 413 and 411 with three Villnöss walks: Ranui to Zannes, Ponte Russis to
     // Passo delle Erbe and Dolorama stage 3, Rifugio Genova to Resciesa.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(418);
-    expect(currentSiteTrails(catalogue)).toHaveLength(416);
+    expect(catalogue).toHaveLength(422);
+    expect(currentSiteTrails(catalogue)).toHaveLength(420);
   });
 
   test('requires the artwork the public trail page needs',()=>{
