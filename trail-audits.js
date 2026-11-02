@@ -56698,6 +56698,352 @@
       ],
       startPoint: { lat: 46.63529, lng: 11.80501, label: 'Rifugio Genova (Schlüterhütte), the board’s start of stage 3' },
       desc: 'The third stage of the Dolorama trail, from the Rifugio Genova under the Odle peaks to the Brogles hut and across the Resciesa meadows to the Rifugio Resciesa above Ortisei. The board lists 15.7 km, 633 m up and 751 m down.'
+    },
+    'vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Vinschgau batch 1).
+      // “Escursione a lunga distanza 4a tappa: Rifugio Sesvenna - Malles”, published by the Mals, Burgeis, Schluderns and Glurns tourist board, drawn on 80 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Mals (its 2005 dog regulation: a lead in public places, a muzzle in public premises; no dogs on sports grounds or playgrounds; the national 1.5 m lead and carried muzzle apply on top).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Rifugio Sesvenna – Schlinig – Laatsch – Mals (Upper Vinschgau)',
+      distance: 17,
+      elevation: 5,
+      hours: '5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and almost all downhill, the fourth stage of the long-distance walk: from the Rifugio Sesvenna out of the valley past the waterfall to the Schliniger Alm and the village of Schlinig, then path 20 (Seppelesteig) and path 1B (Patersteig) above Burgeis to Laatsch and on to Mals.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Rifugio Sesvenna (Sesvennahütte), the end of stage 3 and the board’s start of stage 4.",
+        "sequence": "Walk out of the valley below the hut, past the steep waterfall, on the hiking path to the Schliniger Alm and the village of Schlinig. From Schlinig take path 20, the Seppelesteig, towards Prämajur below the Watles, across wide meadows with Marienberg Abbey in view. Continue on path 1B, the Patersteig, to the farming village of Laatsch, then on the level path into Mals.",
+        "switches": "Two changes: in Schlinig take path 20 (Seppelesteig), and where it ends continue on path 1B (Patersteig) to Laatsch.",
+        "sources": [
+          {
+            "label": "Mals, Burgeis, Schluderns and Glurns tourist board, Escursione a lunga distanza 4a tappa: Rifugio Sesvenna - Malles (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/805297533",
+            "authority": "Mals, Burgeis, Schluderns and Glurns tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Rifugio Sesvenna above its small lake, at the start of the walk, in September (Agnes Monkelbaan on Wikimedia Commons, CC BY-SA 4.0), 15 m from the line.',
+        route: 'Official one-way walk 17 km from the Rifugio Sesvenna, as the Mals, Burgeis, Schluderns and Glurns tourist board publishes it; the stored line is drawn on 80 OSM ways along the board’s published line, 17 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 20 and 1B: from the Rifugio Sesvenna down past the waterfall to the Schliniger Alm and Schlinig, then path 20, the Seppelesteig, below the Watles, and path 1B, the Patersteig, to Laatsch and on the level path into Mals.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.9, km 3.1, km 10.4, km 11.8, km 12, km 12.7, km 15.5, km 16, km 16.1, km 16.9 and km 17 (OSM nodes 4372049660, 4497127688, 5137761660, 2457214654, 10770867909, 5620394006, 2537107730, 6879122477, 2401500496, 2829124219, 2401500407).',
+        elevation: 'Official 17 km, 5 m up and 1205 m down, 5:00 h, highest point 2,262 m, lowest 1,061 m (Mals, Burgeis, Schluderns and Glurns tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Mals, Burgeis, Schluderns and Glurns tourist board, Escursione a lunga distanza 4a tappa: Rifugio Sesvenna - Malles (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Mals / Comune di Malles Venosta, Gemeindeverordnung über die Haltung von Hunden und anderen gefährlichen Tieren (Ratsbeschluss Nr. 5, 10.02.2005), Art. 2: dogs on a lead in all public places, residential areas, parks and car parks; a muzzle in public premises and on public transport; no dogs on sports grounds or children’s playgrounds',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 10% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (80 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 44,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A long walk, 17 km and about 1,200 m down from 2,262 m: knees and paws tire, plan rests', 'Steep stretch past the waterfall below the hut: keep your dog close', 'Cows graze around the Schliniger Alm in summer: keep your dog on a lead', 'Village lanes and short road stretches in Schlinig, Laatsch and Mals: lead on'],
+      terrainType: 'Mountain paths, meadow paths and village lanes',
+      shadeDescription: 'Partly shaded: a little under half runs through mapped forest on the way down; the high valley below the hut and the meadows above Burgeis are open.',
+      terrainDescription: 'The fourth stage of the long-distance walk, from the Rifugio Sesvenna at 2,262 m down past the Schliniger Alm and Schlinig, along the Seppelesteig and the Patersteig above Burgeis, to Laatsch and Mals at about 1,050 m.',
+      waterDescription: 'Drinking water at km 1.9, km 3.1, km 10.4, km 11.8, km 12, km 12.7, km 15.5, km 16, km 16.1, km 16.9 and km 17; places to eat on the way.',
+      dogNotes: 'Mals keeps dogs on a lead in public places, residential areas, parks and car parks, asks for a muzzle in public premises and on public transport, and keeps dogs off sports grounds and children’s playgrounds; the national rule adds a lead of at most 1.5 m and a muzzle carried. The walk passes no playground or sports ground.',
+      tips: 'Start at the Rifugio Sesvenna, reached on stage 3: 17 km one way to Mals, almost all downhill, about 1,200 m down, five hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at several points from km 1.9; the bus and train run from Mals.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione a lunga distanza 4a tappa: Rifugio Sesvenna - Malles (Mals, Burgeis, Schluderns and Glurns tourist board)', url: 'https://www.outdooractive.com/it/r/805297533' },
+        { label: 'Gemeinde Mals, dog regulation (2005)', url: 'https://www.gemeinde.mals.bz.it/system/web/GetDocument.ashx?cts=1756918895&fileId=1016691' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.734805, lng: 10.435597, label: 'Rifugio Sesvenna (Sesvennahütte), the board’s start of stage 4' },
+      desc: 'The fourth stage of the long-distance walk, from the Rifugio Sesvenna down past the Schliniger Alm and Schlinig, along the Seppelesteig and Patersteig above Burgeis with Marienberg Abbey in view, to Laatsch and Mals. The board lists 17 km, 5 m up and 1,205 m down.'
+    },
+    'vinschgau-sentiero-della-roggia-latschanderwaal-4954': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Vinschgau batch 1).
+      // “Sentiero della roggia "Latschanderwaal"”, published by the Latsch-Martell tourist board, drawn on 28 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Latsch and Kastelbell-Tschars (both 2010 dog regulations: lead ≤1.5 m, muzzle carried, no dogs on farmed land such as orchards and fields).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Latsch – Latschanderwaal – Kastelbell (Middle Vinschgau)',
+      distance: 5.7,
+      elevation: 25,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way, almost level, from Latsch along the Latschanderwaal irrigation channel (path 3) between vineyards and orchards to Kastelbell, past Kastelbell castle.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in the centre of Latsch, the board’s start.",
+        "sequence": "Walk along the road towards Goldrain. After the Herilu shopping centre take the second turning, via Roman-Kühle, then via Tiss. After the underpass bear slightly right onto waal path 3. After a wild, stony first stretch the path runs beside vineyards and orchards, passes Kastelbell castle and ends in the centre of Kastelbell.",
+        "switches": "Three turns before the waal: the second turning after the Herilu shopping centre (via Roman-Kühle), then via Tiss, then slightly right after the underpass onto path 3.",
+        "sources": [
+          {
+            "label": "Latsch-Martell tourist board, Sentiero della roggia \"Latschanderwaal\" (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810054954",
+            "authority": "Latsch-Martell tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Kastelbell castle, which the waal path passes before the end, in September (Tilman2007 on Wikimedia Commons, CC BY-SA 4.0), 30 m from the line.',
+        route: 'Official one-way walk 5.7 km from Latsch centre, as the Latsch-Martell tourist board publishes it; the stored line is drawn on 28 OSM ways along the board’s published line, 5.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 3: from Latsch centre along the road towards Goldrain, the second turning after the Herilu shopping centre, via Roman-Kühle and via Tiss, through the underpass and slightly right onto waal path 3 to Kastelbell.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 5.5 (OSM nodes 2326841411, 3168672812, 9799471319).',
+        elevation: 'Official 5.7 km, 25 m up and 78 m down, 1:34 h, highest point 662 m, lowest 584 m (Latsch-Martell tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Latsch-Martell tourist board, Sentiero della roggia "Latschanderwaal" (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Latsch / Comune di Laces, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 58, 15.10.2010), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, sports grounds, parks, kindergarten and school yards, public buildings or on farmed land (orchards, fields); no bathing in the historic-centre fountains',
+          'Gemeinde Kastelbell-Tschars / Comune di Castelbello-Ciardes, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 45/2010, published 16.11.2010), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, school yards, sports grounds, the public pool or on farmed land (meadows, fields, vegetable plots); no bathing in public fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 8% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (28 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 110 m on the main road at the start in Latsch, and lanes in both villages: lead on', 'Stony, uneven first stretch of the waal path: watch your dog’s paws', 'Orchards and vineyards beside the path are farmed and closed to dogs: keep to the path'],
+      terrainType: 'Waal path, village lanes and short road stretches',
+      shadeDescription: 'About half shaded: just over half runs through mapped woodland along the waal; the stretches beside the orchards and in the villages are open.',
+      terrainDescription: 'A level walk at 585–660 m along the Latschanderwaal, an old irrigation channel, from Latsch through woods, vineyards and orchards to Kastelbell and its castle in the Vinschgau valley.',
+      waterDescription: 'Drinking water at the start and km 5.5; places to eat on the way.',
+      dogNotes: 'Latsch and Kastelbell-Tschars both require a lead of at most 1.5 m and a muzzle carried, and keep dogs out of cemeteries, playgrounds, sports grounds and off farmed land such as orchards and fields; Latsch also keeps dogs out of parks. No bathing in the village fountains. The walk enters none of these places.',
+      tips: 'Start in Latsch centre: 5.7 km one way to Kastelbell, almost level, about an hour and a half; the train runs back from Kastelbell. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at the start and near the end.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero della roggia "Latschanderwaal" (Latsch-Martell tourist board)', url: 'https://www.outdooractive.com/it/r/810054954' },
+        { label: 'Gemeinde Latsch, dog regulation (2010)', url: 'https://www.gemeinde.latsch.bz.it/system/web/GetDocument.ashx?cts=1674813441&fileId=1018700' },
+        { label: 'Gemeinde Kastelbell-Tschars, dog regulation (2010)', url: 'https://www.gemeinde.kastelbell-tschars.bz.it/system/web/GetDocument.ashx?cts=1709821147&fileId=1199914' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.617691, lng: 10.859264, label: 'Latsch village centre, the board’s start' },
+      desc: 'A level walk along the Latschanderwaal irrigation channel from Latsch through woods, vineyards and orchards to Kastelbell, past its castle on the rock. The board lists 5.7 km, 25 m up and 78 m down.'
+    },
+    'vinschgau-sentiero-della-roggia-kastanienwaal': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Vinschgau batch 1).
+      // “Sentiero della roggia "Kastanienwaal"”, published by the Schlanders-Laas tourist board, drawn on 28 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Schlanders (its 2014 dog regulation: a lead in public places, a muzzle carried, dogs on a lead allowed in parks; no dogs in playgrounds).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Schlanders – Sonnenpromenade (Middle Vinschgau)',
+      distance: 2.2,
+      elevation: 70,
+      hours: '0.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from Schlanders centre past the Heilig-Geist church by the hospital, up to the waal path along the old Grübenmauer walls (the Sonnenpromenade) to the Pulverturm, and back down the lane through the first houses.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of Schlanders, the board’s start.",
+        "sequence": "Walk north-east to the end of the pedestrian zone and on to the Heilig-Geist church next to the hospital. From there follow the signs for the Sonnenpromenade (Passeggiata al Sole) up to the waal path, along the old Grübenmauer walls, and stay on the wide path to the Pulverturm (powder tower). To return, turn left and walk down the lane through the first houses of the village to the start.",
+        "switches": "Two turns: at the Heilig-Geist church follow the Sonnenpromenade signs uphill, and at the Pulverturm turn left down the lane.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Schlanders-Laas tourist board, Sentiero della roggia \"Kastanienwaal\" (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16421089",
+            "authority": "Schlanders-Laas tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Sonnenpromenade signpost on the way up to the waal path in Schlanders, in September (Seichter-wm on Wikimedia Commons, CC0), 2 m from the line.',
+        route: 'Official loop 2.2 km from Schlanders centre, as the Schlanders-Laas tourist board publishes it; the stored line is drawn on 28 OSM ways along the board’s published line, 2.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Signposted “Sonnenpromenade” (Passeggiata al Sole): from the Heilig-Geist church by the hospital follow the signs up to the waal path along the Grübenmauer to the Pulverturm, then left down the lane back into Schlanders.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.1 and km 1.6 (OSM nodes 2503251862, 6833137708, 9714425749, 11346033869, 2520922968, 11346044869, 11346033969).',
+        elevation: 'Official 2.2 km, 70 m up and 70 m down, 0:32 h, highest point 790 m, lowest 721 m (Schlanders-Laas tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Schlanders-Laas tourist board, Sentiero della roggia "Kastanienwaal" (its Outdooractive tour, also listed on suedtirol.info)',
+          'Marktgemeinde Schlanders / Comune di Silandro, Verordnung über die Hundehaltung (Gemeinderatsbeschluss Nr. 17, 08.05.2014): dogs on a lead in all public places and a muzzle carried; dogs on a lead are allowed in parks and green spaces; no dogs in children’s playgrounds',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 17% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (28 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 18,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Most of the loop is on village lanes with occasional cars: lead on', 'A sunny, south-facing slope: hot in summer, go early'],
+      terrainType: 'Village lanes and a gravel waal path',
+      shadeDescription: 'Mostly open: under a fifth is shaded by mapped woodland and trees; the Sonnenpromenade faces south and gets full sun.',
+      terrainDescription: 'A short loop at 720–790 m above Schlanders along the Kastanienwaal and the old Grübenmauer walls to the Pulverturm, with views over the Vinschgau valley.',
+      waterDescription: 'Drinking water at the start, km 0.1 and km 1.6; places to eat on the way.',
+      dogNotes: 'Schlanders requires a lead in all public places and a muzzle carried; dogs on a lead are allowed in parks and green spaces, but not in children’s playgrounds. The walk passes no playground.',
+      tips: 'Start in Schlanders centre: a 2.2 km loop, about 70 m up, half an hour. Keep your dog on a lead and carry a muzzle. Drinking water at the start and at km 1.6. The slope is sunny: go early on hot days.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero della roggia "Kastanienwaal" (Schlanders-Laas tourist board)', url: 'https://www.outdooractive.com/it/r/16421089' },
+        { label: 'Marktgemeinde Schlanders, dog regulation (2014)', url: 'https://www.gemeinde.schlanders.bz.it/system/web/GetDocument.ashx?cts=1743594651&fileId=842248' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.628747, lng: 10.774959, label: 'Schlanders centre, the pedestrian zone, the board’s start' },
+      desc: 'A short loop from Schlanders up to the Kastanienwaal, along the old Grübenmauer walls on the sunny Sonnenpromenade to the Pulverturm and back through the village. The board lists 2.2 km and 70 m up.'
+    },
+    'vinschgau-escursione-al-lago-bergsee-da-burgusio': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Vinschgau batch 1).
+      // “Escursione al Lago Bergsee da Burgusio”, published by the Mals, Burgeis, Schluderns and Glurns tourist board, drawn on 18 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Mals (its 2005 dog regulation: a lead in public places, a muzzle in public premises; no dogs on sports grounds or playgrounds; the national 1.5 m lead and carried muzzle apply on top).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Burgeis – Bergsee (Upper Vinschgau)',
+      distance: 2.3,
+      elevation: 146,
+      hours: '0.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the Burgeis tourist office up path 3 to the small lake above the village, and back down path 4 from the far side of the lake.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the tourist office in Burgeis, the board’s start.",
+        "sequence": "Follow sign 3 up to the small lake above the village, with a view over the whole valley. From the other side of the lake, path 4 leads back down to the village and the start.",
+        "switches": "One change: at the lake leave path 3 for path 4 on the far side.",
+        "sources": [
+          {
+            "label": "Mals, Burgeis, Schluderns and Glurns tourist board, Escursione al Lago Bergsee da Burgusio (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/809978024",
+            "authority": "Mals, Burgeis, Schluderns and Glurns tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Burgeis with Marienberg Abbey above it, on the way out of the village, in August (Vid Pogacnik on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official loop 2.3 km from the Burgeis tourist office, as the Mals, Burgeis, Schluderns and Glurns tourist board publishes it; the stored line is drawn on 18 OSM ways along the board’s published line, 2.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 3 and 4: from the Burgeis tourist office follow sign 3 up to the lake, and from the far side of the lake path 4 back down to the village.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 0.1 (OSM nodes 10770867909, 2457214654).',
+        elevation: 'Official 2.3 km, 146 m up and 138 m down, 0:45 h, highest point 1,360 m, lowest 1,221 m (Mals, Burgeis, Schluderns and Glurns tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Mals, Burgeis, Schluderns and Glurns tourist board, Escursione al Lago Bergsee da Burgusio (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Mals / Comune di Malles Venosta, Gemeindeverordnung über die Haltung von Hunden und anderen gefährlichen Tieren (Ratsbeschluss Nr. 5, 10.02.2005), Art. 2: dogs on a lead in all public places, residential areas, parks and car parks; a muzzle in public premises and on public transport; no dogs on sports grounds or children’s playgrounds',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 17% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (18 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 12,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Village lanes in Burgeis with occasional cars: lead on', 'Little shade on the open slope above the village'],
+      terrainType: 'Village lanes and meadow paths',
+      shadeDescription: 'Mostly open: about an eighth runs through mapped woodland; the slope up to the lake is in full sun.',
+      terrainDescription: 'A short loop at 1,220–1,360 m from Burgeis up to a small mountain lake above the village, with a view over the Upper Vinschgau and Marienberg Abbey.',
+      waterDescription: 'Drinking water at the start and km 0.1; places to eat on the way.',
+      dogNotes: 'Mals keeps dogs on a lead in public places, residential areas, parks and car parks, asks for a muzzle in public premises and on public transport, and keeps dogs off sports grounds and children’s playgrounds; the national rule adds a lead of at most 1.5 m and a muzzle carried. The walk passes no playground or sports ground.',
+      tips: 'Start at the Burgeis tourist office: a 2.3 km loop, about 150 m up, 45 minutes. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at the start and at km 0.1.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione al Lago Bergsee da Burgusio (Mals, Burgeis, Schluderns and Glurns tourist board)', url: 'https://www.outdooractive.com/it/r/809978024' },
+        { label: 'Gemeinde Mals, dog regulation (2005)', url: 'https://www.gemeinde.mals.bz.it/system/web/GetDocument.ashx?cts=1756918895&fileId=1016691' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.711128, lng: 10.528303, label: 'Burgeis tourist office, the board’s start' },
+      desc: 'A short loop from Burgeis up path 3 to a small lake above the village, with views over the valley, and back down path 4. The board lists 2.3 km, 146 m up and 138 m down.'
+    },
+    'vinschgau-sentiero-della-roggia-stabnerwaal': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Vinschgau batch 1).
+      // “Sentiero della roggia "Stabnerwaal"”, published by the Kastelbell-Tschars tourist board, drawn on 34 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Naturns (its 2006 dog regulation: a lead in the village, a muzzle on public transport, no dogs in playgrounds; the national 1.5 m lead and carried muzzle apply on top) and Kastelbell-Tschars (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed land).
+      // About 40% is in the Natura 2000 site IT3110010 Biotop Steppenvegetation Sonnenberg, whose measures set no rule on dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Staben – Stabnerwaal – Tschars (Middle Vinschgau)',
+      distance: 4.9,
+      elevation: 160,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Staben station across the Adige, up path 1 to the Stabnerwaal irrigation channel, along it on the Sonnenberg to the Himmelreich restaurant and Tschars, then down to Tschars station.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Staben railway station, the board’s start.",
+        "sequence": "Cross the bridge over the Adige and walk on to the church, then take path 1 up to the waal. Follow the Stabnerwaal path towards the Himmelreich restaurant, continue to the centre of Tschars, and walk a short way down to Tschars station.",
+        "switches": "Two changes: at the church take path 1 up to the waal, and in Tschars leave the waal path to walk down to the station.",
+        "sources": [
+          {
+            "label": "Kastelbell-Tschars tourist board, Sentiero della roggia \"Stabnerwaal\" (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/805506819",
+            "authority": "Kastelbell-Tschars tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Staben, the Adige and the railway seen from the waal path above, in August (uwelino on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official one-way walk 4.9 km from Staben station, as the Kastelbell-Tschars tourist board publishes it; the stored line is drawn on 34 OSM ways along the board’s published line, 4.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 1 and the Stabnerwaal: from Staben station over the Adige bridge to the church, path 1 up to the waal, along the waal path to the Himmelreich restaurant and Tschars, then down to Tschars station.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 0.2 (OSM nodes 1155185049, 717517253).',
+        elevation: 'Official 4.9 km, 160 m up and 160 m down, 2:00 h, highest point 710 m, lowest 552 m (Kastelbell-Tschars tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Kastelbell-Tschars tourist board, Sentiero della roggia "Stabnerwaal" (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds',
+          'Gemeinde Kastelbell-Tschars / Comune di Castelbello-Ciardes, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 45/2010, published 16.11.2010), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, school yards, sports grounds, the public pool or on farmed land (meadows, fields, vegetable plots); no bathing in public fountains',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): about 40% of the line is in the Natura 2000 site IT3110010 Biotop Steppenvegetation Sonnenberg and about 12% in landscape protection zones; no park or natural monument. The site’s objectives and conservation measures (Province of Bolzano, natur-raum.provinz.bz.it) set no rule on dogs or on walking the paths',
+          'OpenStreetMap ways along the board’s line (34 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 34,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['The Sonnenberg is dry, south-facing steppe: very hot in summer, go early and bring water', 'About 60 m on the main road and lanes in Staben and Tschars: lead on', 'Orchards and vineyards beside the path are farmed and closed to dogs in Kastelbell-Tschars: keep to the path'],
+      terrainType: 'Waal path, dirt paths and village lanes',
+      shadeDescription: 'Partly shaded: about a third runs through mapped woodland; the open steppe slopes of the Sonnenberg are in full sun.',
+      terrainDescription: 'A walk at 550–710 m from Staben across the Adige and up to the Stabnerwaal, an old irrigation channel on the dry Sonnenberg slope, to the Himmelreich restaurant and Tschars, with views down the Vinschgau valley.',
+      waterDescription: 'Drinking water at the start and km 0.2; places to eat on the way.',
+      dogNotes: 'Naturns keeps dogs on a lead in the village, parks and car parks and on the Adige embankment, and asks owners to keep them on a lead on the Waalweg; Kastelbell-Tschars requires a lead of at most 1.5 m and a muzzle carried and keeps dogs out of cemeteries, playgrounds and off farmed land. The national rule adds a lead of at most 1.5 m and a muzzle carried. Part of the walk crosses the Sonnenberg steppe Natura 2000 site, which sets no extra dog rule.',
+      tips: 'Start at Staben station: 4.9 km one way to Tschars station, about 160 m up and down, two hours; the train links the two stations. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water only near the start: bring plenty, the Sonnenberg is hot.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero della roggia "Stabnerwaal" (Kastelbell-Tschars tourist board)', url: 'https://www.outdooractive.com/it/r/805506819' },
+        { label: 'Gemeinde Naturns, dog regulation (2006)', url: 'https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043' },
+        { label: 'Gemeinde Kastelbell-Tschars, dog regulation (2010)', url: 'https://www.gemeinde.kastelbell-tschars.bz.it/system/web/GetDocument.ashx?cts=1709821147&fileId=1199914' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.645153, lng: 10.965544, label: 'Staben railway station, the board’s start' },
+      desc: 'A walk from Staben across the Adige and up to the Stabnerwaal, along the old irrigation channel on the sunny Sonnenberg past the Himmelreich restaurant to Tschars. The board lists 4.9 km, 160 m up and 160 m down.'
     }
   };
 
