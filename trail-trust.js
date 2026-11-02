@@ -168,7 +168,7 @@
     .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
 
   // A reviewed point keeps its own name but loses the importer's tag. "(OSM-
-  // verified location)" printed on 67 live pages, seven of them trails without
+  // verified location)" printed on 46 live pages, eight of them trails without
   // the seal, and a reader takes "verified" next to ORMA's name as ORMA's.
   const withoutOsmTag = label => String(label || '')
     .replace(/\s*\(OSM-verified[^)]*\)/gi, '')

@@ -102,7 +102,7 @@ describe('a trail without the seal never says it is verified',()=>{
 
   // The importer tags every water point "Drinking water (OSM-verified
   // location)". The pages printed it on reviewed water, sealed or not, until
-  // 2 Nov 2026: 67 trails, seven without the seal.
+  // 2 Nov 2026: 46 trail pages, eight without the seal.
   test('no trail page prints the importer\'s "OSM-verified" tag',()=>{
     const dir=path.join(ROOT,'trails');
     const pages=fs.readdirSync(dir).filter(file=>file.endsWith('.html'));
