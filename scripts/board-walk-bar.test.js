@@ -65,6 +65,21 @@ describe('the line check', () => {
     expect(asLoop.clean).toBe(false);
   });
 
+  test('a lollipop whose loop crosses its own stem is still a lollipop', () => {
+    // Out along the stem, round the loop, and back across the stem 150 m
+    // before rejoining it: the crossing lies over the stem for a few metres.
+    const line = walk([0, 0], [300, 0], [700, 0], [700, 400], [150, 400], [150, -100], [300, -100], [300, 0], [0, 0]);
+    expect(bar.lineShape(line, { declared: 'lollipop' }).clean).toBe(true);
+  });
+
+  test('a lollipop that also walks 100 m twice mid-walk overlaps', () => {
+    // A small loop on the way round that brings the walk back over the same
+    // 100 m of path, like a bridge crossed twice.
+    const line = walk([0, 0], [300, 0], [700, 0], [700, 200], [700, 300], [600, 300], [600, 200], [700, 200],
+      [700, 300], [700, 400], [300, 400], [300, 0], [0, 0]);
+    expect(bar.lineShape(line, { declared: 'lollipop' }).kind).toBe('overlaps');
+  });
+
   test('a figure of eight that walks its middle path twice overlaps', () => {
     const line = walk([0, 0], [400, 0], [400, 200], [0, 200], [0, 400], [400, 400], [400, 200], [0, 200], [0, 0]);
     expect(bar.lineShape(line, { declared: 'loop' }).kind).toBe('overlaps');
