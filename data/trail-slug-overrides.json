@@ -1408,6 +1408,31 @@
       "name": "Dolorama stage 3: Rifugio Genova to Resciesa",
       "slug": "dolorama-genova-to-resciesa",
       "gloss": "under the Odle by the Brogles hut"
+    },
+    "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": {
+      "name": "Rifugio Sesvenna to Mals",
+      "slug": "sesvenna-hut-to-malles",
+      "gloss": "down the Seppelesteig and Patersteig above Burgeis"
+    },
+    "vinschgau-sentiero-della-roggia-latschanderwaal-4954": {
+      "name": "Latschanderwaal, Latsch to Kastelbell",
+      "slug": "latschanderwaal-latsch-to-kastelbell",
+      "gloss": "along the irrigation channel past Kastelbell castle"
+    },
+    "vinschgau-sentiero-della-roggia-kastanienwaal": {
+      "name": "Kastanienwaal, Schlanders",
+      "slug": "kastanienwaal-schlanders",
+      "gloss": "on the Sonnenpromenade to the Pulverturm"
+    },
+    "vinschgau-escursione-al-lago-bergsee-da-burgusio": {
+      "name": "Lake Bergsee from Burgeis",
+      "slug": "lake-bergsee-from-burgeis",
+      "gloss": "a short loop to the lake above the village"
+    },
+    "vinschgau-sentiero-della-roggia-stabnerwaal": {
+      "name": "Stabnerwaal, Staben to Tschars",
+      "slug": "stabnerwaal-staben-to-tschars",
+      "gloss": "along the irrigation channel on the Sonnenberg"
     }
   }
 }

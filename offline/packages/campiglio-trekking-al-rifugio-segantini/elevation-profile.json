@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "campiglio-trekking-al-rifugio-segantini",
+  "distanceKm": 4.8,
+  "ascentM": 397,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2031
+    },
+    {
+      "km": 0.4,
+      "elev": 2111
+    },
+    {
+      "km": 0.7,
+      "elev": 2191
+    },
+    {
+      "km": 1.1,
+      "elev": 2251
+    },
+    {
+      "km": 1.5,
+      "elev": 2298
+    },
+    {
+      "km": 1.8,
+      "elev": 2350
+    },
+    {
+      "km": 2.2,
+      "elev": 2366
+    },
+    {
+      "km": 2.6,
+      "elev": 2371
+    },
+    {
+      "km": 2.9,
+      "elev": 2334
+    },
+    {
+      "km": 3.3,
+      "elev": 2236
+    },
+    {
+      "km": 3.7,
+      "elev": 2138
+    },
+    {
+      "km": 4.1,
+      "elev": 2070
+    },
+    {
+      "km": 4.4,
+      "elev": 2051
+    },
+    {
+      "km": 4.8,
+      "elev": 2031
+    }
+  ]
+}

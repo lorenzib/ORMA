@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cembra-pietra-del-futuro",
+  "distanceKm": 2.6,
+  "ascentM": 61,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 641
+    },
+    {
+      "km": 0.2,
+      "elev": 649
+    },
+    {
+      "km": 0.4,
+      "elev": 643
+    },
+    {
+      "km": 0.6,
+      "elev": 656
+    },
+    {
+      "km": 0.8,
+      "elev": 674
+    },
+    {
+      "km": 1,
+      "elev": 654
+    },
+    {
+      "km": 1.2,
+      "elev": 658
+    },
+    {
+      "km": 1.4,
+      "elev": 640
+    },
+    {
+      "km": 1.6,
+      "elev": 653
+    },
+    {
+      "km": 1.8,
+      "elev": 657
+    },
+    {
+      "km": 2,
+      "elev": 667
+    },
+    {
+      "km": 2.2,
+      "elev": 661
+    },
+    {
+      "km": 2.4,
+      "elev": 637
+    },
+    {
+      "km": 2.6,
+      "elev": 636
+    }
+  ]
+}

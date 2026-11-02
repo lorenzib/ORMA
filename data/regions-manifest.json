@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-02T11:09:55.200Z",
+  "generatedAt": "2026-11-02T15:19:16.354Z",
   "regions": {
     "dolomites": {
-      "trailCount": 307,
-      "trails": "data/regions/dolomites-trails.js?v=a59da4caccca",
+      "trailCount": 312,
+      "trails": "data/regions/dolomites-trails.js?v=2be6bb13fc20",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -312,6 +312,11 @@
         "villnoess-ranui-zannes": "data/trail-details/villnoess-ranui-zannes.js?v=27dec396051e",
         "villnoess-da-russis-fino-al-passo-delle-erbe": "data/trail-details/villnoess-da-russis-fino-al-passo-delle-erbe.js?v=0ad365a95a5d",
         "villnoess-dolorama-3a-tappa": "data/trail-details/villnoess-dolorama-3a-tappa.js?v=446bd1f83c2a",
+        "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": "data/trail-details/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles.js?v=803d6067f278",
+        "vinschgau-sentiero-della-roggia-latschanderwaal-4954": "data/trail-details/vinschgau-sentiero-della-roggia-latschanderwaal-4954.js?v=0dd313d401b4",
+        "vinschgau-sentiero-della-roggia-kastanienwaal": "data/trail-details/vinschgau-sentiero-della-roggia-kastanienwaal.js?v=803183242867",
+        "vinschgau-escursione-al-lago-bergsee-da-burgusio": "data/trail-details/vinschgau-escursione-al-lago-bergsee-da-burgusio.js?v=a0fb67d98e71",
+        "vinschgau-sentiero-della-roggia-stabnerwaal": "data/trail-details/vinschgau-sentiero-della-roggia-stabnerwaal.js?v=e6ad767efb94",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -321,14 +326,14 @@
     },
     "savoy": {
       "trailCount": 51,
-      "trails": "data/regions/savoy-trails.js?v=0001fef7ee9c",
+      "trails": "data/regions/savoy-trails.js?v=6199b8e75deb",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=07be5ff5d5e1",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=6206ef4046f2",
         "osm-9933643": "data/trail-details/osm-9933643.js?v=46e36fc3307c",
         "osm-10116283": "data/trail-details/osm-10116283.js?v=78fe4b05c278",
         "osm-10116380": "data/trail-details/osm-10116380.js?v=94f1614013f9",
-        "osm-20347406": "data/trail-details/osm-20347406.js?v=d91ad911a11c",
+        "osm-20347406": "data/trail-details/osm-20347406.js?v=f216e65eff31",
         "osm-11517208": "data/trail-details/osm-11517208.js?v=7d965ede3792",
         "osm-14987412": "data/trail-details/osm-14987412.js?v=232ab44a9d26",
         "osm-18055492": "data/trail-details/osm-18055492.js?v=b6856f6e21aa",
@@ -382,7 +387,7 @@
     },
     "lombardy": {
       "trailCount": 9,
-      "trails": "data/regions/lombardy-trails.js?v=d478b25fec40",
+      "trails": "data/regions/lombardy-trails.js?v=54e0f82a5a21",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=fbf7190b5c12",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
@@ -783,6 +788,11 @@
     "villnoess-ranui-zannes": "dolomites",
     "villnoess-da-russis-fino-al-passo-delle-erbe": "dolomites",
     "villnoess-dolorama-3a-tappa": "dolomites",
+    "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": "dolomites",
+    "vinschgau-sentiero-della-roggia-latschanderwaal-4954": "dolomites",
+    "vinschgau-sentiero-della-roggia-kastanienwaal": "dolomites",
+    "vinschgau-escursione-al-lago-bergsee-da-burgusio": "dolomites",
+    "vinschgau-sentiero-della-roggia-stabnerwaal": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1304,6 +1314,11 @@
     "villnoess-ranui-zannes": "ranui-to-zannes",
     "villnoess-da-russis-fino-al-passo-delle-erbe": "russis-to-passo-delle-erbe",
     "villnoess-dolorama-3a-tappa": "dolorama-genova-to-resciesa",
+    "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": "sesvenna-hut-to-malles",
+    "vinschgau-sentiero-della-roggia-latschanderwaal-4954": "latschanderwaal-latsch-to-kastelbell",
+    "vinschgau-sentiero-della-roggia-kastanienwaal": "kastanienwaal-schlanders",
+    "vinschgau-escursione-al-lago-bergsee-da-burgusio": "lake-bergsee-from-burgeis",
+    "vinschgau-sentiero-della-roggia-stabnerwaal": "stabnerwaal-staben-to-tschars",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1719,6 +1734,11 @@
     "ranui-to-zannes": "villnoess-ranui-zannes",
     "russis-to-passo-delle-erbe": "villnoess-da-russis-fino-al-passo-delle-erbe",
     "dolorama-genova-to-resciesa": "villnoess-dolorama-3a-tappa",
+    "sesvenna-hut-to-malles": "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles",
+    "latschanderwaal-latsch-to-kastelbell": "vinschgau-sentiero-della-roggia-latschanderwaal-4954",
+    "kastanienwaal-schlanders": "vinschgau-sentiero-della-roggia-kastanienwaal",
+    "lake-bergsee-from-burgeis": "vinschgau-escursione-al-lago-bergsee-da-burgusio",
+    "stabnerwaal-staben-to-tschars": "vinschgau-sentiero-della-roggia-stabnerwaal",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
