@@ -57,8 +57,19 @@ describe('one vocabulary for one score', () => {
     expect([luna.score,luna.category]).toEqual([91,'strong-option']);
     expect(page.match(/<small>6 years, Labrador/g)).toHaveLength(1);
     expect(page.match(/<small>6 anni, labrador/g)).toHaveLength(1);
-    expect(page.match(/Bruna<\/span><b[^>]*>71%/g)).toHaveLength(2);
-    expect(page.match(/Luna<\/span><b[^>]*>91%/g)).toHaveLength(2);
+    // Each card, in both languages: its costs add up to its total, the total
+    // is the engine's score, and the chip beside it is the engine's verdict.
+    const expected={bruna:{score:bruna.score,tone:'good'},luna:{score:luna.score,tone:'great'}};
+    const cards=[...page.matchAll(/<div class="sc-dogcard" data-dog="(\w+)">([\s\S]*?)<\/div>\n {8}<\/div>/g)];
+    expect(cards.map(card=>card[1])).toEqual(['bruna','luna','bruna','luna']);
+    cards.forEach(([, dog, body]) => {
+      const costs=[...body.matchAll(/<div class="sc-sum"><span>[^<]+<\/span><b>([^<]+)<\/b>/g)]
+        .map(match=>match[1]).slice(1).map(cost=>Number(cost.replace('−','-')));
+      const total=body.match(/sc-sum--total"><span class="sc-band-chip sc-band-chip--(\w+)">[^<]+<\/span><b[^>]*>(\d+)%/);
+      expect(Number(total[2])).toBe(expected[dog].score);
+      expect(100+costs.reduce((sum,cost)=>sum+cost,0)).toBe(expected[dog].score);
+      expect(total[1]).toBe(expected[dog].tone);
+    });
   });
 });
 
