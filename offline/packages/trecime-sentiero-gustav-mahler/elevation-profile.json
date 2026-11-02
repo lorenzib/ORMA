@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-sentiero-gustav-mahler",
+  "distanceKm": 4.7,
+  "ascentM": 72,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1215
+    },
+    {
+      "km": 0.4,
+      "elev": 1212
+    },
+    {
+      "km": 0.8,
+      "elev": 1203
+    },
+    {
+      "km": 1.1,
+      "elev": 1203
+    },
+    {
+      "km": 1.4,
+      "elev": 1216
+    },
+    {
+      "km": 1.8,
+      "elev": 1236
+    },
+    {
+      "km": 2.2,
+      "elev": 1221
+    },
+    {
+      "km": 2.5,
+      "elev": 1202
+    },
+    {
+      "km": 2.9,
+      "elev": 1193
+    },
+    {
+      "km": 3.2,
+      "elev": 1197
+    },
+    {
+      "km": 3.6,
+      "elev": 1199
+    },
+    {
+      "km": 4,
+      "elev": 1203
+    },
+    {
+      "km": 4.3,
+      "elev": 1213
+    },
+    {
+      "km": 4.7,
+      "elev": 1210
+    }
+  ]
+}

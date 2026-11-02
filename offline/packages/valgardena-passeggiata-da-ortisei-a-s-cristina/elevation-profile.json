@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-passeggiata-da-ortisei-a-s-cristina",
+  "distanceKm": 7.2,
+  "ascentM": 147,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1239
+    },
+    {
+      "km": 0.6,
+      "elev": 1263
+    },
+    {
+      "km": 1.1,
+      "elev": 1271
+    },
+    {
+      "km": 1.6,
+      "elev": 1298
+    },
+    {
+      "km": 2.2,
+      "elev": 1309
+    },
+    {
+      "km": 2.7,
+      "elev": 1331
+    },
+    {
+      "km": 3.3,
+      "elev": 1370
+    },
+    {
+      "km": 3.8,
+      "elev": 1304
+    },
+    {
+      "km": 4.4,
+      "elev": 1301
+    },
+    {
+      "km": 4.9,
+      "elev": 1314
+    },
+    {
+      "km": 5.5,
+      "elev": 1250
+    },
+    {
+      "km": 6.1,
+      "elev": 1230
+    },
+    {
+      "km": 6.6,
+      "elev": 1217
+    },
+    {
+      "km": 7.1,
+      "elev": 1241
+    },
+    {
+      "km": 7.2,
+      "elev": 1239
+    }
+  ]
+}
