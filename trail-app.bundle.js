@@ -53875,6 +53875,54 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2.5',
       routeShape: 'lollipop',
       routeShapeNote: 'Out from the Toblach tourist office past the Nordic Arena and the Säge to the Toblacher See, along the nature trail on the west shore, and back. A loop on a stem: the first 2.6 km from the start is walked both ways, out and home.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Toblach tourist office, the tourist board’s start.",
+        "sequence": "The board names no path numbers and gives the way instead: from the Toblach tourist office south on the pavement, right just after the level crossing and left after about 100 m, along the paved road to the Nordic Arena and on to the Säge; there a gravel road leads to the Toblacher See. On the west shore the nature trail follows the lake past 11 information stations to an observation platform with a rest area. Back to the tourist office.",
+        "switches": "Right just after the level crossing, then left after about 100 m. Keep the Nordic Arena on your right. At the Säge onto the gravel road.",
+        "steps": [
+          {
+            "text": "From the Toblach tourist office walk south on the pavement. Just after the level crossing turn right, then after about 100 m turn left.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Follow the paved road straight to the Nordic Arena, keep it on your right, and carry on to the Säge, where a gravel road begins.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Take the gravel road straight to the Toblacher See.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "On the west side of the lake, follow the nature trail along the shore.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back to the tourist office the way you came.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Dobbiaco – Lago di Dobbiaco, percorso naturalistico attorno al lago: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-dobbiaco-lago-di-dobbiaco-percorso-naturalistico-attorno-al-lago-dobbiaco_553",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -53946,6 +53994,42 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'lollipop',
       routeShapeNote: 'A loop from the former Grand Hotel at Neu-Toblach on path 27 through the forest to Altschluderbach, where Gustav Mahler spent his summers, and back on path 27A, the paved cycle path. A loop on a stem: the first 900 m from the start is walked both ways, out and home.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the former Grand Hotel in Neu-Toblach, the tourist board’s start.",
+        "sequence": "Paths 27 and 27A: from the former Grand Hotel at Neu-Toblach on path 27 to the Rienz area, up beside the lower part of the ski lift (the lift is not used), then level through the forest to Altschluderbach, where Mahler’s summer house and composing hut stand (seen from outside only). Back on path 27A, which is also the paved cycle path, to the start.",
+        "switches": "Path 27 out, path 27A (the paved cycle path) back.",
+        "steps": [
+          {
+            "text": "From the former Grand Hotel in Neu-Toblach, follow path 27 to the Rienz area.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 27 climbs beside the first part of the ski lift, then runs level through the forest to Altschluderbach, where Mahler’s summer house and composing hut stand (seen from outside only).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back on path 27A, which is also the paved cycle path, to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Sentiero Gustav Mahler: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-sentiero-gustav-mahler_50104",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -54010,6 +54094,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1.8',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the petrol station on the SS 49 at Innichen up the Schlosstal to the Haselsberg farms and along a narrow lane past the Eggemann and Kugler farms down to Toblach. Back by train or bus.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the petrol station on the SS 49 at Innichen, on the Toblach side; the tourist board’s start.",
+        "sequence": "Path 26 throughout: from the petrol station on the SS 49 towards Toblach, up the lane through the Schlosstal to the Haselsberg, where the Schopfenhof and Feichter farms serve food, then along a narrow lane, still path 26, past the Eggemann and Kugler farms down into Toblach. The board suggests the train or bus back, or the level path 28A through the larch wood below the Drau springs to Innichen.",
+        "switches": "Path 26 all the way; at the Haselsberg stay on 26 along the narrow lane.",
+        "steps": [
+          {
+            "text": "From the petrol station on the SS 49 towards Toblach, take the lane marked 26 through the Schlosstal.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Climb on path 26 to the Haselsberg, where the Schopfenhof and Feichter farms serve food.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there a narrow lane, still path 26, leads past the Eggemann and Kugler farms down to Toblach.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back by train or bus. Or walk back on the level path 28A from Neu-Toblach through the larch wood below the Drau springs to Innichen; if 28A is closed (firing range or winter), follow the easy path beside the railway.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "San Candido – Costa dei Nosellari – Dobbiaco: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-san-candido-costa-dei-nosellari-dobbiaco_628",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -54087,6 +54213,42 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the Haunold lift valley station in Innichen along the cycle path towards Sexten and up through forest and meadows to the old spa at Wildbad Innichen; come back the same way.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Haunold lift valley station in Innichen, the tourist board’s start. No lift is used.",
+        "sequence": "The board names no path numbers here: from the Haunold lift valley station along the cycle path towards Sexten to the turning signed “Wildbad Innichen”, then right on the forest road through woods and meadows to the old spa. No lift is used: the walk only starts at the valley station. From Wildbad a forest road continues to the Haunold hut at the top of the chairlift; that extension is not part of this walk.",
+        "switches": "Right off the cycle path where it is signed “Wildbad Innichen”.",
+        "steps": [
+          {
+            "text": "From the Haunold lift valley station in Innichen, take the cycle path towards Sexten.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn right where it is signed “Wildbad Innichen” (Bagni di San Candido) and follow the way through woods and meadows to the old spa.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The board’s optional extension along the forest road to the Haunold hut is not part of this walk.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Escursione a tema: Bagni di San Candido: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-a-tema-bagni-di-san-candido_630",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -54235,6 +54397,36 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '0.6',
       routeShape: 'loop',
       routeShapeNote: 'A short loop from the Holy Trinity hospital church in Niederdorf along the edge of the forest to the chapel of St. Magdalena in Moos, and back on a quiet paved road between fields.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the hospital church (Spitalkirche) in the centre of Niederdorf, the tourist board’s start.",
+        "sequence": "The board names no path numbers: from the Holy Trinity hospital church in the centre of Niederdorf along the edge of the forest towards the Gothic chapel of St. Magdalena in Moos, with views of the village and the Prags Dolomites; benches by the chapel. Back on a quiet paved road between wide fields to the start.",
+        "switches": "Out along the forest edge, back on the paved road between the fields.",
+        "steps": [
+          {
+            "text": "From the hospital church in the centre of Niederdorf, follow the path along the edge of the forest towards the chapel of St. Magdalena in Moos, with views over the village and the Prags Dolomites.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From the chapel, come back on a quiet paved road between wide fields to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Villabassa – giro del bosco \"Mooskirche\" – Villabassa: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/passeggiata-per-famiglie-villabassa-giro-del-bosco-mooskirche-villabassa_606",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -54305,6 +54497,36 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the Pragser Wildsee car park along the west shore of the lake to a wide green clearing, then right on path 19 up to the Grünwaldalm; come back the same way.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Pragser Wildsee car park, the tourist board’s start.",
+        "sequence": "Path 19: from the Pragser Wildsee car park along the west shore of the lake to a wide green clearing, then right on path 19 up the valley to the Grünwaldalm (Malga Foresta). Back the same way. The board says it suits families and is passable with a pushchair.",
+        "switches": "Right on path 19 at the wide green clearing.",
+        "steps": [
+          {
+            "text": "From the Pragser Wildsee car park, take the west shore of the lake to a wide green clearing.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there, go right on path 19 to the Grünwaldalm (Malga Foresta).",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Lago di Braies – Malga Foresta: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-foresta-_651",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -55337,6 +55559,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '3',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from Innichen up past the soldiers’ cemetery on the Burg hill, along the forest road on path 4 to the Waldkapelle, and down path 4D past the Way of the Cross and the Hösler and Ladstätter farms to Sexten. Back by bus.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in Innichen, at the foot of the Burg hill; the tourist board’s start.",
+        "sequence": "Paths 4 and 4D: from Innichen briefly up the Burg hill to the soldiers’ cemetery, then on the Schlossweg forest road on path 4. The meditation path turns right and after about 100 m reaches the Waldkapelle, a First World War chapel hidden in the forest. From the chapel path 4D runs gently down past the stations of the Way of the Cross and the Hösler and Ladstätter farms into Sexten. In summer 2026 the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built.",
+        "switches": "Onto the Schlossweg forest road (path 4). Right on the meditation path to the chapel. Path 4D down to Sexten.",
+        "steps": [
+          {
+            "text": "From Innichen, go briefly up the Burg hill to the soldiers’ cemetery.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Join the Schlossweg forest road and follow path 4.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Where the meditation path turns off to the right, take it; after about 100 m you reach the Waldkapelle, a First World War chapel hidden in the forest.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From the chapel, path 4D runs gently down past the stations of the Way of the Cross and the Hösler and Ladstätter farms to Sexten.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Cimitero dei soldati \"Burg\" – Cappella del bosco – Sesto: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-cimitero-dei-soldati-burg-capella-del-bosco-sesto_560",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -55410,6 +55674,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1.9',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the Holy Trinity hospital church in Niederdorf past the parish church, up the Montecosta road and path 45 to the Thaler farm, nearly level west to the hamlet of Kleinsinner and on along the road to the Bellavista viewpoint at 1,460 m. Come back the same way.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the hospital church (Spitalkirche) in Niederdorf, the tourist board’s start.",
+        "sequence": "Path 45: from the Holy Trinity hospital church past the parish church and up the Montecosta road to the bend at the Brandhäusl; there left on path 45, a quiet shaded path, to the Thaler farm; then almost level west to the hamlet of Kleinsinner, and along the road to the Bellavista viewpoint (1,460 m). Back the same way.",
+        "switches": "Left onto path 45 at the bend by the Brandhäusl. West at the Thaler farm to Kleinsinner.",
+        "steps": [
+          {
+            "text": "From the hospital church in Niederdorf, walk past the parish church and up the Montecosta road to the bend by the Brandhäusl (path 45).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn left there and follow the quiet, shaded path to the Thaler farm.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on almost level, westwards, to the hamlet of Kleinsinner.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From Kleinsinner, follow the road to the Bellavista viewpoint (1,460 m).",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Escursione estiva: Bellavista Montecosta: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-bellavista-montecosta_640",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -55483,6 +55789,42 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2.9',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the Pragser Wildsee along its west shore to the south-east end of the lake, up path 1 for about 2.2 km and on path 4 for about 3 km to the Rossalm hut. Come back the same way.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Pragser Wildsee, on its west shore; the tourist board’s start.",
+        "sequence": "Paths 1 and 4: along the west shore of the Pragser Wildsee to its south-east end, right at the junction on path 1 and up for about 2.2 km to the next junction, then on path 4 for about 3 km to the Rossalm. Back the same way.",
+        "switches": "Right onto path 1 at the south-east end of the lake. Onto path 4 at the next junction, after about 2.2 km.",
+        "steps": [
+          {
+            "text": "Walk along the west shore of the Pragser Wildsee to the south-east end of the lake.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "There, turn right at the junction onto path 1 and follow it for about 2.2 km to the next junction.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there, follow path 4 for about 3 km to the Rossalm.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Lago di Braies – Malga Rossalm: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-rossalm-_473",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -55546,6 +55888,36 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from Schluderbach in the Höhlensteintal up the forest road on path 37 through the forest to the Dürrensteinhütte on the Plätzwiese. Come back the same way.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in Schluderbach (Carbonin), the tourist board’s start.",
+        "sequence": "Path 37: from Schluderbach the forest road climbs gently through the forest to the Dürrensteinhütte (Rifugio Vallandro) on the Plätzwiese. Shortcuts cut the bends but are steeper. The walk can be joined to a walk on the Plätzwiese.",
+        "switches": "None: stay on forest road 37. The shortcuts across the bends are steeper.",
+        "steps": [
+          {
+            "text": "From Schluderbach, forest road 37 climbs gently through the forest to the Dürrensteinhütte (Rifugio Vallandro).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Shortcuts cut across the bends; they are a little steeper.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Carbonin – Rifugio Vallandro: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-carbonin-rifugio-vallandro_832",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -55613,6 +55985,42 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2.75',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the top of the Vierschach – Helm gondola down path 4, the fairy-tale path, past the Jägerhütte, then right on path 4B down to Vierschach.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Helm restaurant at the top of the gondola from Vierschach; the tourist board’s start.",
+        "sequence": "Paths 4 and 4B: up from Vierschach on the Vierschach – Helm gondola to the Helm restaurant, then down path 4, the fairy-tale path, past the Jägerhütte; turn right on path 4B and down through the forest to Vierschach. The gondola has closed cabins. In summer 2026 the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built.",
+        "switches": "Path 4 down, then right onto path 4B.",
+        "steps": [
+          {
+            "text": "From Vierschach, take the gondola up to the Helm restaurant.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Take path 4 downhill, the fairy-tale path, past the Jägerhütte.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn right onto path 4B and follow it down to Vierschach.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Sentiero nel bosco fino a Versciaco: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/sentiero-nel-bosco-fino-a-versciaco_68483",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -56422,6 +56830,54 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '5.5',
       routeShape: 'out-and-back',
       routeShapeNote: 'From the church in Moos down to Sexten on path 102, through the village past the church and on path 5 across the meadows and through the forest above the Sexten reservoir, joining path 4 into Innichen; back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the church in Moos, the tourist board’s start.",
+        "sequence": "Paths 102, 5 and 4: from the church in Moos down Heideckstraße to its end, over a small bridge and right on path 102 towards Sexten, past the swimming pool to the village centre; across the road and up the narrow lane to the church, past it and after a few hundred metres left into the Lanerweg. Below the Laner farms path 5 starts towards Innichen, across flower meadows, past farms and through the forest above the Sexten reservoir; beyond the lake path 5 joins path 4 into Innichen, away from the busy cycle path. Back the same way. In summer 2026 the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built.",
+        "switches": "Right on path 102 after the small bridge. Left into the Lanerweg past the Sexten church. Path 5 from below the Laner farms, joining path 4 into Innichen.",
+        "steps": [
+          {
+            "text": "From the church in Moos, go down Heideckstraße on the right to its end. Cross a small bridge and follow path 102 to the right towards Sexten, past the swimming pool, to the centre by the savings bank.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross the road and go up the narrow lane to the church. Walk past the church and after a few hundred metres turn left into the Lanerweg.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Below the Laner farms, path 5 to Innichen begins. Follow it across flower meadows, past farms and through the forest above the Sexten reservoir.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Beyond the reservoir, stay on path 5 until it joins path 4, and follow that into the centre of Innichen.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The board’s times are for there and back: return the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Passeggiata: Sesto – San Candido: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/passeggiata-sesto-san-candido_724",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -56512,6 +56968,36 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'out-and-back',
       routeShapeNote: 'From Sexten parish church up the paved lane across the Mitterberg to the Gasthof Panorama (1,576 m), and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Sexten parish church, the tourist board’s start.",
+        "sequence": "The board names no path number: from Sexten parish church up the paved road across the Mitterberg, with views of the Sexten Sundial peaks, to the Gasthof Panorama (1,576 m). Back the same way. From the Panorama, paths continue to the Helmhanghütte and the Sexten alms, or up to the Lärchenhütte and the Helm.",
+        "switches": "None: stay on the paved road up to the Gasthof Panorama.",
+        "steps": [
+          {
+            "text": "From Sexten parish church, walk up the paved road, with views of the Sexten Sundial peaks, to the Gasthof Panorama (1,576 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The board’s times are for there and back: return the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Sesto chiesa parrocchiale – Gasthof Panorama: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-sesto-chiesa-parocchiale-gasthof-panorama-_412",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -56577,6 +57063,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '3.1',
       routeShape: 'out-and-back',
       routeShapeNote: 'From the Haus der Berge by the Helmjet valley station past the Kiniger farms to the Gasthof Panorama, then up the forest road past the Helmhanghütte to the Lärchenhütte, and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Haus der Berge in Sexten, beside the Helmjet valley station; the tourist board’s start. No lift is used.",
+        "sequence": "The board gives the way by its signs: from the Haus der Berge, a signed path left of the Helmjet valley station leads to the Kiniger farms and on to the Gasthof Panorama; from there left on a paved road that becomes a forest road, climbing gently and steadily through the forest to the Lärchenhütte. Back the same way. No lift is used: the walk only starts beside the Helmjet valley station.",
+        "switches": "Signed path left of the Helmjet valley station. Left at the Gasthof Panorama onto the paved road that becomes a forest road.",
+        "steps": [
+          {
+            "text": "From the Haus der Berge, take the signed path to the left of the Helmjet valley station to the Kiniger farms.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Follow the signs on to the Gasthof Panorama.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there, go left on a paved road. It becomes a forest road and climbs gently and steadily through the forest to the Lärchenhütte (Rifugio Larice).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The board’s times are for there and back: return the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Haus der Berge – Rifugio Larice: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-haus-der-berge-rifugio-larice_14721",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -56640,6 +57168,42 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '0.7',
       routeShape: 'out-and-back',
       routeShapeNote: 'From the Mitterberg fort car park past the Gasthof Panorama along the forest road on path 13 to the Helmhanghütte (1,605 m), and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the public car park at the Mitterberg fort, the tourist board’s start; the Mitterberg shuttle bus (line 440.1) stops here.",
+        "sequence": "Path 13: from the public car park at the Mitterberg fort past the Gasthof Panorama (1,576 m) along the forest road to the Helmhanghütte (1,605 m). Back the same way. The board says it suits pushchairs; the Mitterberg shuttle bus (line 440.1) stops at the start.",
+        "switches": "None: forest road, path 13, all the way.",
+        "steps": [
+          {
+            "text": "From the public car park at the Mitterberg fort, walk past the Gasthof Panorama (1,576 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Follow the forest road, path 13, to the Helmhanghütte (1,605 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The board’s times are for there and back: return the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Gasthof Panorama – Rifugio Pendio Monte Elmo: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/passeggiata-con-il-passeggino-gasthof-panorama-rifugio-pendio-monte-elmo_7510",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -56700,6 +57264,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1.25',
       routeShape: 'out-and-back',
       routeShapeNote: 'From Sexten parish church on the meditation path with 14 stations, on paths 5 and 4B past the Hösler and Ladstätter farms and through forest and meadows to the Waldkapelle (1,552 m), and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Sexten parish church, the tourist board’s start.",
+        "sequence": "Paths 5 and 4B: from Sexten parish church the biblical meditation path, marked as paths 5 and 4B, passes the stations of the Way of the Cross to the Hösler farms, follows the farm path 4B to the Ladstätter farm, and crosses forest and meadows to the Waldkapelle (1,552 m), a chapel built for secret masses after the First World War. Back the same way. The Mitterberg shuttle bus (line 440.1) serves the area.",
+        "switches": "Paths 5 and 4B, the meditation path with 14 stations; farm path 4B from the Hösler farms to the Ladstätter farm.",
+        "steps": [
+          {
+            "text": "From Sexten parish church, follow the biblical meditation path, marked as paths 5 and 4B, past the stations of the Way of the Cross to the Hösler farms.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on along the farm path 4B to the Ladstätter farm.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there, cross forest and meadows to the Waldkapelle (1,552 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The board’s times are for there and back: return the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Da Sesto alla Cappella del Bosco: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-da-sesto-alla-cappella-del-bosco-_49977",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -57926,6 +58532,42 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1.6',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the fire station in Niederdorf on path 46 up to the old Sinna Mihle mill, right along the level Lanaweg towards Toblach for about 1.5 km, and back across the Langwiesn meadows to Niederdorf.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the volunteer fire station in the centre of Niederdorf, the tourist board’s start and finish.",
+        "sequence": "Path 46 and the Lanaweg: from the fire station in the centre of Niederdorf on the signed path 46 through meadows and woods to the Sinna Mihle, an old mill; there right onto the Lanaweg, which runs level for about 1.5 km towards Toblach along the sunny slope of the Eggerberg; back across the Langwiesn meadows to Niederdorf and the fire station.",
+        "switches": "Path 46 to the Sinna Mihle, then right onto the Lanaweg. Back across the Langwiesn meadows.",
+        "steps": [
+          {
+            "text": "From the fire station in the centre of Niederdorf, follow the signed path 46 through meadows and woods to the Sinna Mihle, an old mill.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn right onto the Lanaweg and follow it on the level for about 1.5 km towards Toblach.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Come back across the Langwiesn meadows to Niederdorf and the fire station.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Escursione circolare: Villabassa – Lanaweg: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-circolare-villabassa-lanaweg_605",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -58007,6 +58649,42 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '4.5',
       routeShape: 'loop',
       routeShapeNote: 'From the Pragser Wildsee right of the Hotel Pragser Wildsee up paths 20 and 61 to the Kaseralm, down path 22A to the Grünwaldalm, and back on path 19 along the shore of the lake.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Pragser Wildsee, to the right of the Hotel Pragser Wildsee; the tourist board’s start.",
+        "sequence": "Paths 20, 61, 22A and 19: from the Pragser Wildsee, right of the Hotel Pragser Wildsee, first on path 20 and then path 61 up to the Kaseralm; from there path 22A down to the Grünwaldalm; path 19 back to the start along the shore of the lake.",
+        "switches": "Path 20, then path 61 up to the Kaseralm. Path 22A down to the Grünwaldalm. Path 19 back along the lake.",
+        "steps": [
+          {
+            "text": "From the Pragser Wildsee, to the right of the Hotel Pragser Wildsee, take path 20 and then path 61 up to the Kaseralm.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From the Kaseralm, path 22A leads down to the Grünwaldalm.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Take path 19 back to the start along the shore of the lake.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Giro delle baite del Lago di Braies: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-giro-estivo-giro-delle-baite-lago-di-braies_73638",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -59091,6 +59769,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '5.1',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the heating plant in Sexten up path 12B through the Gsell valley to the Außergsell, along a gentler ridge on path 12 to the Innergsell meadows, down path 12 into the Fischleintal and back on the Sexten circular path 1.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the heating plant in Sexten, the tourist board’s start and finish.",
+        "sequence": "Paths 12B, 12 and 1: from the heating plant in Sexten on the forest path 12B, climbing steadily through the Gsell valley, steep in places but easy, through shaded forest to the top of the Außergsell; then on path 12 along a gentler ridge to the Innergsell, wide mountain meadows full of flowers in summer; down path 12 into the Fischleintal, where the Sexten circular path 1 leads back to the heating plant.",
+        "switches": "Path 12B up the Gsell valley. Path 12 along the ridge and down into the Fischleintal. Path 1 back.",
+        "steps": [
+          {
+            "text": "From the heating plant in Sexten, follow the forest path 12B, climbing steadily through the Gsell valley. It is steep in places but easy to walk, through shaded forest, up to the top of the Außergsell.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on along a gentler ridge on path 12 to the Innergsell meadows.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Go down on path 12 into the Fischleintal.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "There, take the Sexten circular path, path 1, back to the heating plant. There are no staffed huts on the way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Giro per il Monte Casella di Fuori: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-in-montagna-giro-per-il-monte-casella-di-fuori_701",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -59165,6 +59885,42 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2.2',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the top of the Rotwand gondola from Bad Moos on the Rotwandwiesen (1,925 m) along forest road 17A to the Signaue gondola, then left on path 17 down through the forest to the car park at the Rotwand valley station.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the top of the Rotwand gondola from Bad Moos, on the Rotwandwiesen (1,925 m); the tourist board’s start.",
+        "sequence": "Paths 17A and 17: up from Bad Moos on the Rotwand gondola to the Rotwandwiesen (1,925 m); along forest road 17A, fine for pushchairs, to the Signaue gondola; left on path 17 into the forest and down to the car park at the Rotwand valley station. The Rotwand gondola has closed cabins; no lift is used on the way down.",
+        "switches": "Forest road 17A to the Signaue gondola, then left onto path 17.",
+        "steps": [
+          {
+            "text": "From Bad Moos, take the gondola up to the Rotwandwiesen (1,925 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Follow forest road 17A to the Signaue gondola.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn left onto path 17, into the forest, and walk down to the car park at the Rotwand valley station.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Passeggiata nella Valle di Sesto: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/passeggiata-nella-valle-di-sesto_68498",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -59229,6 +59985,36 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '1.6',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the top of the Helmjet gondola down the fairy-tale path 4 past the Jägerhütte to the Gasthof Waldruhe, and on along the quiet Außerberg and Mitterberg roads into Sexten.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the top station of the Helmjet gondola from Sexten, the tourist board’s start.",
+        "sequence": "Path 4 and quiet roads: from the top station of the Helmjet gondola from Sexten down the fairy-tale path (path 4), with stories of the Knödelweibile and other legends of the Sexten Dolomites, past the Jägerhütte (1,802 m) to the Gasthof Waldruhe (1,580 m); from there down the little-used Außerberg and Mitterberg roads into Sexten. The Helmjet gondola has closed cabins. In summer 2026 the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built.",
+        "switches": "Path 4, the fairy-tale path, to the Gasthof Waldruhe; then the Außerberg and Mitterberg roads.",
+        "steps": [
+          {
+            "text": "From the top station of the Helmjet gondola, go down the fairy-tale path, path 4, past the Jägerhütte (1,802 m) to the Gasthof Waldruhe (1,580 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there, walk down the little-used Außerberg and Mitterberg roads into the centre of Sexten.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Stazione a monte Monte Elmo – Baita del Cacciatore – Gasthof Waldruhe – Sesto: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-stazione-a-monte-della-funivia-monte-elmo-baita-del-cacciatore-gasthof-waldruhe-sesto_50095",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -59298,6 +60084,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '6.4',
       routeShape: 'out-and-back',
       routeShapeNote: 'From the car park by the Fischleinbodenhütte along the Fischleintal to the Talschlusshütte, up path 102 through the Altensteintal past the Bödenalm and the Bödenseen to the Sextner Stein by the Dreizinnenhütte, and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park by the Fischleinbodenhütte in the Fischleintal, the tourist board’s start; reached by car or bus from Sexten or Moos.",
+        "sequence": "Path 102: from the car park by the Fischleinbodenhütte in the Fischleintal, reached by car or bus from Sexten or Moos, south on the wide, level valley path to the Talschlusshütte; then right into the Altensteintal on path 102, west up to the Bödenalm and past the foot of the Toblinger Knoten to the Sextner Stein beside the Dreizinnenhütte, facing the north walls of the Drei Zinnen and the Paternkofel. Back the same way.",
+        "switches": "Right after the Talschlusshütte onto path 102 into the Altensteintal.",
+        "steps": [
+          {
+            "text": "From the car park by the Fischleinbodenhütte, walk south on the wide, level valley path to the Talschlusshütte.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "After the hut, turn right into the Altensteintal on path 102 and climb west to the Bödenalm.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Carry on below the Toblinger Knoten to the final climb up to the Sextner Stein, facing the north walls of the Drei Zinnen.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Return the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Escursione in montagna: Sasso di Sesto: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-in-montagna-sasso-di-sesto-_424",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -59368,6 +60196,54 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '5.1',
       routeShape: 'out-and-back',
       routeShapeNote: 'From Moos up the Helmstraße past Palmstatt, on path 1 to the Kristler farms and the Helmhanghütte, then up the narrow Heimatsteig, path 3A, along the ridge to the Helm summit (2,434 m), and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Schäfer store in Moos, the tourist board’s start.",
+        "sequence": "Paths 1 and 3A: from the Schäfer shop in Moos up the Helmstraße past the Palmstatt houses to a small bridge, left on path 1 across the ski slope and along the fence to the Kristler farms and the Helmhanghütte; a short way on towards Egge, then left at the last hut into the open larch wood on path 3A, the Heimatsteig, a narrow path climbing steadily along the ridge above the treeline to the Helm summit (2,434 m). Back the same way.",
+        "switches": "Left onto path 1 after the small bridge. Left at the last hut beyond the Helmhanghütte onto path 3A, the Heimatsteig.",
+        "steps": [
+          {
+            "text": "From the Schäfer store in Moos, walk up the Helmstraße past the Palmstatt houses until you cross a small bridge on the right of the road.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "There, follow the sign for path 1 to the left, cross the ski slope and walk along the fence to the Kristler farms and the Helmhanghütte.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past the hut, carry on briefly towards Egge, then turn left at the last hut in the open larch wood onto summer path 3A, the Heimatsteig.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The narrow path climbs steadily along the ridge. Above the treeline, follow the marked ridge up to the Helm summit (2,434 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Return the same way to Moos. The board also offers the Helmjet gondola down from its top station.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Escursione: Monte Elmo: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-monte-elmo-_50062",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -59428,6 +60304,48 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '5.3',
       routeShape: 'out-and-back',
       routeShapeNote: 'From the Haus der Berge in Sexten to the Alte Säge, up the paved path 105 through larch woods into the Innerfeldtal to the Antoniusstein, right on a narrow forest path to the head of the valley, and back the same way. The board states that the figures are for going there and back; it publishes the line one way, so the stored line is the board’s line walked out and back.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Haus der Berge in Sexten, the tourist board’s start.",
+        "sequence": "Path 105: from the Haus der Berge in Sexten on the path to the Alte Säge (1,259 m), then the paved path 105 through larch woods up the Innerfeldtal to the Antoniusstein (1,509 m); right on a narrow forest path to the head of the valley by the Dreischusterhütte. Back the same way. The board marks it suitable for pushchairs as far as the paved path goes.",
+        "switches": "Paved path 105 from the Alte Säge. Right at the Antoniusstein onto the narrow forest path.",
+        "steps": [
+          {
+            "text": "From the Haus der Berge, take the path to the Alte Säge (1,259 m).",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "From there, follow the paved path 105 through larch woods to the Antoniusstein (1,509 m) in the Innerfeldtal.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Turn right onto a narrow forest path to the head of the valley.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Return the same way.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Sesto – Alte Säge – Val Campo di Dentro: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/passeggiata-con-il-passeggino-sesto-alte-s-ge-val-campo-di-dentro_49959",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -59502,6 +60420,36 @@ function effectiveOverrides(profile, adjustOverride){
       hours: '2',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the Cimabanche pass in the Höhlensteintal on path 18 through forest and dwarf pine to the head of the Knappenfußtal, past a small waterfall, and up the zigzags to the Plätzwiese. Come back the same way.',
+      // Directions 2 November 2026: the tourist board’s own “Indicazioni”, turn by turn; the line is drawn on its published route.
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Cimabanche pass in the Höhlensteintal, the tourist board’s start.",
+        "sequence": "Path 18: from the Cimabanche pass in the Höhlensteintal through forest and dwarf pine to the end of the Knappenfußtal, where a small waterfall comes into view; then right up the zigzag path to the Plätzwiese, a high plateau at about 2,000 m. Back the same way.",
+        "switches": "Path 18 throughout; right up the zigzags at the end of the Knappenfußtal.",
+        "steps": [
+          {
+            "text": "From the Cimabanche pass, path 18 leads through forest and dwarf pine to the end of the Knappenfußtal, where a small waterfall comes into view.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "To the right, the zigzag path climbs up to the Plätzwiese.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Escursione estiva: Cimabanche – Prato Piazza: directions",
+            "authority": "Tre Cime Dolomites tourist board (Tourismusverein Drei Zinnen), on dreizinnen.com",
+            "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-cimabanche-prato-piazza_735",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
