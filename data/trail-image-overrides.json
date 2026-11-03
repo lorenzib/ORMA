@@ -2331,6 +2331,40 @@
       }
     },
     {
+      "id": "meran-escursione-alla-forst",
+      "approvedReviewId": "mapillary-meran-escursione-alla-forst-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-escursione-alla-forst-waalweg-railing.jpg",
+        "heroImage": "images/trails/meran-escursione-alla-forst-waalweg-railing.jpg",
+        "imageAlt": "A smooth path curving along a wooden railing beside tall hedges and acacia trees, with mountains glimpsed beyond",
+        "imageCredit": "The path along the railing above Forst",
+        "imageCreditText": "The path along the railing above Forst by changchun1",
+        "imageCreator": "changchun1",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=464857134788338",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "meran-escursione-sentiero-del-sole-a-stulles",
+      "approvedReviewId": "mapillary-meran-escursione-sentiero-del-sole-a-stulles-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-escursione-sentiero-del-sole-a-stulles-farm-road.jpg",
+        "heroImage": "images/trails/meran-escursione-sentiero-del-sole-a-stulles-farm-road.jpg",
+        "imageAlt": "A narrow tarred farm road climbing between grassy banks above the Passeier valley, with farmhouses ahead and clouds over the mountains",
+        "imageCredit": "The Sonnenrundweg on the farm road above Stuls",
+        "imageCreditText": "The Sonnenrundweg on the farm road above Stuls by crami",
+        "imageCreator": "crami",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=2459026827810029",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "meran-facile-escursione-da-verano-ad-avelengo",
       "approvedReviewId": "mapillary-meran-facile-escursione-da-verano-ad-avelengo-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",
@@ -2348,6 +2382,40 @@
       }
     },
     {
+      "id": "meran-giro-dei-masi-sul-monte-sole",
+      "approvedReviewId": "mapillary-meran-giro-dei-masi-sul-monte-sole-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-giro-dei-masi-sul-monte-sole-naturns-view.jpg",
+        "heroImage": "images/trails/meran-giro-dei-masi-sul-monte-sole-naturns-view.jpg",
+        "imageAlt": "A steep green slope above the Vinschgau valley floor, looking down on Naturns and its orchards, with the edge of the cable car pylon on the left",
+        "imageCredit": "Naturns from the Unterstell top station",
+        "imageCreditText": "Naturns from the Unterstell top station by uwelino",
+        "imageCreator": "uwelino",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=755748915138973",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer",
+      "approvedReviewId": "commons-meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer-mahd-alm.jpg",
+        "heroImage": "images/trails/meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer-mahd-alm.jpg",
+        "imageAlt": "A gravel path leading to a wooden alpine hut with parasols and walkers at tables, on a grassy slope below spruce and larch trees",
+        "imageCredit": "The path at the Mahd Alm",
+        "imageCreditText": "The path at the Mahd Alm by Lutz Lange",
+        "imageCreator": "Lutz Lange",
+        "imageLicence": "CC0 1.0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:An_der_Mahdalm_(1).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "meran-sentiero-della-roggia-brandis-a-lana",
       "approvedReviewId": "mapillary-meran-sentiero-della-roggia-brandis-a-lana-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",
@@ -2361,6 +2429,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=859047004699049",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole",
+      "approvedReviewId": "mapillary-meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole-boulder-path.jpg",
+        "heroImage": "images/trails/meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole-boulder-path.jpg",
+        "imageAlt": "A narrow earth path winding between large granite boulders and long summer grass, with a dry-stone wall on the right",
+        "imageCredit": "Path 1 between the boulders near the Zielbach",
+        "imageCreditText": "Path 1 between the boulders near the Zielbach by mikki65",
+        "imageCreator": "mikki65",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=2259093534222630",
         "imageSourceType": "licensed-source"
       }
     },

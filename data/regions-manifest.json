@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-03T18:45:00.898Z",
+  "generatedAt": "2026-11-03T18:55:11.760Z",
   "regions": {
     "dolomites": {
-      "trailCount": 326,
-      "trails": "data/regions/dolomites-trails.js?v=4818e60210cb",
+      "trailCount": 331,
+      "trails": "data/regions/dolomites-trails.js?v=fe1ddb288a7a",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=6faa6455cd45",
@@ -331,6 +331,11 @@
         "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": "data/trail-details/meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto.js?v=aa0fc62271e4",
         "meran-facile-escursione-da-verano-ad-avelengo": "data/trail-details/meran-facile-escursione-da-verano-ad-avelengo.js?v=2c333a9d7937",
         "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": "data/trail-details/meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg.js?v=f2f2428b7ee8",
+        "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": "data/trail-details/meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole.js?v=bb661e3be580",
+        "meran-escursione-sentiero-del-sole-a-stulles": "data/trail-details/meran-escursione-sentiero-del-sole-a-stulles.js?v=e94525faac63",
+        "meran-giro-dei-masi-sul-monte-sole": "data/trail-details/meran-giro-dei-masi-sul-monte-sole.js?v=61bb88c7cab6",
+        "meran-escursione-alla-forst": "data/trail-details/meran-escursione-alla-forst.js?v=2da2b3860bb6",
+        "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": "data/trail-details/meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer.js?v=6cc98c0977b0",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -824,6 +829,11 @@
     "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": "dolomites",
     "meran-facile-escursione-da-verano-ad-avelengo": "dolomites",
     "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": "dolomites",
+    "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": "dolomites",
+    "meran-escursione-sentiero-del-sole-a-stulles": "dolomites",
+    "meran-giro-dei-masi-sul-monte-sole": "dolomites",
+    "meran-escursione-alla-forst": "dolomites",
+    "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1370,6 +1380,11 @@
     "savoie-promenade-confort-lac-et-barrage-de-saint-guerin": "lac-de-saint-guerin-shore-path",
     "savoie-itineraire-poussette-des-chalets-brules": "chalets-brules-crest-voland",
     "savoie-itineraire-poussette-de-belavoine": "belavoine-cernix-to-paravy",
+    "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": "hoehenweg-west-sonnenberg-farms-partschins",
+    "meran-escursione-sentiero-del-sole-a-stulles": "sonnenrundweg-stuls",
+    "meran-giro-dei-masi-sul-monte-sole": "unterstell-farms-loop-naturns",
+    "meran-escursione-alla-forst": "algund-forst-marlinger-waalweg",
+    "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": "hirzer-alms-loop-klammeben",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1807,6 +1822,11 @@
     "lac-de-saint-guerin-shore-path": "savoie-promenade-confort-lac-et-barrage-de-saint-guerin",
     "chalets-brules-crest-voland": "savoie-itineraire-poussette-des-chalets-brules",
     "belavoine-cernix-to-paravy": "savoie-itineraire-poussette-de-belavoine",
+    "hoehenweg-west-sonnenberg-farms-partschins": "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole",
+    "sonnenrundweg-stuls": "meran-escursione-sentiero-del-sole-a-stulles",
+    "unterstell-farms-loop-naturns": "meran-giro-dei-masi-sul-monte-sole",
+    "algund-forst-marlinger-waalweg": "meran-escursione-alla-forst",
+    "hirzer-alms-loop-klammeben": "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

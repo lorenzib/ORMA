@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-giro-dei-masi-sul-monte-sole",
+  "distanceKm": 4,
+  "ascentM": 284,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1323
+    },
+    {
+      "km": 0.3,
+      "elev": 1386
+    },
+    {
+      "km": 0.6,
+      "elev": 1361
+    },
+    {
+      "km": 0.9,
+      "elev": 1391
+    },
+    {
+      "km": 1.2,
+      "elev": 1431
+    },
+    {
+      "km": 1.5,
+      "elev": 1448
+    },
+    {
+      "km": 1.8,
+      "elev": 1483
+    },
+    {
+      "km": 2.1,
+      "elev": 1509
+    },
+    {
+      "km": 2.4,
+      "elev": 1491
+    },
+    {
+      "km": 2.7,
+      "elev": 1493
+    },
+    {
+      "km": 3,
+      "elev": 1517
+    },
+    {
+      "km": 3.3,
+      "elev": 1465
+    },
+    {
+      "km": 3.6,
+      "elev": 1413
+    },
+    {
+      "km": 3.9,
+      "elev": 1323
+    },
+    {
+      "km": 4,
+      "elev": 1323
+    }
+  ]
+}
