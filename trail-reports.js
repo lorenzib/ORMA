@@ -50,6 +50,9 @@ function initTrailReports(map, trail){
   const editorialPhotos = window.DoloPawsPhotoProvenance
     ? window.DoloPawsPhotoProvenance.editorialPhotos(trail)
     : [];
+  const licensedPhotos = window.DoloPawsPhotoProvenance && window.DoloPawsPhotoProvenance.licensedPhotos
+    ? window.DoloPawsPhotoProvenance.licensedPhotos(trail)
+    : [];
   let actionStatusTimer = null;
   let closeActivePhotoViewer = null;
 
@@ -165,6 +168,19 @@ function initTrailReports(map, trail){
     return caption + (photo.status === 'reported' ? ' · Reported, under review' : '');
   }
 
+  // The credit a licence asks for: who took it, under what terms, and where
+  // it came from. Linked in the viewer, plain text under the thumbnail.
+  function photoCaptionHtml(photo){
+    const credit = window.DoloPawsPhotoProvenance && window.DoloPawsPhotoProvenance.licensedCredit
+      ? window.DoloPawsPhotoProvenance.licensedCredit(photo)
+      : null;
+    if (!credit) return trEsc(photoCaption(photo));
+    const licence = credit.licenceUrl
+      ? `<a href="${trEsc(credit.licenceUrl)}" rel="license noopener" target="_blank">${trEsc(credit.licence)}</a>`
+      : trEsc(credit.licence);
+    return `Photo: <a href="${trEsc(credit.sourcePage)}" rel="noopener nofollow" target="_blank">${trEsc(credit.creator)}</a> · ${licence}`;
+  }
+
   function photoAlt(photo){
     return window.DoloPawsPhotoProvenance
       ? window.DoloPawsPhotoProvenance.photoAlt(photo)
@@ -210,10 +226,9 @@ function initTrailReports(map, trail){
     function show(index){
       currentIndex = (index + photos.length) % photos.length;
       const photo = photos[currentIndex];
-      const label = photoCaption(photo);
       image.src = photo.image;
       image.alt = photoAlt(photo);
-      caption.textContent = label;
+      caption.innerHTML = photoCaptionHtml(photo);
       count.textContent = `${currentIndex + 1} of ${photos.length}`;
       previous.hidden = photos.length < 2;
       next.hidden = photos.length < 2;
@@ -275,13 +290,16 @@ function initTrailReports(map, trail){
 
   function renderPhotos(photos){
     if (!photosListEl) return;
-    const visible = editorialPhotos.concat(photos.filter(photo =>
+    const visible = editorialPhotos.concat(licensedPhotos, photos.filter(photo =>
       window.DoloPawsCommunityStates&&window.DoloPawsCommunityStates.isPublic(photo.status)&&
       typeof photo.image==='string'&&photo.image.startsWith('data:image/')
     ))
       .sort((a, b) => {
         if(a.isEditorial!==b.isEditorial)return a.isEditorial?-1:1;
         if(a.isEditorial&&b.isEditorial)return a.editorialOrder-b.editorialOrder;
+        // A photo someone shared comes before one ORMA found for them.
+        if(!!a.isLicensed!==!!b.isLicensed)return a.isLicensed?1:-1;
+        if(a.isLicensed&&b.isLicensed)return a.licensedOrder-b.licensedOrder;
         const aDate = reviewDate(a), bDate = reviewDate(b);
         return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
       });
@@ -301,7 +319,8 @@ function initTrailReports(map, trail){
       return `<figure class="community-photo">
         <button type="button" class="community-photo__open" data-photo-index="${index}" aria-label="Open photo ${index + 1} of ${visible.length}: ${caption}">
           <img src="${trEsc(photo.image)}" alt="${trEsc(photoAlt(photo))}" loading="lazy" decoding="async">
-        </button>
+        </button>${photo.isLicensed ? `
+        <figcaption class="community-photo__credit">${caption}</figcaption>` : ''}
       </figure>`;
     }).join('');
     photosListEl.querySelectorAll('[data-photo-index]').forEach(button => {
