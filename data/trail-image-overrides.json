@@ -3,6 +3,57 @@
   "updatedAt": "2026-10-24T12:17:31.000Z",
   "trails": [
     {
+      "id": "ahrntal-escursione-rifugio-ponte-di-ghiaccio",
+      "approvedReviewId": "commons-ahrntal-escursione-rifugio-ponte-di-ghiaccio-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/ahrntal-escursione-rifugio-ponte-di-ghiaccio-path-above-lake-neves.jpg",
+        "heroImage": "images/trails/ahrntal-escursione-rifugio-ponte-di-ghiaccio-path-above-lake-neves.jpg",
+        "imageAlt": "A stony path across open alpine pasture above Lake Neves, with dark peaks of the Zillertal Alps beyond",
+        "imageCredit": "The path above Lake Neves",
+        "imageCreditText": "The path above Lake Neves by Giorgio Galeotti",
+        "imageCreator": "Giorgio Galeotti",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Neves_-_Selva_dei_Molini,_Bolzano,_Italia_-_Agosto_1994_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "ahrntal-sentiero-del-conte-cadipietra",
+      "approvedReviewId": "commons-ahrntal-sentiero-del-conte-cadipietra-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/ahrntal-sentiero-del-conte-cadipietra-meadow-curves.jpg",
+        "heroImage": "images/trails/ahrntal-sentiero-del-conte-cadipietra-meadow-curves.jpg",
+        "imageAlt": "Curving rows of young crops at the foot of a steep green meadow above Steinhaus",
+        "imageCredit": "Fields and meadows above Steinhaus",
+        "imageCreditText": "Fields and meadows above Steinhaus by Stiller Beobachter",
+        "imageCreator": "Stiller Beobachter",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Curves_-_Flickr_-_Stiller_Beobachter.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "ahrntal-sentiero-panoramico-cadipietra",
+      "approvedReviewId": "commons-ahrntal-sentiero-panoramico-cadipietra-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/ahrntal-sentiero-panoramico-cadipietra-valley-view.jpg",
+        "heroImage": "images/trails/ahrntal-sentiero-panoramico-cadipietra-valley-view.jpg",
+        "imageAlt": "Green meadows and farmhouses along the floor of the Ahrntal, with forested slopes and dark storm clouds over the valley",
+        "imageCredit": "The Ahrntal from the slope above Steinhaus",
+        "imageCreditText": "The Ahrntal from the slope above Steinhaus by Stiller Beobachter",
+        "imageCreator": "Stiller Beobachter",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Brewing_storm_-_Flickr_-_Stiller_Beobachter.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "alpe-siusi",
       "approvedReviewId": "aWdy0ikCoO8Dud0tseoI",
       "approvedAt": "2026-09-03T21:24:03.637Z",
@@ -288,6 +339,74 @@
         "imageLicence": "CC BY 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:View_direction_Bormio_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "brixen-alto-sentiero-di-lazfons",
+      "approvedReviewId": "commons-brixen-alto-sentiero-di-lazfons-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/brixen-alto-sentiero-di-lazfons-kuehberg-geisler-view.jpg",
+        "heroImage": "images/trails/brixen-alto-sentiero-di-lazfons-kuehberg-geisler-view.jpg",
+        "imageAlt": "Two stone pines on a sunny alpine slope, with the jagged Geisler peaks on the horizon under a clear blue sky",
+        "imageCredit": "The Kühberg alp and the Geisler peaks",
+        "imageCreditText": "The Kühberg alp and the Geisler peaks by Clemens Stockner",
+        "imageCreator": "Clemens Stockner",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kühberg_11.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl",
+      "approvedReviewId": "mapillary-brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl-lane-above-muehlbach.jpg",
+        "heroImage": "images/trails/brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl-lane-above-muehlbach.jpg",
+        "imageAlt": "A narrow lane beside a wooden fence above Mühlbach, with a cyclist ahead and wooded mountains across the valley",
+        "imageCredit": "The lane above Mühlbach",
+        "imageCreditText": "The lane above Mühlbach by voschix",
+        "imageCreator": "voschix",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=827919481408912",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "brixen-escursione-al-rifugio-bressanone",
+      "approvedReviewId": "commons-brixen-escursione-al-rifugio-bressanone-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/brixen-escursione-al-rifugio-bressanone-path-17-signpost.jpg",
+        "heroImage": "images/trails/brixen-escursione-al-rifugio-bressanone-path-17-signpost.jpg",
+        "imageAlt": "A wooden signpost on a green slope pointing along path 17 to the Brixner Hütte and back down to Fane Alm and Vals",
+        "imageCredit": "The path 17 signpost below the Brixner Hütte",
+        "imageCreditText": "The path 17 signpost below the Brixner Hütte by Peter Maiwald",
+        "imageCreator": "Peter Maiwald",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Wegweiser_fingerpost_Fanealm_Labeseben_Brixner_Hütte_Südtirol.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia",
+      "approvedReviewId": "mapillary-brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia-forest-road.jpg",
+        "heroImage": "images/trails/brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia-forest-road.jpg",
+        "imageAlt": "A gravel forest road through spruce woods in the Altfasstal, with a green mountain top beyond",
+        "imageCredit": "The forest road in the Altfasstal",
+        "imageCreditText": "The forest road in the Altfasstal by mischl7",
+        "imageCreator": "mischl7",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=314151183401026",
         "imageSourceType": "licensed-source"
       }
     },
@@ -6737,6 +6856,142 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=284749910008624",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles",
+      "approvedReviewId": "commons-vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles-sesvenna-hut.jpg",
+        "heroImage": "images/trails/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles-sesvenna-hut.jpg",
+        "imageAlt": "The stone Sesvenna hut on a grassy shelf above a small mountain lake, with a dirt path and distant blue peaks",
+        "imageCredit": "The Rifugio Sesvenna at the start",
+        "imageCreditText": "The Rifugio Sesvenna at the start by Agnes Monkelbaan",
+        "imageCreator": "Agnes Monkelbaan",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bergtocht_van_Watles_via_Sesvennahütte_en_de_Uina_Slucht_naar_Sur_En_19-09-2019._(actm.)_22.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-escursione-al-lago-bergsee-da-burgusio",
+      "approvedReviewId": "commons-vinschgau-escursione-al-lago-bergsee-da-burgusio-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-escursione-al-lago-bergsee-da-burgusio-burgeis-marienberg.jpg",
+        "heroImage": "images/trails/vinschgau-escursione-al-lago-bergsee-da-burgusio-burgeis-marienberg.jpg",
+        "imageAlt": "A village lane in Burgeis with flower boxes and a church spire, and the white Marienberg Abbey on the wooded slope above",
+        "imageCredit": "Burgeis and Marienberg Abbey",
+        "imageCreditText": "Burgeis and Marienberg Abbey by Vid Pogacnik",
+        "imageCreator": "Vid Pogacnik",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Burgeis01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-piani-di-annenberg",
+      "approvedReviewId": "mapillary-vinschgau-piani-di-annenberg-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-piani-di-annenberg-annenberg-signpost.jpg",
+        "heroImage": "images/trails/vinschgau-piani-di-annenberg-annenberg-signpost.jpg",
+        "imageAlt": "Wooden signposts for the Annaberger Böden and the Goldrain panorama path beside a fenced path, with pines and the valley below",
+        "imageCredit": "Signposts above the Annaberger Böden",
+        "imageCreditText": "Signposts above the Annaberger Böden by kapant",
+        "imageCreator": "kapant",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=3196848953966374",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-kastanienwaal",
+      "approvedReviewId": "commons-vinschgau-sentiero-della-roggia-kastanienwaal-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-sentiero-della-roggia-kastanienwaal-sonnenpromenade.jpg",
+        "heroImage": "images/trails/vinschgau-sentiero-della-roggia-kastanienwaal-sonnenpromenade.jpg",
+        "imageAlt": "A wooden signpost reading Sonnenpromenade on a metal pole beside a house with a balcony, under a cloudy sky",
+        "imageCredit": "The Sonnenpromenade sign in Schlanders",
+        "imageCreditText": "The Sonnenpromenade sign in Schlanders by Seichter-wm",
+        "imageCreator": "Seichter-wm",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sonnenpromenade_Schlanders1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-latschanderwaal-4954",
+      "approvedReviewId": "commons-vinschgau-sentiero-della-roggia-latschanderwaal-4954-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-sentiero-della-roggia-latschanderwaal-4954-kastelbell-castle.jpg",
+        "heroImage": "images/trails/vinschgau-sentiero-della-roggia-latschanderwaal-4954-kastelbell-castle.jpg",
+        "imageAlt": "Kastelbell castle with its round tower and battlements on a rocky outcrop above green woods, under a cloudy sky",
+        "imageCredit": "Kastelbell castle on the Latschanderwaal",
+        "imageCreditText": "Kastelbell castle on the Latschanderwaal by Tilman2007",
+        "imageCreator": "Tilman2007",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:15262_Schloß_Kastelbell_Castello_di_Castelbello_Kastellbell_20220904_0230.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal",
+      "approvedReviewId": "mapillary-vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal-waal-path.jpg",
+        "heroImage": "images/trails/vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal-waal-path.jpg",
+        "imageAlt": "A gravel path beside a small stone irrigation channel through pine and larch woods, with yellow waymarks on a tree trunk",
+        "imageCredit": "The waal path above Schluderns",
+        "imageCreditText": "The waal path above Schluderns by freebiker_bert",
+        "imageCreator": "freebiker_bert",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1103997910123042",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-schnalswaal",
+      "approvedReviewId": "mapillary-vinschgau-sentiero-della-roggia-schnalswaal-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-sentiero-della-roggia-schnalswaal-wayside-shrine.jpg",
+        "heroImage": "images/trails/vinschgau-sentiero-della-roggia-schnalswaal-wayside-shrine.jpg",
+        "imageAlt": "A small whitewashed wayside shrine with a wrought-iron grille and flowers inside, in dappled shade beside the path",
+        "imageCredit": "A wayside shrine above Staben",
+        "imageCreditText": "A wayside shrine above Staben by vrws",
+        "imageCreator": "vrws",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=759832618030645",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-stabnerwaal",
+      "approvedReviewId": "mapillary-vinschgau-sentiero-della-roggia-stabnerwaal-on-route",
+      "approvedAt": "2026-11-02T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/vinschgau-sentiero-della-roggia-stabnerwaal-staben-view.jpg",
+        "heroImage": "images/trails/vinschgau-sentiero-della-roggia-stabnerwaal-staben-view.jpg",
+        "imageAlt": "Looking down from the Sonnenberg on the village of Staben, the green Adige river and the railway, with orchards across the valley floor",
+        "imageCredit": "Staben from the Stabnerwaal",
+        "imageCreditText": "Staben from the Stabnerwaal by uwelino",
+        "imageCreator": "uwelino",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=2843964542586862",
         "imageSourceType": "licensed-source"
       }
     },

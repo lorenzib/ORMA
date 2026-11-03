@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa",
+  "distanceKm": 10.8,
+  "ascentM": 665,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1728
+    },
+    {
+      "km": 0.9,
+      "elev": 1697
+    },
+    {
+      "km": 1.7,
+      "elev": 1684
+    },
+    {
+      "km": 2.5,
+      "elev": 1724
+    },
+    {
+      "km": 3.3,
+      "elev": 1738
+    },
+    {
+      "km": 4.1,
+      "elev": 1793
+    },
+    {
+      "km": 4.9,
+      "elev": 1929
+    },
+    {
+      "km": 5.7,
+      "elev": 1947
+    },
+    {
+      "km": 6.5,
+      "elev": 1957
+    },
+    {
+      "km": 7.4,
+      "elev": 2037
+    },
+    {
+      "km": 8.2,
+      "elev": 2148
+    },
+    {
+      "km": 9,
+      "elev": 1958
+    },
+    {
+      "km": 9.8,
+      "elev": 1845
+    },
+    {
+      "km": 10.7,
+      "elev": 1748
+    },
+    {
+      "km": 10.8,
+      "elev": 1728
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia",
+  "generatedAt": "2026-11-02T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 5,
+    "ascentM": 253,
+    "highestPointM": 1852,
+    "expectedDuration": "1.5 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 17
+  },
+  "trailhead": {
+    "lat": 46.82471,
+    "lng": 11.64792,
+    "label": "Altfasstal car park (paid), the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.8409921,
+      "lng": 11.6505444,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.8519575,
+      "lng": 11.6608823,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.8660087,
+      "lng": 11.6635411,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Forest road shared with bikes and occasional service traffic: keep your dog close.",
+    "Cows graze in the upper valley in summer: keep your dog on a lead.",
+    "Kneipp pools along the way: keep your dog out of them.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-02"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-02",
+      "licence": "ODbL"
+    }
+  ]
+}

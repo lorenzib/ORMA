@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-larici-verso-anterivo",
+  "distanceKm": 5.5,
+  "ascentM": 60,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1208
+    },
+    {
+      "km": 0.4,
+      "elev": 1218
+    },
+    {
+      "km": 0.8,
+      "elev": 1241
+    },
+    {
+      "km": 1.3,
+      "elev": 1209
+    },
+    {
+      "km": 1.7,
+      "elev": 1242
+    },
+    {
+      "km": 2.1,
+      "elev": 1249
+    },
+    {
+      "km": 2.5,
+      "elev": 1216
+    },
+    {
+      "km": 2.9,
+      "elev": 1237
+    },
+    {
+      "km": 3.4,
+      "elev": 1243
+    },
+    {
+      "km": 3.8,
+      "elev": 1242
+    },
+    {
+      "km": 4.2,
+      "elev": 1241
+    },
+    {
+      "km": 4.7,
+      "elev": 1241
+    },
+    {
+      "km": 5,
+      "elev": 1189
+    },
+    {
+      "km": 5.4,
+      "elev": 1200
+    },
+    {
+      "km": 5.5,
+      "elev": 1208
+    }
+  ]
+}

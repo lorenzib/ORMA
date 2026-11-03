@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "brixen-escursione-al-rifugio-bressanone",
+  "distanceKm": 4.3,
+  "ascentM": 580,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1724
+    },
+    {
+      "km": 0.3,
+      "elev": 1729
+    },
+    {
+      "km": 0.7,
+      "elev": 1769
+    },
+    {
+      "km": 1,
+      "elev": 1828
+    },
+    {
+      "km": 1.3,
+      "elev": 1878
+    },
+    {
+      "km": 1.6,
+      "elev": 1918
+    },
+    {
+      "km": 2,
+      "elev": 1959
+    },
+    {
+      "km": 2.3,
+      "elev": 1987
+    },
+    {
+      "km": 2.6,
+      "elev": 2074
+    },
+    {
+      "km": 3,
+      "elev": 2101
+    },
+    {
+      "km": 3.3,
+      "elev": 2160
+    },
+    {
+      "km": 3.6,
+      "elev": 2164
+    },
+    {
+      "km": 4,
+      "elev": 2230
+    },
+    {
+      "km": 4.3,
+      "elev": 2274
+    }
+  ]
+}

@@ -92,7 +92,9 @@ describe('the directions reach the crawlable page',()=>{
 
   test('a trail with no established directions gets no section at all',()=>{
     const none=trails.filter(trail=>!hasDirections(trail));
-    expect(none.length).toBeGreaterThan(100);
+    // The count falls as directions are written (96 on 3 November 2026);
+    // the floor only keeps the sample from being empty.
+    expect(none.length).toBeGreaterThan(50);
     expect(none.map(directionsSection).filter(Boolean)).toEqual([]);
   });
 

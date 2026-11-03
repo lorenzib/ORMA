@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal",
+  "generatedAt": "2026-11-02T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.6,
+    "ascentM": 290,
+    "highestPointM": 1252,
+    "expectedDuration": "3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 74
+  },
+  "trailhead": {
+    "lat": 46.663924,
+    "lng": 10.585477,
+    "label": "The Vuseum in Schluderns, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.664155,
+      "lng": 10.58522,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.666468,
+      "lng": 10.586541,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.666092,
+      "lng": 10.584246,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.665212,
+      "lng": 10.584399,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Narrow wooden walkways with railings in the gorge: keep your dog close on a short lead.",
+    "Steep climb on path 18 to the Ganglegg.",
+    "Village lanes in Schluderns at both ends: lead on.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-02"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-02",
+      "licence": "ODbL"
+    }
+  ]
+}
