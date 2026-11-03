@@ -58686,6 +58686,283 @@
       ],
       startPoint: { lat: 46.94693, lng: 11.78513, label: 'Lake Neves (Neves-Stausee), the board’s start' },
       desc: 'A climb from Lake Neves above Lappach, across the dam and up path 26 to the Ponte di Ghiaccio hut on the pass, with the Zillertal Alps all around. The board lists 5.2 km and 678 m up.'
+    },
+    'meran-sentiero-della-roggia-brandis-a-lana': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 1).
+      // “Sentiero della roggia Brandis a Lana”, published by the Lana and surroundings tourist board, drawn on 5 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Lana (its dog regulation published 10.02.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed land in the growing season).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Lana – Brandis-Waalweg – Niederlana – Brandis waterfall (Burggrafenamt)',
+      distance: 2.8,
+      elevation: 29,
+      hours: '0.8',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Gampen car park (P4) in Lana along the Brandis-Waalweg, almost level through orchards, vineyards and chestnut groves, past St Margaret’s and the parish church of Niederlana to the Brandis waterfall.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Brandis-Waalweg access just above the Gampen car park (P4) on Via Palade in Lana, the board’s start.",
+        "sequence": "Follow the dark-green Lana signs for the Brandis-Waalweg towards Niederlana (Lana di Sotto), almost level through orchards, vineyards and chestnut groves. Pass near St Margaret’s church and the parish church of Niederlana, with its Schnatterpeck altar; just above the parish church a short steep stretch of about 20 m leads on. The walk ends at the Brandis waterfall.",
+        "switches": "No change of path: the route has no white-red marks, so keep to the dark-green municipal signs for the Brandis-Waalweg all the way.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Lana and surroundings tourist board, Sentiero della roggia Brandis a Lana (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810054528",
+            "authority": "Lana and surroundings tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Brandis-Waalweg under a grape pergola between Lana and Niederlana, in August (warden on Mapillary, CC BY-SA 4.0), 6 m from the line.',
+        route: 'Official one-way walk 2.8 km from the Gampen car park (P4) in Lana, as the Lana and surroundings tourist board publishes it; the stored line is drawn on 5 OSM ways along the board’s published line, 2.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start just above the Gampen car park (P4) in Lana and follow the dark-green Lana signs for the Brandis-Waalweg towards Niederlana, past St Margaret’s and the parish church, to the Brandis waterfall; the path has no white-red AVS marks or number.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 2.8 km, 29 m up and 22 m down, 0:50 h, highest point 335 m, lowest 312 m (Lana and surroundings tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Lana and surroundings tourist board, Sentiero della roggia Brandis a Lana (its Outdooractive tour, also listed on suedtirol.info)',
+          'Marktgemeinde Lana / Comune di Lana, Verordnung zur Haltung von Hunden (published 10.02.2010), Art. 4 and 8: dogs on a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and primary-school yards or on farmed land (meadows, fields, vegetable plots) during the growing season; no bathing in the fountains of the historic centre',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (5 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 60,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 170 m along the Gampen road (SS238) in Lana: keep your dog close on a short lead', 'A short steep stretch of about 20 m above the parish church of Niederlana', 'Orchards and vineyards beside the path are farmed land, closed to dogs in Lana in the growing season: keep to the path'],
+      terrainType: 'Waal path, field lanes and village lanes',
+      shadeDescription: 'Partly shaded: about 60% runs under mapped trees, chestnut groves and pergolas; the open stretches through the orchards are in full sun.',
+      terrainDescription: 'An almost level walk at 310–335 m on the valley side above Lana, along the Brandis-Waalweg through orchards, vineyards and chestnut groves to the Brandis waterfall in Niederlana. The waal itself runs underground, so you don’t see or hear the water.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Lana requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed land in the growing season. The walk passes the churches of St Margaret and Niederlana without entering their churchyards.',
+      tips: 'Start just above the Gampen car park (P4) in Lana: 2.8 km one way to the Brandis waterfall, almost level, under an hour; buses link Niederlana and Lana. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The valley floor gets hot in summer: go in the morning or late afternoon.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero della roggia Brandis a Lana (Lana and surroundings tourist board)', url: 'https://www.outdooractive.com/it/r/810054528' },
+        { label: 'Marktgemeinde Lana, dog regulation (2010)', url: 'https://www.gemeinde.lana.bz.it/system/web/GetDocument.ashx?cts=1753349486&fileId=957663' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.613312, lng: 11.143508, label: 'Brandis-Waalweg access just above the Gampen car park (P4) in Lana, the board’s start' },
+      desc: 'An easy, almost level walk from Lana along the Brandis-Waalweg through orchards, vineyards and chestnut groves to the Brandis waterfall in Niederlana. The board lists 2.8 km, 29 m up and 22 m down, 50 minutes.'
+    },
+    'meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 1).
+      // “Da Oberkirn a Verdins passando per Prenn e Talle di Sotto”, published by the Schenna tourist board, drawn on 30 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Schenna (its dog regulation, Gemeinderat Nr. 33 of 31.08.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Tall – Oberkirn – Prenn – Untertall – Verdins (Schenna)',
+      distance: 7.3,
+      elevation: 121,
+      hours: '2.25',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and mostly downhill: from the top station of the Verdins–Tall cable car on path 40A past the Oberkirn inn and the Portnerhof to Prenn, then path 4A down through the Prenn meadows and woods to Untertall and the Untermeinlechner inn, and on a level path to the valley station in Verdins.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Verdins–Tall cable car up from Verdins and start at its top station, the board’s start.",
+        "sequence": "Take path 40A towards Prenn, past the Oberkirn inn and the Portnerhof farm, across meadows and through a stretch of woods to the Prennanger inn. In Prenn, after the church, turn left downhill; at the Alpenblick inn continue on path 4A across the Prenn mountain meadows and through the woods to Untertall and the Untermeinlechner inn. From there a level path leads back to the valley station of the cable car in Verdins.",
+        "switches": "Two changes: in Prenn, after the church, leave path 40A downhill to the left; at the Alpenblick inn follow path 4A down to Untertall.",
+        "sources": [
+          {
+            "label": "Schenna tourist board, Da Oberkirn a Verdins passando per Prenn e Talle di Sotto (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055796",
+            "authority": "Schenna tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The mown meadows on the Tall slope above Saltaus, looking across the Passeier valley, in June (Aschroet on Wikimedia Commons, CC0), 3 m from the line.',
+        route: 'Official one-way walk 7.3 km from the top station of the Verdins–Tall cable car, as the Schenna tourist board publishes it; the stored line is drawn on 30 OSM ways along the board’s published line, 7.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 40A and 4A: from the top station path 40A to Prenn, then path 4A down past the Alpenblick inn to Untertall, then the level path to the valley station in Verdins.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.3 (OSM nodes 10770868021).',
+        elevation: 'Official 7.3 km, 121 m up and 694 m down, 2:15 h, highest point 1,474 m, lowest 851 m (Schenna tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Schenna tourist board, Da Oberkirn a Verdins passando per Prenn e Talle di Sotto (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Schenna / Comune di Scena, dog regulation (Gemeinderat Nr. 33, 31.08.2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and school yards or on farmed land (meadows, fields) during the growing season; no bathing in the fountains of the centre',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (30 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 48,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 690 m of descent: hard on knees and paws, take it slowly', 'Meadows beside the path are farmed and closed to dogs in Schenna in the growing season: keep to the path', 'Farm roads through Prenn and Untertall: lead on for passing cars and tractors'],
+      terrainType: 'Field paths, forest paths and farm roads',
+      shadeDescription: 'Half shaded: about half runs through mapped woodland; the meadows around Oberkirn and Prenn are open.',
+      terrainDescription: 'A south-facing walk from 1,470 m down to 850 m on the slope of the Tallner mountain above Schenna, through the farms and meadows of Prenn and Untertall to Verdins.',
+      waterDescription: 'Drinking water at km 1.3; places to eat on the way.',
+      dogNotes: 'Schenna requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season. The walk passes a playground and a sports pitch near Prenn without entering them. On the cable car dogs ride on a lead and muzzled.',
+      tips: 'Take the cable car up from Verdins: 7.3 km one way back down to the valley station, 121 m up and 694 m down, about two and a quarter hours; bus 231 or 234 links Verdins with Schenna and Meran. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at Oberkirn and inns along the way.',
+      sourceLinks: [
+        { label: 'Outdooractive, Da Oberkirn a Verdins passando per Prenn e Talle di Sotto (Schenna tourist board)', url: 'https://www.outdooractive.com/it/r/810055796' },
+        { label: 'Gemeinde Schenna, dog regulation (2010)', url: 'https://www.gemeinde.schenna.bz.it/system/web/GetDocument.ashx?cts=1715263604&fileId=1020049' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.727609, lng: 11.227375, label: 'Top station of the Verdins–Tall cable car, the board’s start' },
+      desc: 'A mostly downhill walk from the top of the Verdins–Tall cable car past the Oberkirn and Prennanger inns, across the Prenn meadows and down through Untertall to Verdins. The board lists 7.3 km, 121 m up and 694 m down, 2 h 15.'
+    },
+    'meran-facile-escursione-da-verano-ad-avelengo': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 1).
+      // “Facile escursione da Verano ad Avelengo”, published by the Hafling-Vöran-Meran 2000 tourist board, drawn on 16 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Vöran (its dog regulation, Ratsbeschluss Nr. 49 of 14.10.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields) and Hafling (its 2004 regulation: lead in public places, no dogs in playgrounds; the national 1.5 m lead and carried muzzle apply on top).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Vöran – Bruggen pond – Hafling (Tschögglberg)',
+      distance: 6.3,
+      elevation: 135,
+      hours: '1.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Vöran sports-ground bus stop on path 16, gently up through woods to the Bruggen pond, then where path 16 forks below the pond down to the village of Hafling; the whole route is a wide forest road.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Sportplatz Vöran bus stop, the board’s start.",
+        "sequence": "Follow path 16 gently uphill through the woods to the Bruggen pond, with the Leadner Alm and the Waldbichl inn nearby. Below the pond path 16 forks: take the branch down to the village of Hafling, where the walk ends at the bus.",
+        "switches": "One choice: below the Bruggen pond keep to the branch of path 16 signed down to Hafling.",
+        "sources": [
+          {
+            "label": "Hafling-Vöran-Meran 2000 tourist board, Facile escursione da Verano ad Avelengo (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810963557",
+            "authority": "Hafling-Vöran-Meran 2000 tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Path 16 beside the Bruggen pond between Vöran and Hafling, in September (tyr on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official one-way walk 6.3 km from the Sportplatz bus stop in Vöran, as the Hafling-Vöran-Meran 2000 tourist board publishes it; the stored line is drawn on 16 OSM ways along the board’s published line, 6.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 16 all the way: from the Vöran sports ground to the Bruggen pond, then the branch of path 16 below the pond down to Hafling.',
+        mapPoints: 'Start at the board’s start; drinking water at km 2.4 (OSM nodes 9855080219).',
+        elevation: 'Official 6.3 km, 135 m up and 183 m down, 1:41 h, highest point 1,457 m, lowest 1,275 m (Hafling-Vöran-Meran 2000 tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Hafling-Vöran-Meran 2000 tourist board, Facile escursione da Verano ad Avelengo (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Vöran / Comune di Verano, Verordnung über die Haltung und Führung von Hunden (Ratsbeschluss Nr. 49, 14.10.2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and primary-school yards or on farmed land (meadows, fields, vegetable plots); no bathing in the village-centre fountains',
+          'Gemeinde Hafling / Comune di Avelengo, Verordnung über die Haltung von Hunden und anderen Tieren (Ratsbeschluss Nr. 24, 27.10.2004), Art. 1: dogs on a lead in public places; a lead and muzzle for larger dogs in public premises and on public transport; no dogs in children’s playgrounds',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (16 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 98,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Wide forest road shared with farm and forestry vehicles: lead on', 'Meadows beside the road are farmed and closed to dogs in Vöran: keep to the road', 'Short stretch on the Hafling road into the village at the end: keep your dog close'],
+      terrainType: 'Forest road',
+      shadeDescription: 'Almost entirely shaded: nearly all of it runs through mapped larch and pine woods.',
+      terrainDescription: 'An easy, almost level walk at 1,275–1,460 m on the Tschögglberg plateau above Meran, on a wide forest road through larch woods from Vöran past the Bruggen pond to Hafling; suitable for prams.',
+      waterDescription: 'Drinking water at km 2.4; places to eat on the way.',
+      dogNotes: 'Vöran requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields. Hafling requires a lead in public places and bans dogs from playgrounds; the national rule adds the 1.5 m lead and a carried muzzle.',
+      tips: 'Take the bus to the Sportplatz stop in Vöran: 6.3 km one way to Hafling, 135 m up and 183 m down, under two hours; bus 225 links Hafling and Meran. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water near the Bruggen pond.',
+      sourceLinks: [
+        { label: 'Outdooractive, Facile escursione da Verano ad Avelengo (Hafling-Vöran-Meran 2000 tourist board)', url: 'https://www.outdooractive.com/it/r/810963557' },
+        { label: 'Gemeinde Vöran, dog regulation (2010)', url: 'https://www.gemeinde.voeran.bz.it/system/web/GetDocument.ashx?cts=1743078088&fileId=1483032' },
+        { label: 'Gemeinde Hafling, dog regulation (2004)', url: 'https://www.gemeinde.hafling.bz.it/system/web/GetDocument.ashx?cts=1715259904&fileId=898743' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.608112, lng: 11.239144, label: 'Sportplatz Vöran bus stop, the board’s start' },
+      desc: 'An easy forest-road walk on the Tschögglberg plateau from Vöran past the Bruggen pond to Hafling, shaded by larch woods almost all the way. The board lists 6.3 km, 135 m up and 183 m down, 1 h 41.'
+    },
+    'meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 1).
+      // “Escursione ad anello da Scena sul sentiero Blosegg”, published by the Schenna tourist board, drawn on 49 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Schenna (its dog regulation, Gemeinderat Nr. 33 of 31.08.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Schenna – Bloseggweg – Kampflkreuz – Mitterplattweg (Schenna)',
+      distance: 5.7,
+      elevation: 200,
+      hours: '1.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the centre of Schenna up Schlossweg and Ifinger street, across meadows past the Lothhof to the Bloseggweg through the orchards, past the Kampflkreuz down to Goyen street and the Lido Schenna, and back along the Mitterplattweg.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of Schenna, the board’s start.",
+        "sequence": "Walk up Schlossweg to Verdinser Straße and follow it towards Verdins for about 200 m, then turn right into Ifinger street and climb on the pavement to the bend, where a small wooden bridge passes under the road. Follow the path across the meadows past the Lothhof to Pichlerweg, climb a few metres to the Bloseggweg and follow it through the orchards to St.-Georgen-Straße at the Rodelstein. Carry on across the meadows past the Kampflkreuz down to Goyen street, turn left along the main road for a few metres to the Lido Schenna, and return to the start on the Mitterplattweg.",
+        "switches": "Key turns: right from Verdinser Straße into Ifinger street; at Pichlerweg onto the Bloseggweg; at the Lido Schenna onto the Mitterplattweg back to the centre.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Schenna tourist board, Escursione ad anello da Scena sul sentiero Blosegg (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/805406435",
+            "authority": "Schenna tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The centre of Schenna with its wayside cross, the start of the loop, in September (Norbert Nagel on Wikimedia Commons, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 5.7 km from the centre of Schenna, as the Schenna tourist board publishes it; the stored line is drawn on 49 OSM ways along the board’s published line, 5.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start in the centre of Schenna and go up Schlossweg to Verdinser Straße, right into Ifinger street, across the meadows to the Bloseggweg through the orchards, past the Kampflkreuz down to Goyen street and the Lido, then back to the centre along the Mitterplattweg; no numbered paths.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.3, km 1.3, km 1.7, km 2.2, km 3.8, km 3.9 and km 5.2 (OSM nodes 7318188904, 7318189187, 7318189188, 7318189190, 10770867908, 8714631861, 8714646203, 2908895945, 2989424007, 11080529920, 11097299005, 11099137305, 7318188909).',
+        elevation: 'Official 5.7 km, 200 m up and 200 m down, 1:45 h, highest point 689 m, lowest 505 m (Schenna tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Schenna tourist board, Escursione ad anello da Scena sul sentiero Blosegg (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Schenna / Comune di Scena, dog regulation (Gemeinderat Nr. 33, 31.08.2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and school yards or on farmed land (meadows, fields) during the growing season; no bathing in the fountains of the centre',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (49 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 20,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 240 m along Schenna’s main street and short stretches on Verdinser Straße and Goyen street: keep your dog close on a short lead', 'Orchards and meadows beside the path are farmed and closed to dogs in Schenna in the growing season: keep to the path', 'Passes the small playground at the Rodelstein: dogs may not enter it'],
+      terrainType: 'Field paths, orchard paths and village streets',
+      shadeDescription: 'Mostly open: about a fifth runs under mapped trees; the orchards are in full sun.',
+      terrainDescription: 'A loop at 505–690 m through the apple orchards and meadows above and below Schenna, past the Kampflkreuz with views over Meran; suitable for prams.',
+      waterDescription: 'Drinking water at the start, km 0.3, km 1.3, km 1.7, km 2.2, km 3.8, km 3.9 and km 5.2; places to eat on the way.',
+      dogNotes: 'Schenna requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season. The loop passes the small playground at the Rodelstein without entering it.',
+      tips: 'Start in the centre of Schenna: a 5.7 km loop, 200 m up and down, about an hour and three quarters; bus 231 from Meran. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Best in spring blossom or autumn harvest; little shade in summer.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione ad anello da Scena sul sentiero Blosegg (Schenna tourist board)', url: 'https://www.outdooractive.com/it/r/805406435' },
+        { label: 'Gemeinde Schenna, dog regulation (2010)', url: 'https://www.gemeinde.schenna.bz.it/system/web/GetDocument.ashx?cts=1715263604&fileId=1020049' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.690139, lng: 11.187216, label: 'The village centre of Schenna, the board’s start' },
+      desc: 'A loop from Schenna through the apple orchards on the Bloseggweg, past the Kampflkreuz and back on the Mitterplattweg. The board lists 5.7 km, 200 m up and 200 m down, 1 h 45.'
     }
   };
 

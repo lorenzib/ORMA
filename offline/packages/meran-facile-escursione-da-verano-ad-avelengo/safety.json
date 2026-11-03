@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-facile-escursione-da-verano-ad-avelengo",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 6.3,
+    "ascentM": 135,
+    "highestPointM": 1458,
+    "expectedDuration": "1.75 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 98
+  },
+  "trailhead": {
+    "lat": 46.608112,
+    "lng": 11.239144,
+    "label": "Sportplatz Vöran bus stop, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.626706,
+      "lng": 11.241267,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Wide forest road shared with farm and forestry vehicles: lead on.",
+    "Meadows beside the road are farmed and closed to dogs in Vöran: keep to the road.",
+    "Short stretch on the Hafling road into the village at the end: keep your dog close.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

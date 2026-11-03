@@ -2297,6 +2297,74 @@
       }
     },
     {
+      "id": "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto",
+      "approvedReviewId": "commons-meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto-meadows.jpg",
+        "heroImage": "images/trails/meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto-meadows.jpg",
+        "imageAlt": "Freshly mown mountain meadows edged by woods, looking across the Passeier valley to steep slopes dotted with farms",
+        "imageCredit": "The meadows above Saltaus on the walk",
+        "imageCreditText": "The meadows above Saltaus on the walk by Aschroet",
+        "imageCreator": "Aschroet",
+        "imageLicence": "CC0 1.0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Landscape_Saltaus.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg",
+      "approvedReviewId": "commons-meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg-village-centre.jpg",
+        "heroImage": "images/trails/meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg-village-centre.jpg",
+        "imageAlt": "A paved village street with flower-decked balconies, a carved wayside crucifix and benches under cypresses",
+        "imageCredit": "The centre of Schenna, where the loop starts",
+        "imageCreditText": "The centre of Schenna, where the loop starts by Norbert Nagel",
+        "imageCreator": "Norbert Nagel",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Wayside_cross_and_flower-decorated_houses_in_Schenna.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "meran-facile-escursione-da-verano-ad-avelengo",
+      "approvedReviewId": "mapillary-meran-facile-escursione-da-verano-ad-avelengo-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-facile-escursione-da-verano-ad-avelengo-bruggen-pond.jpg",
+        "heroImage": "images/trails/meran-facile-escursione-da-verano-ad-avelengo-bruggen-pond.jpg",
+        "imageAlt": "A wide gravel forest road between larches and meadows, passing a small fenced pond with a wooden boardwalk",
+        "imageCredit": "Path 16 by the Bruggen pond",
+        "imageCreditText": "Path 16 by the Bruggen pond by tyr",
+        "imageCreator": "tyr",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=5478734758835413",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "meran-sentiero-della-roggia-brandis-a-lana",
+      "approvedReviewId": "mapillary-meran-sentiero-della-roggia-brandis-a-lana-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-sentiero-della-roggia-brandis-a-lana-pergola-path.jpg",
+        "heroImage": "images/trails/meran-sentiero-della-roggia-brandis-a-lana-pergola-path.jpg",
+        "imageAlt": "A gravel path in dappled shade under a long tunnel of grapevine pergolas, with a grassy stone bank on the right",
+        "imageCredit": "The pergola path on the Brandis-Waalweg",
+        "imageCreditText": "The pergola path on the Brandis-Waalweg by warden",
+        "imageCreator": "warden",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=859047004699049",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "nuvolau",
       "approvedReviewId": "commons-nuvolau",
       "approvedAt": "2026-09-05T21:14:34.033Z",

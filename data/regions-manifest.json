@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-02T23:21:55.161Z",
+  "generatedAt": "2026-11-03T12:27:37.028Z",
   "regions": {
     "dolomites": {
-      "trailCount": 322,
-      "trails": "data/regions/dolomites-trails.js?v=c143e552efbd",
+      "trailCount": 326,
+      "trails": "data/regions/dolomites-trails.js?v=374ac68d628c",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -327,6 +327,10 @@
         "ahrntal-sentiero-panoramico-cadipietra": "data/trail-details/ahrntal-sentiero-panoramico-cadipietra.js?v=4e1db3890fd6",
         "ahrntal-sentiero-del-conte-cadipietra": "data/trail-details/ahrntal-sentiero-del-conte-cadipietra.js?v=9ae7bd82af55",
         "ahrntal-escursione-rifugio-ponte-di-ghiaccio": "data/trail-details/ahrntal-escursione-rifugio-ponte-di-ghiaccio.js?v=ede247bdc721",
+        "meran-sentiero-della-roggia-brandis-a-lana": "data/trail-details/meran-sentiero-della-roggia-brandis-a-lana.js?v=6c56a469adc4",
+        "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": "data/trail-details/meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto.js?v=aa0fc62271e4",
+        "meran-facile-escursione-da-verano-ad-avelengo": "data/trail-details/meran-facile-escursione-da-verano-ad-avelengo.js?v=2c333a9d7937",
+        "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": "data/trail-details/meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg.js?v=f2f2428b7ee8",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -813,6 +817,10 @@
     "ahrntal-sentiero-panoramico-cadipietra": "dolomites",
     "ahrntal-sentiero-del-conte-cadipietra": "dolomites",
     "ahrntal-escursione-rifugio-ponte-di-ghiaccio": "dolomites",
+    "meran-sentiero-della-roggia-brandis-a-lana": "dolomites",
+    "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": "dolomites",
+    "meran-facile-escursione-da-verano-ad-avelengo": "dolomites",
+    "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1349,6 +1357,10 @@
     "ahrntal-sentiero-panoramico-cadipietra": "steinhaus-panoramic-path",
     "ahrntal-sentiero-del-conte-cadipietra": "counts-path-steinhaus",
     "ahrntal-escursione-rifugio-ponte-di-ghiaccio": "lake-neves-to-ponte-di-ghiaccio-hut",
+    "meran-sentiero-della-roggia-brandis-a-lana": "brandis-waalweg-lana",
+    "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": "oberkirn-to-verdins-via-prenn",
+    "meran-facile-escursione-da-verano-ad-avelengo": "voeran-to-hafling",
+    "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": "bloseggweg-loop-schenna",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1779,6 +1791,10 @@
     "steinhaus-panoramic-path": "ahrntal-sentiero-panoramico-cadipietra",
     "counts-path-steinhaus": "ahrntal-sentiero-del-conte-cadipietra",
     "lake-neves-to-ponte-di-ghiaccio-hut": "ahrntal-escursione-rifugio-ponte-di-ghiaccio",
+    "brandis-waalweg-lana": "meran-sentiero-della-roggia-brandis-a-lana",
+    "oberkirn-to-verdins-via-prenn": "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto",
+    "voeran-to-hafling": "meran-facile-escursione-da-verano-ad-avelengo",
+    "bloseggweg-loop-schenna": "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

@@ -220,6 +220,17 @@
           "notes": "The walk starts at the top station of the cable car from Ortisei; its cabins are closed. The walk comes back the same way to the station."
         }
       }
+    },
+    {
+      "id": "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Verdins–Tall cable car (Schenna)",
+          "notes": "The walk starts at the top station of the Verdins–Tall cable car; its cabins are closed. It ends at the valley station in Verdins. Dogs ride on a lead and muzzled."
+        }
+      }
     }
   ]
 }
