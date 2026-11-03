@@ -1,0 +1,12 @@
+// altabadia-da-la-val-ai-prati-di-rit in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A long loop from La Val past the chapel of Santa Barbara and the Rit lake to the high Rit meadows and the Ütia da Rit, and back through Spëscia. The board lists 14.1 km and 728 m of ascent.": "Un lungo anello da La Val, oltre la cappella di Santa Barbara e il lago di Rit, fino agli alti prati di Rit e all'Ütia da Rit, con ritorno per Spëscia. La scheda ufficiale indica 14,1 km e 728 m di dislivello in salita.",
+  "Start in the centre of La Val: 14.1 km and about 730 m of climbing, nearly five hours. La Val has no dog regulation of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m and carry a muzzle. Keep your dog out of the Rit lake. The Ütia da Rit on the ridge is open in summer.": "Partenza dal centro di La Val: 14,1 km e circa 730 m di salita, quasi cinque ore. La Val non ha un regolamento proprio sui cani, quindi vale la norma nazionale: tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito. Tieni il cane fuori dal lago di Rit. L'Ütia da Rit sulla cresta è aperta d'estate.",
+  "A long climb of over 700 m: plan rests and water for your dog": "Una lunga salita di oltre 700 m: prevedi soste e acqua per il cane",
+  "Forest roads and farm tracks: watch for tractors near the farms": "Strade forestali e strade poderali: attenzione ai trattori vicino ai masi",
+  "The Rit lake is a protected natural monument: keep your dog out of the water": "Il lago di Rit è un monumento naturale protetto: tieni il cane fuori dall'acqua",
+  "Forest roads, mule tracks and meadow paths": "Strade forestali, mulattiere e sentieri tra i prati",
+  "La Val centre, the board’s start": "Centro di La Val, la partenza indicata dalla scheda ufficiale",
+  "A small white chapel with a slender bell tower on a green slope beside a stream in La Val, golden larches and dark spruces behind, farms on the hillside in the distance": "Una piccola cappella bianca con un campanile slanciato su un pendio verde accanto a un torrente a La Val, larici dorati e abeti rossi scuri dietro, masi sul versante in lontananza",
+  "About half shaded: the climb to the Rit lake runs through forest; the Rit meadows and the ridge are open.": "Ombra per circa metà: la salita al lago di Rit passa nel bosco; i prati di Rit e la cresta sono aperti."
+});

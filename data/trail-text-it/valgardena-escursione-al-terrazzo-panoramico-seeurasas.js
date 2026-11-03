@@ -1,0 +1,12 @@
+// valgardena-escursione-al-terrazzo-panoramico-seeurasas in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A climb from Cristauta above Santa Cristina through larch forest to the Sëurasas alp and its summit cross, with a view over all three villages of Val Gardena. The board lists 6.6 km and 449 m of ascent.": "Una salita da Cristauta sopra Santa Cristina attraverso il bosco di larici fino all'alpe di Sëurasas e alla sua croce di vetta, con vista su tutti e tre i paesi della Val Gardena. La scheda ufficiale indica 6,6 km e 449 m di dislivello in salita.",
+  "Start at the Cristauta car park above Santa Cristina: 6.6 km and about 450 m of climbing there and back, three hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water only near the start: carry enough for the climb and the open ridge.": "Parti dal parcheggio Cristauta sopra Santa Cristina: 6,6 km e circa 450 m di salita andata e ritorno, tre ore. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito. Acqua solo vicino alla partenza: portane abbastanza per la salita e la dorsale aperta.",
+  "Steady climb of about 450 m on natural paths": "Salita costante di circa 450 m su sentieri naturali",
+  "Early in the season some stretches may still hold snow": "A inizio stagione alcuni tratti possono essere ancora innevati",
+  "Open grassy ridge near the summit cross: keep your dog close": "Dorsale erbosa aperta vicino alla croce di vetta: tieni il cane vicino",
+  "Natural mountain paths through forest and alpine meadow": "Sentieri di montagna naturali tra bosco e prati alpini",
+  "Cristauta car park, above Santa Cristina, the board’s start": "Parcheggio Cristauta, sopra Santa Cristina, partenza indicata dalla scheda ufficiale",
+  "Looking down from the grassy Sëurasas ridge over golden larches to Ortisei spread along the floor of Val Gardena, forested slopes and farm meadows on either side, hazy hills beyond": "Vista dall'alto dalla dorsale erbosa di Sëurasas, oltre larici dorati, su Ortisei distesa sul fondovalle della Val Gardena, pendii boscosi e prati coltivati ai due lati, colline velate di foschia più in là",
+  "About a quarter runs through forest; the upper alp and the ridge to the cross are open.": "Circa un quarto corre nel bosco; l'alpe alta e la dorsale fino alla croce sono aperte."
+});

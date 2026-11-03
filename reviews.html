@@ -4,14 +4,14 @@
 <style>.review-summary[hidden]{display:none}.review-list[aria-busy="true"]{min-height:64px}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head>
 <body class="flow-shell"><main class="flow-wrap" style="max-width:680px">
-  <a id="reviewBack" class="flow-back" href="trail.html">← Alpe di Siusi Meadow Loop</a>
-  <header class="flow-titlebar" style="margin-top:18px"><div><h1>Reviews</h1><div id="reviewSummary" class="review-summary" hidden><span class="review-stars">★★★★★</span><strong id="reviewAverage"></strong><span id="reviewCount"></span></div></div><button id="writeReview" class="flow-btn">Write a review</button></header>
+  <a id="reviewBack" class="flow-back" href="trail.html" data-i18n="page.reviews.alpeDiSiusiMeadowLoop">← Alpe di Siusi Meadow Loop</a>
+  <header class="flow-titlebar" style="margin-top:18px"><div><h1 data-i18n="page.reviews.reviews">Reviews</h1><div id="reviewSummary" class="review-summary" hidden><span class="review-stars">★★★★★</span><strong id="reviewAverage"></strong><span id="reviewCount"></span></div></div><button id="writeReview" class="flow-btn" data-i18n="page.reviews.writeAReview">Write a review</button></header>
   <section id="reviewComposer" class="flow-card review-compose" hidden>
-    <div class="flow-context">Your rating</div><div id="starPicker" class="review-picker" aria-label="Your rating"><button aria-label="1 star">★</button><button aria-label="2 stars">★</button><button aria-label="3 stars">★</button><button aria-label="4 stars">★</button><button aria-label="5 stars">★</button></div>
-    <label class="flow-field"><span>Your review</span><textarea id="reviewBody" rows="4" placeholder="How did the route feel for your dog?"></textarea></label>
-    <div class="flow-actions"><button id="submitReview" class="flow-btn" disabled>Submit review</button><button id="cancelReview" class="flow-btn flow-btn--quiet">Cancel</button></div>
+    <div class="flow-context" data-i18n="page.reviews.yourRating">Your rating</div><div id="starPicker" class="review-picker" aria-label="Your rating" data-i18n-aria-label="page.reviews.yourRating"><button aria-label="1 star" data-i18n-aria-label="journal.stars.one">★</button><button aria-label="2 stars" data-i18n-aria-label="page.reviews.2Stars">★</button><button aria-label="3 stars" data-i18n-aria-label="page.reviews.3Stars">★</button><button aria-label="4 stars" data-i18n-aria-label="page.reviews.4Stars">★</button><button aria-label="5 stars" data-i18n-aria-label="page.reviews.5Stars">★</button></div>
+    <label class="flow-field"><span data-i18n="page.reviews.yourReview">Your review</span><textarea id="reviewBody" rows="4" placeholder="How did the route feel for your dog?"></textarea></label>
+    <div class="flow-actions"><button id="submitReview" class="flow-btn" disabled data-i18n="page.reviews.submitReview">Submit review</button><button id="cancelReview" class="flow-btn flow-btn--quiet" data-i18n="account.cancel">Cancel</button></div>
   </section>
-  <p id="reviewStatus" class="flow-hint" role="status" aria-live="polite">Loading approved reviews…</p>
+  <p id="reviewStatus" class="flow-hint" role="status" aria-live="polite" data-i18n="page.reviews.loadingApprovedReviews">Loading approved reviews…</p>
   <section id="reviewList" class="review-list" aria-busy="true"></section>
 </main>
 
@@ -78,6 +78,7 @@
   </div>
 </footer>
 
+<script src="i18n.js?v=20261006-1"></script>
 <script src="mobile-nav.js?v=20261030-1"></script>
 <script src="community-content-states.js?v=20260815-4"></script>
 <script src="offline-contributions.js?v=20260815-4"></script>

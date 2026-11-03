@@ -1,0 +1,12 @@
+// fvg-borgo-stavoli-moggio in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "An out-and-back walk on the old mule track from Campiolo along the Glagnò stream to Stavoli, a stone hamlet reached only on foot. PromoTurismoFVG lists 6.9 km and 379 m of ascent.": "Una passeggiata di andata e ritorno sull'antica mulattiera da Campiolo lungo il torrente Glagnò fino a Stavoli, un borgo di pietra raggiungibile solo a piedi. PromoTurismoFVG indica 6,9 km e 379 m di dislivello in salita.",
+  "Start in Campiolo (free parking a few metres from the path): 6.9 km there and back and about 380 m of climbing, three hours. Keep your dog on a short lead on the stretches above the gorge and carry a muzzle. In summer the Friends of Stavoli open a kiosk in the hamlet; bring water for your dog.": "Parti da Campiolo (parcheggio gratuito a pochi metri dal sentiero): 6,9 km andata e ritorno e circa 380 m di salita, tre ore. Tieni il cane al guinzaglio corto nei tratti sopra la forra e porta la museruola. D'estate gli Amici di Stavoli aprono un chiosco nel borgo; porta acqua per il tuo cane.",
+  "A mule track along steep slopes above the Glagnò gorge, with guard rails in places: keep your dog on a short lead": "Una mulattiera lungo ripidi pendii sopra la forra del Glagnò, a tratti con parapetti: tieni il cane al guinzaglio corto",
+  "A long steady climb of about 380 m": "Una lunga salita costante di circa 380 m",
+  "Not advised in bad weather or the hottest summer hours": "Sconsigliato con il maltempo o nelle ore più calde d'estate",
+  "A stony mule track and forest path": "Una mulattiera sassosa e un sentiero nel bosco",
+  "Campiolo, by the parking places at the start of path CAI 417, the board’s start": "Campiolo, vicino ai posti auto all'inizio del sentiero CAI 417, partenza indicata dalla scheda ufficiale",
+  "A stony mule track winding down a wooded slope beside a green metal guard rail, pale rock outcrops and autumn trees around it": "Una mulattiera sassosa che scende serpeggiando su un pendio boscoso accanto a un parapetto in metallo verde, con affioramenti di roccia chiara e alberi autunnali intorno",
+  "About half shaded: the mule track climbs through mixed forest; the stretches along the stream and the slopes above the gorge are open.": "Circa metà all'ombra: la mulattiera sale in un bosco misto; i tratti lungo il torrente e i pendii sopra la forra sono aperti."
+});

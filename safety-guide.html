@@ -17,13 +17,15 @@
 <link rel="stylesheet" href="styles.css?v=20260916-5">
 <style>
 .sg-hero{padding-top:32px;padding-bottom:22px;}
-.sg-hero.section-page-head--actions{align-items:flex-end;}
 .safety-library-page .hp-prefooter{display:none!important;}
 .sg-kicker{display:block;margin-bottom:10px;color:var(--accent);font:700 10.5px/1.2 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;}
 .sg-hero h1{max-width:760px;}
-.sg-hero-copy{width:100%;max-width:72ch;margin:14px 0 0;color:var(--ink-soft);font-size:15.5px;line-height:1.7;white-space:normal;text-wrap:pretty;}
-.sg-readiness-fab{display:flex;align-items:center;gap:10px;flex:none;border:var(--border);border-radius:999px;padding:6px 18px 6px 6px;background:var(--card);color:var(--ink);text-align:left;cursor:pointer;transition:border-color .16s ease,box-shadow .16s ease;}
-.sg-readiness-fab:hover{border-color:var(--accent);box-shadow:var(--shadow);}
+.sg-hero-copy{width:100%;max-width:none;margin:14px 0 0;color:var(--ink-soft);font-size:15.5px;line-height:1.7;white-space:normal;text-wrap:pretty;}
+/* Floats bottom-right so the quiz is always one tap away; the footer keeps
+   room at the bottom so the button never hides the footer's last line. */
+.safety-library-page .site-footer{padding-bottom:96px;}
+.sg-readiness-fab{position:fixed;right:max(24px,env(safe-area-inset-right,0px));bottom:max(24px,calc(env(safe-area-inset-bottom,0px) + 16px));z-index:85;display:flex;align-items:center;gap:10px;border:var(--border);border-radius:999px;padding:6px 18px 6px 6px;background:var(--card);color:var(--ink);text-align:left;cursor:pointer;box-shadow:0 10px 28px rgba(28,52,38,.18);transition:border-color .16s ease,box-shadow .16s ease;}
+.sg-readiness-fab:hover{border-color:var(--accent);box-shadow:0 12px 32px rgba(28,52,38,.24);}
 .sg-readiness-fab:focus-visible{outline:3px solid var(--safety-info-soft);outline-offset:3px;}
 .sg-readiness-fab-icon{display:block;width:40px;height:40px;flex:none;overflow:hidden;border-radius:50%;}
 .sg-readiness-fab-icon img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;}
@@ -90,13 +92,14 @@
   .sg-library{grid-template-columns:1fr;gap:28px;}
 }
 @media(max-width:760px){
-  .sg-hero.section-page-head--actions{align-items:flex-start;}
   .sg-rules ol{grid-template-columns:1fr;gap:12px;}
   .sg-rules li{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:12px;}
   .sg-rules li::before{margin:0;}
 }
 @media(max-width:620px){
   .sg-hero{padding:30px 18px 22px;}
+  .safety-library-page .site-footer{padding-bottom:84px;}
+  .sg-readiness-fab{right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,calc(env(safe-area-inset-bottom,0px) + 12px));padding-right:16px;}
   .sg-wrap{padding-right:16px;padding-left:16px;}
   .sg-panel{padding:20px 18px;}
   .sg-guide-card{grid-template-columns:84px minmax(0,1fr);gap:13px;}
@@ -106,6 +109,9 @@
   .sg-quiz-validation{margin:0;}
 }
 </style>
+<link rel="alternate" hreflang="en" href="https://www.app-orma.com/safety-guide.html">
+<link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/safety-guide.html">
+<link rel="alternate" hreflang="x-default" href="https://www.app-orma.com/safety-guide.html">
 </head>
 <body class="safety-library-page">
 
@@ -120,7 +126,7 @@
   </div>
 </div>
 
-<header class="sg-hero section-page-head section-page-head--actions content-canvas browse-canvas-head">
+<header class="sg-hero section-page-head content-canvas browse-canvas-head">
   <div class="section-page-head__copy">
     <h1>Safety library</h1>
     <p class="sg-hero-copy section-page-subtitle">Mountain conditions can change quickly, and the same route can affect every dog differently. Use this library to plan for heat, altitude, water, terrain and shared spaces; recognise early warning signs; and know when to turn back or seek help. Each guide turns common mountain risks into practical decisions you can make before you leave and while you are on the trail.</p>

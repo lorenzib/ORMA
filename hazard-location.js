@@ -14,6 +14,13 @@
 })(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text,vars){
+    const i18n=typeof window!=='undefined'&&window.DoloPawsI18n;
+    if(i18n&&typeof i18n.phrase==='function')return i18n.phrase(text,vars);
+    return vars?String(text).replace(/\{(\w+)\}/g,(m,k)=>(k in vars?vars[k]:m)):text;
+  }
+
   const EARTH_RADIUS_M=6371008.8;
   const KM_PER_DEGREE=111.32;
   // Beyond this a pin is not describing a point on this trail. Alpine paths are
@@ -95,8 +102,8 @@
   /** How a located hazard is said out loud, on a card or in a warning. */
   function describeLocation(location){
     if(!location||!Number.isFinite(location.km))return null;
-    if(location.km<0.05)return 'At the start of the route';
-    return `About ${location.km<10?location.km.toFixed(1):Math.round(location.km)} km along the route`;
+    if(location.km<0.05)return tx('At the start of the route');
+    return tx('About {km} km along the route',{km:location.km<10?location.km.toFixed(1):Math.round(location.km)});
   }
 
   return {MAX_OFF_ROUTE_M,locateOnRoute,describeLocation,metresBetween};

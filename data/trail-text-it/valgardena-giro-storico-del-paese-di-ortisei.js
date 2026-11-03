@@ -1,0 +1,12 @@
+// valgardena-giro-storico-del-paese-di-ortisei in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A town walk round the historic centre of Ortisei, past the late-19th-century villas and sculptors’ workshops, up Via Rascesa and back past Plan de Mureda, the oldest villa in the village. The board lists 4.6 km and 179 m of ascent.": "Una passeggiata cittadina nel centro storico di Ortisei, oltre le ville di fine Ottocento e i laboratori degli scultori, su per Via Rascesa e ritorno passando per Plan de Mureda, la villa più antica del paese. La scheda ufficiale indica 4,6 km e 179 m di dislivello in salita.",
+  "Start at the Museum Gherdëina in Ortisei: 4.6 km and about 180 m of climbing, an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle, which it must wear inside public premises. The streets are hot in summer: walk early or late.": "Parti dal Museum Gherdëina a Ortisei: 4,6 km e circa 180 m di salita, un'ora e mezza. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito, che deve indossare nei locali pubblici. In estate le strade sono calde: cammina presto o tardi.",
+  "Town streets with traffic all the way": "Strade cittadine con traffico per tutto il percorso",
+  "Hot paving in summer": "Pavimentazione calda in estate",
+  "Busy pedestrian centre: keep your dog close": "Centro pedonale affollato: tieni il cane vicino",
+  "Town streets and lanes": "Strade e vicoli cittadini",
+  "Museum Gherdëina, Ortisei, the board’s start": "Museum Gherdëina, Ortisei, partenza indicata dalla scheda ufficiale",
+  "The pale yellow baroque parish church of Ortisei with its red onion-domed bell tower, a stone wall and flowering shrubs in front and a forested slope behind under a blue sky with clouds": "La chiesa parrocchiale barocca giallo pallido di Ortisei con il campanile a cipolla rosso, un muro di pietra e arbusti fioriti davanti e un pendio boscoso dietro sotto un cielo azzurro con nuvole",
+  "Almost no shade: the walk is on town streets.": "Quasi nessuna ombra: la camminata si svolge su strade cittadine."
+});

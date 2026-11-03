@@ -1,4 +1,11 @@
 (function(global){
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
+
   function escapeHtml(value){
     return String(value == null ? '' : value).replace(/[&<>"']/g, function(char){
       return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char];
@@ -105,7 +112,7 @@
   function render(trail, options){
     options = options || {};
     trail = trail || {};
-    var name = String(trail.name || 'Trail');
+    var name = String(trail.name || tx('Trail'));
     var className = safeClassName(options.className || '');
     var classes = ['trail-visual'];
     if(className) classes.push(className);
@@ -120,12 +127,12 @@
     }
     if(usablePath(trail.path)){
       classes.push('trail-visual--route');
-      var routeLabel = String(options.routeLabel || (name + ': route preview')).split('{name}').join(name);
+      var routeLabel = String(options.routeLabel || tx('{name}: route preview', { name: name })).split('{name}').join(name);
       return '<div class="' + classes.join(' ') + '" role="img" aria-label="' + escapeHtml(routeLabel) + '"' + attrs + '>' + routeSvg(trail.path) + '</div>';
     }
     classes.push('trail-visual--placeholder');
-    var placeholder = String(options.placeholderLabel || 'Photo coming soon');
-    var placeholderAria = String(options.placeholderAria || (name + ': photo coming soon')).split('{name}').join(name);
+    var placeholder = String(options.placeholderLabel || tx('Photo coming soon'));
+    var placeholderAria = String(options.placeholderAria || tx('{name}: photo coming soon', { name: name })).split('{name}').join(name);
     return '<div class="' + classes.join(' ') + '" role="img" aria-label="' + escapeHtml(placeholderAria) + '"' + attrs + '><span class="trail-visual-placeholder-icon" aria-hidden="true">' + fallbackIcon() + '</span><span class="trail-visual-placeholder-label">' + escapeHtml(placeholder) + '</span></div>';
   }
 

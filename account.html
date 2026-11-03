@@ -137,7 +137,7 @@
 <body>
 
 <div class="topnav">
-  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Account</span>
+  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page" data-i18n="account.settings.account">Account</span>
   <div class="links">
     <a href="browse-trails.html" data-i18n="account.nav.browse">Trails</a>
     <a href="collections.html" data-i18n="account.nav.collections">Collections</a>
@@ -147,10 +147,10 @@
 </div>
 
 <div class="acct-wrap">
-  <a id="backLink" href="/" style="font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;">← Back</a>
+  <a id="backLink" href="/" style="font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;" data-i18n="account.back">← Back</a>
   <h1 class="serif" id="accountH1" style="font-size:30px;margin:12px 0 22px;" data-i18n="account.settings.account">Account</h1>
 
-  <p id="accountSubline" aria-busy="true" style="font-size:13.5px;color:var(--ink-soft);"><span class="skeleton" style="width:230px;height:13px;display:inline-block;" aria-label="Checking your login status"></span></p>
+  <p id="accountSubline" aria-busy="true" style="font-size:13.5px;color:var(--ink-soft);"><span class="skeleton" style="width:230px;height:13px;display:inline-block;" aria-label="Checking your login status" data-i18n-aria-label="page.account.checkingYourLoginStatus"></span></p>
 
   <div id="loggedOutState" hidden style="text-align:center;padding:40px 20px;">
     <p style="font-size:15px;color:var(--ink-soft);margin-bottom:16px;" data-i18n="account.signedOut">You're not logged in.</p>
@@ -164,15 +164,15 @@
        contract; this surface mirrors those fields and drives the same save. -->
   <section class="profile-design" id="profileDesign">
     <a class="profile-back" href="/" data-i18n="account.profile.backHome">← Back to Homepage</a>
-    <h1 id="profileTitle">Your dog's profile</h1>
+    <h1 id="profileTitle" data-i18n="page.account.yourDogsProfile">Your dog's profile</h1>
     <p class="profile-intro" data-i18n="account.profile.intro">Only the structured fields below are scored. Free-text notes are kept for you and never fed into the calculation.</p>
     <div class="profile-dogbar">
       <div id="profileDogList" class="profile-doglist" aria-label="Choose a dog" data-i18n-aria-label="account.profile.chooseDog"></div>
-      <button type="button" class="flow-btn flow-btn--quiet profile-adddog" id="profileAddDog">+ Add another dog</button>
+      <button type="button" class="flow-btn flow-btn--quiet profile-adddog" id="profileAddDog" data-i18n="page.account.addAnotherDog">+ Add another dog</button>
     </div>
     <div id="profileLoadStatus" class="profile-load-status" role="alert" hidden>
-      <span>We couldn't load the full dog profile. Your saved details are safe.</span>
-      <button type="button" id="profileLoadRetry">Try again</button>
+      <span data-i18n="page.account.weCouldntLoadTheFull">We couldn't load the full dog profile. Your saved details are safe.</span>
+      <button type="button" id="profileLoadRetry" data-i18n="account.tryAgain">Try again</button>
     </div>
     <div class="profile-layout">
       <div>
@@ -201,15 +201,15 @@
         </section>
       </div>
       <aside class="profile-sidebar">
-        <section class="profile-card profile-card--compact"><div class="flow-kicker" data-i18n="account.profile.impactTitle">How this shapes the trails</div><div class="profile-impact"><b><span data-i18n="account.profile.distanceCap">Distance cap</span> <span id="profileDistanceCap">7.5 km</span></b><p id="profileDistanceReason"></p></div><div class="profile-impact"><b><span data-i18n="account.profile.terrainTolerance">Terrain tolerance</span> <span id="profileTerrain"></span></b><p id="profileTerrainReason"></p></div><div class="profile-impact"><b><span data-i18n="account.profile.heatSensitivity">Heat sensitivity</span> <span id="profileHeat"></span></b><p id="profileHeatReason"></p></div></section>
-        <section class="profile-card profile-card--warm" id="profileBreedInsight" hidden><div class="flow-kicker" id="profileBreedInsightTitle">Heads-up for this breed</div><p id="profileBreedInsightCopy"></p><a href="guides/breed-group-caveats.html" data-i18n="account.profile.breedCaveatsLink">Breed-group caveats →</a></section>
+        <section class="profile-card profile-card--compact"><div class="flow-kicker" data-i18n="account.profile.impactTitle">How this shapes the trails</div><div class="profile-impact"><b><span data-i18n="account.profile.distanceCap">Distance cap</span> <span id="profileDistanceCap" data-i18n="page.account.75Km">7.5 km</span></b><p id="profileDistanceReason"></p></div><div class="profile-impact"><b><span data-i18n="account.profile.terrainTolerance">Terrain tolerance</span> <span id="profileTerrain"></span></b><p id="profileTerrainReason"></p></div><div class="profile-impact"><b><span data-i18n="account.profile.heatSensitivity">Heat sensitivity</span> <span id="profileHeat"></span></b><p id="profileHeatReason"></p></div></section>
+        <section class="profile-card profile-card--warm" id="profileBreedInsight" hidden><div class="flow-kicker" id="profileBreedInsightTitle" data-i18n="account.profile.breedHeadsUp">Heads-up for this breed</div><p id="profileBreedInsightCopy"></p><a href="guides/breed-group-caveats.html" data-i18n="account.profile.breedCaveatsLink">Breed-group caveats →</a></section>
       </aside>
     </div>
   </section>
 
   <!-- Phone-only app bar: back · title · save -->
   <div class="ep-mbar">
-    <a id="mobileBackLink" class="ep-mback" href="/" aria-label="Back">←</a>
+    <a id="mobileBackLink" class="ep-mback" href="/" aria-label="Back" data-i18n-aria-label="page.account.back">←</a>
     <div class="ep-mtitle serif" data-i18n="account.editProfile">Edit profile</div>
     <button type="button" class="ep-msave saveBtn" disabled data-i18n="account.save">Save</button>
   </div>
@@ -217,14 +217,14 @@
   <div class="acct-grid">
 
     <!-- RAIL -->
-    <div class="acct-card acct-rail" role="tablist" aria-label="Account sections" style="padding:10px;position:sticky;top:88px;">
+    <div class="acct-card acct-rail" role="tablist" aria-label="Account sections" style="padding:10px;position:sticky;top:88px;" data-i18n-aria-label="page.account.accountSections">
       <button id="accountTabDog" class="railbtn" role="tab" data-tab="dog" aria-selected="true" aria-controls="tab-dog" tabindex="0"><span class="railico" aria-hidden="true">🐕</span> <span data-i18n="account.tab.dog">Dog</span></button>
       <button id="accountTabHuman" class="railbtn" role="tab" data-tab="human" aria-selected="false" aria-controls="tab-human" tabindex="-1"><span class="railico" aria-hidden="true">👤</span> <span data-i18n="account.tab.human">Human</span></button>
       <button id="accountTabHealth" class="railbtn" role="tab" data-tab="health" aria-selected="false" aria-controls="tab-health" tabindex="-1"><span class="railico" aria-hidden="true">🩺</span> <span data-i18n="account.tab.vet">Vet</span></button>
-      <button id="accountTabPublic" class="railbtn" role="tab" data-tab="public" aria-selected="false" aria-controls="tab-public" tabindex="-1"><span class="railico" aria-hidden="true">🐾</span> <span>Public profile</span></button>
+      <button id="accountTabPublic" class="railbtn" role="tab" data-tab="public" aria-selected="false" aria-controls="tab-public" tabindex="-1"><span class="railico" aria-hidden="true">🐾</span> <span data-i18n="page.account.publicProfile">Public profile</span></button>
       <button id="accountTabAccount" class="railbtn" role="tab" data-tab="account" aria-selected="false" aria-controls="tab-account" tabindex="-1"><span class="railico" aria-hidden="true">⚙️</span> <span data-i18n="account.tab.settings">Settings</span></button>
       <!-- Settings sub-sections, shown while the Settings tab is active -->
-      <nav id="settingsToc" class="settings-toc" aria-label="Settings sections" hidden>
+      <nav id="settingsToc" class="settings-toc" aria-label="Settings sections" hidden data-i18n-aria-label="page.account.settingsSections">
         <a href="#secDetails" data-sec="secDetails" class="on" data-i18n="account.settings.details">Account details</a>
         <a href="#passwordSection" data-sec="passwordSection" data-i18n="account.settings.password">Password</a>
         <a href="#offlineSection" data-sec="offlineSection" data-i18n="account.settings.offline">Offline maps</a>
@@ -241,30 +241,30 @@
         <div style="display:flex;align-items:center;gap:18px;margin-bottom:26px;">
           <input type="file" id="dogPhotoInput" accept="image/*" multiple style="display:none;">
           <div style="position:relative;flex:none;">
-            <button type="button" id="dogPhotoBtn" aria-label="Change photo" style="width:88px;height:88px;border-radius:50%;border:2px dashed #C5C3B4;background-color:#EAF0E6;background-size:cover;background-position:center;overflow:hidden;cursor:pointer;display:grid;place-items:center;color:var(--success);font:800 30px 'Inter',sans-serif;"></button>
+            <button type="button" id="dogPhotoBtn" aria-label="Change photo" style="width:88px;height:88px;border-radius:50%;border:2px dashed #C5C3B4;background-color:#EAF0E6;background-size:cover;background-position:center;overflow:hidden;cursor:pointer;display:grid;place-items:center;color:var(--success);font:800 30px 'Inter',sans-serif;" data-i18n-aria-label="page.account.changePhoto"></button>
             <span style="position:absolute;bottom:-2px;right:-2px;width:28px;height:28px;border-radius:50%;border:2px solid #fff;background:var(--accent);display:grid;place-items:center;pointer-events:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></span>
           </div>
           <div>
-            <div class="serif" id="dogDisplayName" style="font-size:20px;">Your dog</div>
+            <div class="serif" id="dogDisplayName" style="font-size:20px;" data-i18n="account.yourDog">Your dog</div>
             <div class="hint" style="margin-top:2px;" data-i18n="account.photo.updateHint">Update the photo and details below</div>
             <p id="dogPhotoStatus" class="hint" hidden></p>
           </div>
         </div>
-        <div id="dogPhotoGallery" class="dog-photo-gallery" aria-label="Photos for this dog">
-          <button type="button" id="dogPhotoAddBtn" class="dog-photo-add">＋ Add photos</button>
-          <span id="dogPhotoCount" class="dog-photo-count">0 of 4</span>
+        <div id="dogPhotoGallery" class="dog-photo-gallery" aria-label="Photos for this dog" data-i18n-aria-label="page.account.photosForThisDog">
+          <button type="button" id="dogPhotoAddBtn" class="dog-photo-add" data-i18n="page.account.addPhotos">＋ Add photos</button>
+          <span id="dogPhotoCount" class="dog-photo-count" data-i18n="page.account.0Of4">0 of 4</span>
         </div>
 
         <div class="acct-2col" style="margin-bottom:20px;">
-          <div><label class="lbl" for="dogName" data-i18n="account.profile.name">Name</label><input class="fld" id="dogName" placeholder="e.g. Rufus" autocomplete="off"></div>
+          <div><label class="lbl" for="dogName" data-i18n="account.profile.name">Name</label><input class="fld" id="dogName" placeholder="e.g. Rufus" autocomplete="off" data-i18n-ph="hp.wizard.namePh"></div>
           <div style="position:relative;">
             <label class="lbl" for="dogBreed" data-i18n="account.profile.breed">Breed</label>
             <input class="fld" id="dogBreed" placeholder="Start typing, e.g. Lab…" data-i18n-ph="account.breedPlaceholder" autocomplete="off" spellcheck="false">
             <div id="breedList" hidden style="position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:20;background:#fff;border:1px solid var(--paper-line);border-radius:12px;box-shadow:0 14px 34px -12px rgba(23,42,28,.4);padding:5px;max-height:240px;overflow-y:auto;"></div>
-            <div class="hint" id="breedHint">Search breeds</div>
+            <div class="hint" id="breedHint" data-i18n="page.account.searchBreeds">Search breeds</div>
           </div>
-          <div><label class="lbl" for="dogDob" data-i18n="account.birthday">Birthday</label><input class="fld" type="date" id="dogDob"><div class="hint" id="ageHint">Add a birthday to estimate age</div></div>
-          <div><label class="lbl" for="dogWeight"><span data-i18n="account.weight">Weight</span>, <span style="color:var(--accent);font-weight:800;" id="weightLabel">20 kg</span></label><input type="range" class="wt" id="dogWeight" min="2" max="60" step="1" value="20" style="margin-top:14px;"></div>
+          <div><label class="lbl" for="dogDob" data-i18n="account.birthday">Birthday</label><input class="fld" type="date" id="dogDob"><div class="hint" id="ageHint" data-i18n="account.age.addBirthday">Add a birthday to estimate age</div></div>
+          <div><label class="lbl" for="dogWeight"><span data-i18n="account.weight">Weight</span>, <span style="color:var(--accent);font-weight:800;" id="weightLabel" data-i18n="page.account.20Kg">20 kg</span></label><input type="range" class="wt" id="dogWeight" min="2" max="60" step="1" value="20" style="margin-top:14px;"></div>
         </div>
 
         <label class="lbl" data-i18n="account.size">Size</label>
@@ -280,8 +280,8 @@
 
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;border-top:1px solid #EDE9DD;padding-top:20px;">
           <div id="removeDogBlock" style="max-width:52%;min-width:220px;">
-            <button type="button" id="removeDogBtn" class="btn-g" style="border-color:#E4B9A8;color:#9C3A25;">Remove this dog</button>
-            <p id="removeDogHelp" class="hint" style="margin:8px 2px 0;">Permanently deletes this dog's profile and all its data, photo, health, vet and emergency details. You can add a dog again later.</p>
+            <button type="button" id="removeDogBtn" class="btn-g" style="border-color:#E4B9A8;color:#9C3A25;" data-i18n="page.account.removeThisDog">Remove this dog</button>
+            <p id="removeDogHelp" class="hint" style="margin:8px 2px 0;" data-i18n="page.account.permanentlyDeletesThisDogsProfile">Permanently deletes this dog's profile and all its data, photo, health, vet and emergency details. You can add a dog again later.</p>
           </div>
           <div class="panel-save" style="flex:none;">
             <div style="display:flex;gap:10px;justify-content:flex-end;"><button type="button" class="btn-g cancelBtn" data-i18n="account.cancel">Cancel</button><button type="button" class="btn-p saveBtn" disabled data-i18n="account.saveChanges">Save changes</button></div>
@@ -293,10 +293,10 @@
       <!-- HUMAN -->
       <section id="tab-human" role="tabpanel" aria-labelledby="accountTabHuman" hidden>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;"><span class="kick" data-i18n="account.human.title">Dog's human</span><span style="font-size:10px;font-weight:700;color:#9C3A25;background:#F3D9D2;border-radius:6px;padding:2px 7px;" data-i18n="account.required">Required</span></div>
-        <p id="humanHelp" class="hint" style="margin:0 0 18px;">Who to reach if your dog is found or needs help on the trail.</p>
+        <p id="humanHelp" class="hint" style="margin:0 0 18px;" data-i18n="page.account.whoToReachIfYour">Who to reach if your dog is found or needs help on the trail.</p>
         <div class="acct-2col" style="margin-bottom:18px;">
           <div><label class="lbl" for="ownerName"><span data-i18n="account.human.yourName">Your name</span> <span style="font-weight:600;color:#8A9689;" data-i18n="account.optionalInline">· optional</span></label><input class="fld" id="ownerName" placeholder="Full name" data-i18n-ph="account.fullName" autocomplete="name"></div>
-          <div><label class="lbl" for="ownerEmail"><span data-i18n="account.email">Email</span> <span style="font-weight:600;color:#8A9689;" data-i18n="account.optionalInline">· optional</span></label><input class="fld" type="email" id="ownerEmail" placeholder="you@…" autocomplete="email"></div>
+          <div><label class="lbl" for="ownerEmail"><span data-i18n="account.email">Email</span> <span style="font-weight:600;color:#8A9689;" data-i18n="account.optionalInline">· optional</span></label><input class="fld" type="email" id="ownerEmail" placeholder="you@…" autocomplete="email" data-i18n-ph="page.account.you"></div>
           <div><label class="lbl" for="ownerPhone" data-i18n="account.phone">Phone</label><input class="fld" type="tel" id="ownerPhone" placeholder="+39 …" autocomplete="tel"></div>
         </div>
         <label class="lbl"><span data-i18n="account.human.emergencyContact">Emergency contact</span> <span style="font-weight:600;color:#8A9689;" data-i18n="account.optionalInline">· optional</span></label>
@@ -315,7 +315,7 @@
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;"><span class="kick" data-i18n="account.vet.title">Health &amp; vet</span><span style="font-size:10px;font-weight:700;color:#8A9689;background:#EDEAE0;border-radius:6px;padding:2px 7px;" data-i18n="account.optional">Optional</span></div>
         <p class="hint" style="margin:0 0 18px;" data-i18n="account.vet.help">Used for the emergency card and safety alerts. Only you can see this.</p>
         <div class="acct-2col" style="margin-bottom:18px;">
-          <div><label class="lbl" for="vetName" data-i18n="account.vet.practice">Veterinary practice</label><input class="fld" id="vetName" placeholder="e.g. Dolomiti Vet, Cortina"></div>
+          <div><label class="lbl" for="vetName" data-i18n="account.vet.practice">Veterinary practice</label><input class="fld" id="vetName" placeholder="e.g. Dolomiti Vet, Cortina" data-i18n-ph="page.account.egDolomitiVetCortina"></div>
           <div><label class="lbl" for="vetPhone" data-i18n="account.vet.phone">Vet phone</label><input class="fld" type="tel" id="vetPhone" placeholder="+39 …"></div>
           <div><label class="lbl" for="dogChip" data-i18n="account.vet.microchip">Microchip ID</label><input class="fld" id="dogChip" placeholder="15-digit number" data-i18n-ph="account.vet.microchipPlaceholder"></div>
           <div style="display:flex;gap:12px;"><div style="flex:1;"><label class="lbl" for="insurer" data-i18n="account.vet.insurer">Insurer</label><input class="fld" id="insurer" placeholder="Provider" data-i18n-ph="account.vet.provider"></div><div style="flex:1;"><label class="lbl" for="policy" data-i18n="account.vet.policy">Policy no.</label><input class="fld" id="policy" placeholder="Policy #" data-i18n-ph="account.vet.policyPlaceholder"></div></div>
@@ -327,16 +327,16 @@
           <div style="border-radius:16px;overflow:hidden;border:1px solid var(--paper-line);box-shadow:0 8px 24px -14px rgba(23,42,28,.4);">
             <div style="background:var(--ink);color:#EAF1E8;padding:13px 16px;display:flex;align-items:center;gap:11px;">
               <div id="cardPhoto" style="width:42px;height:42px;border-radius:12px;background-color:var(--accent);background-size:cover;background-position:center;display:grid;place-items:center;color:#fff;font:800 17px 'Inter',sans-serif;flex:none;"></div>
-              <div style="flex:1;min-width:0;"><div id="cardName" style="font:700 15px 'Bricolage Grotesque',sans-serif;color:#fff;">Your dog</div><div style="font-size:11px;color:#9FC7B0;"><span data-i18n="account.card.label">Emergency card</span> · <span id="cardBreed">, </span></div></div>
+              <div style="flex:1;min-width:0;"><div id="cardName" style="font:700 15px 'Bricolage Grotesque',sans-serif;color:#fff;" data-i18n="account.yourDog">Your dog</div><div style="font-size:11px;color:#9FC7B0;"><span data-i18n="account.card.label">Emergency card</span> · <span id="cardBreed">, </span></div></div>
               <span style="flex:none;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9FE1CB;background:rgba(159,225,203,.16);border-radius:6px;padding:4px 8px;">ORMA</span>
             </div>
             <div style="background:#fff;padding:13px 16px;display:flex;flex-direction:column;gap:9px;">
-              <div class="cardrow"><span class="k" data-i18n="account.card.microchipLabel">Microchip</span><span class="v" id="cardChip">Not recorded</span></div>
-              <div class="cardrow"><span class="k" data-i18n="account.card.medicalLabel">Medical</span><span class="v" id="cardMedical" style="font-weight:400;">None noted</span></div>
+              <div class="cardrow"><span class="k" data-i18n="account.card.microchipLabel">Microchip</span><span class="v" id="cardChip" data-i18n="account.notRecorded">Not recorded</span></div>
+              <div class="cardrow"><span class="k" data-i18n="account.card.medicalLabel">Medical</span><span class="v" id="cardMedical" style="font-weight:400;" data-i18n="account.noneNoted">None noted</span></div>
               <div style="height:1px;background:#EDE9DD;"></div>
               <div class="cardrow"><span class="k" data-i18n="account.card.ownerLabel">Owner</span><span class="v" id="cardOwner">, </span></div>
-              <div class="cardrow"><span class="k" data-i18n="account.card.emergencyLabel">Emergency</span><span class="v" id="cardEmergency">Not set</span></div>
-              <div class="cardrow"><span class="k" data-i18n="account.card.vetLabel">Vet</span><span class="v" id="cardVet">Not recorded</span></div>
+              <div class="cardrow"><span class="k" data-i18n="account.card.emergencyLabel">Emergency</span><span class="v" id="cardEmergency" data-i18n="account.notSet">Not set</span></div>
+              <div class="cardrow"><span class="k" data-i18n="account.card.vetLabel">Vet</span><span class="v" id="cardVet" data-i18n="account.notRecorded">Not recorded</span></div>
             </div>
           </div>
           <div style="display:flex;flex-direction:column;gap:10px;align-items:stretch;">
@@ -350,28 +350,28 @@
 
       <!-- OPT-IN PUBLIC IDENTITY. Private contact and health fields never enter this projection. -->
       <section id="tab-public" role="tabpanel" aria-labelledby="accountTabPublic" hidden>
-        <div class="kick" style="margin-bottom:6px;">Your public trail identity</div>
-        <h2 class="serif" style="font-size:27px;margin:0 0 8px;">Let people follow the adventures, not your private details.</h2>
-        <p class="hint" style="margin:0 0 22px;max-width:680px;">This profile is separate from your contact, vet and journal information. Only the display name, bio and dog details you choose below can appear publicly.</p>
+        <div class="kick" style="margin-bottom:6px;" data-i18n="page.account.yourPublicTrailIdentity">Your public trail identity</div>
+        <h2 class="serif" style="font-size:27px;margin:0 0 8px;" data-i18n="page.account.letPeopleFollowTheAdventures">Let people follow the adventures, not your private details.</h2>
+        <p class="hint" style="margin:0 0 22px;max-width:680px;" data-i18n="page.account.thisProfileIsSeparateFrom">This profile is separate from your contact, vet and journal information. Only the display name, bio and dog details you choose below can appear publicly.</p>
         <div class="acct-2col" style="margin-bottom:18px;">
-          <div><label class="lbl" for="publicDisplayName">Public human name</label><input class="fld" id="publicDisplayName" maxlength="40" placeholder="e.g. Bea on the trail"><div class="hint">It can be a nickname. Your account name stays private.</div></div>
-          <div><label class="lbl" for="publicVisibility">Who can follow</label><select class="fld" id="publicVisibility"><option value="public">Public profile · follow instantly</option><option value="private">Private profile · approve requests</option></select></div>
+          <div><label class="lbl" for="publicDisplayName" data-i18n="page.account.publicHumanName">Public human name</label><input class="fld" id="publicDisplayName" maxlength="40" placeholder="e.g. Bea on the trail" data-i18n-ph="page.account.egBeaOnTheTrail"><div class="hint" data-i18n="page.account.itCanBeANickname">It can be a nickname. Your account name stays private.</div></div>
+          <div><label class="lbl" for="publicVisibility" data-i18n="page.account.whoCanFollow">Who can follow</label><select class="fld" id="publicVisibility"><option value="public">Public profile · follow instantly</option><option value="private">Private profile · approve requests</option></select></div>
         </div>
-        <label class="lbl" for="publicBio">Public bio</label>
+        <label class="lbl" for="publicBio" data-i18n="page.account.publicBio">Public bio</label>
         <textarea class="fld" id="publicBio" maxlength="240" rows="3" placeholder="The kind of trails you and your dog love…" style="resize:vertical;margin-bottom:18px;"></textarea>
         <div class="acct-2col" style="margin-bottom:22px;">
-          <div><label class="lbl" for="publicTagPermission">Who can tag you</label><select class="fld" id="publicTagPermission"><option value="followers">Followers</option><option value="everyone">Everyone</option><option value="none">Nobody</option></select></div>
-          <div style="background:#F4F7F1;border:1px solid #D9E3D6;border-radius:14px;padding:14px 15px;"><label style="display:flex;align-items:flex-start;gap:10px;margin:0;cursor:pointer;"><input type="checkbox" id="publicDogEnabled" style="width:18px;height:18px;flex:none;accent-color:#2E4034;"><span><b id="publicDogLabel">Show my dog</b><br><small style="color:#6B7A6E;">Use the active dog's name and photo on their public profile and Trail Tale cards.</small></span></label></div>
+          <div><label class="lbl" for="publicTagPermission" data-i18n="page.account.whoCanTagYou">Who can tag you</label><select class="fld" id="publicTagPermission"><option value="followers">Followers</option><option value="everyone">Everyone</option><option value="none">Nobody</option></select></div>
+          <div style="background:#F4F7F1;border:1px solid #D9E3D6;border-radius:14px;padding:14px 15px;"><label style="display:flex;align-items:flex-start;gap:10px;margin:0;cursor:pointer;"><input type="checkbox" id="publicDogEnabled" style="width:18px;height:18px;flex:none;accent-color:#2E4034;"><span><b id="publicDogLabel" data-i18n="page.account.showMyDog">Show my dog</b><br><small style="color:#6B7A6E;" data-i18n="page.account.useTheActiveDogsName">Use the active dog's name and photo on their public profile and Trail Tale cards.</small></span></label></div>
         </div>
-        <label class="lbl" for="publicDogBio">Dog's public bio</label>
+        <label class="lbl" for="publicDogBio" data-i18n="page.account.dogsPublicBio">Dog's public bio</label>
         <textarea class="fld" id="publicDogBio" maxlength="180" rows="2" placeholder="Chief sniff inspector. Mud enthusiast." style="resize:vertical;margin-bottom:20px;"></textarea>
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid #EDE9DD;padding-top:20px;">
-          <button type="button" class="btn-p" id="publicProfileSave">Save public profile</button>
-          <a class="btn-g" id="publicProfileView" href="profile.html" hidden style="text-decoration:none;">View profile</a>
+          <button type="button" class="btn-p" id="publicProfileSave" data-i18n="page.account.savePublicProfile">Save public profile</button>
+          <a class="btn-g" id="publicProfileView" href="profile.html" hidden style="text-decoration:none;" data-i18n="page.account.viewProfile">View profile</a>
           <p id="publicProfileStatus" class="hint" role="status" style="margin:0;"></p>
         </div>
         <div id="followRequestsPanel" style="border-top:1px solid #EDE9DD;padding-top:22px;margin-top:24px;" hidden>
-          <div class="kick" style="margin-bottom:10px;">Follow requests</div>
+          <div class="kick" style="margin-bottom:10px;" data-i18n="page.account.followRequests">Follow requests</div>
           <div id="followRequestsList" style="display:grid;gap:10px;"></div>
         </div>
       </section>
@@ -403,7 +403,7 @@
         <div class="acct-2col" style="gap:24px;margin-bottom:24px;">
           <div id="emailChangeBox">
             <label class="lbl" for="acctEmailInput" data-i18n="account.settings.loginEmail">Login email</label>
-            <div style="display:flex;gap:10px;"><input class="fld" type="email" id="acctEmailInput" placeholder="you@…"><button type="button" id="acctEmailBtn" disabled style="flex:none;padding:0 18px;border-radius:12px;border:none;background:#C6D0CB;color:#fff;font-weight:800;font-size:13.5px;cursor:pointer;font-family:'Inter',sans-serif;" data-i18n="account.update">Update</button></div>
+            <div style="display:flex;gap:10px;"><input class="fld" type="email" id="acctEmailInput" placeholder="you@…" data-i18n-ph="page.account.you"><button type="button" id="acctEmailBtn" disabled style="flex:none;padding:0 18px;border-radius:12px;border:none;background:#C6D0CB;color:#fff;font-weight:800;font-size:13.5px;cursor:pointer;font-family:'Inter',sans-serif;" data-i18n="account.update">Update</button></div>
             <p class="hint" id="acctEmailHint" style="margin:8px 0 0;" data-i18n="account.settings.emailHint">We'll email a confirmation link to verify the new address.</p>
           </div>
           <div id="googleEmailNote" hidden>
@@ -483,7 +483,7 @@
     </div>
     <p id="deleteGoogleNote" class="hint" hidden style="margin:0 0 14px;" data-i18n="account.delete.googleConfirm">You'll be asked to confirm with Google.</p>
     <label class="lbl" for="confirmDeleteText" data-i18n="account.delete.typeConfirm">Type <b>DELETE</b> to confirm</label>
-    <input class="fld" id="confirmDeleteText" placeholder="DELETE" autocomplete="off" style="margin-bottom:16px;">
+    <input class="fld" id="confirmDeleteText" placeholder="DELETE" autocomplete="off" style="margin-bottom:16px;" data-i18n-ph="page.account.delete">
     <fieldset style="border:1px solid #DED9CB;border-radius:12px;padding:12px 14px;margin:0 0 16px;">
       <legend class="lbl" style="padding:0 5px;" data-i18n="account.delete.deviceData">Data on this device</legend>
       <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;margin-bottom:9px;"><input type="radio" name="deleteLocalData" value="remove" checked style="margin-top:3px;"> <span data-i18n="account.delete.removeLocal"><b>Remove all ORMA local data</b><br><span class="hint">Recommended on shared devices. Removes downloaded maps, journal entries, unfinished and completed hike records, pending outcomes and reports, photos, and cached profile data.</span></span></label>

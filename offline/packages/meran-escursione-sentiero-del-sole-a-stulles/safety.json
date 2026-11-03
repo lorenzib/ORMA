@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-escursione-sentiero-del-sole-a-stulles",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.1,
+    "ascentM": 272,
+    "highestPointM": 1588,
+    "expectedDuration": "1.75 hours",
+    "difficulty": "Hard",
+    "shadePercent": 49
+  },
+  "trailhead": {
+    "lat": 46.828059,
+    "lng": 11.200341,
+    "label": "Car park by the church in Stuls, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Most of the loop is on a quiet tarred farm road with hairpins, shared with cars and tractors: lead on and keep to the side.",
+    "About 120 m on the Stuls road near the village: keep your dog close on a short lead.",
+    "Meadows beside the road are farmed and closed to dogs in Moos in Passeier in the growing season: keep to the road and path.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

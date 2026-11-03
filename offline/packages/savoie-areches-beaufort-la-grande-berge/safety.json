@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-areches-beaufort-la-grande-berge",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.4,
+    "ascentM": 350,
+    "highestPointM": 2066,
+    "expectedDuration": "4 hours",
+    "difficulty": "Hard",
+    "shadePercent": 1
+  },
+  "trailhead": {
+    "lat": 45.693272,
+    "lng": 6.668725,
+    "label": "Plan de la Lai refuge on the Cormet de Roselend road, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.6931816,
+      "lng": 6.6693977,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.6825695,
+      "lng": 6.6519218,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Working alpages: cows graze along the road and path in summer and guard dogs may be present; keep your dog on a lead and walk round the herds.",
+    "High, open ground at 1,800–2,070 m: no shade and quick weather changes.",
+    "The alpage road is used by farm vehicles: lead on.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -377,7 +377,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&pageGenerator.includes("reviewed: { label: 'Reviewed by ORMA', style: 'neutral', icon: null }")
     &&!pageGenerator.includes("const reviewLabel = fullyReviewed ? 'Verified by ORMA' : 'Imported trail';")
     // The footer says the same as the badge.
-    &&pageGenerator.includes('${badgeTier.label} on ${escapeHtml(formatReviewDate(reviewDate))}')
+    &&pageGenerator.includes("L('{badge} on {date}. Check current conditions before setting out.', { badge: tierLabelText(badgeTier), date: escapeHtml(formatReviewDate(reviewDate)) })")
     // The caveats rest on the category review, in both copies.
     &&pageGenerator.includes("categoryVerified(t, 'water')")
     &&pageGenerator.includes("categoryVerified(t, 'access')")
@@ -399,7 +399,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   // card stated a number sequence as though the signs were confirmed.
   add('the-directions-reach-the-page',
     pageGenerator.includes('function directionsSection(t)')
-    &&pageGenerator.includes('<h2>How to follow this route</h2>')
+    &&pageGenerator.includes("<h2>${L('How to follow this route')}</h2>")
     // Three sentences or none: half a set is worse than none.
     &&pageGenerator.includes('if (!start || !sequence || !switches) return \'\';')
     // The same numbers the app shows, from the same module.
@@ -410,7 +410,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     &&blueprint.includes("verifiedRouteGuidance.mode === 'landmarks'")
     // And the signage caveat printed by both, when there is one.
     &&pageGenerator.includes("String(guidance.status || '').trim()")
-    &&blueprint.includes("String(verifiedRouteGuidance.status || '').trim()")
+    &&blueprint.includes("String(trailWords(verifiedRouteGuidance.status) || '').trim()")
     &&standard.includes('The directions reach the page, not only the app'),
     'The four directions a verification establishes render on the crawlable page as well as in the app, under one heading with one set of labels, the same waymark numbers from the same module, and three sentences or none; both print the signage caveat when the record carries one, which the app had been dropping so that a card stated a number sequence as though the signs were confirmed');
 

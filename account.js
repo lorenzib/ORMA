@@ -11,6 +11,13 @@
 (function(){
   const $ = id => document.getElementById(id);
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const subline = $('accountSubline');
   const loggedOutState = $('loggedOutState');
   const loggedInState = $('loggedInState');
@@ -496,7 +503,7 @@
       select.type = 'button';
       select.className = 'dog-photo-thumb__select';
       select.style.backgroundImage = `url(${photo})`;
-      select.setAttribute('aria-label', index === 0 ? 'Current profile photo' : `Make photo ${index + 1} the profile photo`);
+      select.setAttribute('aria-label', index === 0 ? tx('Current profile photo') : tx('Make photo {n} the profile photo', { n:index + 1 }));
       select.addEventListener('click', () => {
         if(index === 0) return;
         state.photos = [state.photos[index], ...state.photos.filter((_, photoIndex) => photoIndex !== index)];
@@ -506,7 +513,7 @@
       remove.type = 'button';
       remove.className = 'dog-photo-thumb__remove';
       remove.textContent = '×';
-      remove.setAttribute('aria-label', `Remove photo ${index + 1}`);
+      remove.setAttribute('aria-label', tx('Remove photo {n}', { n:index + 1 }));
       remove.addEventListener('click', () => {
         state.photos.splice(index, 1);
         persistDogPhotos();
@@ -515,8 +522,8 @@
       dogPhotoGallery.insertBefore(item, dogPhotoAddBtn);
     });
     dogPhotoAddBtn.disabled = state.photos.length >= MAX_DOG_PHOTOS;
-    dogPhotoAddBtn.textContent = state.photos.length >= MAX_DOG_PHOTOS ? 'Photo limit reached' : '＋ Add photos';
-    dogPhotoCount.textContent = `${state.photos.length} of ${MAX_DOG_PHOTOS}`;
+    dogPhotoAddBtn.textContent = state.photos.length >= MAX_DOG_PHOTOS ? tx('Photo limit reached') : tx('＋ Add photos');
+    dogPhotoCount.textContent = tx('{count} of {max}', { count:state.photos.length, max:MAX_DOG_PHOTOS });
   }
   function downscalePhoto(file){
     return new Promise((resolve, reject) => {
@@ -561,7 +568,7 @@
       for(const file of files) additions.push(await downscalePhoto(file));
       const nextPhotos = state.photos.concat(additions).slice(0, MAX_DOG_PHOTOS);
       if(accountPhotoDataSize(nextPhotos) > MAX_ACCOUNT_PHOTO_DATA){
-        photoStatus('These photos would make the dog profiles too large to sync. Choose fewer or smaller photos.', false);
+        photoStatus(tx('These photos would make the dog profiles too large to sync. Choose fewer or smaller photos.'), false);
         return;
       }
       state.photos = nextPhotos;
@@ -677,7 +684,7 @@
   });
 
   $('removeDogBtn').addEventListener('click', async () => {
-    const nm = state.name.trim() || 'this dog';
+    const nm = state.name.trim() || tKey('account.thisDog', 'this dog');
     if(!window.confirm(tKey('account.removeConfirm', 'Remove {name}? This permanently deletes the profile and all its data, photo, health, vet and emergency details.', { name:nm }))) return;
     if(!window.DoloPawsAuth) return;
     const ok = await window.DoloPawsAuth.removeDogProfile(base.id || activeDogId);
