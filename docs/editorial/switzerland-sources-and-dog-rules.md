@@ -5,9 +5,10 @@ Engadin, Val Poschiavo, Val Bregaglia, Valle Maggia, Verzasca), then Valais,
 the Bernese Oberland, Central Switzerland and the Jura. Charter amendment
 #1235 lets the catalogue grow into Switzerland; it says no Swiss walk is
 sealed until the owner approves a Swiss dog standard. Section 3 is that
-proposal. Nothing here changes a seal rule until it is approved.
+standard, approved on 3 November 2026.
 
-**Owner's decision:** pending.
+**Owner's decision, 3 November 2026:** the Swiss dog standard in section 3
+is approved as proposed ("Approve as proposed").
 
 ## 1. Walk sources
 
@@ -187,7 +188,7 @@ bring one for up to 30 days a year, on a lead and muzzled.
   start from a lift say "check the lift's dog rule". The lift rule stands:
   a closed gondola or cable car is fine, any chairlift means hold.
 
-## 3. Proposed Swiss dog standard (needs the owner's approval)
+## 3. Swiss dog standard (approved by the owner, 3 November 2026)
 
 Where the commune's own rule is found, it wins and is stated. Where it is
 not, the record says "commune rule not found, probably exists" and applies
