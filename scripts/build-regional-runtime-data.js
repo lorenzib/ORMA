@@ -7,6 +7,7 @@ const vm = require('vm');
 const crypto = require('crypto');
 const { applyVerifiedTrailOverrides } = require('./verified-trail-overrides');
 const { applyTrailImageOverrides } = require('./trail-image-overrides');
+const { applyTrailGalleryPhotos } = require('./trail-gallery-photos');
 const { applyLiftAccess } = require('./lift-access');
 const { normaliseRouteRef, applyRouteNumberEvidence } = require('./route-number-evidence');
 // The same slug the static page generator names its files after, from the same
@@ -82,8 +83,9 @@ function loadTrails() {
   // served dynamically showed no photograph however well it was credited in the
   // ledger. Eight trails were in that state.
   const images = JSON.parse(fs.readFileSync(path.join(root, 'data', 'trail-image-overrides.json'), 'utf8'));
+  const gallery = JSON.parse(fs.readFileSync(path.join(root, 'data', 'trail-gallery-photos.json'), 'utf8'));
   const liftAccess = JSON.parse(fs.readFileSync(path.join(root, 'data', 'lift-access.json'), 'utf8'));
-  const withOverrides = applyLiftAccess(applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), images), liftAccess);
+  const withOverrides = applyLiftAccess(applyTrailGalleryPhotos(applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), images), gallery), liftAccess);
   return applyRouteNumberEvidence(withOverrides, root);
 }
 

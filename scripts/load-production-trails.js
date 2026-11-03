@@ -5,6 +5,7 @@ const path = require('path');
 const vm = require('vm');
 const { applyVerifiedTrailOverrides } = require('./verified-trail-overrides');
 const { applyTrailImageOverrides } = require('./trail-image-overrides');
+const { applyTrailGalleryPhotos } = require('./trail-gallery-photos');
 const { applyRouteNumberEvidence } = require('./route-number-evidence');
 const { applyLiftAccess } = require('./lift-access');
 const { loadSlugOverrides, applyTrailNameOverrides } = require('./trail-slug-overrides');
@@ -40,6 +41,8 @@ function loadProductionTrails(root, files = DEFAULT_FILES){
   const overrides = fs.existsSync(overridePath) ? JSON.parse(fs.readFileSync(overridePath, 'utf8')) : { trails:[] };
   const imageOverridePath=path.join(root,'data','trail-image-overrides.json');
   const imageOverrides=fs.existsSync(imageOverridePath)?JSON.parse(fs.readFileSync(imageOverridePath,'utf8')):{trails:[]};
+  const galleryPath=path.join(root,'data','trail-gallery-photos.json');
+  const gallery=fs.existsSync(galleryPath)?JSON.parse(fs.readFileSync(galleryPath,'utf8')):{trails:[]};
   // The verification campaign ranks candidates from these objects, and the gate
   // it ranks them towards asks for supported authoritative route guidance. Until
   // now this status was derived only when the site data was generated, so the
@@ -53,7 +56,7 @@ function loadProductionTrails(root, files = DEFAULT_FILES){
   // route-number facts are.
   return applyTrailNameOverrides(
     applyRouteNumberEvidence(
-      applyLiftAccess(applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), imageOverrides), liftAccess),
+      applyLiftAccess(applyTrailGalleryPhotos(applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), imageOverrides), gallery), liftAccess),
       root,
     ),
     loadSlugOverrides(root),
