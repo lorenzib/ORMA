@@ -3138,6 +3138,30 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-03T12:00:00.000Z"
     },
+    "savoie-promenade-confort-lac-et-barrage-de-saint-guerin": {
+      "url": "https://www.explore-savoie.com/randonnees-et-balades/promenade-confort-lac-et-barrage-de-saint-guerin-580887/",
+      "publisher": "Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort (Apidae, Explore Savoie)",
+      "name": "Promenade confort : Lac et barrage de Saint Guérin",
+      "quote": "Durée moyenne 2H30 · Dénivelé cumulé positif 50m · Dénivelé négatif 50m · Distance 4.2Km · Animaux acceptés en laisse uniquement",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "savoie-itineraire-poussette-des-chalets-brules": {
+      "url": "https://www.explore-savoie.com/randonnees-et-balades/itineraire-poussette-des-chalets-brules-4997122/",
+      "publisher": "Office de Tourisme du Val d’Arly (Apidae, Explore Savoie)",
+      "name": "Itinéraire poussette des Chalets Brûlés",
+      "quote": "Durée moyenne 1H · Dénivelé cumulé positif 20m · Dénivelé négatif 20m · Distance 1.6Km · Chiens tenus en laisse",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "savoie-itineraire-poussette-de-belavoine": {
+      "url": "https://www.explore-savoie.com/randonnees-et-balades/itineraire-poussette-de-belavoine-4996986/",
+      "publisher": "Office de Tourisme du Val d’Arly (Apidae, Explore Savoie)",
+      "name": "Itinéraire poussette de Bel’Avoine",
+      "quote": "Durée moyenne 2H · Dénivelé cumulé positif 40m · Dénivelé négatif 40m · Distance 4.7Km · Animaux acceptés",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
     "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": {
       "url": "https://www.outdooractive.com/it/r/54554380",
       "publisher": "Partschins tourist board (Outdooractive, suedtirol.info)",

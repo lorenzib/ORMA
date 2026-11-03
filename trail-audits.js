@@ -58864,6 +58864,219 @@
       startPoint: { lat: 46.690139, lng: 11.187216, label: 'The village centre of Schenna, the board’s start' },
       desc: 'A loop from Schenna through the apple orchards on the Bloseggweg, past the Kampflkreuz and back on the Mitterplattweg. The board lists 5.7 km, 200 m up and 200 m down, 1 h 45.'
     },
+    'savoie-promenade-confort-lac-et-barrage-de-saint-guerin': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 1, Beaufortain – Val d’Arly).
+      // “Promenade confort : Lac et barrage de Saint Guérin”, published by the Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort, drawn on 27 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 580887). Communes: Arêches-Beaufort (no dog order found online, probably exists: the national rule applies; the page says dogs on a lead only).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Lac de Saint-Guérin – Arêches-Beaufort (Beaufortain)',
+      distance: 4.2,
+      elevation: 50,
+      hours: '2.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way: from the car park by the Saint-Guérin dam along the east shore of the lake, over the 80 m footbridge high above the water, to the head of the lake where the Louze stream flows in, then back by the same path.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park by the Saint-Guérin dam (about 1,560 m), the board’s start; the dam itself is a short detour to the left before you set off.",
+        "sequence": "Take the path to the right along the lake shore and cross the small bridge. Carry on along the shore to the footbridge, 80 m long and more than 20 m above the water, and cross it. Follow the path to the head of the lake, where the Louze stream flows in, then turn round and come back the same way to the car park.",
+        "switches": "One choice at the start: right along the shore, not across the dam. After that the path is the only one along the lake; turn round at the head of the lake.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort, Promenade confort : Lac et barrage de Saint Guérin (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/promenade-confort-lac-et-barrage-de-saint-guerin-580887/",
+            "authority": "Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The wooded east shore of the Lac de Saint-Guérin, on the walk, in September 2023 (Florian Pépellin on Wikimedia Commons, CC BY-SA 4.0), 6 m from the line.',
+        route: 'Official there-and-back walk 4.2 km from the car park by the Saint-Guérin dam, as the Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort publishes it; the stored line is drawn on 27 OSM ways along the board’s published line, 4.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the car park by the Saint-Guérin dam and take the path right along the lake shore, over the small bridge and then the 80 m footbridge, to the head of the lake where the Louze flows in; return the same way. No path numbers: follow the local yellow signs.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.2 km, 50 m up and 50 m down, 2:30 h average walking time (Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort, Promenade confort : Lac et barrage de Saint Guérin (Explore Savoie, Apidae 580887) and its official GPX',
+          'Arêches-Beaufort publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs accepted on a lead only',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 66,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The 80 m footbridge is more than 20 m above the water: some dogs balk at the drop, so keep your dog close and on a short lead', 'Steep banks down to the reservoir along the shore path: lead on, and no swimming, since the water level can change', 'About 60 m along the Saint-Guérin road at the car park: keep your dog close'],
+      terrainType: 'Lakeside path, track and footbridge',
+      shadeDescription: 'Two thirds shaded: about 66% of it runs under the mapped spruce woods on the east shore; the head of the lake is open.',
+      terrainDescription: 'An almost level walk at about 1,560 m around the shore of the Saint-Guérin reservoir above Arêches, on a wide track and a lakeside path, with a long, high footbridge over an arm of the lake.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs are accepted on a lead only, according to the official page. Arêches-Beaufort publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cows graze the alpages around the lake in summer: keep your dog on a lead and give the herds a wide berth.',
+      tips: 'Park by the dam (free shuttles from Albertville, Beaufort and Arêches in July and August): 4.2 km there and back, almost level, about two and a half hours at an easy pace. Keep your dog on a lead, especially on the high footbridge. Open from June to mid-October, outside the snow; no drinking water on the way, so bring some for your dog.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Promenade confort : Lac et barrage de Saint Guérin (Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort)', url: 'https://www.explore-savoie.com/randonnees-et-balades/promenade-confort-lac-et-barrage-de-saint-guerin-580887/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/231/240/16445671/randonnee-30409601-ete-promenade-confort-de-st-guerin.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.65132, lng: 6.581332, label: 'Car park by the Saint-Guérin dam, the board’s start' },
+      desc: 'An easy, almost level walk along the shore of the Lac de Saint-Guérin above Arêches, through spruce woods and across a long footbridge high above the water, to the head of the lake and back. The official page lists 4.2 km, 50 m up and 50 m down, about 2 h 30.'
+    },
+    'savoie-itineraire-poussette-des-chalets-brules': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 1, Beaufortain – Val d’Arly).
+      // “Itinéraire poussette des Chalets Brûlés”, published by the Office de Tourisme du Val d’Arly, drawn on 5 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 4997122). Communes: Crest-Voland and Cohennoz (no dog order found online, probably exists: the national rule applies; the page says dogs on a lead).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Crest-Voland – Chalets Brûlés (Val d’Arly)',
+      distance: 1.6,
+      elevation: 20,
+      hours: '1',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way: from the Grande Mouille car park on the road to Les Saisies along the drivable track and then through the alpages to the Chalets Brûlés, and back.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Grande Mouille car park, beside the road from Crest-Voland to Les Saisies about 3 km out of the village, the board’s start.",
+        "sequence": "From the car park continue along the drivable track, then on through the alpages between working farms, with the Mont Blanc massif and the Aravis ahead, to the Chalets Brûlés. Turn round there and come back the same way to the car park.",
+        "switches": "No change of track: stay on the main track through the pastures and turn round at the Chalets Brûlés.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme du Val d’Arly, Itinéraire poussette des Chalets Brûlés (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/itineraire-poussette-des-chalets-brules-4997122/",
+            "authority": "Office de Tourisme du Val d’Arly",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The pasture track to the Chalets Brûlés above Crest-Voland, in June 2025 (MatthieuF4FNE on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official there-and-back walk 1.6 km from the Grande Mouille car park on the road to Les Saisies, as the Office de Tourisme du Val d’Arly publishes it; the stored line is drawn on 5 OSM ways along the board’s published line, 1.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Grande Mouille car park, about 3 km from Crest-Voland on the road to Les Saisies, then follow the drivable track and the pasture track to the Chalets Brûlés and back the same way; no path numbers, local Val d’Arly signs.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 1.6 km, 20 m up and 20 m down, 1:00 h average walking time (Office de Tourisme du Val d’Arly, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme du Val d’Arly, Itinéraire poussette des Chalets Brûlés (Explore Savoie, Apidae 4997122) and its official GPX',
+          'Crest-Voland and Cohennoz publish no dog order online (not found, probably exists), so the national rule applies; the official page: dogs on a lead',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (5 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpage: cows and goats graze beside the track in summer; keep your dog on a lead and give the herds room', 'Farm vehicles use the track: lead on', 'About 40 m along the Saisies road at the car park: keep your dog close'],
+      terrainType: 'Farm track through alpages',
+      shadeDescription: 'No shade: the track crosses open pasture, with only a few spruces along the edge.',
+      terrainDescription: 'A short, almost level walk at about 1,500 m on a wide farm track through the alpages between Crest-Voland and Les Saisies, with views of the Mont Blanc massif and the Aravis; suitable for all-terrain prams.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs must be kept on a lead, according to the official page. Crest-Voland and Cohennoz publish no dog order online, so the national rule applies on top: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cows and goats graze along the track.',
+      tips: 'Park at the Grande Mouille car park on the Saisies road: 1.6 km there and back, almost flat, under an hour. Keep your dog on a lead through the grazing herds. Open mid-May to mid-November; there is no water or shade, so bring water on warm days.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Itinéraire poussette des Chalets Brûlés (Office de Tourisme du Val d’Arly)', url: 'https://www.explore-savoie.com/randonnees-et-balades/itineraire-poussette-des-chalets-brules-4997122/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/49/115/4879153/chemin-des-chalets-brules-itineraire-poussette.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.78856, lng: 6.531665, label: 'Grande Mouille car park on the road to Les Saisies, the board’s start' },
+      desc: 'A short, flat walk on a farm track through the summer alpages above Crest-Voland, between grazing cows and goats and facing Mont Blanc and the Aravis, to the Chalets Brûlés and back. The official page lists 1.6 km, 20 m up and 20 m down, about an hour.'
+    },
+    'savoie-itineraire-poussette-de-belavoine': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 1, Beaufortain – Val d’Arly).
+      // “Itinéraire poussette de Bel’Avoine”, published by the Office de Tourisme du Val d’Arly, drawn on 18 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 4996986). Communes: Cohennoz and Crest-Voland (no dog order found online, probably exists: the national rule applies).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Le Cernix – Bel’Avoine – Paravy (Val d’Arly)',
+      distance: 4.7,
+      elevation: 40,
+      hours: '2',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way on a quiet communal road: from the Place du Cernix in Cohennoz past the Cernix pond and the Ainoz mill, through the meadows of Bel’Avoine to the hamlet of Paravy in Crest-Voland, and back.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Place du Cernix in Cohennoz, where there is parking and a drinking fountain; the board also allows starting from Paravy at the other end.",
+        "sequence": "Follow the communal road of Bel’Avoine towards Paravy, past the Cernix pond and the Ainoz mill, between the hamlets of Cohennoz and Crest-Voland and through hay meadows with views of the Aravis. At the hamlet of Paravy turn round and come back the same way to the Cernix.",
+        "switches": "No turnings: the walk stays on the one communal road; turn round at Paravy.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme du Val d’Arly, Itinéraire poussette de Bel’Avoine (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/itineraire-poussette-de-belavoine-4996986/",
+            "authority": "Office de Tourisme du Val d’Arly",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Bel’Avoine communal road between Le Cernix and Paravy, facing the Aravis, in June 2023 (MatthieuF4FNE on Mapillary, CC BY-SA 4.0), 8 m from the line.',
+        route: 'Official there-and-back walk 4.7 km from the Place du Cernix in Cohennoz, as the Office de Tourisme du Val d’Arly publishes it; the stored line is drawn on 18 OSM ways along the board’s published line, 4.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Place du Cernix in Cohennoz and follow the quiet communal road of Bel’Avoine past the Cernix pond and the Ainoz mill, through the meadows to the hamlet of Paravy, then return the same way; no path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 12050679095).',
+        elevation: 'Official 4.7 km, 40 m up and 40 m down, 2:00 h average walking time (Office de Tourisme du Val d’Arly, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme du Val d’Arly, Itinéraire poussette de Bel’Avoine (Explore Savoie, Apidae 4996986) and its official GPX',
+          'Crest-Voland and Cohennoz publish no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (18 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The whole walk is on a quiet communal road that cars still use: keep your dog on a lead and to the side', 'Hay meadows beside the road are farmed: keep your dog out of them'],
+      terrainType: 'Quiet communal road',
+      shadeDescription: 'No shade: the road runs through open meadows and hamlets.',
+      terrainDescription: 'An almost level walk at about 1,200–1,250 m on a quiet communal road between the hamlets of Cohennoz and Crest-Voland, past a pond and an old mill, through hay meadows facing the Aravis; suitable for prams.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Dogs are accepted, according to the official page. Cohennoz and Crest-Voland publish no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cars use the road, so keep your dog on a lead.',
+      tips: 'Start at the Place du Cernix in Cohennoz (drinking fountain at the start): 4.7 km there and back, almost flat, about two hours. The road is quiet but cars do pass: lead on. Open mid-May to mid-November; no shade, so go early on hot days.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Itinéraire poussette de Bel’Avoine (Office de Tourisme du Val d’Arly)', url: 'https://www.explore-savoie.com/randonnees-et-balades/itineraire-poussette-de-belavoine-4996986/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/99/235/6286179/Cirkwi-Itinraire_poussette_de_Bel_Avoine.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.783478, lng: 6.498725, label: 'Place du Cernix, Cohennoz, one of the two starts the board gives' },
+      desc: 'An easy, flat walk on a quiet communal road between the hamlets of Cohennoz and Crest-Voland, past the Cernix pond and the Ainoz mill and through hay meadows facing the Aravis, to Paravy and back. The official page lists 4.7 km, 40 m up and 40 m down, about two hours.'
+    },
     'meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole': {
       // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
       // “Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines”, published by the Partschins tourist board, drawn on 44 OSM ways along the line it publishes

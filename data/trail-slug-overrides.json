@@ -1504,6 +1504,21 @@
       "slug": "bloseggweg-loop-schenna",
       "gloss": "through the orchards past the Kampflkreuz"
     },
+    "savoie-promenade-confort-lac-et-barrage-de-saint-guerin": {
+      "name": "Lac de Saint-Guérin shore path",
+      "slug": "lac-de-saint-guerin-shore-path",
+      "gloss": "along the lake and over the high footbridge"
+    },
+    "savoie-itineraire-poussette-des-chalets-brules": {
+      "name": "Chalets Brûlés pasture track, Crest-Voland",
+      "slug": "chalets-brules-crest-voland",
+      "gloss": "a flat alpage track facing Mont Blanc"
+    },
+    "savoie-itineraire-poussette-de-belavoine": {
+      "name": "Bel’Avoine road, Le Cernix to Paravy",
+      "slug": "belavoine-cernix-to-paravy",
+      "gloss": "a flat hamlet road facing the Aravis"
+    },
     "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": {
       "name": "Meraner Höhenweg west and the Sonnenberg farms, Partschins",
       "slug": "hoehenweg-west-sonnenberg-farms-partschins",

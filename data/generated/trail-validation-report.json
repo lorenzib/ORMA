@@ -10,16 +10,16 @@
     "regions-config.js"
   ],
   "totals": {
-    "sourceRecords": 437,
-    "canonicalRecords": 437,
-    "published": 436,
+    "sourceRecords": 440,
+    "canonicalRecords": 440,
+    "published": 439,
     "draft": 1,
     "errors": 0
   },
   "byOrigin": {
     "curated": {
-      "total": 275,
-      "published": 275,
+      "total": 278,
+      "published": 278,
       "draft": 0
     },
     "osm": {
