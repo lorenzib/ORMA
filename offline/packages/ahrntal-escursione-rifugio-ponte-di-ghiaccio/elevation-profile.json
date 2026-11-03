@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "ahrntal-escursione-rifugio-ponte-di-ghiaccio",
+  "distanceKm": 5.4,
+  "ascentM": 678,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1865
+    },
+    {
+      "km": 0.4,
+      "elev": 1860
+    },
+    {
+      "km": 0.8,
+      "elev": 1877
+    },
+    {
+      "km": 1.2,
+      "elev": 1883
+    },
+    {
+      "km": 1.6,
+      "elev": 1866
+    },
+    {
+      "km": 2,
+      "elev": 1882
+    },
+    {
+      "km": 2.5,
+      "elev": 1988
+    },
+    {
+      "km": 2.9,
+      "elev": 2061
+    },
+    {
+      "km": 3.3,
+      "elev": 2149
+    },
+    {
+      "km": 3.7,
+      "elev": 2241
+    },
+    {
+      "km": 4.1,
+      "elev": 2284
+    },
+    {
+      "km": 4.5,
+      "elev": 2432
+    },
+    {
+      "km": 4.9,
+      "elev": 2452
+    },
+    {
+      "km": 5.3,
+      "elev": 2534
+    },
+    {
+      "km": 5.4,
+      "elev": 2549
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-escursione-nella-vallunga",
+  "distanceKm": 7.5,
+  "ascentM": 201,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1625
+    },
+    {
+      "km": 0.6,
+      "elev": 1656
+    },
+    {
+      "km": 1.2,
+      "elev": 1722
+    },
+    {
+      "km": 1.7,
+      "elev": 1759
+    },
+    {
+      "km": 2.3,
+      "elev": 1782
+    },
+    {
+      "km": 2.9,
+      "elev": 1802
+    },
+    {
+      "km": 3.5,
+      "elev": 1807
+    },
+    {
+      "km": 4,
+      "elev": 1829
+    },
+    {
+      "km": 4.6,
+      "elev": 1805
+    },
+    {
+      "km": 5.2,
+      "elev": 1784
+    },
+    {
+      "km": 5.8,
+      "elev": 1747
+    },
+    {
+      "km": 6.3,
+      "elev": 1706
+    },
+    {
+      "km": 6.9,
+      "elev": 1654
+    },
+    {
+      "km": 7.4,
+      "elev": 1648
+    },
+    {
+      "km": 7.5,
+      "elev": 1625
+    }
+  ]
+}

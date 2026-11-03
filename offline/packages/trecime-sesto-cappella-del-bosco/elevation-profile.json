@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-sesto-cappella-del-bosco",
+  "distanceKm": 3.9,
+  "ascentM": 209,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1327
+    },
+    {
+      "km": 0.3,
+      "elev": 1341
+    },
+    {
+      "km": 0.6,
+      "elev": 1339
+    },
+    {
+      "km": 0.9,
+      "elev": 1363
+    },
+    {
+      "km": 1.2,
+      "elev": 1427
+    },
+    {
+      "km": 1.5,
+      "elev": 1484
+    },
+    {
+      "km": 1.8,
+      "elev": 1554
+    },
+    {
+      "km": 2.1,
+      "elev": 1554
+    },
+    {
+      "km": 2.4,
+      "elev": 1511
+    },
+    {
+      "km": 2.7,
+      "elev": 1427
+    },
+    {
+      "km": 3,
+      "elev": 1363
+    },
+    {
+      "km": 3.3,
+      "elev": 1339
+    },
+    {
+      "km": 3.6,
+      "elev": 1328
+    },
+    {
+      "km": 3.9,
+      "elev": 1327
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "trailId": "vinschgau-sentiero-della-roggia-stabnerwaal",
+  "generatedAt": "2026-11-02T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.9,
+    "ascentM": 160,
+    "highestPointM": 772,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 34
+  },
+  "trailhead": {
+    "lat": 46.645153,
+    "lng": 10.965544,
+    "label": "Staben railway station, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6452913,
+      "lng": 10.9665478,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.647209,
+      "lng": 10.9649724,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "The Sonnenberg is dry, south-facing steppe: very hot in summer, go early and bring water.",
+    "About 60 m on the main road and lanes in Staben and Tschars: lead on.",
+    "Orchards and vineyards beside the path are farmed and closed to dogs in Kastelbell-Tschars: keep to the path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-02"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-02",
+      "licence": "ODbL"
+    }
+  ]
+}

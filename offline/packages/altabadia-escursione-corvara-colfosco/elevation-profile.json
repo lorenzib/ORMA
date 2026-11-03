@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altabadia-escursione-corvara-colfosco",
+  "distanceKm": 4.8,
+  "ascentM": 128,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1530
+    },
+    {
+      "km": 0.4,
+      "elev": 1520
+    },
+    {
+      "km": 0.7,
+      "elev": 1519
+    },
+    {
+      "km": 1.1,
+      "elev": 1572
+    },
+    {
+      "km": 1.5,
+      "elev": 1626
+    },
+    {
+      "km": 1.8,
+      "elev": 1636
+    },
+    {
+      "km": 2.2,
+      "elev": 1628
+    },
+    {
+      "km": 2.6,
+      "elev": 1645
+    },
+    {
+      "km": 2.9,
+      "elev": 1605
+    },
+    {
+      "km": 3.3,
+      "elev": 1589
+    },
+    {
+      "km": 3.7,
+      "elev": 1560
+    },
+    {
+      "km": 4,
+      "elev": 1584
+    },
+    {
+      "km": 4.4,
+      "elev": 1578
+    },
+    {
+      "km": 4.7,
+      "elev": 1530
+    },
+    {
+      "km": 4.8,
+      "elev": 1530
+    }
+  ]
+}

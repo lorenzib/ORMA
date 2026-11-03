@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-helmjet-waldruhe-sexten",
+  "distanceKm": 5.4,
+  "ascentM": 7,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2053
+    },
+    {
+      "km": 0.4,
+      "elev": 2039
+    },
+    {
+      "km": 0.8,
+      "elev": 1981
+    },
+    {
+      "km": 1.2,
+      "elev": 1905
+    },
+    {
+      "km": 1.7,
+      "elev": 1911
+    },
+    {
+      "km": 2.1,
+      "elev": 1831
+    },
+    {
+      "km": 2.5,
+      "elev": 1771
+    },
+    {
+      "km": 2.9,
+      "elev": 1705
+    },
+    {
+      "km": 3.3,
+      "elev": 1567
+    },
+    {
+      "km": 3.7,
+      "elev": 1528
+    },
+    {
+      "km": 4.1,
+      "elev": 1464
+    },
+    {
+      "km": 4.5,
+      "elev": 1400
+    },
+    {
+      "km": 4.9,
+      "elev": 1347
+    },
+    {
+      "km": 5.3,
+      "elev": 1327
+    },
+    {
+      "km": 5.4,
+      "elev": 1327
+    }
+  ]
+}

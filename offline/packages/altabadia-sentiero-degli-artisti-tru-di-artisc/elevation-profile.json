@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altabadia-sentiero-degli-artisti-tru-di-artisc",
+  "distanceKm": 5.1,
+  "ascentM": 245,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1428
+    },
+    {
+      "km": 0.4,
+      "elev": 1392
+    },
+    {
+      "km": 0.8,
+      "elev": 1427
+    },
+    {
+      "km": 1.2,
+      "elev": 1445
+    },
+    {
+      "km": 1.6,
+      "elev": 1462
+    },
+    {
+      "km": 2,
+      "elev": 1466
+    },
+    {
+      "km": 2.3,
+      "elev": 1496
+    },
+    {
+      "km": 2.7,
+      "elev": 1525
+    },
+    {
+      "km": 3.1,
+      "elev": 1526
+    },
+    {
+      "km": 3.5,
+      "elev": 1534
+    },
+    {
+      "km": 3.9,
+      "elev": 1572
+    },
+    {
+      "km": 4.3,
+      "elev": 1600
+    },
+    {
+      "km": 4.7,
+      "elev": 1626
+    },
+    {
+      "km": 5,
+      "elev": 1624
+    },
+    {
+      "km": 5.1,
+      "elev": 1625
+    }
+  ]
+}

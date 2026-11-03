@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "ahrntal-sentiero-del-conte-cadipietra",
+  "generatedAt": "2026-11-02T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.1,
+    "ascentM": 86,
+    "highestPointM": 1082,
+    "expectedDuration": "0.75 hours",
+    "difficulty": "Easy",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.99424,
+    "lng": 11.97782,
+    "label": "Klausberg car park in Steinhaus (Cadipietra), the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.994779,
+      "lng": 11.980193,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.996286,
+      "lng": 11.981888,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Farm tracks through meadows: keep your dog on the path.",
+    "Grassy, uneven stretches, slippery when wet.",
+    "No shade: go early on hot days.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-02"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-02",
+      "licence": "ODbL"
+    }
+  ]
+}
