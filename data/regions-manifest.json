@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-03T17:39:54.194Z",
+  "generatedAt": "2026-11-03T18:51:05.569Z",
   "regions": {
     "dolomites": {
       "trailCount": 326,
@@ -339,8 +339,8 @@
       "optional": []
     },
     "savoy": {
-      "trailCount": 51,
-      "trails": "data/regions/savoy-trails.js?v=6246f2bd49ae",
+      "trailCount": 54,
+      "trails": "data/regions/savoy-trails.js?v=1bd073a1297e",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=07be5ff5d5e1",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=6206ef4046f2",
@@ -392,7 +392,10 @@
         "osm-19661726": "data/trail-details/osm-19661726.js?v=599986bebadc",
         "osm-19760372": "data/trail-details/osm-19760372.js?v=40bbb7d3738f",
         "osm-19855818": "data/trail-details/osm-19855818.js?v=b496cf0bd30a",
-        "osm-21021130": "data/trail-details/osm-21021130.js?v=d99a8f2a0adb"
+        "osm-21021130": "data/trail-details/osm-21021130.js?v=d99a8f2a0adb",
+        "savoie-promenade-confort-lac-et-barrage-de-saint-guerin": "data/trail-details/savoie-promenade-confort-lac-et-barrage-de-saint-guerin.js?v=368ab1317f12",
+        "savoie-itineraire-poussette-des-chalets-brules": "data/trail-details/savoie-itineraire-poussette-des-chalets-brules.js?v=498ee943fa4f",
+        "savoie-itineraire-poussette-de-belavoine": "data/trail-details/savoie-itineraire-poussette-de-belavoine.js?v=695a9e3d6bb8"
       },
       "water": "data/regions/savoy-water.geojson",
       "hutsBars": "data/regions/savoy-huts-bars.geojson",
@@ -889,6 +892,9 @@
     "osm-19760372": "savoy",
     "osm-19855818": "savoy",
     "osm-21021130": "savoy",
+    "savoie-promenade-confort-lac-et-barrage-de-saint-guerin": "savoy",
+    "savoie-itineraire-poussette-des-chalets-brules": "savoy",
+    "savoie-itineraire-poussette-de-belavoine": "savoy",
     "lario-brunate-e-le-sue-chiese": "lombardy",
     "lario-pognana-lario-e-le-sculture-simposio": "lombardy",
     "lario-alla-ricerca-di-un-panorama-unico": "lombardy",
@@ -1383,6 +1389,9 @@
     "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": "oberkirn-to-verdins-via-prenn",
     "meran-facile-escursione-da-verano-ad-avelengo": "voeran-to-hafling",
     "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": "bloseggweg-loop-schenna",
+    "savoie-promenade-confort-lac-et-barrage-de-saint-guerin": "lac-de-saint-guerin-shore-path",
+    "savoie-itineraire-poussette-des-chalets-brules": "chalets-brules-crest-voland",
+    "savoie-itineraire-poussette-de-belavoine": "belavoine-cernix-to-paravy",
     "valsesia-gta-tappa-21-campello-monti-rimella": "gta-campello-monti-rimella",
     "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "giro-del-ginepro-carcoforo",
     "valsesia-cervatto-madonna-del-balmone": "cervatto-madonna-del-balmone",
@@ -1823,6 +1832,9 @@
     "oberkirn-to-verdins-via-prenn": "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto",
     "voeran-to-hafling": "meran-facile-escursione-da-verano-ad-avelengo",
     "bloseggweg-loop-schenna": "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg",
+    "lac-de-saint-guerin-shore-path": "savoie-promenade-confort-lac-et-barrage-de-saint-guerin",
+    "chalets-brules-crest-voland": "savoie-itineraire-poussette-des-chalets-brules",
+    "belavoine-cernix-to-paravy": "savoie-itineraire-poussette-de-belavoine",
     "gta-campello-monti-rimella": "valsesia-gta-tappa-21-campello-monti-rimella",
     "giro-del-ginepro-carcoforo": "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo",
     "cervatto-madonna-del-balmone": "valsesia-cervatto-madonna-del-balmone",
