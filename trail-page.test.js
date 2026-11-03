@@ -790,7 +790,7 @@ describe('trail page map controls', () => {
   test('labels and positions automatic trail directions above the map-style switch', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const source = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-    expect(html).toContain('<span>Get directions to trail</span>');
+    expect(html).toContain('<span data-i18n="page.trail.getDirectionsToTrail">Get directions to trail</span>');
     expect(html).toContain('.map-nearest-directions{position:absolute;left:14px;bottom:56px;');
     expect(html).toContain('.td-layer-switch{position:absolute;bottom:14px;left:14px;');
     expect(source).toContain("const defaultLabel = 'Get directions to trail'");

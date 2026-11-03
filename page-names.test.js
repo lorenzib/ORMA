@@ -67,8 +67,8 @@ describe('one place, one name', () => {
   test('the page names itself the way the header names it', () => {
     const browse = fs.readFileSync('browse-trails.html', 'utf8');
     expect(browse).toContain('<title>Trails, ORMA</title>');
-    expect(browse).toContain('<span class="topnav-page">Trails</span>');
-    expect(browse).toContain('<h1 id="trailCountHeading">Trails</h1>');
+    expect(browse).toContain('<span class="topnav-page" data-i18n="account.nav.browse">Trails</span>');
+    expect(browse).toContain('<h1 id="trailCountHeading" data-i18n="account.nav.browse">Trails</h1>');
 
     const safety = fs.readFileSync('safety-guide.html', 'utf8');
     expect(safety).toContain('<span class="topnav-page">Safety library</span>');
