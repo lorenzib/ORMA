@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-monclassico-presson-meridiane",
+  "distanceKm": 1.7,
+  "ascentM": 39,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 753
+    },
+    {
+      "km": 0.1,
+      "elev": 766
+    },
+    {
+      "km": 0.3,
+      "elev": 772
+    },
+    {
+      "km": 0.4,
+      "elev": 789
+    },
+    {
+      "km": 0.5,
+      "elev": 791
+    },
+    {
+      "km": 0.7,
+      "elev": 787
+    },
+    {
+      "km": 0.8,
+      "elev": 788
+    },
+    {
+      "km": 0.9,
+      "elev": 766
+    },
+    {
+      "km": 1,
+      "elev": 756
+    },
+    {
+      "km": 1.2,
+      "elev": 751
+    },
+    {
+      "km": 1.3,
+      "elev": 747
+    },
+    {
+      "km": 1.4,
+      "elev": 755
+    },
+    {
+      "km": 1.5,
+      "elev": 753
+    },
+    {
+      "km": 1.7,
+      "elev": 764
+    }
+  ]
+}

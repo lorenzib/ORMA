@@ -27,11 +27,6 @@
   .sc-score-option--moderate{color:#8A5A16;background:#F5E4C6;}
   .sc-score-option--caution{color:#9C3A25;background:#F3D9D2;}
   .sc-js .sc-score-primer{display:none;}
-  .sc-bands{margin:16px 0 20px;padding:13px 15px;border:1px solid #DED8CA;border-radius:15px;background:#F8F5EC;display:grid;gap:8px;}
-  .sc-bands>span{font:700 10px/1.2 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#5F665E;}
-  .sc-band{display:grid;grid-template-columns:88px 1fr;gap:12px;align-items:center;}
-  .sc-band p{margin:0;font-size:13px;line-height:1.45;color:#52665A;}
-  .sc-band p b{color:#22312A;}
   .sc-band-chip{justify-self:start;border-radius:999px;padding:6px 10px;font:700 10.5px/1 'Inter',sans-serif;white-space:nowrap;}
   .sc-band-chip--great{color:#2C5C34;background:#DCEBDD;}
   .sc-band-chip--good{color:#8A5A16;background:#F5E4C6;}
@@ -58,28 +53,25 @@
   .sc-pills{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin:10px 0 2px;}
   .sc-pill{font:700 11px 'Inter',sans-serif;padding:4px 10px;border-radius:999px;white-space:nowrap;}
   /* Worked example: same trail, two dogs, switchable */
-  .sc-dogs{margin:26px 0 0;padding:24px;border-radius:22px;background:#E8EFE6;}
-  .sc-dogtabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-  .sc-dogtab{display:flex;align-items:center;gap:12px;text-align:left;cursor:pointer;padding:12px 14px;border:1.5px solid var(--paper-line,#E5DECF);border-radius:14px;background:var(--card,#fff);font-family:'Inter',sans-serif;transition:border-color .15s,box-shadow .15s,background .15s;}
-  .sc-dogtab:hover{border-color:#C9BFA6;}
-  .sc-dogtab.is-on{border-color:#4A7856;background:#F2F6F1;box-shadow:0 4px 14px rgba(74,120,86,.13);}
+  .sc-trailfacts{margin:4px 0 0;font-size:13px;color:var(--ink-soft,#6b6350);font-variant-numeric:tabular-nums;}
+  .sc-dogs{margin:16px 0 0;padding:16px;border-radius:22px;background:#E8EFE6;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .sc-dogcard{min-width:0;background:#FDFBF5;border:1px solid var(--paper-line,#E5DECF);border-radius:16px;padding:14px 16px;}
+  .sc-doghead{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
   .sc-dogface{flex:none;width:46px;height:46px;border-radius:50%;object-fit:cover;}
-  .sc-dogname{display:block;font:700 14px 'Inter',sans-serif;color:var(--ink,#22312A);}
-  .sc-dogname small{display:block;margin-top:2px;font:500 12px/1.45 'Inter',sans-serif;color:var(--ink-soft,#6b6350);}
-  .sc-dogpanel{margin:12px 0 0;background:#FDFBF5;border:1px solid var(--paper-line,#E5DECF);border-radius:16px;padding:20px 22px;}
-  .sc-dogpanel[hidden]{display:none;}
-  .sc-sum{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:7px 0;border-bottom:1px dashed #E0D8C6;font-size:13px;color:var(--ink-soft,#6b6350);}
+  .sc-dogname{display:block;min-width:0;font:700 14px 'Inter',sans-serif;color:var(--ink,#22312A);}
+  .sc-dogname small{display:block;margin-top:2px;font:500 12px/1.4 'Inter',sans-serif;color:var(--ink-soft,#6b6350);}
+  .sc-sum{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:6px 0;border-bottom:1px dashed #E0D8C6;font-size:13px;color:var(--ink-soft,#6b6350);font-variant-numeric:tabular-nums;}
   .sc-sum b{font:700 13px 'Inter',sans-serif;color:var(--ink,#22312A);white-space:nowrap;}
-  .sc-sum--total{border-bottom:none;padding-top:11px;font-size:14px;color:var(--ink,#22312A);font-weight:700;}
+  .sc-sum--total{flex-wrap:wrap;align-items:center;border-bottom:none;padding-top:10px;}
   .sc-sum--total b{font-size:19px;color:#C98A2E;}
-  .sc-example-foot{margin:12px 0 0;font-size:12.5px;line-height:1.6;color:var(--ink-soft,#6b6350);}
+  .sc-sum--total .sc-band-chip{white-space:normal;line-height:1.25;}
+  .sc-legend{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;}
   .sc-ledger-disclosure{margin:20px 0 0;border:1px solid #D4CCBA;border-radius:16px;background:#fff;overflow:hidden;}
   .sc-ledger-disclosure summary{cursor:pointer;list-style:none;padding:17px 20px;font:700 13px 'Inter',sans-serif;color:var(--ink,#22312A);display:flex;align-items:center;justify-content:space-between;gap:16px;}
   .sc-ledger-disclosure summary::-webkit-details-marker{display:none;}
   .sc-ledger-disclosure summary:after{content:"+";font-size:22px;font-weight:400;}
   .sc-ledger-disclosure[open] summary:after{content:"−";}
   .sc-ledger{border-top:1px solid var(--paper-line,#E5DECF);padding:4px 20px;}
-  .sc-steppanel .sc-ledger-disclosure + h3{margin-top:56px!important;}
   .sc-mathrow{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dashed var(--paper-line,#E5DECF);font-size:12.5px;color:var(--ink-soft,#6b6350);}
   .sc-mathrow:last-of-type{border-bottom:none;}
   .sc-mathrow b{font-weight:700;color:var(--ink,#22312A);white-space:nowrap;}
@@ -135,9 +127,12 @@
     .sc-steppanel{padding-top:18px;}
     .sc-panel{padding:18px 16px;}
     .sc-trust-row{grid-template-columns:1fr;gap:4px;}
-    .sc-band{grid-template-columns:78px 1fr;gap:10px;}
-    .sc-dogtabs{grid-template-columns:1fr;}
-    .sc-dogs{padding:14px;}
+    .sc-dogs{padding:10px;gap:8px;}
+    .sc-dogcard{padding:12px;}
+    .sc-dogface{width:36px;height:36px;}
+  }
+  @media(max-width:480px){
+    .sc-doghead{flex-direction:column;align-items:flex-start;gap:6px;}
   }
 </style>
 </head>
@@ -245,13 +240,32 @@
       <p>These questions work differently from the rest of the profile. Leave one blank and we say nothing about it in either direction: no penalty, and no reassurance either. Telling you a route suits a dog whose recall we never asked about is the one mistake worth avoiding.</p>
 
       <h3>Step 3 · We explain the match</h3>
-      <p>Every trail starts at 100%. It loses points where the walk asks more than your dog can comfortably give: too far, too steep, too hot or too rough.</p>
-      <p>If we have not yet checked a trail's path, drops, ground or dog rules, it can't be a Strong option.</p>
-      <div class="sc-bands">
-        <span>What the match means</span>
-        <div class="sc-band"><span class="sc-band-chip sc-band-chip--great">85%+</span><p><b>Strong option.</b> Well within your dog's limits.</p></div>
-        <div class="sc-band"><span class="sc-band-chip sc-band-chip--good">60–84%</span><p><b>Possible with cautions.</b> Read the flagged points first.</p></div>
-        <div class="sc-band"><span class="sc-band-chip sc-band-chip--check">Under 60%</span><p><b>Not recommended.</b> Pick a gentler walk.</p></div>
+      <p>Same trail, two dogs, two scores.</p>
+      <p class="sc-trailfacts">12 km · 700 m climb · mixed ground · 30% shade</p>
+      <div class="sc-dogs" role="group" aria-label="Two dogs on the same trail">
+        <div class="sc-dogcard" data-dog="bruna">
+          <div class="sc-doghead"><img class="sc-dogface" src="images/editorial/scoring-dogs/bruna-labrador.png" width="46" height="46" alt="Bruna, a yellow Labrador"><span class="sc-dogname">Bruna<small>6 years, Labrador, feels the heat</small></span></div>
+          <div class="sc-sum"><span>Starts at</span><b>100%</b></div>
+          <div class="sc-sum"><span>Distance</span><b>−10</b></div>
+          <div class="sc-sum"><span>Climb</span><b>−4</b></div>
+          <div class="sc-sum"><span>Heat</span><b>−10</b></div>
+          <div class="sc-sum"><span>Shade</span><b>−5</b></div>
+          <div class="sc-sum sc-sum--total"><span class="sc-band-chip sc-band-chip--good">Possible with cautions</span><b style="color:#C98A2E;">71%</b></div>
+        </div>
+        <div class="sc-dogcard" data-dog="luna">
+          <div class="sc-doghead"><img class="sc-dogface" src="images/editorial/scoring-dogs/luna-border-collie.png" width="46" height="46" alt="Luna, a young black-and-white border collie"><span class="sc-dogname">Luna<small>3 years, border collie, very fit</small></span></div>
+          <div class="sc-sum"><span>Starts at</span><b>100%</b></div>
+          <div class="sc-sum"><span>Distance</span><b>0</b></div>
+          <div class="sc-sum"><span>Climb</span><b>0</b></div>
+          <div class="sc-sum"><span>Heat</span><b>−4</b></div>
+          <div class="sc-sum"><span>Shade</span><b>−5</b></div>
+          <div class="sc-sum sc-sum--total"><span class="sc-band-chip sc-band-chip--great">Strong option</span><b style="color:#4A7856;">91%</b></div>
+        </div>
+      </div>
+      <div class="sc-legend">
+        <span class="sc-band-chip sc-band-chip--great">85%+ Strong option</span>
+        <span class="sc-band-chip sc-band-chip--good">60–84% Possible with cautions</span>
+        <span class="sc-band-chip sc-band-chip--check">Under 60% Not recommended</span>
       </div>
       <details class="sc-ledger-disclosure">
         <summary>See every rule and what it costs</summary>
@@ -267,7 +281,7 @@
         <div class="sc-mathrow"><span>Each recorded surface hazard, such as sharp rock or scree</span><b>−8, capped</b></div>
         <div class="sc-mathrow"><span>A stretch we mark as one to avoid</span><b>−20</b></div>
         <div class="sc-mathrow"><span>Seasonal access rules, until you check the date</span><b>held at 84</b></div>
-        <div class="sc-mathrow"><span>Route, exposure, surface or access not yet reviewed</span><b>held at 80</b></div>
+        <div class="sc-mathrow"><span>A path, drops, ground or dog rules we have not checked yet</span><b>held at 80, never a Strong option</b></div>
         <div class="sc-mathrow"><span>Dogs prohibited on the route</span><b>never recommended</b></div>
         <div class="sc-mathrow"><span>An open chairlift the route depends on</span><b>never recommended</b></div>
         <div class="sc-mathrow"><span>The same chairlift, for a dog of 8 kg or less you have said rides one on your lap</span><b>−20, never a Strong option</b></div>
@@ -280,37 +294,6 @@
         <div class="sc-mathrow"><span>Everything behavioural together, whatever the total comes to</span><b>capped at −45</b></div>
         </div>
       </details>
-
-      <h3>One trail, two dogs</h3>
-      <p>12 km, 700 m of climb, mixed ground and only 30% shade. Tap between the two dogs.</p>
-      <div class="sc-dogs" data-sc-dogs>
-        <div class="sc-dogtabs" role="tablist" aria-label="Choose a dog">
-          <button type="button" class="sc-dogtab is-on" data-dog="bruna" role="tab" aria-selected="true">
-            <img class="sc-dogface" src="images/editorial/scoring-dogs/bruna-labrador.png" width="46" height="46" alt="Bruna, a yellow Labrador"><span class="sc-dogname">Bruna<small>6 years, Labrador, moderate fitness, feels the heat</small></span>
-          </button>
-          <button type="button" class="sc-dogtab" data-dog="luna" role="tab" aria-selected="false">
-            <img class="sc-dogface" src="images/editorial/scoring-dogs/luna-border-collie.png" width="46" height="46" alt="Luna, a young black-and-white border collie"><span class="sc-dogname">Luna<small>3 years, border collie, high fitness, never tired</small></span>
-          </button>
-        </div>
-        <div class="sc-dogpanel" data-panel="bruna">
-          <div class="sc-sum"><span>Every trail starts at</span><b>100%</b></div>
-          <div class="sc-sum"><span>2 km further than her comfortable 10 km</span><b>−10</b></div>
-          <div class="sc-sum"><span>100 m more climb than her comfortable 600 m</span><b>−4</b></div>
-          <div class="sc-sum"><span>A warm route for a dog who feels the heat</span><b>−10</b></div>
-          <div class="sc-sum"><span>Under 40% shade to flop down in</span><b>−5</b></div>
-          <div class="sc-sum sc-sum--total"><span>Match for Bruna</span><b style="color:#C98A2E;">71%</b></div>
-          <p class="sc-example-foot"><b>Possible with cautions.</b> Worth doing with her if you start early and carry water, and she will still supervise the picnic like it is a paid position. The ground itself costs her nothing: mixed terrain is well within what she handles.</p>
-        </div>
-        <div class="sc-dogpanel" data-panel="luna" hidden>
-          <div class="sc-sum"><span>Every trail starts at</span><b>100%</b></div>
-          <div class="sc-sum"><span>12 km against her comfortable 18 km</span><b>nothing</b></div>
-          <div class="sc-sum"><span>700 m of climb against her comfortable 1200 m</span><b>nothing</b></div>
-          <div class="sc-sum"><span>The same warm route, on a dog who shrugs it off</span><b>−4</b></div>
-          <div class="sc-sum"><span>Under 40% shade to flop down in</span><b>−5</b></div>
-          <div class="sc-sum sc-sum--total"><span>Match for Luna</span><b style="color:#4A7856;">91%</b></div>
-          <p class="sc-example-foot"><b>Strong option.</b> She will finish the loop, look back down it, and ask whether there is a second one. The shade still costs her something, because no dog is immune to an open slope at midday.</p>
-        </div>
-      </div>
     </section>
 
     <div class="sc-panel">
@@ -410,13 +393,32 @@
       <p>Queste domande funzionano diversamente dal resto del profilo. Se ne lasci una in bianco non diciamo nulla al riguardo, in nessuna delle due direzioni: nessuna penalità e nemmeno una rassicurazione. Dire che un percorso va bene per un cane di cui non abbiamo mai chiesto il richiamo è l'errore da evitare davvero.</p>
 
       <h3>Passo 3 · Spieghiamo la compatibilità</h3>
-      <p>Ogni sentiero parte dal 100%. Perde punti dove la camminata chiede più di quanto il tuo cane dia comodamente: troppo lunga, troppo ripida, troppo calda o troppo dura.</p>
-      <p>Se non abbiamo ancora controllato il percorso, l'esposizione, il fondo o le regole per i cani, il sentiero non può essere un'Ottima scelta.</p>
-      <div class="sc-bands">
-        <span>Cosa significa la compatibilità</span>
-        <div class="sc-band"><span class="sc-band-chip sc-band-chip--great">85%+</span><p><b>Ottima scelta.</b> Ben dentro i limiti del tuo cane.</p></div>
-        <div class="sc-band"><span class="sc-band-chip sc-band-chip--good">60–84%</span><p><b>Possibile con precauzioni.</b> Leggi prima i punti segnalati.</p></div>
-        <div class="sc-band"><span class="sc-band-chip sc-band-chip--check">Sotto il 60%</span><p><b>Non consigliato.</b> Scegli una camminata più gentile.</p></div>
+      <p>Stesso sentiero, due cani, due punteggi.</p>
+      <p class="sc-trailfacts">12 km · 700 m di dislivello · terreno misto · 30% d'ombra</p>
+      <div class="sc-dogs" role="group" aria-label="Due cani sullo stesso sentiero">
+        <div class="sc-dogcard" data-dog="bruna">
+          <div class="sc-doghead"><img class="sc-dogface" src="images/editorial/scoring-dogs/bruna-labrador.png" width="46" height="46" alt="Bruna, una labrador dal mantello giallo"><span class="sc-dogname">Bruna<small>6 anni, labrador, soffre il caldo</small></span></div>
+          <div class="sc-sum"><span>Si parte da</span><b>100%</b></div>
+          <div class="sc-sum"><span>Distanza</span><b>−10</b></div>
+          <div class="sc-sum"><span>Dislivello</span><b>−4</b></div>
+          <div class="sc-sum"><span>Caldo</span><b>−10</b></div>
+          <div class="sc-sum"><span>Ombra</span><b>−5</b></div>
+          <div class="sc-sum sc-sum--total"><span class="sc-band-chip sc-band-chip--good">Possibile con precauzioni</span><b style="color:#C98A2E;">71%</b></div>
+        </div>
+        <div class="sc-dogcard" data-dog="luna">
+          <div class="sc-doghead"><img class="sc-dogface" src="images/editorial/scoring-dogs/luna-border-collie.png" width="46" height="46" alt="Luna, una giovane border collie bianca e nera"><span class="sc-dogname">Luna<small>3 anni, border collie, molto in forma</small></span></div>
+          <div class="sc-sum"><span>Si parte da</span><b>100%</b></div>
+          <div class="sc-sum"><span>Distanza</span><b>0</b></div>
+          <div class="sc-sum"><span>Dislivello</span><b>0</b></div>
+          <div class="sc-sum"><span>Caldo</span><b>−4</b></div>
+          <div class="sc-sum"><span>Ombra</span><b>−5</b></div>
+          <div class="sc-sum sc-sum--total"><span class="sc-band-chip sc-band-chip--great">Ottima scelta</span><b style="color:#4A7856;">91%</b></div>
+        </div>
+      </div>
+      <div class="sc-legend">
+        <span class="sc-band-chip sc-band-chip--great">85%+ Ottima scelta</span>
+        <span class="sc-band-chip sc-band-chip--good">60–84% Possibile con precauzioni</span>
+        <span class="sc-band-chip sc-band-chip--check">Sotto il 60% Non consigliato</span>
       </div>
       <details class="sc-ledger-disclosure">
         <summary>Vedi tutte le regole e quanto costano</summary>
@@ -432,7 +434,7 @@
         <div class="sc-mathrow"><span>Ogni insidia del fondo registrata, come roccia tagliente o ghiaione</span><b>−8, con un tetto</b></div>
         <div class="sc-mathrow"><span>Un tratto che segnaliamo da evitare</span><b>−20</b></div>
         <div class="sc-mathrow"><span>Regole stagionali di accesso, finché non verifichi la data</span><b>trattenuto a 84</b></div>
-        <div class="sc-mathrow"><span>Percorso, esposizione, fondo o accesso non ancora rivisti</span><b>trattenuto a 80</b></div>
+        <div class="sc-mathrow"><span>Percorso, esposizione, fondo o regole per i cani non ancora controllati</span><b>trattenuto a 80, mai un'Ottima scelta</b></div>
         <div class="sc-mathrow"><span>Cani vietati sul percorso</span><b>mai consigliato</b></div>
         <div class="sc-mathrow"><span>Una seggiovia aperta da cui dipende il percorso</span><b>mai consigliato</b></div>
         <div class="sc-mathrow"><span>La stessa seggiovia, per un cane fino a 8 kg che hai detto di tenere in braccio</span><b>−20, mai un'Ottima scelta</b></div>
@@ -445,37 +447,6 @@
         <div class="sc-mathrow"><span>Tutto il comportamento insieme, qualunque sia il totale</span><b>tetto a −45</b></div>
         </div>
       </details>
-
-      <h3>Un sentiero, due cani</h3>
-      <p>12 km, 700 m di dislivello, terreno misto e solo il 30% all'ombra. Passa da un cane all'altro.</p>
-      <div class="sc-dogs" data-sc-dogs>
-        <div class="sc-dogtabs" role="tablist" aria-label="Scegli un cane">
-          <button type="button" class="sc-dogtab is-on" data-dog="bruna" role="tab" aria-selected="true">
-            <img class="sc-dogface" src="images/editorial/scoring-dogs/bruna-labrador.png" width="46" height="46" alt="Bruna, una labrador dal mantello giallo"><span class="sc-dogname">Bruna<small>6 anni, labrador, forma moderata, soffre il caldo</small></span>
-          </button>
-          <button type="button" class="sc-dogtab" data-dog="luna" role="tab" aria-selected="false">
-            <img class="sc-dogface" src="images/editorial/scoring-dogs/luna-border-collie.png" width="46" height="46" alt="Luna, una giovane border collie bianca e nera"><span class="sc-dogname">Luna<small>3 anni, border collie, forma alta, mai stanca</small></span>
-          </button>
-        </div>
-        <div class="sc-dogpanel" data-panel="bruna">
-          <div class="sc-sum"><span>Ogni sentiero parte da</span><b>100%</b></div>
-          <div class="sc-sum"><span>2 km oltre i suoi comodi 10 km</span><b>−10</b></div>
-          <div class="sc-sum"><span>100 m di dislivello oltre i suoi comodi 600 m</span><b>−4</b></div>
-          <div class="sc-sum"><span>Un percorso caldo per un cane che soffre il caldo</span><b>−10</b></div>
-          <div class="sc-sum"><span>Meno del 40% di ombra dove sdraiarsi</span><b>−5</b></div>
-          <div class="sc-sum sc-sum--total"><span>Compatibilità per Bruna</span><b style="color:#C98A2E;">71%</b></div>
-          <p class="sc-example-foot"><b>Possibile con precauzioni.</b> Vale la pena andarci con lei partendo presto e portando acqua, e sorveglierà comunque il picnic come se fosse un incarico retribuito. Il terreno non le costa nulla: il misto rientra in ciò che regge.</p>
-        </div>
-        <div class="sc-dogpanel" data-panel="luna" hidden>
-          <div class="sc-sum"><span>Ogni sentiero parte da</span><b>100%</b></div>
-          <div class="sc-sum"><span>12 km contro i suoi comodi 18 km</span><b>niente</b></div>
-          <div class="sc-sum"><span>700 m di dislivello contro i suoi comodi 1200 m</span><b>niente</b></div>
-          <div class="sc-sum"><span>Lo stesso percorso caldo, su un cane a cui non pesa</span><b>−4</b></div>
-          <div class="sc-sum"><span>Meno del 40% di ombra dove sdraiarsi</span><b>−5</b></div>
-          <div class="sc-sum sc-sum--total"><span>Compatibilità per Luna</span><b style="color:#4A7856;">91%</b></div>
-          <p class="sc-example-foot"><b>Ottima scelta.</b> Finirà l'anello, si volterà a guardarlo dall'alto e chiederà se ce n'è un secondo. L'ombra le costa comunque qualcosa, perché nessun cane è immune a un versante aperto a mezzogiorno.</p>
-        </div>
-      </div>
     </section>
 
     <div class="sc-panel">
@@ -654,26 +625,6 @@ document.documentElement.classList.add('sc-js');
   });
 })();
 
-/* Same-trail-two-dogs switcher. Each language block carries its own copy, so
-   this wires every [data-sc-dogs] independently. Without JS the first dog's
-   working stays on screen, which is still a complete worked example. */
-(function(){
-  document.querySelectorAll('[data-sc-dogs]').forEach(function(box){
-    var tabs = box.querySelectorAll('.sc-dogtab');
-    var panels = box.querySelectorAll('.sc-dogpanel');
-    function show(name){
-      tabs.forEach(function(t){
-        var on = t.dataset.dog === name;
-        t.classList.toggle('is-on', on);
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-      panels.forEach(function(p){ p.hidden = p.dataset.panel !== name; });
-    }
-    tabs.forEach(function(t){
-      t.addEventListener('click', function(){ show(t.dataset.dog); });
-    });
-  });
-})();
 
 /* A trail rating linked from elsewhere (#rating-low-risk, #rating-moderate,
    #rating-caution) opens here already explained: that rating is pressed in

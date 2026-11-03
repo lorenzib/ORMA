@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "trailId": "vinschgau-sentiero-della-roggia-schnalswaal",
+  "generatedAt": "2026-11-02T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 6.8,
+    "ascentM": 300,
+    "highestPointM": 862,
+    "expectedDuration": "3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 19
+  },
+  "trailhead": {
+    "lat": 46.628439,
+    "lng": 10.901347,
+    "label": "The square in Kastelbell, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6283817,
+      "lng": 10.901575,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "The Sonnenberg is dry and south-facing: hot in summer, go early and bring water.",
+    "Lanes in Kastelbell and Staben at both ends: lead on.",
+    "Orchards and vineyards beside the path are farmed and closed to dogs in Kastelbell-Tschars: keep to the path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-02"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-02",
+      "licence": "ODbL"
+    }
+  ]
+}

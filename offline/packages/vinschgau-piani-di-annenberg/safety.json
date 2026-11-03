@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "trailId": "vinschgau-piani-di-annenberg",
+  "generatedAt": "2026-11-02T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.6,
+    "ascentM": 380,
+    "highestPointM": 1066,
+    "expectedDuration": "2 hours",
+    "difficulty": "Hard",
+    "shadePercent": 43
+  },
+  "trailhead": {
+    "lat": 46.621157,
+    "lng": 10.866679,
+    "label": "The car park of the St. Martin im Kofel cable car in Latsch, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6231106,
+      "lng": 10.8372566,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Steep path 7 up to the plateau: knees and paws work hard.",
+    "Crosses the main road at the roundabout near the start: lead on and cross with care.",
+    "Suspension bridge over the Tiss gorge: some dogs need coaxing.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-02"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-02",
+      "licence": "ODbL"
+    }
+  ]
+}

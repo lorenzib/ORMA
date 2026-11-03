@@ -2985,6 +2985,126 @@
       "quote": "Distanza 15,7 km · Durata 4:45 h · Salita 633 m · Discesa 751 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-29T20:00:00.000Z"
+    },
+    "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": {
+      "url": "https://www.outdooractive.com/it/r/805297533",
+      "publisher": "Mals, Burgeis, Schluderns and Glurns tourist board (Outdooractive, suedtirol.info)",
+      "name": "Escursione a lunga distanza 4a tappa: Rifugio Sesvenna - Malles",
+      "quote": "Distanza 17 km · Durata 5:00 h · Salita 5 m · Discesa 1205 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "vinschgau-sentiero-della-roggia-latschanderwaal-4954": {
+      "url": "https://www.outdooractive.com/it/r/810054954",
+      "publisher": "Latsch-Martell tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero della roggia \"Latschanderwaal\"",
+      "quote": "Distanza 5,7 km · Durata 1:34 h · Salita 25 m · Discesa 78 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "vinschgau-sentiero-della-roggia-kastanienwaal": {
+      "url": "https://www.outdooractive.com/it/r/16421089",
+      "publisher": "Schlanders-Laas tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero della roggia \"Kastanienwaal\"",
+      "quote": "Distanza 2,2 km · Durata 0:32 h · Salita 70 m · Discesa 70 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "vinschgau-escursione-al-lago-bergsee-da-burgusio": {
+      "url": "https://www.outdooractive.com/it/r/809978024",
+      "publisher": "Mals, Burgeis, Schluderns and Glurns tourist board (Outdooractive, suedtirol.info)",
+      "name": "Escursione al Lago Bergsee da Burgusio",
+      "quote": "Distanza 2,3 km · Durata 0:45 h · Salita 146 m · Discesa 138 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "vinschgau-sentiero-della-roggia-stabnerwaal": {
+      "url": "https://www.outdooractive.com/it/r/805506819",
+      "publisher": "Kastelbell-Tschars tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero della roggia \"Stabnerwaal\"",
+      "quote": "Distanza 4,9 km · Durata 2:00 h · Salita 160 m · Discesa 160 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal": {
+      "url": "https://www.outdooractive.com/it/r/16571164",
+      "publisher": "Mals, Burgeis, Schluderns and Glurns tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero della roggia \"Leitenwaal e Berkwaal\"",
+      "quote": "Distanza 6,6 km · Durata 3:00 h · Salita 290 m · Discesa 290 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "vinschgau-sentiero-della-roggia-schnalswaal": {
+      "url": "https://www.outdooractive.com/it/r/37149933",
+      "publisher": "Kastelbell-Tschars tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero della roggia Schnalswaal",
+      "quote": "Distanza 6,8 km · Durata 3:00 h · Salita 300 m · Discesa 0 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "vinschgau-piani-di-annenberg": {
+      "url": "https://www.outdooractive.com/it/r/45666706",
+      "publisher": "Latsch-Martell tourist board (Outdooractive, suedtirol.info)",
+      "name": "Piani di Annenberg",
+      "quote": "Distanza 6,6 km · Durata 2:00 h · Salita 380 m · Discesa 380 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "brixen-alto-sentiero-di-lazfons": {
+      "url": "https://www.outdooractive.com/it/r/811220560",
+      "publisher": "Klausen, Barbian, Villanders and Feldthurns tourist board (Outdooractive, suedtirol.info)",
+      "name": "Alto sentiero di Lazfons",
+      "quote": "Distanza 10,6 km · Durata 3:36 h · Salita 558 m · Discesa 558 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": {
+      "url": "https://www.outdooractive.com/it/r/60357933",
+      "publisher": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal) (Outdooractive, suedtirol.info)",
+      "name": "Da Rio di Pusteria al Bunker di Spinga: Escursione per Famiglie con Panorama",
+      "quote": "Distanza 3,4 km · Durata 2:00 h · Salita 596 m · Discesa 16 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": {
+      "url": "https://www.outdooractive.com/it/r/802415362",
+      "publisher": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal) (Outdooractive, suedtirol.info)",
+      "name": "La valle d’Altafossa: un’escursione per tutta la famiglia",
+      "quote": "Distanza 5 km · Durata 1:40 h · Salita 253 m · Discesa 16 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "brixen-escursione-al-rifugio-bressanone": {
+      "url": "https://www.outdooractive.com/it/r/802415364",
+      "publisher": "Gitschberg Jochtal tourist board (Tourismusverein Gitschberg Jochtal) (Outdooractive, suedtirol.info)",
+      "name": "Escursione al rifugio Bressanone",
+      "quote": "Distanza 4,3 km · Durata 1:50 h · Salita 580 m · Discesa 5 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "ahrntal-sentiero-panoramico-cadipietra": {
+      "url": "https://www.outdooractive.com/it/r/810055139",
+      "publisher": "Tauferer Ahrntal tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero panoramico Cadipietra",
+      "quote": "Distanza 3,3 km · Durata 0:53 h · Salita 80 m · Discesa 81 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "ahrntal-sentiero-del-conte-cadipietra": {
+      "url": "https://www.outdooractive.com/it/r/805426773",
+      "publisher": "Tauferer Ahrntal tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero del Conte Cadipietra",
+      "quote": "Distanza 2,1 km · Durata 0:45 h · Salita 86 m · Discesa 86 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "ahrntal-escursione-rifugio-ponte-di-ghiaccio": {
+      "url": "https://www.outdooractive.com/it/r/810055959",
+      "publisher": "Sand in Taufers tourist board (Outdooractive, suedtirol.info)",
+      "name": "Escursione Rifugio Ponte di Ghiaccio",
+      "quote": "Distanza 5,2 km · Durata 2:32 h · Salita 678 m · Discesa 2 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-02T12:00:00.000Z"
     }
   }
 }
