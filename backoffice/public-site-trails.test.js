@@ -177,9 +177,11 @@ describe('the existing-site verification boundary',()=>{
     // Count’s path above Steinhaus and Lake Neves to the Ponte di Ghiaccio hut.
     // Then 432 and 430 with four Meran-area walks: the Brandis-Waalweg in Lana,
     // Oberkirn to Verdins, Vöran to Hafling and the Bloseggweg loop from Schenna.
+    // Then 435 and 433 with three Beaufortain – Val d’Arly walks: the Lac de
+    // Saint-Guérin shore path, the Chalets Brûlés track and the Bel’Avoine road.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(432);
-    expect(currentSiteTrails(catalogue)).toHaveLength(430);
+    expect(catalogue).toHaveLength(435);
+    expect(currentSiteTrails(catalogue)).toHaveLength(433);
   });
 
   test('requires the artwork the public trail page needs',()=>{
