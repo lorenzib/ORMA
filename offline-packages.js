@@ -251,6 +251,8 @@
     'rendena-ciclabile-javre-dare-vigo-pelugo': "Javrè – Pelugo cycle path loop",
     'rendena-giro-del-belvedere-giustino': "Giro del Belvedere",
     'santa-maddalena': "Rundweg St. Magdalena",
+    'savoie-areches-beaufort-croix-du-berger-et-lac-des-fees': "Croix du Berger from the Lac des Fées",
+    'savoie-areches-beaufort-la-grande-berge': "La Grande Berge from the Plan de la Lai",
     'savoie-itineraire-poussette-de-belavoine': "Bel’Avoine road, Le Cernix to Paravy",
     'savoie-itineraire-poussette-des-chalets-brules': "Chalets Brûlés pasture track, Crest-Voland",
     'savoie-promenade-confort-lac-et-barrage-de-saint-guerin': "Lac de Saint-Guérin shore path",
