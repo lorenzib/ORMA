@@ -1483,6 +1483,26 @@
       "name": "Lake Neves to the Ponte di Ghiaccio hut",
       "slug": "lake-neves-to-ponte-di-ghiaccio-hut",
       "gloss": "up path 26 to the hut on the pass"
+    },
+    "meran-sentiero-della-roggia-brandis-a-lana": {
+      "name": "Brandis-Waalweg, Lana to the Brandis waterfall",
+      "slug": "brandis-waalweg-lana",
+      "gloss": "past the vine pergolas to the waterfall"
+    },
+    "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": {
+      "name": "Oberkirn to Verdins via Prenn and Untertall",
+      "slug": "oberkirn-to-verdins-via-prenn",
+      "gloss": "down the Tallner meadows from the cable car"
+    },
+    "meran-facile-escursione-da-verano-ad-avelengo": {
+      "name": "Vöran to Hafling past the Bruggen pond",
+      "slug": "voeran-to-hafling",
+      "gloss": "a shaded forest road on the Tschögglberg"
+    },
+    "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": {
+      "name": "Bloseggweg loop from Schenna",
+      "slug": "bloseggweg-loop-schenna",
+      "gloss": "through the orchards past the Kampflkreuz"
     }
   }
 }

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-facile-escursione-da-verano-ad-avelengo",
+  "distanceKm": 6.2,
+  "ascentM": 135,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1327
+    },
+    {
+      "km": 0.5,
+      "elev": 1393
+    },
+    {
+      "km": 1,
+      "elev": 1423
+    },
+    {
+      "km": 1.4,
+      "elev": 1422
+    },
+    {
+      "km": 1.9,
+      "elev": 1458
+    },
+    {
+      "km": 2.4,
+      "elev": 1441
+    },
+    {
+      "km": 2.9,
+      "elev": 1433
+    },
+    {
+      "km": 3.3,
+      "elev": 1423
+    },
+    {
+      "km": 3.8,
+      "elev": 1377
+    },
+    {
+      "km": 4.3,
+      "elev": 1322
+    },
+    {
+      "km": 4.8,
+      "elev": 1332
+    },
+    {
+      "km": 5.2,
+      "elev": 1328
+    },
+    {
+      "km": 5.7,
+      "elev": 1283
+    },
+    {
+      "km": 6.2,
+      "elev": 1287
+    }
+  ]
+}

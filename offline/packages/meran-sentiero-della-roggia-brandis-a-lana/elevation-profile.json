@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-sentiero-della-roggia-brandis-a-lana",
+  "distanceKm": 2.8,
+  "ascentM": 29,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 321
+    },
+    {
+      "km": 0.2,
+      "elev": 339
+    },
+    {
+      "km": 0.4,
+      "elev": 327
+    },
+    {
+      "km": 0.6,
+      "elev": 327
+    },
+    {
+      "km": 0.9,
+      "elev": 345
+    },
+    {
+      "km": 1.1,
+      "elev": 347
+    },
+    {
+      "km": 1.3,
+      "elev": 326
+    },
+    {
+      "km": 1.5,
+      "elev": 355
+    },
+    {
+      "km": 1.7,
+      "elev": 334
+    },
+    {
+      "km": 1.9,
+      "elev": 391
+    },
+    {
+      "km": 2.2,
+      "elev": 328
+    },
+    {
+      "km": 2.4,
+      "elev": 338
+    },
+    {
+      "km": 2.6,
+      "elev": 356
+    },
+    {
+      "km": 2.8,
+      "elev": 371
+    }
+  ]
+}

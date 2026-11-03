@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.7,
+    "ascentM": 200,
+    "highestPointM": 683,
+    "expectedDuration": "1.75 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 20
+  },
+  "trailhead": {
+    "lat": 46.690139,
+    "lng": 11.187216,
+    "label": "The village centre of Schenna, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.68995,
+      "lng": 11.187118,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.689729,
+      "lng": 11.18744,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6903,
+      "lng": 11.186716,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6907013,
+      "lng": 11.1877537,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.69317,
+      "lng": 11.189259,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.69001,
+      "lng": 11.19357,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6888738,
+      "lng": 11.1962192,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.683724,
+      "lng": 11.192311,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.676502,
+      "lng": 11.1884468,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6771691,
+      "lng": 11.187134,
+      "label": "Refill Südtirol",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.677136,
+      "lng": 11.187156,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.686918,
+      "lng": 11.18891,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.688335,
+      "lng": 11.18759,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "About 240 m along Schenna’s main street and short stretches on Verdinser Straße and Goyen street: keep your dog close on a short lead.",
+    "Orchards and meadows beside the path are farmed and closed to dogs in Schenna in the growing season: keep to the path.",
+    "Passes the small playground at the Rodelstein: dogs may not enter it.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

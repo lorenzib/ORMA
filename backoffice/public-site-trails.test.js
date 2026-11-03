@@ -175,9 +175,11 @@ describe('the existing-site verification boundary',()=>{
     // Mühlbach to Spinges, the Altfasstal and Fane Alm to the Brixner Hütte.
     // Then 428 and 426 with three Ahrntal walks: the Steinhaus panoramic path, the
     // Count’s path above Steinhaus and Lake Neves to the Ponte di Ghiaccio hut.
+    // Then 432 and 430 with four Meran-area walks: the Brandis-Waalweg in Lana,
+    // Oberkirn to Verdins, Vöran to Hafling and the Bloseggweg loop from Schenna.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(428);
-    expect(currentSiteTrails(catalogue)).toHaveLength(426);
+    expect(catalogue).toHaveLength(432);
+    expect(currentSiteTrails(catalogue)).toHaveLength(430);
   });
 
   test('requires the artwork the public trail page needs',()=>{

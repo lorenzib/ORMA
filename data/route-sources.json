@@ -3105,6 +3105,38 @@
       "quote": "Distanza 5,2 km · Durata 2:32 h · Salita 678 m · Discesa 2 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-02T12:00:00.000Z"
+    },
+    "meran-sentiero-della-roggia-brandis-a-lana": {
+      "url": "https://www.outdooractive.com/it/r/810054528",
+      "publisher": "Lana and surroundings tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero della roggia Brandis a Lana",
+      "quote": "Distanza 2,8 km · Durata 0:50 h · Salita 29 m · Discesa 22 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": {
+      "url": "https://www.outdooractive.com/it/r/810055796",
+      "publisher": "Schenna tourist board (Outdooractive, suedtirol.info)",
+      "name": "Da Oberkirn a Verdins passando per Prenn e Talle di Sotto",
+      "quote": "Distanza 7,3 km · Durata 2:15 h · Salita 121 m · Discesa 694 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-facile-escursione-da-verano-ad-avelengo": {
+      "url": "https://www.outdooractive.com/it/r/810963557",
+      "publisher": "Hafling-Vöran-Meran 2000 tourist board (Outdooractive, suedtirol.info)",
+      "name": "Facile escursione da Verano ad Avelengo",
+      "quote": "Distanza 6,3 km · Durata 1:41 h · Salita 135 m · Discesa 183 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": {
+      "url": "https://www.outdooractive.com/it/r/805406435",
+      "publisher": "Schenna tourist board (Outdooractive, suedtirol.info)",
+      "name": "Escursione ad anello da Scena sul sentiero Blosegg",
+      "quote": "Distanza 5,7 km · Durata 1:45 h · Salita 200 m · Discesa 200 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
     }
   }
 }

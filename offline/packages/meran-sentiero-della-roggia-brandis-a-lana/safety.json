@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-sentiero-della-roggia-brandis-a-lana",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 2.8,
+    "ascentM": 29,
+    "highestPointM": 391,
+    "expectedDuration": "0.8 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 60
+  },
+  "trailhead": {
+    "lat": 46.613312,
+    "lng": 11.143508,
+    "label": "Brandis-Waalweg access just above the Gampen car park (P4) in Lana, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "About 170 m along the Gampen road (SS238) in Lana: keep your dog close on a short lead.",
+    "A short steep stretch of about 20 m above the parish church of Niederlana.",
+    "Orchards and vineyards beside the path are farmed land, closed to dogs in Lana in the growing season: keep to the path.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}
