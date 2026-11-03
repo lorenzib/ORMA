@@ -107,6 +107,7 @@
     { value:'IT', label:'Italy' },
     { value:'FR', label:'France' },
     { value:'AT', label:'Austria' },
+    { value:'CH', label:'Switzerland' },
   ];
   const REGIONS = [
     { value:'all', label:'All regions', countryCode:'all' },
@@ -116,6 +117,7 @@
     { value:'friuli', label:'Friuli Venezia Giulia', countryCode:'IT' },
     { value:'aosta', label:'Valle d\'Aosta', countryCode:'IT' },
     { value:'tyrol', label:'Tyrol & Carinthia', countryCode:'AT' },
+    { value:'switzerland', label:'Switzerland', countryCode:'CH' },
   ];
 
   const THEME_MATCHERS = {
