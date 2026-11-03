@@ -98,7 +98,7 @@ describe('trail gallery photos', () => {
     const tiles = document.querySelectorAll('.community-photo');
     expect(tiles).toHaveLength(2);
     expect(tiles[0].querySelector('img').getAttribute('src')).toBe('data:image/jpeg;base64,ONE');
-    expect(tiles[1].querySelector('figcaption').textContent).toBe('Photo: Jane Photographer · CC BY-SA 4.0');
+    expect(tiles[1].querySelector('figcaption').textContent).toBe('Jane Photographer · CC BY-SA 4.0');
 
     tiles[1].querySelector('.community-photo__open').click();
     const caption = document.querySelector('[data-gallery-caption]');

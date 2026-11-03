@@ -72112,7 +72112,7 @@ function initTrailReports(map, trail){
         <button type="button" class="community-photo__open" data-photo-index="${index}" aria-label="Open photo ${index + 1} of ${visible.length}: ${caption}">
           <img src="${trEsc(photo.image)}" alt="${trEsc(photoAlt(photo))}" loading="lazy" decoding="async">
         </button>${photo.isLicensed ? `
-        <figcaption class="community-photo__credit">${caption}</figcaption>` : ''}
+        <figcaption class="community-photo__credit">${trEsc(`${photo.creator} · ${photo.licence}`)}</figcaption>` : ''}
       </figure>`;
     }).join('');
     photosListEl.querySelectorAll('[data-photo-index]').forEach(button => {
