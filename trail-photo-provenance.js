@@ -34,7 +34,24 @@
       .map((photo,index)=>({...photo,image:clean(photo.image),isEditorial:true,editorialOrder:index,status:'approved'}));
   }
 
+  // Openly licensed photographs shown before anyone has shared one
+  // (data/trail-gallery-photos.json). Credited with creator and licence.
+  function licensedPhotos(trail){
+    return (Array.isArray(trail?.licensedPhotos)?trail.licensedPhotos:[])
+      .filter(photo=>photo&&/^images\/trails\/[A-Za-z0-9_.-]+\.(?:jpe?g|webp)$/i.test(clean(photo.image))&&clean(photo.creator)&&clean(photo.licence)&&/^https:\/\//i.test(clean(photo.sourcePage)))
+      .map((photo,index)=>({...photo,image:clean(photo.image),isLicensed:true,licensedOrder:index,status:'approved'}));
+  }
+
+  function licensedCredit(photo){
+    if(!photo?.isLicensed)return null;
+    const licenceUrl=clean(photo.licenceUrl);
+    return {creator:clean(photo.creator,200),licence:clean(photo.licence,80),sourcePage:clean(photo.sourcePage),
+      licenceUrl:/^https:\/\//i.test(licenceUrl)?licenceUrl:''};
+  }
+
   function photoCaption(photo){
+    const licensed=licensedCredit(photo);
+    if(licensed)return `Photo: ${licensed.creator} · ${licensed.licence}`;
     const dog=photo?.dogContext?.name;
     const caption=photo?.isEditorial
       ? 'Shared by the ORMA community'
@@ -46,5 +63,5 @@
 
   function photoAlt(photo){return clean(photo?.alt,500)||clean(photo?.caption,500)||'Trail photograph';}
 
-  return {clean,normalizeCredit,heroCredit,isIllustration,editorialPhotos,photoCaption,photoAlt};
+  return {clean,normalizeCredit,heroCredit,isIllustration,editorialPhotos,licensedPhotos,licensedCredit,photoCaption,photoAlt};
 });
