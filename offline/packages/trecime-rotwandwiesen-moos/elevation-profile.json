@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-rotwandwiesen-moos",
+  "distanceKm": 5.1,
+  "ascentM": 1,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1914
+    },
+    {
+      "km": 0.4,
+      "elev": 1902
+    },
+    {
+      "km": 0.8,
+      "elev": 1872
+    },
+    {
+      "km": 1.2,
+      "elev": 1835
+    },
+    {
+      "km": 1.6,
+      "elev": 1750
+    },
+    {
+      "km": 2,
+      "elev": 1718
+    },
+    {
+      "km": 2.4,
+      "elev": 1678
+    },
+    {
+      "km": 2.8,
+      "elev": 1638
+    },
+    {
+      "km": 3.1,
+      "elev": 1584
+    },
+    {
+      "km": 3.5,
+      "elev": 1524
+    },
+    {
+      "km": 4,
+      "elev": 1493
+    },
+    {
+      "km": 4.3,
+      "elev": 1441
+    },
+    {
+      "km": 4.7,
+      "elev": 1392
+    },
+    {
+      "km": 5.1,
+      "elev": 1353
+    }
+  ]
+}

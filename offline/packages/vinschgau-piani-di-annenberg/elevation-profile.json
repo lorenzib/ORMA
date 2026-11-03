@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "vinschgau-piani-di-annenberg",
+  "distanceKm": 6.6,
+  "ascentM": 380,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 630
+    },
+    {
+      "km": 0.5,
+      "elev": 708
+    },
+    {
+      "km": 1,
+      "elev": 861
+    },
+    {
+      "km": 1.5,
+      "elev": 1066
+    },
+    {
+      "km": 2,
+      "elev": 1008
+    },
+    {
+      "km": 2.5,
+      "elev": 947
+    },
+    {
+      "km": 3,
+      "elev": 878
+    },
+    {
+      "km": 3.5,
+      "elev": 841
+    },
+    {
+      "km": 4,
+      "elev": 699
+    },
+    {
+      "km": 4.5,
+      "elev": 673
+    },
+    {
+      "km": 5,
+      "elev": 708
+    },
+    {
+      "km": 5.5,
+      "elev": 747
+    },
+    {
+      "km": 6.1,
+      "elev": 677
+    },
+    {
+      "km": 6.6,
+      "elev": 630
+    }
+  ]
+}

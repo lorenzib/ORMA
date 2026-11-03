@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cortina-passeggiata-gourmet",
+  "distanceKm": 4.5,
+  "ascentM": 185,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1541
+    },
+    {
+      "km": 0.4,
+      "elev": 1582
+    },
+    {
+      "km": 0.7,
+      "elev": 1579
+    },
+    {
+      "km": 1,
+      "elev": 1597
+    },
+    {
+      "km": 1.4,
+      "elev": 1650
+    },
+    {
+      "km": 1.7,
+      "elev": 1671
+    },
+    {
+      "km": 2,
+      "elev": 1697
+    },
+    {
+      "km": 2.4,
+      "elev": 1645
+    },
+    {
+      "km": 2.7,
+      "elev": 1645
+    },
+    {
+      "km": 3,
+      "elev": 1663
+    },
+    {
+      "km": 3.4,
+      "elev": 1597
+    },
+    {
+      "km": 3.7,
+      "elev": 1579
+    },
+    {
+      "km": 4.1,
+      "elev": 1580
+    },
+    {
+      "km": 4.5,
+      "elev": 1541
+    }
+  ]
+}

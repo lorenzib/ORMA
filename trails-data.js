@@ -13,7 +13,7 @@ const trails = [
       {km:4.23,lat:46.5366853,lng:11.6447916,instruction:"Switch from trail 6 onto trail 30"}
     ],
     rifugi:[],
-    desc:"A real, GPS-verified loop from Compatsch using trails 7, 6, and 30, confirmed by multiple independent hiking guides as wide gravel and paved paths, suitable even for all-terrain strollers. Europe's largest high-alpine meadow, gently rolling and wide open.",
+    desc:"A loop from Compatsch on trails 7, 6 and 30, on wide gravel and paved paths that hiking guides describe as fine even for all-terrain strollers. Europe's largest high-alpine meadow, gently rolling and wide open.",
     tips:"Multiple entry points; go early to find free parking, or take the cable car up from Ortisei/Siusi. This loop skips the longer Saltria detour some guides include via trail 9, it's the shorter, easier variant of that bigger circuit."
   },
   {
@@ -4322,7 +4322,13 @@ const trails = [
       ]
     ],
     "distance": 8.9,
-    "elevation": 730,
+    // Walked from the plateau down to Glières-Val-de-Borne, as the start point
+    // and tips say. The 730 m every source gives (trails-viewer D+733, the
+    // Haute-Savoie fiche 690 m) is the valley-to-plateau climb, so here it is
+    // the descent; the climb is measured on the line (80 Open-Meteo heights,
+    // the importer's method), 2 November 2026.
+    "elevation": 67,
+    "descent": 730,
     "hours": "2.5–3",
     "paid": false,
     "terrainType": "Mountain path and forest tracks, sparsely mapped surfaces; expect rough ground",

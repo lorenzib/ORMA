@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cembra-castello-segonzano",
+  "distanceKm": 5.8,
+  "ascentM": 190,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 665
+    },
+    {
+      "km": 0.5,
+      "elev": 642
+    },
+    {
+      "km": 0.9,
+      "elev": 556
+    },
+    {
+      "km": 1.3,
+      "elev": 531
+    },
+    {
+      "km": 1.8,
+      "elev": 499
+    },
+    {
+      "km": 2.2,
+      "elev": 475
+    },
+    {
+      "km": 2.7,
+      "elev": 490
+    },
+    {
+      "km": 3.1,
+      "elev": 489
+    },
+    {
+      "km": 3.6,
+      "elev": 515
+    },
+    {
+      "km": 4,
+      "elev": 567
+    },
+    {
+      "km": 4.5,
+      "elev": 643
+    },
+    {
+      "km": 4.9,
+      "elev": 647
+    },
+    {
+      "km": 5.3,
+      "elev": 662
+    },
+    {
+      "km": 5.8,
+      "elev": 665
+    }
+  ]
+}

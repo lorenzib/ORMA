@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-escursione-dalla-cappella-santa-croce-al-brogles",
+  "distanceKm": 13,
+  "ascentM": 422,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2117
+    },
+    {
+      "km": 1,
+      "elev": 2165
+    },
+    {
+      "km": 2,
+      "elev": 2205
+    },
+    {
+      "km": 3,
+      "elev": 2249
+    },
+    {
+      "km": 4,
+      "elev": 2211
+    },
+    {
+      "km": 4.9,
+      "elev": 2173
+    },
+    {
+      "km": 5.9,
+      "elev": 2122
+    },
+    {
+      "km": 6.9,
+      "elev": 2167
+    },
+    {
+      "km": 7.9,
+      "elev": 2163
+    },
+    {
+      "km": 8.9,
+      "elev": 2134
+    },
+    {
+      "km": 9.9,
+      "elev": 2170
+    },
+    {
+      "km": 10.9,
+      "elev": 2176
+    },
+    {
+      "km": 11.9,
+      "elev": 2103
+    },
+    {
+      "km": 12.8,
+      "elev": 2145
+    },
+    {
+      "km": 13,
+      "elev": 2117
+    }
+  ]
+}

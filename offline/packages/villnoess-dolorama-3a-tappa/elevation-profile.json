@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "villnoess-dolorama-3a-tappa",
+  "distanceKm": 15.9,
+  "ascentM": 633,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2309
+    },
+    {
+      "km": 1.2,
+      "elev": 2065
+    },
+    {
+      "km": 2.5,
+      "elev": 1927
+    },
+    {
+      "km": 3.6,
+      "elev": 1889
+    },
+    {
+      "km": 4.8,
+      "elev": 1952
+    },
+    {
+      "km": 6.1,
+      "elev": 1987
+    },
+    {
+      "km": 7.3,
+      "elev": 1854
+    },
+    {
+      "km": 8.5,
+      "elev": 1994
+    },
+    {
+      "km": 9.7,
+      "elev": 2102
+    },
+    {
+      "km": 10.9,
+      "elev": 2167
+    },
+    {
+      "km": 12.1,
+      "elev": 2185
+    },
+    {
+      "km": 13.3,
+      "elev": 2136
+    },
+    {
+      "km": 14.6,
+      "elev": 2209
+    },
+    {
+      "km": 15.7,
+      "elev": 2206
+    },
+    {
+      "km": 15.9,
+      "elev": 2176
+    }
+  ]
+}

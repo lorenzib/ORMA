@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "giudicarie-san-martino-bosco-scolpito",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.4,
+    "ascentM": 250,
+    "highestPointM": 718,
+    "expectedDuration": "1.8 hours",
+    "difficulty": "Hard",
+    "shadePercent": 79
+  },
+  "trailhead": {
+    "lat": 45.928399,
+    "lng": 10.635818,
+    "label": "Car park by the information office below Cologna, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.9256756,
+      "lng": 10.6395271,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.93041,
+      "lng": 10.6416307,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.9312656,
+      "lng": 10.6390109,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A steep, narrow stretch of path on the way down just after the church of San Martino (km 3.8).",
+    "Lanes through Cologna at the start are open to cars.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

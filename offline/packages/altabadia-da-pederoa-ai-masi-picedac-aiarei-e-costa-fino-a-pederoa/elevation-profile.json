@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa",
+  "distanceKm": 13.5,
+  "ascentM": 407,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1176
+    },
+    {
+      "km": 1,
+      "elev": 1292
+    },
+    {
+      "km": 2.1,
+      "elev": 1390
+    },
+    {
+      "km": 3.1,
+      "elev": 1500
+    },
+    {
+      "km": 4.1,
+      "elev": 1554
+    },
+    {
+      "km": 5.1,
+      "elev": 1559
+    },
+    {
+      "km": 6.2,
+      "elev": 1505
+    },
+    {
+      "km": 7.2,
+      "elev": 1442
+    },
+    {
+      "km": 8.2,
+      "elev": 1344
+    },
+    {
+      "km": 9.2,
+      "elev": 1229
+    },
+    {
+      "km": 10.4,
+      "elev": 1211
+    },
+    {
+      "km": 11.3,
+      "elev": 1233
+    },
+    {
+      "km": 12.3,
+      "elev": 1229
+    },
+    {
+      "km": 13.3,
+      "elev": 1153
+    },
+    {
+      "km": 13.5,
+      "elev": 1176
+    }
+  ]
+}

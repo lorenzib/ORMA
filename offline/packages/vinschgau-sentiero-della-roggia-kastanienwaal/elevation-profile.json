@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "vinschgau-sentiero-della-roggia-kastanienwaal",
+  "distanceKm": 2.2,
+  "ascentM": 70,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 721
+    },
+    {
+      "km": 0.2,
+      "elev": 728
+    },
+    {
+      "km": 0.3,
+      "elev": 743
+    },
+    {
+      "km": 0.5,
+      "elev": 760
+    },
+    {
+      "km": 0.7,
+      "elev": 826
+    },
+    {
+      "km": 0.8,
+      "elev": 766
+    },
+    {
+      "km": 1,
+      "elev": 797
+    },
+    {
+      "km": 1.2,
+      "elev": 753
+    },
+    {
+      "km": 1.3,
+      "elev": 735
+    },
+    {
+      "km": 1.5,
+      "elev": 718
+    },
+    {
+      "km": 1.7,
+      "elev": 715
+    },
+    {
+      "km": 1.8,
+      "elev": 712
+    },
+    {
+      "km": 2,
+      "elev": 721
+    },
+    {
+      "km": 2.2,
+      "elev": 719
+    }
+  ]
+}

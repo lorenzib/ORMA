@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "villnoess-ranui-zannes",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 3.4,
+    "ascentM": 296,
+    "highestPointM": 1674,
+    "expectedDuration": "1 hour",
+    "difficulty": "Hard",
+    "shadePercent": 48
+  },
+  "trailhead": {
+    "lat": 46.63377,
+    "lng": 11.72889,
+    "label": "Ranui car park, by the Waldschenke restaurant, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6364941,
+      "lng": 11.7631223,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Forest road shared with occasional service traffic near both ends.",
+    "Meadows around Zannes are farmed: keep your dog on the path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-29"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

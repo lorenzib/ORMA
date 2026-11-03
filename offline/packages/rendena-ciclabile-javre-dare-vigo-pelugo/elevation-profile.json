@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "rendena-ciclabile-javre-dare-vigo-pelugo",
+  "distanceKm": 7.2,
+  "ascentM": 79,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 619
+    },
+    {
+      "km": 0.6,
+      "elev": 582
+    },
+    {
+      "km": 1.1,
+      "elev": 578
+    },
+    {
+      "km": 1.7,
+      "elev": 586
+    },
+    {
+      "km": 2.2,
+      "elev": 590
+    },
+    {
+      "km": 2.7,
+      "elev": 600
+    },
+    {
+      "km": 3.3,
+      "elev": 608
+    },
+    {
+      "km": 3.8,
+      "elev": 613
+    },
+    {
+      "km": 4.4,
+      "elev": 620
+    },
+    {
+      "km": 4.9,
+      "elev": 608
+    },
+    {
+      "km": 5.5,
+      "elev": 601
+    },
+    {
+      "km": 6.1,
+      "elev": 595
+    },
+    {
+      "km": 6.6,
+      "elev": 617
+    },
+    {
+      "km": 7.1,
+      "elev": 619
+    },
+    {
+      "km": 7.2,
+      "elev": 619
+    }
+  ]
+}

@@ -166,6 +166,39 @@
     ]));
   }
 
+  // Total descent, for a record that states only the climb. A walk that ends
+  // where it starts comes down as far as it went up. A one-way walk comes down
+  // its climb less the net height gained, read from the ends of its own
+  // profile (the same rule as route-return.js); summing the profile points
+  // undercounts, so the sum is never used. Null when neither can be said.
+  const RETURNING_SHAPES = new Set(['loop', 'circular', 'lollipop', 'out-and-back']);
+
+  function returnsToStart(trail){
+    if(RETURNING_SHAPES.has(trail.routeShape)) return true;
+    const path = Array.isArray(trail.path) ? trail.path : [];
+    if(path.length < 2) return false;
+    const [lat1, lng1] = path[0].map(Number);
+    const [lat2, lng2] = path[path.length - 1].map(Number);
+    if(![lat1, lng1, lat2, lng2].every(Number.isFinite)) return false;
+    // Within about 100 m: a traced loop rarely closes on the same vertex.
+    const dLat = (lat2 - lat1) * 111.32;
+    const dLng = (lng2 - lng1) * 111.32 * Math.cos(lat1 * Math.PI / 180);
+    return Math.hypot(dLat, dLng) <= 0.1;
+  }
+
+  function descentM(trail){
+    if(Number.isFinite(trail.descent)) return trail.descent;
+    if(!Number.isFinite(trail.elevation)) return null;
+    const ascent = Math.max(0, trail.elevation);
+    if(returnsToStart(trail)) return ascent;
+    const profile = Array.isArray(trail.elevationProfile) ? trail.elevationProfile : [];
+    if(profile.length < 2) return null;
+    const first = Number(profile[0] && profile[0].elev);
+    const last = Number(profile[profile.length - 1] && profile[profile.length - 1].elev);
+    if(!Number.isFinite(first) || !Number.isFinite(last)) return null;
+    return Math.round(Math.max(0, ascent - (last - first)));
+  }
+
   function normalizeTrail(trail){
     if(trail && trail.metrics && trail.suitability && trail.verification) return trail;
     trail = trail || {};
@@ -199,7 +232,7 @@
       metrics: {
         distanceKm: Number.isFinite(trail.distance) ? trail.distance : null,
         ascentM: Number.isFinite(trail.elevation) ? trail.elevation : null,
-        descentM: Number.isFinite(trail.descent) ? trail.descent : null,
+        descentM: descentM(trail),
         durationMinutes: Number.isFinite(trail.hours) ? Math.round(trail.hours * 60) : null,
       },
       suitability,
@@ -258,6 +291,7 @@
     WEIGHT_BAND_MID,
     ageYears,
     weightKg,
+    descentM,
     conditions,
     behaviour,
     normalizeDog,

@@ -1130,7 +1130,9 @@ and the rest of the hand audit:
   back mid-walk (more than 50 m retraced on the same path -- longer than any
   snapping step), and it never runs over itself, unless the audit declares
   that shape: an `out-and-back` turns once near the middle, a `lollipop` walks
-  its stem both ways. A real side trip -- to a waterfall, a viewpoint -- is
+  its stem both ways. Where the line only crosses a path it has already
+  walked, or brushes past it at a junction, for less than 25 m, that is a
+  crossing, not a stretch walked twice. A real side trip -- to a waterfall, a viewpoint -- is
   declared in the audit as `sideTrips: [{ km, note }]`. A line that is an
   out-and-back while the page calls it a loop fails until the label is right.
 - **It has directions.** The audit's route sentence says where to start and
