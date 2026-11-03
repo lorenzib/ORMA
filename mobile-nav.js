@@ -226,10 +226,11 @@
       footer.dataset.focusedFooter = 'true';
 
       const groups = footer.querySelectorAll('.hp-footer-grid > div');
-      const groupTitles = ['','Explore','Dog care','Your walks','ORMA'];
+      const groupTitles = ['',['footer.explore','Explore'],['footer.dogCare','Dog care'],['footer.yourWalks','Your walks'],['','ORMA']];
       groups.forEach((group, index) => {
         const heading = group.querySelector(':scope > .hp-footer-h');
-        if(heading && groupTitles[index]) heading.textContent = groupTitles[index];
+        const title = groupTitles[index];
+        if(heading && title) heading.textContent = title[0] ? copy(title[0], title[1]) : title[1];
       });
 
       const companyLinks = groups[4]?.querySelector('.hp-footer-links');
@@ -372,7 +373,7 @@
     function navItem(label, href, active, i18nKey){
       const a = document.createElement('a');
       a.href = prefix + href;
-      a.textContent = label;
+      a.textContent = i18nKey ? copy(i18nKey, label) : label;
       if(active) a.classList.add('active');
       if(i18nKey) a.setAttribute('data-i18n', i18nKey);
       return a;
