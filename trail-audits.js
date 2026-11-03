@@ -59076,6 +59076,148 @@
       ],
       startPoint: { lat: 45.783478, lng: 6.498725, label: 'Place du Cernix, Cohennoz, one of the two starts the board gives' },
       desc: 'An easy, flat walk on a quiet communal road between the hamlets of Cohennoz and Crest-Voland, past the Cernix pond and the Ainoz mill and through hay meadows facing the Aravis, to Paravy and back. The official page lists 4.7 km, 40 m up and 40 m down, about two hours.'
+    },
+    'savoie-areches-beaufort-la-grande-berge': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 2, Beaufortain).
+      // “Arêches / Beaufort – La Grande Berge”, published by the Communauté d’agglomération Arlysère, drawn on 23 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 262882). Communes: Beaufort (no dog order found online, probably exists: the national rule applies).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Plan de la Lai – Plan Mya – La Grande Berge (Beaufortain)',
+      distance: 7.4,
+      elevation: 350,
+      hours: '4',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way: from the Plan de la Lai refuge on the Cormet de Roselend road, up the alpage road past the Plan Mya refuge and the Petite Berge to the ruins of the Grande Berge, then back by the same route.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Plan de la Lai refuge, on the road from the Col du Méraillet to the Cormet de Roselend; park about 20 m past the refuge.",
+        "sequence": "Take the alpage road opposite the refuge and follow the signs for La Grande Berge, up past the Plan Mya refuge to the farm building of La Petite Berge. Carry on along the path to the ruins of the Grande Berge, and climb the grassy knoll on the right for the view over the Lac de Roselend. Come back the same way to the Plan de la Lai.",
+        "switches": "Follow the signs for La Grande Berge throughout. The board notes you can turn back at La Petite Berge to save an hour; the line shown goes on to the Grande Berge.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Communauté d’agglomération Arlysère, Arêches / Beaufort – La Grande Berge (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-la-grande-berge-262882/",
+            "authority": "Communauté d’agglomération Arlysère",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lac de Roselend and the Montagne d’Outray from the path to the Grande Berge, in July 2022 (Rémih on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official there-and-back walk 7.4 km from the Plan de la Lai refuge on the Cormet de Roselend road, as the Communauté d’agglomération Arlysère publishes it; the stored line is drawn on 23 OSM ways along the board’s published line, 7.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Plan de la Lai refuge (parking 20 m beyond it) and take the alpage road opposite, signed for La Grande Berge, up past the Plan Mya refuge to La Petite Berge, then the path on to the ruins of the Grande Berge; return the same way. Waymarked, no path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 2.3 (OSM nodes 4952419661, 7800803933).',
+        elevation: 'Official 7.4 km, 350 m up and 350 m down, 4:00 h average walking time (Communauté d’agglomération Arlysère, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Communauté d’agglomération Arlysère, Arêches / Beaufort – La Grande Berge (Explore Savoie, Apidae 262882) and its official GPX',
+          'Beaufort publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 1,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpages: cows graze along the road and path in summer and guard dogs may be present; keep your dog on a lead and walk round the herds', 'High, open ground at 1,800–2,070 m: no shade and quick weather changes', 'The alpage road is used by farm vehicles: lead on'],
+      terrainType: 'Alpage road and mountain path',
+      shadeDescription: 'No shade: the whole walk is on open alpine pasture above the tree line.',
+      terrainDescription: 'A half-day walk at 1,800–2,070 m on an alpage road and a grassy mountain path above the Lac de Roselend, past the Plan Mya refuge and the farm of La Petite Berge to the ruins of the Grande Berge.',
+      waterDescription: 'Drinking water at the start and km 2.3; places to eat on the way.',
+      dogNotes: 'Dogs are accepted, according to the official page. Beaufort publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. These are working Beaufort-cheese alpages with cows and possibly guard dogs: keep your dog on a lead and give the herds room.',
+      tips: 'Drive up from Beaufort past the Roselend dam and the Col du Méraillet to the Plan de la Lai refuge: 7.4 km there and back, 350 m up and down, about four hours. Water at the Plan de la Lai and at the Plan Mya refuge. Open June to the end of September; you can turn back at La Petite Berge to shorten it by an hour.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Arêches / Beaufort – La Grande Berge (Communauté d’agglomération Arlysère)', url: 'https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-la-grande-berge-262882/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/23/130/7373335/Arches++Beaufort+-+La+Grande+Berge.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.693272, lng: 6.668725, label: 'Plan de la Lai refuge on the Cormet de Roselend road, the board’s start' },
+      desc: 'A half-day walk over the high Beaufort alpages from the Plan de la Lai refuge past Plan Mya and La Petite Berge to the ruins of the Grande Berge, with the turquoise Lac de Roselend below. The official page lists 7.4 km, 350 m up and 350 m down, about four hours there and back.'
+    },
+    'savoie-areches-beaufort-croix-du-berger-et-lac-des-fees': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 2, Beaufortain).
+      // “Arêches / Beaufort – Croix du Berger et lac des Fées”, published by the Communauté d’agglomération Arlysère, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 262872). Communes: Beaufort (no dog order found online, probably exists: the national rule applies).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Lac des Fées – Cormet d’Arêches – Croix du Berger (Beaufortain)',
+      distance: 4.8,
+      elevation: 350,
+      hours: '3.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way: from the Lac des Fées above the Saint-Guérin dam on the red-and-yellow waymarked path to the Cormet d’Arêches, then left up over a series of grassy humps to the Croix du Berger, and back by the same route.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park by the Lac des Fées: from the Saint-Guérin dam belvedere take the first road on the left below the quarry, keep straight on to the end of the tarmac, then right for two bends on the stony track.",
+        "sequence": "From the Lac des Fées follow the red-and-yellow waymarked path up to the Cormet d’Arêches. At the col take the path to the left, which climbs and runs over several grassy humps to the Croix du Berger, already visible from the col. Come back the same way to the Lac des Fées.",
+        "switches": "One turn: at the Cormet d’Arêches leave the main path and go left towards the Croix du Berger.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Communauté d’agglomération Arlysère, Arêches / Beaufort – Croix du Berger et lac des Fées (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-croix-du-berger-et-lac-des-fees-262872/",
+            "authority": "Communauté d’agglomération Arlysère",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The track above the Lac des Fées towards the Cormet d’Arêches, in August 2022 (joostjakob on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official there-and-back walk 4.8 km from the Lac des Fées above the Saint-Guérin dam, as the Communauté d’agglomération Arlysère publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 4.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Lac des Fées car park and follow the red-and-yellow waymarked path up to the Cormet d’Arêches, then take the path to the left over the grassy humps to the Croix du Berger, visible from the col; return the same way. No path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 11192822660).',
+        elevation: 'Official 4.8 km, 350 m up and 350 m down, 3:30 h average walking time (Communauté d’agglomération Arlysère, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Communauté d’agglomération Arlysère, Arêches / Beaufort – Croix du Berger et lac des Fées (Explore Savoie, Apidae 262872) and its official GPX',
+          'Beaufort publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 13,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpages: cows graze around the Cormet d’Arêches in summer and guard dogs may be present; keep your dog on a lead and walk round the herds', 'Steady climb of 350 m on mountain paths to about 2,210 m, with steep grassy humps near the cross', 'High, open ground: little shade and quick weather changes'],
+      terrainType: 'Stony track and mountain path',
+      shadeDescription: 'Mostly open: about 13% passes mapped trees near the Lac des Fées; the rest is open alpine pasture.',
+      terrainDescription: 'A short mountain walk at 1,890–2,210 m from the small Lac des Fées above the Saint-Guérin reservoir up to the Cormet d’Arêches pass and along the grassy humps to the Croix du Berger, with wide views over the Beaufortain.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Dogs are accepted, according to the official page. Beaufort publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cows graze the alpages around the col: keep your dog on a lead and give the herds room.',
+      tips: 'Drive up from Arêches past the Saint-Guérin dam to the Lac des Fées: 4.8 km there and back, 350 m up and down, about three and a half hours. Drinking water at the start only. Open June to the end of September.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Arêches / Beaufort – Croix du Berger et lac des Fées (Communauté d’agglomération Arlysère)', url: 'https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-croix-du-berger-et-lac-des-fees-262872/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/59/129/7373115/Arches++Beaufort+-+Croix+du+Berger+et+lac+des+Fes.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.626113, lng: 6.600459, label: 'Lac des Fées car park above the Saint-Guérin dam, the board’s start' },
+      desc: 'A short mountain walk from the Lac des Fées above the Saint-Guérin reservoir up to the Cormet d’Arêches and along the grassy humps to the Croix du Berger, with wide views over the Beaufortain. The official page lists 4.8 km, 350 m up and 350 m down, about 3 h 30 there and back.'
     }
   };
 
