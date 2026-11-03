@@ -22,8 +22,21 @@ jobs:
       - name: Fetch huts, bars, cafés and restaurants from OSM
         run: node scripts/fetch-huts-bars.js
 
-      - name: Build regional runtime payloads
-        run: npm run build:regional-data
+      - name: Install dependencies
+        run: npm ci
+
+      # Each trail's own files list the huts and cafés near it, so new POIs
+      # change about 35 trail files as well as the regional payloads. This job
+      # used to rebuild only the payloads, and every refresh it opened failed
+      # the quality gate on generated-artifact drift (#1220 needed two hand
+      # rebuilds). Rebuild everything the gate rebuilds, offline as it does.
+      - name: Rebuild everything generated from the POIs
+        env:
+          ORMA_PROMOTE_OFFLINE: 'true'
+        run: npm run generate:artifacts
+
+      - name: Confirm the rebuild matches what the quality gate expects
+        run: npm run -s check:generated
 
       - name: Commit updated POIs
         env:
@@ -31,7 +44,9 @@ jobs:
         run: |
           git config user.name "dolopaws-bot"
           git config user.email "actions@github.com"
-          git add huts-bars-all-regions.geojson data/regions/ data/regions-manifest.json regions-runtime-manifest.js
+          git add huts-bars-all-regions.geojson data/regions/ data/regions-manifest.json regions-runtime-manifest.js \
+            data/trail-details/ trails/ osm-trails-data.js osm-trails-savoy-data.js board-trails-data.js \
+            browse-trails.html sitemap.xml data/generated/trail-validation-report.json trail-routing-coverage.js
 
           # Regeneration stamps a fresh generatedAt on every run, so a diff is
           # not by itself a change worth publishing. Committing those was how
