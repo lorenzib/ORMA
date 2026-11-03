@@ -7120,6 +7120,24 @@ function effectiveOverrides(profile, adjustOverride){
     return imported(trail) ? base : withoutOsmTag(label);
   }
 
+  // Several real fountains in one village square are separate OSM nodes, but
+  // the importer rounds each to the nearest 0.1 km, so on 3 November 2026 67 of
+  // 427 published trails printed the same line more than once ("km 0 ·
+  // Drinking water" four times on Dorfrundweg - Giro del Paese). The points
+  // stay in the data for the map; a list shows each km and label once, with
+  // how many points it stands for.
+  function waterLines(trail, sources, labelFor = waterPointLabel) {
+    const lines = new Map();
+    for (const point of Array.isArray(sources) ? sources : []) {
+      if (!point) continue;
+      const label = labelFor(trail, point.label || point.name);
+      const key = `${point.km}|${label}`;
+      if (lines.has(key)) lines.get(key).count += 1;
+      else lines.set(key, { km: point.km, label, count: 1 });
+    }
+    return [...lines.values()];
+  }
+
   function startPointLabel(trail, label) {
     if (!categoryVerified(trail, 'access') && !imported(trail)) {
       return `Suggested start, ${plainStartLabel(label)}. Check current access before travelling.`;
@@ -7258,6 +7276,7 @@ function effectiveOverrides(profile, adjustOverride){
     riskLabel,
     provenanceLabel,
     waterPointLabel,
+    waterLines,
     startPointLabel,
     waterAssessment,
     heatAssessment,
@@ -73164,6 +73183,10 @@ function trailProductBadge(type, label){
 function trustedWaterLabel(trail, label){
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.waterPointLabel(trail, label) : label;
 }
+function trustedWaterLines(trail){
+  if(window.DoloPawsTrailTrust) return window.DoloPawsTrailTrust.waterLines(trail, trail.waterSources);
+  return (Array.isArray(trail.waterSources) ? trail.waterSources : []).map(w => ({ km: w.km, label: w.label, count: 1 }));
+}
 function trustedStartLabel(trail, label){
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.startPointLabel(trail, label) : label;
 }
@@ -74409,8 +74432,9 @@ function buildItinerary(t){
   (Array.isArray(t.rifugi) ? t.rifugi : []).forEach(r => {
     if(r.km > 0) itinAdd('hut', r.km, `${itinKmLabel(r.km)}, ${itinEsc(r.name)}`);
   });
-  (Array.isArray(t.waterSources) ? t.waterSources : []).forEach(w => {
-    if(w.km > 0) itinAdd('water', w.km, `${itinKmLabel(w.km)}, ${itinEsc(trLabel(trustedWaterLabel(t, w.label)))}`);
+  trustedWaterLines(t).forEach(w => {
+    const count = w.count > 1 ? ` (${window.t('trail.waterPointCount', {n: w.count})})` : '';
+    if(w.km > 0) itinAdd('water', w.km, `${itinKmLabel(w.km)}, ${itinEsc(trLabel(w.label))}${count}`);
   });
 
   // 4. Decision points, where the route switches numbered trails.
