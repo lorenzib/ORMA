@@ -1,0 +1,11 @@
+// valgardena-val-danna-percorso-kneipp in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short shaded walk from the centre of Ortisei up the Val d’Anna beside its stream to a Kneipp water-treading pool and the end of the valley. The board lists 1.2 km and 98 m of ascent one way.": "Una breve camminata all'ombra dal centro di Ortisei su per la Val d'Anna accanto al suo torrente fino a una vasca Kneipp per il percorso in acqua e al fondo della valle. La scheda ufficiale indica 1,2 km e 98 m di dislivello in salita, solo andata.",
+  "Start at the Seceda gondola valley station in Ortisei: 1.2 km one way up the Val d’Anna, under half an hour, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle; the Kneipp pool is for people, so keep your dog out of it and the stream.": "Parti dalla stazione a valle della cabinovia del Seceda a Ortisei: 1,2 km solo andata su per la Val d'Anna, meno di mezz'ora, poi ritorno per la stessa via. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito; la vasca Kneipp è per le persone, quindi tieni il cane fuori da lì e dal torrente.",
+  "Beside a fast mountain stream: keep your dog out of the water": "Accanto a un impetuoso torrente di montagna: tieni il cane fuori dall'acqua",
+  "Passes a children’s playground, where dogs are not allowed": "Passa accanto a un parco giochi per bambini, dove i cani non sono ammessi",
+  "Forest path beside a stream": "Sentiero nel bosco lungo un torrente",
+  "Seceda gondola valley station, Ortisei, the board’s start": "Stazione a valle della cabinovia del Seceda, Ortisei, partenza indicata dalla scheda ufficiale",
+  "The Val d’Anna stream tumbling over low stone weirs through a wooded gorge, a gravel path climbing beside it on the right among spruces": "Il torrente della Val d'Anna che scende a salti su basse briglie di pietra in una gola boscosa, un sentiero sterrato che sale accanto a destra tra gli abeti rossi",
+  "Mostly shaded: about seven tenths runs through spruce forest beside the stream.": "Per lo più all'ombra: circa sette decimi corrono nel bosco di abeti rossi accanto al torrente."
+});

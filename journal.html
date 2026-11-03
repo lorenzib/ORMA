@@ -483,6 +483,12 @@ document.addEventListener('DOMContentLoaded', function(){
     Object.keys(vars || {}).forEach(function(name){ output = output.split('{' + name + '}').join(vars[name]); });
     return output;
   }
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return k in vars ? vars[k] : m; }) : text;
+  }
   function key(){ return 'dolopaws-journal-' + uid; }
   function load(){ try { return JSON.parse(localStorage.getItem(key())) || []; } catch(e){ return []; } }
   function persist(){
@@ -1138,7 +1144,7 @@ document.addEventListener('DOMContentLoaded', function(){
     return {
       dogName:dogDisplayName, format:shareOptions.format, visual:shareOptions.visual,
       dogPhoto:dogPhotoData,
-      dogVoice:document.getElementById('jnDogVoice').value || 'Woof, what a walk!',
+      dogVoice:document.getElementById('jnDogVoice').value || tx('Woof, what a walk!'),
       tags:tags,
       profileUrl:publicProfileUrl,
       hideEnds:document.getElementById('jnShareHideEnds').checked,
@@ -1169,11 +1175,11 @@ document.addEventListener('DOMContentLoaded', function(){
     shareOptions = { format:'post', visual:shareCover ? 'split' : 'map', hideEnds:true, hideRoute:false };
     document.getElementById('jnShareHideEnds').checked = true;
     document.getElementById('jnShareHideRoute').checked = false;
-    document.getElementById('jnDogVoice').value = 'Woof, what a walk!';
+    document.getElementById('jnDogVoice').value = tx('Woof, what a walk!');
     document.getElementById('jnTagDog').checked = !!dogDisplayName;
     document.getElementById('jnTagHuman').checked = false;
-    document.getElementById('jnTagDogLabel').textContent = dogDisplayName || 'Your dog';
-    document.getElementById('jnTagHumanLabel').textContent = publicHumanName || 'Your public profile (set this in Account)';
+    document.getElementById('jnTagDogLabel').textContent = dogDisplayName || tx('Your dog');
+    document.getElementById('jnTagHumanLabel').textContent = publicHumanName || tx('Your public profile (set this in Account)');
     document.getElementById('jnTagHuman').disabled = !publicHumanName;
     document.getElementById('jnCompanionTags').value = '';
     syncShareVisuals();

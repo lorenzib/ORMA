@@ -5,6 +5,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const STATES = Object.freeze([
     'draft', 'pending', 'visible', 'reported', 'hidden', 'removed',
   ]);
@@ -69,11 +76,11 @@
   }
   function hazardTrustLabel(flag){
     const labels = {
-      'official-confirmed':'Confirmed by an official source',
-      'dolopaws-reviewed':'Verified by ORMA',
-      'community-confirmed':'Confirmed by the community',
-      'community-disputed':'Disputed by the community',
-      unconfirmed:'Unconfirmed community report',
+      'official-confirmed':tx('Confirmed by an official source'),
+      'dolopaws-reviewed':tx('Verified by ORMA'),
+      'community-confirmed':tx('Confirmed by the community'),
+      'community-disputed':tx('Disputed by the community'),
+      unconfirmed:tx('Unconfirmed community report'),
     };
     return labels[hazardTrustState(flag)];
   }

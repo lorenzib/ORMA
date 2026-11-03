@@ -5,6 +5,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const WEATHER_MAX_AGE_MS = 30 * 60 * 1000;
   const SELF_TEST_MAX_AGE_MS = 12 * 60 * 60 * 1000;
 
@@ -272,6 +279,12 @@
         level === 'checking' ? '…' : 'i';
     }
 
+    // Spoken before each check's title; the level itself stays a code.
+    function levelLabel(level){
+      return level === 'ready' ? tx('ready') : level === 'blocker' ? tx('blocker') :
+        level === 'checking' ? tx('checking') : level === 'advisory' ? tx('advisory') : level;
+    }
+
     function render(){
       if(!modal || !state) return;
       const result = assess(state, undefined, win.t);
@@ -280,7 +293,7 @@
         `<article class="pre-hike-item pre-hike-item--${entry.level}">` +
           `<span class="pre-hike-icon" aria-hidden="true">${icon(entry.level)}</span>` +
           '<div class="pre-hike-item-copy">' +
-            `<strong><span class="sr-only">${escapeHtml(entry.level)}: </span>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.detail)}</p>` +
+            `<strong><span class="sr-only">${escapeHtml(levelLabel(entry.level))}: </span>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.detail)}</p>` +
           '</div>' +
           (entry.action
             ? `<button type="button" data-readiness-action="${entry.action}">${

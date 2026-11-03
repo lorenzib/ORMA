@@ -1,4 +1,11 @@
 (function(){
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const navigationScript=document.currentScript;
   if(!window.ORMADeviceHandoff&&navigationScript&&navigationScript.src&&!document.querySelector('script[data-orma-device-handoff]')){
     const handoffScript=document.createElement('script');
@@ -251,7 +258,7 @@
         }
         base.replaceChildren();
         if(socialRow){
-          socialRow.setAttribute('aria-label', 'ORMA social channels');
+          socialRow.setAttribute('aria-label', tx('ORMA social channels'));
           base.appendChild(socialRow);
         }
         base.appendChild(legal);
@@ -491,7 +498,7 @@
       menu.appendChild(kick);
 
       const summary = authSummary() || {};
-      const summaryMeta = [summary.breed, summary.fitness ? summary.fitness + ' fitness' : null]
+      const summaryMeta = [summary.breed, summary.fitness ? tx('{level} fitness', { level:summary.fitness }) : null]
         .filter(Boolean).join(' · ');
       const dogs = Array.isArray(summary.dogs) && summary.dogs.length
         ? summary.dogs

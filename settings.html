@@ -274,6 +274,12 @@
 // keys, so flipping them here or on the profile page stays in sync.
 document.addEventListener('DOMContentLoaded', function(){
   var $ = function(id){ return document.getElementById(id); };
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
 
   // ---------- Section sidebar: scroll-jump + active highlight ----------
   var tocLinks = Array.prototype.slice.call(document.querySelectorAll('#stToc a[data-sec]'));
@@ -329,21 +335,21 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   var notifPrefs = loadPrefs(NOTIF_KEY, { hazards:true, weather:true, recs:true, community:false, news:false });
   var notifList = $('stNotifList');
-  switchRow(notifList, { label:'Hazard reports on saved trails', sub:'Always on. This is a safety message.', on:true, disabled:true });
-  switchRow(notifList, { label:'Heat warnings', sub:'When paw comfort drops into caution for a saved trail.', on:notifPrefs.weather,
+  switchRow(notifList, { label:tx('Hazard reports on saved trails'), sub:tx('Always on. This is a safety message.'), on:true, disabled:true });
+  switchRow(notifList, { label:tx('Heat warnings'), sub:tx('When paw comfort drops into caution for a saved trail.'), on:notifPrefs.weather,
     onChange:function(on){ notifPrefs.weather = on; savePrefs(NOTIF_KEY, notifPrefs); } });
-  switchRow(notifList, { label:'New trails in your valleys', sub:'At most one message a week.', on:notifPrefs.recs,
+  switchRow(notifList, { label:tx('New trails in your valleys'), sub:tx('At most one message a week.'), on:notifPrefs.recs,
     onChange:function(on){ notifPrefs.recs = on; savePrefs(NOTIF_KEY, notifPrefs); } });
-  switchRow(notifList, { label:'Replies to your hazard reports', on:notifPrefs.community,
+  switchRow(notifList, { label:tx('Replies to your hazard reports'), on:notifPrefs.community,
     onChange:function(on){ notifPrefs.community = on; savePrefs(NOTIF_KEY, notifPrefs); } });
 
   // ---------- Privacy ----------
   var PRIVACY_KEY = 'dolopaws-privacy-prefs';
   var privacyPrefs = loadPrefs(PRIVACY_KEY, { showName:false, shareConditions:true });
   var privacyList = $('stPrivacyList');
-  switchRow(privacyList, { label:'Show my name on hazard reports', sub:'Off means reports appear as “an owner”.', on:privacyPrefs.showName,
+  switchRow(privacyList, { label:tx('Show my name on hazard reports'), sub:tx('Off means reports appear as “an owner”.'), on:privacyPrefs.showName,
     onChange:function(on){ privacyPrefs.showName = on; savePrefs(PRIVACY_KEY, privacyPrefs); } });
-  switchRow(privacyList, { label:'Contribute anonymised trail conditions', sub:'Helps other owners see what a route is really like.', on:privacyPrefs.shareConditions,
+  switchRow(privacyList, { label:tx('Contribute anonymised trail conditions'), sub:tx('Helps other owners see what a route is really like.'), on:privacyPrefs.shareConditions,
     onChange:function(on){ privacyPrefs.shareConditions = on; savePrefs(PRIVACY_KEY, privacyPrefs); } });
   // ---------- Units & language ----------
   var UNITS_KEY = 'dolopaws-units-prefs';
@@ -373,12 +379,12 @@ document.addEventListener('DOMContentLoaded', function(){
   $('stEmail').addEventListener('input', refreshEmailBtn);
   $('stEmailBtn').addEventListener('click', function(){
     if(!window.DoloPawsAuth) return;
-    $('stEmailBtn').textContent = 'Sending…';
+    $('stEmailBtn').textContent = tx('Sending…');
     window.DoloPawsAuth.updateEmail($('stEmail').value.trim()).then(function(result){
-      $('stEmailBtn').textContent = 'Update';
+      $('stEmailBtn').textContent = tx('Update');
       $('stEmailHint').style.color = result.ok ? '#2C5C34' : '#9C3A25';
       $('stEmailHint').textContent = result.ok
-        ? 'Confirmation link sent to the new address, click it to finish the change.'
+        ? tx('Confirmation link sent to the new address, click it to finish the change.')
         : result.message;
     });
   });
@@ -390,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function(){
       status.hidden = false;
       status.style.color = result.ok ? '#2C5C34' : '#9C3A25';
       status.textContent = result.ok
-        ? 'Link sent to ' + user.email + ', open it to set your password.'
+        ? tx('Link sent to {email}, open it to set your password.', { email: user.email })
         : result.message;
     });
   });
@@ -418,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var status = $('stDataStatus');
       status.hidden = false;
       status.style.color = '#2C5C34';
-      status.textContent = 'Saved as dolopaws-data.json.';
+      status.textContent = tx('Saved as {file}.', { file: 'dolopaws-data.json' });
     };
     if(user && window.DoloPawsAuth.getDogProfile){
       window.DoloPawsAuth.getDogProfile().then(function(p){ bundle.dogProfile = p || null; finish(); }).catch(finish);
@@ -430,10 +436,13 @@ document.addEventListener('DOMContentLoaded', function(){
     if(p.breed) parts.push(p.breed);
     if(p.dob){
       var years = Math.floor((Date.now() - new Date(p.dob).getTime()) / 31557600000);
-      if(years >= 0) parts.push(years + (years === 1 ? ' year' : ' years'));
+      if(years >= 0) parts.push(years === 1 ? tx('1 year') : tx('{n} years', { n: years }));
     }
     if(p.weight) parts.push(p.weight + ' kg');
-    if(p.fitness) parts.push(p.fitness + ' fitness');
+    if(p.fitness){
+      var fitnessLabels = { low: tx('low fitness'), moderate: tx('moderate fitness'), high: tx('high fitness') };
+      parts.push(fitnessLabels[p.fitness] || tx('{level} fitness', { level: p.fitness }));
+    }
     return parts.join(' · ');
   }
 
@@ -460,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var hint = $('stNameHint');
       hint.hidden = false;
       hint.style.color = ok ? '#2C5C34' : '#9C3A25';
-      hint.textContent = ok ? 'Saved.' : "Couldn't save just now, try again.";
+      hint.textContent = ok ? tx('Saved.') : tx('Couldn\'t save just now, try again.');
       if(ok) savedName = next;
     });
   }
@@ -499,7 +508,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!dogs.length){
       var empty = document.createElement('p');
       empty.className = 'blurb';
-      empty.textContent = 'No dog profile yet, add your dog to start scoring trails.';
+      empty.textContent = tx('No dog profile yet, add your dog to start scoring trails.');
       list.appendChild(empty);
       return;
     }
@@ -515,42 +524,42 @@ document.addEventListener('DOMContentLoaded', function(){
         '<span class="st-dog-avatar"' + (photo ? ' style="background-image:url(' + photo + ')"' : '') + '>' + (photo ? '' : '<i style="font-style:normal;"></i>') + '</span>' +
         '<div class="st-dog-copy"><div class="st-dog-name"></div><div class="st-dog-meta"></div></div>' +
         (selected
-          ? '<span class="st-selected">Selected</span>'
-          : '<button type="button" class="st-btn st-dog-select">Use this dog</button>') +
-        '<a class="st-dog-edit" style="font:700 12.5px Inter,sans-serif;">Edit profile &rarr;</a>';
-      var name = p.name || 'Your dog';
+          ? '<span class="st-selected">' + tx('Selected') + '</span>'
+          : '<button type="button" class="st-btn st-dog-select">' + tx('Use this dog') + '</button>') +
+        '<a class="st-dog-edit" style="font:700 12.5px Inter,sans-serif;">' + tx('Edit profile') + ' &rarr;</a>';
+      var name = p.name || tx('Your dog');
       row.querySelector('.st-dog-name').textContent = name;
-      row.querySelector('.st-dog-meta').textContent = dogMeta(p) || 'Profile details on the dog page';
+      row.querySelector('.st-dog-meta').textContent = dogMeta(p) || tx('Profile details on the dog page');
       if(!photo) row.querySelector('.st-dog-avatar i').textContent = name.charAt(0).toUpperCase();
       row.querySelector('.st-dog-edit').href = 'account.html?dog=' + encodeURIComponent(p.id) + '&next=settings.html';
       var choose = row.querySelector('.st-dog-select');
       if(choose){
-        choose.setAttribute('aria-label', 'Use ' + name + ' for trail scoring');
+        choose.setAttribute('aria-label', tx('Use {name} for trail scoring', { name: name }));
         choose.addEventListener('click', function(){
           if(!window.DoloPawsAuth || !window.DoloPawsAuth.selectDogProfile) return;
           choose.disabled = true;
-          choose.textContent = 'Switching…';
+          choose.textContent = tx('Switching…');
           var status = $('stDogStatus');
           status.hidden = false;
           status.style.color = 'var(--ink-soft)';
-          status.textContent = 'Switching to ' + name + '…';
+          status.textContent = tx('Switching to {name}…', { name: name });
           window.DoloPawsAuth.selectDogProfile(p.id).then(function(ok){
             if(ok){
               dogProfilesState.activeDogId = p.id;
               renderDogs(dogProfilesState);
               status.style.color = '#2C5C34';
-              status.textContent = name + ' is now selected. Trail matches will use this profile.';
+              status.textContent = tx('{name} is now selected. Trail matches will use this profile.', { name: name });
             } else {
               choose.disabled = false;
-              choose.textContent = 'Use this dog';
+              choose.textContent = tx('Use this dog');
               status.style.color = '#9C3A25';
-              status.textContent = "Couldn't switch dogs just now, try again.";
+              status.textContent = tx('Couldn\'t switch dogs just now, try again.');
             }
           }).catch(function(){
             choose.disabled = false;
-            choose.textContent = 'Use this dog';
+            choose.textContent = tx('Use this dog');
             status.style.color = '#9C3A25';
-            status.textContent = "Couldn't switch dogs just now, try again.";
+            status.textContent = tx('Couldn\'t switch dogs just now, try again.');
           });
         });
       }
@@ -564,15 +573,15 @@ document.addEventListener('DOMContentLoaded', function(){
     if(isGoogle){
       // Same policy as the profile page: Google manages the login email,
       // and there is no password to reset.
-      $('stProviderLine').textContent = 'Signed in with Google · password not set';
+      $('stProviderLine').textContent = tx('Signed in with Google · password not set');
       $('stPasswordBtn').hidden = true;
       $('stEmail').readOnly = true;
       $('stEmailBtn').hidden = true;
-      $('stEmailHint').textContent = 'You sign in with Google, so your login email is managed by your Google account.';
+      $('stEmailHint').textContent = tx('You sign in with Google, so your login email is managed by your Google account.');
     } else {
-      $('stProviderLine').textContent = 'Signed in with email and password';
+      $('stProviderLine').textContent = tx('Signed in with email and password');
       $('stPasswordBtn').hidden = false;
-      $('stPasswordBtn').textContent = 'Send password reset link';
+      $('stPasswordBtn').textContent = tx('Send password reset link');
       $('stEmail').readOnly = false;
       $('stEmailBtn').hidden = false;
     }

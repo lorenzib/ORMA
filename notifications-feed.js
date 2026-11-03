@@ -1,40 +1,54 @@
 (function(global){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
+
   // Notifications are derived, not stored: the feed is rebuilt on every
   // visit from genuine update events (active flags, operator notices and
   // dated route audits). Stable, revision-aware ids keep an item read while
   // allowing a materially new update to notify again.
 
-  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  // Built on each call so the month names follow the page language; the
+  // short form is the first three letters of the full name in every language.
+  function monthNames(){
+    return [tx('January'),tx('February'),tx('March'),tx('April'),tx('May'),tx('June'),tx('July'),tx('August'),tx('September'),tx('October'),tx('November'),tx('December')]
+      .map(function(name){ return name.slice(0, 3); });
+  }
   var AUDIT_LIMIT = 4;
 
   function shortDate(iso){
     var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || ''));
     if(!m) return '';
-    return parseInt(m[3], 10) + ' ' + (MONTHS[parseInt(m[2], 10) - 1] || '');
+    return parseInt(m[3], 10) + ' ' + (monthNames()[parseInt(m[2], 10) - 1] || '');
   }
 
   function relTime(ts, now){
     var diff = now - ts;
-    if(!(diff >= 0)) return 'Just now';
+    if(!(diff >= 0)) return tx('Just now');
     var mins = Math.floor(diff / 60000);
-    if(mins < 1) return 'Just now';
-    if(mins < 60) return mins + 'm ago';
+    if(mins < 1) return tx('Just now');
+    if(mins < 60) return tx('{n}m ago', { n: mins });
     var hours = Math.floor(mins / 60);
-    if(hours < 24) return hours + 'h ago';
+    if(hours < 24) return tx('{n}h ago', { n: hours });
     var d = new Date(ts);
-    return d.getDate() + ' ' + (MONTHS[d.getMonth()] || '');
+    return d.getDate() + ' ' + (monthNames()[d.getMonth()] || '');
   }
 
-  var HAZARD_LABEL = {
-    'guard-dogs-livestock': 'Guardian dogs or livestock reported',
-    'dangerous-terrain': 'Dangerous terrain reported',
-    'not-dog-friendly': 'Reported as not dog-friendly',
-    'water-dry': 'Water source reported dry',
-    'lift-refused-dog': 'A lift refused a dog',
-    'other': 'Hazard reported',
-  };
+  function hazardLabels(){
+    return {
+      'guard-dogs-livestock': tx('Guardian dogs or livestock reported'),
+      'dangerous-terrain': tx('Dangerous terrain reported'),
+      'not-dog-friendly': tx('Reported as not dog-friendly'),
+      'water-dry': tx('Water source reported dry'),
+      'lift-refused-dog': tx('A lift refused a dog'),
+      'other': tx('Hazard reported'),
+    };
+  }
 
   function toMillis(value){
     if(value == null) return null;
@@ -55,10 +69,12 @@
   }
 
   function auditLine(trail){
-    if(!(trail && trail.graduation && trail.graduation.status === 'verified')) return 'Reviewed by ORMA: trail details updated.';
+    if(!(trail && trail.graduation && trail.graduation.status === 'verified')) return tx('Reviewed by ORMA: trail details updated.');
     var count = officialSourceCount(trail);
-    if(!count) return 'Now ORMA Verified.';
-    return 'Now ORMA Verified: checked against ' + count + ' official source' + (count === 1 ? '' : 's') + '.';
+    if(!count) return tx('Now ORMA Verified.');
+    return count === 1
+      ? tx('Now ORMA Verified: checked against 1 official source.')
+      : tx('Now ORMA Verified: checked against {count} official sources.', { count: count });
   }
 
   // → [{id, icon, alert, group:'today'|'earlier', timeLabel, title, body, href}]
@@ -70,6 +86,7 @@
     var siteNotices = Array.isArray(opts.siteNotices) ? opts.siteNotices : [];
     var now = opts.now || 0;
     var items = [];
+    var HAZARD_LABEL = hazardLabels();
     var nameOf = function(trailId){
       var t = trails.find(function(x){ return x && x.id === trailId; });
       return t ? t.name : trailId;
@@ -85,12 +102,12 @@
         id: 'flag-' + flag.id,
         icon: 'warning', alert: true,
         group: fresh ? 'today' : 'earlier',
-        timeLabel: created != null ? relTime(created, now) : 'Reported',
-        title: (HAZARD_LABEL[flag.type] || HAZARD_LABEL.other) + ': ' + nameOf(flag.trailId),
+        timeLabel: created != null ? relTime(created, now) : tx('Reported'),
+        title: tx('{label}: {name}', { label: HAZARD_LABEL[flag.type] || HAZARD_LABEL.other, name: nameOf(flag.trailId) }),
         body: (flag.text ? String(flag.text).slice(0, 160) + ' ' : '')
           + (flag.confirmationSource === 'community' && flag.confirmations > 0
-            ? 'Confirmed by ' + flag.confirmations + ' walker' + (flag.confirmations === 1 ? '' : 's') + '.'
-            : 'Community report, conditions can change.'),
+            ? (flag.confirmations === 1 ? tx('Confirmed by 1 walker.') : tx('Confirmed by {count} walkers.', { count: flag.confirmations }))
+            : tx('Community report, conditions can change.')),
         href: 'trail.html?id=' + encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(flag.trailId) : (flag.trailId))),
       });
     });
@@ -104,7 +121,7 @@
         icon: notice.type === 'safety' ? 'warning' : 'new',
         alert: notice.type === 'safety',
         group: created != null && (now - created) < 864e5 ? 'today' : 'earlier',
-        timeLabel: created != null ? relTime(created, now) : 'New',
+        timeLabel: created != null ? relTime(created, now) : tx('New'),
         title: String(notice.title || ''),
         body: String(notice.body || ''),
         href: notice.href ? String(notice.href) : 'browse-trails.html',

@@ -1758,6 +1758,13 @@
     'page.trail.trails': '← Trails',
     'page.trail.loadingTrail': 'Loading trail',
     'page.trail.trailWeather': 'Trail weather',
+    'page.trail.directionsLink': 'Directions',
+    'page.trail.addedPhotos': 'Added photos',
+    'page.trail.addPhoto': 'Add a photo',
+    'page.planner.onMapToAddPoint': 'the map to add a point',
+    'page.planner.onDotToRemove': 'a dot to remove it',
+    'page.trail.shareLink': 'Share',
+    'page.trail.importantForDog': 'Important for your dog',
     'page.trail.hide': 'Hide <span aria-hidden="true">⌃</span>',
     'page.trail.weatherDataByOpenmeteo': 'Weather data by Open-Meteo',
     'page.trail.temperature': 'Temperature',
@@ -3581,6 +3588,13 @@
     'page.trail.trails': '← Sentieri',
     'page.trail.loadingTrail': 'Caricamento del sentiero',
     'page.trail.trailWeather': 'Meteo sul sentiero',
+    'page.trail.directionsLink': 'Indicazioni',
+    'page.trail.addedPhotos': 'Foto aggiunte',
+    'page.trail.addPhoto': 'Aggiungi una foto',
+    'page.planner.onMapToAddPoint': 'sulla mappa per aggiungere un punto',
+    'page.planner.onDotToRemove': 'su un punto per rimuoverlo',
+    'page.trail.shareLink': 'Condividi',
+    'page.trail.importantForDog': 'Importante per il tuo cane',
     'page.trail.hide': 'Nascondi <span aria-hidden="true">⌃</span>',
     'page.trail.weatherDataByOpenmeteo': 'Dati meteo di Open-Meteo',
     'page.trail.temperature': 'Temperatura',
@@ -3677,7 +3691,21 @@
   if (lang !== 'en' && lang !== 'it') {
     lang = (navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
   }
+  // A page written in one language (the Italian copies under /it/) says so, and
+  // its menus and footer follow it whatever the saved choice is.
+  const fixedLang = document.documentElement.getAttribute('data-orma-lang');
+  if (fixedLang === 'en' || fixedLang === 'it') lang = fixedLang;
   document.documentElement.lang = lang;
+
+  // Wording that scripts write on the page uses the English sentence as its own
+  // key (see phrase() below). Its Italian is a separate file, fetched only for
+  // Italian readers and written in now, while the page is still parsing, so it
+  // is in place before any script after this one renders.
+  if (lang === 'it' && !window.ORMA_PHRASES_IT && document.readyState === 'loading') {
+    const here = document.currentScript && document.currentScript.src;
+    const base = here ? here.replace(/[^/]*$/, '') : '';
+    document.write('<script src="' + base + 'i18n-phrases-it.js?v=1"><\/script>');
+  }
 
   // ---- Translation functions -------------------------------------------------
   function t(key, vars){
@@ -3686,12 +3714,33 @@
     return s;
   }
 
+  // Script-written wording: a script wraps its English in phrase('…', {vars})
+  // and the sentence itself is the key. One with no Italian entry yet (new, or
+  // reworded since it was translated) stays English rather than going blank.
+  function phrase(text, vars){
+    const table = lang === 'it' && window.ORMA_PHRASES_IT;
+    let s = (table && Object.prototype.hasOwnProperty.call(table, text) && table[text]) || text;
+    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+    return s;
+  }
+
+  // A trail's own text (description, tips, directions, hazards…) in Italian,
+  // from data/trail-text-it/<id>.js, keyed by the English sentence. The trail
+  // record itself stays English: search and the dog-match engine read it.
+  function trailText(text){
+    if (lang !== 'it' || typeof text !== 'string') return text;
+    const table = window.ORMA_TRAIL_TEXT_IT;
+    return (table && Object.prototype.hasOwnProperty.call(table, text) && table[text]) || text;
+  }
+
   // Curated trail content: prefer the Italian field when present.
   function trField(obj, field){
     if (!obj) return '';
     if (lang === 'it'){
       const it = obj[field + 'It'];
       if (it) return it;
+      const translated = trailText(obj[field]);
+      if (translated && translated !== obj[field]) return translated;
       // Imported OSM trails carry machine-templated English descriptions, // translate the known templates on the fly instead of storing 100+
       // hand translations in a generated data file.
       if (field === 'desc' && obj.curated === false) return translateImportedDesc(obj.desc || '');
@@ -3822,8 +3871,36 @@
     links.appendChild(wrap);
   }
 
+  // Guides, the safety library and the legal pages have Italian copies under
+  // /it/. Italian readers following a link to one get the copy. Links built
+  // later by scripts are caught when they are clicked.
+  const ITALIAN_COPY = /^\/((?:guides\/[\w-]+|safety-guide|privacy|terms)\.html)$/;
+  function italianCopyOf(anchor){
+    if (lang !== 'it' || !anchor || !anchor.href) return null;
+    let url;
+    try { url = new URL(anchor.href, location.href); } catch (e) { return null; }
+    if (url.origin !== location.origin) return null;
+    const match = ITALIAN_COPY.exec(url.pathname);
+    if (!match) return null;
+    url.pathname = '/it/' + match[1];
+    return url.href;
+  }
+  function routeToItalianCopies(){
+    if (lang !== 'it') return;
+    document.querySelectorAll('a[href]').forEach(anchor => {
+      const copy = italianCopyOf(anchor);
+      if (copy) anchor.href = copy;
+    });
+    document.addEventListener('click', event => {
+      const anchor = event.target && event.target.closest && event.target.closest('a[href]');
+      const copy = italianCopyOf(anchor);
+      if (copy) anchor.href = copy;
+    }, true);
+  }
+
   function init(){
     applyTranslations();
+    routeToItalianCopies();
     window.dispatchEvent(new CustomEvent('dolopaws-i18n-ready', { detail:{ lang } }));
     // 2026-07 design pass: no language toggle in the header. Language now
     // changes from Account settings (settings.html → Units & language);
@@ -3847,7 +3924,8 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 
-  window.DoloPawsI18n = { lang, t, trField, setLang };
+  window.DoloPawsI18n = { lang, t, phrase, trField, trailText, setLang };
   window.t = t;
   window.trField = trField;
+  window.trailText = trailText;
 })();

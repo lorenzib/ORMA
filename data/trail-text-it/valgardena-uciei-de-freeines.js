@@ -1,0 +1,13 @@
+// valgardena-uciei-de-freeines in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A gentle downhill walk from the top of the Col Raiser gondola through meadows and forest to Santa Cristina, along the Troi de Frëines and its bird-call art stations. The board lists 5.1 km and 560 m of descent.": "Una tranquilla camminata in discesa dalla stazione a monte della cabinovia Col Raiser tra prati e bosco fino a Santa Cristina, lungo il Troi de Frëines e le sue stazioni artistiche dedicate ai canti degli uccelli. La scheda ufficiale indica 5,1 km e 560 m di discesa.",
+  "Ride the Col Raiser gondola up from Santa Cristina (closed cabins; dogs on a lead and muzzled), then walk 5.1 km down to the valley station, about an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and bring water.": "Sali da Santa Cristina con la cabinovia Col Raiser (cabine chiuse; cani al guinzaglio e con museruola), poi scendi a piedi per 5,1 km fino alla stazione a valle, circa un'ora e mezza. Tieni il cane al guinzaglio lungo al massimo 1,5 m, porta la museruola al seguito e porta acqua.",
+  "Steady descent of 560 m: hard on older dogs’ joints": "Discesa costante di 560 m: pesante per le articolazioni dei cani anziani",
+  "Cattle may graze the alp near Col Raiser in summer": "In estate sull'alpe vicino al Col Raiser possono pascolare le mucche",
+  "Gravel tracks shared with mountain bikers": "Strade sterrate condivise con i ciclisti in mountain bike",
+  "Gravel tracks and forest paths": "Strade sterrate e sentieri nel bosco",
+  "Top station of the Col Raiser gondola, above Santa Cristina, the board’s start": "Stazione a monte della cabinovia Col Raiser, sopra Santa Cristina, partenza indicata dalla scheda ufficiale",
+  "A flowering alpine meadow on Col Raiser with a small group of spruces, the grey Odle and Stevia peaks and their pale scree slopes behind under a summer sky with white clouds": "Un prato alpino fiorito sul Col Raiser con un piccolo gruppo di abeti rossi, le cime grigie delle Odle e dello Stevia e i loro pallidi ghiaioni dietro sotto un cielo estivo con nuvole bianche",
+  "The walk starts at the top of the Col Raiser gondola from Santa Cristina, with closed cabins, and ends at its valley station. Dogs ride on a lead and muzzled.": "La camminata parte dalla stazione a monte della cabinovia Col Raiser da Santa Cristina, con cabine chiuse, e finisce alla sua stazione a valle. I cani viaggiano al guinzaglio e con museruola.",
+  "More than half runs through larch and spruce forest; the alp at the top is open.": "Più di metà corre nel bosco di larici e abeti rossi; l'alpe in cima è aperta."
+});

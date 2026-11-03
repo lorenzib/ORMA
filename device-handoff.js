@@ -7,6 +7,13 @@
   'use strict';
   if(window.ORMADeviceHandoff) return;
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const PUBLIC_ORIGIN='https://www.app-orma.com';
   let dialog=null;
   let returnFocus=null;
@@ -136,7 +143,7 @@
     const quiet=4;
     const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
     svg.setAttribute('viewBox',`0 0 ${size+quiet*2} ${size+quiet*2}`);
-    svg.setAttribute('role','img');svg.setAttribute('aria-label','QR code to open this action on your phone');svg.setAttribute('shape-rendering','crispEdges');
+    svg.setAttribute('role','img');svg.setAttribute('aria-label',tx('QR code to open this action on your phone'));svg.setAttribute('shape-rendering','crispEdges');
     const background=document.createElementNS(svg.namespaceURI,'rect');
     background.setAttribute('width','100%');background.setAttribute('height','100%');background.setAttribute('fill','#fff');svg.appendChild(background);
     const path=document.createElementNS(svg.namespaceURI,'path');let drawing='';
@@ -176,16 +183,16 @@
     dialog.hidden=true;
     dialog.innerHTML=`
       <section class="device-handoff__panel" role="dialog" aria-modal="true" aria-labelledby="deviceHandoffTitle" aria-describedby="deviceHandoffIntro">
-        <button class="device-handoff__close" type="button" aria-label="Close">×</button>
-        <p class="device-handoff__eyebrow">Best used outdoors</p>
-        <h2 id="deviceHandoffTitle">Continue on your phone</h2>
+        <button class="device-handoff__close" type="button" aria-label="${tx('Close')}">×</button>
+        <p class="device-handoff__eyebrow">${tx('Best used outdoors')}</p>
+        <h2 id="deviceHandoffTitle">${tx('Continue on your phone')}</h2>
         <p id="deviceHandoffIntro" class="device-handoff__intro"></p>
         <div class="device-handoff__body">
-          <div class="device-handoff__qr"><span class="device-handoff__qr-fallback" hidden>QR code unavailable. Copy the link instead.</span></div>
+          <div class="device-handoff__qr"><span class="device-handoff__qr-fallback" hidden>${tx('QR code unavailable. Copy the link instead.')}</span></div>
           <div>
-            <p class="device-handoff__instructions">Scan with your phone camera, or share the link with yourself by email.</p>
+            <p class="device-handoff__instructions">${tx('Scan with your phone camera, or share the link with yourself by email.')}</p>
             <span class="device-handoff__url"></span>
-            <div class="device-handoff__actions"><button class="device-handoff__copy" type="button">Copy link</button><a class="device-handoff__share" href="#">Share by email</a></div>
+            <div class="device-handoff__actions"><button class="device-handoff__copy" type="button">${tx('Copy link')}</button><a class="device-handoff__share" href="#">${tx('Share by email')}</a></div>
           </div>
         </div>
       </section>`;
@@ -205,7 +212,7 @@
   }
 
   function copyLink(url,button){
-    const copied=()=>{button.textContent='Link copied';window.setTimeout(()=>{button.textContent='Copy link';},1800);};
+    const copied=()=>{button.textContent=tx('Link copied');window.setTimeout(()=>{button.textContent=tx('Copy link');},1800);};
     if(navigator.clipboard&&navigator.clipboard.writeText){
       navigator.clipboard.writeText(url).then(copied).catch(()=>fallbackCopy(url,copied));
     }else fallbackCopy(url,copied);
@@ -223,14 +230,14 @@
     const target=mobileUrlFor(options&&options.url);
     const modal=ensureDialog();
     returnFocus=document.activeElement;
-    modal.querySelector('#deviceHandoffTitle').textContent=options&&options.title||'Continue on your phone';
-    modal.querySelector('#deviceHandoffIntro').textContent=options&&options.description||'This action needs your phone’s location while you are outdoors.';
+    modal.querySelector('#deviceHandoffTitle').textContent=options&&options.title||tx('Continue on your phone');
+    modal.querySelector('#deviceHandoffIntro').textContent=options&&options.description||tx('This action needs your phone’s location while you are outdoors.');
     modal.querySelector('.device-handoff__url').textContent=target;
     const shareLink=modal.querySelector('.device-handoff__share');
-    const shareTitle=options&&options.title||'Continue on your phone';
-    shareLink.href=`mailto:?subject=${encodeURIComponent(`ORMA | ${shareTitle}`)}&body=${encodeURIComponent(`Open this ORMA link on your phone:\n${target}`)}`;
+    const shareTitle=options&&options.title||tx('Continue on your phone');
+    shareLink.href=`mailto:?subject=${encodeURIComponent(`ORMA | ${shareTitle}`)}&body=${encodeURIComponent(tx('Open this ORMA link on your phone:\n{url}', { url:target }))}`;
     const copyButton=modal.querySelector('.device-handoff__copy');
-    copyButton.textContent='Copy link';
+    copyButton.textContent=tx('Copy link');
     copyButton.onclick=()=>copyLink(target,copyButton);
     const qr=modal.querySelector('.device-handoff__qr');
     const fallback=modal.querySelector('.device-handoff__qr-fallback');
@@ -253,15 +260,15 @@
     try{url=new URL(link.href,window.location.href);}catch(error){return;}
     if(!/(^|\/)walk\.html$/.test(url.pathname)) return;
     event.preventDefault();
-    open({title:'Record your walk on your phone',description:'Walk recording uses your phone’s GPS while you are outdoors.',url:url.href});
+    open({title:tx('Record your walk on your phone'),description:tx('Walk recording uses your phone’s GPS while you are outdoors.'),url:url.href});
   });
 
   window.ORMADeviceHandoff={isHandheld,shouldHandoff,mobileUrlFor,open,close};
 
   if(shouldHandoff()&&/(^|\/)walk\.html$/.test(window.location.pathname)){
     window.setTimeout(()=>open({
-      title:'Record your walk on your phone',
-      description:'Walk recording uses your phone’s GPS while you are outdoors.',
+      title:tx('Record your walk on your phone'),
+      description:tx('Walk recording uses your phone’s GPS while you are outdoors.'),
       url:window.location.href,
     }),0);
   }

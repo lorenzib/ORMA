@@ -1,0 +1,11 @@
+// osttirol-kulturweg-koednitz in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short heritage loop round Ködnitz, the old centre of Kals am Großglockner, past the Gothic church of St Rupert, its fortified cemetery wall and the Glockner memorial. The board lists 1.7 km and 34 m of ascent.": "Un breve anello storico intorno a Ködnitz, l'antico centro di Kals am Großglockner, oltre la chiesa gotica di St. Rupert, il muro fortificato del suo cimitero e il monumento al Glockner. La scheda ufficiale indica 1,7 km e 34 m di dislivello in salita.",
+  "Start at the village square in Kals-Ködnitz: 1.7 km and about 34 m of climbing, an hour. The whole loop is in the village, where Tyrolean law asks for a lead or a muzzle: keep your dog on a lead for the whole loop. Carry a muzzle for buses and lifts.": "Parti dalla piazza del paese di Kals-Ködnitz: 1,7 km e circa 34 m di dislivello in salita, un'ora. Tutto l'anello è in paese, dove la legge tirolese richiede guinzaglio o museruola: tieni il cane al guinzaglio per tutto l'anello. Porta la museruola al seguito per autobus e impianti.",
+  "About 260 m along the Kals road (L26), with traffic to the Großglockner valleys: keep your dog close on a short lead": "Circa 260 m lungo la strada di Kals (L26), con traffico verso le valli del Großglockner: tieni il cane vicino al guinzaglio corto",
+  "Village lanes with cars": "Stradine di paese con auto",
+  "Village lanes and pavements": "Stradine di paese e marciapiedi",
+  "Village square, Kals-Ködnitz, the board’s start": "Piazza del paese, Kals-Ködnitz, la partenza indicata dalla scheda ufficiale",
+  "A stone wall with a modern wooden gate beside a paved path and a green lawn, with larch and spruce trees behind, at the church of Kals-Ködnitz": "Un muro di pietra con un moderno cancello di legno accanto a un sentiero lastricato e un prato verde, con larici e abeti rossi alle spalle, presso la chiesa di Kals-Ködnitz",
+  "Almost all in the open village; a few trees by the cemetery.": "Quasi tutto in paese, allo scoperto; qualche albero vicino al cimitero."
+});
