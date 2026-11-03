@@ -1,0 +1,14 @@
+// osm-11860429 in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "An easy circuit of the old Ladin hamlets above La Val (Wengen): up to Cians, across the meadows to the Santa Barbara chapel, through Ciablun, Runch and Biei, and back down to the church. The official route lists 5.6 km and 267 m of ascent.": "Un facile giro delle antiche frazioni ladine sopra La Val (Wengen): su fino a Cians, attraverso i prati fino alla cappella di Santa Barbara, per Ciablun, Runch e Biei, e di nuovo giù alla chiesa. Il percorso ufficiale indica 5,6 km e 267 m di dislivello in salita.",
+  "An easy two-hour circuit of La Val’s old hamlets and the Santa Barbara chapel, starting at the church: 5.6 km and 267 m of climbing. There is little shade, so start early in summer, and fill up at the church fountain because there is no other water on the way. Keep your dog on a lead of up to 1.5 m and carry a muzzle, as Italian rules require.": "Un facile giro di due ore tra le antiche frazioni di La Val e la cappella di Santa Barbara, con partenza dalla chiesa: 5,6 km e 267 m di salita. C'è poca ombra, quindi d'estate parti presto, e fai il pieno alla fontana della chiesa perché lungo il percorso non c'è altra acqua. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito, come prevedono le norme italiane.",
+  "Asphalt village road with traffic at the start and finish": "Strada di paese asfaltata con traffico alla partenza e all'arrivo",
+  "About 400 m of narrow Cians access road shared with cars, each way": "Circa 400 m sulla stretta strada d'accesso a Cians, condivisa con le auto, sia all'andata sia al ritorno",
+  "Residential lanes through the hamlets": "Stradine residenziali attraverso le frazioni",
+  "Short flight of steps near the village": "Breve rampa di gradini vicino al paese",
+  "Gravel tracks": "Strade sterrate",
+  "Quiet lanes, farm tracks and a short meadow path": "Stradine tranquille, strade poderali e un breve sentiero tra i prati",
+  "La Val church, by the tourist office and bus stop": "Chiesa di La Val, vicino all'ufficio turistico e alla fermata dell'autobus",
+  "La Val village and its church seen from the meadows above, with wooded slopes and pale cliffs beyond, in early summer.": "Il paese di La Val e la sua chiesa visti dai prati sopra, con pendii boscosi e pareti chiare sullo sfondo, a inizio estate.",
+  "Almost entirely open meadow and hamlets at 1,350–1,620 m; little shade on a sunny afternoon.": "Quasi interamente prati aperti e frazioni tra 1.350 e 1.620 m; poca ombra in un pomeriggio di sole."
+});

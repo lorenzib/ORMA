@@ -1,6 +1,13 @@
 (function(root){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   function escapeHtml(value){
     return String(value == null ? '' : value).replace(/[&<>"']/g, character => ({
       '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;',
@@ -159,7 +166,7 @@
         : '';
       popup = new root.maplibregl.Popup({ offset:18, closeButton:true, maxWidth:'250px' })
         .setLngLat(coordinate)
-        .setHTML(`<div class="browse-map-popup"><strong>${escapeHtml(trail.name || 'Trail')}</strong>${metadata ? `<span>${escapeHtml(metadata)}</span>` : ''}${verdictLine}<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}">Open trail →</a></div>`)
+        .setHTML(`<div class="browse-map-popup"><strong>${escapeHtml(trail.name || tx('Trail'))}</strong>${metadata ? `<span>${escapeHtml(metadata)}</span>` : ''}${verdictLine}<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}">${tx('Open trail →')}</a></div>`)
         .addTo(map);
     }
 

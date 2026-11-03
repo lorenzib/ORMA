@@ -1,0 +1,11 @@
+// fiemme-pradi-da-le-fior in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short, gentle walk from Malga Sass above Valfloriana along the Prai de le Fior forest road, through larch woods and flowering meadows with wide views, and back the same way. The APT lists 3.1 km and 103 m of ascent.": "Una breve e tranquilla passeggiata da Malga Sass sopra Valfloriana lungo la strada forestale Prai de le Fior, tra lariceti e prati fioriti con ampi panorami, e ritorno per la stessa via. L'APT indica 3,1 km e 103 m di dislivello in salita.",
+  "Start at the Malga Sass car park above Valfloriana: 3.1 km there and back, about 100 m of climbing, under an hour. Valfloriana requires a lead of at most 1.5 m and bags to pick up after your dog. Cows may graze the meadows in summer. The Malga Sass farm restaurant is at the start.": "Parti dal parcheggio di Malga Sass sopra Valfloriana: 3,1 km andata e ritorno, circa 100 m di salita, meno di un'ora. Valfloriana richiede un guinzaglio di al massimo 1,5 m e sacchetti per raccogliere i bisogni del tuo cane. D'estate nei prati possono pascolare le mucche. L'agriturismo di Malga Sass è alla partenza.",
+  "A gravel forest road and a grassy path; the road may see the odd forestry vehicle": "Una strada forestale sterrata e un sentiero erboso; sulla strada può passare qualche mezzo forestale",
+  "Mountain meadows where cattle may graze in summer: keep your dog on the lead and close": "Prati di montagna dove d'estate può pascolare il bestiame: tieni il cane al guinzaglio e vicino a te",
+  "A gravel forest road and a grassy path": "Una strada forestale sterrata e un sentiero erboso",
+  "Malga Sass car park, Valfloriana, the APT’s start": "Parcheggio di Malga Sass, Valfloriana, partenza indicata dall'APT",
+  "Snow-streaked peaks of the Brenta Dolomites above blue valleys, with green larch woods and a single larch in the foreground under a clear summer sky": "Cime delle Dolomiti di Brenta striate di neve sopra valli azzurre, con lariceti verdi e un larice isolato in primo piano sotto un cielo estivo limpido",
+  "Mostly shaded: about 70% of the way runs through larch woods.": "Per lo più all'ombra: circa il 70% del percorso passa nei lariceti."
+});

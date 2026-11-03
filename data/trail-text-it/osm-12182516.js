@@ -1,0 +1,8 @@
+// osm-12182516 in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A 1.2 km route near Sarentino / Sarnthein, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.": "Un percorso di 1,2 km vicino a Sarentino / Sarnthein, importato dalla rete escursionistica di OpenStreetMap. Ha superato il controllo automatico di idoneità per i cani: non risultano vie ferrate, scale o tratti di difficoltà alpinistica (T3+).",
+  "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
+  "Partially mapped: paved (75%), grass (25%), from OSM surface data": "Mappatura parziale: asfalto (75%), erba (25%), dai dati sul fondo di OSM",
+  "Start here — Bus stop Astfeld, Kandelsberg - Campolasta, Campitello, 18 m from the route (OSM-verified access point)": "Parti da qui — Fermata dell'autobus Astfeld, Kandelsberg - Campolasta, Campitello, a 18 m dal percorso (punto di accesso verificato su OSM)",
+  "A weathered timber hay barn among birches on a grassy slope above the wooded Sarn valley.": "Un vecchio fienile di legno tra le betulle su un pendio erboso sopra la valle boscosa della Sarn."
+});

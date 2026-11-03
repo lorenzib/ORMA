@@ -1,0 +1,12 @@
+// osttirol-kinder-naturerlebnispfad-kals-ag in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A children’s nature trail at Kals am Großglockner from Großdorf along the Kalserbach past the old Stockmühlen water mills, with animal figures and nature boards. The board lists 4.36 km and 130 m of ascent.": "Un sentiero naturalistico per bambini a Kals am Großglockner da Großdorf lungo il Kalserbach, oltre gli antichi mulini ad acqua Stockmühlen, con figure di animali e pannelli sulla natura. La scheda ufficiale indica 4,36 km e 130 m di dislivello in salita.",
+  "Start at the Großdorf car park in Kals am Großglockner: 4.36 km and about 130 m of climbing, 2 h. The trail is built for children, with figures, boards and a playground, so keep your dog on a lead throughout. Carry a muzzle for buses and lifts.": "Parti dal parcheggio di Großdorf a Kals am Großglockner: 4,36 km e circa 130 m di dislivello in salita, 2 h. Il sentiero è pensato per i bambini, con figure, pannelli e un parco giochi, quindi tieni il cane al guinzaglio per tutto il percorso. Porta la museruola al seguito per autobus e impianti.",
+  "The Kalserbach runs fast beside the path and under the mills: keep your dog out of the water": "Il Kalserbach scorre veloce accanto al sentiero e sotto i mulini: tieni il cane fuori dall'acqua",
+  "Wooden bridges and narrow path by the Stockmühlen": "Ponti di legno e sentiero stretto presso gli Stockmühlen",
+  "A playground on the way: keep your dog on the path": "Un parco giochi lungo la via: tieni il cane sul sentiero",
+  "Earth and gravel paths and farm tracks along the Kalserbach, with wooden bridges": "Sentieri di terra e ghiaia e strade di campagna lungo il Kalserbach, con ponti di legno",
+  "the Großdorf car park in Kals am Großglockner, the board’s start": "Il parcheggio di Großdorf a Kals am Großglockner, la partenza indicata dalla scheda ufficiale",
+  "A small dark wooden water mill with a shingle roof and flowers at the window, beside a wooden walkway among larch trees, at Kals am Großglockner": "Un piccolo mulino ad acqua in legno scuro con tetto in scandole e fiori alla finestra, accanto a una passerella di legno tra i larici, a Kals am Großglockner",
+  "About half under larch and spruce along the Kalserbach; the meadows by Großdorf are open.": "Circa metà sotto larici e abeti rossi lungo il Kalserbach; i prati presso Großdorf sono aperti."
+});

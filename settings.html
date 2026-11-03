@@ -78,57 +78,57 @@
 <body>
 
 <div class="topnav">
-  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Account settings</span>
+  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page" data-i18n="mobile.settings">Account settings</span>
   <div class="links">
-    <a href="browse-trails.html">Trails</a>
-    <a href="collections.html">Collections</a>
-    <a href="safety-guide.html">Safety library</a>
-    <a href="journal.html">My walk journal</a>
+    <a href="browse-trails.html" data-i18n="account.nav.browse">Trails</a>
+    <a href="collections.html" data-i18n="account.nav.collections">Collections</a>
+    <a href="safety-guide.html" data-i18n="account.nav.safety">Safety library</a>
+    <a href="journal.html" data-i18n="account.nav.journal">My walk journal</a>
   </div>
 </div>
 
 <div class="st-wrap">
-  <a class="st-back" href="/">&larr; Back to trails</a>
+  <a class="st-back" href="/" data-i18n="page.settings.backToTrails">&larr; Back to trails</a>
 
   <div id="stLoggedOut" hidden style="text-align:center;padding:40px 20px;">
-    <p style="font-size:15px;color:var(--ink-soft);margin-bottom:16px;">Log in to manage your account settings.</p>
-    <a href="/?view=login&amp;next=settings.html" class="auth-submit" style="display:inline-block;width:auto;padding:11px 24px;text-decoration:none;">Log in</a>
+    <p style="font-size:15px;color:var(--ink-soft);margin-bottom:16px;" data-i18n="page.settings.logInToManageYour">Log in to manage your account settings.</p>
+    <a href="/?view=login&amp;next=settings.html" class="auth-submit" style="display:inline-block;width:auto;padding:11px 24px;text-decoration:none;" data-i18n="nav.login">Log in</a>
   </div>
 
   <div id="stLoggedIn" hidden>
-    <h1>Account settings</h1>
-    <p class="st-intro">Your account, your dogs and what we send you. Everything that changes how trails are <em>scored</em> lives on the dog profile instead.</p>
+    <h1 data-i18n="mobile.settings">Account settings</h1>
+    <p class="st-intro" data-i18n="page.settings.yourAccountYourDogsAnd">Your account, your dogs and what we send you. Everything that changes how trails are <em>scored</em> lives on the dog profile instead.</p>
 
     <div class="st-cols">
-      <nav class="st-side" id="stToc" aria-label="Settings sections">
-        <a href="#stAccount" data-sec="stAccount" class="on">Account details</a>
-        <a href="#stDogs" data-sec="stDogs">Dog details</a>
-        <a href="#stNotifs" data-sec="stNotifs">Notifications</a>
-        <a href="#stUnits" data-sec="stUnits">Units &amp; language</a>
-        <a href="#stPrivacy" data-sec="stPrivacy">Privacy &amp; data</a>
+      <nav class="st-side" id="stToc" aria-label="Settings sections" data-i18n-aria-label="page.account.settingsSections">
+        <a href="#stAccount" data-sec="stAccount" class="on" data-i18n="account.settings.details">Account details</a>
+        <a href="#stDogs" data-sec="stDogs" data-i18n="page.settings.dogDetails">Dog details</a>
+        <a href="#stNotifs" data-sec="stNotifs" data-i18n="mobile.notifications">Notifications</a>
+        <a href="#stUnits" data-sec="stUnits" data-i18n="page.settings.unitsLanguage">Units &amp; language</a>
+        <a href="#stPrivacy" data-sec="stPrivacy" data-i18n="page.settings.privacyData">Privacy &amp; data</a>
       </nav>
 
       <div class="st-main">
 
         <!-- ACCOUNT DETAILS -->
         <section class="st-card" id="stAccount">
-          <h2>Account details</h2>
+          <h2 data-i18n="account.settings.details">Account details</h2>
           <div class="st-field">
-            <label class="st-lbl" for="stName">Name</label>
-            <input class="st-fld" id="stName" autocomplete="name" placeholder="Your name">
+            <label class="st-lbl" for="stName" data-i18n="account.profile.name">Name</label>
+            <input class="st-fld" id="stName" autocomplete="name" placeholder="Your name" data-i18n-ph="account.human.yourName">
             <p class="st-hint" id="stNameHint" hidden></p>
           </div>
           <div class="st-field">
-            <label class="st-lbl" for="stEmail">Email</label>
+            <label class="st-lbl" for="stEmail" data-i18n="auth.email">Email</label>
             <div style="display:flex;gap:10px;">
               <input class="st-fld" type="email" id="stEmail" autocomplete="email">
-              <button type="button" class="st-btn" id="stEmailBtn" disabled>Update</button>
+              <button type="button" class="st-btn" id="stEmailBtn" disabled data-i18n="account.update">Update</button>
             </div>
-            <p class="st-hint" id="stEmailHint">Used for the login link and nothing else.</p>
+            <p class="st-hint" id="stEmailHint" data-i18n="page.settings.usedForTheLoginLink">Used for the login link and nothing else.</p>
           </div>
           <div class="st-divider-row">
-            <span id="stProviderLine">Checking how you sign in…</span>
-            <button type="button" class="st-btn" id="stPasswordBtn">Set a password</button>
+            <span id="stProviderLine" data-i18n="page.settings.checkingHowYouSignIn">Checking how you sign in…</span>
+            <button type="button" class="st-btn" id="stPasswordBtn" data-i18n="page.settings.setAPassword">Set a password</button>
           </div>
           <p class="st-status" id="stPasswordStatus" hidden></p>
         </section>
@@ -136,42 +136,42 @@
         <!-- YOUR DOGS -->
         <section class="st-card" id="stDogs">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;flex-wrap:wrap;">
-            <h2 style="margin-bottom:0;">Your dogs</h2>
+            <h2 style="margin-bottom:0;" data-i18n="page.settings.yourDogs">Your dogs</h2>
             <div style="display:flex;gap:8px;align-items:center;">
-              <button type="button" id="stSwitchDog" style="display:inline-flex;align-items:center;border:none;background:none;font:700 12.5px 'Inter',sans-serif;color:var(--accent);padding:0 4px;cursor:pointer;">Switch dog</button>
-              <a class="st-btn" href="account.html?mode=add&amp;next=settings.html">+ Add a dog</a>
+              <button type="button" id="stSwitchDog" style="display:inline-flex;align-items:center;border:none;background:none;font:700 12.5px 'Inter',sans-serif;color:var(--accent);padding:0 4px;cursor:pointer;" data-i18n="mobile.switchDog">Switch dog</button>
+              <a class="st-btn" href="account.html?mode=add&amp;next=settings.html" data-i18n="page.settings.addADog">+ Add a dog</a>
             </div>
           </div>
-          <p class="blurb">Every trail is scored for the dog you have selected. Switching dogs re-ranks the whole list.</p>
+          <p class="blurb" data-i18n="page.settings.everyTrailIsScoredFor">Every trail is scored for the dog you have selected. Switching dogs re-ranks the whole list.</p>
           <div id="stDogList"></div>
           <p class="st-status" id="stDogStatus" role="status" aria-live="polite" hidden></p>
         </section>
 
         <!-- NOTIFICATIONS -->
         <section class="st-card" id="stNotifs">
-          <h2 style="margin-bottom:6px;">Notifications</h2>
-          <p class="blurb">Safety alerts for trails you have saved cannot be switched off.</p>
+          <h2 style="margin-bottom:6px;" data-i18n="mobile.notifications">Notifications</h2>
+          <p class="blurb" data-i18n="page.settings.safetyAlertsForTrailsYou">Safety alerts for trails you have saved cannot be switched off.</p>
           <div id="stNotifList"></div>
         </section>
 
         <!-- UNITS & LANGUAGE -->
         <section class="st-card" id="stUnits">
-          <h2>Units &amp; language</h2>
+          <h2 data-i18n="page.settings.unitsLanguage">Units &amp; language</h2>
           <div class="st-pair">
             <div>
-              <label class="st-lbl" for="stDistance">Distance</label>
+              <label class="st-lbl" for="stDistance" data-i18n="browse.filters.distance">Distance</label>
               <select class="st-fld" id="stDistance"><option value="km">Kilometres</option><option value="mi">Miles</option></select>
             </div>
             <div>
-              <label class="st-lbl" for="stTemp">Temperature</label>
+              <label class="st-lbl" for="stTemp" data-i18n="page.settings.temperature">Temperature</label>
               <select class="st-fld" id="stTemp"><option value="c">Celsius</option><option value="f">Fahrenheit</option></select>
             </div>
             <div>
-              <label class="st-lbl" for="stLang">Language</label>
+              <label class="st-lbl" for="stLang" data-i18n="account.settings.language">Language</label>
               <select class="st-fld" id="stLang"><option value="en">English</option><option value="it">Italiano</option></select>
             </div>
             <div>
-              <label class="st-lbl" for="stRegion">Home region</label>
+              <label class="st-lbl" for="stRegion" data-i18n="page.settings.homeRegion">Home region</label>
               <select class="st-fld" id="stRegion"><option value="dolomites">Dolomites, Italy</option><option value="savoy">Savoy, France</option><option value="none">No home region</option></select>
             </div>
           </div>
@@ -179,21 +179,21 @@
 
         <!-- PRIVACY & DATA -->
         <section class="st-card" id="stPrivacy">
-          <h2 style="margin-bottom:6px;">Privacy &amp; data</h2>
-          <p class="blurb">We never sell walking data and never show another owner where you walked.</p>
+          <h2 style="margin-bottom:6px;" data-i18n="page.settings.privacyData">Privacy &amp; data</h2>
+          <p class="blurb" data-i18n="page.settings.weNeverSellWalkingData">We never sell walking data and never show another owner where you walked.</p>
           <div id="stPrivacyList"></div>
           <div class="st-divider-row" style="justify-content:flex-start;gap:10px;">
-            <button type="button" class="st-btn" id="stDownloadBtn">Download my data</button>
-            <button type="button" class="st-btn st-btn-ghost" id="stLogoutBtn">Log out</button>
+            <button type="button" class="st-btn" id="stDownloadBtn" data-i18n="page.settings.downloadMyData">Download my data</button>
+            <button type="button" class="st-btn st-btn-ghost" id="stLogoutBtn" data-i18n="mobile.logout">Log out</button>
           </div>
           <p class="st-status" id="stDataStatus" hidden></p>
         </section>
 
         <!-- DELETE (destructive zone, last) -->
         <section class="st-card st-danger" id="stDelete">
-          <h2>Delete your account</h2>
-          <p>This removes your dogs, saved trails and walk journal for good. Hazard reports you have filed stay up, without your name, because other owners rely on them.</p>
-          <a class="st-danger-btn" style="display:inline-block;text-decoration:none;" href="account.html?next=settings.html#cancel">Delete account</a>
+          <h2 data-i18n="page.settings.deleteYourAccount">Delete your account</h2>
+          <p data-i18n="page.settings.thisRemovesYourDogsSaved">This removes your dogs, saved trails and walk journal for good. Hazard reports you have filed stay up, without your name, because other owners rely on them.</p>
+          <a class="st-danger-btn" style="display:inline-block;text-decoration:none;" href="account.html?next=settings.html#cancel" data-i18n="page.settings.deleteAccount">Delete account</a>
         </section>
 
       </div>
@@ -274,6 +274,12 @@
 // keys, so flipping them here or on the profile page stays in sync.
 document.addEventListener('DOMContentLoaded', function(){
   var $ = function(id){ return document.getElementById(id); };
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
 
   // ---------- Section sidebar: scroll-jump + active highlight ----------
   var tocLinks = Array.prototype.slice.call(document.querySelectorAll('#stToc a[data-sec]'));
@@ -329,21 +335,21 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   var notifPrefs = loadPrefs(NOTIF_KEY, { hazards:true, weather:true, recs:true, community:false, news:false });
   var notifList = $('stNotifList');
-  switchRow(notifList, { label:'Hazard reports on saved trails', sub:'Always on. This is a safety message.', on:true, disabled:true });
-  switchRow(notifList, { label:'Heat warnings', sub:'When paw comfort drops into caution for a saved trail.', on:notifPrefs.weather,
+  switchRow(notifList, { label:tx('Hazard reports on saved trails'), sub:tx('Always on. This is a safety message.'), on:true, disabled:true });
+  switchRow(notifList, { label:tx('Heat warnings'), sub:tx('When paw comfort drops into caution for a saved trail.'), on:notifPrefs.weather,
     onChange:function(on){ notifPrefs.weather = on; savePrefs(NOTIF_KEY, notifPrefs); } });
-  switchRow(notifList, { label:'New trails in your valleys', sub:'At most one message a week.', on:notifPrefs.recs,
+  switchRow(notifList, { label:tx('New trails in your valleys'), sub:tx('At most one message a week.'), on:notifPrefs.recs,
     onChange:function(on){ notifPrefs.recs = on; savePrefs(NOTIF_KEY, notifPrefs); } });
-  switchRow(notifList, { label:'Replies to your hazard reports', on:notifPrefs.community,
+  switchRow(notifList, { label:tx('Replies to your hazard reports'), on:notifPrefs.community,
     onChange:function(on){ notifPrefs.community = on; savePrefs(NOTIF_KEY, notifPrefs); } });
 
   // ---------- Privacy ----------
   var PRIVACY_KEY = 'dolopaws-privacy-prefs';
   var privacyPrefs = loadPrefs(PRIVACY_KEY, { showName:false, shareConditions:true });
   var privacyList = $('stPrivacyList');
-  switchRow(privacyList, { label:'Show my name on hazard reports', sub:'Off means reports appear as “an owner”.', on:privacyPrefs.showName,
+  switchRow(privacyList, { label:tx('Show my name on hazard reports'), sub:tx('Off means reports appear as “an owner”.'), on:privacyPrefs.showName,
     onChange:function(on){ privacyPrefs.showName = on; savePrefs(PRIVACY_KEY, privacyPrefs); } });
-  switchRow(privacyList, { label:'Contribute anonymised trail conditions', sub:'Helps other owners see what a route is really like.', on:privacyPrefs.shareConditions,
+  switchRow(privacyList, { label:tx('Contribute anonymised trail conditions'), sub:tx('Helps other owners see what a route is really like.'), on:privacyPrefs.shareConditions,
     onChange:function(on){ privacyPrefs.shareConditions = on; savePrefs(PRIVACY_KEY, privacyPrefs); } });
   // ---------- Units & language ----------
   var UNITS_KEY = 'dolopaws-units-prefs';
@@ -373,12 +379,12 @@ document.addEventListener('DOMContentLoaded', function(){
   $('stEmail').addEventListener('input', refreshEmailBtn);
   $('stEmailBtn').addEventListener('click', function(){
     if(!window.DoloPawsAuth) return;
-    $('stEmailBtn').textContent = 'Sending…';
+    $('stEmailBtn').textContent = tx('Sending…');
     window.DoloPawsAuth.updateEmail($('stEmail').value.trim()).then(function(result){
-      $('stEmailBtn').textContent = 'Update';
+      $('stEmailBtn').textContent = tx('Update');
       $('stEmailHint').style.color = result.ok ? '#2C5C34' : '#9C3A25';
       $('stEmailHint').textContent = result.ok
-        ? 'Confirmation link sent to the new address, click it to finish the change.'
+        ? tx('Confirmation link sent to the new address, click it to finish the change.')
         : result.message;
     });
   });
@@ -390,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function(){
       status.hidden = false;
       status.style.color = result.ok ? '#2C5C34' : '#9C3A25';
       status.textContent = result.ok
-        ? 'Link sent to ' + user.email + ', open it to set your password.'
+        ? tx('Link sent to {email}, open it to set your password.', { email: user.email })
         : result.message;
     });
   });
@@ -418,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var status = $('stDataStatus');
       status.hidden = false;
       status.style.color = '#2C5C34';
-      status.textContent = 'Saved as dolopaws-data.json.';
+      status.textContent = tx('Saved as {file}.', { file: 'dolopaws-data.json' });
     };
     if(user && window.DoloPawsAuth.getDogProfile){
       window.DoloPawsAuth.getDogProfile().then(function(p){ bundle.dogProfile = p || null; finish(); }).catch(finish);
@@ -430,10 +436,13 @@ document.addEventListener('DOMContentLoaded', function(){
     if(p.breed) parts.push(p.breed);
     if(p.dob){
       var years = Math.floor((Date.now() - new Date(p.dob).getTime()) / 31557600000);
-      if(years >= 0) parts.push(years + (years === 1 ? ' year' : ' years'));
+      if(years >= 0) parts.push(years === 1 ? tx('1 year') : tx('{n} years', { n: years }));
     }
     if(p.weight) parts.push(p.weight + ' kg');
-    if(p.fitness) parts.push(p.fitness + ' fitness');
+    if(p.fitness){
+      var fitnessLabels = { low: tx('low fitness'), moderate: tx('moderate fitness'), high: tx('high fitness') };
+      parts.push(fitnessLabels[p.fitness] || tx('{level} fitness', { level: p.fitness }));
+    }
     return parts.join(' · ');
   }
 
@@ -460,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var hint = $('stNameHint');
       hint.hidden = false;
       hint.style.color = ok ? '#2C5C34' : '#9C3A25';
-      hint.textContent = ok ? 'Saved.' : "Couldn't save just now, try again.";
+      hint.textContent = ok ? tx('Saved.') : tx('Couldn\'t save just now, try again.');
       if(ok) savedName = next;
     });
   }
@@ -499,7 +508,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!dogs.length){
       var empty = document.createElement('p');
       empty.className = 'blurb';
-      empty.textContent = 'No dog profile yet, add your dog to start scoring trails.';
+      empty.textContent = tx('No dog profile yet, add your dog to start scoring trails.');
       list.appendChild(empty);
       return;
     }
@@ -515,42 +524,42 @@ document.addEventListener('DOMContentLoaded', function(){
         '<span class="st-dog-avatar"' + (photo ? ' style="background-image:url(' + photo + ')"' : '') + '>' + (photo ? '' : '<i style="font-style:normal;"></i>') + '</span>' +
         '<div class="st-dog-copy"><div class="st-dog-name"></div><div class="st-dog-meta"></div></div>' +
         (selected
-          ? '<span class="st-selected">Selected</span>'
-          : '<button type="button" class="st-btn st-dog-select">Use this dog</button>') +
-        '<a class="st-dog-edit" style="font:700 12.5px Inter,sans-serif;">Edit profile &rarr;</a>';
-      var name = p.name || 'Your dog';
+          ? '<span class="st-selected">' + tx('Selected') + '</span>'
+          : '<button type="button" class="st-btn st-dog-select">' + tx('Use this dog') + '</button>') +
+        '<a class="st-dog-edit" style="font:700 12.5px Inter,sans-serif;">' + tx('Edit profile') + ' &rarr;</a>';
+      var name = p.name || tx('Your dog');
       row.querySelector('.st-dog-name').textContent = name;
-      row.querySelector('.st-dog-meta').textContent = dogMeta(p) || 'Profile details on the dog page';
+      row.querySelector('.st-dog-meta').textContent = dogMeta(p) || tx('Profile details on the dog page');
       if(!photo) row.querySelector('.st-dog-avatar i').textContent = name.charAt(0).toUpperCase();
       row.querySelector('.st-dog-edit').href = 'account.html?dog=' + encodeURIComponent(p.id) + '&next=settings.html';
       var choose = row.querySelector('.st-dog-select');
       if(choose){
-        choose.setAttribute('aria-label', 'Use ' + name + ' for trail scoring');
+        choose.setAttribute('aria-label', tx('Use {name} for trail scoring', { name: name }));
         choose.addEventListener('click', function(){
           if(!window.DoloPawsAuth || !window.DoloPawsAuth.selectDogProfile) return;
           choose.disabled = true;
-          choose.textContent = 'Switching…';
+          choose.textContent = tx('Switching…');
           var status = $('stDogStatus');
           status.hidden = false;
           status.style.color = 'var(--ink-soft)';
-          status.textContent = 'Switching to ' + name + '…';
+          status.textContent = tx('Switching to {name}…', { name: name });
           window.DoloPawsAuth.selectDogProfile(p.id).then(function(ok){
             if(ok){
               dogProfilesState.activeDogId = p.id;
               renderDogs(dogProfilesState);
               status.style.color = '#2C5C34';
-              status.textContent = name + ' is now selected. Trail matches will use this profile.';
+              status.textContent = tx('{name} is now selected. Trail matches will use this profile.', { name: name });
             } else {
               choose.disabled = false;
-              choose.textContent = 'Use this dog';
+              choose.textContent = tx('Use this dog');
               status.style.color = '#9C3A25';
-              status.textContent = "Couldn't switch dogs just now, try again.";
+              status.textContent = tx('Couldn\'t switch dogs just now, try again.');
             }
           }).catch(function(){
             choose.disabled = false;
-            choose.textContent = 'Use this dog';
+            choose.textContent = tx('Use this dog');
             status.style.color = '#9C3A25';
-            status.textContent = "Couldn't switch dogs just now, try again.";
+            status.textContent = tx('Couldn\'t switch dogs just now, try again.');
           });
         });
       }
@@ -564,15 +573,15 @@ document.addEventListener('DOMContentLoaded', function(){
     if(isGoogle){
       // Same policy as the profile page: Google manages the login email,
       // and there is no password to reset.
-      $('stProviderLine').textContent = 'Signed in with Google · password not set';
+      $('stProviderLine').textContent = tx('Signed in with Google · password not set');
       $('stPasswordBtn').hidden = true;
       $('stEmail').readOnly = true;
       $('stEmailBtn').hidden = true;
-      $('stEmailHint').textContent = 'You sign in with Google, so your login email is managed by your Google account.';
+      $('stEmailHint').textContent = tx('You sign in with Google, so your login email is managed by your Google account.');
     } else {
-      $('stProviderLine').textContent = 'Signed in with email and password';
+      $('stProviderLine').textContent = tx('Signed in with email and password');
       $('stPasswordBtn').hidden = false;
-      $('stPasswordBtn').textContent = 'Send password reset link';
+      $('stPasswordBtn').textContent = tx('Send password reset link');
       $('stEmail').readOnly = false;
       $('stEmailBtn').hidden = false;
     }

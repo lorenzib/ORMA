@@ -1,0 +1,11 @@
+// osttirol-rundwanderung-schloss-weissenstein in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short loop from the centre of Matrei in Osttirol to the park below Schloss Weißenstein, with animal sculptures and nature boards along the way. The board lists 3.2 km and 88 m of ascent.": "Un breve anello dal centro di Matrei in Osttirol al parco sotto lo Schloss Weißenstein, con sculture di animali e pannelli sulla natura lungo la via. La scheda ufficiale indica 3,2 km e 88 m di dislivello in salita.",
+  "Start at the Rauterplatz in the centre of Matrei: 3.21 km and about 88 m of climbing, an hour. Most of the loop is on village streets and the castle-park path, so keep your dog on a lead throughout. Carry a muzzle for buses and lifts.": "Parti dalla Rauterplatz nel centro di Matrei: 3,21 km e circa 88 m di dislivello in salita, un'ora. Gran parte dell'anello è su strade di paese e sul sentiero del parco del castello, quindi tieni il cane al guinzaglio per tutto il percorso. Porta la museruola al seguito per autobus e impianti.",
+  "About 80 m beside the Felbertauern road on the way back: keep your dog close on a short lead": "Circa 80 m accanto alla strada del Felbertauern al ritorno: tieni il cane vicino al guinzaglio corto",
+  "Village streets with traffic": "Strade di paese con traffico",
+  "Village streets and a wide gravel path through the castle park": "Strade di paese e un ampio sentiero sterrato nel parco del castello",
+  "Rauterplatz, the centre of Matrei in Osttirol, the board’s start": "Rauterplatz, il centro di Matrei in Osttirol, la partenza indicata dalla scheda ufficiale",
+  "A pale castle with a square tower on a wooded crag above a rock face, with green slopes and low cloud behind, in Matrei in Osttirol": "Un castello chiaro con una torre quadrata su uno sperone boscoso sopra una parete rocciosa, con pendii verdi e nuvole basse alle spalle, a Matrei in Osttirol",
+  "About half the loop is under trees, mostly in the castle park; the village streets are open.": "Circa metà dell'anello è sotto gli alberi, soprattutto nel parco del castello; le strade del paese sono aperte."
+});

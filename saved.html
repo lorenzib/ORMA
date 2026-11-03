@@ -18,7 +18,7 @@
 <body>
 
 <div class="topnav">
-  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Saved trails</span>
+  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page" data-i18n="mobile.savedTrails">Saved trails</span>
   <div class="links">
     <a href="browse-trails.html" class="active" data-i18n="saved.nav.browse">Trails</a>
     <a href="collections.html" data-i18n="saved.nav.collections">Collections</a>
@@ -65,11 +65,11 @@
 
   <section id="my-routes" style="margin-top:42px;padding-top:30px;border-top:1px solid var(--paper-line);">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-      <div><h2 style="margin:0;font:700 25px 'Bricolage Grotesque',sans-serif;">My routes</h2><p style="margin:6px 0 0;color:var(--ink-soft);font-size:13px;">Draft routes saved on this device. They are not ORMA-verified trails.</p></div>
-      <a href="route-planner.html" class="empty-state__action">Create a draft route</a>
+      <div><h2 style="margin:0;font:700 25px 'Bricolage Grotesque',sans-serif;" data-i18n="page.saved.myRoutes">My routes</h2><p style="margin:6px 0 0;color:var(--ink-soft);font-size:13px;" data-i18n="page.saved.draftRoutesSavedOnThis">Draft routes saved on this device. They are not ORMA-verified trails.</p></div>
+      <a href="route-planner.html" class="empty-state__action" data-i18n="page.saved.createADraftRoute">Create a draft route</a>
     </div>
     <div id="savedRouteList" style="display:grid;gap:12px;margin-top:18px;"></div>
-    <div id="savedRouteEmpty" style="margin-top:16px;padding:18px;border:1px dashed var(--paper-line);border-radius:14px;color:var(--ink-soft);font-size:13px;">No draft routes are saved on this device yet.</div>
+    <div id="savedRouteEmpty" style="margin-top:16px;padding:18px;border:1px dashed var(--paper-line);border-radius:14px;color:var(--ink-soft);font-size:13px;" data-i18n="page.saved.noDraftRoutesAreSaved">No draft routes are saved on this device yet.</div>
   </section>
 </div>
 
@@ -160,6 +160,12 @@
 // writes straight back to the account's favorites. Card explanations come
 // from the same canonical recommendation used on the homepage and detail page.
 document.addEventListener('DOMContentLoaded', function(){
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
   var listEl = document.getElementById('savedList');
   var emptyEl = document.getElementById('savedEmpty');
   var outEl = document.getElementById('savedLoggedOut');
@@ -186,8 +192,8 @@ document.addEventListener('DOMContentLoaded', function(){
       var date = new Date(record.updatedAt || record.createdAt);
       var dateLabel = Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString();
       return '<article style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px;border:1px solid var(--paper-line);border-radius:14px;background:var(--card);">' +
-        '<div><strong style="display:block;font-size:15px;">' + esc(record.name) + '</strong><span style="display:block;margin-top:5px;color:var(--ink-soft);font-size:12px;">' + esc(distance + (dateLabel ? ' · Saved ' + dateLabel : '')) + '</span></div>' +
-        '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;"><a href="route-planner.html?route=' + encodeURIComponent(record.id) + '" class="empty-state__action">Open</a><button type="button" data-remove-route="' + esc(record.id) + '" class="save save-btn">Delete</button></div></article>';
+        '<div><strong style="display:block;font-size:15px;">' + esc(record.name) + '</strong><span style="display:block;margin-top:5px;color:var(--ink-soft);font-size:12px;">' + esc(distance + (dateLabel ? ' · ' + tx('Saved {date}', { date: dateLabel }) : '')) + '</span></div>' +
+        '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;"><a href="route-planner.html?route=' + encodeURIComponent(record.id) + '" class="empty-state__action">' + tx('Open') + '</a><button type="button" data-remove-route="' + esc(record.id) + '" class="save save-btn">' + tx('Delete') + '</button></div></article>';
     }).join('');
     routeList.querySelectorAll('[data-remove-route]').forEach(function(button){
       button.addEventListener('click', function(){

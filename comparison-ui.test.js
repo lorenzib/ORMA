@@ -52,7 +52,7 @@ describe('Trail comparison journey', () => {
     expect(controller).toContain('&from=${encodeURIComponent(compareReturn)}');
     expect(controller).toContain('slugFor(entry.id)');
     expect(trail).toMatch(/browse-trails\|compare\|saved\|journal/);
-    expect(trail).toContain("returnTarget.startsWith('compare.html') ? '← Back to comparison'");
+    expect(trail).toContain("returnTarget.startsWith('compare.html') ? tx('Back to comparison')");
     expect(trailBlueprint).toContain("/^browse-trails\\.html(?:[?#]|$)/");
     expect(mobileNav).toContain("f === 'compare.html'");
   });

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valtellina-passo-di-campagneda",
+  "distanceKm": 5.3,
+  "ascentM": 615,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1933
+    },
+    {
+      "km": 0.4,
+      "elev": 2023
+    },
+    {
+      "km": 0.8,
+      "elev": 2085
+    },
+    {
+      "km": 1.2,
+      "elev": 2122
+    },
+    {
+      "km": 1.7,
+      "elev": 2178
+    },
+    {
+      "km": 2,
+      "elev": 2134
+    },
+    {
+      "km": 2.4,
+      "elev": 2180
+    },
+    {
+      "km": 2.8,
+      "elev": 2239
+    },
+    {
+      "km": 3.3,
+      "elev": 2294
+    },
+    {
+      "km": 3.6,
+      "elev": 2307
+    },
+    {
+      "km": 4.1,
+      "elev": 2353
+    },
+    {
+      "km": 4.5,
+      "elev": 2437
+    },
+    {
+      "km": 4.9,
+      "elev": 2487
+    },
+    {
+      "km": 5.3,
+      "elev": 2595
+    }
+  ]
+}

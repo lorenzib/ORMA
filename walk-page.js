@@ -1,6 +1,13 @@
 (function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return k in vars ? vars[k] : m; }) : text;
+  }
+
   // Record-anywhere walk page. The engine (walk-recorder.js) owns the
   // maths; this file owns geolocation, the map trace, the draft snapshot
   // and the hand-off into the journal.
@@ -59,7 +66,7 @@
   function setButtons(){
     var s = recorder.status;
     els.start.hidden = s !== 'idle' && s !== 'paused';
-    els.start.textContent = s === 'paused' ? 'Resume' : 'Start walk';
+    els.start.textContent = s === 'paused' ? tx('Resume') : tx('Start walk');
     els.pause.hidden = s !== 'recording';
     els.finish.hidden = s === 'idle';
     els.discard.hidden = s === 'idle';
@@ -202,7 +209,7 @@
       var feature = event.features && event.features[0];
       if(!feature) return;
       var properties = feature.properties || {};
-      var label = properties.name || properties.label || properties.amenity || properties.tourism || 'Map point';
+      var label = properties.name || properties.label || properties.amenity || properties.tourism || tx('Map point');
       new maplibregl.Popup({ offset:12 }).setLngLat(feature.geometry.coordinates).setText(String(label)).addTo(map);
     });
   }
@@ -281,7 +288,7 @@
     var layersButton = document.createElement('button');
     layersButton.type = 'button';
     layersButton.className = 'map-btn wr-layers-btn';
-    layersButton.textContent = 'Layers';
+    layersButton.textContent = tx('Layers');
     layersButton.setAttribute('aria-expanded', 'false');
     host.appendChild(layersButton);
 
@@ -305,9 +312,9 @@
       });
       panel.appendChild(chip);
     }
-    layerChip('Marked hiking routes', window.ORMAMapStyle.HIKING_LAYER_IDS, true);
+    layerChip(tx('Marked hiking routes'), window.ORMAMapStyle.HIKING_LAYER_IDS, true);
 
-    function lazyLayerChip(label, loader){
+    function lazyLayerChip(label, loader, loadingLabel, unavailableLabel){
       var on = false;
       var ids = [];
       var chip = document.createElement('button');
@@ -324,7 +331,7 @@
           return;
         }
         chip.disabled = true;
-        chip.textContent = 'Loading ' + label.toLowerCase() + '…';
+        chip.textContent = loadingLabel;
         loader().then(function(layerIds){
           ids = layerIds;
           on = true;
@@ -333,24 +340,24 @@
           chip.setAttribute('aria-pressed', 'true');
           chip.textContent = label;
         }).catch(function(){
-          chip.textContent = label + ' unavailable';
+          chip.textContent = unavailableLabel;
         }).finally(function(){ chip.disabled = false; });
       });
       panel.appendChild(chip);
     }
-    lazyLayerChip('Lifts', ensureLifts);
-    lazyLayerChip('Water', ensureWater);
-    lazyLayerChip('Huts', function(){ return ensureAmenities().then(function(){
+    lazyLayerChip(tx('Lifts'), ensureLifts, tx('Loading lifts…'), tx('Lifts unavailable'));
+    lazyLayerChip(tx('Water'), ensureWater, tx('Loading water…'), tx('Water unavailable'));
+    lazyLayerChip(tx('Huts'), function(){ return ensureAmenities().then(function(){
       return ['walk-huts-points','walk-huts-clusters','walk-huts-cluster-count'];
-    }); });
-    lazyLayerChip('Food', function(){ return ensureAmenities().then(function(){
+    }); }, tx('Loading huts…'), tx('Huts unavailable'));
+    lazyLayerChip(tx('Food'), function(){ return ensureAmenities().then(function(){
       return ['walk-food-points','walk-food-clusters','walk-food-cluster-count'];
-    }); });
-    layerChip('Relief shading', ['base-hillshade'], true);
+    }); }, tx('Loading food…'), tx('Food unavailable'));
+    layerChip(tx('Relief shading'), ['base-hillshade'], true);
 
     layersButton.addEventListener('click', function(){
       panel.hidden = !panel.hidden;
-      layersButton.textContent = panel.hidden ? 'Layers' : 'Close layers';
+      layersButton.textContent = panel.hidden ? tx('Layers') : tx('Close layers');
       layersButton.setAttribute('aria-expanded', String(!panel.hidden));
     });
 
@@ -373,9 +380,9 @@
     var styleSwitch = document.createElement('div');
     styleSwitch.className = 'td-layer-switch wr-style-switch';
     styleSwitch.setAttribute('role', 'group');
-    styleSwitch.setAttribute('aria-label', 'Map style');
-    styleSwitch.innerHTML = '<button type="button" class="on" data-wr-base="map" aria-pressed="true">Map</button>' +
-      '<button type="button" data-wr-base="satellite" aria-pressed="false">Satellite</button>' +
+    styleSwitch.setAttribute('aria-label', tx('Map style'));
+    styleSwitch.innerHTML = '<button type="button" class="on" data-wr-base="map" aria-pressed="true">' + tx('Map') + '</button>' +
+      '<button type="button" data-wr-base="satellite" aria-pressed="false">' + tx('Satellite') + '</button>' +
       '<button type="button" data-wr-3d aria-pressed="false">3D</button>';
     host.appendChild(styleSwitch);
     styleSwitch.addEventListener('click', function(event){
@@ -402,7 +409,7 @@
     var locateButton = document.createElement('button');
     locateButton.type = 'button';
     locateButton.className = 'wr-locate';
-    locateButton.setAttribute('aria-label', 'Centre map on my position');
+    locateButton.setAttribute('aria-label', tx('Centre map on my position'));
     locateButton.textContent = '◎';
     locateButton.addEventListener('click', function(){
       if(latestFix && map) map.easeTo({ center:[latestFix.lng, latestFix.lat], zoom:Math.max(map.getZoom(), 15), duration:500 });
@@ -429,17 +436,17 @@
   // ---- Geolocation ---------------------------------------------------
   function requestCurrentPosition(){
     if(!navigator.geolocation){
-      setGpsText('Location is not available in this browser');
+      setGpsText(tx('Location is not available in this browser'));
       initMap({ lat:46.54, lng:11.80 }, true);
       return;
     }
-    setGpsText('Finding your position…');
+    setGpsText(tx('Finding your position…'));
     navigator.geolocation.getCurrentPosition(function(pos){
       var fix = { lat:pos.coords.latitude, lng:pos.coords.longitude, accuracy:pos.coords.accuracy, timestamp:pos.timestamp };
-      setGpsText('GPS ±' + Math.round(pos.coords.accuracy) + ' m');
+      setGpsText(tx('GPS ±{accuracy} m', { accuracy: Math.round(pos.coords.accuracy) }));
       traceUpdate(fix);
     }, function(){
-      setGpsText('Location unavailable, tap ◎ after allowing access');
+      setGpsText(tx('Location unavailable, tap ◎ after allowing access'));
       initMap({ lat:46.54, lng:11.80 }, true);
     }, { enableHighAccuracy:true, maximumAge:5000, timeout:12000 });
   }
@@ -455,16 +462,16 @@
       if(result.gap){
         // The phone stopped reporting: a locked screen or another app. Say so,
         // because the stretch in between is missing from the walk.
-        setGpsText('Recording stopped while the phone was away. That stretch is missing from this walk.', true);
+        setGpsText(tx('Recording stopped while the phone was away. That stretch is missing from this walk.'), true);
       } else {
         setGpsText(result.accepted || result.reason === 'jitter'
-          ? 'GPS ±' + Math.round(pos.coords.accuracy) + ' m'
-          : 'GPS signal is weak, walk on, it will catch up');
+          ? tx('GPS ±{accuracy} m', { accuracy: Math.round(pos.coords.accuracy) })
+          : tx('GPS signal is weak, walk on, it will catch up'));
       }
       traceUpdate(fix);
       paint();
     }, function(){
-      setGpsText('Location unavailable, check permissions');
+      setGpsText(tx('Location unavailable, check permissions'));
     }, { enableHighAccuracy: true, maximumAge: 2000, timeout: 15000 });
   }
 
@@ -485,37 +492,37 @@
   }
 
   function locationErrorText(error){
-    if(error && error.code === 1) return 'Location access is off, allow it in your browser settings, then try again';
-    if(error && error.code === 3) return 'Could not find your location, move outdoors and try again';
-    return 'Location unavailable, check permissions and try again';
+    if(error && error.code === 1) return tx('Location access is off, allow it in your browser settings, then try again');
+    if(error && error.code === 3) return tx('Could not find your location, move outdoors and try again');
+    return tx('Location unavailable, check permissions and try again');
   }
 
   function startWithLocation(){
     if(startPending) return;
     if(!navigator.geolocation){
-      setGpsText('Location is required to record a walk');
+      setGpsText(tx('Location is required to record a walk'));
       return;
     }
     startPending = true;
     els.start.disabled = true;
-    els.start.textContent = 'Finding location…';
-    setGpsText('Finding your position before starting…');
+    els.start.textContent = tx('Finding location…');
+    setGpsText(tx('Finding your position before starting…'));
     navigator.geolocation.getCurrentPosition(function(pos){
       var fix = fixFromPosition(pos);
       if(!fix){
-        setGpsText('Location unavailable, try again');
+        setGpsText(tx('Location unavailable, try again'));
         resetStartButton();
         return;
       }
       if(fix.accuracy > MAX_START_ACCURACY_M){
-        setGpsText('GPS signal is too weak, move outdoors and try again');
+        setGpsText(tx('GPS signal is too weak, move outdoors and try again'));
         resetStartButton();
         return;
       }
       if(recorder.status === 'idle') recorder.start(Date.now());
       else recorder.resume(Date.now());
       recorder.addFix(fix);
-      setGpsText('GPS ±' + Math.round(fix.accuracy) + ' m');
+      setGpsText(tx('GPS ±{accuracy} m', { accuracy: Math.round(fix.accuracy) }));
       traceUpdate(fix);
       startWatch();
       if(!tickTimer) tickTimer = setInterval(paint, 1000);
@@ -553,7 +560,7 @@
     var snap = null;
     try { snap = JSON.parse(localStorage.getItem(draftKey()) || 'null'); } catch(e){}
     if(!snap || !Array.isArray(snap.points) || !snap.points.length) return;
-    if(!window.confirm('An unfinished walk was found. Continue it?')){ clearDraft(); return; }
+    if(!window.confirm(tx('An unfinished walk was found. Continue it?'))){ clearDraft(); return; }
     recorder.restore(snap, Date.now());
     var last = snap.points[snap.points.length - 1];
     if(last) initMap(last);
@@ -606,14 +613,14 @@
   });
 
   els.finish.addEventListener('click', function(){
-    if(recorder.distanceM < 50 && !window.confirm('Barely any distance was recorded. Save anyway?')) return;
+    if(recorder.distanceM < 50 && !window.confirm(tx('Barely any distance was recorded. Save anyway?'))) return;
     stopWatch();
     releaseWakeLock();
     saveToJournal();
   });
 
   els.discard.addEventListener('click', function(){
-    if(!window.confirm('Discard this walk? It will not be saved.')) return;
+    if(!window.confirm(tx('Discard this walk? It will not be saved.'))) return;
     stopWatch();
     releaseWakeLock();
     clearDraft();
@@ -640,7 +647,7 @@
     if(!memberUid) return false;
     els.gate.hidden = true;
     uid = memberUid;
-    if(summary && summary.name) els.dog.textContent = 'Walking with ' + summary.name;
+    if(summary && summary.name) els.dog.textContent = tx('Walking with {name}', { name: summary.name });
     if(bootedUid === memberUid) return true;
     bootedUid = memberUid;
     tryRestoreDraft();

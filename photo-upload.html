@@ -2,16 +2,16 @@
 <title>Add a trail photo | ORMA</title><link rel="stylesheet" href="styles.css?v=20260916-5">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head>
 <body class="flow-shell"><main id="uploadMain" class="flow-wrap flow-wrap--narrow">
-  <div class="flow-topline"><a id="uploadBack" class="flow-back" href="trail.html">← Back</a><span id="uploadTrail" class="flow-context">Alpe di Siusi Meadow Loop</span></div>
-  <h1>Add a photo</h1><p class="flow-lead">A recent, useful view so other owners can recognise the route and conditions. No people or vehicle plates, please. Your photo is checked before it appears publicly.</p>
-  <div class="upload-actions"><button id="takePhoto" class="flow-btn flow-btn--block">Take a photo</button><button id="choosePhoto" class="flow-btn flow-btn--quiet flow-btn--block">Choose from library</button></div>
+  <div class="flow-topline"><a id="uploadBack" class="flow-back" href="trail.html" data-i18n="account.back">← Back</a><span id="uploadTrail" class="flow-context" data-i18n="page.photoUpload.alpeDiSiusiMeadowLoop">Alpe di Siusi Meadow Loop</span></div>
+  <h1 data-i18n="journal.after.addPhoto">Add a photo</h1><p class="flow-lead" data-i18n="page.photoUpload.aRecentUsefulViewSo">A recent, useful view so other owners can recognise the route and conditions. No people or vehicle plates, please. Your photo is checked before it appears publicly.</p>
+  <div class="upload-actions"><button id="takePhoto" class="flow-btn flow-btn--block" data-i18n="page.photoUpload.takeAPhoto">Take a photo</button><button id="choosePhoto" class="flow-btn flow-btn--quiet flow-btn--block" data-i18n="page.photoUpload.chooseFromLibrary">Choose from library</button></div>
   <input id="photoInput" type="file" accept="image/*" multiple hidden>
-  <div id="photoEmpty" class="upload-empty"><span data-dp-icon="mountain" data-dp-icon-size="26"></span><p>No photos added yet</p></div><div id="photoGrid" class="photo-grid" hidden></div>
-  <label class="flow-field"><span>Caption <small>Optional</small></span><input id="photoCaption" placeholder="What's happening in this photo?"></label>
-  <button id="submitPhotos" class="flow-btn flow-btn--block" style="margin-top:18px" disabled>Submit</button>
+  <div id="photoEmpty" class="upload-empty"><span data-dp-icon="mountain" data-dp-icon-size="26"></span><p data-i18n="page.photoUpload.noPhotosAddedYet">No photos added yet</p></div><div id="photoGrid" class="photo-grid" hidden></div>
+  <label class="flow-field"><span data-i18n="page.photoUpload.captionOptional">Caption <small>Optional</small></span><input id="photoCaption" placeholder="What's happening in this photo?" data-i18n-ph="page.photoUpload.whatsHappeningInThisPhoto"></label>
+  <button id="submitPhotos" class="flow-btn flow-btn--block" style="margin-top:18px" disabled data-i18n="page.photoUpload.submit">Submit</button>
   <p id="photoSubmitStatus" class="hint" role="alert" hidden></p>
 </main>
-<section id="uploadSuccess" class="flow-success" hidden><div><div class="flow-success-icon">✓</div><h1>Thanks for sharing</h1><p id="uploadSuccessCopy"></p><a id="uploadDone" class="flow-btn flow-btn--block" href="trail.html">Back to trail</a></div></section>
+<section id="uploadSuccess" class="flow-success" hidden><div><div class="flow-success-icon">✓</div><h1 data-i18n="page.photoUpload.thanksForSharing">Thanks for sharing</h1><p id="uploadSuccessCopy"></p><a id="uploadDone" class="flow-btn flow-btn--block" href="trail.html" data-i18n="page.photoUpload.backToTrail">Back to trail</a></div></section>
 
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">
@@ -76,4 +76,5 @@
   </div>
 </footer>
 
+<script src="i18n.js?v=20261006-1"></script>
 <script src="mobile-nav.js?v=20261030-1"></script><script src="community-content-states.js?v=20260815-4"></script><script src="offline-contributions.js?v=20260815-4"></script><script type="module" src="firebase-init.js?v=20261030-1"></script><script src="icon-system.js"></script><script src="trail-photo-prep.js?v=20260815-4"></script><script src="photo-upload-page.js?v=20260815-4"></script></body></html>

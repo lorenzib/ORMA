@@ -5,6 +5,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const VERSION = '1.0.0';
   // Seven here, but only six of them can ever be reviewed through
   // `verified.categories`. VERIFICATION.md names those six -- water, heat,
@@ -106,7 +113,34 @@
 
   function tierLabel(tierOrTrail){
     const tier = typeof tierOrTrail === 'string' ? tierOrTrail : tierOf(tierOrTrail);
-    return TIER_LABELS[tier] || TIER_LABELS.imported;
+    switch(tier){
+      case 'mapped': return tx('Mapped route');
+      case 'route-audited': return tx('Verified by ORMA');
+      case 'field-verified': return tx('Verified and walked by ORMA');
+      default: return tx('Imported map data');
+    }
+  }
+
+  // The shown label of a source state or freshness state (SOURCE_LABELS,
+  // FRESHNESS_LABELS), in the reader's language.
+  function sourceLabel(state){
+    switch(state){
+      case 'mapped': return tx('Mapped data');
+      case 'source-listed': return tx('Source listed, not reviewed');
+      case 'source-reviewed': return tx('ORMA source-reviewed');
+      case 'field-checked': return tx('ORMA field-checked');
+      case 'unknown': return tx('Evidence unknown');
+      default: return SOURCE_LABELS[state];
+    }
+  }
+  function freshnessLabel(state){
+    switch(state){
+      case 'current': return tx('Current for its review window');
+      case 'aging': return tx('Review becoming old');
+      case 'stale': return tx('Review stale');
+      case 'unknown': return tx('Freshness unknown');
+      default: return FRESHNESS_LABELS[state];
+    }
   }
 
   function validDate(value){
@@ -117,9 +151,23 @@
 
   function dateText(value){
     const date = validDate(value);
-    if(!date) return 'date unknown';
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return `${date.getUTCDate()} ${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
+    if(!date) return tx('date unknown');
+    const d = date.getUTCDate();
+    const y = date.getUTCFullYear();
+    switch(date.getUTCMonth()){
+      case 0: return tx('{d} Jan {y}', { d, y });
+      case 1: return tx('{d} Feb {y}', { d, y });
+      case 2: return tx('{d} Mar {y}', { d, y });
+      case 3: return tx('{d} Apr {y}', { d, y });
+      case 4: return tx('{d} May {y}', { d, y });
+      case 5: return tx('{d} Jun {y}', { d, y });
+      case 6: return tx('{d} Jul {y}', { d, y });
+      case 7: return tx('{d} Aug {y}', { d, y });
+      case 8: return tx('{d} Sep {y}', { d, y });
+      case 9: return tx('{d} Oct {y}', { d, y });
+      case 10: return tx('{d} Nov {y}', { d, y });
+      default: return tx('{d} Dec {y}', { d, y });
+    }
   }
 
   function sourceRecords(trail, category){
@@ -201,9 +249,9 @@
     return {
       category,
       sourceState: source,
-      sourceLabel: SOURCE_LABELS[source],
+      sourceLabel: sourceLabel(source),
       freshnessState: freshness,
-      freshnessLabel: FRESHNESS_LABELS[freshness],
+      freshnessLabel: freshnessLabel(freshness),
       observedAt,
       observedLabel: dateText(observedAt),
     };

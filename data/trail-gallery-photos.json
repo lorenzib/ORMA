@@ -1,0 +1,455 @@
+{
+  "schemaVersion": 1,
+  "about": "Up to two openly licensed photographs per trail, shown in the Photos section before anyone has shared one. Each is committed under images/trails/, is not the trail's hero, and is credited with creator and licence where it is shown (scripts/trail-gallery-photos.js).",
+  "trails": [
+    {
+      "id": "cadini",
+      "photos": [
+        {
+          "image": "images/trails/cadini-gallery-drei-zinnen.jpg",
+          "alt": "The Tre Cime from the south, above scree and the path",
+          "title": "Drei Zinnen von Süden, 2012-07-04",
+          "creator": "2015 Michael 2015",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Drei_Zinnen_von_S%C3%BCden,_2012-07-04.jpg"
+        },
+        {
+          "image": "images/trails/cadini-gallery-rifugio-auronzo.jpg",
+          "alt": "Rifugio Auronzo with the Cadini di Misurina beyond, under a clear sky",
+          "title": "Rifugio Auronzo, 2320 m",
+          "creator": "2015 Michael 2015",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Rifugio_Auronzo,_2320_m.jpg"
+        }
+      ]
+    },
+    {
+      "id": "campiglio-monte-spinale-rifugio-graffer",
+      "photos": [
+        {
+          "image": "images/trails/campiglio-monte-spinale-rifugio-graffer-gallery-meadow-track.jpg",
+          "alt": "A track across the high meadows of Monte Spinale",
+          "title": "Campiglio-SW",
+          "creator": "Supakon Mohr",
+          "licence": "CC BY-SA 3.0 de",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Campiglio-SW.jpg"
+        }
+      ]
+    },
+    {
+      "id": "eggental-dal-passo-costalunga-al-lago-di-carezza",
+      "photos": [
+        {
+          "image": "images/trails/eggental-dal-passo-costalunga-al-lago-di-carezza-gallery-lake.jpg",
+          "alt": "Lake Carezza in green and blue, ringed by forest",
+          "title": "Lago di Carezza Italy - panoramio (5)",
+          "creator": "Hiroki Ogawa",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Carezza_Italy_-_panoramio_(5).jpg"
+        },
+        {
+          "image": "images/trails/eggental-dal-passo-costalunga-al-lago-di-carezza-gallery-forest.jpg",
+          "alt": "Lake Carezza and the forest under a summer sky",
+          "title": "Karersee - Welschnofen, Bozen, Italy - July 4, 2020 04",
+          "creator": "Giorgio Galeotti",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Karersee_-_Welschnofen,_Bozen,_Italy_-_July_4,_2020_04.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fvg-laghi-di-fusine",
+      "photos": [
+        {
+          "image": "images/trails/fvg-laghi-di-fusine-gallery-lower-lake.jpg",
+          "alt": "The lower Fusine lake with forested hills behind",
+          "title": "Lower Fusine Lake and Colrotondo 03",
+          "creator": "Ajznponar",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lower_Fusine_Lake_and_Colrotondo_03.jpg"
+        },
+        {
+          "image": "images/trails/fvg-laghi-di-fusine-gallery-mangart.jpg",
+          "alt": "The lower Fusine lake with Mangart beyond",
+          "title": "Laghi di Fusine - Lago Inferiore - Horizontal",
+          "creator": "Mauricio Fadel Argerich",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Laghi_di_Fusine_-_Lago_Inferiore_-_Horizontal.jpg"
+        }
+      ]
+    },
+    {
+      "id": "lario-il-sentiero-del-viandante",
+      "photos": [
+        {
+          "image": "images/trails/lario-il-sentiero-del-viandante-gallery-varenna.jpg",
+          "alt": "Varenna on its point, with Lake Como and the mountains behind",
+          "title": "Varenna - Peninsula",
+          "creator": "Xavier Caré / Wikimedia Commons",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Varenna_-_Peninsula.jpg"
+        },
+        {
+          "image": "images/trails/lario-il-sentiero-del-viandante-gallery-coast.jpg",
+          "alt": "The Varenna waterfront with boats and old houses",
+          "title": "Varenna - Coast view",
+          "creator": "Xavier Caré / Wikimedia Commons",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Varenna_-_Coast_view.jpg"
+        }
+      ]
+    },
+    {
+      "id": "nuvolau",
+      "photos": [
+        {
+          "image": "images/trails/nuvolau-gallery-ra-gusela.jpg",
+          "alt": "A path climbing grassy slopes towards the Ra Gusela peak at Passo Giau",
+          "title": "Ra Gusela 4",
+          "creator": "kallerna",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Ra_Gusela_4.jpg"
+        },
+        {
+          "image": "images/trails/nuvolau-gallery-cinque-torri.jpg",
+          "alt": "The Cinque Torri rising above a meadow, with mountains in the distance",
+          "title": "Cinque Torri 1",
+          "creator": "kallerna",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Cinque_Torri_1.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-16180587",
+      "photos": [
+        {
+          "image": "images/trails/osm-16180587-gallery-lac-vert.jpg",
+          "alt": "Lac Vert with forest and rock reflected in the water",
+          "title": "Lac Vert de Passy mai 2014 2",
+          "creator": "Abaddon1337",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lac_Vert_de_Passy_mai_2014_2.jpg"
+        },
+        {
+          "image": "images/trails/osm-16180587-gallery-south-shore.jpg",
+          "alt": "Lac Vert from the south-west shore, below the cliffs",
+          "title": "Lac Vert depuis la rive sud-ouest, Passy, 2026",
+          "creator": "Antimuonium",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lac_Vert_depuis_la_rive_sud-ouest,_Passy,_2026.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-21021130",
+      "photos": [
+        {
+          "image": "images/trails/osm-21021130-gallery-walkway.jpg",
+          "alt": "The lakeside walkway at Tignes, with benches and green slopes",
+          "title": "Tignes - walkway",
+          "creator": "Tiia Monto",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tignes_-_walkway.jpg"
+        },
+        {
+          "image": "images/trails/osm-21021130-gallery-val-claret.jpg",
+          "alt": "The lake at Val Claret with the mountains behind",
+          "title": "Val Claret 11",
+          "creator": "Tiia Monto",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Val_Claret_11.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-7426666",
+      "photos": [
+        {
+          "image": "images/trails/osm-7426666-gallery-orchards.jpg",
+          "alt": "The Waalweg path running between apple orchards above Schenna",
+          "title": "2011-04-06 16-47-20 Italy Trentino-Alto Adige Scena - Schenna",
+          "creator": "Simisa",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:2011-04-06_16-47-20_Italy_Trentino-Alto_Adige_Scena_-_Schenna.jpg"
+        },
+        {
+          "image": "images/trails/osm-7426666-gallery-passer.jpg",
+          "alt": "The Passer river below Schenna, with wooded banks and mountains",
+          "title": "Torrente Passirio - Scena, Bolzano, Italia - 2 Giugno 2023 02",
+          "creator": "Giorgio Galeotti",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Torrente_Passirio_-_Scena,_Bolzano,_Italia_-_2_Giugno_2023_02.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-7567918",
+      "photos": [
+        {
+          "image": "images/trails/osm-7567918-gallery-shore.jpg",
+          "alt": "Lake Anterselva below steep wooded slopes",
+          "title": "Seespiegelung am Antholzer See in Italien 23082018 002",
+          "creator": "PantheraLeo1359531",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Seespiegelung_am_Antholzer_See_in_Italien_23082018_002.jpg"
+        },
+        {
+          "image": "images/trails/osm-7567918-gallery-peaks.jpg",
+          "alt": "Peaks above the forest at the end of Lake Anterselva",
+          "title": "Seespiegelung am Antholzer See in Italien 23082018 005",
+          "creator": "PantheraLeo1359531",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Seespiegelung_am_Antholzer_See_in_Italien_23082018_005.jpg"
+        }
+      ]
+    },
+    {
+      "id": "santa-maddalena",
+      "photos": [
+        {
+          "image": "images/trails/santa-maddalena-gallery-autumn.jpg",
+          "alt": "St. Magdalena in autumn, with farms and coloured trees below the Odle peaks",
+          "title": "Santa Maddalena in Autumn",
+          "creator": "Eric Kilby",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Santa_Maddalena_in_Autumn.jpg"
+        },
+        {
+          "image": "images/trails/santa-maddalena-gallery-church.jpg",
+          "alt": "The church of St. Magdalena in green meadows below the Odle peaks",
+          "title": "Santa Maddelena Church and Mountains",
+          "creator": "Eric Kilby",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Santa_Maddelena_Church_and_Mountains.jpg"
+        }
+      ]
+    },
+    {
+      "id": "sassolungo",
+      "photos": [
+        {
+          "image": "images/trails/sassolungo-gallery-meadow.jpg",
+          "alt": "Sassolungo above the green meadows of Passo Sella",
+          "title": "SELLAJOCH - panoramio",
+          "creator": "johanvanbetsbrugge",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:SELLAJOCH_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/sassolungo-gallery-plattkofel-hut.jpg",
+          "alt": "The Plattkofel hut terrace, with the Sassopiatto rock face behind",
+          "title": "19-PlattkofelH-S",
+          "creator": "Supakon Mohr",
+          "licence": "CC BY-SA 3.0 de",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:19-PlattkofelH-S.jpg"
+        }
+      ]
+    },
+    {
+      "id": "seceda",
+      "photos": [
+        {
+          "image": "images/trails/seceda-gallery-cottage.jpg",
+          "alt": "A wooden hut on a green meadow below Seceda, with forest and peaks behind",
+          "title": "Cottage in the Mountains (Seceda, Italy) (Unsplash)",
+          "creator": "Jaromír Kavan",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Cottage_in_the_Mountains_(Seceda,_Italy)_(Unsplash).jpg"
+        },
+        {
+          "image": "images/trails/seceda-gallery-dusk.jpg",
+          "alt": "The Seceda ridge and the Dolomites under a pink dusk sky",
+          "title": "Seceda mountains at dusk (Unsplash)",
+          "creator": "Alessandro Sacchi",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Seceda_mountains_at_dusk_(Unsplash).jpg"
+        }
+      ]
+    },
+    {
+      "id": "sentiero-del-trenino",
+      "photos": [
+        {
+          "image": "images/trails/sentiero-del-trenino-gallery-ortisei.jpg",
+          "alt": "Ortisei from above, with its church and green slopes",
+          "title": "Ortisei paese 2",
+          "creator": "L3O",
+          "licence": "Public domain",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Ortisei_paese_2.jpg"
+        },
+        {
+          "image": "images/trails/sentiero-del-trenino-gallery-signpost.jpg",
+          "alt": "Trail signposts beside the old railway path at Roncadizza",
+          "title": "Roncadizza",
+          "creator": "Danysan1",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Roncadizza.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-cimabanche-prato-piazza",
+      "photos": [
+        {
+          "image": "images/trails/trecime-cimabanche-prato-piazza-gallery-plaetzwiese.jpg",
+          "alt": "A path across the open Plätzwiese, with the Dolomites beyond",
+          "title": "Pragser Dolomiten Plätzwiese-2017-09-21-16-25-30-HDR",
+          "creator": "Alexander Hoernigk",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Pragser_Dolomiten_Pl%C3%A4tzwiese-2017-09-21-16-25-30-HDR.jpg"
+        },
+        {
+          "image": "images/trails/trecime-cimabanche-prato-piazza-gallery-valley.jpg",
+          "alt": "The high valley from Prato Piazza, with forest and rocky peaks",
+          "title": "Highland valley landscape from Prato Piazza, Val Pusteria, Trentino-Alto Adige, Italy, 2025 October",
+          "creator": "Simo Räsänen",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Highland_valley_landscape_from_Prato_Piazza,_Val_Pusteria,_Trentino-Alto_Adige,_Italy,_2025_October.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-giro-delle-baite-lago-di-braies",
+      "photos": [
+        {
+          "image": "images/trails/trecime-giro-delle-baite-lago-di-braies-gallery-lake.jpg",
+          "alt": "Lago di Braies under a summer sky, with steep forest and rock",
+          "title": "Lake of Braies in 2024.06",
+          "creator": "CAPTAIN RAJU",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_of_Braies_in_2024.06.jpg"
+        },
+        {
+          "image": "images/trails/trecime-giro-delle-baite-lago-di-braies-gallery-shore-path.jpg",
+          "alt": "The lakeside path at Lago di Braies, with the cliffs beyond",
+          "title": "Lake of Braies in 2024.05",
+          "creator": "CAPTAIN RAJU",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lake_of_Braies_in_2024.05.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-lago-di-braies-malga-foresta",
+      "photos": [
+        {
+          "image": "images/trails/trecime-lago-di-braies-malga-foresta-gallery-lake.jpg",
+          "alt": "Lago di Braies with Croda del Becco above",
+          "title": "Lago di Braies South Tyrol 1",
+          "creator": "kallerna",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_1.jpg"
+        },
+        {
+          "image": "images/trails/trecime-lago-di-braies-malga-foresta-gallery-chapel.jpg",
+          "alt": "The wooden chapel on the shore of Lago di Braies",
+          "title": "Chapel Lake Braies 2",
+          "creator": "Einaz80",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Chapel_Lake_Braies_2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-escursione-nella-vallunga",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-escursione-nella-vallunga-gallery-valley-path.jpg",
+          "alt": "A gravel path through the Vallunga meadows, between forest and cliffs",
+          "title": "Italy 2016-07-20 (29173208786)",
+          "creator": "Guillaume Baviere",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Italy_2016-07-20_(29173208786).jpg"
+        },
+        {
+          "image": "images/trails/valgardena-escursione-nella-vallunga-gallery-cliffs.jpg",
+          "alt": "The rock walls of the Vallunga above its meadows",
+          "title": "Italy 2016-07-20 (29181823316)",
+          "creator": "Guillaume Baviere",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Italy_2016-07-20_(29181823316).jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-seceda-da-col-raiser",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-seceda-da-col-raiser-gallery-seceda-ridge.jpg",
+          "alt": "The grassy Seceda ridge dropping to its steep edge",
+          "title": "Val Gardena, Italy; July 2020 (01)",
+          "creator": "luca.sartoni",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Val_Gardena,_Italy;_July_2020_(01).jpg"
+        },
+        {
+          "image": "images/trails/valgardena-seceda-da-col-raiser-gallery-val-gardena.jpg",
+          "alt": "Val Gardena seen from the slopes below Seceda",
+          "title": "Val Gardena, Italy; July 2020 (02)",
+          "creator": "luca.sartoni",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Val_Gardena,_Italy;_July_2020_(02).jpg"
+        }
+      ]
+    },
+    {
+      "id": "weissensee-slow-trail",
+      "photos": [
+        {
+          "image": "images/trails/weissensee-slow-trail-gallery-east-shore.jpg",
+          "alt": "The calm east end of the Weissensee between wooded slopes",
+          "title": "Stockenboi - Weißensee - Ostufer",
+          "creator": "Mefusbren69",
+          "licence": "Public domain",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Stockenboi_-_Wei%C3%9Fensee_-_Ostufer.JPG"
+        },
+        {
+          "image": "images/trails/weissensee-slow-trail-gallery-ronacherfels.jpg",
+          "alt": "The Ronacherfels inn beside the turquoise Weissensee",
+          "title": "Ronacherfels, Weißensee",
+          "creator": "Muck",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Ronacherfels,_Wei%C3%9Fensee.jpg"
+        }
+      ]
+    }
+  ]
+}

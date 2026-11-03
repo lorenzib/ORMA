@@ -1,0 +1,13 @@
+// valgardena-escursione-da-s-cristina-al-passo-sella in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A long climb from Santa Cristina over Monte Pana and through the forest to the Rifugio Comici, then through the Città dei Sassi boulder field below the Sassolungo to the Passo Sella. The board lists 8.4 km and 800 m of ascent one way.": "Una lunga salita da Santa Cristina oltre il Monte Pana e attraverso il bosco fino al Rifugio Comici, poi attraverso la distesa di massi della Città dei Sassi sotto il Sassolungo fino al Passo Sella. La scheda ufficiale indica 8,4 km e 800 m di dislivello in salita, solo andata.",
+  "Start in Santa Cristina: 8.4 km and 800 m of climbing one way to the Passo Sella, about three and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Plan your way back before you set off: the walk ends at the pass. Carry water for the upper half and take care in the boulder field.": "Parti da Santa Cristina: 8,4 km e 800 m di salita solo andata fino al Passo Sella, circa tre ore e mezza. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito. Organizza il ritorno prima di partire: la camminata finisce al passo. Porta acqua per la metà superiore e fai attenzione tra i massi.",
+  "Long climb of 800 m": "Lunga salita di 800 m",
+  "Boulder field in the Città dei Sassi: uneven, rocky ground": "Distesa di massi nella Città dei Sassi: terreno irregolare e roccioso",
+  "Early in the season some stretches may still hold snow": "A inizio stagione alcuni tratti possono essere ancora innevati",
+  "Short stretches beside the Sella pass road near the end": "Brevi tratti accanto alla strada del Passo Sella verso la fine",
+  "Mountain paths and gravel tracks through forest and boulder fields": "Sentieri di montagna e strade sterrate tra bosco e distese di massi",
+  "Santa Cristina, the board’s start": "Santa Cristina, partenza indicata dalla scheda ufficiale",
+  "The white Rifugio Emilio Comici with blue shutters and climbing holds painted on its walls, a wooden fence and gravel in front, and the grey cliffs of the Sassolungo rising behind": "Il bianco Rifugio Emilio Comici con persiane azzurre e prese d'arrampicata dipinte sui muri, una staccionata di legno e ghiaia davanti e le pareti grigie del Sassolungo che si alzano dietro",
+  "Mostly open: about a quarter runs through forest above Monte Pana; the Città dei Sassi and the pass are exposed.": "Per lo più aperto: circa un quarto corre nel bosco sopra il Monte Pana; la Città dei Sassi e il passo sono esposti."
+});

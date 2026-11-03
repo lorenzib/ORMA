@@ -1,0 +1,12 @@
+// giudicarie-tione-bolbeno-madonna-del-lares in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short climb from Tione along the Arnò stream to Bolbeno and up through the woods to the Madonna del Lares, a chapel in a quiet clearing. The APT lists 3.1 km and 238 m of ascent, one way.": "Una breve salita da Tione lungo il torrente Arnò fino a Bolbeno e poi su per il bosco fino alla Madonna del Lares, una cappella in una radura tranquilla. L'APT indica 3,1 km e 238 m di dislivello in salita, solo andata.",
+  "Start in Via Baita in Tione: 3.1 km and about 240 m of climbing one way, an hour and a quarter to the chapel, then the same way back downhill. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Fill up at the stone fountain after the viewpoint.": "Parti da Via Baita a Tione: 3,1 km e circa 240 m di salita solo andata, un'ora e un quarto fino alla cappella, poi ritorno per la stessa via in discesa. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito. Fai rifornimento alla fontana in pietra dopo il punto panoramico.",
+  "The cycle path to Bolbeno is shared with bikes: keep your dog on a short lead": "La pista ciclabile per Bolbeno è condivisa con le bici: tieni il cane al guinzaglio corto",
+  "The forest road to the sanctuary is tarmac and open to occasional vehicles": "La strada forestale per il santuario è asfaltata e aperta a qualche veicolo occasionale",
+  "A short flight of steps up to the chapel": "Una breve rampa di gradini fino alla cappella",
+  "Cycle path, tarmac forest road and a short path": "Pista ciclabile, strada forestale asfaltata e un breve sentiero",
+  "Via Baita, Tione di Trento, the APT’s start": "Via Baita, Tione di Trento, la partenza indicata dall'APT",
+  "The portico of the Madonna del Lares chapel with four granite columns, geranium boxes and a checkered floor, the lit altar seen through the open door, a meadow and spruces around it": "Il portico della cappella della Madonna del Lares con quattro colonne di granito, fioriere di gerani e pavimento a scacchi, l'altare illuminato visto dalla porta aperta, un prato e abeti rossi attorno",
+  "Part shade: about 57% runs under trees, most of it in the woods beside the Arnò and on the forest road.": "In parte all'ombra: circa il 57% si snoda sotto gli alberi, soprattutto nei boschi accanto all'Arnò e sulla strada forestale."
+});

@@ -12,6 +12,12 @@
  */
 (function () {
   'use strict';
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
   if (!document.querySelector('.td2')) return;
 
   // ---- 1. Hero Start-the-hike proxy + live banner -------------------------
@@ -75,8 +81,8 @@
       if (heroBtn.dataset.hikeUiState !== nextState) {
         heroBtn.dataset.hikeUiState = nextState;
         heroBtn.innerHTML = rec
-          ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg> End · <span class="hike-elapsed">' + fmtElapsed() + '</span>'
-          : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start the hike';
+          ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg> ' + tx('End · {time}', { time: '<span class="hike-elapsed">' + fmtElapsed() + '</span>' })
+          : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> ' + tx('Start the hike');
       }
     }
     if (liveBanner) liveBanner.hidden = !rec;
@@ -170,9 +176,9 @@
     const safetyDog = document.getElementById('td2SafetyDog');
     if (safetyDog) safetyDog.textContent = name ? ' · ' + name : '';
     const nearbyTitle = document.getElementById('nearbyTitle');
-    if (nearbyTitle && name) nearbyTitle.textContent = 'Nearby trails, ranked for ' + name;
+    if (nearbyTitle && name) nearbyTitle.textContent = tx('Nearby trails, ranked for {name}', { name });
     const liveTitle = document.getElementById('tdLiveTitle');
-    if (liveTitle && name) liveTitle.textContent = 'Recording ' + name + '’s walk';
+    if (liveTitle && name) liveTitle.textContent = tx('Recording {name}’s walk', { name });
   }
   window.addEventListener('dolopaws-auth-changed', syncDog);
   syncDog();

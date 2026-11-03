@@ -1,0 +1,12 @@
+// fiemme-giro-cavalese-castello in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "An easy loop from Cavalese to Castello di Fiemme and back, along a sunny terrace facing the Lagorai, laid out by the APT for wheelchairs. The APT lists 4.8 km and 65 m of ascent.": "Un facile anello da Cavalese a Castello di Fiemme e ritorno, lungo un terrazzo soleggiato di fronte al Lagorai, pensato dall'APT per le sedie a rotelle. L'APT indica 4,8 km e 65 m di dislivello in salita.",
+  "Start at the hospital car park in Cavalese: 4.8 km, 65 m of climbing, an hour and a half, all on tarmac. Cavalese and Castello-Molina require a lead and a muzzle (or other safety device) in public places and bags to pick up after your dog. No shade, so avoid midday in summer; fountains in Cavalese and in Castello.": "Parti dal parcheggio dell'ospedale di Cavalese: 4,8 km, 65 m di salita, un'ora e mezza, tutto su asfalto. Cavalese e Castello-Molina richiedono guinzaglio e museruola (o altro dispositivo di sicurezza) nei luoghi pubblici e sacchetti per raccogliere i bisogni del tuo cane. Non c'è ombra, quindi evita le ore centrali d'estate; fontane a Cavalese e a Castello.",
+  "All on tarmac, mostly pavements and a cycle and foot path; two crossings of the Strada Statale": "Tutto su asfalto, per lo più marciapiedi e una ciclopedonale; due attraversamenti della Strada Statale",
+  "A quiet lane open to cars on the way back, with short steep climbs": "Al ritorno una stradina tranquilla aperta alle auto, con brevi salite ripide",
+  "Pavement dips on the long descent to Castello: watch your footing": "Avvallamenti nel marciapiede nella lunga discesa verso Castello: attenzione a dove metti i piedi",
+  "Pavements, a cycle and foot path and quiet lanes; wheelchair- and pram-friendly": "Marciapiedi, una ciclopedonale e stradine tranquille; adatto a sedie a rotelle e passeggini",
+  "Cavalese (hospital car park), the APT’s start": "Cavalese (parcheggio dell'ospedale), partenza indicata dall'APT",
+  "The roofs of Cavalese and its bell tower among green trees, a forested mountain and a rocky peak behind under a summer sky": "I tetti di Cavalese e il suo campanile tra alberi verdi, una montagna boscosa e una cima rocciosa sullo sfondo sotto un cielo estivo",
+  "No shade: the whole loop is on open pavements and lanes between Cavalese and Castello.": "Nessuna ombra: tutto l'anello si svolge su marciapiedi e stradine aperte tra Cavalese e Castello."
+});

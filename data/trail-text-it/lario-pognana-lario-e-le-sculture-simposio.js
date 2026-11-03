@@ -1,0 +1,12 @@
+// lario-pognana-lario-e-le-sculture-simposio in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short loop from the town hall of Pognana Lario down to the lake and back along the old Strada Regia, past the ten stone sculptures of the 1986 symposium. The portal lists 4.2 km and 160 m of ascent.": "Un breve anello dal municipio di Pognana Lario giù fino al lago e ritorno lungo l'antica Strada Regia, oltre le dieci sculture in pietra del simposio del 1986. Il portale indica 4,2 km e 160 m di dislivello in salita.",
+  "Start at the town hall in Pognana Lario: 4.2 km and 160 m of climbing, about two hours. Keep your dog on a short lead, above all on the 400 m of provincial road, and carry a muzzle. There is little shade: avoid midday in summer.": "Parti dal municipio di Pognana Lario: 4,2 km e 160 m di salita, circa due ore. Tieni il cane al guinzaglio corto, soprattutto sui 400 m di strada provinciale, e porta la museruola al seguito. C'è poca ombra: d'estate evita le ore centrali.",
+  "About 400 m on the lakeside provincial road, which has narrow verges and traffic: keep your dog on a short lead": "Circa 400 m sulla provinciale lungo il lago, con banchine strette e traffico: tieni il cane al guinzaglio corto",
+  "Cobbled mule tracks and steps": "Mulattiere acciottolate e gradini",
+  "The lakeside path: keep your dog out of the water near boats": "Il sentiero lungo il lago: tieni il cane fuori dall'acqua vicino alle barche",
+  "Village lanes, cobbled mule tracks and a lakeside path": "Stradine di paese, mulattiere acciottolate e un sentiero lungo il lago",
+  "Pognana Lario town hall, the published start": "Municipio di Pognana Lario, la partenza indicata",
+  "The Como branch of the lake seen from the rooftops of Pognana Lario, a steep green mountain and a lakeside village on the far shore under a clear sky": "Il ramo di Como del lago visto dai tetti di Pognana Lario, una ripida montagna verde e un paese sul lago sulla sponda opposta sotto un cielo limpido",
+  "Almost no shade: the walk runs along sunny lanes, the lakeshore and the road.": "Quasi senza ombra: la passeggiata segue stradine soleggiate, la riva del lago e la strada."
+});
