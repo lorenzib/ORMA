@@ -4,6 +4,13 @@
 (function(global){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const VERSION = '5.24.0';
   const SCRIPT_URL = `https://unpkg.com/maplibre-gl@${VERSION}/dist/maplibre-gl.js`;
   const STYLE_URL = `https://unpkg.com/maplibre-gl@${VERSION}/dist/maplibre-gl.css`;
@@ -112,7 +119,7 @@
         })
         .catch(error => {
           target.dataset.mapState = 'error';
-          target.setAttribute('aria-label', 'Map unavailable. Trail details remain available below.');
+          target.setAttribute('aria-label', tx('Map unavailable. Trail details remain available below.'));
           console.error('ORMA map failed to initialise:', error);
           return null;
         });
@@ -1240,6 +1247,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const STATES = Object.freeze([
     'draft', 'pending', 'visible', 'reported', 'hidden', 'removed',
   ]);
@@ -1304,11 +1318,11 @@
   }
   function hazardTrustLabel(flag){
     const labels = {
-      'official-confirmed':'Confirmed by an official source',
-      'dolopaws-reviewed':'Verified by ORMA',
-      'community-confirmed':'Confirmed by the community',
-      'community-disputed':'Disputed by the community',
-      unconfirmed:'Unconfirmed community report',
+      'official-confirmed':tx('Confirmed by an official source'),
+      'dolopaws-reviewed':tx('Verified by ORMA'),
+      'community-confirmed':tx('Confirmed by the community'),
+      'community-disputed':tx('Disputed by the community'),
+      unconfirmed:tx('Unconfirmed community report'),
     };
     return labels[hazardTrustState(flag)];
   }
@@ -2102,6 +2116,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const VERSION = 1;
   const STORAGE_KEY = 'dolopaws-pending-context-v1';
   const LEGACY_PROFILE_KEY = 'dolopaws-pending-dog-profile';
@@ -2396,20 +2417,21 @@
       const copy = prompt.querySelector('#guestMigrationCopy');
       const status = prompt.querySelector('#guestMigrationStatus');
       const actions = prompt.querySelector('.guest-migration-actions');
-      const draftName = state.draft.name || 'your dog';
+      const draftName = state.draft.name || tx('your dog');
       status.textContent = '';
       if(state.kind === 'conflict'){
-        title.textContent = 'Your account profile was kept';
-        copy.textContent = `${draftName} remains a device draft. It was not copied over ${
-          state.existing.name || 'the newer account profile'
-        }.`;
-        actions.innerHTML = '<button type="button" data-keep-account>Discard device draft</button>' +
-          '<button type="button" data-keep-device>Keep on this device</button>';
+        title.textContent = tx('Your account profile was kept');
+        copy.textContent = tx('{name} remains a device draft. It was not copied over {existing}.', {
+          name:draftName,
+          existing:state.existing.name || tx('the newer account profile'),
+        });
+        actions.innerHTML = '<button type="button" data-keep-account>' + tx('Discard device draft') + '</button>' +
+          '<button type="button" data-keep-device>' + tx('Keep on this device') + '</button>';
       }else{
-        title.textContent = `Save ${draftName} to your account?`;
-        copy.textContent = 'Nothing is copied until you choose Save. We will check the account again first.';
-        actions.innerHTML = '<button type="button" data-migrate>Save dog profile</button>' +
-          '<button type="button" data-keep-device>Keep on this device</button>';
+        title.textContent = tx('Save {name} to your account?', { name:draftName });
+        copy.textContent = tx('Nothing is copied until you choose Save. We will check the account again first.');
+        actions.innerHTML = '<button type="button" data-migrate>' + tx('Save dog profile') + '</button>' +
+          '<button type="button" data-keep-device>' + tx('Keep on this device') + '</button>';
       }
       const keepDevice = actions.querySelector('[data-keep-device]');
       keepDevice.addEventListener('click', () => {
@@ -2424,27 +2446,27 @@
       const migrate = actions.querySelector('[data-migrate]');
       if(migrate) migrate.addEventListener('click', async () => {
         migrate.disabled = true;
-        status.textContent = 'Checking your account…';
+        status.textContent = tx('Checking your account…');
         const latestAccount = await accountDogs();
         if(!latestAccount){
-          status.textContent = 'Your account could not be checked. Your device draft is unchanged.';
+          status.textContent = tx('Your account could not be checked. Your device draft is unchanged.');
           migrate.disabled = false;
           return;
         }
         const latest = latestAccount.existing;
         if(latestAccount.count || latest && (latest.name || latest.breed || latest.photo)){
-          status.textContent = 'An account profile now exists, so the device draft was not copied.';
+          status.textContent = tx('An account profile now exists, so the device draft was not copied.');
           migrate.remove();
           return;
         }
         const ok = await win.DoloPawsAuth.setDogProfile(state.draft);
         if(!ok){
-          status.textContent = 'The profile could not be saved. Your device draft is unchanged.';
+          status.textContent = tx('The profile could not be saved. Your device draft is unchanged.');
           migrate.disabled = false;
           return;
         }
         clearDogDraft(storage, { removeLocalDraft:true });
-        status.textContent = `${draftName} was saved to your account.`;
+        status.textContent = tx('{name} was saved to your account.', { name:draftName });
         win.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', {
           detail:{ profile:state.draft },
         }));
@@ -2487,6 +2509,13 @@
 (function(){
   let mode = 'login'; // 'login' | 'signup' | 'reset'
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   // The one definition of the login dialog.
   //
   // index.html used to ship its own copy and this was the fallback for every
@@ -2515,7 +2544,7 @@
                 ' loading="lazy" decoding="async" width="900" height="1200">' +
             '</picture>' +
             '<div class="auth-hero-shade"></div>' +
-            '<button id="authClose" class="modal-close" aria-label="Close">&times;</button>' +
+            '<button id="authClose" class="modal-close" aria-label="' + tx('Close') + '">&times;</button>' +
             '<div class="auth-hero-copy">' +
               '<span class="auth-hero-brand"><img src="logo.svg?v=5" alt="">ORMA</span>' +
               '<h2 id="authTitle" data-i18n="nav.login">Log in</h2>' +
@@ -2523,11 +2552,11 @@
             '</div>' +
           '</div>' +
           '<div class="auth-body">' +
-            '<button type="button" id="authBackToLogin" class="auth-back-link" hidden>&larr; Back to log in</button>' +
+            '<button type="button" id="authBackToLogin" class="auth-back-link" hidden>&larr; ' + tx('Back to log in') + '</button>' +
             '<div id="authResetDone" class="auth-reset-done" aria-live="polite" hidden></div>' +
             '<div id="authError" class="auth-error" role="alert" aria-live="polite" hidden></div>' +
             '<form id="authForm">' +
-              '<label class="field-label auth-signup-field" id="authNameLabel" hidden><span>Your name</span>' +
+              '<label class="field-label auth-signup-field" id="authNameLabel" hidden><span>' + tx('Your name') + '</span>' +
                 '<input type="text" id="authName" autocomplete="name" placeholder="Marta Bianchi">' +
               '</label>' +
               '<label class="field-label"><span data-i18n="auth.email">Email</span>' +
@@ -2535,16 +2564,16 @@
               '</label>' +
               '<label class="field-label"><span data-i18n="auth.password">Password</span>' +
                 '<input type="password" id="authPassword" required autocomplete="current-password" minlength="6">' +
-                '<small id="authPasswordHint" class="auth-field-hint" hidden>At least 8 characters.</small>' +
+                '<small id="authPasswordHint" class="auth-field-hint" hidden>' + tx('At least 8 characters.') + '</small>' +
               '</label>' +
-              '<label class="field-label auth-signup-field" id="authConfirmLabel" hidden><span>Confirm password</span>' +
+              '<label class="field-label auth-signup-field" id="authConfirmLabel" hidden><span>' + tx('Confirm password') + '</span>' +
                 '<input type="password" id="authConfirmPassword" autocomplete="new-password">' +
               '</label>' +
               '<button type="button" id="forgotPasswordBtn" class="forgot-link" data-i18n="auth.forgot">Forgot password?</button>' +
-              '<label class="auth-terms" id="authTermsLabel" hidden><input type="checkbox" id="authTerms"> <span>I agree to the <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>.</span></label>' +
+              '<label class="auth-terms" id="authTermsLabel" hidden><input type="checkbox" id="authTerms"> <span>' + tx('I agree to the <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>.') + '</span></label>' +
               '<button type="submit" class="auth-submit" id="authSubmit" data-i18n="nav.login">Log in</button>' +
             '</form>' +
-            '<div class="auth-divider"><span>or</span></div>' +
+            '<div class="auth-divider"><span>' + tx('or') + '</span></div>' +
             '<button id="googleBtn" class="google-btn"><span data-i18n="auth.google">Continue with Google</span></button>' +
             '<button id="appleBtn" class="apple-btn" hidden><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 12.9c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-2-.9-3.2-.9-1.7 0-3.2 1-4 2.5-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.4 0 1.9.8 3.2.8 1.3 0 2.1-1.2 2.9-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.4-1-2.4-3.9zM14.2 5.3c.6-.8 1.1-1.9 1-3-1 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg><span data-i18n="auth.apple">Continue with Apple</span></button>' +
             '<p class="auth-toggle">' +
@@ -2651,7 +2680,7 @@
       };
       const name = String(pending.name || '').trim();
       const describe = dog => [dog.breed, dog.ageBand, dog.weightBand]
-        .map(value => String(value || '').trim()).filter(Boolean).join(' · ') || 'no other details';
+        .map(value => String(value || '').trim()).filter(Boolean).join(' · ') || tx('no other details');
 
       const panel = document.createElement('div');
       panel.className = 'auth-dogclash';
@@ -2660,8 +2689,8 @@
         '<h3 class="auth-dogclash-title"></h3>' +
         '<p class="auth-dogclash-lede"></p>' +
         '<div class="auth-dogclash-compare">' +
-          '<div><small>On your account</small><span class="auth-dogclash-existing"></span></div>' +
-          '<div><small>Just added here</small><span class="auth-dogclash-pending"></span></div>' +
+          '<div><small>' + tx('On your account') + '</small><span class="auth-dogclash-existing"></span></div>' +
+          '<div><small>' + tx('Just added here') + '</small><span class="auth-dogclash-pending"></span></div>' +
         '</div>' +
         '<button type="button" class="auth-submit" data-clash="update"></button>' +
         '<button type="button" class="auth-dogclash-secondary" data-clash="add"></button>' +
@@ -3051,6 +3080,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const DISCLAIMER = 'Route geometry only. Check ORMA for current safety, access, water and dog-suitability context before setting out.';
 
   function escapeXml(value){
@@ -3097,7 +3133,7 @@
   function serialize(trail, options){
     if(!trail || typeof trail !== 'object') throw new TypeError('A trail is required.');
     const geometry = Array.isArray(trail.path) ? trail.path.map(coordinate).filter(Boolean) : [];
-    if(geometry.length < 2) throw new Error('This trail does not have enough valid route geometry to export.');
+    if(geometry.length < 2) throw new Error(tx('This trail does not have enough valid route geometry to export.'));
     const name = String(trail.name || 'ORMA trail');
     const start = trailhead(trail, geometry);
     const generatedAt = options && options.generatedAt
@@ -3132,7 +3168,7 @@ ${points}
     doc = doc || (typeof document !== 'undefined' ? document : null);
     urlApi = urlApi || (typeof URL !== 'undefined' ? URL : null);
     if(!doc || !urlApi || typeof urlApi.createObjectURL !== 'function'){
-      throw new Error('File downloads are unavailable in this browser.');
+      throw new Error(tx('File downloads are unavailable in this browser.'));
     }
     const blob = new Blob([serialize(trail)], { type:'application/gpx+xml;charset=utf-8' });
     const objectUrl = urlApi.createObjectURL(blob);
@@ -3511,6 +3547,13 @@ ${points}
     'removed',
   ]);
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   function tr(key, fallback, vars){
     if(typeof window.t === 'function'){
       const value = window.t(key, vars);
@@ -3653,7 +3696,7 @@ ${points}
 
   function formatInstalledDate(value){
     const date = new Date(value);
-    if(!value || Number.isNaN(date.getTime())) return 'date unavailable';
+    if(!value || Number.isNaN(date.getTime())) return tx('date unavailable');
     try{
       return new Intl.DateTimeFormat(
         document.documentElement.lang || 'en-GB',
@@ -3674,10 +3717,10 @@ ${points}
 
   function ownershipLabel(state){
     const labels = {
-      'current-account': 'downloaded by this account',
-      'another-account': 'downloaded by another account on this device',
-      'signed-out-owner-retained': 'downloaded account retained on this device',
-      'legacy-owner-unknown': 'download owner not recorded',
+      'current-account': tx('downloaded by this account'),
+      'another-account': tx('downloaded by another account on this device'),
+      'signed-out-owner-retained': tx('downloaded account retained on this device'),
+      'legacy-owner-unknown': tx('download owner not recorded'),
     };
     return labels[state] || labels['legacy-owner-unknown'];
   }
@@ -3902,7 +3945,7 @@ ${points}
         state: 'failed',
         usable: false,
         hasLocalData: false,
-        message: 'Offline storage is not supported in this browser.',
+        message: tx('Offline storage is not supported in this browser.'),
       };
     }
     const config = PACKAGES[trailId];
@@ -3927,7 +3970,7 @@ ${points}
       const cache = await caches.open(name);
       const manifestResponse = await cache.match(new URL(config.manifestUrl, window.location.href).href);
       if(!manifestResponse){
-        failureMessage = 'The stored package manifest is missing.';
+        failureMessage = tx('The stored package manifest is missing.');
         continue;
       }
       try{
@@ -3949,11 +3992,11 @@ ${points}
           contentFreshness: freshness,
           checkedAt: new Date().toISOString(),
           message: incomplete
-            ? 'A previous update was interrupted; the existing verified package remains usable.'
+            ? tx('A previous update was interrupted; the existing verified package remains usable.')
             : null,
         };
       }catch(error){
-        failureMessage = error.message || 'A stored package resource failed verification.';
+        failureMessage = error.message || tx('A stored package resource failed verification.');
       }
     }
     if(candidates.length){
@@ -3962,7 +4005,7 @@ ${points}
         usable: false,
         hasLocalData: true,
         metadata,
-        message: failureMessage || 'The stored package failed verification.',
+        message: failureMessage || tx('The stored package failed verification.'),
       };
     }
     if(incomplete){
@@ -3971,7 +4014,7 @@ ${points}
         usable: false,
         hasLocalData: true,
         metadata,
-        message: 'A previous download was interrupted. No partial package is ready offline.',
+        message: tx('A previous download was interrupted. No partial package is ready offline.'),
       };
     }
     return { state: 'not-downloaded', usable: false, hasLocalData: false, metadata };
@@ -4108,8 +4151,8 @@ ${points}
 
   function formatPackageVersion(version){
     const beta = String(version || '').match(/beta\.(\d+)$/i);
-    if(beta) return `Package ${beta[1]}`;
-    return version ? `Package ${version}` : 'Package revision unavailable';
+    if(beta) return tx('Package {version}', { version:beta[1] });
+    return version ? tx('Package {version}', { version }) : tx('Package revision unavailable');
   }
 
   function availabilityForTrail(trailId, trailCollection){
@@ -5126,6 +5169,13 @@ function breedInsights(name){
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const VERSION = '1.0.0';
   // Seven here, but only six of them can ever be reviewed through
   // `verified.categories`. VERIFICATION.md names those six -- water, heat,
@@ -5227,7 +5277,34 @@ function breedInsights(name){
 
   function tierLabel(tierOrTrail){
     const tier = typeof tierOrTrail === 'string' ? tierOrTrail : tierOf(tierOrTrail);
-    return TIER_LABELS[tier] || TIER_LABELS.imported;
+    switch(tier){
+      case 'mapped': return tx('Mapped route');
+      case 'route-audited': return tx('Verified by ORMA');
+      case 'field-verified': return tx('Verified and walked by ORMA');
+      default: return tx('Imported map data');
+    }
+  }
+
+  // The shown label of a source state or freshness state (SOURCE_LABELS,
+  // FRESHNESS_LABELS), in the reader's language.
+  function sourceLabel(state){
+    switch(state){
+      case 'mapped': return tx('Mapped data');
+      case 'source-listed': return tx('Source listed, not reviewed');
+      case 'source-reviewed': return tx('ORMA source-reviewed');
+      case 'field-checked': return tx('ORMA field-checked');
+      case 'unknown': return tx('Evidence unknown');
+      default: return SOURCE_LABELS[state];
+    }
+  }
+  function freshnessLabel(state){
+    switch(state){
+      case 'current': return tx('Current for its review window');
+      case 'aging': return tx('Review becoming old');
+      case 'stale': return tx('Review stale');
+      case 'unknown': return tx('Freshness unknown');
+      default: return FRESHNESS_LABELS[state];
+    }
   }
 
   function validDate(value){
@@ -5238,9 +5315,23 @@ function breedInsights(name){
 
   function dateText(value){
     const date = validDate(value);
-    if(!date) return 'date unknown';
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return `${date.getUTCDate()} ${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
+    if(!date) return tx('date unknown');
+    const d = date.getUTCDate();
+    const y = date.getUTCFullYear();
+    switch(date.getUTCMonth()){
+      case 0: return tx('{d} Jan {y}', { d, y });
+      case 1: return tx('{d} Feb {y}', { d, y });
+      case 2: return tx('{d} Mar {y}', { d, y });
+      case 3: return tx('{d} Apr {y}', { d, y });
+      case 4: return tx('{d} May {y}', { d, y });
+      case 5: return tx('{d} Jun {y}', { d, y });
+      case 6: return tx('{d} Jul {y}', { d, y });
+      case 7: return tx('{d} Aug {y}', { d, y });
+      case 8: return tx('{d} Sep {y}', { d, y });
+      case 9: return tx('{d} Oct {y}', { d, y });
+      case 10: return tx('{d} Nov {y}', { d, y });
+      default: return tx('{d} Dec {y}', { d, y });
+    }
   }
 
   function sourceRecords(trail, category){
@@ -5322,9 +5413,9 @@ function breedInsights(name){
     return {
       category,
       sourceState: source,
-      sourceLabel: SOURCE_LABELS[source],
+      sourceLabel: sourceLabel(source),
       freshnessState: freshness,
-      freshnessLabel: FRESHNESS_LABELS[freshness],
+      freshnessLabel: freshnessLabel(freshness),
       observedAt,
       observedLabel: dateText(observedAt),
     };
@@ -5387,6 +5478,15 @@ function breedInsights(name){
   if(root) root.DoloPawsRecommendationV1 = api;
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
+
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  // Only sentences with no recommendation.reason.* dictionary entry are wrapped:
+  // the rest are translated by key at display (recommendation-decision.js).
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
 
   const VERSION = '1.7.0';
   const FITNESS = {
@@ -5459,6 +5559,20 @@ function breedInsights(name){
     'water-scarce': 'no water access',
     other: 'a recorded caution',
   };
+  // The same labels for a sentence a reader sees; SEGMENT_TYPE_LABELS stays
+  // English because it travels in the advisory's vars.
+  function segmentTypeLabel(type){
+    switch(type){
+      case 'livestock': return tx('grazing livestock');
+      case 'wildlife': return tx('wildlife activity');
+      case 'road': return tx('road traffic');
+      case 'exposure': return tx('exposed ground');
+      case 'crowding': return tx('heavy foot traffic');
+      case 'surface': return tx('difficult footing');
+      case 'water-scarce': return tx('no water access');
+      default: return tx('a recorded caution');
+    }
+  }
   const REVIEW_CATEGORIES = [
     'route', 'water', 'heat', 'exposure', 'livestock',
     'surfaceHazards', 'access',
@@ -5914,8 +6028,8 @@ function breedInsights(name){
       if(reviewedWaterCount > 0){
         positives.push(item('trail.water.reviewed',
           reviewedWaterCount === 1
-            ? 'Water is available at one reviewed point.'
-            : `Water is available at ${reviewedWaterCount} reviewed points.`,
+            ? tx('Water is available at one reviewed point.')
+            : tx('Water is available at {count} reviewed points.', { count:reviewedWaterCount }),
           { count:reviewedWaterCount },
           reviewedWaterCount === 1 ? 'trail.water.reviewed.one' : 'trail.water.reviewed.many'));
       }else{
@@ -5963,30 +6077,32 @@ function breedInsights(name){
       if(rank(livestockComfort) > 0){
         load += livestockComfort * 9;
         drivers.push(livestockComfort === 2
-          ? 'this dog reacts to livestock'
-          : 'this dog is unsure around livestock');
+          ? tx('this dog reacts to livestock')
+          : tx('this dog is unsure around livestock'));
       }
       if(rank(preyDrive) > 0){
         load += preyDrive * 5;
-        drivers.push(preyDrive === 2 ? 'prey drive is high' : 'prey drive is moderate');
+        drivers.push(preyDrive === 2 ? tx('prey drive is high') : tx('prey drive is moderate'));
       }
       if(rank(recall) > 0){
         load += recall * 5;
-        drivers.push(recall === 2 ? 'recall is unreliable' : 'recall is variable');
+        drivers.push(recall === 2 ? tx('recall is unreliable') : tx('recall is variable'));
       }
       if(load > 0){
         const summary = drivers.join(', ');
         chargeBehaviour(Math.round(load * (seasonal ? 0.6 : 1)), item('trail.livestock.behaviour-risk',
-          `${seasonal ? 'Livestock graze this route in season' : 'Grazing livestock is recorded on this route'}, and ${summary}.`,
+          seasonal
+            ? tx('Livestock graze this route in season, and {drivers}.', { drivers:summary })
+            : tx('Grazing livestock is recorded on this route, and {drivers}.', { drivers:summary }),
           { presence:livestockPresence, drivers:summary },
           seasonal ? 'trail.livestock.behaviour-risk.seasonal' : 'trail.livestock.behaviour-risk'));
       }
     }else if(livestockPresence === 'none' && stockRelevant){
       positives.push(item('trail.livestock.none',
-        'No grazing livestock is recorded on this route.'));
+        tx('No grazing livestock is recorded on this route.')));
     }else if(stockRelevant){
       unknowns.push(item('trail.livestock.presence-unknown',
-        'Whether livestock graze this route is unknown. Carry a lead for open pasture.'));
+        tx('Whether livestock graze this route is unknown. Carry a lead for open pasture.')));
     }
 
     const wildlifePresence = suitability.wildlifePresence;
@@ -5999,23 +6115,23 @@ function breedInsights(name){
       if(load > 0){
         chargeBehaviour(Math.round(load), item('trail.wildlife.chase-risk',
           high
-            ? 'Wildlife is active on this route, which matters for a dog that chases.'
-            : 'Some wildlife activity is recorded here, which matters for a dog that chases.',
+            ? tx('Wildlife is active on this route, which matters for a dog that chases.')
+            : tx('Some wildlife activity is recorded here, which matters for a dog that chases.'),
           { presence:wildlifePresence },
           high ? 'trail.wildlife.chase-risk.high' : 'trail.wildlife.chase-risk.moderate'));
       }
     }else if(wildlifePresence === 'low' && chaseRelevant){
-      positives.push(item('trail.wildlife.low', 'Little wildlife activity is recorded here.'));
+      positives.push(item('trail.wildlife.low', tx('Little wildlife activity is recorded here.')));
     }
 
     const sightlines = suitability.sightlines;
     if(rank(recall) > 0){
       if(sightlines === 'open'){
         positives.push(item('trail.sightlines.open',
-          'Open sightlines keep this dog visible on most sections.'));
+          tx('Open sightlines keep this dog visible on most sections.')));
       }else if(sightlines === 'restricted'){
         chargeBehaviour(recall * 5, item('trail.sightlines.restricted',
-          'Enclosed, twisting ground makes it harder to keep this dog in view.'));
+          tx('Enclosed, twisting ground makes it harder to keep this dog in view.')));
       }
     }
 
@@ -6029,13 +6145,13 @@ function breedInsights(name){
       if(load > 0){
         chargeBehaviour(Math.round(load), item('trail.road.traffic-risk',
           alongside
-            ? 'The route runs alongside a road, which matters for this dog around traffic.'
-            : 'The route crosses a road, which matters for this dog around traffic.',
+            ? tx('The route runs alongside a road, which matters for this dog around traffic.')
+            : tx('The route crosses a road, which matters for this dog around traffic.'),
           { proximity:roadProximity },
           alongside ? 'trail.road.traffic-risk.alongside' : 'trail.road.traffic-risk.crossings'));
       }
     }else if(roadProximity === 'none' && trafficRelevant){
-      positives.push(item('trail.road.none', 'The route keeps clear of roads and traffic.'));
+      positives.push(item('trail.road.none', tx('The route keeps clear of roads and traffic.')));
     }
 
     const crowding = suitability.crowding;
@@ -6046,14 +6162,14 @@ function breedInsights(name){
       if(socialRank > 0){
         chargeBehaviour(Math.round(socialRank * (busy ? 8 : 4)), item('trail.crowding.social-risk',
           busy
-            ? 'This is a busy route, and this dog needs space from other people and dogs.'
-            : 'This route sees steady foot traffic, and this dog needs space from other people and dogs.',
+            ? tx('This is a busy route, and this dog needs space from other people and dogs.')
+            : tx('This route sees steady foot traffic, and this dog needs space from other people and dogs.'),
           { crowding },
           busy ? 'trail.crowding.social-risk.busy' : 'trail.crowding.social-risk.moderate'));
       }
     }else if(crowding === 'quiet' && socialRelevant){
       positives.push(item('trail.crowding.quiet',
-        'This is a quiet route with room to give other walkers space.'));
+        tx('This is a quiet route with room to give other walkers space.')));
     }
 
     const preferredDurationMin = behaviour.preferredDurationMin;
@@ -6061,11 +6177,11 @@ function breedInsights(name){
     if(preferredDurationMin !== null && durationMinutes !== null){
       if(durationMinutes > preferredDurationMin * 1.25){
         chargeBehaviour(Math.min(10, Math.ceil((durationMinutes - preferredDurationMin) / 30) * 3), item('trail.duration.above-preference',
-          `At about ${Math.round(durationMinutes)} minutes this route runs longer than the preferred ${preferredDurationMin} minutes.`,
+          tx('At about {minutes} minutes this route runs longer than the preferred {preferred} minutes.', { minutes:Math.round(durationMinutes), preferred:preferredDurationMin }),
           { durationMinutes:Math.round(durationMinutes), preferredDurationMin }));
       }else{
         positives.push(item('trail.duration.within-preference',
-          `At about ${Math.round(durationMinutes)} minutes this route fits the preferred walk length.`,
+          tx('At about {minutes} minutes this route fits the preferred walk length.', { minutes:Math.round(durationMinutes) }),
           { durationMinutes:Math.round(durationMinutes), preferredDurationMin }));
       }
     }
@@ -6110,21 +6226,23 @@ function breedInsights(name){
         note:typeof segment.note === 'string' && segment.note.trim() ? segment.note.trim() : null,
       };
       // Two short sentences: what is there, then what to do about it.
-      const detail = vars.note || label;
-      const where = `${detail.charAt(0).toUpperCase()}${detail.slice(1)} between kilometres ${fromKm} and ${toKm}.`;
+      const detail = vars.note || segmentTypeLabel(segment.type);
+      const where = tx('{detail} between kilometres {fromKm} and {toKm}.', {
+        detail:`${detail.charAt(0).toUpperCase()}${detail.slice(1)}`, fromKm, toKm,
+      });
       if(segment.advisory === 'leash-required' || segment.advisory === 'leash-recommended'){
         const required = segment.advisory === 'leash-required';
         leashAdvisories.push({ ...vars, advisory:segment.advisory });
         cautions.push(item(`segment.${segment.advisory}.${vars.type}.${fromKm}-${toKm}`,
-          `${where} ${required ? 'Lead required.' : 'Lead recommended.'}`,
+          `${where} ${required ? tx('Lead required.') : tx('Lead recommended.')}`,
           vars,
           required ? 'segment.leash-required' : 'segment.leash-recommended'));
       }else if(segment.advisory === 'avoid'){
         penalise(20, item(`segment.avoid.${vars.type}.${fromKm}-${toKm}`,
-          `${where} Avoid this stretch.`, vars, 'segment.avoid'));
+          `${where} ${tx('Avoid this stretch.')}`, vars, 'segment.avoid'));
       }else if(segment.advisory === 'caution'){
         cautions.push(item(`segment.caution.${vars.type}.${fromKm}-${toKm}`,
-          `${where} Take care here.`, vars, 'segment.caution'));
+          `${where} ${tx('Take care here.')}`, vars, 'segment.caution'));
       }else{
         positives.push(item(`segment.information.${vars.type}.${fromKm}-${toKm}`,
           where, vars, 'segment.information'));
@@ -6602,6 +6720,13 @@ function breedInsights(name){
  * no scoring rules: it returns the score from recommendTrail().
  */
 
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
 // ============================================================
 // FITNESS DEFAULTS, used both to derive the guest teaser scores
 // and to score the real returning-user list against a saved profile.
@@ -6707,42 +6832,43 @@ function profileInsights(profile){
   const heavyAlready = tr.giant
     || (typeof HEAVY_BUILD_BREEDS !== 'undefined' && HEAVY_BUILD_BREEDS.includes(breedName));
   if(kg != null && kg >= 45 && !heavyAlready){
-    out.push({ icon:'mountain', title:'Weight adds up on descents',
-      sub:'At this weight, descents load joints hard on rock, favour gradual descents and a slow pace down.' });
+    out.push({ icon:'mountain', title:tx('Weight adds up on descents'),
+      sub:tx('At this weight, descents load joints hard on rock, favour gradual descents and a slow pace down.') });
   }
   const toyAlready = tr.shortLegged
     || (typeof TOY_BREEDS !== 'undefined' && TOY_BREEDS.includes(breedName));
   if(kg != null && kg < 5 && !toyAlready){
-    out.push({ icon:'paw', title:'Small strides, long day',
-      sub:'At this weight, a normal route is far more steps, scale distance down and watch recovery closely.' });
-    if(!alreadyHas('Loses heat fast when wet')){
-      out.push({ icon:'cold', title:'Loses heat fast when wet',
-        sub:'A small body chills quickly after rain or a stream crossing, carry a dry layer.' });
+    out.push({ icon:'paw', title:tx('Small strides, long day'),
+      sub:tx('At this weight, a normal route is far more steps, scale distance down and watch recovery closely.') });
+    // breedInsights() may already carry this line, in English or translated.
+    if(!alreadyHas('Loses heat fast when wet') && !alreadyHas(tx('Loses heat fast when wet'))){
+      out.push({ icon:'cold', title:tx('Loses heat fast when wet'),
+        sub:tx('A small body chills quickly after rain or a stream crossing, carry a dry layer.') });
     }
   }
 
   // Life stage, same puppy / senior thresholds effectiveOverrides() uses.
   if(age != null && age < 1){
-    out.push({ icon:'paw', title:'Still growing',
-      sub:'Growth plates are still closing, avoid long climbs and let a puppy set the pace, not the itinerary.' });
+    out.push({ icon:'paw', title:tx('Still growing'),
+      sub:tx('Growth plates are still closing, avoid long climbs and let a puppy set the pace, not the itinerary.') });
   } else if(age != null && age >= 8){
-    out.push({ icon:'mountain', title:'Built for shorter days now',
-      sub:'Senior joints and stamina fade before the enthusiasm does, plan shorter routes with flat stretches and frequent rests.' });
+    out.push({ icon:'mountain', title:tx('Built for shorter days now'),
+      sub:tx('Senior joints and stamina fade before the enthusiasm does, plan shorter routes with flat stretches and frequent rests.') });
   }
 
   // Declared health conditions, already scored by effectiveOverrides()
   // below, surfaced here in plain terms instead of only moving a number.
   if(conds.includes('joints') || conds.includes('back') || conds.includes('recovering')){
-    out.push({ icon:'paw', title:'Go easy on the joints',
-      sub:'A declared joint, back or recovering condition means technical, uneven ground costs more, favour smoother, gentler trails.' });
+    out.push({ icon:'paw', title:tx('Go easy on the joints'),
+      sub:tx('A declared joint, back or recovering condition means technical, uneven ground costs more, favour smoother, gentler trails.') });
   }
   if((conds.includes('heat') || conds.includes('cardiac') || conds.includes('overweight')) && !tr.heatSensitive){
-    out.push({ icon:'heat', title:'Extra care in the heat',
-      sub:'A declared heart, weight or heat-related condition means hot, exposed routes cost more, start early and prioritise shade.' });
+    out.push({ icon:'heat', title:tx('Extra care in the heat'),
+      sub:tx('A declared heart, weight or heat-related condition means hot, exposed routes cost more, start early and prioritise shade.') });
   }
   if(conds.includes('vision')){
-    out.push({ icon:'mountain', title:'Extra care on exposed edges',
-      sub:'A vision condition raises the stakes on narrow ledges and drop-offs, favour wider, well-marked paths.' });
+    out.push({ icon:'mountain', title:tx('Extra care on exposed edges'),
+      sub:tx('A vision condition raises the stakes on narrow ledges and drop-offs, favour wider, well-marked paths.') });
   }
 
   return out;
@@ -6956,6 +7082,20 @@ function effectiveOverrides(profile, adjustOverride){
 (function (root) {
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
+  // A trail's own words in the reader's language, from data/trail-text-it.
+  // Anything sorted or matched on (hazard kinds, rough ground) reads the English.
+  function trailWords(text) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.trailText === 'function' ? i18n.trailText(text) : text;
+  }
+
   const imported = trail => !!trail && trail.curated === false;
   // A day hike tops out around here; beyond it a route is a multi-day itinerary
   // (or a whole trail network imported as one line), which most visitors are not
@@ -7078,7 +7218,7 @@ function effectiveOverrides(profile, adjustOverride){
   function formatReviewDate(value) {
     if (root.DoloPawsEvidenceV1) return root.DoloPawsEvidenceV1.dateText(value);
     const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ''));
-    if (!match) return String(value || 'date unavailable');
+    if (!match) return String(value || tx('date unavailable'));
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     return `${Number(match[3])} ${months[Number(match[2]) - 1]} ${match[1]}`;
   }
@@ -7123,10 +7263,10 @@ function effectiveOverrides(profile, adjustOverride){
     .trim();
 
   function waterPointLabel(trail, label) {
-    const base = String(label || 'Water point')
+    const base = String(label || tx('Water point'))
       .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
       .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
-    if (!categoryVerified(trail, 'water')) return `${base}, availability can change`;
+    if (!categoryVerified(trail, 'water')) return tx('{label}, availability can change', { label: base });
     return imported(trail) ? base : withoutOsmTag(label);
   }
 
@@ -7149,26 +7289,27 @@ function effectiveOverrides(profile, adjustOverride){
   }
 
   function startPointLabel(trail, label) {
+    label = trailWords(label);
     if (!categoryVerified(trail, 'access') && !imported(trail)) {
-      return `Suggested start, ${plainStartLabel(label)}. Check current access before travelling.`;
+      return tx('Suggested start, {place}. Check current access before travelling.', { place: plainStartLabel(label) });
     }
     if (!imported(trail)) return withoutOsmTag(label);
-    return `Mapped start suggestion, ${plainStartLabel(label)}. Check current access before travelling.`;
+    return tx('Mapped start suggestion, {place}. Check current access before travelling.', { place: plainStartLabel(label) });
   }
 
   function waterAssessment(trail) {
     const mapped = Array.isArray(trail.waterSources) && trail.waterSources.length > 0;
     if (!categoryVerified(trail, 'water')) {
-      return { ok: false, title: 'Bring your own water', detail: 'Do not rely on potential water locations being available or drinkable. Carry enough for the full walk.' };
+      return { ok: false, title: tx('Bring your own water'), detail: tx('Do not rely on potential water locations being available or drinkable. Carry enough for the full walk.') };
     }
     if (imported(trail)) {
       return mapped
-        ? { ok: false, title: 'Bring backup water', detail: 'A potential water point appears on the map, but availability can change. Carry enough for the full walk.' }
-        : { ok: false, title: 'Bring your own water', detail: 'No water point appears on the route map. Carry enough for the full walk.' };
+        ? { ok: false, title: tx('Bring backup water'), detail: tx('A potential water point appears on the map, but availability can change. Carry enough for the full walk.') }
+        : { ok: false, title: tx('Bring your own water'), detail: tx('No water point appears on the route map. Carry enough for the full walk.') };
     }
     return mapped
-      ? { ok: true, title: 'Water', detail: 'A reviewed water point is listed on this route. Seasonal availability can change, so bring a backup supply.' }
-      : { ok: false, title: 'Water', detail: 'No water source is listed for this route. Carry enough for the dog, roughly 0.5 l per 10 kg on a warm day.' };
+      ? { ok: true, title: tx('Water'), detail: tx('A reviewed water point is listed on this route. Seasonal availability can change, so bring a backup supply.') }
+      : { ok: false, title: tx('Water'), detail: tx('No water source is listed for this route. Carry enough for the dog, roughly 0.5 l per 10 kg on a warm day.') };
   }
 
   // The walk-day forecast, read by the same rule the score uses, so this
@@ -7184,15 +7325,17 @@ function effectiveOverrides(profile, adjustOverride){
   // that is only about heat ("Hot tarmac") belongs with heat.
   const TRAFFIC_HAZARD = /\b(?:roads?|crossings?|traffic|cars?|vehicles?|cycl\w*|bikes?|streets?|zebra|SS\d+|SP\d+|km\/h)\b/i;
   function recordedHazards(trail) {
+    const tidy = hazard => String(hazard || '').trim().replace(/[.;]+$/, '');
     const all = (Array.isArray(trail && trail.surfaceHazards) ? trail.surfaceHazards : [])
-      .map(hazard => String(hazard || '').trim().replace(/[.;]+$/, ''))
-      .filter(Boolean);
-    const heat = all.filter(heatOnly);
+      .map(hazard => ({ en: tidy(hazard), shown: tidy(trailWords(hazard)) }))
+      .filter(hazard => hazard.en);
+    const heat = all.filter(hazard => heatOnly(hazard.en));
     const rest = all.filter(hazard => !heat.includes(hazard));
+    const shown = list => list.map(hazard => hazard.shown);
     return {
-      heat,
-      traffic: rest.filter(hazard => TRAFFIC_HAZARD.test(hazard)),
-      underfoot: rest.filter(hazard => !TRAFFIC_HAZARD.test(hazard)),
+      heat: shown(heat),
+      traffic: shown(rest.filter(hazard => TRAFFIC_HAZARD.test(hazard.en))),
+      underfoot: shown(rest.filter(hazard => !TRAFFIC_HAZARD.test(hazard.en))),
     };
   }
 
@@ -7201,10 +7344,10 @@ function effectiveOverrides(profile, adjustOverride){
     // A cool day makes the route's sun exposure irrelevant; a cold one turns
     // the advice the other way.
     if (coldDay(conditions)) {
-      return { ok: false, title: 'Cold day', guide: null, detail: `The forecast stays cold, up to ${conditions.dayMaxC} °C. Keep rests short, dry your dog after wet stretches, and bring a coat for a small or short-coated dog.` };
+      return { ok: false, title: tx('Cold day'), guide: null, detail: tx('The forecast stays cold, up to {temp} °C. Keep rests short, dry your dog after wet stretches, and bring a coat for a small or short-coated dog.', { temp: conditions.dayMaxC }) };
     }
     if (coolDay(conditions)) {
-      return { ok: true, title: 'Heat & shade', detail: `The forecast stays cool, up to ${conditions.dayMaxC} °C, so sun and shade do not matter for this walk.` };
+      return { ok: true, title: tx('Heat & shade'), detail: tx('The forecast stays cool, up to {temp} °C, so sun and shade do not matter for this walk.', { temp: conditions.dayMaxC }) };
     }
     const hot = recordedHazards(trail).heat;
     const withHot = result => (result && hot.length && !result.ok ? { ...result, items: hot } : result);
@@ -7213,29 +7356,29 @@ function effectiveOverrides(profile, adjustOverride){
 
   function summerHeat(trail, shade) {
     if (!categoryVerified(trail, 'heat')) {
-      return { ok: false, title: 'Plan for limited shade', detail: 'Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.' };
+      return { ok: false, title: tx('Plan for limited shade'), detail: tx('Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.') };
     }
     if (imported(trail) && shade === null && !trail.heatRisk && trail.shadeDescription) {
-      return { ok: false, title: 'Mixed shade', detail: `${trail.shadeDescription} Use the live forecast and plan exposed sections for a cool window.` };
+      return { ok: false, title: tx('Mixed shade'), detail: `${trailWords(trail.shadeDescription)} ${tx('Use the live forecast and plan exposed sections for a cool window.')}` };
     }
     if (imported(trail) && shade === null && !trail.heatRisk) {
-      return { ok: false, title: 'Plan for limited shade', detail: 'Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.' };
+      return { ok: false, title: tx('Plan for limited shade'), detail: tx('Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.') };
     }
     if (shade === null && !trail.heatRisk) return null;
-    const shadeText = shade === null ? '' : `${shade}% shade`;
+    const shadeText = shade === null ? '' : tx('{n}% shade', { n: shade });
     const highHeat = trail.heatRisk === 'high' || (shade !== null && shade < 25);
     const lowHeat = trail.heatRisk === 'low' && (shade === null || shade >= 40);
     const detail = highHeat
-      ? `${shadeText ? shadeText + '. ' : ''}The route is heat-exposed; use the live forecast to choose an early, cool window.`
+      ? `${shadeText ? shadeText + '. ' : ''}${tx('The route is heat-exposed; use the live forecast to choose an early, cool window.')}`
       : lowHeat
-        ? `${shadeText ? shadeText + '. ' : ''}The route has relatively favourable heat exposure.`
-        : `${shadeText ? shadeText + '. ' : ''}Plan rests and use the live forecast to choose a cooler window.`;
-    return { ok: !highHeat, title: 'Heat & shade', detail };
+        ? `${shadeText ? shadeText + '. ' : ''}${tx('The route has relatively favourable heat exposure.')}`
+        : `${shadeText ? shadeText + '. ' : ''}${tx('Plan rests and use the live forecast to choose a cooler window.')}`;
+    return { ok: !highHeat, title: tx('Heat & shade'), detail };
   }
 
   function exposureAssessment(trail) {
     if (trail.exposure === true) {
-      return { ok: false, title: 'Exposed sections', detail: 'Narrow ledges or unprotected drop-offs occur on parts of the route. Keep the dog leashed and on the inside.' };
+      return { ok: false, title: tx('Exposed sections'), detail: tx('Narrow ledges or unprotected drop-offs occur on parts of the route. Keep the dog leashed and on the inside.') };
     }
     return null;
   }
@@ -7243,7 +7386,7 @@ function effectiveOverrides(profile, adjustOverride){
   function livestockAssessment(trail, combinedText) {
     const noted = /livestock|patou|guardian|cattle|herd|pasture|alpage|graz/.test(combinedText || '');
     if (noted) {
-      return { ok: false, title: 'Livestock & leash', detail: 'Grazing animals, possibly with guardian dogs, are reported on or near this route. Leash through pastures and give herds a wide berth.' };
+      return { ok: false, title: tx('Livestock & leash'), detail: tx('Grazing animals, possibly with guardian dogs, are reported on or near this route. Leash through pastures and give herds a wide berth.') };
     }
     return null;
   }
@@ -7255,20 +7398,23 @@ function effectiveOverrides(profile, adjustOverride){
     if (Number(trail.terrainRank) === 0 && !underfoot.length) return null;
     const ground = String(trail.terrainType || 'Variable mountain terrain').trim().replace(/[.;]+$/, '').replace(/:\s+/, ', ');
     const rough = Number(trail.terrainRank) > 0 || /rock|scree|stony|stones|boulder|roots/i.test(ground);
-    const detail = `Underfoot: ${ground.charAt(0).toLowerCase()}${ground.slice(1)}.`
-      + (rough ? ' Check pads at breaks.' : '');
-    return { ok: false, title: 'Surface & footing', detail, items: underfoot };
+    const shownGround = trail.terrainType
+      ? String(trailWords(trail.terrainType)).trim().replace(/[.;]+$/, '').replace(/:\s+/, ', ')
+      : tx('Variable mountain terrain');
+    const detail = tx('Underfoot: {ground}.', { ground: `${shownGround.charAt(0).toLowerCase()}${shownGround.slice(1)}` })
+      + (rough ? ' ' + tx('Check pads at breaks.') : '');
+    return { ok: false, title: tx('Surface & footing'), detail, items: underfoot };
   }
 
   // Roads, crossings and bikes: a lead question, not a paw question.
   function trafficAssessment(trail) {
     const traffic = recordedHazards(trail).traffic;
     if (!traffic.length) return null;
-    return { ok: false, title: 'Roads & traffic', detail: 'Keep your dog on a short lead in these places:', items: traffic };
+    return { ok: false, title: tx('Roads & traffic'), detail: tx('Keep your dog on a short lead in these places:'), items: traffic };
   }
 
   function assessmentNote(trail) {
-    return '<strong style="color: var(--ink);">Trail planning information:</strong> based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.';
+    return '<strong style="color: var(--ink);">' + tx('Trail planning information:') + '</strong> ' + tx('based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.');
   }
 
   root.DoloPawsTrailTrust = Object.freeze({
@@ -67341,27 +67487,58 @@ function isHistoricPoi(props){
   return [props.class, props.subclass].some(value => HISTORIC_POI_TYPES.has(value));
 }
 
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
 // subclass (raw OSM value) → label. Falls back to prettified text for
 // anything not listed, so unknown types still get a sensible popup.
-const POI_LABELS = {
-  restaurant: '🍽️ Restaurant', fast_food: '🍔 Fast food', cafe: '☕ Café',
-  bar: '🍺 Bar', pub: '🍻 Pub', biergarten: '🍺 Beer garden',
-  ice_cream: '🍦 Ice cream', bakery: '🥐 Bakery',
-  alpine_hut: '🏔️ Mountain hut (rifugio)', wilderness_hut: '🛖 Bivouac',
-  shelter: '⛺ Shelter', viewpoint: '👀 Viewpoint', attraction: '⭐ Attraction',
-  hotel: '🏨 Hotel', guest_house: '🏡 Guest house', camp_site: '🏕️ Campsite',
-  parking: '🅿️ Parking', bus_stop: '🚌 Bus stop', bus_station: '🚌 Bus station',
-  station: '🚉 Station', drinking_water: '🚰 Drinking water',
-  spring: '💧 Spring', peak: '⛰️ Peak', supermarket: '🛒 Supermarket',
-  pharmacy: '💊 Pharmacy', hospital: '🏥 Hospital', bank: '🏦 Bank',
-  museum: '🏛️ Museum', castle: '🏰 Castle', church: '⛪ Church',
-  chapel: '⛪ Chapel', information: 'ℹ️ Information',
-};
+// Built on each popup so the labels follow the page language.
+function poiLabels(){
+  return {
+    restaurant: tx('🍽️ Restaurant'),
+    fast_food: tx('🍔 Fast food'),
+    cafe: tx('☕ Café'),
+    bar: tx('🍺 Bar'),
+    pub: tx('🍻 Pub'),
+    biergarten: tx('🍺 Beer garden'),
+    ice_cream: tx('🍦 Ice cream'),
+    bakery: tx('🥐 Bakery'),
+    alpine_hut: tx('🏔️ Mountain hut (rifugio)'),
+    wilderness_hut: tx('🛖 Bivouac'),
+    shelter: tx('⛺ Shelter'),
+    viewpoint: tx('👀 Viewpoint'),
+    attraction: tx('⭐ Attraction'),
+    hotel: tx('🏨 Hotel'),
+    guest_house: tx('🏡 Guest house'),
+    camp_site: tx('🏕️ Campsite'),
+    parking: tx('🅿️ Parking'),
+    bus_stop: tx('🚌 Bus stop'),
+    bus_station: tx('🚌 Bus station'),
+    station: tx('🚉 Station'),
+    drinking_water: tx('🚰 Drinking water'),
+    spring: tx('💧 Spring'),
+    peak: tx('⛰️ Peak'),
+    supermarket: tx('🛒 Supermarket'),
+    pharmacy: tx('💊 Pharmacy'),
+    hospital: tx('🏥 Hospital'),
+    bank: tx('🏦 Bank'),
+    museum: tx('🏛️ Museum'),
+    castle: tx('🏰 Castle'),
+    church: tx('⛪ Church'),
+    chapel: tx('⛪ Chapel'),
+    information: tx('ℹ️ Information'),
+  };
+}
 
 function poiLabel(props){
   const key = props.subclass || props.class || '';
-  if (POI_LABELS[key]) return POI_LABELS[key];
-  if (!key) return '📍 Place';
+  const labels = poiLabels();
+  if (labels[key]) return labels[key];
+  if (!key) return tx('📍 Place');
   const pretty = String(key).replace(/_/g, ' ');
   return '📍 ' + pretty.charAt(0).toUpperCase() + pretty.slice(1);
 }
@@ -67383,12 +67560,12 @@ function buildDetailLines(tags){
   if (phone) html += `<br>📞 <a href="tel:${escHtml(String(phone).replace(/\s/g,''))}">${escHtml(phone)}</a>`;
   const site = tags.website || tags['contact:website'] || tags.url;
   if (site && /^https?:\/\//.test(site))
-    html += `<br>🔗 <a href="${escHtml(site)}" target="_blank" rel="noopener">Website</a>`;
+    html += `<br>🔗 <a href="${escHtml(site)}" target="_blank" rel="noopener">${tx('Website')}</a>`;
   if (tags.cuisine)
     html += `<br>🍴 ${escHtml(String(tags.cuisine).split(';').join(', ').replace(/_/g,' '))}`;
-  if (tags.dog === 'yes') html += `<br>🐕 Dogs welcome`;
-  else if (tags.dog === 'leashed') html += `<br>🦮 Dogs on leash`;
-  else if (tags.dog === 'no') html += `<br>🚫 No dogs`;
+  if (tags.dog === 'yes') html += `<br>🐕 ${tx('Dogs welcome')}`;
+  else if (tags.dog === 'leashed') html += `<br>🦮 ${tx('Dogs on leash')}`;
+  else if (tags.dog === 'no') html += `<br>🚫 ${tx('No dogs')}`;
   // e.g. "it:Lago di Braies" → link to Italian Wikipedia article
   if (tags.wikipedia && /^[a-z]{2,3}:./.test(tags.wikipedia)){
     const [lang, ...title] = tags.wikipedia.split(':');
@@ -67447,7 +67624,7 @@ function makeBasemapPoisClickable(map){
     // basic popup immediately with a quiet loading hint, then update the
     // popup in place when (if) details arrive.
     popup.setHTML(baseHtml
-      + `<div style="margin-top:4px;font-size:11px;color:#8b8578;font-style:italic;">looking up details…</div>`
+      + `<div style="margin-top:4px;font-size:11px;color:#8b8578;font-style:italic;">${tx('looking up details…')}</div>`
       + footer);
 
     fetchOsmDetails(name, lng, lat).then(tags => {
@@ -67858,6 +68035,13 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
 (function(root){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const DEFAULT_MAX_KM = 100;
   const TRAIL_JOIN_MAX_KM = 5;
   const MAX_GPS_ACCURACY_M = 500;
@@ -67918,7 +68102,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
       point:{ lat:point.lat, lng:point.lng },
       label:declared && declared.label
         ? declared.label
-        : (trail.curated === false ? 'Mapped route start' : 'Recommended starting point'),
+        : (trail.curated === false ? tx('Mapped route start') : tx('Recommended starting point')),
       kind:trail.curated === false ? 'mapped-start' : 'recommended-start',
     };
   }
@@ -67954,22 +68138,24 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     if(!segments.length) return [];
 
     const steps = [];
-    let action = 'Follow the mapped path';
+    let action = tx('Follow the mapped path');
     let heading = segments[0].bearing;
     let distanceM = 0;
     segments.forEach((segment, index) => {
       const change = signedBearingChange(heading, segment.bearing);
       if(index > 0 && Math.abs(change) >= 35){
         steps.push({ action, distanceM:Math.round(distanceM) });
-        const side = change > 0 ? 'right' : 'left';
-        action = `${Math.abs(change) < 75 ? 'Bear' : 'Turn'} ${side}`;
+        const right = change > 0;
+        action = Math.abs(change) < 75
+          ? (right ? tx('Bear right') : tx('Bear left'))
+          : (right ? tx('Turn right') : tx('Turn left'));
         distanceM = 0;
       }
       distanceM += segment.distanceM;
       heading = segment.bearing;
     });
     if(distanceM > 0) steps.push({ action, distanceM:Math.round(distanceM) });
-    steps.push({ action:'Join the trail', distanceM:0 });
+    steps.push({ action:tx('Join the trail'), distanceM:0 });
     return steps;
   }
 
@@ -68028,7 +68214,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
         mode:'nearest-route',
         origin,
         target:nearest.point,
-        targetLabel:'Nearest point on this trail',
+        targetLabel:tx('Nearest point on this trail'),
         targetKind:'nearest-route-point',
         accuracyM,
         distanceKm:nearest.distanceKm,
@@ -68575,6 +68761,13 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const WEATHER_MAX_AGE_MS = 30 * 60 * 1000;
   const SELF_TEST_MAX_AGE_MS = 12 * 60 * 60 * 1000;
 
@@ -68842,6 +69035,12 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
         level === 'checking' ? '…' : 'i';
     }
 
+    // Spoken before each check's title; the level itself stays a code.
+    function levelLabel(level){
+      return level === 'ready' ? tx('ready') : level === 'blocker' ? tx('blocker') :
+        level === 'checking' ? tx('checking') : level === 'advisory' ? tx('advisory') : level;
+    }
+
     function render(){
       if(!modal || !state) return;
       const result = assess(state, undefined, win.t);
@@ -68850,7 +69049,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
         `<article class="pre-hike-item pre-hike-item--${entry.level}">` +
           `<span class="pre-hike-icon" aria-hidden="true">${icon(entry.level)}</span>` +
           '<div class="pre-hike-item-copy">' +
-            `<strong><span class="sr-only">${escapeHtml(entry.level)}: </span>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.detail)}</p>` +
+            `<strong><span class="sr-only">${escapeHtml(levelLabel(entry.level))}: </span>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.detail)}</p>` +
           '</div>' +
           (entry.action
             ? `<button type="button" data-readiness-action="${entry.action}">${
@@ -70340,6 +70539,17 @@ function hikeRoutePositionKm(input){
 }
 
 function initHikeMode(map, trail, options){
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+  // A trail's own words in the reader's language, from data/trail-text-it.
+  function trailWords(text){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.trailText === 'function' ? i18n.trailText(text) : text;
+  }
   if (!('geolocation' in navigator)) return; // no GPS, don't show the button
   if (!Array.isArray(trail.path) || trail.path.length < 2) return;
 
@@ -70413,7 +70623,7 @@ function initHikeMode(map, trail, options){
   const panel = document.createElement('div');
   panel.id = 'mapHikeStatus';
   panel.setAttribute('role', 'group');
-  panel.setAttribute('aria-label', 'Live hike details');
+  panel.setAttribute('aria-label', tx('Live hike details'));
   panel.style.cssText = 'position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:6;max-width:92%;padding:10px 16px;border-radius:12px;background:rgba(46,64,52,.94);color:#fff;font-size:12.5px;font-weight:600;box-shadow:0 2px 10px rgba(0,0,0,.35);display:none;text-align:center;line-height:1.5;';
   container.appendChild(panel);
 
@@ -70431,7 +70641,7 @@ function initHikeMode(map, trail, options){
   const banner = document.createElement('div');
   banner.id = 'mapHikeOffRoute';
   banner.setAttribute('role', 'group');
-  banner.setAttribute('aria-label', 'Off-route warning');
+  banner.setAttribute('aria-label', tx('Off-route warning'));
   banner.textContent = window.t ? window.t('hike.offRoute') : '⚠️ Off route';
   banner.style.cssText = 'position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:7;width:max-content;max-width:min(92%,520px);padding:9px 16px;border-radius:12px;background:#9C3A25;color:#fff;font-size:12.5px;font-weight:700;line-height:1.4;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.35);display:none;';
   container.appendChild(banner);
@@ -70917,7 +71127,7 @@ function initHikeMode(map, trail, options){
     const hut = isLoop ? null : nextAhead(trail.rifugi, currentRouteKm, 'name');
     if (hut) parts.push(window.t('hike.hutIn', {name: hut.label, d: hut.ahead.toFixed(1)}));
     const decision = isLoop ? null : nextAhead(trail.decisionPoints, currentRouteKm, 'instruction');
-    if (decision && decision.ahead < 0.5) parts.push(window.t('hike.ahead', {what: decision.label}));
+    if (decision && decision.ahead < 0.5) parts.push(window.t('hike.ahead', {what: trailWords(decision.label)}));
 
     // Lead advisories are a range rather than a next-point search, so unlike
     // the readouts above they stay meaningful on a loop.
@@ -71223,7 +71433,7 @@ function initHikeMode(map, trail, options){
     const elapsedSeconds = completion.durationSeconds;
     const elapsedMinutes = Math.max(1, Math.round(elapsedSeconds / 60));
     const dog = dogSummary();
-    const dogName = dog.name || 'Your dog';
+    const dogName = dog.name || tx('Your dog');
     const km = completion.distanceKm;
     const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : ', ';
     // The trail rating, in the words the rest of the product uses. This held
@@ -71267,70 +71477,70 @@ function initHikeMode(map, trail, options){
           ${Number.isFinite(matchPct) ? `<span class="pct">${esc(window.t('hike.matchFor', {pct: matchPct, name: dogName}))}</span>` : ''}
         </div>
         <div class="hk-block hk-outcome-block">
-          <div class="hk-label">Private trail feedback</div>
-          <p class="hk-outcome-intro">Did this trail suit ${esc(dogName)}? This helps assess the recommendation and never becomes a public review.</p>
-          <div class="hk-outcome-options" id="hkOutcomeOptions" role="radiogroup" aria-label="Did this trail suit your dog?"></div>
+          <div class="hk-label">${esc(tx('Private trail feedback'))}</div>
+          <p class="hk-outcome-intro">${esc(tx('Did this trail suit {name}? This helps assess the recommendation and never becomes a public review.', { name: dogName }))}</p>
+          <div class="hk-outcome-options" id="hkOutcomeOptions" role="radiogroup" aria-label="${esc(tx('Did this trail suit your dog?'))}"></div>
           <div class="hk-outcome-followups" id="hkOutcomeFollowups" hidden>
-            <label for="hkWaterAccuracy">Was the listed water information accurate? <span>Optional</span></label>
+            <label for="hkWaterAccuracy">${esc(tx('Was the listed water information accurate?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkWaterAccuracy">
-              <option value="">Prefer not to answer</option>
-              <option value="accurate">Yes, it was accurate</option>
-              <option value="less_than_listed">Less water than listed</option>
-              <option value="more_than_listed">More water than listed</option>
-              <option value="not_checked">I did not check</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="accurate">${esc(tx('Yes, it was accurate'))}</option>
+              <option value="less_than_listed">${esc(tx('Less water than listed'))}</option>
+              <option value="more_than_listed">${esc(tx('More water than listed'))}</option>
+              <option value="not_checked">${esc(tx('I did not check'))}</option>
             </select>
-            <label for="hkLivestock">Did you encounter livestock? <span>Optional</span></label>
+            <label for="hkLivestock">${esc(tx('Did you encounter livestock?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkLivestock">
-              <option value="">Prefer not to answer</option>
-              <option value="none">No livestock at all</option>
-              <option value="seen_at_distance">Seen, but at a distance</option>
-              <option value="close_encounter">Passed close to them</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="none">${esc(tx('No livestock at all'))}</option>
+              <option value="seen_at_distance">${esc(tx('Seen, but at a distance'))}</option>
+              <option value="close_encounter">${esc(tx('Passed close to them'))}</option>
             </select>
-            <label for="hkOffLead">Were dogs off-lead on this route? <span>Optional</span></label>
+            <label for="hkOffLead">${esc(tx('Were dogs off-lead on this route?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkOffLead">
-              <option value="">Prefer not to answer</option>
-              <option value="all_on_lead">Everyone kept dogs on the lead</option>
-              <option value="some_off_lead">Some dogs were off-lead</option>
-              <option value="mostly_off_lead">Most dogs were off-lead</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="all_on_lead">${esc(tx('Everyone kept dogs on the lead'))}</option>
+              <option value="some_off_lead">${esc(tx('Some dogs were off-lead'))}</option>
+              <option value="mostly_off_lead">${esc(tx('Most dogs were off-lead'))}</option>
             </select>
-            <label for="hkCrowding">How busy was it? <span>Optional</span></label>
+            <label for="hkCrowding">${esc(tx('How busy was it?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkCrowding">
-              <option value="">Prefer not to answer</option>
-              <option value="quiet">Quiet, room to give space</option>
-              <option value="moderate">Steady foot traffic</option>
-              <option value="busy">Busy throughout</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="quiet">${esc(tx('Quiet, room to give space'))}</option>
+              <option value="moderate">${esc(tx('Steady foot traffic'))}</option>
+              <option value="busy">${esc(tx('Busy throughout'))}</option>
             </select>
-            <label for="hkEnjoyment">Did ${esc(dogName)} enjoy it? <span>Optional</span></label>
+            <label for="hkEnjoyment">${esc(tx('Did {name} enjoy it?', { name: dogName }))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkEnjoyment">
-              <option value="">Prefer not to answer</option>
-              <option value="loved_it">Loved it</option>
-              <option value="fine">Took it in their stride</option>
-              <option value="struggled">Struggled with it</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="loved_it">${esc(tx('Loved it'))}</option>
+              <option value="fine">${esc(tx('Took it in their stride'))}</option>
+              <option value="struggled">${esc(tx('Struggled with it'))}</option>
             </select>
-            <label for="hkReactiveFit">Would you recommend it for a reactive dog? <span>Optional</span></label>
+            <label for="hkReactiveFit">${esc(tx('Would you recommend it for a reactive dog?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkReactiveFit">
-              <option value="">Prefer not to answer</option>
-              <option value="yes">Yes, there is room to pass</option>
-              <option value="with_care">Only with care</option>
-              <option value="no">No, too little space</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="yes">${esc(tx('Yes, there is room to pass'))}</option>
+              <option value="with_care">${esc(tx('Only with care'))}</option>
+              <option value="no">${esc(tx('No, too little space'))}</option>
             </select>
             <label class="hk-outcome-check">
               <input type="checkbox" id="hkMissingRestriction">
-              A posted restriction was missing from ORMA
+              ${esc(tx('A posted restriction was missing from ORMA'))}
             </label>
             <fieldset>
-              <legend>Any material hazard we should account for? <span>Optional</span></legend>
+              <legend>${esc(tx('Any material hazard we should account for?'))} <span>${esc(tx('Optional'))}</span></legend>
               <div class="hk-hazard-options">
-                <label><input type="checkbox" value="surface"> Surface</label>
-                <label><input type="checkbox" value="exposure"> Exposure</label>
-                <label><input type="checkbox" value="livestock"> Livestock</label>
-                <label><input type="checkbox" value="heat"> Heat</label>
-                <label><input type="checkbox" value="access"> Access</label>
-                <label><input type="checkbox" value="water"> Water</label>
+                <label><input type="checkbox" value="surface"> ${esc(tx('Surface'))}</label>
+                <label><input type="checkbox" value="exposure"> ${esc(tx('Exposure'))}</label>
+                <label><input type="checkbox" value="livestock"> ${esc(tx('Livestock'))}</label>
+                <label><input type="checkbox" value="heat"> ${esc(tx('Heat'))}</label>
+                <label><input type="checkbox" value="access"> ${esc(tx('Access'))}</label>
+                <label><input type="checkbox" value="water"> ${esc(tx('Water'))}</label>
               </div>
             </fieldset>
           </div>
-          <button type="button" class="hk-outcome-save" id="hkOutcomeSave" disabled>Save private feedback</button>
+          <button type="button" class="hk-outcome-save" id="hkOutcomeSave" disabled>${esc(tx('Save private feedback'))}</button>
           <p class="hk-outcome-status" id="hkOutcomeStatus" role="status" aria-live="polite"></p>
         </div>
         <div class="hk-block">
@@ -71367,11 +71577,11 @@ function initHikeMode(map, trail, options){
 
     function renderOutcome(){
       const labels = [
-        ['appropriate', 'Yes, appropriate'],
-        ['appropriate_with_unexpected_cautions', 'Yes, with unexpected cautions'],
-        ['not_appropriate', 'No, not appropriate'],
-        ['did_not_complete', 'We turned back'],
-        ['prefer_not_to_answer', 'Prefer not to answer'],
+        ['appropriate', tx('Yes, appropriate')],
+        ['appropriate_with_unexpected_cautions', tx('Yes, with unexpected cautions')],
+        ['not_appropriate', tx('No, not appropriate')],
+        ['did_not_complete', tx('We turned back')],
+        ['prefer_not_to_answer', tx('Prefer not to answer')],
       ];
       const choices = q('#hkOutcomeOptions');
       choices.innerHTML = '';
@@ -71408,16 +71618,16 @@ function initHikeMode(map, trail, options){
       const status = q('#hkOutcomeStatus');
       const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
       if(!user){
-        status.textContent = 'Log in before saving this private response.';
+        status.textContent = tx('Log in before saving this private response.');
         if(window.DoloPawsAuthUI) window.DoloPawsAuthUI.openLogin();
         return;
       }
       if(!window.DoloPawsPostHikeOutcomes){
-        status.textContent = 'Private feedback is unavailable. Your completed hike is still saved.';
+        status.textContent = tx('Private feedback is unavailable. Your completed hike is still saved.');
         return;
       }
       saveButton.disabled = true;
-      status.textContent = 'Saving privately on this device…';
+      status.textContent = tx('Saving privately on this device…');
       let offlinePackageUsed = false;
       if(window.DoloPawsOffline && window.DoloPawsOffline.inspectPackage){
         try{
@@ -71443,7 +71653,7 @@ function initHikeMode(map, trail, options){
         offlinePackageUsed,
       }, user.uid);
       if(!result.ok){
-        status.textContent = 'The response could not be saved. Try again before closing this screen.';
+        status.textContent = tx('The response could not be saved. Try again before closing this screen.');
         saveButton.disabled = false;
         return;
       }
@@ -71451,13 +71661,13 @@ function initHikeMode(map, trail, options){
         '#hkOutcomeOptions button,#hkOutcomeFollowups input,#hkOutcomeFollowups select'
       ).forEach(control => { control.disabled = true; });
       status.textContent = navigator.onLine
-        ? 'Saved privately · syncing…'
-        : 'Saved privately · pending sync until you reconnect.';
+        ? tx('Saved privately · syncing…')
+        : tx('Saved privately · pending sync until you reconnect.');
       const sync = await window.DoloPawsPostHikeOutcomes.syncBrowser();
       status.textContent = sync.ok && sync.pending === 0
-        ? 'Saved privately · synced to your account.'
-        : 'Saved privately · pending sync until you reconnect.';
-      saveButton.textContent = 'Feedback saved';
+        ? tx('Saved privately · synced to your account.')
+        : tx('Saved privately · pending sync until you reconnect.');
+      saveButton.textContent = tx('Feedback saved');
     });
 
     function renderCond(){
@@ -71466,7 +71676,7 @@ function initHikeMode(map, trail, options){
       ['Comfortable', 'Warm', 'Hot'].forEach(c => {
         const b = document.createElement('button');
         b.type = 'button';
-        b.textContent = c;
+        b.textContent = window.t ? window.t('journal.condition.' + c.toLowerCase()) : c;
         b.className = c === cond ? 'on' : '';
         b.dataset.radioValue = c;
         b.setAttribute('role', 'radio');
@@ -71818,8 +72028,8 @@ function initHikeMode(map, trail, options){
       phoneUrl.searchParams.set('hike','1');
       phoneUrl.hash='start-hike';
       window.ORMADeviceHandoff.open({
-        title:'Start this hike on your phone',
-        description:'Live hike guidance needs the phone you will carry on the trail.',
+        title:tx('Start this hike on your phone'),
+        description:tx('Live hike guidance needs the phone you will carry on the trail.'),
         url:phoneUrl.href,
       });
     }
@@ -71843,8 +72053,8 @@ function initHikeMode(map, trail, options){
     setTimeout(async () => {
       if(window.ORMADeviceHandoff&&window.ORMADeviceHandoff.shouldHandoff()){
         window.ORMADeviceHandoff.open({
-          title:'Start this hike on your phone',
-          description:'Live hike guidance needs the phone you will carry on the trail.',
+          title:tx('Start this hike on your phone'),
+          description:tx('Live hike guidance needs the phone you will carry on the trail.'),
           url:window.location.href,
         });
         return;
@@ -71916,6 +72126,12 @@ function initDetailPois(map, trail){
 
   // Every popup states IN WORDS what the place is, an icon plus an
   // elevation is a riddle, not information.
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
   function tt(key, fallback){
     if(!window.t) return fallback;
     const v = window.t(key);
@@ -71950,16 +72166,16 @@ function initDetailPois(map, trail){
       : '';
     let html = `<div class="dp-poi-popup"><span class="dp-poi-type">${typeIcon}${esc(typeLabel)}</span>`;
     if (props.name) html += `<strong class="dp-poi-name">${esc(props.name)}</strong>`;
-    if (props.ele) html += `<span>${esc(props.ele)} m elevation</span>`;
-    if (props.opening_hours) html += `<span>Hours: ${esc(props.opening_hours)}</span>`;
+    if (props.ele) html += `<span>${tx('{ele} m elevation', { ele: esc(props.ele) })}</span>`;
+    if (props.opening_hours) html += `<span>${tx('Hours: {hours}', { hours: esc(props.opening_hours) })}</span>`;
     const phone = props.phone || props['contact:phone'];
-    if (phone) html += `<span>Phone: ${esc(phone)}</span>`;
+    if (phone) html += `<span>${tx('Phone: {phone}', { phone: esc(phone) })}</span>`;
     const site = props.website || props['contact:website'];
-    if (site && /^https?:\/\//.test(site)) html += `<a href="${esc(site)}" target="_blank" rel="noopener">Website</a>`;
-    if (props.dog === 'yes') html += `<span class="dp-poi-dog">Dogs welcome</span>`;
-    else if (props.dog === 'leashed') html += `<span class="dp-poi-dog">Dogs on leash</span>`;
-    else if (props.dog === 'no') html += `<span class="dp-poi-dog">No dogs</span>`;
-    if (props.outdoor_seating && props.outdoor_seating !== 'no') html += `<span>Outdoor seating</span>`;
+    if (site && /^https?:\/\//.test(site)) html += `<a href="${esc(site)}" target="_blank" rel="noopener">${tx('Website')}</a>`;
+    if (props.dog === 'yes') html += `<span class="dp-poi-dog">${tx('Dogs welcome')}</span>`;
+    else if (props.dog === 'leashed') html += `<span class="dp-poi-dog">${tx('Dogs on leash')}</span>`;
+    else if (props.dog === 'no') html += `<span class="dp-poi-dog">${tx('No dogs')}</span>`;
+    if (props.outdoor_seating && props.outdoor_seating !== 'no') html += `<span>${tx('Outdoor seating')}</span>`;
     return html + '</div>';
   }
 
@@ -72106,13 +72322,25 @@ function initDetailPois(map, trail){
 })(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text,vars){
+    const i18n=typeof window!=='undefined'&&window.DoloPawsI18n;
+    if(i18n&&typeof i18n.phrase==='function')return i18n.phrase(text,vars);
+    return vars?String(text).replace(/\{(\w+)\}/g,(m,k)=>(k in vars?vars[k]:m)):text;
+  }
+  // A trail's own words in the reader's language, from data/trail-text-it.
+  function trailWords(text){
+    const i18n=typeof window!=='undefined'&&window.DoloPawsI18n;
+    return i18n&&typeof i18n.trailText==='function'?i18n.trailText(text):text;
+  }
+
   function clean(value,maximum=1000){return String(value||'').trim().slice(0,maximum);}
 
   function normalizeCredit(value,fallbackUrl){
     const record=typeof value==='string'?{text:value}:(value&&typeof value==='object'?value:null);
     const text=clean(record?.text,500);if(!text)return null;
     const url=clean(record?.url||fallbackUrl);
-    return {text,url:/^https:\/\//i.test(url)?url:'',bare:record?.bare===true,label:record?.bare===true?text:`Photo: ${text}`};
+    return {text,url:/^https:\/\//i.test(url)?url:'',bare:record?.bare===true,label:record?.bare===true?text:tx('Photo: {credit}',{credit:text})};
   }
 
   // An illustration is not a photograph, so its line is not headed "Photo:"
@@ -72152,17 +72380,17 @@ function initDetailPois(map, trail){
 
   function photoCaption(photo){
     const licensed=licensedCredit(photo);
-    if(licensed)return `Photo: ${licensed.creator} · ${licensed.licence}`;
+    if(licensed)return tx('Photo: {creator} · {licence}',{creator:licensed.creator,licence:licensed.licence});
     const dog=photo?.dogContext?.name;
     const caption=photo?.isEditorial
-      ? 'Shared by the ORMA community'
-      : (clean(photo?.caption,500)||(dog?`Shared by ${dog}’s human`:'Shared by the ORMA community'));
+      ? tx('Shared by the ORMA community')
+      : (clean(photo?.caption,500)||(dog?tx('Shared by {dog}’s human',{dog}):tx('Shared by the ORMA community')));
     const credit=normalizeCredit(photo?.credit,photo?.creditUrl);
-    const status=photo?.status==='reported'?'Reported, under review':'';
+    const status=photo?.status==='reported'?tx('Reported, under review'):'';
     return [caption,photo?.isEditorial?'':credit?.label,status].filter(Boolean).join(' · ');
   }
 
-  function photoAlt(photo){return clean(photo?.alt,500)||clean(photo?.caption,500)||'Trail photograph';}
+  function photoAlt(photo){return clean(trailWords(photo?.alt),500)||clean(photo?.caption,500)||tx('Trail photograph');}
 
   return {clean,normalizeCredit,heroCredit,isIllustration,editorialPhotos,licensedPhotos,licensedCredit,photoCaption,photoAlt};
 });
@@ -72175,6 +72403,13 @@ function initDetailPois(map, trail){
   if(root)root.DoloPawsWeatherWindow=api;
 })(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
+
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text,vars){
+    const i18n=typeof window!=='undefined'&&window.DoloPawsI18n;
+    if(i18n&&typeof i18n.phrase==='function')return i18n.phrase(text,vars);
+    return vars?String(text).replace(/\{(\w+)\}/g,(m,k)=>(k in vars?vars[k]:m)):text;
+  }
 
   const DAYLIGHT_BUFFER_MINUTES=60;
   const PLANNING_BUFFER_MINUTES=30;
@@ -72309,7 +72544,7 @@ function initDetailPois(map, trail){
   }
 
   function markup(result){
-    if(!result)return 'No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.';
+    if(!result)return tx('No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.');
     const start=formatTime(result.startMinutes);
     const finish=formatTime(result.finishMinutes);
     // A day a reader picked is now the common case, not the exception, so it
@@ -72317,24 +72552,31 @@ function initDetailPois(map, trail){
     const when=result.dayOffset===0
       ? `<strong>${start}</strong>`
       : result.dayOffset===1
-        ? `tomorrow at <strong>${start}</strong>`
-        : `on ${dayLabel(result.date)} at <strong>${start}</strong>`;
-    const maximum=Number.isFinite(result.maxTemperatureC)?` (up to ${result.maxTemperatureC}°C)`:'';
+        ? tx('tomorrow at <strong>{start}</strong>',{start})
+        : tx('on {day} at <strong>{start}</strong>',{day:dayLabel(result.date),start});
+    const maximum=Number.isFinite(result.maxTemperatureC)?' '+tx('(up to {temp}°C)',{temp:result.maxTemperatureC}):'';
     let lead;
-    let close='';
-    if(result.reason==='comfortable')lead=`The forecast stays cool during the walk${maximum}. Suggested start: ${when}`;
-    else if(result.reason==='avoid-heat'){
-      lead=`Cooler forecast window${maximum}: start ${when}`;
-      close=' before the warmer part of the day';
+    let tail;
+    const vars={hours:result.durationHours,finish};
+    if(result.reason==='comfortable'){
+      lead=tx('The forecast stays cool during the walk{maximum}. Suggested start: {when}',{maximum,when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong>.',vars);
+    }else if(result.reason==='avoid-heat'){
+      lead=tx('Cooler forecast window{maximum}: start {when}',{maximum,when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong> before the warmer part of the day.',vars);
     }else if(result.reason==='least-warm'){
-      lead=`Least-warm forecast window${maximum}: start ${when}`;
-      close=' before the hottest available hours';
-    }else lead=`Suggested daylight start: ${when}`;
+      lead=tx('Least-warm forecast window{maximum}: start {when}',{maximum,when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong> before the hottest available hours.',vars);
+    }else{
+      lead=tx('Suggested daylight start: {when}',{when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong>.',vars);
+    }
     const daylightMargin=result.sunsetMinutes-result.finishMinutes;
+    const leftHours=Math.max(1,Math.floor(daylightMargin/60));
     const daylight=daylightMargin<=SUNSET_NOTE_WINDOW_MINUTES
-      ? ` This leaves ${Math.max(1,Math.floor(daylightMargin/60))} hour${daylightMargin>=120?'s':''} before sunset.`
+      ? ' '+(daylightMargin>=120?tx('This leaves {n} hours before sunset.',{n:leftHours}):tx('This leaves {n} hour before sunset.',{n:leftHours}))
       : '';
-    return `${lead} · for this ${result.durationHours} h route, finish around <strong>${finish}</strong>${close}.${daylight}`;
+    return `${lead} · ${tail}${daylight}`;
   }
 
   // The hour heat actually becomes a problem today, read off the forecast
@@ -72524,6 +72766,13 @@ const FLAG_TYPES = {
   'other':                { icon: '📝', label: 'Other',                          severe: false },
 };
 
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
 function trEsc(s){
   return String(s).replace(/[&<>"']/g,
     c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -72608,7 +72857,7 @@ function initTrailReports(map, trail){
       } else {
         const average = visible.reduce((total, review) => total + Number(review.rating), 0) / visible.length;
         ratingEl.hidden = false;
-        ratingEl.innerHTML = `<span class="community-rating__stars" aria-label="${average.toFixed(1)} out of 5 stars">${starSvgIcon(true, 13)}</span><strong>${average.toFixed(1)}</strong><span>${visible.length} ${visible.length === 1 ? 'review' : 'reviews'}</span>`;
+        ratingEl.innerHTML = `<span class="community-rating__stars" aria-label="${tx('{rating} out of 5 stars', { rating:average.toFixed(1) })}">${starSvgIcon(true, 13)}</span><strong>${average.toFixed(1)}</strong><span>${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
       }
     }
     if (heroRatingEl){
@@ -72618,11 +72867,11 @@ function initTrailReports(map, trail){
         // Honest zero state in the design's rating slot: invite the first
         // review instead of pretending a score exists.
         heroRatingEl.classList.add('is-empty');
-        heroRatingEl.innerHTML = `${starSvg} <span class="cnt">No reviews yet</span>`;
+        heroRatingEl.innerHTML = `${starSvg} <span class="cnt">${tx('No reviews yet')}</span>`;
       } else {
         const average = visible.reduce((total, review) => total + Number(review.rating), 0) / visible.length;
         heroRatingEl.classList.remove('is-empty');
-        heroRatingEl.innerHTML = `${starSvg} ${average.toFixed(1)} <span class="cnt">· ${visible.length} ${visible.length === 1 ? 'review' : 'reviews'}</span>`;
+        heroRatingEl.innerHTML = `${starSvg} ${average.toFixed(1)} <span class="cnt">· ${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
       }
       // The rating is a shortcut to the reviews section either way.
       heroRatingEl.style.cursor = 'pointer';
@@ -72635,9 +72884,9 @@ function initTrailReports(map, trail){
     if (!reviewListEl) return;
     if (!visible.length){
       reviewListEl.innerHTML = `<div class="empty-state empty-state--compact">
-        <p class="empty-state__title">No reviews yet</p>
-        <p class="empty-state__copy">Share how the route felt for your dog and what another owner should know.</p>
-        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-review>Leave the first review</button></div>
+        <p class="empty-state__title">${tx('No reviews yet')}</p>
+        <p class="empty-state__copy">${tx('Share how the route felt for your dog and what another owner should know.')}</p>
+        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-review>${tx('Leave the first review')}</button></div>
       </div>`;
       const emptyReview = reviewListEl.querySelector('[data-empty-review]');
       if (emptyReview) emptyReview.addEventListener('click', openReviewModal);
@@ -72646,13 +72895,13 @@ function initTrailReports(map, trail){
 
     reviewListEl.innerHTML = visible.slice(0, 3).map(review => {
       const date = reviewDate(review);
-      const dateLabel = date ? date.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : 'Recently';
+      const dateLabel = date ? date.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : tx('Recently');
       const dogName = review.dogContext && review.dogContext.name;
-      const reviewer = dogName ? `${trEsc(dogName)}’s human` : 'A ORMA member';
+      const reviewer = dogName ? tx('{name}’s human', { name:trEsc(dogName) }) : tx('A ORMA member');
       const stars = [1, 2, 3, 4, 5].map(n => starSvgIcon(n <= Number(review.rating), 13)).join('');
       return `<article class="community-review">
-        <div class="community-review__rating" aria-label="${review.rating} out of 5 stars">${stars}</div>
-        ${review.status === 'reported' ? '<p class="community-review__notice">Reported · under moderation review</p>' : ''}
+        <div class="community-review__rating" aria-label="${tx('{rating} out of 5 stars', { rating:review.rating })}">${stars}</div>
+        ${review.status === 'reported' ? `<p class="community-review__notice">${tx('Reported · under moderation review')}</p>` : ''}
         ${review.text ? `<p>${trEsc(review.text)}</p>` : ''}
         <footer>${reviewer} <span>·</span> ${dateLabel}</footer>
       </article>`;
@@ -72664,8 +72913,8 @@ function initTrailReports(map, trail){
     const dog = photo.dogContext && photo.dogContext.name;
     const caption = photo.caption
       ? String(photo.caption)
-      : (dog ? `Shared by ${dog}’s human` : 'Shared by the ORMA community');
-    return caption + (photo.status === 'reported' ? ' · Reported, under review' : '');
+      : (dog ? tx('Shared by {name}’s human', { name:dog }) : tx('Shared by the ORMA community'));
+    return caption + (photo.status === 'reported' ? ` · ${tx('Reported, under review')}` : '');
   }
 
   // The credit a licence asks for: who took it, under what terms, and where
@@ -72678,7 +72927,7 @@ function initTrailReports(map, trail){
     const licence = credit.licenceUrl
       ? `<a href="${trEsc(credit.licenceUrl)}" rel="license noopener" target="_blank">${trEsc(credit.licence)}</a>`
       : trEsc(credit.licence);
-    return `Photo: <a href="${trEsc(credit.sourcePage)}" rel="noopener nofollow" target="_blank">${trEsc(credit.creator)}</a> · ${licence}`;
+    return `${tx('Photo:')} <a href="${trEsc(credit.sourcePage)}" rel="noopener nofollow" target="_blank">${trEsc(credit.creator)}</a> · ${licence}`;
   }
 
   function photoAlt(photo){
@@ -72695,16 +72944,16 @@ function initTrailReports(map, trail){
     const overlay = document.createElement('div');
     overlay.className = 'trail-photo-viewer';
     overlay.innerHTML = `<div class="trail-photo-viewer__dialog">
-      <h2 class="trail-photo-viewer__title">Trail photos</h2>
-      <button type="button" class="trail-photo-viewer__close" data-gallery-close aria-label="Close photo gallery">
+      <h2 class="trail-photo-viewer__title">${tx('Trail photos')}</h2>
+      <button type="button" class="trail-photo-viewer__close" data-gallery-close aria-label="${tx('Close photo gallery')}">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
       <div class="trail-photo-viewer__stage" data-gallery-stage>
-        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--prev" data-gallery-prev aria-label="Previous photo">
+        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--prev" data-gallery-prev aria-label="${tx('Previous photo')}">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
         <img data-gallery-image alt="">
-        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--next" data-gallery-next aria-label="Next photo">
+        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--next" data-gallery-next aria-label="${tx('Next photo')}">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
@@ -72729,7 +72978,7 @@ function initTrailReports(map, trail){
       image.src = photo.image;
       image.alt = photoAlt(photo);
       caption.innerHTML = photoCaptionHtml(photo);
-      count.textContent = `${currentIndex + 1} of ${photos.length}`;
+      count.textContent = tx('{current} of {total}', { current:currentIndex + 1, total:photos.length });
       previous.hidden = photos.length < 2;
       next.hidden = photos.length < 2;
     }
@@ -72806,9 +73055,9 @@ function initTrailReports(map, trail){
     updatePhotoStripControls(visible.length);
     if (!visible.length){
       photosListEl.innerHTML = `<div class="empty-state empty-state--compact">
-        <p class="empty-state__title">No trail photos yet</p>
-        <p class="empty-state__copy">Add a recent, useful view so others can recognise the route and conditions.</p>
-        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-photo>Add the first photo</button></div>
+        <p class="empty-state__title">${tx('No trail photos yet')}</p>
+        <p class="empty-state__copy">${tx('Add a recent, useful view so others can recognise the route and conditions.')}</p>
+        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-photo>${tx('Add the first photo')}</button></div>
       </div>`;
       const emptyPhoto = photosListEl.querySelector('[data-empty-photo]');
       if (emptyPhoto) emptyPhoto.addEventListener('click', openPhotoModal);
@@ -72817,7 +73066,7 @@ function initTrailReports(map, trail){
     photosListEl.innerHTML = visible.map((photo, index) => {
       const caption = trEsc(photoCaption(photo));
       return `<figure class="community-photo">
-        <button type="button" class="community-photo__open" data-photo-index="${index}" aria-label="Open photo ${index + 1} of ${visible.length}: ${caption}">
+        <button type="button" class="community-photo__open" data-photo-index="${index}" aria-label="${tx('Open photo {current} of {total}: {caption}', { current:index + 1, total:visible.length, caption })}">
           <img src="${trEsc(photo.image)}" alt="${trEsc(photoAlt(photo))}" loading="lazy" decoding="async">
         </button>${photo.isLicensed ? `
         <figcaption class="community-photo__credit">${trEsc(`${photo.creator} · ${photo.licence}`)}</figcaption>` : ''}
@@ -72849,7 +73098,7 @@ function initTrailReports(map, trail){
   function dogContextLine(f){
     const dc = f.dogContext;
     if (!dc || (!dc.name && !dc.breed)) return '';
-    const who = [dc.name ? `${dc.name}'s human` : null, dc.breed || null]
+    const who = [dc.name ? tx('{name}\'s human', { name:dc.name }) : null, dc.breed || null]
       .filter(Boolean).join(' · ');
     return window.t('reports.reportedBy', {who: trEsc(who)});
   }
@@ -72886,7 +73135,7 @@ function initTrailReports(map, trail){
               <a href="#" data-hazard-response="confirm" data-flag-id="${trEsc(f.id)}">${window.t('reports.confirm')}</a>
               <a href="#" data-hazard-response="dispute" data-flag-id="${trEsc(f.id)}">${window.t('reports.dispute')}</a>
             </div>` : '';
-        const responseCount = `${Number(f.confirmations) || 0} confirmed · ${Number(f.disputes) || 0} disputed`;
+        const responseCount = tx('{confirmed} confirmed · {disputed} disputed', { confirmed:Number(f.confirmations) || 0, disputed:Number(f.disputes) || 0 });
         // Design tile: neutral inset card + a coloured flag square whose tone
         // carries severity, replacing the mixed emoji-per-type language.
         const tile = t.severe ? { bg: '#F3D9D2', fg: '#9C3A25' }
@@ -72931,7 +73180,7 @@ function initTrailReports(map, trail){
           a.dataset.hazardResponse
         );
         if(!result.ok){
-          showActionStatus(result.message || 'Your response could not be saved.');
+          showActionStatus(result.message || tx('Your response could not be saved.'));
           return;
         }
         showActionStatus(window.t('reports.responseSaved'));
@@ -73605,6 +73854,13 @@ function initTrailReports(map, trail){
 (function (global) {
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   // Where each line of "How to follow this route" came from, said once.
   //
   // Every stored value ends with its own source sentence, because a value is
@@ -73644,8 +73900,30 @@ function initTrailReports(map, trail){
     'Key turns': 'the key turns',
   };
 
+  // The shown name of a line, in the reader's language.
+  function shownName(name) {
+    switch (name) {
+      case 'the start': return tx('the start');
+      case 'the trail numbers': return tx('the trail numbers');
+      case 'the route': return tx('the route');
+      case 'where to switch': return tx('where to switch');
+      case 'the key turns': return tx('the key turns');
+      default: return name;
+    }
+  }
+
+  // What a source covers, as one sentence (SOURCES[].one / .many, translated).
+  function sourceSays(key, names, plural) {
+    if (key === 'orma') {
+      return plural ? tx('{names} are ORMA’s suggestion', { names }) : tx('{names} is ORMA’s suggestion', { names });
+    }
+    return plural
+      ? tx('{names} are read off the map (OpenStreetMap)', { names })
+      : tx('{names} is read off the map (OpenStreetMap)', { names });
+  }
+
   function listed(names) {
-    return names.length < 2 ? names.join('') : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+    return names.length < 2 ? names.join('') : tx('{list} and {last}', { list: names.slice(0, -1).join(', '), last: names[names.length - 1] });
   }
 
   /**
@@ -73668,20 +73946,38 @@ function initTrailReports(map, trail){
     });
     const parts = SOURCES.filter(source => found.has(source.key)).map(source => {
       const names = found.get(source.key);
-      const text = `${listed(names)} ${names.length > 1 || /s$/.test(names[0]) ? source.many : source.one}`;
+      const plural = names.length > 1 || /s$/.test(names[0]);
+      const text = sourceSays(source.key, listed(names.map(shownName)), plural);
       return text.charAt(0).toUpperCase() + text.slice(1);
     });
     const note = parts.length
-      ? `${parts.join('. ')}. None of it was published by the trail’s operator.`
+      ? tx('{parts}. None of it was published by the trail’s operator.', { parts: parts.join('. ') })
       : '';
     return { lines: stripped, note };
   }
 
   const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
     'August', 'September', 'October', 'November', 'December'];
+  function monthName(index) {
+    switch (index) {
+      case 0: return tx('January');
+      case 1: return tx('February');
+      case 2: return tx('March');
+      case 3: return tx('April');
+      case 4: return tx('May');
+      case 5: return tx('June');
+      case 6: return tx('July');
+      case 7: return tx('August');
+      case 8: return tx('September');
+      case 9: return tx('October');
+      case 10: return tx('November');
+      case 11: return tx('December');
+      default: return MONTHS[index];
+    }
+  }
   function readOn(value) {
     const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(value || ''));
-    return match ? `${Number(match[3])} ${MONTHS[Number(match[2]) - 1]} ${match[1]}` : '';
+    return match ? `${Number(match[3])} ${monthName(Number(match[2]) - 1)} ${match[1]}` : '';
   }
 
   const STEPS_BADGE = 'This walk has no trail number of its own: follow these landmarks';
@@ -73716,7 +74012,7 @@ function initTrailReports(map, trail){
     // appear when a walk mixes sources and a reader needs to tell them apart.
     const mixed = used.length > 1;
     return {
-      badge: STEPS_BADGE,
+      badge: tx('This walk has no trail number of its own: follow these landmarks'),
       steps: steps.map(step => ({
         text: String(step.text).trim(),
         tags: mixed ? [...new Set(step.from.map(index => String(sources[index].tag).trim()))] : [],
@@ -73727,10 +74023,10 @@ function initTrailReports(map, trail){
       credits: used.map(index => {
         const source = sources[index];
         return {
-          before: mixed ? `Steps marked “${String(source.tag).trim()}”: ` : 'Directions: ',
+          before: mixed ? tx('Steps marked “{tag}”:', { tag: String(source.tag).trim() }) + ' ' : tx('Directions:') + ' ',
           label: creditName(source),
           url: source.url,
-          after: `, checked ${readOn(source.reviewedAt)}.`,
+          after: tx(', checked {date}.', { date: readOn(source.reviewedAt) }),
         };
       }),
     };
@@ -73878,6 +74174,20 @@ function initTrailReports(map, trail){
 ;
 
 // ---- trail.js ----
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
+// A trail's own words (description, hazards, directions…) in the reader's
+// language, from data/trail-text-it. The record itself stays English.
+function trailWords(text){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  return i18n && typeof i18n.trailText === 'function' ? i18n.trailText(text) : text;
+}
+
 function safetyLabel(level){
   if(level === 'low-risk') return t('safety.low');
   if(level === 'moderate') return t('safety.moderate');
@@ -74058,7 +74368,7 @@ function initLoopComposer(map, t){
   }
 
   function pointLabel(index){
-    return index === 0 ? 'Start' : `Point ${index + 1}`;
+    return index === 0 ? tx('Start') : tx('Point {n}', { n: index + 1 });
   }
 
   function renderPointList(){
@@ -74071,7 +74381,7 @@ function initLoopComposer(map, t){
       remove.type = 'button';
       remove.textContent = '×';
       remove.disabled = busy;
-      remove.setAttribute('aria-label', `Remove ${pointLabel(index).toLowerCase()}`);
+      remove.setAttribute('aria-label', index === 0 ? tx('Remove start') : tx('Remove point {n}', { n: index + 1 }));
       remove.addEventListener('click', () => removePoint(index));
       item.append(remove);
       pointList.append(item);
@@ -74107,12 +74417,12 @@ function initLoopComposer(map, t){
       preview = null;
       closed = false;
       drawRoute([]);
-      status.textContent = points.length ? 'Tap the map to add a must-pass point.' : 'Tap the map to choose your start.';
+      status.textContent = points.length ? tx('Tap the map to add a must-pass point.') : tx('Tap the map to choose your start.');
       render();
       return;
     }
     busy = true;
-    status.textContent = closeRequested ? 'Closing the loop on mapped walking paths…' : 'Connecting the selected points…';
+    status.textContent = closeRequested ? tx('Closing the loop on mapped walking paths…') : tx('Connecting the selected points…');
     render();
     const graph = await loadGraph();
     if(version !== calculationVersion) return;
@@ -74132,8 +74442,8 @@ function initLoopComposer(map, t){
       closed = false;
       drawRoute([]);
       status.textContent = graph
-        ? 'These points cannot form a bounded mapped route. Remove a point and choose a closer path.'
-        : 'ORMA’s walking graph is unavailable here right now. Your points have been kept.';
+        ? tx('These points cannot form a bounded mapped route. Remove a point and choose a closer path.')
+        : tx('ORMA’s walking graph is unavailable here right now. Your points have been kept.');
       render();
       return;
     }
@@ -74141,10 +74451,10 @@ function initLoopComposer(map, t){
     closed = closeRequested;
     drawRoute(preview.path);
     status.textContent = closed
-      ? 'Loop ready. Review mapped access, signs, and current conditions before saving.'
+      ? tx('Loop ready. Review mapped access, signs, and current conditions before saving.')
       : points.length < MAX_POINTS
-        ? 'Mapped preview ready. Add another must-pass point.'
-        : 'Mapped preview ready. Close the loop when the shape looks right.';
+        ? tx('Mapped preview ready. Add another must-pass point.')
+        : tx('Mapped preview ready. Close the loop when the shape looks right.');
     render();
     if(closed) fitPreview();
   }
@@ -74163,7 +74473,7 @@ function initLoopComposer(map, t){
     points.splice(index, 1);
     closed = false;
     preview = null;
-    saveButton.textContent = 'Save loop';
+    saveButton.textContent = tx('Save loop');
     drawMarkers();
     recalculate(false);
   }
@@ -74177,8 +74487,8 @@ function initLoopComposer(map, t){
     markers.forEach(marker => marker.remove());
     markers = [];
     drawRoute([]);
-    status.textContent = 'Tap the map to choose your start.';
-    saveButton.textContent = 'Save loop';
+    status.textContent = tx('Tap the map to choose your start.');
+    saveButton.textContent = tx('Save loop');
     render();
   }
 
@@ -74211,11 +74521,11 @@ function initLoopComposer(map, t){
       const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
       const records = Array.isArray(existing) ? existing : [];
       localStorage.setItem(STORAGE_KEY, JSON.stringify([record, ...records].slice(0, 20)));
-      saveButton.textContent = 'Saved';
+      saveButton.textContent = tx('Saved');
       saveButton.disabled = true;
-      status.textContent = 'Loop saved on this device. Review local signs and conditions before walking.';
+      status.textContent = tx('Loop saved on this device. Review local signs and conditions before walking.');
     }catch(error){
-      status.textContent = 'This browser could not save the loop. The mapped preview is still available.';
+      status.textContent = tx('This browser could not save the loop. The mapped preview is still available.');
     }
   }
 
@@ -74229,7 +74539,7 @@ function initLoopComposer(map, t){
     if(closed){
       closed = false;
       preview = null;
-      saveButton.textContent = 'Save loop';
+      saveButton.textContent = tx('Save loop');
       recalculate(false);
       return;
     }
@@ -74255,7 +74565,7 @@ function initNearestTrailDirections(map, t){
   if(!button || !panel || !status || !Array.isArray(t.path) || !t.path.length ||
      !window.DoloPawsTrailAccess || !window.DoloPawsFootpathRouter) return;
 
-  const defaultLabel = 'Get directions to trail';
+  const defaultLabel = tx('Get directions to trail');
   const coverage = window.DoloPawsTrailRoutingCoverage;
   const coverageEntry = coverage && coverage.trails ? coverage.trails[t.id] : null;
   const coverageEntries = coverage && coverage.trails
@@ -74294,10 +74604,9 @@ function initNearestTrailDirections(map, t){
     if(!stepsWrap || !stepsList || !Array.isArray(instructions) || !instructions.length) return;
     instructions.slice(0, 12).forEach(step => {
       const item = document.createElement('li');
-      const distance = step.distanceM > 0
-        ? ` for ${formatApproachDistance(step.distanceM / 1000)}`
-        : '';
-      item.textContent = `${step.action}${distance}`;
+      item.textContent = step.distanceM > 0
+        ? tx('{action} for {distance}', { action: step.action, distance: formatApproachDistance(step.distanceM / 1000) })
+        : step.action;
       stepsList.appendChild(item);
     });
     stepsWrap.hidden = false;
@@ -74399,12 +74708,12 @@ function initNearestTrailDirections(map, t){
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');
     clearSteps();
-    setPanelMessage('Connecting your location to the selected mapped route…');
+    setPanelMessage(tx('Connecting your location to the selected mapped route…'));
     try{
       const origin = await window.DoloPawsTrailAccess.currentPosition(navigator);
       if(Number.isFinite(origin.accuracyM) && origin.accuracyM > window.DoloPawsTrailAccess.MAX_GPS_ACCURACY_M){
-        setPanelMessage(`Your location is only accurate to about ${Math.round(origin.accuracyM)} m. Move into a clearer area and try again.`);
-        setButtonLabel('Try again');
+        setPanelMessage(tx('Your location is only accurate to about {m} m. Move into a clearer area and try again.', { m: Math.round(origin.accuracyM) }));
+        setButtonLabel(tx('Try again'));
         return;
       }
       const entries = routingEntriesForPoint(target, origin);
@@ -74436,22 +74745,23 @@ function initNearestTrailDirections(map, t){
         showPlan(plan, true);
         renderSteps(plan.instructions);
         const targetSnap = plan.targetSnapDistanceM > 20
-          ? ` The selected point was snapped ${formatApproachDistance(plan.targetSnapDistanceM / 1000)} to a connected path.`
+          ? ' ' + tx('The selected point was snapped {distance} to a connected path.', { distance: formatApproachDistance(plan.targetSnapDistanceM / 1000) })
           : '';
-        setPanelMessage(`Mapped walking route · ${formatApproachDistance(plan.distanceKm)} to the selected route point.${targetSnap} Check local signs and temporary closures.`);
+        setPanelMessage(tx('Mapped walking route · {distance} to the selected route point.', { distance: formatApproachDistance(plan.distanceKm) })
+          + targetSnap + ' ' + tx('Check local signs and temporary closures.'));
         setButtonLabel(defaultLabel);
         return;
       }
       if(plan.mode === 'external-point' && plan.allowed){
         showPlan(plan, false);
-        setPanelMessage('This selected point is not connected to ORMA’s current walking graph. Your maps app can calculate the approach instead.');
-        setButtonLabel('Open directions to selected point');
+        setPanelMessage(tx('This selected point is not connected to ORMA’s current walking graph. Your maps app can calculate the approach instead.'));
+        setButtonLabel(tx('Open directions to selected point'));
         return;
       }
-      setPanelMessage('That point is outside ORMA’s current walking coverage. Choose a closer mapped route point.');
+      setPanelMessage(tx('That point is outside ORMA’s current walking coverage. Choose a closer mapped route point.'));
       setButtonLabel(defaultLabel);
     }catch(error){
-      setPanelMessage('We could not calculate a route to that point. Check your location signal and try again.');
+      setPanelMessage(tx('We could not calculate a route to that point. Check your location signal and try again.'));
       setButtonLabel(defaultLabel);
     }finally{
       button.disabled = false;
@@ -74467,9 +74777,9 @@ function initNearestTrailDirections(map, t){
 
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');
-    setButtonLabel('Calculating directions…');
+    setButtonLabel(tx('Calculating directions…'));
     clearSteps();
-    setPanelMessage('Checking your location against mapped walking paths…');
+    setPanelMessage(tx('Checking your location against mapped walking paths…'));
     try{
       const graph = await loadRoutingGraph();
       const plan = await window.DoloPawsTrailAccess.planTrailEntry(
@@ -74481,8 +74791,8 @@ function initNearestTrailDirections(map, t){
         { maxRouteDistanceM:5000, maxFallbackDistanceKm:5 }
       );
       if(plan.mode === 'unreliable-location'){
-        setPanelMessage(`Your location is only accurate to about ${Math.round(plan.accuracyM)} m. Move into a clearer area and try again.`);
-        setButtonLabel('Try again');
+        setPanelMessage(tx('Your location is only accurate to about {m} m. Move into a clearer area and try again.', { m: Math.round(plan.accuracyM) }));
+        setButtonLabel(tx('Try again'));
         return;
       }
       if(plan.mode === 'mapped-footpath'){
@@ -74490,10 +74800,11 @@ function initNearestTrailDirections(map, t){
         showPlan(plan, true);
         renderSteps(plan.instructions);
         const snapNote = plan.snapDistanceM > 20
-          ? ` Your GPS is about ${formatApproachDistance(plan.snapDistanceM / 1000)} from the mapped path.`
+          ? ' ' + tx('Your GPS is about {distance} from the mapped path.', { distance: formatApproachDistance(plan.snapDistanceM / 1000) })
           : '';
-        setPanelMessage(`Mapped footpath route · ${formatApproachDistance(plan.distanceKm)} to the trail.${snapNote} Check local signs and temporary closures.`);
-        setButtonLabel('Refresh walking route');
+        setPanelMessage(tx('Mapped footpath route · {distance} to the trail.', { distance: formatApproachDistance(plan.distanceKm) })
+          + snapNote + ' ' + tx('Check local signs and temporary closures.'));
+        setButtonLabel(tx('Refresh walking route'));
         return;
       }
       if(plan.mode === 'nearest-route'){
@@ -74502,32 +74813,36 @@ function initNearestTrailDirections(map, t){
         const distanceM = plan.distanceKm * 1000;
         const overlapsFix = Number.isFinite(plan.accuracyM) && distanceM <= plan.accuracyM;
         setPanelMessage(overlapsFix
-          ? 'Your location overlaps this trail. Open your maps app for the nearest mapped point, and check local signs before joining.'
-          : `The nearest point on this trail is about ${formatApproachDistance(plan.distanceKm)} away. Your maps app will calculate the walk; check local signs and access before joining.`);
-        setButtonLabel('Open directions to nearest trail point');
+          ? tx('Your location overlaps this trail. Open your maps app for the nearest mapped point, and check local signs before joining.')
+          : tx('The nearest point on this trail is about {distance} away. Your maps app will calculate the walk; check local signs and access before joining.', { distance: formatApproachDistance(plan.distanceKm) }));
+        setButtonLabel(tx('Open directions to nearest trail point'));
         return;
       }
       if(plan.mode === 'recommended-start' && plan.allowed){
         activePlan = plan;
         showPlan(plan, false);
-        const startType = plan.targetKind === 'mapped-start' ? 'listed route start' : 'recommended start';
-        setPanelMessage(`ORMA does not yet have a connected footpath network here. The ${startType} is about ${formatApproachDistance(plan.distanceKm)} away as the crow flies; your maps app will calculate the actual walk.`);
-        setButtonLabel('Open directions to start');
+        const distance = formatApproachDistance(plan.distanceKm);
+        setPanelMessage(plan.targetKind === 'mapped-start'
+          ? tx('ORMA does not yet have a connected footpath network here. The listed route start is about {distance} away as the crow flies; your maps app will calculate the actual walk.', { distance })
+          : tx('ORMA does not yet have a connected footpath network here. The recommended start is about {distance} away as the crow flies; your maps app will calculate the actual walk.', { distance }));
+        setButtonLabel(tx('Open directions to start'));
         return;
       }
       if(plan.mode === 'recommended-start'){
-        const startType = plan.targetKind === 'mapped-start' ? 'listed route start' : 'recommended start';
-        setPanelMessage(`The ${startType} is about ${formatApproachDistance(plan.distanceKm)} away. Walking directions are available when you are within 5 km.`);
-        setButtonLabel('Try again');
+        const distance = formatApproachDistance(plan.distanceKm);
+        setPanelMessage(plan.targetKind === 'mapped-start'
+          ? tx('The listed route start is about {distance} away. Walking directions are available when you are within 5 km.', { distance })
+          : tx('The recommended start is about {distance} away. Walking directions are available when you are within 5 km.', { distance }));
+        setButtonLabel(tx('Try again'));
         return;
       }
-      setPanelMessage('ORMA cannot identify a reliable access point for this trail yet. Use the recommended starting-point information below the map.');
+      setPanelMessage(tx('ORMA cannot identify a reliable access point for this trail yet. Use the recommended starting-point information below the map.'));
       setButtonLabel(defaultLabel);
     }catch(error){
       const denied = error && (error.code === 1 || error.message === 'geolocation-unavailable');
       setPanelMessage(denied
-        ? 'Allow location access to find the nearest point on this trail.'
-        : 'We could not get a reliable location. Check your signal and try again.');
+        ? tx('Allow location access to find the nearest point on this trail.')
+        : tx('We could not get a reliable location. Check your signal and try again.'));
       setButtonLabel(defaultLabel);
     }finally{
       button.disabled = false;
@@ -75094,6 +75409,8 @@ const itin = { trail: null, items: [], cumKm: null };
 // templates on the fly in Italian mode (same approach as imported descs).
 function trLabel(label){
   if(!label || (window.DoloPawsI18n && window.DoloPawsI18n.lang) !== 'it') return label;
+  const own = trailWords(label);
+  if(own !== label) return own;
   const RULES = [
     [/^Start here, main parking area at (.+)$/, 'Parti qui, parcheggio principale a $1'],
     [/^Start here, main lake access & parking, by (.+)$/, 'Parti qui, accesso principale al lago e parcheggio, presso $1'],
@@ -75183,7 +75500,7 @@ function buildItinerary(t){
 
   // 4. Decision points, where the route switches numbered trails.
   (Array.isArray(t.decisionPoints) ? t.decisionPoints : []).forEach(d => {
-    itinAdd('switch', d.km, `${itinKmLabel(d.km)}, ${itinEsc(d.instruction)}`);
+    itinAdd('switch', d.km, `${itinKmLabel(d.km)}, ${itinEsc(trailWords(d.instruction))}`);
   });
 
   // 5. Closing step.
@@ -75376,8 +75693,8 @@ function init(){
           <h1>${window.t('trail.notFound')}</h1>
           <p style="margin:14px 0 24px;color:var(--ink-soft);">${window.t('trail.notFoundSub')}</p>
           <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
-            <a class="auth-submit" href="browse-trails.html" style="display:inline-block;width:auto;padding:11px 22px;text-decoration:none;">Browse all trails</a>
-            <a class="fav-btn" href="/" style="display:inline-block;padding:11px 22px;text-decoration:none;">Go to homepage</a>
+            <a class="auth-submit" href="browse-trails.html" style="display:inline-block;width:auto;padding:11px 22px;text-decoration:none;">${tx('Browse all trails')}</a>
+            <a class="fav-btn" href="/" style="display:inline-block;padding:11px 22px;text-decoration:none;">${tx('Go to homepage')}</a>
           </div>
         </div>`;
     }
@@ -75403,11 +75720,11 @@ function renderTrail(t){
   const returnTarget = safeTrailReturn(trailReturnTarget);
   if(breadcrumb && returnTarget){
     breadcrumb.href = returnTarget;
-    breadcrumb.textContent = returnTarget.startsWith('saved.html') ? '← Back to saved trails'
-      : returnTarget.startsWith('journal.html') ? '← Back to journal'
-      : returnTarget.startsWith('compare.html') ? '← Back to comparison'
-      : returnTarget.startsWith('/') ? '← Back to your matches'
-      : '← Back to trail results';
+    breadcrumb.textContent = '← ' + (returnTarget.startsWith('saved.html') ? tx('Back to saved trails')
+      : returnTarget.startsWith('journal.html') ? tx('Back to journal')
+      : returnTarget.startsWith('compare.html') ? tx('Back to comparison')
+      : returnTarget.startsWith('/') ? tx('Back to your matches')
+      : tx('Back to trail results'));
   }
   const logWalkBtn = document.getElementById('logWalkBtn');
   if(logWalkBtn){
@@ -75481,7 +75798,7 @@ function renderTrail(t){
       }
       heroPhoto.decoding = 'async';
       heroPhoto.fetchPriority = 'high';
-      heroPhoto.alt = t.imageAlt || `${t.name} trail photograph`;
+      heroPhoto.alt = trailWords(t.imageAlt) || tx('{name} trail photograph', { name: t.name });
       heroPhoto.hidden = false;
       heroVeil.hidden = false;
       const creditEl = document.getElementById('tdHeroCredit');
@@ -75494,10 +75811,10 @@ function renderTrail(t){
         creditText.replaceChildren();
         const creditSummary=creditEl.querySelector('summary');
         if(creditSummary){
-          const label=credit.isIllustration?'About this illustration':'Show photo credit';
+          const label=credit.isIllustration?tx('About this illustration'):tx('Show photo credit');
           creditSummary.textContent=credit.isIllustration?'i':'C';
           creditSummary.setAttribute('aria-label',label);
-          creditSummary.title=credit.isIllustration?label:'Photo credit';
+          creditSummary.title=credit.isIllustration?label:tx('Photo credit');
         }
         // Creative Commons requires the creator and the licence, not just a link to
         // the source. The static generator already renders both; a trail served
@@ -75508,7 +75825,7 @@ function renderTrail(t){
           creditText.appendChild(link);
         }else creditText.appendChild(document.createTextNode(credit.label));
         if(t.imageCreator && !credit.isIllustration){
-          creditText.appendChild(document.createTextNode(` by ${t.imageCreator}`));
+          creditText.appendChild(document.createTextNode(' ' + tx('by {creator}', { creator: t.imageCreator })));
         }
         if(t.imageLicence && !credit.isIllustration){
           creditText.appendChild(document.createTextNode(' · '));
@@ -75524,7 +75841,7 @@ function renderTrail(t){
     }
   }
   document.getElementById('trailMeta').textContent =
-    `${t.area} · ${t.distance} km · ${t.elevation} m gain · ${t.hours} h · ${t.terrainType}`;
+    `${t.area} · ${t.distance} km · ${tx('{m} m gain', { m: t.elevation })} · ${t.hours} h · ${trailWords(t.terrainType)}`;
   document.getElementById('trailBadges').innerHTML =
     trailProductBadge(t.safetyLevel, trailSafetyLabel(t)) +
     (t.paid ? trailProductBadge('neutral', window.t('card.paid')) : '');
@@ -75574,7 +75891,7 @@ function renderTrail(t){
       ? window.DoloPawsIcons.renderIconSvg(provStyle, { mode:'inline', color:'currentColor', size:16 })
       : '';
     box.style.cssText = 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #2E4034;background:#eef3ef;border-radius:6px;font-size:13px;line-height:1.5;';
-    box.innerHTML = provenanceIcon + '<strong>Trail planning information.</strong> Based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.';
+    box.innerHTML = provenanceIcon + '<strong>' + tx('Trail planning information.') + '</strong> ' + tx('Based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.');
     descEl.parentNode.insertBefore(box, descEl);
 
     // Trail hazards, surfaceHazards used to feed only the match scoring;
@@ -75586,7 +75903,7 @@ function renderTrail(t){
       hz.style.cssText = 'margin:0 0 14px;padding:10px 14px;border-left:4px solid #9C3A25;background:#faeeea;border-radius:6px;font-size:13px;line-height:1.5;';
       const warningIcon = window.DoloPawsIcons ? window.DoloPawsIcons.renderIconSvg('warning', { mode:'inline', color:'currentColor', size:16 }) : '';
       hz.innerHTML = '<strong class="dp-inline-status">' + warningIcon + '<span>' + itinEsc(window.t('trail.hazardsTitle') || 'Trail hazards') + '</span></strong><ul style="margin:6px 0 0 18px;padding:0;">'
-        + t.surfaceHazards.map(h => '<li>' + String(h).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])) + '</li>').join('')
+        + t.surfaceHazards.map(h => '<li>' + String(trailWords(h)).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])) + '</li>').join('')
         + '</ul>';
       descEl.parentNode.insertBefore(hz, descEl);
     }
@@ -75627,8 +75944,8 @@ function renderTrail(t){
       const asc = Number(shown.elevation) || 0;
       const rank = Number(t.terrainRank) || 0;
       const km = Number(shown.distance) || 0;
-      const diff = (asc >= 400 || (rank >= 2 && asc >= 250)) ? 'Hard'
-        : (asc >= 180 || km >= 6 || rank >= 2) ? 'Moderate' : 'Easy';
+      const diff = (asc >= 400 || (rank >= 2 && asc >= 250)) ? tx('Hard')
+        : (asc >= 180 || km >= 6 || rank >= 2) ? tx('Moderate') : tx('Easy');
       facts.push([diff, window.t('trail.fact.difficulty')]);
     })();
     // The design's stat strip leads with a Match cell ("94% · Match · Rufus").
@@ -75638,7 +75955,7 @@ function renderTrail(t){
     // A route too long for a day gets an explicit label, so a visitor who lands
     // here from a search or link knows it is a multi-day itinerary, not a walk.
     const multiDayCell = (window.DoloPawsTrailTrust && window.DoloPawsTrailTrust.isMultiDay(t))
-      ? '<span class="f f-multiday"><b>Multi-day</b><span>route</span></span>' : '';
+      ? '<span class="f f-multiday"><b>' + tx('Multi-day') + '</b><span>' + tx('route') + '</span></span>' : '';
     factsEl.innerHTML =
       '<span class="f match" id="statMatch" hidden><a class="td2-match-link" id="statMatchLink" href="how-scoring-works.html"><b id="statMatchVal"></b><span id="statMatchSub"></span></a></span>'
       + multiDayCell
@@ -75686,9 +76003,9 @@ function renderTrail(t){
         const name = profile.name || window.t('trail.yourDog');
         if(statMatch){
           statMatchVal.innerHTML = (t.curated === false ? '≈' : '') + n + '<span class="pct">%</span>';
-          statMatchSub.textContent = 'Match · ' + name;
+          statMatchSub.textContent = tx('Match · {name}', { name });
           statMatchLink.href = 'how-scoring-works.html';
-          statMatchLink.setAttribute('aria-label', `Learn how ORMA calculates the ${n}% trail match for ${name}`);
+          statMatchLink.setAttribute('aria-label', tx('Learn how ORMA calculates the {n}% trail match for {name}', { n, name }));
           statMatch.dataset.scoringVersion = recommendation.scoringVersion;
           statMatch.dataset.recommendationCategory = recommendation.category;
           statMatch.dataset.recommendationConfidence = recommendation.confidence;
@@ -75798,7 +76115,7 @@ function renderTrail(t){
       if (Array.isArray(t.elevationProfile) && t.elevationProfile.length){
         facts.push(window.t('gtk.autoAltitude', {m: Math.max(...t.elevationProfile.map(p => p.elev))}));
       }
-      if (t.terrainType) facts.push(window.t('gtk.autoTerrain', {surface: t.terrainType}));
+      if (t.terrainType) facts.push(window.t('gtk.autoTerrain', {surface: trailWords(t.terrainType)}));
       const isLoopG = Array.isArray(t.path) && t.path.length > 1
         && distMeters(t.path[0], t.path[t.path.length-1]) < 200;
       facts.push(isLoopG ? window.t('gtk.autoLoop', {d: t.distance}) : window.t('gtk.autoPointToPoint', {d: t.distance}));
@@ -75829,7 +76146,8 @@ function renderTrail(t){
       });
       t.decisionPoints.forEach(d => {
         const existing = byKm.get(d.km) || [];
-        const instructionText = d.instruction.charAt(0).toLowerCase() + d.instruction.slice(1);
+        const instruction = trailWords(d.instruction);
+        const instructionText = instruction.charAt(0).toLowerCase() + instruction.slice(1);
         // If a rifugio at this exact km is already named inside the decision
         // instruction, drop the separate "pass X" so the name isn't repeated.
         const deduped = existing.filter(e => !instructionText.toLowerCase().includes(e.name.toLowerCase()));
@@ -75892,9 +76210,9 @@ function renderTrail(t){
         else if(elevationHome) elevationHome.appendChild(elevationPanel);
       }
       if(expandBtn) expandBtn.innerHTML = on
-        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> <span>Close map</span>'
-        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span>';
-      if(expandBtn) expandBtn.setAttribute('aria-label', on ? 'Close map' : 'Expand map');
+        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> <span>' + tx('Close map') + '</span>'
+        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>' + tx('Expand map') + '</span>';
+      if(expandBtn) expandBtn.setAttribute('aria-label', on ? tx('Close map') : tx('Expand map'));
       if(expandBtn) expandBtn.setAttribute('aria-expanded', String(on));
       setTimeout(() => map.resize(), 60);
     }
@@ -75991,9 +76309,9 @@ function renderTrail(t){
           ? window.DoloPawsIcons.chipHtml(iconKey, label)
           : label;
       };
-      setLayerChipLabel(document.getElementById('routesToggle'), 'routes', 'Trail routes');
-      setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', 'Lift stations');
-      setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', 'Nearby trails');
+      setLayerChipLabel(document.getElementById('routesToggle'), 'routes', tx('Trail routes'));
+      setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', tx('Lift stations'));
+      setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', tx('Nearby trails'));
       addTerrainSource(map);
       increaseLabelDensity(map);
       addTerrainToggle(map, 'trailDetailMap', 1.5, 45,
@@ -76015,13 +76333,13 @@ function renderTrail(t){
           event.stopPropagation();
           const open = layersPanel.style.display === 'flex';
           layersPanel.style.display = open ? 'none' : 'flex';
-          layersBtn.textContent = open ? 'Layers' : 'Close ✕';
+          layersBtn.textContent = open ? tx('Layers') : tx('Close') + ' ✕';
           layersBtn.setAttribute('aria-expanded', String(!open));
         });
         layersPanel.addEventListener('click', event => event.stopPropagation());
         document.addEventListener('click', () => {
           layersPanel.style.display = 'none';
-          layersBtn.textContent = 'Layers';
+          layersBtn.textContent = tx('Layers');
           layersBtn.setAttribute('aria-expanded', 'false');
         });
       }
@@ -76046,10 +76364,10 @@ function renderTrail(t){
       // Water / huts / food / places each get their own chip so nothing that
       // used to be visible is merely gone, it moved behind a control.
       const POI_CHIPS = [
-        { id:'fountainsToggle', group:'fountains', icon:'water', label:'Drinking water' },
-        { id:'hutsToggle', group:'huts', icon:'hut', label:'Huts & shelters' },
-        { id:'foodToggle', group:'food', icon:'food', label:'Food & drink' },
-        { id:'placesToggle', group:'places', icon:'sight', label:'Points of interest' },
+        { id:'fountainsToggle', group:'fountains', icon:'water', label:tx('Drinking water') },
+        { id:'hutsToggle', group:'huts', icon:'hut', label:tx('Huts & shelters') },
+        { id:'foodToggle', group:'food', icon:'food', label:tx('Food & drink') },
+        { id:'placesToggle', group:'places', icon:'sight', label:tx('Points of interest') },
       ];
       POI_CHIPS.forEach(chip => {
         const button = document.getElementById(chip.id);
@@ -76166,7 +76484,7 @@ function renderTrail(t){
         if(nearbyToggleBtn){
           nearbyToggleBtn.hidden = nearbyTrails.length === 0;
           if(nearbyTrails.length){
-            setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
+            setLayerChipLabel(nearbyToggleBtn, 'nearby', tx('Nearby trails ({n})', { n: nearbyTrails.length }));
           }
         }
         if(otherTrails.length){
@@ -76270,8 +76588,8 @@ function renderTrail(t){
               .setLngLat(e.lngLat)
               .setHTML(
                 `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${escName(p.name)}</div>` +
-                `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${escName(String(p.distance))} km trail${p.awayKm != null ? ` · ${escName(String(p.awayKm))} km away` : ''}</div>` +
-                `<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(p.id) : (p.id)))}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">Open this trail →</a>`
+                `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${p.awayKm != null ? tx('{km} km trail · {away} km away', { km: escName(String(p.distance)), away: escName(String(p.awayKm)) }) : tx('{km} km trail', { km: escName(String(p.distance)) })}</div>` +
+                `<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(p.id) : (p.id)))}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">${tx('Open this trail')} →</a>`
               )
               .addTo(map);
           };
@@ -76295,10 +76613,10 @@ function renderTrail(t){
               t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
               if(showingNearbyOverview){
                 otherTrails.forEach(trail => trail.path.forEach(([lat, lng]) => bounds.extend([lng, lat])));
-                setLayerChipLabel(nearbyToggleBtn, 'routes', 'Focus this trail');
+                setLayerChipLabel(nearbyToggleBtn, 'routes', tx('Focus this trail'));
                 map.fitBounds(bounds, { padding: 54, maxZoom: 13 });
               } else {
-                setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
+                setLayerChipLabel(nearbyToggleBtn, 'nearby', tx('Nearby trails ({n})', { n: nearbyTrails.length }));
                 map.fitBounds(bounds, { padding: 60, maxZoom: 17 });
               }
             });
@@ -76398,7 +76716,7 @@ function renderTrail(t){
         (t.decisionPoints || []).forEach(d => {
           new maplibregl.Marker({ element: makeIconEl('switch', '#D6A038'), offset: [14, -14] })
             .setLngLat([d.lng, d.lat])
-            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>Km ${d.km}</b><br>${d.instruction}`))
+            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>Km ${d.km}</b><br>${trailWords(d.instruction)}`))
             .addTo(map);
         });
 
@@ -76463,7 +76781,7 @@ function renderTrail(t){
           })
           .catch(error => {
             detailMapTarget.dataset.mapState = 'error';
-            detailMapTarget.setAttribute('aria-label', 'Map unavailable. Trail details remain available below.');
+            detailMapTarget.setAttribute('aria-label', tx('Map unavailable. Trail details remain available below.'));
             console.error('ORMA map failed to initialise:', error);
             return null;
           });
@@ -76532,7 +76850,7 @@ function renderTrail(t){
     const heart = isFav
       ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21S3.5 14.6 3.5 8.8A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.5 2.8C20.5 14.6 12 21 12 21z"/></svg>'
       : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.4S4.2 14.5 4.2 9.2A4.3 4.3 0 0 1 12 6.6a4.3 4.3 0 0 1 7.8 2.6c0 5.3-7.8 11.2-7.8 11.2z"/></svg>';
-    saveBtn.innerHTML = heart + (isFav ? ' Saved' : ' Save');
+    saveBtn.innerHTML = heart + ' ' + (isFav ? tx('Saved') : tx('Save'));
     saveBtn.classList.toggle('saved', isFav);
   }
   async function handleSaveAuth(user){
@@ -76599,16 +76917,16 @@ function renderTrail(t){
     }
     function runGpxExport(){
       if(!window.DoloPawsGpxExport){
-        showExportStatus('GPX export could not load. Please refresh and try again.');
+        showExportStatus(tx('GPX export could not load. Please refresh and try again.'));
         return false;
       }
       try {
         window.DoloPawsGpxExport.download(t);
-        showExportStatus('GPX downloaded. It contains the route only, check ORMA for safety context.');
+        showExportStatus(tx('GPX downloaded. It contains the route only, check ORMA for safety context.'));
         return true;
       } catch(error){
         showExportStatus(error && error.message
-          ? error.message : 'This trail could not be exported.');
+          ? error.message : tx('This trail could not be exported.'));
         return false;
       }
     }
@@ -76656,6 +76974,20 @@ if(document.querySelector('.td2')){
  */
 (function () {
   'use strict';
+
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
+  // A trail's own words (description, directions, terrain…) in the reader's
+  // language, from data/trail-text-it. The record itself stays English.
+  function trailWords(text) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.trailText === 'function' ? i18n.trailText(text) : text;
+  }
 
   const params = new URLSearchParams(window.location.search);
   // The URL may name the trail by its readable slug; the loader owns that
@@ -76709,23 +77041,23 @@ if(document.querySelector('.td2')){
       event.preventDefault();
       const access = window.DoloPawsTrailAccess;
       if(!access){
-        if(statusElement) statusElement.textContent = 'Directions are unavailable right now.';
+        if(statusElement) statusElement.textContent = tx('Directions are unavailable right now.');
         return;
       }
       element.setAttribute('aria-disabled', 'true');
-      if(statusElement) statusElement.textContent = 'Checking your distance from the trailhead…';
+      if(statusElement) statusElement.textContent = tx('Checking your distance from the trailhead…');
       try{
         const plan = await access.planFromCurrent(navigator, accessTarget, navigator.userAgent, 100);
         if(!plan.allowed){
           if(statusElement) statusElement.textContent =
-            `Directions are available when you are within 100 km of the trail (${Math.round(plan.distanceKm)} km away).`;
+            tx('Directions are available when you are within 100 km of the trail ({km} km away).', { km: Math.round(plan.distanceKm) });
           return;
         }
-        if(statusElement) statusElement.textContent = `${Math.round(plan.distanceKm)} km away · opening directions…`;
+        if(statusElement) statusElement.textContent = tx('{km} km away · opening directions…', { km: Math.round(plan.distanceKm) });
         window.open(plan.url, '_blank', 'noopener');
       }catch(error){
         if(statusElement) statusElement.textContent =
-          'Allow location access to check that you are within 100 km of this trail.';
+          tx('Allow location access to check that you are within 100 km of this trail.');
       }finally{
         element.removeAttribute('aria-disabled');
       }
@@ -76737,7 +77069,7 @@ if(document.querySelector('.td2')){
     const el = $('verifiedSeal');
     if (!el) return;
     const style = trust && trust.tierBadgeStyle ? trust.tierBadgeStyle(t) : (t.curated === false ? 'imported' : 'verified');
-    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? 'Imported trail' : 'Verified by ORMA');
+    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? tx('Imported trail') : tx('Verified by ORMA'));
     // Render the same pill the browse-trail cards use, not a bespoke inline seal.
     el.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
       ? window.DoloPawsIcons.badgeHtml(style, label)
@@ -76756,11 +77088,11 @@ if(document.querySelector('.td2')){
     const tier = trust && trust.tierOf ? trust.tierOf(t) : null;
     if (tier === 'route-audited' || tier === 'dolopaws-walked') {
       const date = trust.formatReviewDate(t.reviewedAt || (t.verified && t.verified.date));
-      meta.textContent = `Verified by ORMA on ${date}. Check current conditions before setting out.`;
+      meta.textContent = tx('Verified by ORMA on {date}. Check current conditions before setting out.', { date });
     } else if (tier === 'route-reviewed') {
-      meta.textContent = 'Trail details prepared and reviewed by ORMA — not yet field-verified. Check local access rules and current conditions before setting out.';
+      meta.textContent = tx('Trail details prepared and reviewed by ORMA — not yet field-verified. Check local access rules and current conditions before setting out.');
     } else {
-      meta.textContent = 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
+      meta.textContent = tx('This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.');
     }
   })();
 
@@ -76780,8 +77112,8 @@ if(document.querySelector('.td2')){
       const baseRisk = safetyLabel(t.safetyLevel);
       factBits.push((trust ? trust.riskLabel(t, baseRisk) : baseRisk).toLowerCase());
     }
-    if (typeof t.distance === 'number') factBits.push(t.distance <= 6 ? 'easy distance' : `${t.distance} km`);
-    if (typeof t.shadeCoverage === 'number') factBits.push(t.shadeCoverage >= 40 ? 'good shade' : 'little shade');
+    if (typeof t.distance === 'number') factBits.push(t.distance <= 6 ? tx('easy distance') : `${t.distance} km`);
+    if (typeof t.shadeCoverage === 'number') factBits.push(t.shadeCoverage >= 40 ? tx('good shade') : tx('little shade'));
     const factLine = factBits.join(' · ');
 
     function guest() {
@@ -76862,7 +77194,7 @@ if(document.querySelector('.td2')){
       </a>`).join('');
     wrapEl.hidden = false;
     const seeAll = $('nearbySeeAll');
-    if (seeAll && (t.valley || t.area)) seeAll.textContent = 'See all in ' + (t.valley || t.area) + ' \u2192';
+    if (seeAll && (t.valley || t.area)) seeAll.textContent = tx('See all in {place}', { place: t.valley || t.area }) + ' \u2192';
 
     // Personalise: retitle the section and fill each pick's real match %
     // chip, same scoreTrail() as everywhere else.
@@ -76871,7 +77203,7 @@ if(document.querySelector('.td2')){
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if (!profile) return;
         const heading = $('nearbyTitle');
-        if (heading && profile.name) heading.textContent = 'Nearby trails, ranked for ' + profile.name;
+        if (heading && profile.name) heading.textContent = tx('Nearby trails, ranked for {name}', { name: profile.name });
         const ov = (typeof effectiveOverrides === 'function') ? effectiveOverrides(profile, null) : profile;
         for (const o of picks) {
           const slot = grid.querySelector(`[data-near-id="${CSS.escape(o.id)}"] .near-pct`);
@@ -76913,14 +77245,14 @@ if(document.querySelector('.td2')){
     // Breadcrumb: "← Trails · {region} · {valley}"
     const crumb = $('tdBreadcrumb');
     if (crumb && /^browse-trails\.html(?:[?#]|$)/.test(crumb.getAttribute('href') || '')) {
-      const regionName = t.region === 'savoy' ? 'Savoy' : t.region === 'lombardy' ? 'Lombardy' : t.region === 'friuli' ? 'Friuli Venezia Giulia' : t.region === 'aosta' ? 'Valle d\'Aosta' : t.region === 'tyrol' ? 'Tyrol & Carinthia' : 'Dolomites';
-      crumb.textContent = '← Trails · ' + regionName + (t.valley ? ' · ' + t.valley : '');
+      const regionName = t.region === 'savoy' ? tx('Savoy') : t.region === 'lombardy' ? tx('Lombardy') : t.region === 'friuli' ? 'Friuli Venezia Giulia' : t.region === 'aosta' ? 'Valle d\'Aosta' : t.region === 'tyrol' ? tx('Tyrol & Carinthia') : tx('Dolomites');
+      crumb.textContent = '← ' + tx('Trails') + ' · ' + regionName + (t.valley ? ' · ' + t.valley : '');
     }
 
     // Safety rating as the same coloured pill the browse cards use.
     const riskLine = $('tdRiskLine');
     if (riskLine && t.safetyLevel) {
-      const labels = { 'low-risk': 'Low-risk terrain', 'moderate': 'Moderate terrain', 'caution': 'Caution terrain' };
+      const labels = { 'low-risk': tx('Low-risk terrain'), 'moderate': tx('Moderate terrain'), 'caution': tx('Caution terrain') };
       const baseRisk = labels[t.safetyLevel] || '';
       const riskText = trust ? trust.riskLabel(t, baseRisk) : baseRisk;
       riskLine.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
@@ -76937,8 +77269,8 @@ if(document.querySelector('.td2')){
       const warning = document.createElement('span');
       warning.className = 'td-lift-warning';
       warning.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
-        ? window.DoloPawsIcons.badgeHtml('caution', 'Chairlift-assisted · not for most dogs')
-        : esc('Chairlift-assisted · not for most dogs');
+        ? window.DoloPawsIcons.badgeHtml('caution', tx('Chairlift-assisted · not for most dogs'))
+        : esc(tx('Chairlift-assisted · not for most dogs'));
       tags.appendChild(warning);
     }
 
@@ -76962,14 +77294,16 @@ if(document.querySelector('.td2')){
     const easyTerrain = Number(t.terrainRank) === 0;
     const lowRisk = t.safetyLevel === 'low-risk';
     const verdict = openChairlift
-      ? 'This route depends on an open chairlift' + (lift.name ? ' (' + lift.name + ')' : '') + '. Only for a dog of 8 kg or under that rides calmly held on a lap; a hard stop for every other dog.'
+      ? (lift.name
+        ? tx('This route depends on an open chairlift ({lift}). Only for a dog of 8 kg or under that rides calmly held on a lap; a hard stop for every other dog.', { lift: lift.name })
+        : tx('This route depends on an open chairlift. Only for a dog of 8 kg or under that rides calmly held on a lap; a hard stop for every other dog.'))
       : t.curated === false
-      ? 'Automated estimate from mapped route data. Exposure, shade, livestock and current conditions are not field verified.'
+      ? tx('Automated estimate from mapped route data. Exposure, shade, livestock and current conditions are not field verified.')
       : lowRisk && easyTerrain
-      ? 'A gentle, low-risk choice for most dogs.'
+      ? tx('A gentle, low-risk choice for most dogs.')
       : t.safetyLevel === 'caution'
-        ? 'A more demanding trail: check the hazards and your dog’s confidence before committing.'
-        : 'A manageable trail for prepared dogs; review the route constraints before committing.';
+        ? tx('A more demanding trail: check the hazards and your dog’s confidence before committing.')
+        : tx('A manageable trail for prepared dogs; review the route constraints before committing.');
     const heroVerdict = $('heroVerdict');
     if (heroVerdict) heroVerdict.textContent = verdict;
 
@@ -76991,9 +77325,9 @@ if(document.querySelector('.td2')){
     const isLoop = Array.isArray(t.path) && t.path.length > 1 && distMeters(t.path[0], t.path[t.path.length-1]) < 200;
     const climb = Number(t.elevation) || 0;
     const signalData = [
-      ['paw', easyTerrain ? 'Gentle paw surface' : 'Mixed paw surface', easyTerrain ? 'Flat or packed underfoot based on route information' : (t.terrainType || 'Check pads at breaks')],
-      ['route', 'Route effort', `${t.distance} km${climb ? ` · +${climb} m` : ''}`],
-      ['loop', isLoop ? 'Loop route' : 'One-way route', isLoop ? 'Returns to the starting point' : 'Plan the return journey']
+      ['paw', easyTerrain ? tx('Gentle paw surface') : tx('Mixed paw surface'), easyTerrain ? tx('Flat or packed underfoot based on route information') : (trailWords(t.terrainType) || tx('Check pads at breaks'))],
+      ['route', tx('Route effort'), `${t.distance} km${climb ? ` · +${climb} m` : ''}`],
+      ['loop', isLoop ? tx('Loop route') : tx('One-way route'), isLoop ? tx('Returns to the starting point') : tx('Plan the return journey')]
     ];
     if (signalEl) {
       signalEl.innerHTML = signalData.map(([icon, title, sub]) =>
@@ -77003,7 +77337,7 @@ if(document.querySelector('.td2')){
     function paintWhyTitle() {
       if (!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(p => {
-        if (p && p.name && $('tdWhyTitle')) $('tdWhyTitle').textContent = 'Why this fits ' + p.name;
+        if (p && p.name && $('tdWhyTitle')) $('tdWhyTitle').textContent = tx('Why this fits {name}', { name: p.name });
       }).catch(() => {});
     }
     if (window.DoloPawsAuth) paintWhyTitle();
@@ -77012,7 +77346,7 @@ if(document.querySelector('.td2')){
     // Assessment note ABOVE the box, below the heading
     const assessmentNote = $('assessmentNote');
     if (assessmentNote) {
-      assessmentNote.innerHTML = trust ? trust.assessmentNote(t) : `<strong style="color: var(--ink);">Our assessment of this trail:</strong> route facts are weighed against your dog's profile. Current conditions can still change.`;
+      assessmentNote.innerHTML = trust ? trust.assessmentNote(t) : `<strong style="color: var(--ink);">${tx('Our assessment of this trail:')}</strong> ${tx('route facts are weighed against your dog\'s profile. Current conditions can still change.')}`;
     }
 
     const sp = t.startPoint || {};
@@ -77044,7 +77378,7 @@ if(document.querySelector('.td2')){
         const shareUrl = url.href;
         return {
           url: shareUrl,
-          text: t.name + ' on ORMA: ' + shareUrl
+          text: tx('{name} on ORMA: {url}', { name: t.name, url: shareUrl })
         };
       };
       const closeShare = () => {
@@ -77077,10 +77411,10 @@ if(document.querySelector('.td2')){
         const shareUrl = shareDetails().url;
         try {
           await navigator.clipboard.writeText(shareUrl);
-          copyBtn.textContent = '✓ Link copied';
+          copyBtn.textContent = '✓ ' + tx('Link copied');
           copyBtn.style.color = '#2f5138';
           setTimeout(() => {
-            copyBtn.textContent = 'Copy link';
+            copyBtn.textContent = tx('Copy link');
             copyBtn.style.color = '';
             closeShare();
           }, 1400);
@@ -77136,7 +77470,7 @@ if(document.querySelector('.td2')){
       if (typeof recommendTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if (!profile) return;
-        const name = profile.name || 'your dog';
+        const name = profile.name || tx('your dog');
         const recommendation = recommendTrail(
           t,
           typeof effectiveOverrides === 'function' ? effectiveOverrides(profile, null) : profile,
@@ -77164,11 +77498,11 @@ if(document.querySelector('.td2')){
         }
         const label = $('tdMatchLabel');
         if (label) {
-          $('tdMatchName').textContent = 'MATCH FOR ' + name.toUpperCase();
+          $('tdMatchName').textContent = tx('MATCH FOR {name}', { name: name.toUpperCase() });
           $('tdMatchBreed').textContent = profile.breed || '';
           label.hidden = false;
         }
-        if (matchTitle) matchTitle.textContent = `Match for ${name}`;
+        if (matchTitle) matchTitle.textContent = tx('Match for {name}', { name });
         if (matchSummary) {
           // The verdict's words, and the line about how well it is known, both
           // come from match-verdict.js. This read from a copy of the table and
@@ -77183,7 +77517,7 @@ if(document.querySelector('.td2')){
               confidence: recommendation.confidence ? `${recommendation.confidence} confidence` : '',
             })
             : '';
-          matchSummary.textContent = [verdict ? verdict.label : 'Personal recommendation', qualifier]
+          matchSummary.textContent = [verdict ? verdict.label : tx('Personal recommendation'), qualifier]
             .filter(Boolean).join(' · ');
           matchSummary.dataset.scoringVersion = recommendation.scoringVersion;
         }
@@ -77201,7 +77535,7 @@ if(document.querySelector('.td2')){
     // Trail description inside the white box
     const descEl = $('matchDescription');
     if (descEl && t.desc) {
-      descEl.textContent = cardCopy(t.desc);
+      descEl.textContent = cardCopy(trailWords(t.desc));
     }
     
     // In-page tabs: Overview / Dog safety / Reviews & photos.
@@ -77283,26 +77617,26 @@ if(document.querySelector('.td2')){
     };
 
     addAssessment(trust ? trust.exposureAssessment(t) : (t.exposure
-      ? { ok: false, title: 'Exposure', detail: 'Narrow ledges or unprotected drop-offs occur on parts of the route.' }
+      ? { ok: false, title: tx('Exposure'), detail: tx('Narrow ledges or unprotected drop-offs occur on parts of the route.') }
       : null), 'exposure');
     addAssessment(trust ? trust.livestockAssessment(t, text) : null, 'livestock');
     addAssessment(trust ? trust.surfaceAssessment(t) : (Number(t.terrainRank) !== 0
-      ? { ok: false, title: 'Surface hazards', detail: (t.terrainType || 'Gravel and mixed rock') + '. Check pads at breaks; consider booties for tender paws.' }
+      ? { ok: false, title: tx('Surface hazards'), detail: tx('{surface}. Check pads at breaks; consider booties for tender paws.', { surface: trailWords(t.terrainType) || tx('Gravel and mixed rock') }) }
       : null), 'paws');
     addAssessment(trust ? trust.trafficAssessment(t) : null, null);
     addAssessment(trust ? trust.heatAssessment(t, conditions) : null, 'heat');
     addAssessment(trust ? trust.waterAssessment(t) : (hasWater
-      ? { ok: true, title: 'Water', detail: 'A water source is mapped on this route. Bring a bowl.' }
-      : { ok: false, title: 'Water', detail: 'No water source is mapped. Carry enough for the dog.' }), 'water');
-    if (maxAlt >= 1800) caution('Season & altitude', `Tops out around ${maxAlt} m. Snow lingers into early summer and weather turns quickly.`, 'altitude');
+      ? { ok: true, title: tx('Water'), detail: tx('A water source is mapped on this route. Bring a bowl.') }
+      : { ok: false, title: tx('Water'), detail: tx('No water source is mapped. Carry enough for the dog.') }), 'water');
+    if (maxAlt >= 1800) caution(tx('Season & altitude'), tx('Tops out around {alt} m. Snow lingers into early summer and weather turns quickly.', { alt: maxAlt }), 'altitude');
 
     if (!rows.length) {
-      box.innerHTML = '<p class="safety-clear">No additional route cautions are highlighted. Continue to check live weather and local signs.</p>';
+      box.innerHTML = '<p class="safety-clear">' + tx('No additional route cautions are highlighted. Continue to check live weather and local signs.') + '</p>';
       return;
     }
     const rowMarkup = r => `
       <div class="safety-row is-caution"${r.guideId ? ` data-guide-id="${esc(r.guideId)}"` : ''}>
-        <span class="pill">Caution</span>
+        <span class="pill">${tx('Caution')}</span>
         <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small>${r.items.length
           ? `<ul class="safety-row-items">${r.items.map(entry => `<li>${esc(entry)}</li>`).join('')}</ul>`
           : ''}</span>
@@ -77325,7 +77659,7 @@ if(document.querySelector('.td2')){
     const routeRefs = window.DoloPawsTrailRouteRefs
       ? window.DoloPawsTrailRouteRefs.forTrail(t)
       : [];
-    const startLabel = cardCopy(sp.label || t.valley || t.area || 'the marked trailhead')
+    const startLabel = cardCopy(trailWords(sp.label) || t.valley || t.area || tx('the marked trailhead'))
       // `Start here, Lift station Vinouve` -- the comma is part of the prefix,
       // and leaving it printed "Head to , Lift station Vinouve". trail-trust
       // strips the same prefix with `/^Start here\s*[,—-]\s*/i`; this copy of
@@ -77341,39 +77675,60 @@ if(document.querySelector('.td2')){
       : null;
     const guidanceIsLandmarkLed = verifiedRouteGuidance && verifiedRouteGuidance.mode === 'landmarks';
     const routeBadges = routeRefs.length
-      ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
+      ? `<div class="td2-route-ref-list" aria-label="${tx('Trail numbers in order')}">${routeRefs.map((ref, index) =>
           `${index ? '<span class="td2-route-ref-arrow" aria-hidden="true">→</span>' : ''}<span class="td2-route-ref">${esc(ref)}</span>`
         ).join('')}</div>`
       : '';
     const switchGuidance = routeSwitches.length
       ? `<ol class="td2-route-switch-list">
-          <li>Begin the hike on trail <b>${esc(routeSwitches[0].from)}</b>.</li>
+          <li>${tx('Begin the hike on trail <b>{trail}</b>.', { trail: esc(routeSwitches[0].from) })}</li>
           ${routeSwitches.map(item => {
-            const atKm = item.km == null ? 'At the mapped junction' : `At approximately km ${esc(item.km.toFixed(1).replace(/\.0$/, ''))}`;
+            const atKm = item.km == null ? tx('At the mapped junction') : tx('At approximately km {km}', { km: esc(item.km.toFixed(1).replace(/\.0$/, '')) });
             const nearby = (Array.isArray(t.rifugi) ? t.rifugi : []).find(place =>
               Number.isFinite(Number(place && place.km)) && item.km != null && Math.abs(Number(place.km) - item.km) <= 0.15);
-            return `<li>${atKm}${nearby ? `, near ${esc(nearby.name)}` : ''}, switch from trail <b>${esc(item.from)}</b> to trail <b>${esc(item.to)}</b>.</li>`;
+            const switchVars = { at: atKm, from: esc(item.from), to: esc(item.to) };
+            return `<li>${nearby
+              ? tx('{at}, near {place}, switch from trail <b>{from}</b> to trail <b>{to}</b>.', { ...switchVars, place: esc(nearby.name) })
+              : tx('{at}, switch from trail <b>{from}</b> to trail <b>{to}</b>.', switchVars)}</li>`;
           }).join('')}
-          <li>Stay on trail <b>${esc(routeSwitches[routeSwitches.length - 1].to)}</b> for the final section to the route finish.</li>
+          <li>${tx('Stay on trail <b>{trail}</b> for the final section to the route finish.', { trail: esc(routeSwitches[routeSwitches.length - 1].to) })}</li>
         </ol>`
       : '';
     const auditDirections = window.DoloPawsTrailRouteRefs
       ? window.DoloPawsTrailRouteRefs.writtenDirections(t)
       : { written:false };
-    const auditDirectionsMarkup = `<div class="s"><p><b>Directions:</b> ${esc(auditDirections.text || '')}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? window.DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE : '')}</p></div>`;
-    const noRouteNumbers = '<div class="s"><p><b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.</p></div>';
+    // Same sentence as DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE, written out so it can be translated.
+    const auditDirectionsMarkup = `<div class="s"><p><b>${tx('Directions:')}</b> ${esc(auditDirections.text || '')}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? tx('From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.') : '')}</p></div>`;
+    const noRouteNumbers = '<div class="s"><p><b>' + tx('Trail numbers:') + '</b> ' + tx('No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.') + '</p></div>';
+    // The guidance labels are compared and passed on in English; they are
+    // translated only where they are printed.
+    const labelText = label => {
+      switch (label) {
+        case 'Start': return tx('Start');
+        case 'Trail numbers': return tx('Trail numbers');
+        case 'Trail numbers and route': return tx('Trail numbers and route');
+        case 'Route': return tx('Route');
+        case 'Where to switch': return tx('Where to switch');
+        case 'Key turns': return tx('Key turns');
+        case 'How to follow this route': return tx('How to follow this route');
+        case 'Trail numbers and switches': return tx('Trail numbers and switches');
+        case 'Following the route': return tx('Following the route');
+        case 'Recommended starting point': return tx('Recommended starting point');
+        default: return label;
+      }
+    };
     // The status sentence says whether ORMA confirmed how the numbers appear on
     // local signs -- what a reader standing at a junction needs. It was being
     // dropped, so the card stated a number sequence as though the signage were
     // settled. Printed when the record carries one: the five walks published
     // before the pipeline wrote that field have none.
-    const guidanceStatus = verifiedRouteGuidance && String(verifiedRouteGuidance.status || '').trim();
+    const guidanceStatus = verifiedRouteGuidance && String(trailWords(verifiedRouteGuidance.status) || '').trim();
     // Most start sentences already begin "Start at …", and a "Start:" label in
     // front of them read "Start: Start at …". The sentence's own first word
     // takes the bold instead; a sentence that begins otherwise keeps the label.
     const startLine = sentence => {
       const text = String(sentence || '').trim();
-      return /^Start\b/.test(text) ? `<b>Start</b>${esc(text.slice(5))}` : `<b>Start:</b> ${esc(text)}`;
+      return /^Start\b/.test(text) ? `<b>Start</b>${esc(text.slice(5))}` : `<b>${tx('Start:')}</b> ${esc(text)}`;
     };
     // Each value ends with where it came from; the card says that once, under
     // the lines, instead of after every one of them (route-guidance-sources.js).
@@ -77382,8 +77737,16 @@ if(document.querySelector('.td2')){
     const guidanceSteps = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
       ? window.DoloPawsRouteGuidanceSources.landmarkSteps(verifiedRouteGuidance)
       : null;
+    // The source sentences are found by their English. A line shown in Italian
+    // keeps its source inside the sentence, so no separate note is printed.
+    const splitOrItalian = lines => {
+      const italian = lines.map(([label, text]) => [label, trailWords(text)]);
+      return italian.some((line, index) => line[1] !== lines[index][1])
+        ? { lines: italian, note: '' }
+        : window.DoloPawsRouteGuidanceSources.splitSources(lines);
+    };
     const guidanceSplit = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
-      ? window.DoloPawsRouteGuidanceSources.splitSources([
+      ? splitOrItalian([
         ['Start', verifiedRouteGuidance.start],
         ...(guidanceStatus && !guidanceSteps ? [['Trail numbers', guidanceStatus]] : []),
         ...(guidanceSteps ? [] : [
@@ -77395,7 +77758,7 @@ if(document.querySelector('.td2')){
     const guidanceLines = guidanceSplit ? guidanceSplit.lines : [];
     const stepsMarkup = guidanceSteps
       ? `<ol class="td2-route-steps">${guidanceSteps.steps.map(step =>
-        `<li>${esc(step.text)}${step.tags.length ? ` <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span>` : ''}</li>`).join('')}</ol>${
+        `<li>${esc(trailWords(step.text))}${step.tags.length ? ` <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span>` : ''}</li>`).join('')}</ol>${
         guidanceSteps.credits.map(credit => `<p class="td2-route-credit">${esc(credit.before)}<a href="${
           esc(credit.url)}" target="_blank" rel="noopener">${esc(credit.label)}</a>${esc(credit.after)}</p>`).join('')}`
       : '';
@@ -77403,15 +77766,19 @@ if(document.querySelector('.td2')){
       ? `${routeBadges}<div class="s">${guidanceSteps ? `<p class="td2-route-badge">${esc(guidanceSteps.badge)}</p>` : ''}${
         guidanceLines.map(([label, text]) => label === 'Start'
         ? `<p>${startLine(text)}</p>`
-        : `<p><b>${esc(label)}:</b> ${esc(text)}</p>`).join('')}${stepsMarkup}${
+        : `<p><b>${esc(labelText(label))}:</b> ${esc(text)}</p>`).join('')}${stepsMarkup}${
         guidanceSplit.note ? `<p class="td2-route-source">${esc(guidanceSplit.note)}</p>` : ''
       }</div>`
       : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
-          ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
+          ? (routeRefs.length === 1
+            ? tx('Trail {refs} is marked only on the verified section shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.', { refs: esc(routeSequence) })
+            : tx('Trails {refs} are marked only on the verified sections shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.', { refs: esc(routeSequence) }))
           : routeRefs.length === 1
-            ? `Follow trail <b>${esc(routeRefs[0])}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.`
-            : `This hike uses trails ${esc(routeSequence)}, but the exact numbered switch point${routeRefs.length > 2 ? 's are' : ' is'} still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.`}</div>`}`
+            ? tx('Follow trail <b>{trail}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.', { trail: esc(routeRefs[0]) })
+            : routeRefs.length > 2
+              ? tx('This hike uses trails {refs}, but the exact numbered switch points are still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.', { refs: esc(routeSequence) })
+              : tx('This hike uses trails {refs}, but the exact numbered switch point is still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.', { refs: esc(routeSequence) })}</div>`}`
       // Nothing sourced to say about following this route. This card used to
       // fall back to the first paragraph of t.desc, which "About this trail"
       // prints in full a few centimetres above: on 76 of 109 Dolomites trails
@@ -77425,14 +77792,14 @@ if(document.querySelector('.td2')){
       s:routeRefMarkup,
       routeRefs:true,
     };
-    const renderCards = cards => cards.map(c => `<div class="td2-park${c.routeRefs ? ' td2-route-refs' : ''}"><span class="ic">${c.ic}</span><div><div class="t">${esc(c.t)}</div>${c.routeRefs ? c.s : `<div class="s">${c.s}</div>`}</div></div>`).join('');
+    const renderCards = cards => cards.map(c => `<div class="td2-park${c.routeRefs ? ' td2-route-refs' : ''}"><span class="ic">${c.ic}</span><div><div class="t">${esc(labelText(c.t))}</div>${c.routeRefs ? c.s : `<div class="s">${c.s}</div>`}</div></div>`).join('');
     aroundGrid.innerHTML = routeRefMarkup ? renderCards([routeCard]) : '';
     aroundCard.hidden = !routeRefMarkup;
     if (typeof lat !== 'number' || typeof lng !== 'number') {
       grid.innerHTML = renderCards([{
         ic:pin,
         t:'Recommended starting point',
-        s:'Trailhead directions are not yet available for this route.',
+        s:tx('Trailhead directions are not yet available for this route.'),
       }]);
       if (maps) maps.hidden = true;
       card.hidden = false;
@@ -77441,7 +77808,7 @@ if(document.querySelector('.td2')){
     const cards = [{
       ic:pin,
       t:'Recommended starting point',
-      s:`Head to ${esc(startLabel)}. Use the directions link to navigate to the route start.`,
+      s:tx('Head to {place}. Use the directions link to navigate to the route start.', { place: esc(startLabel) }),
     }];
     grid.innerHTML = renderCards(cards);
     if (maps) maps.hidden = false;
@@ -77477,7 +77844,7 @@ if(document.querySelector('.td2')){
     const CLOUD = '<svg width="18" height="16" viewBox="0 0 24 24" fill="#B7C6C9"><path d="M7 18h10a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 6.5 9 4 4 0 0 0 7 18z"></path></svg>';
     const iconFor = (code) => code <= 2 ? SUN : CLOUD;
     // Paw-safety badge from the day's high (same thresholds as the score's heat rules).
-    const dayBadge = (hi) => hi >= 22 ? { t: 'Heat', bg: '#F5E4C6', fg: '#8A5A16' } : { t: 'Good', bg: '#E4EADF', fg: '#2C5C34' };
+    const dayBadge = (hi) => hi >= 22 ? { t: 'Heat', label: tx('Heat'), bg: '#F5E4C6', fg: '#8A5A16' } : { t: 'Good', label: tx('Good'), bg: '#E4EADF', fg: '#2C5C34' };
 
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset&hourly=temperature_2m&forecast_days=6&timezone=auto`)
       .then(r => r.json())
@@ -77497,9 +77864,9 @@ if(document.querySelector('.td2')){
           const cur = Math.round(d.current.temperature_2m);
           const tempEl = $('tdCondTemp');
           if (tempEl) tempEl.textContent = cur + '°C';
-          const paw = cur >= 28 ? { t: 'Caution', bg: '#F3D9D2', fg: '#9C3A25' }
-            : cur >= 22 ? { t: 'Warm', bg: '#F5E4C6', fg: '#8A5A16' }
-            : { t: 'Good', bg: '#E4EADF', fg: '#2C5C34' };
+          const paw = cur >= 28 ? { t: tx('Caution'), bg: '#F3D9D2', fg: '#9C3A25' }
+            : cur >= 22 ? { t: tx('Warm'), bg: '#F5E4C6', fg: '#8A5A16' }
+            : { t: tx('Good'), bg: '#E4EADF', fg: '#2C5C34' };
           const pawEl = $('tdCondPaw');
           if (pawEl) { pawEl.textContent = paw.t; pawEl.style.background = paw.bg; pawEl.style.color = paw.fg; }
           // The day the reader chose on the homepage, carried in the address.
@@ -77554,32 +77921,32 @@ if(document.querySelector('.td2')){
           const winEl = $('sideCondWindow');
           if (winEl) winEl.innerHTML = window.DoloPawsWeatherWindow
             ? window.DoloPawsWeatherWindow.markup(win)
-            : 'No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.';
+            : tx('No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.');
         }
         const hasWater = Array.isArray(t.waterSources) && t.waterSources.length > 0;
         const waterEl = $('tdCondWater');
-        if (waterEl) { waterEl.textContent = hasWater ? 'On route' : 'Carry own'; waterEl.style.color = hasWater ? '#BDEBD9' : '#FFE6A6'; }
+        if (waterEl) { waterEl.textContent = hasWater ? tx('On route') : tx('Carry own'); waterEl.style.color = hasWater ? '#BDEBD9' : '#FFE6A6'; }
         if (condCard) condCard.hidden = false;
 
         // ---- 6-day forecast card ----
         if (fcDays) {
           let heatDay = null;
           fcDays.innerHTML = d.daily.time.map((iso, i) => {
-            const label = i === 0 ? 'Today' : new Date(iso).toLocaleDateString(undefined, { weekday: 'short' });
+            const label = i === 0 ? tx('Today') : new Date(iso).toLocaleDateString(undefined, { weekday: 'short' });
             const hi = Math.round(d.daily.temperature_2m_max[i]);
             const lo = Math.round(d.daily.temperature_2m_min[i]);
             const b = dayBadge(hi);
-            if (b.t === 'Heat' && !heatDay) heatDay = i === 0 ? 'Today' : new Date(iso).toLocaleDateString(undefined, { weekday: 'long' });
+            if (b.t === 'Heat' && !heatDay) heatDay = i === 0 ? tx('Today') : new Date(iso).toLocaleDateString(undefined, { weekday: 'long' });
             return `<div class="td2-fcday${i ? ' brd' : ''}">`
               + `<span class="d${i ? '' : ' now'}">${label}</span>`
               + `<span class="ic">${iconFor(d.daily.weathercode[i])}</span>`
               + `<span class="tp"><b class="num">${hi}°</b> <span class="lo">${lo}°</span></span>`
-              + `<span class="bd"><span class="td2-badge" style="background:${b.bg};color:${b.fg};">${b.t}</span></span>`
+              + `<span class="bd"><span class="td2-badge" style="background:${b.bg};color:${b.fg};">${b.label}</span></span>`
               + `</div>`;
           }).join('');
           const noteEl = $('tdForecastNote');
           if (noteEl && heatDay) {
-            noteEl.innerHTML = `<b style="color:#8A5A16">${heatDay}</b> is warm. Walk early and carry extra water.`;
+            noteEl.innerHTML = tx('{day} is warm. Walk early and carry extra water.', { day: `<b style="color:#8A5A16">${heatDay}</b>` });
             noteEl.hidden = false;
           }
         }
@@ -77605,6 +77972,12 @@ if(document.querySelector('.td2')){
  */
 (function () {
   'use strict';
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
   if (!document.querySelector('.td2')) return;
 
   // ---- 1. Hero Start-the-hike proxy + live banner -------------------------
@@ -77668,8 +78041,8 @@ if(document.querySelector('.td2')){
       if (heroBtn.dataset.hikeUiState !== nextState) {
         heroBtn.dataset.hikeUiState = nextState;
         heroBtn.innerHTML = rec
-          ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg> End · <span class="hike-elapsed">' + fmtElapsed() + '</span>'
-          : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start the hike';
+          ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg> ' + tx('End · {time}', { time: '<span class="hike-elapsed">' + fmtElapsed() + '</span>' })
+          : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> ' + tx('Start the hike');
       }
     }
     if (liveBanner) liveBanner.hidden = !rec;
@@ -77763,9 +78136,9 @@ if(document.querySelector('.td2')){
     const safetyDog = document.getElementById('td2SafetyDog');
     if (safetyDog) safetyDog.textContent = name ? ' · ' + name : '';
     const nearbyTitle = document.getElementById('nearbyTitle');
-    if (nearbyTitle && name) nearbyTitle.textContent = 'Nearby trails, ranked for ' + name;
+    if (nearbyTitle && name) nearbyTitle.textContent = tx('Nearby trails, ranked for {name}', { name });
     const liveTitle = document.getElementById('tdLiveTitle');
-    if (liveTitle && name) liveTitle.textContent = 'Recording ' + name + '’s walk';
+    if (liveTitle && name) liveTitle.textContent = tx('Recording {name}’s walk', { name });
   }
   window.addEventListener('dolopaws-auth-changed', syncDog);
   syncDog();
@@ -77787,6 +78160,12 @@ if(document.querySelector('.td2')){
    keep the plain responsive page. */
 (function(){
   'use strict';
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
 
   var page = document.querySelector('.td2');
   if(!page) return;
@@ -77847,7 +78226,7 @@ if(document.querySelector('.td2')){
         var collapsed = card.classList.toggle('is-mobile-collapsed');
         button.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
         var action = button.querySelector('.td2-mobile-toggle-action');
-        if(action) action.innerHTML = (collapsed ? 'Show <span aria-hidden="true">⌄</span>' : 'Hide <span aria-hidden="true">⌃</span>');
+        if(action) action.innerHTML = (collapsed ? tx('Show') + ' <span aria-hidden="true">⌄</span>' : tx('Hide') + ' <span aria-hidden="true">⌃</span>');
       });
     });
   }
@@ -77882,9 +78261,9 @@ if(document.querySelector('.td2')){
       top.className = 'mtrail-top';
       top.id = 'mtrailTop';
       top.innerHTML =
-        '<a class="back" href="browse-trails.html">← <span>Trails</span></a>' +
+        '<a class="back" href="browse-trails.html">← <span>' + tx('Trails') + '</span></a>' +
         '<a class="brand" href="/"><img src="logo.svg" alt="">ORMA</a>' +
-        '<a class="avlink" href="account.html" aria-label="Your account">' + dogAvatarHtml() + '</a>' +
+        '<a class="avlink" href="account.html" aria-label="' + tx('Your account') + '">' + dogAvatarHtml() + '</a>' +
         '<div class="mtrail-progress" aria-hidden="true"><span id="mtrailProgress"></span></div>';
       document.body.insertBefore(top, document.body.firstChild);
     }
@@ -77948,6 +78327,13 @@ if(document.querySelector('.td2')){
   if(root) root.DoloPawsRecommendationDecision = api;
 })(typeof window !== 'undefined' ? window : globalThis, function(root){
   'use strict';
+
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
 
   const CATEGORY = Object.freeze({
     'strong-option': { label:'Strong option', tone:'strong' },
@@ -78017,24 +78403,26 @@ if(document.querySelector('.td2')){
    * hazard is not evidence the hazard is absent, and the sentence must not
    * quietly upgrade it.
    */
+  // Each is read when the card renders, so the sentence comes out in the
+  // page's language; it keeps its {placeholders} for tr() to fill.
   const FIT_SENTENCES = Object.freeze({
-    'trail.distance.within-range': 'The {distance} km distance is comfortable.',
-    'trail.ascent.within-range': 'The {ascent} m climb is gentle.',
-    'trail.terrain.within-tolerance': 'The terrain is manageable.',
-    'trail.duration.within-preference': 'The walking time fits.',
-    'conditions.heat.low': 'Today is cool enough.',
-    'trail.heat.low': 'The route does not get too hot.',
-    'trail.shade.good': 'There is good shade.',
-    'trail.exposure.none-known': 'No exposed sections are recorded.',
-    'trail.surface-hazards.none-known': 'No surface hazards are recorded.',
-    'trail.water.reviewed': 'There is water on the route.',
-    'trail.dog-access.allowed': 'Dogs are allowed.',
-    'trail.dog-access.leash': 'Dogs are allowed on a leash.',
-    'trail.livestock.none': 'No livestock is recorded.',
-    'trail.wildlife.low': 'Wildlife activity is low.',
-    'trail.road.none': 'There are no road sections.',
-    'trail.crowding.quiet': 'The route is usually quiet.',
-    'trail.sightlines.open': 'The sightlines are open.',
+    'trail.distance.within-range': () => tx('The {distance} km distance is comfortable.'),
+    'trail.ascent.within-range': () => tx('The {ascent} m climb is gentle.'),
+    'trail.terrain.within-tolerance': () => tx('The terrain is manageable.'),
+    'trail.duration.within-preference': () => tx('The walking time fits.'),
+    'conditions.heat.low': () => tx('Today is cool enough.'),
+    'trail.heat.low': () => tx('The route does not get too hot.'),
+    'trail.shade.good': () => tx('There is good shade.'),
+    'trail.exposure.none-known': () => tx('No exposed sections are recorded.'),
+    'trail.surface-hazards.none-known': () => tx('No surface hazards are recorded.'),
+    'trail.water.reviewed': () => tx('There is water on the route.'),
+    'trail.dog-access.allowed': () => tx('Dogs are allowed.'),
+    'trail.dog-access.leash': () => tx('Dogs are allowed on a leash.'),
+    'trail.livestock.none': () => tx('No livestock is recorded.'),
+    'trail.wildlife.low': () => tx('Wildlife activity is low.'),
+    'trail.road.none': () => tx('There are no road sections.'),
+    'trail.crowding.quiet': () => tx('The route is usually quiet.'),
+    'trail.sightlines.open': () => tx('The sightlines are open.'),
   });
 
   // Calm framing: confidence describes data completeness, not danger. "low"
@@ -78151,9 +78539,9 @@ if(document.querySelector('.td2')){
       return tr(`recommendation.fine.${entry.code}`, fallback, { ...extra, ...(entry.vars || {}) });
     };
     const fitSentence = entry => {
-      const fallback = FIT_SENTENCES[entry.code];
-      if(!fallback) return null;
-      return tr(`recommendation.fits.${entry.code}`, fallback, { ...extra, ...(entry.vars || {}) });
+      const sentence = FIT_SENTENCES[entry.code];
+      if(!sentence) return null;
+      return tr(`recommendation.fits.${entry.code}`, sentence(), { ...extra, ...(entry.vars || {}) });
     };
     /**
      * What the card leads with, when it can only show a few.
@@ -78320,7 +78708,7 @@ if(document.querySelector('.td2')){
 
     if(Math.abs(after.score - before.score) <= SAME_SCORE_TOLERANCE) return null;
     return tr('recommendation.firstRun.moved',
-      'Was {beforeScore}% for {before} · now {afterScore}% for {name}. See why below.',
+      tx('Was {beforeScore}% for {before} · now {afterScore}% for {name}. See why below.'),
       { beforeScore:before.score, before:before.forName, afterScore:after.score, name:after.forName });
   }
 
@@ -78336,48 +78724,56 @@ if(document.querySelector('.td2')){
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
+  // Label and summary are read when shown, so they come out in the page's language.
   const GUIDES = Object.freeze({
     heat:Object.freeze({
       id:'heat',
       href:'guides/heat-overheating.html',
-      label:'Recognising overheating early',
-      summary:'Know the early signs and when to stop.',
+      get label(){ return tx('Recognising overheating early'); },
+      get summary(){ return tx('Know the early signs and when to stop.'); },
     }),
     water:Object.freeze({
       id:'water',
       href:'guides/water-for-dogs-on-trail.html',
-      label:'Water for dogs on alpine trails',
-      summary:'Plan the full supply when reliable water is not confirmed.',
+      get label(){ return tx('Water for dogs on alpine trails'); },
+      get summary(){ return tx('Plan the full supply when reliable water is not confirmed.'); },
     }),
     paws:Object.freeze({
       id:'paws',
       href:'guides/paw-protection.html',
-      label:'Looking after paw pads',
-      summary:'Rough ground, hot tarmac and how to spot pad damage.',
+      get label(){ return tx('Looking after paw pads'); },
+      get summary(){ return tx('Rough ground, hot tarmac and how to spot pad damage.'); },
     }),
     exposure:Object.freeze({
       id:'exposure',
       href:'safety-guide.html',
-      label:'Dog hiking safety guide',
-      summary:'Review turn-back decisions and emergency preparation.',
+      get label(){ return tx('Dog hiking safety guide'); },
+      get summary(){ return tx('Review turn-back decisions and emergency preparation.'); },
     }),
     livestock:Object.freeze({
       id:'livestock',
       href:'guides/livestock-guard-dogs.html',
-      label:'Livestock and guardian dogs',
-      summary:'Cross grazed pasture calmly and avoid confrontations.',
+      get label(){ return tx('Livestock and guardian dogs'); },
+      get summary(){ return tx('Cross grazed pasture calmly and avoid confrontations.'); },
     }),
     altitude:Object.freeze({
       id:'altitude',
       href:'guides/altitude-with-your-dog.html',
-      label:'Hiking safely at altitude',
-      summary:'Plan for thinner air, rapid weather changes and lingering snow.',
+      get label(){ return tx('Hiking safely at altitude'); },
+      get summary(){ return tx('Plan for thinner air, rapid weather changes and lingering snow.'); },
     }),
     lifts:Object.freeze({
       id:'lifts',
       href:'guides/dogs-on-cable-cars.html#chairlifts',
-      label:'Lifts with your dog: open chairs and closed cabins',
-      summary:'Why an open chairlift is a different risk from a gondola, and who can ride one.',
+      get label(){ return tx('Lifts with your dog: open chairs and closed cabins'); },
+      get summary(){ return tx('Why an open chairlift is a different risk from a gondola, and who can ride one.'); },
     }),
   });
 
