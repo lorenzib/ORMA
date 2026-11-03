@@ -151,6 +151,20 @@ const withoutOsmTag = label => String(label || '')
   .replace(/OSM-verified/gi, 'mapped in OpenStreetMap')
   .trim();
 
+// The page's twin of waterLines in trail-trust.js: nearby fountains rounded
+// to the same km print as one line with a count, not as repeats.
+function displayWaterLines(t) {
+  const lines = new Map();
+  for (const point of Array.isArray(t.waterSources) ? t.waterSources : []) {
+    if (!point) continue;
+    const label = displayWaterLabel(t, point.label || point.name);
+    const key = `${point.km}|${label}`;
+    if (lines.has(key)) lines.get(key).count += 1;
+    else lines.set(key, { km: point.km, label, count: 1 });
+  }
+  return [...lines.values()];
+}
+
 function displayWaterLabel(t, label) {
   const base = String(label || 'Water point')
     .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
@@ -556,8 +570,8 @@ function trailPage(t, slug, all) {
     :
     Array.isArray(t.waterSources) && t.waterSources.length
       ? `<h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> ${waterReviewed ? 'Water on trail' : 'Potential water points'}</h2>
-    <ul>${t.waterSources
-          .map((w) => `<li>km ${escapeHtml(w.km)} · ${escapeHtml(displayWaterLabel(t, w.label))}</li>`)
+    <ul>${displayWaterLines(t)
+          .map((w) => `<li>km ${escapeHtml(w.km)} · ${escapeHtml(w.label)}${w.count > 1 ? ` (${w.count} points)` : ''}</li>`)
           .join('')}</ul>${waterReviewed ? '' : '<p class="sp-src">Availability can change. Carry a full supply.</p>'}`
       : '';
 
@@ -1035,4 +1049,4 @@ function main() {
 
 if(require.main === module) main();
 
-module.exports = { TIER_BADGE, badgeForTrail, directionsSection, displayStartLabel, displayWaterLabel, photoHtml, photoCreditHtml, publicAssetUrl, trailPageAssetUrl, trailPage };
+module.exports = { TIER_BADGE, badgeForTrail, directionsSection, displayStartLabel, displayWaterLabel, displayWaterLines, photoHtml, photoCreditHtml, publicAssetUrl, trailPageAssetUrl, trailPage };
