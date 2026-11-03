@@ -1503,6 +1503,31 @@
       "name": "Bloseggweg loop from Schenna",
       "slug": "bloseggweg-loop-schenna",
       "gloss": "through the orchards past the Kampflkreuz"
+    },
+    "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": {
+      "name": "Meraner Höhenweg west and the Sonnenberg farms, Partschins",
+      "slug": "hoehenweg-west-sonnenberg-farms-partschins",
+      "gloss": "from the Texelbahn down past old farms"
+    },
+    "meran-escursione-sentiero-del-sole-a-stulles": {
+      "name": "Sonnenrundweg loop at Stuls",
+      "slug": "sonnenrundweg-stuls",
+      "gloss": "a sunny loop above the Passeier valley"
+    },
+    "meran-giro-dei-masi-sul-monte-sole": {
+      "name": "Sonnenberg farms loop from Unterstell, Naturns",
+      "slug": "unterstell-farms-loop-naturns",
+      "gloss": "farms on the Meraner Höhenweg"
+    },
+    "meran-escursione-alla-forst": {
+      "name": "Forst and the Marlinger Waalweg from Algund",
+      "slug": "algund-forst-marlinger-waalweg",
+      "gloss": "across the Adige to the waal path"
+    },
+    "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": {
+      "name": "Hirzer alms loop from Klammeben",
+      "slug": "hirzer-alms-loop-klammeben",
+      "gloss": "alms below the Hirzer above Schenna"
     }
   }
 }
