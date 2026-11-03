@@ -148,6 +148,7 @@
     ['Aix-les-Bains', 45.6886, 5.9151, 'Chambéry – Bauges', 'savoy', 'savoie'],
     ['Albertville', 45.6754, 6.3925, 'Beaufortain', 'savoy', 'savoie'],
     ['Beaufort / Beaufortain', 45.7192, 6.5735, 'Beaufortain', 'savoy', 'savoie'],
+    ['Crest-Voland / Val d\'Arly', 45.7930, 6.5050, 'Beaufortain', 'savoy', 'savoie'],
     ['Bourg-Saint-Maurice', 45.6180, 6.7690, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
     ['Val d\'Isère', 45.4489, 6.9797, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
     ['Tignes', 45.4685, 6.9060, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
