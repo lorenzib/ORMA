@@ -5789,6 +5789,57 @@
       }
     },
     {
+      "id": "savoie-itineraire-poussette-de-belavoine",
+      "approvedReviewId": "mapillary-savoie-itineraire-poussette-de-belavoine-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/savoie-itineraire-poussette-de-belavoine-meadow-road.jpg",
+        "heroImage": "images/trails/savoie-itineraire-poussette-de-belavoine-meadow-road.jpg",
+        "imageAlt": "A narrow mountain road between a meadow and a wooden chalet, with the jagged Aravis peaks under summer clouds",
+        "imageCredit": "The Bel’Avoine road facing the Aravis",
+        "imageCreditText": "The Bel’Avoine road facing the Aravis by MatthieuF4FNE",
+        "imageCreator": "MatthieuF4FNE",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1074504106864426",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "savoie-itineraire-poussette-des-chalets-brules",
+      "approvedReviewId": "mapillary-savoie-itineraire-poussette-des-chalets-brules-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/savoie-itineraire-poussette-des-chalets-brules-alpage-track.jpg",
+        "heroImage": "images/trails/savoie-itineraire-poussette-des-chalets-brules-alpage-track.jpg",
+        "imageAlt": "A gravel track curving through a flowering mountain meadow beside a stand of tall spruces under a misty sky",
+        "imageCredit": "The pasture track to the Chalets Brûlés",
+        "imageCreditText": "The pasture track to the Chalets Brûlés by MatthieuF4FNE",
+        "imageCreator": "MatthieuF4FNE",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=610091991463534",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "savoie-promenade-confort-lac-et-barrage-de-saint-guerin",
+      "approvedReviewId": "commons-savoie-promenade-confort-lac-et-barrage-de-saint-guerin-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/savoie-promenade-confort-lac-et-barrage-de-saint-guerin-lake-path.jpg",
+        "heroImage": "images/trails/savoie-promenade-confort-lac-et-barrage-de-saint-guerin-lake-path.jpg",
+        "imageAlt": "A rocky path among young spruces above a deep blue mountain lake, with forested slopes and an alpine pasture beyond",
+        "imageCredit": "The east-shore path above the Lac de Saint-Guérin",
+        "imageCreditText": "The east-shore path above the Lac de Saint-Guérin by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rive_Est_arborée_du_lac_de_Saint-Guérin_(septembre_2023).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "seceda",
       "approvedReviewId": "commons-seceda",
       "approvedAt": "2026-09-06T10:40:40.582Z",
