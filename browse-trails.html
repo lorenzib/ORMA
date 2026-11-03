@@ -1177,7 +1177,7 @@
     // the trail page itself, at the moment it's actually wanted.
     const PER_PAGE = 15;
     const allowedCountries = ['all', 'italy', 'france', 'austria'];
-    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'tyrol'];
+    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'piedmont', 'tyrol'];
     // A trail's country comes from its region's row in regions-config.js.
     const COUNTRY_VALUE = { IT:'italy', FR:'france', AT:'austria' };
     function trailCountry(trail){
@@ -1461,6 +1461,7 @@
       { value: 'lombardy', label: bt('browse.geo.lombardy', 'Lombardy'), country:'italy', match: t => t.region === 'lombardy' },
       { value: 'friuli', label: bt('browse.geo.friuli', 'Friuli Venezia Giulia'), country:'italy', match: t => t.region === 'friuli' },
       { value: 'aosta', label: bt('browse.geo.aosta', 'Valle d’Aosta'), country:'italy', match: t => t.region === 'aosta' },
+      { value: 'piedmont', label: bt('browse.geo.piedmont', 'Piedmont'), country:'italy', match: t => t.region === 'piedmont' },
       { value: 'tyrol', label: bt('browse.geo.tyrol', 'Tyrol & Carinthia'), country:'austria', match: t => t.region === 'tyrol' },
     ];
     function renderBreadcrumb(){
