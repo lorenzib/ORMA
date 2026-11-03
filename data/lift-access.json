@@ -222,17 +222,6 @@
       }
     },
     {
-      "id": "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto",
-      "fields": {
-        "liftAccess": {
-          "type": "gondola",
-          "dependency": "required",
-          "name": "Verdins–Tall cable car (Schenna)",
-          "notes": "The walk starts at the top station of the Verdins–Tall cable car; its cabins are closed. It ends at the valley station in Verdins. Dogs ride on a lead and muzzled."
-        }
-      }
-    },
-    {
       "id": "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole",
       "fields": {
         "liftAccess": {
@@ -262,6 +251,50 @@
           "dependency": "required",
           "name": "Hirzer cable car (Saltaus–Klammeben)",
           "notes": "The loop starts and ends at Klammeben, the top station of the Hirzer cable car from Saltaus; its cabins are closed. The board also mentions a way up by the Verdins cable car and the Tall–Grube chairlift; ORMA uses only the cable car. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Verdins–Tall cable car (Schenna)",
+          "notes": "The walk starts at the top station of the Verdins–Tall cable car; its cabins are closed. It ends at the valley station in Verdins. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Taser cable car up and Verdins–Tall cable car down (Schenna)",
+          "notes": "The walk starts at the top station of the Taser cable car above Schenna and ends at Tall, the top station of the Verdins–Tall cable car; both have closed cabins. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Texelbahn up (Partschins) and Unterstell cable car down (Naturns)",
+          "notes": "The walk starts at the top station of the Texelbahn above Partschins and ends at the top station of the Unterstell cable car above Naturns; both have closed cabins. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Aschbach cable car (Rabland–Aschbach)",
+          "notes": "The loop starts and ends at Aschbach, the top station of the cable car from Rabland; its cabins are closed. Dogs ride on a lead and muzzled."
         }
       }
     }

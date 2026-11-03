@@ -3233,6 +3233,54 @@
       "quote": "Durée moyenne 3H30 · Dénivelé cumulé positif 350m · Dénivelé négatif 350m · Distance 4.8Km · Animaux acceptés",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-itinerario-raststeinweg": {
+      "url": "https://www.outdooractive.com/it/r/810055880",
+      "publisher": "Schenna tourist board (Outdooractive, suedtirol.info)",
+      "name": "Itinerario \"Raststeinweg\"",
+      "quote": "Distanza 6,5 km · Durata 2:12 h · Salita 311 m · Discesa 311 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
+      "url": "https://www.outdooractive.com/it/r/801657631",
+      "publisher": "Schenna tourist board (Outdooractive, suedtirol.info)",
+      "name": "Da malga Taser a malga Streitweide sino al maso Haashof",
+      "quote": "Distanza 8,4 km · Durata 3:00 h · Salita 350 m · Discesa 380 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell": {
+      "url": "https://www.outdooractive.com/it/r/810054419",
+      "publisher": "Partschins tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sull’Alta Via di Merano: da Giggelberg a Unterstell",
+      "quote": "Distanza 8,3 km · Durata 3:17 h · Salita 360 m · Discesa 643 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": {
+      "url": "https://www.outdooractive.com/it/r/17276661",
+      "publisher": "Hafling-Vöran-Meran 2000 tourist board (Outdooractive, suedtirol.info)",
+      "name": "Escursione alle malghe Maiser Alm & Moschwaldalm",
+      "quote": "Distanza 9,1 km · Durata 2:40 h · Salita 369 m · Discesa 369 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": {
+      "url": "https://www.outdooractive.com/it/r/810055325",
+      "publisher": "Partschins tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero circolare Rio Lagundo – Monte San Vigilio – Rio Lagundo (sentiero Terrainkur n° 1)",
+      "quote": "Distanza 6,8 km · Durata 2:34 h · Salita 440 m · Discesa 440 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-giro-delle-malghe-monte-tramontana": {
+      "url": "https://www.outdooractive.com/it/r/810055092",
+      "publisher": "Naturns tourist board (Outdooractive, suedtirol.info)",
+      "name": "Giro delle malghe - Monte Tramontana",
+      "quote": "Distanza 11 km · Durata 3:54 h · Salita 541 m · Discesa 541 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
     }
   }
 }

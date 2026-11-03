@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-giro-delle-malghe-monte-tramontana",
+  "distanceKm": 10.9,
+  "ascentM": 541,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1565
+    },
+    {
+      "km": 0.8,
+      "elev": 1612
+    },
+    {
+      "km": 1.7,
+      "elev": 1679
+    },
+    {
+      "km": 2.5,
+      "elev": 1761
+    },
+    {
+      "km": 3.3,
+      "elev": 1859
+    },
+    {
+      "km": 4.2,
+      "elev": 1835
+    },
+    {
+      "km": 5,
+      "elev": 1838
+    },
+    {
+      "km": 5.8,
+      "elev": 1755
+    },
+    {
+      "km": 6.7,
+      "elev": 1840
+    },
+    {
+      "km": 7.5,
+      "elev": 1846
+    },
+    {
+      "km": 8.3,
+      "elev": 1720
+    },
+    {
+      "km": 9.1,
+      "elev": 1640
+    },
+    {
+      "km": 10,
+      "elev": 1665
+    },
+    {
+      "km": 10.8,
+      "elev": 1580
+    },
+    {
+      "km": 10.9,
+      "elev": 1565
+    }
+  ]
+}

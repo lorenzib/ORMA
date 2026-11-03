@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-escursione-alle-malghe-maiser-alm-moschwaldalm",
+  "distanceKm": 9.1,
+  "ascentM": 369,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1610
+    },
+    {
+      "km": 0.7,
+      "elev": 1707
+    },
+    {
+      "km": 1.4,
+      "elev": 1763
+    },
+    {
+      "km": 2.1,
+      "elev": 1830
+    },
+    {
+      "km": 2.8,
+      "elev": 1884
+    },
+    {
+      "km": 3.4,
+      "elev": 1863
+    },
+    {
+      "km": 4.1,
+      "elev": 1824
+    },
+    {
+      "km": 4.8,
+      "elev": 1854
+    },
+    {
+      "km": 5.5,
+      "elev": 1813
+    },
+    {
+      "km": 6.2,
+      "elev": 1801
+    },
+    {
+      "km": 6.9,
+      "elev": 1744
+    },
+    {
+      "km": 7.6,
+      "elev": 1615
+    },
+    {
+      "km": 8.3,
+      "elev": 1640
+    },
+    {
+      "km": 9,
+      "elev": 1627
+    },
+    {
+      "km": 9.1,
+      "elev": 1610
+    }
+  ]
+}

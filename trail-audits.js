@@ -59080,7 +59080,7 @@
     'meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole': {
       // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
       // “Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines”, published by the Partschins tourist board, drawn on 44 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Partschins and, for a short stretch, Naturns (neither publishes a dog regulation online, probably exists: the national rule applies, lead ≤1.5 m and a muzzle carried); about a fifth of the line is in the Texelgruppe nature park, dogs on a lead.
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Partschins (no dog regulation published online, probably exists: the national rule applies, lead ≤1.5 m and a muzzle carried) and, for a short stretch, Naturns (its 2006 regulation: dogs on a lead in the village, a muzzle on public transport); about a fifth of the line is in the Texelgruppe nature park, dogs on a lead.
       // About 20% of the line, near the Texelbahn top station, lies in the Texelgruppe nature park and the Natura 2000 site Pfossental: dogs on a lead.
       // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
       area: 'Texelbahn top station – Meraner Höhenweg – Hochforch – Platterhof – Gruberhof – Winklerhof – Partschins (Burggrafenamt)',
@@ -59120,7 +59120,7 @@
         sources: [
           'Partschins tourist board, Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines (its Outdooractive tour, also listed on suedtirol.info)',
           'Gemeinde Partschins / Comune di Parcines: no dog regulation published online, probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
-          'Marktgemeinde Naturns / Comune di Naturno: no dog regulation published online (only an information sheet for dog owners on dog-waste stations), probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds; the national rule still applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
           'Amt für Natur, rules of conduct in the South Tyrol nature parks: dogs on a lead, never roaming (Naturpark Texelgruppe, also Natura 2000 site IT3110010 Pfossental, about a fifth of the line near the Texelbahn top station); province landscape-plan layers: no natural monument on the line',
           'OpenStreetMap ways along the board’s line (44 ways), road, surface, woodland and water data'
         ],
@@ -59134,12 +59134,12 @@
       shadeDescription: 'Mostly open: about a fifth runs through mapped larch woods; the Höhenweg and the farm meadows are in full sun.',
       terrainDescription: 'A south-facing descent from 1,590 m to 630 m on the Sonnenberg above Partschins, along the Meraner Höhenweg with views over the Vinschgau, then down past old farms to the Zielbach.',
       waterDescription: 'Drinking water at the start; places to eat on the way.',
-      dogNotes: 'Neither Partschins nor Naturns publishes a dog regulation online, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. Near the top station the path runs through the Texelgruppe nature park, where dogs must stay on a lead. On the Texelbahn dogs ride on a lead and muzzled.',
+      dogNotes: 'Partschins publishes no dog regulation online, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. A short stretch is in Naturns, whose 2006 rule keeps dogs on a lead in the village; the national rule applies there too. Near the top station the path runs through the Texelgruppe nature park, where dogs must stay on a lead. On the Texelbahn dogs ride on a lead and muzzled.',
       tips: 'Take the Texelbahn up from Partschins: 6.2 km one way back down to the valley station, 221 m up and 1,124 m down, under two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at the top station; farm inns at the Gruberhof and the Winklerhof. The lower slope is hot in summer: start early.',
       sourceLinks: [
         { label: 'Outdooractive, Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines (Partschins tourist board)', url: 'https://www.outdooractive.com/it/r/54554380' },
         { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
-        { label: 'Marktgemeinde Naturns, information for dog owners', url: 'https://www.gemeinde.naturns.bz.it/de/Verwaltung/Dokumente/Informationen_fuer_Hundehalterinnen_und_Hundehalter' },
+        { label: 'Gemeinde Naturns, dog regulation (2006)', url: 'https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043' },
         { label: 'South Tyrol nature parks, rules of conduct', url: 'https://naturparks.provinz.bz.it/de/verhaltensregeln-im-naturpark' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
@@ -59218,7 +59218,7 @@
     'meran-giro-dei-masi-sul-monte-sole': {
       // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
       // “Giro dei masi sul Monte Sole”, published by the Naturns tourist board, drawn on 22 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Naturns (no dog regulation published online, probably exists: the national rule applies, lead ≤1.5 m and a muzzle carried).
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Naturns (its 2006 dog regulation: dogs on a lead in the village, parks and car parks; the national rule adds a lead of at most 1.5 m and a muzzle carried).
       // No Natura 2000 site, park or natural monument on the line.
       // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
       area: 'Unterstell – Patleid – Lint – Innerforch – Unterstell (Naturns)',
@@ -59257,7 +59257,7 @@
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Naturns tourist board, Giro dei masi sul Monte Sole (its Outdooractive tour, also listed on suedtirol.info)',
-          'Marktgemeinde Naturns / Comune di Naturno: no dog regulation published online (only an information sheet for dog owners on dog-waste stations), probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds; the national rule still applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
           'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
           'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
         ],
@@ -59271,12 +59271,12 @@
       shadeDescription: 'Almost no shade: only a few metres run under mapped trees; the farms and meadows of the Sonnenberg are in full sun.',
       terrainDescription: 'A short loop at 1,280–1,480 m on the sunny Sonnenberg above Naturns, from the Unterstell cable car past the Patleid, Lint and Innerforch farms on the Meraner Höhenweg, with wide views over the Vinschgau.',
       waterDescription: 'Drinking water at the start; places to eat on the way.',
-      dogNotes: 'Naturns publishes no dog regulation online, only an information sheet asking owners to keep dogs on a lead where required and off farmed meadows, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. On the cable car dogs ride on a lead and muzzled.',
+      dogNotes: 'Naturns keeps dogs on a lead in the village, parks and car parks and asks for a muzzle on public transport; the national rule adds a lead of at most 1.5 m and a carried muzzle. On the cable car dogs ride on a lead and muzzled.',
       tips: 'Take the Unterstell cable car up from Naturns: a 4.2 km loop back to the top station, 284 m up and down, about an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at the top station; the Unterstell and Lint inns are on the way. Very sunny: go early in summer.',
       sourceLinks: [
         { label: 'Outdooractive, Giro dei masi sul Monte Sole (Naturns tourist board)', url: 'https://www.outdooractive.com/it/r/50815999' },
         { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
-        { label: 'Marktgemeinde Naturns, information for dog owners', url: 'https://www.gemeinde.naturns.bz.it/de/Verwaltung/Dokumente/Informationen_fuer_Hundehalterinnen_und_Hundehalter' },
+        { label: 'Gemeinde Naturns, dog regulation (2006)', url: 'https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
       ],
@@ -59702,6 +59702,423 @@
       ],
       startPoint: { lat: 45.626113, lng: 6.600459, label: 'Lac des Fées car park above the Saint-Guérin dam, the board’s start' },
       desc: 'A short mountain walk from the Lac des Fées above the Saint-Guérin reservoir up to the Cormet d’Arêches and along the grassy humps to the Croix du Berger, with wide views over the Beaufortain. The official page lists 4.8 km, 350 m up and 350 m down, about 3 h 30 there and back.'
+    },
+    'meran-itinerario-raststeinweg': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 3).
+      // “Itinerario "Raststeinweg"”, published by the Schenna tourist board, drawn on 24 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Schenna (its dog regulation, Gemeinderat Nr. 33 of 31.08.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Schenna – Bergweg – Ratscheidweg – Rastlhof – Salfgut – Raststeinweg – Schenna (Burggrafenamt)',
+      distance: 6.5,
+      elevation: 311,
+      hours: '2.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the mini-golf in Schenna up Pichlerstraße to the Bergweg (18A), right past the Roathhöfe and Fungganell farms on the Ratscheidweg to the Rastlhof, along the access road to the Salfnerhof and the Salfgut, a little down to the shaded Raststeinweg, and back on the Gsteirer Weg and St.-Georgener-Straße to Schenna.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the mini-golf in Schenna, the board’s start.",
+        "sequence": "Walk up Pichlerstraße to the Bergweg, path 18A, and turn right. Pass the Roathhöfe and Fungganell farms and follow the Ratscheidweg to the Rastlhof farm. Carry on along its access road to the Salfnerhof and the Salfgut, then go a little downhill to the Raststeinweg. This pleasant, shaded path joins the Gsteirer Weg, which leads back down St.-Georgener-Straße to Schenna.",
+        "switches": "Key turns: right onto the Bergweg (18A) at the top of Pichlerstraße; at the Rastlhof along the access road to the Salfgut; after the Salfgut down onto the Raststeinweg; at the end onto the Gsteirer Weg back to Schenna.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Schenna tourist board, Itinerario \"Raststeinweg\" (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055880",
+            "authority": "Schenna tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The view north-west from just north of the Bergweg above Schenna, in September (Stephan van Helden on Wikimedia Commons, CC BY-SA 4.0), 18 m from the line.',
+        route: 'Official loop 6.5 km from the mini-golf in Schenna, as the Schenna tourist board publishes it; the stored line is drawn on 24 OSM ways along the board’s published line, 6.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the mini-golf in Schenna and go up Pichlerstraße to the Bergweg, path 18A; turn right on the Ratscheidweg to the Rastlhof, follow the access road to the Salfgut, then down to the Raststeinweg and back by the Gsteirer Weg and St.-Georgener-Straße.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.5, km 1.1, km 1.3 and km 6.1 (OSM nodes 11099137305, 8714631861, 12070586652, 3507970847, 8714912355, 2908895945).',
+        elevation: 'Official 6.5 km, 311 m up and 311 m down, 2:12 h, highest point 907 m, lowest 596 m (Schenna tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Schenna tourist board, Itinerario "Raststeinweg" (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Schenna / Comune di Scena, dog regulation (Gemeinderat Nr. 33, 31.08.2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and school yards or on farmed land (meadows, fields) during the growing season; no bathing in the fountains of the centre',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (24 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 33,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Most of the loop is on quiet tarred lanes and farm access roads shared with cars and tractors: lead on and keep to the side', 'Short crossings of St.-Georgener-Straße in Schenna: lead short', 'Orchards, vineyards and meadows beside the lanes are farmed and closed to dogs in Schenna in the growing season: keep to the lane'],
+      terrainType: 'Village lanes, farm access roads and a woodland path',
+      shadeDescription: 'A third shaded: the Raststeinweg and the stretch below the Salfgut run through mapped woodland; the farm lanes are open.',
+      terrainDescription: 'A loop at 600–910 m on the slope above Schenna, mostly on quiet lanes past old farms with views over Meran, and back on the shaded Raststeinweg.',
+      waterDescription: 'Drinking water at the start, km 0.5, km 1.1, km 1.3 and km 6.1; places to eat on the way.',
+      dogNotes: 'Schenna requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season.',
+      tips: 'Start at the mini-golf in Schenna: a 6.5 km loop, 311 m up and down, about two and a quarter hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at the start and in the first 1.3 km; farm inns at the Rastlhof and the Salfgut.',
+      sourceLinks: [
+        { label: 'Outdooractive, Itinerario "Raststeinweg" (Schenna tourist board)', url: 'https://www.outdooractive.com/it/r/810055880' },
+        { label: 'Gemeinde Schenna, dog regulation (2010)', url: 'https://www.gemeinde.schenna.bz.it/system/web/GetDocument.ashx?cts=1715263604&fileId=1020049' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.686077, lng: 11.18994, label: 'The mini-golf in Schenna, the board’s start' },
+      desc: 'A loop above Schenna up to the Bergweg and the Ratscheidweg, past the Rastlhof and the Salfgut, and back down the shaded Raststeinweg. The board lists 6.5 km, 311 m up and 311 m down, 2 h 12.'
+    },
+    'meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 3).
+      // “Da malga Taser a malga Streitweide sino al maso Haashof”, published by the Schenna tourist board, drawn on 33 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Schenna (its dog regulation, Gemeinderat Nr. 33 of 31.08.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Taser Alm – Taser Höhenweg – Streitweider Alm – Videgg – Haashof – Tall (Schenna)',
+      distance: 8.4,
+      elevation: 350,
+      hours: '3',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way: from the top station of the Taser cable car past the Taser Alm and its chapel along the Taser Höhenweg (path 40) through the woods below the Streitweider Alm to Videgg and the Haashof, then about an hour on the access road to Tall, the top station of the Verdins–Tall cable car.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Taser cable car up from Schenna and start at its top station by the Taser Alm, the board’s start.",
+        "sequence": "Walk past the Taser Alm to the little Taser chapel and follow the Taser Höhenweg, path 40. It runs through the woods below the Streitweider Alm and on to Videgg and the Haashof farm inn. From the Haashof walk about an hour along the access road to Tall, where the Verdins–Tall cable car takes you down to Verdins.",
+        "switches": "Two changes: at the Taser chapel onto path 40; at the Haashof onto the access road to Tall and the cable car.",
+        "sources": [
+          {
+            "label": "Schenna tourist board, Da malga Taser a malga Streitweide sino al maso Haashof (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/801657631",
+            "authority": "Schenna tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Maria Heimsuchung chapel at Videgg, beside the line, in June (Mammut74 on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 8.4 km from the top station of the Taser cable car at the Taser Alm, as the Schenna tourist board publishes it; the stored line is drawn on 33 OSM ways along the board’s published line, 8.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 40, the Taser Höhenweg: from the Taser Alm past the chapel along path 40 below the Streitweider Alm to Videgg and the Haashof, then the access road to Tall and the Verdins–Tall cable car.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 1.6 (OSM nodes 12622887101, 9155649659).',
+        elevation: 'Official 8.4 km, 350 m up and 380 m down, 3:00 h, highest point 1,550 m, lowest 1,435 m (Schenna tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Schenna tourist board, Da malga Taser a malga Streitweide sino al maso Haashof (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Schenna / Comune di Scena, dog regulation (Gemeinderat Nr. 33, 31.08.2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and school yards or on farmed land (meadows, fields) during the growing season; no bathing in the fountains of the centre',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (33 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 78,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The last hour to Tall is on a tarred access road open to cars: lead on and keep to the side', 'Cattle may graze around the Taser and Streitweider alms in summer: keep your dog on a short lead and give cows a wide berth', 'A few short, steeper stretches of mountain path on the Höhenweg'],
+      terrainType: 'Mountain path, forest roads and an access road',
+      shadeDescription: 'Mostly shaded: about three quarters of the line runs through mapped woodland; the meadows at Videgg and the Haashof are open.',
+      terrainDescription: 'A gentle high walk at 1,435–1,550 m on the Taser Höhenweg above Schenna, through woods and past the Streitweider Alm to the meadows and chapel of Videgg, with views over the Passeier valley.',
+      waterDescription: 'Drinking water at the start and km 1.6; places to eat on the way.',
+      dogNotes: 'Schenna requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season. On both cable cars dogs ride on a lead and muzzled.',
+      tips: 'Take the Taser cable car up from Schenna and the Verdins–Tall cable car down: 8.4 km one way, 350 m up and 380 m down, about three hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at the start and at km 1.6; the Taser Alm and the Haashof serve food.',
+      sourceLinks: [
+        { label: 'Outdooractive, Da malga Taser a malga Streitweide sino al maso Haashof (Schenna tourist board)', url: 'https://www.outdooractive.com/it/r/801657631' },
+        { label: 'Gemeinde Schenna, dog regulation (2010)', url: 'https://www.gemeinde.schenna.bz.it/system/web/GetDocument.ashx?cts=1715263604&fileId=1020049' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.705065, lng: 11.222211, label: 'Top station of the Taser cable car at the Taser Alm, the board’s start' },
+      desc: 'A high walk from the Taser Alm along the Taser Höhenweg below the Streitweider Alm to Videgg and the Haashof, and on to the Tall cable car. The board lists 8.4 km, 350 m up and 380 m down, 3 h.'
+    },
+    'meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 3).
+      // “Sull’Alta Via di Merano: da Giggelberg a Unterstell”, published by the Partschins tourist board, drawn on 51 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Partschins (no dog regulation published online, probably exists: the national rule applies, lead ≤1.5 m and a muzzle carried) and Naturns (its 2006 regulation: dogs on a lead in the village, a muzzle on public transport); about 46% of the line is in the Texelgruppe nature park, dogs on a lead.
+      // About 46% of the line, from the Texelbahn to the Thousand Steps gorge, lies in the Texelgruppe nature park and the Natura 2000 site Pfossental: dogs on a lead.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Texelbahn top station – Meraner Höhenweg – Schindelbach valley – Thousand Steps gorge – Naturns Sonnenberg – Unterstell (Burggrafenamt)',
+      distance: 8.3,
+      elevation: 360,
+      hours: '3.25',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way: from the top station of the Texelbahn west along the Meraner Höhenweg (path 24) across the Schindelbach valley, through the Lahnbach valley, the Thousand Steps gorge with its suspension bridge, then across the meadows and farms of the Naturns Sonnenberg and down path 24B to the top station of the Unterstell cable car.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Texelbahn up from Partschins and start at its top station, about 1,500 m, the board’s start.",
+        "sequence": "Follow the Meraner Höhenweg, path 24, west. It crosses the Schindelbach valley past old farms and reaches the Lahnbach valley, the Thousand Steps gorge, where many steps and a suspension bridge take you across. After the gorge the path runs more easily across the sunny meadows and farms of the Naturns Sonnenberg. Path 24B then leads down to the top station of the Unterstell cable car, where the walk ends; ride the cable car down to Naturns.",
+        "switches": "One change: after the Naturns Sonnenberg farms leave path 24 for path 24B down to the Unterstell top station.",
+        "sources": [
+          {
+            "label": "Partschins tourist board, Sull’Alta Via di Merano: da Giggelberg a Unterstell (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810054419",
+            "authority": "Partschins tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path 24 signpost on the Meraner Höhenweg above Naturns, in September (Seichter-wm on Wikimedia Commons, CC0), 2 m from the line.',
+        route: 'Official one-way walk 8.3 km from the top station of the Texelbahn above Partschins, as the Partschins tourist board publishes it; the stored line is drawn on 51 OSM ways along the board’s published line, 8.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 24 and 24B: from the Texelbahn top station the Meraner Höhenweg (path 24) west through the Thousand Steps gorge to the Naturns Sonnenberg, then path 24B down to the Unterstell top station.',
+        mapPoints: 'Start at the board’s start; drinking water at km 8 (OSM nodes 3152633517).',
+        elevation: 'Official 8.3 km, 360 m up and 643 m down, 3:17 h, highest point 1,586 m, lowest 1,288 m (Partschins tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Partschins tourist board, Sull’Alta Via di Merano: da Giggelberg a Unterstell (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Partschins / Comune di Parcines: no dog regulation published online, probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds; the national rule still applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Amt für Natur, rules of conduct in the South Tyrol nature parks: dogs on a lead, never roaming (Naturpark Texelgruppe and Natura 2000 site IT3110010 Pfossental, about 46% of the line between the Texelbahn and the Thousand Steps gorge); province landscape-plan layers: no natural monument on the line',
+          'OpenStreetMap ways along the board’s line (51 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 41,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The Thousand Steps gorge: nearly a thousand steps of stone, wood and metal and a suspension bridge, hard on paws and joints; some dogs refuse the bridge, so carry a small dog and take it slowly', 'Steep slopes beside the path in the gorge: keep your dog on a short lead', 'Farm yards and pastures on the Sonnenberg: lead close past livestock'],
+      terrainType: 'Mountain path with many steps and a suspension bridge',
+      shadeDescription: 'Partly shaded: about two fifths run through mapped woodland in the side valleys; the Sonnenberg meadows are in full sun.',
+      terrainDescription: 'A high traverse at 1,290–1,590 m on the Meraner Höhenweg from the Texelbahn above Partschins to Unterstell above Naturns, through side valleys and the Thousand Steps gorge with wide views over the Vinschgau.',
+      waterDescription: 'Drinking water at km 8; places to eat on the way.',
+      dogNotes: 'Partschins publishes no dog regulation online, so the Italian national rule applies there: a lead of at most 1.5 m and a muzzle carried in public places. Naturns keeps dogs on a lead in the village and asks for a muzzle on public transport; the national rule adds the lead and a carried muzzle. Nearly half the walk is in the Texelgruppe nature park, where dogs must stay on a lead. On both cable cars dogs ride on a lead and muzzled.',
+      tips: 'Take the Texelbahn up from Partschins and the Unterstell cable car down to Naturns: 8.3 km one way, 360 m up and 643 m down, about three and a quarter hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water only near the end at Unterstell: bring water. The Thousand Steps gorge is tiring for dogs: rest before and after it.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sull’Alta Via di Merano: da Giggelberg a Unterstell (Partschins tourist board)', url: 'https://www.outdooractive.com/it/r/810054419' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Naturns, dog regulation (2006)', url: 'https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043' },
+        { label: 'South Tyrol nature parks, rules of conduct', url: 'https://naturparks.provinz.bz.it/de/verhaltensregeln-im-naturpark' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.684517, lng: 11.046144, label: 'Top station of the Texelbahn above Partschins, the board’s start' },
+      desc: 'A high walk on the Meraner Höhenweg from the Texelbahn through the Thousand Steps gorge and across the Naturns Sonnenberg to the Unterstell cable car. The board lists 8.3 km, 360 m up and 643 m down, 3 h 17.'
+    },
+    'meran-escursione-alle-malghe-maiser-alm-moschwaldalm': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 3).
+      // “Escursione alle malghe Maiser Alm & Moschwaldalm”, published by the Hafling-Vöran-Meran 2000 tourist board, drawn on 30 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Hafling (its 2004 dog regulation: dogs on a lead in public places; the national rule adds a lead of at most 1.5 m and a muzzle carried).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Falzeben – Zueggsteig – Rotwand – Wieser Schüpfl – Maiser Alm – Moschwald Alm – Falzeben (Meran 2000)',
+      distance: 9.1,
+      elevation: 369,
+      hours: '2.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Falzeben car park on path 40A, the Zueggsteig, to the Chalet Zuegg, path 14 up to the Rotwand inn and on to the Wieser Schüpfl, forest road 17 across the Sinichbach to the Maiser and Moschwald alms, and path 51 back across the Sinichbach to Falzeben.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Falzeben car park (1,609 m) above Hafling, the board’s start.",
+        "sequence": "Follow path 40A, the Zueggsteig, to the Chalet Zuegg. Carry on up path 14 to the Rotwand inn (1,817 m) and on along the same path to the Wieser Schüpfl. There turn right onto forest road 17, which crosses the Sinichbach to the Maiser Alm (1,783 m) and the Moschwald Alm (1,760 m). After the two alms keep right on path 51: after a short, steep climb of about 15 minutes you cross the Sinichbach again, and the path leads back to Falzeben.",
+        "switches": "Four changes: at the Chalet Zuegg onto path 14; at the Wieser Schüpfl right onto forest road 17; after the Moschwald Alm keep right on path 51; across the Sinichbach back to Falzeben.",
+        "sources": [
+          {
+            "label": "Hafling-Vöran-Meran 2000 tourist board, Escursione alle malghe Maiser Alm & Moschwaldalm (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/17276661",
+            "authority": "Hafling-Vöran-Meran 2000 tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The track and signpost beside the reservoir on the loop at Meran 2000, in July (descilla on Mapillary, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 9.1 km from the Falzeben car park above Hafling, as the Hafling-Vöran-Meran 2000 tourist board publishes it; the stored line is drawn on 30 OSM ways along the board’s published line, 9.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 40A, 14, 17 and 51: from Falzeben the Zueggsteig (40A) to the Chalet Zuegg, path 14 to the Rotwand inn and the Wieser Schüpfl, forest road 17 to the Maiser and Moschwald alms, and path 51 back to Falzeben.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.7 (OSM nodes 7878561733).',
+        elevation: 'Official 9.1 km, 369 m up and 369 m down, 2:40 h, highest point 1,864 m, lowest 1,575 m (Hafling-Vöran-Meran 2000 tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Hafling-Vöran-Meran 2000 tourist board, Escursione alle malghe Maiser Alm & Moschwaldalm (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Hafling / Comune di Avelengo, Verordnung über die Haltung von Hunden und anderen Tieren (Ratsbeschluss Nr. 24, 27.10.2004), Art. 1: dogs on a lead in public places; a lead and muzzle for larger dogs in public premises and on public transport; no dogs in children’s playgrounds',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (30 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 80,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The board warns of occasional construction traffic on path 14: lead on and step aside for vehicles', 'Most of the loop is on wide forest roads in a ski area, shared with farm and service vehicles', 'Cattle graze around the Maiser and Moschwald alms in summer: keep your dog on a short lead and give cows a wide berth', 'A short, steep climb of about 15 minutes on path 51'],
+      terrainType: 'Forest roads and mountain paths',
+      shadeDescription: 'Mostly shaded: about four fifths of the line runs through mapped spruce and larch woods; the alm pastures are open.',
+      terrainDescription: 'A loop at 1,575–1,865 m on the Meran 2000 plateau above Hafling, through spruce and larch woods to the Rotwand inn and the Maiser and Moschwald alms beside the Sinichbach.',
+      waterDescription: 'Drinking water at km 1.7; places to eat on the way.',
+      dogNotes: 'Hafling requires a lead in public places and keeps dogs out of playgrounds; the national rule adds a lead of at most 1.5 m and a carried muzzle. Cattle graze on the alm pastures in summer, so keep your dog on a short lead.',
+      tips: 'Start at the Falzeben car park above Hafling: a 9.1 km loop, 369 m up and down, about two and three quarter hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at km 1.7; the Chalet Zuegg, the Rotwand inn and both alms serve food in summer.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione alle malghe Maiser Alm & Moschwaldalm (Hafling-Vöran-Meran 2000 tourist board)', url: 'https://www.outdooractive.com/it/r/17276661' },
+        { label: 'Gemeinde Hafling, dog regulation (2004)', url: 'https://www.gemeinde.hafling.bz.it/system/web/GetDocument.ashx?cts=1715259904&fileId=898743' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.665826, lng: 11.241137, label: 'The Falzeben car park above Hafling, the board’s start' },
+      desc: 'A loop on Meran 2000 from Falzeben up the Zueggsteig to the Rotwand inn and over to the Maiser and Moschwald alms, back along the Sinichbach. The board lists 9.1 km, 369 m up and 369 m down, 2 h 40.'
+    },
+    'meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 3).
+      // “Sentiero circolare Rio Lagundo – Monte San Vigilio – Rio Lagundo (sentiero Terrainkur n° 1)”, published by the Partschins tourist board, drawn on 20 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Algund, Lana and Marling (each with its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed land in the growing season) and, for a short stretch, Partschins (no dog regulation published online, probably exists: the national rule applies).
+      // No Natura 2000 site, park or natural monument on the line; about 16% crosses landscape protection and ensemble zones, which carry no dog rule.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; its stem is walked both ways, as the board describes.
+      area: 'Aschbach – St. Vigil – Seespitz – Aschbach (Algund, Lana, Marling)',
+      distance: 6.8,
+      elevation: 440,
+      hours: '2.5',
+      routeShape: 'lollipop',
+      routeShapeNote: 'A loop on a stem: from Aschbach, the top station of the cable car from Rabland, on path 28 steadily up through the woods to St. Vigil, path 9 north to the Seespitz inn, and back on paths 9 and 27 to Aschbach.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the cable car up from Rabland to Aschbach and start at its top station, the board’s start.",
+        "sequence": "From the top station follow path 28, climbing steadily through the woods, to St. Vigil and its church. Carry on north on path 9 to the Seespitz inn. Return on path 9 and then path 27 to the top station in Aschbach.",
+        "switches": "Three changes: at St. Vigil onto path 9; at the Seespitz inn back along path 9; then onto path 27 down to Aschbach.",
+        "sources": [
+          {
+            "label": "Partschins tourist board, Sentiero circolare Rio Lagundo – Monte San Vigilio – Rio Lagundo (sentiero Terrainkur n° 1) (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055325",
+            "authority": "Partschins tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The waymarked forest path of the loop above Aschbach, in October (PaulProg on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official loop 6.8 km from Aschbach, the top station of the cable car from Rabland, as the Partschins tourist board publishes it; the stored line is drawn on 20 OSM ways along the board’s published line, 6.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 28, 9 and 27, signed as Terrainkur path 1: from Aschbach path 28 up to St. Vigil, path 9 to the Seespitz inn, and paths 9 and 27 back to Aschbach.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.2 and km 0.3 (OSM nodes 4881672757, 6591776574, 6442027816, 4905034905).',
+        elevation: 'Official 6.8 km, 440 m up and 440 m down, 2:34 h, highest point 1,791 m, lowest 1,352 m (Partschins tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Partschins tourist board, Sentiero circolare Rio Lagundo – Monte San Vigilio – Rio Lagundo (sentiero Terrainkur n° 1) (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Algund / Comune di Lagundo, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 11, 10.02.2010), Art. 4 and 8: dogs on a lead of at most 1.5 m on all public ground (except designated dog areas) and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and primary-school yards or on farmed land (meadows, fields) during the growing season; no bathing in the fountains of the centre',
+          'Marktgemeinde Lana / Comune di Lana, Verordnung zur Haltung von Hunden (published 10.02.2010), Art. 4 and 8: dogs on a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and primary-school yards or on farmed land (meadows, fields, vegetable plots) during the growing season',
+          'Gemeinde Marling / Comune di Marlengo, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat 44/2010), Art. 4 and 8: dogs on a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, school yards or on farmed land during the growing season',
+          'Gemeinde Partschins / Comune di Parcines: no dog regulation published online, probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 16% runs through landscape protection and ensemble zones, which set no dog rule',
+          'OpenStreetMap ways along the board’s line (20 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 60,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A steady climb of about 440 m on a rocky, rooty forest path: the board rates it very demanding for heart and lungs, so take breaks and carry water', 'The Vigiljoch area is busy with walkers in summer: keep your dog close', 'Meadows around St. Vigil are farmed: keep to the path'],
+      terrainType: 'Forest paths',
+      shadeDescription: 'Mostly shaded: the board describes the route as about 60% woodland; the meadows around St. Vigil and Seespitz are open.',
+      terrainDescription: 'A climbing loop at 1,350–1,790 m from Aschbach above Rabland through spruce forest to the old church of St. Vigil on the Vigiljoch, with views over Meran and the Vinschgau.',
+      waterDescription: 'Drinking water at the start, km 0.2 and km 0.3; places to eat on the way.',
+      dogNotes: 'Algund, Lana and Marling each require a lead of at most 1.5 m on all public ground and a muzzle carried, and keep dogs out of cemeteries, playgrounds and school yards and off farmed land in the growing season; a short stretch in Partschins falls under the national rule, which is the same lead and carried muzzle. On the cable car dogs ride on a lead and muzzled.',
+      tips: 'Take the cable car from Rabland up to Aschbach: a 6.8 km loop back to the top station, 440 m up and down, about two and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at the start and in the first 300 m; the Seespitz inn is on the way.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero circolare Rio Lagundo – Monte San Vigilio – Rio Lagundo (sentiero Terrainkur n° 1) (Partschins tourist board)', url: 'https://www.outdooractive.com/it/r/810055325' },
+        { label: 'Gemeinde Algund, dog regulation (2010)', url: 'https://www.gemeinde.algund.bz.it/system/web/GetDocument.ashx?cts=1741696854&fileId=1023700' },
+        { label: 'Marktgemeinde Lana, dog regulation (2010)', url: 'https://www.gemeinde.lana.bz.it/system/web/GetDocument.ashx?cts=1753349486&fileId=957663' },
+        { label: 'Gemeinde Marling, Verordnung über die Führung und Haltung von Hunden', url: 'https://www.gemeinde.marling.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Fuehrung_und_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.644588, lng: 11.07597, label: 'Aschbach, top station of the cable car from Rabland, the board’s start' },
+      desc: 'A climbing forest loop from Aschbach up to the church of St. Vigil on the Vigiljoch and the Seespitz inn, signed as Terrainkur path 1. The board lists 6.8 km, 440 m up and 440 m down, 2 h 34.'
+    },
+    'meran-giro-delle-malghe-monte-tramontana': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 3).
+      // “Giro delle malghe - Monte Tramontana”, published by the Naturns tourist board, drawn on 26 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Naturns (its 2006 dog regulation: dogs on a lead in the village, parks and car parks; the national rule adds a lead of at most 1.5 m and a muzzle carried).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Kreuzbrünnl – Naturnser Alm – Zetn Alm – Mausloch Alm – Kreuzbrünnl (Nörderberg, Naturns)',
+      distance: 11,
+      elevation: 541,
+      hours: '4',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Kreuzbrünnl car park up the wide forest road to the Naturnser Alm, the highest point, along the almost level alm path past the Zetn Alm to the Mausloch Alm, and back down a wide forest road to the car park.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Drive or take the hiker taxi up the farm road on the Nörderberg to the Kreuzbrünnl car park (about 1,500 m), the board’s start.",
+        "sequence": "Take the wide forest road up through the woods to the Naturnser Alm, the highest point of the walk. From the alm follow the picturesque, almost level alm path to the Zetn Alm (1,747 m) and on to the Mausloch Alm, the last of the three. From the Mausloch Alm head back down the wide forest road, descending steadily but gently, to the Kreuzbrünnl car park.",
+        "switches": "Key turns: at the Naturnser Alm onto the alm path; at the Mausloch Alm onto the forest road down to Kreuzbrünnl.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Naturns tourist board, Giro delle malghe - Monte Tramontana (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055092",
+            "authority": "Naturns tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Zetn Alm on the alm path of the loop, in August (Uwelino on Wikimedia Commons, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official loop 11 km from the Kreuzbrünnl car park on the Nörderberg above Naturns, as the Naturns tourist board publishes it; the stored line is drawn on 26 OSM ways along the board’s published line, 10.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Kreuzbrünnl car park and take the forest road up to the Naturnser Alm; from there the alm path past the Zetn Alm to the Mausloch Alm, then the forest road back down to Kreuzbrünnl.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.3, km 3 and km 5.8 (OSM nodes 1829055279, 2383686581, 2383686500).',
+        elevation: 'Official 11 km, 541 m up and 541 m down, 3:54 h, highest point 1,905 m, lowest 1,543 m (Naturns tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Naturns tourist board, Giro delle malghe - Monte Tramontana (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds; the national rule still applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (26 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 92,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cattle graze around the three alms in summer: keep your dog on a short lead and give cows a wide berth', 'Forest roads shared with farm vehicles and the hiker taxi: lead on', 'The farm road up to Kreuzbrünnl is narrow and steep: drive slowly or take the hiker taxi'],
+      terrainType: 'Forest roads and an alm path',
+      shadeDescription: 'Almost all shaded: more than nine tenths of the line runs through mapped spruce and larch woods; the alm clearings are open.',
+      terrainDescription: 'A cool loop at 1,540–1,905 m on the north-facing Nörderberg above Naturns, through spruce and larch woods to three alms on an almost level alm path.',
+      waterDescription: 'Drinking water at km 0.3, km 3 and km 5.8; places to eat on the way.',
+      dogNotes: 'Naturns keeps dogs on a lead in the village, parks and car parks and asks for a muzzle on public transport; the national rule adds a lead of at most 1.5 m and a carried muzzle. Cattle graze at the alms in summer, so keep your dog on a short lead.',
+      tips: 'Drive or take the hiker taxi to the Kreuzbrünnl car park: an 11 km loop, 541 m up and down, about four hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at km 0.3, km 3 and km 5.8; the three alms serve food in summer. Shady and cool: a good walk for hot days.',
+      sourceLinks: [
+        { label: 'Outdooractive, Giro delle malghe - Monte Tramontana (Naturns tourist board)', url: 'https://www.outdooractive.com/it/r/810055092' },
+        { label: 'Gemeinde Naturns, dog regulation (2006)', url: 'https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.621407, lng: 11.025644, label: 'The Kreuzbrünnl car park on the Nörderberg above Naturns, the board’s start' },
+      desc: 'A shady loop on the Nörderberg above Naturns from Kreuzbrünnl to the Naturnser, Zetn and Mausloch alms on the alm path. The board lists 11 km, 541 m up and 541 m down, 3 h 54.'
     }
   };
 
