@@ -1093,10 +1093,10 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <div class="topnav">
   <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a>
   <div class="links">
-    <a href="browse-trails.html" class="active">Trails</a>
-    <a href="browse-trails.html#collections">Collections</a>
-    <a href="safety-guide.html">Safety library</a>
-    <a href="journal.html">My walk journal</a>
+    <a href="browse-trails.html" class="active" data-i18n="account.nav.browse">Trails</a>
+    <a href="browse-trails.html#collections" data-i18n="account.nav.collections">Collections</a>
+    <a href="safety-guide.html" data-i18n="account.nav.safety">Safety library</a>
+    <a href="journal.html" data-i18n="account.nav.journal">My walk journal</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
   </div>
 </div>
@@ -1108,14 +1108,14 @@ body.trail-photo-viewer-open{overflow:hidden;}
     <img id="tdHeroPhoto" class="td2-hero-photo" alt="" hidden>
     <div id="tdHeroVeil" class="td2-hero-veil" hidden></div>
     <div class="td2-hero-in">
-      <a class="td2-back" id="tdBreadcrumb" href="browse-trails.html">← Trails</a>
+      <a class="td2-back" id="tdBreadcrumb" href="browse-trails.html" data-i18n="page.trail.trails">← Trails</a>
       <div class="td2-hero-copy">
         <div class="td2-tags">
           <span id="verifiedSeal" hidden></span>
           <span class="td-risk" id="tdRiskLine" hidden><span class="dot" id="tdRiskDot"></span><span id="tdRiskLabel"></span></span>
           <div id="heroRating" class="td2-hero-rating" hidden></div>
         </div>
-        <h1 id="trailName" aria-busy="true"><span class="skeleton" style="width:min(260px,60vw);height:36px;display:inline-block;" aria-label="Loading trail"></span></h1>
+        <h1 id="trailName" aria-busy="true"><span class="skeleton" style="width:min(260px,60vw);height:36px;display:inline-block;" aria-label="Loading trail" data-i18n-aria-label="page.trail.loadingTrail"></span></h1>
         <p id="heroVerdict" class="td2-hero-sub" hidden></p>
         <p id="trailNameGloss" class="trail-name-gloss" hidden></p>
 
@@ -1131,19 +1131,19 @@ body.trail-photo-viewer-open{overflow:hidden;}
              available on demand instead of occupying the planning column. -->
         <div class="td2-hero-weather td2-mobile-collapsible">
           <button class="td2-mobile-card-toggle" type="button" aria-expanded="true" aria-controls="tdWeatherBody">
-            <span class="td2-kick">Trail weather</span>
-            <span class="td2-mobile-toggle-action">Hide <span aria-hidden="true">⌃</span></span>
+            <span class="td2-kick" data-i18n="page.trail.trailWeather">Trail weather</span>
+            <span class="td2-mobile-toggle-action" data-i18n="page.trail.hide">Hide <span aria-hidden="true">⌃</span></span>
           </button>
           <div class="td2-mobile-card-body" id="tdWeatherBody">
             <div class="td2-cond" id="tdConditions" hidden>
               <div class="td2-weather-head">
                 <div class="td2-kick">Trail weather <span id="sideFcValley"></span></div>
-                <a class="td2-weather-source" href="https://open-meteo.com/" target="_blank" rel="noopener" aria-label="Weather data by Open-Meteo" title="Weather data by Open-Meteo">i</a>
+                <a class="td2-weather-source" href="https://open-meteo.com/" target="_blank" rel="noopener" aria-label="Weather data by Open-Meteo" title="Weather data by Open-Meteo" data-i18n-title="page.trail.weatherDataByOpenmeteo" data-i18n-aria-label="page.trail.weatherDataByOpenmeteo">i</a>
               </div>
               <div class="td2-cond-facts">
-                <div class="td2-cond-row"><span>Temperature</span><b class="num" id="tdCondTemp">, </b></div>
-                <div class="td2-cond-row"><span>Paw comfort</span><span class="td2-badge" id="tdCondPaw">, </span></div>
-                <div class="td2-cond-row td2-cond-last"><span>Water sources</span><b id="tdCondWater">, </b></div>
+                <div class="td2-cond-row"><span data-i18n="page.settings.temperature">Temperature</span><b class="num" id="tdCondTemp">, </b></div>
+                <div class="td2-cond-row"><span data-i18n="page.trail.pawComfort">Paw comfort</span><span class="td2-badge" id="tdCondPaw">, </span></div>
+                <div class="td2-cond-row td2-cond-last"><span data-i18n="page.trail.waterSources">Water sources</span><b id="tdCondWater">, </b></div>
               </div>
               <p class="td2-cond-window" id="sideCondWindow"></p>
             </div>
@@ -1155,7 +1155,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
                  explicit. Removing it silently hides every warning here. -->
             <div id="ormaHazardMount"></div>
             <details class="td2-fc6" id="sideForecast" hidden>
-              <summary><span class="td2-kick">6-day outlook</span><span class="td2-summary-action">View</span></summary>
+              <summary><span class="td2-kick" data-i18n="page.trail.6dayOutlook">6-day outlook</span><span class="td2-summary-action" data-i18n="page.trail.view">View</span></summary>
               <div class="td2-fc6-body">
                 <div id="tdForecastDays"></div>
                 <p class="td2-fc6-note" id="tdForecastNote" hidden></p>
@@ -1172,8 +1172,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
             <button id="heroStartHike" class="td2-btn-p" type="button" hidden><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start hike</button>
             <button id="detailSaveBtn" class="td2-btn-g" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.4S4.2 14.5 4.2 9.2A4.3 4.3 0 0 1 12 6.6a4.3 4.3 0 0 1 7.8 2.6c0 5.3-7.8 11.2-7.8 11.2z"/></svg> Save</button>
             <a id="getDirectionsBtn" class="td2-textlink" href="#"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>Directions</a>
-            <a id="logWalkBtn" class="td2-textlink" href="journal.html">Log walk</a>
-            <button id="exportGpxBtn" class="td2-textlink" type="button">Export GPX</button>
+            <a id="logWalkBtn" class="td2-textlink" href="journal.html" data-i18n="page.trail.logWalk">Log walk</a>
+            <button id="exportGpxBtn" class="td2-textlink" type="button" data-i18n="page.trail.exportGpx">Export GPX</button>
             <button id="detailShareBtn" class="td2-textlink" type="button" aria-haspopup="true" aria-expanded="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2"></path><path d="M12 3v12"></path><path d="M8 7l4-4 4 4"></path></svg>Share</button>
             <section id="offlinePackagePanel" class="offline-package" aria-labelledby="offlinePackageTitle" hidden>
               <div class="offline-package-row">
@@ -1182,19 +1182,19 @@ body.trail-photo-viewer-open{overflow:hidden;}
                 <button id="offlineRemoveBtn" class="td2-btn-g" data-i18n="offlinePanel.action.remove" type="button" hidden>Remove offline map</button>
                 <button id="offlineDownloadBtn" class="td2-btn-g" data-i18n="offlinePanel.action.download" type="button">Download offline map</button>
               </div>
-              <p id="offlinePackageStatus" class="offline-package-status" data-i18n="offlinePanel.checking" role="status" aria-live="polite">Checking…</p>
+              <p id="offlinePackageStatus" class="offline-package-status" data-i18n="offlinePanel.checking" role="status" aria-live="polite">Checking this device…</p>
             </section>
             <div class="td-share-pop" id="tdSharePop" hidden>
-              <button type="button" id="tdCopyLink">Copy link</button>
-              <a id="tdShareSms" href="#">Message a walking buddy</a>
-              <a id="tdShareMail" href="#">Email this trail</a>
+              <button type="button" id="tdCopyLink" data-i18n="page.trail.copyLink">Copy link</button>
+              <a id="tdShareSms" href="#" data-i18n="page.trail.messageAWalkingBuddy">Message a walking buddy</a>
+              <a id="tdShareMail" href="#" data-i18n="page.trail.emailThisTrail">Email this trail</a>
             </div>
           </div>
           <span id="getDirectionsStatus" class="trail-directions-status" role="status" aria-live="polite"></span>
         </div>
       </div>
       <details id="tdHeroCredit" class="td2-hero-credit" hidden>
-        <summary aria-label="Show photo credit" title="Photo credit">C</summary>
+        <summary aria-label="Show photo credit" title="Photo credit" data-i18n-title="page.trail.photoCredit" data-i18n-aria-label="page.trail.showPhotoCredit">C</summary>
         <span id="tdHeroCreditText" class="td2-hero-credit-text"></span>
       </details>
     </div>
@@ -1225,10 +1225,10 @@ body.trail-photo-viewer-open{overflow:hidden;}
 
     <!-- ============ LIVE RECORDING BANNER ============ -->
     <div class="td2-live" id="td2LiveBanner" hidden>
-      <div class="l"><span class="rd"></span><div><div style="font-size:14px;font-weight:800;" id="tdLiveTitle">Recording your walk</div><div style="font-size:12px;color:#9FC7B0;margin-top:1px;">Live GPS · stay on marked paths</div></div></div>
+      <div class="l"><span class="rd"></span><div><div style="font-size:14px;font-weight:800;" id="tdLiveTitle" data-i18n="page.trail.recordingYourWalk">Recording your walk</div><div style="font-size:12px;color:#9FC7B0;margin-top:1px;" data-i18n="page.trail.liveGpsStayOnMarked">Live GPS · stay on marked paths</div></div></div>
       <div class="r">
-        <div><div class="num" id="tdLiveElapsed">0:00</div><div class="lbl">Elapsed</div></div>
-        <div><div class="num" id="tdLiveDist">0.0 km</div><div class="lbl">Distance</div></div>
+        <div><div class="num" id="tdLiveElapsed">0:00</div><div class="lbl" data-i18n="page.trail.elapsed">Elapsed</div></div>
+        <div><div class="num" id="tdLiveDist" data-i18n="page.trail.00Km">0.0 km</div><div class="lbl" data-i18n="browse.filters.distance">Distance</div></div>
       </div>
     </div>
 
@@ -1239,34 +1239,34 @@ body.trail-photo-viewer-open{overflow:hidden;}
     <div class="td2-card td2-mapcard">
       <div id="trailMapBox" class="trail-map-box">
         <div id="trailDetailMap"></div>
-        <button id="mobileMapLoadBtn" type="button" class="mobile-map-load">Load interactive map</button>
+        <button id="mobileMapLoadBtn" type="button" class="mobile-map-load" data-i18n="page.trail.loadInteractiveMap">Load interactive map</button>
         <p id="routeDataNotice" class="route-data-notice" hidden></p>
-        <button id="detailLayersBtn" type="button" class="map-btn" aria-expanded="false">Layers</button>
+        <button id="detailLayersBtn" type="button" class="map-btn" aria-expanded="false" data-i18n="map.layers">Layers</button>
         <div id="detailLayersPanel" class="map-panel">
-          <button id="routesToggle" type="button" class="map-chip on" aria-pressed="true">Trail routes</button>
-          <button id="fountainsToggle" type="button" class="map-chip on" aria-pressed="true">Drinking water</button>
-          <button id="hutsToggle" type="button" class="map-chip on" aria-pressed="true">Huts &amp; shelters</button>
-          <button id="foodToggle" type="button" class="map-chip" aria-pressed="false">Food &amp; drink</button>
-          <button id="placesToggle" type="button" class="map-chip" aria-pressed="false">Points of interest</button>
-          <button id="liftsToggle" type="button" class="map-chip" aria-pressed="false">Lift stations</button>
-          <button id="nearbyToggle" type="button" class="map-chip" aria-pressed="false" hidden>Nearby trails</button>
+          <button id="routesToggle" type="button" class="map-chip on" aria-pressed="true" data-i18n="chips.routes">Trail routes</button>
+          <button id="fountainsToggle" type="button" class="map-chip on" aria-pressed="true" data-i18n="legend.water">Drinking water</button>
+          <button id="hutsToggle" type="button" class="map-chip on" aria-pressed="true" data-i18n="page.trail.hutsShelters">Huts &amp; shelters</button>
+          <button id="foodToggle" type="button" class="map-chip" aria-pressed="false" data-i18n="page.trail.foodDrink">Food &amp; drink</button>
+          <button id="placesToggle" type="button" class="map-chip" aria-pressed="false" data-i18n="page.trail.pointsOfInterest">Points of interest</button>
+          <button id="liftsToggle" type="button" class="map-chip" aria-pressed="false" data-i18n="page.trail.liftStations">Lift stations</button>
+          <button id="nearbyToggle" type="button" class="map-chip" aria-pressed="false" hidden data-i18n="trail.nearbyTitle">Nearby trails</button>
         </div>
         <button id="addReportBtn" type="button" class="map-hazard-report-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3v18h2v-7h5l1 2h6V6h-5l-1-2H5z"/></svg>
           Report a hazard
         </button>
-        <span id="tdLivePill" class="td-live-pill" hidden><span class="dot"></span>You are here · live</span>
+        <span id="tdLivePill" class="td-live-pill" hidden data-i18n="page.trail.youAreHereLive"><span class="dot"></span>You are here · live</span>
         <div id="mapNearestDirectionsPanel" class="map-nearest-directions-panel" hidden>
           <p id="mapNearestDirectionsStatus" class="map-nearest-directions-status" role="status" aria-live="polite"></p>
-          <details id="mapNearestDirectionsStepsWrap" class="map-nearest-directions-steps" hidden><summary>Route steps</summary><ol id="mapNearestDirectionsSteps"></ol></details>
+          <details id="mapNearestDirectionsStepsWrap" class="map-nearest-directions-steps" hidden><summary data-i18n="page.trail.routeSteps">Route steps</summary><ol id="mapNearestDirectionsSteps"></ol></details>
         </div>
-        <button id="mapNearestDirectionsBtn" type="button" class="map-nearest-directions" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L9.6 14.4"/><path d="M22 2l-7.9 20-4.5-7.6L2 9.9 22 2z"/></svg><span>Get directions to trail</span></button>
-        <button id="mapExpandBtn" type="button" class="map-expand-btn" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
-        <div id="mobileMapHikeSlot" class="mobile-map-hike-slot" aria-label="Hike controls"></div>
+        <button id="mapNearestDirectionsBtn" type="button" class="map-nearest-directions" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L9.6 14.4"/><path d="M22 2l-7.9 20-4.5-7.6L2 9.9 22 2z"/></svg><span data-i18n="page.trail.getDirectionsToTrail">Get directions to trail</span></button>
+        <button id="mapExpandBtn" type="button" class="map-expand-btn" aria-label="Expand map" aria-expanded="false" data-i18n-aria-label="page.index.expandMap"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span data-i18n="page.index.expandMap">Expand map</span></button>
+        <div id="mobileMapHikeSlot" class="mobile-map-hike-slot" aria-label="Hike controls" data-i18n-aria-label="page.trail.hikeControls"></div>
         <!-- One grouped switch, bottom-left: base style + 3D toggle -->
-        <div class="td-layer-switch" id="tdLayerSwitch" role="group" aria-label="Map style">
-          <button type="button" data-maplayer="map" class="on" aria-pressed="true">Map</button>
-          <button type="button" data-maplayer="satellite" aria-pressed="false">Satellite</button>
+        <div class="td-layer-switch" id="tdLayerSwitch" role="group" aria-label="Map style" data-i18n-aria-label="page.trail.mapStyle">
+          <button type="button" data-maplayer="map" class="on" aria-pressed="true" data-i18n="browse.view.map">Map</button>
+          <button type="button" data-maplayer="satellite" aria-pressed="false" data-i18n="page.trail.satellite">Satellite</button>
           <button type="button" data-map3d aria-pressed="false">3D</button>
         </div>
       </div>
@@ -1274,11 +1274,11 @@ body.trail-photo-viewer-open{overflow:hidden;}
 
     <div class="td2-card td2-elev td2-mobile-collapsible" id="tdElevationPanel">
       <button class="td2-mobile-card-toggle" type="button" aria-expanded="true" aria-controls="tdElevationBody">
-        <span class="td2-kick">Elevation</span>
-        <span class="td2-mobile-toggle-action">Hide <span aria-hidden="true">⌃</span></span>
+        <span class="td2-kick" data-i18n="page.trail.elevation">Elevation</span>
+        <span class="td2-mobile-toggle-action" data-i18n="page.trail.hide">Hide <span aria-hidden="true">⌃</span></span>
       </button>
       <div class="td2-mobile-card-body" id="tdElevationBody">
-        <div class="td2-elev-head"><span class="td2-kick" id="tdElevH">Elevation</span><span class="td2-elev-status"><span class="td2-elev-live" id="tdElevLive">Awaiting position</span><span class="r" id="tdElevRange"></span></span></div>
+        <div class="td2-elev-head"><span class="td2-kick" id="tdElevH" data-i18n="page.trail.elevation">Elevation</span><span class="td2-elev-status"><span class="td2-elev-live" id="tdElevLive" data-i18n="page.trail.awaitingPosition">Awaiting position</span><span class="r" id="tdElevRange"></span></span></div>
         <svg id="elevProf" viewBox="0 0 1000 170" preserveAspectRatio="none"></svg>
         <div class="td2-elev-figs" id="tdElevFigs" hidden>
           <div><strong id="tdElevStart"></strong> start</div>
@@ -1288,7 +1288,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
       </div>
     </div>
 
-    <div id="mobileWeatherSlot" aria-label="Trail weather"></div>
+    <div id="mobileWeatherSlot" aria-label="Trail weather" data-i18n-aria-label="page.trail.trailWeather"></div>
     </div>
 
     <!-- ============ BELOW-MAP CONTENT ============ -->
@@ -1298,12 +1298,12 @@ body.trail-photo-viewer-open{overflow:hidden;}
              up here where it helps choose a trail; the technical data
              footnote lives at the very end of the page. -->
         <div class="td2-card td2-section td2-about" id="td2AboutCard">
-          <div class="td2-kick" style="margin-bottom:14px;">About this trail</div>
+          <div class="td2-kick" style="margin-bottom:14px;" data-i18n="trail.aboutTitle">About this trail</div>
           <p id="matchDescription" style="margin-top:0;"></p>
           <section class="td2-about-getting" id="td2ParkingCard" aria-labelledby="td2GettingThereHeading">
             <div class="td2-kick" id="td2GettingThereHeading"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Getting there</div>
             <div class="td2-parking-grid" id="td2ParkingGrid"></div>
-            <a id="td2MapsLink" class="td2-maps-link" href="#" target="_blank" rel="noopener" hidden>Directions to the recommended start →</a>
+            <a id="td2MapsLink" class="td2-maps-link" href="#" target="_blank" rel="noopener" hidden data-i18n="page.trail.directionsToTheRecommendedStart">Directions to the recommended start →</a>
             <span id="td2MapsStatus" class="parking-directions-status" role="status" aria-live="polite"></span>
           </section>
           <section class="td2-about-around" id="td2GettingAroundCard" aria-labelledby="td2GettingAroundHeading">
@@ -1320,16 +1320,16 @@ body.trail-photo-viewer-open{overflow:hidden;}
         <div class="td2-card td2-section td2-community-card" id="td2PhotosCard">
           <div class="td2-rev-head"><span class="td2-kick">Added photos<span id="td2PhotoCount"></span></span><button id="addPhotoBtn" type="button" class="add-photo-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add a photo</button></div>
           <div class="trail-photo-strip">
-            <button id="trailPhotosPrev" type="button" class="trail-photo-strip__nav trail-photo-strip__nav--prev" aria-label="Previous photos" hidden><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-            <div id="trailPhotosList" class="trail-photos-list"><div class="empty-state empty-state--compact"><p class="empty-state__title">No trail photos yet</p><p class="empty-state__copy">Add a recent, useful view so others can recognise the route and conditions.</p></div></div>
-            <button id="trailPhotosNext" type="button" class="trail-photo-strip__nav trail-photo-strip__nav--next" aria-label="Next photos" hidden><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+            <button id="trailPhotosPrev" type="button" class="trail-photo-strip__nav trail-photo-strip__nav--prev" aria-label="Previous photos" hidden data-i18n-aria-label="page.trail.previousPhotos"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <div id="trailPhotosList" class="trail-photos-list"><div class="empty-state empty-state--compact"><p class="empty-state__title" data-i18n="page.trail.noTrailPhotosYet">No trail photos yet</p><p class="empty-state__copy" data-i18n="page.trail.addARecentUsefulView">Add a recent, useful view so others can recognise the route and conditions.</p></div></div>
+            <button id="trailPhotosNext" type="button" class="trail-photo-strip__nav trail-photo-strip__nav--next" aria-label="Next photos" hidden data-i18n-aria-label="page.trail.nextPhotos"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
           </div>
         </div>
 
         <!-- REVIEWS -->
         <div class="td2-card td2-section td2-community-card" id="td2ReviewsCard">
           <div class="td2-rev-head"><span class="td2-kick">Reviews<span id="td2ReviewCount"></span></span><span class="td2-rev-actions"><span class="td2-rev-avg" id="td2ReviewAvg" hidden></span><button id="addReviewBtn" type="button" class="add-review-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg> Write a review</button></span></div>
-          <div id="trailReviewsList" class="trail-reviews-list"><div class="empty-state empty-state--compact"><p class="empty-state__title">No reviews yet</p><p class="empty-state__copy">Share how the route felt for your dog and what another owner should know.</p></div></div>
+          <div id="trailReviewsList" class="trail-reviews-list"><div class="empty-state empty-state--compact"><p class="empty-state__title" data-i18n="page.trail.noReviewsYet">No reviews yet</p><p class="empty-state__copy" data-i18n="page.trail.shareHowTheRouteFelt">Share how the route felt for your dog and what another owner should know.</p></div></div>
         </div>
 
       </div>
@@ -1337,7 +1337,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
     </div>
 
     <div class="td2-sidebar-column">
-      <aside class="td2-plan-stack" aria-label="Trail fit">
+      <aside class="td2-plan-stack" aria-label="Trail fit" data-i18n-aria-label="page.trail.trailFit">
         <div class="td2-card td2-fit-shell">
           <section id="recommendationDecision" class="recommendation-decision" aria-live="polite" hidden></section>
           <div class="td2-section td2-safety-card" id="td2SafetyCard">
@@ -1349,17 +1349,17 @@ body.trail-photo-viewer-open{overflow:hidden;}
       </aside>
 
       <!-- Hazards retain their own compact right-hand column. -->
-      <aside class="td2-logistics" aria-label="Trail hazards">
+      <aside class="td2-logistics" aria-label="Trail hazards" data-i18n-aria-label="trail.hazardsTitle">
         <!-- Trail hazards (sidebar, per prototype) -->
         <div class="td2-card td2-section td2-hazard" id="td2Hazards">
           <div class="td2-hazard-head">
-            <span class="lhs"><span class="td2-kick">Hazards reported<span id="td2HazardCount"></span></span><span class="td2-active-pill"><span class="dot"></span>Active now</span></span>
+            <span class="lhs"><span class="td2-kick">Hazards reported<span id="td2HazardCount"></span></span><span class="td2-active-pill" data-i18n="page.trail.activeNow"><span class="dot"></span>Active now</span></span>
           </div>
           <div id="trailFlagsList">
             <div id="trailPublishedHazards"></div>
             <div id="trailLegacyHazards"></div>
             <div id="trailHazardsPending"></div>
-            <div id="trailHazardsEmpty" class="empty-state empty-state--compact"><p class="empty-state__title">No recent hazard reports</p><p class="empty-state__copy">The community has not reported a current issue here. Conditions can still change.</p></div>
+            <div id="trailHazardsEmpty" class="empty-state empty-state--compact"><p class="empty-state__title" data-i18n="page.trail.noRecentHazardReports">No recent hazard reports</p><p class="empty-state__copy" data-i18n="page.trail.theCommunityHasNotReported">The community has not reported a current issue here. Conditions can still change.</p></div>
           </div>
         </div>
 
@@ -1370,8 +1370,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
     <!-- ============ SIMILAR GALLERY ============ -->
     <div class="td2-nearby td-similar" id="nearbyTrails" hidden>
       <div class="head">
-        <h3 id="nearbyTitle">Similar trails</h3>
-        <a id="nearbySeeAll" href="browse-trails.html" style="font-size:13px;font-weight:500;">Browse all →</a>
+        <h3 id="nearbyTitle" data-i18n="page.trail.similarTrails">Similar trails</h3>
+        <a id="nearbySeeAll" href="browse-trails.html" style="font-size:13px;font-weight:500;" data-i18n="page.trail.browseAll">Browse all →</a>
       </div>
       <div id="nearbyGrid" class="near-grid"></div>
     </div>
