@@ -144,19 +144,26 @@ const plainStartLabel = label => String(label || 'route start')
   .replace(/\s*\(OSM-verified access point\)/gi, '')
   .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
 
+// trail-trust.js `withoutOsmTag`: a reviewed point keeps its name, not the
+// importer's "(OSM-verified ...)" tag.
+const withoutOsmTag = label => String(label || '')
+  .replace(/\s*\(OSM-verified[^)]*\)/gi, '')
+  .replace(/OSM-verified/gi, 'mapped in OpenStreetMap')
+  .trim();
+
 function displayWaterLabel(t, label) {
   const base = String(label || 'Water point')
     .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
     .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
   if (!categoryVerified(t, 'water')) return `${base}, availability can change`;
-  return trailImported(t) ? base : label;
+  return trailImported(t) ? base : withoutOsmTag(label);
 }
 
 function displayStartLabel(t, label) {
   if (!categoryVerified(t, 'access') && !trailImported(t)) {
     return `Suggested start, ${plainStartLabel(label)}. Check current access before travelling.`;
   }
-  if (!trailImported(t)) return label;
+  if (!trailImported(t)) return withoutOsmTag(label);
   return `Mapped start suggestion, ${plainStartLabel(label)}. Check current access before travelling.`;
 }
 
