@@ -1,6 +1,13 @@
 (function(global){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const instances = new Set();
 
   function enhance(select){
@@ -17,7 +24,7 @@
     trigger.setAttribute('aria-haspopup', 'listbox');
     trigger.setAttribute('aria-expanded', 'false');
     trigger.setAttribute('aria-controls', menuId);
-    trigger.setAttribute('aria-label', select.getAttribute('aria-label') || 'Choose an option');
+    trigger.setAttribute('aria-label', select.getAttribute('aria-label') || tx('Choose an option'));
     const controlKicker = select.dataset.controlKicker;
     if(controlKicker){
       trigger.classList.add('area-select-trigger--kicker');
@@ -34,7 +41,7 @@
     menu.id = menuId;
     menu.className = 'area-select-menu';
     menu.setAttribute('role', 'listbox');
-    menu.setAttribute('aria-label', select.getAttribute('aria-label') || 'Options');
+    menu.setAttribute('aria-label', select.getAttribute('aria-label') || tx('Options'));
     menu.hidden = true;
 
     select.classList.add('area-native-select');
@@ -50,7 +57,7 @@
 
     function refresh(){
       const selected = select.options[select.selectedIndex] || select.options[0];
-      const selectedLabel = selected ? selected.textContent : 'Choose';
+      const selectedLabel = selected ? selected.textContent : tx('Choose');
       trigger.classList.toggle('area-select-trigger--has-selection',
         !select.hasAttribute('data-kicker-until-selected') || select.value !== 'all');
       trigger.querySelector('.area-select-trigger__label').textContent = select.hasAttribute('data-compact-label')

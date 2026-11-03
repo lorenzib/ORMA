@@ -1,4 +1,11 @@
 (function(){
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const navigationScript=document.currentScript;
   if(!window.ORMADeviceHandoff&&navigationScript&&navigationScript.src&&!document.querySelector('script[data-orma-device-handoff]')){
     const handoffScript=document.createElement('script');
@@ -226,10 +233,11 @@
       footer.dataset.focusedFooter = 'true';
 
       const groups = footer.querySelectorAll('.hp-footer-grid > div');
-      const groupTitles = ['','Explore','Dog care','Your walks','ORMA'];
+      const groupTitles = ['',['footer.explore','Explore'],['footer.dogCare','Dog care'],['footer.yourWalks','Your walks'],['','ORMA']];
       groups.forEach((group, index) => {
         const heading = group.querySelector(':scope > .hp-footer-h');
-        if(heading && groupTitles[index]) heading.textContent = groupTitles[index];
+        const title = groupTitles[index];
+        if(heading && title) heading.textContent = title[0] ? copy(title[0], title[1]) : title[1];
       });
 
       const companyLinks = groups[4]?.querySelector('.hp-footer-links');
@@ -250,7 +258,7 @@
         }
         base.replaceChildren();
         if(socialRow){
-          socialRow.setAttribute('aria-label', 'ORMA social channels');
+          socialRow.setAttribute('aria-label', tx('ORMA social channels'));
           base.appendChild(socialRow);
         }
         base.appendChild(legal);
@@ -372,7 +380,7 @@
     function navItem(label, href, active, i18nKey){
       const a = document.createElement('a');
       a.href = prefix + href;
-      a.textContent = label;
+      a.textContent = i18nKey ? copy(i18nKey, label) : label;
       if(active) a.classList.add('active');
       if(i18nKey) a.setAttribute('data-i18n', i18nKey);
       return a;
@@ -490,7 +498,7 @@
       menu.appendChild(kick);
 
       const summary = authSummary() || {};
-      const summaryMeta = [summary.breed, summary.fitness ? summary.fitness + ' fitness' : null]
+      const summaryMeta = [summary.breed, summary.fitness ? tx('{level} fitness', { level:summary.fitness }) : null]
         .filter(Boolean).join(' · ');
       const dogs = Array.isArray(summary.dogs) && summary.dogs.length
         ? summary.dogs

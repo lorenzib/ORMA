@@ -6,6 +6,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const VERSION = 1;
   const STORAGE_KEY = 'dolopaws-pending-context-v1';
   const LEGACY_PROFILE_KEY = 'dolopaws-pending-dog-profile';
@@ -300,20 +307,21 @@
       const copy = prompt.querySelector('#guestMigrationCopy');
       const status = prompt.querySelector('#guestMigrationStatus');
       const actions = prompt.querySelector('.guest-migration-actions');
-      const draftName = state.draft.name || 'your dog';
+      const draftName = state.draft.name || tx('your dog');
       status.textContent = '';
       if(state.kind === 'conflict'){
-        title.textContent = 'Your account profile was kept';
-        copy.textContent = `${draftName} remains a device draft. It was not copied over ${
-          state.existing.name || 'the newer account profile'
-        }.`;
-        actions.innerHTML = '<button type="button" data-keep-account>Discard device draft</button>' +
-          '<button type="button" data-keep-device>Keep on this device</button>';
+        title.textContent = tx('Your account profile was kept');
+        copy.textContent = tx('{name} remains a device draft. It was not copied over {existing}.', {
+          name:draftName,
+          existing:state.existing.name || tx('the newer account profile'),
+        });
+        actions.innerHTML = '<button type="button" data-keep-account>' + tx('Discard device draft') + '</button>' +
+          '<button type="button" data-keep-device>' + tx('Keep on this device') + '</button>';
       }else{
-        title.textContent = `Save ${draftName} to your account?`;
-        copy.textContent = 'Nothing is copied until you choose Save. We will check the account again first.';
-        actions.innerHTML = '<button type="button" data-migrate>Save dog profile</button>' +
-          '<button type="button" data-keep-device>Keep on this device</button>';
+        title.textContent = tx('Save {name} to your account?', { name:draftName });
+        copy.textContent = tx('Nothing is copied until you choose Save. We will check the account again first.');
+        actions.innerHTML = '<button type="button" data-migrate>' + tx('Save dog profile') + '</button>' +
+          '<button type="button" data-keep-device>' + tx('Keep on this device') + '</button>';
       }
       const keepDevice = actions.querySelector('[data-keep-device]');
       keepDevice.addEventListener('click', () => {
@@ -328,27 +336,27 @@
       const migrate = actions.querySelector('[data-migrate]');
       if(migrate) migrate.addEventListener('click', async () => {
         migrate.disabled = true;
-        status.textContent = 'Checking your account…';
+        status.textContent = tx('Checking your account…');
         const latestAccount = await accountDogs();
         if(!latestAccount){
-          status.textContent = 'Your account could not be checked. Your device draft is unchanged.';
+          status.textContent = tx('Your account could not be checked. Your device draft is unchanged.');
           migrate.disabled = false;
           return;
         }
         const latest = latestAccount.existing;
         if(latestAccount.count || latest && (latest.name || latest.breed || latest.photo)){
-          status.textContent = 'An account profile now exists, so the device draft was not copied.';
+          status.textContent = tx('An account profile now exists, so the device draft was not copied.');
           migrate.remove();
           return;
         }
         const ok = await win.DoloPawsAuth.setDogProfile(state.draft);
         if(!ok){
-          status.textContent = 'The profile could not be saved. Your device draft is unchanged.';
+          status.textContent = tx('The profile could not be saved. Your device draft is unchanged.');
           migrate.disabled = false;
           return;
         }
         clearDogDraft(storage, { removeLocalDraft:true });
-        status.textContent = `${draftName} was saved to your account.`;
+        status.textContent = tx('{name} was saved to your account.', { name:draftName });
         win.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', {
           detail:{ profile:state.draft },
         }));

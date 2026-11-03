@@ -1,0 +1,12 @@
+// fvg-fontanon-di-goriuda in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A very short loop from Pian della Sega through beech forest to the Fontanon di Goriuda, a waterfall where a karst spring of Monte Canin bursts from the rock, and back beside the stream. PromoTurismoFVG lists 0.6 km and 50 m of ascent.": "Un anello brevissimo da Pian della Sega attraverso la faggeta fino al Fontanon di Goriuda, una cascata dove una sorgente carsica del Monte Canin sgorga dalla roccia, e ritorno lungo il torrente. PromoTurismoFVG indica 0,6 km e 50 m di dislivello in salita.",
+  "Park at Pian della Sega in the Val Raccolana (bus 191 from Chiusaforte or Sella Nevea): 0.6 km and about 50 m of climbing, a quarter of an hour. Keep your dog on a lead at the car park and on the road, and carry a muzzle. In winter the path is icy.": "Parcheggia a Pian della Sega in Val Raccolana (autobus 191 da Chiusaforte o Sella Nevea): 0,6 km e circa 50 m di salita, un quarto d'ora. Tieni il cane al guinzaglio al parcheggio e sulla strada, e porta la museruola. D'inverno il sentiero è ghiacciato.",
+  "Wet, slippery rock by the waterfall and its pool": "Roccia bagnata e scivolosa vicino alla cascata e alla sua pozza",
+  "Ice on the path in winter: spikes advised": "Ghiaccio sul sentiero d'inverno: consigliati i ramponcini",
+  "A short stretch of tarred valley road at the start": "Un breve tratto di strada asfaltata di fondovalle alla partenza",
+  "A short forest path and a stretch of tarred road": "Un breve sentiero nel bosco e un tratto di strada asfaltata",
+  "Pian della Sega car park, Val Raccolana, the board’s start": "Parcheggio di Pian della Sega, Val Raccolana, partenza indicata dalla scheda ufficiale",
+  "A tall white waterfall pouring down a steep wooded mountainside between spruces, green summer leaves in the foreground": "Un'alta cascata bianca che precipita lungo un ripido versante boscoso tra gli abeti rossi, foglie verdi estive in primo piano",
+  "Mostly shaded: about two thirds of the short loop runs through beech forest; the road at the start is open.": "Per lo più all'ombra: circa due terzi del breve anello passano nella faggeta; la strada alla partenza è aperta."
+});

@@ -4,6 +4,13 @@
 (function(global){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const VERSION = '5.24.0';
   const SCRIPT_URL = `https://unpkg.com/maplibre-gl@${VERSION}/dist/maplibre-gl.js`;
   const STYLE_URL = `https://unpkg.com/maplibre-gl@${VERSION}/dist/maplibre-gl.css`;
@@ -112,7 +119,7 @@
         })
         .catch(error => {
           target.dataset.mapState = 'error';
-          target.setAttribute('aria-label', 'Map unavailable. Trail details remain available below.');
+          target.setAttribute('aria-label', tx('Map unavailable. Trail details remain available below.'));
           console.error('ORMA map failed to initialise:', error);
           return null;
         });
@@ -1240,6 +1247,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const STATES = Object.freeze([
     'draft', 'pending', 'visible', 'reported', 'hidden', 'removed',
   ]);
@@ -1304,11 +1318,11 @@
   }
   function hazardTrustLabel(flag){
     const labels = {
-      'official-confirmed':'Confirmed by an official source',
-      'dolopaws-reviewed':'Verified by ORMA',
-      'community-confirmed':'Confirmed by the community',
-      'community-disputed':'Disputed by the community',
-      unconfirmed:'Unconfirmed community report',
+      'official-confirmed':tx('Confirmed by an official source'),
+      'dolopaws-reviewed':tx('Verified by ORMA'),
+      'community-confirmed':tx('Confirmed by the community'),
+      'community-disputed':tx('Disputed by the community'),
+      unconfirmed:tx('Unconfirmed community report'),
     };
     return labels[hazardTrustState(flag)];
   }
@@ -2102,6 +2116,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const VERSION = 1;
   const STORAGE_KEY = 'dolopaws-pending-context-v1';
   const LEGACY_PROFILE_KEY = 'dolopaws-pending-dog-profile';
@@ -2396,20 +2417,21 @@
       const copy = prompt.querySelector('#guestMigrationCopy');
       const status = prompt.querySelector('#guestMigrationStatus');
       const actions = prompt.querySelector('.guest-migration-actions');
-      const draftName = state.draft.name || 'your dog';
+      const draftName = state.draft.name || tx('your dog');
       status.textContent = '';
       if(state.kind === 'conflict'){
-        title.textContent = 'Your account profile was kept';
-        copy.textContent = `${draftName} remains a device draft. It was not copied over ${
-          state.existing.name || 'the newer account profile'
-        }.`;
-        actions.innerHTML = '<button type="button" data-keep-account>Discard device draft</button>' +
-          '<button type="button" data-keep-device>Keep on this device</button>';
+        title.textContent = tx('Your account profile was kept');
+        copy.textContent = tx('{name} remains a device draft. It was not copied over {existing}.', {
+          name:draftName,
+          existing:state.existing.name || tx('the newer account profile'),
+        });
+        actions.innerHTML = '<button type="button" data-keep-account>' + tx('Discard device draft') + '</button>' +
+          '<button type="button" data-keep-device>' + tx('Keep on this device') + '</button>';
       }else{
-        title.textContent = `Save ${draftName} to your account?`;
-        copy.textContent = 'Nothing is copied until you choose Save. We will check the account again first.';
-        actions.innerHTML = '<button type="button" data-migrate>Save dog profile</button>' +
-          '<button type="button" data-keep-device>Keep on this device</button>';
+        title.textContent = tx('Save {name} to your account?', { name:draftName });
+        copy.textContent = tx('Nothing is copied until you choose Save. We will check the account again first.');
+        actions.innerHTML = '<button type="button" data-migrate>' + tx('Save dog profile') + '</button>' +
+          '<button type="button" data-keep-device>' + tx('Keep on this device') + '</button>';
       }
       const keepDevice = actions.querySelector('[data-keep-device]');
       keepDevice.addEventListener('click', () => {
@@ -2424,27 +2446,27 @@
       const migrate = actions.querySelector('[data-migrate]');
       if(migrate) migrate.addEventListener('click', async () => {
         migrate.disabled = true;
-        status.textContent = 'Checking your account…';
+        status.textContent = tx('Checking your account…');
         const latestAccount = await accountDogs();
         if(!latestAccount){
-          status.textContent = 'Your account could not be checked. Your device draft is unchanged.';
+          status.textContent = tx('Your account could not be checked. Your device draft is unchanged.');
           migrate.disabled = false;
           return;
         }
         const latest = latestAccount.existing;
         if(latestAccount.count || latest && (latest.name || latest.breed || latest.photo)){
-          status.textContent = 'An account profile now exists, so the device draft was not copied.';
+          status.textContent = tx('An account profile now exists, so the device draft was not copied.');
           migrate.remove();
           return;
         }
         const ok = await win.DoloPawsAuth.setDogProfile(state.draft);
         if(!ok){
-          status.textContent = 'The profile could not be saved. Your device draft is unchanged.';
+          status.textContent = tx('The profile could not be saved. Your device draft is unchanged.');
           migrate.disabled = false;
           return;
         }
         clearDogDraft(storage, { removeLocalDraft:true });
-        status.textContent = `${draftName} was saved to your account.`;
+        status.textContent = tx('{name} was saved to your account.', { name:draftName });
         win.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', {
           detail:{ profile:state.draft },
         }));
@@ -2487,6 +2509,13 @@
 (function(){
   let mode = 'login'; // 'login' | 'signup' | 'reset'
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   // The one definition of the login dialog.
   //
   // index.html used to ship its own copy and this was the fallback for every
@@ -2515,7 +2544,7 @@
                 ' loading="lazy" decoding="async" width="900" height="1200">' +
             '</picture>' +
             '<div class="auth-hero-shade"></div>' +
-            '<button id="authClose" class="modal-close" aria-label="Close">&times;</button>' +
+            '<button id="authClose" class="modal-close" aria-label="' + tx('Close') + '">&times;</button>' +
             '<div class="auth-hero-copy">' +
               '<span class="auth-hero-brand"><img src="logo.svg?v=5" alt="">ORMA</span>' +
               '<h2 id="authTitle" data-i18n="nav.login">Log in</h2>' +
@@ -2523,11 +2552,11 @@
             '</div>' +
           '</div>' +
           '<div class="auth-body">' +
-            '<button type="button" id="authBackToLogin" class="auth-back-link" hidden>&larr; Back to log in</button>' +
+            '<button type="button" id="authBackToLogin" class="auth-back-link" hidden>&larr; ' + tx('Back to log in') + '</button>' +
             '<div id="authResetDone" class="auth-reset-done" aria-live="polite" hidden></div>' +
             '<div id="authError" class="auth-error" role="alert" aria-live="polite" hidden></div>' +
             '<form id="authForm">' +
-              '<label class="field-label auth-signup-field" id="authNameLabel" hidden><span>Your name</span>' +
+              '<label class="field-label auth-signup-field" id="authNameLabel" hidden><span>' + tx('Your name') + '</span>' +
                 '<input type="text" id="authName" autocomplete="name" placeholder="Marta Bianchi">' +
               '</label>' +
               '<label class="field-label"><span data-i18n="auth.email">Email</span>' +
@@ -2535,16 +2564,16 @@
               '</label>' +
               '<label class="field-label"><span data-i18n="auth.password">Password</span>' +
                 '<input type="password" id="authPassword" required autocomplete="current-password" minlength="6">' +
-                '<small id="authPasswordHint" class="auth-field-hint" hidden>At least 8 characters.</small>' +
+                '<small id="authPasswordHint" class="auth-field-hint" hidden>' + tx('At least 8 characters.') + '</small>' +
               '</label>' +
-              '<label class="field-label auth-signup-field" id="authConfirmLabel" hidden><span>Confirm password</span>' +
+              '<label class="field-label auth-signup-field" id="authConfirmLabel" hidden><span>' + tx('Confirm password') + '</span>' +
                 '<input type="password" id="authConfirmPassword" autocomplete="new-password">' +
               '</label>' +
               '<button type="button" id="forgotPasswordBtn" class="forgot-link" data-i18n="auth.forgot">Forgot password?</button>' +
-              '<label class="auth-terms" id="authTermsLabel" hidden><input type="checkbox" id="authTerms"> <span>I agree to the <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>.</span></label>' +
+              '<label class="auth-terms" id="authTermsLabel" hidden><input type="checkbox" id="authTerms"> <span>' + tx('I agree to the <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>.') + '</span></label>' +
               '<button type="submit" class="auth-submit" id="authSubmit" data-i18n="nav.login">Log in</button>' +
             '</form>' +
-            '<div class="auth-divider"><span>or</span></div>' +
+            '<div class="auth-divider"><span>' + tx('or') + '</span></div>' +
             '<button id="googleBtn" class="google-btn"><span data-i18n="auth.google">Continue with Google</span></button>' +
             '<button id="appleBtn" class="apple-btn" hidden><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 12.9c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-2-.9-3.2-.9-1.7 0-3.2 1-4 2.5-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.4 0 1.9.8 3.2.8 1.3 0 2.1-1.2 2.9-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.4-1-2.4-3.9zM14.2 5.3c.6-.8 1.1-1.9 1-3-1 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg><span data-i18n="auth.apple">Continue with Apple</span></button>' +
             '<p class="auth-toggle">' +
@@ -2651,7 +2680,7 @@
       };
       const name = String(pending.name || '').trim();
       const describe = dog => [dog.breed, dog.ageBand, dog.weightBand]
-        .map(value => String(value || '').trim()).filter(Boolean).join(' · ') || 'no other details';
+        .map(value => String(value || '').trim()).filter(Boolean).join(' · ') || tx('no other details');
 
       const panel = document.createElement('div');
       panel.className = 'auth-dogclash';
@@ -2660,8 +2689,8 @@
         '<h3 class="auth-dogclash-title"></h3>' +
         '<p class="auth-dogclash-lede"></p>' +
         '<div class="auth-dogclash-compare">' +
-          '<div><small>On your account</small><span class="auth-dogclash-existing"></span></div>' +
-          '<div><small>Just added here</small><span class="auth-dogclash-pending"></span></div>' +
+          '<div><small>' + tx('On your account') + '</small><span class="auth-dogclash-existing"></span></div>' +
+          '<div><small>' + tx('Just added here') + '</small><span class="auth-dogclash-pending"></span></div>' +
         '</div>' +
         '<button type="button" class="auth-submit" data-clash="update"></button>' +
         '<button type="button" class="auth-dogclash-secondary" data-clash="add"></button>' +
@@ -3051,6 +3080,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const DISCLAIMER = 'Route geometry only. Check ORMA for current safety, access, water and dog-suitability context before setting out.';
 
   function escapeXml(value){
@@ -3097,7 +3133,7 @@
   function serialize(trail, options){
     if(!trail || typeof trail !== 'object') throw new TypeError('A trail is required.');
     const geometry = Array.isArray(trail.path) ? trail.path.map(coordinate).filter(Boolean) : [];
-    if(geometry.length < 2) throw new Error('This trail does not have enough valid route geometry to export.');
+    if(geometry.length < 2) throw new Error(tx('This trail does not have enough valid route geometry to export.'));
     const name = String(trail.name || 'ORMA trail');
     const start = trailhead(trail, geometry);
     const generatedAt = options && options.generatedAt
@@ -3132,7 +3168,7 @@ ${points}
     doc = doc || (typeof document !== 'undefined' ? document : null);
     urlApi = urlApi || (typeof URL !== 'undefined' ? URL : null);
     if(!doc || !urlApi || typeof urlApi.createObjectURL !== 'function'){
-      throw new Error('File downloads are unavailable in this browser.');
+      throw new Error(tx('File downloads are unavailable in this browser.'));
     }
     const blob = new Blob([serialize(trail)], { type:'application/gpx+xml;charset=utf-8' });
     const objectUrl = urlApi.createObjectURL(blob);
@@ -3286,8 +3322,13 @@ ${points}
     'lesachtal-tuffbad': "Tuffbad loop, Lesachtal",
     'meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto': "Oberkirn to Verdins via Prenn and Untertall",
     'meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg': "Bloseggweg loop from Schenna",
+    'meran-escursione-alla-forst': "Forst and the Marlinger Waalweg from Algund",
+    'meran-escursione-sentiero-del-sole-a-stulles': "Sonnenrundweg loop at Stuls",
     'meran-facile-escursione-da-verano-ad-avelengo': "Vöran to Hafling past the Bruggen pond",
+    'meran-giro-dei-masi-sul-monte-sole': "Sonnenberg farms loop from Unterstell, Naturns",
+    'meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer': "Hirzer alms loop from Klammeben",
     'meran-sentiero-della-roggia-brandis-a-lana': "Brandis-Waalweg, Lana to the Brandis waterfall",
+    'meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole': "Meraner Höhenweg west and the Sonnenberg farms, Partschins",
     'nuvolau': "Passo Giau to Rifugio Nuvolau",
     'osm-10220399': "Martinsweg",
     'osm-11270309': "Passeggiata delle Sorgenti - Quellenpromenade",
@@ -3408,6 +3449,11 @@ ${points}
     'rendena-ciclabile-javre-dare-vigo-pelugo': "Javrè – Pelugo cycle path loop",
     'rendena-giro-del-belvedere-giustino': "Giro del Belvedere",
     'santa-maddalena': "Rundweg St. Magdalena",
+    'savoie-areches-beaufort-croix-du-berger-et-lac-des-fees': "Croix du Berger from the Lac des Fées",
+    'savoie-areches-beaufort-la-grande-berge': "La Grande Berge from the Plan de la Lai",
+    'savoie-itineraire-poussette-de-belavoine': "Bel’Avoine road, Le Cernix to Paravy",
+    'savoie-itineraire-poussette-des-chalets-brules': "Chalets Brûlés pasture track, Crest-Voland",
+    'savoie-promenade-confort-lac-et-barrage-de-saint-guerin': "Lac de Saint-Guérin shore path",
     'seiseralm-alla-volta-della-trappola-d-orso-a-s-michele': "Kastelruth bear-trap loop",
     'seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del': "Passo Nigra to Tiers by the Jocher farm",
     'seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff': "Umes, Hofer Alpl and Malga Tuff loop",
@@ -3465,6 +3511,8 @@ ${points}
     'valgardena-uciei-de-freeines': "Uciei de Frëines",
     'valgardena-val-danna-percorso-kneipp': "Val d’Anna",
     'valley-view': "Val di Funes Panorama Trail",
+    'valtellina-passo-di-campagneda': "Campo Moro to the Passo di Campagneda",
+    'valtellina-rifugi-porro-e-ventina': "Chiareggio to the Porro and Ventina huts",
     'villnoess-da-russis-fino-al-passo-delle-erbe': "Ponte Russis to Passo delle Erbe",
     'villnoess-dolorama-3a-tappa': "Dolorama stage 3: Rifugio Genova to Resciesa",
     'villnoess-ranui-zannes': "Ranui to Zannes",
@@ -3508,6 +3556,13 @@ ${points}
     'failed',
     'removed',
   ]);
+
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
 
   function tr(key, fallback, vars){
     if(typeof window.t === 'function'){
@@ -3651,7 +3706,7 @@ ${points}
 
   function formatInstalledDate(value){
     const date = new Date(value);
-    if(!value || Number.isNaN(date.getTime())) return 'date unavailable';
+    if(!value || Number.isNaN(date.getTime())) return tx('date unavailable');
     try{
       return new Intl.DateTimeFormat(
         document.documentElement.lang || 'en-GB',
@@ -3672,10 +3727,10 @@ ${points}
 
   function ownershipLabel(state){
     const labels = {
-      'current-account': 'downloaded by this account',
-      'another-account': 'downloaded by another account on this device',
-      'signed-out-owner-retained': 'downloaded account retained on this device',
-      'legacy-owner-unknown': 'download owner not recorded',
+      'current-account': tx('downloaded by this account'),
+      'another-account': tx('downloaded by another account on this device'),
+      'signed-out-owner-retained': tx('downloaded account retained on this device'),
+      'legacy-owner-unknown': tx('download owner not recorded'),
     };
     return labels[state] || labels['legacy-owner-unknown'];
   }
@@ -3900,7 +3955,7 @@ ${points}
         state: 'failed',
         usable: false,
         hasLocalData: false,
-        message: 'Offline storage is not supported in this browser.',
+        message: tx('Offline storage is not supported in this browser.'),
       };
     }
     const config = PACKAGES[trailId];
@@ -3925,7 +3980,7 @@ ${points}
       const cache = await caches.open(name);
       const manifestResponse = await cache.match(new URL(config.manifestUrl, window.location.href).href);
       if(!manifestResponse){
-        failureMessage = 'The stored package manifest is missing.';
+        failureMessage = tx('The stored package manifest is missing.');
         continue;
       }
       try{
@@ -3947,11 +4002,11 @@ ${points}
           contentFreshness: freshness,
           checkedAt: new Date().toISOString(),
           message: incomplete
-            ? 'A previous update was interrupted; the existing verified package remains usable.'
+            ? tx('A previous update was interrupted; the existing verified package remains usable.')
             : null,
         };
       }catch(error){
-        failureMessage = error.message || 'A stored package resource failed verification.';
+        failureMessage = error.message || tx('A stored package resource failed verification.');
       }
     }
     if(candidates.length){
@@ -3960,7 +4015,7 @@ ${points}
         usable: false,
         hasLocalData: true,
         metadata,
-        message: failureMessage || 'The stored package failed verification.',
+        message: failureMessage || tx('The stored package failed verification.'),
       };
     }
     if(incomplete){
@@ -3969,7 +4024,7 @@ ${points}
         usable: false,
         hasLocalData: true,
         metadata,
-        message: 'A previous download was interrupted. No partial package is ready offline.',
+        message: tx('A previous download was interrupted. No partial package is ready offline.'),
       };
     }
     return { state: 'not-downloaded', usable: false, hasLocalData: false, metadata };
@@ -4106,8 +4161,8 @@ ${points}
 
   function formatPackageVersion(version){
     const beta = String(version || '').match(/beta\.(\d+)$/i);
-    if(beta) return `Package ${beta[1]}`;
-    return version ? `Package ${version}` : 'Package revision unavailable';
+    if(beta) return tx('Package {version}', { version:beta[1] });
+    return version ? tx('Package {version}', { version }) : tx('Package revision unavailable');
   }
 
   function availabilityForTrail(trailId, trailCollection){
@@ -5124,6 +5179,13 @@ function breedInsights(name){
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const VERSION = '1.0.0';
   // Seven here, but only six of them can ever be reviewed through
   // `verified.categories`. VERIFICATION.md names those six -- water, heat,
@@ -5225,7 +5287,34 @@ function breedInsights(name){
 
   function tierLabel(tierOrTrail){
     const tier = typeof tierOrTrail === 'string' ? tierOrTrail : tierOf(tierOrTrail);
-    return TIER_LABELS[tier] || TIER_LABELS.imported;
+    switch(tier){
+      case 'mapped': return tx('Mapped route');
+      case 'route-audited': return tx('Verified by ORMA');
+      case 'field-verified': return tx('Verified and walked by ORMA');
+      default: return tx('Imported map data');
+    }
+  }
+
+  // The shown label of a source state or freshness state (SOURCE_LABELS,
+  // FRESHNESS_LABELS), in the reader's language.
+  function sourceLabel(state){
+    switch(state){
+      case 'mapped': return tx('Mapped data');
+      case 'source-listed': return tx('Source listed, not reviewed');
+      case 'source-reviewed': return tx('ORMA source-reviewed');
+      case 'field-checked': return tx('ORMA field-checked');
+      case 'unknown': return tx('Evidence unknown');
+      default: return SOURCE_LABELS[state];
+    }
+  }
+  function freshnessLabel(state){
+    switch(state){
+      case 'current': return tx('Current for its review window');
+      case 'aging': return tx('Review becoming old');
+      case 'stale': return tx('Review stale');
+      case 'unknown': return tx('Freshness unknown');
+      default: return FRESHNESS_LABELS[state];
+    }
   }
 
   function validDate(value){
@@ -5236,9 +5325,23 @@ function breedInsights(name){
 
   function dateText(value){
     const date = validDate(value);
-    if(!date) return 'date unknown';
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return `${date.getUTCDate()} ${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
+    if(!date) return tx('date unknown');
+    const d = date.getUTCDate();
+    const y = date.getUTCFullYear();
+    switch(date.getUTCMonth()){
+      case 0: return tx('{d} Jan {y}', { d, y });
+      case 1: return tx('{d} Feb {y}', { d, y });
+      case 2: return tx('{d} Mar {y}', { d, y });
+      case 3: return tx('{d} Apr {y}', { d, y });
+      case 4: return tx('{d} May {y}', { d, y });
+      case 5: return tx('{d} Jun {y}', { d, y });
+      case 6: return tx('{d} Jul {y}', { d, y });
+      case 7: return tx('{d} Aug {y}', { d, y });
+      case 8: return tx('{d} Sep {y}', { d, y });
+      case 9: return tx('{d} Oct {y}', { d, y });
+      case 10: return tx('{d} Nov {y}', { d, y });
+      default: return tx('{d} Dec {y}', { d, y });
+    }
   }
 
   function sourceRecords(trail, category){
@@ -5320,9 +5423,9 @@ function breedInsights(name){
     return {
       category,
       sourceState: source,
-      sourceLabel: SOURCE_LABELS[source],
+      sourceLabel: sourceLabel(source),
       freshnessState: freshness,
-      freshnessLabel: FRESHNESS_LABELS[freshness],
+      freshnessLabel: freshnessLabel(freshness),
       observedAt,
       observedLabel: dateText(observedAt),
     };
@@ -5385,6 +5488,15 @@ function breedInsights(name){
   if(root) root.DoloPawsRecommendationV1 = api;
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
+
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  // Only sentences with no recommendation.reason.* dictionary entry are wrapped:
+  // the rest are translated by key at display (recommendation-decision.js).
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
 
   const VERSION = '1.7.0';
   const FITNESS = {
@@ -5457,6 +5569,20 @@ function breedInsights(name){
     'water-scarce': 'no water access',
     other: 'a recorded caution',
   };
+  // The same labels for a sentence a reader sees; SEGMENT_TYPE_LABELS stays
+  // English because it travels in the advisory's vars.
+  function segmentTypeLabel(type){
+    switch(type){
+      case 'livestock': return tx('grazing livestock');
+      case 'wildlife': return tx('wildlife activity');
+      case 'road': return tx('road traffic');
+      case 'exposure': return tx('exposed ground');
+      case 'crowding': return tx('heavy foot traffic');
+      case 'surface': return tx('difficult footing');
+      case 'water-scarce': return tx('no water access');
+      default: return tx('a recorded caution');
+    }
+  }
   const REVIEW_CATEGORIES = [
     'route', 'water', 'heat', 'exposure', 'livestock',
     'surfaceHazards', 'access',
@@ -5912,8 +6038,8 @@ function breedInsights(name){
       if(reviewedWaterCount > 0){
         positives.push(item('trail.water.reviewed',
           reviewedWaterCount === 1
-            ? 'Water is available at one reviewed point.'
-            : `Water is available at ${reviewedWaterCount} reviewed points.`,
+            ? tx('Water is available at one reviewed point.')
+            : tx('Water is available at {count} reviewed points.', { count:reviewedWaterCount }),
           { count:reviewedWaterCount },
           reviewedWaterCount === 1 ? 'trail.water.reviewed.one' : 'trail.water.reviewed.many'));
       }else{
@@ -5961,30 +6087,32 @@ function breedInsights(name){
       if(rank(livestockComfort) > 0){
         load += livestockComfort * 9;
         drivers.push(livestockComfort === 2
-          ? 'this dog reacts to livestock'
-          : 'this dog is unsure around livestock');
+          ? tx('this dog reacts to livestock')
+          : tx('this dog is unsure around livestock'));
       }
       if(rank(preyDrive) > 0){
         load += preyDrive * 5;
-        drivers.push(preyDrive === 2 ? 'prey drive is high' : 'prey drive is moderate');
+        drivers.push(preyDrive === 2 ? tx('prey drive is high') : tx('prey drive is moderate'));
       }
       if(rank(recall) > 0){
         load += recall * 5;
-        drivers.push(recall === 2 ? 'recall is unreliable' : 'recall is variable');
+        drivers.push(recall === 2 ? tx('recall is unreliable') : tx('recall is variable'));
       }
       if(load > 0){
         const summary = drivers.join(', ');
         chargeBehaviour(Math.round(load * (seasonal ? 0.6 : 1)), item('trail.livestock.behaviour-risk',
-          `${seasonal ? 'Livestock graze this route in season' : 'Grazing livestock is recorded on this route'}, and ${summary}.`,
+          seasonal
+            ? tx('Livestock graze this route in season, and {drivers}.', { drivers:summary })
+            : tx('Grazing livestock is recorded on this route, and {drivers}.', { drivers:summary }),
           { presence:livestockPresence, drivers:summary },
           seasonal ? 'trail.livestock.behaviour-risk.seasonal' : 'trail.livestock.behaviour-risk'));
       }
     }else if(livestockPresence === 'none' && stockRelevant){
       positives.push(item('trail.livestock.none',
-        'No grazing livestock is recorded on this route.'));
+        tx('No grazing livestock is recorded on this route.')));
     }else if(stockRelevant){
       unknowns.push(item('trail.livestock.presence-unknown',
-        'Whether livestock graze this route is unknown. Carry a lead for open pasture.'));
+        tx('Whether livestock graze this route is unknown. Carry a lead for open pasture.')));
     }
 
     const wildlifePresence = suitability.wildlifePresence;
@@ -5997,23 +6125,23 @@ function breedInsights(name){
       if(load > 0){
         chargeBehaviour(Math.round(load), item('trail.wildlife.chase-risk',
           high
-            ? 'Wildlife is active on this route, which matters for a dog that chases.'
-            : 'Some wildlife activity is recorded here, which matters for a dog that chases.',
+            ? tx('Wildlife is active on this route, which matters for a dog that chases.')
+            : tx('Some wildlife activity is recorded here, which matters for a dog that chases.'),
           { presence:wildlifePresence },
           high ? 'trail.wildlife.chase-risk.high' : 'trail.wildlife.chase-risk.moderate'));
       }
     }else if(wildlifePresence === 'low' && chaseRelevant){
-      positives.push(item('trail.wildlife.low', 'Little wildlife activity is recorded here.'));
+      positives.push(item('trail.wildlife.low', tx('Little wildlife activity is recorded here.')));
     }
 
     const sightlines = suitability.sightlines;
     if(rank(recall) > 0){
       if(sightlines === 'open'){
         positives.push(item('trail.sightlines.open',
-          'Open sightlines keep this dog visible on most sections.'));
+          tx('Open sightlines keep this dog visible on most sections.')));
       }else if(sightlines === 'restricted'){
         chargeBehaviour(recall * 5, item('trail.sightlines.restricted',
-          'Enclosed, twisting ground makes it harder to keep this dog in view.'));
+          tx('Enclosed, twisting ground makes it harder to keep this dog in view.')));
       }
     }
 
@@ -6027,13 +6155,13 @@ function breedInsights(name){
       if(load > 0){
         chargeBehaviour(Math.round(load), item('trail.road.traffic-risk',
           alongside
-            ? 'The route runs alongside a road, which matters for this dog around traffic.'
-            : 'The route crosses a road, which matters for this dog around traffic.',
+            ? tx('The route runs alongside a road, which matters for this dog around traffic.')
+            : tx('The route crosses a road, which matters for this dog around traffic.'),
           { proximity:roadProximity },
           alongside ? 'trail.road.traffic-risk.alongside' : 'trail.road.traffic-risk.crossings'));
       }
     }else if(roadProximity === 'none' && trafficRelevant){
-      positives.push(item('trail.road.none', 'The route keeps clear of roads and traffic.'));
+      positives.push(item('trail.road.none', tx('The route keeps clear of roads and traffic.')));
     }
 
     const crowding = suitability.crowding;
@@ -6044,14 +6172,14 @@ function breedInsights(name){
       if(socialRank > 0){
         chargeBehaviour(Math.round(socialRank * (busy ? 8 : 4)), item('trail.crowding.social-risk',
           busy
-            ? 'This is a busy route, and this dog needs space from other people and dogs.'
-            : 'This route sees steady foot traffic, and this dog needs space from other people and dogs.',
+            ? tx('This is a busy route, and this dog needs space from other people and dogs.')
+            : tx('This route sees steady foot traffic, and this dog needs space from other people and dogs.'),
           { crowding },
           busy ? 'trail.crowding.social-risk.busy' : 'trail.crowding.social-risk.moderate'));
       }
     }else if(crowding === 'quiet' && socialRelevant){
       positives.push(item('trail.crowding.quiet',
-        'This is a quiet route with room to give other walkers space.'));
+        tx('This is a quiet route with room to give other walkers space.')));
     }
 
     const preferredDurationMin = behaviour.preferredDurationMin;
@@ -6059,11 +6187,11 @@ function breedInsights(name){
     if(preferredDurationMin !== null && durationMinutes !== null){
       if(durationMinutes > preferredDurationMin * 1.25){
         chargeBehaviour(Math.min(10, Math.ceil((durationMinutes - preferredDurationMin) / 30) * 3), item('trail.duration.above-preference',
-          `At about ${Math.round(durationMinutes)} minutes this route runs longer than the preferred ${preferredDurationMin} minutes.`,
+          tx('At about {minutes} minutes this route runs longer than the preferred {preferred} minutes.', { minutes:Math.round(durationMinutes), preferred:preferredDurationMin }),
           { durationMinutes:Math.round(durationMinutes), preferredDurationMin }));
       }else{
         positives.push(item('trail.duration.within-preference',
-          `At about ${Math.round(durationMinutes)} minutes this route fits the preferred walk length.`,
+          tx('At about {minutes} minutes this route fits the preferred walk length.', { minutes:Math.round(durationMinutes) }),
           { durationMinutes:Math.round(durationMinutes), preferredDurationMin }));
       }
     }
@@ -6108,21 +6236,23 @@ function breedInsights(name){
         note:typeof segment.note === 'string' && segment.note.trim() ? segment.note.trim() : null,
       };
       // Two short sentences: what is there, then what to do about it.
-      const detail = vars.note || label;
-      const where = `${detail.charAt(0).toUpperCase()}${detail.slice(1)} between kilometres ${fromKm} and ${toKm}.`;
+      const detail = vars.note || segmentTypeLabel(segment.type);
+      const where = tx('{detail} between kilometres {fromKm} and {toKm}.', {
+        detail:`${detail.charAt(0).toUpperCase()}${detail.slice(1)}`, fromKm, toKm,
+      });
       if(segment.advisory === 'leash-required' || segment.advisory === 'leash-recommended'){
         const required = segment.advisory === 'leash-required';
         leashAdvisories.push({ ...vars, advisory:segment.advisory });
         cautions.push(item(`segment.${segment.advisory}.${vars.type}.${fromKm}-${toKm}`,
-          `${where} ${required ? 'Lead required.' : 'Lead recommended.'}`,
+          `${where} ${required ? tx('Lead required.') : tx('Lead recommended.')}`,
           vars,
           required ? 'segment.leash-required' : 'segment.leash-recommended'));
       }else if(segment.advisory === 'avoid'){
         penalise(20, item(`segment.avoid.${vars.type}.${fromKm}-${toKm}`,
-          `${where} Avoid this stretch.`, vars, 'segment.avoid'));
+          `${where} ${tx('Avoid this stretch.')}`, vars, 'segment.avoid'));
       }else if(segment.advisory === 'caution'){
         cautions.push(item(`segment.caution.${vars.type}.${fromKm}-${toKm}`,
-          `${where} Take care here.`, vars, 'segment.caution'));
+          `${where} ${tx('Take care here.')}`, vars, 'segment.caution'));
       }else{
         positives.push(item(`segment.information.${vars.type}.${fromKm}-${toKm}`,
           where, vars, 'segment.information'));
@@ -6600,6 +6730,13 @@ function breedInsights(name){
  * no scoring rules: it returns the score from recommendTrail().
  */
 
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
 // ============================================================
 // FITNESS DEFAULTS, used both to derive the guest teaser scores
 // and to score the real returning-user list against a saved profile.
@@ -6705,42 +6842,43 @@ function profileInsights(profile){
   const heavyAlready = tr.giant
     || (typeof HEAVY_BUILD_BREEDS !== 'undefined' && HEAVY_BUILD_BREEDS.includes(breedName));
   if(kg != null && kg >= 45 && !heavyAlready){
-    out.push({ icon:'mountain', title:'Weight adds up on descents',
-      sub:'At this weight, descents load joints hard on rock, favour gradual descents and a slow pace down.' });
+    out.push({ icon:'mountain', title:tx('Weight adds up on descents'),
+      sub:tx('At this weight, descents load joints hard on rock, favour gradual descents and a slow pace down.') });
   }
   const toyAlready = tr.shortLegged
     || (typeof TOY_BREEDS !== 'undefined' && TOY_BREEDS.includes(breedName));
   if(kg != null && kg < 5 && !toyAlready){
-    out.push({ icon:'paw', title:'Small strides, long day',
-      sub:'At this weight, a normal route is far more steps, scale distance down and watch recovery closely.' });
-    if(!alreadyHas('Loses heat fast when wet')){
-      out.push({ icon:'cold', title:'Loses heat fast when wet',
-        sub:'A small body chills quickly after rain or a stream crossing, carry a dry layer.' });
+    out.push({ icon:'paw', title:tx('Small strides, long day'),
+      sub:tx('At this weight, a normal route is far more steps, scale distance down and watch recovery closely.') });
+    // breedInsights() may already carry this line, in English or translated.
+    if(!alreadyHas('Loses heat fast when wet') && !alreadyHas(tx('Loses heat fast when wet'))){
+      out.push({ icon:'cold', title:tx('Loses heat fast when wet'),
+        sub:tx('A small body chills quickly after rain or a stream crossing, carry a dry layer.') });
     }
   }
 
   // Life stage, same puppy / senior thresholds effectiveOverrides() uses.
   if(age != null && age < 1){
-    out.push({ icon:'paw', title:'Still growing',
-      sub:'Growth plates are still closing, avoid long climbs and let a puppy set the pace, not the itinerary.' });
+    out.push({ icon:'paw', title:tx('Still growing'),
+      sub:tx('Growth plates are still closing, avoid long climbs and let a puppy set the pace, not the itinerary.') });
   } else if(age != null && age >= 8){
-    out.push({ icon:'mountain', title:'Built for shorter days now',
-      sub:'Senior joints and stamina fade before the enthusiasm does, plan shorter routes with flat stretches and frequent rests.' });
+    out.push({ icon:'mountain', title:tx('Built for shorter days now'),
+      sub:tx('Senior joints and stamina fade before the enthusiasm does, plan shorter routes with flat stretches and frequent rests.') });
   }
 
   // Declared health conditions, already scored by effectiveOverrides()
   // below, surfaced here in plain terms instead of only moving a number.
   if(conds.includes('joints') || conds.includes('back') || conds.includes('recovering')){
-    out.push({ icon:'paw', title:'Go easy on the joints',
-      sub:'A declared joint, back or recovering condition means technical, uneven ground costs more, favour smoother, gentler trails.' });
+    out.push({ icon:'paw', title:tx('Go easy on the joints'),
+      sub:tx('A declared joint, back or recovering condition means technical, uneven ground costs more, favour smoother, gentler trails.') });
   }
   if((conds.includes('heat') || conds.includes('cardiac') || conds.includes('overweight')) && !tr.heatSensitive){
-    out.push({ icon:'heat', title:'Extra care in the heat',
-      sub:'A declared heart, weight or heat-related condition means hot, exposed routes cost more, start early and prioritise shade.' });
+    out.push({ icon:'heat', title:tx('Extra care in the heat'),
+      sub:tx('A declared heart, weight or heat-related condition means hot, exposed routes cost more, start early and prioritise shade.') });
   }
   if(conds.includes('vision')){
-    out.push({ icon:'mountain', title:'Extra care on exposed edges',
-      sub:'A vision condition raises the stakes on narrow ledges and drop-offs, favour wider, well-marked paths.' });
+    out.push({ icon:'mountain', title:tx('Extra care on exposed edges'),
+      sub:tx('A vision condition raises the stakes on narrow ledges and drop-offs, favour wider, well-marked paths.') });
   }
 
   return out;
@@ -6954,6 +7092,20 @@ function effectiveOverrides(profile, adjustOverride){
 (function (root) {
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
+  // A trail's own words in the reader's language, from data/trail-text-it.
+  // Anything sorted or matched on (hazard kinds, rough ground) reads the English.
+  function trailWords(text) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.trailText === 'function' ? i18n.trailText(text) : text;
+  }
+
   const imported = trail => !!trail && trail.curated === false;
   // A day hike tops out around here; beyond it a route is a multi-day itinerary
   // (or a whole trail network imported as one line), which most visitors are not
@@ -7076,7 +7228,7 @@ function effectiveOverrides(profile, adjustOverride){
   function formatReviewDate(value) {
     if (root.DoloPawsEvidenceV1) return root.DoloPawsEvidenceV1.dateText(value);
     const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ''));
-    if (!match) return String(value || 'date unavailable');
+    if (!match) return String(value || tx('date unavailable'));
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     return `${Number(match[3])} ${months[Number(match[2]) - 1]} ${match[1]}`;
   }
@@ -7121,10 +7273,10 @@ function effectiveOverrides(profile, adjustOverride){
     .trim();
 
   function waterPointLabel(trail, label) {
-    const base = String(label || 'Water point')
+    const base = String(label || tx('Water point'))
       .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
       .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
-    if (!categoryVerified(trail, 'water')) return `${base}, availability can change`;
+    if (!categoryVerified(trail, 'water')) return tx('{label}, availability can change', { label: base });
     return imported(trail) ? base : withoutOsmTag(label);
   }
 
@@ -7147,26 +7299,27 @@ function effectiveOverrides(profile, adjustOverride){
   }
 
   function startPointLabel(trail, label) {
+    label = trailWords(label);
     if (!categoryVerified(trail, 'access') && !imported(trail)) {
-      return `Suggested start, ${plainStartLabel(label)}. Check current access before travelling.`;
+      return tx('Suggested start, {place}. Check current access before travelling.', { place: plainStartLabel(label) });
     }
     if (!imported(trail)) return withoutOsmTag(label);
-    return `Mapped start suggestion, ${plainStartLabel(label)}. Check current access before travelling.`;
+    return tx('Mapped start suggestion, {place}. Check current access before travelling.', { place: plainStartLabel(label) });
   }
 
   function waterAssessment(trail) {
     const mapped = Array.isArray(trail.waterSources) && trail.waterSources.length > 0;
     if (!categoryVerified(trail, 'water')) {
-      return { ok: false, title: 'Bring your own water', detail: 'Do not rely on potential water locations being available or drinkable. Carry enough for the full walk.' };
+      return { ok: false, title: tx('Bring your own water'), detail: tx('Do not rely on potential water locations being available or drinkable. Carry enough for the full walk.') };
     }
     if (imported(trail)) {
       return mapped
-        ? { ok: false, title: 'Bring backup water', detail: 'A potential water point appears on the map, but availability can change. Carry enough for the full walk.' }
-        : { ok: false, title: 'Bring your own water', detail: 'No water point appears on the route map. Carry enough for the full walk.' };
+        ? { ok: false, title: tx('Bring backup water'), detail: tx('A potential water point appears on the map, but availability can change. Carry enough for the full walk.') }
+        : { ok: false, title: tx('Bring your own water'), detail: tx('No water point appears on the route map. Carry enough for the full walk.') };
     }
     return mapped
-      ? { ok: true, title: 'Water', detail: 'A reviewed water point is listed on this route. Seasonal availability can change, so bring a backup supply.' }
-      : { ok: false, title: 'Water', detail: 'No water source is listed for this route. Carry enough for the dog, roughly 0.5 l per 10 kg on a warm day.' };
+      ? { ok: true, title: tx('Water'), detail: tx('A reviewed water point is listed on this route. Seasonal availability can change, so bring a backup supply.') }
+      : { ok: false, title: tx('Water'), detail: tx('No water source is listed for this route. Carry enough for the dog, roughly 0.5 l per 10 kg on a warm day.') };
   }
 
   // The walk-day forecast, read by the same rule the score uses, so this
@@ -7182,15 +7335,17 @@ function effectiveOverrides(profile, adjustOverride){
   // that is only about heat ("Hot tarmac") belongs with heat.
   const TRAFFIC_HAZARD = /\b(?:roads?|crossings?|traffic|cars?|vehicles?|cycl\w*|bikes?|streets?|zebra|SS\d+|SP\d+|km\/h)\b/i;
   function recordedHazards(trail) {
+    const tidy = hazard => String(hazard || '').trim().replace(/[.;]+$/, '');
     const all = (Array.isArray(trail && trail.surfaceHazards) ? trail.surfaceHazards : [])
-      .map(hazard => String(hazard || '').trim().replace(/[.;]+$/, ''))
-      .filter(Boolean);
-    const heat = all.filter(heatOnly);
+      .map(hazard => ({ en: tidy(hazard), shown: tidy(trailWords(hazard)) }))
+      .filter(hazard => hazard.en);
+    const heat = all.filter(hazard => heatOnly(hazard.en));
     const rest = all.filter(hazard => !heat.includes(hazard));
+    const shown = list => list.map(hazard => hazard.shown);
     return {
-      heat,
-      traffic: rest.filter(hazard => TRAFFIC_HAZARD.test(hazard)),
-      underfoot: rest.filter(hazard => !TRAFFIC_HAZARD.test(hazard)),
+      heat: shown(heat),
+      traffic: shown(rest.filter(hazard => TRAFFIC_HAZARD.test(hazard.en))),
+      underfoot: shown(rest.filter(hazard => !TRAFFIC_HAZARD.test(hazard.en))),
     };
   }
 
@@ -7199,10 +7354,10 @@ function effectiveOverrides(profile, adjustOverride){
     // A cool day makes the route's sun exposure irrelevant; a cold one turns
     // the advice the other way.
     if (coldDay(conditions)) {
-      return { ok: false, title: 'Cold day', guide: null, detail: `The forecast stays cold, up to ${conditions.dayMaxC} °C. Keep rests short, dry your dog after wet stretches, and bring a coat for a small or short-coated dog.` };
+      return { ok: false, title: tx('Cold day'), guide: null, detail: tx('The forecast stays cold, up to {temp} °C. Keep rests short, dry your dog after wet stretches, and bring a coat for a small or short-coated dog.', { temp: conditions.dayMaxC }) };
     }
     if (coolDay(conditions)) {
-      return { ok: true, title: 'Heat & shade', detail: `The forecast stays cool, up to ${conditions.dayMaxC} °C, so sun and shade do not matter for this walk.` };
+      return { ok: true, title: tx('Heat & shade'), detail: tx('The forecast stays cool, up to {temp} °C, so sun and shade do not matter for this walk.', { temp: conditions.dayMaxC }) };
     }
     const hot = recordedHazards(trail).heat;
     const withHot = result => (result && hot.length && !result.ok ? { ...result, items: hot } : result);
@@ -7211,29 +7366,29 @@ function effectiveOverrides(profile, adjustOverride){
 
   function summerHeat(trail, shade) {
     if (!categoryVerified(trail, 'heat')) {
-      return { ok: false, title: 'Plan for limited shade', detail: 'Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.' };
+      return { ok: false, title: tx('Plan for limited shade'), detail: tx('Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.') };
     }
     if (imported(trail) && shade === null && !trail.heatRisk && trail.shadeDescription) {
-      return { ok: false, title: 'Mixed shade', detail: `${trail.shadeDescription} Use the live forecast and plan exposed sections for a cool window.` };
+      return { ok: false, title: tx('Mixed shade'), detail: `${trailWords(trail.shadeDescription)} ${tx('Use the live forecast and plan exposed sections for a cool window.')}` };
     }
     if (imported(trail) && shade === null && !trail.heatRisk) {
-      return { ok: false, title: 'Plan for limited shade', detail: 'Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.' };
+      return { ok: false, title: tx('Plan for limited shade'), detail: tx('Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.') };
     }
     if (shade === null && !trail.heatRisk) return null;
-    const shadeText = shade === null ? '' : `${shade}% shade`;
+    const shadeText = shade === null ? '' : tx('{n}% shade', { n: shade });
     const highHeat = trail.heatRisk === 'high' || (shade !== null && shade < 25);
     const lowHeat = trail.heatRisk === 'low' && (shade === null || shade >= 40);
     const detail = highHeat
-      ? `${shadeText ? shadeText + '. ' : ''}The route is heat-exposed; use the live forecast to choose an early, cool window.`
+      ? `${shadeText ? shadeText + '. ' : ''}${tx('The route is heat-exposed; use the live forecast to choose an early, cool window.')}`
       : lowHeat
-        ? `${shadeText ? shadeText + '. ' : ''}The route has relatively favourable heat exposure.`
-        : `${shadeText ? shadeText + '. ' : ''}Plan rests and use the live forecast to choose a cooler window.`;
-    return { ok: !highHeat, title: 'Heat & shade', detail };
+        ? `${shadeText ? shadeText + '. ' : ''}${tx('The route has relatively favourable heat exposure.')}`
+        : `${shadeText ? shadeText + '. ' : ''}${tx('Plan rests and use the live forecast to choose a cooler window.')}`;
+    return { ok: !highHeat, title: tx('Heat & shade'), detail };
   }
 
   function exposureAssessment(trail) {
     if (trail.exposure === true) {
-      return { ok: false, title: 'Exposed sections', detail: 'Narrow ledges or unprotected drop-offs occur on parts of the route. Keep the dog leashed and on the inside.' };
+      return { ok: false, title: tx('Exposed sections'), detail: tx('Narrow ledges or unprotected drop-offs occur on parts of the route. Keep the dog leashed and on the inside.') };
     }
     return null;
   }
@@ -7241,7 +7396,7 @@ function effectiveOverrides(profile, adjustOverride){
   function livestockAssessment(trail, combinedText) {
     const noted = /livestock|patou|guardian|cattle|herd|pasture|alpage|graz/.test(combinedText || '');
     if (noted) {
-      return { ok: false, title: 'Livestock & leash', detail: 'Grazing animals, possibly with guardian dogs, are reported on or near this route. Leash through pastures and give herds a wide berth.' };
+      return { ok: false, title: tx('Livestock & leash'), detail: tx('Grazing animals, possibly with guardian dogs, are reported on or near this route. Leash through pastures and give herds a wide berth.') };
     }
     return null;
   }
@@ -7253,20 +7408,23 @@ function effectiveOverrides(profile, adjustOverride){
     if (Number(trail.terrainRank) === 0 && !underfoot.length) return null;
     const ground = String(trail.terrainType || 'Variable mountain terrain').trim().replace(/[.;]+$/, '').replace(/:\s+/, ', ');
     const rough = Number(trail.terrainRank) > 0 || /rock|scree|stony|stones|boulder|roots/i.test(ground);
-    const detail = `Underfoot: ${ground.charAt(0).toLowerCase()}${ground.slice(1)}.`
-      + (rough ? ' Check pads at breaks.' : '');
-    return { ok: false, title: 'Surface & footing', detail, items: underfoot };
+    const shownGround = trail.terrainType
+      ? String(trailWords(trail.terrainType)).trim().replace(/[.;]+$/, '').replace(/:\s+/, ', ')
+      : tx('Variable mountain terrain');
+    const detail = tx('Underfoot: {ground}.', { ground: `${shownGround.charAt(0).toLowerCase()}${shownGround.slice(1)}` })
+      + (rough ? ' ' + tx('Check pads at breaks.') : '');
+    return { ok: false, title: tx('Surface & footing'), detail, items: underfoot };
   }
 
   // Roads, crossings and bikes: a lead question, not a paw question.
   function trafficAssessment(trail) {
     const traffic = recordedHazards(trail).traffic;
     if (!traffic.length) return null;
-    return { ok: false, title: 'Roads & traffic', detail: 'Keep your dog on a short lead in these places:', items: traffic };
+    return { ok: false, title: tx('Roads & traffic'), detail: tx('Keep your dog on a short lead in these places:'), items: traffic };
   }
 
   function assessmentNote(trail) {
-    return '<strong style="color: var(--ink);">Trail planning information:</strong> based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.';
+    return '<strong style="color: var(--ink);">' + tx('Trail planning information:') + '</strong> ' + tx('based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.');
   }
 
   root.DoloPawsTrailTrust = Object.freeze({
@@ -66164,6 +66322,845 @@ function effectiveOverrides(profile, adjustOverride){
       startPoint: { lat: 46.690139, lng: 11.187216, label: 'The village centre of Schenna, the board’s start' },
       desc: 'A loop from Schenna through the apple orchards on the Bloseggweg, past the Kampflkreuz and back on the Mitterplattweg. The board lists 5.7 km, 200 m up and 200 m down, 1 h 45.'
     },
+    'savoie-promenade-confort-lac-et-barrage-de-saint-guerin': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 1, Beaufortain – Val d’Arly).
+      // “Promenade confort : Lac et barrage de Saint Guérin”, published by the Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort, drawn on 27 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 580887). Communes: Arêches-Beaufort (no dog order found online, probably exists: the national rule applies; the page says dogs on a lead only).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Lac de Saint-Guérin – Arêches-Beaufort (Beaufortain)',
+      distance: 4.2,
+      elevation: 50,
+      hours: '2.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way: from the car park by the Saint-Guérin dam along the east shore of the lake, over the 80 m footbridge high above the water, to the head of the lake where the Louze stream flows in, then back by the same path.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park by the Saint-Guérin dam (about 1,560 m), the board’s start; the dam itself is a short detour to the left before you set off.",
+        "sequence": "Take the path to the right along the lake shore and cross the small bridge. Carry on along the shore to the footbridge, 80 m long and more than 20 m above the water, and cross it. Follow the path to the head of the lake, where the Louze stream flows in, then turn round and come back the same way to the car park.",
+        "switches": "One choice at the start: right along the shore, not across the dam. After that the path is the only one along the lake; turn round at the head of the lake.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort, Promenade confort : Lac et barrage de Saint Guérin (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/promenade-confort-lac-et-barrage-de-saint-guerin-580887/",
+            "authority": "Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The wooded east shore of the Lac de Saint-Guérin, on the walk, in September 2023 (Florian Pépellin on Wikimedia Commons, CC BY-SA 4.0), 6 m from the line.',
+        route: 'Official there-and-back walk 4.2 km from the car park by the Saint-Guérin dam, as the Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort publishes it; the stored line is drawn on 27 OSM ways along the board’s published line, 4.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the car park by the Saint-Guérin dam and take the path right along the lake shore, over the small bridge and then the 80 m footbridge, to the head of the lake where the Louze flows in; return the same way. No path numbers: follow the local yellow signs.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.2 km, 50 m up and 50 m down, 2:30 h average walking time (Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort, Promenade confort : Lac et barrage de Saint Guérin (Explore Savoie, Apidae 580887) and its official GPX',
+          'Arêches-Beaufort publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs accepted on a lead only',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 66,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The 80 m footbridge is more than 20 m above the water: some dogs balk at the drop, so keep your dog close and on a short lead', 'Steep banks down to the reservoir along the shore path: lead on, and no swimming, since the water level can change', 'About 60 m along the Saint-Guérin road at the car park: keep your dog close'],
+      terrainType: 'Lakeside path, track and footbridge',
+      shadeDescription: 'Two thirds shaded: about 66% of it runs under the mapped spruce woods on the east shore; the head of the lake is open.',
+      terrainDescription: 'An almost level walk at about 1,560 m around the shore of the Saint-Guérin reservoir above Arêches, on a wide track and a lakeside path, with a long, high footbridge over an arm of the lake.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs are accepted on a lead only, according to the official page. Arêches-Beaufort publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cows graze the alpages around the lake in summer: keep your dog on a lead and give the herds a wide berth.',
+      tips: 'Park by the dam (free shuttles from Albertville, Beaufort and Arêches in July and August): 4.2 km there and back, almost level, about two and a half hours at an easy pace. Keep your dog on a lead, especially on the high footbridge. Open from June to mid-October, outside the snow; no drinking water on the way, so bring some for your dog.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Promenade confort : Lac et barrage de Saint Guérin (Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort)', url: 'https://www.explore-savoie.com/randonnees-et-balades/promenade-confort-lac-et-barrage-de-saint-guerin-580887/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/231/240/16445671/randonnee-30409601-ete-promenade-confort-de-st-guerin.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.65132, lng: 6.581332, label: 'Car park by the Saint-Guérin dam, the board’s start' },
+      desc: 'An easy, almost level walk along the shore of the Lac de Saint-Guérin above Arêches, through spruce woods and across a long footbridge high above the water, to the head of the lake and back. The official page lists 4.2 km, 50 m up and 50 m down, about 2 h 30.'
+    },
+    'savoie-itineraire-poussette-des-chalets-brules': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 1, Beaufortain – Val d’Arly).
+      // “Itinéraire poussette des Chalets Brûlés”, published by the Office de Tourisme du Val d’Arly, drawn on 5 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 4997122). Communes: Crest-Voland and Cohennoz (no dog order found online, probably exists: the national rule applies; the page says dogs on a lead).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Crest-Voland – Chalets Brûlés (Val d’Arly)',
+      distance: 1.6,
+      elevation: 20,
+      hours: '1',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way: from the Grande Mouille car park on the road to Les Saisies along the drivable track and then through the alpages to the Chalets Brûlés, and back.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Grande Mouille car park, beside the road from Crest-Voland to Les Saisies about 3 km out of the village, the board’s start.",
+        "sequence": "From the car park continue along the drivable track, then on through the alpages between working farms, with the Mont Blanc massif and the Aravis ahead, to the Chalets Brûlés. Turn round there and come back the same way to the car park.",
+        "switches": "No change of track: stay on the main track through the pastures and turn round at the Chalets Brûlés.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme du Val d’Arly, Itinéraire poussette des Chalets Brûlés (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/itineraire-poussette-des-chalets-brules-4997122/",
+            "authority": "Office de Tourisme du Val d’Arly",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The pasture track to the Chalets Brûlés above Crest-Voland, in June 2025 (MatthieuF4FNE on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official there-and-back walk 1.6 km from the Grande Mouille car park on the road to Les Saisies, as the Office de Tourisme du Val d’Arly publishes it; the stored line is drawn on 5 OSM ways along the board’s published line, 1.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Grande Mouille car park, about 3 km from Crest-Voland on the road to Les Saisies, then follow the drivable track and the pasture track to the Chalets Brûlés and back the same way; no path numbers, local Val d’Arly signs.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 1.6 km, 20 m up and 20 m down, 1:00 h average walking time (Office de Tourisme du Val d’Arly, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme du Val d’Arly, Itinéraire poussette des Chalets Brûlés (Explore Savoie, Apidae 4997122) and its official GPX',
+          'Crest-Voland and Cohennoz publish no dog order online (not found, probably exists), so the national rule applies; the official page: dogs on a lead',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (5 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpage: cows and goats graze beside the track in summer; keep your dog on a lead and give the herds room', 'Farm vehicles use the track: lead on', 'About 40 m along the Saisies road at the car park: keep your dog close'],
+      terrainType: 'Farm track through alpages',
+      shadeDescription: 'No shade: the track crosses open pasture, with only a few spruces along the edge.',
+      terrainDescription: 'A short, almost level walk at about 1,500 m on a wide farm track through the alpages between Crest-Voland and Les Saisies, with views of the Mont Blanc massif and the Aravis; suitable for all-terrain prams.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs must be kept on a lead, according to the official page. Crest-Voland and Cohennoz publish no dog order online, so the national rule applies on top: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cows and goats graze along the track.',
+      tips: 'Park at the Grande Mouille car park on the Saisies road: 1.6 km there and back, almost flat, under an hour. Keep your dog on a lead through the grazing herds. Open mid-May to mid-November; there is no water or shade, so bring water on warm days.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Itinéraire poussette des Chalets Brûlés (Office de Tourisme du Val d’Arly)', url: 'https://www.explore-savoie.com/randonnees-et-balades/itineraire-poussette-des-chalets-brules-4997122/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/49/115/4879153/chemin-des-chalets-brules-itineraire-poussette.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.78856, lng: 6.531665, label: 'Grande Mouille car park on the road to Les Saisies, the board’s start' },
+      desc: 'A short, flat walk on a farm track through the summer alpages above Crest-Voland, between grazing cows and goats and facing Mont Blanc and the Aravis, to the Chalets Brûlés and back. The official page lists 1.6 km, 20 m up and 20 m down, about an hour.'
+    },
+    'savoie-itineraire-poussette-de-belavoine': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 1, Beaufortain – Val d’Arly).
+      // “Itinéraire poussette de Bel’Avoine”, published by the Office de Tourisme du Val d’Arly, drawn on 18 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 4996986). Communes: Cohennoz and Crest-Voland (no dog order found online, probably exists: the national rule applies).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Le Cernix – Bel’Avoine – Paravy (Val d’Arly)',
+      distance: 4.7,
+      elevation: 40,
+      hours: '2',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way on a quiet communal road: from the Place du Cernix in Cohennoz past the Cernix pond and the Ainoz mill, through the meadows of Bel’Avoine to the hamlet of Paravy in Crest-Voland, and back.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Place du Cernix in Cohennoz, where there is parking and a drinking fountain; the board also allows starting from Paravy at the other end.",
+        "sequence": "Follow the communal road of Bel’Avoine towards Paravy, past the Cernix pond and the Ainoz mill, between the hamlets of Cohennoz and Crest-Voland and through hay meadows with views of the Aravis. At the hamlet of Paravy turn round and come back the same way to the Cernix.",
+        "switches": "No turnings: the walk stays on the one communal road; turn round at Paravy.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme du Val d’Arly, Itinéraire poussette de Bel’Avoine (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/itineraire-poussette-de-belavoine-4996986/",
+            "authority": "Office de Tourisme du Val d’Arly",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Bel’Avoine communal road between Le Cernix and Paravy, facing the Aravis, in June 2023 (MatthieuF4FNE on Mapillary, CC BY-SA 4.0), 8 m from the line.',
+        route: 'Official there-and-back walk 4.7 km from the Place du Cernix in Cohennoz, as the Office de Tourisme du Val d’Arly publishes it; the stored line is drawn on 18 OSM ways along the board’s published line, 4.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Place du Cernix in Cohennoz and follow the quiet communal road of Bel’Avoine past the Cernix pond and the Ainoz mill, through the meadows to the hamlet of Paravy, then return the same way; no path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 12050679095).',
+        elevation: 'Official 4.7 km, 40 m up and 40 m down, 2:00 h average walking time (Office de Tourisme du Val d’Arly, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme du Val d’Arly, Itinéraire poussette de Bel’Avoine (Explore Savoie, Apidae 4996986) and its official GPX',
+          'Crest-Voland and Cohennoz publish no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (18 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The whole walk is on a quiet communal road that cars still use: keep your dog on a lead and to the side', 'Hay meadows beside the road are farmed: keep your dog out of them'],
+      terrainType: 'Quiet communal road',
+      shadeDescription: 'No shade: the road runs through open meadows and hamlets.',
+      terrainDescription: 'An almost level walk at about 1,200–1,250 m on a quiet communal road between the hamlets of Cohennoz and Crest-Voland, past a pond and an old mill, through hay meadows facing the Aravis; suitable for prams.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Dogs are accepted, according to the official page. Cohennoz and Crest-Voland publish no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cars use the road, so keep your dog on a lead.',
+      tips: 'Start at the Place du Cernix in Cohennoz (drinking fountain at the start): 4.7 km there and back, almost flat, about two hours. The road is quiet but cars do pass: lead on. Open mid-May to mid-November; no shade, so go early on hot days.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Itinéraire poussette de Bel’Avoine (Office de Tourisme du Val d’Arly)', url: 'https://www.explore-savoie.com/randonnees-et-balades/itineraire-poussette-de-belavoine-4996986/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/99/235/6286179/Cirkwi-Itinraire_poussette_de_Bel_Avoine.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.783478, lng: 6.498725, label: 'Place du Cernix, Cohennoz, one of the two starts the board gives' },
+      desc: 'An easy, flat walk on a quiet communal road between the hamlets of Cohennoz and Crest-Voland, past the Cernix pond and the Ainoz mill and through hay meadows facing the Aravis, to Paravy and back. The official page lists 4.7 km, 40 m up and 40 m down, about two hours.'
+    },
+    'meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines”, published by the Partschins tourist board, drawn on 44 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Partschins and, for a short stretch, Naturns (neither publishes a dog regulation online, probably exists: the national rule applies, lead ≤1.5 m and a muzzle carried); about a fifth of the line is in the Texelgruppe nature park, dogs on a lead.
+      // About 20% of the line, near the Texelbahn top station, lies in the Texelgruppe nature park and the Natura 2000 site Pfossental: dogs on a lead.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Texelbahn top station – Meraner Höhenweg – Hochforch – Platterhof – Gruberhof – Winklerhof – Partschins (Burggrafenamt)',
+      distance: 6.2,
+      elevation: 221,
+      hours: '1.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and mostly downhill: from the top station of the Texelbahn west along the Meraner Höhenweg (path 24) to the Hochforch farm, down path 25 past the Platterhof to the Gruberhof, along path 39 past the Unterwenter Rast and the Winklerhof, and down path 1 beside the Zielbach to the Texelbahn valley station.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Texelbahn up from Partschins and start at its top station, the board’s start.",
+        "sequence": "Follow the Meraner Höhenweg, path 24, west towards the Hochforch farm (1,555 m) on a panoramic stretch above the Vinschgau. After a short stretch of tarred road turn left onto path 25, which drops gently through meadows and larch woods past the Platterhof (1,194 m) to the Gruberhof, also called Ausergrub (1,121 m). From the Gruberhof take path 39 along the slope towards Partschins, past the Unterwenter Rast viewpoint, to the Winklerhof farm inn. Just before the suspension bridge turn right onto path 1, which runs beside the Zielbach down to the Texelbahn valley station, where the walk ends.",
+        "switches": "Three changes: after the Hochforch farm leave path 24 left onto path 25; at the Gruberhof take path 39; just before the suspension bridge turn right onto path 1.",
+        "sources": [
+          {
+            "label": "Partschins tourist board, Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/54554380",
+            "authority": "Partschins tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Path 1 between granite boulders above the Texelbahn valley station in Partschins, in August (mikki65 on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 6.2 km from the top station of the Texelbahn above Partschins, as the Partschins tourist board publishes it; the stored line is drawn on 44 OSM ways along the board’s published line, 6.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 24, 25, 39 and 1: from the Texelbahn top station the Meraner Höhenweg (path 24) west to the Hochforch farm, path 25 down to the Gruberhof, path 39 along the slope to the Winklerhof, then path 1 beside the Zielbach to the valley station.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 5612178877).',
+        elevation: 'Official 6.2 km, 221 m up and 1124 m down, 1:50 h, highest point 1,586 m, lowest 629 m (Partschins tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Partschins tourist board, Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Partschins / Comune di Parcines: no dog regulation published online, probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Marktgemeinde Naturns / Comune di Naturno: no dog regulation published online (only an information sheet for dog owners on dog-waste stations), probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Amt für Natur, rules of conduct in the South Tyrol nature parks: dogs on a lead, never roaming (Naturpark Texelgruppe, also Natura 2000 site IT3110010 Pfossental, about a fifth of the line near the Texelbahn top station); province landscape-plan layers: no natural monument on the line',
+          'OpenStreetMap ways along the board’s line (44 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 22,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 1,120 m of descent: steep in places and hard on knees and paws, take it slowly', 'A short stretch of tarred farm road after the Hochforch farm: lead on for passing cars', 'Meadows and pastures beside the path are farmed: keep to the path'],
+      terrainType: 'Mountain paths, field paths and a short farm road',
+      shadeDescription: 'Mostly open: about a fifth runs through mapped larch woods; the Höhenweg and the farm meadows are in full sun.',
+      terrainDescription: 'A south-facing descent from 1,590 m to 630 m on the Sonnenberg above Partschins, along the Meraner Höhenweg with views over the Vinschgau, then down past old farms to the Zielbach.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Neither Partschins nor Naturns publishes a dog regulation online, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. Near the top station the path runs through the Texelgruppe nature park, where dogs must stay on a lead. On the Texelbahn dogs ride on a lead and muzzled.',
+      tips: 'Take the Texelbahn up from Partschins: 6.2 km one way back down to the valley station, 221 m up and 1,124 m down, under two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at the top station; farm inns at the Gruberhof and the Winklerhof. The lower slope is hot in summer: start early.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines (Partschins tourist board)', url: 'https://www.outdooractive.com/it/r/54554380' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Marktgemeinde Naturns, information for dog owners', url: 'https://www.gemeinde.naturns.bz.it/de/Verwaltung/Dokumente/Informationen_fuer_Hundehalterinnen_und_Hundehalter' },
+        { label: 'South Tyrol nature parks, rules of conduct', url: 'https://naturparks.provinz.bz.it/de/verhaltensregeln-im-naturpark' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.684644, lng: 11.04778, label: 'Top station of the Texelbahn above Partschins, the board’s start' },
+      desc: 'A mostly downhill walk from the top of the Texelbahn along the Meraner Höhenweg and down past the old farms of the Partschins Sonnenberg to the valley station. The board lists 6.2 km, 221 m up and 1,124 m down, 1 h 50.'
+    },
+    'meran-escursione-sentiero-del-sole-a-stulles': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Escursione Sentiero del Sole a Stulles”, published by the Passeiertal tourist board, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Moos in Passeier (its dog regulation, Gemeinderat Nr. 38 of 26.09.2012: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Stuls – Kofler Kreuz – Morx Puite – Stuls (Moos in Passeier)',
+      distance: 5.1,
+      elevation: 272,
+      hours: '1.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park by the church in Stuls on the signed Sonnenrundweg to the Kofler Kreuz, along the farm road to its seventh hairpin, on path 14A to the Morx Puite and back down the road to the car park.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park by the church in Stuls, the board’s start.",
+        "sequence": "Follow the Sonnenrundweg signs to the junction at the Kofler Kreuz. There turn sharply left and follow the road up to its seventh hairpin. At the hairpin leave the road to the left on path 14A and follow it to the Morx Puite. From there walk down the road back to the car park in Stuls.",
+        "switches": "Three changes: sharp left at the Kofler Kreuz; left off the road at the seventh hairpin onto path 14A; at the Morx Puite back down the road.",
+        "sources": [
+          {
+            "label": "Passeiertal tourist board, Escursione Sentiero del Sole a Stulles (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16571389",
+            "authority": "Passeiertal tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The farm road of the Sonnenrundweg above Stuls, looking over the Passeier valley, in June (crami on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official loop 5.1 km from the car park by the church in Stuls, as the Passeiertal tourist board publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 5.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'The signed Sonnenrundweg, then path 14A: from the church car park follow the Sonnenrundweg signs to the Kofler Kreuz, the farm road to the seventh hairpin, path 14A to the Morx Puite, and the road back down to Stuls.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 5.1 km, 272 m up and 272 m down, 1:40 h, highest point 1,541 m, lowest 1,295 m (Passeiertal tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Passeiertal tourist board, Escursione Sentiero del Sole a Stulles (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Moos in Passeier / Comune di Moso in Passiria, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 38, 26.09.2012), Art. 4 and 8: dogs on a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and primary-school yards or on farmed land (meadows, fields) during the growing season; no bathing in public fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 49,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Most of the loop is on a quiet tarred farm road with hairpins, shared with cars and tractors: lead on and keep to the side', 'About 120 m on the Stuls road near the village: keep your dog close on a short lead', 'Meadows beside the road are farmed and closed to dogs in Moos in Passeier in the growing season: keep to the road and path', 'Path 14A is not suitable for prams'],
+      terrainType: 'Farm road and mountain path',
+      shadeDescription: 'Half shaded: about half runs through mapped woodland; the farm road through the meadows is open.',
+      terrainDescription: 'A sunny loop at 1,295–1,540 m on the slope above Stuls in the upper Passeier valley, mostly on a quiet farm road through meadows and woods, with a stretch of mountain path to the Morx Puite.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Moos in Passeier requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season. The loop starts beside the church: dogs may not enter the churchyard.',
+      tips: 'Start at the car park by the church in Stuls: a 5.1 km loop, 272 m up and down, about an hour and three quarters. Keep your dog on a lead of at most 1.5 m and carry a muzzle. No drinking water on the way: bring water for your dog.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione Sentiero del Sole a Stulles (Passeiertal tourist board)', url: 'https://www.outdooractive.com/it/r/16571389' },
+        { label: 'Gemeinde Moos in Passeier, dog regulation (2012)', url: 'https://www.gemeinde.moosinpasseier.bz.it/system/web/GetDocument.ashx?fileId=854937' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.828059, lng: 11.200341, label: 'Car park by the church in Stuls, the board’s start' },
+      desc: 'A sunny loop above Stuls in the Passeier valley on the Sonnenrundweg, up the farm road to the Kofler Kreuz and on path 14A to the Morx Puite. The board lists 5.1 km, 272 m up and 272 m down, 1 h 40.'
+    },
+    'meran-giro-dei-masi-sul-monte-sole': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Giro dei masi sul Monte Sole”, published by the Naturns tourist board, drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Naturns (no dog regulation published online, probably exists: the national rule applies, lead ≤1.5 m and a muzzle carried).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Unterstell – Patleid – Lint – Innerforch – Unterstell (Naturns)',
+      distance: 4.2,
+      elevation: 284,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the top station of the Unterstell cable car on path 10 up to the Patleid farm, path 24A towards Schnals to the Meraner Höhenweg, the Höhenweg (path 24) east past the Lint inn to the Innerforch farm, and path 24B back to the top station.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Unterstell cable car up from Naturns (Kompatsch) and start at its top station by the Unterstell inn, the board’s start.",
+        "sequence": "Take path 10, climbing gently, to the Patleid farm. At the farm continue on path 24A towards the Schnals valley as far as the junction with the Meraner Höhenweg, path 24, about halfway between the Innerunterstell and Lint farms. Follow the Höhenweg east, first to the Lint inn and then to the fork with path 24B in front of the Innerforch farm. Path 24B leads back to the top station of the Unterstell cable car.",
+        "switches": "Three changes: at the Patleid farm onto path 24A; at the Meraner Höhenweg east on path 24; at the Innerforch farm onto path 24B back to the top station.",
+        "sources": [
+          {
+            "label": "Naturns tourist board, Giro dei masi sul Monte Sole (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/50815999",
+            "authority": "Naturns tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The view over Naturns from beside the Unterstell top station, where the loop starts and ends, in August (uwelino on Mapillary, CC BY-SA 4.0), 11 m from the line.',
+        route: 'Official loop 4.2 km from the top station of the Unterstell cable car above Naturns, as the Naturns tourist board publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 10, 24A, 24 and 24B: from the Unterstell top station path 10 to the Patleid farm, path 24A to the Meraner Höhenweg, path 24 east past the Lint inn, and path 24B from the Innerforch farm back to the top station.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 3152633517).',
+        elevation: 'Official 4.2 km, 284 m up and 284 m down, 1:24 h, highest point 1,480 m, lowest 1,281 m (Naturns tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Naturns tourist board, Giro dei masi sul Monte Sole (its Outdooractive tour, also listed on suedtirol.info)',
+          'Marktgemeinde Naturns / Comune di Naturno: no dog regulation published online (only an information sheet for dog owners on dog-waste stations), probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Open south-facing slope with almost no shade: hot in summer, go early and carry water', 'Farm roads and yards at Patleid, Lint and Innerforch: lead on and keep your dog close past livestock', 'Meadows beside the path are farmed: keep to the path'],
+      terrainType: 'Mountain paths and farm roads',
+      shadeDescription: 'Almost no shade: only a few metres run under mapped trees; the farms and meadows of the Sonnenberg are in full sun.',
+      terrainDescription: 'A short loop at 1,280–1,480 m on the sunny Sonnenberg above Naturns, from the Unterstell cable car past the Patleid, Lint and Innerforch farms on the Meraner Höhenweg, with wide views over the Vinschgau.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Naturns publishes no dog regulation online, only an information sheet asking owners to keep dogs on a lead where required and off farmed meadows, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. On the cable car dogs ride on a lead and muzzled.',
+      tips: 'Take the Unterstell cable car up from Naturns: a 4.2 km loop back to the top station, 284 m up and down, about an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at the top station; the Unterstell and Lint inns are on the way. Very sunny: go early in summer.',
+      sourceLinks: [
+        { label: 'Outdooractive, Giro dei masi sul Monte Sole (Naturns tourist board)', url: 'https://www.outdooractive.com/it/r/50815999' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Marktgemeinde Naturns, information for dog owners', url: 'https://www.gemeinde.naturns.bz.it/de/Verwaltung/Dokumente/Informationen_fuer_Hundehalterinnen_und_Hundehalter' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.658449, lng: 10.982989, label: 'Top station of the Unterstell cable car above Naturns, the board’s start' },
+      desc: 'A short loop on the Sonnenberg above Naturns from the Unterstell cable car past the Patleid farm, along the Meraner Höhenweg to the Lint inn and back by the Innerforch farm. The board lists 4.2 km, 284 m up and 284 m down, 1 h 24.'
+    },
+    'meran-escursione-alla-forst': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Escursione alla Forst”, published by the Algund tourist board, drawn on 61 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Algund (its dog regulation, Gemeinderat Nr. 11 of 10.02.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line; it crosses landscape protection zones, which carry no dog rule.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; its stem is walked both ways, as the board describes.
+      area: 'Algund – Forst – Marlinger Waalweg – Rastbichlhof – Josefsberg – Töll (Burggrafenamt)',
+      distance: 8.2,
+      elevation: 295,
+      hours: '2.5',
+      routeShape: 'lollipop',
+      routeShapeNote: 'A loop on a stem: from the centre of Algund past the open-air pool and over the Adige to Forst, up to the Marlinger Waalweg and the Marlinger Höhenweg to the Rastbichlhof and Josefsberg, down road 9 to the Waalweg and west along it to the Töll power station, then back the same way to Algund.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of Algund, the board’s start, and walk to the Algund open-air pool.",
+        "sequence": "Cross the wooden bridge over the Adige to Forst and follow Brauereistraße west to the Alperia power station. From there follow the old signs for the Marlinger Waalweg and Marlinger Höhenweg: climb the steps to the old Vinschgau state road, which has almost no traffic, cross it and take the clear path up to the Marlinger Waalweg. Follow the Waalweg east to a hiking path that climbs to the Marlinger Höhenweg, and follow it to the Rastbichlhof farm. Take the wide access road east to the former Josefsberg hotel, then go down the tarred road, number 9, to the Waalweg. Walk west along the Waalweg to the Töll hydroelectric power station, and from there return to Algund the same way you came.",
+        "switches": "Key turns: at the Alperia power station up the steps and across the old state road; from the Waalweg up to the Höhenweg; at Josefsberg down road 9; west along the Waalweg to Töll, then back the way you came.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Algund tourist board, Escursione alla Forst (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/800061150",
+            "authority": "Algund tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path with its wooden railing between Forst and the Marlinger Waalweg in Algund, in June (changchun1 on Mapillary, CC BY-SA 4.0), 12 m from the line.',
+        route: 'Official loop 8.2 km from the centre of Algund, as the Algund tourist board publishes it; the stored line is drawn on 61 OSM ways along the board’s published line, 8.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No single number: from Algund across the Adige to Forst, the old signs for the Marlinger Waalweg and Marlinger Höhenweg, the access road to Josefsberg, tarred road 9 down to the Waalweg, and the Waalweg west to the Töll power station.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 0.1 (OSM nodes 3009845489, 7599256286, 7726881458, 4881103694).',
+        elevation: 'Official 8.2 km, 295 m up and 295 m down, 2:24 h, highest point 583 m, lowest 339 m (Algund tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Algund tourist board, Escursione alla Forst (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Algund / Comune di Lagundo, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 11, 10.02.2010), Art. 4 and 8: dogs on a lead of at most 1.5 m on all public ground (except designated dog areas) and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and primary-school yards or on farmed land (meadows, fields) during the growing season; no bathing in the fountains of the centre',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (61 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Crosses the old Vinschgau state road, which has little traffic: lead short while crossing', 'Steps up from the Alperia power station to the old state road', 'Access roads to Josefsberg and road 9 are tarred and open to cars: lead on', 'Orchards and vineyards beside the path are farmed and closed to dogs in Algund in the growing season: keep to the path'],
+      terrainType: 'Waal path, field paths and access roads',
+      shadeDescription: 'Mostly open: only a few stretches run under mapped trees; the orchards and vineyards on the slope are in full sun.',
+      terrainDescription: 'A walk at 340–580 m from Algund across the Adige to Forst and up the slope of the Marling mountain, along the Marlinger Waalweg and the Marlinger Höhenweg through orchards and vineyards with views over the Meran basin.',
+      waterDescription: 'Drinking water at the start and km 0.1; places to eat on the way.',
+      dogNotes: 'Algund requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season.',
+      tips: 'Start in the centre of Algund: 8.2 km there and back with a loop above Forst, 295 m up and down, about two and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Fountains in Algund at the start. Very sunny in summer: go early or late.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione alla Forst (Algund tourist board)', url: 'https://www.outdooractive.com/it/r/800061150' },
+        { label: 'Gemeinde Algund, dog regulation (2010)', url: 'https://www.gemeinde.algund.bz.it/system/web/GetDocument.ashx?cts=1741696854&fileId=1023700' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.682643, lng: 11.121937, label: 'The village centre of Algund, the board’s start' },
+      desc: 'A walk from Algund across the Adige to Forst and up to the Marlinger Waalweg and Höhenweg, round by the Rastbichlhof and Josefsberg and back along the Waalweg. The board lists 8.2 km, 295 m up and 295 m down, 2 h 24.'
+    },
+    'meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Passeggiata alpestre ai piedi del monte Hirzer”, published by the Schenna tourist board, drawn on 35 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Schenna (its dog regulation, Gemeinderat Nr. 33 of 31.08.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; its stem is walked both ways, as the board describes.
+      area: 'Klammeben – Hirzer hut – Hinteregg Alm – Mahd Alm – Rotmoos – Tallner Alm (Schenna)',
+      distance: 6.7,
+      elevation: 350,
+      hours: '2.5',
+      routeShape: 'lollipop',
+      routeShapeNote: 'A loop on a stem: from Klammeben, the top station of the Hirzer cable car, on path 40 to the Hirzer hut, level along the European path E5 to the Hinteregg and Mahd alms, gently up to the Rotmoos basin, back by the Tallner Alm to the Hirzer hut and down to Klammeben.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Hirzer cable car up from Saltaus and start at its top station, Klammeben, the board’s start.",
+        "sequence": "Take path 40 to the Hirzer hut. From the hut follow the level European long-distance path E5 to the Hinteregg and Mahd alms. A little further on the path climbs gently to the alpine basin of Rotmoos. From Rotmoos head back to the Tallner Alm, then turn right to the Hirzer hut and return on path 40 to Klammeben.",
+        "switches": "Two changes: at the Hirzer hut onto the E5 towards the Hinteregg and Mahd alms; on the way back at the Tallner Alm right to the Hirzer hut and path 40.",
+        "sources": [
+          {
+            "label": "Schenna tourist board, Passeggiata alpestre ai piedi del monte Hirzer (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16571460",
+            "authority": "Schenna tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The E5 path at the Mahd Alm below the Hirzer, in June (Lutz Lange on Wikimedia Commons, CC0), 4 m from the line.',
+        route: 'Official loop 6.7 km from Klammeben, the top station of the Hirzer cable car, as the Schenna tourist board publishes it; the stored line is drawn on 35 OSM ways along the board’s published line, 6.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 40 and the E5: from Klammeben path 40 to the Hirzer hut, the E5 to the Hinteregg and Mahd alms and up to Rotmoos, back by the Tallner Alm to the Hirzer hut and on path 40 to Klammeben.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 6.7 km, 350 m up and 350 m down, 2:30 h, highest point 2,132 m, lowest 1,961 m (Schenna tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Schenna tourist board, Passeggiata alpestre ai piedi del monte Hirzer (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Schenna / Comune di Scena, dog regulation (Gemeinderat Nr. 33, 31.08.2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and school yards or on farmed land (meadows, fields) during the growing season; no bathing in the fountains of the centre',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (35 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cattle graze the alpine pastures in summer: keep your dog on a short lead, give cows a wide berth and let go of the lead if cattle charge', 'At about 2,000–2,130 m the weather turns fast: check the forecast and turn back in a storm', 'Busy with walkers on the E5 in summer: keep your dog close'],
+      terrainType: 'Alpine paths and alm tracks',
+      shadeDescription: 'Mostly open: about a quarter runs past mapped larch and spruce near the alms; the pastures towards Rotmoos are above the trees.',
+      terrainDescription: 'An alpine loop at 1,960–2,130 m below the Hirzer above Schenna, on level and gently climbing paths past the Hirzer hut and the Hinteregg, Mahd and Tallner alms to the Rotmoos basin.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Schenna requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season. On the alpine pastures cattle graze freely in summer, so keep your dog on a short lead. On the cable car dogs ride on a lead and muzzled.',
+      tips: 'Take the Hirzer cable car up from Saltaus: a 6.7 km loop back to Klammeben, 350 m up and down, about two and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. No mapped drinking water: bring water; the Hirzer hut and the alms serve food in summer.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passeggiata alpestre ai piedi del monte Hirzer (Schenna tourist board)', url: 'https://www.outdooractive.com/it/r/16571460' },
+        { label: 'Gemeinde Schenna, dog regulation (2010)', url: 'https://www.gemeinde.schenna.bz.it/system/web/GetDocument.ashx?cts=1715263604&fileId=1020049' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.738282, lng: 11.247224, label: 'Klammeben, top station of the Hirzer cable car, the board’s start' },
+      desc: 'An alpine loop below the Hirzer from the Hirzer cable car, past the Hirzer hut along the E5 to the Hinteregg and Mahd alms and the Rotmoos basin, and back by the Tallner Alm. The board lists 6.7 km, 350 m up and 350 m down, 2 h 30.'
+    },
+    'valtellina-rifugi-porro-e-ventina': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Lombardy batch 4).
+      // “Rifugi Porro e Ventina”, published by the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), drawn on 8 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour for Valtellina Outdoor. Communes: Chiesa in Valmalenco (no regulation, national rule).
+      // Crosses the Disgrazia – Sissone Natura 2000 site IT2040017 (90% of the line), whose measures require dogs on a lead and visitors on the paths. Not in the Stelvio National Park.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Chiareggio – Rifugio Porro – Rifugio Ventina, Valmalenco',
+      distance: 3.1,
+      elevation: 372,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the car park in Chiareggio on path 323, over the Mallero and gently up a wide mule track to the plateau of the Rifugio Porro and the Rifugio Ventina below Monte Disgrazia; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the large car park in Chiareggio, at the head of the Valmalenco, the board’s start.",
+        "sequence": "Follow the signs for path 323: drop a few tens of metres to the Mallero torrent and cross it on a wooden footbridge, then climb gently on the wide mule track through the larches to the open plateau at about 1,960 m, where the Rifugio Porro and then the Rifugio Ventina stand one after the other. Come back the same way.",
+        "switches": "No change of path: path 323 from Chiareggio to the huts.",
+        "sources": [
+          {
+            "label": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Rifugi Porro e Ventina (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/804596740",
+            "authority": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor)",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadow at the Rifugio Porro and Rifugio Ventina, with Monte Disgrazia behind, in June (lucagri on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official one-way walk 3.1 km from the car park in Chiareggio, as the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor) publishes it; the stored line is drawn on 8 OSM ways along the board’s published line, 3.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 323 all the way: from the car park in Chiareggio down to the Mallero footbridge, then up the mule track to the Rifugio Porro and on to the Rifugio Ventina. Back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3.1 km, 372 m up and 18 m down, 1:25 h, highest point 1,961 m, lowest 1,589 m (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Rifugi Porro e Ventina (its Outdooractive tour for Valtellina Outdoor, the tourism network of the Province of Sondrio and its mountain communities)',
+          'Comune di Chiesa in Valmalenco (its regulations are kept by the Unione dei Comuni Valmalenco) publishes no dog regulation (none in its register of regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'ZSC/ZPS IT2040017 Disgrazia – Sissone: DGR X/1029 of 25 November 2013, annexes, Art. 3 (p. 18), visitors keep to the paths and dogs go on a lead under close watch. No park, reserve or natural monument on the line (Regione Lombardia geoportal layers; not in the Stelvio National Park)',
+          'OpenStreetMap ways along the board’s line (8 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 9,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cattle graze the pastures around the huts in summer: keep your distance and your dog close', 'Stony mule track with loose stones in places: watch your dog’s paws', 'Storms build fast on summer afternoons at this height'],
+      terrainType: 'Mule track and meadow path',
+      shadeDescription: 'Mostly open on the map: OpenStreetMap shows woodland on only about a tenth of the line, though larches line much of the mule track; the hut plateau is in full sun.',
+      terrainDescription: 'A short climb at about 1,590–1,960 m from Chiareggio, at the head of the Valmalenco, on a wide mule track to the meadow plateau of the Porro and Ventina huts at the foot of Monte Disgrazia. Easy enough for families; a summer walk, as snow lies late up here.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The two huts serve food and drink in summer.',
+      dogNotes: 'Chiesa in Valmalenco has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Most of the walk is in the Disgrazia – Sissone Natura 2000 site: keep your dog on a lead and on the path. Clean up after your dog.',
+      tips: 'Start at the car park in Chiareggio: 3.1 km and, as the board lists, 372 m of climbing, about an hour and a half to the huts, then the same way back. Walk it from June to October. Keep your dog on a lead the whole way: the national rule (1.5 m at most, muzzle carried) applies, and the Natura 2000 site asks for dogs on a lead and on the path. Food and drink at the huts.',
+      sourceLinks: [
+        { label: 'Outdooractive, Rifugi Porro e Ventina (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor))', url: 'https://www.outdooractive.com/it/r/804596740' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'Regione Lombardia, DGR X/1029/2013, annexes (conservation measures for the Sondrio Natura 2000 sites)', url: 'https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/allegati-dgr-1029-2013-misure-di-conservazione-dei-sic.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.31595, lng: 9.78786, label: 'The car park in Chiareggio, the board’s start' },
+      desc: 'A classic, easy walk from Chiareggio up a wide mule track to the Rifugio Porro and the Rifugio Ventina, on a meadow plateau at the foot of Monte Disgrazia. The board lists 3.1 km, 372 m up and 18 m down, 1 h 25 one way.'
+    },
+    'valtellina-passo-di-campagneda': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Lombardy batch 4).
+      // “Passo di Campagneda”, published by the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour for Valtellina Outdoor. Communes: Lanzada (no regulation, national rule).
+      // Crosses the Monte di Scerscen – Ghiacciaio di Scerscen – Monte Motta Natura 2000 site IT2040016 (all of the line), whose measures require dogs on a lead and visitors on the paths. Not in the Stelvio National Park.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Campo Moro – Alpe Campagneda – Passo di Campagneda, Valmalenco (Lanzada)',
+      distance: 5.27,
+      elevation: 615,
+      hours: '2.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the car park at Campo Moro past the Rifugio Zoia on the old mule track to the Alpe Campagneda, then on the Alta Via della Valmalenco past the Campagneda lakes to the Passo di Campagneda on the Swiss border; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park at Campo Moro, by the dams above Lanzada, the board’s start.",
+        "sequence": "Follow the old mule track past the Rifugio Zoia, up and down between rock walls and mountain pines, to the pastures of the Alpe Campagneda, where the going turns easy. At the junction with the Alta Via della Valmalenco follow it uphill, past the small Campagneda lakes, to the Passo di Campagneda with its marker arch on the Swiss border. Come back the same way.",
+        "switches": "One change: at the junction on the Alpe Campagneda leave the mule track and follow the Alta Via della Valmalenco uphill to the pass.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Passo di Campagneda (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/804595894",
+            "authority": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor)",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Campagneda lakes below the Passo di Campagneda, looking west to Monte Disgrazia, in July (karma2 on Mapillary, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official one-way walk 5.27 km from the car park at Campo Moro, as the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor) publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 5.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the car park at Campo Moro on the old mule track past the Rifugio Zoia to the pastures of the Alpe Campagneda; at the junction with the Alta Via della Valmalenco, uphill along it (its seventh stage walked in reverse) past the Campagneda lakes to the pass and its marker arch. Back the same way; the board gives no path number.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 5.27 km, 615 m up and 3 m down, 2:28 h, highest point 2,604 m, lowest 1,990 m (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Passo di Campagneda (its Outdooractive tour for Valtellina Outdoor, the tourism network of the Province of Sondrio and its mountain communities)',
+          'Comune di Lanzada (its regulations are kept by the Unione dei Comuni Valmalenco) publishes no dog regulation (none in its register of regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'ZSC/ZPS IT2040016 Monte di Scerscen – Ghiacciaio di Scerscen – Monte Motta: DGR X/1029 of 25 November 2013, annexes, Art. 3 (p. 18), visitors keep to the paths and dogs go on a lead under close watch. No park, reserve or natural monument on the line (Regione Lombardia geoportal layers; not in the Stelvio National Park)',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Rocky stretches between boulders and slabs, rougher towards the pass: take it slowly with your dog', 'Cattle graze the Alpe Campagneda in summer: keep your distance and your dog close', 'Open ground above 2,000 m with no shade; storms build fast on summer afternoons'],
+      terrainType: 'Mule track and mountain path over rock and pasture',
+      shadeDescription: 'Almost no shade: a few mountain pines near Campo Moro, then open pasture and rock to the pass.',
+      terrainDescription: 'A popular walk at about 1,990–2,600 m from the Campo Moro dams in the upper Valmalenco, on an old mule track to the Alpe Campagneda pastures and then a stretch of the Alta Via past small lakes to a pass on the Swiss border, with views to Monte Disgrazia and the Bernina. A summer walk: snow lies late up here.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Rifugio Zoia near the start serves food and drink in summer.',
+      dogNotes: 'Lanzada has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The whole walk is in the Monte di Scerscen – Monte Motta Natura 2000 site: keep your dog on a lead and on the path. Clean up after your dog.',
+      tips: 'Start at the car park at Campo Moro, above Lanzada: 5.3 km and, as the board lists, 615 m of climbing, about two and a half hours to the pass, then the same way back. Walk it from July to early October. Keep your dog on a lead the whole way: the national rule (1.5 m at most, muzzle carried) applies, and the Natura 2000 site asks for dogs on a lead and on the path. The pass is the border: stay on the Italian side unless your dog’s papers are in order for Switzerland.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passo di Campagneda (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor))', url: 'https://www.outdooractive.com/it/r/804595894' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'Regione Lombardia, DGR X/1029/2013, annexes (conservation measures for the Sondrio Natura 2000 sites)', url: 'https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/allegati-dgr-1029-2013-misure-di-conservazione-dei-sic.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.30417, lng: 9.9327, label: 'The car park at Campo Moro, the board’s start' },
+      desc: 'A popular walk from Campo Moro in the upper Valmalenco past the Rifugio Zoia and the Alpe Campagneda pastures, then along the Alta Via past small lakes to the Passo di Campagneda on the Swiss border. The board lists 5.27 km, 615 m up and 3 m down, 2 h 28 one way.'
+    },
+    'savoie-areches-beaufort-la-grande-berge': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 2, Beaufortain).
+      // “Arêches / Beaufort – La Grande Berge”, published by the Communauté d’agglomération Arlysère, drawn on 23 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 262882). Communes: Beaufort (no dog order found online, probably exists: the national rule applies).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Plan de la Lai – Plan Mya – La Grande Berge (Beaufortain)',
+      distance: 7.4,
+      elevation: 350,
+      hours: '4',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way: from the Plan de la Lai refuge on the Cormet de Roselend road, up the alpage road past the Plan Mya refuge and the Petite Berge to the ruins of the Grande Berge, then back by the same route.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Plan de la Lai refuge, on the road from the Col du Méraillet to the Cormet de Roselend; park about 20 m past the refuge.",
+        "sequence": "Take the alpage road opposite the refuge and follow the signs for La Grande Berge, up past the Plan Mya refuge to the farm building of La Petite Berge. Carry on along the path to the ruins of the Grande Berge, and climb the grassy knoll on the right for the view over the Lac de Roselend. Come back the same way to the Plan de la Lai.",
+        "switches": "Follow the signs for La Grande Berge throughout. The board notes you can turn back at La Petite Berge to save an hour; the line shown goes on to the Grande Berge.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Communauté d’agglomération Arlysère, Arêches / Beaufort – La Grande Berge (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-la-grande-berge-262882/",
+            "authority": "Communauté d’agglomération Arlysère",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lac de Roselend and the Montagne d’Outray from the path to the Grande Berge, in July 2022 (Rémih on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official there-and-back walk 7.4 km from the Plan de la Lai refuge on the Cormet de Roselend road, as the Communauté d’agglomération Arlysère publishes it; the stored line is drawn on 23 OSM ways along the board’s published line, 7.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Plan de la Lai refuge (parking 20 m beyond it) and take the alpage road opposite, signed for La Grande Berge, up past the Plan Mya refuge to La Petite Berge, then the path on to the ruins of the Grande Berge; return the same way. Waymarked, no path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 2.3 (OSM nodes 4952419661, 7800803933).',
+        elevation: 'Official 7.4 km, 350 m up and 350 m down, 4:00 h average walking time (Communauté d’agglomération Arlysère, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Communauté d’agglomération Arlysère, Arêches / Beaufort – La Grande Berge (Explore Savoie, Apidae 262882) and its official GPX',
+          'Beaufort publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 1,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpages: cows graze along the road and path in summer and guard dogs may be present; keep your dog on a lead and walk round the herds', 'High, open ground at 1,800–2,070 m: no shade and quick weather changes', 'The alpage road is used by farm vehicles: lead on'],
+      terrainType: 'Alpage road and mountain path',
+      shadeDescription: 'No shade: the whole walk is on open alpine pasture above the tree line.',
+      terrainDescription: 'A half-day walk at 1,800–2,070 m on an alpage road and a grassy mountain path above the Lac de Roselend, past the Plan Mya refuge and the farm of La Petite Berge to the ruins of the Grande Berge.',
+      waterDescription: 'Drinking water at the start and km 2.3; places to eat on the way.',
+      dogNotes: 'Dogs are accepted, according to the official page. Beaufort publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. These are working Beaufort-cheese alpages with cows and possibly guard dogs: keep your dog on a lead and give the herds room.',
+      tips: 'Drive up from Beaufort past the Roselend dam and the Col du Méraillet to the Plan de la Lai refuge: 7.4 km there and back, 350 m up and down, about four hours. Water at the Plan de la Lai and at the Plan Mya refuge. Open June to the end of September; you can turn back at La Petite Berge to shorten it by an hour.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Arêches / Beaufort – La Grande Berge (Communauté d’agglomération Arlysère)', url: 'https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-la-grande-berge-262882/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/23/130/7373335/Arches++Beaufort+-+La+Grande+Berge.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.693272, lng: 6.668725, label: 'Plan de la Lai refuge on the Cormet de Roselend road, the board’s start' },
+      desc: 'A half-day walk over the high Beaufort alpages from the Plan de la Lai refuge past Plan Mya and La Petite Berge to the ruins of the Grande Berge, with the turquoise Lac de Roselend below. The official page lists 7.4 km, 350 m up and 350 m down, about four hours there and back.'
+    },
+    'savoie-areches-beaufort-croix-du-berger-et-lac-des-fees': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 2, Beaufortain).
+      // “Arêches / Beaufort – Croix du Berger et lac des Fées”, published by the Communauté d’agglomération Arlysère, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 262872). Communes: Beaufort (no dog order found online, probably exists: the national rule applies).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Lac des Fées – Cormet d’Arêches – Croix du Berger (Beaufortain)',
+      distance: 4.8,
+      elevation: 350,
+      hours: '3.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way: from the Lac des Fées above the Saint-Guérin dam on the red-and-yellow waymarked path to the Cormet d’Arêches, then left up over a series of grassy humps to the Croix du Berger, and back by the same route.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park by the Lac des Fées: from the Saint-Guérin dam belvedere take the first road on the left below the quarry, keep straight on to the end of the tarmac, then right for two bends on the stony track.",
+        "sequence": "From the Lac des Fées follow the red-and-yellow waymarked path up to the Cormet d’Arêches. At the col take the path to the left, which climbs and runs over several grassy humps to the Croix du Berger, already visible from the col. Come back the same way to the Lac des Fées.",
+        "switches": "One turn: at the Cormet d’Arêches leave the main path and go left towards the Croix du Berger.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Communauté d’agglomération Arlysère, Arêches / Beaufort – Croix du Berger et lac des Fées (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-croix-du-berger-et-lac-des-fees-262872/",
+            "authority": "Communauté d’agglomération Arlysère",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The track above the Lac des Fées towards the Cormet d’Arêches, in August 2022 (joostjakob on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official there-and-back walk 4.8 km from the Lac des Fées above the Saint-Guérin dam, as the Communauté d’agglomération Arlysère publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 4.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Lac des Fées car park and follow the red-and-yellow waymarked path up to the Cormet d’Arêches, then take the path to the left over the grassy humps to the Croix du Berger, visible from the col; return the same way. No path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 11192822660).',
+        elevation: 'Official 4.8 km, 350 m up and 350 m down, 3:30 h average walking time (Communauté d’agglomération Arlysère, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Communauté d’agglomération Arlysère, Arêches / Beaufort – Croix du Berger et lac des Fées (Explore Savoie, Apidae 262872) and its official GPX',
+          'Beaufort publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 13,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpages: cows graze around the Cormet d’Arêches in summer and guard dogs may be present; keep your dog on a lead and walk round the herds', 'Steady climb of 350 m on mountain paths to about 2,210 m, with steep grassy humps near the cross', 'High, open ground: little shade and quick weather changes'],
+      terrainType: 'Stony track and mountain path',
+      shadeDescription: 'Mostly open: about 13% passes mapped trees near the Lac des Fées; the rest is open alpine pasture.',
+      terrainDescription: 'A short mountain walk at 1,890–2,210 m from the small Lac des Fées above the Saint-Guérin reservoir up to the Cormet d’Arêches pass and along the grassy humps to the Croix du Berger, with wide views over the Beaufortain.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Dogs are accepted, according to the official page. Beaufort publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cows graze the alpages around the col: keep your dog on a lead and give the herds room.',
+      tips: 'Drive up from Arêches past the Saint-Guérin dam to the Lac des Fées: 4.8 km there and back, 350 m up and down, about three and a half hours. Drinking water at the start only. Open June to the end of September.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Arêches / Beaufort – Croix du Berger et lac des Fées (Communauté d’agglomération Arlysère)', url: 'https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-croix-du-berger-et-lac-des-fees-262872/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/59/129/7373115/Arches++Beaufort+-+Croix+du+Berger+et+lac+des+Fes.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.626113, lng: 6.600459, label: 'Lac des Fées car park above the Saint-Guérin dam, the board’s start' },
+      desc: 'A short mountain walk from the Lac des Fées above the Saint-Guérin reservoir up to the Cormet d’Arêches and along the grassy humps to the Croix du Berger, with wide views over the Beaufortain. The official page lists 4.8 km, 350 m up and 350 m down, about 3 h 30 there and back.'
+    },
     'engadin-around-lake-st-moritz': {
       // Hand audit: 3 November 2026, verified on arrival (new-trail Engadin batch 1, Switzerland batch 1).
       // “Around Lake St. Moritz”, published by the Engadin Tourismus AG, drawn on 30 OSM ways along the line it publishes
@@ -66907,6 +67904,7 @@ function effectiveOverrides(profile, adjustOverride){
     ['Aix-les-Bains', 45.6886, 5.9151, 'Chambéry – Bauges', 'savoy', 'savoie'],
     ['Albertville', 45.6754, 6.3925, 'Beaufortain', 'savoy', 'savoie'],
     ['Beaufort / Beaufortain', 45.7192, 6.5735, 'Beaufortain', 'savoy', 'savoie'],
+    ['Crest-Voland / Val d\'Arly', 45.7930, 6.5050, 'Beaufortain', 'savoy', 'savoie'],
     ['Bourg-Saint-Maurice', 45.6180, 6.7690, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
     ['Val d\'Isère', 45.4489, 6.9797, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
     ['Tignes', 45.4685, 6.9060, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
@@ -67269,27 +68267,58 @@ function isHistoricPoi(props){
   return [props.class, props.subclass].some(value => HISTORIC_POI_TYPES.has(value));
 }
 
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
 // subclass (raw OSM value) → label. Falls back to prettified text for
 // anything not listed, so unknown types still get a sensible popup.
-const POI_LABELS = {
-  restaurant: '🍽️ Restaurant', fast_food: '🍔 Fast food', cafe: '☕ Café',
-  bar: '🍺 Bar', pub: '🍻 Pub', biergarten: '🍺 Beer garden',
-  ice_cream: '🍦 Ice cream', bakery: '🥐 Bakery',
-  alpine_hut: '🏔️ Mountain hut (rifugio)', wilderness_hut: '🛖 Bivouac',
-  shelter: '⛺ Shelter', viewpoint: '👀 Viewpoint', attraction: '⭐ Attraction',
-  hotel: '🏨 Hotel', guest_house: '🏡 Guest house', camp_site: '🏕️ Campsite',
-  parking: '🅿️ Parking', bus_stop: '🚌 Bus stop', bus_station: '🚌 Bus station',
-  station: '🚉 Station', drinking_water: '🚰 Drinking water',
-  spring: '💧 Spring', peak: '⛰️ Peak', supermarket: '🛒 Supermarket',
-  pharmacy: '💊 Pharmacy', hospital: '🏥 Hospital', bank: '🏦 Bank',
-  museum: '🏛️ Museum', castle: '🏰 Castle', church: '⛪ Church',
-  chapel: '⛪ Chapel', information: 'ℹ️ Information',
-};
+// Built on each popup so the labels follow the page language.
+function poiLabels(){
+  return {
+    restaurant: tx('🍽️ Restaurant'),
+    fast_food: tx('🍔 Fast food'),
+    cafe: tx('☕ Café'),
+    bar: tx('🍺 Bar'),
+    pub: tx('🍻 Pub'),
+    biergarten: tx('🍺 Beer garden'),
+    ice_cream: tx('🍦 Ice cream'),
+    bakery: tx('🥐 Bakery'),
+    alpine_hut: tx('🏔️ Mountain hut (rifugio)'),
+    wilderness_hut: tx('🛖 Bivouac'),
+    shelter: tx('⛺ Shelter'),
+    viewpoint: tx('👀 Viewpoint'),
+    attraction: tx('⭐ Attraction'),
+    hotel: tx('🏨 Hotel'),
+    guest_house: tx('🏡 Guest house'),
+    camp_site: tx('🏕️ Campsite'),
+    parking: tx('🅿️ Parking'),
+    bus_stop: tx('🚌 Bus stop'),
+    bus_station: tx('🚌 Bus station'),
+    station: tx('🚉 Station'),
+    drinking_water: tx('🚰 Drinking water'),
+    spring: tx('💧 Spring'),
+    peak: tx('⛰️ Peak'),
+    supermarket: tx('🛒 Supermarket'),
+    pharmacy: tx('💊 Pharmacy'),
+    hospital: tx('🏥 Hospital'),
+    bank: tx('🏦 Bank'),
+    museum: tx('🏛️ Museum'),
+    castle: tx('🏰 Castle'),
+    church: tx('⛪ Church'),
+    chapel: tx('⛪ Chapel'),
+    information: tx('ℹ️ Information'),
+  };
+}
 
 function poiLabel(props){
   const key = props.subclass || props.class || '';
-  if (POI_LABELS[key]) return POI_LABELS[key];
-  if (!key) return '📍 Place';
+  const labels = poiLabels();
+  if (labels[key]) return labels[key];
+  if (!key) return tx('📍 Place');
   const pretty = String(key).replace(/_/g, ' ');
   return '📍 ' + pretty.charAt(0).toUpperCase() + pretty.slice(1);
 }
@@ -67311,12 +68340,12 @@ function buildDetailLines(tags){
   if (phone) html += `<br>📞 <a href="tel:${escHtml(String(phone).replace(/\s/g,''))}">${escHtml(phone)}</a>`;
   const site = tags.website || tags['contact:website'] || tags.url;
   if (site && /^https?:\/\//.test(site))
-    html += `<br>🔗 <a href="${escHtml(site)}" target="_blank" rel="noopener">Website</a>`;
+    html += `<br>🔗 <a href="${escHtml(site)}" target="_blank" rel="noopener">${tx('Website')}</a>`;
   if (tags.cuisine)
     html += `<br>🍴 ${escHtml(String(tags.cuisine).split(';').join(', ').replace(/_/g,' '))}`;
-  if (tags.dog === 'yes') html += `<br>🐕 Dogs welcome`;
-  else if (tags.dog === 'leashed') html += `<br>🦮 Dogs on leash`;
-  else if (tags.dog === 'no') html += `<br>🚫 No dogs`;
+  if (tags.dog === 'yes') html += `<br>🐕 ${tx('Dogs welcome')}`;
+  else if (tags.dog === 'leashed') html += `<br>🦮 ${tx('Dogs on leash')}`;
+  else if (tags.dog === 'no') html += `<br>🚫 ${tx('No dogs')}`;
   // e.g. "it:Lago di Braies" → link to Italian Wikipedia article
   if (tags.wikipedia && /^[a-z]{2,3}:./.test(tags.wikipedia)){
     const [lang, ...title] = tags.wikipedia.split(':');
@@ -67375,7 +68404,7 @@ function makeBasemapPoisClickable(map){
     // basic popup immediately with a quiet loading hint, then update the
     // popup in place when (if) details arrive.
     popup.setHTML(baseHtml
-      + `<div style="margin-top:4px;font-size:11px;color:#8b8578;font-style:italic;">looking up details…</div>`
+      + `<div style="margin-top:4px;font-size:11px;color:#8b8578;font-style:italic;">${tx('looking up details…')}</div>`
       + footer);
 
     fetchOsmDetails(name, lng, lat).then(tags => {
@@ -67779,12 +68808,19 @@ function findOwnPoiMatch(name, lng, lat){
 
 // ---- trail-routing-coverage.js ----
 // Generated by scripts/build-trail-routing-coverage.js. Do not edit.
-window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalkingRouteM":5000,"trails":{"ahrntal-escursione-rifugio-ponte-di-ghiaccio":{"graphUrl":"offline/packages/ahrntal-escursione-rifugio-ponte-di-ghiaccio/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.93924,"west":11.73432,"north":46.9622,"east":11.79039},"nodeCount":1274,"edgeCount":1281,"retrievedAt":"2026-11-02"},"ahrntal-sentiero-del-conte-cadipietra":{"graphUrl":"offline/packages/ahrntal-sentiero-del-conte-cadipietra/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.98895,"west":11.97127,"north":47.0003,"east":11.99259},"nodeCount":1356,"edgeCount":1374,"retrievedAt":"2026-11-02"},"ahrntal-sentiero-panoramico-cadipietra":{"graphUrl":"offline/packages/ahrntal-sentiero-panoramico-cadipietra/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.98699,"west":11.95532,"north":46.99948,"east":11.9833},"nodeCount":1627,"edgeCount":1642,"retrievedAt":"2026-11-02"},"alpe-siusi":{"graphUrl":"offline/packages/alpe-siusi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5305,"west":11.6165,"north":46.5429,"east":11.6466},"nodeCount":1367,"edgeCount":1372,"retrievedAt":null},"altabadia-da-furnacia-a-la-crusc":{"graphUrl":"offline/packages/altabadia-da-furnacia-a-la-crusc/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61081,"west":11.91112,"north":46.64584,"east":11.94938},"nodeCount":2379,"edgeCount":2392,"retrievedAt":"2026-11-02"},"altabadia-da-la-val-ai-prati-di-rit":{"graphUrl":"offline/packages/altabadia-da-la-val-ai-prati-di-rit/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6429,"west":11.91851,"north":46.67463,"east":11.97157},"nodeCount":4524,"edgeCount":4569,"retrievedAt":"2026-10-30"},"altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa":{"graphUrl":"offline/packages/altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61897,"west":11.86936,"north":46.67107,"east":11.92628},"nodeCount":7947,"edgeCount":7948,"retrievedAt":"2026-10-30"},"altabadia-da-san-cassiano-al-pralongia-fino-a-corvara":{"graphUrl":"offline/packages/altabadia-da-san-cassiano-al-pralongia-fino-a-corvara/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.52904,"west":11.87044,"north":46.55972,"east":11.92801},"nodeCount":4655,"edgeCount":4717,"retrievedAt":"2026-11-02"},"altabadia-escursione-corvara-colfosco":{"graphUrl":"offline/packages/altabadia-escursione-corvara-colfosco/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.54466,"west":11.84763,"north":46.55935,"east":11.87898},"nodeCount":2935,"edgeCount":2982,"retrievedAt":"2026-11-02"},"altabadia-escursione-corvara-la-villa":{"graphUrl":"offline/packages/altabadia-escursione-corvara-la-villa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.54532,"west":11.86419,"north":46.58598,"east":11.90855},"nodeCount":6455,"edgeCount":6500,"retrievedAt":"2026-11-02"},"altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt":{"graphUrl":"offline/packages/altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57901,"west":11.88187,"north":46.61351,"east":11.91954},"nodeCount":6439,"edgeCount":6464,"retrievedAt":"2026-10-30"},"altabadia-passeggiata-borest-cascate-del-pisciadu":{"graphUrl":"offline/packages/altabadia-passeggiata-borest-cascate-del-pisciadu/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5361,"west":11.82769,"north":46.55611,"east":11.87616},"nodeCount":3851,"edgeCount":3901,"retrievedAt":"2026-11-02"},"altabadia-sentiero-degli-artisti-tru-di-artisc":{"graphUrl":"offline/packages/altabadia-sentiero-degli-artisti-tru-di-artisc/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55735,"west":11.89853,"north":46.5872,"east":11.95949},"nodeCount":6127,"edgeCount":6168,"retrievedAt":"2026-11-02"},"aosta-champoluc-cascata-mascognaz":{"graphUrl":"offline/packages/aosta-champoluc-cascata-mascognaz/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.81932,"west":7.71954,"north":45.83498,"east":7.7364},"nodeCount":1566,"edgeCount":1555,"retrievedAt":"2026-11-02"},"aosta-periasc-antagnod":{"graphUrl":"offline/packages/aosta-periasc-antagnod/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.80619,"west":7.68389,"north":45.81647,"east":7.70094},"nodeCount":1621,"edgeCount":1614,"retrievedAt":"2026-11-02"},"aosta-ru-courtaud":{"graphUrl":"offline/packages/aosta-ru-courtaud/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.80436,"west":7.6649,"north":45.8376,"east":7.71122},"nodeCount":7221,"edgeCount":7260,"retrievedAt":"2026-11-02"},"aosta-sentiero-della-regina":{"graphUrl":"offline/packages/aosta-sentiero-della-regina/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.76243,"west":7.804,"north":45.79723,"east":7.84144},"nodeCount":4058,"edgeCount":4070,"retrievedAt":"2026-11-02"},"aosta-strada-lombarda":{"graphUrl":"offline/packages/aosta-strada-lombarda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.76165,"west":7.80793,"north":45.8021,"east":7.85144},"nodeCount":5110,"edgeCount":5122,"retrievedAt":"2026-11-02"},"aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande":{"graphUrl":"offline/packages/aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.79559,"west":7.80407,"north":45.82346,"east":7.83407},"nodeCount":2517,"edgeCount":2507,"retrievedAt":"2026-11-02"},"brixen-alto-sentiero-di-lazfons":{"graphUrl":"offline/packages/brixen-alto-sentiero-di-lazfons/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67981,"west":11.51618,"north":46.71209,"east":11.56714},"nodeCount":5738,"edgeCount":5757,"retrievedAt":"2026-11-02"},"brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl":{"graphUrl":"offline/packages/brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.78478,"west":11.64198,"north":46.80098,"east":11.67179},"nodeCount":3830,"edgeCount":3867,"retrievedAt":"2026-11-02"},"brixen-escursione-al-rifugio-bressanone":{"graphUrl":"offline/packages/brixen-escursione-al-rifugio-bressanone/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.87647,"west":11.59784,"north":46.91647,"east":11.64175},"nodeCount":2578,"edgeCount":2594,"retrievedAt":"2026-11-02"},"brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia":{"graphUrl":"offline/packages/brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82112,"west":11.63017,"north":46.86916,"east":11.68285},"nodeCount":7150,"edgeCount":7197,"retrievedAt":"2026-11-02"},"cadini":{"graphUrl":"routing-graphs/cadini.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55649444125045,"west":12.229910941417796,"north":46.65695555874955,"east":12.366869058582203},"nodeCount":6866,"edgeCount":6975,"retrievedAt":"2026-08-27T17:15:15.218Z"},"campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio":{"graphUrl":"offline/packages/campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.20816,"west":10.79999,"north":46.22845,"east":10.82879},"nodeCount":1733,"edgeCount":1736,"retrievedAt":"2026-11-02"},"campiglio-laghi-di-san-giuliano-garzone-e-vacarsa":{"graphUrl":"offline/packages/campiglio-laghi-di-san-giuliano-garzone-e-vacarsa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13158,"west":10.69682,"north":46.16214,"east":10.74166},"nodeCount":2081,"edgeCount":2087,"retrievedAt":"2026-11-02"},"campiglio-madonna-di-campiglio-monte-spinale":{"graphUrl":"offline/packages/campiglio-madonna-di-campiglio-monte-spinale/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21318,"west":10.82331,"north":46.23491,"east":10.85311},"nodeCount":2810,"edgeCount":2877,"retrievedAt":"2026-11-02"},"campiglio-monte-spinale-rifugio-graffer":{"graphUrl":"offline/packages/campiglio-monte-spinale-rifugio-graffer/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21065,"west":10.84286,"north":46.23213,"east":10.89458},"nodeCount":2054,"edgeCount":2071,"retrievedAt":"2026-11-02"},"campiglio-trekking-al-lago-di-nambino":{"graphUrl":"offline/packages/campiglio-trekking-al-lago-di-nambino/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.23402,"west":10.7955,"north":46.24523,"east":10.82235},"nodeCount":722,"edgeCount":727,"retrievedAt":"2026-11-02"},"campiglio-trekking-al-rifugio-segantini":{"graphUrl":"offline/packages/campiglio-trekking-al-rifugio-segantini/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.2004,"west":10.70111,"north":46.21344,"east":10.73249},"nodeCount":608,"edgeCount":611,"retrievedAt":"2026-11-02"},"campiglio-valina-d-amola-rifugio-segantini-cornisello":{"graphUrl":"offline/packages/campiglio-valina-d-amola-rifugio-segantini-cornisello/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.20167,"west":10.70314,"north":46.22482,"east":10.74951},"nodeCount":2005,"edgeCount":2026,"retrievedAt":"2026-11-02"},"cembra-castello-segonzano":{"graphUrl":"offline/packages/cembra-castello-segonzano/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17972,"west":11.24046,"north":46.20497,"east":11.26783},"nodeCount":3821,"edgeCount":3859,"retrievedAt":"2026-11-02"},"cembra-dos-paion":{"graphUrl":"offline/packages/cembra-dos-paion/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16451,"west":11.14552,"north":46.18571,"east":11.16849},"nodeCount":1853,"edgeCount":1864,"retrievedAt":"2026-10-30"},"cembra-erbe-della-salute":{"graphUrl":"offline/packages/cembra-erbe-della-salute/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.22589,"west":11.29137,"north":46.2395,"east":11.30847},"nodeCount":1059,"edgeCount":1076,"retrievedAt":"2026-10-30"},"cembra-giro-masi-grumes":{"graphUrl":"offline/packages/cembra-giro-masi-grumes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21122,"west":11.26051,"north":46.22755,"east":11.29985},"nodeCount":2281,"edgeCount":2323,"retrievedAt":"2026-10-30"},"cembra-giro-monte-corona":{"graphUrl":"offline/packages/cembra-giro-monte-corona/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16159,"west":11.1375,"north":46.18438,"east":11.16405},"nodeCount":2259,"edgeCount":2258,"retrievedAt":"2026-10-30"},"cembra-lago-lases-buse-giaz":{"graphUrl":"offline/packages/cembra-lago-lases-buse-giaz/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13193,"west":11.21086,"north":46.1547,"east":11.23552},"nodeCount":1853,"edgeCount":1863,"retrievedAt":"2026-10-30"},"cembra-lago-santo":{"graphUrl":"offline/packages/cembra-lago-santo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.19126,"west":11.20002,"north":46.20072,"east":11.21495},"nodeCount":443,"edgeCount":451,"retrievedAt":"2026-10-30"},"cembra-monte-pat-malga-vernera":{"graphUrl":"offline/packages/cembra-monte-pat-malga-vernera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21252,"west":11.33874,"north":46.22423,"east":11.35714},"nodeCount":519,"edgeCount":516,"retrievedAt":"2026-11-02"},"cembra-paese-beghei":{"graphUrl":"offline/packages/cembra-paese-beghei/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16628,"west":11.24187,"north":46.18168,"east":11.26519},"nodeCount":1577,"edgeCount":1612,"retrievedAt":"2026-10-30"},"cembra-pascoli-malga-vernera":{"graphUrl":"offline/packages/cembra-pascoli-malga-vernera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.20463,"west":11.341,"north":46.22085,"east":11.36331},"nodeCount":867,"edgeCount":873,"retrievedAt":"2026-10-30"},"cembra-pietra-del-futuro":{"graphUrl":"offline/packages/cembra-pietra-del-futuro/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13193,"west":11.21159,"north":46.14956,"east":11.23068},"nodeCount":1252,"edgeCount":1257,"retrievedAt":"2026-11-02"},"cembra-piz-de-le-agole":{"graphUrl":"offline/packages/cembra-piz-de-le-agole/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.15652,"west":11.17354,"north":46.19394,"east":11.21408},"nodeCount":4317,"edgeCount":4340,"retrievedAt":"2026-11-02"},"cembra-rifugio-potzmauer":{"graphUrl":"offline/packages/cembra-rifugio-potzmauer/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21962,"west":11.24629,"north":46.23794,"east":11.27079},"nodeCount":1465,"edgeCount":1480,"retrievedAt":"2026-11-02"},"cembra-san-leonardo-lisignago":{"graphUrl":"offline/packages/cembra-san-leonardo-lisignago/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.15226,"west":11.17063,"north":46.17018,"east":11.19186},"nodeCount":1763,"edgeCount":1767,"retrievedAt":"2026-10-30"},"cembra-vecchi-mestieri-grumes":{"graphUrl":"offline/packages/cembra-vecchi-mestieri-grumes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.215,"west":11.28137,"north":46.23802,"east":11.30634},"nodeCount":2293,"edgeCount":2337,"retrievedAt":"2026-10-30"},"cinque-torri-assisted":{"graphUrl":"offline/packages/cinque-torri-assisted/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50444,"west":12.03299,"north":46.5237,"east":12.06425},"nodeCount":2161,"edgeCount":2197,"retrievedAt":"2026-10-30"},"cortina-castello-di-botestagno":{"graphUrl":"offline/packages/cortina-castello-di-botestagno/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59354,"west":12.10149,"north":46.60634,"east":12.12004},"nodeCount":544,"edgeCount":542,"retrievedAt":"2026-11-02"},"cortina-malga-ra-stua":{"graphUrl":"offline/packages/cortina-malga-ra-stua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59944,"west":12.08466,"north":46.6293,"east":12.11726},"nodeCount":1548,"edgeCount":1566,"retrievedAt":"2026-10-30"},"cortina-mortisa-e-le-grotte-di-volpera":{"graphUrl":"offline/packages/cortina-mortisa-e-le-grotte-di-volpera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.51536,"west":12.11555,"north":46.54133,"east":12.14386},"nodeCount":3520,"edgeCount":3575,"retrievedAt":"2026-11-02"},"cortina-passeggiata-gourmet":{"graphUrl":"offline/packages/cortina-passeggiata-gourmet/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.51224,"west":12.08589,"north":46.52762,"east":12.10562},"nodeCount":602,"edgeCount":603,"retrievedAt":"2026-10-30"},"cortina-sotecordes":{"graphUrl":"offline/packages/cortina-sotecordes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.524,"west":12.0321,"north":46.54193,"east":12.07552},"nodeCount":2060,"edgeCount":2067,"retrievedAt":"2026-11-02"},"eggental-dal-passo-costalunga-al-lago-di-carezza":{"graphUrl":"offline/packages/eggental-dal-passo-costalunga-al-lago-di-carezza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39722,"west":11.57009,"north":46.41554,"east":11.61439},"nodeCount":2930,"edgeCount":2959,"retrievedAt":"2026-10-30"},"eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl":{"graphUrl":"offline/packages/eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39934,"west":11.53719,"north":46.4175,"east":11.58106},"nodeCount":2078,"edgeCount":2085,"retrievedAt":"2026-10-30"},"engadin-around-lake-st-moritz":{"graphUrl":"offline/packages/engadin-around-lake-st-moritz/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.48511,"west":9.83048,"north":46.50126,"east":9.86181},"nodeCount":4884,"edgeCount":5006,"retrievedAt":"2026-11-03"},"engadin-chapella-val-susauna":{"graphUrl":"offline/packages/engadin-chapella-val-susauna/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62773,"west":9.93924,"north":46.6587,"east":10.0144},"nodeCount":2037,"edgeCount":2036,"retrievedAt":"2026-11-03"},"engadin-corvatsch-murtel-fuorcla-surlej":{"graphUrl":"offline/packages/engadin-corvatsch-murtel-fuorcla-surlej/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42483,"west":9.81901,"north":46.43643,"east":9.84508},"nodeCount":550,"edgeCount":566,"retrievedAt":"2026-11-03"},"engadin-diavolezza-sass-queder":{"graphUrl":"offline/packages/engadin-diavolezza-sass-queder/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40655,"west":9.95982,"north":46.41543,"east":9.97774},"nodeCount":67,"edgeCount":65,"retrievedAt":"2026-11-03"},"engadin-morteratsch-glacier-route":{"graphUrl":"offline/packages/engadin-morteratsch-glacier-route/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42296,"west":9.91999,"north":46.45436,"east":9.95418},"nodeCount":1392,"edgeCount":1403,"retrievedAt":"2026-11-03"},"engadin-nature-trail-la-senda-samedan-smartrail":{"graphUrl":"offline/packages/engadin-nature-trail-la-senda-samedan-smartrail/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.52159,"west":9.84904,"north":46.54621,"east":9.88237},"nodeCount":4258,"edgeCount":4336,"retrievedAt":"2026-11-03"},"engadin-sils-chaste-peninsula-sils":{"graphUrl":"offline/packages/engadin-sils-chaste-peninsula-sils/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42205,"west":9.73847,"north":46.43711,"east":9.7689},"nodeCount":2540,"edgeCount":2591,"retrievedAt":"2026-11-03"},"engadin-surlej-waterfall-lake-silvaplana-surlej":{"graphUrl":"offline/packages/engadin-surlej-waterfall-lake-silvaplana-surlej/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44661,"west":9.79705,"north":46.47076,"east":9.82334},"nodeCount":2299,"edgeCount":2324,"retrievedAt":"2026-11-03"},"fassa-alpe-di-fuciade":{"graphUrl":"offline/packages/fassa-alpe-di-fuciade/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37487,"west":11.79147,"north":46.39617,"east":11.83293},"nodeCount":1417,"edgeCount":1425,"retrievedAt":"2026-10-30"},"fassa-antichi-bagnes":{"graphUrl":"offline/packages/fassa-antichi-bagnes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.4168,"west":11.67959,"north":46.43411,"east":11.69844},"nodeCount":1814,"edgeCount":1876,"retrievedAt":"2026-10-30"},"fassa-borgo-dei-patins":{"graphUrl":"offline/packages/fassa-borgo-dei-patins/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40851,"west":11.6625,"north":46.42364,"east":11.67897},"nodeCount":1599,"edgeCount":1656,"retrievedAt":"2026-10-30"},"fassa-borgo-di-tamion":{"graphUrl":"offline/packages/fassa-borgo-di-tamion/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39008,"west":11.65199,"north":46.41047,"east":11.67417},"nodeCount":1683,"edgeCount":1694,"retrievedAt":"2026-10-30"},"fassa-ciajeole-malga-roncac":{"graphUrl":"offline/packages/fassa-ciajeole-malga-roncac/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37313,"west":11.64592,"north":46.38616,"east":11.66612},"nodeCount":1275,"edgeCount":1295,"retrievedAt":"2026-10-30"},"fassa-da-alba-a-penia":{"graphUrl":"offline/packages/fassa-da-alba-a-penia/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45238,"west":11.77749,"north":46.4676,"east":11.80706},"nodeCount":1878,"edgeCount":1894,"retrievedAt":"2026-10-30"},"fassa-dipinti-del-giotto":{"graphUrl":"offline/packages/fassa-dipinti-del-giotto/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43666,"west":11.68315,"north":46.46118,"east":11.70985},"nodeCount":1708,"edgeCount":1721,"retrievedAt":"2026-10-30"},"fassa-malga-aloch":{"graphUrl":"offline/packages/fassa-malga-aloch/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.41967,"west":11.6837,"north":46.43322,"east":11.69845},"nodeCount":1254,"edgeCount":1306,"retrievedAt":"2026-10-30"},"fassa-moena-soraga-acqua":{"graphUrl":"offline/packages/fassa-moena-soraga-acqua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37313,"west":11.64914,"north":46.39714,"east":11.67526},"nodeCount":3008,"edgeCount":3046,"retrievedAt":"2026-10-30"},"fassa-moena-soraga-someda":{"graphUrl":"offline/packages/fassa-moena-soraga-someda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37271,"west":11.65151,"north":46.3973,"east":11.67825},"nodeCount":2978,"edgeCount":3011,"retrievedAt":"2026-10-30"},"fassa-molin-de-pezol":{"graphUrl":"offline/packages/fassa-molin-de-pezol/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42627,"west":11.68082,"north":46.44362,"east":11.70241},"nodeCount":2077,"edgeCount":2139,"retrievedAt":"2026-10-30"},"fassa-passato-ritrovato":{"graphUrl":"offline/packages/fassa-passato-ritrovato/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46963,"west":11.73523,"north":46.48659,"east":11.77626},"nodeCount":2732,"edgeCount":2812,"retrievedAt":"2026-10-30"},"fassa-pastori-erranti":{"graphUrl":"offline/packages/fassa-pastori-erranti/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40282,"west":11.65036,"north":46.42371,"east":11.67838},"nodeCount":2190,"edgeCount":2245,"retrievedAt":"2026-10-30"},"fassa-prato-di-sorte":{"graphUrl":"offline/packages/fassa-prato-di-sorte/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.35471,"west":11.63764,"north":46.38023,"east":11.66594},"nodeCount":1928,"edgeCount":1937,"retrievedAt":"2026-10-30"},"fassa-santuario-dei-pellegrini":{"graphUrl":"offline/packages/fassa-santuario-dei-pellegrini/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.41478,"west":11.65641,"north":46.42694,"east":11.6785},"nodeCount":1774,"edgeCount":1834,"retrievedAt":"2026-10-30"},"fassa-segreti-di-una-volta":{"graphUrl":"offline/packages/fassa-segreti-di-una-volta/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.41618,"west":11.66723,"north":46.4458,"east":11.70242},"nodeCount":5003,"edgeCount":5163,"retrievedAt":"2026-10-30"},"fassa-sentiero-della-foresta":{"graphUrl":"offline/packages/fassa-sentiero-della-foresta/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42992,"west":11.63471,"north":46.45065,"east":11.67},"nodeCount":1377,"edgeCount":1398,"retrievedAt":"2026-10-30"},"fassa-val-freida":{"graphUrl":"offline/packages/fassa-val-freida/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.3759,"west":11.81245,"north":46.38649,"east":11.83804},"nodeCount":464,"edgeCount":464,"retrievedAt":"2026-11-02"},"fiemme-cascatelle-di-ziano":{"graphUrl":"offline/packages/fiemme-cascatelle-di-ziano/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28099,"west":11.56997,"north":46.2926,"east":11.59062},"nodeCount":858,"edgeCount":865,"retrievedAt":"2026-10-30"},"fiemme-cavalese-passeggiata-panoramica":{"graphUrl":"offline/packages/fiemme-cavalese-passeggiata-panoramica/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28133,"west":11.45426,"north":46.29386,"east":11.47402},"nodeCount":2069,"edgeCount":2210,"retrievedAt":"2026-10-30"},"fiemme-giro-cavalese-castello":{"graphUrl":"offline/packages/fiemme-giro-cavalese-castello/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.27795,"west":11.42983,"north":46.29609,"east":11.46202},"nodeCount":3541,"edgeCount":3630,"retrievedAt":"2026-10-30"},"fiemme-larici-verso-anterivo":{"graphUrl":"offline/packages/fiemme-larici-verso-anterivo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.27258,"west":11.34196,"north":46.28523,"east":11.37174},"nodeCount":1140,"edgeCount":1160,"retrievedAt":"2026-11-02"},"fiemme-masi-comunicanti":{"graphUrl":"offline/packages/fiemme-masi-comunicanti/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.25256,"west":11.3323,"north":46.27554,"east":11.35723},"nodeCount":1804,"edgeCount":1801,"retrievedAt":"2026-10-30"},"fiemme-passeggiata-insolita":{"graphUrl":"offline/packages/fiemme-passeggiata-insolita/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.2823,"west":11.4546,"north":46.29622,"east":11.4727},"nodeCount":2141,"edgeCount":2286,"retrievedAt":"2026-11-02"},"fiemme-passo-oclini":{"graphUrl":"offline/packages/fiemme-passo-oclini/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.33768,"west":11.42207,"north":46.35207,"east":11.45682},"nodeCount":1394,"edgeCount":1398,"retrievedAt":"2026-10-30"},"fiemme-pradi-da-le-fior":{"graphUrl":"offline/packages/fiemme-pradi-da-le-fior/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.1973,"west":11.37344,"north":46.21398,"east":11.39152},"nodeCount":891,"edgeCount":890,"retrievedAt":"2026-11-02"},"fiemme-scalata-alle-malghette":{"graphUrl":"offline/packages/fiemme-scalata-alle-malghette/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.2879,"west":11.35136,"north":46.30223,"east":11.37825},"nodeCount":712,"edgeCount":720,"retrievedAt":"2026-10-30"},"fiemme-sentiero-botanico":{"graphUrl":"offline/packages/fiemme-sentiero-botanico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.22777,"west":11.29364,"north":46.26529,"east":11.34127},"nodeCount":4623,"edgeCount":4678,"retrievedAt":"2026-10-30"},"fiemme-varena-spianez":{"graphUrl":"offline/packages/fiemme-varena-spianez/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.29102,"west":11.45108,"north":46.31002,"east":11.49139},"nodeCount":2722,"edgeCount":2767,"retrievedAt":"2026-10-30"},"fvg-anello-lago-di-verzegnis":{"graphUrl":"offline/packages/fvg-anello-lago-di-verzegnis/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37391,"west":12.96879,"north":46.38533,"east":12.9893},"nodeCount":801,"edgeCount":790,"retrievedAt":"2026-11-02"},"fvg-borgo-stavoli-moggio":{"graphUrl":"offline/packages/fvg-borgo-stavoli-moggio/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39635,"west":13.13057,"north":46.41778,"east":13.16789},"nodeCount":1637,"edgeCount":1643,"retrievedAt":"2026-11-02"},"fvg-faggi-secolari-pustot-dordolla":{"graphUrl":"offline/packages/fvg-faggi-secolari-pustot-dordolla/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.4587,"west":13.18725,"north":46.47309,"east":13.2109},"nodeCount":1578,"edgeCount":1593,"retrievedAt":"2026-10-30"},"fvg-fontanon-di-goriuda":{"graphUrl":"offline/packages/fvg-fontanon-di-goriuda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.3902,"west":13.42938,"north":46.39888,"east":13.44155},"nodeCount":372,"edgeCount":366,"retrievedAt":"2026-11-02"},"fvg-laghi-di-fusine":{"graphUrl":"offline/packages/fvg-laghi-di-fusine/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46952,"west":13.65755,"north":46.49221,"east":13.68227},"nodeCount":1373,"edgeCount":1389,"retrievedAt":"2026-10-30"},"fvg-lago-di-sella-sompdogna":{"graphUrl":"offline/packages/fvg-lago-di-sella-sompdogna/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45366,"west":13.43987,"north":46.46541,"east":13.46033},"nodeCount":906,"edgeCount":911,"retrievedAt":"2026-11-02"},"fvg-monte-rest-da-passo-rest":{"graphUrl":"offline/packages/fvg-monte-rest-da-passo-rest/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.34353,"west":12.78185,"north":46.35958,"east":12.80957},"nodeCount":614,"edgeCount":606,"retrievedAt":"2026-11-02"},"fvg-sappada-rifugio-calvi":{"graphUrl":"offline/packages/fvg-sappada-rifugio-calvi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61649,"west":12.71133,"north":46.62805,"east":12.73157},"nodeCount":1128,"edgeCount":1136,"retrievedAt":"2026-11-02"},"geotrail-bulla":{"graphUrl":"routing-graphs/geotrail-bulla.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.51903444125045,"west":11.55345269315764,"north":46.62516555874955,"east":11.70241730684236},"nodeCount":9385,"edgeCount":9572,"retrievedAt":"2026-08-27T17:18:08.640Z"},"giro-del-bulacia":{"graphUrl":"routing-graphs/giro-del-bulacia.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50077344125045,"west":11.533750303446165,"north":46.60936095874955,"east":11.686425896553834},"nodeCount":9853,"edgeCount":9930,"retrievedAt":"2026-08-27T17:18:27.370Z"},"giro-del-sasso-lungo":{"graphUrl":"routing-graphs/giro-del-sasso-lungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471214125045,"west":11.632413276592942,"north":46.57778705874955,"east":11.82497362340706},"nodeCount":20598,"edgeCount":20981,"retrievedAt":"2026-08-27T17:19:01.411Z"},"giudicarie-san-martino-bosco-scolpito":{"graphUrl":"offline/packages/giudicarie-san-martino-bosco-scolpito/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91558,"west":10.62716,"north":45.93457,"east":10.64765},"nodeCount":1344,"edgeCount":1336,"retrievedAt":"2026-10-30"},"giudicarie-san-vigilio-senter-dei-cavai":{"graphUrl":"offline/packages/giudicarie-san-vigilio-senter-dei-cavai/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.03066,"west":10.72294,"north":46.04888,"east":10.75827},"nodeCount":2566,"edgeCount":2572,"retrievedAt":"2026-11-02"},"giudicarie-senter-dei-popi-madonna-del-lares":{"graphUrl":"offline/packages/giudicarie-senter-dei-popi-madonna-del-lares/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.99585,"west":10.69052,"north":46.02488,"east":10.73311},"nodeCount":4406,"edgeCount":4498,"retrievedAt":"2026-11-02"},"giudicarie-tione-bolbeno-madonna-del-lares":{"graphUrl":"offline/packages/giudicarie-tione-bolbeno-madonna-del-lares/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.01737,"west":10.72012,"north":46.03561,"east":10.74313},"nodeCount":1493,"edgeCount":1533,"retrievedAt":"2026-10-30"},"kronplatz-attraverso-il-sentiero-panoramico-a-brunico":{"graphUrl":"offline/packages/kronplatz-attraverso-il-sentiero-panoramico-a-brunico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.76361,"west":11.93289,"north":46.80032,"east":12.02223},"nodeCount":14137,"edgeCount":14399,"retrievedAt":"2026-10-30"},"kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina":{"graphUrl":"offline/packages/kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68709,"west":11.83999,"north":46.7183,"east":11.8833},"nodeCount":4542,"edgeCount":4527,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-leggendaria-sul-kienberg":{"graphUrl":"offline/packages/kronplatz-passeggiata-leggendaria-sul-kienberg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.76779,"west":11.83123,"north":46.80155,"east":11.88341},"nodeCount":8618,"edgeCount":8626,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-san-vigilio-le-dla-creda":{"graphUrl":"offline/packages/kronplatz-passeggiata-san-vigilio-le-dla-creda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67769,"west":11.9257,"north":46.69837,"east":11.96749},"nodeCount":2161,"edgeCount":2173,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe":{"graphUrl":"offline/packages/kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71539,"west":11.90359,"north":46.72395,"east":11.92442},"nodeCount":657,"edgeCount":648,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-valdaora-monguelfo":{"graphUrl":"offline/packages/kronplatz-passeggiata-valdaora-monguelfo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.74369,"west":12.03936,"north":46.7731,"east":12.1109},"nodeCount":8051,"edgeCount":8166,"retrievedAt":"2026-10-30"},"kronplatz-san-lorenzo-maria-sares":{"graphUrl":"offline/packages/kronplatz-san-lorenzo-maria-sares/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75981,"west":11.85908,"north":46.78662,"east":11.90793},"nodeCount":7151,"edgeCount":7183,"retrievedAt":"2026-10-30"},"kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi":{"graphUrl":"offline/packages/kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82282,"west":11.93989,"north":46.84289,"east":11.96716},"nodeCount":1918,"edgeCount":2018,"retrievedAt":"2026-10-30"},"kronplatz-valdaora-di-sopra-goste":{"graphUrl":"offline/packages/kronplatz-valdaora-di-sopra-goste/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75296,"west":12.03323,"north":46.76532,"east":12.06259},"nodeCount":1147,"edgeCount":1172,"retrievedAt":"2026-10-30"},"kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle":{"graphUrl":"offline/packages/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.72851,"west":11.98986,"north":46.77132,"east":12.03673},"nodeCount":6031,"edgeCount":6072,"retrievedAt":"2026-10-30"},"lago-braies":{"graphUrl":"routing-graphs/lago-braies.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64417944125045,"west":12.014860548903378,"north":46.745157558749554,"east":12.154071451096621},"nodeCount":2510,"edgeCount":2550,"retrievedAt":"2026-08-27T17:16:50.407Z"},"lago-carezza":{"graphUrl":"offline/packages/lago-carezza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.407,"west":11.5718,"north":46.4113,"east":11.5784},"nodeCount":224,"edgeCount":223,"retrievedAt":null},"lago-sorapis":{"graphUrl":"routing-graphs/lago-sorapis.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47704444125045,"west":12.139152431687037,"north":46.60112555874955,"east":12.294177568312962},"nodeCount":3815,"edgeCount":3854,"retrievedAt":"2026-08-27T17:17:07.622Z"},"lario-alla-ricerca-di-un-panorama-unico":{"graphUrl":"offline/packages/lario-alla-ricerca-di-un-panorama-unico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.93203,"west":9.21943,"north":45.96263,"east":9.25276},"nodeCount":2663,"edgeCount":2675,"retrievedAt":"2026-10-30"},"lario-anello-ai-piedi-del-monte-oriolo":{"graphUrl":"offline/packages/lario-anello-ai-piedi-del-monte-oriolo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.87789,"west":9.2523,"north":45.91579,"east":9.29316},"nodeCount":4671,"edgeCount":4717,"retrievedAt":"2026-11-02"},"lario-brunate-e-le-sue-chiese":{"graphUrl":"offline/packages/lario-brunate-e-le-sue-chiese/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.81346,"west":9.08954,"north":45.8297,"east":9.11689},"nodeCount":2236,"edgeCount":2288,"retrievedAt":"2026-10-30"},"lario-caslino-sullacqua":{"graphUrl":"offline/packages/lario-caslino-sullacqua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.82335,"west":9.21424,"north":45.84372,"east":9.23833},"nodeCount":3004,"edgeCount":3031,"retrievedAt":"2026-11-02"},"lario-eupilio-tra-segrino-e-cornizzolo":{"graphUrl":"offline/packages/lario-eupilio-tra-segrino-e-cornizzolo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.81386,"west":9.26376,"north":45.83103,"east":9.2907},"nodeCount":2825,"edgeCount":2854,"retrievedAt":"2026-10-30"},"lario-il-sentiero-del-viandante":{"graphUrl":"offline/packages/lario-il-sentiero-del-viandante/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.00329,"west":9.27028,"north":46.04738,"east":9.31791},"nodeCount":6470,"edgeCount":6600,"retrievedAt":"2026-11-02"},"lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza":{"graphUrl":"offline/packages/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.81972,"west":9.23565,"north":45.8496,"east":9.27644},"nodeCount":5086,"edgeCount":5159,"retrievedAt":"2026-11-02"},"lesachtal-spazierweg-maria-luggau-gailweg":{"graphUrl":"offline/packages/lesachtal-spazierweg-maria-luggau-gailweg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69861,"west":12.72813,"north":46.70926,"east":12.74543},"nodeCount":779,"edgeCount":771,"retrievedAt":"2026-11-02"},"lesachtal-tuffbad":{"graphUrl":"offline/packages/lesachtal-tuffbad/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71956,"west":12.75241,"north":46.73331,"east":12.7734},"nodeCount":981,"edgeCount":986,"retrievedAt":"2026-11-02"},"meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto":{"graphUrl":"offline/packages/meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71224,"west":11.20306,"north":46.74101,"east":11.23649},"nodeCount":4335,"edgeCount":4340,"retrievedAt":"2026-11-03"},"meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg":{"graphUrl":"offline/packages/meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67315,"west":11.17644,"north":46.69865,"east":11.20432},"nodeCount":6387,"edgeCount":6416,"retrievedAt":"2026-11-03"},"meran-facile-escursione-da-verano-ad-avelengo":{"graphUrl":"offline/packages/meran-facile-escursione-da-verano-ad-avelengo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60452,"west":11.21457,"north":46.64816,"east":11.26223},"nodeCount":5583,"edgeCount":5608,"retrievedAt":"2026-11-03"},"meran-sentiero-della-roggia-brandis-a-lana":{"graphUrl":"offline/packages/meran-sentiero-della-roggia-brandis-a-lana/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59035,"west":11.1379,"north":46.61694,"east":11.16693},"nodeCount":3056,"edgeCount":3125,"retrievedAt":"2026-11-03"},"nuvolau":{"graphUrl":"routing-graphs/nuvolau.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44016444125045,"west":11.980511149703753,"north":46.540225558749555,"east":12.122418850296247},"nodeCount":7292,"edgeCount":7418,"retrievedAt":"2026-08-27T17:16:21.759Z"},"osm-10116283":{"graphUrl":"routing-graphs/osm-10116283.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266709454636495,"north":46.01604555874955,"east":6.406880545363505},"nodeCount":6521,"edgeCount":6598,"retrievedAt":"2026-08-27T17:20:59.197Z"},"osm-10116380":{"graphUrl":"routing-graphs/osm-10116380.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91895444125045,"west":6.268138865501141,"north":46.01706555874955,"east":6.411921134498859},"nodeCount":5610,"edgeCount":5678,"retrievedAt":"2026-08-27T17:41:31.286Z"},"osm-10220399":{"graphUrl":"offline/packages/osm-10220399/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65113,"west":11.09524,"north":46.66559,"east":11.12413},"nodeCount":1167,"edgeCount":1179,"retrievedAt":"2026-10-30"},"osm-1116675":{"graphUrl":"routing-graphs/osm-1116675.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61417444125045,"west":12.30487349355897,"north":46.71087555874955,"east":12.443416506441029},"nodeCount":4150,"edgeCount":4215,"retrievedAt":"2026-08-27T20:14:51.910Z"},"osm-1116680":{"graphUrl":"routing-graphs/osm-1116680.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63077444125045,"west":12.285241785323949,"north":46.74662555874955,"east":12.451178214676052},"nodeCount":11996,"edgeCount":12255,"retrievedAt":"2026-08-27T20:25:39.850Z"},"osm-11270309":{"graphUrl":"offline/packages/osm-11270309/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.23386,"west":11.20861,"north":46.24283,"east":11.22519},"nodeCount":1421,"edgeCount":1495,"retrievedAt":"2026-10-30"},"osm-11517208":{"graphUrl":"routing-graphs/osm-11517208.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.82466444125045,"west":6.5280025665062515,"north":45.933155558749554,"east":6.686357433493749},"nodeCount":20707,"edgeCount":21016,"retrievedAt":"2026-08-27T17:42:36.366Z"},"osm-11764094":{"graphUrl":"offline/packages/osm-11764094/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73736,"west":11.65734,"north":46.77376,"east":11.69919},"nodeCount":5789,"edgeCount":5860,"retrievedAt":"2026-10-30"},"osm-11768853":{"graphUrl":"offline/packages/osm-11768853/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65606,"west":11.5761,"north":46.68027,"east":11.6096},"nodeCount":3141,"edgeCount":3118,"retrievedAt":"2026-10-30"},"osm-11774783":{"graphUrl":"routing-graphs/osm-11774783.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.603354441250445,"west":11.528868487262596,"north":46.69691555874955,"east":11.665491512737404},"nodeCount":10234,"edgeCount":10377,"retrievedAt":"2026-08-27T17:10:19.838Z"},"osm-11775760":{"graphUrl":"offline/packages/osm-11775760/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73545,"west":11.62126,"north":46.74953,"east":11.6417},"nodeCount":1523,"edgeCount":1539,"retrievedAt":"2026-10-30"},"osm-11775923":{"graphUrl":"offline/packages/osm-11775923/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.72641,"west":11.63788,"north":46.74908,"east":11.66339},"nodeCount":3465,"edgeCount":3514,"retrievedAt":"2026-10-30"},"osm-11780502":{"graphUrl":"routing-graphs/osm-11780502.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58839444125045,"west":11.691435852533683,"north":46.683155558749554,"east":11.837114147466316},"nodeCount":7359,"edgeCount":7425,"retrievedAt":"2026-08-27T17:10:42.226Z"},"osm-11795251":{"graphUrl":"offline/packages/osm-11795251/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.79966,"west":11.71249,"north":46.82551,"east":11.77545},"nodeCount":7649,"edgeCount":7697,"retrievedAt":"2026-10-30"},"osm-11814834":{"graphUrl":"offline/packages/osm-11814834/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56036,"west":11.61356,"north":46.58384,"east":11.64231},"nodeCount":2023,"edgeCount":2008,"retrievedAt":"2026-10-30"},"osm-11828233":{"graphUrl":"offline/packages/osm-11828233/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.83137,"west":11.61317,"north":46.85494,"east":11.63902},"nodeCount":2189,"edgeCount":2204,"retrievedAt":"2026-10-30"},"osm-11832013":{"graphUrl":"offline/packages/osm-11832013/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7355,"west":11.43425,"north":46.74905,"east":11.45676},"nodeCount":739,"edgeCount":736,"retrievedAt":"2026-10-30"},"osm-11833313":{"graphUrl":"offline/packages/osm-11833313/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.79597,"west":11.82088,"north":46.80987,"east":11.84417},"nodeCount":2589,"edgeCount":2606,"retrievedAt":"2026-10-30"},"osm-11839597":{"graphUrl":"offline/packages/osm-11839597/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.53471,"west":11.46113,"north":46.54726,"east":11.47905},"nodeCount":1140,"edgeCount":1146,"retrievedAt":"2026-10-30"},"osm-11860429":{"graphUrl":"offline/packages/osm-11860429/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6539,"west":11.91342,"north":46.66987,"east":11.93607},"nodeCount":1648,"edgeCount":1663,"retrievedAt":"2026-10-30"},"osm-12118490":{"graphUrl":"offline/packages/osm-12118490/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.30187,"west":6.34749,"north":45.32242,"east":6.37269},"nodeCount":2283,"edgeCount":2296,"retrievedAt":"2026-10-30"},"osm-12121346":{"graphUrl":"offline/packages/osm-12121346/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.27641,"west":6.36649,"north":45.2968,"east":6.38956},"nodeCount":2284,"edgeCount":2295,"retrievedAt":"2026-10-30"},"osm-12121798":{"graphUrl":"offline/packages/osm-12121798/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.24532,"west":6.41497,"north":45.25782,"east":6.43429},"nodeCount":1484,"edgeCount":1507,"retrievedAt":"2026-10-30"},"osm-12142337":{"graphUrl":"routing-graphs/osm-12142337.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60084444125045,"west":11.739506138448354,"north":46.71983555874955,"east":11.916233861551646},"nodeCount":13008,"edgeCount":13108,"retrievedAt":"2026-08-27T17:10:52.434Z"},"osm-12164395":{"graphUrl":"offline/packages/osm-12164395/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81348,"west":11.70925,"north":46.84542,"east":11.74427},"nodeCount":5454,"edgeCount":5470,"retrievedAt":"2026-10-30"},"osm-12172440":{"graphUrl":"offline/packages/osm-12172440/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82544,"west":11.75103,"north":46.84606,"east":11.78333},"nodeCount":4076,"edgeCount":4138,"retrievedAt":"2026-10-30"},"osm-12173549":{"graphUrl":"offline/packages/osm-12173549/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82624,"west":11.76648,"north":46.84636,"east":11.78855},"nodeCount":3066,"edgeCount":3114,"retrievedAt":"2026-10-30"},"osm-12173965":{"graphUrl":"offline/packages/osm-12173965/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75363,"west":12.10025,"north":46.76438,"east":12.11973},"nodeCount":1386,"edgeCount":1426,"retrievedAt":"2026-10-30"},"osm-12173984":{"graphUrl":"offline/packages/osm-12173984/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75363,"west":12.10024,"north":46.76991,"east":12.13922},"nodeCount":3363,"edgeCount":3417,"retrievedAt":"2026-11-03"},"osm-12182895":{"graphUrl":"offline/packages/osm-12182895/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61928,"west":11.32843,"north":46.6788,"east":11.39347},"nodeCount":11644,"edgeCount":11734,"retrievedAt":"2026-10-30"},"osm-12190657":{"graphUrl":"offline/packages/osm-12190657/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57259,"west":11.26569,"north":46.59378,"east":11.29048},"nodeCount":1012,"edgeCount":1011,"retrievedAt":"2026-10-30"},"osm-12302137":{"graphUrl":"offline/packages/osm-12302137/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.84673,"west":12.0838,"north":46.87064,"east":12.11003},"nodeCount":1518,"edgeCount":1534,"retrievedAt":"2026-10-30"},"osm-12302182":{"graphUrl":"offline/packages/osm-12302182/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81871,"west":12.07776,"north":46.83533,"east":12.09741},"nodeCount":880,"edgeCount":897,"retrievedAt":"2026-10-30"},"osm-12302191":{"graphUrl":"offline/packages/osm-12302191/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7723,"west":12.03174,"north":46.80726,"east":12.07136},"nodeCount":2746,"edgeCount":2758,"retrievedAt":"2026-10-30"},"osm-123162":{"graphUrl":"routing-graphs/osm-123162.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40658444125045,"west":11.391321942194814,"north":46.50572555874955,"east":11.556188057805185},"nodeCount":10365,"edgeCount":10504,"retrievedAt":"2026-08-27T19:56:49.589Z"},"osm-12736753":{"graphUrl":"offline/packages/osm-12736753/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67235,"west":11.62528,"north":46.71065,"east":11.67137},"nodeCount":7545,"edgeCount":7692,"retrievedAt":"2026-10-30"},"osm-12737724":{"graphUrl":"offline/packages/osm-12737724/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64764,"west":11.60524,"north":46.67923,"east":11.63978},"nodeCount":4474,"edgeCount":4488,"retrievedAt":"2026-10-30"},"osm-12953352":{"graphUrl":"offline/packages/osm-12953352/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71343,"west":11.65174,"north":46.73625,"east":11.67671},"nodeCount":4484,"edgeCount":4685,"retrievedAt":"2026-10-30"},"osm-13338113":{"graphUrl":"offline/packages/osm-13338113/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.32693,"west":6.74281,"north":46.35217,"east":6.77156},"nodeCount":3863,"edgeCount":3876,"retrievedAt":"2026-10-30"},"osm-13491868":{"graphUrl":"routing-graphs/osm-13491868.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60683444125045,"west":11.506114355606796,"north":46.70026555874955,"east":11.638455644393204},"nodeCount":9379,"edgeCount":9498,"retrievedAt":"2026-08-27T17:11:05.150Z"},"osm-14095296":{"graphUrl":"routing-graphs/osm-14095296.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.74418444125045,"west":5.884595618989789,"north":45.853015558749554,"east":6.027074381010211},"nodeCount":6410,"edgeCount":6594,"retrievedAt":"2026-08-27T19:24:39.004Z"},"osm-14375158":{"graphUrl":"offline/packages/osm-14375158/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20806,"west":6.39918,"north":45.23123,"east":6.43601},"nodeCount":3965,"edgeCount":4006,"retrievedAt":"2026-10-30"},"osm-14376573":{"graphUrl":"offline/packages/osm-14376573/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.19973,"west":6.3841,"north":45.21655,"east":6.40706},"nodeCount":1243,"edgeCount":1250,"retrievedAt":"2026-10-30"},"osm-14378946":{"graphUrl":"offline/packages/osm-14378946/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20923,"west":6.39867,"north":45.23124,"east":6.42434},"nodeCount":2983,"edgeCount":3012,"retrievedAt":"2026-10-30"},"osm-14379010":{"graphUrl":"offline/packages/osm-14379010/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20806,"west":6.39918,"north":45.23123,"east":6.43284},"nodeCount":3861,"edgeCount":3901,"retrievedAt":"2026-10-30"},"osm-14381570":{"graphUrl":"offline/packages/osm-14381570/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20183,"west":6.39812,"north":45.23123,"east":6.42942},"nodeCount":4902,"edgeCount":4965,"retrievedAt":"2026-10-30"},"osm-14381584":{"graphUrl":"offline/packages/osm-14381584/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.21117,"west":6.39918,"north":45.23124,"east":6.4289},"nodeCount":3140,"edgeCount":3172,"retrievedAt":"2026-10-30"},"osm-14864704":{"graphUrl":"routing-graphs/osm-14864704.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.761084441250446,"west":6.1280243865015525,"north":45.872825558749554,"east":6.270315613498448},"nodeCount":10976,"edgeCount":11300,"retrievedAt":"2026-08-27T19:19:58.714Z"},"osm-1506470":{"graphUrl":"offline/packages/osm-1506470/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65671,"west":11.1564,"north":46.67523,"east":11.18876},"nodeCount":5326,"edgeCount":5552,"retrievedAt":"2026-10-30"},"osm-15591346":{"graphUrl":"routing-graphs/osm-15591346.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.459774441250445,"west":5.98503178827734,"north":45.56897555874955,"east":6.14100821172266},"nodeCount":16088,"edgeCount":16629,"retrievedAt":"2026-08-27T19:56:33.029Z"},"osm-15791408":{"graphUrl":"offline/packages/osm-15791408/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13917,"west":11.22856,"north":46.1549,"east":11.25188},"nodeCount":1386,"edgeCount":1408,"retrievedAt":"2026-10-30"},"osm-16180587":{"graphUrl":"offline/packages/osm-16180587/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.93358,"west":6.70581,"north":45.95601,"east":6.75957},"nodeCount":5612,"edgeCount":5706,"retrievedAt":"2026-10-30"},"osm-16218739":{"graphUrl":"offline/packages/osm-16218739/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.55579,"west":6.73839,"north":45.57494,"east":6.7721},"nodeCount":2852,"edgeCount":2908,"retrievedAt":"2026-10-30"},"osm-16322228":{"graphUrl":"routing-graphs/osm-16322228.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.50406444125045,"west":5.904177110685752,"north":45.60305555874955,"east":6.043782889314248},"nodeCount":14377,"edgeCount":15276,"retrievedAt":"2026-08-27T19:24:42.898Z"},"osm-16363583":{"graphUrl":"routing-graphs/osm-16363583.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.55814444125045,"west":5.799788796148411,"north":45.66849555874955,"east":5.9486112038515895},"nodeCount":10179,"edgeCount":10964,"retrievedAt":"2026-08-27T19:25:16.148Z"},"osm-16365005":{"graphUrl":"routing-graphs/osm-16365005.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.51677444125045,"west":5.9944446829961535,"north":45.62962555874955,"east":6.139465317003847},"nodeCount":8626,"edgeCount":8701,"retrievedAt":"2026-08-27T19:56:44.815Z"},"osm-16395076":{"graphUrl":"routing-graphs/osm-16395076.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.48297444125045,"west":5.9889733229959266,"north":45.57818555874955,"east":6.1254666770040735},"nodeCount":7951,"edgeCount":8074,"retrievedAt":"2026-08-27T19:39:22.742Z"},"osm-1671736":{"graphUrl":"offline/packages/osm-1671736/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67673,"west":11.18372,"north":46.71706,"east":11.22782},"nodeCount":10591,"edgeCount":10640,"retrievedAt":"2026-10-30"},"osm-18055492":{"graphUrl":"routing-graphs/osm-18055492.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.79283444125045,"west":6.56720827118181,"north":45.90343555874955,"east":6.7415217288181895},"nodeCount":24364,"edgeCount":24659,"retrievedAt":"2026-08-27T19:04:06.346Z"},"osm-19153189":{"graphUrl":"routing-graphs/osm-19153189.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.527044441250446,"west":6.091252260695849,"north":45.62359555874955,"east":6.237467739304152},"nodeCount":6531,"edgeCount":6666,"retrievedAt":"2026-08-27T19:39:31.023Z"},"osm-19330972":{"graphUrl":"offline/packages/osm-19330972/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.27394,"west":11.35918,"north":46.2857,"east":11.37562},"nodeCount":705,"edgeCount":716,"retrievedAt":"2026-11-03"},"osm-19541366":{"graphUrl":"offline/packages/osm-19541366/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.28654,"west":6.5791,"north":45.30153,"east":6.61461},"nodeCount":2298,"edgeCount":2366,"retrievedAt":"2026-10-30"},"osm-19703479":{"graphUrl":"offline/packages/osm-19703479/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60034,"west":11.22082,"north":46.61393,"east":11.24392},"nodeCount":1473,"edgeCount":1480,"retrievedAt":"2026-11-03"},"osm-19855818":{"graphUrl":"offline/packages/osm-19855818/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.4373,"west":6.41848,"north":45.46194,"east":6.44702},"nodeCount":3895,"edgeCount":3951,"retrievedAt":"2026-10-30"},"osm-19974724":{"graphUrl":"offline/packages/osm-19974724/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40326,"west":11.56994,"north":46.41764,"east":11.58629},"nodeCount":1186,"edgeCount":1193,"retrievedAt":"2026-11-03"},"osm-19974725":{"graphUrl":"offline/packages/osm-19974725/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39883,"west":11.5669,"north":46.41764,"east":11.58736},"nodeCount":1722,"edgeCount":1736,"retrievedAt":"2026-11-03"},"osm-20347406":{"graphUrl":"routing-graphs/osm-20347406.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266689958139611,"north":46.04945555874955,"east":6.458980041860389},"nodeCount":10492,"edgeCount":10630,"retrievedAt":"2026-08-27T17:42:14.560Z"},"osm-20380913":{"graphUrl":"offline/packages/osm-20380913/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62343,"west":10.96177,"north":46.64204,"east":10.98874},"nodeCount":1786,"edgeCount":1860,"retrievedAt":"2026-10-30"},"osm-2179746":{"graphUrl":"routing-graphs/osm-2179746.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.29053444125045,"west":11.224413051871634,"north":46.385315558749554,"east":11.359506948128365},"nodeCount":9415,"edgeCount":9648,"retrievedAt":"2026-08-27T20:26:16.794Z"},"osm-2376630":{"graphUrl":"offline/packages/osm-2376630/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66777,"west":10.9307,"north":46.69258,"east":10.96319},"nodeCount":2200,"edgeCount":2207,"retrievedAt":"2026-10-30"},"osm-3202880":{"graphUrl":"routing-graphs/osm-3202880.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37478444125045,"west":11.219838865920021,"north":46.47579555874955,"east":11.36296113407998},"nodeCount":15379,"edgeCount":15878,"retrievedAt":"2026-08-27T20:42:27.979Z"},"osm-3707731":{"graphUrl":"offline/packages/osm-3707731/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64876,"west":11.61479,"north":46.66703,"east":11.6456},"nodeCount":2446,"edgeCount":2459,"retrievedAt":"2026-10-30"},"osm-3982382":{"graphUrl":"routing-graphs/osm-3982382.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.39130444125045,"west":5.68870273280012,"north":45.49504555874955,"east":5.8256372671998795},"nodeCount":3515,"edgeCount":3604,"retrievedAt":"2026-08-27T17:19:14.273Z"},"osm-5479112":{"graphUrl":"offline/packages/osm-5479112/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.01551,"west":6.91028,"north":46.05405,"east":6.95192},"nodeCount":9443,"edgeCount":9518,"retrievedAt":"2026-10-30"},"osm-5512443":{"graphUrl":"routing-graphs/osm-5512443.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60554444125045,"west":10.914493091157304,"north":46.70364555874955,"east":11.079186908842695},"nodeCount":7217,"edgeCount":7345,"retrievedAt":"2026-08-27T20:44:08.748Z"},"osm-5597577":{"graphUrl":"offline/packages/osm-5597577/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62561,"west":10.98047,"north":46.64607,"east":11.00282},"nodeCount":2129,"edgeCount":2200,"retrievedAt":"2026-10-30"},"osm-6244965":{"graphUrl":"offline/packages/osm-6244965/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.8005,"west":11.84283,"north":46.82695,"east":11.90723},"nodeCount":7080,"edgeCount":7191,"retrievedAt":"2026-10-30"},"osm-6250300":{"graphUrl":"routing-graphs/osm-6250300.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.903254441250446,"west":6.676860309200672,"north":45.99598555874955,"east":6.821329690799328},"nodeCount":10787,"edgeCount":11000,"retrievedAt":"2026-08-27T17:19:25.153Z"},"osm-6401355":{"graphUrl":"offline/packages/osm-6401355/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73267,"west":11.94824,"north":46.74448,"east":11.96751},"nodeCount":1286,"edgeCount":1304,"retrievedAt":"2026-10-30"},"osm-6404258":{"graphUrl":"routing-graphs/osm-6404258.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.701494441250446,"west":11.972922724716238,"north":46.80611555874955,"east":12.149147275283761},"nodeCount":13366,"edgeCount":13635,"retrievedAt":"2026-08-27T20:44:30.610Z"},"osm-6404633":{"graphUrl":"routing-graphs/osm-6404633.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.631540823974001,"north":46.26285555874955,"east":11.774189176025999},"nodeCount":7270,"edgeCount":7350,"retrievedAt":"2026-08-27T20:44:44.284Z"},"osm-6404634":{"graphUrl":"routing-graphs/osm-6404634.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.636474806635869,"north":46.25611555874955,"east":11.770655193364131},"nodeCount":6487,"edgeCount":6560,"retrievedAt":"2026-08-27T21:01:51.031Z"},"osm-6410700":{"graphUrl":"routing-graphs/osm-6410700.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.721594441250446,"west":11.985686129252224,"north":46.82971555874955,"east":12.151803870747777},"nodeCount":10637,"edgeCount":10778,"retrievedAt":"2026-08-27T21:01:57.131Z"},"osm-6453504":{"graphUrl":"offline/packages/osm-6453504/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63271,"west":11.06288,"north":46.6488,"east":11.0833},"nodeCount":1158,"edgeCount":1173,"retrievedAt":"2026-10-30"},"osm-6601608":{"graphUrl":"offline/packages/osm-6601608/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.909,"west":11.94163,"north":46.92795,"east":11.97331},"nodeCount":1871,"edgeCount":1902,"retrievedAt":"2026-10-30"},"osm-6823031":{"graphUrl":"routing-graphs/osm-6823031.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73590444125045,"west":11.873350912645975,"north":46.84038555874955,"east":12.025849087354025},"nodeCount":25710,"edgeCount":26439,"retrievedAt":"2026-08-27T21:02:49.999Z"},"osm-7045225":{"graphUrl":"routing-graphs/osm-7045225.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13172444125045,"west":10.986518368918368,"north":46.24825555874955,"east":11.141551631081631},"nodeCount":10547,"edgeCount":10783,"retrievedAt":"2026-08-27T21:02:54.311Z"},"osm-7086961":{"graphUrl":"routing-graphs/osm-7086961.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.128294441250446,"west":11.533400512335708,"north":46.231105558749555,"east":11.676629487664291},"nodeCount":2576,"edgeCount":2583,"retrievedAt":"2026-08-27T21:11:22.127Z"},"osm-7388748":{"graphUrl":"routing-graphs/osm-7388748.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46005444125045,"west":12.341487742111875,"north":46.55934555874955,"east":12.493212257888125},"nodeCount":10355,"edgeCount":10591,"retrievedAt":"2026-08-27T21:11:40.719Z"},"osm-7424683":{"graphUrl":"offline/packages/osm-7424683/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62276,"west":11.08183,"north":46.6843,"east":11.14908},"nodeCount":20523,"edgeCount":20732,"retrievedAt":"2026-10-30"},"osm-7426648":{"graphUrl":"offline/packages/osm-7426648/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67544,"west":11.09013,"north":46.69898,"east":11.14735},"nodeCount":9817,"edgeCount":9904,"retrievedAt":"2026-10-30"},"osm-7426666":{"graphUrl":"offline/packages/osm-7426666/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66096,"west":11.1533,"north":46.73023,"east":11.22905},"nodeCount":31589,"edgeCount":31982,"retrievedAt":"2026-10-30"},"osm-7446701":{"graphUrl":"offline/packages/osm-7446701/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81439,"west":11.27692,"north":46.83618,"east":11.33001},"nodeCount":2726,"edgeCount":2713,"retrievedAt":"2026-10-30"},"osm-7546708":{"graphUrl":"routing-graphs/osm-7546708.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44345444125045,"west":12.36812824682951,"north":46.54177555874955,"east":12.50749175317049},"nodeCount":10650,"edgeCount":10913,"retrievedAt":"2026-08-27T21:11:54.539Z"},"osm-7547653":{"graphUrl":"routing-graphs/osm-7547653.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46785444125045,"west":12.363839203471993,"north":46.565765558749554,"east":12.507590796528007},"nodeCount":7277,"edgeCount":7395,"retrievedAt":"2026-08-27T21:11:59.022Z"},"osm-7547983":{"graphUrl":"routing-graphs/osm-7547983.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43600444125045,"west":12.340097032272725,"north":46.53457555874955,"east":12.487892967727275},"nodeCount":11364,"edgeCount":11629,"retrievedAt":"2026-08-27T21:12:19.499Z"},"osm-7548201":{"graphUrl":"routing-graphs/osm-7548201.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47499444125045,"west":12.374697843622796,"north":46.57753555874955,"east":12.527532156377204},"nodeCount":5951,"edgeCount":6007,"retrievedAt":"2026-08-27T21:12:23.188Z"},"osm-7548344":{"graphUrl":"offline/packages/osm-7548344/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47477,"west":12.41932,"north":46.48885,"east":12.44329},"nodeCount":1675,"edgeCount":1738,"retrievedAt":"2026-10-30"},"osm-7549783":{"graphUrl":"offline/packages/osm-7549783/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.48829,"west":12.43636,"north":46.51038,"east":12.46043},"nodeCount":1946,"edgeCount":1969,"retrievedAt":"2026-10-30"},"osm-7567918":{"graphUrl":"offline/packages/osm-7567918/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.87786,"west":12.15239,"north":46.89282,"east":12.17983},"nodeCount":937,"edgeCount":948,"retrievedAt":"2026-10-30"},"osm-7655311":{"graphUrl":"offline/packages/osm-7655311/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64858,"west":11.00248,"north":46.68784,"east":11.07999},"nodeCount":11285,"edgeCount":11388,"retrievedAt":"2026-10-30"},"osm-8396539":{"graphUrl":"offline/packages/osm-8396539/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66147,"west":11.05617,"north":46.69073,"east":11.09787},"nodeCount":5897,"edgeCount":5904,"retrievedAt":"2026-10-30"},"osm-9450411":{"graphUrl":"offline/packages/osm-9450411/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56675,"west":11.5589,"north":46.61633,"east":11.67916},"nodeCount":16477,"edgeCount":16597,"retrievedAt":"2026-10-30"},"osm-9492594":{"graphUrl":"offline/packages/osm-9492594/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59866,"west":11.53897,"north":46.62667,"east":11.56955},"nodeCount":3744,"edgeCount":3742,"retrievedAt":"2026-10-30"},"osm-9493733":{"graphUrl":"offline/packages/osm-9493733/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59262,"west":11.87255,"north":46.61921,"east":11.90157},"nodeCount":2915,"edgeCount":2916,"retrievedAt":"2026-10-30"},"osm-9511999":{"graphUrl":"offline/packages/osm-9511999/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57931,"west":11.88494,"north":46.61899,"east":11.92825},"nodeCount":7626,"edgeCount":7660,"retrievedAt":"2026-10-30"},"osm-9648632":{"graphUrl":"offline/packages/osm-9648632/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.54267,"west":11.70635,"north":46.55503,"east":11.72714},"nodeCount":930,"edgeCount":951,"retrievedAt":"2026-10-30"},"osm-9933643":{"graphUrl":"routing-graphs/osm-9933643.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.46001444125045,"west":6.603237869650619,"north":45.55805555874955,"east":6.7443221303493806},"nodeCount":14632,"edgeCount":14901,"retrievedAt":"2026-08-27T17:20:33.017Z"},"osm-9937537":{"graphUrl":"offline/packages/osm-9937537/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.48919,"west":6.6296,"north":45.51733,"east":6.67286},"nodeCount":3843,"edgeCount":3877,"retrievedAt":"2026-10-30"},"osttirol-kinder-naturerlebnispfad-kals-ag":{"graphUrl":"offline/packages/osttirol-kinder-naturerlebnispfad-kals-ag/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":47.00677,"west":12.62461,"north":47.02874,"east":12.64878},"nodeCount":2831,"edgeCount":2883,"retrievedAt":"2026-11-02"},"osttirol-naturkraftweg-umbalfaelle":{"graphUrl":"offline/packages/osttirol-naturkraftweg-umbalfaelle/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":47.00473,"west":12.28767,"north":47.0204,"east":12.32492},"nodeCount":876,"edgeCount":881,"retrievedAt":"2026-11-02"},"osttirol-spazierweg-kreuzweg":{"graphUrl":"offline/packages/osttirol-spazierweg-kreuzweg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.99281,"west":12.5347,"north":47.00762,"east":12.55311},"nodeCount":3132,"edgeCount":3180,"retrievedAt":"2026-11-02"},"osttirol-spazierweg-nikolauskirche":{"graphUrl":"offline/packages/osttirol-spazierweg-nikolauskirche/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.98309,"west":12.5159,"north":47.00532,"east":12.54407},"nodeCount":4054,"edgeCount":4113,"retrievedAt":"2026-11-02"},"osttirol-themenweg-kreuzweg-virgen":{"graphUrl":"offline/packages/osttirol-themenweg-kreuzweg-virgen/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.99924,"west":12.43528,"north":47.01084,"east":12.4627},"nodeCount":2901,"edgeCount":2901,"retrievedAt":"2026-11-02"},"osttirol-weg-der-sinne-virgen":{"graphUrl":"offline/packages/osttirol-weg-der-sinne-virgen/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.99135,"west":12.44853,"north":47.0069,"east":12.4725},"nodeCount":2767,"edgeCount":2755,"retrievedAt":"2026-11-02"},"paganella-andalo-tana-ermellino":{"graphUrl":"offline/packages/paganella-andalo-tana-ermellino/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16851,"west":10.9972,"north":46.18891,"east":11.01931},"nodeCount":1355,"edgeCount":1387,"retrievedAt":"2026-10-30"},"paganella-giro-della-toresela":{"graphUrl":"offline/packages/paganella-giro-della-toresela/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.20409,"west":11.0834,"north":46.21366,"east":11.09881},"nodeCount":1617,"edgeCount":1798,"retrievedAt":"2026-11-02"},"piancavallo":{"graphUrl":"routing-graphs/piancavallo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.05039444125045,"west":12.458888920919806,"north":46.15883555874955,"east":12.616651079080192},"nodeCount":21111,"edgeCount":21289,"retrievedAt":"2026-08-27T17:17:48.733Z"},"prato-piazza":{"graphUrl":"routing-graphs/prato-piazza.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.595274441250446,"west":12.113642309733521,"north":46.69867555874955,"east":12.263057690266479},"nodeCount":3142,"edgeCount":3186,"retrievedAt":"2026-08-27T17:15:57.299Z"},"primiero-anello-di-valpiana":{"graphUrl":"offline/packages/primiero-anello-di-valpiana/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.12724,"west":11.83934,"north":46.14301,"east":11.8682},"nodeCount":1639,"edgeCount":1642,"retrievedAt":"2026-10-30"},"primiero-anello-molaren-via-nova-marine":{"graphUrl":"offline/packages/primiero-anello-molaren-via-nova-marine/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.15056,"west":11.80039,"north":46.1773,"east":11.82941},"nodeCount":3874,"edgeCount":3974,"retrievedAt":"2026-11-02"},"primiero-anello-poit-cordogne-san-giovanni":{"graphUrl":"offline/packages/primiero-anello-poit-cordogne-san-giovanni/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13297,"west":11.81609,"north":46.15151,"east":11.85132},"nodeCount":1747,"edgeCount":1748,"retrievedAt":"2026-10-30"},"primiero-fiera-pieve":{"graphUrl":"offline/packages/primiero-fiera-pieve/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16873,"west":11.8185,"north":46.18362,"east":11.83636},"nodeCount":2235,"edgeCount":2332,"retrievedAt":"2026-10-30"},"primiero-la-guana-di-primiero":{"graphUrl":"offline/packages/primiero-la-guana-di-primiero/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16336,"west":11.81958,"north":46.17905,"east":11.8396},"nodeCount":2533,"edgeCount":2660,"retrievedAt":"2026-10-30"},"primiero-malga-ces":{"graphUrl":"offline/packages/primiero-malga-ces/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.25342,"west":11.7677,"north":46.27396,"east":11.80707},"nodeCount":3149,"edgeCount":3168,"retrievedAt":"2026-10-30"},"primiero-malga-valcigolera":{"graphUrl":"offline/packages/primiero-malga-valcigolera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.24853,"west":11.75586,"north":46.26987,"east":11.80733},"nodeCount":3510,"edgeCount":3530,"retrievedAt":"2026-10-30"},"primiero-percorso-verde":{"graphUrl":"offline/packages/primiero-percorso-verde/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17234,"west":11.82588,"north":46.18389,"east":11.84318},"nodeCount":2055,"edgeCount":2182,"retrievedAt":"2026-10-30"},"primiero-ponte-su-funi":{"graphUrl":"offline/packages/primiero-ponte-su-funi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.14805,"west":11.78505,"north":46.1684,"east":11.81994},"nodeCount":4617,"edgeCount":4709,"retrievedAt":"2026-11-02"},"primiero-san-martino-di-castrozza-val-di-roda-prati-col":{"graphUrl":"offline/packages/primiero-san-martino-di-castrozza-val-di-roda-prati-col/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.24584,"west":11.7977,"north":46.2678,"east":11.83087},"nodeCount":1875,"edgeCount":1860,"retrievedAt":"2026-10-30"},"primiero-siror":{"graphUrl":"offline/packages/primiero-siror/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17444,"west":11.81962,"north":46.19445,"east":11.84131},"nodeCount":3214,"edgeCount":3321,"retrievedAt":"2026-10-30"},"primiero-tonadico":{"graphUrl":"offline/packages/primiero-tonadico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17217,"west":11.82538,"north":46.18851,"east":11.84652},"nodeCount":2778,"edgeCount":2928,"retrievedAt":"2026-10-30"},"primiero-transacqua":{"graphUrl":"offline/packages/primiero-transacqua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16912,"west":11.82417,"north":46.18184,"east":11.84262},"nodeCount":2304,"edgeCount":2400,"retrievedAt":"2026-10-30"},"primiero-via-della-frutta-antica":{"graphUrl":"offline/packages/primiero-via-della-frutta-antica/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.14398,"west":11.75288,"north":46.17836,"east":11.83221},"nodeCount":12582,"edgeCount":12798,"retrievedAt":"2026-10-30"},"rendena-ciclabile-javre-dare-vigo-pelugo":{"graphUrl":"offline/packages/rendena-ciclabile-javre-dare-vigo-pelugo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.05735,"west":10.7043,"north":46.0893,"east":10.73885},"nodeCount":4921,"edgeCount":4983,"retrievedAt":"2026-10-30"},"rendena-giro-del-belvedere-giustino":{"graphUrl":"offline/packages/rendena-giro-del-belvedere-giustino/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.14496,"west":10.76046,"north":46.15885,"east":10.7755},"nodeCount":1322,"edgeCount":1360,"retrievedAt":"2026-11-02"},"santa-maddalena":{"graphUrl":"routing-graphs/santa-maddalena.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59590444125045,"west":11.650737359001882,"north":46.68969555874955,"east":11.785922640998118},"nodeCount":6748,"edgeCount":6817,"retrievedAt":"2026-08-27T17:09:57.888Z"},"sassolungo":{"graphUrl":"routing-graphs/sassolungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471444125045,"west":11.63240987611249,"north":46.577785558749554,"east":11.83336012388751},"nodeCount":20798,"edgeCount":21180,"retrievedAt":"2026-08-27T17:16:32.997Z"},"seceda":{"graphUrl":"routing-graphs/seceda.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.53061444125045,"west":11.658993879765028,"north":46.64480555874955,"east":11.824916120234972},"nodeCount":17322,"edgeCount":17676,"retrievedAt":"2026-08-27T17:15:07.870Z"},"seiseralm-alla-volta-della-trappola-d-orso-a-s-michele":{"graphUrl":"offline/packages/seiseralm-alla-volta-della-trappola-d-orso-a-s-michele/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56039,"west":11.55437,"north":46.59095,"east":11.62846},"nodeCount":5697,"edgeCount":5711,"retrievedAt":"2026-10-30"},"seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del":{"graphUrl":"offline/packages/seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43766,"west":11.52563,"north":46.47503,"east":11.59119},"nodeCount":7746,"edgeCount":7774,"retrievedAt":"2026-10-30"},"seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff":{"graphUrl":"offline/packages/seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.49924,"west":11.51315,"north":46.52498,"east":11.54464},"nodeCount":2479,"edgeCount":2522,"retrievedAt":"2026-10-30"},"seiseralm-escursione-senza-barriere-all-alpe-di-siusi":{"graphUrl":"offline/packages/seiseralm-escursione-senza-barriere-all-alpe-di-siusi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55029,"west":11.65544,"north":46.56163,"east":11.67452},"nodeCount":732,"edgeCount":732,"retrievedAt":"2026-10-30"},"sentiero-del-trenino":{"graphUrl":"routing-graphs/sentiero-del-trenino.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50122394125045,"west":11.579771099956796,"north":46.620546058749554,"east":11.834705400043205},"nodeCount":31869,"edgeCount":32496,"retrievedAt":"2026-08-27T17:18:53.015Z"},"sentiero-hans-e-paula-steger":{"graphUrl":"routing-graphs/sentiero-hans-e-paula-steger.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47457534125045,"west":11.55202977961426,"north":46.58771235874955,"east":11.73381722038574},"nodeCount":16978,"edgeCount":17096,"retrievedAt":"2026-08-27T17:18:30.960Z"},"tre-cime":{"graphUrl":"routing-graphs/tre-cime.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56729029125045,"west":12.21890409925356,"north":46.68179013874955,"east":12.380584860746438},"nodeCount":9099,"edgeCount":9213,"retrievedAt":"2026-08-27T17:15:12.018Z"},"trecime-bagni-di-san-candido":{"graphUrl":"offline/packages/trecime-bagni-di-san-candido/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71342,"west":12.27254,"north":46.73409,"east":12.30536},"nodeCount":2194,"edgeCount":2233,"retrievedAt":"2026-11-02"},"trecime-bellavista-montecosta":{"graphUrl":"offline/packages/trecime-bellavista-montecosta/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73459,"west":12.11906,"north":46.75832,"east":12.17463},"nodeCount":9688,"edgeCount":9984,"retrievedAt":"2026-11-02"},"trecime-carbonin-rifugio-vallandro":{"graphUrl":"offline/packages/trecime-carbonin-rifugio-vallandro/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61754,"west":12.18842,"north":46.64746,"east":12.2211},"nodeCount":1724,"edgeCount":1737,"retrievedAt":"2026-11-02"},"trecime-cimabanche-prato-piazza":{"graphUrl":"offline/packages/trecime-cimabanche-prato-piazza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61987,"west":12.16307,"north":46.65734,"east":12.20401},"nodeCount":2260,"edgeCount":2275,"retrievedAt":"2026-11-02"},"trecime-dobbiaco-lago-di-dobbiaco":{"graphUrl":"offline/packages/trecime-dobbiaco-lago-di-dobbiaco/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69351,"west":12.1984,"north":46.73212,"east":12.24064},"nodeCount":3340,"edgeCount":3415,"retrievedAt":"2026-11-02"},"trecime-gasthof-panorama-rifugio-pendio-monte-elmo":{"graphUrl":"offline/packages/trecime-gasthof-panorama-rifugio-pendio-monte-elmo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69359,"west":12.36258,"north":46.70454,"east":12.37842},"nodeCount":642,"edgeCount":643,"retrievedAt":"2026-11-02"},"trecime-giro-delle-baite-lago-di-braies":{"graphUrl":"offline/packages/trecime-giro-delle-baite-lago-di-braies/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68601,"west":12.05451,"north":46.71258,"east":12.09046},"nodeCount":1093,"edgeCount":1121,"retrievedAt":"2026-11-02"},"trecime-haus-der-berge-rifugio-larice":{"graphUrl":"offline/packages/trecime-haus-der-berge-rifugio-larice/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69348,"west":12.35147,"north":46.71069,"east":12.38359},"nodeCount":1993,"edgeCount":2025,"retrievedAt":"2026-11-02"},"trecime-helmjet-waldruhe-sexten":{"graphUrl":"offline/packages/trecime-helmjet-waldruhe-sexten/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69791,"west":12.34468,"north":46.72069,"east":12.3696},"nodeCount":2462,"edgeCount":2514,"retrievedAt":"2026-11-02"},"trecime-innichen-waldkapelle-sexten":{"graphUrl":"offline/packages/trecime-innichen-waldkapelle-sexten/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6979,"west":12.27911,"north":46.73445,"east":12.3604},"nodeCount":7432,"edgeCount":7530,"retrievedAt":"2026-11-02"},"trecime-lago-di-braies-malga-foresta":{"graphUrl":"offline/packages/trecime-lago-di-braies-malga-foresta/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68602,"west":12.0603,"north":46.70147,"east":12.08909},"nodeCount":640,"edgeCount":673,"retrievedAt":"2026-11-02"},"trecime-lago-di-braies-malga-rossalm":{"graphUrl":"offline/packages/trecime-lago-di-braies-malga-rossalm/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65635,"west":12.07428,"north":46.70291,"east":12.12519},"nodeCount":1560,"edgeCount":1587,"retrievedAt":"2026-11-02"},"trecime-monte-casella-di-fuori":{"graphUrl":"offline/packages/trecime-monte-casella-di-fuori/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67143,"west":12.31652,"north":46.70784,"east":12.3636},"nodeCount":2998,"edgeCount":3053,"retrievedAt":"2026-11-02"},"trecime-monte-elmo-da-moso":{"graphUrl":"offline/packages/trecime-monte-elmo-da-moso/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68759,"west":12.35952,"north":46.71848,"east":12.3933},"nodeCount":2849,"edgeCount":2883,"retrievedAt":"2026-11-02"},"trecime-monte-elmo-versciaco":{"graphUrl":"offline/packages/trecime-monte-elmo-versciaco/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.70964,"west":12.32013,"north":46.73532,"east":12.36786},"nodeCount":3210,"edgeCount":3242,"retrievedAt":"2026-11-02"},"trecime-rotwandwiesen-moos":{"graphUrl":"offline/packages/trecime-rotwandwiesen-moos/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65833,"west":12.35685,"north":46.68689,"east":12.38808},"nodeCount":1865,"edgeCount":1887,"retrievedAt":"2026-11-02"},"trecime-san-candido-costa-dei-nosellari-dobbiaco":{"graphUrl":"offline/packages/trecime-san-candido-costa-dei-nosellari-dobbiaco/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7218,"west":12.21586,"north":46.74509,"east":12.2725},"nodeCount":3804,"edgeCount":3922,"retrievedAt":"2026-11-02"},"trecime-sasso-di-sesto":{"graphUrl":"offline/packages/trecime-sasso-di-sesto/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63339,"west":12.30303,"north":46.67025,"east":12.36001},"nodeCount":1931,"edgeCount":1955,"retrievedAt":"2026-11-02"},"trecime-sentiero-gustav-mahler":{"graphUrl":"offline/packages/trecime-sentiero-gustav-mahler/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71949,"west":12.19592,"north":46.73378,"east":12.23065},"nodeCount":2102,"edgeCount":2159,"retrievedAt":"2026-11-02"},"trecime-sesto-alte-saege-val-campo-di-dentro":{"graphUrl":"offline/packages/trecime-sesto-alte-saege-val-campo-di-dentro/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67106,"west":12.29138,"north":46.71627,"east":12.36151},"nodeCount":5621,"edgeCount":5720,"retrievedAt":"2026-11-02"},"trecime-sesto-cappella-del-bosco":{"graphUrl":"offline/packages/trecime-sesto-cappella-del-bosco/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69895,"west":12.33553,"north":46.71757,"east":12.35591},"nodeCount":1452,"edgeCount":1477,"retrievedAt":"2026-11-02"},"trecime-sesto-chiesa-gasthof-panorama":{"graphUrl":"offline/packages/trecime-sesto-chiesa-gasthof-panorama/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69588,"west":12.34336,"north":46.7081,"east":12.37158},"nodeCount":1449,"edgeCount":1478,"retrievedAt":"2026-11-02"},"trecime-sesto-san-candido":{"graphUrl":"offline/packages/trecime-sesto-san-candido/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68459,"west":12.27762,"north":46.73575,"east":12.37206},"nodeCount":11197,"edgeCount":11375,"retrievedAt":"2026-11-02"},"trecime-villabassa-lanaweg":{"graphUrl":"offline/packages/trecime-villabassa-lanaweg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73349,"west":12.16333,"north":46.75156,"east":12.19427},"nodeCount":5664,"edgeCount":5927,"retrievedAt":"2026-11-02"},"trecime-villabassa-mooskirche":{"graphUrl":"offline/packages/trecime-villabassa-mooskirche/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73449,"west":12.15083,"north":46.7462,"east":12.17463},"nodeCount":4065,"edgeCount":4338,"retrievedAt":"2026-11-02"},"valdisole-bivacco-malga-baselga":{"graphUrl":"offline/packages/valdisole-bivacco-malga-baselga/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.27046,"west":10.74889,"north":46.29915,"east":10.78004},"nodeCount":1046,"edgeCount":1054,"retrievedAt":"2026-11-02"},"valdisole-fazzon-lago-dei-caprioli":{"graphUrl":"offline/packages/valdisole-fazzon-lago-dei-caprioli/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28843,"west":10.75755,"north":46.30148,"east":10.77239},"nodeCount":564,"edgeCount":571,"retrievedAt":"2026-11-02"},"valdisole-lago-dei-caprioli-malga-alta-di-fazzon":{"graphUrl":"offline/packages/valdisole-lago-dei-caprioli-malga-alta-di-fazzon/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28809,"west":10.76287,"north":46.30012,"east":10.78172},"nodeCount":576,"edgeCount":584,"retrievedAt":"2026-11-02"},"valdisole-marilleva-1400-malga-alta-di-fazzon":{"graphUrl":"offline/packages/valdisole-marilleva-1400-malga-alta-di-fazzon/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28501,"west":10.76165,"north":46.3061,"east":10.81253},"nodeCount":1517,"edgeCount":1533,"retrievedAt":"2026-11-02"},"valdisole-monclassico-presson-meridiane":{"graphUrl":"offline/packages/valdisole-monclassico-presson-meridiane/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.32884,"west":10.87504,"north":46.33995,"east":10.89349},"nodeCount":696,"edgeCount":703,"retrievedAt":"2026-11-02"},"valdisole-ortise-malga-stabli":{"graphUrl":"offline/packages/valdisole-ortise-malga-stabli/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.32233,"west":10.76894,"north":46.33995,"east":10.78914},"nodeCount":655,"edgeCount":655,"retrievedAt":"2026-11-02"},"valdisole-passo-tonale-forte-mero":{"graphUrl":"offline/packages/valdisole-passo-tonale-forte-mero/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.26216,"west":10.58533,"north":46.2843,"east":10.63872},"nodeCount":2030,"edgeCount":2038,"retrievedAt":"2026-11-02"},"valdisole-passo-tonale-forte-mero-forte-zaccarana":{"graphUrl":"offline/packages/valdisole-passo-tonale-forte-mero-forte-zaccarana/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.26338,"west":10.58533,"north":46.28545,"east":10.63857},"nodeCount":2025,"edgeCount":2033,"retrievedAt":"2026-11-02"},"valdisole-rifugio-stavel-denza":{"graphUrl":"offline/packages/valdisole-rifugio-stavel-denza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.23979,"west":10.63632,"north":46.26667,"east":10.66549},"nodeCount":1003,"edgeCount":1005,"retrievedAt":"2026-11-02"},"valgardena-escursione-al-brogles":{"graphUrl":"offline/packages/valgardena-escursione-al-brogles/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59384,"west":11.67213,"north":46.61634,"east":11.7267},"nodeCount":1301,"edgeCount":1299,"retrievedAt":"2026-11-02"},"valgardena-escursione-al-resciesa":{"graphUrl":"offline/packages/valgardena-escursione-al-resciesa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59272,"west":11.64889,"north":46.60877,"east":11.68782},"nodeCount":736,"edgeCount":745,"retrievedAt":"2026-11-02"},"valgardena-escursione-al-seeurasas":{"graphUrl":"offline/packages/valgardena-escursione-al-seeurasas/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56614,"west":11.66666,"north":46.58675,"east":11.71666},"nodeCount":4840,"edgeCount":4967,"retrievedAt":"2026-11-02"},"valgardena-escursione-al-terrazzo-panoramico-seeurasas":{"graphUrl":"offline/packages/valgardena-escursione-al-terrazzo-panoramico-seeurasas/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56259,"west":11.70595,"north":46.58281,"east":11.72991},"nodeCount":1290,"edgeCount":1296,"retrievedAt":"2026-11-02"},"valgardena-escursione-dalla-cappella-santa-croce-al-brogles":{"graphUrl":"offline/packages/valgardena-escursione-dalla-cappella-santa-croce-al-brogles/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58877,"west":11.64889,"north":46.62078,"east":11.72652},"nodeCount":3144,"edgeCount":3161,"retrievedAt":"2026-10-30"},"valgardena-escursione-nella-vallunga":{"graphUrl":"offline/packages/valgardena-escursione-nella-vallunga/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56032,"west":11.76837,"north":46.58352,"east":11.81839},"nodeCount":1116,"edgeCount":1131,"retrievedAt":"2026-11-02"},"valgardena-giro-della-via-crucis":{"graphUrl":"offline/packages/valgardena-giro-della-via-crucis/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55496,"west":11.70999,"north":46.56669,"east":11.73812},"nodeCount":2756,"edgeCount":2808,"retrievedAt":"2026-11-02"},"valgardena-passeggiata-alla-chiesetta-di-san-giacomo":{"graphUrl":"offline/packages/valgardena-passeggiata-alla-chiesetta-di-san-giacomo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56838,"west":11.66637,"north":46.58191,"east":11.69918},"nodeCount":3499,"edgeCount":3620,"retrievedAt":"2026-11-02"},"valgardena-passeggiata-da-ortisei-a-s-cristina":{"graphUrl":"offline/packages/valgardena-passeggiata-da-ortisei-a-s-cristina/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55598,"west":11.66591,"north":46.57897,"east":11.71245},"nodeCount":5677,"edgeCount":5805,"retrievedAt":"2026-11-02"},"valgardena-percorso-dei-masi-tradizionali":{"graphUrl":"offline/packages/valgardena-percorso-dei-masi-tradizionali/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5555,"west":11.7039,"north":46.57621,"east":11.74439},"nodeCount":4645,"edgeCount":4722,"retrievedAt":"2026-10-30"},"valgardena-raida-dl-luech-giro-del-paese":{"graphUrl":"offline/packages/valgardena-raida-dl-luech-giro-del-paese/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55188,"west":11.70498,"north":46.56415,"east":11.73474},"nodeCount":2984,"edgeCount":3032,"retrievedAt":"2026-11-02"},"valgardena-seceda-da-col-raiser":{"graphUrl":"offline/packages/valgardena-seceda-da-col-raiser/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58153,"west":11.7189,"north":46.60424,"east":11.751},"nodeCount":2673,"edgeCount":2706,"retrievedAt":"2026-11-02"},"valgardena-tour-alla-volta-del-lech-sant":{"graphUrl":"offline/packages/valgardena-tour-alla-volta-del-lech-sant/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56285,"west":11.71659,"north":46.59051,"east":11.74677},"nodeCount":2578,"edgeCount":2604,"retrievedAt":"2026-11-02"},"valgardena-uciei-de-freeines":{"graphUrl":"offline/packages/valgardena-uciei-de-freeines/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56118,"west":11.72173,"north":46.589,"east":11.75209},"nodeCount":3121,"edgeCount":3157,"retrievedAt":"2026-11-02"},"valgardena-val-danna-percorso-kneipp":{"graphUrl":"offline/packages/valgardena-val-danna-percorso-kneipp/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5729,"west":11.6695,"north":46.58375,"east":11.69212},"nodeCount":1926,"edgeCount":1994,"retrievedAt":"2026-11-02"},"valley-view":{"graphUrl":"routing-graphs/valley-view.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60012444125045,"west":11.624142315781222,"north":46.69381555874955,"east":11.781507684218777},"nodeCount":9655,"edgeCount":9750,"retrievedAt":"2026-08-27T17:10:02.955Z"},"villnoess-da-russis-fino-al-passo-delle-erbe":{"graphUrl":"offline/packages/villnoess-da-russis-fino-al-passo-delle-erbe/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64896,"west":11.7466,"north":46.67915,"east":11.81992},"nodeCount":4737,"edgeCount":4729,"retrievedAt":"2026-10-30"},"villnoess-dolorama-3a-tappa":{"graphUrl":"offline/packages/villnoess-dolorama-3a-tappa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58615,"west":11.65556,"north":46.64989,"east":11.81024},"nodeCount":21122,"edgeCount":21280,"retrievedAt":"2026-10-30"},"villnoess-ranui-zannes":{"graphUrl":"offline/packages/villnoess-ranui-zannes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62412,"west":11.72366,"north":46.64359,"east":11.7709},"nodeCount":2302,"edgeCount":2311,"retrievedAt":"2026-10-30"},"vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles":{"graphUrl":"offline/packages/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68719,"west":10.43036,"north":46.7386,"east":10.5523},"nodeCount":11706,"edgeCount":11829,"retrievedAt":"2026-11-02"},"vinschgau-escursione-al-lago-bergsee-da-burgusio":{"graphUrl":"offline/packages/vinschgau-escursione-al-lago-bergsee-da-burgusio/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.70752,"west":10.52025,"north":46.71992,"east":10.53532},"nodeCount":1175,"edgeCount":1192,"retrievedAt":"2026-11-02"},"vinschgau-piani-di-annenberg":{"graphUrl":"offline/packages/vinschgau-piani-di-annenberg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61539,"west":10.83268,"north":46.63246,"east":10.87408},"nodeCount":2940,"edgeCount":2976,"retrievedAt":"2026-11-02"},"vinschgau-sentiero-della-roggia-kastanienwaal":{"graphUrl":"offline/packages/vinschgau-sentiero-della-roggia-kastanienwaal/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62388,"west":10.76615,"north":46.6356,"east":10.78669},"nodeCount":2202,"edgeCount":2279,"retrievedAt":"2026-11-02"},"vinschgau-sentiero-della-roggia-latschanderwaal-4954":{"graphUrl":"offline/packages/vinschgau-sentiero-della-roggia-latschanderwaal-4954/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61013,"west":10.84259,"north":46.6365,"east":10.90658},"nodeCount":5396,"edgeCount":5525,"retrievedAt":"2026-11-02"},"vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal":{"graphUrl":"offline/packages/vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65854,"west":10.57894,"north":46.68127,"east":10.61527},"nodeCount":3576,"edgeCount":3626,"retrievedAt":"2026-11-02"},"vinschgau-sentiero-della-roggia-schnalswaal":{"graphUrl":"offline/packages/vinschgau-sentiero-della-roggia-schnalswaal/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62333,"west":10.89587,"north":46.6558,"east":10.9747},"nodeCount":8675,"edgeCount":8894,"retrievedAt":"2026-11-02"},"vinschgau-sentiero-della-roggia-stabnerwaal":{"graphUrl":"offline/packages/vinschgau-sentiero-della-roggia-stabnerwaal/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63137,"west":10.93212,"north":46.65245,"east":10.97494},"nodeCount":4294,"edgeCount":4388,"retrievedAt":"2026-11-02"},"weissensee-nordic-5-genoesns-bruendl":{"graphUrl":"offline/packages/weissensee-nordic-5-genoesns-bruendl/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.70309,"west":13.27565,"north":46.71815,"east":13.30021},"nodeCount":1341,"edgeCount":1342,"retrievedAt":"2026-11-02"},"weissensee-nordic-6-rothns-bichl":{"graphUrl":"offline/packages/weissensee-nordic-6-rothns-bichl/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.70308,"west":13.26041,"north":46.71982,"east":13.3002},"nodeCount":2171,"edgeCount":2189,"retrievedAt":"2026-11-02"},"weissensee-nordic-7-franz-josephs-hoehe":{"graphUrl":"offline/packages/weissensee-nordic-7-franz-josephs-hoehe/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.70309,"west":13.24997,"north":46.72384,"east":13.30021},"nodeCount":3450,"edgeCount":3450,"retrievedAt":"2026-11-02"},"weissensee-nordic-8-naggler-alm":{"graphUrl":"offline/packages/weissensee-nordic-8-naggler-alm/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69543,"west":13.28856,"north":46.71659,"east":13.31805},"nodeCount":2071,"edgeCount":2074,"retrievedAt":"2026-11-02"},"weissensee-ortsee-ronacherfels":{"graphUrl":"offline/packages/weissensee-ortsee-ronacherfels/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6858,"west":13.31742,"north":46.72801,"east":13.42},"nodeCount":7172,"edgeCount":7213,"retrievedAt":"2026-11-02"},"weissensee-slow-trail":{"graphUrl":"offline/packages/weissensee-slow-trail/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68758,"west":13.33921,"north":46.72083,"east":13.42},"nodeCount":3667,"edgeCount":3695,"retrievedAt":"2026-11-02"},"weissensee-techendorf-tschabitscher-kreuzwirt":{"graphUrl":"offline/packages/weissensee-techendorf-tschabitscher-kreuzwirt/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71228,"west":13.23554,"north":46.73881,"east":13.30002},"nodeCount":5921,"edgeCount":5936,"retrievedAt":"2026-11-02"}}});
+window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalkingRouteM":5000,"trails":{"ahrntal-escursione-rifugio-ponte-di-ghiaccio":{"graphUrl":"offline/packages/ahrntal-escursione-rifugio-ponte-di-ghiaccio/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.93924,"west":11.73432,"north":46.9622,"east":11.79039},"nodeCount":1274,"edgeCount":1281,"retrievedAt":"2026-11-02"},"ahrntal-sentiero-del-conte-cadipietra":{"graphUrl":"offline/packages/ahrntal-sentiero-del-conte-cadipietra/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.98895,"west":11.97127,"north":47.0003,"east":11.99259},"nodeCount":1356,"edgeCount":1374,"retrievedAt":"2026-11-02"},"ahrntal-sentiero-panoramico-cadipietra":{"graphUrl":"offline/packages/ahrntal-sentiero-panoramico-cadipietra/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.98699,"west":11.95532,"north":46.99948,"east":11.9833},"nodeCount":1627,"edgeCount":1642,"retrievedAt":"2026-11-02"},"alpe-siusi":{"graphUrl":"offline/packages/alpe-siusi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5305,"west":11.6165,"north":46.5429,"east":11.6466},"nodeCount":1367,"edgeCount":1372,"retrievedAt":null},"altabadia-da-furnacia-a-la-crusc":{"graphUrl":"offline/packages/altabadia-da-furnacia-a-la-crusc/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61081,"west":11.91112,"north":46.64584,"east":11.94938},"nodeCount":2379,"edgeCount":2392,"retrievedAt":"2026-11-02"},"altabadia-da-la-val-ai-prati-di-rit":{"graphUrl":"offline/packages/altabadia-da-la-val-ai-prati-di-rit/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6429,"west":11.91851,"north":46.67463,"east":11.97157},"nodeCount":4524,"edgeCount":4569,"retrievedAt":"2026-10-30"},"altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa":{"graphUrl":"offline/packages/altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61897,"west":11.86936,"north":46.67107,"east":11.92628},"nodeCount":7947,"edgeCount":7948,"retrievedAt":"2026-10-30"},"altabadia-da-san-cassiano-al-pralongia-fino-a-corvara":{"graphUrl":"offline/packages/altabadia-da-san-cassiano-al-pralongia-fino-a-corvara/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.52904,"west":11.87044,"north":46.55972,"east":11.92801},"nodeCount":4655,"edgeCount":4717,"retrievedAt":"2026-11-02"},"altabadia-escursione-corvara-colfosco":{"graphUrl":"offline/packages/altabadia-escursione-corvara-colfosco/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.54466,"west":11.84763,"north":46.55935,"east":11.87898},"nodeCount":2935,"edgeCount":2982,"retrievedAt":"2026-11-02"},"altabadia-escursione-corvara-la-villa":{"graphUrl":"offline/packages/altabadia-escursione-corvara-la-villa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.54532,"west":11.86419,"north":46.58598,"east":11.90855},"nodeCount":6455,"edgeCount":6500,"retrievedAt":"2026-11-02"},"altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt":{"graphUrl":"offline/packages/altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57901,"west":11.88187,"north":46.61351,"east":11.91954},"nodeCount":6439,"edgeCount":6464,"retrievedAt":"2026-10-30"},"altabadia-passeggiata-borest-cascate-del-pisciadu":{"graphUrl":"offline/packages/altabadia-passeggiata-borest-cascate-del-pisciadu/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5361,"west":11.82769,"north":46.55611,"east":11.87616},"nodeCount":3851,"edgeCount":3901,"retrievedAt":"2026-11-02"},"altabadia-sentiero-degli-artisti-tru-di-artisc":{"graphUrl":"offline/packages/altabadia-sentiero-degli-artisti-tru-di-artisc/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55735,"west":11.89853,"north":46.5872,"east":11.95949},"nodeCount":6127,"edgeCount":6168,"retrievedAt":"2026-11-02"},"aosta-champoluc-cascata-mascognaz":{"graphUrl":"offline/packages/aosta-champoluc-cascata-mascognaz/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.81932,"west":7.71954,"north":45.83498,"east":7.7364},"nodeCount":1566,"edgeCount":1555,"retrievedAt":"2026-11-02"},"aosta-periasc-antagnod":{"graphUrl":"offline/packages/aosta-periasc-antagnod/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.80619,"west":7.68389,"north":45.81647,"east":7.70094},"nodeCount":1621,"edgeCount":1614,"retrievedAt":"2026-11-02"},"aosta-ru-courtaud":{"graphUrl":"offline/packages/aosta-ru-courtaud/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.80436,"west":7.6649,"north":45.8376,"east":7.71122},"nodeCount":7221,"edgeCount":7260,"retrievedAt":"2026-11-02"},"aosta-sentiero-della-regina":{"graphUrl":"offline/packages/aosta-sentiero-della-regina/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.76243,"west":7.804,"north":45.79723,"east":7.84144},"nodeCount":4058,"edgeCount":4070,"retrievedAt":"2026-11-02"},"aosta-strada-lombarda":{"graphUrl":"offline/packages/aosta-strada-lombarda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.76165,"west":7.80793,"north":45.8021,"east":7.85144},"nodeCount":5110,"edgeCount":5122,"retrievedAt":"2026-11-02"},"aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande":{"graphUrl":"offline/packages/aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.79559,"west":7.80407,"north":45.82346,"east":7.83407},"nodeCount":2517,"edgeCount":2507,"retrievedAt":"2026-11-02"},"brixen-alto-sentiero-di-lazfons":{"graphUrl":"offline/packages/brixen-alto-sentiero-di-lazfons/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67981,"west":11.51618,"north":46.71209,"east":11.56714},"nodeCount":5738,"edgeCount":5757,"retrievedAt":"2026-11-02"},"brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl":{"graphUrl":"offline/packages/brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.78478,"west":11.64198,"north":46.80098,"east":11.67179},"nodeCount":3830,"edgeCount":3867,"retrievedAt":"2026-11-02"},"brixen-escursione-al-rifugio-bressanone":{"graphUrl":"offline/packages/brixen-escursione-al-rifugio-bressanone/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.87647,"west":11.59784,"north":46.91647,"east":11.64175},"nodeCount":2578,"edgeCount":2594,"retrievedAt":"2026-11-02"},"brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia":{"graphUrl":"offline/packages/brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82112,"west":11.63017,"north":46.86916,"east":11.68285},"nodeCount":7150,"edgeCount":7197,"retrievedAt":"2026-11-02"},"cadini":{"graphUrl":"routing-graphs/cadini.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55649444125045,"west":12.229910941417796,"north":46.65695555874955,"east":12.366869058582203},"nodeCount":6866,"edgeCount":6975,"retrievedAt":"2026-08-27T17:15:15.218Z"},"campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio":{"graphUrl":"offline/packages/campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.20816,"west":10.79999,"north":46.22845,"east":10.82879},"nodeCount":1733,"edgeCount":1736,"retrievedAt":"2026-11-02"},"campiglio-laghi-di-san-giuliano-garzone-e-vacarsa":{"graphUrl":"offline/packages/campiglio-laghi-di-san-giuliano-garzone-e-vacarsa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13158,"west":10.69682,"north":46.16214,"east":10.74166},"nodeCount":2081,"edgeCount":2087,"retrievedAt":"2026-11-02"},"campiglio-madonna-di-campiglio-monte-spinale":{"graphUrl":"offline/packages/campiglio-madonna-di-campiglio-monte-spinale/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21318,"west":10.82331,"north":46.23491,"east":10.85311},"nodeCount":2810,"edgeCount":2877,"retrievedAt":"2026-11-02"},"campiglio-monte-spinale-rifugio-graffer":{"graphUrl":"offline/packages/campiglio-monte-spinale-rifugio-graffer/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21065,"west":10.84286,"north":46.23213,"east":10.89458},"nodeCount":2054,"edgeCount":2071,"retrievedAt":"2026-11-02"},"campiglio-trekking-al-lago-di-nambino":{"graphUrl":"offline/packages/campiglio-trekking-al-lago-di-nambino/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.23402,"west":10.7955,"north":46.24523,"east":10.82235},"nodeCount":722,"edgeCount":727,"retrievedAt":"2026-11-02"},"campiglio-trekking-al-rifugio-segantini":{"graphUrl":"offline/packages/campiglio-trekking-al-rifugio-segantini/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.2004,"west":10.70111,"north":46.21344,"east":10.73249},"nodeCount":608,"edgeCount":611,"retrievedAt":"2026-11-02"},"campiglio-valina-d-amola-rifugio-segantini-cornisello":{"graphUrl":"offline/packages/campiglio-valina-d-amola-rifugio-segantini-cornisello/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.20167,"west":10.70314,"north":46.22482,"east":10.74951},"nodeCount":2005,"edgeCount":2026,"retrievedAt":"2026-11-02"},"cembra-castello-segonzano":{"graphUrl":"offline/packages/cembra-castello-segonzano/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17972,"west":11.24046,"north":46.20497,"east":11.26783},"nodeCount":3821,"edgeCount":3859,"retrievedAt":"2026-11-02"},"cembra-dos-paion":{"graphUrl":"offline/packages/cembra-dos-paion/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16451,"west":11.14552,"north":46.18571,"east":11.16849},"nodeCount":1853,"edgeCount":1864,"retrievedAt":"2026-10-30"},"cembra-erbe-della-salute":{"graphUrl":"offline/packages/cembra-erbe-della-salute/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.22589,"west":11.29137,"north":46.2395,"east":11.30847},"nodeCount":1059,"edgeCount":1076,"retrievedAt":"2026-10-30"},"cembra-giro-masi-grumes":{"graphUrl":"offline/packages/cembra-giro-masi-grumes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21122,"west":11.26051,"north":46.22755,"east":11.29985},"nodeCount":2281,"edgeCount":2323,"retrievedAt":"2026-10-30"},"cembra-giro-monte-corona":{"graphUrl":"offline/packages/cembra-giro-monte-corona/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16159,"west":11.1375,"north":46.18438,"east":11.16405},"nodeCount":2259,"edgeCount":2258,"retrievedAt":"2026-10-30"},"cembra-lago-lases-buse-giaz":{"graphUrl":"offline/packages/cembra-lago-lases-buse-giaz/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13193,"west":11.21086,"north":46.1547,"east":11.23552},"nodeCount":1853,"edgeCount":1863,"retrievedAt":"2026-10-30"},"cembra-lago-santo":{"graphUrl":"offline/packages/cembra-lago-santo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.19126,"west":11.20002,"north":46.20072,"east":11.21495},"nodeCount":443,"edgeCount":451,"retrievedAt":"2026-10-30"},"cembra-monte-pat-malga-vernera":{"graphUrl":"offline/packages/cembra-monte-pat-malga-vernera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21252,"west":11.33874,"north":46.22423,"east":11.35714},"nodeCount":519,"edgeCount":516,"retrievedAt":"2026-11-02"},"cembra-paese-beghei":{"graphUrl":"offline/packages/cembra-paese-beghei/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16628,"west":11.24187,"north":46.18168,"east":11.26519},"nodeCount":1577,"edgeCount":1612,"retrievedAt":"2026-10-30"},"cembra-pascoli-malga-vernera":{"graphUrl":"offline/packages/cembra-pascoli-malga-vernera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.20463,"west":11.341,"north":46.22085,"east":11.36331},"nodeCount":867,"edgeCount":873,"retrievedAt":"2026-10-30"},"cembra-pietra-del-futuro":{"graphUrl":"offline/packages/cembra-pietra-del-futuro/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13193,"west":11.21159,"north":46.14956,"east":11.23068},"nodeCount":1252,"edgeCount":1257,"retrievedAt":"2026-11-02"},"cembra-piz-de-le-agole":{"graphUrl":"offline/packages/cembra-piz-de-le-agole/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.15652,"west":11.17354,"north":46.19394,"east":11.21408},"nodeCount":4317,"edgeCount":4340,"retrievedAt":"2026-11-02"},"cembra-rifugio-potzmauer":{"graphUrl":"offline/packages/cembra-rifugio-potzmauer/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.21962,"west":11.24629,"north":46.23794,"east":11.27079},"nodeCount":1465,"edgeCount":1480,"retrievedAt":"2026-11-02"},"cembra-san-leonardo-lisignago":{"graphUrl":"offline/packages/cembra-san-leonardo-lisignago/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.15226,"west":11.17063,"north":46.17018,"east":11.19186},"nodeCount":1763,"edgeCount":1767,"retrievedAt":"2026-10-30"},"cembra-vecchi-mestieri-grumes":{"graphUrl":"offline/packages/cembra-vecchi-mestieri-grumes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.215,"west":11.28137,"north":46.23802,"east":11.30634},"nodeCount":2293,"edgeCount":2337,"retrievedAt":"2026-10-30"},"cinque-torri-assisted":{"graphUrl":"offline/packages/cinque-torri-assisted/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50444,"west":12.03299,"north":46.5237,"east":12.06425},"nodeCount":2161,"edgeCount":2197,"retrievedAt":"2026-10-30"},"cortina-castello-di-botestagno":{"graphUrl":"offline/packages/cortina-castello-di-botestagno/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59354,"west":12.10149,"north":46.60634,"east":12.12004},"nodeCount":544,"edgeCount":542,"retrievedAt":"2026-11-02"},"cortina-malga-ra-stua":{"graphUrl":"offline/packages/cortina-malga-ra-stua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59944,"west":12.08466,"north":46.6293,"east":12.11726},"nodeCount":1548,"edgeCount":1566,"retrievedAt":"2026-10-30"},"cortina-mortisa-e-le-grotte-di-volpera":{"graphUrl":"offline/packages/cortina-mortisa-e-le-grotte-di-volpera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.51536,"west":12.11555,"north":46.54133,"east":12.14386},"nodeCount":3520,"edgeCount":3575,"retrievedAt":"2026-11-02"},"cortina-passeggiata-gourmet":{"graphUrl":"offline/packages/cortina-passeggiata-gourmet/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.51224,"west":12.08589,"north":46.52762,"east":12.10562},"nodeCount":602,"edgeCount":603,"retrievedAt":"2026-10-30"},"cortina-sotecordes":{"graphUrl":"offline/packages/cortina-sotecordes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.524,"west":12.0321,"north":46.54193,"east":12.07552},"nodeCount":2060,"edgeCount":2067,"retrievedAt":"2026-11-02"},"eggental-dal-passo-costalunga-al-lago-di-carezza":{"graphUrl":"offline/packages/eggental-dal-passo-costalunga-al-lago-di-carezza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39722,"west":11.57009,"north":46.41554,"east":11.61439},"nodeCount":2930,"edgeCount":2959,"retrievedAt":"2026-10-30"},"eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl":{"graphUrl":"offline/packages/eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39934,"west":11.53719,"north":46.4175,"east":11.58106},"nodeCount":2078,"edgeCount":2085,"retrievedAt":"2026-10-30"},"engadin-around-lake-st-moritz":{"graphUrl":"offline/packages/engadin-around-lake-st-moritz/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.48511,"west":9.83048,"north":46.50126,"east":9.86181},"nodeCount":4884,"edgeCount":5006,"retrievedAt":"2026-11-03"},"engadin-chapella-val-susauna":{"graphUrl":"offline/packages/engadin-chapella-val-susauna/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62773,"west":9.93924,"north":46.6587,"east":10.0144},"nodeCount":2037,"edgeCount":2036,"retrievedAt":"2026-11-03"},"engadin-corvatsch-murtel-fuorcla-surlej":{"graphUrl":"offline/packages/engadin-corvatsch-murtel-fuorcla-surlej/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42483,"west":9.81901,"north":46.43643,"east":9.84508},"nodeCount":550,"edgeCount":566,"retrievedAt":"2026-11-03"},"engadin-diavolezza-sass-queder":{"graphUrl":"offline/packages/engadin-diavolezza-sass-queder/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40655,"west":9.95982,"north":46.41543,"east":9.97774},"nodeCount":67,"edgeCount":65,"retrievedAt":"2026-11-03"},"engadin-morteratsch-glacier-route":{"graphUrl":"offline/packages/engadin-morteratsch-glacier-route/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42296,"west":9.91999,"north":46.45436,"east":9.95418},"nodeCount":1392,"edgeCount":1403,"retrievedAt":"2026-11-03"},"engadin-nature-trail-la-senda-samedan-smartrail":{"graphUrl":"offline/packages/engadin-nature-trail-la-senda-samedan-smartrail/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.52159,"west":9.84904,"north":46.54621,"east":9.88237},"nodeCount":4258,"edgeCount":4336,"retrievedAt":"2026-11-03"},"engadin-sils-chaste-peninsula-sils":{"graphUrl":"offline/packages/engadin-sils-chaste-peninsula-sils/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42205,"west":9.73847,"north":46.43711,"east":9.7689},"nodeCount":2540,"edgeCount":2591,"retrievedAt":"2026-11-03"},"engadin-surlej-waterfall-lake-silvaplana-surlej":{"graphUrl":"offline/packages/engadin-surlej-waterfall-lake-silvaplana-surlej/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44661,"west":9.79705,"north":46.47076,"east":9.82334},"nodeCount":2299,"edgeCount":2324,"retrievedAt":"2026-11-03"},"fassa-alpe-di-fuciade":{"graphUrl":"offline/packages/fassa-alpe-di-fuciade/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37487,"west":11.79147,"north":46.39617,"east":11.83293},"nodeCount":1417,"edgeCount":1425,"retrievedAt":"2026-10-30"},"fassa-antichi-bagnes":{"graphUrl":"offline/packages/fassa-antichi-bagnes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.4168,"west":11.67959,"north":46.43411,"east":11.69844},"nodeCount":1814,"edgeCount":1876,"retrievedAt":"2026-10-30"},"fassa-borgo-dei-patins":{"graphUrl":"offline/packages/fassa-borgo-dei-patins/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40851,"west":11.6625,"north":46.42364,"east":11.67897},"nodeCount":1599,"edgeCount":1656,"retrievedAt":"2026-10-30"},"fassa-borgo-di-tamion":{"graphUrl":"offline/packages/fassa-borgo-di-tamion/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39008,"west":11.65199,"north":46.41047,"east":11.67417},"nodeCount":1683,"edgeCount":1694,"retrievedAt":"2026-10-30"},"fassa-ciajeole-malga-roncac":{"graphUrl":"offline/packages/fassa-ciajeole-malga-roncac/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37313,"west":11.64592,"north":46.38616,"east":11.66612},"nodeCount":1275,"edgeCount":1295,"retrievedAt":"2026-10-30"},"fassa-da-alba-a-penia":{"graphUrl":"offline/packages/fassa-da-alba-a-penia/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45238,"west":11.77749,"north":46.4676,"east":11.80706},"nodeCount":1878,"edgeCount":1894,"retrievedAt":"2026-10-30"},"fassa-dipinti-del-giotto":{"graphUrl":"offline/packages/fassa-dipinti-del-giotto/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43666,"west":11.68315,"north":46.46118,"east":11.70985},"nodeCount":1708,"edgeCount":1721,"retrievedAt":"2026-10-30"},"fassa-malga-aloch":{"graphUrl":"offline/packages/fassa-malga-aloch/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.41967,"west":11.6837,"north":46.43322,"east":11.69845},"nodeCount":1254,"edgeCount":1306,"retrievedAt":"2026-10-30"},"fassa-moena-soraga-acqua":{"graphUrl":"offline/packages/fassa-moena-soraga-acqua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37313,"west":11.64914,"north":46.39714,"east":11.67526},"nodeCount":3008,"edgeCount":3046,"retrievedAt":"2026-10-30"},"fassa-moena-soraga-someda":{"graphUrl":"offline/packages/fassa-moena-soraga-someda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37271,"west":11.65151,"north":46.3973,"east":11.67825},"nodeCount":2978,"edgeCount":3011,"retrievedAt":"2026-10-30"},"fassa-molin-de-pezol":{"graphUrl":"offline/packages/fassa-molin-de-pezol/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42627,"west":11.68082,"north":46.44362,"east":11.70241},"nodeCount":2077,"edgeCount":2139,"retrievedAt":"2026-10-30"},"fassa-passato-ritrovato":{"graphUrl":"offline/packages/fassa-passato-ritrovato/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46963,"west":11.73523,"north":46.48659,"east":11.77626},"nodeCount":2732,"edgeCount":2812,"retrievedAt":"2026-10-30"},"fassa-pastori-erranti":{"graphUrl":"offline/packages/fassa-pastori-erranti/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40282,"west":11.65036,"north":46.42371,"east":11.67838},"nodeCount":2190,"edgeCount":2245,"retrievedAt":"2026-10-30"},"fassa-prato-di-sorte":{"graphUrl":"offline/packages/fassa-prato-di-sorte/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.35471,"west":11.63764,"north":46.38023,"east":11.66594},"nodeCount":1928,"edgeCount":1937,"retrievedAt":"2026-10-30"},"fassa-santuario-dei-pellegrini":{"graphUrl":"offline/packages/fassa-santuario-dei-pellegrini/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.41478,"west":11.65641,"north":46.42694,"east":11.6785},"nodeCount":1774,"edgeCount":1834,"retrievedAt":"2026-10-30"},"fassa-segreti-di-una-volta":{"graphUrl":"offline/packages/fassa-segreti-di-una-volta/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.41618,"west":11.66723,"north":46.4458,"east":11.70242},"nodeCount":5003,"edgeCount":5163,"retrievedAt":"2026-10-30"},"fassa-sentiero-della-foresta":{"graphUrl":"offline/packages/fassa-sentiero-della-foresta/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.42992,"west":11.63471,"north":46.45065,"east":11.67},"nodeCount":1377,"edgeCount":1398,"retrievedAt":"2026-10-30"},"fassa-val-freida":{"graphUrl":"offline/packages/fassa-val-freida/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.3759,"west":11.81245,"north":46.38649,"east":11.83804},"nodeCount":464,"edgeCount":464,"retrievedAt":"2026-11-02"},"fiemme-cascatelle-di-ziano":{"graphUrl":"offline/packages/fiemme-cascatelle-di-ziano/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28099,"west":11.56997,"north":46.2926,"east":11.59062},"nodeCount":858,"edgeCount":865,"retrievedAt":"2026-10-30"},"fiemme-cavalese-passeggiata-panoramica":{"graphUrl":"offline/packages/fiemme-cavalese-passeggiata-panoramica/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28133,"west":11.45426,"north":46.29386,"east":11.47402},"nodeCount":2069,"edgeCount":2210,"retrievedAt":"2026-10-30"},"fiemme-giro-cavalese-castello":{"graphUrl":"offline/packages/fiemme-giro-cavalese-castello/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.27795,"west":11.42983,"north":46.29609,"east":11.46202},"nodeCount":3541,"edgeCount":3630,"retrievedAt":"2026-10-30"},"fiemme-larici-verso-anterivo":{"graphUrl":"offline/packages/fiemme-larici-verso-anterivo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.27258,"west":11.34196,"north":46.28523,"east":11.37174},"nodeCount":1140,"edgeCount":1160,"retrievedAt":"2026-11-02"},"fiemme-masi-comunicanti":{"graphUrl":"offline/packages/fiemme-masi-comunicanti/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.25256,"west":11.3323,"north":46.27554,"east":11.35723},"nodeCount":1804,"edgeCount":1801,"retrievedAt":"2026-10-30"},"fiemme-passeggiata-insolita":{"graphUrl":"offline/packages/fiemme-passeggiata-insolita/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.2823,"west":11.4546,"north":46.29622,"east":11.4727},"nodeCount":2141,"edgeCount":2286,"retrievedAt":"2026-11-02"},"fiemme-passo-oclini":{"graphUrl":"offline/packages/fiemme-passo-oclini/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.33768,"west":11.42207,"north":46.35207,"east":11.45682},"nodeCount":1394,"edgeCount":1398,"retrievedAt":"2026-10-30"},"fiemme-pradi-da-le-fior":{"graphUrl":"offline/packages/fiemme-pradi-da-le-fior/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.1973,"west":11.37344,"north":46.21398,"east":11.39152},"nodeCount":891,"edgeCount":890,"retrievedAt":"2026-11-02"},"fiemme-scalata-alle-malghette":{"graphUrl":"offline/packages/fiemme-scalata-alle-malghette/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.2879,"west":11.35136,"north":46.30223,"east":11.37825},"nodeCount":712,"edgeCount":720,"retrievedAt":"2026-10-30"},"fiemme-sentiero-botanico":{"graphUrl":"offline/packages/fiemme-sentiero-botanico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.22777,"west":11.29364,"north":46.26529,"east":11.34127},"nodeCount":4623,"edgeCount":4678,"retrievedAt":"2026-10-30"},"fiemme-varena-spianez":{"graphUrl":"offline/packages/fiemme-varena-spianez/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.29102,"west":11.45108,"north":46.31002,"east":11.49139},"nodeCount":2722,"edgeCount":2767,"retrievedAt":"2026-10-30"},"fvg-anello-lago-di-verzegnis":{"graphUrl":"offline/packages/fvg-anello-lago-di-verzegnis/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37391,"west":12.96879,"north":46.38533,"east":12.9893},"nodeCount":801,"edgeCount":790,"retrievedAt":"2026-11-02"},"fvg-borgo-stavoli-moggio":{"graphUrl":"offline/packages/fvg-borgo-stavoli-moggio/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39635,"west":13.13057,"north":46.41778,"east":13.16789},"nodeCount":1637,"edgeCount":1643,"retrievedAt":"2026-11-02"},"fvg-faggi-secolari-pustot-dordolla":{"graphUrl":"offline/packages/fvg-faggi-secolari-pustot-dordolla/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.4587,"west":13.18725,"north":46.47309,"east":13.2109},"nodeCount":1578,"edgeCount":1593,"retrievedAt":"2026-10-30"},"fvg-fontanon-di-goriuda":{"graphUrl":"offline/packages/fvg-fontanon-di-goriuda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.3902,"west":13.42938,"north":46.39888,"east":13.44155},"nodeCount":372,"edgeCount":366,"retrievedAt":"2026-11-02"},"fvg-laghi-di-fusine":{"graphUrl":"offline/packages/fvg-laghi-di-fusine/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46952,"west":13.65755,"north":46.49221,"east":13.68227},"nodeCount":1373,"edgeCount":1389,"retrievedAt":"2026-10-30"},"fvg-lago-di-sella-sompdogna":{"graphUrl":"offline/packages/fvg-lago-di-sella-sompdogna/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45366,"west":13.43987,"north":46.46541,"east":13.46033},"nodeCount":906,"edgeCount":911,"retrievedAt":"2026-11-02"},"fvg-monte-rest-da-passo-rest":{"graphUrl":"offline/packages/fvg-monte-rest-da-passo-rest/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.34353,"west":12.78185,"north":46.35958,"east":12.80957},"nodeCount":614,"edgeCount":606,"retrievedAt":"2026-11-02"},"fvg-sappada-rifugio-calvi":{"graphUrl":"offline/packages/fvg-sappada-rifugio-calvi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61649,"west":12.71133,"north":46.62805,"east":12.73157},"nodeCount":1128,"edgeCount":1136,"retrievedAt":"2026-11-02"},"geotrail-bulla":{"graphUrl":"routing-graphs/geotrail-bulla.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.51903444125045,"west":11.55345269315764,"north":46.62516555874955,"east":11.70241730684236},"nodeCount":9385,"edgeCount":9572,"retrievedAt":"2026-08-27T17:18:08.640Z"},"giro-del-bulacia":{"graphUrl":"routing-graphs/giro-del-bulacia.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50077344125045,"west":11.533750303446165,"north":46.60936095874955,"east":11.686425896553834},"nodeCount":9853,"edgeCount":9930,"retrievedAt":"2026-08-27T17:18:27.370Z"},"giro-del-sasso-lungo":{"graphUrl":"routing-graphs/giro-del-sasso-lungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471214125045,"west":11.632413276592942,"north":46.57778705874955,"east":11.82497362340706},"nodeCount":20598,"edgeCount":20981,"retrievedAt":"2026-08-27T17:19:01.411Z"},"giudicarie-san-martino-bosco-scolpito":{"graphUrl":"offline/packages/giudicarie-san-martino-bosco-scolpito/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91558,"west":10.62716,"north":45.93457,"east":10.64765},"nodeCount":1344,"edgeCount":1336,"retrievedAt":"2026-10-30"},"giudicarie-san-vigilio-senter-dei-cavai":{"graphUrl":"offline/packages/giudicarie-san-vigilio-senter-dei-cavai/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.03066,"west":10.72294,"north":46.04888,"east":10.75827},"nodeCount":2566,"edgeCount":2572,"retrievedAt":"2026-11-02"},"giudicarie-senter-dei-popi-madonna-del-lares":{"graphUrl":"offline/packages/giudicarie-senter-dei-popi-madonna-del-lares/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.99585,"west":10.69052,"north":46.02488,"east":10.73311},"nodeCount":4406,"edgeCount":4498,"retrievedAt":"2026-11-02"},"giudicarie-tione-bolbeno-madonna-del-lares":{"graphUrl":"offline/packages/giudicarie-tione-bolbeno-madonna-del-lares/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.01737,"west":10.72012,"north":46.03561,"east":10.74313},"nodeCount":1493,"edgeCount":1533,"retrievedAt":"2026-10-30"},"kronplatz-attraverso-il-sentiero-panoramico-a-brunico":{"graphUrl":"offline/packages/kronplatz-attraverso-il-sentiero-panoramico-a-brunico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.76361,"west":11.93289,"north":46.80032,"east":12.02223},"nodeCount":14137,"edgeCount":14399,"retrievedAt":"2026-10-30"},"kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina":{"graphUrl":"offline/packages/kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68709,"west":11.83999,"north":46.7183,"east":11.8833},"nodeCount":4542,"edgeCount":4527,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-leggendaria-sul-kienberg":{"graphUrl":"offline/packages/kronplatz-passeggiata-leggendaria-sul-kienberg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.76779,"west":11.83123,"north":46.80155,"east":11.88341},"nodeCount":8618,"edgeCount":8626,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-san-vigilio-le-dla-creda":{"graphUrl":"offline/packages/kronplatz-passeggiata-san-vigilio-le-dla-creda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67769,"west":11.9257,"north":46.69837,"east":11.96749},"nodeCount":2161,"edgeCount":2173,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe":{"graphUrl":"offline/packages/kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71539,"west":11.90359,"north":46.72395,"east":11.92442},"nodeCount":657,"edgeCount":648,"retrievedAt":"2026-10-30"},"kronplatz-passeggiata-valdaora-monguelfo":{"graphUrl":"offline/packages/kronplatz-passeggiata-valdaora-monguelfo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.74369,"west":12.03936,"north":46.7731,"east":12.1109},"nodeCount":8051,"edgeCount":8166,"retrievedAt":"2026-10-30"},"kronplatz-san-lorenzo-maria-sares":{"graphUrl":"offline/packages/kronplatz-san-lorenzo-maria-sares/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75981,"west":11.85908,"north":46.78662,"east":11.90793},"nodeCount":7151,"edgeCount":7183,"retrievedAt":"2026-10-30"},"kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi":{"graphUrl":"offline/packages/kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82282,"west":11.93989,"north":46.84289,"east":11.96716},"nodeCount":1918,"edgeCount":2018,"retrievedAt":"2026-10-30"},"kronplatz-valdaora-di-sopra-goste":{"graphUrl":"offline/packages/kronplatz-valdaora-di-sopra-goste/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75296,"west":12.03323,"north":46.76532,"east":12.06259},"nodeCount":1147,"edgeCount":1172,"retrievedAt":"2026-10-30"},"kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle":{"graphUrl":"offline/packages/kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.72851,"west":11.98986,"north":46.77132,"east":12.03673},"nodeCount":6031,"edgeCount":6072,"retrievedAt":"2026-10-30"},"lago-braies":{"graphUrl":"routing-graphs/lago-braies.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64417944125045,"west":12.014860548903378,"north":46.745157558749554,"east":12.154071451096621},"nodeCount":2510,"edgeCount":2550,"retrievedAt":"2026-08-27T17:16:50.407Z"},"lago-carezza":{"graphUrl":"offline/packages/lago-carezza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.407,"west":11.5718,"north":46.4113,"east":11.5784},"nodeCount":224,"edgeCount":223,"retrievedAt":null},"lago-sorapis":{"graphUrl":"routing-graphs/lago-sorapis.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47704444125045,"west":12.139152431687037,"north":46.60112555874955,"east":12.294177568312962},"nodeCount":3815,"edgeCount":3854,"retrievedAt":"2026-08-27T17:17:07.622Z"},"lario-alla-ricerca-di-un-panorama-unico":{"graphUrl":"offline/packages/lario-alla-ricerca-di-un-panorama-unico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.93203,"west":9.21943,"north":45.96263,"east":9.25276},"nodeCount":2663,"edgeCount":2675,"retrievedAt":"2026-10-30"},"lario-anello-ai-piedi-del-monte-oriolo":{"graphUrl":"offline/packages/lario-anello-ai-piedi-del-monte-oriolo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.87789,"west":9.2523,"north":45.91579,"east":9.29316},"nodeCount":4671,"edgeCount":4717,"retrievedAt":"2026-11-02"},"lario-brunate-e-le-sue-chiese":{"graphUrl":"offline/packages/lario-brunate-e-le-sue-chiese/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.81346,"west":9.08954,"north":45.8297,"east":9.11689},"nodeCount":2236,"edgeCount":2288,"retrievedAt":"2026-10-30"},"lario-caslino-sullacqua":{"graphUrl":"offline/packages/lario-caslino-sullacqua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.82335,"west":9.21424,"north":45.84372,"east":9.23833},"nodeCount":3004,"edgeCount":3031,"retrievedAt":"2026-11-02"},"lario-eupilio-tra-segrino-e-cornizzolo":{"graphUrl":"offline/packages/lario-eupilio-tra-segrino-e-cornizzolo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.81386,"west":9.26376,"north":45.83103,"east":9.2907},"nodeCount":2825,"edgeCount":2854,"retrievedAt":"2026-10-30"},"lario-il-sentiero-del-viandante":{"graphUrl":"offline/packages/lario-il-sentiero-del-viandante/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.00329,"west":9.27028,"north":46.04738,"east":9.31791},"nodeCount":6470,"edgeCount":6600,"retrievedAt":"2026-11-02"},"lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza":{"graphUrl":"offline/packages/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.81972,"west":9.23565,"north":45.8496,"east":9.27644},"nodeCount":5086,"edgeCount":5159,"retrievedAt":"2026-11-02"},"lesachtal-spazierweg-maria-luggau-gailweg":{"graphUrl":"offline/packages/lesachtal-spazierweg-maria-luggau-gailweg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69861,"west":12.72813,"north":46.70926,"east":12.74543},"nodeCount":779,"edgeCount":771,"retrievedAt":"2026-11-02"},"lesachtal-tuffbad":{"graphUrl":"offline/packages/lesachtal-tuffbad/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71956,"west":12.75241,"north":46.73331,"east":12.7734},"nodeCount":981,"edgeCount":986,"retrievedAt":"2026-11-02"},"meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto":{"graphUrl":"offline/packages/meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71224,"west":11.20306,"north":46.74101,"east":11.23649},"nodeCount":4335,"edgeCount":4340,"retrievedAt":"2026-11-03"},"meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg":{"graphUrl":"offline/packages/meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67315,"west":11.17644,"north":46.69865,"east":11.20432},"nodeCount":6387,"edgeCount":6416,"retrievedAt":"2026-11-03"},"meran-escursione-alla-forst":{"graphUrl":"offline/packages/meran-escursione-alla-forst/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66925,"west":11.09532,"north":46.68623,"east":11.12823},"nodeCount":4405,"edgeCount":4421,"retrievedAt":"2026-11-03"},"meran-escursione-sentiero-del-sole-a-stulles":{"graphUrl":"offline/packages/meran-escursione-sentiero-del-sole-a-stulles/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82299,"west":11.17882,"north":46.83814,"east":11.21573},"nodeCount":2636,"edgeCount":2637,"retrievedAt":"2026-11-03"},"meran-facile-escursione-da-verano-ad-avelengo":{"graphUrl":"offline/packages/meran-facile-escursione-da-verano-ad-avelengo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60452,"west":11.21457,"north":46.64816,"east":11.26223},"nodeCount":5583,"edgeCount":5608,"retrievedAt":"2026-11-03"},"meran-giro-dei-masi-sul-monte-sole":{"graphUrl":"offline/packages/meran-giro-dei-masi-sul-monte-sole/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65486,"west":10.96439,"north":46.6682,"east":10.99118},"nodeCount":1122,"edgeCount":1141,"retrievedAt":"2026-11-03"},"meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer":{"graphUrl":"offline/packages/meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73426,"west":11.24197,"north":46.75578,"east":11.27662},"nodeCount":1777,"edgeCount":1796,"retrievedAt":"2026-11-03"},"meran-sentiero-della-roggia-brandis-a-lana":{"graphUrl":"offline/packages/meran-sentiero-della-roggia-brandis-a-lana/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59035,"west":11.1379,"north":46.61694,"east":11.16693},"nodeCount":3056,"edgeCount":3125,"retrievedAt":"2026-11-03"},"meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole":{"graphUrl":"offline/packages/meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67041,"west":11.02619,"north":46.6886,"east":11.07039},"nodeCount":3786,"edgeCount":3829,"retrievedAt":"2026-11-03"},"nuvolau":{"graphUrl":"routing-graphs/nuvolau.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44016444125045,"west":11.980511149703753,"north":46.540225558749555,"east":12.122418850296247},"nodeCount":7292,"edgeCount":7418,"retrievedAt":"2026-08-27T17:16:21.759Z"},"osm-10116283":{"graphUrl":"routing-graphs/osm-10116283.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266709454636495,"north":46.01604555874955,"east":6.406880545363505},"nodeCount":6521,"edgeCount":6598,"retrievedAt":"2026-08-27T17:20:59.197Z"},"osm-10116380":{"graphUrl":"routing-graphs/osm-10116380.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91895444125045,"west":6.268138865501141,"north":46.01706555874955,"east":6.411921134498859},"nodeCount":5610,"edgeCount":5678,"retrievedAt":"2026-08-27T17:41:31.286Z"},"osm-10220399":{"graphUrl":"offline/packages/osm-10220399/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65113,"west":11.09524,"north":46.66559,"east":11.12413},"nodeCount":1167,"edgeCount":1179,"retrievedAt":"2026-10-30"},"osm-1116675":{"graphUrl":"routing-graphs/osm-1116675.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61417444125045,"west":12.30487349355897,"north":46.71087555874955,"east":12.443416506441029},"nodeCount":4150,"edgeCount":4215,"retrievedAt":"2026-08-27T20:14:51.910Z"},"osm-1116680":{"graphUrl":"routing-graphs/osm-1116680.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63077444125045,"west":12.285241785323949,"north":46.74662555874955,"east":12.451178214676052},"nodeCount":11996,"edgeCount":12255,"retrievedAt":"2026-08-27T20:25:39.850Z"},"osm-11270309":{"graphUrl":"offline/packages/osm-11270309/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.23386,"west":11.20861,"north":46.24283,"east":11.22519},"nodeCount":1421,"edgeCount":1495,"retrievedAt":"2026-10-30"},"osm-11517208":{"graphUrl":"routing-graphs/osm-11517208.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.82466444125045,"west":6.5280025665062515,"north":45.933155558749554,"east":6.686357433493749},"nodeCount":20707,"edgeCount":21016,"retrievedAt":"2026-08-27T17:42:36.366Z"},"osm-11764094":{"graphUrl":"offline/packages/osm-11764094/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73736,"west":11.65734,"north":46.77376,"east":11.69919},"nodeCount":5789,"edgeCount":5860,"retrievedAt":"2026-10-30"},"osm-11768853":{"graphUrl":"offline/packages/osm-11768853/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65606,"west":11.5761,"north":46.68027,"east":11.6096},"nodeCount":3141,"edgeCount":3118,"retrievedAt":"2026-10-30"},"osm-11774783":{"graphUrl":"routing-graphs/osm-11774783.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.603354441250445,"west":11.528868487262596,"north":46.69691555874955,"east":11.665491512737404},"nodeCount":10234,"edgeCount":10377,"retrievedAt":"2026-08-27T17:10:19.838Z"},"osm-11775760":{"graphUrl":"offline/packages/osm-11775760/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73545,"west":11.62126,"north":46.74953,"east":11.6417},"nodeCount":1523,"edgeCount":1539,"retrievedAt":"2026-10-30"},"osm-11775923":{"graphUrl":"offline/packages/osm-11775923/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.72641,"west":11.63788,"north":46.74908,"east":11.66339},"nodeCount":3465,"edgeCount":3514,"retrievedAt":"2026-10-30"},"osm-11780502":{"graphUrl":"routing-graphs/osm-11780502.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58839444125045,"west":11.691435852533683,"north":46.683155558749554,"east":11.837114147466316},"nodeCount":7359,"edgeCount":7425,"retrievedAt":"2026-08-27T17:10:42.226Z"},"osm-11795251":{"graphUrl":"offline/packages/osm-11795251/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.79966,"west":11.71249,"north":46.82551,"east":11.77545},"nodeCount":7649,"edgeCount":7697,"retrievedAt":"2026-10-30"},"osm-11814834":{"graphUrl":"offline/packages/osm-11814834/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56036,"west":11.61356,"north":46.58384,"east":11.64231},"nodeCount":2023,"edgeCount":2008,"retrievedAt":"2026-10-30"},"osm-11828233":{"graphUrl":"offline/packages/osm-11828233/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.83137,"west":11.61317,"north":46.85494,"east":11.63902},"nodeCount":2189,"edgeCount":2204,"retrievedAt":"2026-10-30"},"osm-11832013":{"graphUrl":"offline/packages/osm-11832013/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7355,"west":11.43425,"north":46.74905,"east":11.45676},"nodeCount":739,"edgeCount":736,"retrievedAt":"2026-10-30"},"osm-11833313":{"graphUrl":"offline/packages/osm-11833313/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.79597,"west":11.82088,"north":46.80987,"east":11.84417},"nodeCount":2589,"edgeCount":2606,"retrievedAt":"2026-10-30"},"osm-11839597":{"graphUrl":"offline/packages/osm-11839597/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.53471,"west":11.46113,"north":46.54726,"east":11.47905},"nodeCount":1140,"edgeCount":1146,"retrievedAt":"2026-10-30"},"osm-11860429":{"graphUrl":"offline/packages/osm-11860429/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6539,"west":11.91342,"north":46.66987,"east":11.93607},"nodeCount":1648,"edgeCount":1663,"retrievedAt":"2026-10-30"},"osm-12118490":{"graphUrl":"offline/packages/osm-12118490/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.30187,"west":6.34749,"north":45.32242,"east":6.37269},"nodeCount":2283,"edgeCount":2296,"retrievedAt":"2026-10-30"},"osm-12121346":{"graphUrl":"offline/packages/osm-12121346/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.27641,"west":6.36649,"north":45.2968,"east":6.38956},"nodeCount":2284,"edgeCount":2295,"retrievedAt":"2026-10-30"},"osm-12121798":{"graphUrl":"offline/packages/osm-12121798/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.24532,"west":6.41497,"north":45.25782,"east":6.43429},"nodeCount":1484,"edgeCount":1507,"retrievedAt":"2026-10-30"},"osm-12142337":{"graphUrl":"routing-graphs/osm-12142337.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60084444125045,"west":11.739506138448354,"north":46.71983555874955,"east":11.916233861551646},"nodeCount":13008,"edgeCount":13108,"retrievedAt":"2026-08-27T17:10:52.434Z"},"osm-12164395":{"graphUrl":"offline/packages/osm-12164395/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81348,"west":11.70925,"north":46.84542,"east":11.74427},"nodeCount":5454,"edgeCount":5470,"retrievedAt":"2026-10-30"},"osm-12172440":{"graphUrl":"offline/packages/osm-12172440/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82544,"west":11.75103,"north":46.84606,"east":11.78333},"nodeCount":4076,"edgeCount":4138,"retrievedAt":"2026-10-30"},"osm-12173549":{"graphUrl":"offline/packages/osm-12173549/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.82624,"west":11.76648,"north":46.84636,"east":11.78855},"nodeCount":3066,"edgeCount":3114,"retrievedAt":"2026-10-30"},"osm-12173965":{"graphUrl":"offline/packages/osm-12173965/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75363,"west":12.10025,"north":46.76438,"east":12.11973},"nodeCount":1386,"edgeCount":1426,"retrievedAt":"2026-10-30"},"osm-12173984":{"graphUrl":"offline/packages/osm-12173984/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.75363,"west":12.10024,"north":46.76991,"east":12.13922},"nodeCount":3363,"edgeCount":3417,"retrievedAt":"2026-11-03"},"osm-12182895":{"graphUrl":"offline/packages/osm-12182895/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61928,"west":11.32843,"north":46.6788,"east":11.39347},"nodeCount":11644,"edgeCount":11734,"retrievedAt":"2026-10-30"},"osm-12190657":{"graphUrl":"offline/packages/osm-12190657/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57259,"west":11.26569,"north":46.59378,"east":11.29048},"nodeCount":1012,"edgeCount":1011,"retrievedAt":"2026-10-30"},"osm-12302137":{"graphUrl":"offline/packages/osm-12302137/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.84673,"west":12.0838,"north":46.87064,"east":12.11003},"nodeCount":1518,"edgeCount":1534,"retrievedAt":"2026-10-30"},"osm-12302182":{"graphUrl":"offline/packages/osm-12302182/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81871,"west":12.07776,"north":46.83533,"east":12.09741},"nodeCount":880,"edgeCount":897,"retrievedAt":"2026-10-30"},"osm-12302191":{"graphUrl":"offline/packages/osm-12302191/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7723,"west":12.03174,"north":46.80726,"east":12.07136},"nodeCount":2746,"edgeCount":2758,"retrievedAt":"2026-10-30"},"osm-123162":{"graphUrl":"routing-graphs/osm-123162.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40658444125045,"west":11.391321942194814,"north":46.50572555874955,"east":11.556188057805185},"nodeCount":10365,"edgeCount":10504,"retrievedAt":"2026-08-27T19:56:49.589Z"},"osm-12736753":{"graphUrl":"offline/packages/osm-12736753/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67235,"west":11.62528,"north":46.71065,"east":11.67137},"nodeCount":7545,"edgeCount":7692,"retrievedAt":"2026-10-30"},"osm-12737724":{"graphUrl":"offline/packages/osm-12737724/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64764,"west":11.60524,"north":46.67923,"east":11.63978},"nodeCount":4474,"edgeCount":4488,"retrievedAt":"2026-10-30"},"osm-12953352":{"graphUrl":"offline/packages/osm-12953352/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71343,"west":11.65174,"north":46.73625,"east":11.67671},"nodeCount":4484,"edgeCount":4685,"retrievedAt":"2026-10-30"},"osm-13338113":{"graphUrl":"offline/packages/osm-13338113/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.32693,"west":6.74281,"north":46.35217,"east":6.77156},"nodeCount":3863,"edgeCount":3876,"retrievedAt":"2026-10-30"},"osm-13491868":{"graphUrl":"routing-graphs/osm-13491868.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60683444125045,"west":11.506114355606796,"north":46.70026555874955,"east":11.638455644393204},"nodeCount":9379,"edgeCount":9498,"retrievedAt":"2026-08-27T17:11:05.150Z"},"osm-14095296":{"graphUrl":"routing-graphs/osm-14095296.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.74418444125045,"west":5.884595618989789,"north":45.853015558749554,"east":6.027074381010211},"nodeCount":6410,"edgeCount":6594,"retrievedAt":"2026-08-27T19:24:39.004Z"},"osm-14375158":{"graphUrl":"offline/packages/osm-14375158/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20806,"west":6.39918,"north":45.23123,"east":6.43601},"nodeCount":3965,"edgeCount":4006,"retrievedAt":"2026-10-30"},"osm-14376573":{"graphUrl":"offline/packages/osm-14376573/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.19973,"west":6.3841,"north":45.21655,"east":6.40706},"nodeCount":1243,"edgeCount":1250,"retrievedAt":"2026-10-30"},"osm-14378946":{"graphUrl":"offline/packages/osm-14378946/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20923,"west":6.39867,"north":45.23124,"east":6.42434},"nodeCount":2983,"edgeCount":3012,"retrievedAt":"2026-10-30"},"osm-14379010":{"graphUrl":"offline/packages/osm-14379010/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20806,"west":6.39918,"north":45.23123,"east":6.43284},"nodeCount":3861,"edgeCount":3901,"retrievedAt":"2026-10-30"},"osm-14381570":{"graphUrl":"offline/packages/osm-14381570/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.20183,"west":6.39812,"north":45.23123,"east":6.42942},"nodeCount":4902,"edgeCount":4965,"retrievedAt":"2026-10-30"},"osm-14381584":{"graphUrl":"offline/packages/osm-14381584/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.21117,"west":6.39918,"north":45.23124,"east":6.4289},"nodeCount":3140,"edgeCount":3172,"retrievedAt":"2026-10-30"},"osm-14864704":{"graphUrl":"routing-graphs/osm-14864704.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.761084441250446,"west":6.1280243865015525,"north":45.872825558749554,"east":6.270315613498448},"nodeCount":10976,"edgeCount":11300,"retrievedAt":"2026-08-27T19:19:58.714Z"},"osm-1506470":{"graphUrl":"offline/packages/osm-1506470/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65671,"west":11.1564,"north":46.67523,"east":11.18876},"nodeCount":5326,"edgeCount":5552,"retrievedAt":"2026-10-30"},"osm-15591346":{"graphUrl":"routing-graphs/osm-15591346.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.459774441250445,"west":5.98503178827734,"north":45.56897555874955,"east":6.14100821172266},"nodeCount":16088,"edgeCount":16629,"retrievedAt":"2026-08-27T19:56:33.029Z"},"osm-15791408":{"graphUrl":"offline/packages/osm-15791408/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13917,"west":11.22856,"north":46.1549,"east":11.25188},"nodeCount":1386,"edgeCount":1408,"retrievedAt":"2026-10-30"},"osm-16180587":{"graphUrl":"offline/packages/osm-16180587/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.93358,"west":6.70581,"north":45.95601,"east":6.75957},"nodeCount":5612,"edgeCount":5706,"retrievedAt":"2026-10-30"},"osm-16218739":{"graphUrl":"offline/packages/osm-16218739/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.55579,"west":6.73839,"north":45.57494,"east":6.7721},"nodeCount":2852,"edgeCount":2908,"retrievedAt":"2026-10-30"},"osm-16322228":{"graphUrl":"routing-graphs/osm-16322228.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.50406444125045,"west":5.904177110685752,"north":45.60305555874955,"east":6.043782889314248},"nodeCount":14377,"edgeCount":15276,"retrievedAt":"2026-08-27T19:24:42.898Z"},"osm-16363583":{"graphUrl":"routing-graphs/osm-16363583.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.55814444125045,"west":5.799788796148411,"north":45.66849555874955,"east":5.9486112038515895},"nodeCount":10179,"edgeCount":10964,"retrievedAt":"2026-08-27T19:25:16.148Z"},"osm-16365005":{"graphUrl":"routing-graphs/osm-16365005.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.51677444125045,"west":5.9944446829961535,"north":45.62962555874955,"east":6.139465317003847},"nodeCount":8626,"edgeCount":8701,"retrievedAt":"2026-08-27T19:56:44.815Z"},"osm-16395076":{"graphUrl":"routing-graphs/osm-16395076.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.48297444125045,"west":5.9889733229959266,"north":45.57818555874955,"east":6.1254666770040735},"nodeCount":7951,"edgeCount":8074,"retrievedAt":"2026-08-27T19:39:22.742Z"},"osm-1671736":{"graphUrl":"offline/packages/osm-1671736/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67673,"west":11.18372,"north":46.71706,"east":11.22782},"nodeCount":10591,"edgeCount":10640,"retrievedAt":"2026-10-30"},"osm-18055492":{"graphUrl":"routing-graphs/osm-18055492.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.79283444125045,"west":6.56720827118181,"north":45.90343555874955,"east":6.7415217288181895},"nodeCount":24364,"edgeCount":24659,"retrievedAt":"2026-08-27T19:04:06.346Z"},"osm-19153189":{"graphUrl":"routing-graphs/osm-19153189.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.527044441250446,"west":6.091252260695849,"north":45.62359555874955,"east":6.237467739304152},"nodeCount":6531,"edgeCount":6666,"retrievedAt":"2026-08-27T19:39:31.023Z"},"osm-19330972":{"graphUrl":"offline/packages/osm-19330972/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.27394,"west":11.35918,"north":46.2857,"east":11.37562},"nodeCount":705,"edgeCount":716,"retrievedAt":"2026-11-03"},"osm-19541366":{"graphUrl":"offline/packages/osm-19541366/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.28654,"west":6.5791,"north":45.30153,"east":6.61461},"nodeCount":2298,"edgeCount":2366,"retrievedAt":"2026-10-30"},"osm-19703479":{"graphUrl":"offline/packages/osm-19703479/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60034,"west":11.22082,"north":46.61393,"east":11.24392},"nodeCount":1473,"edgeCount":1480,"retrievedAt":"2026-11-03"},"osm-19855818":{"graphUrl":"offline/packages/osm-19855818/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.4373,"west":6.41848,"north":45.46194,"east":6.44702},"nodeCount":3895,"edgeCount":3951,"retrievedAt":"2026-10-30"},"osm-19974724":{"graphUrl":"offline/packages/osm-19974724/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.40326,"west":11.56994,"north":46.41764,"east":11.58629},"nodeCount":1186,"edgeCount":1193,"retrievedAt":"2026-11-03"},"osm-19974725":{"graphUrl":"offline/packages/osm-19974725/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.39883,"west":11.5669,"north":46.41764,"east":11.58736},"nodeCount":1722,"edgeCount":1736,"retrievedAt":"2026-11-03"},"osm-20347406":{"graphUrl":"routing-graphs/osm-20347406.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.91896444125045,"west":6.266689958139611,"north":46.04945555874955,"east":6.458980041860389},"nodeCount":10492,"edgeCount":10630,"retrievedAt":"2026-08-27T17:42:14.560Z"},"osm-20380913":{"graphUrl":"offline/packages/osm-20380913/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62343,"west":10.96177,"north":46.64204,"east":10.98874},"nodeCount":1786,"edgeCount":1860,"retrievedAt":"2026-10-30"},"osm-2179746":{"graphUrl":"routing-graphs/osm-2179746.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.29053444125045,"west":11.224413051871634,"north":46.385315558749554,"east":11.359506948128365},"nodeCount":9415,"edgeCount":9648,"retrievedAt":"2026-08-27T20:26:16.794Z"},"osm-2376630":{"graphUrl":"offline/packages/osm-2376630/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66777,"west":10.9307,"north":46.69258,"east":10.96319},"nodeCount":2200,"edgeCount":2207,"retrievedAt":"2026-10-30"},"osm-3202880":{"graphUrl":"routing-graphs/osm-3202880.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.37478444125045,"west":11.219838865920021,"north":46.47579555874955,"east":11.36296113407998},"nodeCount":15379,"edgeCount":15878,"retrievedAt":"2026-08-27T20:42:27.979Z"},"osm-3707731":{"graphUrl":"offline/packages/osm-3707731/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64876,"west":11.61479,"north":46.66703,"east":11.6456},"nodeCount":2446,"edgeCount":2459,"retrievedAt":"2026-10-30"},"osm-3982382":{"graphUrl":"routing-graphs/osm-3982382.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.39130444125045,"west":5.68870273280012,"north":45.49504555874955,"east":5.8256372671998795},"nodeCount":3515,"edgeCount":3604,"retrievedAt":"2026-08-27T17:19:14.273Z"},"osm-5479112":{"graphUrl":"offline/packages/osm-5479112/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.01551,"west":6.91028,"north":46.05405,"east":6.95192},"nodeCount":9443,"edgeCount":9518,"retrievedAt":"2026-10-30"},"osm-5512443":{"graphUrl":"routing-graphs/osm-5512443.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60554444125045,"west":10.914493091157304,"north":46.70364555874955,"east":11.079186908842695},"nodeCount":7217,"edgeCount":7345,"retrievedAt":"2026-08-27T20:44:08.748Z"},"osm-5597577":{"graphUrl":"offline/packages/osm-5597577/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62561,"west":10.98047,"north":46.64607,"east":11.00282},"nodeCount":2129,"edgeCount":2200,"retrievedAt":"2026-10-30"},"osm-6244965":{"graphUrl":"offline/packages/osm-6244965/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.8005,"west":11.84283,"north":46.82695,"east":11.90723},"nodeCount":7080,"edgeCount":7191,"retrievedAt":"2026-10-30"},"osm-6250300":{"graphUrl":"routing-graphs/osm-6250300.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.903254441250446,"west":6.676860309200672,"north":45.99598555874955,"east":6.821329690799328},"nodeCount":10787,"edgeCount":11000,"retrievedAt":"2026-08-27T17:19:25.153Z"},"osm-6401355":{"graphUrl":"offline/packages/osm-6401355/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73267,"west":11.94824,"north":46.74448,"east":11.96751},"nodeCount":1286,"edgeCount":1304,"retrievedAt":"2026-10-30"},"osm-6404258":{"graphUrl":"routing-graphs/osm-6404258.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.701494441250446,"west":11.972922724716238,"north":46.80611555874955,"east":12.149147275283761},"nodeCount":13366,"edgeCount":13635,"retrievedAt":"2026-08-27T20:44:30.610Z"},"osm-6404633":{"graphUrl":"routing-graphs/osm-6404633.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.631540823974001,"north":46.26285555874955,"east":11.774189176025999},"nodeCount":7270,"edgeCount":7350,"retrievedAt":"2026-08-27T20:44:44.284Z"},"osm-6404634":{"graphUrl":"routing-graphs/osm-6404634.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16376444125045,"west":11.636474806635869,"north":46.25611555874955,"east":11.770655193364131},"nodeCount":6487,"edgeCount":6560,"retrievedAt":"2026-08-27T21:01:51.031Z"},"osm-6410700":{"graphUrl":"routing-graphs/osm-6410700.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.721594441250446,"west":11.985686129252224,"north":46.82971555874955,"east":12.151803870747777},"nodeCount":10637,"edgeCount":10778,"retrievedAt":"2026-08-27T21:01:57.131Z"},"osm-6453504":{"graphUrl":"offline/packages/osm-6453504/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63271,"west":11.06288,"north":46.6488,"east":11.0833},"nodeCount":1158,"edgeCount":1173,"retrievedAt":"2026-10-30"},"osm-6601608":{"graphUrl":"offline/packages/osm-6601608/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.909,"west":11.94163,"north":46.92795,"east":11.97331},"nodeCount":1871,"edgeCount":1902,"retrievedAt":"2026-10-30"},"osm-6823031":{"graphUrl":"routing-graphs/osm-6823031.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73590444125045,"west":11.873350912645975,"north":46.84038555874955,"east":12.025849087354025},"nodeCount":25710,"edgeCount":26439,"retrievedAt":"2026-08-27T21:02:49.999Z"},"osm-7045225":{"graphUrl":"routing-graphs/osm-7045225.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13172444125045,"west":10.986518368918368,"north":46.24825555874955,"east":11.141551631081631},"nodeCount":10547,"edgeCount":10783,"retrievedAt":"2026-08-27T21:02:54.311Z"},"osm-7086961":{"graphUrl":"routing-graphs/osm-7086961.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.128294441250446,"west":11.533400512335708,"north":46.231105558749555,"east":11.676629487664291},"nodeCount":2576,"edgeCount":2583,"retrievedAt":"2026-08-27T21:11:22.127Z"},"osm-7388748":{"graphUrl":"routing-graphs/osm-7388748.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46005444125045,"west":12.341487742111875,"north":46.55934555874955,"east":12.493212257888125},"nodeCount":10355,"edgeCount":10591,"retrievedAt":"2026-08-27T21:11:40.719Z"},"osm-7424683":{"graphUrl":"offline/packages/osm-7424683/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62276,"west":11.08183,"north":46.6843,"east":11.14908},"nodeCount":20523,"edgeCount":20732,"retrievedAt":"2026-10-30"},"osm-7426648":{"graphUrl":"offline/packages/osm-7426648/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67544,"west":11.09013,"north":46.69898,"east":11.14735},"nodeCount":9817,"edgeCount":9904,"retrievedAt":"2026-10-30"},"osm-7426666":{"graphUrl":"offline/packages/osm-7426666/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66096,"west":11.1533,"north":46.73023,"east":11.22905},"nodeCount":31589,"edgeCount":31982,"retrievedAt":"2026-10-30"},"osm-7446701":{"graphUrl":"offline/packages/osm-7446701/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.81439,"west":11.27692,"north":46.83618,"east":11.33001},"nodeCount":2726,"edgeCount":2713,"retrievedAt":"2026-10-30"},"osm-7546708":{"graphUrl":"routing-graphs/osm-7546708.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.44345444125045,"west":12.36812824682951,"north":46.54177555874955,"east":12.50749175317049},"nodeCount":10650,"edgeCount":10913,"retrievedAt":"2026-08-27T21:11:54.539Z"},"osm-7547653":{"graphUrl":"routing-graphs/osm-7547653.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.46785444125045,"west":12.363839203471993,"north":46.565765558749554,"east":12.507590796528007},"nodeCount":7277,"edgeCount":7395,"retrievedAt":"2026-08-27T21:11:59.022Z"},"osm-7547983":{"graphUrl":"routing-graphs/osm-7547983.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43600444125045,"west":12.340097032272725,"north":46.53457555874955,"east":12.487892967727275},"nodeCount":11364,"edgeCount":11629,"retrievedAt":"2026-08-27T21:12:19.499Z"},"osm-7548201":{"graphUrl":"routing-graphs/osm-7548201.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47499444125045,"west":12.374697843622796,"north":46.57753555874955,"east":12.527532156377204},"nodeCount":5951,"edgeCount":6007,"retrievedAt":"2026-08-27T21:12:23.188Z"},"osm-7548344":{"graphUrl":"offline/packages/osm-7548344/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47477,"west":12.41932,"north":46.48885,"east":12.44329},"nodeCount":1675,"edgeCount":1738,"retrievedAt":"2026-10-30"},"osm-7549783":{"graphUrl":"offline/packages/osm-7549783/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.48829,"west":12.43636,"north":46.51038,"east":12.46043},"nodeCount":1946,"edgeCount":1969,"retrievedAt":"2026-10-30"},"osm-7567918":{"graphUrl":"offline/packages/osm-7567918/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.87786,"west":12.15239,"north":46.89282,"east":12.17983},"nodeCount":937,"edgeCount":948,"retrievedAt":"2026-10-30"},"osm-7655311":{"graphUrl":"offline/packages/osm-7655311/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64858,"west":11.00248,"north":46.68784,"east":11.07999},"nodeCount":11285,"edgeCount":11388,"retrievedAt":"2026-10-30"},"osm-8396539":{"graphUrl":"offline/packages/osm-8396539/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.66147,"west":11.05617,"north":46.69073,"east":11.09787},"nodeCount":5897,"edgeCount":5904,"retrievedAt":"2026-10-30"},"osm-9450411":{"graphUrl":"offline/packages/osm-9450411/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56675,"west":11.5589,"north":46.61633,"east":11.67916},"nodeCount":16477,"edgeCount":16597,"retrievedAt":"2026-10-30"},"osm-9492594":{"graphUrl":"offline/packages/osm-9492594/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59866,"west":11.53897,"north":46.62667,"east":11.56955},"nodeCount":3744,"edgeCount":3742,"retrievedAt":"2026-10-30"},"osm-9493733":{"graphUrl":"offline/packages/osm-9493733/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59262,"west":11.87255,"north":46.61921,"east":11.90157},"nodeCount":2915,"edgeCount":2916,"retrievedAt":"2026-10-30"},"osm-9511999":{"graphUrl":"offline/packages/osm-9511999/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.57931,"west":11.88494,"north":46.61899,"east":11.92825},"nodeCount":7626,"edgeCount":7660,"retrievedAt":"2026-10-30"},"osm-9648632":{"graphUrl":"offline/packages/osm-9648632/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.54267,"west":11.70635,"north":46.55503,"east":11.72714},"nodeCount":930,"edgeCount":951,"retrievedAt":"2026-10-30"},"osm-9933643":{"graphUrl":"routing-graphs/osm-9933643.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.46001444125045,"west":6.603237869650619,"north":45.55805555874955,"east":6.7443221303493806},"nodeCount":14632,"edgeCount":14901,"retrievedAt":"2026-08-27T17:20:33.017Z"},"osm-9937537":{"graphUrl":"offline/packages/osm-9937537/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.48919,"west":6.6296,"north":45.51733,"east":6.67286},"nodeCount":3843,"edgeCount":3877,"retrievedAt":"2026-10-30"},"osttirol-kinder-naturerlebnispfad-kals-ag":{"graphUrl":"offline/packages/osttirol-kinder-naturerlebnispfad-kals-ag/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":47.00677,"west":12.62461,"north":47.02874,"east":12.64878},"nodeCount":2831,"edgeCount":2883,"retrievedAt":"2026-11-02"},"osttirol-naturkraftweg-umbalfaelle":{"graphUrl":"offline/packages/osttirol-naturkraftweg-umbalfaelle/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":47.00473,"west":12.28767,"north":47.0204,"east":12.32492},"nodeCount":876,"edgeCount":881,"retrievedAt":"2026-11-02"},"osttirol-spazierweg-kreuzweg":{"graphUrl":"offline/packages/osttirol-spazierweg-kreuzweg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.99281,"west":12.5347,"north":47.00762,"east":12.55311},"nodeCount":3132,"edgeCount":3180,"retrievedAt":"2026-11-02"},"osttirol-spazierweg-nikolauskirche":{"graphUrl":"offline/packages/osttirol-spazierweg-nikolauskirche/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.98309,"west":12.5159,"north":47.00532,"east":12.54407},"nodeCount":4054,"edgeCount":4113,"retrievedAt":"2026-11-02"},"osttirol-themenweg-kreuzweg-virgen":{"graphUrl":"offline/packages/osttirol-themenweg-kreuzweg-virgen/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.99924,"west":12.43528,"north":47.01084,"east":12.4627},"nodeCount":2901,"edgeCount":2901,"retrievedAt":"2026-11-02"},"osttirol-weg-der-sinne-virgen":{"graphUrl":"offline/packages/osttirol-weg-der-sinne-virgen/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.99135,"west":12.44853,"north":47.0069,"east":12.4725},"nodeCount":2767,"edgeCount":2755,"retrievedAt":"2026-11-02"},"paganella-andalo-tana-ermellino":{"graphUrl":"offline/packages/paganella-andalo-tana-ermellino/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16851,"west":10.9972,"north":46.18891,"east":11.01931},"nodeCount":1355,"edgeCount":1387,"retrievedAt":"2026-10-30"},"paganella-giro-della-toresela":{"graphUrl":"offline/packages/paganella-giro-della-toresela/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.20409,"west":11.0834,"north":46.21366,"east":11.09881},"nodeCount":1617,"edgeCount":1798,"retrievedAt":"2026-11-02"},"piancavallo":{"graphUrl":"routing-graphs/piancavallo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.05039444125045,"west":12.458888920919806,"north":46.15883555874955,"east":12.616651079080192},"nodeCount":21111,"edgeCount":21289,"retrievedAt":"2026-08-27T17:17:48.733Z"},"prato-piazza":{"graphUrl":"routing-graphs/prato-piazza.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.595274441250446,"west":12.113642309733521,"north":46.69867555874955,"east":12.263057690266479},"nodeCount":3142,"edgeCount":3186,"retrievedAt":"2026-08-27T17:15:57.299Z"},"primiero-anello-di-valpiana":{"graphUrl":"offline/packages/primiero-anello-di-valpiana/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.12724,"west":11.83934,"north":46.14301,"east":11.8682},"nodeCount":1639,"edgeCount":1642,"retrievedAt":"2026-10-30"},"primiero-anello-molaren-via-nova-marine":{"graphUrl":"offline/packages/primiero-anello-molaren-via-nova-marine/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.15056,"west":11.80039,"north":46.1773,"east":11.82941},"nodeCount":3874,"edgeCount":3974,"retrievedAt":"2026-11-02"},"primiero-anello-poit-cordogne-san-giovanni":{"graphUrl":"offline/packages/primiero-anello-poit-cordogne-san-giovanni/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.13297,"west":11.81609,"north":46.15151,"east":11.85132},"nodeCount":1747,"edgeCount":1748,"retrievedAt":"2026-10-30"},"primiero-fiera-pieve":{"graphUrl":"offline/packages/primiero-fiera-pieve/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16873,"west":11.8185,"north":46.18362,"east":11.83636},"nodeCount":2235,"edgeCount":2332,"retrievedAt":"2026-10-30"},"primiero-la-guana-di-primiero":{"graphUrl":"offline/packages/primiero-la-guana-di-primiero/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16336,"west":11.81958,"north":46.17905,"east":11.8396},"nodeCount":2533,"edgeCount":2660,"retrievedAt":"2026-10-30"},"primiero-malga-ces":{"graphUrl":"offline/packages/primiero-malga-ces/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.25342,"west":11.7677,"north":46.27396,"east":11.80707},"nodeCount":3149,"edgeCount":3168,"retrievedAt":"2026-10-30"},"primiero-malga-valcigolera":{"graphUrl":"offline/packages/primiero-malga-valcigolera/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.24853,"west":11.75586,"north":46.26987,"east":11.80733},"nodeCount":3510,"edgeCount":3530,"retrievedAt":"2026-10-30"},"primiero-percorso-verde":{"graphUrl":"offline/packages/primiero-percorso-verde/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17234,"west":11.82588,"north":46.18389,"east":11.84318},"nodeCount":2055,"edgeCount":2182,"retrievedAt":"2026-10-30"},"primiero-ponte-su-funi":{"graphUrl":"offline/packages/primiero-ponte-su-funi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.14805,"west":11.78505,"north":46.1684,"east":11.81994},"nodeCount":4617,"edgeCount":4709,"retrievedAt":"2026-11-02"},"primiero-san-martino-di-castrozza-val-di-roda-prati-col":{"graphUrl":"offline/packages/primiero-san-martino-di-castrozza-val-di-roda-prati-col/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.24584,"west":11.7977,"north":46.2678,"east":11.83087},"nodeCount":1875,"edgeCount":1860,"retrievedAt":"2026-10-30"},"primiero-siror":{"graphUrl":"offline/packages/primiero-siror/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17444,"west":11.81962,"north":46.19445,"east":11.84131},"nodeCount":3214,"edgeCount":3321,"retrievedAt":"2026-10-30"},"primiero-tonadico":{"graphUrl":"offline/packages/primiero-tonadico/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.17217,"west":11.82538,"north":46.18851,"east":11.84652},"nodeCount":2778,"edgeCount":2928,"retrievedAt":"2026-10-30"},"primiero-transacqua":{"graphUrl":"offline/packages/primiero-transacqua/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.16912,"west":11.82417,"north":46.18184,"east":11.84262},"nodeCount":2304,"edgeCount":2400,"retrievedAt":"2026-10-30"},"primiero-via-della-frutta-antica":{"graphUrl":"offline/packages/primiero-via-della-frutta-antica/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.14398,"west":11.75288,"north":46.17836,"east":11.83221},"nodeCount":12582,"edgeCount":12798,"retrievedAt":"2026-10-30"},"rendena-ciclabile-javre-dare-vigo-pelugo":{"graphUrl":"offline/packages/rendena-ciclabile-javre-dare-vigo-pelugo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.05735,"west":10.7043,"north":46.0893,"east":10.73885},"nodeCount":4921,"edgeCount":4983,"retrievedAt":"2026-10-30"},"rendena-giro-del-belvedere-giustino":{"graphUrl":"offline/packages/rendena-giro-del-belvedere-giustino/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.14496,"west":10.76046,"north":46.15885,"east":10.7755},"nodeCount":1322,"edgeCount":1360,"retrievedAt":"2026-11-02"},"santa-maddalena":{"graphUrl":"routing-graphs/santa-maddalena.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59590444125045,"west":11.650737359001882,"north":46.68969555874955,"east":11.785922640998118},"nodeCount":6748,"edgeCount":6817,"retrievedAt":"2026-08-27T17:09:57.888Z"},"sassolungo":{"graphUrl":"routing-graphs/sassolungo.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.45471444125045,"west":11.63240987611249,"north":46.577785558749554,"east":11.83336012388751},"nodeCount":20798,"edgeCount":21180,"retrievedAt":"2026-08-27T17:16:32.997Z"},"savoie-areches-beaufort-croix-du-berger-et-lac-des-fees":{"graphUrl":"offline/packages/savoie-areches-beaufort-croix-du-berger-et-lac-des-fees/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.61351,"west":6.5941,"north":45.62982,"east":6.61476},"nodeCount":1197,"edgeCount":1211,"retrievedAt":"2026-11-03"},"savoie-areches-beaufort-la-grande-berge":{"graphUrl":"offline/packages/savoie-areches-beaufort-la-grande-berge/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.67318,"west":6.63726,"north":45.69686,"east":6.67388},"nodeCount":1447,"edgeCount":1457,"retrievedAt":"2026-11-03"},"savoie-itineraire-poussette-de-belavoine":{"graphUrl":"offline/packages/savoie-itineraire-poussette-de-belavoine/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.77985,"west":6.49357,"north":45.80205,"east":6.52244},"nodeCount":2861,"edgeCount":2841,"retrievedAt":"2026-11-03"},"savoie-itineraire-poussette-des-chalets-brules":{"graphUrl":"offline/packages/savoie-itineraire-poussette-des-chalets-brules/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.78497,"west":6.51966,"north":45.79676,"east":6.53683},"nodeCount":580,"edgeCount":576,"retrievedAt":"2026-11-03"},"savoie-promenade-confort-lac-et-barrage-de-saint-guerin":{"graphUrl":"offline/packages/savoie-promenade-confort-lac-et-barrage-de-saint-guerin/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":45.63705,"west":6.57039,"north":45.65492,"east":6.58998},"nodeCount":1501,"edgeCount":1505,"retrievedAt":"2026-11-03"},"seceda":{"graphUrl":"routing-graphs/seceda.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.53061444125045,"west":11.658993879765028,"north":46.64480555874955,"east":11.824916120234972},"nodeCount":17322,"edgeCount":17676,"retrievedAt":"2026-08-27T17:15:07.870Z"},"seiseralm-alla-volta-della-trappola-d-orso-a-s-michele":{"graphUrl":"offline/packages/seiseralm-alla-volta-della-trappola-d-orso-a-s-michele/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56039,"west":11.55437,"north":46.59095,"east":11.62846},"nodeCount":5697,"edgeCount":5711,"retrievedAt":"2026-10-30"},"seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del":{"graphUrl":"offline/packages/seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.43766,"west":11.52563,"north":46.47503,"east":11.59119},"nodeCount":7746,"edgeCount":7774,"retrievedAt":"2026-10-30"},"seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff":{"graphUrl":"offline/packages/seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.49924,"west":11.51315,"north":46.52498,"east":11.54464},"nodeCount":2479,"edgeCount":2522,"retrievedAt":"2026-10-30"},"seiseralm-escursione-senza-barriere-all-alpe-di-siusi":{"graphUrl":"offline/packages/seiseralm-escursione-senza-barriere-all-alpe-di-siusi/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55029,"west":11.65544,"north":46.56163,"east":11.67452},"nodeCount":732,"edgeCount":732,"retrievedAt":"2026-10-30"},"sentiero-del-trenino":{"graphUrl":"routing-graphs/sentiero-del-trenino.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.50122394125045,"west":11.579771099956796,"north":46.620546058749554,"east":11.834705400043205},"nodeCount":31869,"edgeCount":32496,"retrievedAt":"2026-08-27T17:18:53.015Z"},"sentiero-hans-e-paula-steger":{"graphUrl":"routing-graphs/sentiero-hans-e-paula-steger.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.47457534125045,"west":11.55202977961426,"north":46.58771235874955,"east":11.73381722038574},"nodeCount":16978,"edgeCount":17096,"retrievedAt":"2026-08-27T17:18:30.960Z"},"tre-cime":{"graphUrl":"routing-graphs/tre-cime.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56729029125045,"west":12.21890409925356,"north":46.68179013874955,"east":12.380584860746438},"nodeCount":9099,"edgeCount":9213,"retrievedAt":"2026-08-27T17:15:12.018Z"},"trecime-bagni-di-san-candido":{"graphUrl":"offline/packages/trecime-bagni-di-san-candido/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71342,"west":12.27254,"north":46.73409,"east":12.30536},"nodeCount":2194,"edgeCount":2233,"retrievedAt":"2026-11-02"},"trecime-bellavista-montecosta":{"graphUrl":"offline/packages/trecime-bellavista-montecosta/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73459,"west":12.11906,"north":46.75832,"east":12.17463},"nodeCount":9688,"edgeCount":9984,"retrievedAt":"2026-11-02"},"trecime-carbonin-rifugio-vallandro":{"graphUrl":"offline/packages/trecime-carbonin-rifugio-vallandro/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61754,"west":12.18842,"north":46.64746,"east":12.2211},"nodeCount":1724,"edgeCount":1737,"retrievedAt":"2026-11-02"},"trecime-cimabanche-prato-piazza":{"graphUrl":"offline/packages/trecime-cimabanche-prato-piazza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61987,"west":12.16307,"north":46.65734,"east":12.20401},"nodeCount":2260,"edgeCount":2275,"retrievedAt":"2026-11-02"},"trecime-dobbiaco-lago-di-dobbiaco":{"graphUrl":"offline/packages/trecime-dobbiaco-lago-di-dobbiaco/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69351,"west":12.1984,"north":46.73212,"east":12.24064},"nodeCount":3340,"edgeCount":3415,"retrievedAt":"2026-11-02"},"trecime-gasthof-panorama-rifugio-pendio-monte-elmo":{"graphUrl":"offline/packages/trecime-gasthof-panorama-rifugio-pendio-monte-elmo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69359,"west":12.36258,"north":46.70454,"east":12.37842},"nodeCount":642,"edgeCount":643,"retrievedAt":"2026-11-02"},"trecime-giro-delle-baite-lago-di-braies":{"graphUrl":"offline/packages/trecime-giro-delle-baite-lago-di-braies/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68601,"west":12.05451,"north":46.71258,"east":12.09046},"nodeCount":1093,"edgeCount":1121,"retrievedAt":"2026-11-02"},"trecime-haus-der-berge-rifugio-larice":{"graphUrl":"offline/packages/trecime-haus-der-berge-rifugio-larice/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69348,"west":12.35147,"north":46.71069,"east":12.38359},"nodeCount":1993,"edgeCount":2025,"retrievedAt":"2026-11-02"},"trecime-helmjet-waldruhe-sexten":{"graphUrl":"offline/packages/trecime-helmjet-waldruhe-sexten/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69791,"west":12.34468,"north":46.72069,"east":12.3696},"nodeCount":2462,"edgeCount":2514,"retrievedAt":"2026-11-02"},"trecime-innichen-waldkapelle-sexten":{"graphUrl":"offline/packages/trecime-innichen-waldkapelle-sexten/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6979,"west":12.27911,"north":46.73445,"east":12.3604},"nodeCount":7432,"edgeCount":7530,"retrievedAt":"2026-11-02"},"trecime-lago-di-braies-malga-foresta":{"graphUrl":"offline/packages/trecime-lago-di-braies-malga-foresta/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68602,"west":12.0603,"north":46.70147,"east":12.08909},"nodeCount":640,"edgeCount":673,"retrievedAt":"2026-11-02"},"trecime-lago-di-braies-malga-rossalm":{"graphUrl":"offline/packages/trecime-lago-di-braies-malga-rossalm/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65635,"west":12.07428,"north":46.70291,"east":12.12519},"nodeCount":1560,"edgeCount":1587,"retrievedAt":"2026-11-02"},"trecime-monte-casella-di-fuori":{"graphUrl":"offline/packages/trecime-monte-casella-di-fuori/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67143,"west":12.31652,"north":46.70784,"east":12.3636},"nodeCount":2998,"edgeCount":3053,"retrievedAt":"2026-11-02"},"trecime-monte-elmo-da-moso":{"graphUrl":"offline/packages/trecime-monte-elmo-da-moso/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68759,"west":12.35952,"north":46.71848,"east":12.3933},"nodeCount":2849,"edgeCount":2883,"retrievedAt":"2026-11-02"},"trecime-monte-elmo-versciaco":{"graphUrl":"offline/packages/trecime-monte-elmo-versciaco/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.70964,"west":12.32013,"north":46.73532,"east":12.36786},"nodeCount":3210,"edgeCount":3242,"retrievedAt":"2026-11-02"},"trecime-rotwandwiesen-moos":{"graphUrl":"offline/packages/trecime-rotwandwiesen-moos/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65833,"west":12.35685,"north":46.68689,"east":12.38808},"nodeCount":1865,"edgeCount":1887,"retrievedAt":"2026-11-02"},"trecime-san-candido-costa-dei-nosellari-dobbiaco":{"graphUrl":"offline/packages/trecime-san-candido-costa-dei-nosellari-dobbiaco/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.7218,"west":12.21586,"north":46.74509,"east":12.2725},"nodeCount":3804,"edgeCount":3922,"retrievedAt":"2026-11-02"},"trecime-sasso-di-sesto":{"graphUrl":"offline/packages/trecime-sasso-di-sesto/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63339,"west":12.30303,"north":46.67025,"east":12.36001},"nodeCount":1931,"edgeCount":1955,"retrievedAt":"2026-11-02"},"trecime-sentiero-gustav-mahler":{"graphUrl":"offline/packages/trecime-sentiero-gustav-mahler/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71949,"west":12.19592,"north":46.73378,"east":12.23065},"nodeCount":2102,"edgeCount":2159,"retrievedAt":"2026-11-02"},"trecime-sesto-alte-saege-val-campo-di-dentro":{"graphUrl":"offline/packages/trecime-sesto-alte-saege-val-campo-di-dentro/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.67106,"west":12.29138,"north":46.71627,"east":12.36151},"nodeCount":5621,"edgeCount":5720,"retrievedAt":"2026-11-02"},"trecime-sesto-cappella-del-bosco":{"graphUrl":"offline/packages/trecime-sesto-cappella-del-bosco/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69895,"west":12.33553,"north":46.71757,"east":12.35591},"nodeCount":1452,"edgeCount":1477,"retrievedAt":"2026-11-02"},"trecime-sesto-chiesa-gasthof-panorama":{"graphUrl":"offline/packages/trecime-sesto-chiesa-gasthof-panorama/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69588,"west":12.34336,"north":46.7081,"east":12.37158},"nodeCount":1449,"edgeCount":1478,"retrievedAt":"2026-11-02"},"trecime-sesto-san-candido":{"graphUrl":"offline/packages/trecime-sesto-san-candido/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68459,"west":12.27762,"north":46.73575,"east":12.37206},"nodeCount":11197,"edgeCount":11375,"retrievedAt":"2026-11-02"},"trecime-villabassa-lanaweg":{"graphUrl":"offline/packages/trecime-villabassa-lanaweg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73349,"west":12.16333,"north":46.75156,"east":12.19427},"nodeCount":5664,"edgeCount":5927,"retrievedAt":"2026-11-02"},"trecime-villabassa-mooskirche":{"graphUrl":"offline/packages/trecime-villabassa-mooskirche/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.73449,"west":12.15083,"north":46.7462,"east":12.17463},"nodeCount":4065,"edgeCount":4338,"retrievedAt":"2026-11-02"},"valdisole-bivacco-malga-baselga":{"graphUrl":"offline/packages/valdisole-bivacco-malga-baselga/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.27046,"west":10.74889,"north":46.29915,"east":10.78004},"nodeCount":1046,"edgeCount":1054,"retrievedAt":"2026-11-02"},"valdisole-fazzon-lago-dei-caprioli":{"graphUrl":"offline/packages/valdisole-fazzon-lago-dei-caprioli/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28843,"west":10.75755,"north":46.30148,"east":10.77239},"nodeCount":564,"edgeCount":571,"retrievedAt":"2026-11-02"},"valdisole-lago-dei-caprioli-malga-alta-di-fazzon":{"graphUrl":"offline/packages/valdisole-lago-dei-caprioli-malga-alta-di-fazzon/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28809,"west":10.76287,"north":46.30012,"east":10.78172},"nodeCount":576,"edgeCount":584,"retrievedAt":"2026-11-02"},"valdisole-marilleva-1400-malga-alta-di-fazzon":{"graphUrl":"offline/packages/valdisole-marilleva-1400-malga-alta-di-fazzon/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28501,"west":10.76165,"north":46.3061,"east":10.81253},"nodeCount":1517,"edgeCount":1533,"retrievedAt":"2026-11-02"},"valdisole-monclassico-presson-meridiane":{"graphUrl":"offline/packages/valdisole-monclassico-presson-meridiane/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.32884,"west":10.87504,"north":46.33995,"east":10.89349},"nodeCount":696,"edgeCount":703,"retrievedAt":"2026-11-02"},"valdisole-ortise-malga-stabli":{"graphUrl":"offline/packages/valdisole-ortise-malga-stabli/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.32233,"west":10.76894,"north":46.33995,"east":10.78914},"nodeCount":655,"edgeCount":655,"retrievedAt":"2026-11-02"},"valdisole-passo-tonale-forte-mero":{"graphUrl":"offline/packages/valdisole-passo-tonale-forte-mero/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.26216,"west":10.58533,"north":46.2843,"east":10.63872},"nodeCount":2030,"edgeCount":2038,"retrievedAt":"2026-11-02"},"valdisole-passo-tonale-forte-mero-forte-zaccarana":{"graphUrl":"offline/packages/valdisole-passo-tonale-forte-mero-forte-zaccarana/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.26338,"west":10.58533,"north":46.28545,"east":10.63857},"nodeCount":2025,"edgeCount":2033,"retrievedAt":"2026-11-02"},"valdisole-rifugio-stavel-denza":{"graphUrl":"offline/packages/valdisole-rifugio-stavel-denza/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.23979,"west":10.63632,"north":46.26667,"east":10.66549},"nodeCount":1003,"edgeCount":1005,"retrievedAt":"2026-11-02"},"valgardena-escursione-al-brogles":{"graphUrl":"offline/packages/valgardena-escursione-al-brogles/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59384,"west":11.67213,"north":46.61634,"east":11.7267},"nodeCount":1301,"edgeCount":1299,"retrievedAt":"2026-11-02"},"valgardena-escursione-al-resciesa":{"graphUrl":"offline/packages/valgardena-escursione-al-resciesa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.59272,"west":11.64889,"north":46.60877,"east":11.68782},"nodeCount":736,"edgeCount":745,"retrievedAt":"2026-11-02"},"valgardena-escursione-al-seeurasas":{"graphUrl":"offline/packages/valgardena-escursione-al-seeurasas/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56614,"west":11.66666,"north":46.58675,"east":11.71666},"nodeCount":4840,"edgeCount":4967,"retrievedAt":"2026-11-02"},"valgardena-escursione-al-terrazzo-panoramico-seeurasas":{"graphUrl":"offline/packages/valgardena-escursione-al-terrazzo-panoramico-seeurasas/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56259,"west":11.70595,"north":46.58281,"east":11.72991},"nodeCount":1290,"edgeCount":1296,"retrievedAt":"2026-11-02"},"valgardena-escursione-dalla-cappella-santa-croce-al-brogles":{"graphUrl":"offline/packages/valgardena-escursione-dalla-cappella-santa-croce-al-brogles/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58877,"west":11.64889,"north":46.62078,"east":11.72652},"nodeCount":3144,"edgeCount":3161,"retrievedAt":"2026-10-30"},"valgardena-escursione-nella-vallunga":{"graphUrl":"offline/packages/valgardena-escursione-nella-vallunga/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56032,"west":11.76837,"north":46.58352,"east":11.81839},"nodeCount":1116,"edgeCount":1131,"retrievedAt":"2026-11-02"},"valgardena-giro-della-via-crucis":{"graphUrl":"offline/packages/valgardena-giro-della-via-crucis/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55496,"west":11.70999,"north":46.56669,"east":11.73812},"nodeCount":2756,"edgeCount":2808,"retrievedAt":"2026-11-02"},"valgardena-passeggiata-alla-chiesetta-di-san-giacomo":{"graphUrl":"offline/packages/valgardena-passeggiata-alla-chiesetta-di-san-giacomo/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56838,"west":11.66637,"north":46.58191,"east":11.69918},"nodeCount":3499,"edgeCount":3620,"retrievedAt":"2026-11-02"},"valgardena-passeggiata-da-ortisei-a-s-cristina":{"graphUrl":"offline/packages/valgardena-passeggiata-da-ortisei-a-s-cristina/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55598,"west":11.66591,"north":46.57897,"east":11.71245},"nodeCount":5677,"edgeCount":5805,"retrievedAt":"2026-11-02"},"valgardena-percorso-dei-masi-tradizionali":{"graphUrl":"offline/packages/valgardena-percorso-dei-masi-tradizionali/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5555,"west":11.7039,"north":46.57621,"east":11.74439},"nodeCount":4645,"edgeCount":4722,"retrievedAt":"2026-10-30"},"valgardena-raida-dl-luech-giro-del-paese":{"graphUrl":"offline/packages/valgardena-raida-dl-luech-giro-del-paese/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.55188,"west":11.70498,"north":46.56415,"east":11.73474},"nodeCount":2984,"edgeCount":3032,"retrievedAt":"2026-11-02"},"valgardena-seceda-da-col-raiser":{"graphUrl":"offline/packages/valgardena-seceda-da-col-raiser/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58153,"west":11.7189,"north":46.60424,"east":11.751},"nodeCount":2673,"edgeCount":2706,"retrievedAt":"2026-11-02"},"valgardena-tour-alla-volta-del-lech-sant":{"graphUrl":"offline/packages/valgardena-tour-alla-volta-del-lech-sant/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56285,"west":11.71659,"north":46.59051,"east":11.74677},"nodeCount":2578,"edgeCount":2604,"retrievedAt":"2026-11-02"},"valgardena-uciei-de-freeines":{"graphUrl":"offline/packages/valgardena-uciei-de-freeines/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.56118,"west":11.72173,"north":46.589,"east":11.75209},"nodeCount":3121,"edgeCount":3157,"retrievedAt":"2026-11-02"},"valgardena-val-danna-percorso-kneipp":{"graphUrl":"offline/packages/valgardena-val-danna-percorso-kneipp/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.5729,"west":11.6695,"north":46.58375,"east":11.69212},"nodeCount":1926,"edgeCount":1994,"retrievedAt":"2026-11-02"},"valley-view":{"graphUrl":"routing-graphs/valley-view.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.60012444125045,"west":11.624142315781222,"north":46.69381555874955,"east":11.781507684218777},"nodeCount":9655,"edgeCount":9750,"retrievedAt":"2026-08-27T17:10:02.955Z"},"valtellina-passo-di-campagneda":{"graphUrl":"offline/packages/valtellina-passo-di-campagneda/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.28765,"west":9.92534,"north":46.31352,"east":9.98773},"nodeCount":1586,"edgeCount":1603,"retrievedAt":"2026-11-03"},"valtellina-rifugi-porro-e-ventina":{"graphUrl":"offline/packages/valtellina-rifugi-porro-e-ventina/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.29213,"west":9.76576,"north":46.31956,"east":9.79554},"nodeCount":1645,"edgeCount":1648,"retrievedAt":"2026-11-03"},"villnoess-da-russis-fino-al-passo-delle-erbe":{"graphUrl":"offline/packages/villnoess-da-russis-fino-al-passo-delle-erbe/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.64896,"west":11.7466,"north":46.67915,"east":11.81992},"nodeCount":4737,"edgeCount":4729,"retrievedAt":"2026-10-30"},"villnoess-dolorama-3a-tappa":{"graphUrl":"offline/packages/villnoess-dolorama-3a-tappa/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.58615,"west":11.65556,"north":46.64989,"east":11.81024},"nodeCount":21122,"edgeCount":21280,"retrievedAt":"2026-10-30"},"villnoess-ranui-zannes":{"graphUrl":"offline/packages/villnoess-ranui-zannes/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62412,"west":11.72366,"north":46.64359,"east":11.7709},"nodeCount":2302,"edgeCount":2311,"retrievedAt":"2026-10-30"},"vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles":{"graphUrl":"offline/packages/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68719,"west":10.43036,"north":46.7386,"east":10.5523},"nodeCount":11706,"edgeCount":11829,"retrievedAt":"2026-11-02"},"vinschgau-escursione-al-lago-bergsee-da-burgusio":{"graphUrl":"offline/packages/vinschgau-escursione-al-lago-bergsee-da-burgusio/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.70752,"west":10.52025,"north":46.71992,"east":10.53532},"nodeCount":1175,"edgeCount":1192,"retrievedAt":"2026-11-02"},"vinschgau-piani-di-annenberg":{"graphUrl":"offline/packages/vinschgau-piani-di-annenberg/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61539,"west":10.83268,"north":46.63246,"east":10.87408},"nodeCount":2940,"edgeCount":2976,"retrievedAt":"2026-11-02"},"vinschgau-sentiero-della-roggia-kastanienwaal":{"graphUrl":"offline/packages/vinschgau-sentiero-della-roggia-kastanienwaal/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62388,"west":10.76615,"north":46.6356,"east":10.78669},"nodeCount":2202,"edgeCount":2279,"retrievedAt":"2026-11-02"},"vinschgau-sentiero-della-roggia-latschanderwaal-4954":{"graphUrl":"offline/packages/vinschgau-sentiero-della-roggia-latschanderwaal-4954/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.61013,"west":10.84259,"north":46.6365,"east":10.90658},"nodeCount":5396,"edgeCount":5525,"retrievedAt":"2026-11-02"},"vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal":{"graphUrl":"offline/packages/vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.65854,"west":10.57894,"north":46.68127,"east":10.61527},"nodeCount":3576,"edgeCount":3626,"retrievedAt":"2026-11-02"},"vinschgau-sentiero-della-roggia-schnalswaal":{"graphUrl":"offline/packages/vinschgau-sentiero-della-roggia-schnalswaal/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.62333,"west":10.89587,"north":46.6558,"east":10.9747},"nodeCount":8675,"edgeCount":8894,"retrievedAt":"2026-11-02"},"vinschgau-sentiero-della-roggia-stabnerwaal":{"graphUrl":"offline/packages/vinschgau-sentiero-della-roggia-stabnerwaal/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.63137,"west":10.93212,"north":46.65245,"east":10.97494},"nodeCount":4294,"edgeCount":4388,"retrievedAt":"2026-11-02"},"weissensee-nordic-5-genoesns-bruendl":{"graphUrl":"offline/packages/weissensee-nordic-5-genoesns-bruendl/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.70309,"west":13.27565,"north":46.71815,"east":13.30021},"nodeCount":1341,"edgeCount":1342,"retrievedAt":"2026-11-02"},"weissensee-nordic-6-rothns-bichl":{"graphUrl":"offline/packages/weissensee-nordic-6-rothns-bichl/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.70308,"west":13.26041,"north":46.71982,"east":13.3002},"nodeCount":2171,"edgeCount":2189,"retrievedAt":"2026-11-02"},"weissensee-nordic-7-franz-josephs-hoehe":{"graphUrl":"offline/packages/weissensee-nordic-7-franz-josephs-hoehe/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.70309,"west":13.24997,"north":46.72384,"east":13.30021},"nodeCount":3450,"edgeCount":3450,"retrievedAt":"2026-11-02"},"weissensee-nordic-8-naggler-alm":{"graphUrl":"offline/packages/weissensee-nordic-8-naggler-alm/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.69543,"west":13.28856,"north":46.71659,"east":13.31805},"nodeCount":2071,"edgeCount":2074,"retrievedAt":"2026-11-02"},"weissensee-ortsee-ronacherfels":{"graphUrl":"offline/packages/weissensee-ortsee-ronacherfels/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.6858,"west":13.31742,"north":46.72801,"east":13.42},"nodeCount":7172,"edgeCount":7213,"retrievedAt":"2026-11-02"},"weissensee-slow-trail":{"graphUrl":"offline/packages/weissensee-slow-trail/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.68758,"west":13.33921,"north":46.72083,"east":13.42},"nodeCount":3667,"edgeCount":3695,"retrievedAt":"2026-11-02"},"weissensee-techendorf-tschabitscher-kreuzwirt":{"graphUrl":"offline/packages/weissensee-techendorf-tschabitscher-kreuzwirt/footpath-network.json","source":"OpenStreetMap","networkStatus":"mapped","bounds":{"south":46.71228,"west":13.23554,"north":46.73881,"east":13.30002},"nodeCount":5921,"edgeCount":5936,"retrievedAt":"2026-11-02"}}});
 ;
 
 // ---- trail-access-directions.js ----
 (function(root){
   'use strict';
+
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
 
   const DEFAULT_MAX_KM = 100;
   const TRAIL_JOIN_MAX_KM = 5;
@@ -67846,7 +68882,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
       point:{ lat:point.lat, lng:point.lng },
       label:declared && declared.label
         ? declared.label
-        : (trail.curated === false ? 'Mapped route start' : 'Recommended starting point'),
+        : (trail.curated === false ? tx('Mapped route start') : tx('Recommended starting point')),
       kind:trail.curated === false ? 'mapped-start' : 'recommended-start',
     };
   }
@@ -67882,22 +68918,24 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     if(!segments.length) return [];
 
     const steps = [];
-    let action = 'Follow the mapped path';
+    let action = tx('Follow the mapped path');
     let heading = segments[0].bearing;
     let distanceM = 0;
     segments.forEach((segment, index) => {
       const change = signedBearingChange(heading, segment.bearing);
       if(index > 0 && Math.abs(change) >= 35){
         steps.push({ action, distanceM:Math.round(distanceM) });
-        const side = change > 0 ? 'right' : 'left';
-        action = `${Math.abs(change) < 75 ? 'Bear' : 'Turn'} ${side}`;
+        const right = change > 0;
+        action = Math.abs(change) < 75
+          ? (right ? tx('Bear right') : tx('Bear left'))
+          : (right ? tx('Turn right') : tx('Turn left'));
         distanceM = 0;
       }
       distanceM += segment.distanceM;
       heading = segment.bearing;
     });
     if(distanceM > 0) steps.push({ action, distanceM:Math.round(distanceM) });
-    steps.push({ action:'Join the trail', distanceM:0 });
+    steps.push({ action:tx('Join the trail'), distanceM:0 });
     return steps;
   }
 
@@ -67956,7 +68994,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
         mode:'nearest-route',
         origin,
         target:nearest.point,
-        targetLabel:'Nearest point on this trail',
+        targetLabel:tx('Nearest point on this trail'),
         targetKind:'nearest-route-point',
         accuracyM,
         distanceKm:nearest.distanceKm,
@@ -68503,6 +69541,13 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const WEATHER_MAX_AGE_MS = 30 * 60 * 1000;
   const SELF_TEST_MAX_AGE_MS = 12 * 60 * 60 * 1000;
 
@@ -68770,6 +69815,12 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
         level === 'checking' ? '…' : 'i';
     }
 
+    // Spoken before each check's title; the level itself stays a code.
+    function levelLabel(level){
+      return level === 'ready' ? tx('ready') : level === 'blocker' ? tx('blocker') :
+        level === 'checking' ? tx('checking') : level === 'advisory' ? tx('advisory') : level;
+    }
+
     function render(){
       if(!modal || !state) return;
       const result = assess(state, undefined, win.t);
@@ -68778,7 +69829,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
         `<article class="pre-hike-item pre-hike-item--${entry.level}">` +
           `<span class="pre-hike-icon" aria-hidden="true">${icon(entry.level)}</span>` +
           '<div class="pre-hike-item-copy">' +
-            `<strong><span class="sr-only">${escapeHtml(entry.level)}: </span>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.detail)}</p>` +
+            `<strong><span class="sr-only">${escapeHtml(levelLabel(entry.level))}: </span>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.detail)}</p>` +
           '</div>' +
           (entry.action
             ? `<button type="button" data-readiness-action="${entry.action}">${
@@ -70268,6 +71319,17 @@ function hikeRoutePositionKm(input){
 }
 
 function initHikeMode(map, trail, options){
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+  // A trail's own words in the reader's language, from data/trail-text-it.
+  function trailWords(text){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.trailText === 'function' ? i18n.trailText(text) : text;
+  }
   if (!('geolocation' in navigator)) return; // no GPS, don't show the button
   if (!Array.isArray(trail.path) || trail.path.length < 2) return;
 
@@ -70341,7 +71403,7 @@ function initHikeMode(map, trail, options){
   const panel = document.createElement('div');
   panel.id = 'mapHikeStatus';
   panel.setAttribute('role', 'group');
-  panel.setAttribute('aria-label', 'Live hike details');
+  panel.setAttribute('aria-label', tx('Live hike details'));
   panel.style.cssText = 'position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:6;max-width:92%;padding:10px 16px;border-radius:12px;background:rgba(46,64,52,.94);color:#fff;font-size:12.5px;font-weight:600;box-shadow:0 2px 10px rgba(0,0,0,.35);display:none;text-align:center;line-height:1.5;';
   container.appendChild(panel);
 
@@ -70359,7 +71421,7 @@ function initHikeMode(map, trail, options){
   const banner = document.createElement('div');
   banner.id = 'mapHikeOffRoute';
   banner.setAttribute('role', 'group');
-  banner.setAttribute('aria-label', 'Off-route warning');
+  banner.setAttribute('aria-label', tx('Off-route warning'));
   banner.textContent = window.t ? window.t('hike.offRoute') : '⚠️ Off route';
   banner.style.cssText = 'position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:7;width:max-content;max-width:min(92%,520px);padding:9px 16px;border-radius:12px;background:#9C3A25;color:#fff;font-size:12.5px;font-weight:700;line-height:1.4;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.35);display:none;';
   container.appendChild(banner);
@@ -70845,7 +71907,7 @@ function initHikeMode(map, trail, options){
     const hut = isLoop ? null : nextAhead(trail.rifugi, currentRouteKm, 'name');
     if (hut) parts.push(window.t('hike.hutIn', {name: hut.label, d: hut.ahead.toFixed(1)}));
     const decision = isLoop ? null : nextAhead(trail.decisionPoints, currentRouteKm, 'instruction');
-    if (decision && decision.ahead < 0.5) parts.push(window.t('hike.ahead', {what: decision.label}));
+    if (decision && decision.ahead < 0.5) parts.push(window.t('hike.ahead', {what: trailWords(decision.label)}));
 
     // Lead advisories are a range rather than a next-point search, so unlike
     // the readouts above they stay meaningful on a loop.
@@ -71151,7 +72213,7 @@ function initHikeMode(map, trail, options){
     const elapsedSeconds = completion.durationSeconds;
     const elapsedMinutes = Math.max(1, Math.round(elapsedSeconds / 60));
     const dog = dogSummary();
-    const dogName = dog.name || 'Your dog';
+    const dogName = dog.name || tx('Your dog');
     const km = completion.distanceKm;
     const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : ', ';
     // The trail rating, in the words the rest of the product uses. This held
@@ -71195,70 +72257,70 @@ function initHikeMode(map, trail, options){
           ${Number.isFinite(matchPct) ? `<span class="pct">${esc(window.t('hike.matchFor', {pct: matchPct, name: dogName}))}</span>` : ''}
         </div>
         <div class="hk-block hk-outcome-block">
-          <div class="hk-label">Private trail feedback</div>
-          <p class="hk-outcome-intro">Did this trail suit ${esc(dogName)}? This helps assess the recommendation and never becomes a public review.</p>
-          <div class="hk-outcome-options" id="hkOutcomeOptions" role="radiogroup" aria-label="Did this trail suit your dog?"></div>
+          <div class="hk-label">${esc(tx('Private trail feedback'))}</div>
+          <p class="hk-outcome-intro">${esc(tx('Did this trail suit {name}? This helps assess the recommendation and never becomes a public review.', { name: dogName }))}</p>
+          <div class="hk-outcome-options" id="hkOutcomeOptions" role="radiogroup" aria-label="${esc(tx('Did this trail suit your dog?'))}"></div>
           <div class="hk-outcome-followups" id="hkOutcomeFollowups" hidden>
-            <label for="hkWaterAccuracy">Was the listed water information accurate? <span>Optional</span></label>
+            <label for="hkWaterAccuracy">${esc(tx('Was the listed water information accurate?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkWaterAccuracy">
-              <option value="">Prefer not to answer</option>
-              <option value="accurate">Yes, it was accurate</option>
-              <option value="less_than_listed">Less water than listed</option>
-              <option value="more_than_listed">More water than listed</option>
-              <option value="not_checked">I did not check</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="accurate">${esc(tx('Yes, it was accurate'))}</option>
+              <option value="less_than_listed">${esc(tx('Less water than listed'))}</option>
+              <option value="more_than_listed">${esc(tx('More water than listed'))}</option>
+              <option value="not_checked">${esc(tx('I did not check'))}</option>
             </select>
-            <label for="hkLivestock">Did you encounter livestock? <span>Optional</span></label>
+            <label for="hkLivestock">${esc(tx('Did you encounter livestock?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkLivestock">
-              <option value="">Prefer not to answer</option>
-              <option value="none">No livestock at all</option>
-              <option value="seen_at_distance">Seen, but at a distance</option>
-              <option value="close_encounter">Passed close to them</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="none">${esc(tx('No livestock at all'))}</option>
+              <option value="seen_at_distance">${esc(tx('Seen, but at a distance'))}</option>
+              <option value="close_encounter">${esc(tx('Passed close to them'))}</option>
             </select>
-            <label for="hkOffLead">Were dogs off-lead on this route? <span>Optional</span></label>
+            <label for="hkOffLead">${esc(tx('Were dogs off-lead on this route?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkOffLead">
-              <option value="">Prefer not to answer</option>
-              <option value="all_on_lead">Everyone kept dogs on the lead</option>
-              <option value="some_off_lead">Some dogs were off-lead</option>
-              <option value="mostly_off_lead">Most dogs were off-lead</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="all_on_lead">${esc(tx('Everyone kept dogs on the lead'))}</option>
+              <option value="some_off_lead">${esc(tx('Some dogs were off-lead'))}</option>
+              <option value="mostly_off_lead">${esc(tx('Most dogs were off-lead'))}</option>
             </select>
-            <label for="hkCrowding">How busy was it? <span>Optional</span></label>
+            <label for="hkCrowding">${esc(tx('How busy was it?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkCrowding">
-              <option value="">Prefer not to answer</option>
-              <option value="quiet">Quiet, room to give space</option>
-              <option value="moderate">Steady foot traffic</option>
-              <option value="busy">Busy throughout</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="quiet">${esc(tx('Quiet, room to give space'))}</option>
+              <option value="moderate">${esc(tx('Steady foot traffic'))}</option>
+              <option value="busy">${esc(tx('Busy throughout'))}</option>
             </select>
-            <label for="hkEnjoyment">Did ${esc(dogName)} enjoy it? <span>Optional</span></label>
+            <label for="hkEnjoyment">${esc(tx('Did {name} enjoy it?', { name: dogName }))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkEnjoyment">
-              <option value="">Prefer not to answer</option>
-              <option value="loved_it">Loved it</option>
-              <option value="fine">Took it in their stride</option>
-              <option value="struggled">Struggled with it</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="loved_it">${esc(tx('Loved it'))}</option>
+              <option value="fine">${esc(tx('Took it in their stride'))}</option>
+              <option value="struggled">${esc(tx('Struggled with it'))}</option>
             </select>
-            <label for="hkReactiveFit">Would you recommend it for a reactive dog? <span>Optional</span></label>
+            <label for="hkReactiveFit">${esc(tx('Would you recommend it for a reactive dog?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkReactiveFit">
-              <option value="">Prefer not to answer</option>
-              <option value="yes">Yes, there is room to pass</option>
-              <option value="with_care">Only with care</option>
-              <option value="no">No, too little space</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="yes">${esc(tx('Yes, there is room to pass'))}</option>
+              <option value="with_care">${esc(tx('Only with care'))}</option>
+              <option value="no">${esc(tx('No, too little space'))}</option>
             </select>
             <label class="hk-outcome-check">
               <input type="checkbox" id="hkMissingRestriction">
-              A posted restriction was missing from ORMA
+              ${esc(tx('A posted restriction was missing from ORMA'))}
             </label>
             <fieldset>
-              <legend>Any material hazard we should account for? <span>Optional</span></legend>
+              <legend>${esc(tx('Any material hazard we should account for?'))} <span>${esc(tx('Optional'))}</span></legend>
               <div class="hk-hazard-options">
-                <label><input type="checkbox" value="surface"> Surface</label>
-                <label><input type="checkbox" value="exposure"> Exposure</label>
-                <label><input type="checkbox" value="livestock"> Livestock</label>
-                <label><input type="checkbox" value="heat"> Heat</label>
-                <label><input type="checkbox" value="access"> Access</label>
-                <label><input type="checkbox" value="water"> Water</label>
+                <label><input type="checkbox" value="surface"> ${esc(tx('Surface'))}</label>
+                <label><input type="checkbox" value="exposure"> ${esc(tx('Exposure'))}</label>
+                <label><input type="checkbox" value="livestock"> ${esc(tx('Livestock'))}</label>
+                <label><input type="checkbox" value="heat"> ${esc(tx('Heat'))}</label>
+                <label><input type="checkbox" value="access"> ${esc(tx('Access'))}</label>
+                <label><input type="checkbox" value="water"> ${esc(tx('Water'))}</label>
               </div>
             </fieldset>
           </div>
-          <button type="button" class="hk-outcome-save" id="hkOutcomeSave" disabled>Save private feedback</button>
+          <button type="button" class="hk-outcome-save" id="hkOutcomeSave" disabled>${esc(tx('Save private feedback'))}</button>
           <p class="hk-outcome-status" id="hkOutcomeStatus" role="status" aria-live="polite"></p>
         </div>
         <div class="hk-block">
@@ -71295,11 +72357,11 @@ function initHikeMode(map, trail, options){
 
     function renderOutcome(){
       const labels = [
-        ['appropriate', 'Yes, appropriate'],
-        ['appropriate_with_unexpected_cautions', 'Yes, with unexpected cautions'],
-        ['not_appropriate', 'No, not appropriate'],
-        ['did_not_complete', 'We turned back'],
-        ['prefer_not_to_answer', 'Prefer not to answer'],
+        ['appropriate', tx('Yes, appropriate')],
+        ['appropriate_with_unexpected_cautions', tx('Yes, with unexpected cautions')],
+        ['not_appropriate', tx('No, not appropriate')],
+        ['did_not_complete', tx('We turned back')],
+        ['prefer_not_to_answer', tx('Prefer not to answer')],
       ];
       const choices = q('#hkOutcomeOptions');
       choices.innerHTML = '';
@@ -71336,16 +72398,16 @@ function initHikeMode(map, trail, options){
       const status = q('#hkOutcomeStatus');
       const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
       if(!user){
-        status.textContent = 'Log in before saving this private response.';
+        status.textContent = tx('Log in before saving this private response.');
         if(window.DoloPawsAuthUI) window.DoloPawsAuthUI.openLogin();
         return;
       }
       if(!window.DoloPawsPostHikeOutcomes){
-        status.textContent = 'Private feedback is unavailable. Your completed hike is still saved.';
+        status.textContent = tx('Private feedback is unavailable. Your completed hike is still saved.');
         return;
       }
       saveButton.disabled = true;
-      status.textContent = 'Saving privately on this device…';
+      status.textContent = tx('Saving privately on this device…');
       let offlinePackageUsed = false;
       if(window.DoloPawsOffline && window.DoloPawsOffline.inspectPackage){
         try{
@@ -71371,7 +72433,7 @@ function initHikeMode(map, trail, options){
         offlinePackageUsed,
       }, user.uid);
       if(!result.ok){
-        status.textContent = 'The response could not be saved. Try again before closing this screen.';
+        status.textContent = tx('The response could not be saved. Try again before closing this screen.');
         saveButton.disabled = false;
         return;
       }
@@ -71379,13 +72441,13 @@ function initHikeMode(map, trail, options){
         '#hkOutcomeOptions button,#hkOutcomeFollowups input,#hkOutcomeFollowups select'
       ).forEach(control => { control.disabled = true; });
       status.textContent = navigator.onLine
-        ? 'Saved privately · syncing…'
-        : 'Saved privately · pending sync until you reconnect.';
+        ? tx('Saved privately · syncing…')
+        : tx('Saved privately · pending sync until you reconnect.');
       const sync = await window.DoloPawsPostHikeOutcomes.syncBrowser();
       status.textContent = sync.ok && sync.pending === 0
-        ? 'Saved privately · synced to your account.'
-        : 'Saved privately · pending sync until you reconnect.';
-      saveButton.textContent = 'Feedback saved';
+        ? tx('Saved privately · synced to your account.')
+        : tx('Saved privately · pending sync until you reconnect.');
+      saveButton.textContent = tx('Feedback saved');
     });
 
     function renderCond(){
@@ -71394,7 +72456,7 @@ function initHikeMode(map, trail, options){
       ['Comfortable', 'Warm', 'Hot'].forEach(c => {
         const b = document.createElement('button');
         b.type = 'button';
-        b.textContent = c;
+        b.textContent = window.t ? window.t('journal.condition.' + c.toLowerCase()) : c;
         b.className = c === cond ? 'on' : '';
         b.dataset.radioValue = c;
         b.setAttribute('role', 'radio');
@@ -71746,8 +72808,8 @@ function initHikeMode(map, trail, options){
       phoneUrl.searchParams.set('hike','1');
       phoneUrl.hash='start-hike';
       window.ORMADeviceHandoff.open({
-        title:'Start this hike on your phone',
-        description:'Live hike guidance needs the phone you will carry on the trail.',
+        title:tx('Start this hike on your phone'),
+        description:tx('Live hike guidance needs the phone you will carry on the trail.'),
         url:phoneUrl.href,
       });
     }
@@ -71771,8 +72833,8 @@ function initHikeMode(map, trail, options){
     setTimeout(async () => {
       if(window.ORMADeviceHandoff&&window.ORMADeviceHandoff.shouldHandoff()){
         window.ORMADeviceHandoff.open({
-          title:'Start this hike on your phone',
-          description:'Live hike guidance needs the phone you will carry on the trail.',
+          title:tx('Start this hike on your phone'),
+          description:tx('Live hike guidance needs the phone you will carry on the trail.'),
           url:window.location.href,
         });
         return;
@@ -71844,6 +72906,12 @@ function initDetailPois(map, trail){
 
   // Every popup states IN WORDS what the place is, an icon plus an
   // elevation is a riddle, not information.
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
   function tt(key, fallback){
     if(!window.t) return fallback;
     const v = window.t(key);
@@ -71878,16 +72946,16 @@ function initDetailPois(map, trail){
       : '';
     let html = `<div class="dp-poi-popup"><span class="dp-poi-type">${typeIcon}${esc(typeLabel)}</span>`;
     if (props.name) html += `<strong class="dp-poi-name">${esc(props.name)}</strong>`;
-    if (props.ele) html += `<span>${esc(props.ele)} m elevation</span>`;
-    if (props.opening_hours) html += `<span>Hours: ${esc(props.opening_hours)}</span>`;
+    if (props.ele) html += `<span>${tx('{ele} m elevation', { ele: esc(props.ele) })}</span>`;
+    if (props.opening_hours) html += `<span>${tx('Hours: {hours}', { hours: esc(props.opening_hours) })}</span>`;
     const phone = props.phone || props['contact:phone'];
-    if (phone) html += `<span>Phone: ${esc(phone)}</span>`;
+    if (phone) html += `<span>${tx('Phone: {phone}', { phone: esc(phone) })}</span>`;
     const site = props.website || props['contact:website'];
-    if (site && /^https?:\/\//.test(site)) html += `<a href="${esc(site)}" target="_blank" rel="noopener">Website</a>`;
-    if (props.dog === 'yes') html += `<span class="dp-poi-dog">Dogs welcome</span>`;
-    else if (props.dog === 'leashed') html += `<span class="dp-poi-dog">Dogs on leash</span>`;
-    else if (props.dog === 'no') html += `<span class="dp-poi-dog">No dogs</span>`;
-    if (props.outdoor_seating && props.outdoor_seating !== 'no') html += `<span>Outdoor seating</span>`;
+    if (site && /^https?:\/\//.test(site)) html += `<a href="${esc(site)}" target="_blank" rel="noopener">${tx('Website')}</a>`;
+    if (props.dog === 'yes') html += `<span class="dp-poi-dog">${tx('Dogs welcome')}</span>`;
+    else if (props.dog === 'leashed') html += `<span class="dp-poi-dog">${tx('Dogs on leash')}</span>`;
+    else if (props.dog === 'no') html += `<span class="dp-poi-dog">${tx('No dogs')}</span>`;
+    if (props.outdoor_seating && props.outdoor_seating !== 'no') html += `<span>${tx('Outdoor seating')}</span>`;
     return html + '</div>';
   }
 
@@ -72034,13 +73102,25 @@ function initDetailPois(map, trail){
 })(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text,vars){
+    const i18n=typeof window!=='undefined'&&window.DoloPawsI18n;
+    if(i18n&&typeof i18n.phrase==='function')return i18n.phrase(text,vars);
+    return vars?String(text).replace(/\{(\w+)\}/g,(m,k)=>(k in vars?vars[k]:m)):text;
+  }
+  // A trail's own words in the reader's language, from data/trail-text-it.
+  function trailWords(text){
+    const i18n=typeof window!=='undefined'&&window.DoloPawsI18n;
+    return i18n&&typeof i18n.trailText==='function'?i18n.trailText(text):text;
+  }
+
   function clean(value,maximum=1000){return String(value||'').trim().slice(0,maximum);}
 
   function normalizeCredit(value,fallbackUrl){
     const record=typeof value==='string'?{text:value}:(value&&typeof value==='object'?value:null);
     const text=clean(record?.text,500);if(!text)return null;
     const url=clean(record?.url||fallbackUrl);
-    return {text,url:/^https:\/\//i.test(url)?url:'',bare:record?.bare===true,label:record?.bare===true?text:`Photo: ${text}`};
+    return {text,url:/^https:\/\//i.test(url)?url:'',bare:record?.bare===true,label:record?.bare===true?text:tx('Photo: {credit}',{credit:text})};
   }
 
   // An illustration is not a photograph, so its line is not headed "Photo:"
@@ -72063,19 +73143,36 @@ function initDetailPois(map, trail){
       .map((photo,index)=>({...photo,image:clean(photo.image),isEditorial:true,editorialOrder:index,status:'approved'}));
   }
 
+  // Openly licensed photographs shown before anyone has shared one
+  // (data/trail-gallery-photos.json). Credited with creator and licence.
+  function licensedPhotos(trail){
+    return (Array.isArray(trail?.licensedPhotos)?trail.licensedPhotos:[])
+      .filter(photo=>photo&&/^images\/trails\/[A-Za-z0-9_.-]+\.(?:jpe?g|webp)$/i.test(clean(photo.image))&&clean(photo.creator)&&clean(photo.licence)&&/^https:\/\//i.test(clean(photo.sourcePage)))
+      .map((photo,index)=>({...photo,image:clean(photo.image),isLicensed:true,licensedOrder:index,status:'approved'}));
+  }
+
+  function licensedCredit(photo){
+    if(!photo?.isLicensed)return null;
+    const licenceUrl=clean(photo.licenceUrl);
+    return {creator:clean(photo.creator,200),licence:clean(photo.licence,80),sourcePage:clean(photo.sourcePage),
+      licenceUrl:/^https:\/\//i.test(licenceUrl)?licenceUrl:''};
+  }
+
   function photoCaption(photo){
+    const licensed=licensedCredit(photo);
+    if(licensed)return tx('Photo: {creator} · {licence}',{creator:licensed.creator,licence:licensed.licence});
     const dog=photo?.dogContext?.name;
     const caption=photo?.isEditorial
-      ? 'Shared by the ORMA community'
-      : (clean(photo?.caption,500)||(dog?`Shared by ${dog}’s human`:'Shared by the ORMA community'));
+      ? tx('Shared by the ORMA community')
+      : (clean(photo?.caption,500)||(dog?tx('Shared by {dog}’s human',{dog}):tx('Shared by the ORMA community')));
     const credit=normalizeCredit(photo?.credit,photo?.creditUrl);
-    const status=photo?.status==='reported'?'Reported, under review':'';
+    const status=photo?.status==='reported'?tx('Reported, under review'):'';
     return [caption,photo?.isEditorial?'':credit?.label,status].filter(Boolean).join(' · ');
   }
 
-  function photoAlt(photo){return clean(photo?.alt,500)||clean(photo?.caption,500)||'Trail photograph';}
+  function photoAlt(photo){return clean(trailWords(photo?.alt),500)||clean(photo?.caption,500)||tx('Trail photograph');}
 
-  return {clean,normalizeCredit,heroCredit,isIllustration,editorialPhotos,photoCaption,photoAlt};
+  return {clean,normalizeCredit,heroCredit,isIllustration,editorialPhotos,licensedPhotos,licensedCredit,photoCaption,photoAlt};
 });
 ;
 
@@ -72086,6 +73183,13 @@ function initDetailPois(map, trail){
   if(root)root.DoloPawsWeatherWindow=api;
 })(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
+
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text,vars){
+    const i18n=typeof window!=='undefined'&&window.DoloPawsI18n;
+    if(i18n&&typeof i18n.phrase==='function')return i18n.phrase(text,vars);
+    return vars?String(text).replace(/\{(\w+)\}/g,(m,k)=>(k in vars?vars[k]:m)):text;
+  }
 
   const DAYLIGHT_BUFFER_MINUTES=60;
   const PLANNING_BUFFER_MINUTES=30;
@@ -72220,7 +73324,7 @@ function initDetailPois(map, trail){
   }
 
   function markup(result){
-    if(!result)return 'No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.';
+    if(!result)return tx('No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.');
     const start=formatTime(result.startMinutes);
     const finish=formatTime(result.finishMinutes);
     // A day a reader picked is now the common case, not the exception, so it
@@ -72228,24 +73332,31 @@ function initDetailPois(map, trail){
     const when=result.dayOffset===0
       ? `<strong>${start}</strong>`
       : result.dayOffset===1
-        ? `tomorrow at <strong>${start}</strong>`
-        : `on ${dayLabel(result.date)} at <strong>${start}</strong>`;
-    const maximum=Number.isFinite(result.maxTemperatureC)?` (up to ${result.maxTemperatureC}°C)`:'';
+        ? tx('tomorrow at <strong>{start}</strong>',{start})
+        : tx('on {day} at <strong>{start}</strong>',{day:dayLabel(result.date),start});
+    const maximum=Number.isFinite(result.maxTemperatureC)?' '+tx('(up to {temp}°C)',{temp:result.maxTemperatureC}):'';
     let lead;
-    let close='';
-    if(result.reason==='comfortable')lead=`The forecast stays cool during the walk${maximum}. Suggested start: ${when}`;
-    else if(result.reason==='avoid-heat'){
-      lead=`Cooler forecast window${maximum}: start ${when}`;
-      close=' before the warmer part of the day';
+    let tail;
+    const vars={hours:result.durationHours,finish};
+    if(result.reason==='comfortable'){
+      lead=tx('The forecast stays cool during the walk{maximum}. Suggested start: {when}',{maximum,when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong>.',vars);
+    }else if(result.reason==='avoid-heat'){
+      lead=tx('Cooler forecast window{maximum}: start {when}',{maximum,when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong> before the warmer part of the day.',vars);
     }else if(result.reason==='least-warm'){
-      lead=`Least-warm forecast window${maximum}: start ${when}`;
-      close=' before the hottest available hours';
-    }else lead=`Suggested daylight start: ${when}`;
+      lead=tx('Least-warm forecast window{maximum}: start {when}',{maximum,when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong> before the hottest available hours.',vars);
+    }else{
+      lead=tx('Suggested daylight start: {when}',{when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong>.',vars);
+    }
     const daylightMargin=result.sunsetMinutes-result.finishMinutes;
+    const leftHours=Math.max(1,Math.floor(daylightMargin/60));
     const daylight=daylightMargin<=SUNSET_NOTE_WINDOW_MINUTES
-      ? ` This leaves ${Math.max(1,Math.floor(daylightMargin/60))} hour${daylightMargin>=120?'s':''} before sunset.`
+      ? ' '+(daylightMargin>=120?tx('This leaves {n} hours before sunset.',{n:leftHours}):tx('This leaves {n} hour before sunset.',{n:leftHours}))
       : '';
-    return `${lead} · for this ${result.durationHours} h route, finish around <strong>${finish}</strong>${close}.${daylight}`;
+    return `${lead} · ${tail}${daylight}`;
   }
 
   // The hour heat actually becomes a problem today, read off the forecast
@@ -72435,6 +73546,13 @@ const FLAG_TYPES = {
   'other':                { icon: '📝', label: 'Other',                          severe: false },
 };
 
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
 function trEsc(s){
   return String(s).replace(/[&<>"']/g,
     c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -72460,6 +73578,9 @@ function initTrailReports(map, trail){
   const photoStripNext = document.getElementById('trailPhotosNext');
   const editorialPhotos = window.DoloPawsPhotoProvenance
     ? window.DoloPawsPhotoProvenance.editorialPhotos(trail)
+    : [];
+  const licensedPhotos = window.DoloPawsPhotoProvenance && window.DoloPawsPhotoProvenance.licensedPhotos
+    ? window.DoloPawsPhotoProvenance.licensedPhotos(trail)
     : [];
   let actionStatusTimer = null;
   let closeActivePhotoViewer = null;
@@ -72516,7 +73637,7 @@ function initTrailReports(map, trail){
       } else {
         const average = visible.reduce((total, review) => total + Number(review.rating), 0) / visible.length;
         ratingEl.hidden = false;
-        ratingEl.innerHTML = `<span class="community-rating__stars" aria-label="${average.toFixed(1)} out of 5 stars">${starSvgIcon(true, 13)}</span><strong>${average.toFixed(1)}</strong><span>${visible.length} ${visible.length === 1 ? 'review' : 'reviews'}</span>`;
+        ratingEl.innerHTML = `<span class="community-rating__stars" aria-label="${tx('{rating} out of 5 stars', { rating:average.toFixed(1) })}">${starSvgIcon(true, 13)}</span><strong>${average.toFixed(1)}</strong><span>${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
       }
     }
     if (heroRatingEl){
@@ -72526,11 +73647,11 @@ function initTrailReports(map, trail){
         // Honest zero state in the design's rating slot: invite the first
         // review instead of pretending a score exists.
         heroRatingEl.classList.add('is-empty');
-        heroRatingEl.innerHTML = `${starSvg} <span class="cnt">No reviews yet</span>`;
+        heroRatingEl.innerHTML = `${starSvg} <span class="cnt">${tx('No reviews yet')}</span>`;
       } else {
         const average = visible.reduce((total, review) => total + Number(review.rating), 0) / visible.length;
         heroRatingEl.classList.remove('is-empty');
-        heroRatingEl.innerHTML = `${starSvg} ${average.toFixed(1)} <span class="cnt">· ${visible.length} ${visible.length === 1 ? 'review' : 'reviews'}</span>`;
+        heroRatingEl.innerHTML = `${starSvg} ${average.toFixed(1)} <span class="cnt">· ${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
       }
       // The rating is a shortcut to the reviews section either way.
       heroRatingEl.style.cursor = 'pointer';
@@ -72543,9 +73664,9 @@ function initTrailReports(map, trail){
     if (!reviewListEl) return;
     if (!visible.length){
       reviewListEl.innerHTML = `<div class="empty-state empty-state--compact">
-        <p class="empty-state__title">No reviews yet</p>
-        <p class="empty-state__copy">Share how the route felt for your dog and what another owner should know.</p>
-        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-review>Leave the first review</button></div>
+        <p class="empty-state__title">${tx('No reviews yet')}</p>
+        <p class="empty-state__copy">${tx('Share how the route felt for your dog and what another owner should know.')}</p>
+        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-review>${tx('Leave the first review')}</button></div>
       </div>`;
       const emptyReview = reviewListEl.querySelector('[data-empty-review]');
       if (emptyReview) emptyReview.addEventListener('click', openReviewModal);
@@ -72554,13 +73675,13 @@ function initTrailReports(map, trail){
 
     reviewListEl.innerHTML = visible.slice(0, 3).map(review => {
       const date = reviewDate(review);
-      const dateLabel = date ? date.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : 'Recently';
+      const dateLabel = date ? date.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : tx('Recently');
       const dogName = review.dogContext && review.dogContext.name;
-      const reviewer = dogName ? `${trEsc(dogName)}’s human` : 'A ORMA member';
+      const reviewer = dogName ? tx('{name}’s human', { name:trEsc(dogName) }) : tx('A ORMA member');
       const stars = [1, 2, 3, 4, 5].map(n => starSvgIcon(n <= Number(review.rating), 13)).join('');
       return `<article class="community-review">
-        <div class="community-review__rating" aria-label="${review.rating} out of 5 stars">${stars}</div>
-        ${review.status === 'reported' ? '<p class="community-review__notice">Reported · under moderation review</p>' : ''}
+        <div class="community-review__rating" aria-label="${tx('{rating} out of 5 stars', { rating:review.rating })}">${stars}</div>
+        ${review.status === 'reported' ? `<p class="community-review__notice">${tx('Reported · under moderation review')}</p>` : ''}
         ${review.text ? `<p>${trEsc(review.text)}</p>` : ''}
         <footer>${reviewer} <span>·</span> ${dateLabel}</footer>
       </article>`;
@@ -72572,8 +73693,21 @@ function initTrailReports(map, trail){
     const dog = photo.dogContext && photo.dogContext.name;
     const caption = photo.caption
       ? String(photo.caption)
-      : (dog ? `Shared by ${dog}’s human` : 'Shared by the ORMA community');
-    return caption + (photo.status === 'reported' ? ' · Reported, under review' : '');
+      : (dog ? tx('Shared by {name}’s human', { name:dog }) : tx('Shared by the ORMA community'));
+    return caption + (photo.status === 'reported' ? ` · ${tx('Reported, under review')}` : '');
+  }
+
+  // The credit a licence asks for: who took it, under what terms, and where
+  // it came from. Linked in the viewer, plain text under the thumbnail.
+  function photoCaptionHtml(photo){
+    const credit = window.DoloPawsPhotoProvenance && window.DoloPawsPhotoProvenance.licensedCredit
+      ? window.DoloPawsPhotoProvenance.licensedCredit(photo)
+      : null;
+    if (!credit) return trEsc(photoCaption(photo));
+    const licence = credit.licenceUrl
+      ? `<a href="${trEsc(credit.licenceUrl)}" rel="license noopener" target="_blank">${trEsc(credit.licence)}</a>`
+      : trEsc(credit.licence);
+    return `${tx('Photo:')} <a href="${trEsc(credit.sourcePage)}" rel="noopener nofollow" target="_blank">${trEsc(credit.creator)}</a> · ${licence}`;
   }
 
   function photoAlt(photo){
@@ -72590,16 +73724,16 @@ function initTrailReports(map, trail){
     const overlay = document.createElement('div');
     overlay.className = 'trail-photo-viewer';
     overlay.innerHTML = `<div class="trail-photo-viewer__dialog">
-      <h2 class="trail-photo-viewer__title">Trail photos</h2>
-      <button type="button" class="trail-photo-viewer__close" data-gallery-close aria-label="Close photo gallery">
+      <h2 class="trail-photo-viewer__title">${tx('Trail photos')}</h2>
+      <button type="button" class="trail-photo-viewer__close" data-gallery-close aria-label="${tx('Close photo gallery')}">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
       <div class="trail-photo-viewer__stage" data-gallery-stage>
-        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--prev" data-gallery-prev aria-label="Previous photo">
+        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--prev" data-gallery-prev aria-label="${tx('Previous photo')}">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
         <img data-gallery-image alt="">
-        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--next" data-gallery-next aria-label="Next photo">
+        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--next" data-gallery-next aria-label="${tx('Next photo')}">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
@@ -72621,11 +73755,10 @@ function initTrailReports(map, trail){
     function show(index){
       currentIndex = (index + photos.length) % photos.length;
       const photo = photos[currentIndex];
-      const label = photoCaption(photo);
       image.src = photo.image;
       image.alt = photoAlt(photo);
-      caption.textContent = label;
-      count.textContent = `${currentIndex + 1} of ${photos.length}`;
+      caption.innerHTML = photoCaptionHtml(photo);
+      count.textContent = tx('{current} of {total}', { current:currentIndex + 1, total:photos.length });
       previous.hidden = photos.length < 2;
       next.hidden = photos.length < 2;
     }
@@ -72686,22 +73819,25 @@ function initTrailReports(map, trail){
 
   function renderPhotos(photos){
     if (!photosListEl) return;
-    const visible = editorialPhotos.concat(photos.filter(photo =>
+    const visible = editorialPhotos.concat(licensedPhotos, photos.filter(photo =>
       window.DoloPawsCommunityStates&&window.DoloPawsCommunityStates.isPublic(photo.status)&&
       typeof photo.image==='string'&&photo.image.startsWith('data:image/')
     ))
       .sort((a, b) => {
         if(a.isEditorial!==b.isEditorial)return a.isEditorial?-1:1;
         if(a.isEditorial&&b.isEditorial)return a.editorialOrder-b.editorialOrder;
+        // A photo someone shared comes before one ORMA found for them.
+        if(!!a.isLicensed!==!!b.isLicensed)return a.isLicensed?1:-1;
+        if(a.isLicensed&&b.isLicensed)return a.licensedOrder-b.licensedOrder;
         const aDate = reviewDate(a), bDate = reviewDate(b);
         return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
       });
     updatePhotoStripControls(visible.length);
     if (!visible.length){
       photosListEl.innerHTML = `<div class="empty-state empty-state--compact">
-        <p class="empty-state__title">No trail photos yet</p>
-        <p class="empty-state__copy">Add a recent, useful view so others can recognise the route and conditions.</p>
-        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-photo>Add the first photo</button></div>
+        <p class="empty-state__title">${tx('No trail photos yet')}</p>
+        <p class="empty-state__copy">${tx('Add a recent, useful view so others can recognise the route and conditions.')}</p>
+        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-photo>${tx('Add the first photo')}</button></div>
       </div>`;
       const emptyPhoto = photosListEl.querySelector('[data-empty-photo]');
       if (emptyPhoto) emptyPhoto.addEventListener('click', openPhotoModal);
@@ -72710,9 +73846,10 @@ function initTrailReports(map, trail){
     photosListEl.innerHTML = visible.map((photo, index) => {
       const caption = trEsc(photoCaption(photo));
       return `<figure class="community-photo">
-        <button type="button" class="community-photo__open" data-photo-index="${index}" aria-label="Open photo ${index + 1} of ${visible.length}: ${caption}">
+        <button type="button" class="community-photo__open" data-photo-index="${index}" aria-label="${tx('Open photo {current} of {total}: {caption}', { current:index + 1, total:visible.length, caption })}">
           <img src="${trEsc(photo.image)}" alt="${trEsc(photoAlt(photo))}" loading="lazy" decoding="async">
-        </button>
+        </button>${photo.isLicensed ? `
+        <figcaption class="community-photo__credit">${trEsc(`${photo.creator} · ${photo.licence}`)}</figcaption>` : ''}
       </figure>`;
     }).join('');
     photosListEl.querySelectorAll('[data-photo-index]').forEach(button => {
@@ -72741,7 +73878,7 @@ function initTrailReports(map, trail){
   function dogContextLine(f){
     const dc = f.dogContext;
     if (!dc || (!dc.name && !dc.breed)) return '';
-    const who = [dc.name ? `${dc.name}'s human` : null, dc.breed || null]
+    const who = [dc.name ? tx('{name}\'s human', { name:dc.name }) : null, dc.breed || null]
       .filter(Boolean).join(' · ');
     return window.t('reports.reportedBy', {who: trEsc(who)});
   }
@@ -72778,7 +73915,7 @@ function initTrailReports(map, trail){
               <a href="#" data-hazard-response="confirm" data-flag-id="${trEsc(f.id)}">${window.t('reports.confirm')}</a>
               <a href="#" data-hazard-response="dispute" data-flag-id="${trEsc(f.id)}">${window.t('reports.dispute')}</a>
             </div>` : '';
-        const responseCount = `${Number(f.confirmations) || 0} confirmed · ${Number(f.disputes) || 0} disputed`;
+        const responseCount = tx('{confirmed} confirmed · {disputed} disputed', { confirmed:Number(f.confirmations) || 0, disputed:Number(f.disputes) || 0 });
         // Design tile: neutral inset card + a coloured flag square whose tone
         // carries severity, replacing the mixed emoji-per-type language.
         const tile = t.severe ? { bg: '#F3D9D2', fg: '#9C3A25' }
@@ -72823,7 +73960,7 @@ function initTrailReports(map, trail){
           a.dataset.hazardResponse
         );
         if(!result.ok){
-          showActionStatus(result.message || 'Your response could not be saved.');
+          showActionStatus(result.message || tx('Your response could not be saved.'));
           return;
         }
         showActionStatus(window.t('reports.responseSaved'));
@@ -73497,6 +74634,13 @@ function initTrailReports(map, trail){
 (function (global) {
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   // Where each line of "How to follow this route" came from, said once.
   //
   // Every stored value ends with its own source sentence, because a value is
@@ -73536,8 +74680,30 @@ function initTrailReports(map, trail){
     'Key turns': 'the key turns',
   };
 
+  // The shown name of a line, in the reader's language.
+  function shownName(name) {
+    switch (name) {
+      case 'the start': return tx('the start');
+      case 'the trail numbers': return tx('the trail numbers');
+      case 'the route': return tx('the route');
+      case 'where to switch': return tx('where to switch');
+      case 'the key turns': return tx('the key turns');
+      default: return name;
+    }
+  }
+
+  // What a source covers, as one sentence (SOURCES[].one / .many, translated).
+  function sourceSays(key, names, plural) {
+    if (key === 'orma') {
+      return plural ? tx('{names} are ORMA’s suggestion', { names }) : tx('{names} is ORMA’s suggestion', { names });
+    }
+    return plural
+      ? tx('{names} are read off the map (OpenStreetMap)', { names })
+      : tx('{names} is read off the map (OpenStreetMap)', { names });
+  }
+
   function listed(names) {
-    return names.length < 2 ? names.join('') : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+    return names.length < 2 ? names.join('') : tx('{list} and {last}', { list: names.slice(0, -1).join(', '), last: names[names.length - 1] });
   }
 
   /**
@@ -73560,20 +74726,38 @@ function initTrailReports(map, trail){
     });
     const parts = SOURCES.filter(source => found.has(source.key)).map(source => {
       const names = found.get(source.key);
-      const text = `${listed(names)} ${names.length > 1 || /s$/.test(names[0]) ? source.many : source.one}`;
+      const plural = names.length > 1 || /s$/.test(names[0]);
+      const text = sourceSays(source.key, listed(names.map(shownName)), plural);
       return text.charAt(0).toUpperCase() + text.slice(1);
     });
     const note = parts.length
-      ? `${parts.join('. ')}. None of it was published by the trail’s operator.`
+      ? tx('{parts}. None of it was published by the trail’s operator.', { parts: parts.join('. ') })
       : '';
     return { lines: stripped, note };
   }
 
   const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
     'August', 'September', 'October', 'November', 'December'];
+  function monthName(index) {
+    switch (index) {
+      case 0: return tx('January');
+      case 1: return tx('February');
+      case 2: return tx('March');
+      case 3: return tx('April');
+      case 4: return tx('May');
+      case 5: return tx('June');
+      case 6: return tx('July');
+      case 7: return tx('August');
+      case 8: return tx('September');
+      case 9: return tx('October');
+      case 10: return tx('November');
+      case 11: return tx('December');
+      default: return MONTHS[index];
+    }
+  }
   function readOn(value) {
     const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(value || ''));
-    return match ? `${Number(match[3])} ${MONTHS[Number(match[2]) - 1]} ${match[1]}` : '';
+    return match ? `${Number(match[3])} ${monthName(Number(match[2]) - 1)} ${match[1]}` : '';
   }
 
   const STEPS_BADGE = 'This walk has no trail number of its own: follow these landmarks';
@@ -73608,7 +74792,7 @@ function initTrailReports(map, trail){
     // appear when a walk mixes sources and a reader needs to tell them apart.
     const mixed = used.length > 1;
     return {
-      badge: STEPS_BADGE,
+      badge: tx('This walk has no trail number of its own: follow these landmarks'),
       steps: steps.map(step => ({
         text: String(step.text).trim(),
         tags: mixed ? [...new Set(step.from.map(index => String(sources[index].tag).trim()))] : [],
@@ -73619,10 +74803,10 @@ function initTrailReports(map, trail){
       credits: used.map(index => {
         const source = sources[index];
         return {
-          before: mixed ? `Steps marked “${String(source.tag).trim()}”: ` : 'Directions: ',
+          before: mixed ? tx('Steps marked “{tag}”:', { tag: String(source.tag).trim() }) + ' ' : tx('Directions:') + ' ',
           label: creditName(source),
           url: source.url,
-          after: `, checked ${readOn(source.reviewedAt)}.`,
+          after: tx(', checked {date}.', { date: readOn(source.reviewedAt) }),
         };
       }),
     };
@@ -73770,6 +74954,20 @@ function initTrailReports(map, trail){
 ;
 
 // ---- trail.js ----
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
+// A trail's own words (description, hazards, directions…) in the reader's
+// language, from data/trail-text-it. The record itself stays English.
+function trailWords(text){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  return i18n && typeof i18n.trailText === 'function' ? i18n.trailText(text) : text;
+}
+
 function safetyLabel(level){
   if(level === 'low-risk') return t('safety.low');
   if(level === 'moderate') return t('safety.moderate');
@@ -73950,7 +75148,7 @@ function initLoopComposer(map, t){
   }
 
   function pointLabel(index){
-    return index === 0 ? 'Start' : `Point ${index + 1}`;
+    return index === 0 ? tx('Start') : tx('Point {n}', { n: index + 1 });
   }
 
   function renderPointList(){
@@ -73963,7 +75161,7 @@ function initLoopComposer(map, t){
       remove.type = 'button';
       remove.textContent = '×';
       remove.disabled = busy;
-      remove.setAttribute('aria-label', `Remove ${pointLabel(index).toLowerCase()}`);
+      remove.setAttribute('aria-label', index === 0 ? tx('Remove start') : tx('Remove point {n}', { n: index + 1 }));
       remove.addEventListener('click', () => removePoint(index));
       item.append(remove);
       pointList.append(item);
@@ -73999,12 +75197,12 @@ function initLoopComposer(map, t){
       preview = null;
       closed = false;
       drawRoute([]);
-      status.textContent = points.length ? 'Tap the map to add a must-pass point.' : 'Tap the map to choose your start.';
+      status.textContent = points.length ? tx('Tap the map to add a must-pass point.') : tx('Tap the map to choose your start.');
       render();
       return;
     }
     busy = true;
-    status.textContent = closeRequested ? 'Closing the loop on mapped walking paths…' : 'Connecting the selected points…';
+    status.textContent = closeRequested ? tx('Closing the loop on mapped walking paths…') : tx('Connecting the selected points…');
     render();
     const graph = await loadGraph();
     if(version !== calculationVersion) return;
@@ -74024,8 +75222,8 @@ function initLoopComposer(map, t){
       closed = false;
       drawRoute([]);
       status.textContent = graph
-        ? 'These points cannot form a bounded mapped route. Remove a point and choose a closer path.'
-        : 'ORMA’s walking graph is unavailable here right now. Your points have been kept.';
+        ? tx('These points cannot form a bounded mapped route. Remove a point and choose a closer path.')
+        : tx('ORMA’s walking graph is unavailable here right now. Your points have been kept.');
       render();
       return;
     }
@@ -74033,10 +75231,10 @@ function initLoopComposer(map, t){
     closed = closeRequested;
     drawRoute(preview.path);
     status.textContent = closed
-      ? 'Loop ready. Review mapped access, signs, and current conditions before saving.'
+      ? tx('Loop ready. Review mapped access, signs, and current conditions before saving.')
       : points.length < MAX_POINTS
-        ? 'Mapped preview ready. Add another must-pass point.'
-        : 'Mapped preview ready. Close the loop when the shape looks right.';
+        ? tx('Mapped preview ready. Add another must-pass point.')
+        : tx('Mapped preview ready. Close the loop when the shape looks right.');
     render();
     if(closed) fitPreview();
   }
@@ -74055,7 +75253,7 @@ function initLoopComposer(map, t){
     points.splice(index, 1);
     closed = false;
     preview = null;
-    saveButton.textContent = 'Save loop';
+    saveButton.textContent = tx('Save loop');
     drawMarkers();
     recalculate(false);
   }
@@ -74069,8 +75267,8 @@ function initLoopComposer(map, t){
     markers.forEach(marker => marker.remove());
     markers = [];
     drawRoute([]);
-    status.textContent = 'Tap the map to choose your start.';
-    saveButton.textContent = 'Save loop';
+    status.textContent = tx('Tap the map to choose your start.');
+    saveButton.textContent = tx('Save loop');
     render();
   }
 
@@ -74103,11 +75301,11 @@ function initLoopComposer(map, t){
       const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
       const records = Array.isArray(existing) ? existing : [];
       localStorage.setItem(STORAGE_KEY, JSON.stringify([record, ...records].slice(0, 20)));
-      saveButton.textContent = 'Saved';
+      saveButton.textContent = tx('Saved');
       saveButton.disabled = true;
-      status.textContent = 'Loop saved on this device. Review local signs and conditions before walking.';
+      status.textContent = tx('Loop saved on this device. Review local signs and conditions before walking.');
     }catch(error){
-      status.textContent = 'This browser could not save the loop. The mapped preview is still available.';
+      status.textContent = tx('This browser could not save the loop. The mapped preview is still available.');
     }
   }
 
@@ -74121,7 +75319,7 @@ function initLoopComposer(map, t){
     if(closed){
       closed = false;
       preview = null;
-      saveButton.textContent = 'Save loop';
+      saveButton.textContent = tx('Save loop');
       recalculate(false);
       return;
     }
@@ -74147,7 +75345,7 @@ function initNearestTrailDirections(map, t){
   if(!button || !panel || !status || !Array.isArray(t.path) || !t.path.length ||
      !window.DoloPawsTrailAccess || !window.DoloPawsFootpathRouter) return;
 
-  const defaultLabel = 'Get directions to trail';
+  const defaultLabel = tx('Get directions to trail');
   const coverage = window.DoloPawsTrailRoutingCoverage;
   const coverageEntry = coverage && coverage.trails ? coverage.trails[t.id] : null;
   const coverageEntries = coverage && coverage.trails
@@ -74186,10 +75384,9 @@ function initNearestTrailDirections(map, t){
     if(!stepsWrap || !stepsList || !Array.isArray(instructions) || !instructions.length) return;
     instructions.slice(0, 12).forEach(step => {
       const item = document.createElement('li');
-      const distance = step.distanceM > 0
-        ? ` for ${formatApproachDistance(step.distanceM / 1000)}`
-        : '';
-      item.textContent = `${step.action}${distance}`;
+      item.textContent = step.distanceM > 0
+        ? tx('{action} for {distance}', { action: step.action, distance: formatApproachDistance(step.distanceM / 1000) })
+        : step.action;
       stepsList.appendChild(item);
     });
     stepsWrap.hidden = false;
@@ -74291,12 +75488,12 @@ function initNearestTrailDirections(map, t){
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');
     clearSteps();
-    setPanelMessage('Connecting your location to the selected mapped route…');
+    setPanelMessage(tx('Connecting your location to the selected mapped route…'));
     try{
       const origin = await window.DoloPawsTrailAccess.currentPosition(navigator);
       if(Number.isFinite(origin.accuracyM) && origin.accuracyM > window.DoloPawsTrailAccess.MAX_GPS_ACCURACY_M){
-        setPanelMessage(`Your location is only accurate to about ${Math.round(origin.accuracyM)} m. Move into a clearer area and try again.`);
-        setButtonLabel('Try again');
+        setPanelMessage(tx('Your location is only accurate to about {m} m. Move into a clearer area and try again.', { m: Math.round(origin.accuracyM) }));
+        setButtonLabel(tx('Try again'));
         return;
       }
       const entries = routingEntriesForPoint(target, origin);
@@ -74328,22 +75525,23 @@ function initNearestTrailDirections(map, t){
         showPlan(plan, true);
         renderSteps(plan.instructions);
         const targetSnap = plan.targetSnapDistanceM > 20
-          ? ` The selected point was snapped ${formatApproachDistance(plan.targetSnapDistanceM / 1000)} to a connected path.`
+          ? ' ' + tx('The selected point was snapped {distance} to a connected path.', { distance: formatApproachDistance(plan.targetSnapDistanceM / 1000) })
           : '';
-        setPanelMessage(`Mapped walking route · ${formatApproachDistance(plan.distanceKm)} to the selected route point.${targetSnap} Check local signs and temporary closures.`);
+        setPanelMessage(tx('Mapped walking route · {distance} to the selected route point.', { distance: formatApproachDistance(plan.distanceKm) })
+          + targetSnap + ' ' + tx('Check local signs and temporary closures.'));
         setButtonLabel(defaultLabel);
         return;
       }
       if(plan.mode === 'external-point' && plan.allowed){
         showPlan(plan, false);
-        setPanelMessage('This selected point is not connected to ORMA’s current walking graph. Your maps app can calculate the approach instead.');
-        setButtonLabel('Open directions to selected point');
+        setPanelMessage(tx('This selected point is not connected to ORMA’s current walking graph. Your maps app can calculate the approach instead.'));
+        setButtonLabel(tx('Open directions to selected point'));
         return;
       }
-      setPanelMessage('That point is outside ORMA’s current walking coverage. Choose a closer mapped route point.');
+      setPanelMessage(tx('That point is outside ORMA’s current walking coverage. Choose a closer mapped route point.'));
       setButtonLabel(defaultLabel);
     }catch(error){
-      setPanelMessage('We could not calculate a route to that point. Check your location signal and try again.');
+      setPanelMessage(tx('We could not calculate a route to that point. Check your location signal and try again.'));
       setButtonLabel(defaultLabel);
     }finally{
       button.disabled = false;
@@ -74359,9 +75557,9 @@ function initNearestTrailDirections(map, t){
 
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');
-    setButtonLabel('Calculating directions…');
+    setButtonLabel(tx('Calculating directions…'));
     clearSteps();
-    setPanelMessage('Checking your location against mapped walking paths…');
+    setPanelMessage(tx('Checking your location against mapped walking paths…'));
     try{
       const graph = await loadRoutingGraph();
       const plan = await window.DoloPawsTrailAccess.planTrailEntry(
@@ -74373,8 +75571,8 @@ function initNearestTrailDirections(map, t){
         { maxRouteDistanceM:5000, maxFallbackDistanceKm:5 }
       );
       if(plan.mode === 'unreliable-location'){
-        setPanelMessage(`Your location is only accurate to about ${Math.round(plan.accuracyM)} m. Move into a clearer area and try again.`);
-        setButtonLabel('Try again');
+        setPanelMessage(tx('Your location is only accurate to about {m} m. Move into a clearer area and try again.', { m: Math.round(plan.accuracyM) }));
+        setButtonLabel(tx('Try again'));
         return;
       }
       if(plan.mode === 'mapped-footpath'){
@@ -74382,10 +75580,11 @@ function initNearestTrailDirections(map, t){
         showPlan(plan, true);
         renderSteps(plan.instructions);
         const snapNote = plan.snapDistanceM > 20
-          ? ` Your GPS is about ${formatApproachDistance(plan.snapDistanceM / 1000)} from the mapped path.`
+          ? ' ' + tx('Your GPS is about {distance} from the mapped path.', { distance: formatApproachDistance(plan.snapDistanceM / 1000) })
           : '';
-        setPanelMessage(`Mapped footpath route · ${formatApproachDistance(plan.distanceKm)} to the trail.${snapNote} Check local signs and temporary closures.`);
-        setButtonLabel('Refresh walking route');
+        setPanelMessage(tx('Mapped footpath route · {distance} to the trail.', { distance: formatApproachDistance(plan.distanceKm) })
+          + snapNote + ' ' + tx('Check local signs and temporary closures.'));
+        setButtonLabel(tx('Refresh walking route'));
         return;
       }
       if(plan.mode === 'nearest-route'){
@@ -74394,32 +75593,36 @@ function initNearestTrailDirections(map, t){
         const distanceM = plan.distanceKm * 1000;
         const overlapsFix = Number.isFinite(plan.accuracyM) && distanceM <= plan.accuracyM;
         setPanelMessage(overlapsFix
-          ? 'Your location overlaps this trail. Open your maps app for the nearest mapped point, and check local signs before joining.'
-          : `The nearest point on this trail is about ${formatApproachDistance(plan.distanceKm)} away. Your maps app will calculate the walk; check local signs and access before joining.`);
-        setButtonLabel('Open directions to nearest trail point');
+          ? tx('Your location overlaps this trail. Open your maps app for the nearest mapped point, and check local signs before joining.')
+          : tx('The nearest point on this trail is about {distance} away. Your maps app will calculate the walk; check local signs and access before joining.', { distance: formatApproachDistance(plan.distanceKm) }));
+        setButtonLabel(tx('Open directions to nearest trail point'));
         return;
       }
       if(plan.mode === 'recommended-start' && plan.allowed){
         activePlan = plan;
         showPlan(plan, false);
-        const startType = plan.targetKind === 'mapped-start' ? 'listed route start' : 'recommended start';
-        setPanelMessage(`ORMA does not yet have a connected footpath network here. The ${startType} is about ${formatApproachDistance(plan.distanceKm)} away as the crow flies; your maps app will calculate the actual walk.`);
-        setButtonLabel('Open directions to start');
+        const distance = formatApproachDistance(plan.distanceKm);
+        setPanelMessage(plan.targetKind === 'mapped-start'
+          ? tx('ORMA does not yet have a connected footpath network here. The listed route start is about {distance} away as the crow flies; your maps app will calculate the actual walk.', { distance })
+          : tx('ORMA does not yet have a connected footpath network here. The recommended start is about {distance} away as the crow flies; your maps app will calculate the actual walk.', { distance }));
+        setButtonLabel(tx('Open directions to start'));
         return;
       }
       if(plan.mode === 'recommended-start'){
-        const startType = plan.targetKind === 'mapped-start' ? 'listed route start' : 'recommended start';
-        setPanelMessage(`The ${startType} is about ${formatApproachDistance(plan.distanceKm)} away. Walking directions are available when you are within 5 km.`);
-        setButtonLabel('Try again');
+        const distance = formatApproachDistance(plan.distanceKm);
+        setPanelMessage(plan.targetKind === 'mapped-start'
+          ? tx('The listed route start is about {distance} away. Walking directions are available when you are within 5 km.', { distance })
+          : tx('The recommended start is about {distance} away. Walking directions are available when you are within 5 km.', { distance }));
+        setButtonLabel(tx('Try again'));
         return;
       }
-      setPanelMessage('ORMA cannot identify a reliable access point for this trail yet. Use the recommended starting-point information below the map.');
+      setPanelMessage(tx('ORMA cannot identify a reliable access point for this trail yet. Use the recommended starting-point information below the map.'));
       setButtonLabel(defaultLabel);
     }catch(error){
       const denied = error && (error.code === 1 || error.message === 'geolocation-unavailable');
       setPanelMessage(denied
-        ? 'Allow location access to find the nearest point on this trail.'
-        : 'We could not get a reliable location. Check your signal and try again.');
+        ? tx('Allow location access to find the nearest point on this trail.')
+        : tx('We could not get a reliable location. Check your signal and try again.'));
       setButtonLabel(defaultLabel);
     }finally{
       button.disabled = false;
@@ -74986,6 +76189,8 @@ const itin = { trail: null, items: [], cumKm: null };
 // templates on the fly in Italian mode (same approach as imported descs).
 function trLabel(label){
   if(!label || (window.DoloPawsI18n && window.DoloPawsI18n.lang) !== 'it') return label;
+  const own = trailWords(label);
+  if(own !== label) return own;
   const RULES = [
     [/^Start here, main parking area at (.+)$/, 'Parti qui, parcheggio principale a $1'],
     [/^Start here, main lake access & parking, by (.+)$/, 'Parti qui, accesso principale al lago e parcheggio, presso $1'],
@@ -75075,7 +76280,7 @@ function buildItinerary(t){
 
   // 4. Decision points, where the route switches numbered trails.
   (Array.isArray(t.decisionPoints) ? t.decisionPoints : []).forEach(d => {
-    itinAdd('switch', d.km, `${itinKmLabel(d.km)}, ${itinEsc(d.instruction)}`);
+    itinAdd('switch', d.km, `${itinKmLabel(d.km)}, ${itinEsc(trailWords(d.instruction))}`);
   });
 
   // 5. Closing step.
@@ -75268,8 +76473,8 @@ function init(){
           <h1>${window.t('trail.notFound')}</h1>
           <p style="margin:14px 0 24px;color:var(--ink-soft);">${window.t('trail.notFoundSub')}</p>
           <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
-            <a class="auth-submit" href="browse-trails.html" style="display:inline-block;width:auto;padding:11px 22px;text-decoration:none;">Browse all trails</a>
-            <a class="fav-btn" href="/" style="display:inline-block;padding:11px 22px;text-decoration:none;">Go to homepage</a>
+            <a class="auth-submit" href="browse-trails.html" style="display:inline-block;width:auto;padding:11px 22px;text-decoration:none;">${tx('Browse all trails')}</a>
+            <a class="fav-btn" href="/" style="display:inline-block;padding:11px 22px;text-decoration:none;">${tx('Go to homepage')}</a>
           </div>
         </div>`;
     }
@@ -75295,11 +76500,11 @@ function renderTrail(t){
   const returnTarget = safeTrailReturn(trailReturnTarget);
   if(breadcrumb && returnTarget){
     breadcrumb.href = returnTarget;
-    breadcrumb.textContent = returnTarget.startsWith('saved.html') ? '← Back to saved trails'
-      : returnTarget.startsWith('journal.html') ? '← Back to journal'
-      : returnTarget.startsWith('compare.html') ? '← Back to comparison'
-      : returnTarget.startsWith('/') ? '← Back to your matches'
-      : '← Back to trail results';
+    breadcrumb.textContent = '← ' + (returnTarget.startsWith('saved.html') ? tx('Back to saved trails')
+      : returnTarget.startsWith('journal.html') ? tx('Back to journal')
+      : returnTarget.startsWith('compare.html') ? tx('Back to comparison')
+      : returnTarget.startsWith('/') ? tx('Back to your matches')
+      : tx('Back to trail results'));
   }
   const logWalkBtn = document.getElementById('logWalkBtn');
   if(logWalkBtn){
@@ -75373,7 +76578,7 @@ function renderTrail(t){
       }
       heroPhoto.decoding = 'async';
       heroPhoto.fetchPriority = 'high';
-      heroPhoto.alt = t.imageAlt || `${t.name} trail photograph`;
+      heroPhoto.alt = trailWords(t.imageAlt) || tx('{name} trail photograph', { name: t.name });
       heroPhoto.hidden = false;
       heroVeil.hidden = false;
       const creditEl = document.getElementById('tdHeroCredit');
@@ -75386,10 +76591,10 @@ function renderTrail(t){
         creditText.replaceChildren();
         const creditSummary=creditEl.querySelector('summary');
         if(creditSummary){
-          const label=credit.isIllustration?'About this illustration':'Show photo credit';
+          const label=credit.isIllustration?tx('About this illustration'):tx('Show photo credit');
           creditSummary.textContent=credit.isIllustration?'i':'C';
           creditSummary.setAttribute('aria-label',label);
-          creditSummary.title=credit.isIllustration?label:'Photo credit';
+          creditSummary.title=credit.isIllustration?label:tx('Photo credit');
         }
         // Creative Commons requires the creator and the licence, not just a link to
         // the source. The static generator already renders both; a trail served
@@ -75400,7 +76605,7 @@ function renderTrail(t){
           creditText.appendChild(link);
         }else creditText.appendChild(document.createTextNode(credit.label));
         if(t.imageCreator && !credit.isIllustration){
-          creditText.appendChild(document.createTextNode(` by ${t.imageCreator}`));
+          creditText.appendChild(document.createTextNode(' ' + tx('by {creator}', { creator: t.imageCreator })));
         }
         if(t.imageLicence && !credit.isIllustration){
           creditText.appendChild(document.createTextNode(' · '));
@@ -75416,7 +76621,7 @@ function renderTrail(t){
     }
   }
   document.getElementById('trailMeta').textContent =
-    `${t.area} · ${t.distance} km · ${t.elevation} m gain · ${t.hours} h · ${t.terrainType}`;
+    `${t.area} · ${t.distance} km · ${tx('{m} m gain', { m: t.elevation })} · ${t.hours} h · ${trailWords(t.terrainType)}`;
   document.getElementById('trailBadges').innerHTML =
     trailProductBadge(t.safetyLevel, trailSafetyLabel(t)) +
     (t.paid ? trailProductBadge('neutral', window.t('card.paid')) : '');
@@ -75466,7 +76671,7 @@ function renderTrail(t){
       ? window.DoloPawsIcons.renderIconSvg(provStyle, { mode:'inline', color:'currentColor', size:16 })
       : '';
     box.style.cssText = 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #2E4034;background:#eef3ef;border-radius:6px;font-size:13px;line-height:1.5;';
-    box.innerHTML = provenanceIcon + '<strong>Trail planning information.</strong> Based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.';
+    box.innerHTML = provenanceIcon + '<strong>' + tx('Trail planning information.') + '</strong> ' + tx('Based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.');
     descEl.parentNode.insertBefore(box, descEl);
 
     // Trail hazards, surfaceHazards used to feed only the match scoring;
@@ -75478,7 +76683,7 @@ function renderTrail(t){
       hz.style.cssText = 'margin:0 0 14px;padding:10px 14px;border-left:4px solid #9C3A25;background:#faeeea;border-radius:6px;font-size:13px;line-height:1.5;';
       const warningIcon = window.DoloPawsIcons ? window.DoloPawsIcons.renderIconSvg('warning', { mode:'inline', color:'currentColor', size:16 }) : '';
       hz.innerHTML = '<strong class="dp-inline-status">' + warningIcon + '<span>' + itinEsc(window.t('trail.hazardsTitle') || 'Trail hazards') + '</span></strong><ul style="margin:6px 0 0 18px;padding:0;">'
-        + t.surfaceHazards.map(h => '<li>' + String(h).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])) + '</li>').join('')
+        + t.surfaceHazards.map(h => '<li>' + String(trailWords(h)).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])) + '</li>').join('')
         + '</ul>';
       descEl.parentNode.insertBefore(hz, descEl);
     }
@@ -75519,8 +76724,8 @@ function renderTrail(t){
       const asc = Number(shown.elevation) || 0;
       const rank = Number(t.terrainRank) || 0;
       const km = Number(shown.distance) || 0;
-      const diff = (asc >= 400 || (rank >= 2 && asc >= 250)) ? 'Hard'
-        : (asc >= 180 || km >= 6 || rank >= 2) ? 'Moderate' : 'Easy';
+      const diff = (asc >= 400 || (rank >= 2 && asc >= 250)) ? tx('Hard')
+        : (asc >= 180 || km >= 6 || rank >= 2) ? tx('Moderate') : tx('Easy');
       facts.push([diff, window.t('trail.fact.difficulty')]);
     })();
     // The design's stat strip leads with a Match cell ("94% · Match · Rufus").
@@ -75530,7 +76735,7 @@ function renderTrail(t){
     // A route too long for a day gets an explicit label, so a visitor who lands
     // here from a search or link knows it is a multi-day itinerary, not a walk.
     const multiDayCell = (window.DoloPawsTrailTrust && window.DoloPawsTrailTrust.isMultiDay(t))
-      ? '<span class="f f-multiday"><b>Multi-day</b><span>route</span></span>' : '';
+      ? '<span class="f f-multiday"><b>' + tx('Multi-day') + '</b><span>' + tx('route') + '</span></span>' : '';
     factsEl.innerHTML =
       '<span class="f match" id="statMatch" hidden><a class="td2-match-link" id="statMatchLink" href="how-scoring-works.html"><b id="statMatchVal"></b><span id="statMatchSub"></span></a></span>'
       + multiDayCell
@@ -75578,9 +76783,9 @@ function renderTrail(t){
         const name = profile.name || window.t('trail.yourDog');
         if(statMatch){
           statMatchVal.innerHTML = (t.curated === false ? '≈' : '') + n + '<span class="pct">%</span>';
-          statMatchSub.textContent = 'Match · ' + name;
+          statMatchSub.textContent = tx('Match · {name}', { name });
           statMatchLink.href = 'how-scoring-works.html';
-          statMatchLink.setAttribute('aria-label', `Learn how ORMA calculates the ${n}% trail match for ${name}`);
+          statMatchLink.setAttribute('aria-label', tx('Learn how ORMA calculates the {n}% trail match for {name}', { n, name }));
           statMatch.dataset.scoringVersion = recommendation.scoringVersion;
           statMatch.dataset.recommendationCategory = recommendation.category;
           statMatch.dataset.recommendationConfidence = recommendation.confidence;
@@ -75690,7 +76895,7 @@ function renderTrail(t){
       if (Array.isArray(t.elevationProfile) && t.elevationProfile.length){
         facts.push(window.t('gtk.autoAltitude', {m: Math.max(...t.elevationProfile.map(p => p.elev))}));
       }
-      if (t.terrainType) facts.push(window.t('gtk.autoTerrain', {surface: t.terrainType}));
+      if (t.terrainType) facts.push(window.t('gtk.autoTerrain', {surface: trailWords(t.terrainType)}));
       const isLoopG = Array.isArray(t.path) && t.path.length > 1
         && distMeters(t.path[0], t.path[t.path.length-1]) < 200;
       facts.push(isLoopG ? window.t('gtk.autoLoop', {d: t.distance}) : window.t('gtk.autoPointToPoint', {d: t.distance}));
@@ -75721,7 +76926,8 @@ function renderTrail(t){
       });
       t.decisionPoints.forEach(d => {
         const existing = byKm.get(d.km) || [];
-        const instructionText = d.instruction.charAt(0).toLowerCase() + d.instruction.slice(1);
+        const instruction = trailWords(d.instruction);
+        const instructionText = instruction.charAt(0).toLowerCase() + instruction.slice(1);
         // If a rifugio at this exact km is already named inside the decision
         // instruction, drop the separate "pass X" so the name isn't repeated.
         const deduped = existing.filter(e => !instructionText.toLowerCase().includes(e.name.toLowerCase()));
@@ -75784,9 +76990,9 @@ function renderTrail(t){
         else if(elevationHome) elevationHome.appendChild(elevationPanel);
       }
       if(expandBtn) expandBtn.innerHTML = on
-        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> <span>Close map</span>'
-        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span>';
-      if(expandBtn) expandBtn.setAttribute('aria-label', on ? 'Close map' : 'Expand map');
+        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> <span>' + tx('Close map') + '</span>'
+        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>' + tx('Expand map') + '</span>';
+      if(expandBtn) expandBtn.setAttribute('aria-label', on ? tx('Close map') : tx('Expand map'));
       if(expandBtn) expandBtn.setAttribute('aria-expanded', String(on));
       setTimeout(() => map.resize(), 60);
     }
@@ -75883,9 +77089,9 @@ function renderTrail(t){
           ? window.DoloPawsIcons.chipHtml(iconKey, label)
           : label;
       };
-      setLayerChipLabel(document.getElementById('routesToggle'), 'routes', 'Trail routes');
-      setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', 'Lift stations');
-      setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', 'Nearby trails');
+      setLayerChipLabel(document.getElementById('routesToggle'), 'routes', tx('Trail routes'));
+      setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', tx('Lift stations'));
+      setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', tx('Nearby trails'));
       addTerrainSource(map);
       increaseLabelDensity(map);
       addTerrainToggle(map, 'trailDetailMap', 1.5, 45,
@@ -75907,13 +77113,13 @@ function renderTrail(t){
           event.stopPropagation();
           const open = layersPanel.style.display === 'flex';
           layersPanel.style.display = open ? 'none' : 'flex';
-          layersBtn.textContent = open ? 'Layers' : 'Close ✕';
+          layersBtn.textContent = open ? tx('Layers') : tx('Close') + ' ✕';
           layersBtn.setAttribute('aria-expanded', String(!open));
         });
         layersPanel.addEventListener('click', event => event.stopPropagation());
         document.addEventListener('click', () => {
           layersPanel.style.display = 'none';
-          layersBtn.textContent = 'Layers';
+          layersBtn.textContent = tx('Layers');
           layersBtn.setAttribute('aria-expanded', 'false');
         });
       }
@@ -75938,10 +77144,10 @@ function renderTrail(t){
       // Water / huts / food / places each get their own chip so nothing that
       // used to be visible is merely gone, it moved behind a control.
       const POI_CHIPS = [
-        { id:'fountainsToggle', group:'fountains', icon:'water', label:'Drinking water' },
-        { id:'hutsToggle', group:'huts', icon:'hut', label:'Huts & shelters' },
-        { id:'foodToggle', group:'food', icon:'food', label:'Food & drink' },
-        { id:'placesToggle', group:'places', icon:'sight', label:'Points of interest' },
+        { id:'fountainsToggle', group:'fountains', icon:'water', label:tx('Drinking water') },
+        { id:'hutsToggle', group:'huts', icon:'hut', label:tx('Huts & shelters') },
+        { id:'foodToggle', group:'food', icon:'food', label:tx('Food & drink') },
+        { id:'placesToggle', group:'places', icon:'sight', label:tx('Points of interest') },
       ];
       POI_CHIPS.forEach(chip => {
         const button = document.getElementById(chip.id);
@@ -76058,7 +77264,7 @@ function renderTrail(t){
         if(nearbyToggleBtn){
           nearbyToggleBtn.hidden = nearbyTrails.length === 0;
           if(nearbyTrails.length){
-            setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
+            setLayerChipLabel(nearbyToggleBtn, 'nearby', tx('Nearby trails ({n})', { n: nearbyTrails.length }));
           }
         }
         if(otherTrails.length){
@@ -76162,8 +77368,8 @@ function renderTrail(t){
               .setLngLat(e.lngLat)
               .setHTML(
                 `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${escName(p.name)}</div>` +
-                `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${escName(String(p.distance))} km trail${p.awayKm != null ? ` · ${escName(String(p.awayKm))} km away` : ''}</div>` +
-                `<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(p.id) : (p.id)))}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">Open this trail →</a>`
+                `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${p.awayKm != null ? tx('{km} km trail · {away} km away', { km: escName(String(p.distance)), away: escName(String(p.awayKm)) }) : tx('{km} km trail', { km: escName(String(p.distance)) })}</div>` +
+                `<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(p.id) : (p.id)))}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">${tx('Open this trail')} →</a>`
               )
               .addTo(map);
           };
@@ -76187,10 +77393,10 @@ function renderTrail(t){
               t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
               if(showingNearbyOverview){
                 otherTrails.forEach(trail => trail.path.forEach(([lat, lng]) => bounds.extend([lng, lat])));
-                setLayerChipLabel(nearbyToggleBtn, 'routes', 'Focus this trail');
+                setLayerChipLabel(nearbyToggleBtn, 'routes', tx('Focus this trail'));
                 map.fitBounds(bounds, { padding: 54, maxZoom: 13 });
               } else {
-                setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
+                setLayerChipLabel(nearbyToggleBtn, 'nearby', tx('Nearby trails ({n})', { n: nearbyTrails.length }));
                 map.fitBounds(bounds, { padding: 60, maxZoom: 17 });
               }
             });
@@ -76290,7 +77496,7 @@ function renderTrail(t){
         (t.decisionPoints || []).forEach(d => {
           new maplibregl.Marker({ element: makeIconEl('switch', '#D6A038'), offset: [14, -14] })
             .setLngLat([d.lng, d.lat])
-            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>Km ${d.km}</b><br>${d.instruction}`))
+            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>Km ${d.km}</b><br>${trailWords(d.instruction)}`))
             .addTo(map);
         });
 
@@ -76355,7 +77561,7 @@ function renderTrail(t){
           })
           .catch(error => {
             detailMapTarget.dataset.mapState = 'error';
-            detailMapTarget.setAttribute('aria-label', 'Map unavailable. Trail details remain available below.');
+            detailMapTarget.setAttribute('aria-label', tx('Map unavailable. Trail details remain available below.'));
             console.error('ORMA map failed to initialise:', error);
             return null;
           });
@@ -76424,7 +77630,7 @@ function renderTrail(t){
     const heart = isFav
       ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21S3.5 14.6 3.5 8.8A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.5 2.8C20.5 14.6 12 21 12 21z"/></svg>'
       : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.4S4.2 14.5 4.2 9.2A4.3 4.3 0 0 1 12 6.6a4.3 4.3 0 0 1 7.8 2.6c0 5.3-7.8 11.2-7.8 11.2z"/></svg>';
-    saveBtn.innerHTML = heart + (isFav ? ' Saved' : ' Save');
+    saveBtn.innerHTML = heart + ' ' + (isFav ? tx('Saved') : tx('Save'));
     saveBtn.classList.toggle('saved', isFav);
   }
   async function handleSaveAuth(user){
@@ -76491,16 +77697,16 @@ function renderTrail(t){
     }
     function runGpxExport(){
       if(!window.DoloPawsGpxExport){
-        showExportStatus('GPX export could not load. Please refresh and try again.');
+        showExportStatus(tx('GPX export could not load. Please refresh and try again.'));
         return false;
       }
       try {
         window.DoloPawsGpxExport.download(t);
-        showExportStatus('GPX downloaded. It contains the route only, check ORMA for safety context.');
+        showExportStatus(tx('GPX downloaded. It contains the route only, check ORMA for safety context.'));
         return true;
       } catch(error){
         showExportStatus(error && error.message
-          ? error.message : 'This trail could not be exported.');
+          ? error.message : tx('This trail could not be exported.'));
         return false;
       }
     }
@@ -76548,6 +77754,20 @@ if(document.querySelector('.td2')){
  */
 (function () {
   'use strict';
+
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
+  // A trail's own words (description, directions, terrain…) in the reader's
+  // language, from data/trail-text-it. The record itself stays English.
+  function trailWords(text) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.trailText === 'function' ? i18n.trailText(text) : text;
+  }
 
   const params = new URLSearchParams(window.location.search);
   // The URL may name the trail by its readable slug; the loader owns that
@@ -76601,23 +77821,23 @@ if(document.querySelector('.td2')){
       event.preventDefault();
       const access = window.DoloPawsTrailAccess;
       if(!access){
-        if(statusElement) statusElement.textContent = 'Directions are unavailable right now.';
+        if(statusElement) statusElement.textContent = tx('Directions are unavailable right now.');
         return;
       }
       element.setAttribute('aria-disabled', 'true');
-      if(statusElement) statusElement.textContent = 'Checking your distance from the trailhead…';
+      if(statusElement) statusElement.textContent = tx('Checking your distance from the trailhead…');
       try{
         const plan = await access.planFromCurrent(navigator, accessTarget, navigator.userAgent, 100);
         if(!plan.allowed){
           if(statusElement) statusElement.textContent =
-            `Directions are available when you are within 100 km of the trail (${Math.round(plan.distanceKm)} km away).`;
+            tx('Directions are available when you are within 100 km of the trail ({km} km away).', { km: Math.round(plan.distanceKm) });
           return;
         }
-        if(statusElement) statusElement.textContent = `${Math.round(plan.distanceKm)} km away · opening directions…`;
+        if(statusElement) statusElement.textContent = tx('{km} km away · opening directions…', { km: Math.round(plan.distanceKm) });
         window.open(plan.url, '_blank', 'noopener');
       }catch(error){
         if(statusElement) statusElement.textContent =
-          'Allow location access to check that you are within 100 km of this trail.';
+          tx('Allow location access to check that you are within 100 km of this trail.');
       }finally{
         element.removeAttribute('aria-disabled');
       }
@@ -76629,7 +77849,7 @@ if(document.querySelector('.td2')){
     const el = $('verifiedSeal');
     if (!el) return;
     const style = trust && trust.tierBadgeStyle ? trust.tierBadgeStyle(t) : (t.curated === false ? 'imported' : 'verified');
-    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? 'Imported trail' : 'Verified by ORMA');
+    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? tx('Imported trail') : tx('Verified by ORMA'));
     // Render the same pill the browse-trail cards use, not a bespoke inline seal.
     el.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
       ? window.DoloPawsIcons.badgeHtml(style, label)
@@ -76648,11 +77868,11 @@ if(document.querySelector('.td2')){
     const tier = trust && trust.tierOf ? trust.tierOf(t) : null;
     if (tier === 'route-audited' || tier === 'dolopaws-walked') {
       const date = trust.formatReviewDate(t.reviewedAt || (t.verified && t.verified.date));
-      meta.textContent = `Verified by ORMA on ${date}. Check current conditions before setting out.`;
+      meta.textContent = tx('Verified by ORMA on {date}. Check current conditions before setting out.', { date });
     } else if (tier === 'route-reviewed') {
-      meta.textContent = 'Trail details prepared and reviewed by ORMA — not yet field-verified. Check local access rules and current conditions before setting out.';
+      meta.textContent = tx('Trail details prepared and reviewed by ORMA — not yet field-verified. Check local access rules and current conditions before setting out.');
     } else {
-      meta.textContent = 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
+      meta.textContent = tx('This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.');
     }
   })();
 
@@ -76672,8 +77892,8 @@ if(document.querySelector('.td2')){
       const baseRisk = safetyLabel(t.safetyLevel);
       factBits.push((trust ? trust.riskLabel(t, baseRisk) : baseRisk).toLowerCase());
     }
-    if (typeof t.distance === 'number') factBits.push(t.distance <= 6 ? 'easy distance' : `${t.distance} km`);
-    if (typeof t.shadeCoverage === 'number') factBits.push(t.shadeCoverage >= 40 ? 'good shade' : 'little shade');
+    if (typeof t.distance === 'number') factBits.push(t.distance <= 6 ? tx('easy distance') : `${t.distance} km`);
+    if (typeof t.shadeCoverage === 'number') factBits.push(t.shadeCoverage >= 40 ? tx('good shade') : tx('little shade'));
     const factLine = factBits.join(' · ');
 
     function guest() {
@@ -76754,7 +77974,7 @@ if(document.querySelector('.td2')){
       </a>`).join('');
     wrapEl.hidden = false;
     const seeAll = $('nearbySeeAll');
-    if (seeAll && (t.valley || t.area)) seeAll.textContent = 'See all in ' + (t.valley || t.area) + ' \u2192';
+    if (seeAll && (t.valley || t.area)) seeAll.textContent = tx('See all in {place}', { place: t.valley || t.area }) + ' \u2192';
 
     // Personalise: retitle the section and fill each pick's real match %
     // chip, same scoreTrail() as everywhere else.
@@ -76763,7 +77983,7 @@ if(document.querySelector('.td2')){
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if (!profile) return;
         const heading = $('nearbyTitle');
-        if (heading && profile.name) heading.textContent = 'Nearby trails, ranked for ' + profile.name;
+        if (heading && profile.name) heading.textContent = tx('Nearby trails, ranked for {name}', { name: profile.name });
         const ov = (typeof effectiveOverrides === 'function') ? effectiveOverrides(profile, null) : profile;
         for (const o of picks) {
           const slot = grid.querySelector(`[data-near-id="${CSS.escape(o.id)}"] .near-pct`);
@@ -76805,14 +78025,14 @@ if(document.querySelector('.td2')){
     // Breadcrumb: "← Trails · {region} · {valley}"
     const crumb = $('tdBreadcrumb');
     if (crumb && /^browse-trails\.html(?:[?#]|$)/.test(crumb.getAttribute('href') || '')) {
-      const regionName = t.region === 'savoy' ? 'Savoy' : t.region === 'lombardy' ? 'Lombardy' : t.region === 'friuli' ? 'Friuli Venezia Giulia' : t.region === 'aosta' ? 'Valle d\'Aosta' : t.region === 'tyrol' ? 'Tyrol & Carinthia' : t.region === 'switzerland' ? 'Switzerland' : 'Dolomites';
-      crumb.textContent = '← Trails · ' + regionName + (t.valley ? ' · ' + t.valley : '');
+      const regionName = t.region === 'savoy' ? tx('Savoy') : t.region === 'lombardy' ? tx('Lombardy') : t.region === 'friuli' ? 'Friuli Venezia Giulia' : t.region === 'aosta' ? 'Valle d\'Aosta' : t.region === 'tyrol' ? tx('Tyrol & Carinthia') : t.region === 'switzerland' ? tx('Switzerland') : tx('Dolomites');
+      crumb.textContent = '← ' + tx('Trails') + ' · ' + regionName + (t.valley ? ' · ' + t.valley : '');
     }
 
     // Safety rating as the same coloured pill the browse cards use.
     const riskLine = $('tdRiskLine');
     if (riskLine && t.safetyLevel) {
-      const labels = { 'low-risk': 'Low-risk terrain', 'moderate': 'Moderate terrain', 'caution': 'Caution terrain' };
+      const labels = { 'low-risk': tx('Low-risk terrain'), 'moderate': tx('Moderate terrain'), 'caution': tx('Caution terrain') };
       const baseRisk = labels[t.safetyLevel] || '';
       const riskText = trust ? trust.riskLabel(t, baseRisk) : baseRisk;
       riskLine.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
@@ -76829,8 +78049,8 @@ if(document.querySelector('.td2')){
       const warning = document.createElement('span');
       warning.className = 'td-lift-warning';
       warning.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
-        ? window.DoloPawsIcons.badgeHtml('caution', 'Chairlift-assisted · not for most dogs')
-        : esc('Chairlift-assisted · not for most dogs');
+        ? window.DoloPawsIcons.badgeHtml('caution', tx('Chairlift-assisted · not for most dogs'))
+        : esc(tx('Chairlift-assisted · not for most dogs'));
       tags.appendChild(warning);
     }
 
@@ -76854,14 +78074,16 @@ if(document.querySelector('.td2')){
     const easyTerrain = Number(t.terrainRank) === 0;
     const lowRisk = t.safetyLevel === 'low-risk';
     const verdict = openChairlift
-      ? 'This route depends on an open chairlift' + (lift.name ? ' (' + lift.name + ')' : '') + '. Only for a dog of 8 kg or under that rides calmly held on a lap; a hard stop for every other dog.'
+      ? (lift.name
+        ? tx('This route depends on an open chairlift ({lift}). Only for a dog of 8 kg or under that rides calmly held on a lap; a hard stop for every other dog.', { lift: lift.name })
+        : tx('This route depends on an open chairlift. Only for a dog of 8 kg or under that rides calmly held on a lap; a hard stop for every other dog.'))
       : t.curated === false
-      ? 'Automated estimate from mapped route data. Exposure, shade, livestock and current conditions are not field verified.'
+      ? tx('Automated estimate from mapped route data. Exposure, shade, livestock and current conditions are not field verified.')
       : lowRisk && easyTerrain
-      ? 'A gentle, low-risk choice for most dogs.'
+      ? tx('A gentle, low-risk choice for most dogs.')
       : t.safetyLevel === 'caution'
-        ? 'A more demanding trail: check the hazards and your dog’s confidence before committing.'
-        : 'A manageable trail for prepared dogs; review the route constraints before committing.';
+        ? tx('A more demanding trail: check the hazards and your dog’s confidence before committing.')
+        : tx('A manageable trail for prepared dogs; review the route constraints before committing.');
     const heroVerdict = $('heroVerdict');
     if (heroVerdict) heroVerdict.textContent = verdict;
 
@@ -76883,9 +78105,9 @@ if(document.querySelector('.td2')){
     const isLoop = Array.isArray(t.path) && t.path.length > 1 && distMeters(t.path[0], t.path[t.path.length-1]) < 200;
     const climb = Number(t.elevation) || 0;
     const signalData = [
-      ['paw', easyTerrain ? 'Gentle paw surface' : 'Mixed paw surface', easyTerrain ? 'Flat or packed underfoot based on route information' : (t.terrainType || 'Check pads at breaks')],
-      ['route', 'Route effort', `${t.distance} km${climb ? ` · +${climb} m` : ''}`],
-      ['loop', isLoop ? 'Loop route' : 'One-way route', isLoop ? 'Returns to the starting point' : 'Plan the return journey']
+      ['paw', easyTerrain ? tx('Gentle paw surface') : tx('Mixed paw surface'), easyTerrain ? tx('Flat or packed underfoot based on route information') : (trailWords(t.terrainType) || tx('Check pads at breaks'))],
+      ['route', tx('Route effort'), `${t.distance} km${climb ? ` · +${climb} m` : ''}`],
+      ['loop', isLoop ? tx('Loop route') : tx('One-way route'), isLoop ? tx('Returns to the starting point') : tx('Plan the return journey')]
     ];
     if (signalEl) {
       signalEl.innerHTML = signalData.map(([icon, title, sub]) =>
@@ -76895,7 +78117,7 @@ if(document.querySelector('.td2')){
     function paintWhyTitle() {
       if (!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(p => {
-        if (p && p.name && $('tdWhyTitle')) $('tdWhyTitle').textContent = 'Why this fits ' + p.name;
+        if (p && p.name && $('tdWhyTitle')) $('tdWhyTitle').textContent = tx('Why this fits {name}', { name: p.name });
       }).catch(() => {});
     }
     if (window.DoloPawsAuth) paintWhyTitle();
@@ -76904,7 +78126,7 @@ if(document.querySelector('.td2')){
     // Assessment note ABOVE the box, below the heading
     const assessmentNote = $('assessmentNote');
     if (assessmentNote) {
-      assessmentNote.innerHTML = trust ? trust.assessmentNote(t) : `<strong style="color: var(--ink);">Our assessment of this trail:</strong> route facts are weighed against your dog's profile. Current conditions can still change.`;
+      assessmentNote.innerHTML = trust ? trust.assessmentNote(t) : `<strong style="color: var(--ink);">${tx('Our assessment of this trail:')}</strong> ${tx('route facts are weighed against your dog\'s profile. Current conditions can still change.')}`;
     }
 
     const sp = t.startPoint || {};
@@ -76936,7 +78158,7 @@ if(document.querySelector('.td2')){
         const shareUrl = url.href;
         return {
           url: shareUrl,
-          text: t.name + ' on ORMA: ' + shareUrl
+          text: tx('{name} on ORMA: {url}', { name: t.name, url: shareUrl })
         };
       };
       const closeShare = () => {
@@ -76969,10 +78191,10 @@ if(document.querySelector('.td2')){
         const shareUrl = shareDetails().url;
         try {
           await navigator.clipboard.writeText(shareUrl);
-          copyBtn.textContent = '✓ Link copied';
+          copyBtn.textContent = '✓ ' + tx('Link copied');
           copyBtn.style.color = '#2f5138';
           setTimeout(() => {
-            copyBtn.textContent = 'Copy link';
+            copyBtn.textContent = tx('Copy link');
             copyBtn.style.color = '';
             closeShare();
           }, 1400);
@@ -77028,7 +78250,7 @@ if(document.querySelector('.td2')){
       if (typeof recommendTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if (!profile) return;
-        const name = profile.name || 'your dog';
+        const name = profile.name || tx('your dog');
         const recommendation = recommendTrail(
           t,
           typeof effectiveOverrides === 'function' ? effectiveOverrides(profile, null) : profile,
@@ -77056,11 +78278,11 @@ if(document.querySelector('.td2')){
         }
         const label = $('tdMatchLabel');
         if (label) {
-          $('tdMatchName').textContent = 'MATCH FOR ' + name.toUpperCase();
+          $('tdMatchName').textContent = tx('MATCH FOR {name}', { name: name.toUpperCase() });
           $('tdMatchBreed').textContent = profile.breed || '';
           label.hidden = false;
         }
-        if (matchTitle) matchTitle.textContent = `Match for ${name}`;
+        if (matchTitle) matchTitle.textContent = tx('Match for {name}', { name });
         if (matchSummary) {
           // The verdict's words, and the line about how well it is known, both
           // come from match-verdict.js. This read from a copy of the table and
@@ -77075,7 +78297,7 @@ if(document.querySelector('.td2')){
               confidence: recommendation.confidence ? `${recommendation.confidence} confidence` : '',
             })
             : '';
-          matchSummary.textContent = [verdict ? verdict.label : 'Personal recommendation', qualifier]
+          matchSummary.textContent = [verdict ? verdict.label : tx('Personal recommendation'), qualifier]
             .filter(Boolean).join(' · ');
           matchSummary.dataset.scoringVersion = recommendation.scoringVersion;
         }
@@ -77093,7 +78315,7 @@ if(document.querySelector('.td2')){
     // Trail description inside the white box
     const descEl = $('matchDescription');
     if (descEl && t.desc) {
-      descEl.textContent = cardCopy(t.desc);
+      descEl.textContent = cardCopy(trailWords(t.desc));
     }
     
     // In-page tabs: Overview / Dog safety / Reviews & photos.
@@ -77175,26 +78397,26 @@ if(document.querySelector('.td2')){
     };
 
     addAssessment(trust ? trust.exposureAssessment(t) : (t.exposure
-      ? { ok: false, title: 'Exposure', detail: 'Narrow ledges or unprotected drop-offs occur on parts of the route.' }
+      ? { ok: false, title: tx('Exposure'), detail: tx('Narrow ledges or unprotected drop-offs occur on parts of the route.') }
       : null), 'exposure');
     addAssessment(trust ? trust.livestockAssessment(t, text) : null, 'livestock');
     addAssessment(trust ? trust.surfaceAssessment(t) : (Number(t.terrainRank) !== 0
-      ? { ok: false, title: 'Surface hazards', detail: (t.terrainType || 'Gravel and mixed rock') + '. Check pads at breaks; consider booties for tender paws.' }
+      ? { ok: false, title: tx('Surface hazards'), detail: tx('{surface}. Check pads at breaks; consider booties for tender paws.', { surface: trailWords(t.terrainType) || tx('Gravel and mixed rock') }) }
       : null), 'paws');
     addAssessment(trust ? trust.trafficAssessment(t) : null, null);
     addAssessment(trust ? trust.heatAssessment(t, conditions) : null, 'heat');
     addAssessment(trust ? trust.waterAssessment(t) : (hasWater
-      ? { ok: true, title: 'Water', detail: 'A water source is mapped on this route. Bring a bowl.' }
-      : { ok: false, title: 'Water', detail: 'No water source is mapped. Carry enough for the dog.' }), 'water');
-    if (maxAlt >= 1800) caution('Season & altitude', `Tops out around ${maxAlt} m. Snow lingers into early summer and weather turns quickly.`, 'altitude');
+      ? { ok: true, title: tx('Water'), detail: tx('A water source is mapped on this route. Bring a bowl.') }
+      : { ok: false, title: tx('Water'), detail: tx('No water source is mapped. Carry enough for the dog.') }), 'water');
+    if (maxAlt >= 1800) caution(tx('Season & altitude'), tx('Tops out around {alt} m. Snow lingers into early summer and weather turns quickly.', { alt: maxAlt }), 'altitude');
 
     if (!rows.length) {
-      box.innerHTML = '<p class="safety-clear">No additional route cautions are highlighted. Continue to check live weather and local signs.</p>';
+      box.innerHTML = '<p class="safety-clear">' + tx('No additional route cautions are highlighted. Continue to check live weather and local signs.') + '</p>';
       return;
     }
     const rowMarkup = r => `
       <div class="safety-row is-caution"${r.guideId ? ` data-guide-id="${esc(r.guideId)}"` : ''}>
-        <span class="pill">Caution</span>
+        <span class="pill">${tx('Caution')}</span>
         <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small>${r.items.length
           ? `<ul class="safety-row-items">${r.items.map(entry => `<li>${esc(entry)}</li>`).join('')}</ul>`
           : ''}</span>
@@ -77217,7 +78439,7 @@ if(document.querySelector('.td2')){
     const routeRefs = window.DoloPawsTrailRouteRefs
       ? window.DoloPawsTrailRouteRefs.forTrail(t)
       : [];
-    const startLabel = cardCopy(sp.label || t.valley || t.area || 'the marked trailhead')
+    const startLabel = cardCopy(trailWords(sp.label) || t.valley || t.area || tx('the marked trailhead'))
       // `Start here, Lift station Vinouve` -- the comma is part of the prefix,
       // and leaving it printed "Head to , Lift station Vinouve". trail-trust
       // strips the same prefix with `/^Start here\s*[,—-]\s*/i`; this copy of
@@ -77233,39 +78455,60 @@ if(document.querySelector('.td2')){
       : null;
     const guidanceIsLandmarkLed = verifiedRouteGuidance && verifiedRouteGuidance.mode === 'landmarks';
     const routeBadges = routeRefs.length
-      ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
+      ? `<div class="td2-route-ref-list" aria-label="${tx('Trail numbers in order')}">${routeRefs.map((ref, index) =>
           `${index ? '<span class="td2-route-ref-arrow" aria-hidden="true">→</span>' : ''}<span class="td2-route-ref">${esc(ref)}</span>`
         ).join('')}</div>`
       : '';
     const switchGuidance = routeSwitches.length
       ? `<ol class="td2-route-switch-list">
-          <li>Begin the hike on trail <b>${esc(routeSwitches[0].from)}</b>.</li>
+          <li>${tx('Begin the hike on trail <b>{trail}</b>.', { trail: esc(routeSwitches[0].from) })}</li>
           ${routeSwitches.map(item => {
-            const atKm = item.km == null ? 'At the mapped junction' : `At approximately km ${esc(item.km.toFixed(1).replace(/\.0$/, ''))}`;
+            const atKm = item.km == null ? tx('At the mapped junction') : tx('At approximately km {km}', { km: esc(item.km.toFixed(1).replace(/\.0$/, '')) });
             const nearby = (Array.isArray(t.rifugi) ? t.rifugi : []).find(place =>
               Number.isFinite(Number(place && place.km)) && item.km != null && Math.abs(Number(place.km) - item.km) <= 0.15);
-            return `<li>${atKm}${nearby ? `, near ${esc(nearby.name)}` : ''}, switch from trail <b>${esc(item.from)}</b> to trail <b>${esc(item.to)}</b>.</li>`;
+            const switchVars = { at: atKm, from: esc(item.from), to: esc(item.to) };
+            return `<li>${nearby
+              ? tx('{at}, near {place}, switch from trail <b>{from}</b> to trail <b>{to}</b>.', { ...switchVars, place: esc(nearby.name) })
+              : tx('{at}, switch from trail <b>{from}</b> to trail <b>{to}</b>.', switchVars)}</li>`;
           }).join('')}
-          <li>Stay on trail <b>${esc(routeSwitches[routeSwitches.length - 1].to)}</b> for the final section to the route finish.</li>
+          <li>${tx('Stay on trail <b>{trail}</b> for the final section to the route finish.', { trail: esc(routeSwitches[routeSwitches.length - 1].to) })}</li>
         </ol>`
       : '';
     const auditDirections = window.DoloPawsTrailRouteRefs
       ? window.DoloPawsTrailRouteRefs.writtenDirections(t)
       : { written:false };
-    const auditDirectionsMarkup = `<div class="s"><p><b>Directions:</b> ${esc(auditDirections.text || '')}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? window.DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE : '')}</p></div>`;
-    const noRouteNumbers = '<div class="s"><p><b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.</p></div>';
+    // Same sentence as DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE, written out so it can be translated.
+    const auditDirectionsMarkup = `<div class="s"><p><b>${tx('Directions:')}</b> ${esc(auditDirections.text || '')}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? tx('From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.') : '')}</p></div>`;
+    const noRouteNumbers = '<div class="s"><p><b>' + tx('Trail numbers:') + '</b> ' + tx('No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.') + '</p></div>';
+    // The guidance labels are compared and passed on in English; they are
+    // translated only where they are printed.
+    const labelText = label => {
+      switch (label) {
+        case 'Start': return tx('Start');
+        case 'Trail numbers': return tx('Trail numbers');
+        case 'Trail numbers and route': return tx('Trail numbers and route');
+        case 'Route': return tx('Route');
+        case 'Where to switch': return tx('Where to switch');
+        case 'Key turns': return tx('Key turns');
+        case 'How to follow this route': return tx('How to follow this route');
+        case 'Trail numbers and switches': return tx('Trail numbers and switches');
+        case 'Following the route': return tx('Following the route');
+        case 'Recommended starting point': return tx('Recommended starting point');
+        default: return label;
+      }
+    };
     // The status sentence says whether ORMA confirmed how the numbers appear on
     // local signs -- what a reader standing at a junction needs. It was being
     // dropped, so the card stated a number sequence as though the signage were
     // settled. Printed when the record carries one: the five walks published
     // before the pipeline wrote that field have none.
-    const guidanceStatus = verifiedRouteGuidance && String(verifiedRouteGuidance.status || '').trim();
+    const guidanceStatus = verifiedRouteGuidance && String(trailWords(verifiedRouteGuidance.status) || '').trim();
     // Most start sentences already begin "Start at …", and a "Start:" label in
     // front of them read "Start: Start at …". The sentence's own first word
     // takes the bold instead; a sentence that begins otherwise keeps the label.
     const startLine = sentence => {
       const text = String(sentence || '').trim();
-      return /^Start\b/.test(text) ? `<b>Start</b>${esc(text.slice(5))}` : `<b>Start:</b> ${esc(text)}`;
+      return /^Start\b/.test(text) ? `<b>Start</b>${esc(text.slice(5))}` : `<b>${tx('Start:')}</b> ${esc(text)}`;
     };
     // Each value ends with where it came from; the card says that once, under
     // the lines, instead of after every one of them (route-guidance-sources.js).
@@ -77274,8 +78517,16 @@ if(document.querySelector('.td2')){
     const guidanceSteps = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
       ? window.DoloPawsRouteGuidanceSources.landmarkSteps(verifiedRouteGuidance)
       : null;
+    // The source sentences are found by their English. A line shown in Italian
+    // keeps its source inside the sentence, so no separate note is printed.
+    const splitOrItalian = lines => {
+      const italian = lines.map(([label, text]) => [label, trailWords(text)]);
+      return italian.some((line, index) => line[1] !== lines[index][1])
+        ? { lines: italian, note: '' }
+        : window.DoloPawsRouteGuidanceSources.splitSources(lines);
+    };
     const guidanceSplit = verifiedRouteGuidance && window.DoloPawsRouteGuidanceSources
-      ? window.DoloPawsRouteGuidanceSources.splitSources([
+      ? splitOrItalian([
         ['Start', verifiedRouteGuidance.start],
         ...(guidanceStatus && !guidanceSteps ? [['Trail numbers', guidanceStatus]] : []),
         ...(guidanceSteps ? [] : [
@@ -77287,7 +78538,7 @@ if(document.querySelector('.td2')){
     const guidanceLines = guidanceSplit ? guidanceSplit.lines : [];
     const stepsMarkup = guidanceSteps
       ? `<ol class="td2-route-steps">${guidanceSteps.steps.map(step =>
-        `<li>${esc(step.text)}${step.tags.length ? ` <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span>` : ''}</li>`).join('')}</ol>${
+        `<li>${esc(trailWords(step.text))}${step.tags.length ? ` <span class="td2-route-step-from">${esc(step.tags.join(', '))}</span>` : ''}</li>`).join('')}</ol>${
         guidanceSteps.credits.map(credit => `<p class="td2-route-credit">${esc(credit.before)}<a href="${
           esc(credit.url)}" target="_blank" rel="noopener">${esc(credit.label)}</a>${esc(credit.after)}</p>`).join('')}`
       : '';
@@ -77295,15 +78546,19 @@ if(document.querySelector('.td2')){
       ? `${routeBadges}<div class="s">${guidanceSteps ? `<p class="td2-route-badge">${esc(guidanceSteps.badge)}</p>` : ''}${
         guidanceLines.map(([label, text]) => label === 'Start'
         ? `<p>${startLine(text)}</p>`
-        : `<p><b>${esc(label)}:</b> ${esc(text)}</p>`).join('')}${stepsMarkup}${
+        : `<p><b>${esc(labelText(label))}:</b> ${esc(text)}</p>`).join('')}${stepsMarkup}${
         guidanceSplit.note ? `<p class="td2-route-source">${esc(guidanceSplit.note)}</p>` : ''
       }</div>`
       : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
-          ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
+          ? (routeRefs.length === 1
+            ? tx('Trail {refs} is marked only on the verified section shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.', { refs: esc(routeSequence) })
+            : tx('Trails {refs} are marked only on the verified sections shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.', { refs: esc(routeSequence) }))
           : routeRefs.length === 1
-            ? `Follow trail <b>${esc(routeRefs[0])}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.`
-            : `This hike uses trails ${esc(routeSequence)}, but the exact numbered switch point${routeRefs.length > 2 ? 's are' : ' is'} still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.`}</div>`}`
+            ? tx('Follow trail <b>{trail}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.', { trail: esc(routeRefs[0]) })
+            : routeRefs.length > 2
+              ? tx('This hike uses trails {refs}, but the exact numbered switch points are still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.', { refs: esc(routeSequence) })
+              : tx('This hike uses trails {refs}, but the exact numbered switch point is still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.', { refs: esc(routeSequence) })}</div>`}`
       // Nothing sourced to say about following this route. This card used to
       // fall back to the first paragraph of t.desc, which "About this trail"
       // prints in full a few centimetres above: on 76 of 109 Dolomites trails
@@ -77317,14 +78572,14 @@ if(document.querySelector('.td2')){
       s:routeRefMarkup,
       routeRefs:true,
     };
-    const renderCards = cards => cards.map(c => `<div class="td2-park${c.routeRefs ? ' td2-route-refs' : ''}"><span class="ic">${c.ic}</span><div><div class="t">${esc(c.t)}</div>${c.routeRefs ? c.s : `<div class="s">${c.s}</div>`}</div></div>`).join('');
+    const renderCards = cards => cards.map(c => `<div class="td2-park${c.routeRefs ? ' td2-route-refs' : ''}"><span class="ic">${c.ic}</span><div><div class="t">${esc(labelText(c.t))}</div>${c.routeRefs ? c.s : `<div class="s">${c.s}</div>`}</div></div>`).join('');
     aroundGrid.innerHTML = routeRefMarkup ? renderCards([routeCard]) : '';
     aroundCard.hidden = !routeRefMarkup;
     if (typeof lat !== 'number' || typeof lng !== 'number') {
       grid.innerHTML = renderCards([{
         ic:pin,
         t:'Recommended starting point',
-        s:'Trailhead directions are not yet available for this route.',
+        s:tx('Trailhead directions are not yet available for this route.'),
       }]);
       if (maps) maps.hidden = true;
       card.hidden = false;
@@ -77333,7 +78588,7 @@ if(document.querySelector('.td2')){
     const cards = [{
       ic:pin,
       t:'Recommended starting point',
-      s:`Head to ${esc(startLabel)}. Use the directions link to navigate to the route start.`,
+      s:tx('Head to {place}. Use the directions link to navigate to the route start.', { place: esc(startLabel) }),
     }];
     grid.innerHTML = renderCards(cards);
     if (maps) maps.hidden = false;
@@ -77369,7 +78624,7 @@ if(document.querySelector('.td2')){
     const CLOUD = '<svg width="18" height="16" viewBox="0 0 24 24" fill="#B7C6C9"><path d="M7 18h10a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 6.5 9 4 4 0 0 0 7 18z"></path></svg>';
     const iconFor = (code) => code <= 2 ? SUN : CLOUD;
     // Paw-safety badge from the day's high (same thresholds as the score's heat rules).
-    const dayBadge = (hi) => hi >= 22 ? { t: 'Heat', bg: '#F5E4C6', fg: '#8A5A16' } : { t: 'Good', bg: '#E4EADF', fg: '#2C5C34' };
+    const dayBadge = (hi) => hi >= 22 ? { t: 'Heat', label: tx('Heat'), bg: '#F5E4C6', fg: '#8A5A16' } : { t: 'Good', label: tx('Good'), bg: '#E4EADF', fg: '#2C5C34' };
 
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset&hourly=temperature_2m&forecast_days=6&timezone=auto`)
       .then(r => r.json())
@@ -77389,9 +78644,9 @@ if(document.querySelector('.td2')){
           const cur = Math.round(d.current.temperature_2m);
           const tempEl = $('tdCondTemp');
           if (tempEl) tempEl.textContent = cur + '°C';
-          const paw = cur >= 28 ? { t: 'Caution', bg: '#F3D9D2', fg: '#9C3A25' }
-            : cur >= 22 ? { t: 'Warm', bg: '#F5E4C6', fg: '#8A5A16' }
-            : { t: 'Good', bg: '#E4EADF', fg: '#2C5C34' };
+          const paw = cur >= 28 ? { t: tx('Caution'), bg: '#F3D9D2', fg: '#9C3A25' }
+            : cur >= 22 ? { t: tx('Warm'), bg: '#F5E4C6', fg: '#8A5A16' }
+            : { t: tx('Good'), bg: '#E4EADF', fg: '#2C5C34' };
           const pawEl = $('tdCondPaw');
           if (pawEl) { pawEl.textContent = paw.t; pawEl.style.background = paw.bg; pawEl.style.color = paw.fg; }
           // The day the reader chose on the homepage, carried in the address.
@@ -77446,32 +78701,32 @@ if(document.querySelector('.td2')){
           const winEl = $('sideCondWindow');
           if (winEl) winEl.innerHTML = window.DoloPawsWeatherWindow
             ? window.DoloPawsWeatherWindow.markup(win)
-            : 'No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.';
+            : tx('No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.');
         }
         const hasWater = Array.isArray(t.waterSources) && t.waterSources.length > 0;
         const waterEl = $('tdCondWater');
-        if (waterEl) { waterEl.textContent = hasWater ? 'On route' : 'Carry own'; waterEl.style.color = hasWater ? '#BDEBD9' : '#FFE6A6'; }
+        if (waterEl) { waterEl.textContent = hasWater ? tx('On route') : tx('Carry own'); waterEl.style.color = hasWater ? '#BDEBD9' : '#FFE6A6'; }
         if (condCard) condCard.hidden = false;
 
         // ---- 6-day forecast card ----
         if (fcDays) {
           let heatDay = null;
           fcDays.innerHTML = d.daily.time.map((iso, i) => {
-            const label = i === 0 ? 'Today' : new Date(iso).toLocaleDateString(undefined, { weekday: 'short' });
+            const label = i === 0 ? tx('Today') : new Date(iso).toLocaleDateString(undefined, { weekday: 'short' });
             const hi = Math.round(d.daily.temperature_2m_max[i]);
             const lo = Math.round(d.daily.temperature_2m_min[i]);
             const b = dayBadge(hi);
-            if (b.t === 'Heat' && !heatDay) heatDay = i === 0 ? 'Today' : new Date(iso).toLocaleDateString(undefined, { weekday: 'long' });
+            if (b.t === 'Heat' && !heatDay) heatDay = i === 0 ? tx('Today') : new Date(iso).toLocaleDateString(undefined, { weekday: 'long' });
             return `<div class="td2-fcday${i ? ' brd' : ''}">`
               + `<span class="d${i ? '' : ' now'}">${label}</span>`
               + `<span class="ic">${iconFor(d.daily.weathercode[i])}</span>`
               + `<span class="tp"><b class="num">${hi}°</b> <span class="lo">${lo}°</span></span>`
-              + `<span class="bd"><span class="td2-badge" style="background:${b.bg};color:${b.fg};">${b.t}</span></span>`
+              + `<span class="bd"><span class="td2-badge" style="background:${b.bg};color:${b.fg};">${b.label}</span></span>`
               + `</div>`;
           }).join('');
           const noteEl = $('tdForecastNote');
           if (noteEl && heatDay) {
-            noteEl.innerHTML = `<b style="color:#8A5A16">${heatDay}</b> is warm. Walk early and carry extra water.`;
+            noteEl.innerHTML = tx('{day} is warm. Walk early and carry extra water.', { day: `<b style="color:#8A5A16">${heatDay}</b>` });
             noteEl.hidden = false;
           }
         }
@@ -77497,6 +78752,12 @@ if(document.querySelector('.td2')){
  */
 (function () {
   'use strict';
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
   if (!document.querySelector('.td2')) return;
 
   // ---- 1. Hero Start-the-hike proxy + live banner -------------------------
@@ -77560,8 +78821,8 @@ if(document.querySelector('.td2')){
       if (heroBtn.dataset.hikeUiState !== nextState) {
         heroBtn.dataset.hikeUiState = nextState;
         heroBtn.innerHTML = rec
-          ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg> End · <span class="hike-elapsed">' + fmtElapsed() + '</span>'
-          : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start the hike';
+          ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg> ' + tx('End · {time}', { time: '<span class="hike-elapsed">' + fmtElapsed() + '</span>' })
+          : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> ' + tx('Start the hike');
       }
     }
     if (liveBanner) liveBanner.hidden = !rec;
@@ -77655,9 +78916,9 @@ if(document.querySelector('.td2')){
     const safetyDog = document.getElementById('td2SafetyDog');
     if (safetyDog) safetyDog.textContent = name ? ' · ' + name : '';
     const nearbyTitle = document.getElementById('nearbyTitle');
-    if (nearbyTitle && name) nearbyTitle.textContent = 'Nearby trails, ranked for ' + name;
+    if (nearbyTitle && name) nearbyTitle.textContent = tx('Nearby trails, ranked for {name}', { name });
     const liveTitle = document.getElementById('tdLiveTitle');
-    if (liveTitle && name) liveTitle.textContent = 'Recording ' + name + '’s walk';
+    if (liveTitle && name) liveTitle.textContent = tx('Recording {name}’s walk', { name });
   }
   window.addEventListener('dolopaws-auth-changed', syncDog);
   syncDog();
@@ -77679,6 +78940,12 @@ if(document.querySelector('.td2')){
    keep the plain responsive page. */
 (function(){
   'use strict';
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
 
   var page = document.querySelector('.td2');
   if(!page) return;
@@ -77739,7 +79006,7 @@ if(document.querySelector('.td2')){
         var collapsed = card.classList.toggle('is-mobile-collapsed');
         button.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
         var action = button.querySelector('.td2-mobile-toggle-action');
-        if(action) action.innerHTML = (collapsed ? 'Show <span aria-hidden="true">⌄</span>' : 'Hide <span aria-hidden="true">⌃</span>');
+        if(action) action.innerHTML = (collapsed ? tx('Show') + ' <span aria-hidden="true">⌄</span>' : tx('Hide') + ' <span aria-hidden="true">⌃</span>');
       });
     });
   }
@@ -77774,9 +79041,9 @@ if(document.querySelector('.td2')){
       top.className = 'mtrail-top';
       top.id = 'mtrailTop';
       top.innerHTML =
-        '<a class="back" href="browse-trails.html">← <span>Trails</span></a>' +
+        '<a class="back" href="browse-trails.html">← <span>' + tx('Trails') + '</span></a>' +
         '<a class="brand" href="/"><img src="logo.svg" alt="">ORMA</a>' +
-        '<a class="avlink" href="account.html" aria-label="Your account">' + dogAvatarHtml() + '</a>' +
+        '<a class="avlink" href="account.html" aria-label="' + tx('Your account') + '">' + dogAvatarHtml() + '</a>' +
         '<div class="mtrail-progress" aria-hidden="true"><span id="mtrailProgress"></span></div>';
       document.body.insertBefore(top, document.body.firstChild);
     }
@@ -77840,6 +79107,13 @@ if(document.querySelector('.td2')){
   if(root) root.DoloPawsRecommendationDecision = api;
 })(typeof window !== 'undefined' ? window : globalThis, function(root){
   'use strict';
+
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
 
   const CATEGORY = Object.freeze({
     'strong-option': { label:'Strong option', tone:'strong' },
@@ -77909,24 +79183,26 @@ if(document.querySelector('.td2')){
    * hazard is not evidence the hazard is absent, and the sentence must not
    * quietly upgrade it.
    */
+  // Each is read when the card renders, so the sentence comes out in the
+  // page's language; it keeps its {placeholders} for tr() to fill.
   const FIT_SENTENCES = Object.freeze({
-    'trail.distance.within-range': 'The {distance} km distance is comfortable.',
-    'trail.ascent.within-range': 'The {ascent} m climb is gentle.',
-    'trail.terrain.within-tolerance': 'The terrain is manageable.',
-    'trail.duration.within-preference': 'The walking time fits.',
-    'conditions.heat.low': 'Today is cool enough.',
-    'trail.heat.low': 'The route does not get too hot.',
-    'trail.shade.good': 'There is good shade.',
-    'trail.exposure.none-known': 'No exposed sections are recorded.',
-    'trail.surface-hazards.none-known': 'No surface hazards are recorded.',
-    'trail.water.reviewed': 'There is water on the route.',
-    'trail.dog-access.allowed': 'Dogs are allowed.',
-    'trail.dog-access.leash': 'Dogs are allowed on a leash.',
-    'trail.livestock.none': 'No livestock is recorded.',
-    'trail.wildlife.low': 'Wildlife activity is low.',
-    'trail.road.none': 'There are no road sections.',
-    'trail.crowding.quiet': 'The route is usually quiet.',
-    'trail.sightlines.open': 'The sightlines are open.',
+    'trail.distance.within-range': () => tx('The {distance} km distance is comfortable.'),
+    'trail.ascent.within-range': () => tx('The {ascent} m climb is gentle.'),
+    'trail.terrain.within-tolerance': () => tx('The terrain is manageable.'),
+    'trail.duration.within-preference': () => tx('The walking time fits.'),
+    'conditions.heat.low': () => tx('Today is cool enough.'),
+    'trail.heat.low': () => tx('The route does not get too hot.'),
+    'trail.shade.good': () => tx('There is good shade.'),
+    'trail.exposure.none-known': () => tx('No exposed sections are recorded.'),
+    'trail.surface-hazards.none-known': () => tx('No surface hazards are recorded.'),
+    'trail.water.reviewed': () => tx('There is water on the route.'),
+    'trail.dog-access.allowed': () => tx('Dogs are allowed.'),
+    'trail.dog-access.leash': () => tx('Dogs are allowed on a leash.'),
+    'trail.livestock.none': () => tx('No livestock is recorded.'),
+    'trail.wildlife.low': () => tx('Wildlife activity is low.'),
+    'trail.road.none': () => tx('There are no road sections.'),
+    'trail.crowding.quiet': () => tx('The route is usually quiet.'),
+    'trail.sightlines.open': () => tx('The sightlines are open.'),
   });
 
   // Calm framing: confidence describes data completeness, not danger. "low"
@@ -78043,9 +79319,9 @@ if(document.querySelector('.td2')){
       return tr(`recommendation.fine.${entry.code}`, fallback, { ...extra, ...(entry.vars || {}) });
     };
     const fitSentence = entry => {
-      const fallback = FIT_SENTENCES[entry.code];
-      if(!fallback) return null;
-      return tr(`recommendation.fits.${entry.code}`, fallback, { ...extra, ...(entry.vars || {}) });
+      const sentence = FIT_SENTENCES[entry.code];
+      if(!sentence) return null;
+      return tr(`recommendation.fits.${entry.code}`, sentence(), { ...extra, ...(entry.vars || {}) });
     };
     /**
      * What the card leads with, when it can only show a few.
@@ -78212,7 +79488,7 @@ if(document.querySelector('.td2')){
 
     if(Math.abs(after.score - before.score) <= SAME_SCORE_TOLERANCE) return null;
     return tr('recommendation.firstRun.moved',
-      'Was {beforeScore}% for {before} · now {afterScore}% for {name}. See why below.',
+      tx('Was {beforeScore}% for {before} · now {afterScore}% for {name}. See why below.'),
       { beforeScore:before.score, before:before.forName, afterScore:after.score, name:after.forName });
   }
 
@@ -78228,48 +79504,56 @@ if(document.querySelector('.td2')){
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
+  // Label and summary are read when shown, so they come out in the page's language.
   const GUIDES = Object.freeze({
     heat:Object.freeze({
       id:'heat',
       href:'guides/heat-overheating.html',
-      label:'Recognising overheating early',
-      summary:'Know the early signs and when to stop.',
+      get label(){ return tx('Recognising overheating early'); },
+      get summary(){ return tx('Know the early signs and when to stop.'); },
     }),
     water:Object.freeze({
       id:'water',
       href:'guides/water-for-dogs-on-trail.html',
-      label:'Water for dogs on alpine trails',
-      summary:'Plan the full supply when reliable water is not confirmed.',
+      get label(){ return tx('Water for dogs on alpine trails'); },
+      get summary(){ return tx('Plan the full supply when reliable water is not confirmed.'); },
     }),
     paws:Object.freeze({
       id:'paws',
       href:'guides/paw-protection.html',
-      label:'Looking after paw pads',
-      summary:'Rough ground, hot tarmac and how to spot pad damage.',
+      get label(){ return tx('Looking after paw pads'); },
+      get summary(){ return tx('Rough ground, hot tarmac and how to spot pad damage.'); },
     }),
     exposure:Object.freeze({
       id:'exposure',
       href:'safety-guide.html',
-      label:'Dog hiking safety guide',
-      summary:'Review turn-back decisions and emergency preparation.',
+      get label(){ return tx('Dog hiking safety guide'); },
+      get summary(){ return tx('Review turn-back decisions and emergency preparation.'); },
     }),
     livestock:Object.freeze({
       id:'livestock',
       href:'guides/livestock-guard-dogs.html',
-      label:'Livestock and guardian dogs',
-      summary:'Cross grazed pasture calmly and avoid confrontations.',
+      get label(){ return tx('Livestock and guardian dogs'); },
+      get summary(){ return tx('Cross grazed pasture calmly and avoid confrontations.'); },
     }),
     altitude:Object.freeze({
       id:'altitude',
       href:'guides/altitude-with-your-dog.html',
-      label:'Hiking safely at altitude',
-      summary:'Plan for thinner air, rapid weather changes and lingering snow.',
+      get label(){ return tx('Hiking safely at altitude'); },
+      get summary(){ return tx('Plan for thinner air, rapid weather changes and lingering snow.'); },
     }),
     lifts:Object.freeze({
       id:'lifts',
       href:'guides/dogs-on-cable-cars.html#chairlifts',
-      label:'Lifts with your dog: open chairs and closed cabins',
-      summary:'Why an open chairlift is a different risk from a gondola, and who can ride one.',
+      get label(){ return tx('Lifts with your dog: open chairs and closed cabins'); },
+      get summary(){ return tx('Why an open chairlift is a different risk from a gondola, and who can ride one.'); },
     }),
   });
 

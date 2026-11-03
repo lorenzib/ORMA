@@ -2,25 +2,25 @@
 <title>Report a trail hazard | ORMA</title><link rel="stylesheet" href="styles.css?v=20260916-5">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head>
 <body class="flow-shell"><main id="reportMain" class="flow-wrap flow-wrap--narrow">
-  <div class="flow-topline"><a id="reportBack" class="flow-back" href="trail.html">← Back</a><span id="reportTrail" class="flow-context">Alpe di Siusi Meadow Loop</span></div>
-  <h1>Report a hazard</h1><p class="flow-lead">Conditions change fast on alpine trails. Your report is checked before it appears publicly.</p>
-  <div class="flow-context" style="margin:22px 0 6px">What did you find?</div>
+  <div class="flow-topline"><a id="reportBack" class="flow-back" href="trail.html" data-i18n="account.back">← Back</a><span id="reportTrail" class="flow-context" data-i18n="page.photoUpload.alpeDiSiusiMeadowLoop">Alpe di Siusi Meadow Loop</span></div>
+  <h1 data-i18n="page.trailReport.reportAHazard">Report a hazard</h1><p class="flow-lead" data-i18n="page.trailReport.conditionsChangeFastOnAlpine">Conditions change fast on alpine trails. Your report is checked before it appears publicly.</p>
+  <div class="flow-context" style="margin:22px 0 6px" data-i18n="page.trailReport.whatDidYouFind">What did you find?</div>
   <div id="hazardOptions" class="hazard-options">
-    <button class="hazard-option" data-value="damage"><b>Trail damage</b><small>Washout, rockfall, fallen tree, collapsed bridge</small></button>
-    <button class="hazard-option" data-value="livestock"><b>Livestock or guardian dogs</b><small>Grazing animals, loose guardian dogs, new fencing</small></button>
-    <button class="hazard-option" data-value="water"><b>Water source dried up</b><small>A fountain, stream or trough no longer running</small></button>
-    <button class="hazard-option" data-value="blocked"><b>Overgrown or blocked</b><small>Vegetation, snow or debris blocking the path</small></button>
-    <button class="hazard-option" data-value="other"><b>Something else</b><small>Anything not covered above</small></button>
+    <button class="hazard-option" data-value="damage"><b data-i18n="page.trailReport.trailDamage">Trail damage</b><small data-i18n="page.trailReport.washoutRockfallFallenTreeCollapsed">Washout, rockfall, fallen tree, collapsed bridge</small></button>
+    <button class="hazard-option" data-value="livestock"><b data-i18n="page.trailReport.livestockOrGuardianDogs">Livestock or guardian dogs</b><small data-i18n="page.trailReport.grazingAnimalsLooseGuardianDogs">Grazing animals, loose guardian dogs, new fencing</small></button>
+    <button class="hazard-option" data-value="water"><b data-i18n="page.trailReport.waterSourceDriedUp">Water source dried up</b><small data-i18n="page.trailReport.aFountainStreamOrTrough">A fountain, stream or trough no longer running</small></button>
+    <button class="hazard-option" data-value="blocked"><b data-i18n="page.trailReport.overgrownOrBlocked">Overgrown or blocked</b><small data-i18n="page.trailReport.vegetationSnowOrDebrisBlocking">Vegetation, snow or debris blocking the path</small></button>
+    <button class="hazard-option" data-value="other"><b data-i18n="page.trailReport.somethingElse">Something else</b><small data-i18n="page.trailReport.anythingNotCoveredAbove">Anything not covered above</small></button>
   </div>
-  <div class="flow-context">How serious is it</div><div id="severity" class="severity-control"><button>Minor</button><button class="on">Moderate</button><button>Blocks the route</button></div>
-  <label class="flow-field"><span>Where on the trail</span><input id="reportLocation" placeholder="e.g. Just past the second bridge, km 3"></label>
-  <label class="flow-field"><span>Anything else to add <small>Optional</small></span><input id="reportNotes" placeholder="What should the next owner know?"></label>
-  <div class="flow-context" style="margin-top:18px">Add a photo <small>(optional)</small></div><input id="reportPhotoInput" type="file" accept="image/*" multiple hidden><div id="reportPhotos" class="report-photo-grid"><button id="addReportPhoto" class="photo-add-tile" aria-label="Add a photo">+</button></div>
-  <button id="submitReport" class="flow-btn flow-btn--block" style="margin-top:22px" disabled>Submit report</button>
+  <div class="flow-context" data-i18n="page.trailReport.howSeriousIsIt">How serious is it</div><div id="severity" class="severity-control"><button data-i18n="page.trailReport.minor">Minor</button><button class="on" data-i18n="account.fitness.moderate">Moderate</button><button data-i18n="page.trailReport.blocksTheRoute">Blocks the route</button></div>
+  <label class="flow-field"><span data-i18n="page.trailReport.whereOnTheTrail">Where on the trail</span><input id="reportLocation" placeholder="e.g. Just past the second bridge, km 3" data-i18n-ph="page.trailReport.egJustPastTheSecond"></label>
+  <label class="flow-field"><span data-i18n="page.trailReport.anythingElseToAddOptional">Anything else to add <small>Optional</small></span><input id="reportNotes" placeholder="What should the next owner know?" data-i18n-ph="page.trailReport.whatShouldTheNextOwner"></label>
+  <div class="flow-context" style="margin-top:18px" data-i18n="page.trailReport.addAPhotoOptional">Add a photo <small>(optional)</small></div><input id="reportPhotoInput" type="file" accept="image/*" multiple hidden><div id="reportPhotos" class="report-photo-grid"><button id="addReportPhoto" class="photo-add-tile" aria-label="Add a photo" data-i18n-aria-label="journal.after.addPhoto">+</button></div>
+  <button id="submitReport" class="flow-btn flow-btn--block" style="margin-top:22px" disabled data-i18n="page.trailReport.submitReport">Submit report</button>
   <p id="reportSubmitStatus" class="hint" role="alert" hidden></p>
-  <p style="font-size:11.5px;color:#8A9689;text-align:center">A verified account is required. Pending reports are not public until approved.</p>
+  <p style="font-size:11.5px;color:#8A9689;text-align:center" data-i18n="page.trailReport.aVerifiedAccountIsRequired">A verified account is required. Pending reports are not public until approved.</p>
 </main>
-<section id="reportSuccess" class="flow-success" hidden><div><div class="flow-success-icon">!</div><h1>Report sent</h1><p id="reportSuccessCopy"></p><a id="reportDone" class="flow-btn flow-btn--block" href="trail.html">Back to trail</a></div></section>
+<section id="reportSuccess" class="flow-success" hidden><div><div class="flow-success-icon">!</div><h1 data-i18n="page.trailReport.reportSent">Report sent</h1><p id="reportSuccessCopy"></p><a id="reportDone" class="flow-btn flow-btn--block" href="trail.html" data-i18n="page.photoUpload.backToTrail">Back to trail</a></div></section>
 
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">
@@ -85,4 +85,5 @@
   </div>
 </footer>
 
+<script src="i18n.js?v=20261006-1"></script>
 <script src="mobile-nav.js?v=20261030-1"></script><script src="community-content-states.js?v=20260815-4"></script><script src="offline-contributions.js?v=20260815-4"></script><script type="module" src="firebase-init.js?v=20261030-1"></script><script src="trail-photo-prep.js?v=20260815-4"></script><script src="trail-report-page.js?v=20260815-4"></script></body></html>

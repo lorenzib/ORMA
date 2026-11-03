@@ -1,0 +1,14 @@
+// osm-7567918 in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "An easy loop round the emerald Antholzer See at the head of the Antholz valley, in the Rieserferner-Ahrn nature park: a barrier-free lakeside path through the spruce forest, with boards on the lake’s wildlife and legends. The official route lists 3.4 km and 79 m of ascent.": "Un facile anello intorno allo smeraldino Antholzer See in fondo alla Valle di Anterselva (Antholz), nel parco naturale Vedrette di Ries-Aurina (Rieserferner-Ahrn): un sentiero lungo il lago senza barriere architettoniche nel bosco di abeti rossi, con pannelli sulla fauna e sulle leggende del lago. Il percorso ufficiale indica 3,4 km e 79 m di dislivello in salita.",
+  "Take bus 431 to Antholzer See or park at the biathlon centre and walk once round the lake: 3.4 km, almost level, about an hour and a half with the boards. Keep your dog on a short lead (1.5 m at most), carry a muzzle and bring water. It is shady and cool, a good summer walk, but very busy at midday in August.": "Prendi l'autobus 431 fino ad Antholzer See o parcheggia al centro di biathlon e fai un giro del lago: 3,4 km, quasi in piano, circa un'ora e mezza con i pannelli. Tieni il cane al guinzaglio corto (al massimo 1,5 m), porta la museruola al seguito e porta acqua. È ombreggiato e fresco, un buon percorso estivo, ma ad agosto a mezzogiorno è molto affollato.",
+  "A crossing of the Obertaler Straße (valley road to the Staller Sattel) by the Seerestaurant, km 1.7": "Un attraversamento della Obertaler Straße (strada di valle verso lo Staller Sattel) vicino al Seerestaurant, km 1,7",
+  "A wooden footbridge near km 3.0": "Una passerella di legno vicino al km 3,0",
+  "Busy with walkers in summer": "D'estate affollato di escursionisti",
+  "Wide, barrier-free lakeside path through the forest": "Ampio sentiero lungo il lago senza barriere architettoniche, nel bosco",
+  "Biathlon centre car park, bus stop Antholzer See (official start)": "Parcheggio del centro di biathlon, fermata dell'autobus Antholzer See (partenza ufficiale)",
+  "The still Antholzer See mirroring the dark spruce forest, a lakeside house and the mountains and clouds above": "L'Antholzer See immobile in cui si specchiano il cupo bosco di abeti rossi, una casa sulla riva e le montagne e le nuvole sovrastanti",
+  "Lake Anterselva below steep wooded slopes": "Il lago di Anterselva sotto ripidi pendii boscosi",
+  "Peaks above the forest at the end of Lake Anterselva": "Cime sopra il bosco in fondo al lago di Anterselva",
+  "Almost all in the spruce forest round the lake; only the shore by the Seerestaurant is open.": "Quasi tutto nel bosco di abeti rossi intorno al lago; solo la riva vicino al Seerestaurant è aperta."
+});

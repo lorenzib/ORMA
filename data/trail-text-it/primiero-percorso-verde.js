@@ -1,0 +1,18 @@
+// primiero-percorso-verde in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short, step-free loop from the Parco Clarofonte in Fiera di Primiero along Via Lungo Canali, with one of the best views of the Pale di San Martino from the valley. The APT lists 1.6 km and 23 m of ascent.": "Un breve anello senza gradini dal Parco Clarofonte a Fiera di Primiero lungo Via Lungo Canali, con una delle viste più belle sulle Pale di San Martino dal fondovalle. L'APT indica 1,6 km e 23 m di dislivello in salita.",
+  "Start at the Parco Clarofonte: 1.6 km, level and step-free, half an hour. Keep your dog on a short lead (1.5 m at most) on the pavement beside the road. Fountains and cafés at the start.": "Parti dal Parco Clarofonte: 1,6 km, in piano e senza gradini, mezz'ora. Tieni il cane al guinzaglio corto (al massimo 1,5 m) sul marciapiede lungo la strada. Fontane e bar alla partenza.",
+  "All tarmac and pavement, beside a road for part of it": "Tutto su asfalto e marciapiede, in parte lungo una strada",
+  "Two bridges and road junctions in town": "Due ponti e incroci stradali in paese",
+  "Busy with cars round the hotels in summer": "D'estate molto traffico intorno agli alberghi",
+  "Pavements and a riverside lane; step-free and pram-friendly": "Marciapiedi e una stradina lungo il fiume; senza gradini e adatto ai passeggini",
+  "Parco Clarofonte, the APT’s start": "Parco Clarofonte, la partenza indicata dall'APT",
+  "A road past a yellow hotel with flower-filled balconies and lavender beds, a rocky Dolomite spire above wooded slopes under blue sky": "Una strada che passa davanti a un albergo giallo con balconi fioriti e aiuole di lavanda, una guglia dolomitica rocciosa sopra i versanti boscosi sotto il cielo azzurro",
+  "Open: almost no tree cover is mapped on the line.": "Aperto: sulla linea non è mappata quasi nessuna copertura arborea.",
+  "Start at the Parco Clarofonte in Fiera di Primiero, the tourist board’s start.": "Parti dal Parco Clarofonte a Fiera di Primiero, la partenza indicata dall'ente turistico.",
+  "Towards the bridge over the Cismon, keeping right to the Brunet Hotels junction, on the pavement towards the Tonadico sports field to the Hotel Tre Ponti junction, right over the Canali and right down Via Lungo Canali back to the park.": "Verso il ponte sul Cismon, tenendo la destra fino all'incrocio dei Brunet Hotels, sul marciapiede verso il campo sportivo di Tonadico fino all'incrocio dell'Hotel Tre Ponti, a destra oltre il Canali e a destra giù per Via Lungo Canali fino al parco.",
+  "Keep right after the Cismon bridge. Right at the Hotel Tre Ponti junction, over the Canali, then right again down Via Lungo Canali.": "Tieni la destra dopo il ponte sul Cismon. A destra all'incrocio dell'Hotel Tre Ponti, oltre il Canali, poi di nuovo a destra giù per Via Lungo Canali.",
+  "From the Parco Clarofonte, head for the bridge over the Cismon and carry on, keeping right, to the junction by the Brunet Hotels.": "Dal Parco Clarofonte dirigiti verso il ponte sul Cismon e prosegui, tenendo la destra, fino all'incrocio vicino ai Brunet Hotels.",
+  "From there go towards the Tonadico sports field, staying on the pavement, as far as the junction by the Hotel Tre Ponti.": "Da lì vai verso il campo sportivo di Tonadico, restando sul marciapiede, fino all'incrocio vicino all'Hotel Tre Ponti.",
+  "Turn right over the bridge on the Canali, then right again, down Via Lungo Canali, back to the Parco Clarofonte.": "Gira a destra sul ponte sul Canali, poi di nuovo a destra, giù per Via Lungo Canali, fino al Parco Clarofonte."
+});

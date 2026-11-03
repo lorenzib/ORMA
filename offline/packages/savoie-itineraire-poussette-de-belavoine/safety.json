@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-itineraire-poussette-de-belavoine",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.7,
+    "ascentM": 40,
+    "highestPointM": 1277,
+    "expectedDuration": "2 hours",
+    "difficulty": "Easy",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 45.783478,
+    "lng": 6.498725,
+    "label": "Place du Cernix, Cohennoz, one of the two starts the board gives"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.7829503,
+      "lng": 6.4986561,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The whole walk is on a quiet communal road that cars still use: keep your dog on a lead and to the side.",
+    "Hay meadows beside the road are farmed: keep your dog out of them.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

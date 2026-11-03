@@ -1504,6 +1504,66 @@
       "slug": "bloseggweg-loop-schenna",
       "gloss": "through the orchards past the Kampflkreuz"
     },
+    "savoie-promenade-confort-lac-et-barrage-de-saint-guerin": {
+      "name": "Lac de Saint-Guérin shore path",
+      "slug": "lac-de-saint-guerin-shore-path",
+      "gloss": "along the lake and over the high footbridge"
+    },
+    "savoie-itineraire-poussette-des-chalets-brules": {
+      "name": "Chalets Brûlés pasture track, Crest-Voland",
+      "slug": "chalets-brules-crest-voland",
+      "gloss": "a flat alpage track facing Mont Blanc"
+    },
+    "savoie-itineraire-poussette-de-belavoine": {
+      "name": "Bel’Avoine road, Le Cernix to Paravy",
+      "slug": "belavoine-cernix-to-paravy",
+      "gloss": "a flat hamlet road facing the Aravis"
+    },
+    "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": {
+      "name": "Meraner Höhenweg west and the Sonnenberg farms, Partschins",
+      "slug": "hoehenweg-west-sonnenberg-farms-partschins",
+      "gloss": "from the Texelbahn down past old farms"
+    },
+    "meran-escursione-sentiero-del-sole-a-stulles": {
+      "name": "Sonnenrundweg loop at Stuls",
+      "slug": "sonnenrundweg-stuls",
+      "gloss": "a sunny loop above the Passeier valley"
+    },
+    "meran-giro-dei-masi-sul-monte-sole": {
+      "name": "Sonnenberg farms loop from Unterstell, Naturns",
+      "slug": "unterstell-farms-loop-naturns",
+      "gloss": "farms on the Meraner Höhenweg"
+    },
+    "meran-escursione-alla-forst": {
+      "name": "Forst and the Marlinger Waalweg from Algund",
+      "slug": "algund-forst-marlinger-waalweg",
+      "gloss": "across the Adige to the waal path"
+    },
+    "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": {
+      "name": "Hirzer alms loop from Klammeben",
+      "slug": "hirzer-alms-loop-klammeben",
+      "gloss": "alms below the Hirzer above Schenna"
+    },
+    "valtellina-rifugi-porro-e-ventina": {
+      "name": "Chiareggio to the Porro and Ventina huts",
+      "slug": "chiareggio-rifugi-porro-ventina",
+      "gloss": "a mule track to the meadows below Monte Disgrazia"
+    },
+    "valtellina-passo-di-campagneda": {
+      "name": "Campo Moro to the Passo di Campagneda",
+      "slug": "campo-moro-passo-di-campagneda",
+      "gloss": "past the Campagneda lakes to the Swiss border"
+    },
+    "savoie-areches-beaufort-la-grande-berge": {
+      "name": "La Grande Berge from the Plan de la Lai",
+      "slug": "grande-berge-from-plan-de-la-lai",
+      "gloss": "high alpages above the Lac de Roselend"
+    },
+    "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": {
+      "name": "Croix du Berger from the Lac des Fées",
+      "slug": "croix-du-berger-from-lac-des-fees",
+      "gloss": "up to the Cormet d’Arêches and along the humps"
+    },
     "engadin-around-lake-st-moritz": {
       "name": "Lake St. Moritz shore loop",
       "slug": "lake-st-moritz-shore-loop",

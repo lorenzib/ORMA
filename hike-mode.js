@@ -42,6 +42,17 @@ function hikeRoutePositionKm(input){
 }
 
 function initHikeMode(map, trail, options){
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+  // A trail's own words in the reader's language, from data/trail-text-it.
+  function trailWords(text){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.trailText === 'function' ? i18n.trailText(text) : text;
+  }
   if (!('geolocation' in navigator)) return; // no GPS, don't show the button
   if (!Array.isArray(trail.path) || trail.path.length < 2) return;
 
@@ -115,7 +126,7 @@ function initHikeMode(map, trail, options){
   const panel = document.createElement('div');
   panel.id = 'mapHikeStatus';
   panel.setAttribute('role', 'group');
-  panel.setAttribute('aria-label', 'Live hike details');
+  panel.setAttribute('aria-label', tx('Live hike details'));
   panel.style.cssText = 'position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:6;max-width:92%;padding:10px 16px;border-radius:12px;background:rgba(46,64,52,.94);color:#fff;font-size:12.5px;font-weight:600;box-shadow:0 2px 10px rgba(0,0,0,.35);display:none;text-align:center;line-height:1.5;';
   container.appendChild(panel);
 
@@ -133,7 +144,7 @@ function initHikeMode(map, trail, options){
   const banner = document.createElement('div');
   banner.id = 'mapHikeOffRoute';
   banner.setAttribute('role', 'group');
-  banner.setAttribute('aria-label', 'Off-route warning');
+  banner.setAttribute('aria-label', tx('Off-route warning'));
   banner.textContent = window.t ? window.t('hike.offRoute') : '⚠️ Off route';
   banner.style.cssText = 'position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:7;width:max-content;max-width:min(92%,520px);padding:9px 16px;border-radius:12px;background:#9C3A25;color:#fff;font-size:12.5px;font-weight:700;line-height:1.4;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.35);display:none;';
   container.appendChild(banner);
@@ -619,7 +630,7 @@ function initHikeMode(map, trail, options){
     const hut = isLoop ? null : nextAhead(trail.rifugi, currentRouteKm, 'name');
     if (hut) parts.push(window.t('hike.hutIn', {name: hut.label, d: hut.ahead.toFixed(1)}));
     const decision = isLoop ? null : nextAhead(trail.decisionPoints, currentRouteKm, 'instruction');
-    if (decision && decision.ahead < 0.5) parts.push(window.t('hike.ahead', {what: decision.label}));
+    if (decision && decision.ahead < 0.5) parts.push(window.t('hike.ahead', {what: trailWords(decision.label)}));
 
     // Lead advisories are a range rather than a next-point search, so unlike
     // the readouts above they stay meaningful on a loop.
@@ -925,7 +936,7 @@ function initHikeMode(map, trail, options){
     const elapsedSeconds = completion.durationSeconds;
     const elapsedMinutes = Math.max(1, Math.round(elapsedSeconds / 60));
     const dog = dogSummary();
-    const dogName = dog.name || 'Your dog';
+    const dogName = dog.name || tx('Your dog');
     const km = completion.distanceKm;
     const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : ', ';
     // The trail rating, in the words the rest of the product uses. This held
@@ -969,70 +980,70 @@ function initHikeMode(map, trail, options){
           ${Number.isFinite(matchPct) ? `<span class="pct">${esc(window.t('hike.matchFor', {pct: matchPct, name: dogName}))}</span>` : ''}
         </div>
         <div class="hk-block hk-outcome-block">
-          <div class="hk-label">Private trail feedback</div>
-          <p class="hk-outcome-intro">Did this trail suit ${esc(dogName)}? This helps assess the recommendation and never becomes a public review.</p>
-          <div class="hk-outcome-options" id="hkOutcomeOptions" role="radiogroup" aria-label="Did this trail suit your dog?"></div>
+          <div class="hk-label">${esc(tx('Private trail feedback'))}</div>
+          <p class="hk-outcome-intro">${esc(tx('Did this trail suit {name}? This helps assess the recommendation and never becomes a public review.', { name: dogName }))}</p>
+          <div class="hk-outcome-options" id="hkOutcomeOptions" role="radiogroup" aria-label="${esc(tx('Did this trail suit your dog?'))}"></div>
           <div class="hk-outcome-followups" id="hkOutcomeFollowups" hidden>
-            <label for="hkWaterAccuracy">Was the listed water information accurate? <span>Optional</span></label>
+            <label for="hkWaterAccuracy">${esc(tx('Was the listed water information accurate?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkWaterAccuracy">
-              <option value="">Prefer not to answer</option>
-              <option value="accurate">Yes, it was accurate</option>
-              <option value="less_than_listed">Less water than listed</option>
-              <option value="more_than_listed">More water than listed</option>
-              <option value="not_checked">I did not check</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="accurate">${esc(tx('Yes, it was accurate'))}</option>
+              <option value="less_than_listed">${esc(tx('Less water than listed'))}</option>
+              <option value="more_than_listed">${esc(tx('More water than listed'))}</option>
+              <option value="not_checked">${esc(tx('I did not check'))}</option>
             </select>
-            <label for="hkLivestock">Did you encounter livestock? <span>Optional</span></label>
+            <label for="hkLivestock">${esc(tx('Did you encounter livestock?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkLivestock">
-              <option value="">Prefer not to answer</option>
-              <option value="none">No livestock at all</option>
-              <option value="seen_at_distance">Seen, but at a distance</option>
-              <option value="close_encounter">Passed close to them</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="none">${esc(tx('No livestock at all'))}</option>
+              <option value="seen_at_distance">${esc(tx('Seen, but at a distance'))}</option>
+              <option value="close_encounter">${esc(tx('Passed close to them'))}</option>
             </select>
-            <label for="hkOffLead">Were dogs off-lead on this route? <span>Optional</span></label>
+            <label for="hkOffLead">${esc(tx('Were dogs off-lead on this route?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkOffLead">
-              <option value="">Prefer not to answer</option>
-              <option value="all_on_lead">Everyone kept dogs on the lead</option>
-              <option value="some_off_lead">Some dogs were off-lead</option>
-              <option value="mostly_off_lead">Most dogs were off-lead</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="all_on_lead">${esc(tx('Everyone kept dogs on the lead'))}</option>
+              <option value="some_off_lead">${esc(tx('Some dogs were off-lead'))}</option>
+              <option value="mostly_off_lead">${esc(tx('Most dogs were off-lead'))}</option>
             </select>
-            <label for="hkCrowding">How busy was it? <span>Optional</span></label>
+            <label for="hkCrowding">${esc(tx('How busy was it?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkCrowding">
-              <option value="">Prefer not to answer</option>
-              <option value="quiet">Quiet, room to give space</option>
-              <option value="moderate">Steady foot traffic</option>
-              <option value="busy">Busy throughout</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="quiet">${esc(tx('Quiet, room to give space'))}</option>
+              <option value="moderate">${esc(tx('Steady foot traffic'))}</option>
+              <option value="busy">${esc(tx('Busy throughout'))}</option>
             </select>
-            <label for="hkEnjoyment">Did ${esc(dogName)} enjoy it? <span>Optional</span></label>
+            <label for="hkEnjoyment">${esc(tx('Did {name} enjoy it?', { name: dogName }))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkEnjoyment">
-              <option value="">Prefer not to answer</option>
-              <option value="loved_it">Loved it</option>
-              <option value="fine">Took it in their stride</option>
-              <option value="struggled">Struggled with it</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="loved_it">${esc(tx('Loved it'))}</option>
+              <option value="fine">${esc(tx('Took it in their stride'))}</option>
+              <option value="struggled">${esc(tx('Struggled with it'))}</option>
             </select>
-            <label for="hkReactiveFit">Would you recommend it for a reactive dog? <span>Optional</span></label>
+            <label for="hkReactiveFit">${esc(tx('Would you recommend it for a reactive dog?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkReactiveFit">
-              <option value="">Prefer not to answer</option>
-              <option value="yes">Yes, there is room to pass</option>
-              <option value="with_care">Only with care</option>
-              <option value="no">No, too little space</option>
+              <option value="">${esc(tx('Prefer not to answer'))}</option>
+              <option value="yes">${esc(tx('Yes, there is room to pass'))}</option>
+              <option value="with_care">${esc(tx('Only with care'))}</option>
+              <option value="no">${esc(tx('No, too little space'))}</option>
             </select>
             <label class="hk-outcome-check">
               <input type="checkbox" id="hkMissingRestriction">
-              A posted restriction was missing from ORMA
+              ${esc(tx('A posted restriction was missing from ORMA'))}
             </label>
             <fieldset>
-              <legend>Any material hazard we should account for? <span>Optional</span></legend>
+              <legend>${esc(tx('Any material hazard we should account for?'))} <span>${esc(tx('Optional'))}</span></legend>
               <div class="hk-hazard-options">
-                <label><input type="checkbox" value="surface"> Surface</label>
-                <label><input type="checkbox" value="exposure"> Exposure</label>
-                <label><input type="checkbox" value="livestock"> Livestock</label>
-                <label><input type="checkbox" value="heat"> Heat</label>
-                <label><input type="checkbox" value="access"> Access</label>
-                <label><input type="checkbox" value="water"> Water</label>
+                <label><input type="checkbox" value="surface"> ${esc(tx('Surface'))}</label>
+                <label><input type="checkbox" value="exposure"> ${esc(tx('Exposure'))}</label>
+                <label><input type="checkbox" value="livestock"> ${esc(tx('Livestock'))}</label>
+                <label><input type="checkbox" value="heat"> ${esc(tx('Heat'))}</label>
+                <label><input type="checkbox" value="access"> ${esc(tx('Access'))}</label>
+                <label><input type="checkbox" value="water"> ${esc(tx('Water'))}</label>
               </div>
             </fieldset>
           </div>
-          <button type="button" class="hk-outcome-save" id="hkOutcomeSave" disabled>Save private feedback</button>
+          <button type="button" class="hk-outcome-save" id="hkOutcomeSave" disabled>${esc(tx('Save private feedback'))}</button>
           <p class="hk-outcome-status" id="hkOutcomeStatus" role="status" aria-live="polite"></p>
         </div>
         <div class="hk-block">
@@ -1069,11 +1080,11 @@ function initHikeMode(map, trail, options){
 
     function renderOutcome(){
       const labels = [
-        ['appropriate', 'Yes, appropriate'],
-        ['appropriate_with_unexpected_cautions', 'Yes, with unexpected cautions'],
-        ['not_appropriate', 'No, not appropriate'],
-        ['did_not_complete', 'We turned back'],
-        ['prefer_not_to_answer', 'Prefer not to answer'],
+        ['appropriate', tx('Yes, appropriate')],
+        ['appropriate_with_unexpected_cautions', tx('Yes, with unexpected cautions')],
+        ['not_appropriate', tx('No, not appropriate')],
+        ['did_not_complete', tx('We turned back')],
+        ['prefer_not_to_answer', tx('Prefer not to answer')],
       ];
       const choices = q('#hkOutcomeOptions');
       choices.innerHTML = '';
@@ -1110,16 +1121,16 @@ function initHikeMode(map, trail, options){
       const status = q('#hkOutcomeStatus');
       const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
       if(!user){
-        status.textContent = 'Log in before saving this private response.';
+        status.textContent = tx('Log in before saving this private response.');
         if(window.DoloPawsAuthUI) window.DoloPawsAuthUI.openLogin();
         return;
       }
       if(!window.DoloPawsPostHikeOutcomes){
-        status.textContent = 'Private feedback is unavailable. Your completed hike is still saved.';
+        status.textContent = tx('Private feedback is unavailable. Your completed hike is still saved.');
         return;
       }
       saveButton.disabled = true;
-      status.textContent = 'Saving privately on this device…';
+      status.textContent = tx('Saving privately on this device…');
       let offlinePackageUsed = false;
       if(window.DoloPawsOffline && window.DoloPawsOffline.inspectPackage){
         try{
@@ -1145,7 +1156,7 @@ function initHikeMode(map, trail, options){
         offlinePackageUsed,
       }, user.uid);
       if(!result.ok){
-        status.textContent = 'The response could not be saved. Try again before closing this screen.';
+        status.textContent = tx('The response could not be saved. Try again before closing this screen.');
         saveButton.disabled = false;
         return;
       }
@@ -1153,13 +1164,13 @@ function initHikeMode(map, trail, options){
         '#hkOutcomeOptions button,#hkOutcomeFollowups input,#hkOutcomeFollowups select'
       ).forEach(control => { control.disabled = true; });
       status.textContent = navigator.onLine
-        ? 'Saved privately · syncing…'
-        : 'Saved privately · pending sync until you reconnect.';
+        ? tx('Saved privately · syncing…')
+        : tx('Saved privately · pending sync until you reconnect.');
       const sync = await window.DoloPawsPostHikeOutcomes.syncBrowser();
       status.textContent = sync.ok && sync.pending === 0
-        ? 'Saved privately · synced to your account.'
-        : 'Saved privately · pending sync until you reconnect.';
-      saveButton.textContent = 'Feedback saved';
+        ? tx('Saved privately · synced to your account.')
+        : tx('Saved privately · pending sync until you reconnect.');
+      saveButton.textContent = tx('Feedback saved');
     });
 
     function renderCond(){
@@ -1168,7 +1179,7 @@ function initHikeMode(map, trail, options){
       ['Comfortable', 'Warm', 'Hot'].forEach(c => {
         const b = document.createElement('button');
         b.type = 'button';
-        b.textContent = c;
+        b.textContent = window.t ? window.t('journal.condition.' + c.toLowerCase()) : c;
         b.className = c === cond ? 'on' : '';
         b.dataset.radioValue = c;
         b.setAttribute('role', 'radio');
@@ -1520,8 +1531,8 @@ function initHikeMode(map, trail, options){
       phoneUrl.searchParams.set('hike','1');
       phoneUrl.hash='start-hike';
       window.ORMADeviceHandoff.open({
-        title:'Start this hike on your phone',
-        description:'Live hike guidance needs the phone you will carry on the trail.',
+        title:tx('Start this hike on your phone'),
+        description:tx('Live hike guidance needs the phone you will carry on the trail.'),
         url:phoneUrl.href,
       });
     }
@@ -1545,8 +1556,8 @@ function initHikeMode(map, trail, options){
     setTimeout(async () => {
       if(window.ORMADeviceHandoff&&window.ORMADeviceHandoff.shouldHandoff()){
         window.ORMADeviceHandoff.open({
-          title:'Start this hike on your phone',
-          description:'Live hike guidance needs the phone you will carry on the trail.',
+          title:tx('Start this hike on your phone'),
+          description:tx('Live hike guidance needs the phone you will carry on the trail.'),
           url:window.location.href,
         });
         return;

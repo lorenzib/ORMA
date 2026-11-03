@@ -1,0 +1,12 @@
+// osttirol-wassererlebnisweg-st-jakob-i-d in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A flat loop along the Schwarzach from St. Jakob in Defereggen, past ponds and springs and boards on the river and the 1966 flood. The board lists 8.7 km and 41 m of ascent.": "Un anello pianeggiante lungo lo Schwarzach da St. Jakob in Defereggen, oltre stagni e sorgenti e pannelli sul fiume e sull'alluvione del 1966. La scheda ufficiale indica 8,7 km e 41 m di dislivello in salita.",
+  "Start at the eastern edge of St. Jakob in Defereggen: 8.7 km and about 41 m of climbing, 2:30 h. Cattle graze on the riverside meadows in summer, so Tyrolean law asks for a short lead there; keep it on for the whole walk. Carry a muzzle for buses and lifts.": "Parti dal margine orientale di St. Jakob in Defereggen: 8,7 km e circa 41 m di dislivello in salita, 2:30 h. D'estate il bestiame pascola sui prati lungo il fiume, quindi lì la legge tirolese richiede il guinzaglio corto; tienilo per tutto il percorso. Porta la museruola al seguito per autobus e impianti.",
+  "The Schwarzach is a fast, cold glacial river: keep your dog out of it": "Lo Schwarzach è un fiume glaciale veloce e freddo: tieni il cane fuori dall'acqua",
+  "Cattle grazing on the riverside meadows in summer: short lead, give the herd room": "Mucche al pascolo sui prati lungo il fiume d'estate: guinzaglio corto, lascia spazio alla mandria",
+  "Farm tracks and village lanes open to traffic": "Strade di campagna e stradine di paese aperte al traffico",
+  "Flat farm tracks and paths along the Schwarzach, with wooden bridges": "Strade di campagna e sentieri pianeggianti lungo lo Schwarzach, con ponti di legno",
+  "the eastern edge of St. Jakob in Defereggen, the board’s start": "Il margine orientale di St. Jakob in Defereggen, la partenza indicata dalla scheda ufficiale",
+  "A fast, clear mountain river running over grey boulders between banks of green bushes and trees, beside the path near St. Jakob in Defereggen in summer": "Un rapido e limpido torrente di montagna che scorre su massi grigi tra rive di cespugli e alberi verdi, accanto al sentiero vicino a St. Jakob in Defereggen d'estate",
+  "About a third under trees along the Schwarzach; the meadows and the village edge are open.": "Circa un terzo sotto gli alberi lungo lo Schwarzach; i prati e il margine del paese sono aperti."
+});

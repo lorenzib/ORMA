@@ -1,6 +1,13 @@
 (function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
+
   // Renders the derived feed (notifications-feed.js). Opening this page marks
   // every currently displayed item read: the items remain in the history but
   // no longer count on the bell, including after refresh. Read state also
@@ -97,7 +104,7 @@
     var markBtn = document.getElementById('markRead');
     if(markBtn){
       markBtn.disabled = unread.length === 0;
-      markBtn.textContent = unread.length === 0 ? 'All read' : 'Mark all as read';
+      markBtn.textContent = unread.length === 0 ? tx('All read') : tx('Mark all as read');
     }
 
     document.querySelectorAll('[data-notif-id]').forEach(function(row){

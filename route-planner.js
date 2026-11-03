@@ -1,6 +1,13 @@
 (function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const coverage = window.DoloPawsTrailRoutingCoverage || { trails:{} };
   const localRouter = window.DoloPawsFootpathRouter;
   const walkingRouter = window.DoloPawsRoutePlannerRouting;
@@ -32,24 +39,26 @@
   //   loop          finish where you started
   //   point-to-point  A to B, one way
   //   out-and-back  walk out, return along the same line
+  // `label` stays English: it names a draft saved on the device. The finish
+  // label and hint are read when shown, so they follow the page's language.
   const SHAPES = {
     loop: {
       label:'Loop',
       minPoints:MIN_LOOP_POINTS,
-      finishLabel:'Close loop',
-      hint:'Loop: ORMA connects your points and returns to the start.',
+      get finishLabel(){ return tx('Close loop'); },
+      get hint(){ return tx('Loop: ORMA connects your points and returns to the start.'); },
     },
     'point-to-point': {
       label:'Point to point',
       minPoints:2,
-      finishLabel:'Finish route',
-      hint:'Point to point: a one-way route from your first point to your last.',
+      get finishLabel(){ return tx('Finish route'); },
+      get hint(){ return tx('Point to point: a one-way route from your first point to your last.'); },
     },
     'out-and-back': {
       label:'Out & back',
       minPoints:2,
-      finishLabel:'Finish route',
-      hint:'Out & back: ORMA walks your line out, then returns along the same paths.',
+      get finishLabel(){ return tx('Finish route'); },
+      get hint(){ return tx('Out & back: ORMA walks your line out, then returns along the same paths.'); },
     },
   };
 
@@ -163,7 +172,7 @@
     const isEnd = !wantsLoop() && total > 1 && index === total - 1;
     element.className = `planner-marker${isStart ? ' planner-marker--start' : ''}${isEnd ? ' planner-marker--end' : ''}${index === selectedIndex ? ' is-selected' : ''}`;
     element.textContent = isStart ? 'S' : isEnd ? 'F' : String(index + 1);
-    element.title = 'Click to remove · drag to move';
+    element.title = tx('Click to remove · drag to move');
     element.setAttribute('aria-hidden', 'true');
     return element;
   }
@@ -211,7 +220,7 @@
 
   function pointLabel(index){
     const isEnd = !wantsLoop() && points.length > 1 && index === points.length - 1;
-    return index === 0 ? 'Start' : isEnd ? 'Finish' : `Point ${index + 1}`;
+    return index === 0 ? tx('Start') : isEnd ? tx('Finish') : tx('Point {number}', { number:index + 1 });
   }
 
   function selectPoint(index){
@@ -225,13 +234,13 @@
     const remove = document.createElement('button');
     remove.type = 'button';
     remove.className = 'planner-point-menu-remove';
-    remove.textContent = 'Remove';
+    remove.textContent = tx('Remove');
     remove.addEventListener('click', () => removePoint(index));
     menu.append(label, remove);
     if(wantsLoop() && index > 0){
       const makeStart = document.createElement('button');
       makeStart.type = 'button';
-      makeStart.textContent = 'Make start';
+      makeStart.textContent = tx('Make start');
       makeStart.addEventListener('click', () => makeStartAt(index));
       menu.append(makeStart);
     }
@@ -436,14 +445,14 @@
   // The planner will route from anywhere, including a hillside with no road
   // to it. Said when the start is chosen, not in the small print: begin where
   // you can actually arrive.
-  const START_ADVICE = 'Tap the map to choose your start. Pick somewhere you can reach easily: a car park, bus stop, village or lift station.';
+  const startAdvice = () => tx('Tap the map to choose your start. Pick somewhere you can reach easily: a car park, bus stop, village or lift station.');
 
   // Car parks, bus stops, stations and lift stations, from the base map's own
   // points of interest, so this layer needs no data file and works in every
   // region the map covers.
   const ACCESS_CLASSES = ['parking', 'bus', 'rail', 'railway', 'aerialway'];
   const ACCESS_LABEL = ['match', ['get', 'class'],
-    'parking', 'P', 'bus', 'Bus', 'rail', 'Train', 'railway', 'Train', 'aerialway', 'Lift', ''];
+    'parking', 'P', 'bus', tx('Bus'), 'rail', tx('Train'), 'railway', tx('Train'), 'aerialway', tx('Lift'), ''];
 
   function vectorSourceId(){
     const sources = map.getStyle().sources || {};
@@ -589,9 +598,9 @@
     const switcher = document.createElement('div');
     switcher.className = 'td-layer-switch';
     switcher.setAttribute('role', 'group');
-    switcher.setAttribute('aria-label', 'Map style');
-    switcher.innerHTML = '<button type="button" data-maplayer="map" class="on" aria-pressed="true">Map</button>' +
-      '<button type="button" data-maplayer="satellite" aria-pressed="false">Satellite</button>' +
+    switcher.setAttribute('aria-label', tx('Map style'));
+    switcher.innerHTML = `<button type="button" data-maplayer="map" class="on" aria-pressed="true">${tx('Map')}</button>` +
+      `<button type="button" data-maplayer="satellite" aria-pressed="false">${tx('Satellite')}</button>` +
       '<button type="button" data-map3d aria-pressed="false">3D</button>';
     mapElement.appendChild(switcher);
     let flatCamera = null;
@@ -653,11 +662,11 @@
     points.forEach((point, index) => {
       const item = document.createElement('li');
       const isEnd = !wantsLoop() && points.length > 1 && index === points.length - 1;
-      item.textContent = index === 0 ? 'Start' : isEnd ? 'Finish' : `Point ${index + 1}`;
+      item.textContent = index === 0 ? tx('Start') : isEnd ? tx('Finish') : tx('Point {number}', { number:index + 1 });
       const remove = document.createElement('button');
       remove.type = 'button';
       remove.textContent = '×';
-      remove.setAttribute('aria-label', `Remove ${index === 0 ? 'start' : `point ${index + 1}`}`);
+      remove.setAttribute('aria-label', index === 0 ? tx('Remove start') : tx('Remove point {number}', { number:index + 1 }));
       remove.disabled = busy;
       remove.addEventListener('click', () => removePoint(index));
       item.append(remove);
@@ -685,8 +694,8 @@
 
   function failureMessage(error){
     if(error && error.code === 'too-long') return error.message;
-    if(error && error.code === 'network') return 'The live walking network is unavailable and the local fallback could not connect those points. Try again shortly.';
-    return 'No mapped walking route connects those points. Undo the last point and choose a nearby path.';
+    if(error && error.code === 'network') return tx('The live walking network is unavailable and the local fallback could not connect those points. Try again shortly.');
+    return tx('No mapped walking route connects those points. Undo the last point and choose a nearby path.');
   }
 
   async function recalculate(finishRequested){
@@ -696,13 +705,13 @@
       preview = null;
       finished = false;
       busy = false;
-      status.textContent = points.length ? config.hint : START_ADVICE;
+      status.textContent = points.length ? config.hint : startAdvice();
       drawPath([]);
       render();
       return;
     }
     busy = true;
-    status.textContent = finishRequested ? 'Finishing the draft on mapped walking paths…' : 'Connecting your selected points…';
+    status.textContent = finishRequested ? tx('Finishing the draft on mapped walking paths…') : tx('Connecting your selected points…');
     render();
 
     const closeLoop = finishRequested && wantsLoop();
@@ -727,12 +736,12 @@
     drawPath(result ? result.path : []);
     status.textContent = result
       ? (finished
-        ? 'Draft ready. Check signs, access and current conditions before using it.'
+        ? tx('Draft ready. Check signs, access and current conditions before using it.')
         : points.length < config.minPoints
-          ? `${config.hint} Add another point.`
+          ? `${config.hint} ${tx('Add another point.')}`
           : points.length < MAX_POINTS
-            ? `Preview ready. Drag a point to adjust it, click the line to insert one, or press ${config.finishLabel.toLowerCase()}.`
-            : `${MAX_POINTS} points selected, press ${config.finishLabel.toLowerCase()} when the shape looks right.`)
+            ? tx('Preview ready. Drag a point to adjust it, click the line to insert one, or press {finish}.', { finish:config.finishLabel.toLowerCase() })
+            : tx('{count} points selected, press {finish} when the shape looks right.', { count:MAX_POINTS, finish:config.finishLabel.toLowerCase() }))
       : failureMessage(routeFailure);
     render();
   }
@@ -747,7 +756,7 @@
     busy = false;
     drawMarkers();
     drawPath([]);
-    status.textContent = START_ADVICE;
+    status.textContent = startAdvice();
     render();
   }
 
@@ -771,7 +780,7 @@
     const bounds = new maplibregl.LngLatBounds();
     preview.path.forEach(point => bounds.extend([point.lng, point.lat]));
     map.fitBounds(bounds, { padding:70, maxZoom:15 });
-    status.textContent = 'Saved draft reopened. Check signs, access and current conditions before using it.';
+    status.textContent = tx('Saved draft reopened. Check signs, access and current conditions before using it.');
     render();
   }
 
@@ -842,16 +851,16 @@
     });
     if(record){
       editingId = record.id;
-      status.textContent = 'Draft saved on this device. You can reopen it from Saved → My routes.';
+      status.textContent = tx('Draft saved on this device. You can reopen it from Saved → My routes.');
       savedLink.hidden = false;
-    }else status.textContent = 'This browser could not save the draft.';
+    }else status.textContent = tx('This browser could not save the draft.');
   });
 
   layersButton.addEventListener('click', () => {
     const open = layersPanel.hidden;
     layersPanel.hidden = !open;
     layersButton.setAttribute('aria-expanded', String(open));
-    layersButton.textContent = open ? 'Close layers' : 'Layers';
+    layersButton.textContent = open ? tx('Close layers') : tx('Layers');
   });
   markedRoutesButton.addEventListener('click', () => {
     const enabled = markedRoutesButton.getAttribute('aria-pressed') !== 'true';
@@ -868,7 +877,7 @@
         button.setAttribute('aria-pressed', String(enabled));
         setPoiVisibility(kind, enabled);
       }catch(error){
-        status.textContent = 'That map layer could not be loaded. Your draft route is unchanged.';
+        status.textContent = tx('That map layer could not be loaded. Your draft route is unchanged.');
       }finally{
         button.disabled = false;
       }
@@ -887,7 +896,7 @@
     }
     if(event.key === 'Escape' && !layersPanel.hidden){
       layersPanel.hidden = true;
-      layersButton.textContent = 'Layers';
+      layersButton.textContent = tx('Layers');
       layersButton.setAttribute('aria-expanded', 'false');
       layersButton.focus();
     }
@@ -895,8 +904,9 @@
 
   // The guide says "tap" to a finger and "click" to a mouse.
   const guide = document.getElementById('plannerGuide');
-  if(guide && window.matchMedia && window.matchMedia('(pointer: coarse)').matches){
-    guide.querySelectorAll('[data-verb]').forEach(verb => { verb.textContent = 'Tap'; });
+  if(guide){
+    const touch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    guide.querySelectorAll('[data-verb]').forEach(verb => { verb.textContent = touch ? tx('Tap') : tx('Click'); });
   }
 
   map.on('load', () => {

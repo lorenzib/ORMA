@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-itineraire-poussette-des-chalets-brules",
+  "distanceKm": 1.6,
+  "ascentM": 20,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1487
+    },
+    {
+      "km": 0.1,
+      "elev": 1480
+    },
+    {
+      "km": 0.3,
+      "elev": 1499
+    },
+    {
+      "km": 0.4,
+      "elev": 1517
+    },
+    {
+      "km": 0.5,
+      "elev": 1510
+    },
+    {
+      "km": 0.6,
+      "elev": 1498
+    },
+    {
+      "km": 0.8,
+      "elev": 1484
+    },
+    {
+      "km": 0.9,
+      "elev": 1484
+    },
+    {
+      "km": 1,
+      "elev": 1498
+    },
+    {
+      "km": 1.1,
+      "elev": 1510
+    },
+    {
+      "km": 1.3,
+      "elev": 1517
+    },
+    {
+      "km": 1.4,
+      "elev": 1499
+    },
+    {
+      "km": 1.5,
+      "elev": 1480
+    },
+    {
+      "km": 1.6,
+      "elev": 1487
+    }
+  ]
+}

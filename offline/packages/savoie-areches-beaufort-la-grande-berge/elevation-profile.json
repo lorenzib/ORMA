@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-areches-beaufort-la-grande-berge",
+  "distanceKm": 7.6,
+  "ascentM": 350,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1816
+    },
+    {
+      "km": 0.6,
+      "elev": 1881
+    },
+    {
+      "km": 1.2,
+      "elev": 1885
+    },
+    {
+      "km": 1.7,
+      "elev": 1945
+    },
+    {
+      "km": 2.3,
+      "elev": 2066
+    },
+    {
+      "km": 2.9,
+      "elev": 2019
+    },
+    {
+      "km": 3.5,
+      "elev": 2059
+    },
+    {
+      "km": 4.1,
+      "elev": 2045
+    },
+    {
+      "km": 4.6,
+      "elev": 2002
+    },
+    {
+      "km": 5.2,
+      "elev": 2066
+    },
+    {
+      "km": 5.8,
+      "elev": 2006
+    },
+    {
+      "km": 6.4,
+      "elev": 1885
+    },
+    {
+      "km": 7,
+      "elev": 1887
+    },
+    {
+      "km": 7.5,
+      "elev": 1818
+    },
+    {
+      "km": 7.6,
+      "elev": 1816
+    }
+  ]
+}

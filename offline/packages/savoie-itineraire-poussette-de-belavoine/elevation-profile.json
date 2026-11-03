@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-itineraire-poussette-de-belavoine",
+  "distanceKm": 4.6,
+  "ascentM": 40,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1231
+    },
+    {
+      "km": 0.4,
+      "elev": 1247
+    },
+    {
+      "km": 0.8,
+      "elev": 1258
+    },
+    {
+      "km": 1.1,
+      "elev": 1249
+    },
+    {
+      "km": 1.4,
+      "elev": 1260
+    },
+    {
+      "km": 1.8,
+      "elev": 1265
+    },
+    {
+      "km": 2.1,
+      "elev": 1273
+    },
+    {
+      "km": 2.5,
+      "elev": 1273
+    },
+    {
+      "km": 2.8,
+      "elev": 1277
+    },
+    {
+      "km": 3.2,
+      "elev": 1260
+    },
+    {
+      "km": 3.6,
+      "elev": 1249
+    },
+    {
+      "km": 3.9,
+      "elev": 1257
+    },
+    {
+      "km": 4.2,
+      "elev": 1232
+    },
+    {
+      "km": 4.6,
+      "elev": 1231
+    }
+  ]
+}

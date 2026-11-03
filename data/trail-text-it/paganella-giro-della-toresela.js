@@ -1,0 +1,12 @@
+// paganella-giro-della-toresela in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short loop above Mezzolombardo through its oldest quarter and over a long suspension bridge to the Toresela watchtower. The APT lists 1.4 km and 66 m of ascent.": "Un breve anello sopra Mezzolombardo attraverso il suo quartiere più antico e su un lungo ponte sospeso fino alla torre di avvistamento della Toresela. L'APT indica 1,4 km e 66 m di dislivello in salita.",
+  "Start behind the parish church in Mezzolombardo: 1.4 km and about 70 m of climbing, half an hour. The suspension bridge at km 0.8 moves as you cross: some dogs refuse it. Cross slowly with your dog on a short lead, carry a small dog if it hesitates, and be ready to turn back. Avoid the middle of hot summer days.": "Parti dietro la chiesa parrocchiale di Mezzolombardo: 1,4 km e circa 70 m di dislivello in salita, mezz'ora. Il ponte sospeso al km 0,8 oscilla mentre lo attraversi: alcuni cani si rifiutano di passarlo. Attraversa piano con il cane al guinzaglio corto, prendi in braccio un cane piccolo se esita e sii pronto a tornare indietro. Evita le ore centrali delle giornate estive calde.",
+  "The suspension bridge at km 0.8: about 100 m long, with a metal deck": "Il ponte sospeso al km 0,8: lungo circa 100 m, con piano di calpestio in metallo",
+  "Town streets in Mezzolombardo, shared with cars": "Strade cittadine a Mezzolombardo, condivise con le auto",
+  "Low and sunny: the Piana Rotaliana gets very hot in summer": "In basso e soleggiato: d'estate la Piana Rotaliana diventa molto calda",
+  "Town streets, a short path and a suspension bridge": "Strade cittadine, un breve sentiero e un ponte sospeso",
+  "Via San Pietro, behind the parish church in Mezzolombardo, the APT’s start": "Via San Pietro, dietro la chiesa parrocchiale di Mezzolombardo, la partenza indicata dall'APT",
+  "The Toresela, a small white watchtower with red-and-white corner stones and battlements, against a wooded slope and a blue sky": "La Toresela, una piccola torre di avvistamento bianca con pietre angolari bianche e rosse e merli, contro un pendio boscoso e un cielo azzurro",
+  "Part shade: about 48% runs under trees, on the Colle San Pietro.": "In parte all'ombra: circa il 48% passa sotto gli alberi, sul Colle San Pietro."
+});

@@ -1,0 +1,16 @@
+// sentiero-del-trenino in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A gentle one-way walk along the trackbed of the old Gröden valley railway, from Runggaditsch through Ortisei and St. Christina, past bronze sculptures, history boards and a lit former tunnel, to Plan in Selva. The official route lists 12.2 km and 454 m of ascent; the bus brings you back.": "Una tranquilla passeggiata di sola andata sul tracciato della vecchia ferrovia della Val Gardena, da Runggaditsch attraverso Ortisei e St. Christina, tra sculture in bronzo, pannelli storici e una ex galleria illuminata, fino a Plan a Selva. Il percorso ufficiale indica 12,2 km e 454 m di dislivello in salita; il ritorno è in autobus.",
+  "A one-way walk: start in Runggaditsch at the western edge of Ortisei and finish in Plan (Selva), then ride bus 350 or 352 back down the valley; your dog needs a lead, a muzzle and a ticket. Keep it on a lead of 1.5 m or less the whole way and off the meadows. The route is sunny and mostly paved, so start early in summer; the St. Christina tunnel is open 07:00–23:00.": "Una passeggiata di sola andata: parti da Runggaditsch, all'estremità ovest di Ortisei, e arriva a Plan (Selva), poi torna a valle con l'autobus 350 o 352; il cane ha bisogno di guinzaglio, museruola e biglietto. Tienilo al guinzaglio di 1,5 m o meno per tutto il percorso e fuori dai prati. Il percorso è soleggiato e per lo più asfaltato, quindi d'estate parti presto; la galleria di St. Christina è aperta dalle 07:00 alle 23:00.",
+  "About 200 m beside the SS242 state road in St. Christina": "Circa 200 m lungo la strada statale SS242 a St. Christina",
+  "Several SS242 crossings": "Diversi attraversamenti della SS242",
+  "Village streets with traffic": "Strade di paese con traffico",
+  "Shared cycle path": "Pista ciclabile condivisa",
+  "Hot tarmac (about 80% paved)": "Asfalto caldo (circa l'80% asfaltato)",
+  "Old railway grade: mostly asphalt and quiet streets, with gravel and path sections": "Vecchio sedime ferroviario: per lo più asfalto e strade tranquille, con tratti sterrati e di sentiero",
+  "Runggaditsch, western edge of Ortisei (Streda Passua), start of the old railway promenade": "Runggaditsch, estremità ovest di Ortisei (Streda Passua), inizio della passeggiata sulla vecchia ferrovia",
+  "The stone-arched portal of the old railway tunnel at St. Christina, dated 1915 and 1916, with its doors open onto the lit walkway.": "Il portale ad arco in pietra della vecchia galleria ferroviaria a St. Christina, datato 1915 e 1916, con le porte aperte sul passaggio illuminato.",
+  "Ortisei from above, with its church and green slopes": "Ortisei dall'alto, con la chiesa e i pendii verdi",
+  "Trail signposts beside the old railway path at Roncadizza": "Cartelli segnaletici lungo il sentiero della vecchia ferrovia a Roncadizza",
+  "Mostly open, on the sunny side of the valley through villages and meadows; short wooded stretches near Ortisei and St. Christina.": "Per lo più aperto, sul versante soleggiato della valle tra paesi e prati; brevi tratti nel bosco vicino a Ortisei e St. Christina."
+});

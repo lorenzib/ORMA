@@ -21,6 +21,7 @@ const generatedTargets = [
   'browse-trails.html',
   'sitemap.xml',
   'trails',
+  'it/trails',
   'data/regions',
   'data/trail-details',
   'data/regions-manifest.json',

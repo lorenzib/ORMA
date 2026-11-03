@@ -5,6 +5,13 @@
 })(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text,vars){
+    const i18n=typeof window!=='undefined'&&window.DoloPawsI18n;
+    if(i18n&&typeof i18n.phrase==='function')return i18n.phrase(text,vars);
+    return vars?String(text).replace(/\{(\w+)\}/g,(m,k)=>(k in vars?vars[k]:m)):text;
+  }
+
   const DAYLIGHT_BUFFER_MINUTES=60;
   const PLANNING_BUFFER_MINUTES=30;
   const PREFERRED_START_MINUTES=9*60;
@@ -138,7 +145,7 @@
   }
 
   function markup(result){
-    if(!result)return 'No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.';
+    if(!result)return tx('No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.');
     const start=formatTime(result.startMinutes);
     const finish=formatTime(result.finishMinutes);
     // A day a reader picked is now the common case, not the exception, so it
@@ -146,24 +153,31 @@
     const when=result.dayOffset===0
       ? `<strong>${start}</strong>`
       : result.dayOffset===1
-        ? `tomorrow at <strong>${start}</strong>`
-        : `on ${dayLabel(result.date)} at <strong>${start}</strong>`;
-    const maximum=Number.isFinite(result.maxTemperatureC)?` (up to ${result.maxTemperatureC}°C)`:'';
+        ? tx('tomorrow at <strong>{start}</strong>',{start})
+        : tx('on {day} at <strong>{start}</strong>',{day:dayLabel(result.date),start});
+    const maximum=Number.isFinite(result.maxTemperatureC)?' '+tx('(up to {temp}°C)',{temp:result.maxTemperatureC}):'';
     let lead;
-    let close='';
-    if(result.reason==='comfortable')lead=`The forecast stays cool during the walk${maximum}. Suggested start: ${when}`;
-    else if(result.reason==='avoid-heat'){
-      lead=`Cooler forecast window${maximum}: start ${when}`;
-      close=' before the warmer part of the day';
+    let tail;
+    const vars={hours:result.durationHours,finish};
+    if(result.reason==='comfortable'){
+      lead=tx('The forecast stays cool during the walk{maximum}. Suggested start: {when}',{maximum,when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong>.',vars);
+    }else if(result.reason==='avoid-heat'){
+      lead=tx('Cooler forecast window{maximum}: start {when}',{maximum,when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong> before the warmer part of the day.',vars);
     }else if(result.reason==='least-warm'){
-      lead=`Least-warm forecast window${maximum}: start ${when}`;
-      close=' before the hottest available hours';
-    }else lead=`Suggested daylight start: ${when}`;
+      lead=tx('Least-warm forecast window{maximum}: start {when}',{maximum,when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong> before the hottest available hours.',vars);
+    }else{
+      lead=tx('Suggested daylight start: {when}',{when});
+      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong>.',vars);
+    }
     const daylightMargin=result.sunsetMinutes-result.finishMinutes;
+    const leftHours=Math.max(1,Math.floor(daylightMargin/60));
     const daylight=daylightMargin<=SUNSET_NOTE_WINDOW_MINUTES
-      ? ` This leaves ${Math.max(1,Math.floor(daylightMargin/60))} hour${daylightMargin>=120?'s':''} before sunset.`
+      ? ' '+(daylightMargin>=120?tx('This leaves {n} hours before sunset.',{n:leftHours}):tx('This leaves {n} hour before sunset.',{n:leftHours}))
       : '';
-    return `${lead} · for this ${result.durationHours} h route, finish around <strong>${finish}</strong>${close}.${daylight}`;
+    return `${lead} · ${tail}${daylight}`;
   }
 
   // The hour heat actually becomes a problem today, read off the forecast

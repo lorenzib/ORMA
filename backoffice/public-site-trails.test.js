@@ -177,12 +177,21 @@ describe('the existing-site verification boundary',()=>{
     // Count’s path above Steinhaus and Lake Neves to the Ponte di Ghiaccio hut.
     // Then 432 and 430 with four Meran-area walks: the Brandis-Waalweg in Lana,
     // Oberkirn to Verdins, Vöran to Hafling and the Bloseggweg loop from Schenna.
-    // Then 440 and 438 with eight Engadin walks, the first in Switzerland: Lake
+    // Then 435 and 433 with three Beaufortain – Val d’Arly walks: the Lac de
+    // Saint-Guérin shore path, the Chalets Brûlés track and the Bel’Avoine road.
+    // Then 440 and 438 with five more Meran-area walks: the Meraner Höhenweg west
+    // from the Texelbahn, the Sonnenrundweg at Stuls, the Unterstell farms loop,
+    // Forst and the Marlinger Waalweg from Algund, and the Hirzer alms loop.
+    // Then 442 and 440 with two Valmalenco walks: Chiareggio to the Porro and
+    // Ventina huts, and Campo Moro to the Passo di Campagneda.
+    // Then 444 and 442 with two more Beaufortain walks: La Grande Berge from the
+    // Plan de la Lai and the Croix du Berger from the Lac des Fées.
+    // Then 452 and 450 with eight Engadin walks, the first in Switzerland: Lake
     // St. Moritz, the Chastè peninsula, the Morteratsch glacier path, the Surlej
     // waterfall loop, Fuorcla Surlej, Sass Queder, La Senda and Val Susauna.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(440);
-    expect(currentSiteTrails(catalogue)).toHaveLength(438);
+    expect(catalogue).toHaveLength(452);
+    expect(currentSiteTrails(catalogue)).toHaveLength(450);
   });
 
   test('requires the artwork the public trail page needs',()=>{

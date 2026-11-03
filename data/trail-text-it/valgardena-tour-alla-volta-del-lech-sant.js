@@ -1,0 +1,12 @@
+// valgardena-tour-alla-volta-del-lech-sant in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A gentle walk there and back from Cristauta above Santa Cristina through the forest to the Lech Sant, a small lake on the Mastlé alp below the Odle. The board lists 7.7 km and 349 m of ascent.": "Una tranquilla camminata di andata e ritorno da Cristauta sopra Santa Cristina attraverso il bosco fino al Lech Sant, un laghetto sull'alpe del Mastlé sotto le Odle. La scheda ufficiale indica 7,7 km e 349 m di dislivello in salita.",
+  "Start at the Cristauta car park above Santa Cristina: 7.7 km and about 350 m of climbing, two hours and forty minutes. Santa Cristina’s dog regulation applies: keep your dog on a lead of at most 1.5 m, carry a muzzle and keep off the meadows. Cattle graze round the lake in summer. Carry water: none is mapped on the way.": "Parti dal parcheggio Cristauta sopra Santa Cristina: 7,7 km e circa 350 m di salita, due ore e quaranta minuti. Vale il regolamento sui cani di Santa Cristina: tieni il cane al guinzaglio lungo al massimo 1,5 m, porta la museruola al seguito e stai fuori dai prati. In estate le mucche pascolano intorno al lago. Porta acqua: lungo il percorso non ne è segnata.",
+  "Cattle graze the Mastlé alp in summer: keep your distance": "In estate le mucche pascolano sull'alpe del Mastlé: mantieni le distanze",
+  "Early in the season some stretches may still hold snow": "A inizio stagione alcuni tratti possono essere ancora innevati",
+  "Forest paths with roots": "Sentieri nel bosco con radici",
+  "Forest and alpine meadow paths": "Sentieri nel bosco e tra i prati alpini",
+  "Cristauta car park, above Santa Cristina, the board’s start": "Parcheggio Cristauta, sopra Santa Cristina, partenza indicata dalla scheda ufficiale",
+  "A walker in a blue jacket on a gravel track beside a wooden fence near Cristauta, larches and spruces behind and the Odle peaks in cloud": "Un escursionista con una giacca blu su una strada sterrata accanto a una staccionata di legno vicino a Cristauta, larici e abeti rossi dietro e le cime delle Odle tra le nuvole",
+  "Mostly shaded: about three fifths of the walk runs through larch and spruce; the Mastlé alp round the lake is open.": "Per lo più all'ombra: circa tre quinti della camminata corrono tra larici e abeti rossi; l'alpe del Mastlé intorno al lago è aperta."
+});

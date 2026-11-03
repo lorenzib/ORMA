@@ -15,7 +15,7 @@ describe('standalone draft route planner', () => {
   test('is entered from Explore and absent from trail detail', () => {
     // Named for what it does -- loops, one-way and out and back -- marked new
     // and experimental, in the menu under Record a walk.
-    expect(homeHtml).toContain('href="route-planner.html"><span class="li-menu-title">Draw your own route <span class="li-menu-badge">New</span></span><small>Loop, one-way or out and back · experimental</small>');
+    expect(homeHtml).toContain('href="route-planner.html"><span class="li-menu-title" data-i18n="page.index.drawYourOwnRouteNew">Draw your own route <span class="li-menu-badge">New</span></span><small data-i18n="page.index.loopOnewayOrOutAnd">Loop, one-way or out and back · experimental</small>');
     expect(homeHtml).not.toContain('Draft a loop');
     expect(homeHtml).toContain('li-plan-route');
     expect(homeHtml.indexOf('li-plan-route')).toBeLessThan(homeHtml.indexOf('class="li-body"'));
@@ -396,12 +396,12 @@ describe('drawing interactions', () => {
   // when it says to begin somewhere you can reach.
   test('asks for a start that is easy to reach, and can show where those are', () => {
     const advice = 'Tap the map to choose your start. Pick somewhere you can reach easily: a car park, bus stop, village or lift station.';
-    expect(plannerHtml).toContain(`aria-live="polite">${advice}</p>`);
-    expect(plannerSource).toContain(`const START_ADVICE = '${advice}';`);
+    expect(plannerHtml).toContain(`aria-live="polite" data-i18n="page.routePlanner.tapTheMapToChoose">${advice}</p>`);
+    expect(plannerSource).toContain(`const startAdvice = () => tx('${advice}');`);
     expect(plannerSource).not.toContain("'Tap the map to choose your start.'");
     // From the base map's own points, so it needs no data file and works in
     // every region: car parks, bus stops, stations and lift stations.
-    expect(plannerHtml).toContain('data-planner-poi="access" aria-pressed="false">Parking &amp; bus stops</button>');
+    expect(plannerHtml).toContain('data-planner-poi="access" aria-pressed="false" data-i18n="page.routePlanner.parkingBusStops">Parking &amp; bus stops</button>');
     expect(plannerSource).toContain("const ACCESS_CLASSES = ['parking', 'bus', 'rail', 'railway', 'aerialway'];");
     expect(plannerSource).toContain("'source-layer':'poi'");
     expect(plannerSource).toContain("['!=', ['get', 'subclass'], 'bicycle_parking']");
@@ -410,9 +410,9 @@ describe('drawing interactions', () => {
 
   test('the map says how to draw, and says tap on a touch screen', () => {
     expect(plannerHtml).toContain('<p id="plannerGuide" class="planner-guide">');
-    expect(plannerHtml).toContain('<span><span data-verb>Click</span> the map to add a point</span>');
-    expect(plannerHtml).toContain('<span>Drag a dot to move it</span>');
-    expect(plannerHtml).toContain('<span><span data-verb>Click</span> a dot to remove it</span>');
+    expect(plannerHtml).toContain('<span><span data-verb>Click</span> <span data-i18n="page.planner.onMapToAddPoint">the map to add a point</span></span>');
+    expect(plannerHtml).toContain('<span data-i18n="page.routePlanner.dragADotToMove">Drag a dot to move it</span>');
+    expect(plannerHtml).toContain('<span><span data-verb>Click</span> <span data-i18n="page.planner.onDotToRemove">a dot to remove it</span></span>');
     expect(plannerSource).toContain("window.matchMedia('(pointer: coarse)').matches");
     // Spacing, not dots, between the phrases: a separator dot was stranded at
     // the start of the second line whenever the guide wrapped.

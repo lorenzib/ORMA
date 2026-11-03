@@ -34,46 +34,47 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-ser
 </style>
 </head>
 <body>
-<div class="topnav"><a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Draw a route</span><div class="links"><a href="browse-trails.html">Trails</a><a href="saved.html">Saved</a></div></div>
+<div class="topnav"><a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page" data-i18n="page.routePlanner.drawARoute">Draw a route</span><div class="links"><a href="browse-trails.html" data-i18n="account.nav.browse">Trails</a><a href="saved.html" data-i18n="card.saved">Saved</a></div></div>
 <main class="planner-shell">
   <section class="planner-panel" aria-labelledby="plannerTitle">
-    <a class="planner-back" href="/">← Back to Explore</a>
-    <div class="planner-kicker">Experimental route tool</div>
-    <h1 id="plannerTitle">Draw a route</h1>
-    <p class="planner-intro">Click the map to drop must-pass points, ORMA connects them along mapped walking paths. <strong>Drag any point to move it, or click the drawn line to insert one.</strong></p>
-    <div class="planner-shapes" role="group" aria-label="Route shape">
-      <button type="button" class="planner-shape on" data-planner-shape="loop" aria-pressed="true">Loop</button>
-      <button type="button" class="planner-shape" data-planner-shape="point-to-point" aria-pressed="false">Point to point</button>
-      <button type="button" class="planner-shape" data-planner-shape="out-and-back" aria-pressed="false">Out &amp; back</button>
+    <a class="planner-back" href="/" data-i18n="page.routePlanner.backToExplore">← Back to Explore</a>
+    <div class="planner-kicker" data-i18n="page.routePlanner.experimentalRouteTool">Experimental route tool</div>
+    <h1 id="plannerTitle" data-i18n="page.routePlanner.drawARoute">Draw a route</h1>
+    <p class="planner-intro" data-i18n="page.routePlanner.clickTheMapToDrop">Click the map to drop must-pass points, ORMA connects them along mapped walking paths. <strong>Drag any point to move it, or click the drawn line to insert one.</strong></p>
+    <div class="planner-shapes" role="group" aria-label="Route shape" data-i18n-aria-label="page.routePlanner.routeShape">
+      <button type="button" class="planner-shape on" data-planner-shape="loop" aria-pressed="true" data-i18n="page.routePlanner.loop">Loop</button>
+      <button type="button" class="planner-shape" data-planner-shape="point-to-point" aria-pressed="false" data-i18n="page.routePlanner.pointToPoint">Point to point</button>
+      <button type="button" class="planner-shape" data-planner-shape="out-and-back" aria-pressed="false" data-i18n="page.routePlanner.outBack">Out &amp; back</button>
     </div>
-    <p id="plannerStatus" class="planner-status" role="status" aria-live="polite">Tap the map to choose your start. Pick somewhere you can reach easily: a car park, bus stop, village or lift station.</p>
+    <p id="plannerStatus" class="planner-status" role="status" aria-live="polite" data-i18n="page.routePlanner.tapTheMapToChoose">Tap the map to choose your start. Pick somewhere you can reach easily: a car park, bus stop, village or lift station.</p>
     <div class="planner-summary"><span>Distance<strong id="plannerDistance">, </strong></span><span>Ascent<strong id="plannerAscent">, </strong></span><span>Points<strong id="plannerPointCount">0 / 25</strong></span></div>
-    <ol id="plannerPointList" class="planner-points" aria-label="Selected route points"></ol>
+    <ol id="plannerPointList" class="planner-points" aria-label="Selected route points" data-i18n-aria-label="page.routePlanner.selectedRoutePoints"></ol>
     <div class="planner-actions">
-      <button id="plannerUndo" type="button" disabled>Undo</button><button id="plannerReset" type="button" disabled>Start again</button>
-      <button id="plannerFinish" type="button" class="primary" disabled>Close loop</button><button id="plannerSave" type="button" class="primary" disabled>Save draft</button>
-      <a id="plannerSavedLink" href="saved.html#my-routes" hidden>View my routes</a>
+      <button id="plannerUndo" type="button" disabled data-i18n="page.routePlanner.undo">Undo</button><button id="plannerReset" type="button" disabled data-i18n="page.routePlanner.startAgain">Start again</button>
+      <button id="plannerFinish" type="button" class="primary" disabled data-i18n="page.routePlanner.closeLoop">Close loop</button><button id="plannerSave" type="button" class="primary" disabled data-i18n="page.routePlanner.saveDraft">Save draft</button>
+      <a id="plannerSavedLink" href="saved.html#my-routes" hidden data-i18n="page.routePlanner.viewMyRoutes">View my routes</a>
     </div>
-    <p class="planner-note"><strong>This is not an ORMA-verified trail.</strong> A route calculated from OpenStreetMap data does not confirm legal access, signs, surface, hazards, weather or suitability for your dog. Check locally before walking.</p>
+    <p class="planner-note" data-i18n="page.routePlanner.thisIsNotAnOrmaverified"><strong>This is not an ORMA-verified trail.</strong> A route calculated from OpenStreetMap data does not confirm legal access, signs, surface, hazards, weather or suitability for your dog. Check locally before walking.</p>
   </section>
-  <section class="planner-map-wrap" aria-label="Draft route map">
+  <section class="planner-map-wrap" aria-label="Draft route map" data-i18n-aria-label="page.routePlanner.draftRouteMap">
     <div id="routePlannerMap" class="planner-map"></div>
-    <button id="plannerLayers" class="planner-layers" type="button" aria-expanded="false" aria-controls="plannerLayersPanel">Layers</button>
+    <button id="plannerLayers" class="planner-layers" type="button" aria-expanded="false" aria-controls="plannerLayersPanel" data-i18n="map.layers">Layers</button>
     <!-- How to draw, said on the map itself. "Click" becomes "Tap" on a touch screen. -->
     <p id="plannerGuide" class="planner-guide">
-      <span><span data-verb>Click</span> the map to add a point</span>
-      <span>Drag a dot to move it</span>
-      <span><span data-verb>Click</span> a dot to remove it</span>
+      <span><span data-verb>Click</span> <span data-i18n="page.planner.onMapToAddPoint">the map to add a point</span></span>
+      <span data-i18n="page.routePlanner.dragADotToMove">Drag a dot to move it</span>
+      <span><span data-verb>Click</span> <span data-i18n="page.planner.onDotToRemove">a dot to remove it</span></span>
     </p>
     <div id="plannerLayersPanel" class="planner-layers-panel" hidden>
-      <button id="plannerMarkedRoutes" class="planner-layer-chip" type="button" aria-pressed="true">Marked hiking routes</button>
-      <button class="planner-layer-chip" type="button" data-planner-poi="access" aria-pressed="false">Parking &amp; bus stops</button>
-      <button class="planner-layer-chip" type="button" data-planner-poi="water" aria-pressed="false">Water stops</button>
-      <button class="planner-layer-chip" type="button" data-planner-poi="huts" aria-pressed="false">Rifugi</button>
-      <button class="planner-layer-chip" type="button" data-planner-poi="food" aria-pressed="false">Bars &amp; restaurants</button>
+      <button id="plannerMarkedRoutes" class="planner-layer-chip" type="button" aria-pressed="true" data-i18n="page.routePlanner.markedHikingRoutes">Marked hiking routes</button>
+      <button class="planner-layer-chip" type="button" data-planner-poi="access" aria-pressed="false" data-i18n="page.routePlanner.parkingBusStops">Parking &amp; bus stops</button>
+      <button class="planner-layer-chip" type="button" data-planner-poi="water" aria-pressed="false" data-i18n="page.routePlanner.waterStops">Water stops</button>
+      <button class="planner-layer-chip" type="button" data-planner-poi="huts" aria-pressed="false" data-i18n="page.routePlanner.rifugi">Rifugi</button>
+      <button class="planner-layer-chip" type="button" data-planner-poi="food" aria-pressed="false" data-i18n="page.routePlanner.barsRestaurants">Bars &amp; restaurants</button>
     </div>
   </section>
 </main>
+<script src="i18n.js?v=20261006-1"></script>
 <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
 <script src="mobile-nav.js?v=20261030-1"></script>
 <script src="map-runtime.js?v=20260901-1"></script>

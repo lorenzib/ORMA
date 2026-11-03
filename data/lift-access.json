@@ -233,6 +233,39 @@
       }
     },
     {
+      "id": "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Texelbahn (Partschins)",
+          "notes": "The walk starts at the top station of the Texelbahn above Partschins; its cabins are closed. It ends at the valley station. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "meran-giro-dei-masi-sul-monte-sole",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Unterstell cable car (Naturns)",
+          "notes": "The loop starts and ends at the top station of the Unterstell cable car above Naturns; its cabins are closed. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
+      "id": "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Hirzer cable car (Saltaus–Klammeben)",
+          "notes": "The loop starts and ends at Klammeben, the top station of the Hirzer cable car from Saltaus; its cabins are closed. The board also mentions a way up by the Verdins cable car and the Tall–Grube chairlift; ORMA uses only the cable car. Dogs ride on a lead and muzzled."
+        }
+      }
+    },
+    {
       "id": "engadin-corvatsch-murtel-fuorcla-surlej",
       "fields": {
         "liftAccess": {
