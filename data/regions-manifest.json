@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-03T16:03:12.517Z",
+  "generatedAt": "2026-11-03T17:39:54.194Z",
   "regions": {
     "dolomites": {
       "trailCount": 326,
@@ -462,9 +462,16 @@
       "optional": []
     },
     "piedmont": {
-      "trailCount": 0,
-      "trails": "data/regions/piedmont-trails.js?v=27b1da905e0f",
-      "details": {},
+      "trailCount": 6,
+      "trails": "data/regions/piedmont-trails.js?v=a1d2e6eede8b",
+      "details": {
+        "valsesia-gta-tappa-21-campello-monti-rimella": "data/trail-details/valsesia-gta-tappa-21-campello-monti-rimella.js?v=19d53bb517b8",
+        "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "data/trail-details/valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo.js?v=1aa087bc73e4",
+        "valsesia-cervatto-madonna-del-balmone": "data/trail-details/valsesia-cervatto-madonna-del-balmone.js?v=92f80b8a2eef",
+        "valsesia-campello-monti-alpe-fornale-di-sopra": "data/trail-details/valsesia-campello-monti-alpe-fornale-di-sopra.js?v=255c6e34466f",
+        "valsesia-campello-monti-colle-dell-usciolo": "data/trail-details/valsesia-campello-monti-colle-dell-usciolo.js?v=415c17ef51a4",
+        "valsesia-campello-monti-lago-del-capezzone": "data/trail-details/valsesia-campello-monti-lago-del-capezzone.js?v=46c5f153e8aa"
+      },
       "water": "data/regions/piedmont-water.geojson",
       "hutsBars": "data/regions/piedmont-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
@@ -914,6 +921,12 @@
     "aosta-sentiero-della-regina": "aosta",
     "aosta-strada-lombarda": "aosta",
     "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "aosta",
+    "valsesia-gta-tappa-21-campello-monti-rimella": "piedmont",
+    "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "piedmont",
+    "valsesia-cervatto-madonna-del-balmone": "piedmont",
+    "valsesia-campello-monti-alpe-fornale-di-sopra": "piedmont",
+    "valsesia-campello-monti-colle-dell-usciolo": "piedmont",
+    "valsesia-campello-monti-lago-del-capezzone": "piedmont",
     "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
     "osttirol-naturkraftweg-umbalfaelle": "tyrol",
     "osttirol-kulturweg-koednitz": "tyrol",
@@ -1370,6 +1383,12 @@
     "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": "oberkirn-to-verdins-via-prenn",
     "meran-facile-escursione-da-verano-ad-avelengo": "voeran-to-hafling",
     "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": "bloseggweg-loop-schenna",
+    "valsesia-gta-tappa-21-campello-monti-rimella": "gta-campello-monti-rimella",
+    "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "giro-del-ginepro-carcoforo",
+    "valsesia-cervatto-madonna-del-balmone": "cervatto-madonna-del-balmone",
+    "valsesia-campello-monti-alpe-fornale-di-sopra": "campello-monti-alpe-fornale",
+    "valsesia-campello-monti-colle-dell-usciolo": "campello-monti-colle-usciolo",
+    "valsesia-campello-monti-lago-del-capezzone": "campello-monti-lago-capezzone",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1804,6 +1823,12 @@
     "oberkirn-to-verdins-via-prenn": "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto",
     "voeran-to-hafling": "meran-facile-escursione-da-verano-ad-avelengo",
     "bloseggweg-loop-schenna": "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg",
+    "gta-campello-monti-rimella": "valsesia-gta-tappa-21-campello-monti-rimella",
+    "giro-del-ginepro-carcoforo": "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo",
+    "cervatto-madonna-del-balmone": "valsesia-cervatto-madonna-del-balmone",
+    "campello-monti-alpe-fornale": "valsesia-campello-monti-alpe-fornale-di-sopra",
+    "campello-monti-colle-usciolo": "valsesia-campello-monti-colle-dell-usciolo",
+    "campello-monti-lago-capezzone": "valsesia-campello-monti-lago-del-capezzone",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

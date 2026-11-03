@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsesia-cervatto-madonna-del-balmone",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 3.2,
+    "ascentM": 350,
+    "highestPointM": 1401,
+    "expectedDuration": "1.75 hours",
+    "difficulty": "Hard",
+    "shadePercent": 100
+  },
+  "trailhead": {
+    "lat": 45.883026,
+    "lng": 8.162047,
+    "label": "Cervatto (1,002 m), the park authority’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The first stretch from Cervatto to Giavina is on the village road: lead on for passing cars.",
+    "Old stone mule track with steps and loose stones in places, slippery when wet.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

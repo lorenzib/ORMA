@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsesia-campello-monti-alpe-fornale-di-sopra",
+  "distanceKm": 2.2,
+  "ascentM": 500,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1325
+    },
+    {
+      "km": 0.2,
+      "elev": 1351
+    },
+    {
+      "km": 0.3,
+      "elev": 1379
+    },
+    {
+      "km": 0.5,
+      "elev": 1435
+    },
+    {
+      "km": 0.7,
+      "elev": 1455
+    },
+    {
+      "km": 0.8,
+      "elev": 1472
+    },
+    {
+      "km": 1,
+      "elev": 1489
+    },
+    {
+      "km": 1.2,
+      "elev": 1493
+    },
+    {
+      "km": 1.3,
+      "elev": 1593
+    },
+    {
+      "km": 1.5,
+      "elev": 1653
+    },
+    {
+      "km": 1.7,
+      "elev": 1650
+    },
+    {
+      "km": 1.8,
+      "elev": 1751
+    },
+    {
+      "km": 2,
+      "elev": 1789
+    },
+    {
+      "km": 2.2,
+      "elev": 1825
+    }
+  ]
+}

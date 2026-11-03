@@ -3137,6 +3137,54 @@
       "quote": "Distanza 5,7 km · Durata 1:45 h · Salita 200 m · Discesa 200 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "valsesia-cervatto-madonna-del-balmone": {
+      "url": "https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709",
+      "publisher": "Ente di gestione delle aree protette della Valsesia (areeprotettevallesesia.it, itineraries in the Alta Val Sesia and Alta Val Strona park)",
+      "name": "Cervatto - Madonna del Balmone",
+      "quote": "Cervatto - Madonna del Balmone: lunghezza 3,2 km, tempo di percorrenza 1,40 h, dislivello 350 m in salita, sentieri 501 - 507",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T18:00:00.000Z"
+    },
+    "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": {
+      "url": "https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709",
+      "publisher": "Ente di gestione delle aree protette della Valsesia (areeprotettevallesesia.it, itineraries in the Alta Val Sesia and Alta Val Strona park)",
+      "name": "Carcoforo – Alpe Giovanchera – Alpe Pianelli - Carcoforo",
+      "quote": "Carcoforo – Alpe Giovanchera – Alpe Pianelli - Carcoforo: lunghezza 6 km, tempo di percorrenza 3,45 h, dislivello 500 m in salita, sentieri 113 - 117 - 121 - 122",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T18:00:00.000Z"
+    },
+    "valsesia-campello-monti-alpe-fornale-di-sopra": {
+      "url": "https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709",
+      "publisher": "Ente di gestione delle aree protette della Valsesia (areeprotettevallesesia.it, itineraries in the Alta Val Sesia and Alta Val Strona park)",
+      "name": "Campello Monti – Alpe Fornale di Sopra",
+      "quote": "Campello Monti – Alpe Fornale di Sopra: lunghezza 2,20 km, tempo di percorrenza 1,30 h, dislivello 500 m in salita, sentiero Z14",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T18:00:00.000Z"
+    },
+    "valsesia-campello-monti-colle-dell-usciolo": {
+      "url": "https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709",
+      "publisher": "Ente di gestione delle aree protette della Valsesia (areeprotettevallesesia.it, itineraries in the Alta Val Sesia and Alta Val Strona park)",
+      "name": "Campello Monti - Colle dell’Usciolo",
+      "quote": "Campello Monti - Colle dell’usciolo: lunghezza 3,20 km, tempo di percorrenza 2,20 h, dislivello 700 m in salita, sentiero Z99",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T18:00:00.000Z"
+    },
+    "valsesia-campello-monti-lago-del-capezzone": {
+      "url": "https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709",
+      "publisher": "Ente di gestione delle aree protette della Valsesia (areeprotettevallesesia.it, itineraries in the Alta Val Sesia and Alta Val Strona park)",
+      "name": "Campello Monti - Lago del Capezzone",
+      "quote": "Campello Monti - Lago del Capezzone: lunghezza 4,20 km, tempo di percorrenza 2,40 h, dislivello 800 m in salita, sentiero Z17",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T18:00:00.000Z"
+    },
+    "valsesia-gta-tappa-21-campello-monti-rimella": {
+      "url": "https://www.piemonteoutdoor.it/it/attivita/escursionismo/gta-tappa-21-campello-monti-rimella",
+      "publisher": "Regione Piemonte (Piemonte Outdoor) (piemonteoutdoor.it, the Region’s hiking network)",
+      "name": "GTA Tappa 21: Campello Monti - Rimella",
+      "quote": "GTA Tappa 21: Campello Monti - Rimella. Lunghezza 8,6 km, tempo 3 ore 15 minuti, dislivello salita 620 m, dislivello discesa 750 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T18:00:00.000Z"
     }
   }
 }

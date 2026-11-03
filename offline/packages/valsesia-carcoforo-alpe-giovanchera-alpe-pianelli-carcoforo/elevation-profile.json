@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo",
+  "distanceKm": 5.8,
+  "ascentM": 500,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1300
+    },
+    {
+      "km": 0.4,
+      "elev": 1321
+    },
+    {
+      "km": 0.9,
+      "elev": 1378
+    },
+    {
+      "km": 1.3,
+      "elev": 1468
+    },
+    {
+      "km": 1.8,
+      "elev": 1585
+    },
+    {
+      "km": 2.2,
+      "elev": 1684
+    },
+    {
+      "km": 2.7,
+      "elev": 1756
+    },
+    {
+      "km": 3.1,
+      "elev": 1805
+    },
+    {
+      "km": 3.5,
+      "elev": 1748
+    },
+    {
+      "km": 4,
+      "elev": 1749
+    },
+    {
+      "km": 4.4,
+      "elev": 1647
+    },
+    {
+      "km": 4.9,
+      "elev": 1517
+    },
+    {
+      "km": 5.3,
+      "elev": 1406
+    },
+    {
+      "km": 5.7,
+      "elev": 1311
+    },
+    {
+      "km": 5.8,
+      "elev": 1297
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsesia-campello-monti-alpe-fornale-di-sopra",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 2.2,
+    "ascentM": 500,
+    "highestPointM": 1825,
+    "expectedDuration": "1.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 45.935896,
+    "lng": 8.237097,
+    "label": "Campello Monti (1,305 m), the park authority’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Steep: 500 m up in 2.2 km.",
+    "Above the Alpe Fornale di Sotto the path is faint and climbs among grassy boulders: not for wet weather or poor visibility.",
+    "Two unbridged stream crossings.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

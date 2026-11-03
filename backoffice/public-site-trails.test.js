@@ -177,9 +177,13 @@ describe('the existing-site verification boundary',()=>{
     // Count’s path above Steinhaus and Lake Neves to the Ponte di Ghiaccio hut.
     // Then 432 and 430 with four Meran-area walks: the Brandis-Waalweg in Lana,
     // Oberkirn to Verdins, Vöran to Hafling and the Bloseggweg loop from Schenna.
+    // Then 438 and 436 with six Valsesia walks, the first in Piedmont: GTA stage 21
+    // from Campello Monti to Rimella, Cervatto to the Madonna del Balmone, the Giro
+    // del Ginepro from Carcoforo, and Campello Monti to the Alpe Fornale, the Colle
+    // dell’Usciolo and the Lago del Capezzone.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(432);
-    expect(currentSiteTrails(catalogue)).toHaveLength(430);
+    expect(catalogue).toHaveLength(438);
+    expect(currentSiteTrails(catalogue)).toHaveLength(436);
   });
 
   test('requires the artwork the public trail page needs',()=>{

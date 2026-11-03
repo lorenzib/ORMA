@@ -1503,6 +1503,36 @@
       "name": "Bloseggweg loop from Schenna",
       "slug": "bloseggweg-loop-schenna",
       "gloss": "through the orchards past the Kampflkreuz"
+    },
+    "valsesia-cervatto-madonna-del-balmone": {
+      "name": "Cervatto to the Madonna del Balmone",
+      "slug": "cervatto-madonna-del-balmone",
+      "gloss": "up the mule track past the Val Mastallone hamlets"
+    },
+    "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": {
+      "name": "Giro del Ginepro from Carcoforo",
+      "slug": "giro-del-ginepro-carcoforo",
+      "gloss": "through the pastures of Giovanchera and Pianelli"
+    },
+    "valsesia-campello-monti-alpe-fornale-di-sopra": {
+      "name": "Campello Monti to the Alpe Fornale di Sopra",
+      "slug": "campello-monti-alpe-fornale",
+      "gloss": "a steep climb into a quiet side valley"
+    },
+    "valsesia-campello-monti-colle-dell-usciolo": {
+      "name": "Campello Monti to the Colle dell’Usciolo",
+      "slug": "campello-monti-colle-usciolo",
+      "gloss": "up through the Cunetta pastures to the col"
+    },
+    "valsesia-campello-monti-lago-del-capezzone": {
+      "name": "Campello Monti to the Lago del Capezzone",
+      "slug": "campello-monti-lago-capezzone",
+      "gloss": "past the waterfalls to a high lake"
+    },
+    "valsesia-gta-tappa-21-campello-monti-rimella": {
+      "name": "Campello Monti to Rimella over the Bocchetta",
+      "slug": "gta-campello-monti-rimella",
+      "gloss": "over the old route of the dead between two Walser villages"
     }
   }
 }

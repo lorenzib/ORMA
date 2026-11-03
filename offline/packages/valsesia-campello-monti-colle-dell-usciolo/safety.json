@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsesia-campello-monti-colle-dell-usciolo",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 3.2,
+    "ascentM": 700,
+    "highestPointM": 2020,
+    "expectedDuration": "2.25 hours",
+    "difficulty": "Hard",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 45.935896,
+    "lng": 8.237097,
+    "label": "Campello Monti (1,305 m), the park authority’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Steep: 700 m up in 3.2 km, steepest in the last valley below the col.",
+    "Tall grass hides the path in places above the Alpe Orlo: follow the wooden posts.",
+    "Unbridged stream crossings.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}
