@@ -1244,7 +1244,7 @@ describe('map-first returning homepage layout contract', () => {
   });
 
   test('uses a deliberate mobile filter row and compact map controls', () => {
-    expect(html).toContain('<div class="li-mobile-actions" aria-label="Trail actions">');
+    expect(html).toContain('<div class="li-mobile-actions" aria-label="Trail actions" data-i18n-aria-label="page.index.trailActions">');
     expect(mobileCss).toContain('body.mhome-active .li-toolbar-greet-copy{display:none;}');
     // The location pill and the date share a row while both fit and take a
     // line each below that. At 320px they used to fill the row exactly,

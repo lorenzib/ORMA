@@ -166,7 +166,7 @@
 <body>
 
 <div class="topnav">
-  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">My walk journal</span>
+  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page" data-i18n="account.nav.journal">My walk journal</span>
   <div class="links">
     <a href="browse-trails.html" data-i18n="saved.nav.browse">Trails</a>
     <a href="collections.html" data-i18n="saved.nav.collections">Collections</a>
@@ -337,18 +337,18 @@
       <div class="jn-share-preview-wrap"><img id="jnSharePreview" class="jn-share-preview" alt="Trail Tale share preview"></div>
       <div class="jn-share-options">
         <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.shareCard.format">Format</span><div class="jn-choice-row" id="jnShareFormats">
-          <button type="button" class="jn-choice on" data-format="post">Post 4:5</button><button type="button" class="jn-choice" data-format="story">Story 9:16</button><button type="button" class="jn-choice" data-format="square">Square 1:1</button>
+          <button type="button" class="jn-choice on" data-format="post" data-i18n="page.journal.post45">Post 4:5</button><button type="button" class="jn-choice" data-format="story" data-i18n="page.journal.story916">Story 9:16</button><button type="button" class="jn-choice" data-format="square" data-i18n="page.journal.square11">Square 1:1</button>
         </div></div>
         <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.shareCard.look">Look</span><div class="jn-choice-row" id="jnShareVisuals">
           <button type="button" class="jn-choice on" data-visual="split" data-i18n="journal.shareCard.split">Photo + map</button><button type="button" class="jn-choice" data-visual="map" data-i18n="journal.shareCard.map">Route map</button><button type="button" class="jn-choice" data-visual="photo" data-i18n="journal.shareCard.photo">Photo</button>
         </div></div>
-        <div class="jn-choice-group"><label class="jn-choice-label" for="jnDogVoice">Your dog's speech bubble</label><input id="jnDogVoice" type="text" maxlength="56" value="Woof, what a walk!" style="width:100%;box-sizing:border-box;border:1.5px solid var(--paper-line);border-radius:12px;padding:10px 12px;font:600 12px 'Inter',sans-serif;color:var(--ink);"></div>
-        <div class="jn-choice-group"><span class="jn-choice-label">Tag in the card</span>
-          <label class="jn-check"><input type="checkbox" id="jnTagDog" checked><span id="jnTagDogLabel">Your dog</span></label>
-          <label class="jn-check"><input type="checkbox" id="jnTagHuman"><span id="jnTagHumanLabel">You</span></label>
-          <label class="jn-choice-label" for="jnCompanionTags" style="margin-top:12px;">Companion public names</label>
-          <input id="jnCompanionTags" type="text" maxlength="120" placeholder="e.g. Luna, Marco (comma separated)" style="width:100%;box-sizing:border-box;border:1.5px solid var(--paper-line);border-radius:12px;padding:10px 12px;font:600 12px 'Inter',sans-serif;color:var(--ink);">
-          <p class="jn-share-helper">Only add companions who agreed to be tagged. ORMA never uses private account names here.</p>
+        <div class="jn-choice-group"><label class="jn-choice-label" for="jnDogVoice" data-i18n="page.journal.yourDogsSpeechBubble">Your dog's speech bubble</label><input id="jnDogVoice" type="text" maxlength="56" value="Woof, what a walk!" style="width:100%;box-sizing:border-box;border:1.5px solid var(--paper-line);border-radius:12px;padding:10px 12px;font:600 12px 'Inter',sans-serif;color:var(--ink);"></div>
+        <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="page.journal.tagInTheCard">Tag in the card</span>
+          <label class="jn-check"><input type="checkbox" id="jnTagDog" checked><span id="jnTagDogLabel" data-i18n="account.yourDog">Your dog</span></label>
+          <label class="jn-check"><input type="checkbox" id="jnTagHuman"><span id="jnTagHumanLabel" data-i18n="page.journal.you">You</span></label>
+          <label class="jn-choice-label" for="jnCompanionTags" style="margin-top:12px;" data-i18n="page.journal.companionPublicNames">Companion public names</label>
+          <input id="jnCompanionTags" type="text" maxlength="120" placeholder="e.g. Luna, Marco (comma separated)" style="width:100%;box-sizing:border-box;border:1.5px solid var(--paper-line);border-radius:12px;padding:10px 12px;font:600 12px 'Inter',sans-serif;color:var(--ink);" data-i18n-ph="page.journal.egLunaMarcoCommaSeparated">
+          <p class="jn-share-helper" data-i18n="page.journal.onlyAddCompanionsWhoAgreed">Only add companions who agreed to be tagged. ORMA never uses private account names here.</p>
         </div>
         <label class="jn-check"><input type="checkbox" id="jnShareHideEnds" checked><span data-i18n="journal.shareCard.hideEnds">Hide the first and last 200 m</span></label>
         <label class="jn-check"><input type="checkbox" id="jnShareHideRoute"><span data-i18n="journal.shareCard.hideRoute">Hide the route completely</span></label>

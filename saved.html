@@ -18,7 +18,7 @@
 <body>
 
 <div class="topnav">
-  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Saved trails</span>
+  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page" data-i18n="mobile.savedTrails">Saved trails</span>
   <div class="links">
     <a href="browse-trails.html" class="active" data-i18n="saved.nav.browse">Trails</a>
     <a href="collections.html" data-i18n="saved.nav.collections">Collections</a>
@@ -65,11 +65,11 @@
 
   <section id="my-routes" style="margin-top:42px;padding-top:30px;border-top:1px solid var(--paper-line);">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-      <div><h2 style="margin:0;font:700 25px 'Bricolage Grotesque',sans-serif;">My routes</h2><p style="margin:6px 0 0;color:var(--ink-soft);font-size:13px;">Draft routes saved on this device. They are not ORMA-verified trails.</p></div>
-      <a href="route-planner.html" class="empty-state__action">Create a draft route</a>
+      <div><h2 style="margin:0;font:700 25px 'Bricolage Grotesque',sans-serif;" data-i18n="page.saved.myRoutes">My routes</h2><p style="margin:6px 0 0;color:var(--ink-soft);font-size:13px;" data-i18n="page.saved.draftRoutesSavedOnThis">Draft routes saved on this device. They are not ORMA-verified trails.</p></div>
+      <a href="route-planner.html" class="empty-state__action" data-i18n="page.saved.createADraftRoute">Create a draft route</a>
     </div>
     <div id="savedRouteList" style="display:grid;gap:12px;margin-top:18px;"></div>
-    <div id="savedRouteEmpty" style="margin-top:16px;padding:18px;border:1px dashed var(--paper-line);border-radius:14px;color:var(--ink-soft);font-size:13px;">No draft routes are saved on this device yet.</div>
+    <div id="savedRouteEmpty" style="margin-top:16px;padding:18px;border:1px dashed var(--paper-line);border-radius:14px;color:var(--ink-soft);font-size:13px;" data-i18n="page.saved.noDraftRoutesAreSaved">No draft routes are saved on this device yet.</div>
   </section>
 </div>
 
