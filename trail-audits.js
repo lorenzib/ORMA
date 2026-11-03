@@ -59077,6 +59077,349 @@
       startPoint: { lat: 45.783478, lng: 6.498725, label: 'Place du Cernix, Cohennoz, one of the two starts the board gives' },
       desc: 'An easy, flat walk on a quiet communal road between the hamlets of Cohennoz and Crest-Voland, past the Cernix pond and the Ainoz mill and through hay meadows facing the Aravis, to Paravy and back. The official page lists 4.7 km, 40 m up and 40 m down, about two hours.'
     },
+    'meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines”, published by the Partschins tourist board, drawn on 44 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Partschins and, for a short stretch, Naturns (neither publishes a dog regulation online, probably exists: the national rule applies, lead ≤1.5 m and a muzzle carried); about a fifth of the line is in the Texelgruppe nature park, dogs on a lead.
+      // About 20% of the line, near the Texelbahn top station, lies in the Texelgruppe nature park and the Natura 2000 site Pfossental: dogs on a lead.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Texelbahn top station – Meraner Höhenweg – Hochforch – Platterhof – Gruberhof – Winklerhof – Partschins (Burggrafenamt)',
+      distance: 6.2,
+      elevation: 221,
+      hours: '1.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and mostly downhill: from the top station of the Texelbahn west along the Meraner Höhenweg (path 24) to the Hochforch farm, down path 25 past the Platterhof to the Gruberhof, along path 39 past the Unterwenter Rast and the Winklerhof, and down path 1 beside the Zielbach to the Texelbahn valley station.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Texelbahn up from Partschins and start at its top station, the board’s start.",
+        "sequence": "Follow the Meraner Höhenweg, path 24, west towards the Hochforch farm (1,555 m) on a panoramic stretch above the Vinschgau. After a short stretch of tarred road turn left onto path 25, which drops gently through meadows and larch woods past the Platterhof (1,194 m) to the Gruberhof, also called Ausergrub (1,121 m). From the Gruberhof take path 39 along the slope towards Partschins, past the Unterwenter Rast viewpoint, to the Winklerhof farm inn. Just before the suspension bridge turn right onto path 1, which runs beside the Zielbach down to the Texelbahn valley station, where the walk ends.",
+        "switches": "Three changes: after the Hochforch farm leave path 24 left onto path 25; at the Gruberhof take path 39; just before the suspension bridge turn right onto path 1.",
+        "sources": [
+          {
+            "label": "Partschins tourist board, Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/54554380",
+            "authority": "Partschins tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Path 1 between granite boulders above the Texelbahn valley station in Partschins, in August (mikki65 on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 6.2 km from the top station of the Texelbahn above Partschins, as the Partschins tourist board publishes it; the stored line is drawn on 44 OSM ways along the board’s published line, 6.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 24, 25, 39 and 1: from the Texelbahn top station the Meraner Höhenweg (path 24) west to the Hochforch farm, path 25 down to the Gruberhof, path 39 along the slope to the Winklerhof, then path 1 beside the Zielbach to the valley station.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 5612178877).',
+        elevation: 'Official 6.2 km, 221 m up and 1124 m down, 1:50 h, highest point 1,586 m, lowest 629 m (Partschins tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Partschins tourist board, Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Partschins / Comune di Parcines: no dog regulation published online, probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Marktgemeinde Naturns / Comune di Naturno: no dog regulation published online (only an information sheet for dog owners on dog-waste stations), probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Amt für Natur, rules of conduct in the South Tyrol nature parks: dogs on a lead, never roaming (Naturpark Texelgruppe, also Natura 2000 site IT3110010 Pfossental, about a fifth of the line near the Texelbahn top station); province landscape-plan layers: no natural monument on the line',
+          'OpenStreetMap ways along the board’s line (44 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 22,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 1,120 m of descent: steep in places and hard on knees and paws, take it slowly', 'A short stretch of tarred farm road after the Hochforch farm: lead on for passing cars', 'Meadows and pastures beside the path are farmed: keep to the path'],
+      terrainType: 'Mountain paths, field paths and a short farm road',
+      shadeDescription: 'Mostly open: about a fifth runs through mapped larch woods; the Höhenweg and the farm meadows are in full sun.',
+      terrainDescription: 'A south-facing descent from 1,590 m to 630 m on the Sonnenberg above Partschins, along the Meraner Höhenweg with views over the Vinschgau, then down past old farms to the Zielbach.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Neither Partschins nor Naturns publishes a dog regulation online, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. Near the top station the path runs through the Texelgruppe nature park, where dogs must stay on a lead. On the Texelbahn dogs ride on a lead and muzzled.',
+      tips: 'Take the Texelbahn up from Partschins: 6.2 km one way back down to the valley station, 221 m up and 1,124 m down, under two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at the top station; farm inns at the Gruberhof and the Winklerhof. The lower slope is hot in summer: start early.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines (Partschins tourist board)', url: 'https://www.outdooractive.com/it/r/54554380' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Marktgemeinde Naturns, information for dog owners', url: 'https://www.gemeinde.naturns.bz.it/de/Verwaltung/Dokumente/Informationen_fuer_Hundehalterinnen_und_Hundehalter' },
+        { label: 'South Tyrol nature parks, rules of conduct', url: 'https://naturparks.provinz.bz.it/de/verhaltensregeln-im-naturpark' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.684644, lng: 11.04778, label: 'Top station of the Texelbahn above Partschins, the board’s start' },
+      desc: 'A mostly downhill walk from the top of the Texelbahn along the Meraner Höhenweg and down past the old farms of the Partschins Sonnenberg to the valley station. The board lists 6.2 km, 221 m up and 1,124 m down, 1 h 50.'
+    },
+    'meran-escursione-sentiero-del-sole-a-stulles': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Escursione Sentiero del Sole a Stulles”, published by the Passeiertal tourist board, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Moos in Passeier (its dog regulation, Gemeinderat Nr. 38 of 26.09.2012: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Stuls – Kofler Kreuz – Morx Puite – Stuls (Moos in Passeier)',
+      distance: 5.1,
+      elevation: 272,
+      hours: '1.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park by the church in Stuls on the signed Sonnenrundweg to the Kofler Kreuz, along the farm road to its seventh hairpin, on path 14A to the Morx Puite and back down the road to the car park.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park by the church in Stuls, the board’s start.",
+        "sequence": "Follow the Sonnenrundweg signs to the junction at the Kofler Kreuz. There turn sharply left and follow the road up to its seventh hairpin. At the hairpin leave the road to the left on path 14A and follow it to the Morx Puite. From there walk down the road back to the car park in Stuls.",
+        "switches": "Three changes: sharp left at the Kofler Kreuz; left off the road at the seventh hairpin onto path 14A; at the Morx Puite back down the road.",
+        "sources": [
+          {
+            "label": "Passeiertal tourist board, Escursione Sentiero del Sole a Stulles (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16571389",
+            "authority": "Passeiertal tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The farm road of the Sonnenrundweg above Stuls, looking over the Passeier valley, in June (crami on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official loop 5.1 km from the car park by the church in Stuls, as the Passeiertal tourist board publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 5.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'The signed Sonnenrundweg, then path 14A: from the church car park follow the Sonnenrundweg signs to the Kofler Kreuz, the farm road to the seventh hairpin, path 14A to the Morx Puite, and the road back down to Stuls.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 5.1 km, 272 m up and 272 m down, 1:40 h, highest point 1,541 m, lowest 1,295 m (Passeiertal tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Passeiertal tourist board, Escursione Sentiero del Sole a Stulles (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Moos in Passeier / Comune di Moso in Passiria, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 38, 26.09.2012), Art. 4 and 8: dogs on a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and primary-school yards or on farmed land (meadows, fields) during the growing season; no bathing in public fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 49,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Most of the loop is on a quiet tarred farm road with hairpins, shared with cars and tractors: lead on and keep to the side', 'About 120 m on the Stuls road near the village: keep your dog close on a short lead', 'Meadows beside the road are farmed and closed to dogs in Moos in Passeier in the growing season: keep to the road and path', 'Path 14A is not suitable for prams'],
+      terrainType: 'Farm road and mountain path',
+      shadeDescription: 'Half shaded: about half runs through mapped woodland; the farm road through the meadows is open.',
+      terrainDescription: 'A sunny loop at 1,295–1,540 m on the slope above Stuls in the upper Passeier valley, mostly on a quiet farm road through meadows and woods, with a stretch of mountain path to the Morx Puite.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Moos in Passeier requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season. The loop starts beside the church: dogs may not enter the churchyard.',
+      tips: 'Start at the car park by the church in Stuls: a 5.1 km loop, 272 m up and down, about an hour and three quarters. Keep your dog on a lead of at most 1.5 m and carry a muzzle. No drinking water on the way: bring water for your dog.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione Sentiero del Sole a Stulles (Passeiertal tourist board)', url: 'https://www.outdooractive.com/it/r/16571389' },
+        { label: 'Gemeinde Moos in Passeier, dog regulation (2012)', url: 'https://www.gemeinde.moosinpasseier.bz.it/system/web/GetDocument.ashx?fileId=854937' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.828059, lng: 11.200341, label: 'Car park by the church in Stuls, the board’s start' },
+      desc: 'A sunny loop above Stuls in the Passeier valley on the Sonnenrundweg, up the farm road to the Kofler Kreuz and on path 14A to the Morx Puite. The board lists 5.1 km, 272 m up and 272 m down, 1 h 40.'
+    },
+    'meran-giro-dei-masi-sul-monte-sole': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Giro dei masi sul Monte Sole”, published by the Naturns tourist board, drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Naturns (no dog regulation published online, probably exists: the national rule applies, lead ≤1.5 m and a muzzle carried).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Unterstell – Patleid – Lint – Innerforch – Unterstell (Naturns)',
+      distance: 4.2,
+      elevation: 284,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the top station of the Unterstell cable car on path 10 up to the Patleid farm, path 24A towards Schnals to the Meraner Höhenweg, the Höhenweg (path 24) east past the Lint inn to the Innerforch farm, and path 24B back to the top station.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Unterstell cable car up from Naturns (Kompatsch) and start at its top station by the Unterstell inn, the board’s start.",
+        "sequence": "Take path 10, climbing gently, to the Patleid farm. At the farm continue on path 24A towards the Schnals valley as far as the junction with the Meraner Höhenweg, path 24, about halfway between the Innerunterstell and Lint farms. Follow the Höhenweg east, first to the Lint inn and then to the fork with path 24B in front of the Innerforch farm. Path 24B leads back to the top station of the Unterstell cable car.",
+        "switches": "Three changes: at the Patleid farm onto path 24A; at the Meraner Höhenweg east on path 24; at the Innerforch farm onto path 24B back to the top station.",
+        "sources": [
+          {
+            "label": "Naturns tourist board, Giro dei masi sul Monte Sole (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/50815999",
+            "authority": "Naturns tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The view over Naturns from beside the Unterstell top station, where the loop starts and ends, in August (uwelino on Mapillary, CC BY-SA 4.0), 11 m from the line.',
+        route: 'Official loop 4.2 km from the top station of the Unterstell cable car above Naturns, as the Naturns tourist board publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 10, 24A, 24 and 24B: from the Unterstell top station path 10 to the Patleid farm, path 24A to the Meraner Höhenweg, path 24 east past the Lint inn, and path 24B from the Innerforch farm back to the top station.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 3152633517).',
+        elevation: 'Official 4.2 km, 284 m up and 284 m down, 1:24 h, highest point 1,480 m, lowest 1,281 m (Naturns tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Naturns tourist board, Giro dei masi sul Monte Sole (its Outdooractive tour, also listed on suedtirol.info)',
+          'Marktgemeinde Naturns / Comune di Naturno: no dog regulation published online (only an information sheet for dog owners on dog-waste stations), probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Open south-facing slope with almost no shade: hot in summer, go early and carry water', 'Farm roads and yards at Patleid, Lint and Innerforch: lead on and keep your dog close past livestock', 'Meadows beside the path are farmed: keep to the path'],
+      terrainType: 'Mountain paths and farm roads',
+      shadeDescription: 'Almost no shade: only a few metres run under mapped trees; the farms and meadows of the Sonnenberg are in full sun.',
+      terrainDescription: 'A short loop at 1,280–1,480 m on the sunny Sonnenberg above Naturns, from the Unterstell cable car past the Patleid, Lint and Innerforch farms on the Meraner Höhenweg, with wide views over the Vinschgau.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Naturns publishes no dog regulation online, only an information sheet asking owners to keep dogs on a lead where required and off farmed meadows, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. On the cable car dogs ride on a lead and muzzled.',
+      tips: 'Take the Unterstell cable car up from Naturns: a 4.2 km loop back to the top station, 284 m up and down, about an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at the top station; the Unterstell and Lint inns are on the way. Very sunny: go early in summer.',
+      sourceLinks: [
+        { label: 'Outdooractive, Giro dei masi sul Monte Sole (Naturns tourist board)', url: 'https://www.outdooractive.com/it/r/50815999' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Marktgemeinde Naturns, information for dog owners', url: 'https://www.gemeinde.naturns.bz.it/de/Verwaltung/Dokumente/Informationen_fuer_Hundehalterinnen_und_Hundehalter' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.658449, lng: 10.982989, label: 'Top station of the Unterstell cable car above Naturns, the board’s start' },
+      desc: 'A short loop on the Sonnenberg above Naturns from the Unterstell cable car past the Patleid farm, along the Meraner Höhenweg to the Lint inn and back by the Innerforch farm. The board lists 4.2 km, 284 m up and 284 m down, 1 h 24.'
+    },
+    'meran-escursione-alla-forst': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Escursione alla Forst”, published by the Algund tourist board, drawn on 61 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Algund (its dog regulation, Gemeinderat Nr. 11 of 10.02.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line; it crosses landscape protection zones, which carry no dog rule.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; its stem is walked both ways, as the board describes.
+      area: 'Algund – Forst – Marlinger Waalweg – Rastbichlhof – Josefsberg – Töll (Burggrafenamt)',
+      distance: 8.2,
+      elevation: 295,
+      hours: '2.5',
+      routeShape: 'lollipop',
+      routeShapeNote: 'A loop on a stem: from the centre of Algund past the open-air pool and over the Adige to Forst, up to the Marlinger Waalweg and the Marlinger Höhenweg to the Rastbichlhof and Josefsberg, down road 9 to the Waalweg and west along it to the Töll power station, then back the same way to Algund.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of Algund, the board’s start, and walk to the Algund open-air pool.",
+        "sequence": "Cross the wooden bridge over the Adige to Forst and follow Brauereistraße west to the Alperia power station. From there follow the old signs for the Marlinger Waalweg and Marlinger Höhenweg: climb the steps to the old Vinschgau state road, which has almost no traffic, cross it and take the clear path up to the Marlinger Waalweg. Follow the Waalweg east to a hiking path that climbs to the Marlinger Höhenweg, and follow it to the Rastbichlhof farm. Take the wide access road east to the former Josefsberg hotel, then go down the tarred road, number 9, to the Waalweg. Walk west along the Waalweg to the Töll hydroelectric power station, and from there return to Algund the same way you came.",
+        "switches": "Key turns: at the Alperia power station up the steps and across the old state road; from the Waalweg up to the Höhenweg; at Josefsberg down road 9; west along the Waalweg to Töll, then back the way you came.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Algund tourist board, Escursione alla Forst (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/800061150",
+            "authority": "Algund tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path with its wooden railing between Forst and the Marlinger Waalweg in Algund, in June (changchun1 on Mapillary, CC BY-SA 4.0), 12 m from the line.',
+        route: 'Official loop 8.2 km from the centre of Algund, as the Algund tourist board publishes it; the stored line is drawn on 61 OSM ways along the board’s published line, 8.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No single number: from Algund across the Adige to Forst, the old signs for the Marlinger Waalweg and Marlinger Höhenweg, the access road to Josefsberg, tarred road 9 down to the Waalweg, and the Waalweg west to the Töll power station.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 0.1 (OSM nodes 3009845489, 7599256286, 7726881458, 4881103694).',
+        elevation: 'Official 8.2 km, 295 m up and 295 m down, 2:24 h, highest point 583 m, lowest 339 m (Algund tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Algund tourist board, Escursione alla Forst (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Algund / Comune di Lagundo, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 11, 10.02.2010), Art. 4 and 8: dogs on a lead of at most 1.5 m on all public ground (except designated dog areas) and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and primary-school yards or on farmed land (meadows, fields) during the growing season; no bathing in the fountains of the centre',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (61 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Crosses the old Vinschgau state road, which has little traffic: lead short while crossing', 'Steps up from the Alperia power station to the old state road', 'Access roads to Josefsberg and road 9 are tarred and open to cars: lead on', 'Orchards and vineyards beside the path are farmed and closed to dogs in Algund in the growing season: keep to the path'],
+      terrainType: 'Waal path, field paths and access roads',
+      shadeDescription: 'Mostly open: only a few stretches run under mapped trees; the orchards and vineyards on the slope are in full sun.',
+      terrainDescription: 'A walk at 340–580 m from Algund across the Adige to Forst and up the slope of the Marling mountain, along the Marlinger Waalweg and the Marlinger Höhenweg through orchards and vineyards with views over the Meran basin.',
+      waterDescription: 'Drinking water at the start and km 0.1; places to eat on the way.',
+      dogNotes: 'Algund requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season.',
+      tips: 'Start in the centre of Algund: 8.2 km there and back with a loop above Forst, 295 m up and down, about two and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Fountains in Algund at the start. Very sunny in summer: go early or late.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione alla Forst (Algund tourist board)', url: 'https://www.outdooractive.com/it/r/800061150' },
+        { label: 'Gemeinde Algund, dog regulation (2010)', url: 'https://www.gemeinde.algund.bz.it/system/web/GetDocument.ashx?cts=1741696854&fileId=1023700' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.682643, lng: 11.121937, label: 'The village centre of Algund, the board’s start' },
+      desc: 'A walk from Algund across the Adige to Forst and up to the Marlinger Waalweg and Höhenweg, round by the Rastbichlhof and Josefsberg and back along the Waalweg. The board lists 8.2 km, 295 m up and 295 m down, 2 h 24.'
+    },
+    'meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Passeggiata alpestre ai piedi del monte Hirzer”, published by the Schenna tourist board, drawn on 35 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Schenna (its dog regulation, Gemeinderat Nr. 33 of 31.08.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; its stem is walked both ways, as the board describes.
+      area: 'Klammeben – Hirzer hut – Hinteregg Alm – Mahd Alm – Rotmoos – Tallner Alm (Schenna)',
+      distance: 6.7,
+      elevation: 350,
+      hours: '2.5',
+      routeShape: 'lollipop',
+      routeShapeNote: 'A loop on a stem: from Klammeben, the top station of the Hirzer cable car, on path 40 to the Hirzer hut, level along the European path E5 to the Hinteregg and Mahd alms, gently up to the Rotmoos basin, back by the Tallner Alm to the Hirzer hut and down to Klammeben.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Hirzer cable car up from Saltaus and start at its top station, Klammeben, the board’s start.",
+        "sequence": "Take path 40 to the Hirzer hut. From the hut follow the level European long-distance path E5 to the Hinteregg and Mahd alms. A little further on the path climbs gently to the alpine basin of Rotmoos. From Rotmoos head back to the Tallner Alm, then turn right to the Hirzer hut and return on path 40 to Klammeben.",
+        "switches": "Two changes: at the Hirzer hut onto the E5 towards the Hinteregg and Mahd alms; on the way back at the Tallner Alm right to the Hirzer hut and path 40.",
+        "sources": [
+          {
+            "label": "Schenna tourist board, Passeggiata alpestre ai piedi del monte Hirzer (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16571460",
+            "authority": "Schenna tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The E5 path at the Mahd Alm below the Hirzer, in June (Lutz Lange on Wikimedia Commons, CC0), 4 m from the line.',
+        route: 'Official loop 6.7 km from Klammeben, the top station of the Hirzer cable car, as the Schenna tourist board publishes it; the stored line is drawn on 35 OSM ways along the board’s published line, 6.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 40 and the E5: from Klammeben path 40 to the Hirzer hut, the E5 to the Hinteregg and Mahd alms and up to Rotmoos, back by the Tallner Alm to the Hirzer hut and on path 40 to Klammeben.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 6.7 km, 350 m up and 350 m down, 2:30 h, highest point 2,132 m, lowest 1,961 m (Schenna tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Schenna tourist board, Passeggiata alpestre ai piedi del monte Hirzer (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Schenna / Comune di Scena, dog regulation (Gemeinderat Nr. 33, 31.08.2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and school yards or on farmed land (meadows, fields) during the growing season; no bathing in the fountains of the centre',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (35 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cattle graze the alpine pastures in summer: keep your dog on a short lead, give cows a wide berth and let go of the lead if cattle charge', 'At about 2,000–2,130 m the weather turns fast: check the forecast and turn back in a storm', 'Busy with walkers on the E5 in summer: keep your dog close'],
+      terrainType: 'Alpine paths and alm tracks',
+      shadeDescription: 'Mostly open: about a quarter runs past mapped larch and spruce near the alms; the pastures towards Rotmoos are above the trees.',
+      terrainDescription: 'An alpine loop at 1,960–2,130 m below the Hirzer above Schenna, on level and gently climbing paths past the Hirzer hut and the Hinteregg, Mahd and Tallner alms to the Rotmoos basin.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Schenna requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season. On the alpine pastures cattle graze freely in summer, so keep your dog on a short lead. On the cable car dogs ride on a lead and muzzled.',
+      tips: 'Take the Hirzer cable car up from Saltaus: a 6.7 km loop back to Klammeben, 350 m up and down, about two and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. No mapped drinking water: bring water; the Hirzer hut and the alms serve food in summer.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passeggiata alpestre ai piedi del monte Hirzer (Schenna tourist board)', url: 'https://www.outdooractive.com/it/r/16571460' },
+        { label: 'Gemeinde Schenna, dog regulation (2010)', url: 'https://www.gemeinde.schenna.bz.it/system/web/GetDocument.ashx?cts=1715263604&fileId=1020049' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.738282, lng: 11.247224, label: 'Klammeben, top station of the Hirzer cable car, the board’s start' },
+      desc: 'An alpine loop below the Hirzer from the Hirzer cable car, past the Hirzer hut along the E5 to the Hinteregg and Mahd alms and the Rotmoos basin, and back by the Tallner Alm. The board lists 6.7 km, 350 m up and 350 m down, 2 h 30.'
+    },
     'savoie-areches-beaufort-la-grande-berge': {
       // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 2, Beaufortain).
       // “Arêches / Beaufort – La Grande Berge”, published by the Communauté d’agglomération Arlysère, drawn on 23 OSM ways along the line it publishes

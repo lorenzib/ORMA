@@ -179,11 +179,14 @@ describe('the existing-site verification boundary',()=>{
     // Oberkirn to Verdins, Vöran to Hafling and the Bloseggweg loop from Schenna.
     // Then 435 and 433 with three Beaufortain – Val d’Arly walks: the Lac de
     // Saint-Guérin shore path, the Chalets Brûlés track and the Bel’Avoine road.
-    // Then 437 and 435 with two more Beaufortain walks: La Grande Berge from the
+    // Then 440 and 438 with five more Meran-area walks: the Meraner Höhenweg west
+    // from the Texelbahn, the Sonnenrundweg at Stuls, the Unterstell farms loop,
+    // Forst and the Marlinger Waalweg from Algund, and the Hirzer alms loop.
+    // Then 442 and 440 with two more Beaufortain walks: La Grande Berge from the
     // Plan de la Lai and the Croix du Berger from the Lac des Fées.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(437);
-    expect(currentSiteTrails(catalogue)).toHaveLength(435);
+    expect(catalogue).toHaveLength(442);
+    expect(currentSiteTrails(catalogue)).toHaveLength(440);
   });
 
   test('requires the artwork the public trail page needs',()=>{
