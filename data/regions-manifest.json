@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-03T16:07:09.623Z",
+  "generatedAt": "2026-11-03T20:49:56.180Z",
   "regions": {
     "dolomites": {
       "trailCount": 326,
-      "trails": "data/regions/dolomites-trails.js?v=2127136d4569",
+      "trails": "data/regions/dolomites-trails.js?v=551012be962e",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -401,7 +401,7 @@
     },
     "lombardy": {
       "trailCount": 9,
-      "trails": "data/regions/lombardy-trails.js?v=54e0f82a5a21",
+      "trails": "data/regions/lombardy-trails.js?v=cdf98334726d",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=fbf7190b5c12",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
@@ -495,9 +495,18 @@
       "optional": []
     },
     "switzerland": {
-      "trailCount": 0,
-      "trails": "data/regions/switzerland-trails.js?v=27b1da905e0f",
-      "details": {},
+      "trailCount": 8,
+      "trails": "data/regions/switzerland-trails.js?v=a09dbf72cc6c",
+      "details": {
+        "engadin-around-lake-st-moritz": "data/trail-details/engadin-around-lake-st-moritz.js?v=ac3c479365c2",
+        "engadin-sils-chaste-peninsula-sils": "data/trail-details/engadin-sils-chaste-peninsula-sils.js?v=1dcf61c59018",
+        "engadin-diavolezza-sass-queder": "data/trail-details/engadin-diavolezza-sass-queder.js?v=23945852f595",
+        "engadin-morteratsch-glacier-route": "data/trail-details/engadin-morteratsch-glacier-route.js?v=0ca8e437827f",
+        "engadin-corvatsch-murtel-fuorcla-surlej": "data/trail-details/engadin-corvatsch-murtel-fuorcla-surlej.js?v=8b21053fea45",
+        "engadin-surlej-waterfall-lake-silvaplana-surlej": "data/trail-details/engadin-surlej-waterfall-lake-silvaplana-surlej.js?v=f7b6baf88b79",
+        "engadin-nature-trail-la-senda-samedan-smartrail": "data/trail-details/engadin-nature-trail-la-senda-samedan-smartrail.js?v=4dca6db88cb4",
+        "engadin-chapella-val-susauna": "data/trail-details/engadin-chapella-val-susauna.js?v=b6d919991cfb"
+      },
       "water": "data/regions/switzerland-water.geojson",
       "hutsBars": "data/regions/switzerland-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
@@ -936,7 +945,15 @@
     "weissensee-nordic-8-naggler-alm": "tyrol",
     "weissensee-techendorf-tschabitscher-kreuzwirt": "tyrol",
     "weissensee-ortsee-ronacherfels": "tyrol",
-    "gailtal-auernig-hoehenweg": "tyrol"
+    "gailtal-auernig-hoehenweg": "tyrol",
+    "engadin-around-lake-st-moritz": "switzerland",
+    "engadin-sils-chaste-peninsula-sils": "switzerland",
+    "engadin-diavolezza-sass-queder": "switzerland",
+    "engadin-morteratsch-glacier-route": "switzerland",
+    "engadin-corvatsch-murtel-fuorcla-surlej": "switzerland",
+    "engadin-surlej-waterfall-lake-silvaplana-surlej": "switzerland",
+    "engadin-nature-trail-la-senda-samedan-smartrail": "switzerland",
+    "engadin-chapella-val-susauna": "switzerland"
   },
   "trailSlug": {
     "alpe-siusi": "alpe-di-siusi-meadow-loop",
@@ -1370,6 +1387,14 @@
     "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": "oberkirn-to-verdins-via-prenn",
     "meran-facile-escursione-da-verano-ad-avelengo": "voeran-to-hafling",
     "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": "bloseggweg-loop-schenna",
+    "engadin-around-lake-st-moritz": "lake-st-moritz-shore-loop",
+    "engadin-sils-chaste-peninsula-sils": "chaste-peninsula-loop-sils",
+    "engadin-diavolezza-sass-queder": "sass-queder-from-diavolezza",
+    "engadin-morteratsch-glacier-route": "morteratsch-glacier-path",
+    "engadin-corvatsch-murtel-fuorcla-surlej": "fuorcla-surlej-from-murtel",
+    "engadin-surlej-waterfall-lake-silvaplana-surlej": "surlej-waterfall-lake-silvaplana-loop",
+    "engadin-nature-trail-la-senda-samedan-smartrail": "la-senda-nature-trail-samedan",
+    "engadin-chapella-val-susauna": "val-susauna-from-chapella",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1804,6 +1829,14 @@
     "oberkirn-to-verdins-via-prenn": "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto",
     "voeran-to-hafling": "meran-facile-escursione-da-verano-ad-avelengo",
     "bloseggweg-loop-schenna": "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg",
+    "lake-st-moritz-shore-loop": "engadin-around-lake-st-moritz",
+    "chaste-peninsula-loop-sils": "engadin-sils-chaste-peninsula-sils",
+    "sass-queder-from-diavolezza": "engadin-diavolezza-sass-queder",
+    "morteratsch-glacier-path": "engadin-morteratsch-glacier-route",
+    "fuorcla-surlej-from-murtel": "engadin-corvatsch-murtel-fuorcla-surlej",
+    "surlej-waterfall-lake-silvaplana-loop": "engadin-surlej-waterfall-lake-silvaplana-surlej",
+    "la-senda-nature-trail-samedan": "engadin-nature-trail-la-senda-samedan-smartrail",
+    "val-susauna-from-chapella": "engadin-chapella-val-susauna",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

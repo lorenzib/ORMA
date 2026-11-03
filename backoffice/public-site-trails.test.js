@@ -177,9 +177,12 @@ describe('the existing-site verification boundary',()=>{
     // Count’s path above Steinhaus and Lake Neves to the Ponte di Ghiaccio hut.
     // Then 432 and 430 with four Meran-area walks: the Brandis-Waalweg in Lana,
     // Oberkirn to Verdins, Vöran to Hafling and the Bloseggweg loop from Schenna.
+    // Then 440 and 438 with eight Engadin walks, the first in Switzerland: Lake
+    // St. Moritz, the Chastè peninsula, the Morteratsch glacier path, the Surlej
+    // waterfall loop, Fuorcla Surlej, Sass Queder, La Senda and Val Susauna.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(432);
-    expect(currentSiteTrails(catalogue)).toHaveLength(430);
+    expect(catalogue).toHaveLength(440);
+    expect(currentSiteTrails(catalogue)).toHaveLength(438);
   });
 
   test('requires the artwork the public trail page needs',()=>{
