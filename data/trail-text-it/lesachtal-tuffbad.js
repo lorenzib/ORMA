@@ -1,0 +1,11 @@
+// lesachtal-tuffbad in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A small loop through the woods above the Tuffbad, an old spa inn at the head of a side valley above St. Lorenzen im Lesachtal. The board lists 3 km and 133 m of ascent.": "Un piccolo anello nel bosco sopra il Tuffbad, un'antica locanda termale in testa a una valle laterale sopra St. Lorenzen im Lesachtal. La scheda ufficiale indica 3 km e 133 m di dislivello in salita.",
+  "Start at the car park below the Tuffbad, above St. Lorenzen im Lesachtal: 3 km and about 133 m of climbing, just under an hour. Carinthian law asks for a lead at all times in open country, and cattle may be on the alpine meadows, so keep your dog on a short lead throughout. Carry a muzzle for buses.": "Parti dal parcheggio sotto il Tuffbad, sopra St. Lorenzen im Lesachtal: 3 km e circa 133 m di salita, poco meno di un'ora. La legge della Carinzia chiede il guinzaglio in ogni momento in aperta campagna, e sui pascoli alpini può esserci bestiame, quindi tieni il cane al guinzaglio corto per tutto il percorso. Porta la museruola al seguito per gli autobus.",
+  "Alpine tracks and the forest road are open to farm and forestry vehicles": "Le strade alpine e la strada forestale sono aperte ai mezzi agricoli e forestali",
+  "Cattle may graze the alpine meadows in summer: short lead, give the herd room": "D'estate il bestiame può pascolare sui prati alpini: guinzaglio corto, lascia spazio alla mandria",
+  "Alpine tracks and a forest road": "Strade alpine e una strada forestale",
+  "the car park below the Tuffbad, above St. Lorenzen im Lesachtal, the board’s start": "Il parcheggio sotto il Tuffbad, sopra St. Lorenzen im Lesachtal, la partenza indicata dalla scheda ufficiale",
+  "A large wooden alpine inn with balconies and parasols beside a lane, below grey rocky peaks, at the Tuffbad in the Lesachtal in late spring": "Una grande locanda alpina in legno con balconi e ombrelloni accanto a una stradina, sotto grigie cime rocciose, al Tuffbad nella Lesachtal a fine primavera",
+  "About half on the forest road through the woods; the alpine tracks by the Tuffbad are open.": "Circa metà sulla strada forestale nel bosco; le strade alpine vicino al Tuffbad sono aperte."
+});

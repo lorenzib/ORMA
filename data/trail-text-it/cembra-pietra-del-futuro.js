@@ -1,0 +1,12 @@
+// cembra-pietra-del-futuro in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short walk from the porphyry village of Lases down to its lake and along the shore, with an audio guide recorded by the village schoolchildren. The APT lists 2.7 km and 61 m of ascent, one way.": "Una breve camminata dal paese del porfido di Lases giù fino al lago e lungo la riva, con un'audioguida registrata dagli alunni della scuola del paese. L'APT indica 2,7 km e 61 m di dislivello in salita, solo andata.",
+  "Start in the centre of Lases: 2.7 km one way, about 60 m of climbing, under an hour. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried; the lake is a nature reserve, so never let your dog roam. A few steps on the lake path. Fountains in Lases.": "Partenza dal centro di Lases: 2,7 km solo andata, circa 60 m di salita, meno di un'ora. Vale la norma italiana: guinzaglio di al massimo 1,5 m e museruola al seguito; il lago è una riserva naturale, quindi non lasciare mai il cane libero. Qualche gradino sul sentiero del lago. Fontane a Lases.",
+  "Village streets with cars at the start": "Vie del paese con auto alla partenza",
+  "Short flights of stone and wooden steps on the lake path": "Brevi rampe di gradini in pietra e in legno sul sentiero del lago",
+  "Fishing and nesting areas round the lake: keep your dog on the lead and out of the reeds": "Zone di pesca e di nidificazione intorno al lago: tieni il cane al guinzaglio e fuori dal canneto",
+  "Village lanes, a lakeside path with some steps, paved paths": "Stradine di paese, un sentiero lungo il lago con qualche gradino, sentieri pavimentati",
+  "Lases village, the APT’s start": "Paese di Lases, la partenza indicata dall'APT",
+  "The Lago di Lases seen from a grassy shore between tall trees, a red pedal boat on the beach and porphyry quarry cliffs above the far shore under a summer sky": "Il Lago di Lases visto da una riva erbosa tra alti alberi, un pedalò rosso sulla spiaggia e pareti di cava di porfido sopra la sponda opposta sotto un cielo estivo",
+  "About half the way is shaded by the woods on the lake shore.": "Circa metà del percorso è all'ombra dei boschi sulla riva del lago."
+});

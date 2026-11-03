@@ -1,0 +1,12 @@
+// trecime-circolare-maistatt in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A gentle loop from Niederdorf across the Maistatt meadows to a warm spring and back through the forest. The board lists 4.8 km and 133 m of ascent.": "Un anello tranquillo da Niederdorf attraverso i prati di Maistatt fino a una sorgente calda e ritorno nel bosco. La scheda ufficiale indica 4,8 km e 133 m di dislivello in salita.",
+  "Start at the primary school in Niederdorf: 4.8 km, about 130 m of climbing, under an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Niederdorf requires, and keep off the meadows. Pass the cow pasture quietly.": "Parti dalla scuola elementare di Niederdorf: 4,8 km, circa 130 m di salita, meno di un'ora e mezza. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito, come richiede Niederdorf, e stai fuori dai prati. Passa con calma accanto al pascolo delle mucche.",
+  "A fenced cow pasture on the Maistatt road: keep your dog close past the cattle": "Un pascolo recintato con mucche sulla strada di Maistatt: tieni il cane vicino passando accanto al bestiame",
+  "Two railway underpasses and village streets": "Due sottopassi ferroviari e strade del paese",
+  "Farmed meadows either side: Niederdorf bans dogs from farmed land from April to October": "Prati coltivati su entrambi i lati: Niederdorf vieta ai cani i terreni coltivati da aprile a ottobre",
+  "Village streets, paved farm roads and forest paths": "Strade del paese, strade interpoderali asfaltate e sentieri nel bosco",
+  "Primary school, Niederdorf, the board’s start": "Scuola elementare, Niederdorf, la partenza indicata dalla scheda ufficiale",
+  "The yellow Holy Trinity church in Niederdorf with its slender bell tower beside the fast-flowing Rienz, a wooden fence and bushes along the bank, wooded hills under grey cloud": "La chiesa gialla della Santissima Trinità a Niederdorf con il campanile slanciato accanto alla Rienz che scorre veloce, una staccionata di legno e cespugli lungo la riva, colline boscose sotto nuvole grigie",
+  "Partly shaded: the meadows and village are open; the stretch from the Maistatt spring to the Reahwinkl road is in forest.": "In parte all'ombra: i prati e il paese sono aperti; il tratto dalla sorgente di Maistatt alla strada di Reahwinkl è nel bosco."
+});

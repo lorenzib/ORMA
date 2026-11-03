@@ -10,6 +10,13 @@
 (function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
+
   var returning = document.getElementById('returningCustomerHomepage');
   if(!returning) return;
 
@@ -38,7 +45,7 @@
       grab.className = 'mhome-grab';
       grab.setAttribute('role', 'button');
       grab.setAttribute('tabindex', '0');
-      grab.setAttribute('aria-label', 'Hide or show the trail list');
+      grab.setAttribute('aria-label', tx('Hide or show the trail list'));
       grab.innerHTML = '<span></span>';
       list.insertBefore(grab, list.firstChild);
       wireDrag(grab);

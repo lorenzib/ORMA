@@ -5,6 +5,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   // One forecast for the area on screen, not one per trail: the discovery list
   // holds well over a hundred routes and nobody needs a hundred requests to be
   // told it is hot.
@@ -135,14 +142,16 @@
       if(!conditions || conditions.status !== 'known') return null;
       const future = !!area.future;
       if(conditions.heatRisk === 'high') return { tone:'high', detail:future
-        ? 'Hot in the selected morning window. Prefer shade and water, or choose another day.'
-        : 'Hot now. Prefer shade and water, or wait for the evening.' };
+        ? tx('Hot in the selected morning window. Prefer shade and water, or choose another day.')
+        : tx('Hot now. Prefer shade and water, or wait for the evening.') };
       if(conditions.heatRisk === 'moderate'){
         return { tone:'moderate', detail: conditions.hotFromLabel
-          ? `${future ? 'Cooler early' : 'Cooler now'}, heat rising from ${conditions.hotFromLabel}.`
-          : 'Warm enough to plan around. Prefer shade and water.' };
+          ? (future
+            ? tx('Cooler early, heat rising from {time}.', { time:conditions.hotFromLabel })
+            : tx('Cooler now, heat rising from {time}.', { time:conditions.hotFromLabel }))
+          : tx('Warm enough to plan around. Prefer shade and water.') };
       }
-      return { tone:'low', detail:future ? 'Cool enough in the selected morning window.' : 'Cool enough today across this area.' };
+      return { tone:'low', detail:future ? tx('Cool enough in the selected morning window.') : tx('Cool enough today across this area.') };
     }
 
     // Compare holds at most three trails and they can sit in different regions,

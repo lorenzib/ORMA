@@ -1,0 +1,12 @@
+// campiglio-trekking-al-rifugio-segantini in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A high loop at the head of the Val Nambrone up a panoramic ridge to the Rifugio Segantini, below the walls of the Presanella. The APT lists 4.9 km and 397 m of ascent.": "Un anello in quota in testa alla Val Nambrone, su per una cresta panoramica fino al Rifugio Segantini, sotto le pareti della Presanella. L'APT indica 4,9 km e 397 m di dislivello in salita.",
+  "Start at the Val d’Amola car park: 4.9 km and about 400 m of climbing, two hours. Keep your dog on a lead and carry a muzzle. The APT recommends it for children from about ten: the path is rocky but not difficult.": "Partenza dal parcheggio della Val d’Amola: 4,9 km e circa 400 m di salita, due ore. Tieni il cane al guinzaglio e porta la museruola al seguito. L'APT lo consiglia ai bambini dai dieci anni circa: il sentiero è roccioso ma non difficile.",
+  "Rocky mountain path and granite slabs above 2,000 m": "Sentiero di montagna roccioso e placche di granito oltre i 2.000 m",
+  "Wooden bridge over the fast Sarca d’Amola": "Ponte di legno sull'impetuoso Sarca d’Amola",
+  "No shelter from bad weather on the ridge": "Nessun riparo dal maltempo sulla cresta",
+  "Rocky mountain paths": "Sentieri di montagna rocciosi",
+  "Val d’Amola car park, the APT’s start": "Parcheggio della Val d’Amola, la partenza indicata dall'APT",
+  "Smooth granite slabs and boulders on an open high plateau, the red-roofed Rifugio Segantini in the distance under low clouds": "Lisce placche di granito e massi su un altopiano aperto, il Rifugio Segantini dal tetto rosso in lontananza sotto nuvole basse",
+  "Mostly open: about 0% runs under trees, all of it above the trees.": "Per lo più aperto: circa lo 0% passa sotto gli alberi, tutto il percorso è sopra il bosco."
+});

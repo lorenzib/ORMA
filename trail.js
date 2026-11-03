@@ -1,3 +1,17 @@
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
+// A trail's own words (description, hazards, directions…) in the reader's
+// language, from data/trail-text-it. The record itself stays English.
+function trailWords(text){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  return i18n && typeof i18n.trailText === 'function' ? i18n.trailText(text) : text;
+}
+
 function safetyLabel(level){
   if(level === 'low-risk') return t('safety.low');
   if(level === 'moderate') return t('safety.moderate');
@@ -178,7 +192,7 @@ function initLoopComposer(map, t){
   }
 
   function pointLabel(index){
-    return index === 0 ? 'Start' : `Point ${index + 1}`;
+    return index === 0 ? tx('Start') : tx('Point {n}', { n: index + 1 });
   }
 
   function renderPointList(){
@@ -191,7 +205,7 @@ function initLoopComposer(map, t){
       remove.type = 'button';
       remove.textContent = '×';
       remove.disabled = busy;
-      remove.setAttribute('aria-label', `Remove ${pointLabel(index).toLowerCase()}`);
+      remove.setAttribute('aria-label', index === 0 ? tx('Remove start') : tx('Remove point {n}', { n: index + 1 }));
       remove.addEventListener('click', () => removePoint(index));
       item.append(remove);
       pointList.append(item);
@@ -227,12 +241,12 @@ function initLoopComposer(map, t){
       preview = null;
       closed = false;
       drawRoute([]);
-      status.textContent = points.length ? 'Tap the map to add a must-pass point.' : 'Tap the map to choose your start.';
+      status.textContent = points.length ? tx('Tap the map to add a must-pass point.') : tx('Tap the map to choose your start.');
       render();
       return;
     }
     busy = true;
-    status.textContent = closeRequested ? 'Closing the loop on mapped walking paths…' : 'Connecting the selected points…';
+    status.textContent = closeRequested ? tx('Closing the loop on mapped walking paths…') : tx('Connecting the selected points…');
     render();
     const graph = await loadGraph();
     if(version !== calculationVersion) return;
@@ -252,8 +266,8 @@ function initLoopComposer(map, t){
       closed = false;
       drawRoute([]);
       status.textContent = graph
-        ? 'These points cannot form a bounded mapped route. Remove a point and choose a closer path.'
-        : 'ORMA’s walking graph is unavailable here right now. Your points have been kept.';
+        ? tx('These points cannot form a bounded mapped route. Remove a point and choose a closer path.')
+        : tx('ORMA’s walking graph is unavailable here right now. Your points have been kept.');
       render();
       return;
     }
@@ -261,10 +275,10 @@ function initLoopComposer(map, t){
     closed = closeRequested;
     drawRoute(preview.path);
     status.textContent = closed
-      ? 'Loop ready. Review mapped access, signs, and current conditions before saving.'
+      ? tx('Loop ready. Review mapped access, signs, and current conditions before saving.')
       : points.length < MAX_POINTS
-        ? 'Mapped preview ready. Add another must-pass point.'
-        : 'Mapped preview ready. Close the loop when the shape looks right.';
+        ? tx('Mapped preview ready. Add another must-pass point.')
+        : tx('Mapped preview ready. Close the loop when the shape looks right.');
     render();
     if(closed) fitPreview();
   }
@@ -283,7 +297,7 @@ function initLoopComposer(map, t){
     points.splice(index, 1);
     closed = false;
     preview = null;
-    saveButton.textContent = 'Save loop';
+    saveButton.textContent = tx('Save loop');
     drawMarkers();
     recalculate(false);
   }
@@ -297,8 +311,8 @@ function initLoopComposer(map, t){
     markers.forEach(marker => marker.remove());
     markers = [];
     drawRoute([]);
-    status.textContent = 'Tap the map to choose your start.';
-    saveButton.textContent = 'Save loop';
+    status.textContent = tx('Tap the map to choose your start.');
+    saveButton.textContent = tx('Save loop');
     render();
   }
 
@@ -331,11 +345,11 @@ function initLoopComposer(map, t){
       const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
       const records = Array.isArray(existing) ? existing : [];
       localStorage.setItem(STORAGE_KEY, JSON.stringify([record, ...records].slice(0, 20)));
-      saveButton.textContent = 'Saved';
+      saveButton.textContent = tx('Saved');
       saveButton.disabled = true;
-      status.textContent = 'Loop saved on this device. Review local signs and conditions before walking.';
+      status.textContent = tx('Loop saved on this device. Review local signs and conditions before walking.');
     }catch(error){
-      status.textContent = 'This browser could not save the loop. The mapped preview is still available.';
+      status.textContent = tx('This browser could not save the loop. The mapped preview is still available.');
     }
   }
 
@@ -349,7 +363,7 @@ function initLoopComposer(map, t){
     if(closed){
       closed = false;
       preview = null;
-      saveButton.textContent = 'Save loop';
+      saveButton.textContent = tx('Save loop');
       recalculate(false);
       return;
     }
@@ -375,7 +389,7 @@ function initNearestTrailDirections(map, t){
   if(!button || !panel || !status || !Array.isArray(t.path) || !t.path.length ||
      !window.DoloPawsTrailAccess || !window.DoloPawsFootpathRouter) return;
 
-  const defaultLabel = 'Get directions to trail';
+  const defaultLabel = tx('Get directions to trail');
   const coverage = window.DoloPawsTrailRoutingCoverage;
   const coverageEntry = coverage && coverage.trails ? coverage.trails[t.id] : null;
   const coverageEntries = coverage && coverage.trails
@@ -414,10 +428,9 @@ function initNearestTrailDirections(map, t){
     if(!stepsWrap || !stepsList || !Array.isArray(instructions) || !instructions.length) return;
     instructions.slice(0, 12).forEach(step => {
       const item = document.createElement('li');
-      const distance = step.distanceM > 0
-        ? ` for ${formatApproachDistance(step.distanceM / 1000)}`
-        : '';
-      item.textContent = `${step.action}${distance}`;
+      item.textContent = step.distanceM > 0
+        ? tx('{action} for {distance}', { action: step.action, distance: formatApproachDistance(step.distanceM / 1000) })
+        : step.action;
       stepsList.appendChild(item);
     });
     stepsWrap.hidden = false;
@@ -519,12 +532,12 @@ function initNearestTrailDirections(map, t){
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');
     clearSteps();
-    setPanelMessage('Connecting your location to the selected mapped route…');
+    setPanelMessage(tx('Connecting your location to the selected mapped route…'));
     try{
       const origin = await window.DoloPawsTrailAccess.currentPosition(navigator);
       if(Number.isFinite(origin.accuracyM) && origin.accuracyM > window.DoloPawsTrailAccess.MAX_GPS_ACCURACY_M){
-        setPanelMessage(`Your location is only accurate to about ${Math.round(origin.accuracyM)} m. Move into a clearer area and try again.`);
-        setButtonLabel('Try again');
+        setPanelMessage(tx('Your location is only accurate to about {m} m. Move into a clearer area and try again.', { m: Math.round(origin.accuracyM) }));
+        setButtonLabel(tx('Try again'));
         return;
       }
       const entries = routingEntriesForPoint(target, origin);
@@ -556,22 +569,23 @@ function initNearestTrailDirections(map, t){
         showPlan(plan, true);
         renderSteps(plan.instructions);
         const targetSnap = plan.targetSnapDistanceM > 20
-          ? ` The selected point was snapped ${formatApproachDistance(plan.targetSnapDistanceM / 1000)} to a connected path.`
+          ? ' ' + tx('The selected point was snapped {distance} to a connected path.', { distance: formatApproachDistance(plan.targetSnapDistanceM / 1000) })
           : '';
-        setPanelMessage(`Mapped walking route · ${formatApproachDistance(plan.distanceKm)} to the selected route point.${targetSnap} Check local signs and temporary closures.`);
+        setPanelMessage(tx('Mapped walking route · {distance} to the selected route point.', { distance: formatApproachDistance(plan.distanceKm) })
+          + targetSnap + ' ' + tx('Check local signs and temporary closures.'));
         setButtonLabel(defaultLabel);
         return;
       }
       if(plan.mode === 'external-point' && plan.allowed){
         showPlan(plan, false);
-        setPanelMessage('This selected point is not connected to ORMA’s current walking graph. Your maps app can calculate the approach instead.');
-        setButtonLabel('Open directions to selected point');
+        setPanelMessage(tx('This selected point is not connected to ORMA’s current walking graph. Your maps app can calculate the approach instead.'));
+        setButtonLabel(tx('Open directions to selected point'));
         return;
       }
-      setPanelMessage('That point is outside ORMA’s current walking coverage. Choose a closer mapped route point.');
+      setPanelMessage(tx('That point is outside ORMA’s current walking coverage. Choose a closer mapped route point.'));
       setButtonLabel(defaultLabel);
     }catch(error){
-      setPanelMessage('We could not calculate a route to that point. Check your location signal and try again.');
+      setPanelMessage(tx('We could not calculate a route to that point. Check your location signal and try again.'));
       setButtonLabel(defaultLabel);
     }finally{
       button.disabled = false;
@@ -587,9 +601,9 @@ function initNearestTrailDirections(map, t){
 
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');
-    setButtonLabel('Calculating directions…');
+    setButtonLabel(tx('Calculating directions…'));
     clearSteps();
-    setPanelMessage('Checking your location against mapped walking paths…');
+    setPanelMessage(tx('Checking your location against mapped walking paths…'));
     try{
       const graph = await loadRoutingGraph();
       const plan = await window.DoloPawsTrailAccess.planTrailEntry(
@@ -601,8 +615,8 @@ function initNearestTrailDirections(map, t){
         { maxRouteDistanceM:5000, maxFallbackDistanceKm:5 }
       );
       if(plan.mode === 'unreliable-location'){
-        setPanelMessage(`Your location is only accurate to about ${Math.round(plan.accuracyM)} m. Move into a clearer area and try again.`);
-        setButtonLabel('Try again');
+        setPanelMessage(tx('Your location is only accurate to about {m} m. Move into a clearer area and try again.', { m: Math.round(plan.accuracyM) }));
+        setButtonLabel(tx('Try again'));
         return;
       }
       if(plan.mode === 'mapped-footpath'){
@@ -610,10 +624,11 @@ function initNearestTrailDirections(map, t){
         showPlan(plan, true);
         renderSteps(plan.instructions);
         const snapNote = plan.snapDistanceM > 20
-          ? ` Your GPS is about ${formatApproachDistance(plan.snapDistanceM / 1000)} from the mapped path.`
+          ? ' ' + tx('Your GPS is about {distance} from the mapped path.', { distance: formatApproachDistance(plan.snapDistanceM / 1000) })
           : '';
-        setPanelMessage(`Mapped footpath route · ${formatApproachDistance(plan.distanceKm)} to the trail.${snapNote} Check local signs and temporary closures.`);
-        setButtonLabel('Refresh walking route');
+        setPanelMessage(tx('Mapped footpath route · {distance} to the trail.', { distance: formatApproachDistance(plan.distanceKm) })
+          + snapNote + ' ' + tx('Check local signs and temporary closures.'));
+        setButtonLabel(tx('Refresh walking route'));
         return;
       }
       if(plan.mode === 'nearest-route'){
@@ -622,32 +637,36 @@ function initNearestTrailDirections(map, t){
         const distanceM = plan.distanceKm * 1000;
         const overlapsFix = Number.isFinite(plan.accuracyM) && distanceM <= plan.accuracyM;
         setPanelMessage(overlapsFix
-          ? 'Your location overlaps this trail. Open your maps app for the nearest mapped point, and check local signs before joining.'
-          : `The nearest point on this trail is about ${formatApproachDistance(plan.distanceKm)} away. Your maps app will calculate the walk; check local signs and access before joining.`);
-        setButtonLabel('Open directions to nearest trail point');
+          ? tx('Your location overlaps this trail. Open your maps app for the nearest mapped point, and check local signs before joining.')
+          : tx('The nearest point on this trail is about {distance} away. Your maps app will calculate the walk; check local signs and access before joining.', { distance: formatApproachDistance(plan.distanceKm) }));
+        setButtonLabel(tx('Open directions to nearest trail point'));
         return;
       }
       if(plan.mode === 'recommended-start' && plan.allowed){
         activePlan = plan;
         showPlan(plan, false);
-        const startType = plan.targetKind === 'mapped-start' ? 'listed route start' : 'recommended start';
-        setPanelMessage(`ORMA does not yet have a connected footpath network here. The ${startType} is about ${formatApproachDistance(plan.distanceKm)} away as the crow flies; your maps app will calculate the actual walk.`);
-        setButtonLabel('Open directions to start');
+        const distance = formatApproachDistance(plan.distanceKm);
+        setPanelMessage(plan.targetKind === 'mapped-start'
+          ? tx('ORMA does not yet have a connected footpath network here. The listed route start is about {distance} away as the crow flies; your maps app will calculate the actual walk.', { distance })
+          : tx('ORMA does not yet have a connected footpath network here. The recommended start is about {distance} away as the crow flies; your maps app will calculate the actual walk.', { distance }));
+        setButtonLabel(tx('Open directions to start'));
         return;
       }
       if(plan.mode === 'recommended-start'){
-        const startType = plan.targetKind === 'mapped-start' ? 'listed route start' : 'recommended start';
-        setPanelMessage(`The ${startType} is about ${formatApproachDistance(plan.distanceKm)} away. Walking directions are available when you are within 5 km.`);
-        setButtonLabel('Try again');
+        const distance = formatApproachDistance(plan.distanceKm);
+        setPanelMessage(plan.targetKind === 'mapped-start'
+          ? tx('The listed route start is about {distance} away. Walking directions are available when you are within 5 km.', { distance })
+          : tx('The recommended start is about {distance} away. Walking directions are available when you are within 5 km.', { distance }));
+        setButtonLabel(tx('Try again'));
         return;
       }
-      setPanelMessage('ORMA cannot identify a reliable access point for this trail yet. Use the recommended starting-point information below the map.');
+      setPanelMessage(tx('ORMA cannot identify a reliable access point for this trail yet. Use the recommended starting-point information below the map.'));
       setButtonLabel(defaultLabel);
     }catch(error){
       const denied = error && (error.code === 1 || error.message === 'geolocation-unavailable');
       setPanelMessage(denied
-        ? 'Allow location access to find the nearest point on this trail.'
-        : 'We could not get a reliable location. Check your signal and try again.');
+        ? tx('Allow location access to find the nearest point on this trail.')
+        : tx('We could not get a reliable location. Check your signal and try again.'));
       setButtonLabel(defaultLabel);
     }finally{
       button.disabled = false;
@@ -1214,6 +1233,8 @@ const itin = { trail: null, items: [], cumKm: null };
 // templates on the fly in Italian mode (same approach as imported descs).
 function trLabel(label){
   if(!label || (window.DoloPawsI18n && window.DoloPawsI18n.lang) !== 'it') return label;
+  const own = trailWords(label);
+  if(own !== label) return own;
   const RULES = [
     [/^Start here, main parking area at (.+)$/, 'Parti qui, parcheggio principale a $1'],
     [/^Start here, main lake access & parking, by (.+)$/, 'Parti qui, accesso principale al lago e parcheggio, presso $1'],
@@ -1303,7 +1324,7 @@ function buildItinerary(t){
 
   // 4. Decision points, where the route switches numbered trails.
   (Array.isArray(t.decisionPoints) ? t.decisionPoints : []).forEach(d => {
-    itinAdd('switch', d.km, `${itinKmLabel(d.km)}, ${itinEsc(d.instruction)}`);
+    itinAdd('switch', d.km, `${itinKmLabel(d.km)}, ${itinEsc(trailWords(d.instruction))}`);
   });
 
   // 5. Closing step.
@@ -1496,8 +1517,8 @@ function init(){
           <h1>${window.t('trail.notFound')}</h1>
           <p style="margin:14px 0 24px;color:var(--ink-soft);">${window.t('trail.notFoundSub')}</p>
           <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
-            <a class="auth-submit" href="browse-trails.html" style="display:inline-block;width:auto;padding:11px 22px;text-decoration:none;">Browse all trails</a>
-            <a class="fav-btn" href="/" style="display:inline-block;padding:11px 22px;text-decoration:none;">Go to homepage</a>
+            <a class="auth-submit" href="browse-trails.html" style="display:inline-block;width:auto;padding:11px 22px;text-decoration:none;">${tx('Browse all trails')}</a>
+            <a class="fav-btn" href="/" style="display:inline-block;padding:11px 22px;text-decoration:none;">${tx('Go to homepage')}</a>
           </div>
         </div>`;
     }
@@ -1523,11 +1544,11 @@ function renderTrail(t){
   const returnTarget = safeTrailReturn(trailReturnTarget);
   if(breadcrumb && returnTarget){
     breadcrumb.href = returnTarget;
-    breadcrumb.textContent = returnTarget.startsWith('saved.html') ? '← Back to saved trails'
-      : returnTarget.startsWith('journal.html') ? '← Back to journal'
-      : returnTarget.startsWith('compare.html') ? '← Back to comparison'
-      : returnTarget.startsWith('/') ? '← Back to your matches'
-      : '← Back to trail results';
+    breadcrumb.textContent = '← ' + (returnTarget.startsWith('saved.html') ? tx('Back to saved trails')
+      : returnTarget.startsWith('journal.html') ? tx('Back to journal')
+      : returnTarget.startsWith('compare.html') ? tx('Back to comparison')
+      : returnTarget.startsWith('/') ? tx('Back to your matches')
+      : tx('Back to trail results'));
   }
   const logWalkBtn = document.getElementById('logWalkBtn');
   if(logWalkBtn){
@@ -1601,7 +1622,7 @@ function renderTrail(t){
       }
       heroPhoto.decoding = 'async';
       heroPhoto.fetchPriority = 'high';
-      heroPhoto.alt = t.imageAlt || `${t.name} trail photograph`;
+      heroPhoto.alt = trailWords(t.imageAlt) || tx('{name} trail photograph', { name: t.name });
       heroPhoto.hidden = false;
       heroVeil.hidden = false;
       const creditEl = document.getElementById('tdHeroCredit');
@@ -1614,10 +1635,10 @@ function renderTrail(t){
         creditText.replaceChildren();
         const creditSummary=creditEl.querySelector('summary');
         if(creditSummary){
-          const label=credit.isIllustration?'About this illustration':'Show photo credit';
+          const label=credit.isIllustration?tx('About this illustration'):tx('Show photo credit');
           creditSummary.textContent=credit.isIllustration?'i':'C';
           creditSummary.setAttribute('aria-label',label);
-          creditSummary.title=credit.isIllustration?label:'Photo credit';
+          creditSummary.title=credit.isIllustration?label:tx('Photo credit');
         }
         // Creative Commons requires the creator and the licence, not just a link to
         // the source. The static generator already renders both; a trail served
@@ -1628,7 +1649,7 @@ function renderTrail(t){
           creditText.appendChild(link);
         }else creditText.appendChild(document.createTextNode(credit.label));
         if(t.imageCreator && !credit.isIllustration){
-          creditText.appendChild(document.createTextNode(` by ${t.imageCreator}`));
+          creditText.appendChild(document.createTextNode(' ' + tx('by {creator}', { creator: t.imageCreator })));
         }
         if(t.imageLicence && !credit.isIllustration){
           creditText.appendChild(document.createTextNode(' · '));
@@ -1644,7 +1665,7 @@ function renderTrail(t){
     }
   }
   document.getElementById('trailMeta').textContent =
-    `${t.area} · ${t.distance} km · ${t.elevation} m gain · ${t.hours} h · ${t.terrainType}`;
+    `${t.area} · ${t.distance} km · ${tx('{m} m gain', { m: t.elevation })} · ${t.hours} h · ${trailWords(t.terrainType)}`;
   document.getElementById('trailBadges').innerHTML =
     trailProductBadge(t.safetyLevel, trailSafetyLabel(t)) +
     (t.paid ? trailProductBadge('neutral', window.t('card.paid')) : '');
@@ -1694,7 +1715,7 @@ function renderTrail(t){
       ? window.DoloPawsIcons.renderIconSvg(provStyle, { mode:'inline', color:'currentColor', size:16 })
       : '';
     box.style.cssText = 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #2E4034;background:#eef3ef;border-radius:6px;font-size:13px;line-height:1.5;';
-    box.innerHTML = provenanceIcon + '<strong>Trail planning information.</strong> Based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.';
+    box.innerHTML = provenanceIcon + '<strong>' + tx('Trail planning information.') + '</strong> ' + tx('Based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.');
     descEl.parentNode.insertBefore(box, descEl);
 
     // Trail hazards, surfaceHazards used to feed only the match scoring;
@@ -1706,7 +1727,7 @@ function renderTrail(t){
       hz.style.cssText = 'margin:0 0 14px;padding:10px 14px;border-left:4px solid #9C3A25;background:#faeeea;border-radius:6px;font-size:13px;line-height:1.5;';
       const warningIcon = window.DoloPawsIcons ? window.DoloPawsIcons.renderIconSvg('warning', { mode:'inline', color:'currentColor', size:16 }) : '';
       hz.innerHTML = '<strong class="dp-inline-status">' + warningIcon + '<span>' + itinEsc(window.t('trail.hazardsTitle') || 'Trail hazards') + '</span></strong><ul style="margin:6px 0 0 18px;padding:0;">'
-        + t.surfaceHazards.map(h => '<li>' + String(h).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])) + '</li>').join('')
+        + t.surfaceHazards.map(h => '<li>' + String(trailWords(h)).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])) + '</li>').join('')
         + '</ul>';
       descEl.parentNode.insertBefore(hz, descEl);
     }
@@ -1747,8 +1768,8 @@ function renderTrail(t){
       const asc = Number(shown.elevation) || 0;
       const rank = Number(t.terrainRank) || 0;
       const km = Number(shown.distance) || 0;
-      const diff = (asc >= 400 || (rank >= 2 && asc >= 250)) ? 'Hard'
-        : (asc >= 180 || km >= 6 || rank >= 2) ? 'Moderate' : 'Easy';
+      const diff = (asc >= 400 || (rank >= 2 && asc >= 250)) ? tx('Hard')
+        : (asc >= 180 || km >= 6 || rank >= 2) ? tx('Moderate') : tx('Easy');
       facts.push([diff, window.t('trail.fact.difficulty')]);
     })();
     // The design's stat strip leads with a Match cell ("94% · Match · Rufus").
@@ -1758,7 +1779,7 @@ function renderTrail(t){
     // A route too long for a day gets an explicit label, so a visitor who lands
     // here from a search or link knows it is a multi-day itinerary, not a walk.
     const multiDayCell = (window.DoloPawsTrailTrust && window.DoloPawsTrailTrust.isMultiDay(t))
-      ? '<span class="f f-multiday"><b>Multi-day</b><span>route</span></span>' : '';
+      ? '<span class="f f-multiday"><b>' + tx('Multi-day') + '</b><span>' + tx('route') + '</span></span>' : '';
     factsEl.innerHTML =
       '<span class="f match" id="statMatch" hidden><a class="td2-match-link" id="statMatchLink" href="how-scoring-works.html"><b id="statMatchVal"></b><span id="statMatchSub"></span></a></span>'
       + multiDayCell
@@ -1806,9 +1827,9 @@ function renderTrail(t){
         const name = profile.name || window.t('trail.yourDog');
         if(statMatch){
           statMatchVal.innerHTML = (t.curated === false ? '≈' : '') + n + '<span class="pct">%</span>';
-          statMatchSub.textContent = 'Match · ' + name;
+          statMatchSub.textContent = tx('Match · {name}', { name });
           statMatchLink.href = 'how-scoring-works.html';
-          statMatchLink.setAttribute('aria-label', `Learn how ORMA calculates the ${n}% trail match for ${name}`);
+          statMatchLink.setAttribute('aria-label', tx('Learn how ORMA calculates the {n}% trail match for {name}', { n, name }));
           statMatch.dataset.scoringVersion = recommendation.scoringVersion;
           statMatch.dataset.recommendationCategory = recommendation.category;
           statMatch.dataset.recommendationConfidence = recommendation.confidence;
@@ -1918,7 +1939,7 @@ function renderTrail(t){
       if (Array.isArray(t.elevationProfile) && t.elevationProfile.length){
         facts.push(window.t('gtk.autoAltitude', {m: Math.max(...t.elevationProfile.map(p => p.elev))}));
       }
-      if (t.terrainType) facts.push(window.t('gtk.autoTerrain', {surface: t.terrainType}));
+      if (t.terrainType) facts.push(window.t('gtk.autoTerrain', {surface: trailWords(t.terrainType)}));
       const isLoopG = Array.isArray(t.path) && t.path.length > 1
         && distMeters(t.path[0], t.path[t.path.length-1]) < 200;
       facts.push(isLoopG ? window.t('gtk.autoLoop', {d: t.distance}) : window.t('gtk.autoPointToPoint', {d: t.distance}));
@@ -1949,7 +1970,8 @@ function renderTrail(t){
       });
       t.decisionPoints.forEach(d => {
         const existing = byKm.get(d.km) || [];
-        const instructionText = d.instruction.charAt(0).toLowerCase() + d.instruction.slice(1);
+        const instruction = trailWords(d.instruction);
+        const instructionText = instruction.charAt(0).toLowerCase() + instruction.slice(1);
         // If a rifugio at this exact km is already named inside the decision
         // instruction, drop the separate "pass X" so the name isn't repeated.
         const deduped = existing.filter(e => !instructionText.toLowerCase().includes(e.name.toLowerCase()));
@@ -2012,9 +2034,9 @@ function renderTrail(t){
         else if(elevationHome) elevationHome.appendChild(elevationPanel);
       }
       if(expandBtn) expandBtn.innerHTML = on
-        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> <span>Close map</span>'
-        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span>';
-      if(expandBtn) expandBtn.setAttribute('aria-label', on ? 'Close map' : 'Expand map');
+        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> <span>' + tx('Close map') + '</span>'
+        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>' + tx('Expand map') + '</span>';
+      if(expandBtn) expandBtn.setAttribute('aria-label', on ? tx('Close map') : tx('Expand map'));
       if(expandBtn) expandBtn.setAttribute('aria-expanded', String(on));
       setTimeout(() => map.resize(), 60);
     }
@@ -2111,9 +2133,9 @@ function renderTrail(t){
           ? window.DoloPawsIcons.chipHtml(iconKey, label)
           : label;
       };
-      setLayerChipLabel(document.getElementById('routesToggle'), 'routes', 'Trail routes');
-      setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', 'Lift stations');
-      setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', 'Nearby trails');
+      setLayerChipLabel(document.getElementById('routesToggle'), 'routes', tx('Trail routes'));
+      setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', tx('Lift stations'));
+      setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', tx('Nearby trails'));
       addTerrainSource(map);
       increaseLabelDensity(map);
       addTerrainToggle(map, 'trailDetailMap', 1.5, 45,
@@ -2135,13 +2157,13 @@ function renderTrail(t){
           event.stopPropagation();
           const open = layersPanel.style.display === 'flex';
           layersPanel.style.display = open ? 'none' : 'flex';
-          layersBtn.textContent = open ? 'Layers' : 'Close ✕';
+          layersBtn.textContent = open ? tx('Layers') : tx('Close') + ' ✕';
           layersBtn.setAttribute('aria-expanded', String(!open));
         });
         layersPanel.addEventListener('click', event => event.stopPropagation());
         document.addEventListener('click', () => {
           layersPanel.style.display = 'none';
-          layersBtn.textContent = 'Layers';
+          layersBtn.textContent = tx('Layers');
           layersBtn.setAttribute('aria-expanded', 'false');
         });
       }
@@ -2166,10 +2188,10 @@ function renderTrail(t){
       // Water / huts / food / places each get their own chip so nothing that
       // used to be visible is merely gone, it moved behind a control.
       const POI_CHIPS = [
-        { id:'fountainsToggle', group:'fountains', icon:'water', label:'Drinking water' },
-        { id:'hutsToggle', group:'huts', icon:'hut', label:'Huts & shelters' },
-        { id:'foodToggle', group:'food', icon:'food', label:'Food & drink' },
-        { id:'placesToggle', group:'places', icon:'sight', label:'Points of interest' },
+        { id:'fountainsToggle', group:'fountains', icon:'water', label:tx('Drinking water') },
+        { id:'hutsToggle', group:'huts', icon:'hut', label:tx('Huts & shelters') },
+        { id:'foodToggle', group:'food', icon:'food', label:tx('Food & drink') },
+        { id:'placesToggle', group:'places', icon:'sight', label:tx('Points of interest') },
       ];
       POI_CHIPS.forEach(chip => {
         const button = document.getElementById(chip.id);
@@ -2286,7 +2308,7 @@ function renderTrail(t){
         if(nearbyToggleBtn){
           nearbyToggleBtn.hidden = nearbyTrails.length === 0;
           if(nearbyTrails.length){
-            setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
+            setLayerChipLabel(nearbyToggleBtn, 'nearby', tx('Nearby trails ({n})', { n: nearbyTrails.length }));
           }
         }
         if(otherTrails.length){
@@ -2390,8 +2412,8 @@ function renderTrail(t){
               .setLngLat(e.lngLat)
               .setHTML(
                 `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${escName(p.name)}</div>` +
-                `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${escName(String(p.distance))} km trail${p.awayKm != null ? ` · ${escName(String(p.awayKm))} km away` : ''}</div>` +
-                `<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(p.id) : (p.id)))}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">Open this trail →</a>`
+                `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${p.awayKm != null ? tx('{km} km trail · {away} km away', { km: escName(String(p.distance)), away: escName(String(p.awayKm)) }) : tx('{km} km trail', { km: escName(String(p.distance)) })}</div>` +
+                `<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(p.id) : (p.id)))}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">${tx('Open this trail')} →</a>`
               )
               .addTo(map);
           };
@@ -2415,10 +2437,10 @@ function renderTrail(t){
               t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
               if(showingNearbyOverview){
                 otherTrails.forEach(trail => trail.path.forEach(([lat, lng]) => bounds.extend([lng, lat])));
-                setLayerChipLabel(nearbyToggleBtn, 'routes', 'Focus this trail');
+                setLayerChipLabel(nearbyToggleBtn, 'routes', tx('Focus this trail'));
                 map.fitBounds(bounds, { padding: 54, maxZoom: 13 });
               } else {
-                setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
+                setLayerChipLabel(nearbyToggleBtn, 'nearby', tx('Nearby trails ({n})', { n: nearbyTrails.length }));
                 map.fitBounds(bounds, { padding: 60, maxZoom: 17 });
               }
             });
@@ -2518,7 +2540,7 @@ function renderTrail(t){
         (t.decisionPoints || []).forEach(d => {
           new maplibregl.Marker({ element: makeIconEl('switch', '#D6A038'), offset: [14, -14] })
             .setLngLat([d.lng, d.lat])
-            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>Km ${d.km}</b><br>${d.instruction}`))
+            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>Km ${d.km}</b><br>${trailWords(d.instruction)}`))
             .addTo(map);
         });
 
@@ -2583,7 +2605,7 @@ function renderTrail(t){
           })
           .catch(error => {
             detailMapTarget.dataset.mapState = 'error';
-            detailMapTarget.setAttribute('aria-label', 'Map unavailable. Trail details remain available below.');
+            detailMapTarget.setAttribute('aria-label', tx('Map unavailable. Trail details remain available below.'));
             console.error('ORMA map failed to initialise:', error);
             return null;
           });
@@ -2652,7 +2674,7 @@ function renderTrail(t){
     const heart = isFav
       ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21S3.5 14.6 3.5 8.8A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.5 2.8C20.5 14.6 12 21 12 21z"/></svg>'
       : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.4S4.2 14.5 4.2 9.2A4.3 4.3 0 0 1 12 6.6a4.3 4.3 0 0 1 7.8 2.6c0 5.3-7.8 11.2-7.8 11.2z"/></svg>';
-    saveBtn.innerHTML = heart + (isFav ? ' Saved' : ' Save');
+    saveBtn.innerHTML = heart + ' ' + (isFav ? tx('Saved') : tx('Save'));
     saveBtn.classList.toggle('saved', isFav);
   }
   async function handleSaveAuth(user){
@@ -2719,16 +2741,16 @@ function renderTrail(t){
     }
     function runGpxExport(){
       if(!window.DoloPawsGpxExport){
-        showExportStatus('GPX export could not load. Please refresh and try again.');
+        showExportStatus(tx('GPX export could not load. Please refresh and try again.'));
         return false;
       }
       try {
         window.DoloPawsGpxExport.download(t);
-        showExportStatus('GPX downloaded. It contains the route only, check ORMA for safety context.');
+        showExportStatus(tx('GPX downloaded. It contains the route only, check ORMA for safety context.'));
         return true;
       } catch(error){
         showExportStatus(error && error.message
-          ? error.message : 'This trail could not be exported.');
+          ? error.message : tx('This trail could not be exported.'));
         return false;
       }
     }

@@ -69,15 +69,21 @@
 <script>
 // Three steps, then straight into the dog wizard on the homepage.
 (function(){
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
   var STEPS = [
-    { title: 'Every trail, scored for your dog',
-      body: 'Heat, terrain, water and hazards, checked against your dog’s size, coat and fitness before you ever hit the trailhead.',
+    { title: tx('Every trail, scored for your dog'),
+      body: tx('Heat, terrain, water and hazards, checked against your dog’s size, coat and fitness before you ever hit the trailhead.'),
       image: 'images/lago-di-braies.webp' },
-    { title: 'Know before you go',
-      body: 'Live conditions, water sources, and a straight answer on whether today is a good day for this route.',
+    { title: tx('Know before you go'),
+      body: tx('Live conditions, water sources, and a straight answer on whether today is a good day for this route.'),
       image: 'images/lago-di-carezza.webp' },
-    { title: 'Build your dog’s profile',
-      body: 'One-time setup, breed, size, coat, fitness. Every match score on the site follows from this.',
+    { title: tx('Build your dog’s profile'),
+      body: tx('One-time setup, breed, size, coat, fitness. Every match score on the site follows from this.'),
       image: 'images/boucle-du-lac-vert.webp' }
   ];
   var i = 0;
@@ -89,7 +95,7 @@
     document.getElementById('obTitle').textContent = step.title;
     document.getElementById('obBody').textContent = step.body;
     document.getElementById('obBack').hidden = i === 0;
-    document.getElementById('obNext').textContent = last ? 'Create your dog’s profile →' : 'Next';
+    document.getElementById('obNext').textContent = last ? tx('Create your dog’s profile →') : tx('Next');
     dashes.innerHTML = '';
     STEPS.forEach(function(_, idx){
       var d = document.createElement('span');

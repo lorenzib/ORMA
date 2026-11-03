@@ -228,7 +228,7 @@ describe('the page and the app describe the route the same way',()=>{
 
   test('both print the signage caveat only when there is one',()=>{
     expect(page).toContain("String(guidance.status || '').trim()");
-    expect(blueprint).toContain("String(verifiedRouteGuidance.status || '').trim()");
+    expect(blueprint).toContain("String(trailWords(verifiedRouteGuidance.status) || '').trim()");
   });
 });
 
@@ -290,8 +290,8 @@ describe('a walk without numbers shows the route audit\'s directions',()=>{
   test('the app prints the same sentence and note',()=>{
     const blueprint=read('trail-blueprint.js');
     expect(blueprint).toContain('window.DoloPawsTrailRouteRefs.writtenDirections(t)');
-    expect(blueprint).toContain('<b>Directions:</b> ${esc(auditDirections.text');
-    expect(blueprint).toContain('DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE');
+    expect(blueprint).toContain("<b>${tx('Directions:')}</b> ${esc(auditDirections.text");
+    expect(blueprint).toContain(`tx('${routeRefs.AUDIT_DIRECTIONS_NOTE.replace(/'/g,"\\'")}')`);
     expect(blueprint).toContain(': auditDirections.written ? auditDirectionsMarkup : noRouteNumbers;');
   });
 

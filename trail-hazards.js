@@ -1,6 +1,13 @@
 (function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   function trailIdentity(){
     const queryId = new URLSearchParams(location.search).get('id');
     const cta = document.querySelector('a[href*="trail.html?id="]');
@@ -115,14 +122,15 @@
     document.head.appendChild(style);
   }
 
-  const HAZARD_KINDS = [
-    ['closure','Trail or path closed'],
-    ['route-damage','Damaged path, bridge or crossing'],
-    ['livestock','Livestock or guardian dogs'],
-    ['water','Water crossing or missing water'],
-    ['snow-or-ice','Snow or ice'],
-    ['rockfall','Rockfall or landslide'],
-    ['other','Something else'],
+  // Built when the form opens, so the labels come out in the page's language.
+  const hazardKinds = () => [
+    ['closure',tx('Trail or path closed')],
+    ['route-damage',tx('Damaged path, bridge or crossing')],
+    ['livestock',tx('Livestock or guardian dogs')],
+    ['water',tx('Water crossing or missing water')],
+    ['snow-or-ice',tx('Snow or ice')],
+    ['rockfall',tx('Rockfall or landslide')],
+    ['other',tx('Something else')],
   ];
 
   let reportController = null;
@@ -153,9 +161,9 @@
       ? window.OrmaHazardLocation.describeLocation(location) : '';
     mount.innerHTML = `<article class="orma-hazard-pending" data-hazard-pending>
       <span class="orma-hazard-pending__icon" aria-hidden="true">✓</span>
-      <div><strong>Your report is being checked</strong>
-      <p>${where ? `${escapeHtml(where)}. ` : ''}ORMA is checking it against independent sources now.</p>
-      <small>Only you can see this pending status. Other walkers see the hazard only after vetting.</small></div>
+      <div><strong>${tx('Your report is being checked')}</strong>
+      <p>${where ? `${escapeHtml(where)}. ` : ''}${tx('ORMA is checking it against independent sources now.')}</p>
+      <small>${tx('Only you can see this pending status. Other walkers see the hazard only after vetting.')}</small></div>
     </article>`;
     window.dispatchEvent(new CustomEvent('orma-hazards-changed'));
     const section = document.getElementById('td2Hazards');
@@ -185,7 +193,7 @@
       const button = panel.querySelector('[data-hazard-place]');
       if(button){
         button.classList.toggle('is-placing', on);
-        button.textContent = on ? 'Tap the trail line now' : (placed ? 'Move the pin' : 'Place on map');
+        button.textContent = on ? tx('Tap the trail line now') : (placed ? tx('Move the pin') : tx('Place on map'));
       }
       const canvas = map.getCanvas && map.getCanvas();
       if(canvas) canvas.style.cursor = on ? 'crosshair' : '';
@@ -206,14 +214,14 @@
       if(!located.onRoute){
         placed = null;
         where.classList.add('is-off');
-        where.textContent = `That point is about ${located.offRouteM} m from this trail. Tap the trail line instead.`;
+        where.textContent = tx('That point is about {metres} m from this trail. Tap the trail line instead.', { metres:located.offRouteM });
         setPlacing(true);
         armMapTap();
         return;
       }
       placed = located;
       where.classList.remove('is-off');
-      where.textContent = `${locator.describeLocation(located)}. Drag the pin to fine-tune it.`;
+      where.textContent = tx('{place}. Drag the pin to fine-tune it.', { place:locator.describeLocation(located) });
       const point = [located.lng, located.lat];
       if(marker) marker.setLngLat(point);
       else {
@@ -231,7 +239,7 @@
       setPlacing(false);
       const where = panel.querySelector('[data-hazard-where]');
       where.classList.remove('is-off');
-      where.textContent = 'No map position will be attached. You can still describe where it was below.';
+      where.textContent = tx('No map position will be attached. You can still describe where it was below.');
     }
 
     function close(){
@@ -252,19 +260,19 @@
       panel.setAttribute('aria-modal', 'false');
       panel.setAttribute('aria-labelledby', 'ormaHazardReportTitle');
       panel.innerHTML = `
-        <div class="orma-hazard-report__head"><strong id="ormaHazardReportTitle">Report a hazard</strong><button type="button" class="orma-hazard-report__close" data-hazard-close aria-label="Close hazard report">×</button></div>
-        <p class="orma-hazard-report__intro">A quick report helps the next walker. ORMA checks it before anyone else sees it.</p>
+        <div class="orma-hazard-report__head"><strong id="ormaHazardReportTitle">${tx('Report a hazard')}</strong><button type="button" class="orma-hazard-report__close" data-hazard-close aria-label="${tx('Close hazard report')}">×</button></div>
+        <p class="orma-hazard-report__intro">${tx('A quick report helps the next walker. ORMA checks it before anyone else sees it.')}</p>
         <form>
-          <label>What did you see?</label>
-          <div class="orma-hazard-report__choices" data-hazard-choices>${HAZARD_KINDS.map(([value,label]) => `<button type="button" class="orma-hazard-report__choice" data-hazard-kind="${value}" aria-pressed="false">${label}</button>`).join('')}</div>
-          <label>Describe it<textarea data-hazard-text minlength="10" maxlength="600" required placeholder="What should the next dog owner know?"></textarea></label>
-          <details class="orma-hazard-report__place"><summary>Add exact map position (optional)</summary>
-            <p class="orma-hazard-report__where" data-hazard-where>No exact position attached.</p>
-            <div class="orma-hazard-report__place-actions"><button type="button" data-hazard-place>Place on map</button><button type="button" class="orma-hazard-report__skip" data-hazard-skip>Remove position</button></div>
+          <label>${tx('What did you see?')}</label>
+          <div class="orma-hazard-report__choices" data-hazard-choices>${hazardKinds().map(([value,label]) => `<button type="button" class="orma-hazard-report__choice" data-hazard-kind="${value}" aria-pressed="false">${label}</button>`).join('')}</div>
+          <label>${tx('Describe it')}<textarea data-hazard-text minlength="10" maxlength="600" required placeholder="${tx('What should the next dog owner know?')}"></textarea></label>
+          <details class="orma-hazard-report__place"><summary>${tx('Add exact map position (optional)')}</summary>
+            <p class="orma-hazard-report__where" data-hazard-where>${tx('No exact position attached.')}</p>
+            <div class="orma-hazard-report__place-actions"><button type="button" data-hazard-place>${tx('Place on map')}</button><button type="button" class="orma-hazard-report__skip" data-hazard-skip>${tx('Remove position')}</button></div>
           </details>
-          <label>When did you see it?<input data-hazard-date type="date"></label>
-          <p class="orma-hazard-report__note">ORMA checks this against official sources. Credible reports may appear clearly labelled as unconfirmed when no independent notice exists.</p>
-          <button type="submit" class="orma-hazard-report__submit">Send report</button>
+          <label>${tx('When did you see it?')}<input data-hazard-date type="date"></label>
+          <p class="orma-hazard-report__note">${tx('ORMA checks this against official sources. Credible reports may appear clearly labelled as unconfirmed when no independent notice exists.')}</p>
+          <button type="submit" class="orma-hazard-report__submit">${tx('Send report')}</button>
           <p class="orma-hazard-report__status" data-hazard-status role="status"></p>
         </form>`;
       mapBox.appendChild(panel);
@@ -293,22 +301,22 @@
         const text = panel.querySelector('[data-hazard-text]').value.trim();
         if(!selectedKind){
           status.classList.add('is-error');
-          status.textContent = 'Choose what kind of hazard you saw.';
+          status.textContent = tx('Choose what kind of hazard you saw.');
           return;
         }
         if(text.length < 10){
           status.classList.add('is-error');
-          status.textContent = 'Describe what you saw in a sentence or two.';
+          status.textContent = tx('Describe what you saw in a sentence or two.');
           return;
         }
         if(!community || typeof community.reportTrailHazard !== 'function'){
           status.classList.add('is-error');
-          status.textContent = 'Account services are still loading. Please try again.';
+          status.textContent = tx('Account services are still loading. Please try again.');
           return;
         }
         submit.disabled = true;
         status.classList.remove('is-error');
-        status.textContent = 'Sending your report…';
+        status.textContent = tx('Sending your report…');
         try {
           const submittedLocation = placed && placed.onRoute ? placed : null;
           const result = await community.reportTrailHazard(
@@ -324,10 +332,10 @@
             return;
           }
           status.classList.add('is-error');
-          status.textContent = result && result.message ? result.message : 'Could not send your report, please try again.';
+          status.textContent = result && result.message ? result.message : tx('Could not send your report, please try again.');
         } catch(error){
           status.classList.add('is-error');
-          status.textContent = 'Could not send your report, please try again.';
+          status.textContent = tx('Could not send your report, please try again.');
         }
         submit.disabled = false;
       });
@@ -382,12 +390,12 @@
   function reportedHazardCard(item){
     const spoken = window.OrmaHazardLocation && window.OrmaHazardLocation.describeLocation(item.at);
     const verification = item.verificationState === 'reported-unverified'
-      ? 'Reported by a hiker · not yet confirmed'
-      : 'Confirmed by ORMA';
+      ? tx('Reported by a hiker · not yet confirmed')
+      : tx('Confirmed by ORMA');
     return `<article class="orma-reported-hazard${item.verificationState === 'reported-unverified' ? ' is-unverified' : ''}" data-hazard-item>
       <span class="orma-reported-hazard__icon" aria-hidden="true">!</span>
       <div><strong>${escapeHtml(item.title)}</strong>${spoken ? `<span class="orma-reported-hazard__where">${escapeHtml(spoken)}</span>` : ''}
-      <p>${escapeHtml(item.message)}</p><small>${escapeHtml(verification)}${item.expiresAt ? ` · expires ${new Date(item.expiresAt).toLocaleDateString()}` : ''}</small></div>
+      <p>${escapeHtml(item.message)}</p><small>${escapeHtml(verification)}${item.expiresAt ? ` · ${escapeHtml(tx('expires {date}', { date:new Date(item.expiresAt).toLocaleDateString() }))}` : ''}</small></div>
     </article>`;
   }
 
@@ -414,7 +422,7 @@
   }
   function eventChipLabel(item){
     const noun = eventNoun(item);
-    return /thunder/.test(noun) ? 'Storm' : capitalise(noun);
+    return /thunder/.test(noun) ? tx('Storm') : capitalise(noun);
   }
   function warningArea(item){
     if(item && item.area) return String(item.area).trim();
@@ -424,10 +432,26 @@
   function advisoryLead(hazards){
     const worst = hazards[0];
     const severity = String(worst.severity || 'severe').toLowerCase();
+    const level = severityWord(severity);
     const areas = [...new Set(hazards.map(warningArea).filter(Boolean))];
-    const where = areas.length === 1 ? ` · ${areas[0]}` : ' nearby';
-    if(hazards.length === 1) return `${capitalise(severity)} ${eventNoun(worst)} warning${where}`;
-    return `${hazards.length} ${severity} warnings${where}`;
+    const area = areas.length === 1 ? areas[0] : null;
+    if(hazards.length === 1){
+      const vars = { severity:capitalise(level), event:eventNoun(worst), area };
+      return area ? tx('{severity} {event} warning · {area}', vars) : tx('{severity} {event} warning nearby', vars);
+    }
+    const vars = { count:hazards.length, severity:level, area };
+    return area ? tx('{count} {severity} warnings · {area}', vars) : tx('{count} {severity} warnings nearby', vars);
+  }
+  // The feed's severity word, said in the page's language; an unrecognised one
+  // is shown as the feed wrote it.
+  function severityWord(severity){
+    switch(severity){
+      case 'minor': return tx('minor');
+      case 'moderate': return tx('moderate');
+      case 'severe': return tx('severe');
+      case 'extreme': return tx('extreme');
+      default: return severity;
+    }
   }
   function latestExpiry(hazards){
     return hazards.map(item => item.expiresAt).filter(Boolean).sort().pop();
@@ -463,16 +487,18 @@
     const detail = document.createElement('div');
     detail.className = 'orma-hazard__detail';
     const line = document.createElement('p');
-    line.append(document.createTextNode('Wider-area, not a trail closure'));
+    line.append(document.createTextNode(tx('Wider-area, not a trail closure')));
     const until = expiryLabel(latestExpiry(hazards));
-    if(until) line.append(document.createTextNode(` · valid until ${until}`));
+    if(until) line.append(document.createTextNode(` · ${tx('valid until {date}', { date:until })}`));
     line.append(document.createTextNode('. '));
     if(worst.sourceUrl){
       const source = document.createElement('a');
       source.href = worst.sourceUrl;
       source.target = '_blank';
       source.rel = 'noopener';
-      source.textContent = `Check ${worst.sourceLabel || 'the official source'} ↗`;
+      source.textContent = worst.sourceLabel
+        ? `${tx('Check {source}', { source:worst.sourceLabel })} ↗`
+        : `${tx('Check the official source')} ↗`;
       line.append(source);
     } else if(worst.sourceLabel){
       line.append(document.createTextNode(worst.sourceLabel));
@@ -494,7 +520,7 @@
         element.innerHTML = '<span aria-hidden="true">!</span>';
         const marker = new maplibregl.Marker({ element })
           .setLngLat([Number(item.at.lng), Number(item.at.lat)])
-          .setPopup(new maplibregl.Popup({ offset:16 }).setHTML(`<b>${escapeHtml(item.title)}</b><br><small>${escapeHtml(item.verificationState === 'reported-unverified' ? 'Hiker report · unconfirmed' : 'Confirmed by ORMA')}</small>`))
+          .setPopup(new maplibregl.Popup({ offset:16 }).setHTML(`<b>${escapeHtml(item.title)}</b><br><small>${escapeHtml(item.verificationState === 'reported-unverified' ? tx('Hiker report · unconfirmed') : tx('Confirmed by ORMA'))}</small>`))
           .addTo(context.map);
         reportedMarkers.push(marker);
       });
@@ -513,7 +539,7 @@
   function renderHazardPointer(hazards){
     const pointer = document.getElementById('ormaHazardPointer');
     if(!pointer || !hazards.length) return;
-    pointer.textContent = `${areaWarningsLabel(hazards)} · see trail weather`;
+    pointer.textContent = `${areaWarningsLabel(hazards)} · ${tx('see trail weather')}`;
     pointer.hidden = false;
     pointer.addEventListener('click', event => {
       const card = document.querySelector('.td2-hero-weather');
@@ -530,7 +556,7 @@
   }
 
   function areaWarningsLabel(hazards){
-    return hazards.length === 1 ? 'Area warning' : `${hazards.length} area warnings`;
+    return hazards.length === 1 ? tx('Area warning') : tx('{count} area warnings', { count:hazards.length });
   }
 
   function renderOfficialHazards(hazards){
@@ -538,7 +564,7 @@
     renderHazardPointer(hazards);
     const stack = document.createElement('section');
     stack.className = 'orma-hazard-stack';
-    stack.setAttribute('aria-label', 'Current area warnings');
+    stack.setAttribute('aria-label', tx('Current area warnings'));
     // No kicker above the advisory: the advisory line already carries the
     // count and the area, so a heading repeating the number reads twice.
     stack.append(areaWarningsAdvisory(hazards));

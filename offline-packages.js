@@ -357,6 +357,13 @@
     'removed',
   ]);
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   function tr(key, fallback, vars){
     if(typeof window.t === 'function'){
       const value = window.t(key, vars);
@@ -499,7 +506,7 @@
 
   function formatInstalledDate(value){
     const date = new Date(value);
-    if(!value || Number.isNaN(date.getTime())) return 'date unavailable';
+    if(!value || Number.isNaN(date.getTime())) return tx('date unavailable');
     try{
       return new Intl.DateTimeFormat(
         document.documentElement.lang || 'en-GB',
@@ -520,10 +527,10 @@
 
   function ownershipLabel(state){
     const labels = {
-      'current-account': 'downloaded by this account',
-      'another-account': 'downloaded by another account on this device',
-      'signed-out-owner-retained': 'downloaded account retained on this device',
-      'legacy-owner-unknown': 'download owner not recorded',
+      'current-account': tx('downloaded by this account'),
+      'another-account': tx('downloaded by another account on this device'),
+      'signed-out-owner-retained': tx('downloaded account retained on this device'),
+      'legacy-owner-unknown': tx('download owner not recorded'),
     };
     return labels[state] || labels['legacy-owner-unknown'];
   }
@@ -748,7 +755,7 @@
         state: 'failed',
         usable: false,
         hasLocalData: false,
-        message: 'Offline storage is not supported in this browser.',
+        message: tx('Offline storage is not supported in this browser.'),
       };
     }
     const config = PACKAGES[trailId];
@@ -773,7 +780,7 @@
       const cache = await caches.open(name);
       const manifestResponse = await cache.match(new URL(config.manifestUrl, window.location.href).href);
       if(!manifestResponse){
-        failureMessage = 'The stored package manifest is missing.';
+        failureMessage = tx('The stored package manifest is missing.');
         continue;
       }
       try{
@@ -795,11 +802,11 @@
           contentFreshness: freshness,
           checkedAt: new Date().toISOString(),
           message: incomplete
-            ? 'A previous update was interrupted; the existing verified package remains usable.'
+            ? tx('A previous update was interrupted; the existing verified package remains usable.')
             : null,
         };
       }catch(error){
-        failureMessage = error.message || 'A stored package resource failed verification.';
+        failureMessage = error.message || tx('A stored package resource failed verification.');
       }
     }
     if(candidates.length){
@@ -808,7 +815,7 @@
         usable: false,
         hasLocalData: true,
         metadata,
-        message: failureMessage || 'The stored package failed verification.',
+        message: failureMessage || tx('The stored package failed verification.'),
       };
     }
     if(incomplete){
@@ -817,7 +824,7 @@
         usable: false,
         hasLocalData: true,
         metadata,
-        message: 'A previous download was interrupted. No partial package is ready offline.',
+        message: tx('A previous download was interrupted. No partial package is ready offline.'),
       };
     }
     return { state: 'not-downloaded', usable: false, hasLocalData: false, metadata };
@@ -954,8 +961,8 @@
 
   function formatPackageVersion(version){
     const beta = String(version || '').match(/beta\.(\d+)$/i);
-    if(beta) return `Package ${beta[1]}`;
-    return version ? `Package ${version}` : 'Package revision unavailable';
+    if(beta) return tx('Package {version}', { version:beta[1] });
+    return version ? tx('Package {version}', { version }) : tx('Package revision unavailable');
   }
 
   function availabilityForTrail(trailId, trailCollection){

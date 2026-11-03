@@ -88,8 +88,25 @@
     },
   ];
 
-  function all(){ return COLLECTIONS.slice(); }
-  function get(id){ return COLLECTIONS.find(collection => collection.id === id) || null; }
+  // Shown words go through i18n.js; the English sentence is its own key.
+  function tx(text){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.phrase === 'function' ? i18n.phrase(text) : text;
+  }
+  // The same collection in the reader's language. Ids, regions and trail lists
+  // are unchanged; only the words a reader sees are swapped.
+  function shown(collection){
+    if(!collection) return null;
+    return {
+      ...collection,
+      title:tx(collection.title), subtitle:tx(collection.subtitle), description:tx(collection.description),
+      chips:collection.chips.map(chip => tx(chip)), country:tx(collection.country),
+      regionLabel:tx(collection.regionLabel), tripLength:tx(collection.tripLength),
+    };
+  }
+
+  function all(){ return COLLECTIONS.map(shown); }
+  function get(id){ return shown(COLLECTIONS.find(collection => collection.id === id) || null); }
   function trailsFor(collectionOrId, trails){
     const collection = typeof collectionOrId === 'string' ? get(collectionOrId) : collectionOrId;
     if(!collection) return [];

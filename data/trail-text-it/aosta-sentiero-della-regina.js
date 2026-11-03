@@ -1,0 +1,11 @@
+// aosta-sentiero-della-regina in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "An easy walk at about 1,380–1,440 m along the valley side above Gressoney-Saint-Jean, past Lago Gover to Castel Savoia, the summer residence of Queen Margherita. The regional path register lists 3.4 km and 104 m of ascent, one way.": "Una facile camminata a circa 1.380–1.440 m lungo il versante della valle sopra Gressoney-Saint-Jean, oltre il Lago Gover fino a Castel Savoia, residenza estiva della Regina Margherita. Il catasto regionale dei sentieri indica 3,4 km e 104 m di dislivello in salita, solo andata.",
+  "Start at Tschemonal: 3.4 km one way with about 100 m up and 100 m down, under an hour to Castel Savoia, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle.": "Partenza da Tschemonal: 3,4 km solo andata con circa 100 m di salita e 100 m di discesa, meno di un'ora fino a Castel Savoia, poi ritorno per la stessa via. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito.",
+  "A few short climbs and descents on mule track and forest path": "Qualche breve salita e discesa su mulattiera e sentiero nel bosco",
+  "Busy around Lago Gover and the castle in summer": "D'estate c'è molta gente intorno al Lago Gover e al castello",
+  "Mule track and forest path along the valley side": "Mulattiera e sentiero nel bosco lungo il versante della valle",
+  "Tschemonal, the register’s start": "Tschemonal, la partenza indicata dal catasto",
+  "Lago Gover at dawn with chalets and a timber-framed villa among larches and spruces on its shore, the glaciers of Monte Rosa lit pink behind": "Il Lago Gover all'alba con chalet e una villa a graticcio tra larici e abeti rossi sulla riva, i ghiacciai del Monte Rosa illuminati di rosa dietro",
+  "Mostly shaded: nearly three quarters runs through larch and spruce.": "Per lo più all'ombra: quasi tre quarti passano tra larici e abeti rossi."
+});

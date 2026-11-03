@@ -1,0 +1,12 @@
+// valdisole-rifugio-stavel-denza in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A high walk there and back in the Val di Stavel above Vermiglio on First World War paths to Rifugio Denza, under the north face and glaciers of the Presanella. The APT lists 7.3 km and 594 m of ascent.": "Una camminata in quota di andata e ritorno in Val di Stavel sopra Vermiglio, su sentieri della Prima guerra mondiale fino al Rifugio Denza, sotto la parete nord e i ghiacciai della Presanella. L'APT indica 7,3 km e 594 m di dislivello in salita.",
+  "Start at the Pozzi Alti car park in the Val di Stavel: 7.3 km and about 600 m of climbing, four hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. There is a short, dark tunnel at km 0.7. The cirque around the hut has no shade: carry water and go early on hot days.": "Parti dal parcheggio Pozzi Alti in Val di Stavel: 7,3 km e circa 600 m di salita, quattro ore. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito. Al km 0,7 c'è una breve galleria buia. La conca intorno al rifugio non ha ombra: porta acqua e parti presto nelle giornate calde.",
+  "Rocky mountain paths (T2) above 1,850 m": "Sentieri di montagna rocciosi (T2) sopra i 1.850 m",
+  "A short, low First World War tunnel at km 0.7 (about 17 m, 1.9 m high): dark inside": "Una breve e bassa galleria della Prima guerra mondiale al km 0,7 (circa 17 m, alta 1,9 m): buia all'interno",
+  "Snow can linger near the hut into early summer": "Vicino al rifugio la neve può resistere fino a inizio estate",
+  "Rocky mountain paths": "Sentieri di montagna rocciosi",
+  "Pozzi Alti car park, Val di Stavel, the APT’s start": "Parcheggio Pozzi Alti, Val di Stavel, partenza indicata dall'APT",
+  "The stone Rifugio Denza with its wooden upper floor on a rocky alpine meadow, the glaciers and grey peaks of the Presanella behind under a blue sky": "Il Rifugio Denza in pietra con il piano superiore in legno su un prato alpino roccioso, i ghiacciai e le cime grigie della Presanella dietro sotto un cielo azzurro",
+  "Part shade: about 66% runs under trees, in larch and stone pine lower down; the cirque around the hut is open.": "In parte all'ombra: circa il 66% corre sotto gli alberi, tra larici e pini cembri più in basso; la conca intorno al rifugio è aperta."
+});

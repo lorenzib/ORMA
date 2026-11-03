@@ -452,6 +452,7 @@ img,svg{max-width:100%;height:auto;}
   align-items:center;
   gap:14px;
 }
+html[lang="it"] .topnav .brand::after{content:'| Sentieri e terreni per cani';}
 .topnav .brand::after{
   content:'| Dog Trails & Terrain Guide';
   font:600 14px/1.2 'Inter',sans-serif;
@@ -2890,6 +2891,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   flex:none;
 }
 .li-brand img{width:36px;height:36px;border-radius:9px;}
+html[lang="it"] .li-brand::after{content:'| Sentieri e terreni per cani';}
 .li-brand::after{
   content:'| Dog Trails & Terrain Guide';
   font:600 13px/1.2 'Inter',sans-serif;
