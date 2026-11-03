@@ -1,5 +1,11 @@
 (function(){
   'use strict';
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
   var $ = function(id){ return document.getElementById(id); };
   var loaded = false;
 
@@ -24,10 +30,10 @@
       var row = document.createElement('div');
       row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:12px;background:#FAF8F1;border:1px solid #E3DFD2;border-radius:12px;padding:12px 14px;';
       var label = document.createElement('span');
-      label.textContent = 'A member would like to follow ' + (request.targetType === 'dog' ? 'your dog' : 'you') + '.';
+      label.textContent = request.targetType === 'dog' ? tx('A member would like to follow your dog.') : tx('A member would like to follow you.');
       var actions = document.createElement('span');
       actions.style.cssText = 'display:flex;gap:8px;';
-      [['Accept', true], ['Decline', false]].forEach(function(item){
+      [[tx('Accept'), true], [tx('Decline'), false]].forEach(function(item){
         var button = document.createElement('button');
         button.type = 'button'; button.className = item[1] ? 'btn-p' : 'btn-g'; button.textContent = item[0];
         button.addEventListener('click', async function(){
@@ -55,12 +61,12 @@
     var publicDog = profile && (profile.dogs || []).find(function(item){ return dog && item.id === dog.id; });
     $('publicDogEnabled').checked = !!(publicDog && publicDog.public);
     $('publicDogBio').value = publicDog && publicDog.bio || '';
-    $('publicDogLabel').textContent = dog ? 'Show ' + (dog.name || 'my dog') : 'Show my dog';
+    $('publicDogLabel').textContent = dog && dog.name ? tx('Show {name}', { name: dog.name }) : tx('Show my dog');
     $('publicDogEnabled').disabled = !dog;
     $('publicProfileView').hidden = !profile;
     $('publicProfileView').href = 'profile.html?uid=' + encodeURIComponent(user.uid) + (dog ? '&dog=' + encodeURIComponent(dog.id) : '');
     $('publicProfileSave').addEventListener('click', async function(){
-      var button = this; button.disabled = true; setStatus('Saving…');
+      var button = this; button.disabled = true; setStatus(tx('Saving…'));
       try {
         var dogs = (profile && profile.dogs || []).filter(function(item){ return !dog || item.id !== dog.id; });
         if(dog) dogs.push({
@@ -77,12 +83,12 @@
           tagPermission:$('publicTagPermission').value,
           dogs:dogs,
         });
-        if(!result.ok) throw new Error(result.message || 'Could not save this profile.');
+        if(!result.ok) throw new Error(result.message || tx('Could not save this profile.'));
         profile = result.profile;
         $('publicProfileView').hidden = false;
-        setStatus('Public profile saved. Private account details were not shared.');
+        setStatus(tx('Public profile saved. Private account details were not shared.'));
       } catch(error) {
-        setStatus(error.message || 'Could not save this profile.', true);
+        setStatus(error.message || tx('Could not save this profile.'), true);
       } finally { button.disabled = false; }
     });
     renderRequests(api).catch(function(){});

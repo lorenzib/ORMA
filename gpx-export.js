@@ -5,6 +5,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const DISCLAIMER = 'Route geometry only. Check ORMA for current safety, access, water and dog-suitability context before setting out.';
 
   function escapeXml(value){
@@ -51,7 +58,7 @@
   function serialize(trail, options){
     if(!trail || typeof trail !== 'object') throw new TypeError('A trail is required.');
     const geometry = Array.isArray(trail.path) ? trail.path.map(coordinate).filter(Boolean) : [];
-    if(geometry.length < 2) throw new Error('This trail does not have enough valid route geometry to export.');
+    if(geometry.length < 2) throw new Error(tx('This trail does not have enough valid route geometry to export.'));
     const name = String(trail.name || 'ORMA trail');
     const start = trailhead(trail, geometry);
     const generatedAt = options && options.generatedAt
@@ -86,7 +93,7 @@ ${points}
     doc = doc || (typeof document !== 'undefined' ? document : null);
     urlApi = urlApi || (typeof URL !== 'undefined' ? URL : null);
     if(!doc || !urlApi || typeof urlApi.createObjectURL !== 'function'){
-      throw new Error('File downloads are unavailable in this browser.');
+      throw new Error(tx('File downloads are unavailable in this browser.'));
     }
     const blob = new Blob([serialize(trail)], { type:'application/gpx+xml;charset=utf-8' });
     const objectUrl = urlApi.createObjectURL(blob);

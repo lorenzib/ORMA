@@ -119,8 +119,8 @@ describe('multi-dog account experience', () => {
     expect(wizard).not.toContain('auth.getDogProfiles()');
     expect(wizard).toContain('return auth.addDogProfile(profile)');
     expect(wizard).toContain("auth.setDogProfile(profile, editingDogId)");
-    expect(wizard).toContain("nextBtn.textContent = isEditing ? 'Save changes' : 'Save dog'");
-    expect(wizard).toContain("showToast('We couldn’t save your dog. Check your connection and try again.')");
+    expect(wizard).toContain("nextBtn.textContent = isEditing ? tx('Save changes') : tx('Save dog')");
+    expect(wizard).toContain("showToast(tx('We couldn’t save your dog. Check your connection and try again.'))");
     expect(wizard).toContain('id="dwPhotoInput"');
     expect(wizard).toContain('photo:      isDogPhoto(data.photo) ? data.photo : null');
   });
@@ -308,8 +308,8 @@ describe('multi-dog account experience', () => {
     expect(accountHtml).toContain('id="dogPhotoAddBtn"');
     expect(account).toContain('const MAX_DOG_PHOTOS = 4');
     expect(account).toContain('photos:state.photos.slice()');
-    expect(account).toContain('Make photo ${index + 1} the profile photo');
-    expect(account).toContain('Remove photo ${index + 1}');
+    expect(account).toContain("tx('Make photo {n} the profile photo', { n:index + 1 })");
+    expect(account).toContain("tx('Remove photo {n}', { n:index + 1 })");
     expect(source('firebase-init.js')).toContain('clean.photos = photos.slice(0, 4)');
     expect(source('firebase-init.js')).toContain('newDogPhotoId(existingDog.id)');
     expect(nav).toContain('summary.dogs.find(dog => dog.id === summary.activeDogId)');

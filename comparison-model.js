@@ -5,6 +5,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(root){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   // The verdict's words come from match-verdict.js, which owns them. This file
   // kept its own copy, so the wording could be changed in one place and stay
   // the same here -- which is how a product with one vocabulary ends up with
@@ -16,18 +23,23 @@
     const verdict = shared && shared.VERDICTS[category];
     return (verdict && verdict.label) || '';
   }
-  const TERRAIN = {
-    0:'Gentle or paved',
-    1:'Mixed natural terrain',
-    2:'Rocky or technical',
-    3:'Highly technical',
-  };
-  const ACCESS = {
-    allowed:'Dogs allowed',
-    'leash-required':'Dogs allowed on leash',
-    'seasonal-restrictions':'Seasonal restrictions',
-    prohibited:'Dogs prohibited',
-  };
+  // Read when a row is built, so the words follow the reader's language.
+  function terrainWords(){
+    return {
+      0:tx('Gentle or paved'),
+      1:tx('Mixed natural terrain'),
+      2:tx('Rocky or technical'),
+      3:tx('Highly technical'),
+    };
+  }
+  function accessWords(){
+    return {
+      allowed:tx('Dogs allowed'),
+      'leash-required':tx('Dogs allowed on leash'),
+      'seasonal-restrictions':tx('Seasonal restrictions'),
+      prohibited:tx('Dogs prohibited'),
+    };
+  }
   // The evidence tier's words come from trust/evidence-v1.js, which owns them.
   // This table was a fourth vocabulary for the field, and it disagreed rather
   // than merely repeating: it collapsed route-audited and field-verified into
@@ -39,7 +51,7 @@
     if(!phrases.length) return '';
     const joined = phrases.length === 1
       ? phrases[0]
-      : `${phrases.slice(0, -1).join(', ')} and ${phrases[phrases.length - 1]}`;
+      : tx('{list} and {last}', { list:phrases.slice(0, -1).join(', '), last:phrases[phrases.length - 1] });
     return `${joined.charAt(0).toUpperCase()}${joined.slice(1)}.`;
   }
 
@@ -57,7 +69,7 @@
     return { text, kind:kind || 'known', detail:detail || null };
   }
   function unknown(label){
-    return cell(`Not listed, ${label}`, 'unknown');
+    return cell(tx('Not listed, {what}', { what:label }), 'unknown');
   }
   function categoryVerified(parts, category){
     return parts.verification && parts.verification.categories
@@ -118,6 +130,9 @@
       : 0;
     const hazards = Array.isArray(suitability.surfaceHazards) ? suitability.surfaceHazards : null;
     const access = suitability.dogAccess && suitability.dogAccess.status;
+    const TERRAIN = terrainWords();
+    const ACCESS = accessWords();
+    const ascent = formatNumber(metrics.ascentM, '');
 
     return {
       id:trail.id,
@@ -132,52 +147,60 @@
           ? cell(categoryLabel(recommendation.category), recommendation.category === 'not-recommended' ? 'caution' : 'known',
             // "high confidence" was a third phrasing of this one field, on a
             // page whose whole job is putting two trails in the same words.
-            [confidenceWords(recommendation.confidence), `scoring ${recommendation.scoringVersion}`]
+            [confidenceWords(recommendation.confidence), tx('scoring {version}', { version:recommendation.scoringVersion })]
               .filter(Boolean).join(' · '))
-          : unknown('dog match'),
+          : unknown(tx('dog match')),
         reasons: concerns.length || fine.length
           ? cell(concerns.length ? concerns.join(' ') : sentence(fine),
             concerns.length ? 'caution' : 'known',
             unknownCount
-              ? `${unknownCount} unknown item${unknownCount === 1 ? ' also affects' : 's also affect'} confidence`
+              ? (unknownCount === 1
+                ? tx('{n} unknown item also affects confidence', { n:unknownCount })
+                : tx('{n} unknown items also affect confidence', { n:unknownCount }))
               : null)
-          : unknown('recommendation reasons'),
+          : unknown(tx('recommendation reasons')),
         distance: formatNumber(metrics.distanceKm, ' km')
-          ? cell(formatNumber(metrics.distanceKm, ' km')) : unknown('distance'),
-        elevation: formatNumber(metrics.ascentM, ' m ascent')
-          ? cell(formatNumber(metrics.ascentM, ' m ascent')) : unknown('elevation'),
+          ? cell(formatNumber(metrics.distanceKm, ' km')) : unknown(tx('distance')),
+        elevation: ascent
+          ? cell(tx('{m} m ascent', { m:ascent })) : unknown(tx('elevation')),
         duration: formatDuration(trail.hours)
-          ? cell(formatDuration(trail.hours)) : unknown('duration'),
+          ? cell(formatDuration(trail.hours)) : unknown(tx('duration')),
         terrain: terrainKnown
-          ? cell(TERRAIN[suitability.terrainRank] || `Terrain level ${suitability.terrainRank}`,
+          ? cell(TERRAIN[suitability.terrainRank] || tx('Terrain level {n}', { n:suitability.terrainRank }),
             categoryVerified(parts, 'surfaceHazards') ? 'known' : 'mapped',
-            categoryVerified(parts, 'surfaceHazards') ? 'Surface evidence reviewed' : 'Mapped terrain; surface hazards not reviewed')
-          : unknown('terrain'),
+            categoryVerified(parts, 'surfaceHazards') ? tx('Surface evidence reviewed') : tx('Mapped terrain; surface hazards not reviewed'))
+          : unknown(tx('terrain')),
         exposure: categoryVerified(parts, 'exposure')
-          ? cell(suitability.exposure ? 'Exposed sections recorded' : 'No exposure recorded in reviewed evidence',
+          ? cell(suitability.exposure ? tx('Exposed sections recorded') : tx('No exposure recorded in reviewed evidence'),
             suitability.exposure ? 'caution' : 'known')
-          : unknown('exposure'),
+          : unknown(tx('exposure')),
         shade: categoryVerified(parts, 'heat') && Number.isFinite(suitability.shadePercent)
-          ? cell(`${Math.round(suitability.shadePercent)}% reviewed shade`,
+          ? cell(tx('{n}% reviewed shade', { n:Math.round(suitability.shadePercent) }),
             suitability.shadePercent < 20 ? 'caution' : 'known')
-          : unknown('shade'),
+          : unknown(tx('shade')),
         heat: categoryVerified(parts, 'heat') && ['low','moderate','high'].includes(suitability.heatRisk)
-          ? cell(`${suitability.heatRisk[0].toUpperCase()}${suitability.heatRisk.slice(1)} baseline heat risk`,
+          ? cell({
+            low:tx('Low baseline heat risk'),
+            moderate:tx('Moderate baseline heat risk'),
+            high:tx('High baseline heat risk'),
+          }[suitability.heatRisk],
             suitability.heatRisk === 'high' ? 'caution' : 'known')
-          : unknown('heat'),
+          : unknown(tx('heat')),
         water: categoryVerified(parts, 'water')
           ? cell(reviewedWater
-            ? `${reviewedWater} reviewed water point${reviewedWater === 1 ? '' : 's'}`
-            : 'No usable water point confirmed, carry a full supply',
+            ? (reviewedWater === 1
+              ? tx('{n} reviewed water point', { n:reviewedWater })
+              : tx('{n} reviewed water points', { n:reviewedWater }))
+            : tx('No usable water point confirmed, carry a full supply'),
           reviewedWater ? 'known' : 'caution')
-          : unknown('water'),
+          : unknown(tx('water')),
         hazards: categoryVerified(parts, 'surfaceHazards')
-          ? cell(hazards && hazards.length ? hazards.join(' · ') : 'No material surface hazards in reviewed evidence',
+          ? cell(hazards && hazards.length ? hazards.join(' · ') : tx('No material surface hazards in reviewed evidence'),
             hazards && hazards.length ? 'caution' : 'known')
-          : unknown('surface hazards'),
+          : unknown(tx('surface hazards')),
         restrictions: categoryVerified(parts, 'access') && ACCESS[access]
           ? cell(ACCESS[access], ['prohibited','seasonal-restrictions'].includes(access) ? 'caution' : 'known')
-          : unknown('dog-access rules'),
+          : unknown(tx('dog-access rules')),
         verification: cell(tierLabel(tier), ['imported','mapped'].includes(tier) ? 'mapped' : 'known'),
       },
     };

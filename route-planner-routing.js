@@ -1,6 +1,13 @@
 (function(root){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const DEFAULT_ENDPOINT = 'https://brouter.de/brouter';
   const DEFAULT_PROFILE = 'hiking-mountain';
 
@@ -97,7 +104,7 @@
     const reportedDistance = Number(feature.properties && feature.properties['track-length']);
     const distanceM = Number.isFinite(reportedDistance) ? reportedDistance : pathDistance(path);
     if(Number.isFinite(settings.maxDistanceM) && distanceM > settings.maxDistanceM){
-      throw routeError('That draft is longer than the current 30 km planning limit.', 'too-long');
+      throw routeError(tx('That draft is longer than the current 30 km planning limit.'), 'too-long');
     }
     // BRouter reports climb as "filtered ascend" (noise-filtered) and
     // "plain-ascend" (raw). The filtered figure is the one worth showing.

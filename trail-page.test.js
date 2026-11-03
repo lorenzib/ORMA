@@ -216,7 +216,7 @@ describe('trail page map controls', () => {
     expect(document.getElementById('matchAdvice')).toBeNull();
     expect(document.querySelector('.td-safety-intro')).toBeNull();
 
-    expect(blueprint).toContain("['route', 'Route effort'");
+    expect(blueprint).toContain("['route', tx('Route effort')");
     expect(blueprint).toContain('trust.heatAssessment(t, conditions)');
     expect(blueprint).toContain('if (!item || item.ok) return;');
     expect(blueprint).toContain("box.innerHTML = rows.map(rowMarkup).join('');");
@@ -375,16 +375,16 @@ describe('trail page map controls', () => {
     expect(blueprint).toContain("verifiedRouteGuidance || (!routeRefs.length && auditDirections.written) ? 'How to follow this route'");
     expect(blueprint).toContain("routeRefs.length ? 'Trail numbers' : 'Following the route'");
     expect(blueprint).not.toMatch(/'Waymarked|Follow waymarked/);
-    expect(blueprint).toContain('Begin the hike on trail <b>${esc(routeSwitches[0].from)}</b>');
-    expect(blueprint).toContain('At approximately km ${esc(item.km.toFixed(1)');
-    expect(blueprint).toContain('switch from trail <b>${esc(item.from)}</b> to trail <b>${esc(item.to)}</b>');
+    expect(blueprint).toContain("tx('Begin the hike on trail <b>{trail}</b>.', { trail: esc(routeSwitches[0].from) })");
+    expect(blueprint).toContain("tx('At approximately km {km}', { km: esc(item.km.toFixed(1)");
+    expect(blueprint).toContain("switch from trail <b>{from}</b> to trail <b>{to}</b>.', switchVars)");
     expect(blueprint).toContain("guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'");
     expect(blueprint).toContain("guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'");
     expect(blueprint).toContain("? `<p>${startLine(text)}</p>`");
     expect(blueprint).toContain('for the final section to the route finish');
     expect(blueprint).toContain('marked only on the verified section');
     expect(blueprint).toContain('aroundGrid.innerHTML = routeRefMarkup ? renderCards([routeCard])');
-    expect(blueprint).toContain('<b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route.');
+    expect(blueprint).toContain("'<div class=\"s\"><p><b>' + tx('Trail numbers:') + '</b> ' + tx('No verified numbered sequence is currently recorded for this route.");
     expect(blueprint).toContain('? `${routeBadges}<div class="s">${guidanceSteps ? `<p class="td2-route-badge">');
     expect(blueprint).toContain('guidanceLines.map(([label, text]) => label === \'Start\'');
     expect(blueprint).not.toContain('does not publish a usable trail number or numbered switch');
@@ -426,11 +426,11 @@ describe('trail page map controls', () => {
     // What it says instead when nothing about the route is recorded: the
     // honest note, on its own.
     expect(section).toContain(': noRouteNumbers;');
-    expect(section).toContain('<b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route.');
+    expect(section).toContain("'<div class=\"s\"><p><b>' + tx('Trail numbers:') + '</b> ' + tx('No verified numbered sequence is currently recorded for this route.");
 
     // The sourced cases keep their real guidance.
     expect(section).toContain("? `<p>${startLine(text)}</p>`");
-    expect(section).toContain('Begin the hike on trail <b>${esc(routeSwitches[0].from)}</b>');
+    expect(section).toContain("tx('Begin the hike on trail <b>{trail}</b>.', { trail: esc(routeSwitches[0].from) })");
 
     // The built bundle is what the browser runs, so it has to carry the fix.
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
@@ -466,7 +466,7 @@ describe('trail page map controls', () => {
     const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
 
     expect(blueprint).toContain(".replace(/\\s*(?:—|--)+\\s*/g, '. ')");
-    expect(blueprint).toContain('descEl.textContent = cardCopy(t.desc)');
+    expect(blueprint).toContain('descEl.textContent = cardCopy(trailWords(t.desc))');
     expect(blueprint).not.toContain('is warm, walk early');
   });
 
@@ -707,7 +707,7 @@ describe('trail page map controls', () => {
     expect(trail).toContain('mapBox.appendChild(elevationPanel)');
     expect(trail).toContain('route elevation`');
     expect(trail).toContain("'hillshade-method': 'igor'");
-    expect(trail).toContain("on ? 'Close map' : 'Expand map'");
+    expect(trail).toContain("on ? tx('Close map') : tx('Expand map')");
     expect(hikeMode).toContain('rejoin.segmentFraction');
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
     expect(bundle.indexOf('// ---- hike-distance.js ----')).toBeLessThan(bundle.indexOf('// ---- hike-mode.js ----'));
@@ -793,9 +793,9 @@ describe('trail page map controls', () => {
     expect(html).toContain('<span data-i18n="page.trail.getDirectionsToTrail">Get directions to trail</span>');
     expect(html).toContain('.map-nearest-directions{position:absolute;left:14px;bottom:56px;');
     expect(html).toContain('.td-layer-switch{position:absolute;bottom:14px;left:14px;');
-    expect(source).toContain("const defaultLabel = 'Get directions to trail'");
-    expect(source).toContain("setButtonLabel('Calculating directions…')");
-    expect(source).toContain("setButtonLabel('Try again')");
+    expect(source).toContain("const defaultLabel = tx('Get directions to trail')");
+    expect(source).toContain("setButtonLabel(tx('Calculating directions…'))");
+    expect(source).toContain("setButtonLabel(tx('Try again'))");
   });
 
   test('trail photos form a compact responsive rail without default figure spacing', () => {

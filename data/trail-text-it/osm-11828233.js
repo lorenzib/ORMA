@@ -1,0 +1,13 @@
+// osm-11828233 in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A gentle village loop in Vals above Mühlbach: from the Jochtal valley station along the forest edge into the village, down to the Masl chapel and back along the Valler Bach. The official route lists 5.1 km and 164 m of ascent.": "Un tranquillo giro ad anello a Vals sopra Mühlbach: dalla stazione a valle della Jochtal lungo il margine del bosco fino al paese, giù alla cappella Masl e ritorno lungo il Valler Bach. Il percorso ufficiale indica 5,1 km e 164 m di dislivello in salita.",
+  "Park free at the Jochtal valley station and follow the “Valser Rundweg” signs: 5.1 km and 164 m of climbing, about an hour and a quarter. Keep your dog on a lead of at most 1.5 m the whole way and off the hay meadows in the growing season, as Mühlbach requires, and carry a muzzle. Bring water for the first sunny, paved stretch; the stream comes at the end.": "Parcheggia gratis alla stazione a valle della Jochtal e segui i cartelli “Valser Rundweg”: 5,1 km e 164 m di salita, circa un'ora e un quarto. Tieni il cane al guinzaglio di al massimo 1,5 m per tutto il percorso e fuori dai prati da fieno nella stagione vegetativa, come richiede Mühlbach, e porta la museruola al seguito. Porta acqua per il primo tratto, soleggiato e asfaltato; il torrente arriva alla fine.",
+  "Village lanes without a pavement": "Stradine di paese senza marciapiede",
+  "Crossing the Valser road (SP100) at the Masl chapel": "Attraversamento della strada di Vals (SP100) alla cappella Masl",
+  "Roundabout by the valley station": "Rotatoria vicino alla stazione a valle",
+  "Sunny asphalt on the first section": "Asfalto al sole nel primo tratto",
+  "Paved lanes and village roads (about 60%), then a gravel track closed to traffic along the Valler Bach": "Stradine asfaltate e strade di paese (circa il 60%), poi una strada sterrata chiusa al traffico lungo il Valler Bach",
+  "Free car park at the Jochtal cable-car valley station, Vals": "Parcheggio gratuito alla stazione a valle della cabinovia Jochtal, Vals",
+  "Vals village and its green meadows on the valley floor in summer, wooded slopes and peaks of the Valser Tal behind.": "Il paese di Vals e i suoi prati verdi sul fondovalle d'estate, con pendii boscosi e le cime della Valser Tal sullo sfondo.",
+  "About a third in forest, mostly the stream track and the forest-edge lane; open meadows and village otherwise.": "Circa un terzo nel bosco, soprattutto la strada lungo il torrente e la stradina al margine del bosco; per il resto prati aperti e paese."
+});

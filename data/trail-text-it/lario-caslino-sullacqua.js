@@ -1,0 +1,12 @@
+// lario-caslino-sullacqua in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short loop from Caslino d’Erba station through the old village and along the Piot stream to the Acqua Santa spring, across the Lambro to Ponte Lambro and back by Castelmarte. The portal lists 5.32 km and 447 m of ascent.": "Un breve anello dalla stazione di Caslino d'Erba attraverso il borgo antico e lungo il torrente Piot fino alla fonte dell'Acqua Santa, oltre il Lambro fino a Ponte Lambro e ritorno da Castelmarte. Il portale indica 5,32 km e 447 m di dislivello in salita.",
+  "Start at the station car park in Caslino d’Erba (train or bus C39): 5.3 km and about 450 m of climbing, two hours. All three communes require a lead of at most 1.5 m and a muzzle carried, and Caslino keeps dogs out of its public parks. Fill up at the fountains in Caslino’s old village.": "Parti dal parcheggio della stazione di Caslino d'Erba (treno o autobus C39): 5,3 km e circa 450 m di salita, due ore. Tutti e tre i comuni richiedono un guinzaglio lungo al massimo 1,5 m e la museruola al seguito, e Caslino vieta ai cani i parchi pubblici. Fai rifornimento alle fontane del borgo antico di Caslino.",
+  "A crossing of the SP 40 provincial road: keep your dog on a short lead": "Un attraversamento della strada provinciale SP 40: tieni il cane al guinzaglio corto",
+  "Steep descents and long flights of steps": "Discese ripide e lunghe scalinate",
+  "The Piot and the Lambro: keep your dog out of the water near the weirs": "Il Piot e il Lambro: tieni il cane fuori dall'acqua vicino alle briglie",
+  "Village lanes, steps and woodland paths": "Stradine di paese, gradini e sentieri nel bosco",
+  "The car park at Caslino d’Erba station, the published start": "Il parcheggio della stazione di Caslino d'Erba, la partenza indicata",
+  "The Lambro river running over stones between green banks in Ponte Lambro, a park and houses on the slope above": "Il fiume Lambro che scorre sui sassi tra rive verdi a Ponte Lambro, un parco e case sul pendio sopra",
+  "About a third shaded: the paths along the Piot and down to Ponte Lambro run through woods; the villages and lanes are open.": "Circa un terzo all'ombra: i sentieri lungo il Piot e in discesa verso Ponte Lambro attraversano il bosco; i paesi e le stradine sono aperti."
+});

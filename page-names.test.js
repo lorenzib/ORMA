@@ -10,9 +10,10 @@ const { generatedDirectoryPattern } = require('./scripts/generated-directories')
 //
 // Naming the files to check is what let the verdict vocabulary drift twice, so
 // this walks the tree instead of keeping a list.
+// The Italian copies under it/ name each place once too, in Italian.
 const NAMES = [
-  { file:'browse-trails.html', label:'Trails' },
-  { file:'safety-guide.html', label:'Safety library' },
+  { file:'browse-trails.html', label:'Trails', labelIt:'Sentieri' },
+  { file:'safety-guide.html', label:'Safety library', labelIt:'Guide di sicurezza' },
 ];
 
 // One shared list of what a build writes, so this walker cannot go stale on
@@ -49,7 +50,7 @@ describe('one place, one name', () => {
     expect(pages.length).toBeGreaterThan(150);
   });
 
-  NAMES.forEach(({ file, label }) => {
+  NAMES.forEach(({ file, label, labelIt }) => {
     test(`every header calls ${file} "${label}"`, () => {
       const wrong = [];
       for(const page of pages){
@@ -57,7 +58,7 @@ describe('one place, one name', () => {
         if(!nav) continue;
         const pattern = new RegExp(`<a[^>]*href="(?:\\.\\./|/)?${file.replace('.', '\\.')}"[^>]*>([^<]+)</a>`, 'g');
         for(const [, text] of nav.matchAll(pattern)){
-          if(text.trim() !== label) wrong.push(`${page}: "${text.trim()}"`);
+          if(text.trim() !== (page.startsWith('it/') ? labelIt : label)) wrong.push(`${page}: "${text.trim()}"`);
         }
       }
       expect(wrong).toEqual([]);
@@ -91,8 +92,8 @@ describe('one place, one name', () => {
 
   test('the generator writes the same names, or regeneration undoes this', () => {
     const generator = fs.readFileSync(path.join('scripts', 'generate-trail-pages.js'), 'utf8');
-    expect(generator).toContain('>Trails</a>');
-    expect(generator).toContain('>Safety library</a>');
+    expect(generator).toContain(">${L('Trails')}</a>");
+    expect(generator).toContain(">${L('Safety library')}</a>");
     expect(generator).not.toContain('>Safety guide</a>');
     expect(generator).not.toContain('>Browse all Trails</a>');
   });

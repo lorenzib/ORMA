@@ -22,6 +22,13 @@ import {
   orderBy, limit, runTransaction
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -461,7 +468,7 @@ async function setDogProfile(dogObj, targetDogId) {
 async function addDogProfile(dogObj) {
   lastDogProfileError = null;
   if (!currentUser) {
-    lastDogProfileError = { code:'not-signed-in', message:'Sign in again before saving this dog.' };
+    lastDogProfileError = { code:'not-signed-in', message:tx('Sign in again before saving this dog.') };
     return false;
   }
   let limitReached = false;
@@ -479,14 +486,14 @@ async function addDogProfile(dogObj) {
       return { dogs:state.dogs.concat(dog), activeDogId:id };
     });
     if (!saved && limitReached) {
-      lastDogProfileError = { code:'dog-limit', message:'An ORMA account can store up to five dogs.' };
+      lastDogProfileError = { code:'dog-limit', message:tx('An ORMA account can store up to five dogs.') };
     }
     return saved;
   } catch (e) {
     console.error("Failed to add dog profile:", e);
     lastDogProfileError = {
       code:e && e.code ? String(e.code) : 'profile-save-failed',
-      message:e && e.message ? String(e.message) : 'The dog profile could not be saved.',
+      message:e && e.message ? String(e.message) : tx('The dog profile could not be saved.'),
     };
     return false;
   }
@@ -757,17 +764,17 @@ async function deleteAllJournalPhotos(uid) {
 
 function friendlyError(code) {
   const map = {
-    "auth/email-already-in-use": "That email already has an account, try logging in instead.",
-    "auth/invalid-email": "That email address doesn't look right.",
-    "auth/weak-password": "Password should be at least 6 characters.",
-    "auth/user-not-found": "No account found with that email.",
-    "auth/wrong-password": "Incorrect password.",
-    "auth/invalid-credential": "Incorrect email or password.",
-    "auth/popup-closed-by-user": "Google sign-in was closed before finishing.",
-    "auth/requires-recent-login": "For security, please confirm your identity again before this action.",
-    "auth/too-many-requests": "Too many attempts. Wait a moment, then try again.",
+    "auth/email-already-in-use": tx('That email already has an account, try logging in instead.'),
+    "auth/invalid-email": tx('That email address doesn\'t look right.'),
+    "auth/weak-password": tx('Password should be at least 6 characters.'),
+    "auth/user-not-found": tx('No account found with that email.'),
+    "auth/wrong-password": tx('Incorrect password.'),
+    "auth/invalid-credential": tx('Incorrect email or password.'),
+    "auth/popup-closed-by-user": tx('Google sign-in was closed before finishing.'),
+    "auth/requires-recent-login": tx('For security, please confirm your identity again before this action.'),
+    "auth/too-many-requests": tx('Too many attempts. Wait a moment, then try again.'),
   };
-  return map[code] || "Something went wrong, please try again.";
+  return map[code] || tx('Something went wrong, please try again.');
 }
 
 async function deleteAccount(password) {
@@ -907,7 +914,7 @@ function contributionWriteError(error, fallback) {
       ok: false,
       state: "unavailable",
       action: "contact-support",
-      message: "This account cannot submit community contributions. Contact ORMA if you think this is a mistake.",
+      message: tx('This account cannot submit community contributions. Contact ORMA if you think this is a mistake.'),
     };
   }
   return { ok: false, message: fallback };
@@ -953,9 +960,9 @@ async function getPublicProfile(uid) {
 }
 
 async function setPublicProfile(input) {
-  if (!currentUser) return { ok:false, message:"Log in to create a public profile." };
+  if (!currentUser) return { ok:false, message:tx('Log in to create a public profile.') };
   const profile = cleanPublicProfile(input);
-  if (!profile.displayName) return { ok:false, message:"Add a public display name." };
+  if (!profile.displayName) return { ok:false, message:tx('Add a public display name.') };
   await setDoc(doc(db, "publicProfiles", currentUser.uid), Object.assign({}, profile, {
     uid:currentUser.uid,
     updatedAt:serverTimestamp(),
@@ -972,8 +979,8 @@ async function getFollowState(targetType, targetId) {
 }
 
 async function followPublicIdentity(ownerUid, targetType, targetId, isPrivate) {
-  if (!currentUser) return { ok:false, message:"Log in to follow this profile." };
-  if (ownerUid === currentUser.uid) return { ok:false, message:"This is your profile." };
+  if (!currentUser) return { ok:false, message:tx('Log in to follow this profile.') };
+  if (ownerUid === currentUser.uid) return { ok:false, message:tx('This is your profile.') };
   const id = socialEdgeId(targetType, targetId);
   const record = {
     followerUid:currentUser.uid,
@@ -1019,13 +1026,13 @@ function queueOfflineContribution(type, payload, options) {
     ok: true,
     queued: true,
     queueId: result.record.id,
-    message: "Saved on this device, waiting to sync when you reconnect.",
+    message: tx('Saved on this device, waiting to sync when you reconnect.'),
   } : {
     ok: false,
     state: "queue-unavailable",
     message: result.error === "queue-full"
-      ? "Your offline contribution queue is full. Reconnect before adding more."
-      : "This contribution could not be saved on this device.",
+      ? tx('Your offline contribution queue is full. Reconnect before adding more.')
+      : tx('This contribution could not be saved on this device.'),
   };
 }
 
@@ -1042,7 +1049,7 @@ async function sendContributionVerificationEmail() {
     return {
       ok: true,
       messageKey:"account.contribution.verificationSent",
-      messageVars:{ email:currentUser.email || "your email" },
+      messageVars:{ email:currentUser.email || tx('your email') },
       message: `Verification link sent to ${currentUser.email || "your email"}.`,
     };
   } catch (error) {
@@ -1172,7 +1179,7 @@ window.DoloPawsAuth = {
   // Sends a confirmation link to the NEW address; the login email only
   // changes once that link is clicked, so a typo can't lock anyone out.
   async updateEmail(newEmail) {
-    if (!currentUser) return { ok: false, message: "Not logged in." };
+    if (!currentUser) return { ok: false, message: tx('Not logged in.') };
     try {
       await verifyBeforeUpdateEmail(currentUser, newEmail);
       return { ok: true };
@@ -1286,7 +1293,7 @@ async function addFlag(trailId, type, km, text, options) {
       });
       if (queued) return queued;
     }
-    return contributionWriteError(e, "Could not save your report, please try again.");
+    return contributionWriteError(e, tx('Could not save your report, please try again.'));
   }
 }
 
@@ -1339,11 +1346,11 @@ async function reportTrailHazard(trail, category, description, observedOn, locat
   const eligibility = await getContributionEligibility();
   if (!eligibility.ok) return eligibility;
   if (!trail || !trail.id || !TRAIL_HAZARD_CATEGORIES.includes(category)) {
-    return { ok: false, message: "Choose what kind of hazard you saw." };
+    return { ok: false, message: tx('Choose what kind of hazard you saw.') };
   }
   const text = String(description || "").trim();
   if (text.length < 10) {
-    return { ok: false, message: "Describe what you saw in a sentence or two." };
+    return { ok: false, message: tx('Describe what you saw in a sentence or two.') };
   }
   const placed = hazardReportLocation(location);
   const report = withLocation => ({
@@ -1369,10 +1376,10 @@ async function reportTrailHazard(trail, category, description, observedOn, locat
       if (!placed || !String(error && error.code || "").includes("permission-denied")) throw error;
       await addDoc(collection(db, "trailHazardReports"), report(false));
     }
-    return { ok: true, message: "Thanks, ORMA is checking this against official sources now." };
+    return { ok: true, message: tx('Thanks, ORMA is checking this against official sources now.') };
   } catch (error) {
     console.error("reportTrailHazard failed:", error);
-    return contributionWriteError(error, "Could not send your report, please try again.");
+    return contributionWriteError(error, tx('Could not send your report, please try again.'));
   }
 }
 
@@ -1383,7 +1390,7 @@ async function submitPlaceDogFriendliness(place, policy, evidence, note) {
   const allowedPolicies = ["welcome", "leashed", "not-allowed"];
   const allowedEvidence = ["visited", "staff-confirmed", "posted-sign"];
   if (!place || !place.id || !allowedPolicies.includes(policy) || !allowedEvidence.includes(evidence)) {
-    return { ok: false, message: "Choose a dog policy and how you verified it." };
+    return { ok: false, message: tx('Choose a dog policy and how you verified it.') };
   }
   try {
     const coordinates = Array.isArray(place.coordinates) ? place.coordinates : [];
@@ -1402,10 +1409,10 @@ async function submitPlaceDogFriendliness(place, policy, evidence, note) {
       status: "pending",
       createdAt: serverTimestamp(),
     });
-    return { ok: true, message: "Thanks, your report is awaiting ORMA review." };
+    return { ok: true, message: tx('Thanks, your report is awaiting ORMA review.') };
   } catch (error) {
     console.error("submitPlaceDogFriendliness failed:", error);
-    return contributionWriteError(error, "Could not send your report, please try again.");
+    return contributionWriteError(error, tx('Could not send your report, please try again.'));
   }
 }
 
@@ -1462,10 +1469,10 @@ async function respondToHazard(flagId, stance) {
   const eligibility = await getContributionEligibility();
   if (!eligibility.ok) return eligibility;
   if (!["confirm", "dispute"].includes(stance)) {
-    return { ok: false, message: "Choose confirm or dispute." };
+    return { ok: false, message: tx('Choose confirm or dispute.') };
   }
   const safeId = String(flagId || "").slice(0, 100);
-  if (!safeId) return { ok: false, message: "This hazard report is unavailable." };
+  if (!safeId) return { ok: false, message: tx('This hazard report is unavailable.') };
   try {
     const batch = writeBatch(db);
     batch.set(doc(db, "flags", safeId, "responses", currentUser.uid), {
@@ -1484,7 +1491,7 @@ async function respondToHazard(flagId, stance) {
     console.error("respondToHazard failed:", e);
     return contributionWriteError(
       e,
-      "Your response could not be saved. You may already have responded to this report."
+      tx('Your response could not be saved. You may already have responded to this report.')
     );
   }
 }
@@ -1539,7 +1546,7 @@ async function setReview(trailId, rating, text, hikedOn, options) {
       const queued = queueOfflineContribution("review", queuePayload, options);
       if (queued) return queued;
     }
-    return contributionWriteError(e, "Could not save your review, please try again.");
+    return contributionWriteError(e, tx('Could not save your review, please try again.'));
   }
 }
 
@@ -1576,7 +1583,7 @@ async function addTrailPhoto(trailId, image, caption, options) {
   }
   const imageData = String(image || '');
   if (!imageData.startsWith('data:image/') || imageData.length > 700000) {
-    return { ok: false, message: "This photo is too large, please try another image." };
+    return { ok: false, message: tx('This photo is too large, please try another image.') };
   }
   try {
     const dog = await getDogProfile();
@@ -1606,7 +1613,7 @@ async function addTrailPhoto(trailId, image, caption, options) {
       });
       if (queued) return queued;
     }
-    return contributionWriteError(e, "Could not add this photo, please try again.");
+    return contributionWriteError(e, tx('Could not add this photo, please try again.'));
   }
 }
 

@@ -1,0 +1,17 @@
+// cembra-lago-santo in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short, flat loop round the Lago Santo, a small lake in the woods above Cembra, with a dog-bathing area of its own. The APT lists 1.1 km and 10 m of ascent.": "Un breve anello pianeggiante intorno al Lago Santo, un laghetto nel bosco sopra Cembra, con una propria area di balneazione per cani. L'APT indica 1,1 km e 10 m di dislivello in salita.",
+  "Start at the Lago Santo car park above Cembra: 1.1 km, flat, about 20 minutes. Keep your dog on the lead round the lake; it can swim only in the signed dog-bathing area north of the outlet. Two restaurants at the car park.": "Partenza dal parcheggio del Lago Santo sopra Cembra: 1,1 km, in piano, circa 20 minuti. Tieni il cane al guinzaglio intorno al lago; può nuotare solo nell'area di balneazione per cani segnalata a nord dell'emissario. Due ristoranti al parcheggio.",
+  "Grassy and compacted lakeside paths, a little muddy after rain": "Sentieri lungo il lago erbosi e battuti, un po' fangosi dopo la pioggia",
+  "Busy with bathers in summer: keep your dog close on the beach": "D'estate molti bagnanti: sulla spiaggia tieni il cane vicino",
+  "Dogs may not go into the water except in the signed dog-bathing area just north of the Rio Mercar outlet": "I cani non possono entrare in acqua, tranne nell'area di balneazione per cani segnalata appena a nord dell'emissario del Rio Mercar",
+  "Lakeside paths, grass and a short stretch of lane": "Sentieri lungo il lago, prato e un breve tratto di stradina",
+  "Lago Santo car park, Cembra, the APT’s start": "Parcheggio del Lago Santo, Cembra, la partenza indicata dall'APT",
+  "The Lago Santo lying calm and blue among dark spruce woods, reeds and a grassy shore in the foreground under a clear spring sky": "Il Lago Santo calmo e blu tra scuri boschi di abeti rossi, canne e una riva erbosa in primo piano sotto un limpido cielo primaverile",
+  "Partly shaded: about 40% of the loop runs under the trees round the lake.": "In parte all'ombra: circa il 40% dell'anello passa sotto gli alberi intorno al lago.",
+  "Start at the car park at the end of the provincial road to the Lago Santo, the tourist board’s start.": "Parti dal parcheggio alla fine della strada provinciale per il Lago Santo, la partenza indicata dall'ente turistico.",
+  "Down to the bathing area, then round the lake anticlockwise on the lakeside road and back to the car park.": "Scendi all'area di balneazione, poi fai il giro del lago in senso antiorario sulla strada lungo il lago e torna al parcheggio.",
+  "At the bathing area, take the road round the lake and keep the water on your left: the board describes the loop anticlockwise.": "All'area di balneazione, prendi la strada che gira intorno al lago e tieni l'acqua alla tua sinistra: la scheda ufficiale descrive l'anello in senso antiorario.",
+  "From the car park, go down to the bathing area and take the road that runs round the lake.": "Dal parcheggio, scendi all'area di balneazione e prendi la strada che gira intorno al lago.",
+  "Walk round the lake anticlockwise and back to the car park. The climb is very small, so the board says you can also go the other way round.": "Fai il giro del lago in senso antiorario e torna al parcheggio. La salita è minima, quindi la scheda ufficiale dice che puoi percorrerlo anche nel senso opposto."
+});

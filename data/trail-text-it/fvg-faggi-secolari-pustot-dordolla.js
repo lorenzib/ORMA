@@ -1,0 +1,12 @@
+// fvg-faggi-secolari-pustot-dordolla in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A loop from the hilltop village of Dordolla in the Val Aupa up to the centuries-old beeches of Pustot and back on the valley’s old mule tracks. PromoTurismoFVG lists 4.9 km and 395 m of ascent.": "Un anello dal borgo in cima al colle di Dordolla, in Val Aupa, fino ai faggi secolari di Pustot e ritorno sulle antiche mulattiere della valle. PromoTurismoFVG indica 4,9 km e 395 m di dislivello in salita.",
+  "Start in Dordolla, at the end of the Val Aupa road (few free parking places): 4.9 km and about 400 m of climbing, two hours and twenty minutes. Keep your dog on a lead in the village and carry a muzzle. The old tracks are steep and slippery after rain. Spring and autumn are the best seasons.": "Parti da Dordolla, alla fine della strada della Val Aupa (pochi posti auto gratuiti): 4,9 km e circa 400 m di salita, due ore e venti minuti. Tieni il cane al guinzaglio in paese e porta la museruola. Le antiche mulattiere sono ripide e scivolose dopo la pioggia. Primavera e autunno sono le stagioni migliori.",
+  "Steep climbs and descents on old mule tracks: slippery after rain": "Salite e discese ripide su antiche mulattiere: scivolose dopo la pioggia",
+  "Not advised after heavy rain": "Sconsigliato dopo piogge abbondanti",
+  "Ticks are common in the region: check your dog after the walk": "Le zecche sono comuni nella zona: controlla il tuo cane dopo la passeggiata",
+  "Old mule tracks, forest paths and village lanes": "Antiche mulattiere, sentieri nel bosco e stradine del paese",
+  "Dordolla village, Val Aupa, the board’s start": "Borgo di Dordolla, Val Aupa, partenza indicata dalla scheda ufficiale",
+  "Stone and plastered houses of a small mountain village on a green meadow, a wooden frame hung with coloured flags in front, under a tall pale limestone peak and wooded slopes in sunshine": "Case in pietra e intonacate di un piccolo borgo di montagna su un prato verde, una struttura in legno con bandierine colorate davanti, sotto un'alta cima calcarea chiara e pendii boscosi al sole",
+  "Mostly shaded: about two thirds of the loop runs through beech woods, Pustot included; the meadows round Dordolla and Drentus are open.": "Per lo più all'ombra: circa due terzi dell'anello passano nelle faggete, Pustot compreso; i prati intorno a Dordolla e Drentus sono aperti."
+});

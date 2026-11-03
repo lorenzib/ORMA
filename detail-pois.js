@@ -54,6 +54,12 @@ function initDetailPois(map, trail){
 
   // Every popup states IN WORDS what the place is, an icon plus an
   // elevation is a riddle, not information.
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
   function tt(key, fallback){
     if(!window.t) return fallback;
     const v = window.t(key);
@@ -88,16 +94,16 @@ function initDetailPois(map, trail){
       : '';
     let html = `<div class="dp-poi-popup"><span class="dp-poi-type">${typeIcon}${esc(typeLabel)}</span>`;
     if (props.name) html += `<strong class="dp-poi-name">${esc(props.name)}</strong>`;
-    if (props.ele) html += `<span>${esc(props.ele)} m elevation</span>`;
-    if (props.opening_hours) html += `<span>Hours: ${esc(props.opening_hours)}</span>`;
+    if (props.ele) html += `<span>${tx('{ele} m elevation', { ele: esc(props.ele) })}</span>`;
+    if (props.opening_hours) html += `<span>${tx('Hours: {hours}', { hours: esc(props.opening_hours) })}</span>`;
     const phone = props.phone || props['contact:phone'];
-    if (phone) html += `<span>Phone: ${esc(phone)}</span>`;
+    if (phone) html += `<span>${tx('Phone: {phone}', { phone: esc(phone) })}</span>`;
     const site = props.website || props['contact:website'];
-    if (site && /^https?:\/\//.test(site)) html += `<a href="${esc(site)}" target="_blank" rel="noopener">Website</a>`;
-    if (props.dog === 'yes') html += `<span class="dp-poi-dog">Dogs welcome</span>`;
-    else if (props.dog === 'leashed') html += `<span class="dp-poi-dog">Dogs on leash</span>`;
-    else if (props.dog === 'no') html += `<span class="dp-poi-dog">No dogs</span>`;
-    if (props.outdoor_seating && props.outdoor_seating !== 'no') html += `<span>Outdoor seating</span>`;
+    if (site && /^https?:\/\//.test(site)) html += `<a href="${esc(site)}" target="_blank" rel="noopener">${tx('Website')}</a>`;
+    if (props.dog === 'yes') html += `<span class="dp-poi-dog">${tx('Dogs welcome')}</span>`;
+    else if (props.dog === 'leashed') html += `<span class="dp-poi-dog">${tx('Dogs on leash')}</span>`;
+    else if (props.dog === 'no') html += `<span class="dp-poi-dog">${tx('No dogs')}</span>`;
+    if (props.outdoor_seating && props.outdoor_seating !== 'no') html += `<span>${tx('Outdoor seating')}</span>`;
     return html + '</div>';
   }
 

@@ -1,6 +1,12 @@
 (function(){
   const root=document.getElementById('profileDesign');
   if(!root)return;
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
   const t=(key,fallback,vars)=>{
     if(!window.t)return fallback;
     const value=window.t(key,vars);
@@ -41,7 +47,7 @@
   }
   function paintBreedSelection(){
     const chips=document.getElementById('profileBreedChips');
-    chips.replaceChildren(...selectedBreeds.map((value,index)=>{const chip=document.createElement('button');chip.type='button';chip.className='breed-selection-chip';chip.textContent=value+' ×';chip.setAttribute('aria-label','Remove '+value);chip.addEventListener('click',()=>{selectedBreeds.splice(index,1);paintBreedSelection();syncBreedDraft();});return chip;}));
+    chips.replaceChildren(...selectedBreeds.map((value,index)=>{const chip=document.createElement('button');chip.type='button';chip.className='breed-selection-chip';chip.textContent=value+' ×';chip.setAttribute('aria-label',tx('Remove {name}',{name:value}));chip.addEventListener('click',()=>{selectedBreeds.splice(index,1);paintBreedSelection();syncBreedDraft();});return chip;}));
     paintBreedInsight();
   }
   function paintBreedInsight(){
@@ -49,7 +55,7 @@
     const value=savedBreedValue();
     const lines=value&&typeof breedInsights==='function'?breedInsights(value):[];
     if(!value||!lines.length){card.hidden=true;return;}
-    document.getElementById('profileBreedInsightTitle').textContent=selectedBreeds.length>1?'Heads-up for this mix':'Heads-up for this breed';
+    document.getElementById('profileBreedInsightTitle').textContent=selectedBreeds.length>1?tx('Heads-up for this mix'):tx('Heads-up for this breed');
     document.getElementById('profileBreedInsightCopy').textContent=lines.slice(0,2).map(line=>line.sub).join(' ');
     card.hidden=false;
   }
@@ -160,7 +166,9 @@
     if(!name.value.trim())missing.push({label:t('account.profile.name','name'),field:name});
     if(!savedBreedValue().trim())missing.push({label:t('account.profile.breed','breed'),field:breed});
     if(missing.length){
-      profileSaveStatus.textContent=t('account.validation.required','Add your dog’s {fields} before saving.',{fields:missing.map(item=>item.label.toLowerCase()).join(' and ')});
+      const missingLabels=missing.map(item=>item.label.toLowerCase());
+      const missingFields=missingLabels.length>1?tx('{first} and {second}',{first:missingLabels[0],second:missingLabels[1]}):missingLabels[0];
+      profileSaveStatus.textContent=t('account.validation.required','Add your dog’s {fields} before saving.',{fields:missingFields});
       profileSaveStatus.style.color='#9C3A25';
       profileSaveStatus.hidden=false;
       missing[0].field.focus();

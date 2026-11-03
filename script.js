@@ -1,5 +1,12 @@
 
 
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
 function safetyLabel(level){
   if(level === 'low-risk') return t('safety.low');
   if(level === 'moderate') return t('safety.moderate');
@@ -234,7 +241,8 @@ const LI_MAP_AUTO_FRAME_MS = 1400;
 let sortKey = 'match';             // 'match' | 'distance' | 'effort', Companion sort control
 // Said beside the list's count: the order the trails are in.
 const LI_SORT_ORDER_WORDS = Object.freeze({
-  match:'best fit first', distance:'shortest first', effort:'least climb first', today:'best for today first',
+  get match(){ return tx('best fit first'); }, get distance(){ return tx('shortest first'); },
+  get effort(){ return tx('least climb first'); }, get today(){ return tx('best for today first'); },
 });
 let selectedTrailId = null;        // map pin / card selection (Companion layout)
 
@@ -326,6 +334,26 @@ function liDisplayLocationLabel(label){
   return LI_LOCATION_LABEL_ALIASES[value] || value;
 }
 
+// The place names ORMA writes itself, said in the reader's language. Stored
+// contexts keep the English label; only what is shown goes through here.
+function liShownPlaceLabel(label){
+  const value = liDisplayLocationLabel(label);
+  const own = {
+    'All ORMA trails':tx('All ORMA trails'), 'Map area':tx('Map area'),
+    'The Dolomites':tx('The Dolomites'), 'Dolomites':tx('Dolomites'), 'Savoy':tx('Savoy'),
+    'Lombardy':tx('Lombardy'), 'Tyrol & Carinthia':tx('Tyrol & Carinthia'),
+    'Italy':tx('Italy'), 'France':tx('France'), 'Austria':tx('Austria'),
+  };
+  return Object.prototype.hasOwnProperty.call(own, value) ? own[value] : value;
+}
+
+// The kind of place a search suggestion is. The type itself stays English,
+// because it is compared ("Valley"); only the shown word is translated.
+function liPlaceTypeLabel(type){
+  const own = { City:tx('City'), Town:tx('Town'), Valley:tx('Valley'), Country:tx('Country'), Region:tx('Region') };
+  return Object.prototype.hasOwnProperty.call(own, type) ? own[type] : type;
+}
+
 function liLocalDateIso(date){
   const value = date instanceof Date ? date : new Date(date);
   const year = value.getFullYear();
@@ -356,10 +384,10 @@ let liWalkDate = liLoadWalkDate();
 // Read as the end of the headline: "...in Alta Pusteria tomorrow",
 // "...on Saturday 25 Oct".
 function liWalkDateLabel(){
-  if(liWalkDate === liDateOffsetIso(0)) return 'today';
-  if(liWalkDate === liDateOffsetIso(1)) return 'tomorrow';
+  if(liWalkDate === liDateOffsetIso(0)) return tx('today');
+  if(liWalkDate === liDateOffsetIso(1)) return tx('tomorrow');
   const value = new Date(`${liWalkDate}T12:00:00`);
-  return `on ${value.toLocaleDateString(undefined, { weekday:'long', month:'short', day:'numeric' })}`;
+  return tx('on {date}', { date:value.toLocaleDateString(undefined, { weekday:'long', month:'short', day:'numeric' }) });
 }
 
 function liStoredJson(storage, key){
@@ -602,25 +630,25 @@ function liAreasInView(limit){
 
 function liLocationContextLabel(){
   if(!liLocationContext) return '';
-  if(liLocationContext.kind === 'current') return `Your location · within ${liLocationContext.radiusKm} km`;
-  if(liLocationContext.kind === 'town') return `${liLocationContext.label} · within ${liLocationContext.radiusKm} km`;
+  if(liLocationContext.kind === 'current') return tx('Your location · within {km} km', { km:liLocationContext.radiusKm });
+  if(liLocationContext.kind === 'town') return tx('{place} · within {km} km', { place:liLocationContext.label, km:liLocationContext.radiusKm });
   if(liLocationContext.kind === 'map'){
     const area = liAreasInView(1)[0];
-    return area ? `${area.label} · on the map` : 'The map view';
+    return area ? tx('{place} · on the map', { place:liShownPlaceLabel(area.label) }) : tx('The map view');
   }
-  return liDisplayLocationLabel(liLocationContext.label);
+  return liShownPlaceLabel(liLocationContext.label);
 }
 
 function liRecommendationLocationPhrase(){
   if(!liLocationContext || liIsAllTrailsContext(liLocationContext)) return '';
-  if(liLocationContext.kind === 'current') return 'near you';
-  if(liLocationContext.kind === 'town') return `near ${liLocationContext.label}`;
+  if(liLocationContext.kind === 'current') return tx('near you');
+  if(liLocationContext.kind === 'town') return tx('near {place}', { place:liLocationContext.label });
   if(liLocationContext.kind === 'map'){
     const area = liAreasInView(1)[0];
-    return area ? `in ${area.label}` : 'in the map view';
+    return area ? tx('in {place}', { place:liShownPlaceLabel(area.label) }) : tx('in the map view');
   }
   // "in the Dolomites", not "in The Dolomites".
-  return `in ${liDisplayLocationLabel(liLocationContext.label).replace(/^The /, 'the ')}`;
+  return tx('in {place}', { place:liShownPlaceLabel(liLocationContext.label).replace(/^The /, 'the ') });
 }
 
 /**
@@ -677,7 +705,7 @@ async function liAddTownChoices(){
     added.forEach(choice => {
       const option = document.createElement('option');
       option.value = choice.label;
-      option.label = `${choice.type} · within ${choice.radiusKm} km`;
+      option.label = tx('{type} · within {km} km', { type:liPlaceTypeLabel(choice.type), km:choice.radiusKm });
       searchList.appendChild(option);
     });
   }
@@ -718,10 +746,10 @@ function liEnsureAreaChoices(){
 }
 
 function liPlaceChoiceDetail(choice){
-  if(choice.kind === 'town') return `${choice.type} · within ${choice.radiusKm} km`;
+  if(choice.kind === 'town') return tx('{type} · within {km} km', { type:liPlaceTypeLabel(choice.type), km:choice.radiusKm });
   const configs = liRegionConfigs();
   const region = choice.region !== 'all' && configs[choice.region] ? configs[choice.region].label : null;
-  return region && choice.type === 'Valley' ? `${choice.type} · ${region}` : choice.type;
+  return region && choice.type === 'Valley' ? `${liPlaceTypeLabel(choice.type)} · ${liShownPlaceLabel(region)}` : liPlaceTypeLabel(choice.type);
 }
 
 function liPlaceChoicesFor(query){
@@ -892,14 +920,14 @@ function liRenderLocationNudge(){
   nudge.hidden = !show;
   if(!show) return;
   const copy = liLocationRequestPending
-    ? { title:'Finding you…', detail:'Your position stays in this browser session and is not added to your profile.', button:'Finding you…', disabled:true }
+    ? { title:tx('Finding you…'), detail:tx('Your position stays in this browser session and is not added to your profile.'), button:tx('Finding you…'), disabled:true }
     : liLocationPermission === 'denied'
-      ? { title:'Location is off for ORMA in this browser', detail:'Turn it on in your browser’s site settings, or search for a town or valley.', button:null }
+      ? { title:tx('Location is off for ORMA in this browser'), detail:tx('Turn it on in your browser’s site settings, or search for a town or valley.'), button:null }
       : liLocationPermission === 'unavailable'
-        ? { title:'Location is not available in this browser', detail:'Search for a town or valley to look somewhere specific.', button:null }
+        ? { title:tx('Location is not available in this browser'), detail:tx('Search for a town or valley to look somewhere specific.'), button:null }
         : liLocationPermission === 'error'
-          ? { title:'We could not find your location', detail:'Try again, or search for a town or valley.', button:'Try again' }
-          : { title:'See trails near you', detail:'Your position stays in this browser session and is not added to your profile.', button:'Turn on location' };
+          ? { title:tx('We could not find your location'), detail:tx('Try again, or search for a town or valley.'), button:tx('Try again') }
+          : { title:tx('See trails near you'), detail:tx('Your position stays in this browser session and is not added to your profile.'), button:tx('Turn on location') };
   if(title) title.textContent = copy.title;
   if(detail) detail.textContent = copy.detail;
   if(button){
@@ -926,7 +954,7 @@ function liRenderRecentTrails(){
   if(!recent.length){
     const note = document.createElement('span');
     note.className = 'li-menu-note';
-    note.textContent = 'Trails you open will appear here.';
+    note.textContent = tx('Trails you open will appear here.');
     host.append(note);
     return;
   }
@@ -1015,8 +1043,8 @@ function liRenderLocationContext(profile){
     if(summaryLabel) summaryLabel.textContent = liLocationContextLabel();
     if(summaryKick){
       summaryKick.textContent = !liLocationContext ? '' : liIsAllTrailsContext(liLocationContext)
-        ? 'Showing'
-        : (liLocationContext.kind === 'current' || liLocationContext.kind === 'town') ? 'Looking near' : 'Looking in';
+        ? tx('Showing')
+        : (liLocationContext.kind === 'current' || liLocationContext.kind === 'town') ? tx('Looking near') : tx('Looking in');
     }
   }
   liRenderRegionChoices();
@@ -1138,8 +1166,8 @@ function liSyncShowAllButton(){
   button.hidden = !narrowed && !back;
   button.dataset.mode = back ? 'back' : 'all';
   button.textContent = back
-    ? `Back to ${liDisplayLocationLabel(back.context.label) || 'your area'}`
-    : 'Show all trails';
+    ? tx('Back to {place}', { place:liShownPlaceLabel(back.context.label) || tx('your area') })
+    : tx('Show all trails');
 }
 
 liApplyLocationGeography();
@@ -1471,11 +1499,11 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
     const wrap = document.createElement('div');
     wrap.className = 'td-layer-switch td-layer-switch--home' + (terrainOnly ? ' td-layer-switch--terrain-only' : '');
     wrap.setAttribute('role', 'group');
-    wrap.setAttribute('aria-label', terrainOnly ? 'Terrain' : 'Map style');
+    wrap.setAttribute('aria-label', terrainOnly ? tx('Terrain') : tx('Map style'));
     wrap.innerHTML = terrainOnly
-      ? '<button type="button" data-map3d aria-pressed="false">Terrain</button>'
-      : '<button type="button" data-maplayer="map" class="on" aria-pressed="true">Map</button>' +
-        '<button type="button" data-maplayer="satellite" aria-pressed="false">Satellite</button>' +
+      ? '<button type="button" data-map3d aria-pressed="false">' + tx('Terrain') + '</button>'
+      : '<button type="button" data-maplayer="map" class="on" aria-pressed="true">' + tx('Map') + '</button>' +
+        '<button type="button" data-maplayer="satellite" aria-pressed="false">' + tx('Satellite') + '</button>' +
         '<button type="button" data-map3d aria-pressed="false">3D</button>';
     host.appendChild(wrap);
     wrap.addEventListener('click', (e) => {
@@ -1698,10 +1726,10 @@ function initTrailMap(){
     document.body.classList.toggle('map-fs-open', on);
     if(expandButton){
       expandButton.setAttribute('aria-expanded', String(on));
-      expandButton.setAttribute('aria-label', on ? 'Close map' : 'Expand map');
+      expandButton.setAttribute('aria-label', on ? tx('Close map') : tx('Expand map'));
       expandButton.innerHTML = on
-        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> <span>Close map</span>'
-        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span>';
+        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> <span>' + tx('Close map') + '</span>'
+        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>' + tx('Expand map') + '</span>';
     }
     setTimeout(() => trailMapInstance.resize(), 60);
   };
@@ -1731,8 +1759,8 @@ function initTrailMap(){
     if(showing){
       const back = liContextBeforeMapArea;
       areaButton.textContent = back && !liIsAllTrailsContext(back)
-        ? `Back to ${liDisplayLocationLabel(back.label)}`
-        : 'Show all trails';
+        ? tx('Back to {place}', { place:liShownPlaceLabel(back.label) })
+        : tx('Show all trails');
     }
   };
   if(areaButton){
@@ -2457,12 +2485,12 @@ function liRegionIdsForCountry(countryCode){
 
 function liSelectedGeographyLabel(){
   const configs = liRegionConfigs();
-  if(activeRegion !== 'all') return (configs[activeRegion] && configs[activeRegion].label) || activeRegion;
+  if(activeRegion !== 'all') return liShownPlaceLabel((configs[activeRegion] && configs[activeRegion].label) || activeRegion);
   if(activeCountry !== 'all'){
     const config = Object.values(configs).find(item => item.countryCode === activeCountry);
-    return config ? config.country : 'All regions';
+    return config ? liShownPlaceLabel(config.country) : tx('All regions');
   }
-  return 'All countries';
+  return tx('All countries');
 }
 
 function liTrailIsInSelectedGeography(trail, includeValley){
@@ -2487,7 +2515,7 @@ async function activateReturningGeography(country, region, profile){
     renderReturningHomepage(profile);
     return true;
   } catch(e) {
-    showHomeActionStatus('That area could not be loaded. Check your connection and try again.');
+    showHomeActionStatus(tx('That area could not be loaded. Check your connection and try again.'));
     return false;
   }
 }
@@ -2521,16 +2549,16 @@ function renderDogProfileCard(profile){
   const avatarEl = document.getElementById('companionDogAvatar');
   if(!nameEl || !metaEl || !chipsEl || !avatarEl) return;
 
-  const name = (profile && profile.name) ? profile.name : 'Your dog';
+  const name = (profile && profile.name) ? profile.name : tx('Your dog');
   nameEl.textContent = name;
   const mobileLabel = document.getElementById('companionMobileDogLabel');
-  if(mobileLabel) mobileLabel.textContent = profile && profile.name ? `${profile.name}'s profile` : 'dog profile';
+  if(mobileLabel) mobileLabel.textContent = profile && profile.name ? tx('{name}\'s profile', { name:profile.name }) : tx('dog profile');
 
   const breed = profile && profile.breed;
   const hasBreedName = breed && !NON_BREED_LABELS.has(breed);
   const age = profile ? dogAgeYears(profile) : null;
-  const ageLabel = age != null ? (age < 1 ? 'under 1 yr' : Math.round(age) + ' yrs') : null;
-  metaEl.textContent = [hasBreedName ? breed : null, ageLabel].filter(Boolean).join(' · ') || (profile ? 'Profile saved' : 'No profile yet');
+  const ageLabel = age != null ? (age < 1 ? tx('under 1 yr') : tx('{n} yrs', { n:Math.round(age) })) : null;
+  metaEl.textContent = [hasBreedName ? breed : null, ageLabel].filter(Boolean).join(' · ') || (profile ? tx('Profile saved') : tx('No profile yet'));
 
   // Physical identity only (size/weight, coat, life stage), the WHY behind
   // each trait (cold at rest, thin skin, etc.) is the breed-insight card's
@@ -2538,16 +2566,16 @@ function renderDogProfileCard(profile){
   // content once both cards were on screen together, so this card now
   // sticks to a quick-glance ID, not the reasoning.
   const kg = profile ? dogWeightKg(profile) : null;
-  const sizeLabel = kg == null ? null : kg < 10 ? 'Small' : kg <= 25 ? 'Medium' : kg <= 45 ? 'Large' : 'Giant';
+  const sizeLabel = kg == null ? null : kg < 10 ? tx('Small') : kg <= 25 ? tx('Medium') : kg <= 45 ? tx('Large') : tx('Giant');
   const tr = (typeof breedTraits === 'function' && breed) ? breedTraits(breed) : {};
   const chips = [];
   if(sizeLabel) chips.push(kg ? `${sizeLabel} · ${Math.round(kg)} kg` : sizeLabel);
-  if(tr.thickCoat) chips.push('Heavy double coat');
-  else if(tr.brachy) chips.push('Flat-faced');
+  if(tr.thickCoat) chips.push(tx('Heavy double coat'));
+  else if(tr.brachy) chips.push(tx('Flat-faced'));
   const fitness = profile && profile.fitness;
-  if(fitness) chips.push(fitness.charAt(0).toUpperCase() + fitness.slice(1) + ' fitness');
-  if(age != null && age < 1) chips.push('Puppy');
-  else if(age != null && age >= 8) chips.push('Senior');
+  if(fitness) chips.push(tx('{level} fitness', { level:fitness.charAt(0).toUpperCase() + fitness.slice(1) }));
+  if(age != null && age < 1) chips.push(tx('Puppy'));
+  else if(age != null && age >= 8) chips.push(tx('Senior'));
   chipsEl.innerHTML = chips.slice(0, 3).map(c => `<span class="companion-chip">${c}</span>`).join('');
 
   const photo = profile && profile.photo;
@@ -2580,10 +2608,10 @@ function renderConditionsCard(profile){
   // itself must stay visible even with no saved profile yet, otherwise
   // a logged-in user without a dog profile would have no way to reach it.
   if(!profile){
-    labelEl.textContent = 'HEAT READINESS';
+    labelEl.textContent = tx('HEAT READINESS');
     barsEl.innerHTML = [0,1,2].map(() => '<span class="bar"></span>').join('');
     readingEl.textContent = '';
-    noteEl.innerHTML = `Add your dog's details to see their real heat tolerance here. Meanwhile, trails below use an average-dog default.`;
+    noteEl.innerHTML = tx('Add your dog\'s details to see their real heat tolerance here. Meanwhile, trails below use an average-dog default.');
     card.hidden = false;
     return;
   }
@@ -2591,14 +2619,14 @@ function renderConditionsCard(profile){
   const overrides = effectiveOverrides(profile, null);
   const sensitive = !!overrides.heatSensitive;
   const level = sensitive ? 2 : 1; // segments lit out of 3
-  const name = profile.name || 'your dog';
+  const name = profile.name || tx('your dog');
 
-  labelEl.textContent = sensitive ? 'HEAT-SENSITIVE DOG' : 'HEAT READINESS';
+  labelEl.textContent = sensitive ? tx('HEAT-SENSITIVE DOG') : tx('HEAT READINESS');
   barsEl.innerHTML = [0,1,2].map(i => `<span class="bar${i < level ? ' on' : ''}"></span>`).join('');
-  readingEl.textContent = sensitive ? 'Higher risk' : 'Typical';
+  readingEl.textContent = sensitive ? tx('Higher risk') : tx('Typical');
   noteEl.innerHTML = sensitive
-    ? `${name}'s breed or health profile runs hotter on exposed climbs, so shaded and low routes are ranked higher below. <strong>Start early on warm days.</strong>`
-    : `Match scores already account for ${name}'s heat tolerance. Use "Adjust for today" if today's weather changes what's sensible.`;
+    ? tx('{name}\'s breed or health profile runs hotter on exposed climbs, so shaded and low routes are ranked higher below. <strong>Start early on warm days.</strong>', { name })
+    : tx('Match scores already account for {name}\'s heat tolerance. Use "Adjust for today" if today\'s weather changes what\'s sensible.', { name });
   card.hidden = false;
 }
 
@@ -2638,11 +2666,11 @@ function renderBreedInsight(profile){
     water:'<path d="M12 4c2.8 3.4 4.5 6 4.5 8.4a4.5 4.5 0 1 1-9 0C7.5 10 9.2 7.4 12 4Z" fill="#378ADD"/>'
   };
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
-  const name = (profile && profile.name) ? profile.name : 'your dog';
+  const name = (profile && profile.name) ? profile.name : tx('your dog');
   const hasBreedName = breed && !NON_BREED_LABELS.has(breed);
   if(kicker) kicker.textContent = hasBreedName
-    ? 'What the mountains ask of a ' + breed
-    : 'What matters for ' + name + '\u2019s hikes';
+    ? tx('What the mountains ask of a {breed}', { breed })
+    : tx('What matters for {name}\u2019s hikes', { name });
   // 3 columns reads best; if only 1-2 lines the grid still balances.
   grid.style.gridTemplateColumns = 'repeat(' + Math.min(3, Math.max(1, lines.length)) + ', 1fr)';
   grid.innerHTML = lines.slice(0, 6).map(function(l){
@@ -2651,8 +2679,8 @@ function renderBreedInsight(profile){
       '</b><small>' + esc(l.sub) + '</small></span></div>';
   }).join('');
 
-  if(note) note.textContent = 'Baked into every match score for ' + name + '.';
-  if(cta) cta.textContent = 'See trails picked for ' + name + ' \u2192';
+  if(note) note.textContent = tx('Baked into every match score for {name}.', { name });
+  if(cta) cta.textContent = tx('See trails picked for {name} \u2192', { name });
   card.hidden = false;
 }
 
@@ -2711,9 +2739,9 @@ function liRenderHeadline(profile, locationPhrase, dayLabel){
     button.textContent = text;
     return button;
   };
-  host.textContent = `Best walk${profile && profile.name ? ` for ${profile.name}` : ''} `;
+  host.textContent = `${profile && profile.name ? tx('Best walk for {name}', { name:profile.name }) : tx('Best walk')} `;
   host.append(
-    token('area', locationPhrase || 'across all trails'),
+    token('area', locationPhrase || tx('across all trails')),
     ' ',
     token('day', dayLabel),
   );
@@ -2784,7 +2812,7 @@ function liClearMapAreaFilter(){
   if(button){
     button.hidden = true;
     button.classList.remove('is-clear');
-    button.textContent = 'Search this area';
+    button.textContent = tx('Search this area');
   }
 }
 
@@ -2874,9 +2902,9 @@ function renderLiDogLists(profile){
       const copy = document.createElement('span');
       copy.style.cssText = 'flex:1;min-width:0;';
       const name = document.createElement('b');
-      name.textContent = dog.name || 'Your dog';
+      name.textContent = dog.name || tx('Your dog');
       const meta = document.createElement('small');
-      meta.textContent = [dog.breed, dog.fitness ? dog.fitness + ' fitness' : null].filter(Boolean).join(' · ');
+      meta.textContent = [dog.breed, dog.fitness ? tx('{level} fitness', { level:dog.fitness }) : null].filter(Boolean).join(' · ');
       copy.append(name, meta);
       row.append(avatar, copy);
       // A dog card opens that dog's profile. account.html makes the dog
@@ -2898,7 +2926,7 @@ function renderLiDogLists(profile){
 function renderLiHeader(profile){
   const nameEl = document.getElementById('liAccountName');
   // The pill carries the dog itself (design TopNav dog pill), not the human.
-  if(nameEl) nameEl.textContent = (profile && profile.name) ? profile.name : 'Your dog';
+  if(nameEl) nameEl.textContent = (profile && profile.name) ? profile.name : tx('Your dog');
   renderLiToolbarContext(profile);
   liFillAvatar(document.getElementById('liAccountAvatar'), profile);
   // Phone greeting row carries the dog's face next to the greeting.
@@ -2913,12 +2941,12 @@ function renderLiHeader(profile){
   });
   const matchLabel = document.getElementById('liMatchSecLabel');
   if(matchLabel) matchLabel.textContent = (profile && profile.name)
-    ? `Minimum match for ${profile.name}`
-    : 'Minimum match';
+    ? tx('Minimum match for {name}', { name:profile.name })
+    : tx('Minimum match');
 }
 
 function renderLiToolbarContext(profile){
-  const dogName = (profile && profile.name) ? profile.name : 'Your dog';
+  const dogName = (profile && profile.name) ? profile.name : tx('Your dog');
   const breed = profile && profile.breed ? profile.breed : '';
   // Desktop trail context is static; dog switching lives in the main nav.
   const ctxName = document.getElementById('liDogCtxName');
@@ -2929,13 +2957,13 @@ function renderLiToolbarContext(profile){
   if(ctxBreed){
     ctxBreed.textContent = breed;
     ctxBreed.hidden = !hasBreedName;
-    ctxBreed.title = hasBreedName ? `Read hiking caveats for ${breed}` : '';
+    ctxBreed.title = hasBreedName ? tx('Read hiking caveats for {breed}', { breed }) : '';
   }
   if(ctxBreedSep) ctxBreedSep.hidden = !hasBreedName;
   const greeting = document.getElementById('liToolbarGreeting');
   if(greeting) greeting.textContent = profile && profile.name
-    ? `Where are we going today, ${profile.name}?`
-    : 'Where are we going today?';
+    ? tx('Where are we going today, {name}?', { name:profile.name })
+    : tx('Where are we going today?');
 }
 
 // Filter panel, segmented options + toggle rows. Rebuilt on every render
@@ -2956,16 +2984,16 @@ function renderLiControls(){
   };
 
   seg('liDistSeg', [
-    { label: 'Any', v: 'any' }, { label: 'Under 5 km', v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' },
+    { label: tx('Any'), v: 'any' }, { label: tx('Under 5 km'), v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' },
   ], liFilters.dist, v => { liFilters.dist = v; });
   seg('liRiskSeg', [
-    { label: 'Any', v: 'any' }, { label: 'Low risk', v: 'low-risk' }, { label: 'Moderate', v: 'moderate' }, { label: 'Caution', v: 'caution' },
+    { label: tx('Any'), v: 'any' }, { label: tx('Low risk'), v: 'low-risk' }, { label: tx('Moderate'), v: 'moderate' }, { label: tx('Caution'), v: 'caution' },
   ], liFilters.risk, v => { liFilters.risk = v; });
   seg('liTerrainSeg', [
-    { label: 'Any', v: 'any' }, { label: 'Gentle only', v: 'soft' }, { label: 'Up to mixed', v: 'mixed' }, { label: 'Rocky is okay', v: 'rocky' },
+    { label: tx('Any'), v: 'any' }, { label: tx('Gentle only'), v: 'soft' }, { label: tx('Up to mixed'), v: 'mixed' }, { label: tx('Rocky is okay'), v: 'rocky' },
   ], liFilters.terrain, v => { liFilters.terrain = v; });
   seg('liMatchSeg', [
-    { label: 'Any', v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 },
+    { label: tx('Any'), v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 },
   ], liFilters.minMatch, v => { liFilters.minMatch = v; });
 
   const n = liActiveFilterCount();
@@ -2996,49 +3024,49 @@ function renderLiChips(){
   const wrap = document.getElementById('liChips');
   if(!wrap || typeof trails === 'undefined') return;
 
-  const DIST_OPTS = [['any','Any'], ['u5','Under 5 km'], ['5to10','5–10 km'], ['10p','10 km+']];
-  const TERRAIN_OPTS = [['any','Any'], ['soft','Gentle only'], ['mixed','Up to mixed'], ['rocky','Rocky is okay']];
-  const SHADE_OPTS = [['any','Any'], ['40','Over 40%'], ['60','Over 60%']];
-  const RISK_OPTS = [['any','Any'], ['low-risk','Low risk'], ['moderate','Moderate'], ['caution','Caution']];
-  const MATCH_OPTS = [[0,'Any'], [60,'60%+'], [75,'75%+'], [85,'85%+']];
+  const DIST_OPTS = [['any',tx('Any')], ['u5',tx('Under 5 km')], ['5to10','5–10 km'], ['10p','10 km+']];
+  const TERRAIN_OPTS = [['any',tx('Any')], ['soft',tx('Gentle only')], ['mixed',tx('Up to mixed')], ['rocky',tx('Rocky is okay')]];
+  const SHADE_OPTS = [['any',tx('Any')], ['40',tx('Over 40%')], ['60',tx('Over 60%')]];
+  const RISK_OPTS = [['any',tx('Any')], ['low-risk',tx('Low risk')], ['moderate',tx('Moderate')], ['caution',tx('Caution')]];
+  const MATCH_OPTS = [[0,tx('Any')], [60,'60%+'], [75,'75%+'], [85,'85%+']];
   const label = (opts, v) => (opts.find(([k]) => k === v) || opts[0])[1];
 
   // The slim refine bar: only the four filters that change a walking decision.
   // Everything else (trail rating, minimum match) lives behind "More filters".
   const moreCount = (liFilters.risk !== 'any' ? 1 : 0) + (liFilters.minMatch > 0 ? 1 : 0);
   const chips = [
-    { key: 'duration', title: 'Duration',
-      display: liFilters.duration === 'multi' ? 'Multi-day' : 'Day hikes',
+    { key: 'duration', title: tx('Duration'),
+      display: liFilters.duration === 'multi' ? tx('Multi-day') : tx('Day hikes'),
       on: liFilters.duration !== 'day',
       options: [
-        { label: 'Day hikes', selected: liFilters.duration !== 'multi', pick(){ liFilters.duration = 'day'; } },
-        { label: 'Multi-day', selected: liFilters.duration === 'multi', pick(){ liFilters.duration = 'multi'; } },
+        { label: tx('Day hikes'), selected: liFilters.duration !== 'multi', pick(){ liFilters.duration = 'day'; } },
+        { label: tx('Multi-day'), selected: liFilters.duration === 'multi', pick(){ liFilters.duration = 'multi'; } },
       ] },
-    { key: 'dist', title: 'Distance',
-      display: liFilters.dist === 'any' ? 'Distance' : label(DIST_OPTS, liFilters.dist),
+    { key: 'dist', title: tx('Distance'),
+      display: liFilters.dist === 'any' ? tx('Distance') : label(DIST_OPTS, liFilters.dist),
       on: liFilters.dist !== 'any',
       options: DIST_OPTS.map(([k, l]) => ({ label: l, selected: liFilters.dist === k, pick(){ liFilters.dist = k; } })) },
-    { key: 'terrain', title: 'Difficulty',
-      display: liFilters.terrain === 'any' ? 'Difficulty' : label(TERRAIN_OPTS, liFilters.terrain),
+    { key: 'terrain', title: tx('Difficulty'),
+      display: liFilters.terrain === 'any' ? tx('Difficulty') : label(TERRAIN_OPTS, liFilters.terrain),
       on: liFilters.terrain !== 'any',
       options: TERRAIN_OPTS.map(([k, l]) => ({ label: l, selected: liFilters.terrain === k, pick(){ liFilters.terrain = k; } })) },
-    { key: 'shade', title: 'Shade',
-      display: liFilters.shade === 'any' ? 'Shade' : label(SHADE_OPTS, liFilters.shade) + ' shade',
+    { key: 'shade', title: tx('Shade'),
+      display: liFilters.shade === 'any' ? tx('Shade') : tx('{value} shade', { value:label(SHADE_OPTS, liFilters.shade) }),
       on: liFilters.shade !== 'any',
       options: SHADE_OPTS.map(([k, l]) => ({ label: l, selected: liFilters.shade === k, pick(){ liFilters.shade = k; } })) },
-    { key: 'water', title: 'Water',
-      display: liFilters.water ? 'Water on route' : 'Water',
+    { key: 'water', title: tx('Water'),
+      display: liFilters.water ? tx('Water on route') : tx('Water'),
       on: liFilters.water,
       options: [
-        { label: 'Any', selected: !liFilters.water, pick(){ liFilters.water = false; } },
-        { label: 'Water on route', selected: liFilters.water, pick(){ liFilters.water = true; } },
+        { label: tx('Any'), selected: !liFilters.water, pick(){ liFilters.water = false; } },
+        { label: tx('Water on route'), selected: liFilters.water, pick(){ liFilters.water = true; } },
       ] },
-    { key: 'more', title: 'More filters',
-      display: moreCount > 0 ? `More filters (${moreCount})` : 'More filters',
+    { key: 'more', title: tx('More filters'),
+      display: moreCount > 0 ? tx('More filters ({n})', { n:moreCount }) : tx('More filters'),
       on: moreCount > 0,
       groups: [
-        { title: 'Trail rating', options: RISK_OPTS.map(([k, l]) => ({ label: l, selected: liFilters.risk === k, pick(){ liFilters.risk = k; } })) },
-        { title: 'Minimum match', options: MATCH_OPTS.map(([k, l]) => ({ label: l, selected: liFilters.minMatch === k, pick(){ liFilters.minMatch = k; } })) },
+        { title: tx('Trail rating'), options: RISK_OPTS.map(([k, l]) => ({ label: l, selected: liFilters.risk === k, pick(){ liFilters.risk = k; } })) },
+        { title: tx('Minimum match'), options: MATCH_OPTS.map(([k, l]) => ({ label: l, selected: liFilters.minMatch === k, pick(){ liFilters.minMatch = k; } })) },
       ] },
   ];
 
@@ -3074,7 +3102,7 @@ function renderLiChips(){
             liOpenChipKey = null;
             renderReturningHomepage(currentProfileForAdjust);
           } catch(e) {
-            showHomeActionStatus('That filter could not be applied. Check your connection and try again.');
+            showHomeActionStatus(tx('That filter could not be applied. Check your connection and try again.'));
           } finally {
             item.disabled = false;
           }
@@ -3127,17 +3155,17 @@ function renderLiConditionsCard(profile, displayList){
   if(!profile){ card.hidden = true; return; }
 
   const overrides = effectiveOverrides(profile, null);
-  const name = profile.name || 'Your dog';
+  const name = profile.name || tx('Your dog');
   // Desktop card: "{dog}'s conditions". The phone pill shows just the
   // dog's name, the greeting lives above the search bar there, and
   // "Eddie's conditions" read oddly as a map title. Both spans render;
   // CSS picks one per layout, so re-renders stay safe.
   const condTitle = document.getElementById('liCondTitle');
   condTitle.innerHTML = '<span class="li-cond-t-desk"></span><span class="li-cond-t-mobile"></span>';
-  condTitle.querySelector('.li-cond-t-desk').textContent = `${name}'s conditions`;
+  condTitle.querySelector('.li-cond-t-desk').textContent = tx('{name}\'s conditions', { name });
   condTitle.querySelector('.li-cond-t-mobile').textContent = name;
   document.getElementById('liCondSub').textContent =
-    liSelectedGeographyLabel() + ' · today';
+    tx('{place} · today', { place:liSelectedGeographyLabel() });
   liFillAvatar(document.getElementById('liCondAvatar'), profile);
 
   const great = (displayList || []).filter(x => x.score >= 85).length;
@@ -3151,13 +3179,13 @@ function renderLiConditionsCard(profile, displayList){
       const hot = today && today.tone === 'high';
       const warm = today && today.tone === 'moderate';
       return (hot || (warm && overrides.heatSensitive) || overrides.heatSensitive)
-        ? { v: 'Watch', c: '#8A5A16', l: 'Heat' }
-        : { v: 'Good', c: '#2C5C34', l: 'Heat' };
+        ? { v: tx('Watch'), c: '#8A5A16', l: tx('Heat') }
+        : { v: tx('Good'), c: '#2C5C34', l: tx('Heat') };
     })(),
     overrides.terrain === '0'
-      ? { v: 'Tender', c: '#8A5A16', l: 'Paws' }
-      : { v: 'Good', c: '#2C5C34', l: 'Paws' },
-    { v: String(great), c: '#2E4034', l: great === 1 ? 'Great fit' : 'Great fits' },
+      ? { v: tx('Tender'), c: '#8A5A16', l: tx('Paws') }
+      : { v: tx('Good'), c: '#2C5C34', l: tx('Paws') },
+    { v: String(great), c: '#2E4034', l: great === 1 ? tx('Great fit') : tx('Great fits') },
   ];
   document.getElementById('liCondTiles').innerHTML = tiles.map(ti =>
     `<div class="li-cond-tile"><b style="color:${ti.c};">${ti.v}</b><small>${ti.l}</small></div>`).join('');
@@ -3374,9 +3402,9 @@ function initLoggedInShell(){
     liBody.classList.toggle('list-collapsed', collapsed);
     if(collapseBtn){
       collapseBtn.setAttribute('aria-expanded', String(!collapsed));
-      collapseBtn.setAttribute('aria-label', collapsed ? 'Expand ranked trails panel' : 'Collapse ranked trails panel');
-      collapseBtn.textContent = collapsed ? '☰ Show trails' : '⇥';
-      collapseBtn.title = collapsed ? '' : 'Hide the trail list';
+      collapseBtn.setAttribute('aria-label', collapsed ? tx('Expand ranked trails panel') : tx('Collapse ranked trails panel'));
+      collapseBtn.textContent = collapsed ? '☰ ' + tx('Show trails') : '⇥';
+      collapseBtn.title = collapsed ? '' : tx('Hide the trail list');
     }
     if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
   };
@@ -3519,7 +3547,7 @@ function liRenderPlaceOptions(host, places, kicker){
     option.className = 'li-search-option li-search-place';
     option.setAttribute('role', 'option');
     option.setAttribute('aria-selected', 'false');
-    option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(choice.label)}</strong><small>${liEscapeHtml(liPlaceChoiceDetail(choice))}</small></span><span class="li-search-place-tag">Place</span>`;
+    option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(liShownPlaceLabel(choice.label))}</strong><small>${liEscapeHtml(liPlaceChoiceDetail(choice))}</small></span><span class="li-search-place-tag">${tx('Place')}</span>`;
     option.addEventListener('click', () => {
       hideLiSearchSuggestions();
       liSetLocationContext(choice);
@@ -3541,7 +3569,7 @@ function renderLiSearchSuggestions(profile){
     const inView = liAreasInView(4);
     if(!inView.length){ hideLiSearchSuggestions(); return; }
     suggestions.innerHTML = '';
-    liRenderPlaceOptions(suggestions, inView, 'On the map right now');
+    liRenderPlaceOptions(suggestions, inView, tx('On the map right now'));
     suggestions.hidden = false;
     search.setAttribute('aria-expanded', 'true');
     return;
@@ -3563,7 +3591,7 @@ function renderLiSearchSuggestions(profile){
   const places = liPlaceChoicesFor(query);
   liRenderPlaceOptions(suggestions, places);
   if(!matches.length){
-    if(!places.length) suggestions.innerHTML = '<div class="li-search-empty">No trails or places found.</div>';
+    if(!places.length) suggestions.innerHTML = '<div class="li-search-empty">' + tx('No trails or places found.') + '</div>';
   } else {
     matches.forEach((trail, index) => {
       const option = document.createElement('button');
@@ -3604,9 +3632,9 @@ function renderLiSearchSuggestions(profile){
 // a score cannot describe the same route differently.
 function liShadeLabel(shade){
   if(!Number.isFinite(shade)) return null;
-  if(shade < 20) return 'little shade';
-  if(shade < 40) return 'limited shade';
-  return `${shade}% shade`;
+  if(shade < 20) return tx('little shade');
+  if(shade < 40) return tx('limited shade');
+  return tx('{n}% shade', { n:shade });
 }
 
 // Exposure under the same rule as shade, and it is the doc's own example:
@@ -3616,7 +3644,7 @@ function liShadeLabel(shade){
 // 30 points, 40 for a fragile or vision-impaired dog -- so those 3 are exactly
 // the cards that should say it.
 function liExposureLabel(exposure){
-  return exposure === true ? 'exposed' : null;
+  return exposure === true ? tx('exposed') : null;
 }
 
 // Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · little shade"
@@ -3628,7 +3656,7 @@ function liRowMeta(t){
   const back = shown !== t;
   const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:shown.distance }) : ''; return v && v !== key ? v : fallback; };
   const parts = [back ? tr('card.thereAndBack', `${shown.distance} km there and back`) : `${t.distance} km`];
-  if(Number.isFinite(shown.elevation)) parts.push(`${shown.elevation} m climb`);
+  if(Number.isFinite(shown.elevation)) parts.push(tx('{m} m climb', { m:shown.elevation }));
   if(shown.hours) parts.push(`${back ? '≈ ' : ''}${shown.hours} h`);
   const exposure = liExposureLabel(t.exposure);
   if(exposure) parts.push(exposure);
@@ -3732,11 +3760,11 @@ function liMatchColHtml(t, profile, overrides){
   // No tooltip: it used to join the engine's raw sentences ("Terrain is within
   // this dog's effective tolerance...") over the card's own plain "Why it
   // fits" list, which every card with a verdict now carries.
-  const spoken = [`${presentation.label} for ${presentation.dogName}`, spokenConfidence]
+  const spoken = [tx('{label} for {name}', { label:presentation.label, name:presentation.dogName }), spokenConfidence]
     .filter(Boolean).join('. ');
   return `<div class="li-match" aria-label="${liPersonalisationText(`${spoken}.`)}">
       <b style="color:${presentation.color};">${presentation.label}</b>
-      <span class="li-match-lbl">For ${liPersonalisationText(presentation.dogName)}</span>
+      <span class="li-match-lbl">${tx('For {name}', { name:liPersonalisationText(presentation.dogName) })}</span>
     </div>`;
 }
 
@@ -3818,7 +3846,7 @@ function liRecommendationView(trail, profile){
 // What "New for <dog>" means, said where it is shown: the badge's tooltip and
 // the card's own explanation, so a phone, which has no tooltip, still gets it.
 function liNewForMeaning(profile){
-  return `It now scores ${NEW_MATCH_THRESHOLD}% or more for ${liPersonalisationText(liScoredSubject(profile))}, and it did not at your last visit.`;
+  return tx('It now scores {n}% or more for {name}, and it did not at your last visit.', { n:NEW_MATCH_THRESHOLD, name:liPersonalisationText(liScoredSubject(profile)) });
 }
 
 // "Why it fits Teo" above a card whose verdict says no contradicts it.
@@ -3828,7 +3856,7 @@ function liIsNotRecommended(trail){
 }
 
 function liWhyLabel(trail, dogName){
-  return liIsNotRecommended(trail) ? `Why not for ${dogName}` : `Why it fits ${dogName}`;
+  return liIsNotRecommended(trail) ? tx('Why not for {name}', { name:dogName }) : tx('Why it fits {name}', { name:dogName });
 }
 
 function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
@@ -3872,7 +3900,7 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
     bullets.length ? `<ul>${items(bullets)}</ul>` : '',
   ].join('');
   const fit = fitBody
-    ? `<div><b>${liIsNotRecommended(trail) ? 'Not the problem here' : `Why it fits ${liPersonalisationText(dogName)}`}</b>${fitBody}</div>`
+    ? `<div><b>${liIsNotRecommended(trail) ? tx('Not the problem here') : tx('Why it fits {name}', { name:liPersonalisationText(dogName) })}</b>${fitBody}</div>`
     : '';
   // Cautions first (hard stops already lead them), then what is simply not
   // known, which is a different kind of statement and belongs after. Only
@@ -3881,10 +3909,10 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   const concerns = view.cautions.slice(0, 3);
   if(concerns.length < 2) concerns.push(...view.trailUnknowns.slice(0, 2 - concerns.length));
   const know = concerns.length
-    ? `<div><b>What to know ${liWalkDate === liDateOffsetIso(0) ? 'today' : 'for this day'}</b><ul>${items(concerns)}</ul></div>`
+    ? `<div><b>${liWalkDate === liDateOffsetIso(0) ? tx('What to know today') : tx('What to know for this day')}</b><ul>${items(concerns)}</ul></div>`
     : '';
   const fresh = isNew
-    ? `<p class="li-answer-new"><b>New for ${liPersonalisationText(dogName)}.</b> ${liNewForMeaning(profile)}</p>`
+    ? `<p class="li-answer-new"><b>${tx('New for {name}.', { name:liPersonalisationText(dogName) })}</b> ${liNewForMeaning(profile)}</p>`
     : '';
   // Opens the wizard on the dog it is talking about, rather than sending the
   // reader to the account page to find it themselves.
@@ -3902,7 +3930,7 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   return `<div class="li-answer-explanation" id="${panelId}"${open ? '' : ' hidden'}>
     ${fresh}${fit}${know}${gap}
     <div class="li-answer-actions">
-      <a class="li-answer-open" href="${liTrailHref(trail.id)}">View trail details</a>
+      <a class="li-answer-open" href="${liTrailHref(trail.id)}">${tx('View trail details')}</a>
     </div>
   </div>`;
 }
@@ -3913,7 +3941,7 @@ function liWhyPanelId(trailId){ return `li-why-${encodeURIComponent(trailId)}`; 
 function liWhyToggleHtml(trail, profile, open){
   const dogName = liScoredSubject(profile);
   return `<button type="button" class="li-bar-act li-why-toggle" data-why-toggle aria-expanded="${open}" aria-controls="${liWhyPanelId(trail.id)}">` +
-    `<span class="li-why-label">${open ? 'Hide the reasons' : liPersonalisationText(liWhyLabel(trail, dogName))}</span>` +
+    `<span class="li-why-label">${open ? tx('Hide the reasons') : liPersonalisationText(liWhyLabel(trail, dogName))}</span>` +
     `<span class="li-why-caret" aria-hidden="true">▾</span></button>`;
 }
 
@@ -3994,7 +4022,7 @@ async function renderReturningHomepage(profile, options = {}){
   const locationPhrase = liRecommendationLocationPhrase();
   // The place phrase is empty for the whole catalogue, so the title is
   // assembled from its parts rather than templated around a blank.
-  const answerTitle = ['Best walk', profile && profile.name ? `for ${profile.name}` : '', locationPhrase, dayLabel]
+  const answerTitle = [tx('Best walk'), profile && profile.name ? tx('for {name}', { name:profile.name }) : '', locationPhrase, dayLabel]
     .filter(Boolean).join(' ');
   heading.textContent = answerTitle;
   // No line under it: the headline names the scope itself ("in the
@@ -4044,7 +4072,7 @@ async function renderReturningHomepage(profile, options = {}){
     const savedLabel = savedTrailsBtn.querySelector('.txt-label');
     if(savedLabel) savedLabel.textContent = showingSavedOnly
       ? t('home.allTrailsBtn')
-      : (profile && profile.name) ? `Saved for ${profile.name}` : t('home.savedTrails');
+      : (profile && profile.name) ? tx('Saved for {name}', { name:profile.name }) : t('home.savedTrails');
     const savedCountEl = document.getElementById('companionSavedCount');
     if(savedCountEl) savedCountEl.textContent = Object.keys(currentFavorites).length;
     savedTrailsBtn.classList.toggle('active', showingSavedOnly);
@@ -4056,15 +4084,15 @@ async function renderReturningHomepage(profile, options = {}){
     const msg = showingSavedOnly
       ? t('home.noSaved')
       : (liQuery.trim() || liActiveFilterCount() > 0)
-        ? 'Try widening your search or filters.'
+        ? tx('Try widening your search or filters.')
         : liLocationContext && liLocationContext.kind === 'current'
-          ? `No ORMA trails are mapped within ${liLocationContext.radiusKm} km yet.`
+          ? tx('No ORMA trails are mapped within {km} km yet.', { km:liLocationContext.radiusKm })
           : t('home.noTrailsValley', {label});
     listEl.innerHTML = `
       <div class="li-empty">
-        <div class="li-empty-title">No trails match</div>
+        <div class="li-empty-title">${tx('No trails match')}</div>
         <p>${msg}</p>
-        <button type="button" id="liEmptyReset">${liLocationContext && liLocationContext.kind === 'current' && !liQuery.trim() && liActiveFilterCount() === 0 ? 'Choose another area' : 'Reset filters'}</button>
+        <button type="button" id="liEmptyReset">${liLocationContext && liLocationContext.kind === 'current' && !liQuery.trim() && liActiveFilterCount() === 0 ? tx('Choose another area') : tx('Reset filters')}</button>
       </div>`;
     const emptyReset = document.getElementById('liEmptyReset');
     if(emptyReset) emptyReset.addEventListener('click', liLocationContext && liLocationContext.kind === 'current' && !liQuery.trim() && liActiveFilterCount() === 0 ? liResetLocationContext : liResetAllFilters);
@@ -4086,7 +4114,7 @@ async function renderReturningHomepage(profile, options = {}){
     const thumb = trailCardVisual(t, { className:'li-thumb photo', dataTrailId:t.id, clickable:true });
     const selected = t.id === selectedTrailId;
     const newBadge = isNew
-      ? `<span class="li-new-for" title="${liEscapeHtml(liNewForMeaning(profile))}">${productBadge('new', `New for ${liPersonalisationText(liScoredSubject(profile))}`)}</span>`
+      ? `<span class="li-new-for" title="${liEscapeHtml(liNewForMeaning(profile))}">${productBadge('new', tx('New for {name}', { name:liPersonalisationText(liScoredSubject(profile)) }))}</span>`
       : '';
     const rank = resultRanks.get(t.id) || index + 1;
     const isPrimary = !showingSavedOnly && index < TOP_PICKS;
@@ -4095,8 +4123,8 @@ async function renderReturningHomepage(profile, options = {}){
     // reasons with the switch in the list header.
     const startsOpen = isPrimary && !liReasonsHidden;
     const explanation = liRecommendationExplanationHtml(t, profile, startsOpen, isNew);
-    return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>Other options for ${liPersonalisationText(liScoredSubject(profile))}</span><a href="browse-trails.html">See the full catalogue →</a></div>` : ''}
-    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}${explanation && startsOpen ? ' is-why-open' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
+    return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>${tx('Other options for {name}', { name:liPersonalisationText(liScoredSubject(profile)) })}</span><a href="browse-trails.html">${tx('See the full catalogue →')}</a></div>` : ''}
+    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}${explanation && startsOpen ? ' is-why-open' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="${tx('Rank {rank}: {name}', { rank, name:liPersonalisationText(t.name) })}"${dim ? ' style="opacity:.55;"' : ''}>
       <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
       ${thumb}
       <div class="li-row-body">
@@ -4104,13 +4132,13 @@ async function renderReturningHomepage(profile, options = {}){
         <div class="li-row-meta">${liRowMeta(t)}</div>
         ${newBadge ? `<div class="li-row-badges">${newBadge}</div>` : ''}
         ${liProvenanceHtml(t, profile)}
-        <div class="li-rating-row"><span class="li-rating-kick">Trail rating</span><span class="safety-badge ${safetyClass(t.safetyLevel)}">${trailSafetyLabel(t)}</span></div>
+        <div class="li-rating-row"><span class="li-rating-kick">${tx('Trail rating')}</span><span class="safety-badge ${safetyClass(t.safetyLevel)}">${trailSafetyLabel(t)}</span></div>
       </div>
       ${liMatchColHtml(t, profile, overrides)}
-      <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? 'Remove ' + t.name + ' from saved trails' : 'Save ' + t.name}">${isFav ? '♥' : '♡'}</button>
+      <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? tx('Remove {name} from saved trails', { name:t.name }) : tx('Save {name}', { name:t.name })}">${isFav ? '♥' : '♡'}</button>
       <div class="li-row-bar">
         ${explanation ? liWhyToggleHtml(t, profile, startsOpen) : ''}
-        <button type="button" class="li-bar-act locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>See on map</button>
+        <button type="button" class="li-bar-act locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>${tx('See on map')}</button>
         ${directionsBarHtml(t)}
       </div>
       ${explanation}
@@ -4136,7 +4164,7 @@ async function renderReturningHomepage(profile, options = {}){
         // The scored copy carries the verdict the label has to match.
         const scored = pageList.find(item => row && item.id === row.dataset.id) || trail;
         const dogName = liScoredSubject(profile || currentProfileForAdjust);
-        label.textContent = open ? 'Hide the reasons' : liWhyLabel(scored, dogName);
+        label.textContent = open ? tx('Hide the reasons') : liWhyLabel(scored, dogName);
         if(open) warmTrailDetail(trail);
       }
     });
@@ -4296,11 +4324,11 @@ function directionsBarHtml(t){
   const icon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>';
   const google = `https://www.google.com/maps/dir/?api=1&destination=${sp.lat},${sp.lng}&travelmode=driving`;
   if(!/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent)){
-    return `<a class="li-bar-act" href="${google}" target="_blank" rel="noopener">${icon}Get directions</a>`;
+    return `<a class="li-bar-act" href="${google}" target="_blank" rel="noopener">${icon}${tx('Get directions')}</a>`;
   }
   const apple = `https://maps.apple.com/?daddr=${sp.lat},${sp.lng}`;
   return `<div class="li-dir-wrap">
-    <button type="button" class="li-bar-act li-dir-toggle" aria-haspopup="true" aria-expanded="false">${icon}Get directions</button>
+    <button type="button" class="li-bar-act li-dir-toggle" aria-haspopup="true" aria-expanded="false">${icon}${tx('Get directions')}</button>
     <div class="li-dir-menu" hidden>
       <a href="${apple}" target="_blank" rel="noopener">Apple Maps</a>
       <a href="${google}" target="_blank" rel="noopener">Google Maps</a>
@@ -4351,7 +4379,7 @@ function liSyncReasonsToggle(){
   if(!toggle) return;
   toggle.setAttribute('aria-pressed', String(liReasonsHidden));
   const label = toggle.querySelector('.li-reasons-word');
-  if(label) label.textContent = liReasonsHidden ? 'Show reasons' : 'Hide reasons';
+  if(label) label.textContent = liReasonsHidden ? tx('Show reasons') : tx('Hide reasons');
 }
 const liReasonsToggle = document.getElementById('liReasonsToggle');
 if(liReasonsToggle){
@@ -4435,7 +4463,7 @@ function showMapCallout(t){
   if(thumb){
     thumb.innerHTML = trailCardVisual(t, { className:'li-thumb photo' });
     thumb.href = trailUrl;
-    thumb.setAttribute('aria-label', `Open ${t.name} trail details`);
+    thumb.setAttribute('aria-label', tx('Open {name} trail details', { name:t.name }));
   }
   const kickEl = document.getElementById('mapCalloutKick');
   if(kickEl) kickEl.textContent = [t.valley, t.area].filter(Boolean).join(' · ');
@@ -4606,7 +4634,7 @@ async function applyHomepageAuthState(e){
     // complete browse experience, regardless of authentication state.
     browseNavLink.href = 'browse-trails.html';
     const navSpan = browseNavLink.querySelector('span');
-    if(navSpan) navSpan.textContent = 'Trails';
+    if(navSpan) navSpan.textContent = tx('Trails');
   }
   if(!newHome || !returningHome) return;
 
@@ -4912,12 +4940,12 @@ function addWaterSourcesLayers(map) {
     const props = feature.properties;
     
     // Determine water type
-    let waterType = 'Water Source';
-    if (props.amenity === 'drinking_water') waterType = '🚰 Drinking Fountain';
-    else if (props.amenity === 'fountain') waterType = '⛲ Fountain';
-    else if (props.natural === 'spring') waterType = '💧 Natural Spring';
-    else if (props.man_made === 'water_tap') waterType = '🚪 Water Tap';
-    else if (props.amenity === 'water_point') waterType = '💦 Water Point';
+    let waterType = tx('Water Source');
+    if (props.amenity === 'drinking_water') waterType = '🚰 ' + tx('Drinking Fountain');
+    else if (props.amenity === 'fountain') waterType = '⛲ ' + tx('Fountain');
+    else if (props.natural === 'spring') waterType = '💧 ' + tx('Natural Spring');
+    else if (props.man_made === 'water_tap') waterType = '🚪 ' + tx('Water Tap');
+    else if (props.amenity === 'water_point') waterType = '💦 ' + tx('Water Point');
 
     // Build popup content
     let content = `<b>${waterType}</b>`;
@@ -4933,11 +4961,11 @@ function addWaterSourcesLayers(map) {
     }
     
     if (props.check_date) {
-      content += `<br><small>✓ Last verified: ${props.check_date}</small>`;
+      content += `<br><small>✓ ${tx('Last verified: {date}', { date:props.check_date })}</small>`;
     }
     
     if (props.seasonal === 'yes') {
-      content += `<br><small class="dp-inline-status">${productIcon('warning', 13)}<span>Seasonal water source</span></small>`;
+      content += `<br><small class="dp-inline-status">${productIcon('warning', 13)}<span>${tx('Seasonal water source')}</span></small>`;
     }
 
     new maplibregl.Popup({ offset: 25 })
@@ -5170,10 +5198,10 @@ async function updateRegionalMapData(map, regionSelection) {
 
 function placeDogPolicyLabel(policy) {
   return {
-    welcome: 'Dogs welcome',
-    leashed: 'Dogs welcome on leash',
-    'not-allowed': 'Dogs not allowed',
-  }[policy] || 'Dog policy recorded';
+    welcome: tx('Dogs welcome'),
+    leashed: tx('Dogs welcome on leash'),
+    'not-allowed': tx('Dogs not allowed'),
+  }[policy] || tx('Dog policy recorded');
 }
 
 function ensurePlaceDogVerificationDialog() {
@@ -5185,31 +5213,31 @@ function ensurePlaceDogVerificationDialog() {
   overlay.hidden = true;
   overlay.innerHTML = `
     <div class="place-dog-dialog" role="dialog" aria-modal="true" aria-labelledby="placeDogDialogTitle">
-      <button type="button" class="place-dog-close" aria-label="Close">&times;</button>
-      <div class="place-dog-kick">ORMA place verification</div>
-      <h2 id="placeDogDialogTitle">Are dogs welcome here?</h2>
+      <button type="button" class="place-dog-close" aria-label="${tx('Close')}">&times;</button>
+      <div class="place-dog-kick">${tx('ORMA place verification')}</div>
+      <h2 id="placeDogDialogTitle">${tx('Are dogs welcome here?')}</h2>
       <p class="place-dog-place" data-place-name></p>
       <form>
         <fieldset>
-          <legend>Dog policy</legend>
-          <label><input type="radio" name="policy" value="welcome" required> Dogs welcome</label>
-          <label><input type="radio" name="policy" value="leashed"> Dogs welcome on leash</label>
-          <label><input type="radio" name="policy" value="not-allowed"> Dogs not allowed</label>
+          <legend>${tx('Dog policy')}</legend>
+          <label><input type="radio" name="policy" value="welcome" required> ${tx('Dogs welcome')}</label>
+          <label><input type="radio" name="policy" value="leashed"> ${tx('Dogs welcome on leash')}</label>
+          <label><input type="radio" name="policy" value="not-allowed"> ${tx('Dogs not allowed')}</label>
         </fieldset>
-        <label class="place-dog-field">How do you know?
+        <label class="place-dog-field">${tx('How do you know?')}
           <select name="evidence" required>
-            <option value="">Choose evidence</option>
-            <option value="visited">I visited with my dog</option>
-            <option value="staff-confirmed">Staff confirmed the policy</option>
-            <option value="posted-sign">I saw a posted sign</option>
+            <option value="">${tx('Choose evidence')}</option>
+            <option value="visited">${tx('I visited with my dog')}</option>
+            <option value="staff-confirmed">${tx('Staff confirmed the policy')}</option>
+            <option value="posted-sign">${tx('I saw a posted sign')}</option>
           </select>
         </label>
-        <label class="place-dog-field">Note <span>(optional)</span>
-          <textarea name="note" maxlength="300" rows="3" placeholder="For example: terrace only, water bowl available, or seasonal restriction"></textarea>
+        <label class="place-dog-field">${tx('Note')} <span>${tx('(optional)')}</span>
+          <textarea name="note" maxlength="300" rows="3" placeholder="${tx('For example: terrace only, water bowl available, or seasonal restriction')}"></textarea>
         </label>
-        <p class="place-dog-help">Submissions are reviewed by ORMA before a verified badge appears.</p>
+        <p class="place-dog-help">${tx('Submissions are reviewed by ORMA before a verified badge appears.')}</p>
         <div class="place-dog-result" role="status" aria-live="polite"></div>
-        <button type="submit" class="place-dog-submit">Submit for ORMA review</button>
+        <button type="submit" class="place-dog-submit">${tx('Submit for ORMA review')}</button>
       </form>
     </div>`;
   document.body.appendChild(overlay);
@@ -5231,8 +5259,8 @@ function openPlaceDogVerification(place, onSubmitted) {
   result.textContent = '';
   result.className = 'place-dog-result';
   submit.disabled = false;
-  submit.textContent = 'Submit for ORMA review';
-  overlay.querySelector('[data-place-name]').textContent = place.name || 'Unnamed place';
+  submit.textContent = tx('Submit for ORMA review');
+  overlay.querySelector('[data-place-name]').textContent = place.name || tx('Unnamed place');
   overlay.hidden = false;
   overlay.querySelector('input[name="policy"]').focus();
 
@@ -5241,33 +5269,33 @@ function openPlaceDogVerification(place, onSubmitted) {
     const data = new FormData(form);
     const api = window.DoloPawsCommunity;
     if(!(api && api.submitPlaceDogFriendliness)){
-      result.textContent = 'Verification is still loading. Please try again.';
+      result.textContent = tx('Verification is still loading. Please try again.');
       result.classList.add('error');
       return;
     }
     submit.disabled = true;
-    submit.textContent = 'Sending…';
+    submit.textContent = tx('Sending…');
     const response = await api.submitPlaceDogFriendliness(
       place,
       data.get('policy'),
       data.get('evidence'),
       data.get('note')
     );
-    result.textContent = response.message || (response.ok ? 'Report submitted.' : 'Could not submit this report.');
+    result.textContent = response.message || (response.ok ? tx('Report submitted.') : tx('Could not submit this report.'));
     result.classList.toggle('success', !!response.ok);
     result.classList.toggle('error', !response.ok);
     if(response.ok){
-      submit.textContent = 'Submitted';
+      submit.textContent = tx('Submitted');
       if(typeof onSubmitted === 'function') onSubmitted();
       return;
     }
     submit.disabled = false;
-    submit.textContent = 'Try again';
+    submit.textContent = tx('Try again');
     if(response.action === 'login'){
       const login = document.createElement('button');
       login.type = 'button';
       login.className = 'place-dog-login';
-      login.textContent = 'Log in';
+      login.textContent = tx('Log in');
       login.addEventListener('click', () => {
         overlay.hidden = true;
         const account = document.getElementById('accountBtn');
@@ -5287,11 +5315,11 @@ async function hydratePlaceDogVerification(host, place) {
   }
   if(!host.isConnected) return;
   host.innerHTML = verified
-    ? `<span class="orma-verified-badge">${productIcon('dog')} ORMA verified</span><span class="orma-verified-policy">${placeDogPolicyLabel(verified.policy)}</span><button type="button" class="orma-place-verify-btn">Report a change</button>`
-    : `<span class="orma-place-prompt">Know if dogs are welcome here?</span><button type="button" class="orma-place-verify-btn">Help ORMA verify</button>`;
+    ? `<span class="orma-verified-badge">${productIcon('dog')} ${tx('ORMA verified')}</span><span class="orma-verified-policy">${placeDogPolicyLabel(verified.policy)}</span><button type="button" class="orma-place-verify-btn">${tx('Report a change')}</button>`
+    : `<span class="orma-place-prompt">${tx('Know if dogs are welcome here?')}</span><button type="button" class="orma-place-verify-btn">${tx('Help ORMA verify')}</button>`;
   host.querySelector('.orma-place-verify-btn').addEventListener('click', () => {
     openPlaceDogVerification(place, () => {
-      host.innerHTML = '<span class="orma-place-pending">Thanks, pending ORMA review</span>';
+      host.innerHTML = '<span class="orma-place-pending">' + tx('Thanks, pending ORMA review') + '</span>';
     });
   });
 }
@@ -5381,32 +5409,32 @@ function addPoiLayerSet(map, sourceId, prefix, circleColor, clusterColor, iconGr
     const feature = e.features[0];
     const props = feature.properties;
 
-    let placeType = 'Place';
-    if (props.tourism === 'alpine_hut') placeType = `${productIcon('hut')} Mountain Hut (Rifugio)`;
-    else if (props.tourism === 'wilderness_hut') placeType = '🛖 Wilderness Hut / Bivouac';
-    else if (props.amenity === 'shelter') placeType = '⛺ Shelter';
+    let placeType = tx('Place');
+    if (props.tourism === 'alpine_hut') placeType = `${productIcon('hut')} ${tx('Mountain Hut (Rifugio)')}`;
+    else if (props.tourism === 'wilderness_hut') placeType = '🛖 ' + tx('Wilderness Hut / Bivouac');
+    else if (props.amenity === 'shelter') placeType = '⛺ ' + tx('Shelter');
     else if (props.amenity === 'bar') placeType = '🍺 Bar';
     else if (props.amenity === 'pub') placeType = '🍻 Pub';
     else if (props.amenity === 'cafe') placeType = '☕ Café';
-    else if (props.amenity === 'restaurant') placeType = `${productIcon('food')} Restaurant`;
-    else if (props.amenity === 'fast_food') placeType = '🍔 Fast food';
-    else if (props.amenity === 'ice_cream') placeType = '🍦 Ice cream';
-    else if (props.amenity === 'biergarten') placeType = '🍺 Beer garden';
+    else if (props.amenity === 'restaurant') placeType = `${productIcon('food')} ${tx('Restaurant')}`;
+    else if (props.amenity === 'fast_food') placeType = '🍔 ' + tx('Fast food');
+    else if (props.amenity === 'ice_cream') placeType = '🍦 ' + tx('Ice cream');
+    else if (props.amenity === 'biergarten') placeType = '🍺 ' + tx('Beer garden');
 
     let content = `<b>${placeType}</b>`;
     if (props.name) content += `<br><b>${props.name}</b>`;
-    if (props.ele) content += `<br><span class="dp-inline-status">${productIcon('mountain')}<span>${props.ele} m elevation</span></span>`;
+    if (props.ele) content += `<br><span class="dp-inline-status">${productIcon('mountain')}<span>${tx('{m} m elevation', { m:props.ele })}</span></span>`;
     if (props.cuisine) content += `<br>🍴 ${String(props.cuisine).split(';').join(', ').replace(/_/g, ' ')}`;
     if (props.opening_hours) content += `<br>🕐 ${props.opening_hours}`;
     if (props.phone || props['contact:phone']) content += `<br>📞 ${props.phone || props['contact:phone']}`;
     if (props.website || props['contact:website']) {
       const url = props.website || props['contact:website'];
-      content += `<br>🔗 <a href="${url}" target="_blank" rel="noopener">Website</a>`;
+      content += `<br>🔗 <a href="${url}" target="_blank" rel="noopener">${tx('Website')}</a>`;
     }
-    if (props.dog === 'yes') content += `<br><span class="dp-inline-status">${productIcon('dog')}<span>Dogs welcome</span></span>`;
-    else if (props.dog === 'leashed') content += `<br>🦮 Dogs on leash`;
-    else if (props.dog === 'no') content += `<br>🚫 No dogs`;
-    if (props.outdoor_seating && props.outdoor_seating !== 'no') content += `<br>🪑 Outdoor seating`;
+    if (props.dog === 'yes') content += `<br><span class="dp-inline-status">${productIcon('dog')}<span>${tx('Dogs welcome')}</span></span>`;
+    else if (props.dog === 'leashed') content += `<br>🦮 ${tx('Dogs on leash')}`;
+    else if (props.dog === 'no') content += `<br>🚫 ${tx('No dogs')}`;
+    if (props.outdoor_seating && props.outdoor_seating !== 'no') content += `<br>🪑 ${tx('Outdoor seating')}`;
     const coordinates = feature.geometry.coordinates.slice(0, 2);
     const place = {
       id: String(props['@id'] || `${props.amenity || props.tourism || 'place'}-${coordinates.map(value => Number(value).toFixed(5)).join('-')}`),
@@ -5414,7 +5442,7 @@ function addPoiLayerSet(map, sourceId, prefix, circleColor, clusterColor, iconGr
       type: String(props.amenity || props.tourism || 'place'),
       coordinates,
     };
-    content += '<div class="orma-place-verification" data-orma-place-verification><span class="orma-place-prompt">Checking ORMA verification…</span></div>';
+    content += '<div class="orma-place-verification" data-orma-place-verification><span class="orma-place-prompt">' + tx('Checking ORMA verification…') + '</span></div>';
 
     const popup = new maplibregl.Popup({ offset: 10 })
       .setLngLat(feature.geometry.coordinates)

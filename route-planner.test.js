@@ -397,7 +397,7 @@ describe('drawing interactions', () => {
   test('asks for a start that is easy to reach, and can show where those are', () => {
     const advice = 'Tap the map to choose your start. Pick somewhere you can reach easily: a car park, bus stop, village or lift station.';
     expect(plannerHtml).toContain(`aria-live="polite" data-i18n="page.routePlanner.tapTheMapToChoose">${advice}</p>`);
-    expect(plannerSource).toContain(`const START_ADVICE = '${advice}';`);
+    expect(plannerSource).toContain(`const startAdvice = () => tx('${advice}');`);
     expect(plannerSource).not.toContain("'Tap the map to choose your start.'");
     // From the base map's own points, so it needs no data file and works in
     // every region: car parks, bus stops, stations and lift stations.
@@ -410,9 +410,9 @@ describe('drawing interactions', () => {
 
   test('the map says how to draw, and says tap on a touch screen', () => {
     expect(plannerHtml).toContain('<p id="plannerGuide" class="planner-guide">');
-    expect(plannerHtml).toContain('<span><span data-verb>Click</span> the map to add a point</span>');
+    expect(plannerHtml).toContain('<span><span data-verb>Click</span> <span data-i18n="page.planner.onMapToAddPoint">the map to add a point</span></span>');
     expect(plannerHtml).toContain('<span data-i18n="page.routePlanner.dragADotToMove">Drag a dot to move it</span>');
-    expect(plannerHtml).toContain('<span><span data-verb>Click</span> a dot to remove it</span>');
+    expect(plannerHtml).toContain('<span><span data-verb>Click</span> <span data-i18n="page.planner.onDotToRemove">a dot to remove it</span></span>');
     expect(plannerSource).toContain("window.matchMedia('(pointer: coarse)').matches");
     // Spacing, not dots, between the phrases: a separator dot was stranded at
     // the start of the second line whenever the guide wrapped.

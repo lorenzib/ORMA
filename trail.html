@@ -1139,7 +1139,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
           <div class="td2-mobile-card-body" id="tdWeatherBody">
             <div class="td2-cond" id="tdConditions" hidden>
               <div class="td2-weather-head">
-                <div class="td2-kick">Trail weather <span id="sideFcValley"></span></div>
+                <div class="td2-kick"><span data-i18n="page.trail.trailWeather">Trail weather</span> <span id="sideFcValley"></span></div>
                 <a class="td2-weather-source" href="https://open-meteo.com/" target="_blank" rel="noopener" aria-label="Weather data by Open-Meteo" title="Weather data by Open-Meteo" data-i18n-title="page.trail.weatherDataByOpenmeteo" data-i18n-aria-label="page.trail.weatherDataByOpenmeteo">i</a>
               </div>
               <div class="td2-cond-facts">
@@ -1173,10 +1173,10 @@ body.trail-photo-viewer-open{overflow:hidden;}
           <div class="td2-actrow">
             <button id="heroStartHike" class="td2-btn-p" type="button" hidden><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start hike</button>
             <button id="detailSaveBtn" class="td2-btn-g" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.4S4.2 14.5 4.2 9.2A4.3 4.3 0 0 1 12 6.6a4.3 4.3 0 0 1 7.8 2.6c0 5.3-7.8 11.2-7.8 11.2z"/></svg> Save</button>
-            <a id="getDirectionsBtn" class="td2-textlink" href="#"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>Directions</a>
+            <a id="getDirectionsBtn" class="td2-textlink" href="#"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg><span data-i18n="page.trail.directionsLink">Directions</span></a>
             <a id="logWalkBtn" class="td2-textlink" href="journal.html" data-i18n="page.trail.logWalk">Log walk</a>
             <button id="exportGpxBtn" class="td2-textlink" type="button" data-i18n="page.trail.exportGpx">Export GPX</button>
-            <button id="detailShareBtn" class="td2-textlink" type="button" aria-haspopup="true" aria-expanded="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2"></path><path d="M12 3v12"></path><path d="M8 7l4-4 4 4"></path></svg>Share</button>
+            <button id="detailShareBtn" class="td2-textlink" type="button" aria-haspopup="true" aria-expanded="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2"></path><path d="M12 3v12"></path><path d="M8 7l4-4 4 4"></path></svg><span data-i18n="page.trail.shareLink">Share</span></button>
             <section id="offlinePackagePanel" class="offline-package" aria-labelledby="offlinePackageTitle" hidden>
               <div class="offline-package-row">
                 <strong id="offlinePackageTitle" data-i18n="offlinePanel.title">Offline map</strong>
@@ -1320,7 +1320,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 
         <!-- PHOTOS -->
         <div class="td2-card td2-section td2-community-card" id="td2PhotosCard">
-          <div class="td2-rev-head"><span class="td2-kick">Added photos<span id="td2PhotoCount"></span></span><button id="addPhotoBtn" type="button" class="add-photo-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add a photo</button></div>
+          <div class="td2-rev-head"><span class="td2-kick"><span data-i18n="page.trail.addedPhotos">Added photos</span><span id="td2PhotoCount"></span></span><button id="addPhotoBtn" type="button" class="add-photo-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> <span data-i18n="page.trail.addPhoto">Add a photo</span></button></div>
           <div class="trail-photo-strip">
             <button id="trailPhotosPrev" type="button" class="trail-photo-strip__nav trail-photo-strip__nav--prev" aria-label="Previous photos" hidden data-i18n-aria-label="page.trail.previousPhotos"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
             <div id="trailPhotosList" class="trail-photos-list"><div class="empty-state empty-state--compact"><p class="empty-state__title" data-i18n="page.trail.noTrailPhotosYet">No trail photos yet</p><p class="empty-state__copy" data-i18n="page.trail.addARecentUsefulView">Add a recent, useful view so others can recognise the route and conditions.</p></div></div>
@@ -1343,7 +1343,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
         <div class="td2-card td2-fit-shell">
           <section id="recommendationDecision" class="recommendation-decision" aria-live="polite" hidden></section>
           <div class="td2-section td2-safety-card" id="td2SafetyCard">
-            <div class="td2-kick">Important for your dog<span id="td2SafetyDog"></span></div>
+            <div class="td2-kick"><span data-i18n="page.trail.importantForDog">Important for your dog</span><span id="td2SafetyDog"></span></div>
             <div id="dogSafetyRows" class="dog-safety-rows"></div>
             <div id="trailGuideLinks" class="trail-guide-links" hidden></div>
           </div>
