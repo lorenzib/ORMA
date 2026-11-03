@@ -88,7 +88,7 @@
   .cg-decision,.cg-muzzle-practice,.cg-step,.cg-stop-banner,
   .hs-readiness,.hs-action,.hs-observation,.hs-risk,
   .paw2-panel,.paw2-essentials,.paw2-first-aid,.paw2-detail,
-  .apg-emergency,.apg-tools,.apg-card,.apg-method,
+  .apg-help,.apg-tools,.apg-card,.apg-method,
   .water-card,.gp-callout,.gp-warn
 ){border-radius:var(--safety-guide-card-radius);}
 
@@ -122,19 +122,19 @@
 
 /* One calm alert treatment throughout the library: pale red keeps the warning
    visible without letting it overpower the rest of the guide. */
-.safety-guide-article :is(.scan-alert,.alt-warning-note,.cg-stop-banner,.hs-risk,.paw2-first-aid,.apg-emergency,.gp-warn){
+.safety-guide-article :is(.scan-alert,.alt-warning-note,.cg-stop-banner,.hs-risk,.paw2-first-aid,.gp-warn){
   border:1px solid color-mix(in srgb,var(--safety-stop) 38%,transparent);
   background:var(--safety-stop-soft);
   color:var(--safety-stop);
   box-shadow:0 10px 24px -22px rgba(92,29,18,.55);
 }
-.safety-guide-article :is(.scan-alert,.alt-warning-note,.cg-stop-banner,.hs-risk,.paw2-first-aid,.apg-emergency,.gp-warn) :is(h2,h3,strong,b,p,span,summary,li){
+.safety-guide-article :is(.scan-alert,.alt-warning-note,.cg-stop-banner,.hs-risk,.paw2-first-aid,.gp-warn) :is(h2,h3,strong,b,p,span,summary,li){
   color:inherit;
 }
-.safety-guide-article :is(.scan-alert,.alt-warning-note,.cg-stop-banner,.hs-risk,.paw2-first-aid,.apg-emergency,.gp-warn) :is(p,span,li){
+.safety-guide-article :is(.scan-alert,.alt-warning-note,.cg-stop-banner,.hs-risk,.paw2-first-aid,.gp-warn) :is(p,span,li){
   color:#70483F;
 }
-.safety-guide-article :is(.paw2-first-aid-icon,.apg-emergency-mark){
+.safety-guide-article .paw2-first-aid-icon{
   border-color:var(--safety-stop);
   background:var(--safety-stop);
   color:#fff;

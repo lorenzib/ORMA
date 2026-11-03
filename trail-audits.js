@@ -9741,32 +9741,18 @@
         "url": "https://eggental.com/en/activity/middle-circular-route-at-lake-carezza_5711"
       },
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 3 November 2026 by the owner's decision: the route sentence now gives the official page's start, direction and turns, and it passes the board-walk bar.
+      "tier": "route-audited",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
         "photo": "ORMA original: the Karersee from the road above it, with the Latemar behind, the view from the loop's climb on path 6.",
         "route": "Published line 3.04 km; official 2.7 km; the official GPX matches the line within 21 m in both directions.",
-        "routeNumbers": "Green signs, paths 6 and 10, as the official text states; the only option it names is a lap of the lake.",
+        "routeNumbers": "Start at the Karersee car park. At the far end of the car park, cross the suspension bridge and follow path 6 up towards the Karerpass. At the Hotel Lake & River, cross the road, turn right and follow path 10 back to the lake. Green signs all the way. You can add a lap of the lake before you return to the car park.",
         "mapPoints": "Start at the official Karersee car park; tap at the visitor centre traced to OSM.",
         "elevation": "Official 69 m of climb (was 99)."
       },
-      "graduation": { "status": "in-progress", "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
       "verified": {
         "categories": [
           "water",
@@ -9828,32 +9814,18 @@
         "url": "https://eggental.com/en/activity/long-circular-route-at-lake-carezza_5705"
       },
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 3 November 2026 by the owner's decision: the route sentence now gives the official page's start, direction and turns, and it passes the board-walk bar.
+      "tier": "route-audited",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
         "photo": "ORMA original: the Karersee from the slope above the road, with the Latemar forest behind, the view from the loop's climb on path 6.",
         "route": "Published line 3.99 km, stored in the reverse direction; official 3.8 km; the official GPX matches the line within 32 m in both directions.",
-        "routeNumbers": "Orange signs, paths 6, 12 and 11, as the official text states; the only option it names is a lap of the lake.",
+        "routeNumbers": "Start at the Karersee car park. At the far end of the car park, cross the suspension bridge and follow path 6 up towards the Karerpass. At the Hotel Lake & River, cross the road, turn left and follow path 12 to the junction with path 11. Turn right onto path 11 back to the lake. Orange signs all the way. You can add a lap of the lake. The map line is drawn the other way round.",
         "mapPoints": "Start at the official Karersee car park (GPX start); tap at the visitor centre traced to OSM.",
         "elevation": "Official 98 m of climb (was 162)."
       },
-      "graduation": { "status": "in-progress", "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
       "verified": {
         "categories": [
           "water",
@@ -10097,32 +10069,18 @@
         "url": "https://cortina.dolomiti.org/it/escursioni/al-rifugio-nuvolau/"
       },
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 3 November 2026 by the owner's decision: the route sentence now gives the official page's start, direction and turns, and it passes the board-walk bar.
+      "tier": "route-audited",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
         "photo": "Commons, Frisia Orientalis, CC BY-SA 3.0: Passo Giau with the Gusela and Nuvolau, at the start of the loop.",
         "route": "Line rebuilt on the official paths in #946 (8.7 km on OSM, about 0.24 km unmapped near Averau); official 9.8 km.",
-        "routeNumbers": "Paths 443, 439, 464 and 452 as the official page lists them; path 438 (Ra Gusela via ferrata) is the switch to avoid.",
+        "routeNumbers": "Start at the Passo Giau car park. Take path 443 up the steep zigzags over the Crépe dei Ronde to the Rifugio Scoiattoli (2,255 m). Then follow path 439 to the Rifugio Averau and on up to the Rifugio Nuvolau (2,575 m). Go back down to the Averau and take path 464 towards the Rifugio Fedare. Where it meets path 452, take 452 back to Passo Giau. Do not turn onto path 438: it is the Ra Gusela via ferrata.",
         "mapPoints": "Start at the path 443 trailhead board above the Passo Giau car park; huts traced to OSM.",
         "elevation": "Official 612 m of climb."
       },
-      "graduation": { "status": "in-progress", "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
       "verified": {
         "categories": [
           "water",
@@ -12360,32 +12318,18 @@
       "desc": "An easy loop from the centre of Vöran up to the Beimstein Knott, the red porphyry knoll above the village. Path 16 leads east past the Oberwirt to below the Grüner Baum inn; path 12 climbs through the woods to the summit, which looks straight down on Vöran and across the Etsch valley. Back down path 12 to the first junction, then forest path 14 returns to the village. The official figures are 3.7 km and about 1 h 10 min.\n\nVöran's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows and fields, so keep to the path where it crosses the hay meadows.",
       "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Vöran requires, and stay off the meadows. The summit is bare rock with a steep drop on the village side, so keep your dog close there. About 600 m runs along the provincial road, including a short 90 km/h stretch with no pavement: walk single file. Drinking water is mapped in the village centre; dogs may not bathe in the village fountains. Roughly half the walk is in forest, the rest on open, sunny ground.",
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 3 November 2026 by the owner's decision: the route sentence now gives the official page's start, direction and turns, and it passes the board-walk bar.
+      "tier": "route-audited",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
         "photo": "Commons, Thetornado76, CC0: the view from the Beimstein summit rock down onto Vöran, 8 m from the line (replaces an unlocated photo).",
         "route": "Line rebuilt on OSM ways along the province register's CC0 line (3.60 km; every register point within 35 m) and walked in the official order, the summit there and back: 4.0 km on the map, officially 3.7 km. The old line (2.9 km) missed a sixth of the route.",
-        "routeNumbers": "Paths 16, 12 and 14, as the official description states.",
+        "routeNumbers": "Start in the centre of Vöran by the church. Follow path 16 gently up towards the Oberwirt restaurant and on to below the Gasthof Grüner Baum. There take path 12 left along the edge of a meadow, then up through the forest to the Beimstein Knott viewpoint. Go back down path 12 to the first junction. Turn left onto forest path 14 and follow it back to Vöran.",
         "mapPoints": "Start in Vöran centre by the church, the official start; water traced to OSM.",
         "elevation": "About 140 m of climb measured on the line (the official page gives 106 m)."
       },
-      "graduation": { "status": "in-progress", "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
       "verified": {
         "categories": [
           "water",
@@ -14353,32 +14297,18 @@
       "desc": "The Altrei village walk ('Dorfwanderung Altrei'), an easy family loop of 2.3 km round the hill village of Altrei. From the Rathausplatz it follows Gottschalkstraße to the Hof am Orth and Kreuzackerstraße to the Lochmannhof, then marker 5 out to Pichl along the edge of the Trudner Horn nature park, and back past the old Brechelofen to the start. About 40 minutes and 80 m of climb; it is also walked in winter.\n\nAltrei publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. The Pichl section runs along the nature park's edge, where dogs must be kept on a lead and never left to roam.",
       "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle, as the national rule requires; never let it roam near the nature park. About half the walk is on village streets with some traffic, including the 50 km/h through-road, so keep close there. Taps are mapped all round the village. Most of the loop is open and sunny, and some sections can be slippery when wet.",
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 3 November 2026 by the owner's decision: the route sentence now gives the official page's start, direction and turns, and it passes the board-walk bar.
+      "tier": "route-audited",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
         "photo": "Commons, Mario Penner, CC BY 3.0: the track at Pichl with Altrei church behind, 4 m from the line (kept).",
         "route": "Line rebuilt on OSM ways along the official GPX: 2.19 km against the GPX's 2.28 km and the official 2.3 km; every GPX point within 11 m. The old 1.2 km line was only part of the walk.",
-        "routeNumbers": "Marker 5 to Pichl, as the official description states; the rest follows named village streets.",
+        "routeNumbers": "Start at Rathausplatz in Altrei. Take Gottschalkstraße to the old Hof am Orth. Go on to the Lochmann farms and the “Trotn” bench, with a view over the Cembra valley. Follow marked path 5 to Pichl, then go on to the old flax kiln (Brechelofen). Come back to the start along Kanonikus-Michael-Gamper-Straße.",
         "mapPoints": "Start at the Rathausplatz, the official start (was a bus stop 120 m off the route); taps traced to OSM.",
         "elevation": "Official 80 m of climb; profile recomputed for the new line."
       },
-      "graduation": { "status": "in-progress", "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
       "verified": {
         "categories": [
           "water",
@@ -14519,32 +14449,18 @@
       "desc": "The Planets Path at Gummer: a 9.1 km loop from the Max Valier observatory across the sunny plateau above the Eggental, with a scale model of the solar system along the way. Path 5 leads east past the Oberegger farm (Mars) to Malgeier (Saturn), down by a small moor and across the provincial road; paths 1/3 and 1 climb past the Lärchenwald inn (Uranus) to the high point near 1,420 m (Neptune), and path 5A returns by the Learn pond and Tschigg (Pluto). About 3 hours and 262 m of up and down; officially easy to walk, and tagged dog-friendly.\n\nKarneid's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows and fields, and may not bathe in fountains or cattle troughs.",
       "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Karneid requires, and keep it off the meadows; the loop passes several working farms and cowsheds. There is nowhere to eat or drink on the loop and no mapped tap, so bring water for you both; the Unteregger inn is at the start. Take care crossing the provincial road. Only about a third is in forest, so it is warm on sunny afternoons. Through the moor near Malgeier, keep your dog close so it does not disturb wildlife.",
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 3 November 2026 by the owner's decision: the route sentence now gives the official page's start, direction and turns, and it passes the board-walk bar.
+      "tier": "route-audited",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
         "photo": "Commons, Christian Auer, CC BY-SA 3.0 (cropped): the Latemar from the Max Valier observatory at the start, as its description states; not geotagged (replaces a Lake Carezza view 10 km away).",
         "route": "Published line 9.03 km, within 60 m of the province register's Planetenweg everywhere; officially 9.1 km. The observatory page's 'knapp 6 km' contradicts its own stage distances, which add up to 9.1 km.",
-        "routeNumbers": "Paths 5, 1/3, 1 and 5A with the planet signs, as the official description states.",
+        "routeNumbers": "Start at the Max Valier observatory in Obergummer. Walk north past the Untereggerhof to the Oberegger farm. Go round the farm and follow path 5 east, up to the Malgeier farm. Take the farm road north, then path 5 down through the forest to the biotope. Turn north, cross the main road and follow path 1/3 to the Landgasthaus Lärchenwald. Follow path 1 past the Jaiterhof towards Haus Waldpeter, then the planet signs down through the forest to the Schenk car park by the Lantschnay bus stop. Follow path 5A past the Learn pond. After the Hinteregger farm turn right at the forest edge towards the Edenhof, then follow the planet signs past the Tschigg farm back to the start.",
         "mapPoints": "Start at the Max Valier observatory, the official start; no water on the loop, as the official page warns.",
         "elevation": "Official 262 m of up and down."
       },
-      "graduation": { "status": "in-progress", "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
       "verified": {
         "categories": [
           "water",
@@ -15680,20 +15596,18 @@
       elevation: 130,
       hours: '1.5–2',
       curated: true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      tier: 'under-review',
-      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
+      // Seal restored 3 November 2026 by the owner's decision: the route sentence now gives the official page's start, direction and turns, and it passes the board-walk bar.
+      tier: 'route-audited',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The tower of Schloss Welsperg above the forest and the Gsieser Bach, September, 9 m from the line (Davide Mauro, CC BY-SA 4.0).',
         route: 'Stored line 5.48 km, closed, wholly on the province register line; the official 6.2 km includes the walk from the tourist office.',
-        routeNumbers: 'No number: follow the “Große Schlossrunde” signs east along the old Gsiesertal road, turn right over a narrow wooden bridge after about 50 minutes, then return on the old castle path through the forest past Schloss Welsperg.',
+        routeNumbers: 'Start at the Welsberg tourist office. Walk through the village centre, past the music pavilion and main square on your right, and straight on to the bridge over the Gsieser Bach. Then follow the “Große Schlossrunde” signs east along the old Gsiesertal road. After about 50 minutes turn right over a narrow wooden bridge. Keep left and climb a little round a wide bend to the old castle path. Walk gently down the valley through the forest, past Schloss Welsperg and the school centre, back to the start. The walk has no path number.',
         mapPoints: 'Start at the Welsberg tourist office (official start); fountains in the village (OSM nodes 5167581904, 9006242959, 10916470437) and the Taistner Bach crossing at km 3.9 (way 507522282).',
         elevation: 'Official 6.2 km, 130 m up and down, 1:42 h, 1,084–1,211 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -23595,32 +23509,18 @@
       "desc": "An easy 8.3 km round walk from the centre of Naturns up to the Wallburgboden, an old cult site on the Sonnenberg. Paths 39 and 91 climb past the Wiedenplatzer Keller, then the level Wallburgweg runs west past the Waalerhütte through open woodland and dry scrub to the Wallburgboden. Back the same way to the turn signed Schwalbennest, then gently down past the Schwalbennest and the Maurbamhof to the village. Officially 2.5 hours and 349 m of climb, up to about 790 m. The tourist board lists it among its walks for holidays with dogs.\n\nNaturns publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. About 2 km cross the Sonnenberg steppe biotope, a Natura 2000 site where dogs may not run free and sheep and goats may graze.",
       "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle: the national rule requires it, and in the Sonnenberg biotope dogs may not roam. This south-facing slope is hot and dry with little real shade, so walk it in spring, autumn or early in the day and carry water: there is none above the village. Watch for cars on the village streets and farm roads, and keep your dog close where the path runs near short drops. There are places to stop at the Wiedenplatzer Keller and the Schwalbennest.",
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 3 November 2026 by the owner's decision: the route sentence now gives the official page's start, direction and turns, and it passes the board-walk bar.
+      "tier": "route-audited",
       "reviewedAt": "2026-10-24",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
         "photo": "Commons, Lord Koxinga, CC BY-SA 3.0 (kept): the stony walled path on the Sonnenberg above Naturns, 24 m from the line.",
         "route": "Line rebuilt on OSM ways along the official GPX: 8.42 km against the GPX's 8.27 km and the page's 8.3 km; every GPX point within 20 m. One 119 m stretch where OSM has no way follows the GPX straight across a vineyard. The old 3.5 km line was only the Wallburgweg section.",
-        "routeNumbers": "Paths 39 and 91, then the named Wallburgweg, as the official page describes; the return is signed Schwalbennest.",
+        "routeNumbers": "Start in the centre of Naturns. Take Feldgasse and St.-Prokulus-Straße to the start of path 39/91. Follow its signs to the tarmac lane up to the Wiedenplatzer Keller restaurant. From there a steep path climbs for about 5 minutes to the Wallburgweg. Turn west along this level path, cross the Sonnenberg farm road once, and pass the old Waalerhütte to the Wallburgboden viewpoint. Come back the same way at first. At the second turning signed “Schwalbennest”, go gently down to the snack hut and past the Maurbamhof. Take the narrow tarmac lane down, then Schlossweg and Feldgasse back to the centre.",
         "mapPoints": "Start in Naturns centre, the official start; water in the village traced to OSM.",
         "elevation": "Official 349 m of climb and 2:30 h."
       },
-      "graduation": { "status": "in-progress", "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
       "verified": {
         "categories": [
           "water",

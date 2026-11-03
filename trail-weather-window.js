@@ -222,6 +222,8 @@
       // What decides whether a route's sun exposure matters on this day. The
       // engine reads a route's own heat and shade only when this is warm.
       dayMaxC:dayMax(input,temp),
+      // The walk day at the trailhead, so the engine can tell the season.
+      date:dayKey(input&&input.currentTime)||null,
       // Only present when the forecast actually crosses the threshold later
       // today. Absent means the engine says nothing about an hour.
       hotFromLabel:onset&&heatRisk!=='high'?onset.label:null,

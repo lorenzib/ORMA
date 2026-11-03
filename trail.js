@@ -1219,7 +1219,7 @@ function trLabel(label){
     [/^Village fountain$/, 'Fontana del paese'],
     [/^Waterfall stream$/, 'Torrente della cascata'],
     [/^Stream crossing$/, 'Attraversamento del torrente'],
-    [/^Drinking water \(OSM-verified location\)$/, 'Acqua potabile (posizione verificata su OSM)'],
+    [/^Drinking water(?: \(OSM-verified location\))?$/, 'Acqua potabile'],
     [/^Mountain\/upper station$/, 'Stazione a monte'],
     [/^Valley\/lower station$/, 'Stazione a valle'],
   ];
