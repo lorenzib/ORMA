@@ -7013,6 +7013,40 @@
       }
     },
     {
+      "id": "valtellina-passo-di-campagneda",
+      "approvedReviewId": "mapillary-valtellina-passo-di-campagneda-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valtellina-passo-di-campagneda-campagneda-lakes.jpg",
+        "heroImage": "images/trails/valtellina-passo-di-campagneda-campagneda-lakes.jpg",
+        "imageAlt": "Small dark alpine lakes among pale rock slabs below a scree slope, with a snowy mountain range under a cloudy sky in the distance",
+        "imageCredit": "The Campagneda lakes below the pass, looking towards Monte Disgrazia",
+        "imageCreditText": "The Campagneda lakes below the pass, looking towards Monte Disgrazia by karma2",
+        "imageCreator": "karma2",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=808765040707241",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valtellina-rifugi-porro-e-ventina",
+      "approvedReviewId": "mapillary-valtellina-rifugi-porro-e-ventina-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valtellina-rifugi-porro-e-ventina-huts-meadow.jpg",
+        "heroImage": "images/trails/valtellina-rifugi-porro-e-ventina-huts-meadow.jpg",
+        "imageAlt": "A flowering alpine meadow with a grassy track leading to a small chapel and a red-roofed mountain hut among larches, under a big grey mountain with clouds",
+        "imageCredit": "The meadow at the Porro and Ventina huts below Monte Disgrazia",
+        "imageCreditText": "The meadow at the Porro and Ventina huts below Monte Disgrazia by lucagri",
+        "imageCreator": "lucagri",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=558122092473106",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "villnoess-da-russis-fino-al-passo-delle-erbe",
       "approvedReviewId": "commons-villnoess-da-russis-fino-al-passo-delle-erbe-on-route",
       "approvedAt": "2026-10-29T20:00:00.000Z",

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valtellina-rifugi-porro-e-ventina",
+  "distanceKm": 3.1,
+  "ascentM": 372,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1622
+    },
+    {
+      "km": 0.3,
+      "elev": 1597
+    },
+    {
+      "km": 0.5,
+      "elev": 1608
+    },
+    {
+      "km": 0.7,
+      "elev": 1622
+    },
+    {
+      "km": 1,
+      "elev": 1629
+    },
+    {
+      "km": 1.2,
+      "elev": 1647
+    },
+    {
+      "km": 1.4,
+      "elev": 1706
+    },
+    {
+      "km": 1.7,
+      "elev": 1732
+    },
+    {
+      "km": 1.9,
+      "elev": 1793
+    },
+    {
+      "km": 2.1,
+      "elev": 1813
+    },
+    {
+      "km": 2.4,
+      "elev": 1843
+    },
+    {
+      "km": 2.6,
+      "elev": 1913
+    },
+    {
+      "km": 2.9,
+      "elev": 1949
+    },
+    {
+      "km": 3.1,
+      "elev": 1958
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-03T18:55:11.760Z",
+  "generatedAt": "2026-11-03T19:42:40.958Z",
   "regions": {
     "dolomites": {
       "trailCount": 331,
-      "trails": "data/regions/dolomites-trails.js?v=fe1ddb288a7a",
+      "trails": "data/regions/dolomites-trails.js?v=8cd923236c14",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=6faa6455cd45",
@@ -408,8 +408,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 9,
-      "trails": "data/regions/lombardy-trails.js?v=63599ad98ec6",
+      "trailCount": 11,
+      "trails": "data/regions/lombardy-trails.js?v=51d3fdc283b0",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=fbf7190b5c12",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
@@ -419,7 +419,9 @@
         "lario-il-sentiero-del-viandante": "data/trail-details/lario-il-sentiero-del-viandante.js?v=92cf3ab39e8c",
         "lario-caslino-sullacqua": "data/trail-details/lario-caslino-sullacqua.js?v=c260de4a7d80",
         "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "data/trail-details/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza.js?v=a15ee9697efc",
-        "bormio-da-arnoga-al-rifugio-federico": "data/trail-details/bormio-da-arnoga-al-rifugio-federico.js?v=b466bc6017f9"
+        "bormio-da-arnoga-al-rifugio-federico": "data/trail-details/bormio-da-arnoga-al-rifugio-federico.js?v=b466bc6017f9",
+        "valtellina-rifugi-porro-e-ventina": "data/trail-details/valtellina-rifugi-porro-e-ventina.js?v=d0fa0a4a06ca",
+        "valtellina-passo-di-campagneda": "data/trail-details/valtellina-passo-di-campagneda.js?v=293c7d409443"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -898,6 +900,8 @@
     "lario-caslino-sullacqua": "lombardy",
     "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "lombardy",
     "bormio-da-arnoga-al-rifugio-federico": "lombardy",
+    "valtellina-rifugi-porro-e-ventina": "lombardy",
+    "valtellina-passo-di-campagneda": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1385,6 +1389,8 @@
     "meran-giro-dei-masi-sul-monte-sole": "unterstell-farms-loop-naturns",
     "meran-escursione-alla-forst": "algund-forst-marlinger-waalweg",
     "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": "hirzer-alms-loop-klammeben",
+    "valtellina-rifugi-porro-e-ventina": "chiareggio-rifugi-porro-ventina",
+    "valtellina-passo-di-campagneda": "campo-moro-passo-di-campagneda",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1827,6 +1833,8 @@
     "unterstell-farms-loop-naturns": "meran-giro-dei-masi-sul-monte-sole",
     "algund-forst-marlinger-waalweg": "meran-escursione-alla-forst",
     "hirzer-alms-loop-klammeben": "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer",
+    "chiareggio-rifugi-porro-ventina": "valtellina-rifugi-porro-e-ventina",
+    "campo-moro-passo-di-campagneda": "valtellina-passo-di-campagneda",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

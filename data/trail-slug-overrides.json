@@ -1543,6 +1543,16 @@
       "name": "Hirzer alms loop from Klammeben",
       "slug": "hirzer-alms-loop-klammeben",
       "gloss": "alms below the Hirzer above Schenna"
+    },
+    "valtellina-rifugi-porro-e-ventina": {
+      "name": "Chiareggio to the Porro and Ventina huts",
+      "slug": "chiareggio-rifugi-porro-ventina",
+      "gloss": "a mule track to the meadows below Monte Disgrazia"
+    },
+    "valtellina-passo-di-campagneda": {
+      "name": "Campo Moro to the Passo di Campagneda",
+      "slug": "campo-moro-passo-di-campagneda",
+      "gloss": "past the Campagneda lakes to the Swiss border"
     }
   }
 }
