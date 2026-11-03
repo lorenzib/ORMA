@@ -3217,6 +3217,22 @@
       "quote": "Distanza 5,27 km · Durata 2:28 h · Salita 615 m · Discesa 3 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "savoie-areches-beaufort-la-grande-berge": {
+      "url": "https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-la-grande-berge-262882/",
+      "publisher": "Communauté d’agglomération Arlysère (Apidae, Explore Savoie)",
+      "name": "Arêches / Beaufort – La Grande Berge",
+      "quote": "Durée moyenne 4H · Dénivelé cumulé positif 350m · Dénivelé négatif 350m · Distance 7.4Km · Animaux acceptés",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": {
+      "url": "https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-croix-du-berger-et-lac-des-fees-262872/",
+      "publisher": "Communauté d’agglomération Arlysère (Apidae, Explore Savoie)",
+      "name": "Arêches / Beaufort – Croix du Berger et lac des Fées",
+      "quote": "Durée moyenne 3H30 · Dénivelé cumulé positif 350m · Dénivelé négatif 350m · Distance 4.8Km · Animaux acceptés",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
     }
   }
 }

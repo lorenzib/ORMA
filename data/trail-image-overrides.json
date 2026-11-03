@@ -5874,6 +5874,40 @@
       }
     },
     {
+      "id": "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees",
+      "approvedReviewId": "mapillary-savoie-areches-beaufort-croix-du-berger-et-lac-des-fees-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/savoie-areches-beaufort-croix-du-berger-et-lac-des-fees-alpage-track.jpg",
+        "heroImage": "images/trails/savoie-areches-beaufort-croix-du-berger-et-lac-des-fees-alpage-track.jpg",
+        "imageAlt": "A stony track curving across dry summer grass on a mountainside, with green rolling ridges and a blue sky with clouds",
+        "imageCredit": "The track above the Lac des Fées",
+        "imageCreditText": "The track above the Lac des Fées by joostjakob",
+        "imageCreator": "joostjakob",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1155049735359923",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "savoie-areches-beaufort-la-grande-berge",
+      "approvedReviewId": "commons-savoie-areches-beaufort-la-grande-berge-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/savoie-areches-beaufort-la-grande-berge-roselend-view.jpg",
+        "heroImage": "images/trails/savoie-areches-beaufort-la-grande-berge-roselend-view.jpg",
+        "imageAlt": "A turquoise reservoir far below a high alpine pasture, ringed by forest and green mountains under summer clouds",
+        "imageCredit": "The Lac de Roselend from the path to the Grande Berge",
+        "imageCreditText": "The Lac de Roselend from the path to the Grande Berge by Rémih",
+        "imageCreator": "Rémih",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Montagne_d'Outray_Lac_de_Roselend.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "savoie-itineraire-poussette-de-belavoine",
       "approvedReviewId": "mapillary-savoie-itineraire-poussette-de-belavoine-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",
