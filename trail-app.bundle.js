@@ -72121,7 +72121,24 @@ function initDetailPois(map, trail){
       .map((photo,index)=>({...photo,image:clean(photo.image),isEditorial:true,editorialOrder:index,status:'approved'}));
   }
 
+  // Openly licensed photographs shown before anyone has shared one
+  // (data/trail-gallery-photos.json). Credited with creator and licence.
+  function licensedPhotos(trail){
+    return (Array.isArray(trail?.licensedPhotos)?trail.licensedPhotos:[])
+      .filter(photo=>photo&&/^images\/trails\/[A-Za-z0-9_.-]+\.(?:jpe?g|webp)$/i.test(clean(photo.image))&&clean(photo.creator)&&clean(photo.licence)&&/^https:\/\//i.test(clean(photo.sourcePage)))
+      .map((photo,index)=>({...photo,image:clean(photo.image),isLicensed:true,licensedOrder:index,status:'approved'}));
+  }
+
+  function licensedCredit(photo){
+    if(!photo?.isLicensed)return null;
+    const licenceUrl=clean(photo.licenceUrl);
+    return {creator:clean(photo.creator,200),licence:clean(photo.licence,80),sourcePage:clean(photo.sourcePage),
+      licenceUrl:/^https:\/\//i.test(licenceUrl)?licenceUrl:''};
+  }
+
   function photoCaption(photo){
+    const licensed=licensedCredit(photo);
+    if(licensed)return `Photo: ${licensed.creator} · ${licensed.licence}`;
     const dog=photo?.dogContext?.name;
     const caption=photo?.isEditorial
       ? 'Shared by the ORMA community'
@@ -72133,7 +72150,7 @@ function initDetailPois(map, trail){
 
   function photoAlt(photo){return clean(photo?.alt,500)||clean(photo?.caption,500)||'Trail photograph';}
 
-  return {clean,normalizeCredit,heroCredit,isIllustration,editorialPhotos,photoCaption,photoAlt};
+  return {clean,normalizeCredit,heroCredit,isIllustration,editorialPhotos,licensedPhotos,licensedCredit,photoCaption,photoAlt};
 });
 ;
 
@@ -72519,6 +72536,9 @@ function initTrailReports(map, trail){
   const editorialPhotos = window.DoloPawsPhotoProvenance
     ? window.DoloPawsPhotoProvenance.editorialPhotos(trail)
     : [];
+  const licensedPhotos = window.DoloPawsPhotoProvenance && window.DoloPawsPhotoProvenance.licensedPhotos
+    ? window.DoloPawsPhotoProvenance.licensedPhotos(trail)
+    : [];
   let actionStatusTimer = null;
   let closeActivePhotoViewer = null;
 
@@ -72634,6 +72654,19 @@ function initTrailReports(map, trail){
     return caption + (photo.status === 'reported' ? ' · Reported, under review' : '');
   }
 
+  // The credit a licence asks for: who took it, under what terms, and where
+  // it came from. Linked in the viewer, plain text under the thumbnail.
+  function photoCaptionHtml(photo){
+    const credit = window.DoloPawsPhotoProvenance && window.DoloPawsPhotoProvenance.licensedCredit
+      ? window.DoloPawsPhotoProvenance.licensedCredit(photo)
+      : null;
+    if (!credit) return trEsc(photoCaption(photo));
+    const licence = credit.licenceUrl
+      ? `<a href="${trEsc(credit.licenceUrl)}" rel="license noopener" target="_blank">${trEsc(credit.licence)}</a>`
+      : trEsc(credit.licence);
+    return `Photo: <a href="${trEsc(credit.sourcePage)}" rel="noopener nofollow" target="_blank">${trEsc(credit.creator)}</a> · ${licence}`;
+  }
+
   function photoAlt(photo){
     return window.DoloPawsPhotoProvenance
       ? window.DoloPawsPhotoProvenance.photoAlt(photo)
@@ -72679,10 +72712,9 @@ function initTrailReports(map, trail){
     function show(index){
       currentIndex = (index + photos.length) % photos.length;
       const photo = photos[currentIndex];
-      const label = photoCaption(photo);
       image.src = photo.image;
       image.alt = photoAlt(photo);
-      caption.textContent = label;
+      caption.innerHTML = photoCaptionHtml(photo);
       count.textContent = `${currentIndex + 1} of ${photos.length}`;
       previous.hidden = photos.length < 2;
       next.hidden = photos.length < 2;
@@ -72744,13 +72776,16 @@ function initTrailReports(map, trail){
 
   function renderPhotos(photos){
     if (!photosListEl) return;
-    const visible = editorialPhotos.concat(photos.filter(photo =>
+    const visible = editorialPhotos.concat(licensedPhotos, photos.filter(photo =>
       window.DoloPawsCommunityStates&&window.DoloPawsCommunityStates.isPublic(photo.status)&&
       typeof photo.image==='string'&&photo.image.startsWith('data:image/')
     ))
       .sort((a, b) => {
         if(a.isEditorial!==b.isEditorial)return a.isEditorial?-1:1;
         if(a.isEditorial&&b.isEditorial)return a.editorialOrder-b.editorialOrder;
+        // A photo someone shared comes before one ORMA found for them.
+        if(!!a.isLicensed!==!!b.isLicensed)return a.isLicensed?1:-1;
+        if(a.isLicensed&&b.isLicensed)return a.licensedOrder-b.licensedOrder;
         const aDate = reviewDate(a), bDate = reviewDate(b);
         return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
       });
@@ -72770,7 +72805,8 @@ function initTrailReports(map, trail){
       return `<figure class="community-photo">
         <button type="button" class="community-photo__open" data-photo-index="${index}" aria-label="Open photo ${index + 1} of ${visible.length}: ${caption}">
           <img src="${trEsc(photo.image)}" alt="${trEsc(photoAlt(photo))}" loading="lazy" decoding="async">
-        </button>
+        </button>${photo.isLicensed ? `
+        <figcaption class="community-photo__credit">${trEsc(`${photo.creator} · ${photo.licence}`)}</figcaption>` : ''}
       </figure>`;
     }).join('');
     photosListEl.querySelectorAll('[data-photo-index]').forEach(button => {
