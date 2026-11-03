@@ -313,6 +313,8 @@
     'valgardena-uciei-de-freeines': "Uciei de Frëines",
     'valgardena-val-danna-percorso-kneipp': "Val d’Anna",
     'valley-view': "Val di Funes Panorama Trail",
+    'valtellina-passo-di-campagneda': "Campo Moro to the Passo di Campagneda",
+    'valtellina-rifugi-porro-e-ventina': "Chiareggio to the Porro and Ventina huts",
     'villnoess-da-russis-fino-al-passo-delle-erbe': "Ponte Russis to Passo delle Erbe",
     'villnoess-dolorama-3a-tappa': "Dolorama stage 3: Rifugio Genova to Resciesa",
     'villnoess-ranui-zannes': "Ranui to Zannes",

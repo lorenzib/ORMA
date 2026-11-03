@@ -59420,6 +59420,147 @@
       startPoint: { lat: 46.738282, lng: 11.247224, label: 'Klammeben, top station of the Hirzer cable car, the board’s start' },
       desc: 'An alpine loop below the Hirzer from the Hirzer cable car, past the Hirzer hut along the E5 to the Hinteregg and Mahd alms and the Rotmoos basin, and back by the Tallner Alm. The board lists 6.7 km, 350 m up and 350 m down, 2 h 30.'
     },
+    'valtellina-rifugi-porro-e-ventina': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Lombardy batch 4).
+      // “Rifugi Porro e Ventina”, published by the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), drawn on 8 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour for Valtellina Outdoor. Communes: Chiesa in Valmalenco (no regulation, national rule).
+      // Crosses the Disgrazia – Sissone Natura 2000 site IT2040017 (90% of the line), whose measures require dogs on a lead and visitors on the paths. Not in the Stelvio National Park.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Chiareggio – Rifugio Porro – Rifugio Ventina, Valmalenco',
+      distance: 3.1,
+      elevation: 372,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the car park in Chiareggio on path 323, over the Mallero and gently up a wide mule track to the plateau of the Rifugio Porro and the Rifugio Ventina below Monte Disgrazia; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the large car park in Chiareggio, at the head of the Valmalenco, the board’s start.",
+        "sequence": "Follow the signs for path 323: drop a few tens of metres to the Mallero torrent and cross it on a wooden footbridge, then climb gently on the wide mule track through the larches to the open plateau at about 1,960 m, where the Rifugio Porro and then the Rifugio Ventina stand one after the other. Come back the same way.",
+        "switches": "No change of path: path 323 from Chiareggio to the huts.",
+        "sources": [
+          {
+            "label": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Rifugi Porro e Ventina (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/804596740",
+            "authority": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor)",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadow at the Rifugio Porro and Rifugio Ventina, with Monte Disgrazia behind, in June (lucagri on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official one-way walk 3.1 km from the car park in Chiareggio, as the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor) publishes it; the stored line is drawn on 8 OSM ways along the board’s published line, 3.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 323 all the way: from the car park in Chiareggio down to the Mallero footbridge, then up the mule track to the Rifugio Porro and on to the Rifugio Ventina. Back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3.1 km, 372 m up and 18 m down, 1:25 h, highest point 1,961 m, lowest 1,589 m (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Rifugi Porro e Ventina (its Outdooractive tour for Valtellina Outdoor, the tourism network of the Province of Sondrio and its mountain communities)',
+          'Comune di Chiesa in Valmalenco (its regulations are kept by the Unione dei Comuni Valmalenco) publishes no dog regulation (none in its register of regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'ZSC/ZPS IT2040017 Disgrazia – Sissone: DGR X/1029 of 25 November 2013, annexes, Art. 3 (p. 18), visitors keep to the paths and dogs go on a lead under close watch. No park, reserve or natural monument on the line (Regione Lombardia geoportal layers; not in the Stelvio National Park)',
+          'OpenStreetMap ways along the board’s line (8 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 9,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cattle graze the pastures around the huts in summer: keep your distance and your dog close', 'Stony mule track with loose stones in places: watch your dog’s paws', 'Storms build fast on summer afternoons at this height'],
+      terrainType: 'Mule track and meadow path',
+      shadeDescription: 'Mostly open on the map: OpenStreetMap shows woodland on only about a tenth of the line, though larches line much of the mule track; the hut plateau is in full sun.',
+      terrainDescription: 'A short climb at about 1,590–1,960 m from Chiareggio, at the head of the Valmalenco, on a wide mule track to the meadow plateau of the Porro and Ventina huts at the foot of Monte Disgrazia. Easy enough for families; a summer walk, as snow lies late up here.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The two huts serve food and drink in summer.',
+      dogNotes: 'Chiesa in Valmalenco has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Most of the walk is in the Disgrazia – Sissone Natura 2000 site: keep your dog on a lead and on the path. Clean up after your dog.',
+      tips: 'Start at the car park in Chiareggio: 3.1 km and, as the board lists, 372 m of climbing, about an hour and a half to the huts, then the same way back. Walk it from June to October. Keep your dog on a lead the whole way: the national rule (1.5 m at most, muzzle carried) applies, and the Natura 2000 site asks for dogs on a lead and on the path. Food and drink at the huts.',
+      sourceLinks: [
+        { label: 'Outdooractive, Rifugi Porro e Ventina (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor))', url: 'https://www.outdooractive.com/it/r/804596740' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'Regione Lombardia, DGR X/1029/2013, annexes (conservation measures for the Sondrio Natura 2000 sites)', url: 'https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/allegati-dgr-1029-2013-misure-di-conservazione-dei-sic.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.31595, lng: 9.78786, label: 'The car park in Chiareggio, the board’s start' },
+      desc: 'A classic, easy walk from Chiareggio up a wide mule track to the Rifugio Porro and the Rifugio Ventina, on a meadow plateau at the foot of Monte Disgrazia. The board lists 3.1 km, 372 m up and 18 m down, 1 h 25 one way.'
+    },
+    'valtellina-passo-di-campagneda': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Lombardy batch 4).
+      // “Passo di Campagneda”, published by the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour for Valtellina Outdoor. Communes: Lanzada (no regulation, national rule).
+      // Crosses the Monte di Scerscen – Ghiacciaio di Scerscen – Monte Motta Natura 2000 site IT2040016 (all of the line), whose measures require dogs on a lead and visitors on the paths. Not in the Stelvio National Park.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Campo Moro – Alpe Campagneda – Passo di Campagneda, Valmalenco (Lanzada)',
+      distance: 5.27,
+      elevation: 615,
+      hours: '2.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the car park at Campo Moro past the Rifugio Zoia on the old mule track to the Alpe Campagneda, then on the Alta Via della Valmalenco past the Campagneda lakes to the Passo di Campagneda on the Swiss border; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park at Campo Moro, by the dams above Lanzada, the board’s start.",
+        "sequence": "Follow the old mule track past the Rifugio Zoia, up and down between rock walls and mountain pines, to the pastures of the Alpe Campagneda, where the going turns easy. At the junction with the Alta Via della Valmalenco follow it uphill, past the small Campagneda lakes, to the Passo di Campagneda with its marker arch on the Swiss border. Come back the same way.",
+        "switches": "One change: at the junction on the Alpe Campagneda leave the mule track and follow the Alta Via della Valmalenco uphill to the pass.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Passo di Campagneda (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/804595894",
+            "authority": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor)",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Campagneda lakes below the Passo di Campagneda, looking west to Monte Disgrazia, in July (karma2 on Mapillary, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official one-way walk 5.27 km from the car park at Campo Moro, as the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor) publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 5.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the car park at Campo Moro on the old mule track past the Rifugio Zoia to the pastures of the Alpe Campagneda; at the junction with the Alta Via della Valmalenco, uphill along it (its seventh stage walked in reverse) past the Campagneda lakes to the pass and its marker arch. Back the same way; the board gives no path number.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 5.27 km, 615 m up and 3 m down, 2:28 h, highest point 2,604 m, lowest 1,990 m (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Passo di Campagneda (its Outdooractive tour for Valtellina Outdoor, the tourism network of the Province of Sondrio and its mountain communities)',
+          'Comune di Lanzada (its regulations are kept by the Unione dei Comuni Valmalenco) publishes no dog regulation (none in its register of regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'ZSC/ZPS IT2040016 Monte di Scerscen – Ghiacciaio di Scerscen – Monte Motta: DGR X/1029 of 25 November 2013, annexes, Art. 3 (p. 18), visitors keep to the paths and dogs go on a lead under close watch. No park, reserve or natural monument on the line (Regione Lombardia geoportal layers; not in the Stelvio National Park)',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Rocky stretches between boulders and slabs, rougher towards the pass: take it slowly with your dog', 'Cattle graze the Alpe Campagneda in summer: keep your distance and your dog close', 'Open ground above 2,000 m with no shade; storms build fast on summer afternoons'],
+      terrainType: 'Mule track and mountain path over rock and pasture',
+      shadeDescription: 'Almost no shade: a few mountain pines near Campo Moro, then open pasture and rock to the pass.',
+      terrainDescription: 'A popular walk at about 1,990–2,600 m from the Campo Moro dams in the upper Valmalenco, on an old mule track to the Alpe Campagneda pastures and then a stretch of the Alta Via past small lakes to a pass on the Swiss border, with views to Monte Disgrazia and the Bernina. A summer walk: snow lies late up here.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Rifugio Zoia near the start serves food and drink in summer.',
+      dogNotes: 'Lanzada has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The whole walk is in the Monte di Scerscen – Monte Motta Natura 2000 site: keep your dog on a lead and on the path. Clean up after your dog.',
+      tips: 'Start at the car park at Campo Moro, above Lanzada: 5.3 km and, as the board lists, 615 m of climbing, about two and a half hours to the pass, then the same way back. Walk it from July to early October. Keep your dog on a lead the whole way: the national rule (1.5 m at most, muzzle carried) applies, and the Natura 2000 site asks for dogs on a lead and on the path. The pass is the border: stay on the Italian side unless your dog’s papers are in order for Switzerland.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passo di Campagneda (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor))', url: 'https://www.outdooractive.com/it/r/804595894' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'Regione Lombardia, DGR X/1029/2013, annexes (conservation measures for the Sondrio Natura 2000 sites)', url: 'https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/allegati-dgr-1029-2013-misure-di-conservazione-dei-sic.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.30417, lng: 9.9327, label: 'The car park at Campo Moro, the board’s start' },
+      desc: 'A popular walk from Campo Moro in the upper Valmalenco past the Rifugio Zoia and the Alpe Campagneda pastures, then along the Alta Via past small lakes to the Passo di Campagneda on the Swiss border. The board lists 5.27 km, 615 m up and 3 m down, 2 h 28 one way.'
+    },
     'savoie-areches-beaufort-la-grande-berge': {
       // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 2, Beaufortain).
       // “Arêches / Beaufort – La Grande Berge”, published by the Communauté d’agglomération Arlysère, drawn on 23 OSM ways along the line it publishes
