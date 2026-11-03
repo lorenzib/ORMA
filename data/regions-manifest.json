@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-03T20:00:37.312Z",
+  "generatedAt": "2026-11-03T20:44:48.946Z",
   "regions": {
     "dolomites": {
       "trailCount": 331,
@@ -410,8 +410,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 11,
-      "trails": "data/regions/lombardy-trails.js?v=51d3fdc283b0",
+      "trailCount": 12,
+      "trails": "data/regions/lombardy-trails.js?v=c23368dcd644",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=fbf7190b5c12",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
@@ -423,7 +423,8 @@
         "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "data/trail-details/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza.js?v=a15ee9697efc",
         "bormio-da-arnoga-al-rifugio-federico": "data/trail-details/bormio-da-arnoga-al-rifugio-federico.js?v=b466bc6017f9",
         "valtellina-rifugi-porro-e-ventina": "data/trail-details/valtellina-rifugi-porro-e-ventina.js?v=d0fa0a4a06ca",
-        "valtellina-passo-di-campagneda": "data/trail-details/valtellina-passo-di-campagneda.js?v=293c7d409443"
+        "valtellina-passo-di-campagneda": "data/trail-details/valtellina-passo-di-campagneda.js?v=293c7d409443",
+        "valchiavenna-ai-laghi-del-baldiscio": "data/trail-details/valchiavenna-ai-laghi-del-baldiscio.js?v=f65b682eff3c"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -906,6 +907,7 @@
     "bormio-da-arnoga-al-rifugio-federico": "lombardy",
     "valtellina-rifugi-porro-e-ventina": "lombardy",
     "valtellina-passo-di-campagneda": "lombardy",
+    "valchiavenna-ai-laghi-del-baldiscio": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1397,6 +1399,7 @@
     "valtellina-passo-di-campagneda": "campo-moro-passo-di-campagneda",
     "savoie-areches-beaufort-la-grande-berge": "grande-berge-from-plan-de-la-lai",
     "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": "croix-du-berger-from-lac-des-fees",
+    "valchiavenna-ai-laghi-del-baldiscio": "isola-laghi-del-baldiscio",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1843,6 +1846,7 @@
     "campo-moro-passo-di-campagneda": "valtellina-passo-di-campagneda",
     "grande-berge-from-plan-de-la-lai": "savoie-areches-beaufort-la-grande-berge",
     "croix-du-berger-from-lac-des-fees": "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees",
+    "isola-laghi-del-baldiscio": "valchiavenna-ai-laghi-del-baldiscio",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

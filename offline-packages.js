@@ -288,6 +288,7 @@
     'trecime-sesto-san-candido': "Sexten – Innichen and back",
     'trecime-villabassa-lanaweg': "Niederdorf – Lanaweg loop",
     'trecime-villabassa-mooskirche': "Niederdorf – Mooskirche",
+    'valchiavenna-ai-laghi-del-baldiscio': "Isola to the Baldiscio lakes",
     'valdisole-bivacco-malga-baselga': "Bivacco Malga Baselga",
     'valdisole-fazzon-lago-dei-caprioli': "Rifugio Fazzon – Lago dei Caprioli",
     'valdisole-lago-dei-caprioli-malga-alta-di-fazzon': "Lago dei Caprioli – Malga Alta di Fazzon",

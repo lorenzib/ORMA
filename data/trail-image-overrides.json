@@ -6520,6 +6520,23 @@
       }
     },
     {
+      "id": "valchiavenna-ai-laghi-del-baldiscio",
+      "approvedReviewId": "commons-valchiavenna-ai-laghi-del-baldiscio-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valchiavenna-ai-laghi-del-baldiscio-febbraro-footbridge.jpg",
+        "heroImage": "images/trails/valchiavenna-ai-laghi-del-baldiscio-febbraro-footbridge.jpg",
+        "imageAlt": "A wooden footbridge with a red-and-white waymarked post leading to a rocky slope with an old stone hut and golden larches",
+        "imageCredit": "The wooden footbridge over the Febbraro torrent on the way up",
+        "imageCreditText": "The wooden footbridge over the Febbraro torrent on the way up by Mænsard vokser",
+        "imageCreator": "Mænsard vokser",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Larix_trees_and_wooden_bridge_over_ravine_Febbraro_(1487_m.a.s.l.)_-_in_Valchiavenna,_Province_of_Sondrio,_Lombardy,_Italy_-_2017-10-15.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valdisole-bivacco-malga-baselga",
       "approvedReviewId": "commons-valdisole-bivacco-malga-baselga-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",

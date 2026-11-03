@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valchiavenna-ai-laghi-del-baldiscio",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 7.22,
+    "ascentM": 1056,
+    "highestPointM": 2316,
+    "expectedDuration": "3.75 hours",
+    "difficulty": "Hard",
+    "shadePercent": 22
+  },
+  "trailhead": {
+    "lat": 46.4435,
+    "lng": 9.33401,
+    "label": "Isola, at the foot of the consortium road to Cà Raseri, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The consortium road above Isola is open to cars with a permit: keep your dog close on the hairpins.",
+    "Cattle graze the Alpe Borghetto and the pastures above in summer: keep your distance and your dog on a short lead.",
+    "A long climb of over 1,000 m with open ground above 1,900 m; storms build fast on summer afternoons.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

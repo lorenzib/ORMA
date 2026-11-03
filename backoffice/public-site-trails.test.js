@@ -186,9 +186,10 @@ describe('the existing-site verification boundary',()=>{
     // Ventina huts, and Campo Moro to the Passo di Campagneda.
     // Then 444 and 442 with two more Beaufortain walks: La Grande Berge from the
     // Plan de la Lai and the Croix du Berger from the Lac des Fées.
+    // Then 445 and 443 with the Valchiavenna walk from Isola to the Baldiscio lakes.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(444);
-    expect(currentSiteTrails(catalogue)).toHaveLength(442);
+    expect(catalogue).toHaveLength(445);
+    expect(currentSiteTrails(catalogue)).toHaveLength(443);
   });
 
   test('requires the artwork the public trail page needs',()=>{
