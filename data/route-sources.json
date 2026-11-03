@@ -3201,6 +3201,22 @@
       "quote": "Distanza 6,7 km · Durata 2:30 h · Salita 350 m · Discesa 350 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "valtellina-rifugi-porro-e-ventina": {
+      "url": "https://www.outdooractive.com/it/r/804596740",
+      "publisher": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor) (Outdooractive)",
+      "name": "Rifugi Porro e Ventina",
+      "quote": "Distanza 3,1 km · Durata 1:25 h · Salita 372 m · Discesa 18 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "valtellina-passo-di-campagneda": {
+      "url": "https://www.outdooractive.com/it/r/804595894",
+      "publisher": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor) (Outdooractive)",
+      "name": "Passo di Campagneda",
+      "quote": "Distanza 5,27 km · Durata 2:28 h · Salita 615 m · Discesa 3 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
     }
   }
 }
