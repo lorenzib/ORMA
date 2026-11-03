@@ -58478,6 +58478,214 @@
       ],
       startPoint: { lat: 46.88006, lng: 11.62134, label: 'Fane Alm, the board’s start' },
       desc: 'A climb from the Fane Alm hamlet up the Valser Tal on path 17, past waterfalls, to the Brixner Hütte at 2,282 m in the Pfunderer mountains. The board lists 4.3 km and 580 m up.'
+    },
+    'ahrntal-sentiero-panoramico-cadipietra': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Ahrntal batch 1).
+      // “Sentiero panoramico Cadipietra”, published by the Tauferer Ahrntal tourist board, drawn on 28 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Ahrntal (no regulation of its own found, national rule).
+      // No Natura 2000 site, park or natural monument on the line; about a fifth runs through the Ahrntal farmstead landscape protection zone, which sets no rule on dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Steinhaus (Cadipietra), Ahrntal',
+      distance: 3.3,
+      elevation: 80,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop around Steinhaus: from the Klausberg lift car park on valley path 11 towards Mühlegg, across the road and up path 8A to the Koasa farm, then right on path 8B to Linder Antratt and back to the car park.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Klausberg lift car park in Steinhaus (Cadipietra), the board’s start.",
+        "sequence": "Follow valley path 11 towards Mühlegg and In der Baurschaft. Cross the road and climb path 8A to the Koasa farm, then turn right onto path 8B and follow it along the slope to Linder Antratt. The car park is just across the road.",
+        "switches": "Two changes: after crossing the road take path 8A uphill, and at the Koasa farm turn right onto path 8B.",
+        "sources": [
+          {
+            "label": "Tauferer Ahrntal tourist board, Sentiero panoramico Cadipietra (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055139",
+            "authority": "Tauferer Ahrntal tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Ahrntal seen from the slope above Steinhaus, in June (Stiller Beobachter on Flickr, via Wikimedia Commons, CC BY 2.0), 14 m from the line.',
+        route: 'Official loop 3.3 km from the Klausberg lift car park in Steinhaus, as the Tauferer Ahrntal tourist board publishes it; the stored line is drawn on 28 OSM ways along the board’s published line, 3.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 11, 8A and 8B: from the Klausberg lift car park on valley path 11 towards Mühlegg, then path 8A up to the Koasa farm and path 8B along the slope to Linder Antratt.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3.3 km, 80 m up and 81 m down, 0:53 h, highest point 1,106 m, lowest 1,028 m (Tauferer Ahrntal tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tauferer Ahrntal tourist board, Sentiero panoramico Cadipietra (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Ahrntal / Comune di Valle Aurina: no dog regulation of its own found online (the commune’s site lists none); one probably exists. The national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 21% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (28 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 120 m beside the Klausberg road (SS621) near the end: keep your dog close', 'Quiet farm lanes, mostly paved, with local traffic', 'No shade: go early on hot days'],
+      terrainType: 'Farm lanes and meadow paths',
+      shadeDescription: 'No shade: the loop runs across open meadows and past farms.',
+      terrainDescription: 'An easy loop at 1,030–1,110 m around the village of Steinhaus, on farm lanes and meadow paths with views along the Ahrntal.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Ahrntal has no dog regulation of its own online, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Most of the way runs between farmed meadows and past farms: keep your dog on the path. Near the end the loop runs about 120 m beside the Klausberg road.',
+      tips: 'Start at the Klausberg lift car park in Steinhaus: a 3.3 km loop with about 80 m up and down, under an hour. There is no shade, so go early on hot days and bring water: none is mapped on the way. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero panoramico Cadipietra (Tauferer Ahrntal tourist board)', url: 'https://www.outdooractive.com/it/r/810055139' },
+        { label: 'Gemeinde Ahrntal (commune website; no dog regulation listed)', url: 'https://www.gemeinde.ahrntal.bz.it/de/suche.aspx?search=Hunde' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.99404, lng: 11.97764, label: 'Klausberg lift car park in Steinhaus (Cadipietra), the board’s start' },
+      desc: 'An easy loop around Steinhaus in the Ahrntal, on valley path 11 and up through the meadows on paths 8A and 8B to Linder Antratt, with views along the valley. The board lists 3.3 km and 80 m up.'
+    },
+    'ahrntal-sentiero-del-conte-cadipietra': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Ahrntal batch 1).
+      // “Sentiero del Conte Cadipietra”, published by the Tauferer Ahrntal tourist board, drawn on 12 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Ahrntal (no regulation of its own found, national rule).
+      // No Natura 2000 site, park or natural monument on the line; about a fifth runs through a landscape protection zone, which sets no rule on dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Steinhaus (Cadipietra), Ahrntal',
+      distance: 2.1,
+      elevation: 86,
+      hours: '0.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the Klausberg car park in Steinhaus: up towards Enz and Schachen, left above the Enzhof to the Unterberg hamlet, then down and left along the river back to the car park.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Klausberg car park in Steinhaus (Cadipietra), the board’s start.",
+        "sequence": "Walk up the lane towards Enz and Schachen. Above the Enzhof farm, take the first path on the left to the Unterberg hamlet. Then go down and turn left along the river, which leads you back to the car park.",
+        "switches": "Two turns: the first path on the left above the Enzhof, and left again along the river at the bottom.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Tauferer Ahrntal tourist board, Sentiero del Conte Cadipietra (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/805426773",
+            "authority": "Tauferer Ahrntal tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Fields at the foot of the meadows the loop crosses above Steinhaus, in June (Stiller Beobachter on Flickr, via Wikimedia Commons, CC BY 2.0), 4 m from the line.',
+        route: 'Official loop 2.1 km from the Klausberg car park in Steinhaus, as the Tauferer Ahrntal tourist board publishes it; the stored line is drawn on 12 OSM ways along the board’s published line, 2.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No path number given: from the Klausberg car park up towards Enz and Schachen, left above the Enzhof to Unterberg, and back down along the river.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.5 and km 1.5 (OSM nodes 5827918911, 4333591383).',
+        elevation: 'Official 2.1 km, 86 m up and 86 m down, 0:45 h, highest point 1,118 m, lowest 1,041 m (Tauferer Ahrntal tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tauferer Ahrntal tourist board, Sentiero del Conte Cadipietra (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Ahrntal / Comune di Valle Aurina: no dog regulation of its own found online (the commune’s site lists none); one probably exists. The national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 21% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (12 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Farm tracks through meadows: keep your dog on the path', 'Grassy, uneven stretches, slippery when wet', 'No shade: go early on hot days'],
+      terrainType: 'Farm tracks and lanes',
+      shadeDescription: 'No shade: the loop crosses open meadows above the village.',
+      terrainDescription: 'A short, easy loop at 1,040–1,120 m above Steinhaus, on farm lanes and grassy tracks to the Unterberg hamlet and back along the river.',
+      waterDescription: 'Drinking water at km 0.5 and km 1.5; places to eat on the way.',
+      dogNotes: 'Ahrntal has no dog regulation of its own online, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Most of the way runs between farmed meadows and past farms: keep your dog on the path.',
+      tips: 'Start at the Klausberg car park in Steinhaus: a 2.1 km loop with about 90 m up and down, 45 minutes. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at km 0.5 and 1.5.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero del Conte Cadipietra (Tauferer Ahrntal tourist board)', url: 'https://www.outdooractive.com/it/r/805426773' },
+        { label: 'Gemeinde Ahrntal (commune website; no dog regulation listed)', url: 'https://www.gemeinde.ahrntal.bz.it/de/suche.aspx?search=Hunde' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.99424, lng: 11.97782, label: 'Klausberg car park in Steinhaus (Cadipietra), the board’s start' },
+      desc: 'A short loop above Steinhaus in the Ahrntal, up through the meadows to the Unterberg hamlet and back along the river to the Klausberg car park. The board lists 2.1 km and 86 m up.'
+    },
+    'ahrntal-escursione-rifugio-ponte-di-ghiaccio': {
+      // Hand audit: 2 November 2026, verified on arrival (new-trail Ahrntal batch 1).
+      // “Escursione Rifugio Ponte di Ghiaccio”, published by the Sand in Taufers tourist board, drawn on 20 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Mühlwald (no regulation of its own found, national rule).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Lake Neves – Ponte di Ghiaccio hut (Mühlwald)',
+      distance: 5.2,
+      elevation: 678,
+      hours: '2.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and uphill, from Lake Neves across the dam and on path 26 up the valley to the Ponte di Ghiaccio hut (Edelrauthütte) on the pass; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Lake Neves (Neves-Stausee) above Lappach, which you can reach by car, the board’s start.",
+        "sequence": "Cross the dam and follow path 26 along the lake and up the valley. The path climbs steadily to the Ponte di Ghiaccio hut (Edelrauthütte) on the pass at about 2,540 m, around two and a half hours from the lake.",
+        "switches": "None: after the dam stay on path 26 all the way to the hut.",
+        "sources": [
+          {
+            "label": "Sand in Taufers tourist board, Escursione Rifugio Ponte di Ghiaccio (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055959",
+            "authority": "Sand in Taufers tourist board",
+            "reviewedAt": "2026-11-02"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-02',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path above Lake Neves towards the Ponte di Ghiaccio hut, in August (Giorgio Galeotti on Wikimedia Commons, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official one-way walk 5.2 km from Lake Neves, as the Sand in Taufers tourist board publishes it; the stored line is drawn on 20 OSM ways along the board’s published line, 5.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 26: from Lake Neves across the dam, then path 26 up the valley to the Ponte di Ghiaccio hut.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.5 and km 5.3 (OSM nodes 3661323072, 13068321635).',
+        elevation: 'Official 5.2 km, 678 m up and 2 m down, 2:32 h, highest point 2,536 m, lowest 1,859 m (Sand in Taufers tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Sand in Taufers tourist board, Escursione Rifugio Ponte di Ghiaccio (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Mühlwald / Comune di Selva dei Molini: no dog regulation of its own found online (the commune’s site lists none); one probably exists. The national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 0% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (20 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-02'
+      },
+      shadeCoverage: 8,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cows graze around Lake Neves and in the valley in summer: keep your dog on a lead', 'Rocky, stony path in the upper part below the hut', 'Open high ground up to about 2,540 m: turn back if storms build'],
+      terrainType: 'Gravel track and mountain path',
+      shadeDescription: 'Almost no shade: about 8% runs through mapped woodland; the rest is open alpine ground.',
+      terrainDescription: 'A steady climb at 1,860–2,540 m from Lake Neves to the Ponte di Ghiaccio hut on the pass between Lappach and the Pfunderer valley, first on a gravel track, then on a rocky mountain path.',
+      waterDescription: 'Drinking water at km 0.5 and km 5.3; places to eat on the way.',
+      dogNotes: 'Mühlwald has no dog regulation of its own online, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Cows graze around Lake Neves and in the valley in summer.',
+      tips: 'Start at Lake Neves above Lappach: 5.2 km one way and about 680 m up to the Ponte di Ghiaccio hut, two and a half hours; come back the same way. There is almost no shade, so carry water and sun protection for both of you. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at km 0.5 and at the hut.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione Rifugio Ponte di Ghiaccio (Sand in Taufers tourist board)', url: 'https://www.outdooractive.com/it/r/810055959' },
+        { label: 'Gemeinde Mühlwald (commune website; no dog regulation listed)', url: 'https://www.gemeinde.muehlwald.bz.it/de/suche.aspx?search=Hunde' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.94693, lng: 11.78513, label: 'Lake Neves (Neves-Stausee), the board’s start' },
+      desc: 'A climb from Lake Neves above Lappach, across the dam and up path 26 to the Ponte di Ghiaccio hut on the pass, with the Zillertal Alps all around. The board lists 5.2 km and 678 m up.'
     }
   };
 

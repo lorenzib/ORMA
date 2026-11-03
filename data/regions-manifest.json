@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-02T20:58:08.803Z",
+  "generatedAt": "2026-11-02T23:21:55.161Z",
   "regions": {
     "dolomites": {
-      "trailCount": 319,
-      "trails": "data/regions/dolomites-trails.js?v=8c94f62074e7",
+      "trailCount": 322,
+      "trails": "data/regions/dolomites-trails.js?v=c143e552efbd",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -135,7 +135,7 @@
         "osm-11768853": "data/trail-details/osm-11768853.js?v=4399fcf5a273",
         "osm-7567918": "data/trail-details/osm-7567918.js?v=0ebbb205ed79",
         "osm-9450411": "data/trail-details/osm-9450411.js?v=559026df0557",
-        "osm-6601608": "data/trail-details/osm-6601608.js?v=4f1e88250dc0",
+        "osm-6601608": "data/trail-details/osm-6601608.js?v=3f0a22a0771c",
         "osm-11791915": "data/trail-details/osm-11791915.js?v=bd924e55c0ac",
         "osm-3707731": "data/trail-details/osm-3707731.js?v=4417b7f6eb47",
         "osm-11833313": "data/trail-details/osm-11833313.js?v=1985dfeb2f71",
@@ -324,6 +324,9 @@
         "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": "data/trail-details/brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl.js?v=1fbc015741ca",
         "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": "data/trail-details/brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia.js?v=a6465e0e3509",
         "brixen-escursione-al-rifugio-bressanone": "data/trail-details/brixen-escursione-al-rifugio-bressanone.js?v=176abcee6424",
+        "ahrntal-sentiero-panoramico-cadipietra": "data/trail-details/ahrntal-sentiero-panoramico-cadipietra.js?v=4e1db3890fd6",
+        "ahrntal-sentiero-del-conte-cadipietra": "data/trail-details/ahrntal-sentiero-del-conte-cadipietra.js?v=9ae7bd82af55",
+        "ahrntal-escursione-rifugio-ponte-di-ghiaccio": "data/trail-details/ahrntal-escursione-rifugio-ponte-di-ghiaccio.js?v=ede247bdc721",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -807,6 +810,9 @@
     "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": "dolomites",
     "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": "dolomites",
     "brixen-escursione-al-rifugio-bressanone": "dolomites",
+    "ahrntal-sentiero-panoramico-cadipietra": "dolomites",
+    "ahrntal-sentiero-del-conte-cadipietra": "dolomites",
+    "ahrntal-escursione-rifugio-ponte-di-ghiaccio": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1340,6 +1346,9 @@
     "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": "muehlbach-to-spinges",
     "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": "altfasstal-to-wieserhuette",
     "brixen-escursione-al-rifugio-bressanone": "fane-alm-to-brixner-huette",
+    "ahrntal-sentiero-panoramico-cadipietra": "steinhaus-panoramic-path",
+    "ahrntal-sentiero-del-conte-cadipietra": "counts-path-steinhaus",
+    "ahrntal-escursione-rifugio-ponte-di-ghiaccio": "lake-neves-to-ponte-di-ghiaccio-hut",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1767,6 +1776,9 @@
     "muehlbach-to-spinges": "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl",
     "altfasstal-to-wieserhuette": "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia",
     "fane-alm-to-brixner-huette": "brixen-escursione-al-rifugio-bressanone",
+    "steinhaus-panoramic-path": "ahrntal-sentiero-panoramico-cadipietra",
+    "counts-path-steinhaus": "ahrntal-sentiero-del-conte-cadipietra",
+    "lake-neves-to-ponte-di-ghiaccio-hut": "ahrntal-escursione-rifugio-ponte-di-ghiaccio",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

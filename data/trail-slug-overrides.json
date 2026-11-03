@@ -1468,6 +1468,21 @@
       "name": "Fane Alm to the Brixner Hütte",
       "slug": "fane-alm-to-brixner-huette",
       "gloss": "up the Valser Tal past the waterfalls"
+    },
+    "ahrntal-sentiero-panoramico-cadipietra": {
+      "name": "Steinhaus panoramic path",
+      "slug": "steinhaus-panoramic-path",
+      "gloss": "a short loop through the meadows above the Ahrntal"
+    },
+    "ahrntal-sentiero-del-conte-cadipietra": {
+      "name": "Count’s path above Steinhaus",
+      "slug": "counts-path-steinhaus",
+      "gloss": "a short loop to the Unterberg hamlet"
+    },
+    "ahrntal-escursione-rifugio-ponte-di-ghiaccio": {
+      "name": "Lake Neves to the Ponte di Ghiaccio hut",
+      "slug": "lake-neves-to-ponte-di-ghiaccio-hut",
+      "gloss": "up path 26 to the hut on the pass"
     }
   }
 }
