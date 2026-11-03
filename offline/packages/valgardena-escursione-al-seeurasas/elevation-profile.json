@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-escursione-al-seeurasas",
+  "distanceKm": 5.2,
+  "ascentM": 900,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1239
+    },
+    {
+      "km": 0.4,
+      "elev": 1251
+    },
+    {
+      "km": 0.8,
+      "elev": 1313
+    },
+    {
+      "km": 1.2,
+      "elev": 1349
+    },
+    {
+      "km": 1.6,
+      "elev": 1400
+    },
+    {
+      "km": 2,
+      "elev": 1457
+    },
+    {
+      "km": 2.4,
+      "elev": 1509
+    },
+    {
+      "km": 2.8,
+      "elev": 1578
+    },
+    {
+      "km": 3.2,
+      "elev": 1656
+    },
+    {
+      "km": 3.6,
+      "elev": 1744
+    },
+    {
+      "km": 4,
+      "elev": 1779
+    },
+    {
+      "km": 4.4,
+      "elev": 1897
+    },
+    {
+      "km": 4.8,
+      "elev": 1998
+    },
+    {
+      "km": 5.2,
+      "elev": 2093
+    }
+  ]
+}

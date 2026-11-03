@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-escursione-al-resciesa",
+  "distanceKm": 4.9,
+  "ascentM": 197,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2117
+    },
+    {
+      "km": 0.4,
+      "elev": 2158
+    },
+    {
+      "km": 0.8,
+      "elev": 2207
+    },
+    {
+      "km": 1.1,
+      "elev": 2210
+    },
+    {
+      "km": 1.5,
+      "elev": 2228
+    },
+    {
+      "km": 1.9,
+      "elev": 2252
+    },
+    {
+      "km": 2.3,
+      "elev": 2246
+    },
+    {
+      "km": 2.6,
+      "elev": 2243
+    },
+    {
+      "km": 3,
+      "elev": 2205
+    },
+    {
+      "km": 3.4,
+      "elev": 2184
+    },
+    {
+      "km": 3.7,
+      "elev": 2161
+    },
+    {
+      "km": 4.1,
+      "elev": 2171
+    },
+    {
+      "km": 4.5,
+      "elev": 2183
+    },
+    {
+      "km": 4.9,
+      "elev": 2124
+    }
+  ]
+}

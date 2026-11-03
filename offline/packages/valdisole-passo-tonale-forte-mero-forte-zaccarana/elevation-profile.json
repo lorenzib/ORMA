@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-passo-tonale-forte-mero-forte-zaccarana",
+  "distanceKm": 9.1,
+  "ascentM": 250,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1998
+    },
+    {
+      "km": 0.7,
+      "elev": 1986
+    },
+    {
+      "km": 1.4,
+      "elev": 1966
+    },
+    {
+      "km": 2.1,
+      "elev": 1900
+    },
+    {
+      "km": 2.8,
+      "elev": 1898
+    },
+    {
+      "km": 3.5,
+      "elev": 1906
+    },
+    {
+      "km": 4.2,
+      "elev": 1926
+    },
+    {
+      "km": 4.9,
+      "elev": 1988
+    },
+    {
+      "km": 5.6,
+      "elev": 2053
+    },
+    {
+      "km": 6.3,
+      "elev": 2040
+    },
+    {
+      "km": 7,
+      "elev": 2032
+    },
+    {
+      "km": 7.6,
+      "elev": 2007
+    },
+    {
+      "km": 8.3,
+      "elev": 1998
+    },
+    {
+      "km": 9.1,
+      "elev": 1995
+    }
+  ]
+}

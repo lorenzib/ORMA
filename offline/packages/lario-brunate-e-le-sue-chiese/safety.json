@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lario-brunate-e-le-sue-chiese",
+  "generatedAt": "2026-10-30T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.49,
+    "ascentM": 300,
+    "highestPointM": 940,
+    "expectedDuration": "3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 40
+  },
+  "trailhead": {
+    "lat": 45.819954,
+    "lng": 9.102118,
+    "label": "The via Laghetto car park, Brunate, the published start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.8202459,
+      "lng": 9.0987024,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.8196509,
+      "lng": 9.0950562,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.8252069,
+      "lng": 9.0967266,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.8255902,
+      "lng": 9.1027041,
+      "label": "Drinking fountain",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Village lanes and roads with cars: keep your dog close.",
+    "Steep steps and cobbled mule tracks on the way to San Maurizio.",
+    "Busy viewpoints at the lighthouse at weekends.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-27"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-10-30",
+      "licence": "ODbL"
+    }
+  ]
+}

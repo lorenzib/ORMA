@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fvg-lago-di-sella-sompdogna",
+  "distanceKm": 2.2,
+  "ascentM": 123,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1398
+    },
+    {
+      "km": 0.2,
+      "elev": 1451
+    },
+    {
+      "km": 0.3,
+      "elev": 1475
+    },
+    {
+      "km": 0.5,
+      "elev": 1481
+    },
+    {
+      "km": 0.7,
+      "elev": 1472
+    },
+    {
+      "km": 0.8,
+      "elev": 1460
+    },
+    {
+      "km": 1,
+      "elev": 1461
+    },
+    {
+      "km": 1.2,
+      "elev": 1450
+    },
+    {
+      "km": 1.3,
+      "elev": 1424
+    },
+    {
+      "km": 1.5,
+      "elev": 1397
+    },
+    {
+      "km": 1.6,
+      "elev": 1394
+    },
+    {
+      "km": 1.8,
+      "elev": 1368
+    },
+    {
+      "km": 2,
+      "elev": 1401
+    },
+    {
+      "km": 2.1,
+      "elev": 1398
+    },
+    {
+      "km": 2.2,
+      "elev": 1398
+    }
+  ]
+}

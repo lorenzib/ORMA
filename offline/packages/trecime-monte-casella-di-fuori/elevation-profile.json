@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-monte-casella-di-fuori",
+  "distanceKm": 13.2,
+  "ascentM": 832,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1293
+    },
+    {
+      "km": 1,
+      "elev": 1418
+    },
+    {
+      "km": 2,
+      "elev": 1586
+    },
+    {
+      "km": 3,
+      "elev": 1739
+    },
+    {
+      "km": 4,
+      "elev": 1913
+    },
+    {
+      "km": 5,
+      "elev": 2002
+    },
+    {
+      "km": 6,
+      "elev": 2043
+    },
+    {
+      "km": 7,
+      "elev": 1951
+    },
+    {
+      "km": 8,
+      "elev": 1727
+    },
+    {
+      "km": 9,
+      "elev": 1459
+    },
+    {
+      "km": 10,
+      "elev": 1436
+    },
+    {
+      "km": 11,
+      "elev": 1360
+    },
+    {
+      "km": 12,
+      "elev": 1311
+    },
+    {
+      "km": 13,
+      "elev": 1288
+    },
+    {
+      "km": 13.2,
+      "elev": 1293
+    }
+  ]
+}

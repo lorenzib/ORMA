@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-val-freida",
+  "distanceKm": 2.7,
+  "ascentM": 116,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1838
+    },
+    {
+      "km": 0.2,
+      "elev": 1871
+    },
+    {
+      "km": 0.4,
+      "elev": 1856
+    },
+    {
+      "km": 0.7,
+      "elev": 1869
+    },
+    {
+      "km": 0.9,
+      "elev": 1876
+    },
+    {
+      "km": 1.1,
+      "elev": 1859
+    },
+    {
+      "km": 1.3,
+      "elev": 1849
+    },
+    {
+      "km": 1.5,
+      "elev": 1849
+    },
+    {
+      "km": 1.7,
+      "elev": 1856
+    },
+    {
+      "km": 1.9,
+      "elev": 1876
+    },
+    {
+      "km": 2.1,
+      "elev": 1869
+    },
+    {
+      "km": 2.3,
+      "elev": 1856
+    },
+    {
+      "km": 2.5,
+      "elev": 1871
+    },
+    {
+      "km": 2.7,
+      "elev": 1838
+    }
+  ]
+}
