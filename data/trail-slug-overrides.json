@@ -1568,6 +1568,16 @@
       "name": "Isola to the Baldiscio lakes",
       "slug": "isola-laghi-del-baldiscio",
       "gloss": "past the Alpe Borghetto to a lake below the pass"
+    },
+    "lario-nel-cuore-del-triangolo-lariano": {
+      "name": "Campoè to Cassina Enco",
+      "slug": "caglio-campoe-cassina-enco",
+      "gloss": "a paved mule track through beech woods in the Triangolo Lariano"
+    },
+    "lario-dal-passo-del-giovo-al-rifugio-sommafiume": {
+      "name": "Passo del Giovo to the Rifugio Sommafiume",
+      "slug": "passo-del-giovo-rifugio-sommafiume",
+      "gloss": "across the open head of the Valle Albano above Lake Como"
     }
   }
 }

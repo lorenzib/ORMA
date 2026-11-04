@@ -187,9 +187,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 444 and 442 with two more Beaufortain walks: La Grande Berge from the
     // Plan de la Lai and the Croix du Berger from the Lac des Fées.
     // Then 445 and 443 with the Valchiavenna walk from Isola to the Baldiscio lakes.
+    // Then 447 and 445 with two Lake Como mountain walks: Campoè to Cassina Enco above
+    // Caglio, and the Passo del Giovo to the Rifugio Sommafiume.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(445);
-    expect(currentSiteTrails(catalogue)).toHaveLength(443);
+    expect(catalogue).toHaveLength(447);
+    expect(currentSiteTrails(catalogue)).toHaveLength(445);
   });
 
   test('requires the artwork the public trail page needs',()=>{
