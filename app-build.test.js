@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { collectAppFiles, HIKING_ORIGIN_LINE, SITE_ORIGIN } = require('./scripts/build-app');
+const { collectAppFiles, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF } = require('./scripts/build-app');
 
 const root = __dirname;
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'data/regions-manifest.json'), 'utf8'));
@@ -35,14 +35,16 @@ describe('the app ships every trail a page can ask for', () => {
     expect(details.map(clean).filter(file => !files.has(file))).toEqual([]);
   });
 
-  test('every image a trail record names ships', () => {
+  test('every image a trail record names ships, except trail photos, which load from the website', () => {
     const named = new Set();
     for (const entry of Object.values(manifest.regions)) {
       const source = fs.readFileSync(path.join(root, clean(entry.trails)), 'utf8');
       for (const match of source.matchAll(/"(images\/[^"?#]+)"/g)) named.add(match[1]);
     }
-    expect(named.size).toBeGreaterThan(0);
-    expect([...named].filter(file => !files.has(file))).toEqual([]);
+    const local = [...named].filter(file => !file.startsWith('images/trails/'));
+    expect(named.size).toBeGreaterThan(local.length);
+    expect(local.filter(file => !files.has(file))).toEqual([]);
+    expect([...files].filter(file => file.startsWith('images/trails/'))).toEqual([]);
   });
 
   test('a smaller copy of every shipped photo ships too, because scripts swap it in by name', () => {
@@ -73,5 +75,34 @@ describe('the app draws trail route lines from the website', () => {
   test('the site itself keeps serving its own tiles', () => {
     expect(SITE_ORIGIN).toBe('https://www.app-orma.com');
     expect(read('map-style.js')).toContain('return HIKING_ORIGIN || (global.location && global.location.origin);');
+  });
+});
+
+// Trail photos are most of the bundle, so the app asks the website for them.
+describe('the app loads trail photos from the website', () => {
+  const rewrite = text => text.replace(REMOTE_REF, `$1${SITE_ORIGIN}/$2`);
+
+  test('every way a page or record names a trail photo points at the site', () => {
+    const photo = `${SITE_ORIGIN}/images/trails/x.jpg`;
+    expect(rewrite('{"image":"images/trails/x.jpg"}')).toBe(`{"image":"${photo}"}`);
+    expect(rewrite('<img src="../images/trails/x.jpg">')).toBe(`<img src="${photo}">`);
+    expect(rewrite("url('./images/trails/x.jpg')")).toBe(`url('${photo}')`);
+    expect(rewrite('url(/images/trails/x.jpg)')).toBe(`url(${photo})`);
+  });
+
+  test('an address that already names the site is left alone', () => {
+    const tag = '<meta property="og:image" content="https://www.app-orma.com/images/trails/x.jpg">';
+    expect(rewrite(tag)).toBe(tag);
+  });
+
+  test('the photo check still accepts a photo once it carries the site address', () => {
+    const { licensedPhotos, editorialPhotos } = require('./trail-photo-provenance');
+    const licensed = { image: 'images/trails/x.jpg', creator: 'A', licence: 'CC BY-SA 4.0', sourcePage: 'https://commons.wikimedia.org/x' };
+    const editorial = { image: 'images/trails/y.jpg', source: 'orma-editorial' };
+    const inApp = photo => ({ ...photo, image: rewrite(JSON.stringify(photo.image)).slice(1, -1) });
+    expect(licensedPhotos({ licensedPhotos: [inApp(licensed)] })).toHaveLength(1);
+    expect(editorialPhotos({ editorialPhotos: [inApp(editorial)] })).toHaveLength(1);
+    // Only the site itself, not any address that ends in images/trails/.
+    expect(licensedPhotos({ licensedPhotos: [{ ...licensed, image: 'https://example.com/images/trails/x.jpg' }] })).toHaveLength(0);
   });
 });

@@ -70,6 +70,12 @@ const FONTS = [
 const SITE_ORIGIN = 'https://www.app-orma.com';
 const HIKING_ORIGIN_LINE = 'const HIKING_ORIGIN = null;';
 
+// Trail photos are most of the bundle (~130 MB), and Apple warns before any
+// download over 200 MB on mobile data. So the app loads them from the website,
+// like AllTrails and Komoot do; an offline package carries no photos anyway.
+const REMOTE = /^images\/trails\//;
+const REMOTE_REF = /(["'(])(?:\.\.\/|\.\/|\/)?(images\/trails\/)/g;
+
 const rel = (abs) => path.relative(root, abs).split(path.sep).join('/');
 const denied = (r) => DENY.some((pattern) => pattern.test(r));
 
@@ -77,7 +83,7 @@ const collected = new Set();
 const missing = [];
 
 function addFile(r){
-  if(!r || denied(r) || collected.has(r)) return false;
+  if(!r || denied(r) || REMOTE.test(r) || collected.has(r)) return false;
   if(!fs.existsSync(path.join(root, r))) { missing.push(r); return false; }
   collected.add(r);
   return true;
@@ -218,7 +224,8 @@ function rewriteRemoteRefs(){
       .replace(/<link[^>]+rel=["']preconnect["'][^>]*href=["']https:\/\/fonts\.g(?:oogleapis|static)\.com["'][^>]*>\s*/g, '')
       .replace(/https:\/\/unpkg\.com\/maplibre-gl@[^/'"`]+\/dist\/maplibre-gl\.(js|css)/g,
         '/vendor/maplibre-gl/maplibre-gl.$1')
-      .replace(HIKING_ORIGIN_LINE, `const HIKING_ORIGIN = '${SITE_ORIGIN}';`);
+      .replace(HIKING_ORIGIN_LINE, `const HIKING_ORIGIN = '${SITE_ORIGIN}';`)
+      .replace(REMOTE_REF, `$1${SITE_ORIGIN}/$2`);
     if(after !== before){ fs.writeFileSync(dest, after); rewritten += 1; }
   }
   return rewritten;
@@ -244,4 +251,4 @@ function build(){
 
 if(require.main === module) build();
 
-module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN };
+module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF };
