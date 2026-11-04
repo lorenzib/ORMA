@@ -1,0 +1,12 @@
+// weissensee-wasserleben in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "Naturpark Weissensee’s short nature trail about water at the east end of the lake, on lakeside footways, a boardwalk and woodland paths. The board lists 2.3 km and 37 m of ascent.": "Il breve sentiero naturalistico del Naturpark Weissensee dedicato all'acqua, all'estremità est del lago, su marciapiedi lungolago, una passerella di legno e sentieri nel bosco. La scheda ufficiale indica 2,3 km e 37 m di dislivello in salita.",
+  "Start at the boat landing and large car park on the east shore: 2.3 km and about 37 m of climbing, about 2:30 h with the stations. A short nature trail with stations about water, so the board allows plenty of time. The east shore is busy in summer, so keep your dog close. Carry a muzzle for buses.": "Parti dall'approdo dei battelli e dal grande parcheggio sulla riva est: 2,3 km e circa 37 m di salita, circa 2:30 h con le stazioni. È un breve sentiero naturalistico con stazioni dedicate all'acqua, per questo la scheda ufficiale prevede parecchio tempo. In estate la riva est è affollata, quindi tieni il cane vicino. Porta la museruola al seguito per gli autobus.",
+  "About 120 m on the Stockenboier Straße (L32) by the roundabout at the start: keep your dog close": "Circa 120 m sulla Stockenboier Straße (L32) presso la rotonda alla partenza: tieni il cane vicino",
+  "Footways and the boardwalk are shared with cyclists": "I marciapiedi e la passerella di legno sono condivisi con i ciclisti",
+  "The east shore is busy with bathers in summer: keep your dog close by the beaches": "In estate la riva est è affollata di bagnanti: tieni il cane vicino accanto alle spiagge",
+  "Lakeside footways, a boardwalk and woodland paths": "Marciapiedi lungolago, una passerella di legno e sentieri nel bosco",
+  "the boat landing and large car park at the roundabout on the east shore, the board’s start": "l'approdo dei battelli e il grande parcheggio presso la rotonda sulla riva est, partenza indicata dalla scheda ufficiale",
+  "Turquoise water of the Weissensee seen between pine trunks on the east shore, with wooded slopes beyond, in summer": "L'acqua turchese del Weissensee vista tra i tronchi dei pini sulla riva est, con pendii boscosi più in là, in estate",
+  "About a third in woodland; the lakeside footways are open.": "Circa un terzo nel bosco; i marciapiedi lungolago sono aperti."
+});

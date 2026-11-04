@@ -1,0 +1,12 @@
+// fvg-raunis-cascate-belepeit in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A loop from Chiusaforte through the woods to the hamlet of Raunis and the waterfalls of the Belepeit stream, back down to the village and along the Alpe Adria cycle path. PromoTurismoFVG lists 5.8 km and 333 m of ascent.": "Un anello da Chiusaforte attraverso il bosco fino alla frazione di Raunis e alle cascate del rio Belepeit, con ritorno in discesa al paese e lungo la ciclovia Alpe Adria. PromoTurismoFVG indica 5,8 km e 333 m di dislivello in salita.",
+  "Start at Chiusaforte town hall (free parking nearby, or the Alpe Adria cycle path): 5.8 km and about 330 m of climbing, three hours. Keep your dog on a lead of at most 1.5 m in the village and on the cycle path, and carry a muzzle. The descent from the falls is steep: take it slowly.": "Parti dal municipio di Chiusaforte (parcheggio gratuito nelle vicinanze, oppure la ciclovia Alpe Adria): 5,8 km e circa 330 m di salita, tre ore. Tieni il cane al guinzaglio di al massimo 1,5 m in paese e sulla ciclabile, e porta la museruola. La discesa dalle cascate è ripida: affrontala con calma.",
+  "Steep steps and a steep, fast descent from the falls": "Gradini ripidi e una discesa ripida e veloce dalle cascate",
+  "Brambles on the path near the village": "Rovi sul sentiero vicino al paese",
+  "The Alpe Adria cycle path at the end: keep your dog close to the edge, bikes are fast": "La ciclovia Alpe Adria alla fine: tieni il cane vicino al bordo, le bici vanno veloci",
+  "Forest paths, steps and a cycle path": "Sentieri nel bosco, gradini e una ciclabile",
+  "Chiusaforte town hall, the board’s start": "Municipio di Chiusaforte, partenza indicata dalla scheda ufficiale",
+  "A clear green-blue river over pale stones below a concrete bridge, the yellow and white houses of a village and steep wooded mountains behind under a grey sky": "Un fiume limpido verde-azzurro su sassi chiari sotto un ponte in cemento, le case gialle e bianche di un paese e ripide montagne boscose sullo sfondo sotto un cielo grigio",
+  "Well shaded: about four fifths of the loop runs through broadleaf and black pine woods; the cycle path at the end is more open.": "Ben ombreggiato: circa quattro quinti dell'anello passano in boschi di latifoglie e pino nero; la ciclabile alla fine è più aperta."
+});

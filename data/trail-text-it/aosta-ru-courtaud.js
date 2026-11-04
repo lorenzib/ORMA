@@ -1,0 +1,12 @@
+// aosta-ru-courtaud in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A gentle walk at about 1,900–2,000 m along the Rû Courtaud, a medieval irrigation channel that contours the slope above Antagnod and Champoluc, on a wide path through larch woods and pastures. The regional path register lists 5.9 km and 174 m of ascent, one way.": "Una dolce camminata a circa 1.900–2.000 m lungo il Rû Courtaud, un canale d'irrigazione medievale che segue il pendio sopra Antagnod e Champoluc, su un ampio sentiero tra lariceti e pascoli. Il catasto regionale dei sentieri indica 5,9 km e 174 m di dislivello in salita, solo andata.",
+  "Start at the Barmasc car park above Antagnod: 5.9 km one way and about 170 m of gentle climbing, an hour and three quarters along the channel, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle.": "Partenza dal parcheggio di Barmasc sopra Antagnod: 5,9 km solo andata e circa 170 m di salita dolce, un'ora e tre quarti lungo il canale, poi ritorno per la stessa via. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito.",
+  "The path follows an open irrigation channel for most of its length: keep your dog out of the water and off the channel edge": "Il sentiero segue per gran parte un canale d'irrigazione a cielo aperto: tieni il cane fuori dall'acqua e lontano dal bordo del canale",
+  "A short stretch of dirt road open to permitted vehicles": "Un breve tratto di strada sterrata aperta ai veicoli autorizzati",
+  "Pastures: livestock may be grazing in summer": "Pascoli: d'estate può esserci bestiame al pascolo",
+  "Path along an irrigation channel, forest and pasture": "Sentiero lungo un canale d'irrigazione, bosco e pascolo",
+  "Parcheggio Barmasc, the register’s start": "Parcheggio Barmasc, la partenza indicata dal catasto",
+  "A wide earth path beside a narrow irrigation channel of clear water running through a sunlit larch and spruce forest": "Un ampio sentiero di terra accanto a uno stretto canale d'irrigazione di acqua limpida che attraversa un bosco soleggiato di larici e abeti rossi",
+  "Partly shaded: about two fifths runs through larch and spruce, the rest over open pasture.": "In parte all'ombra: circa due quinti passano tra larici e abeti rossi, il resto su pascolo aperto."
+});

@@ -48,8 +48,8 @@ describe('searching by the town you are staying in', () => {
   });
 
   test('the name is said back, with how far it looked', () => {
-    expect(script).toContain('`${liLocationContext.label} · within ${liLocationContext.radiusKm} km`');
-    expect(script).toContain('`near ${liLocationContext.label}`');
+    expect(script).toContain("tx('{place} · within {km} km', { place:liLocationContext.label, km:liLocationContext.radiusKm })");
+    expect(script).toContain("tx('near {place}', { place:liLocationContext.label })");
   });
 
   test('a chosen town outlives the tab, a measured position does not', () => {

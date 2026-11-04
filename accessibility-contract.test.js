@@ -40,7 +40,7 @@ describe('A11Y-01 core journey contract', () => {
     const account = read('account.js');
     const compare = read('compare-page.js');
     expect(account).toContain("['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End']");
-    expect(compare).toContain("removed. ${selectedIds.length}");
+    expect(compare).toContain("tx('{name} removed. {n} trails remain.', { name:removedName, n:selectedIds.length })");
     expect(read('compare.html')).toMatch(/id="compareStatus"[^>]+role="status"/);
   });
 

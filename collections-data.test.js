@@ -75,7 +75,7 @@ describe('editorial trail collections', () => {
     expect(controller).toContain('expandedCollectionId');
     expect(controller).toContain('class="collection-inline-trail"');
     expect(controller).toContain('data-difficulty="${difficulty}"');
-    expect(controller).toContain("'low-risk':'Low-risk terrain'");
+    expect(controller).toContain("'low-risk':tx('Low-risk terrain')");
     expect(page).toContain('map-runtime.js');
     expect(controller).toContain('collection-inline-map');
     expect(controller).toContain('collection-map-trail-card');

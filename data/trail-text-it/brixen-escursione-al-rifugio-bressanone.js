@@ -1,0 +1,15 @@
+// brixen-escursione-al-rifugio-bressanone in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A climb from the Fane Alm hamlet up the Valser Tal on path 17, past waterfalls, to the Brixner Hütte at 2,282 m in the Pfunderer mountains. The board lists 4.3 km and 580 m up.": "Una salita dal borgo di Fane Alm su per la Valser Tal sul sentiero 17, oltre le cascate, fino alla Brixner Hütte a 2.282 m nei monti di Fundres. La scheda ufficiale indica 4,3 km e 580 m di dislivello in salita.",
+  "Start at Fane Alm: 4.3 km one way and about 580 m up to the Brixner Hütte, under two hours; come back the same way. There is no shade, so carry water and sun protection for both of you. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at km 0.3 and 1.3; the Brixner Hütte serves food in summer.": "Partenza da Fane Alm: 4,3 km solo andata e circa 580 m di salita fino alla Brixner Hütte, meno di due ore; il ritorno è per la stessa via. Non c'è ombra, quindi porta acqua e protezione solare per entrambi. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito. Acqua potabile al km 0,3 e al km 1,3; la Brixner Hütte serve da mangiare d'estate.",
+  "Cows graze around Fane Alm and in the upper valley in summer: keep your dog on a lead": "D'estate le mucche pascolano intorno a Fane Alm e nell'alta valle: tieni il cane al guinzaglio",
+  "Stony, steeper path by the waterfalls": "Sentiero sassoso e più ripido vicino alle cascate",
+  "Open high ground up to 2,280 m: turn back if storms build": "Terreno d'alta quota aperto fino a 2.280 m: torna indietro se si formano temporali",
+  "Gravel track and mountain path": "Strada sterrata e sentiero di montagna",
+  "Fane Alm, the board’s start": "Fane Alm, la partenza indicata dalla scheda ufficiale",
+  "A wooden signpost on a green slope pointing along path 17 to the Brixner Hütte and back down to Fane Alm and Vals": "Un cartello segnaletico di legno su un pendio verde che indica il sentiero 17 verso la Brixner Hütte e, in discesa, verso Fane Alm e Vals",
+  "No shade: the whole walk runs through open alpine pasture above the tree line.": "Nessuna ombra: tutta la camminata attraversa pascoli alpini aperti sopra il limite del bosco.",
+  "Start at Fane Alm, the alp hamlet at the head of the Valser Tal, the board’s start.": "Parti da Fane Alm, il borgo di malghe in testa alla Valser Tal, la partenza indicata dalla scheda ufficiale.",
+  "Walk the gravel track through the hamlet past its huts, stables and small church. Then follow path 17 along the Valser Bach to the waterfalls and climb steadily on to the Brixner Hütte (Rifugio Bressanone) at 2,282 m.": "Percorri la strada sterrata attraverso il borgo, passando accanto alle baite, alle stalle e alla chiesetta. Poi segui il sentiero 17 lungo il Valser Bach fino alle cascate e sali con costanza fino alla Brixner Hütte (Rifugio Bressanone) a 2.282 m.",
+  "None: stay on path 17 from Fane Alm to the hut.": "Nessuno: resta sul sentiero 17 da Fane Alm fino al rifugio."
+});

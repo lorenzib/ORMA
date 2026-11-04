@@ -1,0 +1,12 @@
+// cembra-vecchi-mestieri-grumes in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A loop from Grumes down the Rio dei Molini past old water mills, a Venetian sawmill and a forge, on woodland paths and footbridges, and back up to the village. The APT lists 5.3 km and 400 m of ascent.": "Un anello da Grumes giù lungo il Rio dei Molini oltre antichi mulini ad acqua, una segheria veneziana e una fucina, su sentieri nel bosco e passerelle, e risalita al paese. L'APT indica 5,3 km e 400 m di dislivello in salita.",
+  "Start in Piazza Municipio, Grumes: 5.3 km, 400 m of climbing, about three hours. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog close crossing the SS 612 and on the footbridges by the stream. Fountains and a bar in Grumes at the start.": "Partenza da Piazza Municipio, Grumes: 5,3 km, 400 m di salita, circa tre ore. Vale la norma italiana: guinzaglio di al massimo 1,5 m e museruola al seguito. Tieni il cane vicino quando attraversi la SS 612 e sulle passerelle lungo il torrente. Fontane e un bar a Grumes alla partenza.",
+  "One crossing of the busy SS 612: lead short": "Un attraversamento della trafficata SS 612: guinzaglio corto",
+  "A path down the stream with footbridges and several crossings of the Rio dei Molini: slippery when wet, keep your dog out of the water after rain": "Un sentiero lungo il torrente con passerelle e diversi attraversamenti del Rio dei Molini: scivoloso col bagnato, dopo la pioggia tieni il cane fuori dall'acqua",
+  "About 1 km back up a quiet tarred road open to cars": "Circa 1 km di risalita su una tranquilla strada asfaltata aperta alle auto",
+  "Woodland paths with footbridges, forest tracks and quiet roads": "Sentieri nel bosco con passerelle, strade forestali e strade tranquille",
+  "Grumes (Piazza Municipio), the APT’s start": "Grumes (Piazza Municipio), la partenza indicata dall'APT",
+  "The church of Santa Lucia in Grumes with its onion-domed bell tower above the village cemetery, wooded mountains of the Val di Cembra behind in spring": "La chiesa di Santa Lucia a Grumes con il campanile a cipolla sopra il cimitero del paese, montagne boscose della Val di Cembra dietro in primavera",
+  "Mostly shaded: about two thirds of the loop runs through the woods along the stream.": "Per lo più all'ombra: circa due terzi dell'anello passano nei boschi lungo il torrente."
+});

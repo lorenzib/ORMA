@@ -1,0 +1,11 @@
+// lesachtal-spazierweg-maria-luggau-gailweg in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short loop from the pilgrimage village of Maria Luggau down to the Gail and along the river. The board lists 1.6 km and 76 m of ascent.": "Un breve anello dal paese di pellegrinaggio di Maria Luggau giù fino al Gail e lungo il fiume. La scheda ufficiale indica 1,6 km e 76 m di dislivello in salita.",
+  "Start at below the pilgrimage church in Maria Luggau: 1.6 km and about 76 m of climbing, about half an hour. The loop starts on the main road through Maria Luggau, so keep your dog on a short lead there. Carry a muzzle for buses.": "Parti sotto la chiesa di pellegrinaggio di Maria Luggau: 1,6 km e circa 76 m di salita, circa mezz'ora. L'anello inizia sulla strada principale che attraversa Maria Luggau, quindi lì tieni il cane al guinzaglio corto. Porta la museruola al seguito per gli autobus.",
+  "About 300 m on the Gailtalstraße (B111) through Maria Luggau, signed 50 km/h: keep your dog close on a short lead": "Circa 300 m sulla Gailtalstraße (B111) attraverso Maria Luggau, con limite di 50 km/h: tieni il cane vicino al guinzaglio corto",
+  "The Gail runs fast beside the path: keep your dog out of the water": "Il Gail scorre veloce accanto al sentiero: tieni il cane fuori dall'acqua",
+  "Village road, a farm track and a footpath along the Gail": "Strada di paese, una strada agricola e un sentiero lungo il Gail",
+  "below the pilgrimage church in Maria Luggau, the board’s start": "Sotto la chiesa di pellegrinaggio di Maria Luggau, la partenza indicata dalla scheda ufficiale",
+  "The main street of Maria Luggau with an old inn and village houses below steep green wooded slopes, in late spring": "La strada principale di Maria Luggau con una vecchia locanda e case del paese sotto ripidi pendii verdi e boscosi, a fine primavera",
+  "Mostly open meadows and the village, with a short wooded stretch on the path back up from the river.": "Per lo più prati aperti e il paese, con un breve tratto nel bosco sul sentiero che risale dal fiume."
+});

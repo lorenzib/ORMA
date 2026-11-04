@@ -5,6 +5,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(root){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const CATEGORY = Object.freeze({
     'strong-option': { label:'Strong option', tone:'strong' },
     'possible-with-cautions': { label:'Possible with cautions', tone:'caution' },
@@ -73,24 +80,26 @@
    * hazard is not evidence the hazard is absent, and the sentence must not
    * quietly upgrade it.
    */
+  // Each is read when the card renders, so the sentence comes out in the
+  // page's language; it keeps its {placeholders} for tr() to fill.
   const FIT_SENTENCES = Object.freeze({
-    'trail.distance.within-range': 'The {distance} km distance is comfortable.',
-    'trail.ascent.within-range': 'The {ascent} m climb is gentle.',
-    'trail.terrain.within-tolerance': 'The terrain is manageable.',
-    'trail.duration.within-preference': 'The walking time fits.',
-    'conditions.heat.low': 'Today is cool enough.',
-    'trail.heat.low': 'The route does not get too hot.',
-    'trail.shade.good': 'There is good shade.',
-    'trail.exposure.none-known': 'No exposed sections are recorded.',
-    'trail.surface-hazards.none-known': 'No surface hazards are recorded.',
-    'trail.water.reviewed': 'There is water on the route.',
-    'trail.dog-access.allowed': 'Dogs are allowed.',
-    'trail.dog-access.leash': 'Dogs are allowed on a leash.',
-    'trail.livestock.none': 'No livestock is recorded.',
-    'trail.wildlife.low': 'Wildlife activity is low.',
-    'trail.road.none': 'There are no road sections.',
-    'trail.crowding.quiet': 'The route is usually quiet.',
-    'trail.sightlines.open': 'The sightlines are open.',
+    'trail.distance.within-range': () => tx('The {distance} km distance is comfortable.'),
+    'trail.ascent.within-range': () => tx('The {ascent} m climb is gentle.'),
+    'trail.terrain.within-tolerance': () => tx('The terrain is manageable.'),
+    'trail.duration.within-preference': () => tx('The walking time fits.'),
+    'conditions.heat.low': () => tx('Today is cool enough.'),
+    'trail.heat.low': () => tx('The route does not get too hot.'),
+    'trail.shade.good': () => tx('There is good shade.'),
+    'trail.exposure.none-known': () => tx('No exposed sections are recorded.'),
+    'trail.surface-hazards.none-known': () => tx('No surface hazards are recorded.'),
+    'trail.water.reviewed': () => tx('There is water on the route.'),
+    'trail.dog-access.allowed': () => tx('Dogs are allowed.'),
+    'trail.dog-access.leash': () => tx('Dogs are allowed on a leash.'),
+    'trail.livestock.none': () => tx('No livestock is recorded.'),
+    'trail.wildlife.low': () => tx('Wildlife activity is low.'),
+    'trail.road.none': () => tx('There are no road sections.'),
+    'trail.crowding.quiet': () => tx('The route is usually quiet.'),
+    'trail.sightlines.open': () => tx('The sightlines are open.'),
   });
 
   // Calm framing: confidence describes data completeness, not danger. "low"
@@ -207,9 +216,9 @@
       return tr(`recommendation.fine.${entry.code}`, fallback, { ...extra, ...(entry.vars || {}) });
     };
     const fitSentence = entry => {
-      const fallback = FIT_SENTENCES[entry.code];
-      if(!fallback) return null;
-      return tr(`recommendation.fits.${entry.code}`, fallback, { ...extra, ...(entry.vars || {}) });
+      const sentence = FIT_SENTENCES[entry.code];
+      if(!sentence) return null;
+      return tr(`recommendation.fits.${entry.code}`, sentence(), { ...extra, ...(entry.vars || {}) });
     };
     /**
      * What the card leads with, when it can only show a few.
@@ -376,7 +385,7 @@
 
     if(Math.abs(after.score - before.score) <= SAME_SCORE_TOLERANCE) return null;
     return tr('recommendation.firstRun.moved',
-      'Was {beforeScore}% for {before} · now {afterScore}% for {name}. See why below.',
+      tx('Was {beforeScore}% for {before} · now {afterScore}% for {name}. See why below.'),
       { beforeScore:before.score, before:before.forName, afterScore:after.score, name:after.forName });
   }
 

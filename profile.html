@@ -12,19 +12,20 @@
   </style>
 </head>
 <body>
-  <header class="topnav"><a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Trail profile</span><nav class="links"><a href="browse-trails.html">Trails</a><a href="journal.html">My walk journal</a><a href="account.html">Account</a></nav></header>
+  <header class="topnav"><a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page" data-i18n="page.profile.trailProfile">Trail profile</span><nav class="links"><a href="browse-trails.html" data-i18n="account.nav.browse">Trails</a><a href="journal.html" data-i18n="account.nav.journal">My walk journal</a><a href="account.html" data-i18n="account.settings.account">Account</a></nav></header>
   <main class="pp-shell">
     <section class="pp-card" id="profileCard" aria-live="polite">
       <div class="pp-cover"></div>
       <div class="pp-body">
-        <div class="pp-head"><div><div class="pp-avatar" id="profileAvatar">🐾</div><h1 id="profileName">Trail profile</h1><div class="pp-owner" id="profileOwner"></div></div><button type="button" class="pp-follow" id="profileFollow" hidden>Follow</button></div>
-        <p class="pp-bio" id="profileBio">Loading this trail profile…</p>
-        <div class="pp-note" id="profilePrivacy" hidden>This is a private trail profile. Send a follow request to see future shared adventures.</div>
+        <div class="pp-head"><div><div class="pp-avatar" id="profileAvatar">🐾</div><h1 id="profileName" data-i18n="page.profile.trailProfile">Trail profile</h1><div class="pp-owner" id="profileOwner"></div></div><button type="button" class="pp-follow" id="profileFollow" hidden data-i18n="page.profile.follow">Follow</button></div>
+        <p class="pp-bio" id="profileBio" data-i18n="page.profile.loadingThisTrailProfile">Loading this trail profile…</p>
+        <div class="pp-note" id="profilePrivacy" hidden data-i18n="page.profile.thisIsAPrivateTrail">This is a private trail profile. Send a follow request to see future shared adventures.</div>
         <p id="profileStatus" role="status"></p>
       </div>
     </section>
   </main>
-  <script src="mobile-nav.js?v=20261030-1"></script>
+  <script src="i18n.js?v=20261006-1"></script>
+<script src="mobile-nav.js?v=20261030-1"></script>
   <script type="module" src="firebase-init.js?v=20261030-1"></script>
   <script src="public-profile.js?v=20260825-1" defer></script>
 </body>

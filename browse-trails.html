@@ -300,12 +300,12 @@
 <body>
 
 <div class="topnav">
-  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Trails</span>
+  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page" data-i18n="account.nav.browse">Trails</span>
   <div class="links">
-    <a href="browse-trails.html" class="active">Trails</a>
-    <a href="collections.html">Collections</a>
-    <a href="safety-guide.html">Safety library</a>
-    <a href="journal.html">My walk journal</a>
+    <a href="browse-trails.html" class="active" data-i18n="account.nav.browse">Trails</a>
+    <a href="collections.html" data-i18n="account.nav.collections">Collections</a>
+    <a href="safety-guide.html" data-i18n="account.nav.safety">Safety library</a>
+    <a href="journal.html" data-i18n="account.nav.journal">My walk journal</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
   </div>
 </div>
@@ -317,15 +317,15 @@
 </div>
 
 <header class="browse-design-head section-page-head">
-  <h1 id="trailCountHeading">Trails</h1>
-  <p class="sub section-page-subtitle">Browse every trail, or narrow the map to somewhere you want to walk.</p>
+  <h1 id="trailCountHeading" data-i18n="account.nav.browse">Trails</h1>
+  <p class="sub section-page-subtitle" data-i18n="browse.sub">Browse every trail, or narrow the map to somewhere you want to walk.</p>
 </header>
 
 <main class="browse-design-wrap section-page-wrap">
   <div id="browseCollections" hidden></div>
 
   <div class="browse-primary-controls">
-    <div class="browse-tools" id="browseTools" aria-label="Search and filter trails">
+    <div class="browse-tools" id="browseTools" aria-label="Search and filter trails" data-i18n-aria-label="page.browseTrails.searchAndFilterTrails">
     <div class="browse-search-group">
       <label class="browse-search-shell">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
@@ -338,10 +338,10 @@
     <div class="li-menuwrap browse-area-wrap" id="browseAreaWrap">
       <button type="button" id="browseAreaBtn" class="browse-area-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="browseAreaPanel">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
-        <span id="browseAreaLabel">All areas</span> <span class="li-caret" aria-hidden="true">▾</span>
+        <span id="browseAreaLabel" data-i18n="areas.all">All areas</span> <span class="li-caret" aria-hidden="true">▾</span>
       </button>
-      <div class="browse-area-panel" id="browseAreaPanel" role="dialog" aria-label="Choose an area" hidden>
-        <div class="browse-area-controls" aria-label="Choose trail area">
+      <div class="browse-area-panel" id="browseAreaPanel" role="dialog" aria-label="Choose an area" hidden data-i18n-aria-label="page.browseTrails.chooseAnArea">
+        <div class="browse-area-controls" aria-label="Choose trail area" data-i18n-aria-label="page.browseTrails.chooseTrailArea">
           <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
             <span class="browse-geo-label" data-i18n="browse.geo.country">Country</span>
             <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filter trails by country"></select></span>
@@ -397,7 +397,7 @@
         <span class="orma-saved-heart" aria-hidden="true">♥</span><span data-i18n="browse.quick.saved">Saved</span><span class="browse-saved-count" id="browseSavedCount">0</span>
       </button>
     <div class="browse-filter-controls" id="browseFilterControls" hidden>
-      <label class="browse-field"><span>Distance</span>
+      <label class="browse-field"><span data-i18n="browse.filters.distance">Distance</span>
         <select id="browseDistance" aria-label="Filter by distance">
           <option value="all">Distance</option>
           <option value="3" hidden>Up to 3 km</option>
@@ -410,7 +410,7 @@
           <option value="10p" hidden>10 km+</option>
         </select>
       </label>
-      <label class="browse-field"><span>Trail rating</span>
+      <label class="browse-field"><span data-i18n="browse.filters.rating">Trail rating</span>
         <select id="browseRisk" aria-label="Filter by trail rating">
           <option value="all">Trail rating</option>
           <option value="low-risk">Low risk</option>
@@ -418,7 +418,7 @@
           <option value="caution">Caution</option>
         </select>
       </label>
-      <label class="browse-field browse-field--advanced"><span>Terrain tolerance</span>
+      <label class="browse-field browse-field--advanced"><span data-i18n="account.profile.terrainTolerance">Terrain tolerance</span>
         <select id="browseTerrain" aria-label="Filter by terrain tolerance">
           <option value="">Any terrain</option>
           <option value="soft">Gentle surfaces only</option>
@@ -426,7 +426,7 @@
           <option value="rocky">Rocky terrain is okay</option>
         </select>
       </label>
-      <label class="browse-field browse-field--advanced"><span>Shade &amp; heat</span>
+      <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.shadeHeat">Shade &amp; heat</span>
         <select id="browseHeat" aria-label="Filter by reviewed shade or heat">
           <option value="">Any shade or heat data</option>
           <option value="shade-reviewed">At least 30% shade</option>
@@ -434,13 +434,13 @@
           <option value="shade-60" hidden>Over 60% shade</option>
         </select>
       </label>
-      <label class="browse-field browse-field--advanced"><span>Exposure</span>
+      <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.exposure">Exposure</span>
         <select id="browseExposure" aria-label="Filter by reviewed exposure">
           <option value="">Any exposure data</option>
           <option value="none-reviewed">No reported exposure</option>
         </select>
       </label>
-      <label class="browse-field browse-field--advanced"><span>Dog restrictions</span>
+      <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.dogRestrictions">Dog restrictions</span>
         <select id="browseAccess" aria-label="Filter by reviewed dog access">
           <option value="">Any dog-access status</option>
           <option value="allowed-reviewed">Dogs permitted</option>
@@ -449,14 +449,14 @@
       </div>
     </div>
     <!-- What is switched on, each removable, so nothing filters out of sight. -->
-    <div class="browse-active-chips" id="browseActiveChips" aria-label="Active filters" hidden></div>
+    <div class="browse-active-chips" id="browseActiveChips" aria-label="Active filters" hidden data-i18n-aria-label="page.browseTrails.activeFilters"></div>
   </div>
   <div id="browseLocationBreadcrumb" class="browse-location-breadcrumb" aria-live="polite"></div>
   <div class="browse-view-toggle" role="group" aria-label="Choose catalogue view" data-i18n-aria-label="browse.view.aria">
     <button type="button" class="on" data-browse-view="list" aria-pressed="true" data-i18n="browse.view.list">List</button>
     <button type="button" data-browse-view="map" aria-pressed="false" data-i18n="browse.view.map">Map</button>
   </div>
-  <section id="browseExplorer" class="browse-explorer" data-mobile-view="list" aria-label="Trail catalogue and map">
+  <section id="browseExplorer" class="browse-explorer" data-mobile-view="list" aria-label="Trail catalogue and map" data-i18n-aria-label="page.browseTrails.trailCatalogueAndMap">
     <div class="browse-map-pane" aria-label="Map of matching trails" data-i18n-aria-label="browse.map.aria">
       <div id="browseMap">
         <div class="browse-map-placeholder"><strong data-i18n="browse.map.loading">Loading the trail map…</strong><span data-i18n="browse.map.loadingSub">You can keep browsing the catalogue while the map loads.</span></div>
@@ -466,7 +466,7 @@
         <span data-i18n="browse.map.searchArea">Search this area</span>
       </button>
       <div class="browse-map-key" id="browseMapKey" aria-label="What the colours mean" data-i18n-aria-label="browse.map.keyAria">
-        <span class="browse-map-key__title" id="browseMapKeyTitle">For a medium dog</span>
+        <span class="browse-map-key__title" id="browseMapKeyTitle" data-i18n="page.browseTrails.forAMediumDog">For a medium dog</span>
         <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="good"></i><span data-category="strong-option"></span></span>
         <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="fair"></i><span data-category="possible-with-cautions"></span></span>
         <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="poor"></i><span data-category="not-recommended"></span></span>
@@ -478,20 +478,20 @@
     </div>
     <div class="browse-list-pane">
       <!-- What Compare does, feeds the tray at the bottom + compare.html -->
-      <aside class="browse-compare-note">
+      <aside class="browse-compare-note" data-i18n="page.browseTrails.decidingBetweenTrailsPickCompare">
         <b>Deciding between trails?</b> Pick <em>Compare</em> on two or three and we'll put distance, terrain, shade, water and dog fit side by side.
       </aside>
       <div class="browse-results-meta">
         <span id="browseResultCount" aria-live="polite"></span>
         <span class="browse-result-accessible" data-i18n="browse.trustNote">Trail information combines mapped route data and available ORMA sources.</span>
-        <button type="button" id="browseClear" class="browse-clear" hidden>Clear filters</button>
+        <button type="button" id="browseClear" class="browse-clear" hidden data-i18n="browse.clearFilters">Clear filters</button>
       </div>
       <div class="simple-grid" id="simpleTrailsList"></div>
     </div>
   </section>
 
   <details hidden style="margin-top:34px;font-size:13.5px;color:var(--ink-soft);">
-    <summary style="cursor:pointer;font-weight:700;color:var(--ink);">Full trail index (A–Z)</summary>
+    <summary style="cursor:pointer;font-weight:700;color:var(--ink);" data-i18n="page.browseTrails.fullTrailIndexAz">Full trail index (A–Z)</summary>
     <div style="columns:2;column-gap:28px;margin-top:14px;line-height:2;">
 <!-- TRAIL-INDEX-START (auto-generated by scripts/generate-trail-pages.js, do not edit by hand) -->
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Dolomites, Italy</p>
@@ -566,6 +566,7 @@
 <a href="trail.html?id=fiera-pieve" style="display:block;color:inherit;">Fiera-Pieve</a>
 <a href="trail.html?id=fischleintal-sextner-stein" style="display:block;color:inherit;">Fischleintal – Sextner Stein</a>
 <a href="trail.html?id=flaaser-rundweg" style="display:block;color:inherit;">Flaaser Rundweg</a>
+<a href="trail.html?id=algund-forst-marlinger-waalweg" style="display:block;color:inherit;">Forst and the Marlinger Waalweg from Algund</a>
 <a href="trail.html?id=fort-mitterberg-helmhanghuette" style="display:block;color:inherit;">Fort Mitterberg – Helmhanghütte</a>
 <a href="trail.html?id=furnacia-la-crusc" style="display:block;color:inherit;">Furnacia – La Crusc</a>
 <a href="trail.html?id=geotrail-bula-pufels-bulla-osm-11814834" style="display:block;color:inherit;">Geotrail Bula - Pufels - Bulla</a>
@@ -590,6 +591,7 @@
 <a href="trail.html?id=helm-waldruhe-sexten" style="display:block;color:inherit;">Helm – Waldruhe – Sexten</a>
 <a href="trail.html?id=herrnsteig" style="display:block;color:inherit;">Herrnsteig</a>
 <a href="trail.html?id=hinzlweg" style="display:block;color:inherit;">Hinzlweg</a>
+<a href="trail.html?id=hirzer-alms-loop-klammeben" style="display:block;color:inherit;">Hirzer alms loop from Klammeben</a>
 <a href="trail.html?id=historic-ortisei" style="display:block;color:inherit;">Historic Ortisei</a>
 <a href="trail.html?id=historische-rundwanderung-teis" style="display:block;color:inherit;">Historische Rundwanderung Teis</a>
 <a href="trail.html?id=hofeweg" style="display:block;color:inherit;">Höfeweg</a>
@@ -649,6 +651,7 @@
 <a href="trail.html?id=marlinger-waalweg" style="display:block;color:inherit;">Marlinger Waalweg</a>
 <a href="trail.html?id=martinsweg" style="display:block;color:inherit;">Martinsweg</a>
 <a href="trail.html?id=masi-comunicanti-capriana" style="display:block;color:inherit;">Masi Comunicanti</a>
+<a href="trail.html?id=hoehenweg-west-sonnenberg-farms-partschins" style="display:block;color:inherit;">Meraner Höhenweg west and the Sonnenberg farms, Partschins</a>
 <a href="trail.html?id=mittlerer-rundweg-am-karer-see" style="display:block;color:inherit;">Mittlerer Rundweg am Karer See</a>
 <a href="trail.html?id=molin-de-pezol" style="display:block;color:inherit;">Molin de Pèzol</a>
 <a href="trail.html?id=monclassico-presson-sundials" style="display:block;color:inherit;">Monclassico and Presson, the sundial villages</a>
@@ -776,7 +779,9 @@
 <a href="trail.html?id=sextener-rundweg" style="display:block;color:inherit;">Sextener Rundweg</a>
 <a href="trail.html?id=siror" style="display:block;color:inherit;">Siror</a>
 <a href="trail.html?id=sissiweg-sentiero-sissi" style="display:block;color:inherit;">Sissiweg - Sentiero Sissi</a>
+<a href="trail.html?id=unterstell-farms-loop-naturns" style="display:block;color:inherit;">Sonnenberg farms loop from Unterstell, Naturns</a>
 <a href="trail.html?id=sonnenberger-panoramaweg-sentiero" style="display:block;color:inherit;">Sonnenberger Panoramaweg - Sentiero</a>
+<a href="trail.html?id=sonnenrundweg-stuls" style="display:block;color:inherit;">Sonnenrundweg loop at Stuls</a>
 <a href="trail.html?id=st-agatha-rundweg" style="display:block;color:inherit;">St. Agatha Rundweg</a>
 <a href="trail.html?id=stabnerwaal-staben-to-tschars" style="display:block;color:inherit;">Stabnerwaal, Staben to Tschars</a>
 <a href="trail.html?id=steger-buhel-runde" style="display:block;color:inherit;">Steger-Bühel-Runde</a>
@@ -845,10 +850,12 @@
 <a href="trail.html?id=cret-de-la-parenche" style="display:block;color:inherit;">Crêt de la Parenche</a>
 <a href="trail.html?id=cret-de-taliere" style="display:block;color:inherit;">Crêt de Talière</a>
 <a href="trail.html?id=croix-de-pralognan" style="display:block;color:inherit;">Croix de Pralognan</a>
+<a href="trail.html?id=croix-du-berger-from-lac-des-fees" style="display:block;color:inherit;">Croix du Berger from the Lac des Fées</a>
 <a href="trail.html?id=itineraire-de-decouverte-historique" style="display:block;color:inherit;">Itinéraire de découverte historique</a>
 <a href="trail.html?id=itineraire-decouverte-de-la-nature" style="display:block;color:inherit;">Itinéraire découverte de la nature</a>
 <a href="trail.html?id=la-croix-des-salles" style="display:block;color:inherit;">La Croix des Salles</a>
 <a href="trail.html?id=la-galoppaz-par-la-combe-servenne" style="display:block;color:inherit;">La Galoppaz par la Combe Servenne</a>
+<a href="trail.html?id=grande-berge-from-plan-de-la-lai" style="display:block;color:inherit;">La Grande Berge from the Plan de la Lai</a>
 <a href="trail.html?id=la-maitaz" style="display:block;color:inherit;">La Maïtaz</a>
 <a href="trail.html?id=la-plagne" style="display:block;color:inherit;">La Plagne</a>
 <a href="trail.html?id=lac-blanc" style="display:block;color:inherit;">Lac Blanc</a>
@@ -879,7 +886,9 @@
 <a href="trail.html?id=arnoga-rifugio-federico-val-viola" style="display:block;color:inherit;">Arnoga – Rifugio Federico, Val Viola</a>
 <a href="trail.html?id=brogno-nuvolone-viewpoint" style="display:block;color:inherit;">Brogno to the Nuvolone viewpoint</a>
 <a href="trail.html?id=brunate-churches-loop" style="display:block;color:inherit;">Brunate churches loop</a>
+<a href="trail.html?id=campo-moro-passo-di-campagneda" style="display:block;color:inherit;">Campo Moro to the Passo di Campagneda</a>
 <a href="trail.html?id=caslino-derba-and-the-lambro" style="display:block;color:inherit;">Caslino d’Erba and the Lambro</a>
+<a href="trail.html?id=chiareggio-rifugi-porro-ventina" style="display:block;color:inherit;">Chiareggio to the Porro and Ventina huts</a>
 <a href="trail.html?id=eupilio-madonna-della-neve" style="display:block;color:inherit;">Eupilio and the Madonna della Neve</a>
 <a href="trail.html?id=lasnigo-barni-crezzo-lake" style="display:block;color:inherit;">Lasnigo, Barni and the Crezzo lake</a>
 <a href="trail.html?id=monte-scioscia-viewpoint-loop" style="display:block;color:inherit;">Monte Scioscia viewpoint loop</a>

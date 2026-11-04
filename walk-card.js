@@ -1,6 +1,13 @@
 (function(global){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return k in vars ? vars[k] : m; }) : text;
+  }
+
   // Shareable Trail Tale cards. Journal data remains local: this module only
   // draws a user-selected entry and hands the resulting PNG to the device.
   var FORMATS = {
@@ -19,6 +26,25 @@
     energy: { zoomies:'Still had zoomies', justRight:'Just right', nap:'Ready for a nap' },
     moment: { water:'The water stop', view:'The big view', sniffs:'Forest sniffing', rifugio:'Rifugio rest', mud:'Mud mission' }
   };
+
+  // The shown wording of a Trail Tale choice: the journal's own keys, with the
+  // English above as the fallback. TALE_LABELS itself stays English data.
+  var TALE_KEYS = {
+    paws: { happy:'pawsHappy', tender:'pawsTender', check:'pawsCheck' },
+    energy: { zoomies:'energyZoomies', justRight:'energyRight', nap:'energyNap' },
+    moment: { water:'momentWater', view:'momentView', sniffs:'momentSniffs', rifugio:'momentRifugio', mud:'momentMud' }
+  };
+  function taleLabel(group, value){
+    var fallback = TALE_LABELS[group] && TALE_LABELS[group][value];
+    if(!fallback) return '';
+    var key = TALE_KEYS[group] && TALE_KEYS[group][value];
+    var translate = typeof window !== 'undefined' && window.t;
+    if(key && typeof translate === 'function'){
+      var shown = translate('journal.tale.' + key);
+      if(shown && shown !== 'journal.tale.' + key) return shown;
+    }
+    return fallback;
+  }
 
   function validRoute(route){
     return (route || []).filter(function(p){
@@ -154,18 +180,23 @@
   }
 
   function taleSentence(entry, dogName){
-    var energy = TALE_LABELS.energy[(entry.tale || {}).energy];
+    var energy = taleLabel('energy', (entry.tale || {}).energy);
     if(!energy) return '';
-    return (dogName ? dogName + '’s verdict: ' : 'Trail verdict: ') + energy.toLowerCase() + '.';
+    return dogName
+      ? tx('{name}’s verdict: {verdict}.', { name: dogName, verdict: energy.toLowerCase() })
+      : tx('Trail verdict: {verdict}.', { verdict: energy.toLowerCase() });
   }
 
   function shareText(entry, dogName, tags, profileUrl){
     var bits = [];
-    bits.push((dogName ? dogName + '’s Trail Tale' : 'Our Trail Tale') + ', ' + (entry.dist || '?') + ' km in ' + fmtDuration(entry.dur));
+    var distance = entry.dist || '?', duration = fmtDuration(entry.dur);
+    bits.push(dogName
+      ? tx('{name}’s Trail Tale, {km} km in {duration}', { name: dogName, km: distance, duration: duration })
+      : tx('Our Trail Tale, {km} km in {duration}', { km: distance, duration: duration }));
     if(entry.trail && entry.trail !== 'Recorded walk') bits.push(entry.trail);
     var verdict = taleSentence(entry, dogName);
     var tagLine = (tags || []).filter(Boolean).map(function(tag){ return '@' + String(tag).replace(/^@/, '').replace(/\s+/g, ''); }).join(' ');
-    return bits.join(' · ') + '. ' + (verdict ? verdict + ' ' : '') + (tagLine ? tagLine + ' ' : '') + 'Made with ORMA 🐾 app-orma.com' + (profileUrl ? ' · Follow our trails: ' + profileUrl : '');
+    return bits.join(' · ') + '. ' + (verdict ? verdict + ' ' : '') + (tagLine ? tagLine + ' ' : '') + tx('Made with ORMA 🐾 app-orma.com') + (profileUrl ? ' · ' + tx('Follow our trails: {url}', { url: profileUrl }) : '');
   }
 
   function roundRect(ctx, x, y, w, h, r){
@@ -234,7 +265,7 @@
     ctx.restore();
     if(visual === 'map' && !validSegments(options.route).some(function(part){ return part.length > 1; })){
       ctx.fillStyle = SOFT; ctx.font = '600 42px Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText('A good walk leaves a mark 🐾', x + w / 2, y + h / 2); ctx.textAlign = 'left';
+      ctx.fillText(tx('A good walk leaves a mark 🐾'), x + w / 2, y + h / 2); ctx.textAlign = 'left';
     }
   }
 
@@ -249,7 +280,7 @@
     roundRect(ctx, bubbleX, y + 5, bubbleW, bubbleH, 28); ctx.fillStyle = '#fff'; ctx.fill();
     ctx.beginPath(); ctx.moveTo(bubbleX + 6, y + 63); ctx.lineTo(bubbleX - 18, y + 78); ctx.lineTo(bubbleX + 12, y + 80); ctx.fillStyle = '#fff'; ctx.fill();
     ctx.fillStyle = INK; ctx.textAlign = 'left'; ctx.font = '800 30px "Bricolage Grotesque", sans-serif';
-    var message = String(voice || 'Woof, what a walk!').trim().slice(0, 56);
+    var message = String(voice || tx('Woof, what a walk!')).trim().slice(0, 56);
     ctx.fillText(message, bubbleX + 25, y + 62);
     if(dogName){ ctx.fillStyle = SOFT; ctx.font = '700 18px Inter, sans-serif'; ctx.fillText(dogName, bubbleX + 25, y + bubbleH + 29); }
   }
@@ -263,7 +294,7 @@
 
     ctx.fillStyle = CREAM; ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = INK; ctx.font = '700 44px "Bricolage Grotesque", sans-serif'; ctx.fillText('ORMA', 70, 100);
-    ctx.font = '700 24px Inter, sans-serif'; ctx.fillStyle = TERRA; ctx.fillText('TRAIL TALE', 70, 140);
+    ctx.font = '700 24px Inter, sans-serif'; ctx.fillStyle = TERRA; ctx.fillText(tx('TRAIL TALE'), 70, 140);
     ctx.font = '600 28px Inter, sans-serif'; ctx.fillStyle = SOFT; ctx.textAlign = 'right';
     ctx.fillText(new Date(entry.date).toLocaleDateString(undefined, { day:'numeric', month:'long', year:'numeric' }), W - 70, 104); ctx.textAlign = 'left';
 
@@ -282,7 +313,7 @@
     if(options.tags && options.tags.length){
       ctx.fillStyle = '#fff'; ctx.font = '800 20px Inter, sans-serif';
       ctx.shadowColor = 'rgba(20,35,25,.7)'; ctx.shadowBlur = 8;
-      ctx.fillText('WITH ' + options.tags.slice(0, 5).join(' · '), 96, visualY + visualH - 18);
+      ctx.fillText(tx('WITH {names}', { names: options.tags.slice(0, 5).join(' · ') }), 96, visualY + visualH - 18);
       ctx.shadowBlur = 0;
     }
 
@@ -291,12 +322,12 @@
       ctx.fillStyle = INK; ctx.font = '800 ' + (compact ? 43 : 52) + 'px Inter, sans-serif'; ctx.fillText(value, x, statsY);
       ctx.fillStyle = SOFT; ctx.font = '700 21px Inter, sans-serif'; ctx.fillText(label.toUpperCase(), x, statsY + 34);
     }
-    stat(70, (entry.dist || '0') + ' km', 'Distance'); stat(390, fmtDuration(entry.dur), 'Time');
-    if(options.dogName) stat(720, options.dogName, 'Walked with');
+    stat(70, (entry.dist || '0') + ' km', tx('Distance')); stat(390, fmtDuration(entry.dur), tx('Time'));
+    if(options.dogName) stat(720, options.dogName, tx('Walked with'));
 
     var tale = entry.tale || {}, chips = [];
-    if(TALE_LABELS.paws[tale.paws]) chips.push(TALE_LABELS.paws[tale.paws]);
-    if(TALE_LABELS.moment[tale.moment]) chips.push('Best bit: ' + TALE_LABELS.moment[tale.moment].toLowerCase());
+    if(TALE_LABELS.paws[tale.paws]) chips.push(taleLabel('paws', tale.paws));
+    if(TALE_LABELS.moment[tale.moment]) chips.push(tx('Best bit: {moment}', { moment: taleLabel('moment', tale.moment).toLowerCase() }));
     var verdict = taleSentence(entry, options.dogName);
     if(verdict && !compact){
       ctx.fillStyle = INK; ctx.font = '700 31px "Bricolage Grotesque", sans-serif'; ctx.fillText(verdict, 70, statsY + 104);
@@ -306,7 +337,7 @@
     }
 
     ctx.strokeStyle = LINE; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(70, H - 96); ctx.lineTo(W - 70, H - 96); ctx.stroke();
-    ctx.fillStyle = SOFT; ctx.font = '600 26px Inter, sans-serif'; ctx.fillText('Made for dogs who take the scenic route · app-orma.com', 70, H - 42);
+    ctx.fillStyle = SOFT; ctx.font = '600 26px Inter, sans-serif'; ctx.fillText(tx('Made for dogs who take the scenic route · app-orma.com'), 70, H - 42);
     return canvas;
   }
 
@@ -345,7 +376,7 @@
           var file = blob && typeof File !== 'undefined' ? new File([blob], filename, { type:'image/png' }) : null;
           var text = shareText(entry, options.dogName, options.tags, options.profileUrl);
           if(file && typeof navigator !== 'undefined' && navigator.share && navigator.canShare && navigator.canShare({ files:[file] })){
-            navigator.share({ files:[file], title:'ORMA Trail Tale', text:text }).then(function(){ resolve('shared'); }).catch(function(error){
+            navigator.share({ files:[file], title:tx('ORMA Trail Tale'), text:text }).then(function(){ resolve('shared'); }).catch(function(error){
               if(error && error.name === 'AbortError') resolve('cancelled');
               else resolve(download(canvas, filename));
             });

@@ -1,4 +1,10 @@
 (function(){
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
   const cards = Array.from(document.querySelectorAll('[data-breed-trait]'));
   if(!cards.length) return;
 
@@ -11,8 +17,8 @@
     card.classList.toggle('is-open', open);
     content.hidden = !open;
     button.setAttribute('aria-expanded', String(open));
-    button.setAttribute('aria-label', open ? `Close ${cardTitle} trail advice` : `Open ${cardTitle} trail advice`);
-    button.querySelector('.breed-card-toggle__label').textContent = open ? 'Close trail advice' : 'Open trail advice';
+    button.setAttribute('aria-label', open ? tx('Close {title} trail advice', { title:cardTitle }) : tx('Open {title} trail advice', { title:cardTitle }));
+    button.querySelector('.breed-card-toggle__label').textContent = open ? tx('Close trail advice') : tx('Open trail advice');
   }
 
   cards.forEach((card, index) => {
@@ -44,7 +50,7 @@
     button.dataset.breedCardToggle = '';
     button.setAttribute('aria-expanded', 'false');
     button.setAttribute('aria-controls', content.id);
-    button.innerHTML = '<span class="breed-card-toggle__label">Open trail advice</span><span class="breed-card-toggle__icon" aria-hidden="true">+</span>';
+    button.innerHTML = '<span class="breed-card-toggle__label">' + tx('Open trail advice') + '</span><span class="breed-card-toggle__icon" aria-hidden="true">+</span>';
 
     summary.append(button);
     card.prepend(summary);

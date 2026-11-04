@@ -1,0 +1,11 @@
+// valgardena-passeggiata-alla-chiesetta-di-san-giacomo in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A walk from Ortisei by the Via del Dialogo and the Col de Flam up through the forest to the little church of San Giacomo, back down the same path and home by the Val d’Anna. The board lists 6 km and 330 m of ascent.": "Una camminata da Ortisei per la Via del Dialogo e il Col de Flam, su attraverso il bosco fino alla chiesetta di San Giacomo, giù per lo stesso sentiero e rientro per la Val d'Anna. La scheda ufficiale indica 6 km e 330 m di dislivello in salita.",
+  "Start at the parish church of Ortisei: 6 km and about 330 m of climbing, two hours. Ortisei’s dog regulation applies: keep your dog on a lead of at most 1.5 m, carry a muzzle and keep off the meadows. Water at the fountains in Ortisei; take some for the climb.": "Parti dalla chiesa parrocchiale di Ortisei: 6 km e circa 330 m di salita, due ore. Vale il regolamento sui cani di Ortisei: tieni il cane al guinzaglio lungo al massimo 1,5 m, porta la museruola al seguito e stai fuori dai prati. Acqua alle fontane di Ortisei; portane un po' per la salita.",
+  "Forest path with roots and a steady climb": "Sentiero nel bosco con radici e una salita costante",
+  "Village streets in Ortisei: keep your dog close": "Strade del paese a Ortisei: tieni il cane vicino",
+  "Forest paths and village lanes": "Sentieri nel bosco e stradine di paese",
+  "Ortisei parish church, the board’s start": "Chiesa parrocchiale di Ortisei, partenza indicata dalla scheda ufficiale",
+  "A rest area of wooden benches on a gravel clearing among trees at Col de Flam above Ortisei, a walker standing by a stone": "Un'area di sosta con panche di legno in una radura ghiaiosa tra gli alberi al Col de Flam sopra Ortisei, un escursionista in piedi accanto a una pietra",
+  "Mostly shaded: most of the walk runs through larch and pine forest; only the streets of Ortisei are open.": "Per lo più all'ombra: gran parte della camminata corre nel bosco di larici e pini; solo le strade di Ortisei sono aperte."
+});

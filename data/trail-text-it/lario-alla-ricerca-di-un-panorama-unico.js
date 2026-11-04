@@ -1,0 +1,12 @@
+// lario-alla-ricerca-di-un-panorama-unico in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A loop from Brogno above Bellagio up to the Nuvolone viewpoint, the “most beautiful place in the world” over all three arms of the lake, and back through the woods by Rovenza. The portal lists 7.9 km and 679 m of ascent.": "Un anello da Brogno sopra Bellagio fino al punto panoramico del Nuvolone, il “posto più bello del mondo” affacciato su tutti e tre i rami del lago, e ritorno nel bosco passando per Rovenza. Il portale indica 7,9 km e 679 m di dislivello in salita.",
+  "Start in Brogno on the road from Asso to Bellagio: 7.9 km and about 680 m of climbing, three and a half hours. The first climb is steep: let your dog rest. No water is mapped on the way: carry enough for your dog. Keep your dog on a lead of at most 1.5 m and carry a muzzle.": "Parti da Brogno sulla strada da Asso a Bellagio: 7,9 km e circa 680 m di salita, tre ore e mezza. La prima salita è ripida: lascia riposare il cane. Lungo il percorso non risultano punti d'acqua: portane abbastanza per il tuo cane. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito.",
+  "A steep, sustained climb of almost 500 m in the first 2 km": "Una salita ripida e continua di quasi 500 m nei primi 2 km",
+  "Do not take the rough path to the Nuvolone summit: keep left for the bocchetta": "Non prendere il sentiero accidentato verso la cima del Nuvolone: tieni la sinistra per la bocchetta",
+  "A steep concrete road in hairpins on the descent": "Una ripida strada in cemento a tornanti in discesa",
+  "Forest paths, mule tracks and a concrete farm road": "Sentieri nel bosco, mulattiere e una strada agricola in cemento",
+  "Brogno, Bellagio, the published start": "Brogno, Bellagio, la partenza indicata",
+  "Lake Como far below the Nuvolone viewpoint, the bare rocky Monte di Tremezzo and its lakeside villages across the water, wooded slopes in the foreground and snowy peaks in the distance": "Il Lago di Como molto più in basso visto dal punto panoramico del Nuvolone, il brullo e roccioso Monte di Tremezzo e i suoi paesi sul lago sull'altra sponda, pendii boscosi in primo piano e cime innevate in lontananza",
+  "Almost all shaded: nine tenths runs through beech and chestnut woods; the viewpoint is open.": "Quasi tutto all'ombra: nove decimi si snodano tra boschi di faggi e castagni; il punto panoramico è aperto."
+});

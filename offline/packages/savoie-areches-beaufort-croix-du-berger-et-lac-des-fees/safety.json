@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.8,
+    "ascentM": 350,
+    "highestPointM": 2214,
+    "expectedDuration": "3.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 13
+  },
+  "trailhead": {
+    "lat": 45.626113,
+    "lng": 6.600459,
+    "label": "Lac des Fées car park above the Saint-Guérin dam, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.6272462,
+      "lng": 6.6004607,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Working alpages: cows graze around the Cormet d’Arêches in summer and guard dogs may be present; keep your dog on a lead and walk round the herds.",
+    "Steady climb of 350 m on mountain paths to about 2,210 m, with steep grassy humps near the cross.",
+    "High, open ground: little shade and quick weather changes.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

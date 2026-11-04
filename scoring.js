@@ -7,6 +7,13 @@
  * no scoring rules: it returns the score from recommendTrail().
  */
 
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
 // ============================================================
 // FITNESS DEFAULTS, used both to derive the guest teaser scores
 // and to score the real returning-user list against a saved profile.
@@ -112,42 +119,43 @@ function profileInsights(profile){
   const heavyAlready = tr.giant
     || (typeof HEAVY_BUILD_BREEDS !== 'undefined' && HEAVY_BUILD_BREEDS.includes(breedName));
   if(kg != null && kg >= 45 && !heavyAlready){
-    out.push({ icon:'mountain', title:'Weight adds up on descents',
-      sub:'At this weight, descents load joints hard on rock, favour gradual descents and a slow pace down.' });
+    out.push({ icon:'mountain', title:tx('Weight adds up on descents'),
+      sub:tx('At this weight, descents load joints hard on rock, favour gradual descents and a slow pace down.') });
   }
   const toyAlready = tr.shortLegged
     || (typeof TOY_BREEDS !== 'undefined' && TOY_BREEDS.includes(breedName));
   if(kg != null && kg < 5 && !toyAlready){
-    out.push({ icon:'paw', title:'Small strides, long day',
-      sub:'At this weight, a normal route is far more steps, scale distance down and watch recovery closely.' });
-    if(!alreadyHas('Loses heat fast when wet')){
-      out.push({ icon:'cold', title:'Loses heat fast when wet',
-        sub:'A small body chills quickly after rain or a stream crossing, carry a dry layer.' });
+    out.push({ icon:'paw', title:tx('Small strides, long day'),
+      sub:tx('At this weight, a normal route is far more steps, scale distance down and watch recovery closely.') });
+    // breedInsights() may already carry this line, in English or translated.
+    if(!alreadyHas('Loses heat fast when wet') && !alreadyHas(tx('Loses heat fast when wet'))){
+      out.push({ icon:'cold', title:tx('Loses heat fast when wet'),
+        sub:tx('A small body chills quickly after rain or a stream crossing, carry a dry layer.') });
     }
   }
 
   // Life stage, same puppy / senior thresholds effectiveOverrides() uses.
   if(age != null && age < 1){
-    out.push({ icon:'paw', title:'Still growing',
-      sub:'Growth plates are still closing, avoid long climbs and let a puppy set the pace, not the itinerary.' });
+    out.push({ icon:'paw', title:tx('Still growing'),
+      sub:tx('Growth plates are still closing, avoid long climbs and let a puppy set the pace, not the itinerary.') });
   } else if(age != null && age >= 8){
-    out.push({ icon:'mountain', title:'Built for shorter days now',
-      sub:'Senior joints and stamina fade before the enthusiasm does, plan shorter routes with flat stretches and frequent rests.' });
+    out.push({ icon:'mountain', title:tx('Built for shorter days now'),
+      sub:tx('Senior joints and stamina fade before the enthusiasm does, plan shorter routes with flat stretches and frequent rests.') });
   }
 
   // Declared health conditions, already scored by effectiveOverrides()
   // below, surfaced here in plain terms instead of only moving a number.
   if(conds.includes('joints') || conds.includes('back') || conds.includes('recovering')){
-    out.push({ icon:'paw', title:'Go easy on the joints',
-      sub:'A declared joint, back or recovering condition means technical, uneven ground costs more, favour smoother, gentler trails.' });
+    out.push({ icon:'paw', title:tx('Go easy on the joints'),
+      sub:tx('A declared joint, back or recovering condition means technical, uneven ground costs more, favour smoother, gentler trails.') });
   }
   if((conds.includes('heat') || conds.includes('cardiac') || conds.includes('overweight')) && !tr.heatSensitive){
-    out.push({ icon:'heat', title:'Extra care in the heat',
-      sub:'A declared heart, weight or heat-related condition means hot, exposed routes cost more, start early and prioritise shade.' });
+    out.push({ icon:'heat', title:tx('Extra care in the heat'),
+      sub:tx('A declared heart, weight or heat-related condition means hot, exposed routes cost more, start early and prioritise shade.') });
   }
   if(conds.includes('vision')){
-    out.push({ icon:'mountain', title:'Extra care on exposed edges',
-      sub:'A vision condition raises the stakes on narrow ledges and drop-offs, favour wider, well-marked paths.' });
+    out.push({ icon:'mountain', title:tx('Extra care on exposed edges'),
+      sub:tx('A vision condition raises the stakes on narrow ledges and drop-offs, favour wider, well-marked paths.') });
   }
 
   return out;

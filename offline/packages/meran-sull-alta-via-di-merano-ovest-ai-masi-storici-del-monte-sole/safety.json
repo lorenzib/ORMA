@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 6.2,
+    "ascentM": 221,
+    "highestPointM": 1629,
+    "expectedDuration": "1.75 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 22
+  },
+  "trailhead": {
+    "lat": 46.684644,
+    "lng": 11.04778,
+    "label": "Top station of the Texelbahn above Partschins, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.684835,
+      "lng": 11.049528,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 1,120 m of descent: steep in places and hard on knees and paws, take it slowly.",
+    "A short stretch of tarred farm road after the Hochforch farm: lead on for passing cars.",
+    "Meadows and pastures beside the path are farmed: keep to the path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

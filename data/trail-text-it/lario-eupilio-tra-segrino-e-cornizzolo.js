@@ -1,0 +1,12 @@
+// lario-eupilio-tra-segrino-e-cornizzolo in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A loop from Carella above the Segrino lake up the way of the cross to the Madonna della Neve and the Alpe di Carella, and back down the cobbled mule track to Mariaga. The portal lists 5.24 km and 397 m of ascent.": "Un anello da Carella sopra il lago del Segrino su per la Via Crucis fino alla Madonna della Neve e all'Alpe di Carella, e ritorno lungo la mulattiera acciottolata fino a Mariaga. Il portale indica 5,24 km e 397 m di dislivello in salita.",
+  "Start at the Carella cemetery in Eupilio: 5.2 km and about 400 m of climbing, two hours. There is a fountain at the Madonna della Neve. Keep your dog on a lead of at most 1.5 m on the roads and near the farm animals, and carry a muzzle.": "Parti dal cimitero di Carella a Eupilio: 5,2 km e circa 400 m di salita, due ore. C'è una fontana alla Madonna della Neve. Tieni il cane al guinzaglio lungo al massimo 1,5 m sulle strade e vicino agli animali da fattoria, e porta la museruola al seguito.",
+  "A rougher woodland path between the sanctuary and via Cornizzolo": "Un sentiero nel bosco più accidentato tra il santuario e via Cornizzolo",
+  "Stretches on via Cornizzolo, the road to the Rifugio SEC, with cars at weekends": "Tratti su via Cornizzolo, la strada per il Rifugio SEC, con auto nei fine settimana",
+  "Farm animals behind the fence at the Alpe di Carella: keep your dog close": "Animali da fattoria dietro la recinzione all'Alpe di Carella: tieni il cane vicino",
+  "Dirt roads, cobbled mule tracks and woodland paths": "Strade sterrate, mulattiere acciottolate e sentieri nel bosco",
+  "Carella cemetery, via Ceresuola, Eupilio, the published start": "Cimitero di Carella, via Ceresuola, Eupilio, la partenza indicata",
+  "Lake Pusiano seen from the wooded slope at the Madonna della Neve sanctuary, the small tree-covered Isola dei Cipressi in the middle and houses along the shore below": "Il lago di Pusiano visto dal pendio boscoso del santuario della Madonna della Neve, con la piccola Isola dei Cipressi ricoperta di alberi al centro e case lungo la riva in basso",
+  "About half shaded: the way of the cross and the woodland path are under trees; the roads and the Alpe are open.": "Circa metà all'ombra: la Via Crucis e il sentiero nel bosco sono sotto gli alberi; le strade e l'Alpe sono aperte."
+});

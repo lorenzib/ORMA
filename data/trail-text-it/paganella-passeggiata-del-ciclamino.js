@@ -1,0 +1,11 @@
+// paganella-passeggiata-del-ciclamino in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short walk from Molveno to the foot of the Croz dell’Altissimo and down beside the Rio Massò and its little waterfalls. The APT lists 2.8 km and 76 m of ascent.": "Una breve passeggiata da Molveno ai piedi del Croz dell’Altissimo e giù lungo il Rio Massò e le sue cascatelle. L'APT indica 2,8 km e 76 m di dislivello in salita.",
+  "Start in the centre of Molveno: 2.8 km, mostly level and then downhill, about 50 minutes. Keep your dog on a lead and carry a muzzle. Stop at the little waterfalls at Molin dei Mori.": "Parti dal centro di Molveno: 2,8 km, per lo più in piano e poi in discesa, circa 50 minuti. Tieni il cane al guinzaglio e porta la museruola al seguito. Fermati alle cascatelle del Molin dei Mori.",
+  "The path runs beside a fast stream: keep your dog out of the water after rain": "Il sentiero corre accanto a un torrente impetuoso: dopo la pioggia tieni il cane fuori dall'acqua",
+  "Village streets in Molveno at the start": "Strade del paese di Molveno alla partenza",
+  "Village streets and streamside paths": "Strade di paese e sentieri lungo il torrente",
+  "Molveno, the APT’s start": "Molveno, la partenza indicata dall'APT",
+  "A wooden-railed path beside the clear Rio Massodi stream running over rocks through green woods above Molveno": "Un sentiero con staccionata di legno accanto al limpido Rio Massodi che scorre tra le rocce nei boschi verdi sopra Molveno",
+  "Part shade: about 56% runs under trees, beside the streams.": "In parte all'ombra: circa il 56% passa sotto gli alberi, lungo i torrenti."
+});

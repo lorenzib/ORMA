@@ -5,13 +5,25 @@
 })(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text,vars){
+    const i18n=typeof window!=='undefined'&&window.DoloPawsI18n;
+    if(i18n&&typeof i18n.phrase==='function')return i18n.phrase(text,vars);
+    return vars?String(text).replace(/\{(\w+)\}/g,(m,k)=>(k in vars?vars[k]:m)):text;
+  }
+  // A trail's own words in the reader's language, from data/trail-text-it.
+  function trailWords(text){
+    const i18n=typeof window!=='undefined'&&window.DoloPawsI18n;
+    return i18n&&typeof i18n.trailText==='function'?i18n.trailText(text):text;
+  }
+
   function clean(value,maximum=1000){return String(value||'').trim().slice(0,maximum);}
 
   function normalizeCredit(value,fallbackUrl){
     const record=typeof value==='string'?{text:value}:(value&&typeof value==='object'?value:null);
     const text=clean(record?.text,500);if(!text)return null;
     const url=clean(record?.url||fallbackUrl);
-    return {text,url:/^https:\/\//i.test(url)?url:'',bare:record?.bare===true,label:record?.bare===true?text:`Photo: ${text}`};
+    return {text,url:/^https:\/\//i.test(url)?url:'',bare:record?.bare===true,label:record?.bare===true?text:tx('Photo: {credit}',{credit:text})};
   }
 
   // An illustration is not a photograph, so its line is not headed "Photo:"
@@ -51,17 +63,17 @@
 
   function photoCaption(photo){
     const licensed=licensedCredit(photo);
-    if(licensed)return `Photo: ${licensed.creator} · ${licensed.licence}`;
+    if(licensed)return tx('Photo: {creator} · {licence}',{creator:licensed.creator,licence:licensed.licence});
     const dog=photo?.dogContext?.name;
     const caption=photo?.isEditorial
-      ? 'Shared by the ORMA community'
-      : (clean(photo?.caption,500)||(dog?`Shared by ${dog}’s human`:'Shared by the ORMA community'));
+      ? tx('Shared by the ORMA community')
+      : (clean(photo?.caption,500)||(dog?tx('Shared by {dog}’s human',{dog}):tx('Shared by the ORMA community')));
     const credit=normalizeCredit(photo?.credit,photo?.creditUrl);
-    const status=photo?.status==='reported'?'Reported, under review':'';
+    const status=photo?.status==='reported'?tx('Reported, under review'):'';
     return [caption,photo?.isEditorial?'':credit?.label,status].filter(Boolean).join(' · ');
   }
 
-  function photoAlt(photo){return clean(photo?.alt,500)||clean(photo?.caption,500)||'Trail photograph';}
+  function photoAlt(photo){return clean(trailWords(photo?.alt),500)||clean(photo?.caption,500)||tx('Trail photograph');}
 
   return {clean,normalizeCredit,heroCredit,isIllustration,editorialPhotos,licensedPhotos,licensedCredit,photoCaption,photoAlt};
 });

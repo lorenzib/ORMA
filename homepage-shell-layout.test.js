@@ -73,7 +73,7 @@ describe('logged-in discovery workspace layout', () => {
     // The list header is one line: title, count, a Sort dropdown and a Saved
     // toggle. The kicker, the news line and the fold-out of tabs are gone.
     const head = html.slice(html.indexOf('class="li-list-head"'), html.indexOf('id="returningTrailList"'));
-    expect(head).toContain('<h2 class="li-list-title" id="companionListTitle">');
+    expect(head).toContain('<h2 class="li-list-title" id="companionListTitle" data-i18n="account.nav.browse">');
     // Not "Best matches for Teo": the headline above already says "Best walk for Teo".
     expect(fs.readFileSync('script.js', 'utf8')).not.toContain('`Best matches for ${profile.name}`');
     expect(head).toContain('id="companionListCount"');
@@ -91,7 +91,7 @@ describe('logged-in discovery workspace layout', () => {
       expect(html).not.toContain(gone);
     }
     // Browse all trails moved to the foot of the list.
-    expect(html).toContain('<a class="li-list-foot" href="browse-trails.html">Browse all trails →</a>');
+    expect(html).toContain('<a class="li-list-foot" href="browse-trails.html" data-i18n="page.index.browseAllTrails">Browse all trails →</a>');
   });
 
   test('keeps place, day, search, Filters and Record a walk on screen', () => {
@@ -109,7 +109,7 @@ describe('logged-in discovery workspace layout', () => {
     const filters = html.slice(html.indexOf('id="liFiltersMenu"'), html.indexOf('id="liFiltersApply"'));
     expect(filters).toContain('id="liQuickShade"');
     expect(filters).toContain('id="liQuickWater"');
-    expect(html).toContain('<span class="li-filt-label">Filters</span>');
+    expect(html).toContain('<span class="li-filt-label" data-i18n="browse.filters.button">Filters</span>');
   });
 
   test('announces Draw your own route once, under Record a walk', () => {
@@ -126,7 +126,7 @@ describe('logged-in discovery workspace layout', () => {
     // Wider screens give it room instead of laying it over Filters.
     expect(editorialCss).toContain('#returningCustomerHomepage #liToolbar .li-new-callout{position:relative;');
     // The menu entry is a plain row with the tag on its title line.
-    expect(html).toContain('<span class="li-menu-title">Draw your own route <span class="li-menu-badge">New</span></span>');
+    expect(html).toContain('<span class="li-menu-title" data-i18n="page.index.drawYourOwnRouteNew">Draw your own route <span class="li-menu-badge">New</span></span>');
     expect(editorialCss).toContain('.li-new-menu .li-menu-item.li-plan-route{display:flex;height:auto;margin:0;border:0;');
   });
 

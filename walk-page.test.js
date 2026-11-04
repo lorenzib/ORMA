@@ -224,10 +224,10 @@ describe('walk recorder authentication restoration', () => {
     expect(source).toContain("id: 'walk-position-accuracy'");
     expect(source).toContain("id: 'walk-position-dot'");
     expect(source).toContain('Marked hiking routes');
-    expect(source).toContain("lazyLayerChip('Lifts'");
-    expect(source).toContain("lazyLayerChip('Water'");
-    expect(source).toContain("lazyLayerChip('Huts'");
-    expect(source).toContain("lazyLayerChip('Food'");
+    expect(source).toContain("lazyLayerChip(tx('Lifts')");
+    expect(source).toContain("lazyLayerChip(tx('Water')");
+    expect(source).toContain("lazyLayerChip(tx('Huts')");
+    expect(source).toContain("lazyLayerChip(tx('Food')");
     expect(source).toContain('Satellite');
     expect(source).toContain('data-wr-3d');
     expect(source).toContain('Centre map on my position');
@@ -237,7 +237,7 @@ describe('walk recorder authentication restoration', () => {
     // Calmed like every other map, so base labels do not double our numbers.
     expect(source).toMatch(/style\.quietBasemap\(map\);\s*style\.addHikingRoutes\(map/);
     expect(source).toMatch(/id: 'walk-line'[\s\S]*?}, style\.walkLineBeforeId\(map\)\);/);
-    expect(source).toContain("layerChip('Marked hiking routes', window.ORMAMapStyle.HIKING_LAYER_IDS, true);");
+    expect(source).toContain("layerChip(tx('Marked hiking routes'), window.ORMAMapStyle.HIKING_LAYER_IDS, true);");
     expect(source).not.toContain('tile.waymarkedtrails.org');
   });
 });

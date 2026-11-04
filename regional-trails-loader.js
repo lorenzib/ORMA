@@ -123,6 +123,36 @@
     if (detailSource || alreadyPrimed) pendingRegions.push(region);
   });
 
+  // Italian readers get the trail's own text in Italian from a small file per
+  // trail, keyed by the English sentence. A trail with no file yet, or a
+  // sentence reworded since it was translated, simply stays English.
+  function italian() {
+    return !!(window.DoloPawsI18n && window.DoloPawsI18n.lang === 'it');
+  }
+  var textRequested = new Set();
+  function trailTextUrl(id) {
+    return 'data/trail-text-it/' + encodeURIComponent(id) + '.js';
+  }
+  function loadTrailText(id) {
+    id = resolveTrailId(id);
+    if (!id || !italian() || textRequested.has(id)) return Promise.resolve(false);
+    textRequested.add(id);
+    return new Promise(function (resolve) {
+      var script = document.createElement('script');
+      script.src = trailTextUrl(id);
+      script.onload = function () {
+        window.dispatchEvent(new CustomEvent('dolopaws-trail-text', { detail: { id: id } }));
+        resolve(true);
+      };
+      script.onerror = function () { resolve(false); };
+      document.head.appendChild(script);
+    });
+  }
+  if (detailOnly && trailId && italian() && manifest.trailRegion[trailId]) {
+    textRequested.add(trailId);
+    document.write('<script src="' + trailTextUrl(trailId) + '" onerror="this.remove()"><' + '/script>');
+  }
+
   // After the parser is done with the document, not before it starts.
   if (pendingRegions.length) {
     var fetchPending = function () {
@@ -145,5 +175,6 @@
     slugFor: slugFor,
     trailHref: trailHref,
     primeTrailDetail: primeTrailDetail,
+    loadTrailText: loadTrailText,
   };
 })();
