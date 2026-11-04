@@ -386,15 +386,44 @@ describe('returning homepage region + valley filters', () => {
     vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
       valley:"Val Gardena", label:"Val Gardena" });`, context);
     vm.runInContext(mapArea(6, 45, 7, 46), context);
-    // Panning to Maurienne must not leave the heading reading "Val Gardena",
-    // and "Map area" is true without saying anything: the valley whose trails
-    // fill the view is the answer to where you are looking.
-    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Maurienne · on the map');
-    expect(vm.runInContext('liRecommendationLocationPhrase()', context)).toBe('in Maurienne');
+    // Panning to Savoy must not leave the heading reading "Val Gardena", and
+    // "Map area" is true without saying anything: the place holding every
+    // trail in view is the answer to where you are looking.
+    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Savoy · on the map');
+    expect(vm.runInContext('liRecommendationLocationPhrase()', context)).toBe('in Savoy');
     // Ranked by how many of the view's trails each area holds, so the busiest
     // is both the name above and the first place offered under "Change".
     expect(vm.runInContext('liAreasInView(4).map(a => a.label)', context))
       .toEqual(['Maurienne', 'Tarentaise – Vanoise', 'Chamonix – Mont Blanc']);
+  });
+
+  // The screenshot this pins: zoomed out over the Alps, the headline read
+  // "in Alta Pusteria" -- the busiest valley in view -- above a list of every
+  // trail from Savoy to Friuli. The headline names only a place that holds
+  // every trail the map and the list are showing.
+  test('the headline names the map view only by a place that holds all of it', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    const headlineArea = () => document.querySelector('#liToolbarGreeting [data-li-head="area"]').textContent;
+    const rows = () => document.querySelectorAll('#returningTrailList .li-row').length;
+
+    // The whole Alps: Savoy and the Dolomites both in view.
+    vm.runInContext(mapArea(5, 44, 13, 48), context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(rows()).toBe(5);
+    expect(headlineArea()).toBe('in the map view');
+    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('The map view');
+
+    // Two Dolomites valleys: the region, not the busier of the two.
+    vm.runInContext(mapArea(11, 46, 12, 47), context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(rows()).toBe(2);
+    expect(headlineArea()).toBe('in the Dolomites');
+
+    // Val Gardena alone: the valley.
+    vm.runInContext(mapArea(11.5, 46.5, 11.8, 46.7), context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(rows()).toBe(1);
+    expect(headlineArea()).toBe('in Val Gardena');
   });
 
   test('a map view with no catalogue area in it still says it is the map', () => {
@@ -478,7 +507,7 @@ describe('returning homepage region + valley filters', () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext(inValGardena, context);
     pinMapArea(context);
-    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Maurienne · on the map');
+    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Savoy · on the map');
     vm.runInContext('liResetAllFilters();', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Val Gardena');
