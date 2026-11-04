@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "savoie-areches-beaufort-la-grande-berge",
   "name": "La Grande Berge from the Plan de la Lai",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T19:01:48.396Z",
+  "version": "2026.11.04-beta.2",
+  "generatedAt": "2026-11-04T10:05:37.059Z",
   "scoringVersion": "1.7.0",
   "verificationStatus": "source-verified",
   "packageBytes": 342267,
@@ -217,7 +217,7 @@
       "label": "La Grande Berge from the Plan de la Lai routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 67121,
-      "sha256": "0d32cd08f78adff1e879e78e2c4f51b77fbcd5f91a810ebb3b2541c925f6c990"
+      "sha256": "988d54c080f84169ec26600da7a93c9f8d26c0a121536bf700adc1908871d4c4"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "La Grande Berge from the Plan de la Lai safety information",
       "url": "safety.json",
       "bytes": 1782,
-      "sha256": "ed2050fc73fb077f6f429b5bc10d98dfacd1820c00cfe50d85af5eaa5cfea4f9"
+      "sha256": "58fac31e174989cfe393a18446f1dbbf899a82e0e0d9555d2a93c07a07b6b0be"
     }
   ]
 }
