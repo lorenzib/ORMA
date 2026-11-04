@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lario-dal-passo-del-giovo-al-rifugio-sommafiume",
+  "distanceKm": 5.1,
+  "ascentM": 168,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1707
+    },
+    {
+      "km": 0.4,
+      "elev": 1708
+    },
+    {
+      "km": 0.8,
+      "elev": 1726
+    },
+    {
+      "km": 1.2,
+      "elev": 1748
+    },
+    {
+      "km": 1.6,
+      "elev": 1772
+    },
+    {
+      "km": 1.9,
+      "elev": 1809
+    },
+    {
+      "km": 2.3,
+      "elev": 1834
+    },
+    {
+      "km": 2.7,
+      "elev": 1824
+    },
+    {
+      "km": 3.1,
+      "elev": 1813
+    },
+    {
+      "km": 3.5,
+      "elev": 1797
+    },
+    {
+      "km": 3.9,
+      "elev": 1782
+    },
+    {
+      "km": 4.3,
+      "elev": 1760
+    },
+    {
+      "km": 4.7,
+      "elev": 1752
+    },
+    {
+      "km": 5.1,
+      "elev": 1768
+    }
+  ]
+}

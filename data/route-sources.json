@@ -3401,6 +3401,22 @@
       "quote": "GTA Tappa 21: Campello Monti - Rimella. Lunghezza 8,6 km, tempo 3 ore 15 minuti, dislivello salita 620 m, dislivello discesa 750 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-03T18:00:00.000Z"
+    },
+    "lario-nel-cuore-del-triangolo-lariano": {
+      "url": "https://www.in-lombardia.it/itinerari/nel-cuore-del-triangolo-lariano",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Orobie Active)",
+      "name": "Nel cuore del triangolo lariano",
+      "quote": "Durata/Lunghezza 1 ora 3km · Dislivello Salita: 133m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "lario-dal-passo-del-giovo-al-rifugio-sommafiume": {
+      "url": "https://www.in-lombardia.it/itinerari/dal-passo-del-giovo-al-rifugio-sommafiume",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by LakeComo.is)",
+      "name": "Dal Passo del Giovo a Sommafiume",
+      "quote": "Durata/Lunghezza 1h e 15min 5.10km · Dislivello Salita: 168m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
     }
   }
 }

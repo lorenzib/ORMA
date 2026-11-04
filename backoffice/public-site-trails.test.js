@@ -199,8 +199,10 @@ describe('the existing-site verification boundary',()=>{
     // from Campello Monti to Rimella, Cervatto to the Madonna del Balmone, the Giro
     // del Ginepro from Carcoforo, and Campello Monti to the Alpe Fornale, the Colle
     // dell’Usciolo and the Lago del Capezzone.
-    expect(catalogue).toHaveLength(465);
-    expect(currentSiteTrails(catalogue)).toHaveLength(463);
+    // Then 467 and 465 with two Lake Como mountain walks: Campoè to Cassina Enco
+    // above Caglio, and the Passo del Giovo to the Rifugio Sommafiume.
+    expect(catalogue).toHaveLength(467);
+    expect(currentSiteTrails(catalogue)).toHaveLength(465);
   });
 
   test('requires the artwork the public trail page needs',()=>{

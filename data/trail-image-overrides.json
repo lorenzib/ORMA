@@ -2331,6 +2331,23 @@
       }
     },
     {
+      "id": "lario-dal-passo-del-giovo-al-rifugio-sommafiume",
+      "approvedReviewId": "mapillary-lario-dal-passo-del-giovo-al-rifugio-sommafiume-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-dal-passo-del-giovo-al-rifugio-sommafiume-valle-albano.jpg",
+        "heroImage": "images/trails/lario-dal-passo-del-giovo-al-rifugio-sommafiume-valle-albano.jpg",
+        "imageAlt": "Two wooden picnic tables on a grassy rise looking across to golden-green mountain slopes and a high ridge under a blue sky",
+        "imageCredit": "The head of the Valle Albano from the Passo del Giovo",
+        "imageCreditText": "The head of the Valle Albano from the Passo del Giovo by kaitu",
+        "imageCreator": "kaitu",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=909353356302563",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "lario-eupilio-tra-segrino-e-cornizzolo",
       "approvedReviewId": "commons-lario-eupilio-tra-segrino-e-cornizzolo-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",
@@ -2361,6 +2378,23 @@
         "imageLicence": "CC BY 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Como_dal_sentiero_del_Viandante_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lario-nel-cuore-del-triangolo-lariano",
+      "approvedReviewId": "commons-lario-nel-cuore-del-triangolo-lariano-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-nel-cuore-del-triangolo-lariano-campoe-sanctuary.jpg",
+        "heroImage": "images/trails/lario-nel-cuore-del-triangolo-lariano-campoe-sanctuary.jpg",
+        "imageAlt": "A yellow country church with a tall bell tower and a tiled porch on a green lawn under a blue sky, with a tree in the foreground",
+        "imageCredit": "The Campoè sanctuary at the start",
+        "imageCreditText": "The Campoè sanctuary at the start by Iolanda Pensa",
+        "imageCreator": "Iolanda Pensa",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Caglio_-_Santuario_della_Madonna_di_Campoè_nord-ovest.jpg",
         "imageSourceType": "licensed-source"
       }
     },
