@@ -140,3 +140,28 @@ describe('East Tyrol and Carinthia are Austria, and take no Italian trail with t
     expect(regions.countryForRegion(regions.nearestLocality(lat, lng).region)).toBe('IT');
   });
 });
+
+describe('Graubünden and Ticino are Switzerland, and take no Italian trail with them', () => {
+  const regions = loadRegions();
+  test.each([
+    ['Pontresina', 46.4900, 9.9043, 'Upper Engadin'],
+    ['Scuol', 46.7976, 10.2996, 'Lower Engadin – Val Müstair'],
+    ['Poschiavo', 46.3264, 10.0581, 'Val Poschiavo'],
+    ['Soglio', 46.3421, 9.5399, 'Val Bregaglia'],
+    ['Cevio', 46.3170, 8.6018, 'Valle Maggia'],
+    ['Sonogno', 46.3503, 8.7863, 'Valle Verzasca'],
+  ])('%s is labelled in its own valley, in Switzerland', (name, lat, lng, valley) => {
+    const n = regions.nearestLocality(lat, lng);
+    expect(n.valley).toBe(valley);
+    expect(regions.countryForRegion(n.region)).toBe('CH');
+  });
+  test.each([
+    ['Livigno', 46.5386, 10.1357],
+    ['Tirano', 46.2160, 10.1690],
+    ['Chiavenna', 46.3195, 9.4010],
+    ['Madesimo', 46.4400, 9.3570],
+    ['Rifugio Sesvenna', 46.7348, 10.4356],
+  ])('%s, across the border, stays in Italy', (name, lat, lng) => {
+    expect(regions.countryForRegion(regions.nearestLocality(lat, lng).region)).toBe('IT');
+  });
+});
