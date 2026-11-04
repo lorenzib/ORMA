@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsesia-campello-monti-colle-dell-usciolo",
+  "distanceKm": 3.3,
+  "ascentM": 700,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1325
+    },
+    {
+      "km": 0.3,
+      "elev": 1373
+    },
+    {
+      "km": 0.5,
+      "elev": 1435
+    },
+    {
+      "km": 0.8,
+      "elev": 1476
+    },
+    {
+      "km": 1,
+      "elev": 1458
+    },
+    {
+      "km": 1.3,
+      "elev": 1474
+    },
+    {
+      "km": 1.5,
+      "elev": 1526
+    },
+    {
+      "km": 1.8,
+      "elev": 1588
+    },
+    {
+      "km": 2,
+      "elev": 1634
+    },
+    {
+      "km": 2.3,
+      "elev": 1702
+    },
+    {
+      "km": 2.5,
+      "elev": 1804
+    },
+    {
+      "km": 2.8,
+      "elev": 1865
+    },
+    {
+      "km": 3,
+      "elev": 1930
+    },
+    {
+      "km": 3.3,
+      "elev": 2020
+    }
+  ]
+}

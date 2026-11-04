@@ -60915,6 +60915,426 @@
       ],
       startPoint: { lat: 46.155606, lng: 9.170851, label: 'The Passo del Giovo (1,706 m), by its fountain, the published start' },
       desc: 'An easy, almost level walk high above Lake Como, from the Passo del Giovo across the open head of the Valle Albano past a spring and two pastures to the Rifugio Sommafiume. The portal lists 5.1 km, 168 m up and an hour and a quarter one way.'
+    },
+    'valsesia-cervatto-madonna-del-balmone': {
+      // Hand audit: 2026-11-03, verified on arrival (new-trail Piedmont batch 1, Valsesia).
+      // “Cervatto - Madonna del Balmone”, published by Ente di gestione delle aree protette della Valsesia, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the park authority’s itinerary sheet on areeprotettevallesesia.it. Communes: Cervatto and Fobello (no dog rule found for either: not found, probably exists; the national ordinance applies).
+      // No park or Natura 2000 site on the line; the Alta Val Sesia park and the Val Mastallone ZPS/ZSC lie about 400 m away.
+      // The stored line follows the park authority’s own GPX, 100% each way, with no spur or doubling back.
+      area: 'Cervatto – Giavina – Orlino – Taponaccio – Madonna del Balmone (Val Mastallone)',
+      distance: 3.2,
+      elevation: 350,
+      hours: '1.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and uphill from Cervatto, on the road to Giavina, then on the old mule track past the hamlets and chapels of Orlino and Taponaccio to the mountain sanctuary of the Madonna del Balmone; you come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in Cervatto (1,002 m) in the Val Mastallone, the park authority’s start.",
+        "sequence": "Follow path 501 along the road to Giavina (1,033 m). There take the mule track on the right past the oratory of the Consolata to the small hamlet of Orlino (1,101 m), then on under the rock spur with the chapel of San Martino and up through beech, fir and oak woods to the chapel of Santi Pietro e Paolo (1,184 m). Climb gradually into the side valley under Punta Castello to the meadows of Taponaccio (1,236 m), cross the pastures and climb to the sanctuary of the Madonna del Balmone (1,363 m), on its rock ledge.",
+        "switches": "One change: in Giavina leave the road for the mule track on the right; from there follow the signs for paths 501 and 507 to the Madonna del Balmone.",
+        "sources": [
+          {
+            "label": "Ente di gestione delle aree protette della Valsesia, Cervatto - Madonna del Balmone (itinerary sheet and description)",
+            "url": "https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709",
+            "authority": "Ente di gestione delle aree protette della Valsesia",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The chapel of the Madonna della Neve at Cadvilli, on the lane out of Cervatto, in July (Francoerbi on Wikimedia Commons, CC0), 3 m from the line.',
+        route: 'Official one-way walk 3.2 km from Cervatto, as Ente di gestione delle aree protette della Valsesia publishes it; the stored line is drawn on 9 OSM ways along the park authority’s GPX, 3.3 km, with 100% of the park authority’s line within 25 m of it and 100% of it within 25 m of the park authority’s line.',
+        routeNumbers: 'Paths 501 and 507: path 501 on the road from Cervatto to Giavina, then the mule track to Orlino and up to the Madonna del Balmone; part of it is the CAI “Sentiero dell’Arte”.',
+        mapPoints: 'Start at the park authority’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3.2 km, 350 m up, 1:40 h, highest point 1,363 m, lowest 1,002 m (Ente di gestione delle aree protette della Valsesia, itinerary sheet). Our elevation profile gives 530 m up; the path dips in and out of the side valleys between the hamlets, so the profile counts more up than the park’s net figure.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Ente di gestione delle aree protette della Valsesia, Cervatto - Madonna del Balmone (itinerary sheet, description and GPX on areeprotettevallesesia.it)',
+          'Comuni di Fobello and Cervatto: no dog rule found on either commune’s site or notice board (not found, probably exists), so the national ordinance applies',
+          'Ministero della Salute, ordinance on dogs (2013, extended to September 2027): lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Regione Piemonte protected-area and Natura 2000 layers (CSI Piemonte WFS): no park or Natura 2000 site on the line',
+          'OpenStreetMap ways along the park authority’s line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 100,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The first stretch from Cervatto to Giavina is on the village road: lead on for passing cars', 'Old stone mule track with steps and loose stones in places, slippery when wet'],
+      terrainType: 'Village road and old mule track',
+      shadeDescription: 'Shaded almost all the way: the mule track climbs through mapped beech, fir and oak woods between the hamlets.',
+      terrainDescription: 'A short climb from 1,000 m to about 1,390 m on the north side of the Val Mastallone, along the old mule track that links the hamlets of Cervatto and Fobello, with their chapels and arcaded houses, to the sanctuary of the Madonna del Balmone.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Neither Cervatto nor Fobello publishes its own dog rule, so the national ordinance applies: a lead of at most 1.5 m in the hamlets and a muzzle carried. The walk stays outside the park; keep your dog close past the houses and the pastures at Taponaccio.',
+      tips: 'Start in Cervatto: 3.2 km one way up to the Madonna del Balmone, about 1 h 40, and back the same way. Keep your dog on a lead in the hamlets and carry a muzzle. No drinking water is mapped on the way: bring water for your dog.',
+      sourceLinks: [
+        { label: 'Aree protette della Valsesia, Cervatto - Madonna del Balmone (itinerary sheet and GPX)', url: 'https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)', url: 'https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.883026, lng: 8.162047, label: 'Cervatto (1,002 m), the park authority’s start' },
+      desc: 'A shaded climb from Cervatto on the old mule track past the hamlets and chapels of Giavina, Orlino and Taponaccio to the mountain sanctuary of the Madonna del Balmone. The park authority lists 3.2 km, 350 m up, 1 h 40.'
+    },
+    'valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo': {
+      // Hand audit: 2026-11-03, verified on arrival (new-trail Piedmont batch 1, Valsesia).
+      // “Carcoforo – Alpe Giovanchera – Alpe Pianelli - Carcoforo”, published by Ente di gestione delle aree protette della Valsesia, drawn on 14 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the park authority’s itinerary sheet on areeprotettevallesesia.it. Communes: Carcoforo (no dog rule found: not found, probably exists; the national ordinance applies).
+      // No park or Natura 2000 site on the line itself; the line runs alongside the Alta Val Sesia park and its ZSC and ZPS, which start about 30 m away.
+      // The stored line follows the park authority’s own GPX, 100% each way, with no spur or doubling back.
+      area: 'Carcoforo – Selva Bruna – Alpe Giovanchera – Alpe Pianelli – Cappella delle Torbe (Val d’Egua)',
+      distance: 6,
+      elevation: 500,
+      hours: '3.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the square in Carcoforo, the “Giro del Ginepro”: up past Selva Bruna and Le Coste to the Alpe Pasqué, Alpe Sulla Selva and Giovanchera Bella, across through larch woods to the Alpe Pianelli and Alpe Passone, then down path 121 past the Alpe Bruc and the Cappella delle Torbe back to Carcoforo.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start from the square in Carcoforo (1,304 m), the park authority’s start.",
+        "sequence": "Cross the Egua stream and follow the road, which turns to gravel after the hamlet of Selva Bruna, sharing a stretch with paths 112 and 113. Pass Le Coste and climb to the Alpe Pasqué (1,434 m), the Alpe Sulla Selva (1,597 m) and the wide pasture of Giovanchera Bella (1,703 m). From there traverse through larch woods, on unnumbered but clear marks, to the Alpe Pianelli and the Alpe Passone (1,752 m). Take path 121 down to the Alpe Bruc (1,500 m), where it joins the GTA, and on past the Cappella delle Torbe and its old firs and ash tree back to Carcoforo.",
+        "switches": "Two changes: at Giovanchera Bella leave the numbered path for the marked traverse to the Alpe Passone; at the Alpe Passone take path 121 down, shared with the GTA from the Alpe Bruc.",
+        "sources": [
+          {
+            "label": "Ente di gestione delle aree protette della Valsesia, Carcoforo – Alpe Giovanchera – Alpe Pianelli - Carcoforo (itinerary sheet and description)",
+            "url": "https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709",
+            "authority": "Ente di gestione delle aree protette della Valsesia",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The monumental ash tree (Frasso dal Vote) on the path by the Cappella delle Torbe, in October (Marta dellavedova on Wikimedia Commons, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official loop 6 km from the square in Carcoforo, as Ente di gestione delle aree protette della Valsesia publishes it; the stored line is drawn on 14 OSM ways along the park authority’s GPX, 5.8 km, with 100% of the park authority’s line within 25 m of it and 100% of it within 25 m of the park authority’s line.',
+        routeNumbers: 'Paths 113, 117, 121 and 122: from the square in Carcoforo up on 113 and 117 to Giovanchera, a traverse with unnumbered but clear marks to the Alpe Passone, then path 121 (shared with the GTA) back down to Carcoforo.',
+        mapPoints: 'Start at the park authority’s start; no drinking water mapped on the line.',
+        elevation: 'Official 6 km, 500 m up and 500 m down, 3:45 h, highest point 1,752 m, lowest 1,304 m (Ente di gestione delle aree protette della Valsesia, itinerary sheet). Our elevation profile gives 542 m up.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Ente di gestione delle aree protette della Valsesia, Carcoforo – Alpe Giovanchera – Alpe Pianelli - Carcoforo (itinerary sheet, description and GPX on areeprotettevallesesia.it)',
+          'Comune di Carcoforo: no dog rule found among its published regulations or on its notice board (not found, probably exists), so the national ordinance applies',
+          'Ministero della Salute, ordinance on dogs (2013, extended to September 2027): lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'Ente di gestione delle aree protette della Valsesia, notice “Cani al guinzaglio” (15 July 2025): dogs are allowed in the regional parks and the Natura 2000 sites it manages, but must be kept on a lead',
+          'OpenStreetMap ways along the park authority’s line (14 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 48,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Grazing pastures at the Alpe Giovanchera, Pianelli and Passone in summer: lead on, and give flocks and guard dogs a wide berth', 'Old stone paving and steps near Carcoforo, slippery when wet'],
+      terrainType: 'Gravel road, mountain paths and stone mule track',
+      shadeDescription: 'Half shaded: about half runs through mapped larch and mixed woods; the high pastures around Giovanchera and Pianelli are open.',
+      terrainDescription: 'A loop between 1,300 m and about 1,800 m above Carcoforo, at the head of the Val d’Egua, up through hamlets and alpine pastures with views of the Cima del Lampone, across through larch woods and back down past the Cappella delle Torbe.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Carcoforo publishes no dog rule of its own, so the national ordinance applies: a lead of at most 1.5 m in the village and a muzzle carried. The loop runs alongside the Alta Val Sesia park, where dogs must be on a lead. Keep your dog on a lead through the summer pastures.',
+      tips: 'Start from the square in Carcoforo: a 6 km loop with 500 m up, about 3 h 45. Keep your dog on a lead through the pastures and carry a muzzle. No drinking water is mapped on the way: bring water for your dog.',
+      sourceLinks: [
+        { label: 'Aree protette della Valsesia, Carcoforo – Alpe Giovanchera – Alpe Pianelli - Carcoforo (itinerary sheet and GPX)', url: 'https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Aree protette della Valsesia, “Cani al guinzaglio” (15 July 2025)', url: 'https://www.areeprotettevallesesia.it/it-it/informazioni-/avvisi/2025/cani-al-guinzaglio-359228-1-a4fb1d0768e52d8ecae43958bb81a086' },
+        { label: 'Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)', url: 'https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.908422, lng: 8.049584, label: 'The square in Carcoforo (1,304 m), the park authority’s start' },
+      desc: 'A loop from Carcoforo, the “Giro del Ginepro”, up through hamlets and pastures to the Alpe Giovanchera, across through larch woods to the Alpe Pianelli, and back down past the Cappella delle Torbe and its 250-year-old ash tree. The park authority lists 6 km, 500 m up, 3 h 45.'
+    },
+    'valsesia-campello-monti-alpe-fornale-di-sopra': {
+      // Hand audit: 2026-11-03, verified on arrival (new-trail Piedmont batch 1, Valsesia).
+      // “Campello Monti – Alpe Fornale di Sopra”, published by Ente di gestione delle aree protette della Valsesia, drawn on 12 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the park authority’s itinerary sheet on areeprotettevallesesia.it. Communes: Valstrona (its Regolamento di Polizia Urbana, art. 56: lead and a muzzle worn in public places and places open to public transit).
+      // In the Parco naturale dell’Alta Val Sesia e Alta Val Strona (79%) and its Area contigua (14%), the Campello Monti ZSC (55%) and the Alta Val Strona e Val Segnara ZPS (100%).
+      // The stored line follows the park authority’s own GPX, 100% each way, with no spur or doubling back.
+      area: 'Campello Monti – Alpe Fornale di Sotto – Alpe Fornale di Sopra (Valle Strona)',
+      distance: 2.2,
+      elevation: 500,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and steeply uphill from Campello Monti on path Z14 into the beech wood, then left into the Fornale valley past the ruined huts of the Alpe Fornale di Sotto to the hollow of the Alpe Fornale di Sopra; you come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in the Walser village of Campello Monti (1,305 m), the park authority’s start.",
+        "sequence": "Follow path Z14 into the beech wood and take the branch on the left into the valley. Cross a small stream and climb the far side in the open to the ruined huts of the Alpe Fornale di Sotto (1,566 m), visible above on the left. From the huts a narrow path climbs steeply right over a rib into a small valley and crosses the stream again; the path then fades, keeping the stream on the left, and after a last stretch among grassy boulders reaches the hollow of the Alpe Fornale di Sopra (1,804 m), with its one ruined hut and its stone avalanche wedge.",
+        "switches": "One change: in the beech wood leave path Z14 on the branch to the left; above the Alpe Fornale di Sotto the path is faint, so keep the stream on your left.",
+        "sources": [
+          {
+            "label": "Ente di gestione delle aree protette della Valsesia, Campello Monti – Alpe Fornale di Sopra (itinerary sheet and description)",
+            "url": "https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709",
+            "authority": "Ente di gestione delle aree protette della Valsesia",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Walser houses of Campello Monti where the path leaves the village, in July (Mænsard vokser on Wikimedia Commons, CC BY-SA 4.0), 8 m from the line.',
+        route: 'Official one-way walk 2.2 km from Campello Monti, as Ente di gestione delle aree protette della Valsesia publishes it; the stored line is drawn on 12 OSM ways along the park authority’s GPX, 2.2 km, with 100% of the park authority’s line within 25 m of it and 100% of it within 25 m of the park authority’s line.',
+        routeNumbers: 'From Campello Monti path Z14 into the beech wood, then the branch on the left into the Fornale valley; above the Alpe Fornale di Sotto a faint path follows the stream.',
+        mapPoints: 'Start at the park authority’s start; no drinking water mapped on the line.',
+        elevation: 'Official 2.2 km, 500 m up, 1:30 h, highest point 1,804 m, lowest 1,305 m (Ente di gestione delle aree protette della Valsesia, itinerary sheet). Our elevation profile gives 614 m up; the path dips to cross the stream twice, so the profile counts more up than the park’s net figure.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Ente di gestione delle aree protette della Valsesia, Campello Monti – Alpe Fornale di Sopra (itinerary sheet, description and GPX on areeprotettevallesesia.it)',
+          'Comune di Valstrona, Regolamento di Polizia Urbana (DCC 30 of 06.12.2007, amended by DCC 15 of 29.09.2010), art. 56: in public places and places open to public transit dogs must be on a lead and wear a suitable muzzle',
+          'Ente di gestione delle aree protette della Valsesia, notice “Cani al guinzaglio” (15 July 2025): dogs are allowed in the regional parks and the Natura 2000 sites it manages, but must be kept on a lead',
+          'Ministero della Salute, ordinance on dogs (2013, extended to September 2027): lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'OpenStreetMap ways along the park authority’s line (12 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Steep: 500 m up in 2.2 km', 'Above the Alpe Fornale di Sotto the path is faint and climbs among grassy boulders: not for wet weather or poor visibility', 'Two unbridged stream crossings'],
+      terrainType: 'Steep mountain path',
+      shadeDescription: 'Mostly open: a short stretch of beech wood above Campello Monti, then open slopes; OpenStreetMap maps no woodland on the line.',
+      terrainDescription: 'A short, steep climb from Campello Monti, at the head of the Valle Strona, into the side valley of the Fornale, from 1,305 m to about 1,800 m, past ruined summer huts to a quiet high hollow.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Valstrona requires a lead and a muzzle worn by your dog on paths open to the public, and the Alta Val Sesia park requires a lead throughout. Keep your dog on a lead near any grazing animals.',
+      tips: 'Start in Campello Monti: 2.2 km one way up to the Alpe Fornale di Sopra, about 1 h 30, and back the same way. Valstrona asks for more than the national rule: on paths open to the public your dog must be on a lead and wear a muzzle, not just carry one. A spring lies a few dozen metres beyond the last hut; otherwise bring water.',
+      sourceLinks: [
+        { label: 'Aree protette della Valsesia, Campello Monti – Alpe Fornale di Sopra (itinerary sheet and GPX)', url: 'https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709' },
+        { label: 'Comune di Valstrona, Regolamento di Polizia Urbana (art. 56)', url: 'https://www.comune.valstrona.vb.it/it-it/download/regolamento-comunale-di-polizia-urbana-pdf-760-5-240-31e6c3c7f822b4052e76614d8c75b37c' },
+        { label: 'Aree protette della Valsesia, “Cani al guinzaglio” (15 July 2025)', url: 'https://www.areeprotettevallesesia.it/it-it/informazioni-/avvisi/2025/cani-al-guinzaglio-359228-1-a4fb1d0768e52d8ecae43958bb81a086' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)', url: 'https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.935896, lng: 8.237097, label: 'Campello Monti (1,305 m), the park authority’s start' },
+      desc: 'A short, steep climb from the Walser village of Campello Monti on path Z14 into the Fornale valley, past the ruined huts of the Alpe Fornale di Sotto to the high hollow of the Alpe Fornale di Sopra. The park authority lists 2.2 km, 500 m up, 1 h 30.'
+    },
+    'valsesia-campello-monti-colle-dell-usciolo': {
+      // Hand audit: 2026-11-03, verified on arrival (new-trail Piedmont batch 1, Valsesia).
+      // “Campello Monti - Colle dell’Usciolo”, published by Ente di gestione delle aree protette della Valsesia, drawn on 13 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the park authority’s itinerary sheet on areeprotettevallesesia.it. Communes: Valstrona (its Regolamento di Polizia Urbana, art. 56: lead and a muzzle worn in public places and places open to public transit).
+      // In the Alta Val Strona e Val Segnara ZPS (100%), the Area contigua dell’Alta Val Strona (81%), the Parco naturale dell’Alta Val Sesia e Alta Val Strona (15%) and the Campello Monti ZSC (16%).
+      // The stored line follows the park authority’s own GPX, 100% each way, with no spur or doubling back.
+      area: 'Campello Monti – Alpe Orlo – Alpe Cunetta – Colle dell’Usciolo (Valle Strona)',
+      distance: 3.2,
+      elevation: 700,
+      hours: '2.25',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and uphill from Campello Monti on paths Z14 and Z99, past the Alpe Orlo and the Alpe Cunetta di Sotto and di Sopra, up the steep valley to the Colle dell’Usciolo (2,037 m) above the Lago di Ravinella; you come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the top of the steps above the Walser village of Campello Monti (1,305 m), the park authority’s start.",
+        "sequence": "Follow the level mule track to the left and, at the signpost, path Z14, climbing diagonally to the huts of the Alpe Orlo (1,385 m). Past the laburnum trees drop to the stream, climb the far side, ford another stream and climb to the huts of the Alpe Cunetta di Sotto (1,542 m); where tall grass hides the path, wooden posts mark the way. Climb on to the pastures of the Alpe Cunetta di Sopra (1,810 m), leave the huts on your left, cross a wide green hollow and climb the steep, well-marked valley on path Z99 to the Colle dell’Usciolo (2,037 m), looking down on the Lago di Ravinella.",
+        "switches": "Two changes: at the signpost above Campello Monti take path Z14; above the Alpe Cunetta di Sotto continue on path Z99 to the col.",
+        "sources": [
+          {
+            "label": "Ente di gestione delle aree protette della Valsesia, Campello Monti - Colle dell’Usciolo (itinerary sheet and description)",
+            "url": "https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709",
+            "authority": "Ente di gestione delle aree protette della Valsesia",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Via Zamponi in Campello Monti, seen from the picnic area at the start, in September (Carlo.benini on Wikimedia Commons, CC BY-SA 4.0), 9 m from the line.',
+        route: 'Official one-way walk 3.2 km from Campello Monti, as Ente di gestione delle aree protette della Valsesia publishes it; the stored line is drawn on 13 OSM ways along the park authority’s GPX, 3.3 km, with 100% of the park authority’s line within 25 m of it and 100% of it within 25 m of the park authority’s line.',
+        routeNumbers: 'Paths Z14 and Z99: Z14 from the top of the steps in Campello Monti, then Z99 (part of the GTA) to the Colle dell’Usciolo.',
+        mapPoints: 'Start at the park authority’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3.2 km, 700 m up, 2:20 h, highest point 2,037 m, lowest 1,305 m (Ente di gestione delle aree protette della Valsesia, itinerary sheet). Our elevation profile gives 718 m up.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Ente di gestione delle aree protette della Valsesia, Campello Monti - Colle dell’Usciolo (itinerary sheet, description and GPX on areeprotettevallesesia.it)',
+          'Comune di Valstrona, Regolamento di Polizia Urbana (DCC 30 of 06.12.2007, amended by DCC 15 of 29.09.2010), art. 56: in public places and places open to public transit dogs must be on a lead and wear a suitable muzzle',
+          'Ente di gestione delle aree protette della Valsesia, notice “Cani al guinzaglio” (15 July 2025): dogs are allowed in the regional parks and the Natura 2000 sites it manages, but must be kept on a lead',
+          'Ministero della Salute, ordinance on dogs (2013, extended to September 2027): lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'OpenStreetMap ways along the park authority’s line (13 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Steep: 700 m up in 3.2 km, steepest in the last valley below the col', 'Tall grass hides the path in places above the Alpe Orlo: follow the wooden posts', 'Unbridged stream crossings', 'Grazing pastures at the Alpe Cunetta in summer: lead on, and give flocks and guard dogs a wide berth'],
+      terrainType: 'Mule track and steep mountain path',
+      shadeDescription: 'Open almost all the way: OpenStreetMap maps no woodland on the line, and above the Alpe Orlo the path crosses open pastures and grassy slopes.',
+      terrainDescription: 'A climb from Campello Monti, at the head of the Valle Strona, from 1,305 m to the Colle dell’Usciolo at 2,037 m, past summer farms and through open pastures with wide views over the upper Valle Strona.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Valstrona requires a lead and a muzzle worn by your dog on paths open to the public, and the Alta Val Sesia park requires a lead throughout. In summer the pastures at the Alpe Cunetta may have grazing animals with guard dogs.',
+      tips: 'Start in Campello Monti: 3.2 km one way up to the Colle dell’Usciolo, 700 m up, about 2 h 20, and back the same way. Valstrona asks for more than the national rule: on paths open to the public your dog must be on a lead and wear a muzzle, not just carry one. No drinking water is mapped on the way: bring water for your dog.',
+      sourceLinks: [
+        { label: 'Aree protette della Valsesia, Campello Monti - Colle dell’Usciolo (itinerary sheet and GPX)', url: 'https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709' },
+        { label: 'Comune di Valstrona, Regolamento di Polizia Urbana (art. 56)', url: 'https://www.comune.valstrona.vb.it/it-it/download/regolamento-comunale-di-polizia-urbana-pdf-760-5-240-31e6c3c7f822b4052e76614d8c75b37c' },
+        { label: 'Aree protette della Valsesia, “Cani al guinzaglio” (15 July 2025)', url: 'https://www.areeprotettevallesesia.it/it-it/informazioni-/avvisi/2025/cani-al-guinzaglio-359228-1-a4fb1d0768e52d8ecae43958bb81a086' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)', url: 'https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.935896, lng: 8.237097, label: 'Campello Monti (1,305 m), the park authority’s start' },
+      desc: 'A climb from the Walser village of Campello Monti on paths Z14 and Z99 past the Alpe Orlo and the Alpe Cunetta to the Colle dell’Usciolo, above the Lago di Ravinella. The park authority lists 3.2 km, 700 m up, 2 h 20.'
+    },
+    'valsesia-campello-monti-lago-del-capezzone': {
+      // Hand audit: 2026-11-03, verified on arrival (new-trail Piedmont batch 1, Valsesia).
+      // “Campello Monti - Lago del Capezzone”, published by Ente di gestione delle aree protette della Valsesia, drawn on 15 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the park authority’s itinerary sheet on areeprotettevallesesia.it. Communes: Valstrona (its Regolamento di Polizia Urbana, art. 56: lead and a muzzle worn in public places and places open to public transit).
+      // In the Parco naturale dell’Alta Val Sesia e Alta Val Strona (96%), the Campello Monti ZSC (96%) and the Alta Val Strona e Val Segnara ZPS (100%).
+      // The stored line follows the park authority’s own GPX, 100% each way, with no spur or doubling back.
+      area: 'Campello Monti – Alpe Piana di Via – Alpe Capezzone – Lago del Capezzone (Valle Strona)',
+      distance: 4.2,
+      elevation: 800,
+      hours: '2.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and uphill from Campello Monti on path Z17, along the stream and past a waterfall to the Alpe Piana di Via and the Alpe Capezzone, then across a smooth rock with cut steps to the unstaffed Abele Traglio bivouac hut (2,100 m) by the Lago del Capezzone; you come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start from the car park in Campello Monti (1,305 m), the park authority’s start, and walk through the village to the church.",
+        "sequence": "Climb the steps beside the church and follow path Z17 on a grassy mule track. At the first fork continue towards the Sass da Mür hut; at the second, by a small bridge, keep right along the stream to another small bridge on the left. Pass a waterfall into an upper hollow, cross it and climb the slope right of a small waterfall to the Alpe Piana di Via (1,723 m). Continue under a rock wall to a fork, bear right over a shoulder to the Alpe Capezzone (1,844 m), cross a stream and climb left to a grassy shelf. Keep left towards a cairn, cross a brook, climb a few hairpins and traverse right across a smooth rock with steps cut into it to the Abele Traglio bivouac hut (2,100 m) by the Lago del Capezzone.",
+        "switches": "Three choices, all on path Z17: at the first fork go on towards the Sass da Mür hut; at the fork by the small bridge keep right along the stream; at the fork under the rock wall bear right to the Alpe Capezzone.",
+        "sources": [
+          {
+            "label": "Ente di gestione delle aree protette della Valsesia, Campello Monti - Lago del Capezzone (itinerary sheet and description)",
+            "url": "https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709",
+            "authority": "Ente di gestione delle aree protette della Valsesia",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of San Giovanni Battista in Campello Monti, seen from the path above the steps, in July (Francoerbi on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 4.2 km from the car park in Campello Monti, as Ente di gestione delle aree protette della Valsesia publishes it; the stored line is drawn on 15 OSM ways along the park authority’s GPX, 4.2 km, with 100% of the park authority’s line within 25 m of it and 100% of it within 25 m of the park authority’s line.',
+        routeNumbers: 'Path Z17 all the way, from the steps by the church in Campello Monti to the Lago del Capezzone.',
+        mapPoints: 'Start at the park authority’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.2 km, 800 m up, 2:40 h, highest point 2,100 m, lowest 1,305 m (Ente di gestione delle aree protette della Valsesia, itinerary sheet). Our elevation profile gives 805 m up.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Ente di gestione delle aree protette della Valsesia, Campello Monti - Lago del Capezzone (itinerary sheet, description and GPX on areeprotettevallesesia.it)',
+          'Comune di Valstrona, Regolamento di Polizia Urbana (DCC 30 of 06.12.2007, amended by DCC 15 of 29.09.2010), art. 56: in public places and places open to public transit dogs must be on a lead and wear a suitable muzzle',
+          'Ente di gestione delle aree protette della Valsesia, notice “Cani al guinzaglio” (15 July 2025): dogs are allowed in the regional parks and the Natura 2000 sites it manages, but must be kept on a lead',
+          'Ministero della Salute, ordinance on dogs (2013, extended to September 2027): lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'OpenStreetMap ways along the park authority’s line (15 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 9,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Steep: 800 m up in 4.2 km', 'Near the top the path crosses a smooth rock slab on cut steps: lift or help your dog over, and turn back if it is wet or icy', 'Unbridged stream crossings', 'High, open ground above 1,800 m: check the weather'],
+      terrainType: 'Mule track and steep mountain path',
+      shadeDescription: 'Mostly open: about 9% runs through mapped woodland just above Campello Monti; the rest climbs open slopes and pastures.',
+      terrainDescription: 'A climb from Campello Monti, at the head of the Valle Strona, from 1,305 m to the Lago del Capezzone at 2,100 m, along a stream with waterfalls, past summer farms and up rocky ground to a small lake under the Capezzone, with an unstaffed CAI bivouac hut.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Valstrona requires a lead and a muzzle worn by your dog on paths open to the public, and the Alta Val Sesia park requires a lead throughout. The slab with cut steps near the top needs care with a dog.',
+      tips: 'Start from the car park in Campello Monti: 4.2 km one way up to the Lago del Capezzone, 800 m up, about 2 h 40, and back the same way. Valstrona asks for more than the national rule: on paths open to the public your dog must be on a lead and wear a muzzle, not just carry one. Streams on the way, but no mapped drinking water: bring water for your dog.',
+      sourceLinks: [
+        { label: 'Aree protette della Valsesia, Campello Monti - Lago del Capezzone (itinerary sheet and GPX)', url: 'https://www.areeprotettevallesesia.it/it-it/aree-protette/itinerari-outdoor/escursioni-nel-parco-naturale-alta-valsesia-e-alta-valstrona-108-1-1e27dc49615adf7959c3afba5dcab709' },
+        { label: 'Comune di Valstrona, Regolamento di Polizia Urbana (art. 56)', url: 'https://www.comune.valstrona.vb.it/it-it/download/regolamento-comunale-di-polizia-urbana-pdf-760-5-240-31e6c3c7f822b4052e76614d8c75b37c' },
+        { label: 'Aree protette della Valsesia, “Cani al guinzaglio” (15 July 2025)', url: 'https://www.areeprotettevallesesia.it/it-it/informazioni-/avvisi/2025/cani-al-guinzaglio-359228-1-a4fb1d0768e52d8ecae43958bb81a086' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)', url: 'https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.935896, lng: 8.237097, label: 'The car park in Campello Monti (1,305 m), the park authority’s start' },
+      desc: 'A climb from the Walser village of Campello Monti on path Z17, past waterfalls and the Alpe Piana di Via and Alpe Capezzone, to the Abele Traglio bivouac hut by the Lago del Capezzone. The park authority lists 4.2 km, 800 m up, 2 h 40.'
+    },
+    'valsesia-gta-tappa-21-campello-monti-rimella': {
+      // Hand audit: 2026-11-03, verified on arrival (new-trail Piedmont batch 1, Valsesia).
+      // “GTA Tappa 21: Campello Monti - Rimella”, published by Regione Piemonte (Piemonte Outdoor), drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the Region’s route sheet on piemonteoutdoor.it. Communes: Valstrona (its Regolamento di Polizia Urbana, art. 56: lead and a muzzle worn in public places) and Rimella (Ordinanza Sindacale n. 7 of 15.06.2026: lead everywhere in the commune).
+      // In the Parco naturale dell’Alta Val Sesia e Alta Val Strona (33%) and its Area contigua (7%), the Campello Monti ZSC (34%) and the Alta Val Strona e Val Segnara ZPS (41%).
+      // The stored line follows the Region’s own GPX, 100% each way, with no spur or doubling back.
+      area: 'Campello Monti – Alpe Scarpia – Bocchetta di Campello – Alpe Pianello – San Gottardo – Rimella',
+      distance: 8.6,
+      elevation: 620,
+      hours: '3.25',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way over the ridge between the Valle Strona and the Valsesia: from Campello Monti up past the Alpe del Vecchio and the Alpe Scarpia to the Bocchetta di Campello (1,924 m), down to the Alpe Pianello and a long traverse past the Alpe Versch, Van and Selle to San Gottardo and down to Rimella.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in Campello Monti (1,305 m), the Region’s start, and leave the village heading west on the paved mule track signed GTA for Rimella.",
+        "sequence": "Within half a kilometre pass the branch of path Z99 for the Bocchetta dell’Usciolo, cross the stream on a small concrete bridge (path Z17 for the Capezzone leaves just before it) and climb through mown meadows. Under a cliff reach the Alpe del Vecchio (1,465 m), leave the branch of path Z15A for the Alpe Penninetto on the left and climb the hairpins on a stony slope to the meadows of the Alpe Scarpia (1,698 m). Climb the pastures to the Bocchetta di Campello, also called the Bocchetta di Rimella (1,924 m). Descend to the hollow of the Alpe Pianello (1,801 m), with its CAI hut, drop another 150 m and follow the long traverse past the Alpe Versch, the Alpe Van and the Alpe Selle to the Cappella dei Morti at San Gottardo (Rund, 1,329 m), then walk down to Rimella.",
+        "switches": "No change of path: keep to the GTA signs over the Bocchetta and ignore the branches of paths Z99, Z17, Z15A and the path to Monte Capio.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Regione Piemonte (Piemonte Outdoor), GTA Tappa 21: Campello Monti - Rimella (route sheet and description)",
+            "url": "https://www.piemonteoutdoor.it/it/attivita/escursionismo/gta-tappa-21-campello-monti-rimella",
+            "authority": "Regione Piemonte (Piemonte Outdoor)",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The hamlet of Sella above Rimella, on the descent, in July (BelPatty86 on Wikimedia Commons, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official one-way walk 8.6 km from Campello Monti, as Regione Piemonte (Piemonte Outdoor) publishes it; the stored line is drawn on 22 OSM ways along the Region’s GPX, 8.7 km, with 100% of the Region’s line within 25 m of it and 100% of it within 25 m of the Region’s line.',
+        routeNumbers: 'From Campello Monti follow the GTA (Grande Traversata delle Alpi) signs west and up to the Bocchetta di Campello, then down to Rimella; on the way the stage passes the branches of paths Z99, Z17 and Z15A without taking them.',
+        mapPoints: 'Start at the Region’s start; no drinking water mapped on the line.',
+        elevation: 'Official 8.6 km, 620 m up and 750 m down, 3:15 h, highest point 1,924 m, lowest 1,176 m (Regione Piemonte (Piemonte Outdoor), route sheet). Our elevation profile gives 602 m up.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Regione Piemonte (Piemonte Outdoor), GTA Tappa 21: Campello Monti - Rimella (route sheet, description and GPX on piemonteoutdoor.it)',
+          'Comune di Valstrona, Regolamento di Polizia Urbana (DCC 30 of 06.12.2007, amended by DCC 15 of 29.09.2010), art. 56: in public places and places open to public transit dogs must be on a lead and wear a suitable muzzle',
+          'Comune di Rimella, Ordinanza Sindacale n. 7 of 15.06.2026: dogs on a lead everywhere in the commune and never left free; near flocks and their guard dogs keep a short lead, do not step between dog and flock and pass at the greatest possible distance; fines €100, €200, €300',
+          'Ente di gestione delle aree protette della Valsesia, notice “Cani al guinzaglio” (15 July 2025): dogs are allowed in the regional parks and the Natura 2000 sites it manages, but must be kept on a lead',
+          'Ministero della Salute, ordinance on dogs (2013, extended to September 2027): lead of at most 1.5 m in urban areas and places open to the public, and a muzzle carried',
+          'OpenStreetMap ways along the Region’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 31,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['620 m up and 750 m down over a 1,924 m pass: check the weather', 'Stony, steep hairpins below the Alpe Scarpia', 'Grazing pastures on both sides of the pass in summer: Rimella asks for a short lead near flocks, no stepping between flock and guard dog, and the widest possible berth'],
+      terrainType: 'Mule tracks and mountain paths over a pass',
+      shadeDescription: 'Mostly open: about a third runs through mapped woodland, mainly on the Rimella side; the pastures below and above the pass are open.',
+      terrainDescription: 'A crossing of the ridge between the Valle Strona and the Val Mastallone on the old route along which Campello Monti once carried its dead to Rimella: up from 1,305 m through meadows and pastures to the Bocchetta di Campello at 1,924 m, then down past summer farms and the Walser hamlets of Rimella.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Valstrona requires a lead and a muzzle worn by your dog on paths open to the public, and Rimella requires a lead everywhere in the commune, with a short lead near flocks. The Alta Val Sesia park also requires a lead.',
+      tips: 'Start in Campello Monti: 8.6 km one way to Rimella, 620 m up and 750 m down, about 3 h 15; plan how to get back, as there is no public transport between the two valleys. Valstrona asks for more than the national rule: on paths open to the public your dog must be on a lead and wear a muzzle, not just carry one. The CAI hut at the Alpe Pianello is just below the pass. No drinking water is mapped on the way: bring water for your dog.',
+      sourceLinks: [
+        { label: 'Piemonte Outdoor, GTA Tappa 21: Campello Monti - Rimella (Regione Piemonte (Piemonte Outdoor))', url: 'https://www.piemonteoutdoor.it/it/attivita/escursionismo/gta-tappa-21-campello-monti-rimella' },
+        { label: 'Comune di Valstrona, Regolamento di Polizia Urbana (art. 56)', url: 'https://www.comune.valstrona.vb.it/it-it/download/regolamento-comunale-di-polizia-urbana-pdf-760-5-240-31e6c3c7f822b4052e76614d8c75b37c' },
+        { label: 'Comune di Rimella, Ordinanza Sindacale n. 7 of 15.06.2026', url: 'https://www.servizipubblicaamministrazione.it/servizi/saturnweb/DettaglioFile.aspx?Documento=7212-3546-rmll636' },
+        { label: 'Aree protette della Valsesia, “Cani al guinzaglio” (15 July 2025)', url: 'https://www.areeprotettevallesesia.it/it-it/informazioni-/avvisi/2025/cani-al-guinzaglio-359228-1-a4fb1d0768e52d8ecae43958bb81a086' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)', url: 'https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.935842, lng: 8.236739, label: 'Campello Monti (1,305 m), the Region’s start' },
+      desc: 'Stage 21 of the GTA, over the ridge from the Walser village of Campello Monti in the Valle Strona to Rimella in the Val Mastallone, by the Alpe Scarpia, the Bocchetta di Campello and the Alpe Pianello. The Region lists 8.6 km, 620 m up and 750 m down, 3 h 15.'
     }
   };
 

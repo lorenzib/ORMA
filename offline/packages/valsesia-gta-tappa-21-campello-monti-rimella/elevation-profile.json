@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsesia-gta-tappa-21-campello-monti-rimella",
+  "distanceKm": 8.7,
+  "ascentM": 620,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1325
+    },
+    {
+      "km": 0.7,
+      "elev": 1395
+    },
+    {
+      "km": 1.3,
+      "elev": 1584
+    },
+    {
+      "km": 2,
+      "elev": 1725
+    },
+    {
+      "km": 2.6,
+      "elev": 1854
+    },
+    {
+      "km": 3.3,
+      "elev": 1919
+    },
+    {
+      "km": 4,
+      "elev": 1734
+    },
+    {
+      "km": 4.6,
+      "elev": 1659
+    },
+    {
+      "km": 5.3,
+      "elev": 1522
+    },
+    {
+      "km": 6,
+      "elev": 1491
+    },
+    {
+      "km": 6.6,
+      "elev": 1470
+    },
+    {
+      "km": 7.3,
+      "elev": 1346
+    },
+    {
+      "km": 7.9,
+      "elev": 1266
+    },
+    {
+      "km": 8.6,
+      "elev": 1191
+    },
+    {
+      "km": 8.7,
+      "elev": 1177
+    }
+  ]
+}

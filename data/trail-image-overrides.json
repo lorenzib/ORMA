@@ -7336,6 +7336,108 @@
       }
     },
     {
+      "id": "valsesia-campello-monti-alpe-fornale-di-sopra",
+      "approvedReviewId": "commons-valsesia-campello-monti-alpe-fornale-di-sopra-on-route",
+      "approvedAt": "2026-11-03T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valsesia-campello-monti-alpe-fornale-di-sopra-campello-houses.jpg",
+        "heroImage": "images/trails/valsesia-campello-monti-alpe-fornale-di-sopra-campello-houses.jpg",
+        "imageAlt": "Tall stone and painted houses of a mountain village on a steep grassy slope, with a path climbing past them into the woods",
+        "imageCredit": "The Walser houses of Campello Monti at the start",
+        "imageCreditText": "The Walser houses of Campello Monti at the start by Mænsard vokser",
+        "imageCreator": "Mænsard vokser",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Houses_of_the_walser_village_Campello_Monti_-_Valstrona,_VCO,_Piedmont,_Italy_2020-07-12.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsesia-campello-monti-colle-dell-usciolo",
+      "approvedReviewId": "commons-valsesia-campello-monti-colle-dell-usciolo-on-route",
+      "approvedAt": "2026-11-03T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valsesia-campello-monti-colle-dell-usciolo-via-zamponi.jpg",
+        "heroImage": "images/trails/valsesia-campello-monti-colle-dell-usciolo-via-zamponi.jpg",
+        "imageAlt": "Stone houses and gardens along a fenced lane in a mountain village, with wooded slopes and a rocky peak behind",
+        "imageCredit": "Via Zamponi in Campello Monti at the start",
+        "imageCreditText": "Via Zamponi in Campello Monti at the start by Carlo.benini",
+        "imageCreator": "Carlo.benini",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Campello_Monti_-_Via_Zamponi_vista_dall'area_picnic.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsesia-campello-monti-lago-del-capezzone",
+      "approvedReviewId": "commons-valsesia-campello-monti-lago-del-capezzone-on-route",
+      "approvedAt": "2026-11-03T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valsesia-campello-monti-lago-del-capezzone-san-giovanni.jpg",
+        "heroImage": "images/trails/valsesia-campello-monti-lago-del-capezzone-san-giovanni.jpg",
+        "imageAlt": "A stone-roofed church with a slender bell tower below a grassy path, with village houses and a steep wooded mountainside behind",
+        "imageCredit": "The church of San Giovanni Battista in Campello Monti, where the path starts",
+        "imageCreditText": "The church of San Giovanni Battista in Campello Monti, where the path starts by Francoerbi",
+        "imageCreator": "Francoerbi",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Campello_Monti_Chiesa_di_San_Giovanni_Battista_03.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo",
+      "approvedReviewId": "commons-valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo-on-route",
+      "approvedAt": "2026-11-03T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo-frasso-del-vote.jpg",
+        "heroImage": "images/trails/valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo-frasso-del-vote.jpg",
+        "imageAlt": "The huge gnarled trunk of an old ash tree beside stone steps and a wooden fence on a grassy slope",
+        "imageCredit": "The Frasso dal Vote, the old ash tree on the path down to Carcoforo",
+        "imageCreditText": "The Frasso dal Vote, the old ash tree on the path down to Carcoforo by Marta dellavedova",
+        "imageCreator": "Marta dellavedova",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Al_frassio_20181007_144422.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsesia-cervatto-madonna-del-balmone",
+      "approvedReviewId": "commons-valsesia-cervatto-madonna-del-balmone-on-route",
+      "approvedAt": "2026-11-03T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valsesia-cervatto-madonna-del-balmone-cadvilli-chapel.jpg",
+        "heroImage": "images/trails/valsesia-cervatto-madonna-del-balmone-cadvilli-chapel.jpg",
+        "imageAlt": "An arcaded stone chapel beside a narrow lane above the valley, with steps up to its porch and wooded mountains behind",
+        "imageCredit": "The chapel of the Madonna della Neve at Cadvilli on the walk",
+        "imageCreditText": "The chapel of the Madonna della Neve at Cadvilli on the walk by Francoerbi",
+        "imageCreator": "Francoerbi",
+        "imageLicence": "CC0 1.0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cadvilli_Chiesa_della_Madonna_della_Neve_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsesia-gta-tappa-21-campello-monti-rimella",
+      "approvedReviewId": "commons-valsesia-gta-tappa-21-campello-monti-rimella-on-route",
+      "approvedAt": "2026-11-03T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valsesia-gta-tappa-21-campello-monti-rimella-sella.jpg",
+        "heroImage": "images/trails/valsesia-gta-tappa-21-campello-monti-rimella-sella.jpg",
+        "imageAlt": "Old stone houses of the hamlet of Sella above Rimella on a green mountainside",
+        "imageCredit": "The hamlet of Sella above Rimella on the walk",
+        "imageCreditText": "The hamlet of Sella above Rimella on the walk by BelPatty86",
+        "imageCreator": "BelPatty86",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sella_(Rimella).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valtellina-passo-di-campagneda",
       "approvedReviewId": "mapillary-valtellina-passo-di-campagneda-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",

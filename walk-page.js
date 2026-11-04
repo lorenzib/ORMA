@@ -160,11 +160,11 @@
     // nearest trail ORMA knows, which is how the water and hut layers are split.
     if(!fix) return 'dolomites';
     if(fix.lng < 9){
-      // Courmayeur and Chamonix share a meridian, and Ticino lies west of 9°E
-      // too; the nearest locality decides.
+      // Courmayeur and Chamonix share a meridian, as do Bardonecchia and
+      // Modane, and Ticino lies west of 9°E too; the nearest locality decides.
       var regions = window.DoloPawsRegions;
       var near = regions && regions.nearestLocality ? regions.nearestLocality(fix.lat, fix.lng).region : null;
-      return near === 'aosta' || near === 'switzerland' ? near : 'savoy';
+      return near === 'aosta' || near === 'piedmont' || near === 'switzerland' ? near : 'savoy';
     }
     var best = 'dolomites';
     var bestD = Infinity;

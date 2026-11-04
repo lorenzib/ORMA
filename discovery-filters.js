@@ -6,7 +6,7 @@
   'use strict';
 
   // Every ORMA region in Italy; "Italy" means all of them, not the Dolomites.
-  const ITALIAN_REGIONS = ['dolomites', 'lombardy', 'friuli', 'aosta'];
+  const ITALIAN_REGIONS = ['dolomites', 'lombardy', 'friuli', 'aosta', 'piedmont'];
   // Each country's regions and code. Austria made a third country, so the
   // filter can no longer read "not Italy" as France.
   const COUNTRY_REGIONS = {
@@ -226,6 +226,7 @@
         : tr('filters.chip.france', 'France'),
       region: state.region === 'dolomites' ? tr('filters.chip.dolomites', 'Dolomites region')
         : state.region === 'tyrol' ? tr('filters.chip.tyrol', 'Tyrol & Carinthia region')
+        : state.region === 'piedmont' ? tr('filters.chip.piedmont', 'Piedmont region')
         : state.region === 'switzerland' ? tr('filters.chip.swissRegion', 'Switzerland region')
         : tr('filters.chip.savoy', 'Savoy region'),
       valley: state.valley,

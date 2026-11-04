@@ -337,7 +337,58 @@
     ['Breuil-Cervinia', 45.9330, 7.6300, 'Valtournenche – Cervinia', 'aosta', 'aosta'],
     ['Champoluc (Ayas)', 45.8300, 7.7270, 'Ayas – Gressoney', 'aosta', 'aosta'],
     ['Gressoney-Saint-Jean', 45.7760, 7.8260, 'Ayas – Gressoney', 'aosta', 'aosta'],
-    ['Gressoney-La-Trinité', 45.8290, 7.8240, 'Ayas – Gressoney', 'aosta', 'aosta']
+    ['Gressoney-La-Trinité', 45.8290, 7.8240, 'Ayas – Gressoney', 'aosta', 'aosta'],
+
+    // ---- Piedmont ----
+    // The Ossola and the Valsesia run up to the Swiss and Aosta borders, and
+    // the Susa and Cuneo valleys to the French one, so each valley head needs
+    // its own row or a walk there is named after the town over the ridge.
+    ['Domodossola', 46.1150, 8.2920, 'Ossola', 'piedmont', 'verbano-cusio-ossola'],
+    ['Varzo / Val Divedro', 46.2070, 8.2520, 'Ossola', 'piedmont', 'verbano-cusio-ossola'],
+    ['Baceno / Valle Antigorio', 46.2620, 8.3180, 'Val Formazza – Antigorio', 'piedmont', 'verbano-cusio-ossola'],
+    ['Alpe Devero', 46.3080, 8.2560, 'Val Formazza – Antigorio', 'piedmont', 'verbano-cusio-ossola'],
+    ['Formazza', 46.3760, 8.4260, 'Val Formazza – Antigorio', 'piedmont', 'verbano-cusio-ossola'],
+    ['Santa Maria Maggiore', 46.1340, 8.4610, 'Valle Vigezzo', 'piedmont', 'verbano-cusio-ossola'],
+    ['Re / Valle Vigezzo', 46.1280, 8.5480, 'Valle Vigezzo', 'piedmont', 'verbano-cusio-ossola'],
+    ['Macugnaga', 45.9690, 7.9660, 'Macugnaga – Valle Anzasca', 'piedmont', 'verbano-cusio-ossola'],
+    ['Bannio Anzino', 46.0020, 8.1520, 'Macugnaga – Valle Anzasca', 'piedmont', 'verbano-cusio-ossola'],
+    ['Alagna Valsesia', 45.8540, 7.9380, 'Valsesia', 'piedmont', 'vercelli'],
+    ['Rima / Carcoforo', 45.8950, 8.0300, 'Valsesia', 'piedmont', 'vercelli'],
+    ['Rimella', 45.9090, 8.1830, 'Valsesia', 'piedmont', 'vercelli'],
+    ['Cervatto / Fobello', 45.8830, 8.1620, 'Valsesia', 'piedmont', 'vercelli'],
+    ['Campello Monti', 45.9356, 8.2367, 'Valle Strona', 'piedmont', 'verbano-cusio-ossola'],
+    ['Varallo', 45.8180, 8.2570, 'Valsesia', 'piedmont', 'vercelli'],
+    ['Oropa', 45.6286, 7.9790, 'Biella valleys', 'piedmont', 'biella'],
+    ['Piedicavallo / Valle Cervo', 45.6910, 7.9580, 'Biella valleys', 'piedmont', 'biella'],
+    ['Bielmonte', 45.6630, 8.1260, 'Biella valleys', 'piedmont', 'biella'],
+    ['Ceresole Reale', 45.4320, 7.2370, 'Canavese – Gran Paradiso', 'piedmont', 'torino'],
+    ['Noasca', 45.4540, 7.3160, 'Canavese – Gran Paradiso', 'piedmont', 'torino'],
+    ['Locana', 45.4160, 7.4590, 'Canavese – Gran Paradiso', 'piedmont', 'torino'],
+    ['Ronco Canavese / Valle Soana', 45.5000, 7.5460, 'Canavese – Gran Paradiso', 'piedmont', 'torino'],
+    ['Traversella / Valchiusella', 45.5090, 7.7500, 'Canavese – Gran Paradiso', 'piedmont', 'torino'],
+    ['Balme / Val d\'Ala', 45.3020, 7.2190, 'Valli di Lanzo', 'piedmont', 'torino'],
+    ['Usseglio', 45.2330, 7.2180, 'Valli di Lanzo', 'piedmont', 'torino'],
+    ['Groscavallo / Val Grande', 45.3680, 7.2600, 'Valli di Lanzo', 'piedmont', 'torino'],
+    ['Lanzo Torinese', 45.2740, 7.4810, 'Valli di Lanzo', 'piedmont', 'torino'],
+    ['Bardonecchia', 45.0780, 6.7040, 'Val di Susa', 'piedmont', 'torino'],
+    ['Sauze d\'Oulx', 45.0270, 6.8590, 'Val di Susa', 'piedmont', 'torino'],
+    ['Cesana / Claviere', 44.9540, 6.7520, 'Val di Susa', 'piedmont', 'torino'],
+    ['Susa', 45.1370, 7.0500, 'Val di Susa', 'piedmont', 'torino'],
+    ['Pragelato', 45.0145, 6.9415, 'Val Chisone – Pellice', 'piedmont', 'torino'],
+    ['Fenestrelle', 45.0360, 7.0500, 'Val Chisone – Pellice', 'piedmont', 'torino'],
+    ['Bobbio Pellice', 44.8080, 7.1170, 'Val Chisone – Pellice', 'piedmont', 'torino'],
+    ['Crissolo / Monviso', 44.6990, 7.1550, 'Valle Po – Varaita', 'piedmont', 'cuneo'],
+    ['Pontechianale', 44.6210, 7.0310, 'Valle Po – Varaita', 'piedmont', 'cuneo'],
+    ['Sampeyre', 44.5780, 7.1880, 'Valle Po – Varaita', 'piedmont', 'cuneo'],
+    ['Acceglio', 44.4760, 6.9910, 'Valle Maira', 'piedmont', 'cuneo'],
+    ['Elva', 44.5390, 7.0900, 'Valle Maira', 'piedmont', 'cuneo'],
+    ['Dronero', 44.4660, 7.3640, 'Valle Maira', 'piedmont', 'cuneo'],
+    ['Argentera', 44.3960, 6.9370, 'Valle Stura', 'piedmont', 'cuneo'],
+    ['Vinadio', 44.3070, 7.1760, 'Valle Stura', 'piedmont', 'cuneo'],
+    ['Terme di Valdieri', 44.2080, 7.2700, 'Valle Gesso – Marittime', 'piedmont', 'cuneo'],
+    ['Valdieri', 44.2780, 7.3910, 'Valle Gesso – Marittime', 'piedmont', 'cuneo'],
+    ['Entracque', 44.2400, 7.3980, 'Valle Gesso – Marittime', 'piedmont', 'cuneo'],
+    ['Limone Piemonte', 44.2010, 7.5770, 'Valle Gesso – Marittime', 'piedmont', 'cuneo']
   ];
 
   const REGIONS = {
@@ -346,6 +397,7 @@
     lombardy: { label: 'Lombardy', country: 'Italy', countryCode: 'IT' },
     friuli: { label: 'Friuli Venezia Giulia', country: 'Italy', countryCode: 'IT' },
     aosta: { label: 'Valle d\'Aosta', country: 'Italy', countryCode: 'IT' },
+    piedmont: { label: 'Piedmont', country: 'Italy', countryCode: 'IT' },
     tyrol: { label: 'Tyrol & Carinthia', country: 'Austria', countryCode: 'AT' },
     switzerland: { label: 'Switzerland', country: 'Switzerland', countryCode: 'CH' }
   };

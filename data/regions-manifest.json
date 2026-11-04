@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T01:40:16.741Z",
+  "generatedAt": "2026-11-04T09:45:36.878Z",
   "regions": {
     "dolomites": {
       "trailCount": 337,
@@ -482,6 +482,22 @@
       "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     },
+    "piedmont": {
+      "trailCount": 6,
+      "trails": "data/regions/piedmont-trails.js?v=4b0da43569b8",
+      "details": {
+        "valsesia-gta-tappa-21-campello-monti-rimella": "data/trail-details/valsesia-gta-tappa-21-campello-monti-rimella.js?v=19d53bb517b8",
+        "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "data/trail-details/valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo.js?v=1aa087bc73e4",
+        "valsesia-cervatto-madonna-del-balmone": "data/trail-details/valsesia-cervatto-madonna-del-balmone.js?v=92f80b8a2eef",
+        "valsesia-campello-monti-alpe-fornale-di-sopra": "data/trail-details/valsesia-campello-monti-alpe-fornale-di-sopra.js?v=255c6e34466f",
+        "valsesia-campello-monti-colle-dell-usciolo": "data/trail-details/valsesia-campello-monti-colle-dell-usciolo.js?v=415c17ef51a4",
+        "valsesia-campello-monti-lago-del-capezzone": "data/trail-details/valsesia-campello-monti-lago-del-capezzone.js?v=46c5f153e8aa"
+      },
+      "water": "data/regions/piedmont-water.geojson",
+      "hutsBars": "data/regions/piedmont-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
+      "optional": []
+    },
     "tyrol": {
       "trailCount": 23,
       "trails": "data/regions/tyrol-trails.js?v=dc332ec43fa6",
@@ -517,7 +533,7 @@
     },
     "switzerland": {
       "trailCount": 8,
-      "trails": "data/regions/switzerland-trails.js?v=501c8d67f756",
+      "trails": "data/regions/switzerland-trails.js?v=06a45d96a8e5",
       "details": {
         "engadin-around-lake-st-moritz": "data/trail-details/engadin-around-lake-st-moritz.js?v=ac3c479365c2",
         "engadin-sils-chaste-peninsula-sils": "data/trail-details/engadin-sils-chaste-peninsula-sils.js?v=1dcf61c59018",
@@ -965,6 +981,12 @@
     "aosta-sentiero-della-regina": "aosta",
     "aosta-strada-lombarda": "aosta",
     "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "aosta",
+    "valsesia-gta-tappa-21-campello-monti-rimella": "piedmont",
+    "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "piedmont",
+    "valsesia-cervatto-madonna-del-balmone": "piedmont",
+    "valsesia-campello-monti-alpe-fornale-di-sopra": "piedmont",
+    "valsesia-campello-monti-colle-dell-usciolo": "piedmont",
+    "valsesia-campello-monti-lago-del-capezzone": "piedmont",
     "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
     "osttirol-naturkraftweg-umbalfaelle": "tyrol",
     "osttirol-kulturweg-koednitz": "tyrol",
@@ -1456,6 +1478,12 @@
     "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": "aschbach-st-vigil-terrainkur-1",
     "meran-giro-delle-malghe-monte-tramontana": "noerderberg-alms-loop-naturns",
     "valchiavenna-ai-laghi-del-baldiscio": "isola-laghi-del-baldiscio",
+    "valsesia-gta-tappa-21-campello-monti-rimella": "gta-campello-monti-rimella",
+    "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "giro-del-ginepro-carcoforo",
+    "valsesia-cervatto-madonna-del-balmone": "cervatto-madonna-del-balmone",
+    "valsesia-campello-monti-alpe-fornale-di-sopra": "campello-monti-alpe-fornale",
+    "valsesia-campello-monti-colle-dell-usciolo": "campello-monti-colle-usciolo",
+    "valsesia-campello-monti-lago-del-capezzone": "campello-monti-lago-capezzone",
     "lario-nel-cuore-del-triangolo-lariano": "caglio-campoe-cassina-enco",
     "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "passo-del-giovo-rifugio-sommafiume",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
@@ -1919,6 +1947,12 @@
     "aschbach-st-vigil-terrainkur-1": "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo",
     "noerderberg-alms-loop-naturns": "meran-giro-delle-malghe-monte-tramontana",
     "isola-laghi-del-baldiscio": "valchiavenna-ai-laghi-del-baldiscio",
+    "gta-campello-monti-rimella": "valsesia-gta-tappa-21-campello-monti-rimella",
+    "giro-del-ginepro-carcoforo": "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo",
+    "cervatto-madonna-del-balmone": "valsesia-cervatto-madonna-del-balmone",
+    "campello-monti-alpe-fornale": "valsesia-campello-monti-alpe-fornale-di-sopra",
+    "campello-monti-colle-usciolo": "valsesia-campello-monti-colle-dell-usciolo",
+    "campello-monti-lago-capezzone": "valsesia-campello-monti-lago-del-capezzone",
     "caglio-campoe-cassina-enco": "lario-nel-cuore-del-triangolo-lariano",
     "passo-del-giovo-rifugio-sommafiume": "lario-dal-passo-del-giovo-al-rifugio-sommafiume",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",

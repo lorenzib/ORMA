@@ -52,12 +52,15 @@ const regionsApi = (() => {
 // split them. A lift says which country it is in, so a French one stays in
 // Savoy whatever its lower station's position. Ticino lies west of 9°E too, so
 // a point whose nearest locality is Swiss goes to Switzerland the same way.
+// Piedmont is the same: Bardonecchia and Modane share the Fréjus, and the
+// Ossola lies west of 9°E too.
+const WEST_REGIONS = ['aosta', 'piedmont', 'switzerland'];
 let anchorTrails = [];
 function regionForPoint(lng, lat) {
   if (!Number.isFinite(lng) || !Number.isFinite(lat)) return null;
   if (lng < 9) {
     const region = regionsApi.nearestLocality(lat, lng).region;
-    return region === 'aosta' || region === 'switzerland' ? region : 'savoy';
+    return WEST_REGIONS.includes(region) ? region : 'savoy';
   }
   let best = 'dolomites';
   let bestD = Infinity;
@@ -123,10 +126,11 @@ function writeJson(file, value) {
 }
 
 const trails = loadTrails();
-// Savoy and Valle d'Aosta lie wholly west of 9°E, so neither can anchor a
+// Savoy, Valle d'Aosta and Piedmont lie wholly west of 9°E, so none can anchor a
 // point east of it: a lift by Lake Como is not an Aosta lift because the
 // Gressoney walks happen to be the nearest trails.
 anchorTrails = trails.filter(trail => trail.region && trail.region !== 'savoy' && trail.region !== 'aosta'
+  && trail.region !== 'piedmont'
   && Number.isFinite(trail.lat) && Number.isFinite(trail.lng));
 const gondolas = loadGondolas();
 const regionIds = Object.keys(regionsApi.REGIONS);

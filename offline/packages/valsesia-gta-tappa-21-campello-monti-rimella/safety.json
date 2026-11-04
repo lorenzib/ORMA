@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsesia-gta-tappa-21-campello-monti-rimella",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 8.6,
+    "ascentM": 620,
+    "highestPointM": 1919,
+    "expectedDuration": "3.25 hours",
+    "difficulty": "Hard",
+    "shadePercent": 31
+  },
+  "trailhead": {
+    "lat": 45.935842,
+    "lng": 8.236739,
+    "label": "Campello Monti (1,305 m), the Region’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "620 m up and 750 m down over a 1,924 m pass: check the weather.",
+    "Stony, steep hairpins below the Alpe Scarpia.",
+    "Grazing pastures on both sides of the pass in summer: Rimella asks for a short lead near flocks, no stepping between flock and guard dog, and the widest possible berth.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

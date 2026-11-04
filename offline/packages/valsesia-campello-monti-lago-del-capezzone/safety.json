@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsesia-campello-monti-lago-del-capezzone",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.2,
+    "ascentM": 800,
+    "highestPointM": 2103,
+    "expectedDuration": "2.75 hours",
+    "difficulty": "Hard",
+    "shadePercent": 9
+  },
+  "trailhead": {
+    "lat": 45.935896,
+    "lng": 8.237097,
+    "label": "The car park in Campello Monti (1,305 m), the park authority’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Steep: 800 m up in 4.2 km.",
+    "Near the top the path crosses a smooth rock slab on cut steps: lift or help your dog over, and turn back if it is wet or icy.",
+    "Unbridged stream crossings.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}
