@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-around-lake-st-moritz",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.3,
+    "ascentM": 2,
+    "highestPointM": 1802,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 26
+  },
+  "trailhead": {
+    "lat": 46.497495,
+    "lng": 9.847189,
+    "label": "St. Moritz station, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The lake has no railing: keep your dog on a short lead along the water.",
+    "Short ramps of up to 11% at the bridges.",
+    "Busy with walkers, cyclists and prams in summer: keep your dog close.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-diavolezza-sass-queder",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 1.5,
+    "ascentM": 123,
+    "highestPointM": 3033,
+    "expectedDuration": "0.5 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.411835,
+    "lng": 9.965028,
+    "label": "Diavolezza top station, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "High alpine at 3,000 m: the air is thin, the weather turns fast and snow can fall in any month.",
+    "Rocky path; OSM grades about 200 m near the summit as demanding mountain path (T3): keep your dog close and on a short lead.",
+    "Glaciers below the ridge: never leave the marked path.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

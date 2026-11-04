@@ -12,6 +12,8 @@ Catalogue and offline scope amendment: 2026-10-27
 
 Catalogue area amendment (Alps): 2026-10-27
 
+Catalogue area amendment (western Alps and Switzerland): 2026-11-03
+
 ## Purpose
 
 This charter closes the first planning cycle and fixes the target for the first
@@ -121,6 +123,27 @@ bulk OSM import, the field-test scope and the launch checklist's critical path
 apply unchanged. A new country also needs its own dog-access standard before a
 walk there is sealed: Austria's was approved the same day
 (`docs/editorial/austria-sources-and-dog-rules.md`).
+
+### Catalogue area amendment (western Alps and Switzerland, 2026-11-03)
+
+The product owner widened the catalogue area again on 3 November 2026. On top
+of the areas above, the catalogue may grow in:
+
+- **Italy:** all of the Lombardy mountains, adding the Orobie (Bergamo and
+  Brescia Alps and Prealps) and the Varese and Lake Garda mountains; the
+  Piedmont mountains (Ossola, Valsesia, the Biella and Canavese valleys, the
+  Turin valleys, the Cuneo valleys).
+- **France:** the rest of the French Alps (Isère, Hautes-Alpes,
+  Alpes-de-Haute-Provence, Alpes-Maritimes and Drôme's mountains), beyond
+  Savoy.
+- **Switzerland:** the Swiss Alps and Jura, canton by canton.
+
+The rules of the amendment above still apply. Switzerland is a new country, so
+it needs its own dog-access standard, approved by the owner, before a walk
+there is sealed. A French area outside Savoy uses Savoy's French standard plus
+the commune's and any park's own rules. Piedmont uses the Italian national
+ordinance plus the commune's and any park's own rules. Each new area opens as
+an ORMA region in its own pull request before its first walks arrive.
 
 ### Optional multiple-dog profile amendment
 
@@ -401,7 +424,7 @@ The first beta does not include:
 - social feeds;
 - badges, leaderboards, or gamification;
 - subscriptions or paid tiers;
-- new countries, or areas outside the catalogue area amendment;
+- new countries, or areas outside the catalogue area amendments;
 - voice turn-by-turn guidance;
 - continuous background GPS recording;
 - advanced multi-day itineraries;

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-morteratsch-glacier-route",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 2.9,
+    "ascentM": 130,
+    "highestPointM": 2030,
+    "expectedDuration": "0.75 hours",
+    "difficulty": "Easy",
+    "shadePercent": 3
+  },
+  "trailhead": {
+    "lat": 46.450771,
+    "lng": 9.941001,
+    "label": "Morteratsch station and Hotel Morteratsch, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Busy with walkers and children in summer: keep your dog close.",
+    "Beyond the wooden bridge the way to the glacier tongue crosses scree and a rock step: not part of this walk.",
+    "Never let your dog onto the glacier or the meltwater streams.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

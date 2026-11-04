@@ -24,7 +24,7 @@ describe('shared Safety Library guide visual system', () => {
 
     const stylesheets = [...document.querySelectorAll('link[rel="stylesheet"]')];
     expect(document.body.classList.contains('safety-guide-article')).toBe(true);
-    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20260909-1');
+    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20261104-1');
     expect(document.querySelectorAll('.safety-continue')).toHaveLength(1);
     expect(document.querySelectorAll('.safety-sources')).toHaveLength(1);
     expect(document.querySelector('.safety-photo-header .safety-topic').textContent).toMatch(/^Safety library \/ /);

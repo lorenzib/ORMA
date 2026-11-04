@@ -955,6 +955,142 @@
       }
     },
     {
+      "id": "engadin-around-lake-st-moritz",
+      "approvedReviewId": "commons-engadin-around-lake-st-moritz-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/engadin-around-lake-st-moritz-lake.jpg",
+        "heroImage": "images/trails/engadin-around-lake-st-moritz-lake.jpg",
+        "imageAlt": "Lake St. Moritz on a sunny summer day, with the town on the slope behind and the mountains and clouds reflected in still water beyond a grassy bank",
+        "imageCredit": "Lake St. Moritz from the shore path",
+        "imageCreditText": "Lake St. Moritz from the shore path by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lake_St._Moritz.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "engadin-chapella-val-susauna",
+      "approvedReviewId": "commons-engadin-chapella-val-susauna-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/engadin-chapella-val-susauna-susauna.jpg",
+        "heroImage": "images/trails/engadin-chapella-val-susauna-susauna.jpg",
+        "imageAlt": "The small church and old Engadin houses of Susauna beside a wet lane, with yellow hiking signs and wooden fences",
+        "imageCredit": "The hamlet of Susauna",
+        "imageCreditText": "The hamlet of Susauna by Beat Ruest",
+        "imageCreator": "Beat Ruest",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Susauna_Dorf_(4).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "engadin-corvatsch-murtel-fuorcla-surlej",
+      "approvedReviewId": "commons-engadin-corvatsch-murtel-fuorcla-surlej-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/engadin-corvatsch-murtel-fuorcla-surlej-alpine-path.jpg",
+        "heroImage": "images/trails/engadin-corvatsch-murtel-fuorcla-surlej-alpine-path.jpg",
+        "imageAlt": "A wide gravel path curving across a stony alpine slope with patches of grass, under a blue sky with thin cloud",
+        "imageCredit": "The path from Murtèl towards Fuorcla Surlej",
+        "imageCreditText": "The path from Murtèl towards Fuorcla Surlej by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bernina-Tour_Stage_4.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "engadin-diavolezza-sass-queder",
+      "approvedReviewId": "commons-engadin-diavolezza-sass-queder-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/engadin-diavolezza-sass-queder-piz-trovat.jpg",
+        "heroImage": "images/trails/engadin-diavolezza-sass-queder-piz-trovat.jpg",
+        "imageAlt": "A dark rocky peak with snow patches in front of the glaciers and snowy summits of the Bernina range, under a blue sky with white clouds",
+        "imageCredit": "Piz Trovat from the Sass Queder path",
+        "imageCreditText": "Piz Trovat from the Sass Queder path by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Piz_Trovat_2021.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "engadin-morteratsch-glacier-route",
+      "approvedReviewId": "commons-engadin-morteratsch-glacier-route-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/engadin-morteratsch-glacier-route-glacier-path.jpg",
+        "heroImage": "images/trails/engadin-morteratsch-glacier-route-glacier-path.jpg",
+        "imageAlt": "A wide gravel path between larches and boulders on the floor of Val Morteratsch, with grey mountains ahead under a cloudy sky",
+        "imageCredit": "The glacier path in Val Morteratsch",
+        "imageCreditText": "The glacier path in Val Morteratsch by Leonhard Lenz",
+        "imageCreator": "Leonhard Lenz",
+        "imageLicence": "CC0 1.0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Trail_at_bottom_of_Val_Morteratsch_Vadret_da_Morteratsch_Auengebiet_von_nationaler_Bedeutung_in_Pontresina_2022-09-26_37.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "engadin-nature-trail-la-senda-samedan-smartrail",
+      "approvedReviewId": "commons-engadin-nature-trail-la-senda-samedan-smartrail-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/engadin-nature-trail-la-senda-samedan-smartrail-samedan-view.jpg",
+        "heroImage": "images/trails/engadin-nature-trail-la-senda-samedan-smartrail-samedan-view.jpg",
+        "imageAlt": "Snow-streaked peaks and a glacier above a dark forested ridge, seen from the slope above Samedan on a summer day",
+        "imageCredit": "Piz Morteratsch from above Samedan",
+        "imageCreditText": "Piz Morteratsch from above Samedan by Capricorn4049",
+        "imageCreator": "Capricorn4049",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Piz_Mandra_and_Piz_Morteratsch_as_seen_from_Samedan.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "engadin-sils-chaste-peninsula-sils",
+      "approvedReviewId": "commons-engadin-sils-chaste-peninsula-sils-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/engadin-sils-chaste-peninsula-sils-shore-path.jpg",
+        "heroImage": "images/trails/engadin-sils-chaste-peninsula-sils-shore-path.jpg",
+        "imageAlt": "A gravel path along the shore of Lake Sils beside a wooden jetty and small moored boats, with forest and mountains beyond the turquoise water",
+        "imageCredit": "The shore path at the Chastè peninsula",
+        "imageCreditText": "The shore path at the Chastè peninsula by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chast%C3%A8_-_trail_3.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "engadin-surlej-waterfall-lake-silvaplana-surlej",
+      "approvedReviewId": "commons-engadin-surlej-waterfall-lake-silvaplana-surlej-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/engadin-surlej-waterfall-lake-silvaplana-surlej-crap-da-sass.jpg",
+        "heroImage": "images/trails/engadin-surlej-waterfall-lake-silvaplana-surlej-crap-da-sass.jpg",
+        "imageAlt": "The Crap da Sass castle on a rocky knoll beside Lake Silvaplana, with green meadows, a road bridge and a gravel path below",
+        "imageCredit": "Crap da Sass castle from the Via da Surlej",
+        "imageCreditText": "Crap da Sass castle from the Via da Surlej by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chast%C3%A8_Crap_da_Sass_-_Via_da_Surlej.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fassa-alpe-di-fuciade",
       "approvedReviewId": "commons-fassa-alpe-di-fuciade-on-route",
       "approvedAt": "2026-10-26T15:00:00.000Z",
@@ -2297,6 +2433,23 @@
       }
     },
     {
+      "id": "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof",
+      "approvedReviewId": "commons-meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof-videgg-chapel.jpg",
+        "heroImage": "images/trails/meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof-videgg-chapel.jpg",
+        "imageAlt": "A small white chapel with a shingled roof and bell turret on a green meadow behind a wooden fence, with forested valley slopes beyond",
+        "imageCredit": "The Maria Heimsuchung chapel at Videgg",
+        "imageCreditText": "The Maria Heimsuchung chapel at Videgg by Mammut74",
+        "imageCreator": "Mammut74",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kapelle_Maria_Heimsuchung_in_Videgg.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto",
       "approvedReviewId": "commons-meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",
@@ -2344,6 +2497,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=464857134788338",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "meran-escursione-alle-malghe-maiser-alm-moschwaldalm",
+      "approvedReviewId": "mapillary-meran-escursione-alle-malghe-maiser-alm-moschwaldalm-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-escursione-alle-malghe-maiser-alm-moschwaldalm-reservoir-track.jpg",
+        "heroImage": "images/trails/meran-escursione-alle-malghe-maiser-alm-moschwaldalm-reservoir-track.jpg",
+        "imageAlt": "A gravel track with a wooden fence beside a blue mountain reservoir, a wooden signpost on the right and spruce woods under a cloudy sky",
+        "imageCredit": "The track by the reservoir on Meran 2000",
+        "imageCreditText": "The track by the reservoir on Meran 2000 by descilla",
+        "imageCreator": "descilla",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1672927160193890",
         "imageSourceType": "licensed-source"
       }
     },
@@ -2399,6 +2569,40 @@
       }
     },
     {
+      "id": "meran-giro-delle-malghe-monte-tramontana",
+      "approvedReviewId": "commons-meran-giro-delle-malghe-monte-tramontana-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-giro-delle-malghe-monte-tramontana-zetn-alm.jpg",
+        "heroImage": "images/trails/meran-giro-delle-malghe-monte-tramontana-zetn-alm.jpg",
+        "imageAlt": "A wooden alpine hut with parasols on a grassy slope, a wooden fence and stacked logs in front, larches behind and distant peaks under a blue sky",
+        "imageCredit": "The Zetn Alm on the alm path",
+        "imageCreditText": "The Zetn Alm on the alm path by Uwelino",
+        "imageCreator": "Uwelino",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Die_Zetnalm_(1747_m.ü.M.).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "meran-itinerario-raststeinweg",
+      "approvedReviewId": "commons-meran-itinerario-raststeinweg-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-itinerario-raststeinweg-bergweg-view.jpg",
+        "heroImage": "images/trails/meran-itinerario-raststeinweg-bergweg-view.jpg",
+        "imageAlt": "Vine leaves along a wire trellis in the foreground, spruce and larch trees behind, and cloud-capped mountains above the Meran basin",
+        "imageCredit": "Vines and mountains above the Bergweg in Schenna",
+        "imageCreditText": "Vines and mountains above the Bergweg in Schenna by Stephan van Helden",
+        "imageCreator": "Stephan van Helden",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Schenner_Waalweg,_Blick_von_nördlich_des_Bergenwegs_nach_Nordwesten.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer",
       "approvedReviewId": "commons-meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",
@@ -2416,6 +2620,23 @@
       }
     },
     {
+      "id": "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo",
+      "approvedReviewId": "mapillary-meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo-forest-path.jpg",
+        "heroImage": "images/trails/meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo-forest-path.jpg",
+        "imageAlt": "A rocky, root-laced path climbing through spruce forest, with a red-and-white waymark on a tree trunk and mossy banks either side",
+        "imageCredit": "The forest path up towards St. Vigil",
+        "imageCreditText": "The forest path up towards St. Vigil by PaulProg",
+        "imageCreator": "PaulProg",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=530545826237489",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "meran-sentiero-della-roggia-brandis-a-lana",
       "approvedReviewId": "mapillary-meran-sentiero-della-roggia-brandis-a-lana-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",
@@ -2429,6 +2650,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=859047004699049",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell",
+      "approvedReviewId": "commons-meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell-hoehenweg-sign.jpg",
+        "heroImage": "images/trails/meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell-hoehenweg-sign.jpg",
+        "imageAlt": "A wooden signpost with two arms reading Meraner Höhenweg, Alta Via di Merano, number 24 in red and white, above the Vinschgau valley floor",
+        "imageCredit": "The Meraner Höhenweg signpost above Naturns",
+        "imageCreditText": "The Meraner Höhenweg signpost above Naturns by Seichter-wm",
+        "imageCreator": "Seichter-wm",
+        "imageLicence": "CC0 1.0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Meraner_Höhenweg_Naturns4.JPG",
         "imageSourceType": "licensed-source"
       }
     },
