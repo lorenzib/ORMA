@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6,
+    "ascentM": 500,
+    "highestPointM": 1805,
+    "expectedDuration": "3.75 hours",
+    "difficulty": "Hard",
+    "shadePercent": 48
+  },
+  "trailhead": {
+    "lat": 45.908422,
+    "lng": 8.049584,
+    "label": "The square in Carcoforo (1,304 m), the park authority’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Grazing pastures at the Alpe Giovanchera, Pianelli and Passone in summer: lead on, and give flocks and guard dogs a wide berth.",
+    "Old stone paving and steps near Carcoforo, slippery when wet.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

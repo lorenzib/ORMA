@@ -195,8 +195,12 @@ describe('the existing-site verification boundary',()=>{
     // Terrainkur path from Aschbach to St. Vigil, and the Nörderberg alms loop.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
     // Then 459 and 457 with the Valchiavenna walk from Isola to the Baldiscio lakes.
-    expect(catalogue).toHaveLength(459);
-    expect(currentSiteTrails(catalogue)).toHaveLength(457);
+    // Then 465 and 463 with six Valsesia walks, the first in Piedmont: GTA stage 21
+    // from Campello Monti to Rimella, Cervatto to the Madonna del Balmone, the Giro
+    // del Ginepro from Carcoforo, and Campello Monti to the Alpe Fornale, the Colle
+    // dell’Usciolo and the Lago del Capezzone.
+    expect(catalogue).toHaveLength(465);
+    expect(currentSiteTrails(catalogue)).toHaveLength(463);
   });
 
   test('requires the artwork the public trail page needs',()=>{

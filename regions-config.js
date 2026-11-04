@@ -355,6 +355,8 @@
     ['Alagna Valsesia', 45.8540, 7.9380, 'Valsesia', 'piedmont', 'vercelli'],
     ['Rima / Carcoforo', 45.8950, 8.0300, 'Valsesia', 'piedmont', 'vercelli'],
     ['Rimella', 45.9090, 8.1830, 'Valsesia', 'piedmont', 'vercelli'],
+    ['Cervatto / Fobello', 45.8830, 8.1620, 'Valsesia', 'piedmont', 'vercelli'],
+    ['Campello Monti', 45.9356, 8.2367, 'Valle Strona', 'piedmont', 'verbano-cusio-ossola'],
     ['Varallo', 45.8180, 8.2570, 'Valsesia', 'piedmont', 'vercelli'],
     ['Oropa', 45.6286, 7.9790, 'Biella valleys', 'piedmont', 'biella'],
     ['Piedicavallo / Valle Cervo', 45.6910, 7.9580, 'Biella valleys', 'piedmont', 'biella'],
