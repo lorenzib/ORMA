@@ -12,6 +12,13 @@
 (function () {
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function (m, k) { return (k in vars ? vars[k] : m); }) : text;
+  }
+
   var root = document.getElementById('newCustomerHomepage');
   if (!root) return;
 
@@ -145,7 +152,7 @@
     var signedIn = typeof currentProfileForAdjust !== 'undefined' && currentProfileForAdjust
       ? currentProfileForAdjust.name : null;
     var who = signedIn || (dogMeta() || {}).name;
-    if (title) title.textContent = who ? 'Best for ' + who + ', right now' : 'Best right now';
+    if (title) title.textContent = who ? tx('Best for {name}, right now', { name: who }) : tx('Best right now');
     if (detail) detail.textContent = band.detail;
     el.setAttribute('data-tone', band.tone);
     el.hidden = false;
@@ -210,14 +217,14 @@
   function badgesFor(t) {
     var out = [];
     var rank = typeof t.terrainRank === 'number' ? t.terrainRank : 1;
-    if (rank <= 0) out.push({ label: 'Graded ground', tone: 'low' });
-    else if (rank >= 2) out.push({ label: 'Rocky', tone: 'caution' });
-    else out.push({ label: 'Mixed terrain', tone: 'mod' });
+    if (rank <= 0) out.push({ label: tx('Graded ground'), tone: 'low' });
+    else if (rank >= 2) out.push({ label: tx('Rocky'), tone: 'caution' });
+    else out.push({ label: tx('Mixed terrain'), tone: 'mod' });
     var sc = typeof t.shadeCoverage === 'number' ? t.shadeCoverage : 0;
-    if (sc >= 60) out.push({ label: 'Fully shaded', tone: 'low' });
-    else if (sc >= 30) out.push({ label: 'Part shade', tone: 'mod' });
-    else out.push({ label: 'Little shade', tone: 'mod' });
-    if (hasWater(t)) out.push({ label: 'Water access', tone: 'low' });
+    if (sc >= 60) out.push({ label: tx('Fully shaded'), tone: 'low' });
+    else if (sc >= 30) out.push({ label: tx('Part shade'), tone: 'mod' });
+    else out.push({ label: tx('Little shade'), tone: 'mod' });
+    if (hasWater(t)) out.push({ label: tx('Water access'), tone: 'low' });
     return out;
   }
 
@@ -475,7 +482,7 @@
     if(state.activeSuggest >= options.length) state.activeSuggest = options.length - 1;
     if(state.activeSuggest >= 0) el.search.setAttribute('aria-activedescendant', 'hpSuggestion' + state.activeSuggest);
     else el.search.removeAttribute('aria-activedescendant');
-    if(el.searchStatus) el.searchStatus.textContent = countTxt + ' found. Use the up and down arrow keys to review the top matches.';
+    if(el.searchStatus) el.searchStatus.textContent = tx('{count} found. Use the up and down arrow keys to review the top matches.', { count: countTxt });
   }
 
   // ---- main content: results OR browse sections ----
@@ -509,31 +516,31 @@
         '<span class="hp-ccard-meta">' + tags + '</span>' +
         '<span class="hp-ccard-footer"><span class="hp-ccard-rating">' + riskBadge + '</span>' +
           '<span class="hp-ccard-match hp-ccard-match--' + ti.kind + '">' +
-            '<span class="hp-ccard-score"><strong>' + s + '<span>%</span></strong><small>MATCH FOR YOUR DOG</small></span>' +
+            '<span class="hp-ccard-score"><strong>' + s + '<span>%</span></strong><small>' + tx('MATCH FOR YOUR DOG') + '</small></span>' +
           '</span></span>' +
       '</span>' +
     '</button>';
   }
 
   var HOW_CARDS = [
-    { title: '1 · We assess the trail',
+    { title: tx('1 · We assess the trail'),
       image: 'images/orma-how-assess.jpg?v=20260821-4',
       image2x: 'images/orma-how-assess-1920.jpg?v=20260821-4',
       focus: 'trail-marker',
-      alt: 'A marked mountain trail crossing rocky alpine terrain',
-      text: 'We assess the mountain first: ground, effort, exposure, shade, water and access. The trail baseline is the same for every dog.' },
-    { title: '2 · You add your dog',
+      alt: tx('A marked mountain trail crossing rocky alpine terrain'),
+      text: tx('We assess the mountain first: ground, effort, exposure, shade, water and access. The trail baseline is the same for every dog.') },
+    { title: tx('2 · You add your dog'),
       image: 'images/orma-how-add-dog.jpg?v=20260821-1',
       image2x: 'images/orma-how-add-dog-1920.jpg?v=20260821-1',
       focus: 'dog',
-      alt: 'A dog standing on a forest trail in the mountains',
-      text: 'Your dog’s fitness, life stage, health and build set comfortable limits. Anything you leave blank stays neutral.' },
-    { title: '3 · We explain the match',
+      alt: tx('A dog standing on a forest trail in the mountains'),
+      text: tx('Your dog’s fitness, life stage, health and build set comfortable limits. Anything you leave blank stays neutral.') },
+    { title: tx('3 · We explain the match'),
       image: 'images/orma-how-match.jpg?v=20260821-4',
       image2x: 'images/orma-how-match-1920.jpg?v=20260821-4',
       focus: 'walking-pair',
-      alt: 'A dog and human walking together on a Dolomites trail',
-      text: 'We compare the route with those limits, then show the match score, the cautions that matter and why they matter.' },
+      alt: tx('A dog and human walking together on a Dolomites trail'),
+      text: tx('We compare the route with those limits, then show the match score, the cautions that matter and why they matter.') },
   ];
 
   function renderContent() {
@@ -553,13 +560,13 @@
       el.content.innerHTML =
         '<div class="hp-results-head"><div><div class="hp-results-title">' + title + '</div>' +
         '<div class="hp-results-sub">' + sub + '</div></div>' +
-        '<button type="button" class="hp-clear" data-action="clear">Clear search</button></div>' + body;
+        '<button type="button" class="hp-clear" data-action="clear">' + tx('Clear search') + '</button></div>' + body;
     } else {
       var collection = weeklyCollection();
       var feat = featured(collection);
       var isGuest = state.dog === 'medium';
-      var featTitle = collection ? collection.title : 'Trails selected for your dog';
-      var featSub = collection ? collection.subtitle : 'Published routes ranked for the dog you are browsing with';
+      var featTitle = collection ? collection.title : tx('Trails selected for your dog');
+      var featSub = collection ? collection.subtitle : tx('Published routes ranked for the dog you are browsing with');
       var featCollectionHref = collection
         ? 'collections.html?collection=' + encodeURIComponent(collection.id)
         : 'browse-trails.html';
@@ -570,16 +577,16 @@
         ? '<a class="hp-featured-title-link" href="' + featCollectionHref + '">' + esc(featTitle) + '</a>'
         : esc(featTitle);
       var featCollectionCta = collection
-        ? 'See all ' + featCollectionCount + ' trails in this collection →'
-        : 'Browse more →';
+        ? tx('See all {count} trails in this collection →', { count: featCollectionCount })
+        : tx('Browse more →');
       var featRankLine = isGuest
-        ? 'Browsing as a guest, ranked for a medium dog.'
+        ? tx('Browsing as a guest, ranked for a medium dog.')
         : (state.dog === 'custom'
-          ? 'Browsing with ' + dogMeta().name + ', with trails ranked for them.'
-          : 'Previewing as ' + dogMeta().name + ', with trails ranked for them.');
-      var featProfileCta = state.dog === 'custom' ? 'Save profile →' : "Create your dog's profile →";
+          ? tx('Browsing with {name}, with trails ranked for them.', { name: dogMeta().name })
+          : tx('Previewing as {name}, with trails ranked for them.', { name: dogMeta().name }));
+      var featProfileCta = state.dog === 'custom' ? tx('Save profile →') : tx('Create your dog\'s profile →');
       var how = HOW_CARDS.map(function (c) {
-        var text = c.text || 'We map and review each published trail for route shape, terrain, climb, shade, water, access and hazards.';
+        var text = c.text || tx('We map and review each published trail for route shape, terrain, climb, shade, water, access and hazards.');
         return '<div class="hp-howcard">' +
           '<div class="hp-howcard-media"><img class="hp-howcard-image hp-howcard-image--' + c.focus + '" src="' + c.image + '" srcset="' + c.image + ' 1x, ' + c.image2x + ' 2x" alt="' + esc(c.alt) + '" loading="lazy" decoding="async" width="960" height="600"></div>' +
           '<div class="hp-howcard-copy"><div class="hp-howcard-title">' + esc(c.title) + '</div>' +
@@ -593,15 +600,15 @@
           '<blockquote class="hp-mission-quote"><p>' + esc(t('hp.mission.quote', '“A walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.”')) + '</p><cite>' + esc(t('hp.mission.cite', '– ORMA Team')) + '</cite></blockquote>' +
         '</section>' +
         '<section class="hp-how" aria-labelledby="hpHowTitle">' +
-          '<div class="hp-section-head"><div><div class="hp-kick">How ORMA works</div>' +
-          '<h2 class="hp-how-h2" id="hpHowTitle">How trail evidence becomes practical guidance for your dog</h2>' +
-          '<p class="hp-how-sub">We assess the trail first, then compare its terrain and conditions with your dog’s needs to explain the match.</p></div></div>' +
+          '<div class="hp-section-head"><div><div class="hp-kick">' + esc(tx('How ORMA works')) + '</div>' +
+          '<h2 class="hp-how-h2" id="hpHowTitle">' + esc(tx('How trail evidence becomes practical guidance for your dog')) + '</h2>' +
+          '<p class="hp-how-sub">' + esc(tx('We assess the trail first, then compare its terrain and conditions with your dog’s needs to explain the match.')) + '</p></div></div>' +
           '<div class="hp-how-grid">' + how + '</div>' +
-          '<a class="hp-how-link" href="how-scoring-works.html">See how ORMA assesses a trail →</a>' +
+          '<a class="hp-how-link" href="how-scoring-works.html">' + esc(tx('See how ORMA assesses a trail →')) + '</a>' +
         '</section>' +
         '<section class="hp-featured" aria-labelledby="hpFeaturedTitle">' +
           '<div class="hp-coll-head"><div>' +
-            '<div class="hp-kick hp-kick-left">Featured this week</div>' +
+            '<div class="hp-kick hp-kick-left">' + esc(tx('Featured this week')) + '</div>' +
             '<h2 class="hp-feat-h2" id="hpFeaturedTitle">' + featTitleHtml + '</h2>' +
             '<p class="hp-coll-sub">' + esc(featSub) + '</p>' +
             '<p class="hp-coll-rank-row"><strong>' + esc(featRankLine) + '</strong> <button type="button" class="hp-coll-profile-cta hp-dog-profile-cta" data-action="create-dog-profile">' + esc(featProfileCta) + '</button></p></div></div>' +

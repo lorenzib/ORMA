@@ -1,6 +1,13 @@
 (function (global) {
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   // Where each line of "How to follow this route" came from, said once.
   //
   // Every stored value ends with its own source sentence, because a value is
@@ -40,8 +47,30 @@
     'Key turns': 'the key turns',
   };
 
+  // The shown name of a line, in the reader's language.
+  function shownName(name) {
+    switch (name) {
+      case 'the start': return tx('the start');
+      case 'the trail numbers': return tx('the trail numbers');
+      case 'the route': return tx('the route');
+      case 'where to switch': return tx('where to switch');
+      case 'the key turns': return tx('the key turns');
+      default: return name;
+    }
+  }
+
+  // What a source covers, as one sentence (SOURCES[].one / .many, translated).
+  function sourceSays(key, names, plural) {
+    if (key === 'orma') {
+      return plural ? tx('{names} are ORMA’s suggestion', { names }) : tx('{names} is ORMA’s suggestion', { names });
+    }
+    return plural
+      ? tx('{names} are read off the map (OpenStreetMap)', { names })
+      : tx('{names} is read off the map (OpenStreetMap)', { names });
+  }
+
   function listed(names) {
-    return names.length < 2 ? names.join('') : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+    return names.length < 2 ? names.join('') : tx('{list} and {last}', { list: names.slice(0, -1).join(', '), last: names[names.length - 1] });
   }
 
   /**
@@ -64,20 +93,38 @@
     });
     const parts = SOURCES.filter(source => found.has(source.key)).map(source => {
       const names = found.get(source.key);
-      const text = `${listed(names)} ${names.length > 1 || /s$/.test(names[0]) ? source.many : source.one}`;
+      const plural = names.length > 1 || /s$/.test(names[0]);
+      const text = sourceSays(source.key, listed(names.map(shownName)), plural);
       return text.charAt(0).toUpperCase() + text.slice(1);
     });
     const note = parts.length
-      ? `${parts.join('. ')}. None of it was published by the trail’s operator.`
+      ? tx('{parts}. None of it was published by the trail’s operator.', { parts: parts.join('. ') })
       : '';
     return { lines: stripped, note };
   }
 
   const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
     'August', 'September', 'October', 'November', 'December'];
+  function monthName(index) {
+    switch (index) {
+      case 0: return tx('January');
+      case 1: return tx('February');
+      case 2: return tx('March');
+      case 3: return tx('April');
+      case 4: return tx('May');
+      case 5: return tx('June');
+      case 6: return tx('July');
+      case 7: return tx('August');
+      case 8: return tx('September');
+      case 9: return tx('October');
+      case 10: return tx('November');
+      case 11: return tx('December');
+      default: return MONTHS[index];
+    }
+  }
   function readOn(value) {
     const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(value || ''));
-    return match ? `${Number(match[3])} ${MONTHS[Number(match[2]) - 1]} ${match[1]}` : '';
+    return match ? `${Number(match[3])} ${monthName(Number(match[2]) - 1)} ${match[1]}` : '';
   }
 
   const STEPS_BADGE = 'This walk has no trail number of its own: follow these landmarks';
@@ -112,7 +159,7 @@
     // appear when a walk mixes sources and a reader needs to tell them apart.
     const mixed = used.length > 1;
     return {
-      badge: STEPS_BADGE,
+      badge: tx('This walk has no trail number of its own: follow these landmarks'),
       steps: steps.map(step => ({
         text: String(step.text).trim(),
         tags: mixed ? [...new Set(step.from.map(index => String(sources[index].tag).trim()))] : [],
@@ -123,10 +170,10 @@
       credits: used.map(index => {
         const source = sources[index];
         return {
-          before: mixed ? `Steps marked “${String(source.tag).trim()}”: ` : 'Directions: ',
+          before: mixed ? tx('Steps marked “{tag}”:', { tag: String(source.tag).trim() }) + ' ' : tx('Directions:') + ' ',
           label: creditName(source),
           url: source.url,
-          after: `, checked ${readOn(source.reviewedAt)}.`,
+          after: tx(', checked {date}.', { date: readOn(source.reviewedAt) }),
         };
       }),
     };

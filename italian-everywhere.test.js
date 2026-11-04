@@ -1,0 +1,65 @@
+const fs = require('fs');
+const path = require('path');
+const phrases = require('./scripts/check-i18n-phrases');
+const trailText = require('./scripts/trail-text-it');
+
+// Italian reaches what scripts write, every trail's own words, and the guides
+// and legal pages. English stays the source; these keep the Italian complete.
+
+const read = name => fs.readFileSync(path.join(__dirname, name), 'utf8');
+
+describe('wording scripts write on the page', () => {
+  test('every wrapped sentence has its Italian, with the same placeholders', () => {
+    expect(phrases.check().errors).toEqual([]);
+  });
+
+  test('i18n.js fetches the Italian table only for Italian readers', () => {
+    expect(read('i18n.js')).toMatch(/if \(lang === 'it' && !window\.ORMA_PHRASES_IT && document\.readyState === 'loading'\)/);
+  });
+});
+
+describe("each trail's own words", () => {
+  const trails = trailText.loadTrails();
+
+  test('a trail page fetches its Italian file for Italian readers', () => {
+    expect(read('regional-trails-loader.js')).toMatch(/data\/trail-text-it\//);
+  });
+
+  test('every Italian entry is a sentence its trail still says', () => {
+    const stale = [];
+    trails.forEach(trail => {
+      const said = new Set(trailText.sentencesOf(trail));
+      Object.keys(trailText.readTable(trail.id)).forEach(sentence => {
+        if(!said.has(sentence)) stale.push(`${trail.id}: ${sentence.slice(0, 60)}`);
+      });
+    });
+    expect(stale).toEqual([]);
+  });
+
+  test('no file is left for a trail that is no longer in the catalogue', () => {
+    const live = new Set(trails.map(trail => trail.id));
+    const orphans = fs.readdirSync(path.join(__dirname, 'data', 'trail-text-it'))
+      .map(file => file.replace(/\.js$/, '')).filter(id => !live.has(id));
+    expect(orphans).toEqual([]);
+  });
+});
+
+describe('guides and legal pages', () => {
+  const documents = ['safety-guide.html', 'privacy.html', 'terms.html',
+    ...fs.readdirSync(path.join(__dirname, 'guides')).filter(file => file.endsWith('.html')).map(file => `guides/${file}`)];
+
+  test.each(documents)('%s has an Italian copy linked both ways', page => {
+    const italian = read(`it/${page}`);
+    expect(italian).toMatch(/<html lang="it" data-orma-lang="it"/);
+    for(const html of [read(page), italian]){
+      expect(html).toContain(`<link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/${page}">`);
+      expect(html).toContain(`<link rel="alternate" hreflang="en" href="https://www.app-orma.com/${page}">`);
+    }
+  });
+
+  test('the legal copies say the English version prevails', () => {
+    ['privacy.html', 'terms.html'].forEach(page => {
+      expect(read(`it/${page}`)).toContain('In caso di differenze tra questa versione e la versione inglese, prevale la versione inglese.');
+    });
+  });
+});

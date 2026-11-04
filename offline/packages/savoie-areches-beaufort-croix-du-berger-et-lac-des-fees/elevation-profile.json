@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees",
+  "distanceKm": 4.9,
+  "ascentM": 350,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1893
+    },
+    {
+      "km": 0.4,
+      "elev": 1933
+    },
+    {
+      "km": 0.8,
+      "elev": 1988
+    },
+    {
+      "km": 1.1,
+      "elev": 2076
+    },
+    {
+      "km": 1.5,
+      "elev": 2126
+    },
+    {
+      "km": 1.9,
+      "elev": 2181
+    },
+    {
+      "km": 2.2,
+      "elev": 2214
+    },
+    {
+      "km": 2.6,
+      "elev": 2214
+    },
+    {
+      "km": 3,
+      "elev": 2190
+    },
+    {
+      "km": 3.3,
+      "elev": 2126
+    },
+    {
+      "km": 3.7,
+      "elev": 2076
+    },
+    {
+      "km": 4.1,
+      "elev": 1975
+    },
+    {
+      "km": 4.5,
+      "elev": 1933
+    },
+    {
+      "km": 4.8,
+      "elev": 1901
+    },
+    {
+      "km": 4.9,
+      "elev": 1893
+    }
+  ]
+}

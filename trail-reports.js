@@ -24,6 +24,13 @@ const FLAG_TYPES = {
   'other':                { icon: '📝', label: 'Other',                          severe: false },
 };
 
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
 function trEsc(s){
   return String(s).replace(/[&<>"']/g,
     c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -108,7 +115,7 @@ function initTrailReports(map, trail){
       } else {
         const average = visible.reduce((total, review) => total + Number(review.rating), 0) / visible.length;
         ratingEl.hidden = false;
-        ratingEl.innerHTML = `<span class="community-rating__stars" aria-label="${average.toFixed(1)} out of 5 stars">${starSvgIcon(true, 13)}</span><strong>${average.toFixed(1)}</strong><span>${visible.length} ${visible.length === 1 ? 'review' : 'reviews'}</span>`;
+        ratingEl.innerHTML = `<span class="community-rating__stars" aria-label="${tx('{rating} out of 5 stars', { rating:average.toFixed(1) })}">${starSvgIcon(true, 13)}</span><strong>${average.toFixed(1)}</strong><span>${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
       }
     }
     if (heroRatingEl){
@@ -118,11 +125,11 @@ function initTrailReports(map, trail){
         // Honest zero state in the design's rating slot: invite the first
         // review instead of pretending a score exists.
         heroRatingEl.classList.add('is-empty');
-        heroRatingEl.innerHTML = `${starSvg} <span class="cnt">No reviews yet</span>`;
+        heroRatingEl.innerHTML = `${starSvg} <span class="cnt">${tx('No reviews yet')}</span>`;
       } else {
         const average = visible.reduce((total, review) => total + Number(review.rating), 0) / visible.length;
         heroRatingEl.classList.remove('is-empty');
-        heroRatingEl.innerHTML = `${starSvg} ${average.toFixed(1)} <span class="cnt">· ${visible.length} ${visible.length === 1 ? 'review' : 'reviews'}</span>`;
+        heroRatingEl.innerHTML = `${starSvg} ${average.toFixed(1)} <span class="cnt">· ${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
       }
       // The rating is a shortcut to the reviews section either way.
       heroRatingEl.style.cursor = 'pointer';
@@ -135,9 +142,9 @@ function initTrailReports(map, trail){
     if (!reviewListEl) return;
     if (!visible.length){
       reviewListEl.innerHTML = `<div class="empty-state empty-state--compact">
-        <p class="empty-state__title">No reviews yet</p>
-        <p class="empty-state__copy">Share how the route felt for your dog and what another owner should know.</p>
-        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-review>Leave the first review</button></div>
+        <p class="empty-state__title">${tx('No reviews yet')}</p>
+        <p class="empty-state__copy">${tx('Share how the route felt for your dog and what another owner should know.')}</p>
+        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-review>${tx('Leave the first review')}</button></div>
       </div>`;
       const emptyReview = reviewListEl.querySelector('[data-empty-review]');
       if (emptyReview) emptyReview.addEventListener('click', openReviewModal);
@@ -146,13 +153,13 @@ function initTrailReports(map, trail){
 
     reviewListEl.innerHTML = visible.slice(0, 3).map(review => {
       const date = reviewDate(review);
-      const dateLabel = date ? date.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : 'Recently';
+      const dateLabel = date ? date.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : tx('Recently');
       const dogName = review.dogContext && review.dogContext.name;
-      const reviewer = dogName ? `${trEsc(dogName)}’s human` : 'A ORMA member';
+      const reviewer = dogName ? tx('{name}’s human', { name:trEsc(dogName) }) : tx('A ORMA member');
       const stars = [1, 2, 3, 4, 5].map(n => starSvgIcon(n <= Number(review.rating), 13)).join('');
       return `<article class="community-review">
-        <div class="community-review__rating" aria-label="${review.rating} out of 5 stars">${stars}</div>
-        ${review.status === 'reported' ? '<p class="community-review__notice">Reported · under moderation review</p>' : ''}
+        <div class="community-review__rating" aria-label="${tx('{rating} out of 5 stars', { rating:review.rating })}">${stars}</div>
+        ${review.status === 'reported' ? `<p class="community-review__notice">${tx('Reported · under moderation review')}</p>` : ''}
         ${review.text ? `<p>${trEsc(review.text)}</p>` : ''}
         <footer>${reviewer} <span>·</span> ${dateLabel}</footer>
       </article>`;
@@ -164,8 +171,8 @@ function initTrailReports(map, trail){
     const dog = photo.dogContext && photo.dogContext.name;
     const caption = photo.caption
       ? String(photo.caption)
-      : (dog ? `Shared by ${dog}’s human` : 'Shared by the ORMA community');
-    return caption + (photo.status === 'reported' ? ' · Reported, under review' : '');
+      : (dog ? tx('Shared by {name}’s human', { name:dog }) : tx('Shared by the ORMA community'));
+    return caption + (photo.status === 'reported' ? ` · ${tx('Reported, under review')}` : '');
   }
 
   // The credit a licence asks for: who took it, under what terms, and where
@@ -178,7 +185,7 @@ function initTrailReports(map, trail){
     const licence = credit.licenceUrl
       ? `<a href="${trEsc(credit.licenceUrl)}" rel="license noopener" target="_blank">${trEsc(credit.licence)}</a>`
       : trEsc(credit.licence);
-    return `Photo: <a href="${trEsc(credit.sourcePage)}" rel="noopener nofollow" target="_blank">${trEsc(credit.creator)}</a> · ${licence}`;
+    return `${tx('Photo:')} <a href="${trEsc(credit.sourcePage)}" rel="noopener nofollow" target="_blank">${trEsc(credit.creator)}</a> · ${licence}`;
   }
 
   function photoAlt(photo){
@@ -195,16 +202,16 @@ function initTrailReports(map, trail){
     const overlay = document.createElement('div');
     overlay.className = 'trail-photo-viewer';
     overlay.innerHTML = `<div class="trail-photo-viewer__dialog">
-      <h2 class="trail-photo-viewer__title">Trail photos</h2>
-      <button type="button" class="trail-photo-viewer__close" data-gallery-close aria-label="Close photo gallery">
+      <h2 class="trail-photo-viewer__title">${tx('Trail photos')}</h2>
+      <button type="button" class="trail-photo-viewer__close" data-gallery-close aria-label="${tx('Close photo gallery')}">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
       <div class="trail-photo-viewer__stage" data-gallery-stage>
-        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--prev" data-gallery-prev aria-label="Previous photo">
+        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--prev" data-gallery-prev aria-label="${tx('Previous photo')}">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
         <img data-gallery-image alt="">
-        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--next" data-gallery-next aria-label="Next photo">
+        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--next" data-gallery-next aria-label="${tx('Next photo')}">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
@@ -229,7 +236,7 @@ function initTrailReports(map, trail){
       image.src = photo.image;
       image.alt = photoAlt(photo);
       caption.innerHTML = photoCaptionHtml(photo);
-      count.textContent = `${currentIndex + 1} of ${photos.length}`;
+      count.textContent = tx('{current} of {total}', { current:currentIndex + 1, total:photos.length });
       previous.hidden = photos.length < 2;
       next.hidden = photos.length < 2;
     }
@@ -306,9 +313,9 @@ function initTrailReports(map, trail){
     updatePhotoStripControls(visible.length);
     if (!visible.length){
       photosListEl.innerHTML = `<div class="empty-state empty-state--compact">
-        <p class="empty-state__title">No trail photos yet</p>
-        <p class="empty-state__copy">Add a recent, useful view so others can recognise the route and conditions.</p>
-        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-photo>Add the first photo</button></div>
+        <p class="empty-state__title">${tx('No trail photos yet')}</p>
+        <p class="empty-state__copy">${tx('Add a recent, useful view so others can recognise the route and conditions.')}</p>
+        <div class="empty-state__actions"><button type="button" class="empty-state__action" data-empty-photo>${tx('Add the first photo')}</button></div>
       </div>`;
       const emptyPhoto = photosListEl.querySelector('[data-empty-photo]');
       if (emptyPhoto) emptyPhoto.addEventListener('click', openPhotoModal);
@@ -317,7 +324,7 @@ function initTrailReports(map, trail){
     photosListEl.innerHTML = visible.map((photo, index) => {
       const caption = trEsc(photoCaption(photo));
       return `<figure class="community-photo">
-        <button type="button" class="community-photo__open" data-photo-index="${index}" aria-label="Open photo ${index + 1} of ${visible.length}: ${caption}">
+        <button type="button" class="community-photo__open" data-photo-index="${index}" aria-label="${tx('Open photo {current} of {total}: {caption}', { current:index + 1, total:visible.length, caption })}">
           <img src="${trEsc(photo.image)}" alt="${trEsc(photoAlt(photo))}" loading="lazy" decoding="async">
         </button>${photo.isLicensed ? `
         <figcaption class="community-photo__credit">${trEsc(`${photo.creator} · ${photo.licence}`)}</figcaption>` : ''}
@@ -349,7 +356,7 @@ function initTrailReports(map, trail){
   function dogContextLine(f){
     const dc = f.dogContext;
     if (!dc || (!dc.name && !dc.breed)) return '';
-    const who = [dc.name ? `${dc.name}'s human` : null, dc.breed || null]
+    const who = [dc.name ? tx('{name}\'s human', { name:dc.name }) : null, dc.breed || null]
       .filter(Boolean).join(' · ');
     return window.t('reports.reportedBy', {who: trEsc(who)});
   }
@@ -386,7 +393,7 @@ function initTrailReports(map, trail){
               <a href="#" data-hazard-response="confirm" data-flag-id="${trEsc(f.id)}">${window.t('reports.confirm')}</a>
               <a href="#" data-hazard-response="dispute" data-flag-id="${trEsc(f.id)}">${window.t('reports.dispute')}</a>
             </div>` : '';
-        const responseCount = `${Number(f.confirmations) || 0} confirmed · ${Number(f.disputes) || 0} disputed`;
+        const responseCount = tx('{confirmed} confirmed · {disputed} disputed', { confirmed:Number(f.confirmations) || 0, disputed:Number(f.disputes) || 0 });
         // Design tile: neutral inset card + a coloured flag square whose tone
         // carries severity, replacing the mixed emoji-per-type language.
         const tile = t.severe ? { bg: '#F3D9D2', fg: '#9C3A25' }
@@ -431,7 +438,7 @@ function initTrailReports(map, trail){
           a.dataset.hazardResponse
         );
         if(!result.ok){
-          showActionStatus(result.message || 'Your response could not be saved.');
+          showActionStatus(result.message || tx('Your response could not be saved.'));
           return;
         }
         showActionStatus(window.t('reports.responseSaved'));

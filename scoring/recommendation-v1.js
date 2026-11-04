@@ -5,6 +5,15 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  // Only sentences with no recommendation.reason.* dictionary entry are wrapped:
+  // the rest are translated by key at display (recommendation-decision.js).
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const VERSION = '1.7.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
@@ -76,6 +85,20 @@
     'water-scarce': 'no water access',
     other: 'a recorded caution',
   };
+  // The same labels for a sentence a reader sees; SEGMENT_TYPE_LABELS stays
+  // English because it travels in the advisory's vars.
+  function segmentTypeLabel(type){
+    switch(type){
+      case 'livestock': return tx('grazing livestock');
+      case 'wildlife': return tx('wildlife activity');
+      case 'road': return tx('road traffic');
+      case 'exposure': return tx('exposed ground');
+      case 'crowding': return tx('heavy foot traffic');
+      case 'surface': return tx('difficult footing');
+      case 'water-scarce': return tx('no water access');
+      default: return tx('a recorded caution');
+    }
+  }
   const REVIEW_CATEGORIES = [
     'route', 'water', 'heat', 'exposure', 'livestock',
     'surfaceHazards', 'access',
@@ -531,8 +554,8 @@
       if(reviewedWaterCount > 0){
         positives.push(item('trail.water.reviewed',
           reviewedWaterCount === 1
-            ? 'Water is available at one reviewed point.'
-            : `Water is available at ${reviewedWaterCount} reviewed points.`,
+            ? tx('Water is available at one reviewed point.')
+            : tx('Water is available at {count} reviewed points.', { count:reviewedWaterCount }),
           { count:reviewedWaterCount },
           reviewedWaterCount === 1 ? 'trail.water.reviewed.one' : 'trail.water.reviewed.many'));
       }else{
@@ -580,30 +603,32 @@
       if(rank(livestockComfort) > 0){
         load += livestockComfort * 9;
         drivers.push(livestockComfort === 2
-          ? 'this dog reacts to livestock'
-          : 'this dog is unsure around livestock');
+          ? tx('this dog reacts to livestock')
+          : tx('this dog is unsure around livestock'));
       }
       if(rank(preyDrive) > 0){
         load += preyDrive * 5;
-        drivers.push(preyDrive === 2 ? 'prey drive is high' : 'prey drive is moderate');
+        drivers.push(preyDrive === 2 ? tx('prey drive is high') : tx('prey drive is moderate'));
       }
       if(rank(recall) > 0){
         load += recall * 5;
-        drivers.push(recall === 2 ? 'recall is unreliable' : 'recall is variable');
+        drivers.push(recall === 2 ? tx('recall is unreliable') : tx('recall is variable'));
       }
       if(load > 0){
         const summary = drivers.join(', ');
         chargeBehaviour(Math.round(load * (seasonal ? 0.6 : 1)), item('trail.livestock.behaviour-risk',
-          `${seasonal ? 'Livestock graze this route in season' : 'Grazing livestock is recorded on this route'}, and ${summary}.`,
+          seasonal
+            ? tx('Livestock graze this route in season, and {drivers}.', { drivers:summary })
+            : tx('Grazing livestock is recorded on this route, and {drivers}.', { drivers:summary }),
           { presence:livestockPresence, drivers:summary },
           seasonal ? 'trail.livestock.behaviour-risk.seasonal' : 'trail.livestock.behaviour-risk'));
       }
     }else if(livestockPresence === 'none' && stockRelevant){
       positives.push(item('trail.livestock.none',
-        'No grazing livestock is recorded on this route.'));
+        tx('No grazing livestock is recorded on this route.')));
     }else if(stockRelevant){
       unknowns.push(item('trail.livestock.presence-unknown',
-        'Whether livestock graze this route is unknown. Carry a lead for open pasture.'));
+        tx('Whether livestock graze this route is unknown. Carry a lead for open pasture.')));
     }
 
     const wildlifePresence = suitability.wildlifePresence;
@@ -616,23 +641,23 @@
       if(load > 0){
         chargeBehaviour(Math.round(load), item('trail.wildlife.chase-risk',
           high
-            ? 'Wildlife is active on this route, which matters for a dog that chases.'
-            : 'Some wildlife activity is recorded here, which matters for a dog that chases.',
+            ? tx('Wildlife is active on this route, which matters for a dog that chases.')
+            : tx('Some wildlife activity is recorded here, which matters for a dog that chases.'),
           { presence:wildlifePresence },
           high ? 'trail.wildlife.chase-risk.high' : 'trail.wildlife.chase-risk.moderate'));
       }
     }else if(wildlifePresence === 'low' && chaseRelevant){
-      positives.push(item('trail.wildlife.low', 'Little wildlife activity is recorded here.'));
+      positives.push(item('trail.wildlife.low', tx('Little wildlife activity is recorded here.')));
     }
 
     const sightlines = suitability.sightlines;
     if(rank(recall) > 0){
       if(sightlines === 'open'){
         positives.push(item('trail.sightlines.open',
-          'Open sightlines keep this dog visible on most sections.'));
+          tx('Open sightlines keep this dog visible on most sections.')));
       }else if(sightlines === 'restricted'){
         chargeBehaviour(recall * 5, item('trail.sightlines.restricted',
-          'Enclosed, twisting ground makes it harder to keep this dog in view.'));
+          tx('Enclosed, twisting ground makes it harder to keep this dog in view.')));
       }
     }
 
@@ -646,13 +671,13 @@
       if(load > 0){
         chargeBehaviour(Math.round(load), item('trail.road.traffic-risk',
           alongside
-            ? 'The route runs alongside a road, which matters for this dog around traffic.'
-            : 'The route crosses a road, which matters for this dog around traffic.',
+            ? tx('The route runs alongside a road, which matters for this dog around traffic.')
+            : tx('The route crosses a road, which matters for this dog around traffic.'),
           { proximity:roadProximity },
           alongside ? 'trail.road.traffic-risk.alongside' : 'trail.road.traffic-risk.crossings'));
       }
     }else if(roadProximity === 'none' && trafficRelevant){
-      positives.push(item('trail.road.none', 'The route keeps clear of roads and traffic.'));
+      positives.push(item('trail.road.none', tx('The route keeps clear of roads and traffic.')));
     }
 
     const crowding = suitability.crowding;
@@ -663,14 +688,14 @@
       if(socialRank > 0){
         chargeBehaviour(Math.round(socialRank * (busy ? 8 : 4)), item('trail.crowding.social-risk',
           busy
-            ? 'This is a busy route, and this dog needs space from other people and dogs.'
-            : 'This route sees steady foot traffic, and this dog needs space from other people and dogs.',
+            ? tx('This is a busy route, and this dog needs space from other people and dogs.')
+            : tx('This route sees steady foot traffic, and this dog needs space from other people and dogs.'),
           { crowding },
           busy ? 'trail.crowding.social-risk.busy' : 'trail.crowding.social-risk.moderate'));
       }
     }else if(crowding === 'quiet' && socialRelevant){
       positives.push(item('trail.crowding.quiet',
-        'This is a quiet route with room to give other walkers space.'));
+        tx('This is a quiet route with room to give other walkers space.')));
     }
 
     const preferredDurationMin = behaviour.preferredDurationMin;
@@ -678,11 +703,11 @@
     if(preferredDurationMin !== null && durationMinutes !== null){
       if(durationMinutes > preferredDurationMin * 1.25){
         chargeBehaviour(Math.min(10, Math.ceil((durationMinutes - preferredDurationMin) / 30) * 3), item('trail.duration.above-preference',
-          `At about ${Math.round(durationMinutes)} minutes this route runs longer than the preferred ${preferredDurationMin} minutes.`,
+          tx('At about {minutes} minutes this route runs longer than the preferred {preferred} minutes.', { minutes:Math.round(durationMinutes), preferred:preferredDurationMin }),
           { durationMinutes:Math.round(durationMinutes), preferredDurationMin }));
       }else{
         positives.push(item('trail.duration.within-preference',
-          `At about ${Math.round(durationMinutes)} minutes this route fits the preferred walk length.`,
+          tx('At about {minutes} minutes this route fits the preferred walk length.', { minutes:Math.round(durationMinutes) }),
           { durationMinutes:Math.round(durationMinutes), preferredDurationMin }));
       }
     }
@@ -727,21 +752,23 @@
         note:typeof segment.note === 'string' && segment.note.trim() ? segment.note.trim() : null,
       };
       // Two short sentences: what is there, then what to do about it.
-      const detail = vars.note || label;
-      const where = `${detail.charAt(0).toUpperCase()}${detail.slice(1)} between kilometres ${fromKm} and ${toKm}.`;
+      const detail = vars.note || segmentTypeLabel(segment.type);
+      const where = tx('{detail} between kilometres {fromKm} and {toKm}.', {
+        detail:`${detail.charAt(0).toUpperCase()}${detail.slice(1)}`, fromKm, toKm,
+      });
       if(segment.advisory === 'leash-required' || segment.advisory === 'leash-recommended'){
         const required = segment.advisory === 'leash-required';
         leashAdvisories.push({ ...vars, advisory:segment.advisory });
         cautions.push(item(`segment.${segment.advisory}.${vars.type}.${fromKm}-${toKm}`,
-          `${where} ${required ? 'Lead required.' : 'Lead recommended.'}`,
+          `${where} ${required ? tx('Lead required.') : tx('Lead recommended.')}`,
           vars,
           required ? 'segment.leash-required' : 'segment.leash-recommended'));
       }else if(segment.advisory === 'avoid'){
         penalise(20, item(`segment.avoid.${vars.type}.${fromKm}-${toKm}`,
-          `${where} Avoid this stretch.`, vars, 'segment.avoid'));
+          `${where} ${tx('Avoid this stretch.')}`, vars, 'segment.avoid'));
       }else if(segment.advisory === 'caution'){
         cautions.push(item(`segment.caution.${vars.type}.${fromKm}-${toKm}`,
-          `${where} Take care here.`, vars, 'segment.caution'));
+          `${where} ${tx('Take care here.')}`, vars, 'segment.caution'));
       }else{
         positives.push(item(`segment.information.${vars.type}.${fromKm}-${toKm}`,
           where, vars, 'segment.information'));

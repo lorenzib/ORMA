@@ -1,6 +1,13 @@
 (function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const stateApi = window.DoloPawsComparisonState;
   const model = window.DoloPawsComparisonModel;
   const params = new URLSearchParams(window.location.search);
@@ -16,19 +23,19 @@
   let activeProfile = guestProfile(dogParam);
 
   const ROWS = [
-    ['match','Dog match'],
-    ['reasons','Reasons & cautions'],
-    ['distance','Distance'],
-    ['elevation','Elevation'],
-    ['duration','Expected time'],
-    ['terrain','Terrain'],
-    ['exposure','Exposure'],
-    ['shade','Shade'],
-    ['heat','Heat'],
-    ['water','Water'],
-    ['hazards','Surface hazards'],
-    ['restrictions','Dog restrictions'],
-    ['verification','Verification'],
+    ['match',tx('Dog match')],
+    ['reasons',tx('Reasons & cautions')],
+    ['distance',tx('Distance')],
+    ['elevation',tx('Elevation')],
+    ['duration',tx('Expected time')],
+    ['terrain',tx('Terrain')],
+    ['exposure',tx('Exposure')],
+    ['shade',tx('Shade')],
+    ['heat',tx('Heat')],
+    ['water',tx('Water')],
+    ['hazards',tx('Surface hazards')],
+    ['restrictions',tx('Dog restrictions')],
+    ['verification',tx('Verification')],
   ];
 
   function esc(value){
@@ -46,7 +53,7 @@
 
   function guestProfile(dog){
     const profiles = {
-      medium:{ name:'Medium dog', fitness:'moderate', conditions:[], weightBand:'15-20' },
+      medium:{ name:tx('Medium dog'), fitness:'moderate', conditions:[], weightBand:'15-20' },
       rufus:{ name:'Rufus', fitness:'moderate', conditions:['heat'], weightBand:'30-40' },
       bella:{ name:'Bella', fitness:'low', conditions:[], weightBand:'5-10' },
       milo:{ name:'Milo', fitness:'high', conditions:[], weightBand:'15-20' },
@@ -104,23 +111,23 @@
     const returnTarget = safeReturn(params.get('from'));
     back.href = returnTarget;
     context.textContent = activeProfile && activeProfile.name
-      ? `Compared for ${activeProfile.name}`
-      : 'Unpersonalized comparison';
+      ? tx('Compared for {name}', { name:activeProfile.name })
+      : tx('Unpersonalized comparison');
 
     const selected = selectedIds
       .map(id => trails.find(trail => trail.id === id))
       .filter(Boolean);
     if(!selected.length){
       notice.hidden = true;
-      root.innerHTML = '<div class="compare-empty"><h2>No trails selected</h2>' +
-        '<p>Choose two or three trails from Browse to compare them here.</p>' +
-        `<a href="${esc(returnTarget)}">Choose trails</a></div>`;
+      root.innerHTML = '<div class="compare-empty"><h2>' + tx('No trails selected') + '</h2>' +
+        '<p>' + tx('Choose two or three trails from Browse to compare them here.') + '</p>' +
+        `<a href="${esc(returnTarget)}">${tx('Choose trails')}</a></div>`;
       return;
     }
 
     notice.hidden = selected.length >= 2;
     if(selected.length < 2){
-      notice.innerHTML = `Add one more trail for a useful comparison. <a href="${esc(returnTarget)}">Return to Browse</a>.`;
+      notice.innerHTML = tx('Add one more trail for a useful comparison. <a href="{href}">Return to Browse</a>.', { href:esc(returnTarget) });
     }
 
     const subject = typeof effectiveOverrides === 'function'
@@ -136,14 +143,14 @@
       normalizeTrail:window.DoloPawsRecommendationAdaptersV1.normalizeTrail,
     }));
     const compareReturn = currentHref();
-    let html = `<div class="compare-scroll" role="region" aria-label="Trail comparison table" tabindex="0">` +
+    let html = `<div class="compare-scroll" role="region" aria-label="${tx('Trail comparison table')}" tabindex="0">` +
       `<div class="compare-table" style="--compare-count:${entries.length}">` +
-      '<div class="compare-label" aria-hidden="true">Trail</div>';
+      '<div class="compare-label" aria-hidden="true">' + tx('Trail') + '</div>';
     html += entries.map(entry =>
       `<div class="compare-cell compare-head"><div class="compare-area">${esc(entry.area)}</div>` +
       `<h2>${esc(entry.name)}</h2><div class="compare-actions">` +
-      `<a class="compare-open" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(entry.id) : (entry.id)))}&from=${encodeURIComponent(compareReturn)}">Open trail →</a>` +
-      `<button type="button" class="compare-remove" data-remove-id="${esc(entry.id)}">Remove</button>` +
+      `<a class="compare-open" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(entry.id) : (entry.id)))}&from=${encodeURIComponent(compareReturn)}">${tx('Open trail →')}</a>` +
+      `<button type="button" class="compare-remove" data-remove-id="${esc(entry.id)}">${tx('Remove')}</button>` +
       '</div></div>'
     ).join('');
     ROWS.forEach(([key, label]) => {
@@ -159,7 +166,10 @@
         syncUrl();
         render(true);
         const status = document.getElementById('compareStatus');
-        if(status) status.textContent = `${removed ? removed.name : 'Trail'} removed. ${selectedIds.length} ${selectedIds.length === 1 ? 'trail remains' : 'trails remain'}.`;
+        const removedName = removed ? removed.name : tx('Trail');
+        if(status) status.textContent = selectedIds.length === 1
+          ? tx('{name} removed. {n} trail remains.', { name:removedName, n:selectedIds.length })
+          : tx('{name} removed. {n} trails remain.', { name:removedName, n:selectedIds.length });
       });
     });
     if(focusComparison){

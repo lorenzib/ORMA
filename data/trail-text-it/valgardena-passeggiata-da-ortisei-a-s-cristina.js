@@ -1,0 +1,12 @@
+// valgardena-passeggiata-da-ortisei-a-s-cristina in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "An easy valley loop from the church of Ortisei along the Luis Trenker promenade and the stream to the Alpe di Siusi cable car and back. The board lists 7.2 km and 147 m of ascent.": "Un facile anello di fondovalle dalla chiesa di Ortisei lungo la passeggiata Luis Trenker e il torrente fino alla funivia dell'Alpe di Siusi, e ritorno. La scheda ufficiale indica 7,2 km e 147 m di dislivello in salita.",
+  "Start at the parish church of Ortisei: 7.2 km and about 150 m of climbing, two hours. Ortisei’s and Santa Cristina’s dog regulations apply: keep your dog on a lead of at most 1.5 m, carry a muzzle and keep off the meadows. There is little shade: walk early or late on hot days. Fountains and cafés along the way.": "Parti dalla chiesa parrocchiale di Ortisei: 7,2 km e circa 150 m di salita, due ore. Valgono i regolamenti sui cani di Ortisei e di Santa Cristina: tieni il cane al guinzaglio lungo al massimo 1,5 m, porta la museruola al seguito e stai fuori dai prati. C'è poca ombra: nelle giornate calde cammina presto o tardi. Fontane e bar lungo il percorso.",
+  "Village streets and quiet roads with some traffic: keep your dog close": "Strade di paese e strade tranquille con un po' di traffico: tieni il cane vicino",
+  "Paths shared with cyclists": "Sentieri condivisi con i ciclisti",
+  "Icy in winter": "Ghiacciato in inverno",
+  "Promenade, village lanes and quiet roads": "Passeggiata, stradine di paese e strade tranquille",
+  "Ortisei parish church, the board’s start": "Chiesa parrocchiale di Ortisei, partenza indicata dalla scheda ufficiale",
+  "A broad paved promenade in Ortisei between a stone wall and trees, walkers in the distance and an art poster beside the path": "Un'ampia passeggiata lastricata a Ortisei tra un muro di pietra e gli alberi, passanti in lontananza e un manifesto d'arte accanto al sentiero",
+  "Almost no shade: the loop runs through the village and along the open valley floor.": "Quasi nessuna ombra: l'anello attraversa il paese e il fondovalle aperto."
+});

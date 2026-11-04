@@ -1,0 +1,16 @@
+// trecime-sesto-chiesa-gasthof-panorama in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short climb from Sexten up the Mitterberg road to the Gasthof Panorama, and back. The board lists 6 km and 248 m of ascent, there and back.": "Una breve salita da Sexten sulla strada del Mitterberg fino al Gasthof Panorama, e ritorno. La scheda ufficiale indica 6 km e 248 m di dislivello in salita, andata e ritorno.",
+  "Start at Sexten parish church: 6 km there and back with about 250 m of climbing, two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The whole walk is on a paved road: keep your dog close to the edge.": "Parti dalla chiesa parrocchiale di Sexten: 6 km andata e ritorno con circa 250 m di salita, due ore. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito. Tutta la camminata è su strada asfaltata: tieni il cane vicino al bordo.",
+  "All on a paved road: watch for cars and the Mitterberg shuttle bus": "Tutto su strada asfaltata: attenzione alle auto e alla navetta del Mitterberg",
+  "Open slopes with little shade: carry water on hot days": "Pendii aperti con poca ombra: porta acqua nelle giornate calde",
+  "Paved road": "Strada asfaltata",
+  "Sexten parish church, the board’s start": "Chiesa parrocchiale di Sexten, partenza indicata dalla scheda ufficiale",
+  "A jagged grey Dolomite massif rising above dark forested slopes under a clear blue sky, seen from the slopes above Sexten": "Un frastagliato massiccio dolomitico grigio che si alza sopra scuri pendii boscosi sotto un cielo azzurro limpido, visto dai pendii sopra Sexten",
+  "Little shade: the road climbs open meadows on the Mitterberg.": "Poca ombra: la strada sale tra prati aperti sul Mitterberg.",
+  "Start at Sexten parish church, the tourist board’s start.": "Parti dalla chiesa parrocchiale di Sexten, la partenza indicata dalla scheda ufficiale.",
+  "The board names no path number: from Sexten parish church up the paved road across the Mitterberg, with views of the Sexten Sundial peaks, to the Gasthof Panorama (1,576 m). Back the same way. From the Panorama, paths continue to the Helmhanghütte and the Sexten alms, or up to the Lärchenhütte and the Helm.": "La scheda ufficiale non indica il numero del sentiero: dalla chiesa parrocchiale di Sexten su per la strada asfaltata attraverso il Mitterberg, con vista sulle cime della Meridiana di Sexten, fino al Gasthof Panorama (1.576 m). Ritorno per la stessa via. Dal Panorama i sentieri proseguono verso la Helmhanghütte e le malghe di Sexten, oppure salgono alla Lärchenhütte e all'Helm.",
+  "None: stay on the paved road up to the Gasthof Panorama.": "Nessuno: resta sulla strada asfaltata fino al Gasthof Panorama.",
+  "From Sexten parish church, walk up the paved road, with views of the Sexten Sundial peaks, to the Gasthof Panorama (1,576 m).": "Dalla chiesa parrocchiale di Sexten, sali sulla strada asfaltata, con vista sulle cime della Meridiana di Sexten, fino al Gasthof Panorama (1.576 m).",
+  "The board’s times are for there and back: return the same way.": "I tempi della scheda ufficiale sono per andata e ritorno: torna per la stessa via."
+});

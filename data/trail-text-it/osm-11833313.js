@@ -1,0 +1,12 @@
+// osm-11833313 in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "An easy history walk in the Pustertal from Kiens to Ehrenburg and back, on the trail of the Roman road: past rest points on Roman travel, a 2,000-year-old milestone, Ehrenburg castle and the baroque parish church. The official route lists 3.1 km and 70 m of ascent.": "Una facile passeggiata storica in Pustertal da Kiens a Ehrenburg e ritorno, sulle tracce della strada romana: si passa accanto a punti di sosta dedicati ai viaggi in epoca romana, a una pietra miliare di 2.000 anni fa, al castello di Ehrenburg e alla parrocchiale barocca. Il percorso ufficiale indica 3,1 km e 70 m di dislivello in salita.",
+  "Start in Kiens centre and follow the Römerweg signs to Ehrenburg and back: 3.1 km, barely 80 m of climbing, under an hour. Keep your dog on a short lead (1.5 m at most) and carry a muzzle. Look out for the Roman milestone, which still gives the distance to Aguntum near Lienz.": "Parti dal centro di Kiens e segui i cartelli del Römerweg fino a Ehrenburg e ritorno: 3,1 km, appena 80 m di salita, meno di un'ora. Tieni il cane al guinzaglio corto (al massimo 1,5 m) e porta la museruola al seguito. Cerca la pietra miliare romana, che indica ancora la distanza da Aguntum vicino a Lienz.",
+  "Village lanes in Kiens and Ehrenburg open to cars": "Stradine di paese a Kiens e a Ehrenburg aperte alle auto",
+  "A short steep lane with a handrail near the start": "Una breve stradina ripida con corrimano vicino alla partenza",
+  "Fields and meadows beside the tracks": "Campi e prati accanto alle strade poderali",
+  "Village lanes, farm tracks and field paths": "Stradine di paese, strade poderali e sentieri tra i campi",
+  "Kiens village centre (official start)": "Centro del paese di Kiens (partenza ufficiale)",
+  "The green, fast-flowing Rienz between wooded banks and a few houses at Kiens, forested mountainsides above": "La Rienz, verde e impetuosa, tra rive boscose e qualche casa a Kiens, con versanti coperti di bosco sopra",
+  "A little under half has trees, mostly along the Rienz and the edge of the wood; the fields between the villages are open.": "Poco meno della metà è alberata, soprattutto lungo la Rienz e al margine del bosco; i campi tra i paesi sono aperti."
+});

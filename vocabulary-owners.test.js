@@ -37,7 +37,7 @@ const VOCABULARIES = [
 // opened a table precisely to see the difference the badge leaves out.
 
 
-// i18n.js is every vocabulary's translations, by design. Tests name words in
+// i18n.js and i18n-phrases-it.js are every vocabulary's translations, by design. Tests name words in
 // order to assert on them, and nothing in a test ships.
 //
 // The build directories come from one shared list rather than a copy here:
@@ -47,7 +47,7 @@ const VOCABULARIES = [
 // undone by a copy.
 const SKIP = new RegExp(
   `^(?:${generatedDirectoryPattern()}|backoffice-data|backoffice|docs|prototypes|scripts)(?:/|$)`
-  + '|\\.bundle\\.js$|\\.test\\.js$|\\.md$|\\.json$|^i18n\\.js$'
+  + '|\\.bundle\\.js$|\\.test\\.js$|\\.md$|\\.json$|^i18n\\.js$|^i18n-phrases-it\\.js$'
 );
 
 function shippedSources(){

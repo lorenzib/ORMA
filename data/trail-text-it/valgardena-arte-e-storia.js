@@ -1,0 +1,12 @@
+// valgardena-arte-e-storia in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short walk from Selva along the old Way of the Cross under the Stevia cliffs, past the ruins of Castel Wolkenstein, to the San Silvestro chapel at the mouth of the Vallunga. The board lists 2.1 km, 76 m up and 124 m down.": "Una breve camminata da Selva lungo l'antica Via Crucis sotto le pareti dello Stevia, oltre le rovine di Castel Wolkenstein, fino alla cappella di San Silvestro all'imbocco della Vallunga. La scheda ufficiale indica 2,1 km, 76 m in salita e 124 m in discesa.",
+  "Start in the Daunëi quarter of Selva: 2.1 km one way, mostly gently downhill, about an hour and a half with the stations. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Selva and the nature park require. Skip the steep steps up to the castle ruins with a dog; return the same way or down the Vallunga into Selva.": "Parti dal quartiere Daunëi di Selva: 2,1 km solo andata, per lo più in leggera discesa, circa un'ora e mezza con le stazioni. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito, come prescrivono Selva e il parco naturale. Con il cane evita i ripidi gradini che salgono alle rovine del castello; torna per la stessa via oppure scendi per la Vallunga fino a Selva.",
+  "The side trip up to the castle ruins climbs steep steps along the cliff: leave it out with a dog": "La deviazione verso le rovine del castello sale per ripidi gradini lungo la parete: con il cane lasciala perdere",
+  "Rocky ground and loose stones under the Stevia walls": "Terreno roccioso e sassi instabili sotto le pareti dello Stevia",
+  "Forest path with roots": "Sentiero nel bosco con radici",
+  "Forest path and gravel track": "Sentiero nel bosco e strada sterrata",
+  "Daunëi, Selva di Val Gardena, the board’s start": "Daunëi, Selva di Val Gardena, partenza indicata dalla scheda ufficiale",
+  "The ruined walls of Castel Wolkenstein built into a pale limestone cliff, with larch and spruce forest below and the meadows and houses of Selva in the valley beyond": "Le mura in rovina di Castel Wolkenstein incastonate in una pallida parete calcarea, con un bosco di larici e abeti rossi sotto e i prati e le case di Selva nella valle più in là",
+  "Mostly shaded: about seven tenths runs through larch and spruce forest under the cliffs.": "Per lo più all'ombra: circa sette decimi corrono nel bosco di larici e abeti rossi sotto le pareti."
+});

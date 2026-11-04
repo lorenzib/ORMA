@@ -59076,6 +59076,632 @@
       ],
       startPoint: { lat: 45.783478, lng: 6.498725, label: 'Place du Cernix, Cohennoz, one of the two starts the board gives' },
       desc: 'An easy, flat walk on a quiet communal road between the hamlets of Cohennoz and Crest-Voland, past the Cernix pond and the Ainoz mill and through hay meadows facing the Aravis, to Paravy and back. The official page lists 4.7 km, 40 m up and 40 m down, about two hours.'
+    },
+    'meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines”, published by the Partschins tourist board, drawn on 44 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Partschins and, for a short stretch, Naturns (neither publishes a dog regulation online, probably exists: the national rule applies, lead ≤1.5 m and a muzzle carried); about a fifth of the line is in the Texelgruppe nature park, dogs on a lead.
+      // About 20% of the line, near the Texelbahn top station, lies in the Texelgruppe nature park and the Natura 2000 site Pfossental: dogs on a lead.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Texelbahn top station – Meraner Höhenweg – Hochforch – Platterhof – Gruberhof – Winklerhof – Partschins (Burggrafenamt)',
+      distance: 6.2,
+      elevation: 221,
+      hours: '1.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way and mostly downhill: from the top station of the Texelbahn west along the Meraner Höhenweg (path 24) to the Hochforch farm, down path 25 past the Platterhof to the Gruberhof, along path 39 past the Unterwenter Rast and the Winklerhof, and down path 1 beside the Zielbach to the Texelbahn valley station.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Texelbahn up from Partschins and start at its top station, the board’s start.",
+        "sequence": "Follow the Meraner Höhenweg, path 24, west towards the Hochforch farm (1,555 m) on a panoramic stretch above the Vinschgau. After a short stretch of tarred road turn left onto path 25, which drops gently through meadows and larch woods past the Platterhof (1,194 m) to the Gruberhof, also called Ausergrub (1,121 m). From the Gruberhof take path 39 along the slope towards Partschins, past the Unterwenter Rast viewpoint, to the Winklerhof farm inn. Just before the suspension bridge turn right onto path 1, which runs beside the Zielbach down to the Texelbahn valley station, where the walk ends.",
+        "switches": "Three changes: after the Hochforch farm leave path 24 left onto path 25; at the Gruberhof take path 39; just before the suspension bridge turn right onto path 1.",
+        "sources": [
+          {
+            "label": "Partschins tourist board, Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/54554380",
+            "authority": "Partschins tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Path 1 between granite boulders above the Texelbahn valley station in Partschins, in August (mikki65 on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 6.2 km from the top station of the Texelbahn above Partschins, as the Partschins tourist board publishes it; the stored line is drawn on 44 OSM ways along the board’s published line, 6.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 24, 25, 39 and 1: from the Texelbahn top station the Meraner Höhenweg (path 24) west to the Hochforch farm, path 25 down to the Gruberhof, path 39 along the slope to the Winklerhof, then path 1 beside the Zielbach to the valley station.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 5612178877).',
+        elevation: 'Official 6.2 km, 221 m up and 1124 m down, 1:50 h, highest point 1,586 m, lowest 629 m (Partschins tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Partschins tourist board, Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Partschins / Comune di Parcines: no dog regulation published online, probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Marktgemeinde Naturns / Comune di Naturno: no dog regulation published online (only an information sheet for dog owners on dog-waste stations), probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Amt für Natur, rules of conduct in the South Tyrol nature parks: dogs on a lead, never roaming (Naturpark Texelgruppe, also Natura 2000 site IT3110010 Pfossental, about a fifth of the line near the Texelbahn top station); province landscape-plan layers: no natural monument on the line',
+          'OpenStreetMap ways along the board’s line (44 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 22,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 1,120 m of descent: steep in places and hard on knees and paws, take it slowly', 'A short stretch of tarred farm road after the Hochforch farm: lead on for passing cars', 'Meadows and pastures beside the path are farmed: keep to the path'],
+      terrainType: 'Mountain paths, field paths and a short farm road',
+      shadeDescription: 'Mostly open: about a fifth runs through mapped larch woods; the Höhenweg and the farm meadows are in full sun.',
+      terrainDescription: 'A south-facing descent from 1,590 m to 630 m on the Sonnenberg above Partschins, along the Meraner Höhenweg with views over the Vinschgau, then down past old farms to the Zielbach.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Neither Partschins nor Naturns publishes a dog regulation online, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. Near the top station the path runs through the Texelgruppe nature park, where dogs must stay on a lead. On the Texelbahn dogs ride on a lead and muzzled.',
+      tips: 'Take the Texelbahn up from Partschins: 6.2 km one way back down to the valley station, 221 m up and 1,124 m down, under two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at the top station; farm inns at the Gruberhof and the Winklerhof. The lower slope is hot in summer: start early.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sull’Alta Via di Merano ovest ai masi storici del Monte Sole di Parcines (Partschins tourist board)', url: 'https://www.outdooractive.com/it/r/54554380' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Marktgemeinde Naturns, information for dog owners', url: 'https://www.gemeinde.naturns.bz.it/de/Verwaltung/Dokumente/Informationen_fuer_Hundehalterinnen_und_Hundehalter' },
+        { label: 'South Tyrol nature parks, rules of conduct', url: 'https://naturparks.provinz.bz.it/de/verhaltensregeln-im-naturpark' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.684644, lng: 11.04778, label: 'Top station of the Texelbahn above Partschins, the board’s start' },
+      desc: 'A mostly downhill walk from the top of the Texelbahn along the Meraner Höhenweg and down past the old farms of the Partschins Sonnenberg to the valley station. The board lists 6.2 km, 221 m up and 1,124 m down, 1 h 50.'
+    },
+    'meran-escursione-sentiero-del-sole-a-stulles': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Escursione Sentiero del Sole a Stulles”, published by the Passeiertal tourist board, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Moos in Passeier (its dog regulation, Gemeinderat Nr. 38 of 26.09.2012: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Stuls – Kofler Kreuz – Morx Puite – Stuls (Moos in Passeier)',
+      distance: 5.1,
+      elevation: 272,
+      hours: '1.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park by the church in Stuls on the signed Sonnenrundweg to the Kofler Kreuz, along the farm road to its seventh hairpin, on path 14A to the Morx Puite and back down the road to the car park.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park by the church in Stuls, the board’s start.",
+        "sequence": "Follow the Sonnenrundweg signs to the junction at the Kofler Kreuz. There turn sharply left and follow the road up to its seventh hairpin. At the hairpin leave the road to the left on path 14A and follow it to the Morx Puite. From there walk down the road back to the car park in Stuls.",
+        "switches": "Three changes: sharp left at the Kofler Kreuz; left off the road at the seventh hairpin onto path 14A; at the Morx Puite back down the road.",
+        "sources": [
+          {
+            "label": "Passeiertal tourist board, Escursione Sentiero del Sole a Stulles (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16571389",
+            "authority": "Passeiertal tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The farm road of the Sonnenrundweg above Stuls, looking over the Passeier valley, in June (crami on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official loop 5.1 km from the car park by the church in Stuls, as the Passeiertal tourist board publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 5.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'The signed Sonnenrundweg, then path 14A: from the church car park follow the Sonnenrundweg signs to the Kofler Kreuz, the farm road to the seventh hairpin, path 14A to the Morx Puite, and the road back down to Stuls.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 5.1 km, 272 m up and 272 m down, 1:40 h, highest point 1,541 m, lowest 1,295 m (Passeiertal tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Passeiertal tourist board, Escursione Sentiero del Sole a Stulles (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Moos in Passeier / Comune di Moso in Passiria, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 38, 26.09.2012), Art. 4 and 8: dogs on a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and primary-school yards or on farmed land (meadows, fields) during the growing season; no bathing in public fountains',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 49,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Most of the loop is on a quiet tarred farm road with hairpins, shared with cars and tractors: lead on and keep to the side', 'About 120 m on the Stuls road near the village: keep your dog close on a short lead', 'Meadows beside the road are farmed and closed to dogs in Moos in Passeier in the growing season: keep to the road and path', 'Path 14A is not suitable for prams'],
+      terrainType: 'Farm road and mountain path',
+      shadeDescription: 'Half shaded: about half runs through mapped woodland; the farm road through the meadows is open.',
+      terrainDescription: 'A sunny loop at 1,295–1,540 m on the slope above Stuls in the upper Passeier valley, mostly on a quiet farm road through meadows and woods, with a stretch of mountain path to the Morx Puite.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Moos in Passeier requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season. The loop starts beside the church: dogs may not enter the churchyard.',
+      tips: 'Start at the car park by the church in Stuls: a 5.1 km loop, 272 m up and down, about an hour and three quarters. Keep your dog on a lead of at most 1.5 m and carry a muzzle. No drinking water on the way: bring water for your dog.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione Sentiero del Sole a Stulles (Passeiertal tourist board)', url: 'https://www.outdooractive.com/it/r/16571389' },
+        { label: 'Gemeinde Moos in Passeier, dog regulation (2012)', url: 'https://www.gemeinde.moosinpasseier.bz.it/system/web/GetDocument.ashx?fileId=854937' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.828059, lng: 11.200341, label: 'Car park by the church in Stuls, the board’s start' },
+      desc: 'A sunny loop above Stuls in the Passeier valley on the Sonnenrundweg, up the farm road to the Kofler Kreuz and on path 14A to the Morx Puite. The board lists 5.1 km, 272 m up and 272 m down, 1 h 40.'
+    },
+    'meran-giro-dei-masi-sul-monte-sole': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Giro dei masi sul Monte Sole”, published by the Naturns tourist board, drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Naturns (no dog regulation published online, probably exists: the national rule applies, lead ≤1.5 m and a muzzle carried).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Unterstell – Patleid – Lint – Innerforch – Unterstell (Naturns)',
+      distance: 4.2,
+      elevation: 284,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the top station of the Unterstell cable car on path 10 up to the Patleid farm, path 24A towards Schnals to the Meraner Höhenweg, the Höhenweg (path 24) east past the Lint inn to the Innerforch farm, and path 24B back to the top station.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Unterstell cable car up from Naturns (Kompatsch) and start at its top station by the Unterstell inn, the board’s start.",
+        "sequence": "Take path 10, climbing gently, to the Patleid farm. At the farm continue on path 24A towards the Schnals valley as far as the junction with the Meraner Höhenweg, path 24, about halfway between the Innerunterstell and Lint farms. Follow the Höhenweg east, first to the Lint inn and then to the fork with path 24B in front of the Innerforch farm. Path 24B leads back to the top station of the Unterstell cable car.",
+        "switches": "Three changes: at the Patleid farm onto path 24A; at the Meraner Höhenweg east on path 24; at the Innerforch farm onto path 24B back to the top station.",
+        "sources": [
+          {
+            "label": "Naturns tourist board, Giro dei masi sul Monte Sole (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/50815999",
+            "authority": "Naturns tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The view over Naturns from beside the Unterstell top station, where the loop starts and ends, in August (uwelino on Mapillary, CC BY-SA 4.0), 11 m from the line.',
+        route: 'Official loop 4.2 km from the top station of the Unterstell cable car above Naturns, as the Naturns tourist board publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 10, 24A, 24 and 24B: from the Unterstell top station path 10 to the Patleid farm, path 24A to the Meraner Höhenweg, path 24 east past the Lint inn, and path 24B from the Innerforch farm back to the top station.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 3152633517).',
+        elevation: 'Official 4.2 km, 284 m up and 284 m down, 1:24 h, highest point 1,480 m, lowest 1,281 m (Naturns tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Naturns tourist board, Giro dei masi sul Monte Sole (its Outdooractive tour, also listed on suedtirol.info)',
+          'Marktgemeinde Naturns / Comune di Naturno: no dog regulation published online (only an information sheet for dog owners on dog-waste stations), probably exists; the Italian national rule applies: Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Open south-facing slope with almost no shade: hot in summer, go early and carry water', 'Farm roads and yards at Patleid, Lint and Innerforch: lead on and keep your dog close past livestock', 'Meadows beside the path are farmed: keep to the path'],
+      terrainType: 'Mountain paths and farm roads',
+      shadeDescription: 'Almost no shade: only a few metres run under mapped trees; the farms and meadows of the Sonnenberg are in full sun.',
+      terrainDescription: 'A short loop at 1,280–1,480 m on the sunny Sonnenberg above Naturns, from the Unterstell cable car past the Patleid, Lint and Innerforch farms on the Meraner Höhenweg, with wide views over the Vinschgau.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Naturns publishes no dog regulation online, only an information sheet asking owners to keep dogs on a lead where required and off farmed meadows, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in public places. On the cable car dogs ride on a lead and muzzled.',
+      tips: 'Take the Unterstell cable car up from Naturns: a 4.2 km loop back to the top station, 284 m up and down, about an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at the top station; the Unterstell and Lint inns are on the way. Very sunny: go early in summer.',
+      sourceLinks: [
+        { label: 'Outdooractive, Giro dei masi sul Monte Sole (Naturns tourist board)', url: 'https://www.outdooractive.com/it/r/50815999' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Marktgemeinde Naturns, information for dog owners', url: 'https://www.gemeinde.naturns.bz.it/de/Verwaltung/Dokumente/Informationen_fuer_Hundehalterinnen_und_Hundehalter' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.658449, lng: 10.982989, label: 'Top station of the Unterstell cable car above Naturns, the board’s start' },
+      desc: 'A short loop on the Sonnenberg above Naturns from the Unterstell cable car past the Patleid farm, along the Meraner Höhenweg to the Lint inn and back by the Innerforch farm. The board lists 4.2 km, 284 m up and 284 m down, 1 h 24.'
+    },
+    'meran-escursione-alla-forst': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Escursione alla Forst”, published by the Algund tourist board, drawn on 61 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Algund (its dog regulation, Gemeinderat Nr. 11 of 10.02.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line; it crosses landscape protection zones, which carry no dog rule.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; its stem is walked both ways, as the board describes.
+      area: 'Algund – Forst – Marlinger Waalweg – Rastbichlhof – Josefsberg – Töll (Burggrafenamt)',
+      distance: 8.2,
+      elevation: 295,
+      hours: '2.5',
+      routeShape: 'lollipop',
+      routeShapeNote: 'A loop on a stem: from the centre of Algund past the open-air pool and over the Adige to Forst, up to the Marlinger Waalweg and the Marlinger Höhenweg to the Rastbichlhof and Josefsberg, down road 9 to the Waalweg and west along it to the Töll power station, then back the same way to Algund.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the centre of Algund, the board’s start, and walk to the Algund open-air pool.",
+        "sequence": "Cross the wooden bridge over the Adige to Forst and follow Brauereistraße west to the Alperia power station. From there follow the old signs for the Marlinger Waalweg and Marlinger Höhenweg: climb the steps to the old Vinschgau state road, which has almost no traffic, cross it and take the clear path up to the Marlinger Waalweg. Follow the Waalweg east to a hiking path that climbs to the Marlinger Höhenweg, and follow it to the Rastbichlhof farm. Take the wide access road east to the former Josefsberg hotel, then go down the tarred road, number 9, to the Waalweg. Walk west along the Waalweg to the Töll hydroelectric power station, and from there return to Algund the same way you came.",
+        "switches": "Key turns: at the Alperia power station up the steps and across the old state road; from the Waalweg up to the Höhenweg; at Josefsberg down road 9; west along the Waalweg to Töll, then back the way you came.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Algund tourist board, Escursione alla Forst (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/800061150",
+            "authority": "Algund tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path with its wooden railing between Forst and the Marlinger Waalweg in Algund, in June (changchun1 on Mapillary, CC BY-SA 4.0), 12 m from the line.',
+        route: 'Official loop 8.2 km from the centre of Algund, as the Algund tourist board publishes it; the stored line is drawn on 61 OSM ways along the board’s published line, 8.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No single number: from Algund across the Adige to Forst, the old signs for the Marlinger Waalweg and Marlinger Höhenweg, the access road to Josefsberg, tarred road 9 down to the Waalweg, and the Waalweg west to the Töll power station.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 0.1 (OSM nodes 3009845489, 7599256286, 7726881458, 4881103694).',
+        elevation: 'Official 8.2 km, 295 m up and 295 m down, 2:24 h, highest point 583 m, lowest 339 m (Algund tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Algund tourist board, Escursione alla Forst (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Algund / Comune di Lagundo, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 11, 10.02.2010), Art. 4 and 8: dogs on a lead of at most 1.5 m on all public ground (except designated dog areas) and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and primary-school yards or on farmed land (meadows, fields) during the growing season; no bathing in the fountains of the centre',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (61 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Crosses the old Vinschgau state road, which has little traffic: lead short while crossing', 'Steps up from the Alperia power station to the old state road', 'Access roads to Josefsberg and road 9 are tarred and open to cars: lead on', 'Orchards and vineyards beside the path are farmed and closed to dogs in Algund in the growing season: keep to the path'],
+      terrainType: 'Waal path, field paths and access roads',
+      shadeDescription: 'Mostly open: only a few stretches run under mapped trees; the orchards and vineyards on the slope are in full sun.',
+      terrainDescription: 'A walk at 340–580 m from Algund across the Adige to Forst and up the slope of the Marling mountain, along the Marlinger Waalweg and the Marlinger Höhenweg through orchards and vineyards with views over the Meran basin.',
+      waterDescription: 'Drinking water at the start and km 0.1; places to eat on the way.',
+      dogNotes: 'Algund requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season.',
+      tips: 'Start in the centre of Algund: 8.2 km there and back with a loop above Forst, 295 m up and down, about two and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Fountains in Algund at the start. Very sunny in summer: go early or late.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione alla Forst (Algund tourist board)', url: 'https://www.outdooractive.com/it/r/800061150' },
+        { label: 'Gemeinde Algund, dog regulation (2010)', url: 'https://www.gemeinde.algund.bz.it/system/web/GetDocument.ashx?cts=1741696854&fileId=1023700' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.682643, lng: 11.121937, label: 'The village centre of Algund, the board’s start' },
+      desc: 'A walk from Algund across the Adige to Forst and up to the Marlinger Waalweg and Höhenweg, round by the Rastbichlhof and Josefsberg and back along the Waalweg. The board lists 8.2 km, 295 m up and 295 m down, 2 h 24.'
+    },
+    'meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 2).
+      // “Passeggiata alpestre ai piedi del monte Hirzer”, published by the Schenna tourist board, drawn on 35 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Schenna (its dog regulation, Gemeinderat Nr. 33 of 31.08.2010: lead ≤1.5 m, muzzle carried, no dogs in cemeteries, playgrounds, school yards or on farmed meadows and fields in the growing season).
+      // No Natura 2000 site, park or natural monument on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; its stem is walked both ways, as the board describes.
+      area: 'Klammeben – Hirzer hut – Hinteregg Alm – Mahd Alm – Rotmoos – Tallner Alm (Schenna)',
+      distance: 6.7,
+      elevation: 350,
+      hours: '2.5',
+      routeShape: 'lollipop',
+      routeShapeNote: 'A loop on a stem: from Klammeben, the top station of the Hirzer cable car, on path 40 to the Hirzer hut, level along the European path E5 to the Hinteregg and Mahd alms, gently up to the Rotmoos basin, back by the Tallner Alm to the Hirzer hut and down to Klammeben.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Ride the Hirzer cable car up from Saltaus and start at its top station, Klammeben, the board’s start.",
+        "sequence": "Take path 40 to the Hirzer hut. From the hut follow the level European long-distance path E5 to the Hinteregg and Mahd alms. A little further on the path climbs gently to the alpine basin of Rotmoos. From Rotmoos head back to the Tallner Alm, then turn right to the Hirzer hut and return on path 40 to Klammeben.",
+        "switches": "Two changes: at the Hirzer hut onto the E5 towards the Hinteregg and Mahd alms; on the way back at the Tallner Alm right to the Hirzer hut and path 40.",
+        "sources": [
+          {
+            "label": "Schenna tourist board, Passeggiata alpestre ai piedi del monte Hirzer (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16571460",
+            "authority": "Schenna tourist board",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The E5 path at the Mahd Alm below the Hirzer, in June (Lutz Lange on Wikimedia Commons, CC0), 4 m from the line.',
+        route: 'Official loop 6.7 km from Klammeben, the top station of the Hirzer cable car, as the Schenna tourist board publishes it; the stored line is drawn on 35 OSM ways along the board’s published line, 6.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 40 and the E5: from Klammeben path 40 to the Hirzer hut, the E5 to the Hinteregg and Mahd alms and up to Rotmoos, back by the Tallner Alm to the Hirzer hut and on path 40 to Klammeben.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 6.7 km, 350 m up and 350 m down, 2:30 h, highest point 2,132 m, lowest 1,961 m (Schenna tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Schenna tourist board, Passeggiata alpestre ai piedi del monte Hirzer (its Outdooractive tour, also listed on suedtirol.info)',
+          'Gemeinde Schenna / Comune di Scena, dog regulation (Gemeinderat Nr. 33, 31.08.2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, children’s playgrounds, kindergarten and school yards or on farmed land (meadows, fields) during the growing season; no bathing in the fountains of the centre',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park, natural monument or landscape protection zone on the line',
+          'OpenStreetMap ways along the board’s line (35 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cattle graze the alpine pastures in summer: keep your dog on a short lead, give cows a wide berth and let go of the lead if cattle charge', 'At about 2,000–2,130 m the weather turns fast: check the forecast and turn back in a storm', 'Busy with walkers on the E5 in summer: keep your dog close'],
+      terrainType: 'Alpine paths and alm tracks',
+      shadeDescription: 'Mostly open: about a quarter runs past mapped larch and spruce near the alms; the pastures towards Rotmoos are above the trees.',
+      terrainDescription: 'An alpine loop at 1,960–2,130 m below the Hirzer above Schenna, on level and gently climbing paths past the Hirzer hut and the Hinteregg, Mahd and Tallner alms to the Rotmoos basin.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Schenna requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs out of cemeteries, playgrounds and school yards and off farmed meadows and fields in the growing season. On the alpine pastures cattle graze freely in summer, so keep your dog on a short lead. On the cable car dogs ride on a lead and muzzled.',
+      tips: 'Take the Hirzer cable car up from Saltaus: a 6.7 km loop back to Klammeben, 350 m up and down, about two and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. No mapped drinking water: bring water; the Hirzer hut and the alms serve food in summer.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passeggiata alpestre ai piedi del monte Hirzer (Schenna tourist board)', url: 'https://www.outdooractive.com/it/r/16571460' },
+        { label: 'Gemeinde Schenna, dog regulation (2010)', url: 'https://www.gemeinde.schenna.bz.it/system/web/GetDocument.ashx?cts=1715263604&fileId=1020049' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.738282, lng: 11.247224, label: 'Klammeben, top station of the Hirzer cable car, the board’s start' },
+      desc: 'An alpine loop below the Hirzer from the Hirzer cable car, past the Hirzer hut along the E5 to the Hinteregg and Mahd alms and the Rotmoos basin, and back by the Tallner Alm. The board lists 6.7 km, 350 m up and 350 m down, 2 h 30.'
+    },
+    'valtellina-rifugi-porro-e-ventina': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Lombardy batch 4).
+      // “Rifugi Porro e Ventina”, published by the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), drawn on 8 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour for Valtellina Outdoor. Communes: Chiesa in Valmalenco (no regulation, national rule).
+      // Crosses the Disgrazia – Sissone Natura 2000 site IT2040017 (90% of the line), whose measures require dogs on a lead and visitors on the paths. Not in the Stelvio National Park.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Chiareggio – Rifugio Porro – Rifugio Ventina, Valmalenco',
+      distance: 3.1,
+      elevation: 372,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the car park in Chiareggio on path 323, over the Mallero and gently up a wide mule track to the plateau of the Rifugio Porro and the Rifugio Ventina below Monte Disgrazia; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the large car park in Chiareggio, at the head of the Valmalenco, the board’s start.",
+        "sequence": "Follow the signs for path 323: drop a few tens of metres to the Mallero torrent and cross it on a wooden footbridge, then climb gently on the wide mule track through the larches to the open plateau at about 1,960 m, where the Rifugio Porro and then the Rifugio Ventina stand one after the other. Come back the same way.",
+        "switches": "No change of path: path 323 from Chiareggio to the huts.",
+        "sources": [
+          {
+            "label": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Rifugi Porro e Ventina (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/804596740",
+            "authority": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor)",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadow at the Rifugio Porro and Rifugio Ventina, with Monte Disgrazia behind, in June (lucagri on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official one-way walk 3.1 km from the car park in Chiareggio, as the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor) publishes it; the stored line is drawn on 8 OSM ways along the board’s published line, 3.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 323 all the way: from the car park in Chiareggio down to the Mallero footbridge, then up the mule track to the Rifugio Porro and on to the Rifugio Ventina. Back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3.1 km, 372 m up and 18 m down, 1:25 h, highest point 1,961 m, lowest 1,589 m (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Rifugi Porro e Ventina (its Outdooractive tour for Valtellina Outdoor, the tourism network of the Province of Sondrio and its mountain communities)',
+          'Comune di Chiesa in Valmalenco (its regulations are kept by the Unione dei Comuni Valmalenco) publishes no dog regulation (none in its register of regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'ZSC/ZPS IT2040017 Disgrazia – Sissone: DGR X/1029 of 25 November 2013, annexes, Art. 3 (p. 18), visitors keep to the paths and dogs go on a lead under close watch. No park, reserve or natural monument on the line (Regione Lombardia geoportal layers; not in the Stelvio National Park)',
+          'OpenStreetMap ways along the board’s line (8 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 9,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cattle graze the pastures around the huts in summer: keep your distance and your dog close', 'Stony mule track with loose stones in places: watch your dog’s paws', 'Storms build fast on summer afternoons at this height'],
+      terrainType: 'Mule track and meadow path',
+      shadeDescription: 'Mostly open on the map: OpenStreetMap shows woodland on only about a tenth of the line, though larches line much of the mule track; the hut plateau is in full sun.',
+      terrainDescription: 'A short climb at about 1,590–1,960 m from Chiareggio, at the head of the Valmalenco, on a wide mule track to the meadow plateau of the Porro and Ventina huts at the foot of Monte Disgrazia. Easy enough for families; a summer walk, as snow lies late up here.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The two huts serve food and drink in summer.',
+      dogNotes: 'Chiesa in Valmalenco has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Most of the walk is in the Disgrazia – Sissone Natura 2000 site: keep your dog on a lead and on the path. Clean up after your dog.',
+      tips: 'Start at the car park in Chiareggio: 3.1 km and, as the board lists, 372 m of climbing, about an hour and a half to the huts, then the same way back. Walk it from June to October. Keep your dog on a lead the whole way: the national rule (1.5 m at most, muzzle carried) applies, and the Natura 2000 site asks for dogs on a lead and on the path. Food and drink at the huts.',
+      sourceLinks: [
+        { label: 'Outdooractive, Rifugi Porro e Ventina (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor))', url: 'https://www.outdooractive.com/it/r/804596740' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'Regione Lombardia, DGR X/1029/2013, annexes (conservation measures for the Sondrio Natura 2000 sites)', url: 'https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/allegati-dgr-1029-2013-misure-di-conservazione-dei-sic.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.31595, lng: 9.78786, label: 'The car park in Chiareggio, the board’s start' },
+      desc: 'A classic, easy walk from Chiareggio up a wide mule track to the Rifugio Porro and the Rifugio Ventina, on a meadow plateau at the foot of Monte Disgrazia. The board lists 3.1 km, 372 m up and 18 m down, 1 h 25 one way.'
+    },
+    'valtellina-passo-di-campagneda': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Lombardy batch 4).
+      // “Passo di Campagneda”, published by the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour for Valtellina Outdoor. Communes: Lanzada (no regulation, national rule).
+      // Crosses the Monte di Scerscen – Ghiacciaio di Scerscen – Monte Motta Natura 2000 site IT2040016 (all of the line), whose measures require dogs on a lead and visitors on the paths. Not in the Stelvio National Park.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Campo Moro – Alpe Campagneda – Passo di Campagneda, Valmalenco (Lanzada)',
+      distance: 5.27,
+      elevation: 615,
+      hours: '2.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the car park at Campo Moro past the Rifugio Zoia on the old mule track to the Alpe Campagneda, then on the Alta Via della Valmalenco past the Campagneda lakes to the Passo di Campagneda on the Swiss border; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park at Campo Moro, by the dams above Lanzada, the board’s start.",
+        "sequence": "Follow the old mule track past the Rifugio Zoia, up and down between rock walls and mountain pines, to the pastures of the Alpe Campagneda, where the going turns easy. At the junction with the Alta Via della Valmalenco follow it uphill, past the small Campagneda lakes, to the Passo di Campagneda with its marker arch on the Swiss border. Come back the same way.",
+        "switches": "One change: at the junction on the Alpe Campagneda leave the mule track and follow the Alta Via della Valmalenco uphill to the pass.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Passo di Campagneda (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/804595894",
+            "authority": "Comunità Montana Valtellina di Sondrio (Valtellina Outdoor)",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Campagneda lakes below the Passo di Campagneda, looking west to Monte Disgrazia, in July (karma2 on Mapillary, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official one-way walk 5.27 km from the car park at Campo Moro, as the Comunità Montana Valtellina di Sondrio (Valtellina Outdoor) publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 5.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the car park at Campo Moro on the old mule track past the Rifugio Zoia to the pastures of the Alpe Campagneda; at the junction with the Alta Via della Valmalenco, uphill along it (its seventh stage walked in reverse) past the Campagneda lakes to the pass and its marker arch. Back the same way; the board gives no path number.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 5.27 km, 615 m up and 3 m down, 2:28 h, highest point 2,604 m, lowest 1,990 m (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Comunità Montana Valtellina di Sondrio (Valtellina Outdoor), Passo di Campagneda (its Outdooractive tour for Valtellina Outdoor, the tourism network of the Province of Sondrio and its mountain communities)',
+          'Comune di Lanzada (its regulations are kept by the Unione dei Comuni Valmalenco) publishes no dog regulation (none in its register of regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'ZSC/ZPS IT2040016 Monte di Scerscen – Ghiacciaio di Scerscen – Monte Motta: DGR X/1029 of 25 November 2013, annexes, Art. 3 (p. 18), visitors keep to the paths and dogs go on a lead under close watch. No park, reserve or natural monument on the line (Regione Lombardia geoportal layers; not in the Stelvio National Park)',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Rocky stretches between boulders and slabs, rougher towards the pass: take it slowly with your dog', 'Cattle graze the Alpe Campagneda in summer: keep your distance and your dog close', 'Open ground above 2,000 m with no shade; storms build fast on summer afternoons'],
+      terrainType: 'Mule track and mountain path over rock and pasture',
+      shadeDescription: 'Almost no shade: a few mountain pines near Campo Moro, then open pasture and rock to the pass.',
+      terrainDescription: 'A popular walk at about 1,990–2,600 m from the Campo Moro dams in the upper Valmalenco, on an old mule track to the Alpe Campagneda pastures and then a stretch of the Alta Via past small lakes to a pass on the Swiss border, with views to Monte Disgrazia and the Bernina. A summer walk: snow lies late up here.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Rifugio Zoia near the start serves food and drink in summer.',
+      dogNotes: 'Lanzada has no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The whole walk is in the Monte di Scerscen – Monte Motta Natura 2000 site: keep your dog on a lead and on the path. Clean up after your dog.',
+      tips: 'Start at the car park at Campo Moro, above Lanzada: 5.3 km and, as the board lists, 615 m of climbing, about two and a half hours to the pass, then the same way back. Walk it from July to early October. Keep your dog on a lead the whole way: the national rule (1.5 m at most, muzzle carried) applies, and the Natura 2000 site asks for dogs on a lead and on the path. The pass is the border: stay on the Italian side unless your dog’s papers are in order for Switzerland.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passo di Campagneda (Comunità Montana Valtellina di Sondrio (Valtellina Outdoor))', url: 'https://www.outdooractive.com/it/r/804595894' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'Regione Lombardia, DGR X/1029/2013, annexes (conservation measures for the Sondrio Natura 2000 sites)', url: 'https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/allegati-dgr-1029-2013-misure-di-conservazione-dei-sic.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.30417, lng: 9.9327, label: 'The car park at Campo Moro, the board’s start' },
+      desc: 'A popular walk from Campo Moro in the upper Valmalenco past the Rifugio Zoia and the Alpe Campagneda pastures, then along the Alta Via past small lakes to the Passo di Campagneda on the Swiss border. The board lists 5.27 km, 615 m up and 3 m down, 2 h 28 one way.'
+    },
+    'savoie-areches-beaufort-la-grande-berge': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 2, Beaufortain).
+      // “Arêches / Beaufort – La Grande Berge”, published by the Communauté d’agglomération Arlysère, drawn on 23 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 262882). Communes: Beaufort (no dog order found online, probably exists: the national rule applies).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Plan de la Lai – Plan Mya – La Grande Berge (Beaufortain)',
+      distance: 7.4,
+      elevation: 350,
+      hours: '4',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way: from the Plan de la Lai refuge on the Cormet de Roselend road, up the alpage road past the Plan Mya refuge and the Petite Berge to the ruins of the Grande Berge, then back by the same route.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Plan de la Lai refuge, on the road from the Col du Méraillet to the Cormet de Roselend; park about 20 m past the refuge.",
+        "sequence": "Take the alpage road opposite the refuge and follow the signs for La Grande Berge, up past the Plan Mya refuge to the farm building of La Petite Berge. Carry on along the path to the ruins of the Grande Berge, and climb the grassy knoll on the right for the view over the Lac de Roselend. Come back the same way to the Plan de la Lai.",
+        "switches": "Follow the signs for La Grande Berge throughout. The board notes you can turn back at La Petite Berge to save an hour; the line shown goes on to the Grande Berge.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Communauté d’agglomération Arlysère, Arêches / Beaufort – La Grande Berge (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-la-grande-berge-262882/",
+            "authority": "Communauté d’agglomération Arlysère",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Lac de Roselend and the Montagne d’Outray from the path to the Grande Berge, in July 2022 (Rémih on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official there-and-back walk 7.4 km from the Plan de la Lai refuge on the Cormet de Roselend road, as the Communauté d’agglomération Arlysère publishes it; the stored line is drawn on 23 OSM ways along the board’s published line, 7.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Plan de la Lai refuge (parking 20 m beyond it) and take the alpage road opposite, signed for La Grande Berge, up past the Plan Mya refuge to La Petite Berge, then the path on to the ruins of the Grande Berge; return the same way. Waymarked, no path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 2.3 (OSM nodes 4952419661, 7800803933).',
+        elevation: 'Official 7.4 km, 350 m up and 350 m down, 4:00 h average walking time (Communauté d’agglomération Arlysère, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Communauté d’agglomération Arlysère, Arêches / Beaufort – La Grande Berge (Explore Savoie, Apidae 262882) and its official GPX',
+          'Beaufort publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 1,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpages: cows graze along the road and path in summer and guard dogs may be present; keep your dog on a lead and walk round the herds', 'High, open ground at 1,800–2,070 m: no shade and quick weather changes', 'The alpage road is used by farm vehicles: lead on'],
+      terrainType: 'Alpage road and mountain path',
+      shadeDescription: 'No shade: the whole walk is on open alpine pasture above the tree line.',
+      terrainDescription: 'A half-day walk at 1,800–2,070 m on an alpage road and a grassy mountain path above the Lac de Roselend, past the Plan Mya refuge and the farm of La Petite Berge to the ruins of the Grande Berge.',
+      waterDescription: 'Drinking water at the start and km 2.3; places to eat on the way.',
+      dogNotes: 'Dogs are accepted, according to the official page. Beaufort publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. These are working Beaufort-cheese alpages with cows and possibly guard dogs: keep your dog on a lead and give the herds room.',
+      tips: 'Drive up from Beaufort past the Roselend dam and the Col du Méraillet to the Plan de la Lai refuge: 7.4 km there and back, 350 m up and down, about four hours. Water at the Plan de la Lai and at the Plan Mya refuge. Open June to the end of September; you can turn back at La Petite Berge to shorten it by an hour.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Arêches / Beaufort – La Grande Berge (Communauté d’agglomération Arlysère)', url: 'https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-la-grande-berge-262882/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/23/130/7373335/Arches++Beaufort+-+La+Grande+Berge.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.693272, lng: 6.668725, label: 'Plan de la Lai refuge on the Cormet de Roselend road, the board’s start' },
+      desc: 'A half-day walk over the high Beaufort alpages from the Plan de la Lai refuge past Plan Mya and La Petite Berge to the ruins of the Grande Berge, with the turquoise Lac de Roselend below. The official page lists 7.4 km, 350 m up and 350 m down, about four hours there and back.'
+    },
+    'savoie-areches-beaufort-croix-du-berger-et-lac-des-fees': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 2, Beaufortain).
+      // “Arêches / Beaufort – Croix du Berger et lac des Fées”, published by the Communauté d’agglomération Arlysère, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 262872). Communes: Beaufort (no dog order found online, probably exists: the national rule applies).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Lac des Fées – Cormet d’Arêches – Croix du Berger (Beaufortain)',
+      distance: 4.8,
+      elevation: 350,
+      hours: '3.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way: from the Lac des Fées above the Saint-Guérin dam on the red-and-yellow waymarked path to the Cormet d’Arêches, then left up over a series of grassy humps to the Croix du Berger, and back by the same route.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park by the Lac des Fées: from the Saint-Guérin dam belvedere take the first road on the left below the quarry, keep straight on to the end of the tarmac, then right for two bends on the stony track.",
+        "sequence": "From the Lac des Fées follow the red-and-yellow waymarked path up to the Cormet d’Arêches. At the col take the path to the left, which climbs and runs over several grassy humps to the Croix du Berger, already visible from the col. Come back the same way to the Lac des Fées.",
+        "switches": "One turn: at the Cormet d’Arêches leave the main path and go left towards the Croix du Berger.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Communauté d’agglomération Arlysère, Arêches / Beaufort – Croix du Berger et lac des Fées (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-croix-du-berger-et-lac-des-fees-262872/",
+            "authority": "Communauté d’agglomération Arlysère",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The track above the Lac des Fées towards the Cormet d’Arêches, in August 2022 (joostjakob on Mapillary, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official there-and-back walk 4.8 km from the Lac des Fées above the Saint-Guérin dam, as the Communauté d’agglomération Arlysère publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 4.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Lac des Fées car park and follow the red-and-yellow waymarked path up to the Cormet d’Arêches, then take the path to the left over the grassy humps to the Croix du Berger, visible from the col; return the same way. No path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 11192822660).',
+        elevation: 'Official 4.8 km, 350 m up and 350 m down, 3:30 h average walking time (Communauté d’agglomération Arlysère, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Communauté d’agglomération Arlysère, Arêches / Beaufort – Croix du Berger et lac des Fées (Explore Savoie, Apidae 262872) and its official GPX',
+          'Beaufort publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 13,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpages: cows graze around the Cormet d’Arêches in summer and guard dogs may be present; keep your dog on a lead and walk round the herds', 'Steady climb of 350 m on mountain paths to about 2,210 m, with steep grassy humps near the cross', 'High, open ground: little shade and quick weather changes'],
+      terrainType: 'Stony track and mountain path',
+      shadeDescription: 'Mostly open: about 13% passes mapped trees near the Lac des Fées; the rest is open alpine pasture.',
+      terrainDescription: 'A short mountain walk at 1,890–2,210 m from the small Lac des Fées above the Saint-Guérin reservoir up to the Cormet d’Arêches pass and along the grassy humps to the Croix du Berger, with wide views over the Beaufortain.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Dogs are accepted, according to the official page. Beaufort publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cows graze the alpages around the col: keep your dog on a lead and give the herds room.',
+      tips: 'Drive up from Arêches past the Saint-Guérin dam to the Lac des Fées: 4.8 km there and back, 350 m up and down, about three and a half hours. Drinking water at the start only. Open June to the end of September.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Arêches / Beaufort – Croix du Berger et lac des Fées (Communauté d’agglomération Arlysère)', url: 'https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-croix-du-berger-et-lac-des-fees-262872/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/59/129/7373115/Arches++Beaufort+-+Croix+du+Berger+et+lac+des+Fes.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.626113, lng: 6.600459, label: 'Lac des Fées car park above the Saint-Guérin dam, the board’s start' },
+      desc: 'A short mountain walk from the Lac des Fées above the Saint-Guérin reservoir up to the Cormet d’Arêches and along the grassy humps to the Croix du Berger, with wide views over the Beaufortain. The official page lists 4.8 km, 350 m up and 350 m down, about 3 h 30 there and back.'
     }
   };
 
