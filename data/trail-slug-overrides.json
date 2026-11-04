@@ -1798,6 +1798,21 @@
       "name": "Zernez to Brail",
       "slug": "zernez-to-brail",
       "gloss": "along the Via Engiadina above the Inn"
+    },
+    "isere-boucle-du-couzon": {
+      "name": "Couzon loop from Saint-Pierre-de-Chartreuse",
+      "slug": "couzon-loop-saint-pierre-de-chartreuse",
+      "gloss": "Chartreuse village loop along the Couzon"
+    },
+    "isere-le-plateau-de-la-moliere": {
+      "name": "Molière plateau loop above Autrans",
+      "slug": "moliere-plateau-loop-autrans",
+      "gloss": "Vercors alpage loop to the Charande viewpoint"
+    },
+    "isere-le-fort-du-murier": {
+      "name": "Fort du Murier loop above Gières",
+      "slug": "fort-du-murier-loop-gieres",
+      "gloss": "hillside loop to the Batteries Hautes above Grenoble"
     }
   }
 }
