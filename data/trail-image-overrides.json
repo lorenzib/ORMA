@@ -6486,6 +6486,40 @@
       }
     },
     {
+      "id": "seiseralm-fie-laghetto-di-fie-siusi",
+      "approvedReviewId": "mapillary-seiseralm-fie-laghetto-di-fie-siusi-on-route",
+      "approvedAt": "2026-11-04T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-fie-laghetto-di-fie-siusi-fie-allo-sciliar.jpg",
+        "heroImage": "images/trails/seiseralm-fie-laghetto-di-fie-siusi-fie-allo-sciliar.jpg",
+        "imageAlt": "Green meadows and a wooded valley above Fiè allo Sciliar, with farms on the slopes and forested hills under a blue sky",
+        "imageCredit": "The meadows above Fiè at the start",
+        "imageCreditText": "The meadows above Fiè at the start by houtari",
+        "imageCreator": "houtari",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=2334353726694491",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seiseralm-miglio-geologico-siusi",
+      "approvedReviewId": "mapillary-seiseralm-miglio-geologico-siusi-on-route",
+      "approvedAt": "2026-11-04T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-miglio-geologico-siusi-siusi.jpg",
+        "heroImage": "images/trails/seiseralm-miglio-geologico-siusi-siusi.jpg",
+        "imageAlt": "A white Tyrolean hotel with a painted oriel window and wooden balconies on a village street, with more houses and storm clouds beyond",
+        "imageCredit": "The village centre of Siusi",
+        "imageCreditText": "The village centre of Siusi by madel",
+        "imageCreator": "madel",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=461068494978617",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "sentiero-del-trenino",
       "approvedReviewId": "commons-sentiero-del-trenino-on-route",
       "approvedAt": "2026-10-23T23:00:00.000Z",
@@ -7149,6 +7183,23 @@
       }
     },
     {
+      "id": "valgardena-cudan-dumat",
+      "approvedReviewId": "commons-valgardena-cudan-dumat-on-route",
+      "approvedAt": "2026-11-04T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-cudan-dumat-ortisei.jpg",
+        "heroImage": "images/trails/valgardena-cudan-dumat-ortisei.jpg",
+        "imageAlt": "Ortisei’s rooftops and church below wooded slopes, with the pale rock tower of the Sassolungo rising behind",
+        "imageCredit": "Ortisei and the Sassolungo from the walk",
+        "imageCreditText": "Ortisei and the Sassolungo from the walk by József Kovács",
+        "imageCreator": "József Kovács",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ortisei_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valgardena-escursione-al-brogles",
       "approvedReviewId": "commons-valgardena-escursione-al-brogles-on-route",
       "approvedAt": "2026-10-28T16:00:00.000Z",
@@ -7451,6 +7502,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=1245395036599629",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-troi-unika",
+      "approvedReviewId": "mapillary-valgardena-troi-unika-on-route",
+      "approvedAt": "2026-11-04T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-troi-unika-monte-pana.jpg",
+        "heroImage": "images/trails/valgardena-troi-unika-monte-pana.jpg",
+        "imageAlt": "A green meadow rising to dark spruce woods, with the grey rock towers of the Sassolungo against a blue sky behind",
+        "imageCredit": "The Sassolungo above the Monte Pana meadows",
+        "imageCreditText": "The Sassolungo above the Monte Pana meadows by highlander",
+        "imageCreator": "highlander",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=377745193562031",
         "imageSourceType": "licensed-source"
       }
     },

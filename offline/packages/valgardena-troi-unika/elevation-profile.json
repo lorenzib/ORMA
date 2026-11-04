@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-troi-unika",
+  "distanceKm": 1.6,
+  "ascentM": 54,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1638
+    },
+    {
+      "km": 0.1,
+      "elev": 1651
+    },
+    {
+      "km": 0.3,
+      "elev": 1664
+    },
+    {
+      "km": 0.4,
+      "elev": 1671
+    },
+    {
+      "km": 0.5,
+      "elev": 1681
+    },
+    {
+      "km": 0.6,
+      "elev": 1685
+    },
+    {
+      "km": 0.7,
+      "elev": 1689
+    },
+    {
+      "km": 0.9,
+      "elev": 1683
+    },
+    {
+      "km": 1,
+      "elev": 1679
+    },
+    {
+      "km": 1.1,
+      "elev": 1642
+    },
+    {
+      "km": 1.3,
+      "elev": 1655
+    },
+    {
+      "km": 1.4,
+      "elev": 1665
+    },
+    {
+      "km": 1.5,
+      "elev": 1640
+    },
+    {
+      "km": 1.6,
+      "elev": 1638
+    }
+  ]
+}

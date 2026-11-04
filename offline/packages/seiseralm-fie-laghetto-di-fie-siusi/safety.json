@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "trailId": "seiseralm-fie-laghetto-di-fie-siusi",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 6.3,
+    "ascentM": 299,
+    "highestPointM": 1056,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 67
+  },
+  "trailhead": {
+    "lat": 46.518743,
+    "lng": 11.504462,
+    "label": "The roundabout in Fiè allo Sciliar (880 m), the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.518496,
+      "lng": 11.502625,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5178207,
+      "lng": 11.5042752,
+      "label": "Max-Brunnen",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5187189,
+      "lng": 11.5041691,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.517698,
+      "lng": 11.502659,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5175309,
+      "lng": 11.5027665,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5162346,
+      "lng": 11.5071516,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.517613,
+      "lng": 11.508281,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5181327,
+      "lng": 11.5120689,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5212446,
+      "lng": 11.5222271,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.528189,
+      "lng": 11.530853,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The first stretch follows the tarmac road (path 1) towards Umes and the last runs on a lane past the gondola station: keep your dog on a short lead.",
+    "The Fiè di Sopra meadows are farmed: Völs keeps dogs off farmed land, so stay on the path.",
+    "Busy around the Laghetto di Fiè in summer; swimming is for people: keep your dog out of the bathing area.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

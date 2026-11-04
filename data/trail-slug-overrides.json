@@ -1724,6 +1724,26 @@
       "slug": "lago-bianco-loop-from-ospizio-bernina",
       "gloss": "round the lake on the Bernina Pass"
     },
+    "valgardena-troi-unika": {
+      "name": "Troi Unika art trail on Monte Pana",
+      "slug": "monte-pana-troi-unika",
+      "gloss": "a short sculpture loop under the Sassolungo"
+    },
+    "valgardena-cudan-dumat": {
+      "name": "Cudan to Dumat above Ortisei",
+      "slug": "ortisei-cudan-dumat",
+      "gloss": "old Ladin houses, a meadow and a farm above the village"
+    },
+    "seiseralm-miglio-geologico-siusi": {
+      "name": "Siusi geological mile",
+      "slug": "siusi-geological-mile",
+      "gloss": "a village loop through the story of the Sciliar"
+    },
+    "seiseralm-fie-laghetto-di-fie-siusi": {
+      "name": "Fiè to Siusi by the Laghetto di Fiè",
+      "slug": "fie-laghetto-di-fie-siusi",
+      "gloss": "meadows, a lily lake under the Sciliar and woods to Siusi"
+    },
     "isere-circuit-pedestre-alpage-des-cloutons": {
       "name": "Alpage des Cloutons loop from Saint-Honoré 1500",
       "slug": "alpage-des-cloutons-loop-saint-honore-1500",
