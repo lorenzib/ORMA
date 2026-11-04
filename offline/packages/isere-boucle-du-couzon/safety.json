@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "isere-boucle-du-couzon",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7,
+    "ascentM": 310,
+    "highestPointM": 1137,
+    "expectedDuration": "2.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 58
+  },
+  "trailhead": {
+    "lat": 45.343081,
+    "lng": 5.814632,
+    "label": "Plan de Ville in the centre of Saint-Pierre-de-Chartreuse, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Clay stretches between Merlatière and the orchid path, and the drop to the Couzon after Carlinière, can be slippery after rain; one short steep section.",
+    "A departmental road is crossed halfway round, and the start and end follow village streets.",
+    "Several footbridges over the Couzon stream.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}
