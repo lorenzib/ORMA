@@ -32,11 +32,20 @@ const NETWORK_RANK = { iwn: 1, nwn: 2, rwn: 3, lwn: 4 };
 // `extract` is the Geofabrik extract that covers the region.
 const REGIONS = {
   dolomites: { bbox: [10.83, 45.96, 12.66, 47.03], extract: 'europe/italy/nord-est' },
-  savoy: { bbox: [5.65, 45.06, 7.05, 46.45], extract: 'europe/france/rhone-alpes' },
+  // Savoy's box also takes in the French Alps' Isère massifs (Chartreuse,
+  // Vercors, Belledonne, Oisans) and the Drôme Vercors, which share its
+  // Rhône-Alpes extract.
+  savoy: { bbox: [5.25, 44.65, 7.05, 46.45], extract: 'europe/france/rhone-alpes' },
   // The whole country, Jura to Val Müstair, so each canton's walks find their
   // routes as batches arrive. Its corner by Lake Geneva and the Chablais
   // overlaps Savoy's box; tile-join merges the shared tiles.
   switzerland: { bbox: [5.95, 45.81, 10.50, 47.81], extract: 'europe/switzerland' },
+  // The French Alps south of Savoy: the Hautes-Alpes, Ubaye and Mercantour
+  // are in the Provence-Alpes-Côte d'Azur extract (Isère's massifs are in
+  // Rhône-Alpes, so Savoy's box reaches down for them). The box is the
+  // localities plus ~0.15 degrees; its top overlaps Savoy's and tile-join
+  // merges the shared tiles.
+  frenchalps: { bbox: [5.90, 43.73, 7.75, 45.20], extract: 'europe/france/provence-alpes-cote-d-azur' },
 };
 
 // OPL escapes awkward characters as %<hex codepoint>%.

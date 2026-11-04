@@ -164,12 +164,12 @@
       // Modane, and Ticino lies west of 9°E too; the nearest locality decides.
       var regions = window.DoloPawsRegions;
       var near = regions && regions.nearestLocality ? regions.nearestLocality(fix.lat, fix.lng).region : null;
-      return near === 'aosta' || near === 'piedmont' || near === 'switzerland' ? near : 'savoy';
+      return near === 'aosta' || near === 'piedmont' || near === 'switzerland' || near === 'frenchalps' ? near : 'savoy';
     }
     var best = 'dolomites';
     var bestD = Infinity;
     (Array.isArray(window.trails) ? window.trails : []).forEach(function(trail){
-      if(!trail || trail.region === 'savoy' || typeof trail.lat !== 'number' || typeof trail.lng !== 'number') return;
+      if(!trail || trail.region === 'savoy' || trail.region === 'frenchalps' || typeof trail.lat !== 'number' || typeof trail.lng !== 'number') return;
       var d = Math.pow(trail.lat - fix.lat, 2) + Math.pow((trail.lng - fix.lng) * Math.cos(fix.lat * Math.PI / 180), 2);
       if(d < bestD){ bestD = d; best = trail.region || 'dolomites'; }
     });
@@ -258,7 +258,7 @@
         function build(){
           if(typeof gondolas === 'undefined') { reject(new Error('Lift layer unavailable')); return; }
           var lifts = gondolas.filter(function(lift){
-            var region = lift.country === 'FR' ? 'savoy' : (lift.from ? regionForFix(lift.from) : null);
+            var region = lift.country === 'FR' ? (lift.from && regionForFix(lift.from) === 'frenchalps' ? 'frenchalps' : 'savoy') : (lift.from ? regionForFix(lift.from) : null);
             return region === overlayRegion;
           });
           var features = lifts.map(function(lift){ return { type:'Feature', properties:{ name:lift.name, status:lift.status },

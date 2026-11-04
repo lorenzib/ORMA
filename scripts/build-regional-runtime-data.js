@@ -54,8 +54,13 @@ const regionsApi = (() => {
 // a point whose nearest locality is Swiss goes to Switzerland the same way.
 // Piedmont is the same: Bardonecchia and Modane share the Fréjus, and the
 // Ossola lies west of 9°E too.
-const WEST_REGIONS = ['aosta', 'piedmont', 'switzerland'];
+// The French Alps south of Savoy are France too, so a French lift there
+// follows its nearest locality rather than going to Savoy.
+const WEST_REGIONS = ['aosta', 'piedmont', 'switzerland', 'frenchalps'];
 let anchorTrails = [];
+function frenchRegionForPoint(lng, lat) {
+  return regionForPoint(lng, lat) === 'frenchalps' ? 'frenchalps' : 'savoy';
+}
 function regionForPoint(lng, lat) {
   if (!Number.isFinite(lng) || !Number.isFinite(lat)) return null;
   if (lng < 9) {
@@ -130,14 +135,14 @@ const trails = loadTrails();
 // point east of it: a lift by Lake Como is not an Aosta lift because the
 // Gressoney walks happen to be the nearest trails.
 anchorTrails = trails.filter(trail => trail.region && trail.region !== 'savoy' && trail.region !== 'aosta'
-  && trail.region !== 'piedmont'
+  && trail.region !== 'piedmont' && trail.region !== 'frenchalps'
   && Number.isFinite(trail.lat) && Number.isFinite(trail.lng));
 const gondolas = loadGondolas();
 const regionIds = Object.keys(regionsApi.REGIONS);
 const byRegion = Object.fromEntries(regionIds.map(region => [region, trails.filter(trail => trail.region === region)]));
 const gondolasByRegion = Object.fromEntries(regionIds.map(region => [region,
   gondolas.filter(lift => lift.from
-    && (lift.country === 'FR' ? 'savoy' : regionForPoint(lift.from.lng, lift.from.lat)) === region)]));
+    && (lift.country === 'FR' ? frenchRegionForPoint(lift.from.lng, lift.from.lat) : regionForPoint(lift.from.lng, lift.from.lat)) === region)]));
 const trailAssetVersions = {};
 const detailAssetVersions = {};
 

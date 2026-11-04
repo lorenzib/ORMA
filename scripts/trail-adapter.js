@@ -107,6 +107,8 @@ function routeType(legacy, stats){
 function regionFor(legacy){
   const region = legacy.region === 'savoy'
     ? { id: 'savoy', name: 'Savoy', countryCode: 'FR' }
+    : legacy.region === 'frenchalps'
+      ? { id: 'frenchalps', name: 'French Alps', countryCode: 'FR' }
     : legacy.region === 'lombardy'
       ? { id: 'lombardy', name: 'Lombardy', countryCode: 'IT' }
     : legacy.region === 'friuli'

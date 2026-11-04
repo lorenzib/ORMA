@@ -155,11 +155,18 @@ function parseAtomFeed(xml, source = {}){
   }).filter(alert => alert.area && alert.identifier);
 }
 
+// The French Alps region spans five departments; a warning names its own.
+const FRENCH_ALPS_DEPARTMENT = Object.freeze({
+  isere:'Isère', drome:'Drôme', 'hautes-alpes':'Hautes-Alpes',
+  'alpes-de-haute-provence':'Alpes-de-Haute-Provence', 'alpes-maritimes':'Alpes-Maritimes',
+});
+
 function trailWarningArea(trail){
   const text = `${trail.area || ''} ${trail.valley || ''}`.toLowerCase();
   if(trail.region === 'savoy') return trail.province === 'haute-savoie' ? 'Haute-Savoie' : 'Savoie';
   if(trail.region === 'aosta') return 'Valle d\'Aosta';
   if(trail.region === 'piedmont') return 'Piemonte';
+  if(trail.region === 'frenchalps') return FRENCH_ALPS_DEPARTMENT[trail.province] || null;
   if(/friuli|carnia|tarvis/.test(text)) return 'Friuli-Venezia Giulia';
   if(trail.province === 'belluno') return 'Veneto';
   if(['alto-adige', 'trentino'].includes(trail.province)) return 'Trentino-Alto Adige';
@@ -190,6 +197,11 @@ function alertAppliesToTrail(alert, trail){
     'Friuli-Venezia Giulia': /friuli|venezia giulia/,
     "Valle d'Aosta": /aosta|vall[eé]e d.aoste/,
     Piemonte: /piemonte|piedmont/,
+    'Isère': /is[eè]re|auvergne[- ]rh[oô]ne[- ]alpes/,
+    'Drôme': /dr[oô]me|auvergne[- ]rh[oô]ne[- ]alpes/,
+    'Hautes-Alpes': /hautes[- ]alpes|provence[- ]alpes[- ]c[oô]te/,
+    'Alpes-de-Haute-Provence': /alpes[- ]de[- ]haute[- ]provence|provence[- ]alpes[- ]c[oô]te/,
+    'Alpes-Maritimes': /alpes[- ]maritimes|provence[- ]alpes[- ]c[oô]te/,
   };
   return alternatives[target]?.test(area) || false;
 }

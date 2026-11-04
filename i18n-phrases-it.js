@@ -420,6 +420,7 @@ window.ORMA_PHRASES_IT = {
   "Fountain": "Fontana",
   "Four alternatives with selected shade and mapped water": "Quattro alternative con ombra e acqua sulla mappa",
   "France": "Francia",
+  "French Alps": "Alpi francesi",
   "Freshness unknown": "Aggiornamento sconosciuto",
   "Friuli Venezia Giulia, Italy": "Friuli Venezia Giulia, Italia",
   "From ORMA's route audit of the official route description. Follow the mapped ORMA line and local signs.": "Dalla verifica ORMA della descrizione ufficiale del percorso. Segui la traccia ORMA sulla mappa e i cartelli sul posto.",

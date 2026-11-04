@@ -366,7 +366,7 @@
   const HIKING_METADATA_PATH = '/data/hiking-routes/metadata.json';
   // The regions' padded extents together (REGIONS in build-hiking-routes.js),
   // so the map does not ask for tiles across the rest of Europe.
-  const HIKING_BOUNDS = [5.65, 45.06, 12.66, 47.81];
+  const HIKING_BOUNDS = [5.25, 43.73, 12.66, 47.81];
   const HIKING_LINE_COLOUR = '#5F665F';
   const HIKING_REF_COLOUR = '#4D554E';
   const HIKING_WALK_REF_COLOUR = '#2E4034';
@@ -69594,12 +69594,68 @@ function effectiveOverrides(profile, adjustOverride){
     ['Terme di Valdieri', 44.2080, 7.2700, 'Valle Gesso – Marittime', 'piedmont', 'cuneo'],
     ['Valdieri', 44.2780, 7.3910, 'Valle Gesso – Marittime', 'piedmont', 'cuneo'],
     ['Entracque', 44.2400, 7.3980, 'Valle Gesso – Marittime', 'piedmont', 'cuneo'],
-    ['Limone Piemonte', 44.2010, 7.5770, 'Valle Gesso – Marittime', 'piedmont', 'cuneo']
+    ['Limone Piemonte', 44.2010, 7.5770, 'Valle Gesso – Marittime', 'piedmont', 'cuneo'],
+    // The French Alps south of Savoy (#1235): Isère's massifs, the Hautes-Alpes,
+    // the Ubaye and the Mercantour valleys. Village centres checked against
+    // Nominatim on 4 Nov 2026.
+    ['Saint-Pierre-de-Chartreuse', 45.3423, 5.8147, 'Chartreuse', 'frenchalps', 'isere'],
+    ['Saint-Laurent-du-Pont', 45.3876, 5.7345, 'Chartreuse', 'frenchalps', 'isere'],
+    ['Le Sappey-en-Chartreuse', 45.2599, 5.7772, 'Chartreuse', 'frenchalps', 'isere'],
+    ['Grenoble', 45.1876, 5.7358, 'Grenoble – Belledonne', 'frenchalps', 'isere'],
+    ['Chamrousse', 45.1108, 5.8748, 'Grenoble – Belledonne', 'frenchalps', 'isere'],
+    ['Allevard', 45.3935, 6.0744, 'Grenoble – Belledonne', 'frenchalps', 'isere'],
+    ['Theys / Col du Barioz', 45.3015, 5.9957, 'Grenoble – Belledonne', 'frenchalps', 'isere'],
+    ['Villard-de-Lans', 45.0706, 5.5513, 'Vercors', 'frenchalps', 'isere'],
+    ['Autrans-Méaudre', 45.1760, 5.5442, 'Vercors', 'frenchalps', 'isere'],
+    ['Corrençon-en-Vercors', 45.0318, 5.5273, 'Vercors', 'frenchalps', 'isere'],
+    ['Gresse-en-Vercors', 44.9011, 5.5662, 'Vercors', 'frenchalps', 'isere'],
+    ['Mens / Trièves', 44.8171, 5.7509, 'Trièves – Matheysine', 'frenchalps', 'isere'],
+    ['La Mure', 44.9038, 5.7872, 'Trièves – Matheysine', 'frenchalps', 'isere'],
+    ['Le Bourg-d\'Oisans', 45.0547, 6.0307, 'Oisans', 'frenchalps', 'isere'],
+    ['Alpe d\'Huez', 45.0821, 6.0596, 'Oisans', 'frenchalps', 'isere'],
+    ['Les Deux Alpes', 45.0100, 6.1238, 'Oisans', 'frenchalps', 'isere'],
+    ['La Bérarde', 44.9327, 6.2921, 'Oisans', 'frenchalps', 'isere'],
+    ['Vaujany', 45.1576, 6.0784, 'Oisans', 'frenchalps', 'isere'],
+    ['La Chapelle-en-Vercors', 44.9682, 5.4161, 'Vercors', 'frenchalps', 'drome'],
+    ['La Grave', 45.0455, 6.3067, 'Briançonnais – Guisane', 'frenchalps', 'hautes-alpes'],
+    ['Le Monêtier-les-Bains', 44.9761, 6.5099, 'Briançonnais – Guisane', 'frenchalps', 'hautes-alpes'],
+    ['Briançon', 44.8984, 6.6436, 'Briançonnais – Guisane', 'frenchalps', 'hautes-alpes'],
+    ['Névache', 45.0190, 6.6041, 'Briançonnais – Guisane', 'frenchalps', 'hautes-alpes'],
+    ['Montgenèvre', 44.9312, 6.7218, 'Briançonnais – Guisane', 'frenchalps', 'hautes-alpes'],
+    ['Vallouise', 44.8230, 6.3958, 'Vallouise – Écrins', 'frenchalps', 'hautes-alpes'],
+    ['Ailefroide', 44.8874, 6.4458, 'Vallouise – Écrins', 'frenchalps', 'hautes-alpes'],
+    ['L\'Argentière-la-Bessée', 44.7897, 6.5589, 'Vallouise – Écrins', 'frenchalps', 'hautes-alpes'],
+    ['Guillestre', 44.6598, 6.6494, 'Queyras – Guillestrois', 'frenchalps', 'hautes-alpes'],
+    ['Ceillac', 44.6683, 6.7780, 'Queyras – Guillestrois', 'frenchalps', 'hautes-alpes'],
+    ['Château-Ville-Vieille', 44.7625, 6.8115, 'Queyras – Guillestrois', 'frenchalps', 'hautes-alpes'],
+    ['Abriès-Ristolas', 44.8122, 6.9463, 'Queyras – Guillestrois', 'frenchalps', 'hautes-alpes'],
+    ['Saint-Véran', 44.7004, 6.8682, 'Queyras – Guillestrois', 'frenchalps', 'hautes-alpes'],
+    ['Embrun', 44.5642, 6.4958, 'Embrunais – Serre-Ponçon', 'frenchalps', 'hautes-alpes'],
+    ['Savines-le-Lac', 44.5258, 6.4050, 'Embrunais – Serre-Ponçon', 'frenchalps', 'hautes-alpes'],
+    ['Gap', 44.5612, 6.0821, 'Champsaur – Valgaudemar', 'frenchalps', 'hautes-alpes'],
+    ['Saint-Bonnet-en-Champsaur', 44.6827, 6.0746, 'Champsaur – Valgaudemar', 'frenchalps', 'hautes-alpes'],
+    ['Orcières', 44.6845, 6.3246, 'Champsaur – Valgaudemar', 'frenchalps', 'hautes-alpes'],
+    ['La Chapelle-en-Valgaudemar', 44.8169, 6.1959, 'Champsaur – Valgaudemar', 'frenchalps', 'hautes-alpes'],
+    ['Barcelonnette', 44.3862, 6.6514, 'Ubaye – Haut-Verdon', 'frenchalps', 'alpes-de-haute-provence'],
+    ['Jausiers', 44.4194, 6.7340, 'Ubaye – Haut-Verdon', 'frenchalps', 'alpes-de-haute-provence'],
+    ['Pra-Loup / Uvernet-Fours', 44.3607, 6.6250, 'Ubaye – Haut-Verdon', 'frenchalps', 'alpes-de-haute-provence'],
+    ['Larche', 44.4512, 6.8463, 'Ubaye – Haut-Verdon', 'frenchalps', 'alpes-de-haute-provence'],
+    ['Allos', 44.2409, 6.6289, 'Ubaye – Haut-Verdon', 'frenchalps', 'alpes-de-haute-provence'],
+    ['Saint-Étienne-de-Tinée', 44.2564, 6.9249, 'Tinée', 'frenchalps', 'alpes-maritimes'],
+    ['Isola', 44.1861, 7.0520, 'Tinée', 'frenchalps', 'alpes-maritimes'],
+    ['Saint-Sauveur-sur-Tinée', 44.0833, 7.1047, 'Tinée', 'frenchalps', 'alpes-maritimes'],
+    ['Valberg / Beuil', 44.0945, 6.9900, 'Tinée – Valberg', 'frenchalps', 'alpes-maritimes'],
+    ['Saint-Martin-Vésubie', 44.0701, 7.2565, 'Vésubie', 'frenchalps', 'alpes-maritimes'],
+    ['Valdeblore / La Colmiane', 44.0707, 7.1719, 'Vésubie', 'frenchalps', 'alpes-maritimes'],
+    ['Tende', 44.0889, 7.5934, 'Roya – Bévéra', 'frenchalps', 'alpes-maritimes'],
+    ['Casterino', 44.0985, 7.5064, 'Roya – Bévéra', 'frenchalps', 'alpes-maritimes'],
+    ['Sospel', 43.8786, 7.4498, 'Roya – Bévéra', 'frenchalps', 'alpes-maritimes']
   ];
 
   const REGIONS = {
     dolomites: { label: 'Dolomites', country: 'Italy', countryCode: 'IT' },
     savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' },
+    frenchalps: { label: 'French Alps', country: 'France', countryCode: 'FR' },
     lombardy: { label: 'Lombardy', country: 'Italy', countryCode: 'IT' },
     friuli: { label: 'Friuli Venezia Giulia', country: 'Italy', countryCode: 'IT' },
     aosta: { label: 'Valle d\'Aosta', country: 'Italy', countryCode: 'IT' },
@@ -79530,7 +79586,7 @@ if(document.querySelector('.td2')){
     // Breadcrumb: "← Trails · {region} · {valley}"
     const crumb = $('tdBreadcrumb');
     if (crumb && /^browse-trails\.html(?:[?#]|$)/.test(crumb.getAttribute('href') || '')) {
-      const regionName = t.region === 'savoy' ? tx('Savoy') : t.region === 'lombardy' ? tx('Lombardy') : t.region === 'friuli' ? 'Friuli Venezia Giulia' : t.region === 'aosta' ? 'Valle d\'Aosta' : t.region === 'piedmont' ? tx('Piedmont') : t.region === 'tyrol' ? tx('Tyrol & Carinthia') : t.region === 'switzerland' ? tx('Switzerland') : tx('Dolomites');
+      const regionName = t.region === 'savoy' ? tx('Savoy') : t.region === 'frenchalps' ? tx('French Alps') : t.region === 'lombardy' ? tx('Lombardy') : t.region === 'friuli' ? 'Friuli Venezia Giulia' : t.region === 'aosta' ? 'Valle d\'Aosta' : t.region === 'piedmont' ? tx('Piedmont') : t.region === 'tyrol' ? tx('Tyrol & Carinthia') : t.region === 'switzerland' ? tx('Switzerland') : tx('Dolomites');
       crumb.textContent = '← ' + tx('Trails') + ' · ' + regionName + (t.valley ? ' · ' + t.valley : '');
     }
 

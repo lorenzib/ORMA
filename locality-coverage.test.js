@@ -176,3 +176,33 @@ describe('Graubünden and Ticino are Switzerland, and take no Italian trail with
     expect(regions.countryForRegion(regions.nearestLocality(lat, lng).region)).toBe('IT');
   });
 });
+
+describe('The French Alps south of Savoy are their own region, and take nothing from Savoy or Piedmont', () => {
+  const regions = loadRegions();
+  test.each([
+    ['Saint-Pierre-de-Chartreuse', 45.3423, 5.8147, 'Chartreuse'],
+    ['Villard-de-Lans', 45.0706, 5.5513, 'Vercors'],
+    ['Le Bourg-d\'Oisans', 45.0547, 6.0307, 'Oisans'],
+    ['Briançon', 44.8984, 6.6436, 'Briançonnais – Guisane'],
+    ['Saint-Véran', 44.7004, 6.8682, 'Queyras – Guillestrois'],
+    ['Barcelonnette', 44.3862, 6.6514, 'Ubaye – Haut-Verdon'],
+    ['Saint-Martin-Vésubie', 44.0701, 7.2565, 'Vésubie'],
+    ['Tende', 44.0889, 7.5934, 'Roya – Bévéra'],
+  ])('%s is labelled in its own valley, in the French Alps', (name, lat, lng, valley) => {
+    const n = regions.nearestLocality(lat, lng);
+    expect(n.valley).toBe(valley);
+    expect(n.region).toBe('frenchalps');
+    expect(regions.countryForRegion(n.region)).toBe('FR');
+  });
+  test.each([
+    ['Valloire', 45.1650, 6.4300, 'savoy'],
+    ['Modane', 45.2016, 6.6580, 'savoy'],
+    ['Arvillard / Val Pelouse', 45.4185, 6.1689, 'savoy'],
+    ['Les Échelles', 45.4359, 5.7546, 'savoy'],
+    ['Bardonecchia', 45.0780, 6.7040, 'piedmont'],
+    ['Argentera', 44.3960, 6.9370, 'piedmont'],
+    ['Limone Piemonte', 44.2010, 7.5770, 'piedmont'],
+  ])('%s, over the pass, stays where it was', (name, lat, lng, region) => {
+    expect(regions.nearestLocality(lat, lng).region).toBe(region);
+  });
+});

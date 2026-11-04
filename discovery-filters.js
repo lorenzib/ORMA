@@ -11,7 +11,7 @@
   // filter can no longer read "not Italy" as France.
   const COUNTRY_REGIONS = {
     italy: { regions: ITALIAN_REGIONS, code: 'it' },
-    france: { regions: ['savoy'], code: 'fr' },
+    france: { regions: ['savoy', 'frenchalps'], code: 'fr' },
     austria: { regions: ['tyrol'], code: 'at' },
     switzerland: { regions: ['switzerland'], code: 'ch' },
   };
@@ -227,6 +227,7 @@
       region: state.region === 'dolomites' ? tr('filters.chip.dolomites', 'Dolomites region')
         : state.region === 'tyrol' ? tr('filters.chip.tyrol', 'Tyrol & Carinthia region')
         : state.region === 'piedmont' ? tr('filters.chip.piedmont', 'Piedmont region')
+        : state.region === 'frenchalps' ? tr('filters.chip.frenchalps', 'French Alps region')
         : state.region === 'switzerland' ? tr('filters.chip.swissRegion', 'Switzerland region')
         : tr('filters.chip.savoy', 'Savoy region'),
       valley: state.valley,
