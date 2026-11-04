@@ -1703,6 +1703,26 @@
       "name": "Eulalia and Gian Plaiv trail, Zuoz",
       "slug": "eulalia-gian-plaiv-trail-zuoz",
       "gloss": "a story trail through the old village"
+    },
+    "valposchiavo-alp-grum-cavaglia-via-stablini": {
+      "name": "Alp Grüm to Cavaglia via Stablini",
+      "slug": "alp-grum-to-cavaglia-via-stablini",
+      "gloss": "down the mule track beside the Bernina railway"
+    },
+    "valposchiavo-alp-grum-cavaglia-via-palu": {
+      "name": "Alp Grüm to Cavaglia via Lagh da Palü",
+      "slug": "alp-grum-to-cavaglia-via-lagh-da-palu",
+      "gloss": "down through the forest past a glacier lake"
+    },
+    "valposchiavo-lake-tour": {
+      "name": "Lago di Poschiavo loop from Le Prese",
+      "slug": "lago-di-poschiavo-loop-from-le-prese",
+      "gloss": "a flat walk round the lake"
+    },
+    "valposchiavo-lago-bianco": {
+      "name": "Lago Bianco loop from Ospizio Bernina",
+      "slug": "lago-bianco-loop-from-ospizio-bernina",
+      "gloss": "round the lake on the Bernina Pass"
     }
   }
 }

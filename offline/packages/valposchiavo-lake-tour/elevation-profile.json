@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valposchiavo-lake-tour",
+  "distanceKm": 7.3,
+  "ascentM": 26,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 970
+    },
+    {
+      "km": 0.6,
+      "elev": 965
+    },
+    {
+      "km": 1.1,
+      "elev": 983
+    },
+    {
+      "km": 1.7,
+      "elev": 961
+    },
+    {
+      "km": 2.2,
+      "elev": 966
+    },
+    {
+      "km": 2.8,
+      "elev": 961
+    },
+    {
+      "km": 3.4,
+      "elev": 961
+    },
+    {
+      "km": 3.9,
+      "elev": 980
+    },
+    {
+      "km": 4.4,
+      "elev": 966
+    },
+    {
+      "km": 5,
+      "elev": 994
+    },
+    {
+      "km": 5.6,
+      "elev": 973
+    },
+    {
+      "km": 6.1,
+      "elev": 964
+    },
+    {
+      "km": 6.7,
+      "elev": 965
+    },
+    {
+      "km": 7.3,
+      "elev": 968
+    }
+  ]
+}

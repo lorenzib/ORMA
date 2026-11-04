@@ -61701,6 +61701,298 @@
       ],
       startPoint: { lat: 46.602008, lng: 9.959768, label: 'The village square (Plaz) in Zuoz, the board’s start' },
       desc: 'A short story trail for families from the village square in Zuoz up through the old village and into the forest above it, following Eulalia and Gian Plaiv as they search for a lost bell. The board lists 2.9 km, 197 m up and 109 m down, 2 h.'
+    },
+    'valposchiavo-alp-grum-cavaglia-via-stablini': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Val Poschiavo batch 1, Switzerland batch 3).
+      // “Alp Grüm - Cavaglia (Via Stablini)”, published by the Valposchiavo Turismo, drawn on 13 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Poschiavo (a lead as a rule on walks, and always in places to eat and public car parks).
+      // The line crosses the Campasc federal hunting reserve: dogs on a lead all year. No National Park and no wildlife rest zone.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Alp Grüm station – Stablini – La Dota – Cavaglia station (Poschiavo)',
+      distance: 3,
+      elevation: 1,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way down between two stations of the Bernina railway: from Alp Grüm on the mule track past Stablini and La Dota to Cavaglia, then back by train.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the Bernina railway to Alp Grüm and start at the station, the board’s start; Alp Grüm can only be reached by train or on foot.",
+        "sequence": "Walk past the station building and take the trail that goes down to the right towards Cavaglia. The wide mule track drops through larch and stone-pine forest and meadows, close to the railway line, which it crosses on the way down. It passes the alp huts at Stablini at about km 0.9 and the meadows of La Dota, then comes out in the hamlet of Cavaglia at about km 2.6. Walk on through the hamlet to Cavaglia station, where the walk ends and the train runs back up or down the valley.",
+        "switches": "Key turns: just past Alp Grüm station take the trail down to the right; then stay on the mule track past Stablini and La Dota to Cavaglia station.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Valposchiavo Turismo, Alp Grüm - Cavaglia (Via Stablini) (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/53534347",
+            "authority": "Valposchiavo Turismo",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The alp huts at La Dota on the way down from Alp Grüm, in September (Leonhard Lenz on Wikimedia Commons, CC0), 4 m from the line.',
+        route: 'Official one-way walk 3 km from Alp Grüm station on the Bernina railway, as the Valposchiavo Turismo publishes it; the stored line is drawn on 13 OSM ways along the board’s published line, 3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Alp Grüm station take the trail that goes down to the right, then follow the mule track down past Stablini and La Dota to Cavaglia station.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3 km, 1 m up and 392 m down, 0:55 h, highest point 2,084 m, lowest 1,692 m (Valposchiavo Turismo, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Valposchiavo Turismo, Alp Grüm - Cavaglia (Via Stablini) (its Outdooractive tour, also listed on valposchiavo.ch)',
+          'Comune di Poschiavo, Legge sui cani (61.20, approved 25.11.2012, in force 1.1.2013), art. 2 and 3, and its Ordinanza d’esecuzione (61.21), art. 2: the law binds visitors too; no dog may roam unsupervised; on walks dogs go on a lead as a rule, and a dog let off must stay under control; a lead in public buildings, school grounds, playgrounds, public sports grounds, places to eat and public car parks; no dogs in churches or cemeteries; no bathing in fountains; dog mess picked up; CHF 100 fine for breaking the lead rule',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal ordinance on federal hunting reserves (VEJ, SR 922.31), art. 5 para. 1 lit. c: dogs on a lead all year in a federal hunting reserve',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the Campasc federal hunting reserve, where dogs stay on a lead all year; no National Park and no wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (13 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 28,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A steady descent of 390 m: take it slowly with older dogs', 'Popular with mountain bikers in summer: keep your dog close and step aside', 'The path crosses the Bernina railway: lead short at the crossings', 'Cows may graze the alp meadows: lead short and go round the herd'],
+      terrainType: 'Mule track and mountain path',
+      shadeDescription: 'Mostly open: about a quarter runs under the mapped larch and stone-pine forest.',
+      terrainDescription: 'A short downhill walk from 2,080 m to 1,690 m on a comfortable mule track beside the UNESCO-listed Bernina railway, with views of the Palü glacier and down Valposchiavo.',
+      waterDescription: 'No drinking water mapped on the way: bring water for your dog.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Federal wildlife reserve: dogs on a lead all year, by federal law. Poschiavo’s dog law, which binds visitors too, keeps dogs on a lead as a rule on walks, and always in places to eat and public car parks. The Bernina railway runs close by: keep your dog on a short lead near the tracks and at the crossings. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the Bernina railway to Alp Grüm and walk 3 km down to Cavaglia, 392 m down, about an hour, then take the train back. Keep your dog on a lead: the walk is in a federal hunting reserve. No drinking water mapped: bring water. Food at Alp Grüm and Cavaglia stations.',
+      sourceLinks: [
+        { label: 'Outdooractive, Alp Grüm - Cavaglia (Via Stablini) (Valposchiavo Turismo)', url: 'https://www.outdooractive.com/en/r/53534347' },
+        { label: 'Comune di Poschiavo, Legge sui cani (61.20)', url: 'https://www.poschiavo.ch/images/comune_poschiavo/leggi_regolamenti_ordinanze/Leggi/Legge%20sui%20cani%20del%20Comune%20di%20Poschiavo.pdf' },
+        { label: 'Comune di Poschiavo, Ordinanza d’esecuzione della Legge sui cani (61.21)', url: 'https://www.poschiavo.ch/images/comune_poschiavo/leggi_regolamenti_ordinanze/Ordinanze/Ordinanza%20desecuzione%20della%20Legge%20sui%20cani%2061.21.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'Fedlex, Verordnung über die eidgenössischen Jagdbanngebiete (VEJ, SR 922.31)', url: 'https://www.fedlex.admin.ch/eli/cc/1991/2246_2246_2246/de' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.374464, lng: 10.031099, label: 'Alp Grüm station on the Bernina railway, the board’s start' },
+      desc: 'A short downhill walk between two stations of the Bernina railway: from Alp Grüm, with the Palü glacier in front of you, down the old mule track past Stablini and La Dota to Cavaglia. The board lists 3 km, 1 m up and 392 m down, 55 min.'
+    },
+    'valposchiavo-alp-grum-cavaglia-via-palu': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Val Poschiavo batch 1, Switzerland batch 3).
+      // “Alp Grüm - Cavaglia (Via Palü)”, published by the Valposchiavo Turismo, drawn on 15 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Poschiavo (a lead as a rule on walks, and always in places to eat and public car parks).
+      // The line crosses the Campasc federal hunting reserve: dogs on a lead all year. No National Park and no wildlife rest zone.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Alp Grüm station – Palü power plant – Lagh da Palü – Cavaglia station (Poschiavo)',
+      distance: 3.2,
+      elevation: 1,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way down between two stations of the Bernina railway: from Alp Grüm through the forest to the glacier lake Lagh da Palü and on to Cavaglia, then back by train.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the Bernina railway to Alp Grüm and start at the station, the board’s start; Alp Grüm can only be reached by train or on foot.",
+        "sequence": "From the station take the trail that descends to the right. It goes down through larch and stone-pine forest and crosses the Bernina railway twice, at about km 0.15 and km 0.6. Go on down to the Palü power plant at about km 0.9 and then to Lagh da Palü, the milky-green glacier lake below Piz Palü, where the Agriturismo Palü serves food. Leaving the lake, take the path on the right and make the last descent past the Cavaglia power plant, cross the Cavagliasch stream at about km 2.1 and walk into the hamlet of Cavaglia to the station, where the walk ends.",
+        "switches": "Key turns: just past Alp Grüm station take the trail down to the right; after Lagh da Palü take the path on the right down to Cavaglia station.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Valposchiavo Turismo, Alp Grüm - Cavaglia (Via Palü) (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/53534214",
+            "authority": "Valposchiavo Turismo",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Lagh da Palü on the way down from Alp Grüm, in August (Tiia Monto on Wikimedia Commons, CC BY-SA 3.0), 6 m from the line.',
+        route: 'Official one-way walk 3.2 km from Alp Grüm station on the Bernina railway, as the Valposchiavo Turismo publishes it; the stored line is drawn on 15 OSM ways along the board’s published line, 3.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Alp Grüm station take the trail that descends to the right, cross the railway twice, then go down past the Palü power plant and Lagh da Palü to Cavaglia station.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3.2 km, 1 m up and 391 m down, 1:00 h, highest point 2,084 m, lowest 1,692 m (Valposchiavo Turismo, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Valposchiavo Turismo, Alp Grüm - Cavaglia (Via Palü) (its Outdooractive tour, also listed on valposchiavo.ch)',
+          'Comune di Poschiavo, Legge sui cani (61.20, approved 25.11.2012, in force 1.1.2013), art. 2 and 3, and its Ordinanza d’esecuzione (61.21), art. 2: the law binds visitors too; no dog may roam unsupervised; on walks dogs go on a lead as a rule, and a dog let off must stay under control; a lead in public buildings, school grounds, playgrounds, public sports grounds, places to eat and public car parks; no dogs in churches or cemeteries; no bathing in fountains; dog mess picked up; CHF 100 fine for breaking the lead rule',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal ordinance on federal hunting reserves (VEJ, SR 922.31), art. 5 para. 1 lit. c: dogs on a lead all year in a federal hunting reserve',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the Campasc federal hunting reserve, where dogs stay on a lead all year; no National Park and no wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (15 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 53,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A steady descent of 390 m: take it slowly with older dogs', 'The path crosses the Bernina railway twice: lead short at the crossings', 'Glacier lake with cold water: keep your dog out of the water near the power-plant outflow', 'Cows may graze around Alpe Palü: lead short and go round the herd'],
+      terrainType: 'Mountain path, alp track and gravel road',
+      shadeDescription: 'Half in shade: about half runs under the mapped larch and stone-pine forest.',
+      terrainDescription: 'A short downhill walk from 2,080 m to 1,690 m through the forest below Alp Grüm to the glacier lake Lagh da Palü, then down to the hamlet of Cavaglia.',
+      waterDescription: 'No drinking water mapped on the way: bring water for your dog.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Federal wildlife reserve: dogs on a lead all year, by federal law. Poschiavo’s dog law, which binds visitors too, keeps dogs on a lead as a rule on walks, and always in places to eat and public car parks. The Bernina railway runs close by: keep your dog on a short lead near the tracks and at the crossings. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the Bernina railway to Alp Grüm and walk 3.2 km down to Cavaglia, 391 m down, about an hour, then take the train back. Keep your dog on a lead: the walk is in a federal hunting reserve. No drinking water mapped: bring water. Food at the Agriturismo Palü and at Cavaglia.',
+      sourceLinks: [
+        { label: 'Outdooractive, Alp Grüm - Cavaglia (Via Palü) (Valposchiavo Turismo)', url: 'https://www.outdooractive.com/en/r/53534214' },
+        { label: 'Comune di Poschiavo, Legge sui cani (61.20)', url: 'https://www.poschiavo.ch/images/comune_poschiavo/leggi_regolamenti_ordinanze/Leggi/Legge%20sui%20cani%20del%20Comune%20di%20Poschiavo.pdf' },
+        { label: 'Comune di Poschiavo, Ordinanza d’esecuzione della Legge sui cani (61.21)', url: 'https://www.poschiavo.ch/images/comune_poschiavo/leggi_regolamenti_ordinanze/Ordinanze/Ordinanza%20desecuzione%20della%20Legge%20sui%20cani%2061.21.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'Fedlex, Verordnung über die eidgenössischen Jagdbanngebiete (VEJ, SR 922.31)', url: 'https://www.fedlex.admin.ch/eli/cc/1991/2246_2246_2246/de' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.374527, lng: 10.031042, label: 'Alp Grüm station on the Bernina railway, the board’s start' },
+      desc: 'A quieter way down from Alp Grüm to Cavaglia: through the forest across the Bernina railway, past the Palü power plant to the glacier lake Lagh da Palü, then down to the hamlet of Cavaglia. The board lists 3.2 km, 1 m up and 391 m down, 1 h.'
+    },
+    'valposchiavo-lake-tour': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Val Poschiavo batch 1, Switzerland batch 3).
+      // “Lake Tour”, published by the Valposchiavo Turismo, drawn on 39 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Poschiavo (a lead as a rule on walks, and always in places to eat and public car parks).
+      // No National Park, no federal reserve and no wildlife rest zone on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Le Prese – Lago di Poschiavo – Miralago (Poschiavo)',
+      distance: 7.3,
+      elevation: 26,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A flat loop round Lago di Poschiavo, anticlockwise: south from Le Prese beside the railway on the west shore to Miralago, back north on the wooded east shore.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Le Prese station on the Bernina railway, the board’s start, at the north end of the lake.",
+        "sequence": "From Le Prese follow the path south beside the railway along the right-hand, west shore of Lago di Poschiavo. After about 2.9 km you reach Miralago at the south end of the lake, with its station, restaurants and a drinking fountain. From Miralago continue round onto the left-hand, east shore and walk north on the path through the forest along the water, past the meadows of Caneu and Plazz and the Botul park, back to Le Prese, where the loop ends.",
+        "switches": "Key turns: from Le Prese station head south on the west shore beside the railway; at Miralago cross to the east shore and walk north back to Le Prese.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Valposchiavo Turismo, Lake Tour (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/32156018",
+            "authority": "Valposchiavo Turismo",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Lago di Poschiavo from its west shore, in September (Leonhard Lenz on Wikimedia Commons, CC0), 4 m from the line.',
+        route: 'Official loop 7.3 km from Le Prese station on the Bernina railway, as the Valposchiavo Turismo publishes it; the stored line is drawn on 39 OSM ways along the board’s published line, 7.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Le Prese station follow the railway south along the west shore of Lago di Poschiavo to Miralago, then return north along the forested east shore to Le Prese.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.7, km 2.9, km 4.3 and km 6 (OSM nodes 5197765448, 4959885554, 7728782487, 12855128803).',
+        elevation: 'Official 7.3 km, 26 m up and 26 m down, 1:50 h, highest point 988 m, lowest 962 m (Valposchiavo Turismo, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Valposchiavo Turismo, Lake Tour (its Outdooractive tour, also listed on valposchiavo.ch)',
+          'Comune di Poschiavo, Legge sui cani (61.20, approved 25.11.2012, in force 1.1.2013), art. 2 and 3, and its Ordinanza d’esecuzione (61.21), art. 2: the law binds visitors too; no dog may roam unsupervised; on walks dogs go on a lead as a rule, and a dog let off must stay under control; a lead in public buildings, school grounds, playgrounds, public sports grounds, places to eat and public car parks; no dogs in churches or cemeteries; no bathing in fountains; dog mess picked up; CHF 100 fine for breaking the lead rule',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is outside the Swiss National Park and every federal reserve and wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (39 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 4,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The west shore runs right beside the Bernina railway: lead short', 'About 120 m on the main road near the lake: lead short for passing cars', 'Lakeside paths are busy with families in summer: keep your dog close', 'Warm in midsummer at under 1,000 m: walk early and let your dog drink'],
+      terrainType: 'Lakeside path, gravel track and short stretches of road',
+      shadeDescription: 'Mostly open on the map: only about 4% runs under mapped forest, though the board describes the east shore as wooded.',
+      terrainDescription: 'A flat, easy loop at about 960–990 m round Lago di Poschiavo, beside the UNESCO-listed Bernina railway on one shore and through the forest on the other.',
+      waterDescription: 'Drinking water at km 0.7, km 2.9, km 4.3 and km 6; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Poschiavo’s dog law, which binds visitors too, keeps dogs on a lead as a rule on walks, and always in places to eat and public car parks. The Bernina railway runs close by: keep your dog on a short lead near the tracks and at the crossings. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Start at Le Prese station: a flat 7.3 km loop round the lake, 26 m up and down, about two hours. Keep your dog on a lead. Drinking water at km 0.7, km 2.9 (Miralago), km 4.3 and km 6. Food at Le Prese and Miralago.',
+      sourceLinks: [
+        { label: 'Outdooractive, Lake Tour (Valposchiavo Turismo)', url: 'https://www.outdooractive.com/en/r/32156018' },
+        { label: 'Comune di Poschiavo, Legge sui cani (61.20)', url: 'https://www.poschiavo.ch/images/comune_poschiavo/leggi_regolamenti_ordinanze/Leggi/Legge%20sui%20cani%20del%20Comune%20di%20Poschiavo.pdf' },
+        { label: 'Comune di Poschiavo, Ordinanza d’esecuzione della Legge sui cani (61.21)', url: 'https://www.poschiavo.ch/images/comune_poschiavo/leggi_regolamenti_ordinanze/Ordinanze/Ordinanza%20desecuzione%20della%20Legge%20sui%20cani%2061.21.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.290951, lng: 10.078249, label: 'Le Prese station on the Bernina railway, the board’s start' },
+      desc: 'A flat loop round Lago di Poschiavo from Le Prese: south beside the Bernina railway on the west shore to Miralago, then back through the forest on the east shore. The board lists 7.3 km, 26 m up and down, 1 h 50.'
+    },
+    'valposchiavo-lago-bianco': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Val Poschiavo batch 1, Switzerland batch 3).
+      // “Lago Bianco”, published by the Valposchiavo Turismo, drawn on 18 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Poschiavo (a lead as a rule on walks, and always in places to eat and public car parks) and Pontresina (a lead in the settlement area; farmland closed 1 June–1 October).
+      // The line crosses the Campasc federal hunting reserve: dogs on a lead all year. No National Park and no wildlife rest zone.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Ospizio Bernina station – Lago Bianco south dam – Plan Cambrena – north dam (Bernina Pass)',
+      distance: 8,
+      elevation: 55,
+      hours: '2.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop round Lago Bianco on the Bernina Pass, clockwise: south on the east shore to the south dam, back north on the west shore and over the north dam to the station.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the Bernina railway to Ospizio Bernina and start at the station, the board’s start, at the top of the Bernina Pass.",
+        "sequence": "From the station head south on the dirt road that runs along the east shore of Lago Bianco. After just over 2.5 km you reach the south dam; leave the road that goes on down towards Alp Grüm and cross the dam to the other shore. Then follow the easy path north along the west shore, the opposite direction, towards Plan Cambrena, past the Spartiacque watershed sign at about km 6.1. At the north end of the lake cross the north dam and walk back south a short way to Ospizio Bernina station, where the loop ends.",
+        "switches": "Key turns: at the south dam leave the road to Alp Grüm and cross to the west shore; at the north end cross the north dam back to the station.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Valposchiavo Turismo, Lago Bianco (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/41048834",
+            "authority": "Valposchiavo Turismo",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Lago Bianco from its shore path, in September (Leonhard Lenz on Wikimedia Commons, CC0), on the line.',
+        route: 'Official loop 8 km from Ospizio Bernina station on the Bernina railway, as the Valposchiavo Turismo publishes it; the stored line is drawn on 18 OSM ways along the board’s published line, 8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Ospizio Bernina station walk south on the dirt road along the east shore of Lago Bianco to the south dam, cross it, then return north on the path along the west shore and over the north dam to the station.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 8 km, 55 m up and 55 m down, 2:13 h, highest point 2,266 m, lowest 2,221 m (Valposchiavo Turismo, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Valposchiavo Turismo, Lago Bianco (its Outdooractive tour, also listed on valposchiavo.ch)',
+          'Comune di Poschiavo, Legge sui cani (61.20, approved 25.11.2012, in force 1.1.2013), art. 2 and 3, and its Ordinanza d’esecuzione (61.21), art. 2: the law binds visitors too; no dog may roam unsupervised; on walks dogs go on a lead as a rule, and a dog let off must stay under control; a lead in public buildings, school grounds, playgrounds, public sports grounds, places to eat and public car parks; no dogs in churches or cemeteries; no bathing in fountains; dog mess picked up; CHF 100 fine for breaking the lead rule',
+          'Gemeinde Pontresina, Polizeigesetz (in force 1.5.2023, revised 28.9.2025), art. 18 and 27: a lead in the settlement area; dog mess picked up on roads, paths and land beside them; farmland and open private land closed 1 June–1 October',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal ordinance on federal hunting reserves (VEJ, SR 922.31), art. 5 para. 1 lit. c: dogs on a lead all year in a federal hunting reserve',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the Campasc federal hunting reserve, where dogs stay on a lead all year; no National Park and no wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (18 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['No shade at 2,200 m: strong sun and wind, bring water', 'Weather turns fast on the pass: bring a layer for you and your dog', 'The Bernina railway runs along the lake: lead short near the tracks', 'Walking on the dams: keep your dog on a short lead'],
+      terrainType: 'Gravel road and lakeside path',
+      shadeDescription: 'No shade: the whole loop is above the tree line on the open pass.',
+      terrainDescription: 'A nearly flat loop at 2,220–2,270 m round the reservoir of Lago Bianco on the Bernina Pass, with the glaciers of Piz Cambrena above it.',
+      waterDescription: 'No drinking water mapped on the way: bring water for your dog.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Federal wildlife reserve: dogs on a lead all year, by federal law. Poschiavo’s dog law, which binds visitors too, keeps dogs on a lead as a rule on walks, and always in places to eat and public car parks. Pontresina, at the north end, requires a lead in its settlement area and closes farmland to walkers from 1 June to 1 October: keep to the path. The Bernina railway runs close by: keep your dog on a short lead near the tracks and at the crossings. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the Bernina railway to Ospizio Bernina: an 8 km loop round the lake, 55 m up and down, about two and a quarter hours. Keep your dog on a lead: the walk is in a federal hunting reserve. No drinking water mapped: bring water. Food at the station buffet.',
+      sourceLinks: [
+        { label: 'Outdooractive, Lago Bianco (Valposchiavo Turismo)', url: 'https://www.outdooractive.com/en/r/41048834' },
+        { label: 'Comune di Poschiavo, Legge sui cani (61.20)', url: 'https://www.poschiavo.ch/images/comune_poschiavo/leggi_regolamenti_ordinanze/Leggi/Legge%20sui%20cani%20del%20Comune%20di%20Poschiavo.pdf' },
+        { label: 'Comune di Poschiavo, Ordinanza d’esecuzione della Legge sui cani (61.21)', url: 'https://www.poschiavo.ch/images/comune_poschiavo/leggi_regolamenti_ordinanze/Ordinanze/Ordinanza%20desecuzione%20della%20Legge%20sui%20cani%2061.21.pdf' },
+        { label: 'Gemeinde Pontresina, Polizeigesetz (2023)', url: 'https://www.gemeinde-pontresina.ch/de/gemeinde/gesetzessammlung' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'Fedlex, Verordnung über die eidgenössischen Jagdbanngebiete (VEJ, SR 922.31)', url: 'https://www.fedlex.admin.ch/eli/cc/1991/2246_2246_2246/de' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.408774, lng: 10.019757, label: 'Ospizio Bernina station on the Bernina railway, the board’s start' },
+      desc: 'A nearly flat loop round Lago Bianco at the top of the Bernina Pass, from Ospizio Bernina station along both shores and over its two dams, with glaciers above. The board lists 8 km, 55 m up and down, 2 h 13.'
     }
   };
 

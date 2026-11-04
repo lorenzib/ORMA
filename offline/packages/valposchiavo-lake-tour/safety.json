@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valposchiavo-lake-tour",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.3,
+    "ascentM": 26,
+    "highestPointM": 994,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 4
+  },
+  "trailhead": {
+    "lat": 46.290951,
+    "lng": 10.078249,
+    "label": "Le Prese station on the Bernina railway, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The west shore runs right beside the Bernina railway: lead short.",
+    "About 120 m on the main road near the lake: lead short for passing cars.",
+    "Lakeside paths are busy with families in summer: keep your dog close.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}
