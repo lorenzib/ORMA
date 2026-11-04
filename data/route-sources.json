@@ -3609,6 +3609,30 @@
       "quote": "Distance 7.5 km · Duration 2:00 h · Ascent 257 m · Descent 92 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-boucle-du-couzon": {
+      "url": "https://www.alpes-isere.com/itineraire/boucle-du-couzon-6995851/",
+      "publisher": "Chartreuse Tourisme (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Boucle du Couzon",
+      "quote": "Distance 7Km · Dénivelé 310m · Durée 2H30 · Boucle · 310m D+ · 310m D- · Animaux acceptés · Les chiens tenus en laisse sont les bienvenus sur cet itinéraire",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-le-plateau-de-la-moliere": {
+      "url": "https://www.alpes-isere.com/itineraire/le-plateau-de-la-moliere-4894442/",
+      "publisher": "Isère Attractivité (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Le plateau de la Molière",
+      "quote": "Distance 5Km · Dénivelé 153m · Durée 1H30 · Boucle · 153m D+ · 153m D- · Vous traversez un Espace Naturel Sensible avec une règlementation spécifique à respecter",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-le-fort-du-murier": {
+      "url": "https://www.alpes-isere.com/itineraire/le-fort-du-murier-6086222/",
+      "publisher": "Office de Tourisme Grenoble Alpes (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Le fort du Murier",
+      "quote": "Distance 4.2Km · Dénivelé 152m · Durée 2H · Boucle · 152m D+ · 152m D- · Animaux acceptés · Chiens tenus en laisse",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
     }
   }
 }

@@ -218,8 +218,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 491 and 489 with six Lower Engadin walks: Vnà to Ramosch and to Val
     // Sinestra, Scuol to Ftan, Guarda to Ardez, S-charl to Alp Sesvenna and back,
     // and Zernez to Brail.
-    expect(catalogue).toHaveLength(491);
-    expect(currentSiteTrails(catalogue)).toHaveLength(489);
+    // Then 494 and 492 with three more Isère walks: the Couzon loop from
+    // Saint-Pierre-de-Chartreuse, the Molière plateau above Autrans, and the Fort
+    // du Murier above Gières.
+    expect(catalogue).toHaveLength(494);
+    expect(currentSiteTrails(catalogue)).toHaveLength(492);
   });
 
   test('requires the artwork the public trail page needs',()=>{
