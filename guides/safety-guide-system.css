@@ -268,3 +268,63 @@
   .safety-guide-article :is(.safety-continue__previous,.safety-continue__next) .safety-continue__arrow{justify-self:end;}
   .water-card{padding:19px 17px;}
 }
+
+/* Every guide opens with the same 20-second summary, and longer explanations
+   sit in folds a reader opens only when they want more. */
+.safety-guide-article .guide-quick{
+  margin:0 0 24px;
+  padding:18px 22px 20px;
+  border-radius:var(--safety-guide-card-radius);
+  background:#26402F;
+  color:#F3F1EA;
+}
+.safety-guide-article .guide-quick .guide-quick__title{
+  margin:0 0 8px!important;
+  color:#C9DCCB!important;
+  font-size:.68rem!important;
+  font-weight:800;
+  letter-spacing:.14em;
+  line-height:1.2!important;
+  text-transform:uppercase;
+}
+.safety-guide-article .guide-quick ul{display:grid;gap:6px;margin:0;padding-left:20px;}
+.safety-guide-article .guide-quick li{color:#F3F1EA;font-size:.95rem;line-height:1.5;}
+.safety-guide-article .guide-more-group{display:grid;gap:10px;margin:0 0 26px;}
+.safety-guide-article .guide-more-group>h2{margin:0 0 2px!important;font-size:clamp(20px,2vw,26px);}
+.safety-guide-article .guide-more{border:1px solid var(--paper-line);border-radius:12px;background:var(--card);}
+.safety-guide-article .guide-more>summary{
+  position:relative;
+  padding:15px 54px 15px 18px;
+  cursor:pointer;
+  list-style:none;
+}
+.safety-guide-article .guide-more>summary::-webkit-details-marker{display:none;}
+.safety-guide-article .guide-more>summary::after{
+  content:"+";
+  position:absolute;
+  top:50%;
+  right:16px;
+  display:grid;
+  place-items:center;
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  background:var(--safety-info-soft,#E4EEF1);
+  color:var(--safety-info);
+  font-weight:800;
+  transform:translateY(-50%);
+}
+.safety-guide-article .guide-more[open]>summary::after{content:"\2212";}
+.safety-guide-article .guide-more>summary strong{display:block;color:var(--ink);font-size:.95rem;}
+.safety-guide-article .guide-more>summary span{display:block;margin-top:2px;color:var(--ink-soft);font-size:.78rem;}
+.safety-guide-article .guide-more>summary:focus-visible{outline:3px solid rgba(62,122,145,.3);outline-offset:3px;border-radius:12px;}
+.safety-guide-article .guide-more__body{padding:0 18px 18px;color:var(--ink-soft);font-size:.86rem;line-height:1.6;}
+.safety-guide-article .guide-more__body>:first-child{margin-top:0;}
+.safety-guide-article .guide-more__body>:last-child{margin-bottom:0;}
+.safety-guide-article .guide-more__body p{margin:0 0 10px;}
+.safety-guide-article .guide-more__body .gp-table{margin:4px 0 12px;}
+@media(max-width:560px){
+  .safety-guide-article .guide-quick{padding:16px 17px 18px;}
+  .safety-guide-article .guide-quick li{font-size:.9rem;}
+}
+.safety-guide-article :is(.alt-shell,.cg-shell,.paw2-shell,.gp-body:not(.scan-shell):not(.water-guide-body))>.guide-quick:first-child{margin-top:18px;}
