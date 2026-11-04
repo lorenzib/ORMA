@@ -66351,7 +66351,7 @@ function effectiveOverrides(profile, adjustOverride){
     'savoie-promenade-confort-lac-et-barrage-de-saint-guerin': {
       // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 1, Beaufortain – Val d’Arly).
       // “Promenade confort : Lac et barrage de Saint Guérin”, published by the Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort, drawn on 27 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 580887). Communes: Arêches-Beaufort (no dog order found online, probably exists: the national rule applies; the page says dogs on a lead only).
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 580887). Communes: Arêches-Beaufort (dogs on a lead throughout; Beaufort order 2025-07-03 bans dogs on four alpages and the Charmette passage, 15 June–15 September: the line stays outside them: about 1.5 km from the Charmette and 2 km from La Louze).
       // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
       // The stored line follows the board’s own GPX, 100% each way.
       area: 'Lac de Saint-Guérin – Arêches-Beaufort (Beaufortain)',
@@ -66377,7 +66377,7 @@ function effectiveOverrides(profile, adjustOverride){
       },
       curated: true,
       tier: 'route-audited',
-      reviewedAt: '2026-11-03',
+      reviewedAt: '2026-11-04',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The wooded east shore of the Lac de Saint-Guérin, on the walk, in September 2023 (Florian Pépellin on Wikimedia Commons, CC BY-SA 4.0), 6 m from the line.',
@@ -66391,7 +66391,7 @@ function effectiveOverrides(profile, adjustOverride){
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort, Promenade confort : Lac et barrage de Saint Guérin (Explore Savoie, Apidae 580887) and its official GPX',
-          'Arêches-Beaufort publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs accepted on a lead only',
+          'Beaufort: dogs must be kept on a lead (Arêches-Beaufort tourist office, “Guide des bonnes pratiques”), and mayor’s order 2025-07-03 bans dogs, even on a lead, from the Roche Plane, Outray, Mirantin and La Louze alpages and the Charmette passage to the Col du Méraillet, 15 June to 15 September; the line stays outside them: about 1.5 km from the Charmette and 2 km from La Louze',
           'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
           'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
           'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
@@ -66406,11 +66406,13 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'Two thirds shaded: about 66% of it runs under the mapped spruce woods on the east shore; the head of the lake is open.',
       terrainDescription: 'An almost level walk at about 1,560 m around the shore of the Saint-Guérin reservoir above Arêches, on a wide track and a lakeside path, with a long, high footbridge over an arm of the lake.',
       waterDescription: 'No drinking water on the way: bring water for your dog.',
-      dogNotes: 'Dogs are accepted on a lead only, according to the official page. Arêches-Beaufort publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cows graze the alpages around the lake in summer: keep your dog on a lead and give the herds a wide berth.',
+      dogNotes: 'Dogs must be kept on a lead throughout: the official page accepts dogs on a lead only, and the Arêches-Beaufort tourist office asks for a lead everywhere in the commune. A Beaufort order also bans dogs, even on a lead, from the Roche Plane, Outray, Mirantin and La Louze alpages and the Charmette passage from 15 June to 15 September; this lakeside walk stays outside them (about 1.5 km from the Charmette and 2 km from La Louze), so do not wander on towards those passes with your dog. Keep away from the herds and their guard dogs.',
       tips: 'Park by the dam (free shuttles from Albertville, Beaufort and Arêches in July and August): 4.2 km there and back, almost level, about two and a half hours at an easy pace. Keep your dog on a lead, especially on the high footbridge. Open from June to mid-October, outside the snow; no drinking water on the way, so bring some for your dog.',
       sourceLinks: [
         { label: 'Explore Savoie, Promenade confort : Lac et barrage de Saint Guérin (Agence Alpine des Territoires, for the Office de Tourisme d’Arêches-Beaufort)', url: 'https://www.explore-savoie.com/randonnees-et-balades/promenade-confort-lac-et-barrage-de-saint-guerin-580887/' },
         { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/231/240/16445671/randonnee-30409601-ete-promenade-confort-de-st-guerin.gpx' },
+        { label: 'Arêches-Beaufort tourist office, Guide des bonnes pratiques en montagne (dogs on a lead)', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/191/76/32328895/Flyer+bonnes+pratiques.pdf' },
+        { label: 'Beaufort, arrêté du maire 2025-07-03 (dogs banned on four alpages and the Charmette passage)', url: 'https://www.areches-beaufort.com/wp-content/uploads/2025/07/2025-07-03-Chiens-interdits-alpage-de-Roche-Plane-Outray-Mirantin-La-Louze-et-passage-de-la-Charmette.pdf' },
         { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
         { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
         { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
@@ -67048,7 +67050,7 @@ function effectiveOverrides(profile, adjustOverride){
     'savoie-areches-beaufort-la-grande-berge': {
       // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 2, Beaufortain).
       // “Arêches / Beaufort – La Grande Berge”, published by the Communauté d’agglomération Arlysère, drawn on 23 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 262882). Communes: Beaufort (no dog order found online, probably exists: the national rule applies).
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 262882). Communes: Beaufort (dogs on a lead throughout; Beaufort order 2025-07-03 bans dogs on four alpages and the Charmette passage, 15 June–15 September: the line stays outside them: about 1.9 km from the Col du Méraillet and 4 km from the Charmette).
       // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
       // The stored line follows the board’s own GPX, 100% each way.
       area: 'Plan de la Lai – Plan Mya – La Grande Berge (Beaufortain)',
@@ -67074,7 +67076,7 @@ function effectiveOverrides(profile, adjustOverride){
       },
       curated: true,
       tier: 'route-audited',
-      reviewedAt: '2026-11-03',
+      reviewedAt: '2026-11-04',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Lac de Roselend and the Montagne d’Outray from the path to the Grande Berge, in July 2022 (Rémih on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
@@ -67088,7 +67090,7 @@ function effectiveOverrides(profile, adjustOverride){
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Communauté d’agglomération Arlysère, Arêches / Beaufort – La Grande Berge (Explore Savoie, Apidae 262882) and its official GPX',
-          'Beaufort publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Beaufort: dogs must be kept on a lead (Arêches-Beaufort tourist office, “Guide des bonnes pratiques”), and mayor’s order 2025-07-03 bans dogs, even on a lead, from the Roche Plane, Outray, Mirantin and La Louze alpages and the Charmette passage to the Col du Méraillet, 15 June to 15 September; the line stays outside them: about 1.9 km from the Col du Méraillet and 4 km from the Charmette',
           'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
           'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
           'OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data'
@@ -67103,11 +67105,13 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'No shade: the whole walk is on open alpine pasture above the tree line.',
       terrainDescription: 'A half-day walk at 1,800–2,070 m on an alpage road and a grassy mountain path above the Lac de Roselend, past the Plan Mya refuge and the farm of La Petite Berge to the ruins of the Grande Berge.',
       waterDescription: 'Drinking water at the start and km 2.3; places to eat on the way.',
-      dogNotes: 'Dogs are accepted, according to the official page. Beaufort publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. These are working Beaufort-cheese alpages with cows and possibly guard dogs: keep your dog on a lead and give the herds room.',
+      dogNotes: 'Dogs are accepted, according to the official page, but must be kept on a lead throughout: the Arêches-Beaufort tourist office asks for a lead everywhere in the commune. A Beaufort order also bans dogs, even on a lead, from the Roche Plane, Outray, Mirantin and La Louze alpages and the Charmette passage to the Col du Méraillet from 15 June to 15 September; this walk stays outside them (about 1.9 km from the Col du Méraillet), so do not carry on towards the Méraillet or Outray with your dog. These are working Beaufort-cheese alpages with cows and possibly guard dogs: give the herds room.',
       tips: 'Drive up from Beaufort past the Roselend dam and the Col du Méraillet to the Plan de la Lai refuge: 7.4 km there and back, 350 m up and down, about four hours. Water at the Plan de la Lai and at the Plan Mya refuge. Open June to the end of September; you can turn back at La Petite Berge to shorten it by an hour.',
       sourceLinks: [
         { label: 'Explore Savoie, Arêches / Beaufort – La Grande Berge (Communauté d’agglomération Arlysère)', url: 'https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-la-grande-berge-262882/' },
         { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/23/130/7373335/Arches++Beaufort+-+La+Grande+Berge.gpx' },
+        { label: 'Arêches-Beaufort tourist office, Guide des bonnes pratiques en montagne (dogs on a lead)', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/191/76/32328895/Flyer+bonnes+pratiques.pdf' },
+        { label: 'Beaufort, arrêté du maire 2025-07-03 (dogs banned on four alpages and the Charmette passage)', url: 'https://www.areches-beaufort.com/wp-content/uploads/2025/07/2025-07-03-Chiens-interdits-alpage-de-Roche-Plane-Outray-Mirantin-La-Louze-et-passage-de-la-Charmette.pdf' },
         { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
         { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
         { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
@@ -67119,7 +67123,7 @@ function effectiveOverrides(profile, adjustOverride){
     'savoie-areches-beaufort-croix-du-berger-et-lac-des-fees': {
       // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 2, Beaufortain).
       // “Arêches / Beaufort – Croix du Berger et lac des Fées”, published by the Communauté d’agglomération Arlysère, drawn on 19 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 262872). Communes: Beaufort (no dog order found online, probably exists: the national rule applies).
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 262872). Communes: Beaufort (dogs on a lead throughout; Beaufort order 2025-07-03 bans dogs on four alpages and the Charmette passage, 15 June–15 September: the line stays outside them: about 3 km from La Louze and 4 km from the Charmette).
       // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
       // The stored line follows the board’s own GPX, 100% each way.
       area: 'Lac des Fées – Cormet d’Arêches – Croix du Berger (Beaufortain)',
@@ -67145,7 +67149,7 @@ function effectiveOverrides(profile, adjustOverride){
       },
       curated: true,
       tier: 'route-audited',
-      reviewedAt: '2026-11-03',
+      reviewedAt: '2026-11-04',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The track above the Lac des Fées towards the Cormet d’Arêches, in August 2022 (joostjakob on Mapillary, CC BY-SA 4.0), 1 m from the line.',
@@ -67159,7 +67163,7 @@ function effectiveOverrides(profile, adjustOverride){
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Communauté d’agglomération Arlysère, Arêches / Beaufort – Croix du Berger et lac des Fées (Explore Savoie, Apidae 262872) and its official GPX',
-          'Beaufort publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Beaufort: dogs must be kept on a lead (Arêches-Beaufort tourist office, “Guide des bonnes pratiques”), and mayor’s order 2025-07-03 bans dogs, even on a lead, from the Roche Plane, Outray, Mirantin and La Louze alpages and the Charmette passage to the Col du Méraillet, 15 June to 15 September; the line stays outside them: about 3 km from La Louze and 4 km from the Charmette',
           'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
           'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
           'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
@@ -67174,11 +67178,13 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'Mostly open: about 13% passes mapped trees near the Lac des Fées; the rest is open alpine pasture.',
       terrainDescription: 'A short mountain walk at 1,890–2,210 m from the small Lac des Fées above the Saint-Guérin reservoir up to the Cormet d’Arêches pass and along the grassy humps to the Croix du Berger, with wide views over the Beaufortain.',
       waterDescription: 'Drinking water at the start; places to eat on the way.',
-      dogNotes: 'Dogs are accepted, according to the official page. Beaufort publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cows graze the alpages around the col: keep your dog on a lead and give the herds room.',
+      dogNotes: 'Dogs are accepted, according to the official page, but must be kept on a lead throughout: the Arêches-Beaufort tourist office asks for a lead everywhere in the commune. A Beaufort order also bans dogs, even on a lead, from the Roche Plane, Outray, Mirantin and La Louze alpages and the Charmette passage from 15 June to 15 September; this walk stays outside them (about 3 km from La Louze), so do not continue south from the Cormet d’Arêches towards the Col de la Louze with your dog. Cows graze the alpages around the col: give the herds room.',
       tips: 'Drive up from Arêches past the Saint-Guérin dam to the Lac des Fées: 4.8 km there and back, 350 m up and down, about three and a half hours. Drinking water at the start only. Open June to the end of September.',
       sourceLinks: [
         { label: 'Explore Savoie, Arêches / Beaufort – Croix du Berger et lac des Fées (Communauté d’agglomération Arlysère)', url: 'https://www.explore-savoie.com/randonnees-et-balades/areches-beaufort-croix-du-berger-et-lac-des-fees-262872/' },
         { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/59/129/7373115/Arches++Beaufort+-+Croix+du+Berger+et+lac+des+Fes.gpx' },
+        { label: 'Arêches-Beaufort tourist office, Guide des bonnes pratiques en montagne (dogs on a lead)', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/documents/191/76/32328895/Flyer+bonnes+pratiques.pdf' },
+        { label: 'Beaufort, arrêté du maire 2025-07-03 (dogs banned on four alpages and the Charmette passage)', url: 'https://www.areches-beaufort.com/wp-content/uploads/2025/07/2025-07-03-Chiens-interdits-alpage-de-Roche-Plane-Outray-Mirantin-La-Louze-et-passage-de-la-Charmette.pdf' },
         { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
         { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
         { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
