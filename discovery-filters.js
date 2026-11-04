@@ -13,6 +13,7 @@
     italy: { regions: ITALIAN_REGIONS, code: 'it' },
     france: { regions: ['savoy'], code: 'fr' },
     austria: { regions: ['tyrol'], code: 'at' },
+    switzerland: { regions: ['switzerland'], code: 'ch' },
   };
 
   const DISTANCES = [3, 5, 6, 10, 20];
@@ -221,10 +222,12 @@
       search: tr('filters.chip.search', 'Search “{q}”', { q: state.search }),
       country: state.country === 'italy' ? tr('filters.chip.italy', 'Italy')
         : state.country === 'austria' ? tr('filters.chip.austria', 'Austria')
+        : state.country === 'switzerland' ? tr('filters.chip.switzerland', 'Switzerland')
         : tr('filters.chip.france', 'France'),
       region: state.region === 'dolomites' ? tr('filters.chip.dolomites', 'Dolomites region')
         : state.region === 'tyrol' ? tr('filters.chip.tyrol', 'Tyrol & Carinthia region')
         : state.region === 'piedmont' ? tr('filters.chip.piedmont', 'Piedmont region')
+        : state.region === 'switzerland' ? tr('filters.chip.swissRegion', 'Switzerland region')
         : tr('filters.chip.savoy', 'Savoy region'),
       valley: state.valley,
       risk: tr('filters.chip.risk', '{risk} rating', { risk: state.risk }),

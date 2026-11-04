@@ -92,6 +92,15 @@ describe('dog-specific discovery filters', () => {
     expect(filters.matches(trail(), { country:'austria' })).toBe(false);
   });
 
+  test('Switzerland is its own country', () => {
+    const scuol = trail({ region:'switzerland', valley:'Lower Engadin – Val Müstair' });
+    expect(filters.matches(scuol, { country:'switzerland' })).toBe(true);
+    expect(filters.matches(scuol, { country:'switzerland', region:'switzerland' })).toBe(true);
+    expect(filters.matches(scuol, { country:'italy' })).toBe(false);
+    expect(filters.matches(scuol, { country:'austria' })).toBe(false);
+    expect(filters.matches(trail(), { country:'switzerland' })).toBe(false);
+  });
+
   test('valley narrows results inside the selected region', () => {
     expect(filters.matches(trail(), { region:'dolomites', valley:'Val di Fassa' })).toBe(true);
     expect(filters.matches(trail(), { region:'dolomites', valley:'Val Gardena' })).toBe(false);

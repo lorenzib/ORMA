@@ -61,6 +61,9 @@
     // town, up to 31 km away.
     ['Naturno / Naturns', 46.6499, 11.0042, 'Val Venosta – Vinschgau', 'dolomites', 'alto-adige'],
     ['Malles Venosta / Mals', 46.6887, 10.5466, 'Val Venosta – Vinschgau', 'dolomites', 'alto-adige'],
+    // The Sesvenna hut walks start 8 km from S-charl, across the border; this
+    // keeps them in Vinschgau.
+    ['Schlinig / Slingia', 46.7062, 10.4732, 'Val Venosta – Vinschgau', 'dolomites', 'alto-adige'],
     ['Campo Tures / Sand in Taufers', 46.9206, 11.9547, 'Valle Aurina – Ahrntal', 'dolomites', 'alto-adige'],
     ['Cadipietra / Steinhaus', 46.9937, 11.9727, 'Valle Aurina – Ahrntal', 'dolomites', 'alto-adige'],
     ['Lappago / Lappach', 46.9264, 11.8136, 'Valle Aurina – Ahrntal', 'dolomites', 'alto-adige'],
@@ -261,6 +264,63 @@
     ['Hermagor', 46.6268, 13.3702, 'Gailtal', 'tyrol', 'hermagor'],
     ['Techendorf / Weissensee', 46.7140, 13.2950, 'Weissensee', 'tyrol', 'spittal'],
     ['Neusach / Weissensee', 46.7085, 13.3480, 'Weissensee', 'tyrol', 'spittal'],
+    // ---- Switzerland ----
+    // Graubünden: the Engadin, Val Poschiavo and Val Bregaglia lie beside
+    // Livigno and Valchiavenna, so these are village centres, not commune
+    // centroids (a commune centroid can sit in the next valley).
+    ['St. Moritz', 46.4983, 9.8390, 'Upper Engadin', 'switzerland', 'graubuenden'],
+    ['Celerina', 46.5120, 9.8590, 'Upper Engadin', 'switzerland', 'graubuenden'],
+    ['Pontresina', 46.4906, 9.9010, 'Upper Engadin', 'switzerland', 'graubuenden'],
+    ['Samedan', 46.5340, 9.8720, 'Upper Engadin', 'switzerland', 'graubuenden'],
+    ['Silvaplana', 46.4590, 9.7950, 'Upper Engadin', 'switzerland', 'graubuenden'],
+    ['Sils / Segl Maria', 46.4290, 9.7640, 'Upper Engadin', 'switzerland', 'graubuenden'],
+    ['Maloja', 46.4040, 9.6950, 'Upper Engadin', 'switzerland', 'graubuenden'],
+    ['Zuoz', 46.6020, 9.9590, 'Upper Engadin', 'switzerland', 'graubuenden'],
+    ['S-chanf', 46.6120, 9.9870, 'Upper Engadin', 'switzerland', 'graubuenden'],
+    ['Ospizio Bernina', 46.4100, 10.0220, 'Upper Engadin', 'switzerland', 'graubuenden'],
+    ['Zernez', 46.6980, 10.0930, 'Lower Engadin – Val Müstair', 'switzerland', 'graubuenden'],
+    ['Guarda', 46.7750, 10.1510, 'Lower Engadin – Val Müstair', 'switzerland', 'graubuenden'],
+    ['Ftan', 46.7950, 10.2490, 'Lower Engadin – Val Müstair', 'switzerland', 'graubuenden'],
+    ['Scuol', 46.7960, 10.2980, 'Lower Engadin – Val Müstair', 'switzerland', 'graubuenden'],
+    ['Sent', 46.8160, 10.3380, 'Lower Engadin – Val Müstair', 'switzerland', 'graubuenden'],
+    ['S-charl', 46.7130, 10.3370, 'Lower Engadin – Val Müstair', 'switzerland', 'graubuenden'],
+    ['Santa Maria Val Müstair', 46.6010, 10.4240, 'Lower Engadin – Val Müstair', 'switzerland', 'graubuenden'],
+    ['Müstair', 46.6300, 10.4470, 'Lower Engadin – Val Müstair', 'switzerland', 'graubuenden'],
+    ['Poschiavo', 46.3240, 10.0590, 'Val Poschiavo', 'switzerland', 'graubuenden'],
+    ['Le Prese', 46.2970, 10.0790, 'Val Poschiavo', 'switzerland', 'graubuenden'],
+    ['Brusio', 46.2590, 10.1240, 'Val Poschiavo', 'switzerland', 'graubuenden'],
+    ['Vicosoprano', 46.3530, 9.6270, 'Val Bregaglia', 'switzerland', 'graubuenden'],
+    ['Stampa', 46.3440, 9.5900, 'Val Bregaglia', 'switzerland', 'graubuenden'],
+    ['Soglio', 46.3420, 9.5380, 'Val Bregaglia', 'switzerland', 'graubuenden'],
+    ['Davos', 46.7918, 9.8210, 'Davos – Klosters', 'switzerland', 'graubuenden'],
+    ['Klosters', 46.8829, 9.8751, 'Davos – Klosters', 'switzerland', 'graubuenden'],
+    ['Arosa', 46.7790, 9.6790, 'Arosa – Lenzerheide', 'switzerland', 'graubuenden'],
+    ['Lenzerheide', 46.7280, 9.5580, 'Arosa – Lenzerheide', 'switzerland', 'graubuenden'],
+    ['Bergün', 46.6300, 9.7470, 'Albula – Surses', 'switzerland', 'graubuenden'],
+    ['Savognin', 46.5960, 9.5960, 'Albula – Surses', 'switzerland', 'graubuenden'],
+    ['Flims', 46.8350, 9.2840, 'Flims – Laax', 'switzerland', 'graubuenden'],
+    ['Laax', 46.8070, 9.2580, 'Flims – Laax', 'switzerland', 'graubuenden'],
+    ['Disentis', 46.7030, 8.8520, 'Surselva', 'switzerland', 'graubuenden'],
+    ['Splügen', 46.5510, 9.3220, 'Rheinwald – Splügen', 'switzerland', 'graubuenden'],
+    ['Mesocco', 46.3930, 9.2330, 'Mesolcina', 'switzerland', 'graubuenden'],
+    // Ticino
+    ['Fusio', 46.4450, 8.6620, 'Valle Maggia', 'switzerland', 'ticino'],
+    ['Bignasco', 46.3380, 8.6080, 'Valle Maggia', 'switzerland', 'ticino'],
+    ['Cevio', 46.3170, 8.6020, 'Valle Maggia', 'switzerland', 'ticino'],
+    ['Bosco Gurin', 46.3170, 8.4910, 'Valle Maggia', 'switzerland', 'ticino'],
+    ['Maggia', 46.2470, 8.7070, 'Valle Maggia', 'switzerland', 'ticino'],
+    ['Sonogno', 46.3500, 8.7870, 'Valle Verzasca', 'switzerland', 'ticino'],
+    ['Brione Verzasca', 46.2960, 8.7910, 'Valle Verzasca', 'switzerland', 'ticino'],
+    ['Lavertezzo', 46.2590, 8.8380, 'Valle Verzasca', 'switzerland', 'ticino'],
+    ['Locarno', 46.1690, 8.7950, 'Locarno – Lake Maggiore', 'switzerland', 'ticino'],
+    ['Ascona', 46.1570, 8.7710, 'Locarno – Lake Maggiore', 'switzerland', 'ticino'],
+    ['Intragna', 46.1770, 8.7000, 'Centovalli – Onsernone', 'switzerland', 'ticino'],
+    ['Bellinzona', 46.1950, 9.0230, 'Bellinzona', 'switzerland', 'ticino'],
+    ['Airolo', 46.5280, 8.6100, 'Leventina', 'switzerland', 'ticino'],
+    ['Faido', 46.4770, 8.7990, 'Leventina', 'switzerland', 'ticino'],
+    ['Olivone', 46.5300, 8.9430, 'Valle di Blenio', 'switzerland', 'ticino'],
+    ['Lugano', 46.0040, 8.9510, 'Lugano', 'switzerland', 'ticino'],
+    ['Mendrisio', 45.8700, 8.9810, 'Mendrisiotto', 'switzerland', 'ticino'],
 
     // ---- Valle d'Aosta ----
     // Courmayeur and Chamonix are 15 km apart through the Mont Blanc tunnel,
@@ -338,7 +398,8 @@
     friuli: { label: 'Friuli Venezia Giulia', country: 'Italy', countryCode: 'IT' },
     aosta: { label: 'Valle d\'Aosta', country: 'Italy', countryCode: 'IT' },
     piedmont: { label: 'Piedmont', country: 'Italy', countryCode: 'IT' },
-    tyrol: { label: 'Tyrol & Carinthia', country: 'Austria', countryCode: 'AT' }
+    tyrol: { label: 'Tyrol & Carinthia', country: 'Austria', countryCode: 'AT' },
+    switzerland: { label: 'Switzerland', country: 'Switzerland', countryCode: 'CH' }
   };
 
   function countryForRegion(region) {

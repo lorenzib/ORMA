@@ -283,7 +283,7 @@
     // Breadcrumb: "← Trails · {region} · {valley}"
     const crumb = $('tdBreadcrumb');
     if (crumb && /^browse-trails\.html(?:[?#]|$)/.test(crumb.getAttribute('href') || '')) {
-      const regionName = t.region === 'savoy' ? tx('Savoy') : t.region === 'lombardy' ? tx('Lombardy') : t.region === 'friuli' ? 'Friuli Venezia Giulia' : t.region === 'aosta' ? 'Valle d\'Aosta' : t.region === 'piedmont' ? tx('Piedmont') : t.region === 'tyrol' ? tx('Tyrol & Carinthia') : tx('Dolomites');
+      const regionName = t.region === 'savoy' ? tx('Savoy') : t.region === 'lombardy' ? tx('Lombardy') : t.region === 'friuli' ? 'Friuli Venezia Giulia' : t.region === 'aosta' ? 'Valle d\'Aosta' : t.region === 'piedmont' ? tx('Piedmont') : t.region === 'tyrol' ? tx('Tyrol & Carinthia') : t.region === 'switzerland' ? tx('Switzerland') : tx('Dolomites');
       crumb.textContent = '← ' + tx('Trails') + ' · ' + regionName + (t.valley ? ' · ' + t.valley : '');
     }
 

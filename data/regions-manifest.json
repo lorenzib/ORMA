@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T00:16:23.832Z",
+  "generatedAt": "2026-11-04T00:25:46.510Z",
   "regions": {
     "dolomites": {
       "trailCount": 331,
-      "trails": "data/regions/dolomites-trails.js?v=8cd923236c14",
+      "trails": "data/regions/dolomites-trails.js?v=38b0824bbbb9",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=6faa6455cd45",
@@ -312,7 +312,7 @@
         "villnoess-ranui-zannes": "data/trail-details/villnoess-ranui-zannes.js?v=27dec396051e",
         "villnoess-da-russis-fino-al-passo-delle-erbe": "data/trail-details/villnoess-da-russis-fino-al-passo-delle-erbe.js?v=0ad365a95a5d",
         "villnoess-dolorama-3a-tappa": "data/trail-details/villnoess-dolorama-3a-tappa.js?v=02d4cd4104fd",
-        "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": "data/trail-details/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles.js?v=803d6067f278",
+        "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": "data/trail-details/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles.js?v=2020d9522e89",
         "vinschgau-sentiero-della-roggia-latschanderwaal-4954": "data/trail-details/vinschgau-sentiero-della-roggia-latschanderwaal-4954.js?v=0dd313d401b4",
         "vinschgau-sentiero-della-roggia-kastanienwaal": "data/trail-details/vinschgau-sentiero-della-roggia-kastanienwaal.js?v=803183242867",
         "vinschgau-escursione-al-lago-bergsee-da-burgusio": "data/trail-details/vinschgau-escursione-al-lago-bergsee-da-burgusio.js?v=a0fb67d98e71",
@@ -475,7 +475,7 @@
     },
     "piedmont": {
       "trailCount": 6,
-      "trails": "data/regions/piedmont-trails.js?v=a1d2e6eede8b",
+      "trails": "data/regions/piedmont-trails.js?v=4b0da43569b8",
       "details": {
         "valsesia-gta-tappa-21-campello-monti-rimella": "data/trail-details/valsesia-gta-tappa-21-campello-monti-rimella.js?v=19d53bb517b8",
         "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "data/trail-details/valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo.js?v=1aa087bc73e4",
@@ -519,6 +519,15 @@
       },
       "water": "data/regions/tyrol-water.geojson",
       "hutsBars": "data/regions/tyrol-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
+      "optional": []
+    },
+    "switzerland": {
+      "trailCount": 0,
+      "trails": "data/regions/switzerland-trails.js?v=1693c551ac00",
+      "details": {},
+      "water": "data/regions/switzerland-water.geojson",
+      "hutsBars": "data/regions/switzerland-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     }

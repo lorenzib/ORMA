@@ -114,6 +114,7 @@
     { value:'IT', label:tx('Italy') },
     { value:'FR', label:tx('France') },
     { value:'AT', label:tx('Austria') },
+    { value:'CH', label:tx('Switzerland') },
   ];
   const REGIONS = [
     { value:'all', label:tx('All regions'), countryCode:'all' },
@@ -124,6 +125,7 @@
     { value:'aosta', label:'Valle d\'Aosta', countryCode:'IT' },
     { value:'piedmont', label:tx('Piedmont'), countryCode:'IT' },
     { value:'tyrol', label:tx('Tyrol & Carinthia'), countryCode:'AT' },
+    { value:'switzerland', label:tx('Switzerland'), countryCode:'CH' },
   ];
 
   const THEME_MATCHERS = {
