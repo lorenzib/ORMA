@@ -989,6 +989,23 @@
       }
     },
     {
+      "id": "engadin-corvatsch-hahnensee-st-moritz",
+      "approvedReviewId": "commons-engadin-corvatsch-hahnensee-st-moritz-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/engadin-corvatsch-hahnensee-st-moritz-lej-da-la-fuorcla.jpg",
+        "heroImage": "images/trails/engadin-corvatsch-hahnensee-st-moritz-lej-da-la-fuorcla.jpg",
+        "imageAlt": "A small green alpine lake among grass and grey boulders, below rocky slopes on a sunny summer day",
+        "imageCredit": "Lej da la Fuorcla below Murtèl",
+        "imageCreditText": "Lej da la Fuorcla below Murtèl by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lej_da_la_Fuorcla.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "engadin-corvatsch-murtel-fuorcla-surlej",
       "approvedReviewId": "commons-engadin-corvatsch-murtel-fuorcla-surlej-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",
@@ -1019,6 +1036,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Piz_Trovat_2021.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "engadin-eulalia-and-gian-plaiv",
+      "approvedReviewId": "commons-engadin-eulalia-and-gian-plaiv-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/engadin-eulalia-and-gian-plaiv-planta-house.jpg",
+        "heroImage": "images/trails/engadin-eulalia-and-gian-plaiv-planta-house.jpg",
+        "imageAlt": "A yellow Engadin house with green shutters, an ornate stone stair and a bronze statue, with flower troughs on the cobbled square in Zuoz",
+        "imageCredit": "The Planta house on the square in Zuoz",
+        "imageCreditText": "The Planta house on the square in Zuoz by Rikki Mitterer",
+        "imageCreator": "Rikki Mitterer",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Zuoz-Planta-House-04E.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej",
+      "approvedReviewId": "commons-engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej-alpetta.jpg",
+        "heroImage": "images/trails/engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej-alpetta.jpg",
+        "imageAlt": "The Alpetta restaurant terrace among boulders on an alpine slope, with a gravel track, larch forest and the farm buildings of Alp Surlej below",
+        "imageCredit": "Alpetta and Alp Surlej above Surlej",
+        "imageCreditText": "Alpetta and Alp Surlej above Surlej by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Alpetta_2.jpg",
         "imageSourceType": "licensed-source"
       }
     },

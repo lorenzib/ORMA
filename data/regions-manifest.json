@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T10:15:00.389Z",
+  "generatedAt": "2026-11-04T10:44:36.356Z",
   "regions": {
     "dolomites": {
       "trailCount": 337,
@@ -533,8 +533,8 @@
       "optional": []
     },
     "switzerland": {
-      "trailCount": 8,
-      "trails": "data/regions/switzerland-trails.js?v=06a45d96a8e5",
+      "trailCount": 11,
+      "trails": "data/regions/switzerland-trails.js?v=33291b56c7a7",
       "details": {
         "engadin-around-lake-st-moritz": "data/trail-details/engadin-around-lake-st-moritz.js?v=ac3c479365c2",
         "engadin-sils-chaste-peninsula-sils": "data/trail-details/engadin-sils-chaste-peninsula-sils.js?v=1dcf61c59018",
@@ -543,7 +543,10 @@
         "engadin-corvatsch-murtel-fuorcla-surlej": "data/trail-details/engadin-corvatsch-murtel-fuorcla-surlej.js?v=8b21053fea45",
         "engadin-surlej-waterfall-lake-silvaplana-surlej": "data/trail-details/engadin-surlej-waterfall-lake-silvaplana-surlej.js?v=f7b6baf88b79",
         "engadin-nature-trail-la-senda-samedan-smartrail": "data/trail-details/engadin-nature-trail-la-senda-samedan-smartrail.js?v=4dca6db88cb4",
-        "engadin-chapella-val-susauna": "data/trail-details/engadin-chapella-val-susauna.js?v=b6d919991cfb"
+        "engadin-chapella-val-susauna": "data/trail-details/engadin-chapella-val-susauna.js?v=b6d919991cfb",
+        "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": "data/trail-details/engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej.js?v=925ead265428",
+        "engadin-corvatsch-hahnensee-st-moritz": "data/trail-details/engadin-corvatsch-hahnensee-st-moritz.js?v=43f059916aa8",
+        "engadin-eulalia-and-gian-plaiv": "data/trail-details/engadin-eulalia-and-gian-plaiv.js?v=3b4f7ad8c031"
       },
       "water": "data/regions/switzerland-water.geojson",
       "hutsBars": "data/regions/switzerland-huts-bars.geojson",
@@ -1019,7 +1022,10 @@
     "engadin-corvatsch-murtel-fuorcla-surlej": "switzerland",
     "engadin-surlej-waterfall-lake-silvaplana-surlej": "switzerland",
     "engadin-nature-trail-la-senda-samedan-smartrail": "switzerland",
-    "engadin-chapella-val-susauna": "switzerland"
+    "engadin-chapella-val-susauna": "switzerland",
+    "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": "switzerland",
+    "engadin-corvatsch-hahnensee-st-moritz": "switzerland",
+    "engadin-eulalia-and-gian-plaiv": "switzerland"
   },
   "trailSlug": {
     "alpe-siusi": "alpe-di-siusi-meadow-loop",
@@ -1489,6 +1495,9 @@
     "lario-nel-cuore-del-triangolo-lariano": "caglio-campoe-cassina-enco",
     "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "passo-del-giovo-rifugio-sommafiume",
     "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "fornet-waterfall-loop-val-disere",
+    "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": "murtel-to-surlej-via-alpetta",
+    "engadin-corvatsch-hahnensee-st-moritz": "hahnensee-from-murtel-to-st-moritz",
+    "engadin-eulalia-and-gian-plaiv": "eulalia-gian-plaiv-trail-zuoz",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1959,6 +1968,9 @@
     "caglio-campoe-cassina-enco": "lario-nel-cuore-del-triangolo-lariano",
     "passo-del-giovo-rifugio-sommafiume": "lario-dal-passo-del-giovo-al-rifugio-sommafiume",
     "fornet-waterfall-loop-val-disere": "savoie-boucle-du-fornet-par-la-cascade-du-fornet",
+    "murtel-to-surlej-via-alpetta": "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej",
+    "hahnensee-from-murtel-to-st-moritz": "engadin-corvatsch-hahnensee-st-moritz",
+    "eulalia-gian-plaiv-trail-zuoz": "engadin-eulalia-and-gian-plaiv",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

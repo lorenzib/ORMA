@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-corvatsch-hahnensee-st-moritz",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 10.5,
+    "ascentM": 115,
+    "highestPointM": 2695,
+    "expectedDuration": "3 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 30
+  },
+  "trailhead": {
+    "lat": 46.432123,
+    "lng": 9.824217,
+    "label": "Murtèl, the middle station of the Corvatsch cable car, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A long descent of over 1,000 m: hard on knees and paws, take breaks.",
+    "Steep scree slope below the Fuorcla Surlej junction: lead short and go slowly.",
+    "Steep, narrow forest path below the Hahnensee restaurant.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}
