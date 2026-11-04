@@ -6996,6 +6996,108 @@
       }
     },
     {
+      "id": "unterengadin-guarda-ardez-hike-between-two-engadin-villages",
+      "approvedReviewId": "commons-unterengadin-guarda-ardez-hike-between-two-engadin-villages-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-guarda-ardez-hike-between-two-engadin-villages-bos-cha.jpg",
+        "heroImage": "images/trails/unterengadin-guarda-ardez-hike-between-two-engadin-villages-bos-cha.jpg",
+        "imageAlt": "A small road running along a sunny meadow terrace between Guarda and Bos-cha, with forested mountains across the valley",
+        "imageCredit": "The road between Guarda and Bos-cha",
+        "imageCreditText": "The road between Guarda and Bos-cha by Böhringer",
+        "imageCreator": "Böhringer",
+        "imageLicence": "CC BY-SA 3.0 AT",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Zwischen_Bos-cha_und_Guarda_im_Unterengadin.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "unterengadin-s-charl-alp-sesvenna-return",
+      "approvedReviewId": "commons-unterengadin-s-charl-alp-sesvenna-return-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-s-charl-alp-sesvenna-return-alp-sesvenna.jpg",
+        "heroImage": "images/trails/unterengadin-s-charl-alp-sesvenna-return-alp-sesvenna.jpg",
+        "imageAlt": "A gravel alp road climbing a green valley between stone pines towards bare mountains",
+        "imageCredit": "The alp road from S-charl towards Alp Sesvenna",
+        "imageCreditText": "The alp road from S-charl towards Alp Sesvenna by Dominicus Johannes Bergsma",
+        "imageCreator": "Dominicus Johannes Bergsma",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:S-charl_richting_Alp_Sesvenna._21-09-2026._(d.j.b)_08.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "unterengadin-scuol-ftan",
+      "approvedReviewId": "commons-unterengadin-scuol-ftan-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-scuol-ftan-station.jpg",
+        "heroImage": "images/trails/unterengadin-scuol-ftan-station.jpg",
+        "imageAlt": "The forecourt of Scuol-Tarasp station with the station building and mountains behind",
+        "imageCredit": "Scuol-Tarasp station, where the walk starts",
+        "imageCreditText": "Scuol-Tarasp station, where the walk starts by Global Fish",
+        "imageCreator": "Global Fish",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:BfScuolTaraspVorplatz.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "unterengadin-vna-ramosch-via-veglia",
+      "approvedReviewId": "commons-unterengadin-vna-ramosch-via-veglia-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-vna-ramosch-via-veglia-vna.jpg",
+        "heroImage": "images/trails/unterengadin-vna-ramosch-via-veglia-vna.jpg",
+        "imageAlt": "A narrow village street in Vnà between old Engadin stone houses with painted walls and deep-set windows",
+        "imageCredit": "The Stradella in Vnà, where the walk starts",
+        "imageCreditText": "The Stradella in Vnà, where the walk starts by Agnes Monkelbaan",
+        "imageCreator": "Agnes Monkelbaan",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Straat_in_Vn%C3%A0,_Stradella._16-09-2023._(actm.).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "unterengadin-vna-sinestra",
+      "approvedReviewId": "commons-unterengadin-vna-sinestra-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-vna-sinestra-piz-s-chalambert.jpg",
+        "heroImage": "images/trails/unterengadin-vna-sinestra-piz-s-chalambert.jpg",
+        "imageAlt": "A forested valley with a rocky mountain peak rising above the trees under a blue sky",
+        "imageCredit": "Piz S-chalambert seen from Val Sinestra",
+        "imageCreditText": "Piz S-chalambert seen from Val Sinestra by Dominicus Johannes Bergsma",
+        "imageCreator": "Dominicus Johannes Bergsma",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Zicht_op_de_Piz_S-chalambert_vanuit_Val_Sinestra_(d.j.b)_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "unterengadin-zernez-brail",
+      "approvedReviewId": "commons-unterengadin-zernez-brail-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-zernez-brail-station.jpg",
+        "heroImage": "images/trails/unterengadin-zernez-brail-station.jpg",
+        "imageAlt": "Zernez railway station with its platforms and the station building under the mountains",
+        "imageCredit": "Zernez station, where the walk starts",
+        "imageCreditText": "Zernez station, where the walk starts by Global Fish",
+        "imageCreator": "Global Fish",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:BfZernezTotal.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valchiavenna-ai-laghi-del-baldiscio",
       "approvedReviewId": "commons-valchiavenna-ai-laghi-del-baldiscio-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",

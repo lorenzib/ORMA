@@ -62634,6 +62634,432 @@
       ],
       startPoint: { lat: 44.811042, lng: 5.573311, label: 'Place de la Fontaine in Chichilianne, by the church, the board’s start' },
       desc: 'A short loop around Chichilianne at the foot of the Mont Aiguille, across the river by a ford to the Le Châtel viewpoint and back along a low crest through the hamlet of Château-Vieux. The official page lists 3.8 km, 116 m up and down, about 1 h 30.'
+    },
+    'unterengadin-vna-ramosch-via-veglia': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “Vnà - Ramosch, via veglia”, published by the Engadin Samnaun Val Müstair, drawn on 13 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Valsot (no dog rule found online; the Graubünden and federal rules apply).
+      // The line crosses the Bos-cha Grischa wildlife rest zone on its marked path; the zone is closed only 20 December–20 April. No National Park and no federal reserve.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Vnà – Riatsch farm – forest – Ramosch (Valsot)',
+      distance: 2,
+      elevation: 0,
+      hours: '0.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way down the old path from the village of Vnà to Ramosch, then back by PostBus.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the PostBus from Scuol, change in Ramosch and ride up to Vnà; start at the bus stop on the road, the board’s start.",
+        "sequence": "From the bus stop walk back a little to the junction, past the village museum and the church of Vnà. Head towards the Riatsch family farm and take the lower path along the farm. Follow it until it enters the forest, then keep going down. After a while the path comes out on the Ramosch–Vnà road: follow the hiking signs along it for a short way and on down to the first houses of Ramosch. Walk down through the village, past the Plazsura fountain at about km 1.9, and at the school keep left towards the church of San Flurin at km 2.0. The walk ends at the Ramosch, Plaz bus stop.",
+        "switches": "Key turns: at the junction below the Vnà bus stop take the lower path past the Riatsch farm; at the school in Ramosch keep left towards the church.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, Vnà - Ramosch, via veglia (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/32029554",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Stradella in Vnà at the start of the walk, in September (Agnes Monkelbaan on Wikimedia Commons, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official one-way walk 2 km from the PostBus stop in Vnà, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 13 OSM ways along the board’s published line, 2.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the bus stop in Vnà go back to the junction, take the lower path past the Riatsch farm and down through the forest, then follow the hiking trail down into Ramosch to the church.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.9 and km 2 (OSM nodes 11017687651, 807897363).',
+        elevation: 'Official 2 km, 0 m up and 385 m down, 0:40 h, highest point 1,618 m, lowest 1,232 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, Vnà - Ramosch, via veglia (its Outdooractive tour, also listed on engadin.com)',
+          'Vschinauncha Valsot: no dog rule found online; one probably exists, so the walk carries the Graubünden and federal rules',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the Bos-cha Grischa wildlife rest zone, closed only 20 December–20 April, so open in the walking season; no National Park and no federal reserve',
+          'OpenStreetMap ways along the board’s line (13 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 12,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steep descent of 385 m in 2 km: take it slowly with older dogs', 'A short stretch on the Ramosch–Vnà road: lead short and keep to the side', 'Cows may graze the meadows near the farm: lead short and go round the herd'],
+      terrainType: 'Field path, forest path and village lanes',
+      shadeDescription: 'Mostly open: only about an eighth runs under the mapped forest.',
+      terrainDescription: 'A short, steep downhill walk from 1,620 m to 1,230 m on the old path between two Lower Engadin villages, through meadows and forest.',
+      waterDescription: 'Drinking water at km 1.9 and km 2; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Valsot publishes no dog rule online: follow the lead rule above. The path crosses a wildlife rest zone that is closed only in winter. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the PostBus up to Vnà and walk 2 km down to Ramosch, 385 m down, about 40 minutes, then take the PostBus back. Drinking water at the fountains in Ramosch. Café in Ramosch and a pension in Vnà.',
+      sourceLinks: [
+        { label: 'Outdooractive, Vnà - Ramosch, via veglia (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/32029554' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.84263, lng: 10.365298, label: 'Vnà, by the PostBus stop, the board’s start' },
+      desc: 'A short walk down the old path from Vnà, a village of Engadin houses high above the Inn, through meadows and forest to Ramosch and its church of San Flurin. The board lists 2 km, 0 m up and 385 m down, 40 min.'
+    },
+    'unterengadin-vna-sinestra': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “Vnà – Sinestra”, published by the Engadin Samnaun Val Müstair, drawn on 20 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Valsot (no dog rule found online) and Scuol (a short lead in restaurants, parks and signposted areas; never unsupervised).
+      // The line is outside the Swiss National Park and every federal reserve and wildlife rest zone.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Vnà – Prà San Peider path – Val Sinestra (Valsot, Scuol)',
+      distance: 3.8,
+      elevation: 77,
+      hours: '1.25',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the village of Vnà along the hillside and down into Val Sinestra, then back by PostBus.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the PostBus from Scuol, change in Ramosch and ride up to Vnà, Jalmèr; start at the bus stop, the board’s start.",
+        "sequence": "From the bus stop walk through the whole village of Vnà, past the Bügl Grond fountain at about km 0.2 and the Pension Arina. At the end of the village the path runs flat along the hillside towards Prà San Peider and Zuort. At the first junction take the path down towards Val Sinestra and keep following it down until you reach the Brancla stream in the valley floor. Past the Berghaus Val Sinestra at about km 3.2 the walk ends at the Hotel Val Sinestra, where the PostBus runs to Sent and Scuol.",
+        "switches": "Key turns: at the end of Vnà keep on the flat path towards Prà San Peider; at the first junction turn down towards Val Sinestra.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, Vnà – Sinestra (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/32233851",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Piz S-chalambert from Val Sinestra, in September (Dominicus Johannes Bergsma on Wikimedia Commons, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official one-way walk 3.8 km from the Vnà, Jalmèr PostBus stop, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 20 OSM ways along the board’s published line, 3.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the Vnà, Jalmèr bus stop cross the whole village, follow the flat path towards Prà San Peider, and at the first junction go down into Val Sinestra.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.2 and km 0.3 (OSM nodes 859002359, 830644548).',
+        elevation: 'Official 3.8 km, 77 m up and 174 m down, 1:15 h, highest point 1,646 m, lowest 1,472 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, Vnà – Sinestra (its Outdooractive tour, also listed on engadin.com)',
+          'Vschinauncha Valsot: no dog rule found online; one probably exists, so the walk carries the Graubünden and federal rules',
+          'Gemeinde Scuol, Ledscha da pulizia (14.6.2015, in force 1.7.2015, revised 2022 and 2025), art. 33: no dog may go unsupervised; a short lead in administrative buildings, school and kindergarten grounds, playgrounds and sports grounds, restaurants, public parks, wildlife sanctuaries and signposted areas; no dogs in baths, churches, cemeteries, concert halls, theatres or cinemas; dog mess picked up at once; fines CHF 50–10,000',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is outside the Swiss National Park and every federal reserve and wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (20 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 49,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A descent of 174 m into Val Sinestra: take it slowly with older dogs', 'A short stretch on the road at the end of the valley: lead short', 'Cows may graze the meadows above Vnà: lead short and go round the herd'],
+      terrainType: 'Village lanes, hillside path and forest path',
+      shadeDescription: 'About half runs under the mapped forest on the way down into Val Sinestra.',
+      terrainDescription: 'An easy walk from 1,650 m to 1,470 m along the sunny hillside above the Inn and down into the wooded side valley of Val Sinestra with its old spa hotel.',
+      waterDescription: 'Drinking water at km 0.2 and km 0.3; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Valsot publishes no dog rule online: follow the lead rule above. Scuol never lets a dog go unsupervised, and requires a short lead in restaurants, playgrounds, public parks, wildlife sanctuaries and signposted areas. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the PostBus up to Vnà and walk 3.8 km into Val Sinestra, 77 m up and 174 m down, about an hour and a quarter, then take the PostBus to Sent and Scuol. Drinking water at the fountains in Vnà. Food at the Berghaus and Hotel Val Sinestra.',
+      sourceLinks: [
+        { label: 'Outdooractive, Vnà – Sinestra (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/32233851' },
+        { label: 'Gemeinde Scuol, Ledscha da pulizia (2015)', url: 'https://www.scuol.net/public/upload/assets/920/111_Ledscha%20da%20pulizia_r.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.84263, lng: 10.365298, label: 'Vnà, by the Jalmèr PostBus stop, the board’s start' },
+      desc: 'An easy walk from the village of Vnà along the hillside and down through the forest into Val Sinestra, ending at its old spa hotel. The board lists 3.8 km, 77 m up and 174 m down, 1 h 15.'
+    },
+    'unterengadin-scuol-ftan': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “Scuol – Ftan”, published by the Engadin Samnaun Val Müstair, drawn on 36 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Scuol (a short lead in restaurants, parks and signposted areas; never unsupervised).
+      // The line is outside the Swiss National Park and every federal reserve and wildlife rest zone.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Scuol-Tarasp station – Rachögnia – Ftan Pitschen – Ftan Grond (Scuol)',
+      distance: 4.1,
+      elevation: 366,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way up from Scuol-Tarasp station through the forest to the village of Ftan, then back by PostAuto.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the Rhaetian Railway to Scuol-Tarasp and start at the station, the board’s start.",
+        "sequence": "From the station walk to the valley station of the Scuol mountain railway, crossing the railway tracks on the way, at about km 0.3. The first signpost there points towards Ftan: follow it up past the Rachögnia drag lift, at about km 0.7. There a narrow hiking trail begins and climbs through the forest to a plateau, passing a wildlife-zone sign at about km 2.0. From there the path is wider but steeper. It soon reaches Ftan Pitschen, with fountains at about km 3.7, and shortly after Ftan Grond, where the walk ends at the PostAuto stop.",
+        "switches": "Key turns: at the mountain railway take the signpost towards Ftan; at the Rachögnia lift take the narrow trail into the forest.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, Scuol – Ftan (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/15670033",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The forecourt of Scuol-Tarasp station at the start of the walk, in October (Global Fish on Wikimedia Commons, CC BY-SA 4.0), 12 m from the line.',
+        route: 'Official one-way walk 4.1 km from Scuol-Tarasp station, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 36 OSM ways along the board’s published line, 4.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Scuol-Tarasp station walk to the mountain railway, follow the signpost towards Ftan, go up past the Rachögnia lift on the narrow trail through the forest, and on via Ftan Pitschen to Ftan Grond.',
+        mapPoints: 'Start at the board’s start; drinking water at km 3.7, km 3.8, km 4 and km 4.2 (OSM nodes 861518099, 861518095, 861518078, 6274613029, 861518094).',
+        elevation: 'Official 4.1 km, 366 m up and 14 m down, 1:30 h, highest point 1,642 m, lowest 1,280 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, Scuol – Ftan (its Outdooractive tour, also listed on engadin.com)',
+          'Gemeinde Scuol, Ledscha da pulizia (14.6.2015, in force 1.7.2015, revised 2022 and 2025), art. 33: no dog may go unsupervised; a short lead in administrative buildings, school and kindergarten grounds, playgrounds and sports grounds, restaurants, public parks, wildlife sanctuaries and signposted areas; no dogs in baths, churches, cemeteries, concert halls, theatres or cinemas; dog mess picked up at once; fines CHF 50–10,000',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is outside the Swiss National Park and every federal reserve and wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (36 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 26,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steady climb of 366 m: take it slowly with older dogs', 'The walk crosses the railway near Scuol station: lead short at the crossing', 'The upper path is steeper: let your dog set the pace'],
+      terrainType: 'Town streets, forest trail and mountain path',
+      shadeDescription: 'Partly shaded: about a quarter runs under the mapped forest below the plateau.',
+      terrainDescription: 'A walk up from Scuol at 1,280 m through forest to the sunny terrace village of Ftan at 1,640 m, with views over Scuol and Tarasp.',
+      waterDescription: 'Drinking water at km 3.7, km 3.8, km 4 and km 4.2; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Scuol never lets a dog go unsupervised, and requires a short lead in restaurants, playgrounds, public parks, wildlife sanctuaries and signposted areas. The Rhaetian Railway runs close by: keep your dog on a short lead near the tracks and at the crossings. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Start at Scuol-Tarasp station and walk 4.1 km up to Ftan, 366 m up, about an hour and a half, then take the PostAuto back. Drinking water at the fountains in Ftan. Food at the station and in Ftan.',
+      sourceLinks: [
+        { label: 'Outdooractive, Scuol – Ftan (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/15670033' },
+        { label: 'Gemeinde Scuol, Ledscha da pulizia (2015)', url: 'https://www.scuol.net/public/upload/assets/920/111_Ledscha%20da%20pulizia_r.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.793699, lng: 10.287044, label: 'Scuol-Tarasp station, the board’s start' },
+      desc: 'A walk from Scuol-Tarasp station up through the forest to the village of Ftan, with views over Scuol and Tarasp Castle. The board lists 4.1 km, 366 m up and 14 m down, 1 h 30.'
+    },
+    'unterengadin-guarda-ardez-hike-between-two-engadin-villages': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “Guarda – Ardez: hike between two Engadin villages”, published by the Engadin Samnaun Val Müstair, drawn on 34 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Scuol (a short lead in restaurants, parks and signposted areas; never unsupervised).
+      // The line crosses the Laret and God da San Steivan wildlife rest zones, closed only 20 December–20 April. No National Park and no federal reserve.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Guarda – Bos-cha – Ardez station (Scuol)',
+      distance: 4.8,
+      elevation: 47,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the village of Guarda by Bos-cha to Ardez, then back by train.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the PostBus from Guarda station up to Guarda, cumün, and start in the village centre, the board’s start.",
+        "sequence": "Walk east through Guarda past the Plazzetta fountain and the Schellen-Ursli museum to the eastern end of the village. From there a small road runs almost level along the sunny terrace above the Inn, past the ruins of an old mill at about km 1.3, to the hamlet of Bos-cha at about km 1.7, which has a fountain. Stay on the same road as it leads down towards Ardez, past a fountain at about km 2.6. In Ardez walk down through the village with its painted houses and fountains to Ardez station at km 4.8, where the walk ends.",
+        "switches": "Key turns: at the east end of Guarda take the small road towards Bos-cha; at Bos-cha stay on the same road down to Ardez.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, Guarda – Ardez: hike between two Engadin villages (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/17695297",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The road between Bos-cha and Guarda, in October (Böhringer on Wikimedia Commons, CC BY-SA 3.0 AT, credited as the author as he asks), 3 m from the line.',
+        route: 'Official one-way walk 4.8 km from the village of Guarda, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 34 OSM ways along the board’s published line, 4.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the east end of Guarda follow the small road almost level to the hamlet of Bos-cha, then stay on the same road down into Ardez and on to the station.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.1, km 0.2, km 1.7, km 2.6, km 4.4 and km 4.6 (OSM nodes 863735957, 1639132528, 2686306549, 3764314647, 863175637, 5760720965).',
+        elevation: 'Official 4.8 km, 47 m up and 274 m down, 1:30 h, highest point 1,671 m, lowest 1,434 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, Guarda – Ardez: hike between two Engadin villages (its Outdooractive tour, also listed on engadin.com)',
+          'Gemeinde Scuol, Ledscha da pulizia (14.6.2015, in force 1.7.2015, revised 2022 and 2025), art. 33: no dog may go unsupervised; a short lead in administrative buildings, school and kindergarten grounds, playgrounds and sports grounds, restaurants, public parks, wildlife sanctuaries and signposted areas; no dogs in baths, churches, cemeteries, concert halls, theatres or cinemas; dog mess picked up at once; fines CHF 50–10,000',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the Laret and God da San Steivan wildlife rest zones, closed only 20 December–20 April, so open in the walking season; no National Park and no federal reserve',
+          'OpenStreetMap ways along the board’s line (34 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 10,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Most of the walk is on a small road: lead short for the odd car', 'Little shade on the sunny terrace: carry water on hot days', 'A descent of 274 m into Ardez: take it slowly with older dogs'],
+      terrainType: 'Small road and village lanes',
+      shadeDescription: 'Mostly open: only about a tenth runs under the mapped forest.',
+      terrainDescription: 'An easy walk from 1,670 m to 1,430 m between two Lower Engadin villages famous for their sgraffito houses, along a sunny terrace with mountain views.',
+      waterDescription: 'Drinking water at km 0.1, km 0.2, km 1.7, km 2.6, km 4.4 and km 4.6; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Scuol never lets a dog go unsupervised, and requires a short lead in restaurants, playgrounds, public parks, wildlife sanctuaries and signposted areas. The road crosses two wildlife rest zones that are closed only in winter. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the PostBus up to Guarda and walk 4.8 km to Ardez station, 47 m up and 274 m down, about an hour and a half, then take the train back. Drinking water at the fountains in Guarda, Bos-cha and Ardez. Food in both villages.',
+      sourceLinks: [
+        { label: 'Outdooractive, Guarda – Ardez: hike between two Engadin villages (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/17695297' },
+        { label: 'Gemeinde Scuol, Ledscha da pulizia (2015)', url: 'https://www.scuol.net/public/upload/assets/920/111_Ledscha%20da%20pulizia_r.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.77554, lng: 10.152411, label: 'Guarda village centre, the board’s start' },
+      desc: 'An easy walk between two picture-book Engadin villages, from Guarda along a small road to the hamlet of Bos-cha and down to Ardez. The board lists 4.8 km, 47 m up and 274 m down, 1 h 30.'
+    },
+    'unterengadin-s-charl-alp-sesvenna-return': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “S-charl – Alp Sesvenna (return)”, published by the Engadin Samnaun Val Müstair, drawn on 11 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Scuol (a short lead in restaurants, parks and signposted areas; never unsupervised).
+      // The line is outside the Swiss National Park and every federal reserve and wildlife rest zone.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; it is walked out and back the same way, as the board describes.
+      area: 'S-charl – Alp Sesvenna (Scuol)',
+      distance: 5.2,
+      elevation: 288,
+      hours: '1.75',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way from the summer village of S-charl up the valley to Alp Sesvenna.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the PostAuto from Scuol to S-charl, about 25 minutes, and start at the S-charl stop, the board’s start.",
+        "sequence": "From the stop walk through the summer village of S-charl, past its fountains and the Chasa Sesvenna guest house. Follow the signs to Alp Sesvenna up the valley on the alp road, climbing gently through open meadows and stone-pine forest, to the alp buildings of Alp Sesvenna at about km 2.6. Turn round there and walk back the same way to S-charl.",
+        "switches": "Key turns: in S-charl follow the signs to Alp Sesvenna; at Alp Sesvenna turn round and come back the same way.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, S-charl – Alp Sesvenna (return) (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/15845656",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The alp road from S-charl towards Alp Sesvenna, in September (Dominicus Johannes Bergsma on Wikimedia Commons, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official there-and-back walk 5.2 km from the S-charl PostAuto stop, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 11 OSM ways along the board’s published line, 5.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the S-charl PostAuto stop follow the signs up the valley to Alp Sesvenna, then come back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 0.1 (OSM nodes 282881810, 282881787).',
+        elevation: 'Official 5.2 km, 288 m up and 288 m down, 1:45 h, highest point 2,099 m, lowest 1,812 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, S-charl – Alp Sesvenna (return) (its Outdooractive tour, also listed on engadin.com)',
+          'Gemeinde Scuol, Ledscha da pulizia (14.6.2015, in force 1.7.2015, revised 2022 and 2025), art. 33: no dog may go unsupervised; a short lead in administrative buildings, school and kindergarten grounds, playgrounds and sports grounds, restaurants, public parks, wildlife sanctuaries and signposted areas; no dogs in baths, churches, cemeteries, concert halls, theatres or cinemas; dog mess picked up at once; fines CHF 50–10,000',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is outside the Swiss National Park and every federal reserve and wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (11 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 57,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cows graze around Alp Sesvenna in summer: lead short and go round the herd', 'At 1,800–2,100 m the weather turns fast: bring a layer for you and your dog', 'The alp road is used by farm vehicles and bikes: keep your dog close'],
+      terrainType: 'Alp road',
+      shadeDescription: 'Over half runs under the mapped stone-pine forest.',
+      terrainDescription: 'A gentle walk up the alp road from S-charl at 1,810 m to Alp Sesvenna at 2,100 m and back, in a quiet side valley south of Scuol.',
+      waterDescription: 'Drinking water at the start and km 0.1; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Scuol never lets a dog go unsupervised, and requires a short lead in restaurants, playgrounds, public parks, wildlife sanctuaries and signposted areas. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the PostAuto from Scuol to S-charl and walk 5.2 km there and back to Alp Sesvenna, 288 m up and down, about an hour and three quarters. Drinking water at the fountains in S-charl, at the start and end. Food in S-charl.',
+      sourceLinks: [
+        { label: 'Outdooractive, S-charl – Alp Sesvenna (return) (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/15845656' },
+        { label: 'Gemeinde Scuol, Ledscha da pulizia (2015)', url: 'https://www.scuol.net/public/upload/assets/920/111_Ledscha%20da%20pulizia_r.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.715451, lng: 10.334716, label: 'The S-charl PostAuto stop, the board’s start' },
+      desc: 'A gentle walk from the summer village of S-charl up a quiet side valley to Alp Sesvenna, and back the same way. The board lists 5.2 km, 288 m up and down, 1 h 45.'
+    },
+    'unterengadin-zernez-brail': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “Zernez – Brail”, published by the Engadin Samnaun Val Müstair, drawn on 24 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Zernez (a lead in the forest and wherever wildlife may appear).
+      // The line crosses the God Muntatsch–Ertas Vallanzun and Munt Barlas-ch wildlife rest zones on their marked path; the zones are closed only 1 January–30 April. No National Park and no federal reserve.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Zernez station – Ertas – Prazet – Brail (Zernez)',
+      distance: 7.5,
+      elevation: 257,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Zernez station along the Via Engiadina to the hamlet of Brail, then back by train.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the Rhaetian Railway to Zernez and start at the station, the board’s start; there is a fountain by the station.",
+        "sequence": "From the station walk to the campsite and cross the bridge there. After the bridge the sunny path of the Via Engiadina climbs gently along flower meadows above the Inn, past the Ertas signpost at about km 2.1 and the Prazet signpost at about km 4.9, with views across to the National Park on the other side of the valley. The walk ends at the Brail signpost in the hamlet of Brail at km 7.5; take the train back to Zernez from Brail station.",
+        "switches": "Key turns: cross the bridge by the campsite; then stay on the Via Engiadina via Ertas and Prazet to Brail.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, Zernez – Brail (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/38628640",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Zernez station at the start of the walk, in August (Global Fish on Wikimedia Commons, CC BY-SA 4.0), 8 m from the line.',
+        route: 'Official one-way walk 7.5 km from Zernez station, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 24 OSM ways along the board’s published line, 7.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Zernez station cross the bridge by the campsite, then follow the Via Engiadina gently up via Ertas and Prazet to the hamlet of Brail.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 9933635810).',
+        elevation: 'Official 7.5 km, 257 m up and 92 m down, 2:00 h, highest point 1,723 m, lowest 1,466 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, Zernez – Brail (its Outdooractive tour, also listed on engadin.com)',
+          'Vschinauncha Zernez, Dispusiziuns in merit il tgnair chans (January 1994), points 2, 3 and 5: no dog may roam unaccompanied; dogs relieved outside the settlement; a lead in the forest and wherever wildlife may appear; fines CHF 50–200',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the God Muntatsch–Ertas Vallanzun and Munt Barlas-ch wildlife rest zones, closed only 1 January–30 April, so open in the walking season; no National Park and no federal reserve',
+          'OpenStreetMap ways along the board’s line (24 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 4,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Almost no shade on the sunny path: carry water on hot days', 'No drinking water mapped after the start: bring enough for your dog', 'Cows may graze the meadows: lead short and go round the herd'],
+      terrainType: 'Field path and gravel path',
+      shadeDescription: 'Open: almost none of the path runs under the mapped forest.',
+      terrainDescription: 'A sunny, stroller-friendly walk from 1,470 m to 1,720 m along the Via Engiadina through flower meadows above the Inn, facing the National Park.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Zernez requires a lead in the forest and wherever wild animals may appear, and asks that dogs relieve themselves outside the village. The path crosses two wildlife rest zones that are closed only in winter. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Start at Zernez station and walk 7.5 km to Brail, 257 m up and 92 m down, about two hours, then take the train back. Fill up at the fountain by Zernez station: no drinking water is mapped after the start.',
+      sourceLinks: [
+        { label: 'Outdooractive, Zernez – Brail (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/38628640' },
+        { label: 'Vschinauncha Zernez, Dispusiziuns in merit il tgnair chans (1994)', url: 'https://www.zernez.ch/fileadmin/user_upload/dokumente/pdf/Gesetze_und_Reglemente/Zernez/Disposiziun_chans_1994.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.697757, lng: 10.090268, label: 'Zernez station, the board’s start' },
+      desc: 'A sunny walk on the Via Engiadina from Zernez station along flower meadows above the Inn to the hamlet of Brail, facing the National Park. The board lists 7.5 km, 257 m up and 92 m down, 2 h.'
     }
   };
 

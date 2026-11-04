@@ -215,8 +215,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 485 and 483 with five Isère walks, the first in the French Alps region:
     // Alpage des Cloutons, the Gresse valley, Saint-Pierre-d’Entremont to Corbel
     // (in Savoy by its nearest town), the Clelles canal and the Tour de Chichilianne.
-    expect(catalogue).toHaveLength(485);
-    expect(currentSiteTrails(catalogue)).toHaveLength(483);
+    // Then 491 and 489 with six Lower Engadin walks: Vnà to Ramosch and to Val
+    // Sinestra, Scuol to Ftan, Guarda to Ardez, S-charl to Alp Sesvenna and back,
+    // and Zernez to Brail.
+    expect(catalogue).toHaveLength(491);
+    expect(currentSiteTrails(catalogue)).toHaveLength(489);
   });
 
   test('requires the artwork the public trail page needs',()=>{

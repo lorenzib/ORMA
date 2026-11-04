@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "unterengadin-guarda-ardez-hike-between-two-engadin-villages",
+  "distanceKm": 4.8,
+  "ascentM": 47,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1653
+    },
+    {
+      "km": 0.4,
+      "elev": 1672
+    },
+    {
+      "km": 0.7,
+      "elev": 1705
+    },
+    {
+      "km": 1.1,
+      "elev": 1695
+    },
+    {
+      "km": 1.4,
+      "elev": 1660
+    },
+    {
+      "km": 1.9,
+      "elev": 1665
+    },
+    {
+      "km": 2.2,
+      "elev": 1633
+    },
+    {
+      "km": 2.5,
+      "elev": 1604
+    },
+    {
+      "km": 2.9,
+      "elev": 1579
+    },
+    {
+      "km": 3.3,
+      "elev": 1577
+    },
+    {
+      "km": 3.7,
+      "elev": 1550
+    },
+    {
+      "km": 4,
+      "elev": 1517
+    },
+    {
+      "km": 4.3,
+      "elev": 1470
+    },
+    {
+      "km": 4.7,
+      "elev": 1445
+    },
+    {
+      "km": 4.8,
+      "elev": 1442
+    }
+  ]
+}

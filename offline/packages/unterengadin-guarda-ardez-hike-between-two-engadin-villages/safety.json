@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "unterengadin-guarda-ardez-hike-between-two-engadin-villages",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.8,
+    "ascentM": 47,
+    "highestPointM": 1705,
+    "expectedDuration": "1.5 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 10
+  },
+  "trailhead": {
+    "lat": 46.77554,
+    "lng": 10.152411,
+    "label": "Guarda village centre, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Most of the walk is on a small road: lead short for the odd car.",
+    "Little shade on the sunny terrace: carry water on hot days.",
+    "A descent of 274 m into Ardez: take it slowly with older dogs.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

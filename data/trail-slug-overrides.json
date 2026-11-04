@@ -1768,6 +1768,36 @@
       "name": "Tour de Chichilianne",
       "slug": "tour-de-chichilianne-loop",
       "gloss": "short loop at the foot of the Mont Aiguille"
+    },
+    "unterengadin-vna-ramosch-via-veglia": {
+      "name": "Vnà to Ramosch on the old path",
+      "slug": "vna-to-ramosch-on-the-old-path",
+      "gloss": "down through meadows and forest"
+    },
+    "unterengadin-vna-sinestra": {
+      "name": "Vnà to Val Sinestra",
+      "slug": "vna-to-val-sinestra",
+      "gloss": "along the hillside and down into the side valley"
+    },
+    "unterengadin-scuol-ftan": {
+      "name": "Scuol to Ftan",
+      "slug": "scuol-to-ftan",
+      "gloss": "up through the forest to the terrace village"
+    },
+    "unterengadin-guarda-ardez-hike-between-two-engadin-villages": {
+      "name": "Guarda to Ardez",
+      "slug": "guarda-to-ardez",
+      "gloss": "between two painted Engadin villages"
+    },
+    "unterengadin-s-charl-alp-sesvenna-return": {
+      "name": "S-charl to Alp Sesvenna and back",
+      "slug": "s-charl-to-alp-sesvenna-and-back",
+      "gloss": "up a quiet side valley to the alp"
+    },
+    "unterengadin-zernez-brail": {
+      "name": "Zernez to Brail",
+      "slug": "zernez-to-brail",
+      "gloss": "along the Via Engiadina above the Inn"
     }
   }
 }

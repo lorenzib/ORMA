@@ -3561,6 +3561,54 @@
       "quote": "Distance 3.8Km · Dénivelé 116m · Durée 1H30 · Boucle · 116m D+ · 116m D- · Animaux acceptés · Chiens tenus en laisse",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-vna-ramosch-via-veglia": {
+      "url": "https://www.outdooractive.com/en/r/32029554",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "Vnà - Ramosch, via veglia",
+      "quote": "Distance 2 km · Duration 0:40 h · Ascent 0 m · Descent 385 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-vna-sinestra": {
+      "url": "https://www.outdooractive.com/en/r/32233851",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "Vnà – Sinestra",
+      "quote": "Distance 3.8 km · Duration 1:15 h · Ascent 77 m · Descent 174 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-scuol-ftan": {
+      "url": "https://www.outdooractive.com/en/r/15670033",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "Scuol – Ftan",
+      "quote": "Distance 4.1 km · Duration 1:30 h · Ascent 366 m · Descent 14 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-guarda-ardez-hike-between-two-engadin-villages": {
+      "url": "https://www.outdooractive.com/en/r/17695297",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "Guarda – Ardez: hike between two Engadin villages",
+      "quote": "Distance 4.8 km · Duration 1:30 h · Ascent 47 m · Descent 274 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-s-charl-alp-sesvenna-return": {
+      "url": "https://www.outdooractive.com/en/r/15845656",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "S-charl – Alp Sesvenna (return)",
+      "quote": "Distance 5.2 km · Duration 1:45 h · Ascent 288 m · Descent 288 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-zernez-brail": {
+      "url": "https://www.outdooractive.com/en/r/38628640",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "Zernez – Brail",
+      "quote": "Distance 7.5 km · Duration 2:00 h · Ascent 257 m · Descent 92 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
     }
   }
 }
