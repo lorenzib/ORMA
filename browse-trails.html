@@ -1189,10 +1189,10 @@
     // What stays personal (match %, saving, reporting) prompts login on
     // the trail page itself, at the moment it's actually wanted.
     const PER_PAGE = 15;
-    const allowedCountries = ['all', 'italy', 'france', 'austria'];
-    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'tyrol'];
+    const allowedCountries = ['all', 'italy', 'france', 'austria', 'switzerland'];
+    const allowedRegions = ['all', 'dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'tyrol', 'switzerland'];
     // A trail's country comes from its region's row in regions-config.js.
-    const COUNTRY_VALUE = { IT:'italy', FR:'france', AT:'austria' };
+    const COUNTRY_VALUE = { IT:'italy', FR:'france', AT:'austria', CH:'switzerland' };
     function trailCountry(trail){
       const code = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
         ? window.DoloPawsRegions.countryForRegion(trail.region)
@@ -1466,6 +1466,7 @@
       { value:'italy', label:bt('browse.geo.italy', 'Italy'), match:t => trailCountry(t) === 'italy' },
       { value:'france', label:bt('browse.geo.france', 'France'), match:t => trailCountry(t) === 'france' },
       { value:'austria', label:bt('browse.geo.austria', 'Austria'), match:t => trailCountry(t) === 'austria' },
+      { value:'switzerland', label:bt('browse.geo.switzerland', 'Switzerland'), match:t => trailCountry(t) === 'switzerland' },
     ];
     const REGIONS = [
       { value: 'all', label: bt('browse.geo.allRegions', 'All regions'), country:'all', match: () => true },
@@ -1475,6 +1476,7 @@
       { value: 'friuli', label: bt('browse.geo.friuli', 'Friuli Venezia Giulia'), country:'italy', match: t => t.region === 'friuli' },
       { value: 'aosta', label: bt('browse.geo.aosta', 'Valle d’Aosta'), country:'italy', match: t => t.region === 'aosta' },
       { value: 'tyrol', label: bt('browse.geo.tyrol', 'Tyrol & Carinthia'), country:'austria', match: t => t.region === 'tyrol' },
+      { value: 'switzerland', label: bt('browse.geo.swissRegion', 'Switzerland'), country:'switzerland', match: t => t.region === 'switzerland' },
     ];
     function renderBreadcrumb(){
       if(!breadcrumb) return;

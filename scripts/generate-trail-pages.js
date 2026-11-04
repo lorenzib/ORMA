@@ -321,8 +321,8 @@ function displayStartLabel(t, label) {
   return L('Mapped start suggestion, {label}. Check current access before travelling.', { label: tr(plainStartLabel(label)) });
 }
 
-const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', aosta: 'Valle d\'Aosta, Italy', tyrol: 'Tyrol & Carinthia, Austria' };
-const REGION_COUNTRY = { savoy: 'FR', tyrol: 'AT' };
+const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', aosta: 'Valle d\'Aosta, Italy', tyrol: 'Tyrol & Carinthia, Austria', switzerland: 'Switzerland' };
+const REGION_COUNTRY = { savoy: 'FR', tyrol: 'AT', switzerland: 'CH' };
 
 // REGION_LABEL in the page's language (the browse index stays English).
 function regionLabelText(region) {
@@ -332,6 +332,7 @@ function regionLabelText(region) {
     case 'friuli': return L('Friuli Venezia Giulia, Italy');
     case 'aosta': return L('Valle d\'Aosta, Italy');
     case 'tyrol': return L('Tyrol & Carinthia, Austria');
+    case 'switzerland': return L('Switzerland');
     default: return L('Dolomites, Italy');
   }
 }
@@ -1195,11 +1196,11 @@ function updateBrowseIndex(entries) {
   const b = html.indexOf(END);
   if (a === -1 || b === -1) return console.warn('Index markers not found in browse-trails.html, skipping.');
 
-  const byRegion = { dolomites: [], savoy: [], lombardy: [], friuli: [], aosta: [], tyrol: [] };
+  const byRegion = { dolomites: [], savoy: [], lombardy: [], friuli: [], aosta: [], tyrol: [], switzerland: [] };
   for (const e of entries) (byRegion[e.region] || byRegion.dolomites).push(e);
   for (const k of Object.keys(byRegion)) byRegion[k].sort((x, y) => x.name.localeCompare(y.name));
 
-  const block = ['dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'tyrol']
+  const block = ['dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'tyrol', 'switzerland']
     .filter((r) => byRegion[r].length)
     .map(
       (r) =>
