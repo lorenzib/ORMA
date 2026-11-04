@@ -209,11 +209,17 @@ describe('the existing-site verification boundary',()=>{
     // Then 476 and 474 with four Val Poschiavo walks: Alp Grüm down to Cavaglia via
     // Stablini and via Lagh da Palü, the Lago di Poschiavo loop from Le Prese, and
     // the Lago Bianco loop on the Bernina Pass.
-    // Then 482 and 480 with six Lower Engadin walks: Vnà to Ramosch and to Val
+    // Then 480 and 478 with four Dolomites walks: the Troi Unika art loop on Monte
+    // Pana, Cudan to Dumat above Ortisei, the Siusi geological mile, and Fiè to
+    // Siusi by the Laghetto di Fiè.
+    // Then 485 and 483 with five Isère walks, the first in the French Alps region:
+    // Alpage des Cloutons, the Gresse valley, Saint-Pierre-d’Entremont to Corbel
+    // (in Savoy by its nearest town), the Clelles canal and the Tour de Chichilianne.
+    // Then 491 and 489 with six Lower Engadin walks: Vnà to Ramosch and to Val
     // Sinestra, Scuol to Ftan, Guarda to Ardez, S-charl to Alp Sesvenna and back,
     // and Zernez to Brail.
-    expect(catalogue).toHaveLength(482);
-    expect(currentSiteTrails(catalogue)).toHaveLength(480);
+    expect(catalogue).toHaveLength(491);
+    expect(currentSiteTrails(catalogue)).toHaveLength(489);
   });
 
   test('requires the artwork the public trail page needs',()=>{

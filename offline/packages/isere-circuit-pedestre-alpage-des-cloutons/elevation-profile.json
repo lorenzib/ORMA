@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "isere-circuit-pedestre-alpage-des-cloutons",
+  "distanceKm": 10.2,
+  "ascentM": 635,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1505
+    },
+    {
+      "km": 0.8,
+      "elev": 1464
+    },
+    {
+      "km": 1.6,
+      "elev": 1580
+    },
+    {
+      "km": 2.3,
+      "elev": 1688
+    },
+    {
+      "km": 3.1,
+      "elev": 1729
+    },
+    {
+      "km": 3.9,
+      "elev": 1889
+    },
+    {
+      "km": 4.7,
+      "elev": 1955
+    },
+    {
+      "km": 5.4,
+      "elev": 1959
+    },
+    {
+      "km": 6.2,
+      "elev": 1956
+    },
+    {
+      "km": 7,
+      "elev": 2013
+    },
+    {
+      "km": 7.8,
+      "elev": 1890
+    },
+    {
+      "km": 8.5,
+      "elev": 1812
+    },
+    {
+      "km": 9.3,
+      "elev": 1626
+    },
+    {
+      "km": 10.1,
+      "elev": 1500
+    },
+    {
+      "km": 10.2,
+      "elev": 1505
+    }
+  ]
+}

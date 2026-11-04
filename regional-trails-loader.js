@@ -19,12 +19,10 @@
       script.src = source;
       script.onload = function () {
         loaded.add(region);
-        // The annotation chain that the bundle runs once at startup has to run
-        // again over the trails that just arrived: region assignment, and the
-        // presentation audits, which the regional data generator does not read.
-        // Without this a late trail shows its un-audited generated figures.
+        // Region assignment, which the bundle runs once at startup, has to run
+        // again over the trails that just arrived. The presentation audits are
+        // already in the file: build-regional-runtime-data.js applies them.
         if (window.DoloPawsRegions) window.DoloPawsRegions.assign(window.trails);
-        if (window.DoloPawsTrailAudits) window.DoloPawsTrailAudits.apply(window.trails);
         window.dispatchEvent(new CustomEvent('dolopaws-region-loaded', { detail: { region: region } }));
         resolve(window.trails || []);
       };

@@ -15,17 +15,19 @@ const { normaliseRouteRef, applyRouteNumberEvidence } = require('./route-number-
 // trail.html?id=<slug> can never disagree. assignSlugs suffixes a collision
 // with the trail's id, so it is order-dependent: deriving it from
 // loadProductionTrails (what generate-trail-pages reads) rather than from this
-// script's own loadTrails, which omits trail-audits.js, is what keeps the two
-// in step. A test asserts every published slug equals its page filename.
+// script's own loadTrails is what keeps the two in step. loadTrails now applies
+// the audits and, last, the name overrides as the production loader does, so a
+// dynamic page names a trail the way its static page does; the slugs still come
+// from one list. A test asserts every published slug equals its page filename.
 const { assignSlugs } = require('./trail-adapter');
 const { loadProductionTrails } = require('./load-production-trails');
-const { loadSlugOverrides, allRetiredSlugs, validateSlugOverrides } = require('./trail-slug-overrides');
+const { loadSlugOverrides, applyTrailNameOverrides, allRetiredSlugs, validateSlugOverrides } = require('./trail-slug-overrides');
 
 const root = path.resolve(__dirname, '..');
 const outDir = path.join(root, 'data', 'regions');
 const detailDir = path.join(root, 'data', 'trail-details');
 const sourceFiles = [
-  'trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'board-trails-data.js',
+  'trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'board-trails-data.js', 'trail-audits.js',
   'dog-friendly-routes.geojson', 'dog-friendly-routes-savoy.geojson',
   'regions-config.js', 'water-sources-all-regions.geojson', 'huts-bars-all-regions.geojson',
   'data/verified-trail-overrides.json',
@@ -80,7 +82,10 @@ function regionForPoint(lng, lat) {
 function loadTrails() {
   const context = { window: {}, console };
   vm.createContext(context);
-  ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'board-trails-data.js', 'regions-config.js']
+  // trail-audits.js runs where load-production-trails runs it, so the regional
+  // and detail files carry the audited figures the static pages print, and a
+  // browser never has to download every trail's audit to correct them itself.
+  ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'board-trails-data.js', 'trail-audits.js', 'regions-config.js']
     .forEach(file => vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename: file }));
   const trails = JSON.parse(vm.runInContext('window.DoloPawsRegions.assign(trails); JSON.stringify(trails)', context));
   const overrides = JSON.parse(fs.readFileSync(path.join(root, 'data', 'verified-trail-overrides.json'), 'utf8'));
@@ -92,7 +97,10 @@ function loadTrails() {
   const gallery = JSON.parse(fs.readFileSync(path.join(root, 'data', 'trail-gallery-photos.json'), 'utf8'));
   const liftAccess = JSON.parse(fs.readFileSync(path.join(root, 'data', 'lift-access.json'), 'utf8'));
   const withOverrides = applyLiftAccess(applyTrailGalleryPhotos(applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), images), gallery), liftAccess);
-  return applyRouteNumberEvidence(withOverrides, root);
+  // Last, as load-production-trails does: the regional and detail files fed the
+  // dynamic page and the cards the importer's name ("Itinerario \"Raststeinweg\"")
+  // while the static page printed the published one.
+  return applyTrailNameOverrides(applyRouteNumberEvidence(withOverrides, root), loadSlugOverrides(root));
 }
 
 function loadGondolas() {

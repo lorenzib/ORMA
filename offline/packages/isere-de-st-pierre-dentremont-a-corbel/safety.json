@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "trailId": "isere-de-st-pierre-dentremont-a-corbel",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 9,
+    "ascentM": 450,
+    "highestPointM": 962,
+    "expectedDuration": "3.25 hours",
+    "difficulty": "Hard",
+    "shadePercent": 50
+  },
+  "trailhead": {
+    "lat": 45.415169,
+    "lng": 5.854643,
+    "label": "Saint-Pierre-d’Entremont tourist office, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.4168847,
+      "lng": 5.8546441,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.4178466,
+      "lng": 5.8550222,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.4178951,
+      "lng": 5.8546081,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.4340137,
+      "lng": 5.8348505,
+      "label": "Fontaine Caroline",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.4310662,
+      "lng": 5.8268384,
+      "label": "Fontaine Mollard",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.4291746,
+      "lng": 5.8244871,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.42636,
+      "lng": 5.8274276,
+      "label": "Fontaine à Maximin",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.4266812,
+      "lng": 5.8284794,
+      "label": "Le bassin des Roses",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.4255887,
+      "lng": 5.8316333,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About half the loop is on village streets and small roads; the Route du Dauphiné through Saint-Pierre-d’Entremont carries traffic.",
+    "A steady forest climb to the Pas de la Coche (about 1,005 m).",
+    "Livestock may be in the meadows around Corbel.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

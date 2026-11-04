@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "isere-la-vallee-de-la-gresse",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.2,
+    "ascentM": 286,
+    "highestPointM": 752,
+    "expectedDuration": "2 hours",
+    "difficulty": "Hard",
+    "shadePercent": 49
+  },
+  "trailhead": {
+    "lat": 44.975302,
+    "lng": 5.620315,
+    "label": "Miribel-Lanchâtre town hall, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A short stretch of scree before the Gresse torrent can be slippery after heavy rain.",
+    "A ford across the Pierre du Mai stream.",
+    "Farm gates to close behind you; the D 8 is crossed and briefly followed at the end.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

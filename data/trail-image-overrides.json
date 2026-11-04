@@ -2094,6 +2094,91 @@
       }
     },
     {
+      "id": "isere-circuit-pedestre-alpage-des-cloutons",
+      "approvedReviewId": "commons-isere-circuit-pedestre-alpage-des-cloutons-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-circuit-pedestre-alpage-des-cloutons-lac-charlet.jpg",
+        "heroImage": "images/trails/isere-circuit-pedestre-alpage-des-cloutons-lac-charlet.jpg",
+        "imageAlt": "A still mountain lake reflecting a golden grassy peak under a clear blue sky in autumn light",
+        "imageCredit": "The Pérollier above the Lac Charlet",
+        "imageCreditText": "The Pérollier above the Lac Charlet by Rémih",
+        "imageCreator": "Rémih",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pérollier_Lac_de_Charlet_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-de-st-pierre-dentremont-a-corbel",
+      "approvedReviewId": "mapillary-isere-de-st-pierre-dentremont-a-corbel-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-de-st-pierre-dentremont-a-corbel-corbel-church.jpg",
+        "heroImage": "images/trails/isere-de-st-pierre-dentremont-a-corbel-corbel-church.jpg",
+        "imageAlt": "A stone church with a clock tower and pointed spire on a quiet village lane, with a limestone cliff on the left under an autumn sky",
+        "imageCredit": "Corbel church on the loop",
+        "imageCreditText": "Corbel church on the loop by pgiraud",
+        "imageCreator": "pgiraud",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=248424963741229",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-la-vallee-de-la-gresse",
+      "approvedReviewId": "commons-isere-la-vallee-de-la-gresse-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-la-vallee-de-la-gresse-village.jpg",
+        "heroImage": "images/trails/isere-la-vallee-de-la-gresse-village.jpg",
+        "imageAlt": "A small village of tiled roofs on a wooded green hillside, with limestone peaks of the Vercors on the skyline under summer clouds",
+        "imageCredit": "Miribel-Lanchâtre from the loop",
+        "imageCreditText": "Miribel-Lanchâtre from the loop by Jvillafruela",
+        "imageCreator": "Jvillafruela",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Le_village_de_Miribel-Lanchâtre_-_2017-05-30.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-le-canal-de-clelles",
+      "approvedReviewId": "commons-isere-le-canal-de-clelles-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-le-canal-de-clelles-meadow.jpg",
+        "heroImage": "images/trails/isere-le-canal-de-clelles-meadow.jpg",
+        "imageAlt": "A summer hay meadow full of red poppies and wild grasses, with a line of trees and low mountains on the horizon",
+        "imageCredit": "Poppy meadow by the loop near Clelles",
+        "imageCreditText": "Poppy meadow by the loop near Clelles by Smiley.toerist",
+        "imageCreator": "Smiley.toerist",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Meadow_in_the_pré_Alps.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-tour-de-chichilianne",
+      "approvedReviewId": "commons-isere-tour-de-chichilianne-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-tour-de-chichilianne-church.jpg",
+        "heroImage": "images/trails/isere-tour-de-chichilianne-church.jpg",
+        "imageAlt": "The stone bell tower of a village church with clock faces, beside a tall tree under a blue summer sky with white clouds",
+        "imageCredit": "Chichilianne church at the start",
+        "imageCreditText": "Chichilianne church at the start by Jvillafruela",
+        "imageCreator": "Jvillafruela",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Clocher_de_l'église_de_Chichilianne.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "kronplatz-attraverso-il-sentiero-panoramico-a-brunico",
       "approvedReviewId": "mapillary-kronplatz-attraverso-il-sentiero-panoramico-a-brunico-on-route",
       "approvedAt": "2026-10-28T18:00:00.000Z",
@@ -6401,6 +6486,40 @@
       }
     },
     {
+      "id": "seiseralm-fie-laghetto-di-fie-siusi",
+      "approvedReviewId": "mapillary-seiseralm-fie-laghetto-di-fie-siusi-on-route",
+      "approvedAt": "2026-11-04T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-fie-laghetto-di-fie-siusi-fie-allo-sciliar.jpg",
+        "heroImage": "images/trails/seiseralm-fie-laghetto-di-fie-siusi-fie-allo-sciliar.jpg",
+        "imageAlt": "Green meadows and a wooded valley above Fiè allo Sciliar, with farms on the slopes and forested hills under a blue sky",
+        "imageCredit": "The meadows above Fiè at the start",
+        "imageCreditText": "The meadows above Fiè at the start by houtari",
+        "imageCreator": "houtari",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=2334353726694491",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seiseralm-miglio-geologico-siusi",
+      "approvedReviewId": "mapillary-seiseralm-miglio-geologico-siusi-on-route",
+      "approvedAt": "2026-11-04T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-miglio-geologico-siusi-siusi.jpg",
+        "heroImage": "images/trails/seiseralm-miglio-geologico-siusi-siusi.jpg",
+        "imageAlt": "A white Tyrolean hotel with a painted oriel window and wooden balconies on a village street, with more houses and storm clouds beyond",
+        "imageCredit": "The village centre of Siusi",
+        "imageCreditText": "The village centre of Siusi by madel",
+        "imageCreator": "madel",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=461068494978617",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "sentiero-del-trenino",
       "approvedReviewId": "commons-sentiero-del-trenino-on-route",
       "approvedAt": "2026-10-23T23:00:00.000Z",
@@ -7166,6 +7285,23 @@
       }
     },
     {
+      "id": "valgardena-cudan-dumat",
+      "approvedReviewId": "commons-valgardena-cudan-dumat-on-route",
+      "approvedAt": "2026-11-04T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-cudan-dumat-ortisei.jpg",
+        "heroImage": "images/trails/valgardena-cudan-dumat-ortisei.jpg",
+        "imageAlt": "Ortisei’s rooftops and church below wooded slopes, with the pale rock tower of the Sassolungo rising behind",
+        "imageCredit": "Ortisei and the Sassolungo from the walk",
+        "imageCreditText": "Ortisei and the Sassolungo from the walk by József Kovács",
+        "imageCreator": "József Kovács",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ortisei_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valgardena-escursione-al-brogles",
       "approvedReviewId": "commons-valgardena-escursione-al-brogles-on-route",
       "approvedAt": "2026-10-28T16:00:00.000Z",
@@ -7468,6 +7604,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=1245395036599629",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-troi-unika",
+      "approvedReviewId": "mapillary-valgardena-troi-unika-on-route",
+      "approvedAt": "2026-11-04T20:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-troi-unika-monte-pana.jpg",
+        "heroImage": "images/trails/valgardena-troi-unika-monte-pana.jpg",
+        "imageAlt": "A green meadow rising to dark spruce woods, with the grey rock towers of the Sassolungo against a blue sky behind",
+        "imageCredit": "The Sassolungo above the Monte Pana meadows",
+        "imageCreditText": "The Sassolungo above the Monte Pana meadows by highlander",
+        "imageCreator": "highlander",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=377745193562031",
         "imageSourceType": "licensed-source"
       }
     },

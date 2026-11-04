@@ -3490,6 +3490,78 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-04T12:00:00.000Z"
     },
+    "valgardena-troi-unika": {
+      "url": "https://www.outdooractive.com/it/r/64024449",
+      "publisher": "Tourist board of S. Cristina (Val Gardena) (Outdooractive)",
+      "name": "Sentiero d’arte e natura – Troi Unika",
+      "quote": "Distanza 1,6 km · Durata 0:30 h · Salita 54 m · Discesa 55 m · Punto più alto 1.690 m · Punto più basso 1.633 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T20:00:00.000Z"
+    },
+    "valgardena-cudan-dumat": {
+      "url": "https://www.outdooractive.com/it/r/66473926",
+      "publisher": "Tourist board of Ortisei (Val Gardena) (Outdooractive)",
+      "name": "Passeggiata Cudan-Dumat",
+      "quote": "Distanza 3,5 km · Durata 1:01 h · Salita 110 m · Discesa 133 m · Punto più alto 1.356 m · Punto più basso 1.229 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T20:00:00.000Z"
+    },
+    "seiseralm-miglio-geologico-siusi": {
+      "url": "https://www.outdooractive.com/it/r/802958877",
+      "publisher": "Kastelruth tourist board (Seiser Alm Marketing) (Outdooractive)",
+      "name": "Miglio geologico Siusi",
+      "quote": "Distanza 1 km · Durata 0:30 h · Salita 17 m · Discesa 17 m · Punto più alto 1.014 m · Punto più basso 997 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T20:00:00.000Z"
+    },
+    "seiseralm-fie-laghetto-di-fie-siusi": {
+      "url": "https://www.outdooractive.com/it/r/64902375",
+      "publisher": "Kastelruth tourist board (Seiser Alm Marketing) (Outdooractive)",
+      "name": "Da Fiè al laghetto di Fiè fino a Siusi",
+      "quote": "Distanza 6,3 km · Durata 2:00 h · Salita 299 m · Discesa 154 m · Punto più alto 1.054 m · Punto più basso 859 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T20:00:00.000Z"
+    },
+    "isere-circuit-pedestre-alpage-des-cloutons": {
+      "url": "https://www.alpes-isere.com/itineraire/circuit-pedestre-alpage-des-cloutons-6057481/",
+      "publisher": "Matheysine Tourisme (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Circuit pédestre : Alpage des Cloutons",
+      "quote": "Distance 10.7Km · Dénivelé 635m · Durée 4H15 · Boucle · 635m D+ · 635m D- · Animaux acceptés · Les chiens doivent obligatoirement être tenus en laisse",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-la-vallee-de-la-gresse": {
+      "url": "https://www.alpes-isere.com/itineraire/la-vallee-de-la-gresse-6086482/",
+      "publisher": "Office de Tourisme Grenoble Alpes (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "La vallée de la Gresse",
+      "quote": "Distance 6.2Km · Dénivelé 286m · Durée 2H · Boucle · 286m D+ · 286m D- · Animaux acceptés · Chiens tenus en laisse",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-de-st-pierre-dentremont-a-corbel": {
+      "url": "https://www.alpes-isere.com/itineraire/de-st-pierre-dentremont-a-corbel-6779364/",
+      "publisher": "Chartreuse Tourisme (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "De St Pierre d’Entremont à Corbel",
+      "quote": "Distance 9Km · Dénivelé 450m · Durée 3H15 · Boucle · 450m D+ · 450m D- · Animaux acceptés · Chiens acceptés sous réserve d’être tenus en laisse",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-le-canal-de-clelles": {
+      "url": "https://www.alpes-isere.com/itineraire/le-canal-de-clelles-7810267/",
+      "publisher": "Office de Tourisme du Trièves (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Le canal de Clelles",
+      "quote": "Distance 4.8Km · Dénivelé 92m · Durée 1H30 · Boucle · 92m D+ · 92m D- · Animaux acceptés",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-tour-de-chichilianne": {
+      "url": "https://www.alpes-isere.com/itineraire/tour-de-chichilianne-7219269/",
+      "publisher": "Office de Tourisme du Trièves (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Tour de Chichilianne",
+      "quote": "Distance 3.8Km · Dénivelé 116m · Durée 1H30 · Boucle · 116m D+ · 116m D- · Animaux acceptés · Chiens tenus en laisse",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
     "unterengadin-vna-ramosch-via-veglia": {
       "url": "https://www.outdooractive.com/en/r/32029554",
       "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
