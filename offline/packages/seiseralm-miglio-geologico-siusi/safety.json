@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "trailId": "seiseralm-miglio-geologico-siusi",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 1,
+    "ascentM": 17,
+    "highestPointM": 1025,
+    "expectedDuration": "0.5 hours",
+    "difficulty": "Easy",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.544354,
+    "lng": 11.560179,
+    "label": "The main square of Siusi allo Sciliar, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5452256,
+      "lng": 11.5598612,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5438217,
+      "lng": 11.5593125,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.54439,
+      "lng": 11.560322,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.544395,
+      "lng": 11.5621733,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.54522,
+      "lng": 11.562788,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A village walk on streets and pavements: you cross the main road (SP 24) towards the post office, so keep your dog on a short lead.",
+    "No dogs in the playground the trail passes.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

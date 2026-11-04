@@ -209,8 +209,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 476 and 474 with four Val Poschiavo walks: Alp Grüm down to Cavaglia via
     // Stablini and via Lagh da Palü, the Lago di Poschiavo loop from Le Prese, and
     // the Lago Bianco loop on the Bernina Pass.
-    expect(catalogue).toHaveLength(476);
-    expect(currentSiteTrails(catalogue)).toHaveLength(474);
+    // Then 480 and 478 with four Dolomites walks: the Troi Unika art loop on Monte
+    // Pana, Cudan to Dumat above Ortisei, the Siusi geological mile, and Fiè to
+    // Siusi by the Laghetto di Fiè.
+    expect(catalogue).toHaveLength(480);
+    expect(currentSiteTrails(catalogue)).toHaveLength(478);
   });
 
   test('requires the artwork the public trail page needs',()=>{
