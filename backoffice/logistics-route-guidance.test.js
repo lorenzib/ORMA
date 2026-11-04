@@ -72,7 +72,7 @@ describe('the agent is handed what ORMA already recorded', () => {
   test('the recorded start and description are surfaced by name', () => {
     const leads=routeGuidanceLeads(trail);
     expect(leads.recordedStart.label).toContain('Saint-Pierre-d');
-    expect(leads.recordedDescription).toContain('Mont Benoit');
+    expect(leads.recordedDescription).toContain('Mont-Benoît');
     // This route has no number but does have an official page, so the status
     // now says so and the page travels to the agent as a citable source.
     expect(leads.recordedRouteNumberStatus).toBe('official-route-page');
