@@ -21294,7 +21294,8 @@
     'osm-5512443': {
       // Hand audit 24 October 2026: line rebuilt on OSM ways along the official GPX of the Tourismusgenossenschaft Naturns walk
       // 'Kult- und Kraftplatz Wallburgboden' (8.3 km, 349 m, 2:30 h); the old 3.5 km line was its Wallburgweg section. Dogs: Naturns
-      // publishes no dog rule, so the national rule applies (Ministry of Health ordinance of 6 August 2013, Art. 1(3)); about 2 km run
+      // has a 2006 dog regulation (a lead in the village, a muzzle on public transport, no dogs in playgrounds; waal and field paths
+      // outside the village are exempt); the national rule applies on top (Ministry of Health ordinance of 6 August 2013, Art. 1(3)); about 2 km run
       // through the Sonnenberg steppe biotope (Natura 2000 IT3110010), where the landscape plan forbids letting dogs run free.
       "area": "Naturns / Naturno – Sonnenberg",
       "path": [
@@ -23506,7 +23507,7 @@
         "name": "Kult- und Kraftplatz Wallburgboden (paths 39/91, Wallburgweg)",
         "url": "https://www.merano-suedtirol.it/de/naturns/aktiv-entspannen/wandern-bergsteigen/wanderwege/121154118-kult-und-kraftplatz-wallburgboden.html"
       },
-      "desc": "An easy 8.3 km round walk from the centre of Naturns up to the Wallburgboden, an old cult site on the Sonnenberg. Paths 39 and 91 climb past the Wiedenplatzer Keller, then the level Wallburgweg runs west past the Waalerhütte through open woodland and dry scrub to the Wallburgboden. Back the same way to the turn signed Schwalbennest, then gently down past the Schwalbennest and the Maurbamhof to the village. Officially 2.5 hours and 349 m of climb, up to about 790 m. The tourist board lists it among its walks for holidays with dogs.\n\nNaturns publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. About 2 km cross the Sonnenberg steppe biotope, a Natura 2000 site where dogs may not run free and sheep and goats may graze.",
+      "desc": "An easy 8.3 km round walk from the centre of Naturns up to the Wallburgboden, an old cult site on the Sonnenberg. Paths 39 and 91 climb past the Wiedenplatzer Keller, then the level Wallburgweg runs west past the Waalerhütte through open woodland and dry scrub to the Wallburgboden. Back the same way to the turn signed Schwalbennest, then gently down past the Schwalbennest and the Maurbamhof to the village. Officially 2.5 hours and 349 m of climb, up to about 790 m. The tourist board lists it among its walks for holidays with dogs.\n\nNaturns keeps dogs on a lead in the village, parks and car parks and on the Adige embankment, and asks owners to keep them on a lead on the Waalweg; the national rule adds a lead of at most 1.5 m on public ground and a muzzle carried. About 2 km cross the Sonnenberg steppe biotope, a Natura 2000 site where dogs may not run free and sheep and goats may graze.",
       "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle: the national rule requires it, and in the Sonnenberg biotope dogs may not roam. This south-facing slope is hot and dry with little real shade, so walk it in spring, autumn or early in the day and carry water: there is none above the village. Watch for cars on the village streets and farm roads, and keep your dog close where the path runs near short drops. There are places to stop at the Wiedenplatzer Keller and the Schwalbennest.",
       "curated": true,
       // Seal restored 3 November 2026 by the owner's decision: the route sentence now gives the official page's start, direction and turns, and it passes the board-walk bar.
@@ -23532,7 +23533,8 @@
         ],
         "sources": [
           "Tourismusgenossenschaft Naturns (merano-suedtirol.it), 'Kult- und Kraftplatz Wallburgboden': 'Dauer 2:30 h', 'Länge 8,3 km', 'Höhenmeter bergauf 349 hm', 'Höchster Punkt 791 m', 'Schwierigkeit leicht'; 'Die Wanderung startet im Zentrum von Naturns'; official GPX within 20 m of the rebuilt line",
-          "National rule: Ministry of Health, Ordinanza 6 agosto 2013, Art. 1(3), renewed to 5 Sep 2027: 'utilizzare sempre il guinzaglio a una misura non superiore a mt 1,50' and a muzzle carried. The commune of Naturns publishes no dog regulation (checked its document and legal-act lists, its transparency section and German and Italian web searches)",
+          "National rule: Ministry of Health, Ordinanza 6 agosto 2013, Art. 1(3), renewed to 5 Sep 2027: 'utilizzare sempre il guinzaglio a una misura non superiore a mt 1,50' and a muzzle carried",
+          "Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds",
           "Naturns landscape plan (newPlan PPC-21056), Sonnenberg biotope: Art. 5(4)(h) forbids 'Hunde frei laufen zu lassen'; Art. 5(5)(a) allows grazing by sheep and goats; Natura 2000 site IT3110010 (EEA); the Texelgruppe nature park begins north of the line",
           "OpenStreetMap: road classes, surfaces, cliffs, steps and water along the line"
         ],
@@ -23546,6 +23548,10 @@
         {
           "label": "Ministry of Health ordinance of 6 August 2013 (text)",
           "url": "https://www.certifico.com/id/26170"
+        },
+        {
+          "label": "Gemeinde Naturns, dog regulation (2006)",
+          "url": "https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043"
         },
         {
           "label": "OpenStreetMap relation 5512443",
@@ -23930,8 +23936,10 @@
     'osm-5597577': {
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 3).
       // The official nature trail of the Tourismusgenossenschaft Naturns,
-      // from Tschirland. Naturns publishes no dog rule, so the national dog
-      // ordinance (6 August 2013, extended to September 2027) applies. The
+      // from Tschirland. Naturns has a 2006 dog regulation (a lead in the
+      // village, a muzzle on public transport, no dogs in playgrounds); the
+      // national dog ordinance (6 August 2013, extended to September 2027)
+      // applies on top. The
       // loop crosses the Tschirlander Hoad natural monument (NDM 057_G05, a
       // wooded pasture) at km 2.9–3.4; the Naturns landscape plan only
       // forbids damaging it (Art. 3). No biotope, Natura 2000 site or park.
@@ -23957,6 +23965,7 @@
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Tourismusgenossenschaft Naturns, Naturlehrpfad Gsindboden (Südtirol.info)',
+          'Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds',
           'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
           'Landschaftsplan Naturns, Schutzbestimmungen, Art. 3 and 5 (newPlan doc 6310)',
           'Province landscape-plan layers: Tschirlander Hoad natural monument; no biotope, Natura 2000 site or park',
@@ -23972,10 +23981,11 @@
       shadeDescription: 'The climb to the Gsindboden is through shady woods; the farm road out of Tschirland and the Tschirlander Heide are open, about a third of the loop in all under trees.',
       terrainDescription: 'A moderate nature-trail loop at 580–780 m: out along a farm road between meadows and orchards, up through mixed woodland to the Gsindboden viewpoint, and down across the open Tschirlander Heide.',
       waterDescription: 'A drinking fountain in Tschirland at the start; none on the loop, so carry water.',
-      dogNotes: 'Naturns has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. The loop crosses the Tschirlander Hoad, a protected wooded pasture behind a gate, where grazing animals may be about; keep your dog on the lead there and close the gate behind you.',
+      dogNotes: 'Naturns keeps dogs on a lead in the village, parks and car parks and on the Adige embankment; field paths outside the village are exempt. The national rule adds a lead of at most 1.5 m and a muzzle carried. The loop crosses the Tschirlander Hoad, a protected wooded pasture behind a gate, where grazing animals may be about; keep your dog on the lead there and close the gate behind you.',
       tips: 'Take Citybus 264 from Naturns to Tschirlander Hof, follow the farm road to the Restaurant Ramilia and then the nature-trail signs up to the Gsindboden viewpoint and back: 4.6 km, about 220 m of climbing, an hour and a half. Keep your dog on a short lead (1.5 m at most) and carry a muzzle; take particular care in the wooded pasture of the Tschirlander Hoad. Bring water: the only fountain is at the start.',
       sourceLinks: [
         { label: 'Südtirol.info, Naturlehrpfad Gsindboden (Tourismusgenossenschaft Naturns)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoid182a311dc9225339ed6333778e0dda1.naturlehrpfad-gsindboden.naturns' },
+        { label: 'Gemeinde Naturns, dog regulation (2006)', url: 'https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043' },
         { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
         { label: 'Landschaftsplan Naturns, Schutzbestimmungen und Nutzungsvorschriften (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/6310' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/5597577' }
@@ -38565,9 +38575,10 @@
     'osm-20380913': {
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 6).
       // The official theme walk of the Tourismusgenossenschaft Naturns from
-      // Tabland, wholly in Naturns. Naturns publishes no dog rule, so the
-      // national dog ordinance (6 August 2013, extended to September 2027)
-      // applies. No biotope, Natura 2000 site or park on the line. The stored
+      // Tabland, wholly in Naturns. Naturns has a 2006 dog regulation (a lead
+      // in the village, a muzzle on public transport, no dogs in playgrounds);
+      // the national dog ordinance (6 August 2013, extended to September 2027)
+      // applies on top. No biotope, Natura 2000 site or park on the line. The stored
       // line is turned to run the board's way (data/verified-trail-overrides.json).
       area: 'Tabland, Naturns / Tablà, Naturno',
       distance: 5.1,
@@ -38591,7 +38602,8 @@
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Tourismusgenossenschaft Naturns, Hinzlweg in Tabland (Südtirol.info)',
-          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Naturns publishes no dog rule)',
+          'Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
           'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
           'OpenStreetMap relation 20380913, road, surface, woodland and farm data'
         ],
@@ -38605,10 +38617,11 @@
       shadeDescription: 'About two fifths is in birch and pine wood, mostly the climb on path 4; the roads, clearings and meadows are open.',
       terrainDescription: 'A theme walk at 660–870 m above Naturns with 15 stations on local legends and farm life, through birch and pine wood, clearings and meadows, with views over the Etsch valley and into the Schnalstal.',
       waterDescription: 'No drinking water is mapped on the loop; carry enough for you and your dog. There is an inn by the church in Tabland at the start.',
-      dogNotes: 'Naturns publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. The loop crosses the Hasler Weide and passes the Ragoier and Oberwötzel farms, so expect grazing animals and farm dogs and keep your dog close.',
+      dogNotes: 'Naturns keeps dogs on a lead in the village, parks and car parks and on the Adige embankment; field paths outside the village are exempt. The national rule adds a lead of at most 1.5 m and a muzzle carried. The loop crosses the Hasler Weide and passes the Ragoier and Oberwötzel farms, so expect grazing animals and farm dogs and keep your dog close.',
       tips: 'Start by the church in Tabland (Citybus 264 from Naturns) and follow road and path 4, then the Hinzlweg signs: 5.1 km, about 230 m of climbing, two hours with the stations. Keep your dog on a short lead (1.5 m at most), carry a muzzle and take water, as there is none on the way. The slope faces south and is dry, so go early or late in summer.',
       sourceLinks: [
         { label: 'Südtirol.info, Hinzlweg in Tabland (Tourismusgenossenschaft Naturns)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiad9c58538eeb1db5ae022493e8c91e4f.hinzlweg-in-tabland.st--leonhard-i-p-' },
+        { label: 'Gemeinde Naturns, dog regulation (2006)', url: 'https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043' },
         { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/20380913' }
       ],
@@ -59702,6 +59715,573 @@
       ],
       startPoint: { lat: 45.626113, lng: 6.600459, label: 'Lac des Fées car park above the Saint-Guérin dam, the board’s start' },
       desc: 'A short mountain walk from the Lac des Fées above the Saint-Guérin reservoir up to the Cormet d’Arêches and along the grassy humps to the Croix du Berger, with wide views over the Beaufortain. The official page lists 4.8 km, 350 m up and 350 m down, about 3 h 30 there and back.'
+    },
+    'engadin-around-lake-st-moritz': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Engadin batch 1, Switzerland batch 1).
+      // “Around Lake St. Moritz”, published by the Engadin Tourismus AG, drawn on 30 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): St. Moritz (its Polizeigesetz: a lead only in listed places such as playgrounds and parks, no unsupervised dogs, hay meadows closed 1 June–31 August).
+      // Part of the shore lies in the Bernina-Albris federal hunting reserve: dogs on a lead all year. No National Park and no summer wildlife rest zone.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'St. Moritz station – lakeshore path – St. Moritz Bad – St. Moritz station (Upper Engadin)',
+      distance: 4.3,
+      elevation: 2,
+      hours: '1',
+      routeShape: 'loop',
+      routeShapeNote: 'A flat loop on the shore path all the way round Lake St. Moritz, starting and ending at St. Moritz station.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at St. Moritz railway station, the board’s start, and walk down to the lakeshore path right beside it.",
+        "sequence": "Turn so the lake is on your right and follow the shore path round the lake. It runs partly on tarred path and partly on fine gravel, with short wooden bridges over the inlets. At the far, south-west end you pass St. Moritz Bad; keep the water on your right and follow the path back along the other shore, briefly on the quiet Via Sela, until you return to the station.",
+        "switches": "No turns to make: keep the lake on your right the whole way round and follow the shore path back to the station.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Tourismus AG, Around Lake St. Moritz (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/40793603",
+            "authority": "Engadin Tourismus AG",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Lake St. Moritz from the shore path, in August (Tiia Monto on Wikimedia Commons, CC BY-SA 3.0), 2 m from the line.',
+        route: 'Official loop 4.3 km from St. Moritz station, as the Engadin Tourismus AG publishes it; the stored line is drawn on 30 OSM ways along the board’s published line, 4.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from St. Moritz station follow the lakeshore path round the lake with the water on your right, past St. Moritz Bad, and back to the station.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.3 km, 2 m up and 2 m down, 1:05 h, highest point 1,772 m, lowest 1,768 m (Engadin Tourismus AG, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Tourismus AG, Around Lake St. Moritz (its Outdooractive tour, also listed on engadin.ch)',
+          'Gemeinde St. Moritz, Polizeigesetz (7.7, amended 26.11.2025, in force 1.2.2026), art. 14 and 29: a lead on playgrounds, sports grounds, school grounds, cemeteries and in public parks; no dog may run unsupervised; dog mess picked up on all roads and paths; hay meadows closed to walkers 1 June–31 August',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal ordinance on federal hunting reserves (VEJ, SR 922.31), art. 5 para. 1 lit. c: dogs on a lead all year in a federal hunting reserve',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the shore touches the Bernina-Albris federal hunting reserve; no National Park and no wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (30 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 26,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The lake has no railing: keep your dog on a short lead along the water', 'Short ramps of up to 11% at the bridges', 'Busy with walkers, cyclists and prams in summer: keep your dog close', 'Hay meadows near the lake are closed to walkers 1 June–31 August: keep to the path'],
+      terrainType: 'Lakeshore path, partly tarred and partly fine gravel, with wooden bridges',
+      shadeDescription: 'Mostly open: about a quarter runs under mapped trees along the shore; the rest is in full sun.',
+      terrainDescription: 'A flat walk at 1,770 m on the shore path round Lake St. Moritz, partly tarred and partly well-kept natural path, with views of the town and the surrounding peaks.',
+      waterDescription: 'No drinking water mapped on the way: bring water for your dog.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. St. Moritz asks for a lead only in listed places such as playgrounds, sports grounds and parks, and no dog may run unsupervised. Federal wildlife reserve: dogs on a lead all year, by federal law. Part of the shore lies in the Bernina-Albris reserve. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Start at St. Moritz station: a flat 4.3 km loop round the lake, about an hour. Keep your dog on a lead. No drinking water mapped on the shore path: bring water. Cafés in St. Moritz Bad and by the station.',
+      sourceLinks: [
+        { label: 'Outdooractive, Around Lake St. Moritz (Engadin Tourismus AG)', url: 'https://www.outdooractive.com/en/r/40793603' },
+        { label: 'Gemeinde St. Moritz, Polizeigesetz 7.7', url: 'https://www.gemeinde-stmoritz.ch/fileadmin/user_upload/dokumente/pdf/gesetze/7.7_Polizeigesetz_Anhang_Teilrevision_vom_26.11.2025_in_Kraft_am_01.02.2026.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'Fedlex, Verordnung über die eidgenössischen Jagdbanngebiete (VEJ, SR 922.31)', url: 'https://www.fedlex.admin.ch/eli/cc/1991/2246_2246_2246/de' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.497495, lng: 9.847189, label: 'St. Moritz station, the board’s start' },
+      desc: 'A flat walk all the way round Lake St. Moritz on the shore path, from St. Moritz station past St. Moritz Bad and back. The board lists 4.3 km, 2 m up and 2 m down, 1 h 05.'
+    },
+    'engadin-sils-chaste-peninsula-sils': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Engadin batch 1, Switzerland batch 1).
+      // “Sils – Chastè Peninsula – Sils”, published by the Engadin Tourismus AG, drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Sils i.E./Segl (its Polizeigesetz: no lead rule, no unsupervised dogs, hay meadows closed from 1 June until the hay harvest).
+      // No National Park, federal reserve or wildlife rest zone on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Sils Maria – Plaun da Lej – Chastè peninsula – Sils Baselgia – Sils Maria (Upper Engadin)',
+      distance: 4.4,
+      elevation: 49,
+      hours: '1.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park in Sils Maria across the plain to the Chastè peninsula, round the wooded peninsula past the Nietzsche stone, and back along the lake shore through Sils Baselgia.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park in Sils Maria, the board’s start, on Via da Marias.",
+        "sequence": "Walk north out of the village and take the track across the open plain towards Lake Sils and the wooded Chastè peninsula. At the start of the peninsula continue on the path that winds through the forest, past benches and the Nietzsche memorial stone near the tip, where a short detour leads to the remains of the castle on the northern shore. Leave the peninsula and turn right along the shore path called Crastellas, past the moored fishing boats, into Sils Baselgia. Follow Via da Truochs and Via da Baselgia through the village and Via da Marias back to the car park.",
+        "switches": "Key turns: at the edge of the plain onto the peninsula path; after the peninsula right along the shore path to Sils Baselgia; through the village back to Sils Maria.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Tourismus AG, Sils – Chastè Peninsula – Sils (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/37804893",
+            "authority": "Engadin Tourismus AG",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The shore path by the Chastè peninsula on Lake Sils, in August (Tiia Monto on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official loop 4.4 km from the car park in Sils Maria, as the Engadin Tourismus AG publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 4.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the Sils Maria car park across the plain to the Chastè peninsula, round the peninsula path past the Nietzsche stone, then along the shore through Sils Baselgia back to the car park.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.1 and km 3.5 (OSM nodes 4014629746, 1986889446).',
+        elevation: 'Official 4.4 km, 49 m up and 49 m down, 1:12 h, highest point 1,835 m, lowest 1,797 m (Engadin Tourismus AG, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Tourismus AG, Sils – Chastè Peninsula – Sils (its Outdooractive tour, also listed on engadin.ch)',
+          'Gemeinde Sils i.E./Segl, Polizeigesetz (10.12.2010, revised 2020 and 2023), art. 15 and 20: no dog may run unsupervised and dog mess is picked up; no lead rule; hay meadows closed from 1 June until the hay harvest',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is outside the Swiss National Park and every federal reserve and wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Rocky and rooty forest path on the peninsula', 'Steep banks down to the lake on the peninsula: keep your dog on a lead near the water', 'Hay meadows on the plain are closed from 1 June until the hay harvest: keep to the track', 'Village streets in Sils at the start and end: lead short for passing cars'],
+      terrainType: 'Village streets, gravel tracks and forest path',
+      shadeDescription: 'Half shaded: about half runs through the mapped forest of the peninsula; the plain and the village are open.',
+      terrainDescription: 'An easy loop at 1,800–1,835 m from Sils across the open plain to the wooded Chastè peninsula on Lake Sils, with lake views towards Maloja.',
+      waterDescription: 'Drinking water at km 0.1 and km 3.5; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Sils has no lead rule of its own, but no dog may run unsupervised and dog mess must be picked up. The hay meadows on the plain are closed from 1 June until the hay is cut.',
+      tips: 'Start at the car park in Sils Maria: a 4.4 km loop, 49 m up and down, about an hour and a quarter. Keep your dog on a lead. Drinking water near the start and in Sils Baselgia near the end. Fire pits by the lake.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sils – Chastè Peninsula – Sils (Engadin Tourismus AG)', url: 'https://www.outdooractive.com/en/r/37804893' },
+        { label: 'Gemeinde Sils/Segl, Polizeigesetz', url: 'https://www.sils-segl.ch/files/PDF/gesetze/Polizeigesetz%20Der%20Gemeinde%20Sils.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.428706, lng: 9.763688, label: 'Sils/Segl Maria car park, the board’s start' },
+      desc: 'An easy loop from Sils across the plain to the wooded Chastè peninsula on Lake Sils, past the Nietzsche stone, and back along the shore through Sils Baselgia. The board lists 4.4 km, 49 m up and 49 m down, 1 h 12.'
+    },
+    'engadin-morteratsch-glacier-route': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Engadin batch 1, Switzerland batch 1).
+      // “Morteratsch Glacier route”, published by the Engadin Tourismus AG, drawn on 6 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Pontresina (its Polizeigesetz: a lead in the settlement area, farmland closed 1 June–1 October).
+      // The valley floor lies in the Bernina-Albris federal hunting reserve: dogs on a lead all year. No National Park and no summer wildlife rest zone.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Morteratsch station – Val Morteratsch – glacier forefield (Pontresina)',
+      distance: 2.9,
+      elevation: 130,
+      hours: '0.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way up the valley: from Morteratsch station along the gravel glacier path to the wooden bridge in the glacier forefield; the walk back is the same path.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Morteratsch railway station on the Bernina line, beside the Hotel Morteratsch, the board’s start.",
+        "sequence": "Walk south past the hotel onto the wide gravel path into Val Morteratsch. Follow it gently uphill along the valley floor for about 2.9 km, past the 16 information posts that mark where the glacier reached in past years. The route ends at the wooden bridge in the glacier forefield; from there come back down the same path to the station.",
+        "switches": "No turns to make: stay on the wide glacier path from the station to the wooden bridge, then return the same way.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Tourismus AG, Morteratsch Glacier route (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/23436574",
+            "authority": "Engadin Tourismus AG",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The glacier path on the floor of Val Morteratsch, in September (Leonhard Lenz on Wikimedia Commons, CC0), on the line.',
+        route: 'Official one-way walk 2.9 km from Morteratsch station, as the Engadin Tourismus AG publishes it; the stored line is drawn on 6 OSM ways along the board’s published line, 2.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Morteratsch station follow the wide gravel glacier path up Val Morteratsch to the wooden bridge in the glacier forefield, then back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 2.9 km, 130 m up, 0:50 h, highest point 2,026 m, lowest 1,897 m (Engadin Tourismus AG, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Tourismus AG, Morteratsch Glacier route (its Outdooractive tour, also listed on engadin.ch)',
+          'Gemeinde Pontresina, Polizeigesetz (in force 1.5.2023, revised 28.9.2025), art. 18 and 27: a lead in the settlement area; dog mess picked up on roads, paths and land beside them; farmland and open private land closed 1 June–1 October',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal ordinance on federal hunting reserves (VEJ, SR 922.31), art. 5 para. 1 lit. c: dogs on a lead all year in a federal hunting reserve',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is in the Bernina-Albris federal hunting reserve; no National Park and no wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (6 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Busy with walkers and children in summer: keep your dog close', 'Beyond the wooden bridge the way to the glacier tongue crosses scree and a rock step: not part of this walk', 'Never let your dog onto the glacier or the meltwater streams'],
+      terrainType: 'Wide gravel path',
+      shadeDescription: 'Almost no shade: the path runs over the open glacier forefield, with a few larches near the start.',
+      terrainDescription: 'A gentle walk at 1,900–2,030 m up the floor of Val Morteratsch on a wide gravel path, through the land the glacier has left since the 19th century.',
+      waterDescription: 'No drinking water mapped on the way: bring water for your dog.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Pontresina asks for a lead in the settlement area. Federal wildlife reserve: dogs on a lead all year, by federal law. The valley lies in the Bernina-Albris reserve. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the train to Morteratsch: 2.9 km up the valley to the glacier forefield, 130 m up, under an hour, and the same way back. Keep your dog on a lead. No drinking water mapped on the way: bring water. Restaurant at the Hotel Morteratsch.',
+      sourceLinks: [
+        { label: 'Outdooractive, Morteratsch Glacier route (Engadin Tourismus AG)', url: 'https://www.outdooractive.com/en/r/23436574' },
+        { label: 'Gemeinde Pontresina, Polizeigesetz (2023)', url: 'https://www.gemeinde-pontresina.ch/de/gemeinde/gesetzessammlung' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'Fedlex, Verordnung über die eidgenössischen Jagdbanngebiete (VEJ, SR 922.31)', url: 'https://www.fedlex.admin.ch/eli/cc/1991/2246_2246_2246/de' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.450771, lng: 9.941001, label: 'Morteratsch station and Hotel Morteratsch, the board’s start' },
+      desc: 'A gentle walk from Morteratsch station up the gravel glacier path to the forefield of the Morteratsch glacier, past 16 posts about its retreat. The board lists 2.9 km, 130 m up, 50 min one way.'
+    },
+    'engadin-surlej-waterfall-lake-silvaplana-surlej': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Engadin batch 1, Switzerland batch 1).
+      // “Surlej - waterfall - Lake Silvaplana - Surlej”, published by the Engadin Tourismus AG, drawn on 24 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Silvaplana (its dog law and Polizeigesetz: a lead in forest, wildlife areas and the settlement area; meadows closed from 1 June until the end of the hay harvest; wildlife protection zones closed November–15 May).
+      // Crosses the Foppa and Schinellas–Val Verda–Crap Alv wildlife rest zones, closed only 20 December–30 April. No National Park and no federal reserve.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Surlej bridge – Lej Ovis-chel – God Mez – waterfall – Lake Silvaplana – Crap da Sass – Surlej bridge (Silvaplana)',
+      distance: 6.2,
+      elevation: 166,
+      hours: '1.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Surlej bridge past the small Lej Ovis-chel up into the forest above Surlej, below the Corvatsch cable car, down to the waterfall and Lake Silvaplana, and back past the Crap da Sass castle.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Surlej bridge between Silvaplana and Surlej, the board’s start.",
+        "sequence": "Walk past the small lake of Lej Ovis-chel and climb into the forest. Keep right on the wide forest track, which runs above the village of Surlej and passes below the Corvatsch cable car. Shortly after, the path forks off to the right and then turns left, down towards the waterfall and the shore of Lake Silvaplana. Follow the shore path past the Crap da Sass castle and walk the last 150 m beside the Via da Surlej back to the bridge.",
+        "switches": "Key turns: in the forest keep right on the wide track; after the cable car fork right, then turn left down to the waterfall; along the lake back to the bridge.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Tourismus AG, Surlej - waterfall - Lake Silvaplana - Surlej (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/56233674",
+            "authority": "Engadin Tourismus AG",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Crap da Sass castle and the lakeside path near the Surlej bridge, in August (Tiia Monto on Wikimedia Commons, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official loop 6.2 km from the Surlej bridge, as the Engadin Tourismus AG publishes it; the stored line is drawn on 24 OSM ways along the board’s published line, 6.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the Surlej bridge past Lej Ovis-chel up into the forest, keep right below the Corvatsch cable car, then down to the waterfall and along Lake Silvaplana past Crap da Sass back to the bridge.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.5 and km 2.2 (OSM nodes 11008115907, 4932846053).',
+        elevation: 'Official 6.2 km, 166 m up and 166 m down, 1:50 h, highest point 1,927 m, lowest 1,792 m (Engadin Tourismus AG, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Tourismus AG, Surlej - waterfall - Lake Silvaplana - Surlej (its Outdooractive tour, also listed on engadin.ch)',
+          'Gemeinde Silvaplana, Gesetz über das Halten von Hunden (revised 28.11.2008), art. 10 and 12, and Polizeigesetz (24.6.2020), art. 12, 24 and 25: a lead in forest, wildlife areas and wherever wildlife is likely, and in the settlement area; no dogs on playgrounds, school grounds, in churches or cemeteries; meadows closed from 1 June until the end of the hay harvest; wildlife protection zones closed November–15 May',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the Foppa (122) and Schinellas, Val Verda, Crap Alv (186) wildlife rest zones, closed 20.12.–30.04. only; no National Park and no federal reserve',
+          'OpenStreetMap ways along the board’s line (24 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 62,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 150 m beside the Via da Surlej at the end: lead short for passing cars', 'Forest tracks shared with mountain bikers: keep your dog close', 'Meadows near Surlej are closed from 1 June until the end of the hay harvest: keep to the path'],
+      terrainType: 'Forest tracks, path and short stretches of village road',
+      shadeDescription: 'Mostly shaded: about three fifths runs through mapped larch and pine forest; the lake shore and Surlej are open.',
+      terrainDescription: 'A loop at 1,790–1,930 m through the larch forest above Surlej, down to a waterfall and along the shore of Lake Silvaplana past the Crap da Sass castle.',
+      waterDescription: 'Drinking water at km 1.5 and km 2.2; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Silvaplana itself requires a lead in forest, in wildlife areas and in the settlement, and keeps dogs off playgrounds and school grounds. The wildlife rest zones on the line are closed only in winter.',
+      tips: 'Start at the Surlej bridge: a 6.2 km loop, 166 m up and down, under two hours. Keep your dog on a lead. Drinking water at about km 1.5 and 2.2. Cafés in Surlej.',
+      sourceLinks: [
+        { label: 'Outdooractive, Surlej - waterfall - Lake Silvaplana - Surlej (Engadin Tourismus AG)', url: 'https://www.outdooractive.com/en/r/56233674' },
+        { label: 'Gemeinde Silvaplana, Hundegesetz (2008)', url: 'https://gemeinde-silvaplana.ch/assets/dokumente/politik/gesetze/hundegesetz_2008.pdf' },
+        { label: 'Gemeinde Silvaplana, Polizeigesetz (2020)', url: 'https://gemeinde-silvaplana.ch/assets/dokumente/politik/gesetze/2020_06_24-polizeigesetz.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.459921, lng: 9.803229, label: 'Surlej bridge, the board’s start' },
+      desc: 'A loop from the Surlej bridge through the forest above Surlej to a waterfall and back along Lake Silvaplana past the Crap da Sass castle. The board lists 6.2 km, 166 m up and 166 m down, 1 h 50.'
+    },
+    'engadin-corvatsch-murtel-fuorcla-surlej': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Engadin batch 1, Switzerland batch 1).
+      // “Corvatsch Murtèl - Fuorcla Surlej”, published by the Engadin Tourismus AG, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Silvaplana (a lead in forest and wildlife areas) and, at the pass, Samedan (a lead in the settlement area only).
+      // No National Park, federal reserve or wildlife rest zone on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; it is walked out and back the same way, as the board describes.
+      area: 'Murtèl (Corvatsch middle station) – Fuorcla Surlej (Silvaplana)',
+      distance: 4.6,
+      elevation: 141,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back: from the Murtèl middle station of the Corvatsch cable car up the alpine path to the Fuorcla Surlej pass and hut, and back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Ride the Corvatsch cable car up from Surlej and start at Murtèl, the middle station, the board’s start.",
+        "sequence": "Take the signed path towards Fuorcla Surlej, Via da l’Alp, which starts wide and climbs only gently across the stony slope. In early summer you may need to cross a snowfield. The last climb to the pass goes up a few steep switchbacks. At the top are the Fuorcla Surlej hut and a small lake with the view into Val Roseg and to Piz Bernina. Come back the same way to Murtèl and ride the cable car down.",
+        "switches": "No turns to make: follow the signs for Fuorcla Surlej all the way, then return the same way to Murtèl.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Tourismus AG, Corvatsch Murtèl - Fuorcla Surlej (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/59235211",
+            "authority": "Engadin Tourismus AG",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The path between Murtèl and Fuorcla Surlej, in August (Tiia Monto on Wikimedia Commons, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official there-and-back walk 4.6 km from Murtèl, the middle station of the Corvatsch cable car, as the Engadin Tourismus AG publishes it; the stored line is drawn on 17 OSM ways along the board’s published line, 4.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Murtèl, the Corvatsch middle station, follow the signs for Fuorcla Surlej up the stony path to the pass and hut, then back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.6 km, 141 m up and 141 m down, 1:20 h, highest point 2,754 m, lowest 2,655 m (Engadin Tourismus AG, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Tourismus AG, Corvatsch Murtèl - Fuorcla Surlej (its Outdooractive tour, also listed on engadin.ch)',
+          'Gemeinde Silvaplana, Gesetz über das Halten von Hunden (revised 28.11.2008), art. 10 and 12, and Polizeigesetz (24.6.2020), art. 12, 24 and 25: a lead in forest, wildlife areas and wherever wildlife is likely, and in the settlement area; no dogs on playgrounds, school grounds, in churches or cemeteries; meadows closed from 1 June until the end of the hay harvest; wildlife protection zones closed November–15 May',
+          'Gemeinde Samedan, Polizeigesetz (6.61), art. 17 and 22: a lead in the whole settlement area; no dog may run unsupervised; dog mess picked up everywhere; hay meadows closed 15 May–30 September',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is outside the Swiss National Park and every federal reserve and wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['High alpine at 2,650–2,750 m: the weather turns fast, check the forecast and turn back in a storm', 'A snowfield may still lie across the path in July: keep your dog on a short lead on snow', 'Steep switchbacks just below the pass', 'No shade or water on the way: bring water for your dog'],
+      terrainType: 'Alpine path and stony track',
+      shadeDescription: 'No shade: the whole walk is above the trees.',
+      terrainDescription: 'A short high-alpine walk at 2,650–2,750 m from the Corvatsch middle station across a stony slope to the Fuorcla Surlej pass, with the view to Piz Bernina and Val Roseg.',
+      waterDescription: 'No drinking water mapped on the way: bring water for your dog.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Silvaplana requires a lead in wildlife areas and wherever wildlife is likely, and chamois and ibex live on these slopes. Check the lift’s dog rule before you ride.',
+      tips: 'Take the Corvatsch cable car up from Surlej to Murtèl: 4.6 km there and back to Fuorcla Surlej, 141 m up and down, about an hour and a half. Keep your dog on a lead. No drinking water mapped: bring water. Food at the Fuorcla Surlej hut.',
+      sourceLinks: [
+        { label: 'Outdooractive, Corvatsch Murtèl - Fuorcla Surlej (Engadin Tourismus AG)', url: 'https://www.outdooractive.com/en/r/59235211' },
+        { label: 'Gemeinde Silvaplana, Hundegesetz (2008)', url: 'https://gemeinde-silvaplana.ch/assets/dokumente/politik/gesetze/hundegesetz_2008.pdf' },
+        { label: 'Gemeinde Samedan, Polizeigesetz 6.61', url: 'https://www.samedan.ch/public/upload/assets/1095/6.61%20Polizeigesetz_V1%20Publikation.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.432123, lng: 9.824217, label: 'Murtèl, the middle station of the Corvatsch cable car, the board’s start' },
+      desc: 'A short high-alpine walk from the Murtèl middle station of the Corvatsch cable car to the Fuorcla Surlej pass and hut, with the view to Piz Bernina, and back the same way. The board lists 4.6 km, 141 m up and 141 m down, 1 h 20.'
+    },
+    'engadin-diavolezza-sass-queder': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Engadin batch 1, Switzerland batch 1).
+      // “Diavolezza - Sass Queder”, published by the Engadin Tourismus AG, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Pontresina (its Polizeigesetz: a lead in the settlement area only).
+      // No National Park, federal reserve or wildlife rest zone on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; it is walked out and back the same way, as the board describes.
+      area: 'Diavolezza top station – Sass Queder (Pontresina)',
+      distance: 1.5,
+      elevation: 123,
+      hours: '0.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back: from the top station of the Diavolezza cable car on the marked path to the summit of Sass Queder, 3,066 m, and back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Ride the Diavolezza cable car up from the Bernina Diavolezza station and start at its top station, the board’s start.",
+        "sequence": "Take the marked path from the top station towards Sass Queder. It climbs about 110 m over roughly 0.8 km of rocky ground to the summit at 3,066 m, with the Bernina glaciers on one side and the view down to the Valtellina on the other. At the top is a fire place. Come back down the same path to the top station.",
+        "switches": "No turns to make: follow the marked path to the summit of Sass Queder, then return the same way.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Tourismus AG, Diavolezza - Sass Queder (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/23436083",
+            "authority": "Engadin Tourismus AG",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Piz Trovat and the Bernina glaciers from the path between the Diavolezza top station and Sass Queder, in August (Tiia Monto on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official there-and-back walk 1.5 km from the Diavolezza top station, as the Engadin Tourismus AG publishes it; the stored line is drawn on 9 OSM ways along the board’s published line, 1.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the Diavolezza top station follow the marked path up to the summit of Sass Queder, then back down the same way to the station.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 1.5 km, 123 m up and 123 m down, 0:35 h, highest point 3,066 m, lowest 2,958 m (Engadin Tourismus AG, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Tourismus AG, Diavolezza - Sass Queder (its Outdooractive tour, also listed on engadin.ch)',
+          'Gemeinde Pontresina, Polizeigesetz (in force 1.5.2023, revised 28.9.2025), art. 18 and 27: a lead in the settlement area; dog mess picked up on roads, paths and land beside them; farmland and open private land closed 1 June–1 October',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is outside the Swiss National Park and every federal reserve and wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['High alpine at 3,000 m: the air is thin, the weather turns fast and snow can fall in any month', 'Rocky path; OSM grades about 200 m near the summit as demanding mountain path (T3): keep your dog close and on a short lead', 'Glaciers below the ridge: never leave the marked path', 'No shade or water: bring water for your dog'],
+      terrainType: 'Rocky alpine path',
+      shadeDescription: 'No shade: the whole walk is high above the trees.',
+      terrainDescription: 'A short summit walk at 2,960–3,070 m from the Diavolezza top station to Sass Queder, over rocky ground with the glaciers of Piz Palü and Piz Bernina close by.',
+      waterDescription: 'No drinking water mapped on the way: bring water for your dog.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Pontresina asks for a lead only in the settlement area. On the summit ridge keep your dog on a short lead. Check the lift’s dog rule before you ride.',
+      tips: 'Take the Diavolezza cable car up from the Bernina Diavolezza station: 1.5 km there and back to Sass Queder, 123 m up and down, about 35 minutes. Keep your dog on a lead. No drinking water mapped: bring water. Restaurant at the top station.',
+      sourceLinks: [
+        { label: 'Outdooractive, Diavolezza - Sass Queder (Engadin Tourismus AG)', url: 'https://www.outdooractive.com/en/r/23436083' },
+        { label: 'Gemeinde Pontresina, Polizeigesetz (2023)', url: 'https://www.gemeinde-pontresina.ch/de/gemeinde/gesetzessammlung' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.411835, lng: 9.965028, label: 'Diavolezza top station, the board’s start' },
+      desc: 'A short summit walk from the Diavolezza cable car to Sass Queder at 3,066 m, facing the Bernina glaciers, and back the same way. The board lists 1.5 km, 123 m up and 123 m down, 35 min.'
+    },
+    'engadin-nature-trail-la-senda-samedan-smartrail': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Engadin batch 1, Switzerland batch 1).
+      // “Nature Trail La Senda, Samedan (SmarTrail)”, published by the Engadin Tourismus AG, drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Samedan (its Polizeigesetz: a lead in the whole settlement area, no unsupervised dogs, hay meadows closed 15 May–30 September).
+      // Crosses the Muntatsch–Clavadatsch wildlife rest zone, closed only 20 December–30 April. No National Park and no federal reserve.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Muntarütsch – Cristolais – San Peter – Quadrellas – Muntarütsch (Samedan)',
+      distance: 6.5,
+      elevation: 227,
+      hours: '2.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Muntarütsch car park above Samedan up through the forest on the La Senda nature trail, along to Cristolais, and back past the San Peter church through the upper village.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Muntarütsch car park above Samedan, the board’s start, where the La Senda trail begins.",
+        "sequence": "Follow the La Senda nature trail signs up the Muntarütsch track and on the forest path that climbs the slope above the village, past the trail’s 30 stations with their swing, binoculars and bird’s nest. Go on along the slope towards Cristolais and down the track to the road by the San Peter church. Then walk back through the upper village by Quadrellas to the Muntarütsch car park.",
+        "switches": "Key turns: follow the La Senda signs from the car park into the forest; at Cristolais down to San Peter; through Quadrellas back to the car park.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Tourismus AG, Nature Trail La Senda, Samedan (SmarTrail) (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/23436569",
+            "authority": "Engadin Tourismus AG",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Piz Mandra and Piz Morteratsch seen from the slope above Samedan, in June (Capricorn4049 on Wikimedia Commons, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official loop 6.5 km from the Muntarütsch car park above Samedan, as the Engadin Tourismus AG publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 6.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the Muntarütsch car park follow the La Senda signs up into the forest, along to Cristolais, down to the San Peter church and back through Quadrellas to the car park.',
+        mapPoints: 'Start at the board’s start; drinking water at km 6.4 (OSM nodes 7638084390).',
+        elevation: 'Official 6.5 km, 227 m up and 219 m down, 2:20 h, highest point 1,956 m, lowest 1,760 m (Engadin Tourismus AG, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Tourismus AG, Nature Trail La Senda, Samedan (SmarTrail) (its Outdooractive tour, also listed on engadin.ch)',
+          'Gemeinde Samedan, Polizeigesetz (6.61), art. 17 and 22: a lead in the whole settlement area; no dog may run unsupervised; dog mess picked up everywhere; hay meadows closed 15 May–30 September',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the Muntatsch, Clavadatsch wildlife rest zone (150), closed 20.12.–30.04. only; no National Park and no federal reserve',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 39,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Upper-village roads at the end: lead short for passing cars', 'Forest path with roots and short steep stretches above Muntarütsch', 'Hay meadows near Samedan are closed 15 May–30 September: keep to the path'],
+      terrainType: 'Forest path, gravel tracks and village roads',
+      shadeDescription: 'Partly shaded: about two fifths runs through mapped larch and pine forest; the tracks above the village are open.',
+      terrainDescription: 'A nature trail at 1,760–1,960 m on the forested slope above Samedan, with 30 stations about biodiversity and views over the Upper Engadin.',
+      waterDescription: 'Drinking water at km 6.4; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Samedan requires a lead in the whole settlement area, and no dog may run unsupervised. The wildlife rest zone on the line is closed only in winter.',
+      tips: 'Start at the Muntarütsch car park above Samedan: a 6.5 km loop, 227 m up, about two and a half hours with the stations. Keep your dog on a lead. Drinking water just before the end. Scan the QR code at the start for the SmarTrail audio.',
+      sourceLinks: [
+        { label: 'Outdooractive, Nature Trail La Senda, Samedan (SmarTrail) (Engadin Tourismus AG)', url: 'https://www.outdooractive.com/en/r/23436569' },
+        { label: 'Gemeinde Samedan, Polizeigesetz 6.61', url: 'https://www.samedan.ch/public/upload/assets/1095/6.61%20Polizeigesetz_V1%20Publikation.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.541885, lng: 9.87691, label: 'Muntarütsch car park above Samedan, the board’s start' },
+      desc: 'A nature trail through the forest above Samedan with 30 stations about biodiversity, created with the Swiss National Park. The board lists 6.5 km, 227 m up and 219 m down, 2 h 20.'
+    },
+    'engadin-chapella-val-susauna': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Engadin batch 1, Switzerland batch 1).
+      // “Chapella - Val Susauna”, published by the Engadin Tourismus AG, drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): S-chanf (its Hunde-Gesetz 2019: a lead at public events, no dogs on playgrounds, school grounds or in cemeteries, the dog kept under control).
+      // No National Park, federal reserve or wildlife rest zone on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; it is walked out and back the same way, as the board describes.
+      area: 'Chapella – Susauna – Val Susauna – Alp Pignaint (S-chanf)',
+      distance: 11.6,
+      elevation: 236,
+      hours: '3',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back: from the Chapella bus stop along the quiet road to the hamlet of Susauna, then up the gravel road beside the Vallember to Alp Pignaint, and back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Chapella, La Resgia bus stop on the valley road below S-chanf, the board’s start.",
+        "sequence": "Walk up the quiet side road, Via Sur and Via Susauna, to the small hamlet of Susauna, where there is a small car park before the houses. Beyond the hamlet follow the gravel road into Val Susauna, beside the Vallember stream, past a sign about the last bear shot in the valley. Turn back at Alp Pignaint, where the path starts to climb, and walk the same way back to Chapella.",
+        "switches": "No turns to make: road to Susauna, gravel road up the valley to Alp Pignaint, then back the same way.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Tourismus AG, Chapella - Val Susauna (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/56676943",
+            "authority": "Engadin Tourismus AG",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The lane through the hamlet of Susauna, in September (Beat Ruest on Wikimedia Commons, CC BY-SA 4.0), 8 m from the line.',
+        route: 'Official there-and-back walk 11.6 km from the Chapella bus stop, as the Engadin Tourismus AG publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 11.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the Chapella bus stop up the quiet road to Susauna, then along the gravel road beside the Vallember to Alp Pignaint, and back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.5 (OSM nodes 7837049004).',
+        elevation: 'Official 11.6 km, 236 m up and 236 m down, 3:05 h, highest point 1,878 m, lowest 1,641 m (Engadin Tourismus AG, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Tourismus AG, Chapella - Val Susauna (its Outdooractive tour, also listed on engadin.ch)',
+          'Gemeinde S-chanf, Hunde-Gesetz / Ledscha da chauns (20.2.2019), art. 5 and 6: a lead at public events; no dogs on playgrounds, school grounds or in cemeteries; the dog kept under control and never straying; dog mess picked up on and beside roads and paths',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is outside the Swiss National Park and every federal reserve and wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 20,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['About 3.3 km of quiet tarred road between Chapella and Susauna, open to cars: lead on and keep to the side', 'Cattle may graze in Val Susauna in summer: keep your dog on a short lead and go round the herd', 'The gravel road is open to farm and forestry vehicles'],
+      terrainType: 'Quiet tarred road and gravel road',
+      shadeDescription: 'Mostly open: about a fifth runs past mapped larch forest; the valley floor is in sun.',
+      terrainDescription: 'A long, gentle walk at 1,640–1,880 m from Chapella up the quiet side valley of Val Susauna, an old mule route south, past the hamlet of Susauna to Alp Pignaint. Golden with larches in autumn.',
+      waterDescription: 'Drinking water at km 1.5; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. S-chanf asks for a lead only at public events but wants dogs kept under control at all times, and keeps them off playgrounds, school grounds and cemeteries. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the bus to Chapella, La Resgia: 11.6 km there and back to Alp Pignaint, 236 m up and down, about three hours. Keep your dog on a lead. Fountain at Susauna, about km 1.5. Golden larches in autumn.',
+      sourceLinks: [
+        { label: 'Outdooractive, Chapella - Val Susauna (Engadin Tourismus AG)', url: 'https://www.outdooractive.com/en/r/56676943' },
+        { label: 'Gemeinde S-chanf, Hunde-Gesetz (2019)', url: 'https://www.s-chanf.ch/_rte/publikation/202589' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.633727, lng: 10.009165, label: 'Chapella, La Resgia bus stop, the board’s start' },
+      desc: 'A long, gentle walk from Chapella into the quiet Val Susauna, past the hamlet of Susauna along the Vallember to Alp Pignaint, and back the same way. The board lists 11.6 km, 236 m up and 236 m down, 3 h 05.'
     },
     'meran-itinerario-raststeinweg': {
       // Hand audit: 3 November 2026, verified on arrival (new-trail Meran batch 3).

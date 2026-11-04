@@ -74,7 +74,7 @@ describe('paw protection question-led guide', () => {
     expect(document.querySelector('[data-paw-panel="snow"]').hidden).toBe(false);
   });
 
-  test('keeps deeper guidance open, concise and still collapsible', () => {
+  test('folds deeper guidance and opens it from in-page links', () => {
     window.eval(script);
     const details = document.querySelectorAll('.paw2-detail');
     expect(details).toHaveLength(4);
@@ -88,7 +88,7 @@ describe('paw protection question-led guide', () => {
     expect(html).toContain('.paw2-detail-columns section:last-child{background:var(--safety-stop-soft);}');
     expect(html).not.toContain('help, and');
     expect(html).not.toContain('protect, and');
-    details.forEach(detail => expect(detail.open).toBe(true));
+    details.forEach(detail => expect(detail.open).toBe(false));
     document.getElementById('boots').open = false;
     document.querySelector('a[href="#boots"]').click();
     expect(document.getElementById('boots').open).toBe(true);

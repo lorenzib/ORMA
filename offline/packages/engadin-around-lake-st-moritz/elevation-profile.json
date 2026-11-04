@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-around-lake-st-moritz",
+  "distanceKm": 4.3,
+  "ascentM": 2,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1777
+    },
+    {
+      "km": 0.3,
+      "elev": 1793
+    },
+    {
+      "km": 0.7,
+      "elev": 1802
+    },
+    {
+      "km": 1,
+      "elev": 1768
+    },
+    {
+      "km": 1.4,
+      "elev": 1768
+    },
+    {
+      "km": 1.7,
+      "elev": 1768
+    },
+    {
+      "km": 2,
+      "elev": 1768
+    },
+    {
+      "km": 2.3,
+      "elev": 1768
+    },
+    {
+      "km": 2.6,
+      "elev": 1770
+    },
+    {
+      "km": 3,
+      "elev": 1768
+    },
+    {
+      "km": 3.3,
+      "elev": 1782
+    },
+    {
+      "km": 3.6,
+      "elev": 1773
+    },
+    {
+      "km": 4,
+      "elev": 1780
+    },
+    {
+      "km": 4.3,
+      "elev": 1771
+    }
+  ]
+}

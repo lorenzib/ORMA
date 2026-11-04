@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-chapella-val-susauna",
+  "distanceKm": 11.6,
+  "ascentM": 236,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1654
+    },
+    {
+      "km": 0.9,
+      "elev": 1666
+    },
+    {
+      "km": 1.8,
+      "elev": 1705
+    },
+    {
+      "km": 2.6,
+      "elev": 1733
+    },
+    {
+      "km": 3.5,
+      "elev": 1785
+    },
+    {
+      "km": 4.4,
+      "elev": 1827
+    },
+    {
+      "km": 5.3,
+      "elev": 1872
+    },
+    {
+      "km": 6.2,
+      "elev": 1870
+    },
+    {
+      "km": 7,
+      "elev": 1832
+    },
+    {
+      "km": 8,
+      "elev": 1770
+    },
+    {
+      "km": 8.9,
+      "elev": 1732
+    },
+    {
+      "km": 9.7,
+      "elev": 1727
+    },
+    {
+      "km": 10.6,
+      "elev": 1696
+    },
+    {
+      "km": 11.4,
+      "elev": 1666
+    },
+    {
+      "km": 11.6,
+      "elev": 1654
+    }
+  ]
+}

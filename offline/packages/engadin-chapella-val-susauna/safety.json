@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-chapella-val-susauna",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 11.6,
+    "ascentM": 236,
+    "highestPointM": 1872,
+    "expectedDuration": "3 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 20
+  },
+  "trailhead": {
+    "lat": 46.633727,
+    "lng": 10.009165,
+    "label": "Chapella, La Resgia bus stop, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 3.3 km of quiet tarred road between Chapella and Susauna, open to cars: lead on and keep to the side.",
+    "Cattle may graze in Val Susauna in summer: keep your dog on a short lead and go round the herd.",
+    "The gravel road is open to farm and forestry vehicles.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}
