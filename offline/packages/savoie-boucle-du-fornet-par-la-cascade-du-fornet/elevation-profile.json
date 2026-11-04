@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-boucle-du-fornet-par-la-cascade-du-fornet",
+  "distanceKm": 3.7,
+  "ascentM": 204,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1926
+    },
+    {
+      "km": 0.4,
+      "elev": 1934
+    },
+    {
+      "km": 0.6,
+      "elev": 1955
+    },
+    {
+      "km": 0.9,
+      "elev": 1967
+    },
+    {
+      "km": 1.1,
+      "elev": 1999
+    },
+    {
+      "km": 1.4,
+      "elev": 2069
+    },
+    {
+      "km": 1.7,
+      "elev": 2098
+    },
+    {
+      "km": 2,
+      "elev": 2109
+    },
+    {
+      "km": 2.3,
+      "elev": 2092
+    },
+    {
+      "km": 2.6,
+      "elev": 2048
+    },
+    {
+      "km": 2.9,
+      "elev": 2019
+    },
+    {
+      "km": 3.2,
+      "elev": 1967
+    },
+    {
+      "km": 3.4,
+      "elev": 1940
+    },
+    {
+      "km": 3.7,
+      "elev": 1925
+    }
+  ]
+}

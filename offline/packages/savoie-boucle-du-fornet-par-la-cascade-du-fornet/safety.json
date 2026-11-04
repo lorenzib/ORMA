@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-boucle-du-fornet-par-la-cascade-du-fornet",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.7,
+    "ascentM": 204,
+    "highestPointM": 2109,
+    "expectedDuration": "1.75 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 48
+  },
+  "trailhead": {
+    "lat": 45.44895,
+    "lng": 7.010191,
+    "label": "Fountain in the hamlet of Le Fornet, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.4488311,
+      "lng": 7.0102875,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.4488466,
+      "lng": 7.0102138,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The farm track runs beside the young Isère: keep your dog out of the fast, cold water.",
+    "Cows may graze along the track in summer: keep your dog on a lead near the herds.",
+    "High ground at about 1,925–2,110 m: quick weather changes and strong sun.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

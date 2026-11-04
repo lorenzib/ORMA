@@ -199,9 +199,12 @@ describe('the existing-site verification boundary',()=>{
     // from Campello Monti to Rimella, Cervatto to the Madonna del Balmone, the Giro
     // del Ginepro from Carcoforo, and Campello Monti to the Alpe Fornale, the Colle
     // dell’Usciolo and the Lago del Capezzone.
-    // Then 466 and 464 with the Val Pelouse crest loop above Arvillard (Belledonne).
-    expect(catalogue).toHaveLength(466);
-    expect(currentSiteTrails(catalogue)).toHaveLength(464);
+    // Then 467 and 465 with two Lake Como mountain walks: Campoè to Cassina Enco
+    // above Caglio, and the Passo del Giovo to the Rifugio Sommafiume.
+    // Then 468 and 466 with the Fornet waterfall loop above Val d’Isère (Tarentaise).
+    // Then 469 and 467 with the Val Pelouse crest loop above Arvillard (Belledonne).
+    expect(catalogue).toHaveLength(469);
+    expect(currentSiteTrails(catalogue)).toHaveLength(467);
   });
 
   test('requires the artwork the public trail page needs',()=>{

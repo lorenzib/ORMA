@@ -3402,6 +3402,30 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-03T18:00:00.000Z"
     },
+    "lario-nel-cuore-del-triangolo-lariano": {
+      "url": "https://www.in-lombardia.it/itinerari/nel-cuore-del-triangolo-lariano",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Orobie Active)",
+      "name": "Nel cuore del triangolo lariano",
+      "quote": "Durata/Lunghezza 1 ora 3km · Dislivello Salita: 133m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "lario-dal-passo-del-giovo-al-rifugio-sommafiume": {
+      "url": "https://www.in-lombardia.it/itinerari/dal-passo-del-giovo-al-rifugio-sommafiume",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by LakeComo.is)",
+      "name": "Dal Passo del Giovo a Sommafiume",
+      "quote": "Durata/Lunghezza 1h e 15min 5.10km · Dislivello Salita: 168m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "savoie-boucle-du-fornet-par-la-cascade-du-fornet": {
+      "url": "https://www.explore-savoie.com/randonnees-et-balades/boucle-du-fornet-par-la-cascade-du-fornet-6531064/",
+      "publisher": "Val d’Isère Tourisme (Apidae, Explore Savoie)",
+      "name": "Boucle du Fornet – Par la cascade du Fornet",
+      "quote": "Durée moyenne 1H45 · Dénivelé cumulé positif 204m · Dénivelé négatif 204m · Distance 3.7Km · Itinéraire balisé",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
     "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": {
       "url": "https://www.explore-savoie.com/randonnees-et-balades/sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere-671208/",
       "publisher": "Office de tourisme Cœur de Savoie (Apidae, Explore Savoie)",

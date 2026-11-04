@@ -1669,6 +1669,21 @@
       "slug": "gta-campello-monti-rimella",
       "gloss": "over the old route of the dead between two Walser villages"
     },
+    "lario-nel-cuore-del-triangolo-lariano": {
+      "name": "Campoè to Cassina Enco",
+      "slug": "caglio-campoe-cassina-enco",
+      "gloss": "a paved mule track through beech woods in the Triangolo Lariano"
+    },
+    "lario-dal-passo-del-giovo-al-rifugio-sommafiume": {
+      "name": "Passo del Giovo to the Rifugio Sommafiume",
+      "slug": "passo-del-giovo-rifugio-sommafiume",
+      "gloss": "across the open head of the Valle Albano above Lake Como"
+    },
+    "savoie-boucle-du-fornet-par-la-cascade-du-fornet": {
+      "name": "Fornet waterfall loop from Le Fornet",
+      "slug": "fornet-waterfall-loop-val-disere",
+      "gloss": "up the young Isère to the Pont des Cognons"
+    },
     "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": {
       "name": "Val Pelouse crest path and Perrière refuge",
       "slug": "val-pelouse-crest-path-perriere-refuge",
