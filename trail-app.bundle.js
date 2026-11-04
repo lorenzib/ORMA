@@ -28752,7 +28752,8 @@ function effectiveOverrides(profile, adjustOverride){
     'osm-5512443': {
       // Hand audit 24 October 2026: line rebuilt on OSM ways along the official GPX of the Tourismusgenossenschaft Naturns walk
       // 'Kult- und Kraftplatz Wallburgboden' (8.3 km, 349 m, 2:30 h); the old 3.5 km line was its Wallburgweg section. Dogs: Naturns
-      // publishes no dog rule, so the national rule applies (Ministry of Health ordinance of 6 August 2013, Art. 1(3)); about 2 km run
+      // has a 2006 dog regulation (a lead in the village, a muzzle on public transport, no dogs in playgrounds; waal and field paths
+      // outside the village are exempt); the national rule applies on top (Ministry of Health ordinance of 6 August 2013, Art. 1(3)); about 2 km run
       // through the Sonnenberg steppe biotope (Natura 2000 IT3110010), where the landscape plan forbids letting dogs run free.
       "area": "Naturns / Naturno – Sonnenberg",
       "path": [
@@ -30964,7 +30965,7 @@ function effectiveOverrides(profile, adjustOverride){
         "name": "Kult- und Kraftplatz Wallburgboden (paths 39/91, Wallburgweg)",
         "url": "https://www.merano-suedtirol.it/de/naturns/aktiv-entspannen/wandern-bergsteigen/wanderwege/121154118-kult-und-kraftplatz-wallburgboden.html"
       },
-      "desc": "An easy 8.3 km round walk from the centre of Naturns up to the Wallburgboden, an old cult site on the Sonnenberg. Paths 39 and 91 climb past the Wiedenplatzer Keller, then the level Wallburgweg runs west past the Waalerhütte through open woodland and dry scrub to the Wallburgboden. Back the same way to the turn signed Schwalbennest, then gently down past the Schwalbennest and the Maurbamhof to the village. Officially 2.5 hours and 349 m of climb, up to about 790 m. The tourist board lists it among its walks for holidays with dogs.\n\nNaturns publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. About 2 km cross the Sonnenberg steppe biotope, a Natura 2000 site where dogs may not run free and sheep and goats may graze.",
+      "desc": "An easy 8.3 km round walk from the centre of Naturns up to the Wallburgboden, an old cult site on the Sonnenberg. Paths 39 and 91 climb past the Wiedenplatzer Keller, then the level Wallburgweg runs west past the Waalerhütte through open woodland and dry scrub to the Wallburgboden. Back the same way to the turn signed Schwalbennest, then gently down past the Schwalbennest and the Maurbamhof to the village. Officially 2.5 hours and 349 m of climb, up to about 790 m. The tourist board lists it among its walks for holidays with dogs.\n\nNaturns keeps dogs on a lead in the village, parks and car parks and on the Adige embankment, and asks owners to keep them on a lead on the Waalweg; the national rule adds a lead of at most 1.5 m on public ground and a muzzle carried. About 2 km cross the Sonnenberg steppe biotope, a Natura 2000 site where dogs may not run free and sheep and goats may graze.",
       "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle: the national rule requires it, and in the Sonnenberg biotope dogs may not roam. This south-facing slope is hot and dry with little real shade, so walk it in spring, autumn or early in the day and carry water: there is none above the village. Watch for cars on the village streets and farm roads, and keep your dog close where the path runs near short drops. There are places to stop at the Wiedenplatzer Keller and the Schwalbennest.",
       "curated": true,
       // Seal restored 3 November 2026 by the owner's decision: the route sentence now gives the official page's start, direction and turns, and it passes the board-walk bar.
@@ -30990,7 +30991,8 @@ function effectiveOverrides(profile, adjustOverride){
         ],
         "sources": [
           "Tourismusgenossenschaft Naturns (merano-suedtirol.it), 'Kult- und Kraftplatz Wallburgboden': 'Dauer 2:30 h', 'Länge 8,3 km', 'Höhenmeter bergauf 349 hm', 'Höchster Punkt 791 m', 'Schwierigkeit leicht'; 'Die Wanderung startet im Zentrum von Naturns'; official GPX within 20 m of the rebuilt line",
-          "National rule: Ministry of Health, Ordinanza 6 agosto 2013, Art. 1(3), renewed to 5 Sep 2027: 'utilizzare sempre il guinzaglio a una misura non superiore a mt 1,50' and a muzzle carried. The commune of Naturns publishes no dog regulation (checked its document and legal-act lists, its transparency section and German and Italian web searches)",
+          "National rule: Ministry of Health, Ordinanza 6 agosto 2013, Art. 1(3), renewed to 5 Sep 2027: 'utilizzare sempre il guinzaglio a una misura non superiore a mt 1,50' and a muzzle carried",
+          "Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds",
           "Naturns landscape plan (newPlan PPC-21056), Sonnenberg biotope: Art. 5(4)(h) forbids 'Hunde frei laufen zu lassen'; Art. 5(5)(a) allows grazing by sheep and goats; Natura 2000 site IT3110010 (EEA); the Texelgruppe nature park begins north of the line",
           "OpenStreetMap: road classes, surfaces, cliffs, steps and water along the line"
         ],
@@ -31004,6 +31006,10 @@ function effectiveOverrides(profile, adjustOverride){
         {
           "label": "Ministry of Health ordinance of 6 August 2013 (text)",
           "url": "https://www.certifico.com/id/26170"
+        },
+        {
+          "label": "Gemeinde Naturns, dog regulation (2006)",
+          "url": "https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043"
         },
         {
           "label": "OpenStreetMap relation 5512443",
@@ -31388,8 +31394,10 @@ function effectiveOverrides(profile, adjustOverride){
     'osm-5597577': {
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 3).
       // The official nature trail of the Tourismusgenossenschaft Naturns,
-      // from Tschirland. Naturns publishes no dog rule, so the national dog
-      // ordinance (6 August 2013, extended to September 2027) applies. The
+      // from Tschirland. Naturns has a 2006 dog regulation (a lead in the
+      // village, a muzzle on public transport, no dogs in playgrounds); the
+      // national dog ordinance (6 August 2013, extended to September 2027)
+      // applies on top. The
       // loop crosses the Tschirlander Hoad natural monument (NDM 057_G05, a
       // wooded pasture) at km 2.9–3.4; the Naturns landscape plan only
       // forbids damaging it (Art. 3). No biotope, Natura 2000 site or park.
@@ -31415,6 +31423,7 @@ function effectiveOverrides(profile, adjustOverride){
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Tourismusgenossenschaft Naturns, Naturlehrpfad Gsindboden (Südtirol.info)',
+          'Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds',
           'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
           'Landschaftsplan Naturns, Schutzbestimmungen, Art. 3 and 5 (newPlan doc 6310)',
           'Province landscape-plan layers: Tschirlander Hoad natural monument; no biotope, Natura 2000 site or park',
@@ -31430,10 +31439,11 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'The climb to the Gsindboden is through shady woods; the farm road out of Tschirland and the Tschirlander Heide are open, about a third of the loop in all under trees.',
       terrainDescription: 'A moderate nature-trail loop at 580–780 m: out along a farm road between meadows and orchards, up through mixed woodland to the Gsindboden viewpoint, and down across the open Tschirlander Heide.',
       waterDescription: 'A drinking fountain in Tschirland at the start; none on the loop, so carry water.',
-      dogNotes: 'Naturns has no dog rule of its own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. The loop crosses the Tschirlander Hoad, a protected wooded pasture behind a gate, where grazing animals may be about; keep your dog on the lead there and close the gate behind you.',
+      dogNotes: 'Naturns keeps dogs on a lead in the village, parks and car parks and on the Adige embankment; field paths outside the village are exempt. The national rule adds a lead of at most 1.5 m and a muzzle carried. The loop crosses the Tschirlander Hoad, a protected wooded pasture behind a gate, where grazing animals may be about; keep your dog on the lead there and close the gate behind you.',
       tips: 'Take Citybus 264 from Naturns to Tschirlander Hof, follow the farm road to the Restaurant Ramilia and then the nature-trail signs up to the Gsindboden viewpoint and back: 4.6 km, about 220 m of climbing, an hour and a half. Keep your dog on a short lead (1.5 m at most) and carry a muzzle; take particular care in the wooded pasture of the Tschirlander Hoad. Bring water: the only fountain is at the start.',
       sourceLinks: [
         { label: 'Südtirol.info, Naturlehrpfad Gsindboden (Tourismusgenossenschaft Naturns)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoid182a311dc9225339ed6333778e0dda1.naturlehrpfad-gsindboden.naturns' },
+        { label: 'Gemeinde Naturns, dog regulation (2006)', url: 'https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043' },
         { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
         { label: 'Landschaftsplan Naturns, Schutzbestimmungen und Nutzungsvorschriften (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/6310' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/5597577' }
@@ -46023,9 +46033,10 @@ function effectiveOverrides(profile, adjustOverride){
     'osm-20380913': {
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 6).
       // The official theme walk of the Tourismusgenossenschaft Naturns from
-      // Tabland, wholly in Naturns. Naturns publishes no dog rule, so the
-      // national dog ordinance (6 August 2013, extended to September 2027)
-      // applies. No biotope, Natura 2000 site or park on the line. The stored
+      // Tabland, wholly in Naturns. Naturns has a 2006 dog regulation (a lead
+      // in the village, a muzzle on public transport, no dogs in playgrounds);
+      // the national dog ordinance (6 August 2013, extended to September 2027)
+      // applies on top. No biotope, Natura 2000 site or park on the line. The stored
       // line is turned to run the board's way (data/verified-trail-overrides.json).
       area: 'Tabland, Naturns / Tablà, Naturno',
       distance: 5.1,
@@ -46049,7 +46060,8 @@ function effectiveOverrides(profile, adjustOverride){
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'Tourismusgenossenschaft Naturns, Hinzlweg in Tabland (Südtirol.info)',
-          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Naturns publishes no dog rule)',
+          'Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
           'Province landscape-plan layers: biotopes, Natura 2000, natural monuments and parks (none on the line)',
           'OpenStreetMap relation 20380913, road, surface, woodland and farm data'
         ],
@@ -46063,10 +46075,11 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'About two fifths is in birch and pine wood, mostly the climb on path 4; the roads, clearings and meadows are open.',
       terrainDescription: 'A theme walk at 660–870 m above Naturns with 15 stations on local legends and farm life, through birch and pine wood, clearings and meadows, with views over the Etsch valley and into the Schnalstal.',
       waterDescription: 'No drinking water is mapped on the loop; carry enough for you and your dog. There is an inn by the church in Tabland at the start.',
-      dogNotes: 'Naturns publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. The loop crosses the Hasler Weide and passes the Ragoier and Oberwötzel farms, so expect grazing animals and farm dogs and keep your dog close.',
+      dogNotes: 'Naturns keeps dogs on a lead in the village, parks and car parks and on the Adige embankment; field paths outside the village are exempt. The national rule adds a lead of at most 1.5 m and a muzzle carried. The loop crosses the Hasler Weide and passes the Ragoier and Oberwötzel farms, so expect grazing animals and farm dogs and keep your dog close.',
       tips: 'Start by the church in Tabland (Citybus 264 from Naturns) and follow road and path 4, then the Hinzlweg signs: 5.1 km, about 230 m of climbing, two hours with the stations. Keep your dog on a short lead (1.5 m at most), carry a muzzle and take water, as there is none on the way. The slope faces south and is dry, so go early or late in summer.',
       sourceLinks: [
         { label: 'Südtirol.info, Hinzlweg in Tabland (Tourismusgenossenschaft Naturns)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiad9c58538eeb1db5ae022493e8c91e4f.hinzlweg-in-tabland.st--leonhard-i-p-' },
+        { label: 'Gemeinde Naturns, dog regulation (2006)', url: 'https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043' },
         { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/20380913' }
       ],
