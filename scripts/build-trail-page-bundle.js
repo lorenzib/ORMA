@@ -26,7 +26,6 @@ const SOURCES = [
   // the bundle before it.
   'match-verdict.js',
   'trail-trust.js',
-  'trail-audits.js',
   'regions-config.js',
   'basemap-poi-click.js',
   'hike-gps-policy.js',

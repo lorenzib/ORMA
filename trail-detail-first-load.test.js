@@ -95,9 +95,8 @@ describe('what has to re-run when the region lands late', () => {
     const api = sandbox.window.DoloPawsTrailAudits;
     expect(api && typeof api.apply).toBe('function');
 
-    // The generator for the regional data does not read trail-audits.js, so a
-    // trail arriving with the region carries its un-audited figures until this
-    // runs. Values come from the file itself, not from a hand-typed copy.
+    // The build scripts still run it, so it stays idempotent. Values come from
+    // the file itself, not from a hand-typed copy.
     const audited = /'osm-14381570':\s*\{[\s\S]*?distance:\s*([\d.]+)/.exec(read('trail-audits.js'));
     expect(audited).not.toBeNull();
     const list = [{ id: 'osm-14381570', distance: 999 }];
@@ -107,12 +106,34 @@ describe('what has to re-run when the region lands late', () => {
     expect(list[0].distance).toBe(Number(audited[1]));
   });
 
-  test('the loader re-applies the annotation chain when a region arrives', () => {
+  test('a trail arrives already audited, in its region and in its detail file', () => {
+    // The regional data generator applies the audits, so a trail that lands
+    // late is correct on arrival and no page has to download every audit.
+    const audited = Number(/'osm-14381570':\s*\{[\s\S]*?distance:\s*([\d.]+)/.exec(read('trail-audits.js'))[1]);
+    const manifest = JSON.parse(read('data/regions-manifest.json'));
+    const carried = file => {
+      const sandbox = { window: {}, console };
+      vm.createContext(sandbox);
+      vm.runInContext(read(file.split('?')[0]), sandbox);
+      return sandbox.window.trails.find(trail => trail.id === 'osm-14381570').distance;
+    };
+    const region = Object.values(manifest.regions).find(entry => entry.details && entry.details['osm-14381570']);
+    expect(carried(region.trails)).toBe(audited);
+    expect(carried(region.details['osm-14381570'])).toBe(audited);
+  });
+
+  test('the loader re-runs region assignment, not the audits, when a region arrives', () => {
     const loader = read('regional-trails-loader.js');
     const onload = loader.slice(loader.indexOf('script.onload'), loader.indexOf('script.onerror'));
     expect(onload).toContain('DoloPawsRegions');
-    expect(onload).toContain('DoloPawsTrailAudits');
+    expect(onload).not.toContain('DoloPawsTrailAudits.apply');
     expect(onload).toContain('dolopaws-region-loaded');
+  });
+
+  test('no public page or bundle downloads every trail\'s audit', () => {
+    const pages = fs.readdirSync(root).filter(file => file.endsWith('.html'));
+    expect(pages.filter(page => read(page).includes('trail-audits.js'))).toEqual([]);
+    expect(read('trail-app.bundle.js')).not.toContain('// ---- trail-audits.js ----');
   });
 
   test('the nearby grid and the map layers both listen for it', () => {

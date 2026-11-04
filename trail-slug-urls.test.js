@@ -158,7 +158,7 @@ describe('the static pages and the app agree on the slug', () => {
     for (const page of ['trail.html', 'browse-trails.html', 'collections.html', 'compare.html']) {
       const html = fs.readFileSync(path.join(root, page), 'utf8');
       expect(html).toContain('regions-runtime-manifest.js?v=20261007-1');
-      expect(html).toContain('regional-trails-loader.js?v=20261007-2');
+      expect(html).toContain('regional-trails-loader.js?v=20261104-1');
     }
   });
 
@@ -171,7 +171,7 @@ describe('the static pages and the app agree on the slug', () => {
     // regional-trails-loader moved again with the detail-first load order, so
     // the expected token is per script rather than one shared value.
     const SLUG_AWARE = {
-      'discovery-state': '20261007-1', 'regional-trails-loader': '20261007-2',
+      'discovery-state': '20261007-1', 'regional-trails-loader': '20261104-1',
       'browse-map': '20261028-1', 'compare-page': '20261007-1',
       'collections-page': '20261007-1', 'homepage-search': '20261007-1',
       'mobile-nav': '20261030-1', 'notifications-feed': '20261023-1',
