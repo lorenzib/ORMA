@@ -15,11 +15,13 @@ const { normaliseRouteRef, applyRouteNumberEvidence } = require('./route-number-
 // trail.html?id=<slug> can never disagree. assignSlugs suffixes a collision
 // with the trail's id, so it is order-dependent: deriving it from
 // loadProductionTrails (what generate-trail-pages reads) rather than from this
-// script's own loadTrails, which applies no name overrides, is what keeps the
-// two in step. A test asserts every published slug equals its page filename.
+// script's own loadTrails is what keeps the two in step. loadTrails now applies
+// the audits and, last, the name overrides as the production loader does, so a
+// dynamic page names a trail the way its static page does; the slugs still come
+// from one list. A test asserts every published slug equals its page filename.
 const { assignSlugs } = require('./trail-adapter');
 const { loadProductionTrails } = require('./load-production-trails');
-const { loadSlugOverrides, allRetiredSlugs, validateSlugOverrides } = require('./trail-slug-overrides');
+const { loadSlugOverrides, applyTrailNameOverrides, allRetiredSlugs, validateSlugOverrides } = require('./trail-slug-overrides');
 
 const root = path.resolve(__dirname, '..');
 const outDir = path.join(root, 'data', 'regions');
@@ -95,7 +97,10 @@ function loadTrails() {
   const gallery = JSON.parse(fs.readFileSync(path.join(root, 'data', 'trail-gallery-photos.json'), 'utf8'));
   const liftAccess = JSON.parse(fs.readFileSync(path.join(root, 'data', 'lift-access.json'), 'utf8'));
   const withOverrides = applyLiftAccess(applyTrailGalleryPhotos(applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), images), gallery), liftAccess);
-  return applyRouteNumberEvidence(withOverrides, root);
+  // Last, as load-production-trails does: the regional and detail files fed the
+  // dynamic page and the cards the importer's name ("Itinerario \"Raststeinweg\"")
+  // while the static page printed the published one.
+  return applyTrailNameOverrides(applyRouteNumberEvidence(withOverrides, root), loadSlugOverrides(root));
 }
 
 function loadGondolas() {
