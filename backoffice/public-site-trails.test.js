@@ -206,8 +206,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 472 and 470 with three more Engadin walks: Murtèl down to Surlej via
     // Alpetta, Murtèl past Hahnensee to St. Moritz, and the Eulalia and Gian Plaiv
     // story trail in Zuoz.
-    expect(catalogue).toHaveLength(472);
-    expect(currentSiteTrails(catalogue)).toHaveLength(470);
+    // Then 476 and 474 with four Val Poschiavo walks: Alp Grüm down to Cavaglia via
+    // Stablini and via Lagh da Palü, the Lago di Poschiavo loop from Le Prese, and
+    // the Lago Bianco loop on the Bernina Pass.
+    expect(catalogue).toHaveLength(476);
+    expect(currentSiteTrails(catalogue)).toHaveLength(474);
   });
 
   test('requires the artwork the public trail page needs',()=>{

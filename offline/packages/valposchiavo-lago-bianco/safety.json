@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valposchiavo-lago-bianco",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8,
+    "ascentM": 55,
+    "highestPointM": 2279,
+    "expectedDuration": "2.25 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.408774,
+    "lng": 10.019757,
+    "label": "Ospizio Bernina station on the Bernina railway, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "No shade at 2,200 m: strong sun and wind, bring water.",
+    "Weather turns fast on the pass: bring a layer for you and your dog.",
+    "The Bernina railway runs along the lake: lead short near the tracks.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

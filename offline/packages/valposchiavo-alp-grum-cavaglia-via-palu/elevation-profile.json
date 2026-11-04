@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valposchiavo-alp-grum-cavaglia-via-palu",
+  "distanceKm": 3.2,
+  "ascentM": 1,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2092
+    },
+    {
+      "km": 0.3,
+      "elev": 2035
+    },
+    {
+      "km": 0.5,
+      "elev": 2009
+    },
+    {
+      "km": 0.7,
+      "elev": 1962
+    },
+    {
+      "km": 1,
+      "elev": 1937
+    },
+    {
+      "km": 1.2,
+      "elev": 1938
+    },
+    {
+      "km": 1.4,
+      "elev": 1897
+    },
+    {
+      "km": 1.7,
+      "elev": 1803
+    },
+    {
+      "km": 1.9,
+      "elev": 1770
+    },
+    {
+      "km": 2.2,
+      "elev": 1713
+    },
+    {
+      "km": 2.4,
+      "elev": 1708
+    },
+    {
+      "km": 2.7,
+      "elev": 1703
+    },
+    {
+      "km": 2.9,
+      "elev": 1700
+    },
+    {
+      "km": 3.1,
+      "elev": 1695
+    },
+    {
+      "km": 3.2,
+      "elev": 1695
+    }
+  ]
+}

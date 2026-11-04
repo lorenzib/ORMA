@@ -3457,6 +3457,38 @@
       "quote": "Distance 2.9 km · Duration 2:00 h · Ascent 197 m · Descent 109 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "valposchiavo-alp-grum-cavaglia-via-stablini": {
+      "url": "https://www.outdooractive.com/en/r/53534347",
+      "publisher": "Valposchiavo Turismo (Outdooractive, valposchiavo.ch)",
+      "name": "Alp Grüm - Cavaglia (Via Stablini)",
+      "quote": "Distance 3 km · Duration 0:55 h · Ascent 1 m · Descent 392 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "valposchiavo-alp-grum-cavaglia-via-palu": {
+      "url": "https://www.outdooractive.com/en/r/53534214",
+      "publisher": "Valposchiavo Turismo (Outdooractive, valposchiavo.ch)",
+      "name": "Alp Grüm - Cavaglia (Via Palü)",
+      "quote": "Distance 3.2 km · Duration 1:00 h · Ascent 1 m · Descent 391 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "valposchiavo-lake-tour": {
+      "url": "https://www.outdooractive.com/en/r/32156018",
+      "publisher": "Valposchiavo Turismo (Outdooractive, valposchiavo.ch)",
+      "name": "Lake Tour",
+      "quote": "Distance 7.3 km · Duration 1:50 h · Ascent 26 m · Descent 26 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "valposchiavo-lago-bianco": {
+      "url": "https://www.outdooractive.com/en/r/41048834",
+      "publisher": "Valposchiavo Turismo (Outdooractive, valposchiavo.ch)",
+      "name": "Lago Bianco",
+      "quote": "Distance 8 km · Duration 2:13 h · Ascent 55 m · Descent 55 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
     }
   }
 }

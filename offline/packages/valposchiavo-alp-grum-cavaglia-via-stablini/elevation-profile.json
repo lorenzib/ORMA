@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valposchiavo-alp-grum-cavaglia-via-stablini",
+  "distanceKm": 3,
+  "ascentM": 1,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2092
+    },
+    {
+      "km": 0.2,
+      "elev": 2035
+    },
+    {
+      "km": 0.5,
+      "elev": 2031
+    },
+    {
+      "km": 0.7,
+      "elev": 2008
+    },
+    {
+      "km": 0.9,
+      "elev": 1946
+    },
+    {
+      "km": 1.1,
+      "elev": 1933
+    },
+    {
+      "km": 1.4,
+      "elev": 1908
+    },
+    {
+      "km": 1.6,
+      "elev": 1899
+    },
+    {
+      "km": 1.8,
+      "elev": 1855
+    },
+    {
+      "km": 2,
+      "elev": 1810
+    },
+    {
+      "km": 2.3,
+      "elev": 1768
+    },
+    {
+      "km": 2.5,
+      "elev": 1718
+    },
+    {
+      "km": 2.7,
+      "elev": 1705
+    },
+    {
+      "km": 3,
+      "elev": 1695
+    }
+  ]
+}

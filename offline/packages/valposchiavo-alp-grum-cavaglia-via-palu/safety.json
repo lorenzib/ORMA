@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valposchiavo-alp-grum-cavaglia-via-palu",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 3.2,
+    "ascentM": 1,
+    "highestPointM": 2092,
+    "expectedDuration": "1 hour",
+    "difficulty": "Moderate",
+    "shadePercent": 53
+  },
+  "trailhead": {
+    "lat": 46.374527,
+    "lng": 10.031042,
+    "label": "Alp Grüm station on the Bernina railway, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A steady descent of 390 m: take it slowly with older dogs.",
+    "The path crosses the Bernina railway twice: lead short at the crossings.",
+    "Glacier lake with cold water: keep your dog out of the water near the power-plant outflow.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

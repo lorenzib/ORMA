@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T11:53:29.160Z",
+  "generatedAt": "2026-11-04T17:22:13.283Z",
   "regions": {
     "dolomites": {
       "trailCount": 337,
-      "trails": "data/regions/dolomites-trails.js?v=c090c187d10e",
+      "trails": "data/regions/dolomites-trails.js?v=fbe762f5f3c8",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=6faa6455cd45",
@@ -428,7 +428,7 @@
     },
     "lombardy": {
       "trailCount": 14,
-      "trails": "data/regions/lombardy-trails.js?v=91281ee88cce",
+      "trails": "data/regions/lombardy-trails.js?v=7660bbe3118f",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=fbf7190b5c12",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
@@ -543,8 +543,8 @@
       "optional": []
     },
     "switzerland": {
-      "trailCount": 11,
-      "trails": "data/regions/switzerland-trails.js?v=33291b56c7a7",
+      "trailCount": 15,
+      "trails": "data/regions/switzerland-trails.js?v=12c852f40698",
       "details": {
         "engadin-around-lake-st-moritz": "data/trail-details/engadin-around-lake-st-moritz.js?v=ac3c479365c2",
         "engadin-sils-chaste-peninsula-sils": "data/trail-details/engadin-sils-chaste-peninsula-sils.js?v=1dcf61c59018",
@@ -556,7 +556,11 @@
         "engadin-chapella-val-susauna": "data/trail-details/engadin-chapella-val-susauna.js?v=b6d919991cfb",
         "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": "data/trail-details/engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej.js?v=925ead265428",
         "engadin-corvatsch-hahnensee-st-moritz": "data/trail-details/engadin-corvatsch-hahnensee-st-moritz.js?v=43f059916aa8",
-        "engadin-eulalia-and-gian-plaiv": "data/trail-details/engadin-eulalia-and-gian-plaiv.js?v=3b4f7ad8c031"
+        "engadin-eulalia-and-gian-plaiv": "data/trail-details/engadin-eulalia-and-gian-plaiv.js?v=3b4f7ad8c031",
+        "valposchiavo-alp-grum-cavaglia-via-stablini": "data/trail-details/valposchiavo-alp-grum-cavaglia-via-stablini.js?v=86a922a969ed",
+        "valposchiavo-alp-grum-cavaglia-via-palu": "data/trail-details/valposchiavo-alp-grum-cavaglia-via-palu.js?v=593986b57126",
+        "valposchiavo-lake-tour": "data/trail-details/valposchiavo-lake-tour.js?v=8620c37bf01d",
+        "valposchiavo-lago-bianco": "data/trail-details/valposchiavo-lago-bianco.js?v=973497ccf1af"
       },
       "water": "data/regions/switzerland-water.geojson",
       "hutsBars": "data/regions/switzerland-huts-bars.geojson",
@@ -1036,7 +1040,11 @@
     "engadin-chapella-val-susauna": "switzerland",
     "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": "switzerland",
     "engadin-corvatsch-hahnensee-st-moritz": "switzerland",
-    "engadin-eulalia-and-gian-plaiv": "switzerland"
+    "engadin-eulalia-and-gian-plaiv": "switzerland",
+    "valposchiavo-alp-grum-cavaglia-via-stablini": "switzerland",
+    "valposchiavo-alp-grum-cavaglia-via-palu": "switzerland",
+    "valposchiavo-lake-tour": "switzerland",
+    "valposchiavo-lago-bianco": "switzerland"
   },
   "trailSlug": {
     "alpe-siusi": "alpe-di-siusi-meadow-loop",
@@ -1510,6 +1518,10 @@
     "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": "murtel-to-surlej-via-alpetta",
     "engadin-corvatsch-hahnensee-st-moritz": "hahnensee-from-murtel-to-st-moritz",
     "engadin-eulalia-and-gian-plaiv": "eulalia-gian-plaiv-trail-zuoz",
+    "valposchiavo-alp-grum-cavaglia-via-stablini": "alp-grum-to-cavaglia-via-stablini",
+    "valposchiavo-alp-grum-cavaglia-via-palu": "alp-grum-to-cavaglia-via-lagh-da-palu",
+    "valposchiavo-lake-tour": "lago-di-poschiavo-loop-from-le-prese",
+    "valposchiavo-lago-bianco": "lago-bianco-loop-from-ospizio-bernina",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1984,6 +1996,10 @@
     "murtel-to-surlej-via-alpetta": "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej",
     "hahnensee-from-murtel-to-st-moritz": "engadin-corvatsch-hahnensee-st-moritz",
     "eulalia-gian-plaiv-trail-zuoz": "engadin-eulalia-and-gian-plaiv",
+    "alp-grum-to-cavaglia-via-stablini": "valposchiavo-alp-grum-cavaglia-via-stablini",
+    "alp-grum-to-cavaglia-via-lagh-da-palu": "valposchiavo-alp-grum-cavaglia-via-palu",
+    "lago-di-poschiavo-loop-from-le-prese": "valposchiavo-lake-tour",
+    "lago-bianco-loop-from-ospizio-bernina": "valposchiavo-lago-bianco",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

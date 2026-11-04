@@ -7421,6 +7421,74 @@
       }
     },
     {
+      "id": "valposchiavo-alp-grum-cavaglia-via-palu",
+      "approvedReviewId": "commons-valposchiavo-alp-grum-cavaglia-via-palu-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valposchiavo-alp-grum-cavaglia-via-palu-lagh-da-palu.jpg",
+        "heroImage": "images/trails/valposchiavo-alp-grum-cavaglia-via-palu-lagh-da-palu.jpg",
+        "imageAlt": "A pale green glacier lake edged by larch trees, with forested slopes and a glacier and peaks behind it under a blue sky",
+        "imageCredit": "Lagh da Palü below Alp Grüm",
+        "imageCreditText": "Lagh da Palü below Alp Grüm by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lake_Pal%C3%BC.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valposchiavo-alp-grum-cavaglia-via-stablini",
+      "approvedReviewId": "commons-valposchiavo-alp-grum-cavaglia-via-stablini-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valposchiavo-alp-grum-cavaglia-via-stablini-la-dota.jpg",
+        "heroImage": "images/trails/valposchiavo-alp-grum-cavaglia-via-stablini-la-dota.jpg",
+        "imageAlt": "Stone alp huts on a green meadow edged by larch forest, with mountains above the valley in the distance",
+        "imageCredit": "The alp huts at La Dota above Cavaglia",
+        "imageCreditText": "The alp huts at La Dota above Cavaglia by Leonhard Lenz",
+        "imageCreator": "Leonhard Lenz",
+        "imageLicence": "CC0 1.0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Dota_Val_da_Pila_Poschiavo_2022-09-27_03.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valposchiavo-lago-bianco",
+      "approvedReviewId": "commons-valposchiavo-lago-bianco-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valposchiavo-lago-bianco-lago-bianco.jpg",
+        "heroImage": "images/trails/valposchiavo-lago-bianco-lago-bianco.jpg",
+        "imageAlt": "A turquoise high-mountain lake with a stony shore below a bare brown mountain under a cloudy sky",
+        "imageCredit": "Lago Bianco on the Bernina Pass",
+        "imageCreditText": "Lago Bianco on the Bernina Pass by Leonhard Lenz",
+        "imageCreator": "Leonhard Lenz",
+        "imageLicence": "CC0 1.0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Bianco_2022-09-27_25.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valposchiavo-lake-tour",
+      "approvedReviewId": "commons-valposchiavo-lake-tour-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valposchiavo-lake-tour-lago-di-poschiavo.jpg",
+        "heroImage": "images/trails/valposchiavo-lake-tour-lago-di-poschiavo.jpg",
+        "imageAlt": "A calm turquoise lake reflecting forested mountain slopes, with a spruce and a birch tree on the grassy shore",
+        "imageCredit": "Lago di Poschiavo from the west shore",
+        "imageCreditText": "Lago di Poschiavo from the west shore by Leonhard Lenz",
+        "imageCreator": "Leonhard Lenz",
+        "imageLicence": "CC0 1.0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Poschiavo_seen_from_Berninabahn_2022-09-28_13.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valsesia-campello-monti-alpe-fornale-di-sopra",
       "approvedReviewId": "commons-valsesia-campello-monti-alpe-fornale-di-sopra-on-route",
       "approvedAt": "2026-11-03T18:00:00.000Z",
