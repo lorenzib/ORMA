@@ -628,13 +628,36 @@ function liAreasInView(limit){
     .slice(0, limit || 4);
 }
 
+/**
+ * The one place that holds every trail the map is showing, for the heading.
+ * The busiest valley in view is the right first suggestion under "Change",
+ * but not a name for the view: zoomed out over the Alps it read "in Alta
+ * Pusteria" above a list of 468 trails from Savoy to Friuli. So a valley
+ * names the view only when every trail in it is that valley's, a region when
+ * they are all that region's, and anything wider is just the map view.
+ */
+function liPlaceInView(){
+  if(!liLocationContext || liLocationContext.kind !== 'map') return null;
+  const inView = liTrailsInBounds(liLocationContext.bounds).filter(trail => trail.region);
+  if(!inView.length) return null;
+  const regions = new Set(inView.map(trail => trail.region));
+  if(regions.size !== 1) return null;
+  const region = inView[0].region;
+  const valleys = new Set(inView.map(trail => trail.valley || ''));
+  if(valleys.size === 1 && inView[0].valley){
+    const area = liAreasInView(1)[0];
+    if(area) return area;
+  }
+  return LI_REGION_LABELS[region] ? { label:LI_REGION_LABELS[region] } : null;
+}
+
 function liLocationContextLabel(){
   if(!liLocationContext) return '';
   if(liLocationContext.kind === 'current') return tx('Your location · within {km} km', { km:liLocationContext.radiusKm });
   if(liLocationContext.kind === 'town') return tx('{place} · within {km} km', { place:liLocationContext.label, km:liLocationContext.radiusKm });
   if(liLocationContext.kind === 'map'){
-    const area = liAreasInView(1)[0];
-    return area ? tx('{place} · on the map', { place:liShownPlaceLabel(area.label) }) : tx('The map view');
+    const place = liPlaceInView();
+    return place ? tx('{place} · on the map', { place:liShownPlaceLabel(place.label) }) : tx('The map view');
   }
   return liShownPlaceLabel(liLocationContext.label);
 }
@@ -644,8 +667,8 @@ function liRecommendationLocationPhrase(){
   if(liLocationContext.kind === 'current') return tx('near you');
   if(liLocationContext.kind === 'town') return tx('near {place}', { place:liLocationContext.label });
   if(liLocationContext.kind === 'map'){
-    const area = liAreasInView(1)[0];
-    return area ? tx('in {place}', { place:liShownPlaceLabel(area.label) }) : tx('in the map view');
+    const place = liPlaceInView();
+    return place ? tx('in {place}', { place:liShownPlaceLabel(place.label).replace(/^The /, 'the ') }) : tx('in the map view');
   }
   // "in the Dolomites", not "in The Dolomites".
   return tx('in {place}', { place:liShownPlaceLabel(liLocationContext.label).replace(/^The /, 'the ') });
