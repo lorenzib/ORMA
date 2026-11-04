@@ -6180,6 +6180,23 @@
       }
     },
     {
+      "id": "savoie-boucle-du-fornet-par-la-cascade-du-fornet",
+      "approvedReviewId": "commons-savoie-boucle-du-fornet-par-la-cascade-du-fornet-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/savoie-boucle-du-fornet-par-la-cascade-du-fornet-isere-valley.jpg",
+        "heroImage": "images/trails/savoie-boucle-du-fornet-par-la-cascade-du-fornet-isere-valley.jpg",
+        "imageAlt": "A young mountain river running over pale stones through a green summer valley with larches, below steep grassy slopes and rocky peaks",
+        "imageCredit": "The Isère above Le Fornet",
+        "imageCreditText": "The Isère above Le Fornet by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Isère_entre_Le_Fornet_et_Val-d'Isère_en_été_(juillet_2022).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "savoie-itineraire-poussette-de-belavoine",
       "approvedReviewId": "mapillary-savoie-itineraire-poussette-de-belavoine-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",

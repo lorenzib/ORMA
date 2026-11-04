@@ -61341,6 +61341,77 @@
       ],
       startPoint: { lat: 45.935842, lng: 8.236739, label: 'Campello Monti (1,305 m), the Region’s start' },
       desc: 'Stage 21 of the GTA, over the ridge from the Walser village of Campello Monti in the Valle Strona to Rimella in the Val Mastallone, by the Alpe Scarpia, the Bocchetta di Campello and the Alpe Pianello. The Region lists 8.6 km, 620 m up and 750 m down, 3 h 15.'
+    },
+    'savoie-boucle-du-fornet-par-la-cascade-du-fornet': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 1, Beaufortain – Val d’Arly).
+      // “Boucle du Fornet – Par la cascade du Fornet”, published by the Val d’Isère Tourisme, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 6531064). Communes: Val-d’Isère (no dog order found online, probably exists: the national rule applies).
+      // No national park core, nature reserve, biotope order or regional park on the line (IGN PatriNat layers); the Vanoise core lies outside it.
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Le Fornet – Pont des Cognons – Cascade du Fornet (Haute Tarentaise)',
+      distance: 3.7,
+      elevation: 204,
+      hours: '1.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the fountain in the hamlet of Le Fornet: out along the farm track on the left bank of the Isère to the Pont des Cognons, then back along the edge of the forest past the Fornet waterfall and down into the village.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the fountain in the hamlet of Le Fornet, above Val d’Isère on the road to the Col de l’Iseran.",
+        "sequence": "From the fountain turn left for about 30 m, then right in front of the Chalet la Cascade, climbing gently, and after about 20 m turn left again. Follow the farm track along the left bank of the Isère up to the Pont des Cognons. At the path junction on the edge of the forest keep right to reach the Fornet waterfall, then walk back down to the village.",
+        "switches": "Three turns in the first 50 m from the fountain (left, right at the Chalet la Cascade, left again), then keep right at the junction by the forest edge for the waterfall.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Val d’Isère Tourisme, Boucle du Fornet – Par la cascade du Fornet (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/boucle-du-fornet-par-la-cascade-du-fornet-6531064/",
+            "authority": "Val d’Isère Tourisme",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Isère between Le Fornet and the Pont des Cognons, in July 2022 (Florian Pépellin on Wikimedia Commons, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official loop 3.7 km from the fountain in the hamlet of Le Fornet, as the Val d’Isère Tourisme publishes it; the stored line is drawn on 17 OSM ways along the board’s published line, 3.73 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Fornet fountain: left for 30 m, right in front of the Chalet la Cascade, then left again after about 20 m onto the farm track on the left bank of the Isère to the Pont des Cognons; at the path junction by the forest edge keep right for the Fornet waterfall, then go down to the village. Waymarked, no path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 2425357254, 5335526986).',
+        elevation: 'Official 3.7 km, 204 m up and 204 m down, 1:45 h average walking time (Val d’Isère Tourisme, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Val d’Isère Tourisme, Boucle du Fornet – Par la cascade du Fornet (Explore Savoie, Apidae 6531064) and its official GPX',
+          'Val-d’Isère publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 48,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The farm track runs beside the young Isère: keep your dog out of the fast, cold water', 'Cows may graze along the track in summer: keep your dog on a lead near the herds', 'High ground at about 1,925–2,110 m: quick weather changes and strong sun'],
+      terrainType: 'Farm track and forest-edge path',
+      shadeDescription: 'About half in shade: 48% passes under the larch forest on the return along the forest edge; the farm track by the Isère is open.',
+      terrainDescription: 'A short loop at about 1,925–2,110 m from the old hamlet of Le Fornet up the farm track beside the young Isère to the Pont des Cognons, and back along the forest edge past the Fornet waterfall.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'The official page does not say whether dogs are accepted. Val-d’Isère publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cows may graze along the Isère in summer: keep your dog on a lead near them. The Vanoise national park, where dogs are banned, begins higher up the valley; this loop stays outside it.',
+      tips: 'Le Fornet is the last hamlet above Val d’Isère on the road to the Col de l’Iseran: 3.7 km round, 204 m up and down, about 1 h 45. Open June to the end of October, depending on snow.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Boucle du Fornet – Par la cascade du Fornet (Val d’Isère Tourisme)', url: 'https://www.explore-savoie.com/randonnees-et-balades/boucle-du-fornet-par-la-cascade-du-fornet-6531064/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/232/236/38268136/Boucle+du+Fornet+-+Par+la+cascade+du+Fornet.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.44895, lng: 7.010191, label: 'Fountain in the hamlet of Le Fornet, the board’s start' },
+      desc: 'A short loop from the old hamlet of Le Fornet above Val d’Isère, up the farm track beside the young Isère to the Pont des Cognons and back along the forest edge past the Fornet waterfall. The official page lists 3.7 km, 204 m up and 204 m down, about 1 h 45.'
     }
   };
 

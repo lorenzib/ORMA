@@ -1678,6 +1678,11 @@
       "name": "Passo del Giovo to the Rifugio Sommafiume",
       "slug": "passo-del-giovo-rifugio-sommafiume",
       "gloss": "across the open head of the Valle Albano above Lake Como"
+    },
+    "savoie-boucle-du-fornet-par-la-cascade-du-fornet": {
+      "name": "Fornet waterfall loop from Le Fornet",
+      "slug": "fornet-waterfall-loop-val-disere",
+      "gloss": "up the young Isère to the Pont des Cognons"
     }
   }
 }

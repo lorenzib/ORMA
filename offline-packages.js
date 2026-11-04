@@ -269,6 +269,7 @@
     'santa-maddalena': "Rundweg St. Magdalena",
     'savoie-areches-beaufort-croix-du-berger-et-lac-des-fees': "Croix du Berger from the Lac des Fées",
     'savoie-areches-beaufort-la-grande-berge': "La Grande Berge from the Plan de la Lai",
+    'savoie-boucle-du-fornet-par-la-cascade-du-fornet': "Fornet waterfall loop from Le Fornet",
     'savoie-itineraire-poussette-de-belavoine': "Bel’Avoine road, Le Cernix to Paravy",
     'savoie-itineraire-poussette-des-chalets-brules': "Chalets Brûlés pasture track, Crest-Voland",
     'savoie-promenade-confort-lac-et-barrage-de-saint-guerin': "Lac de Saint-Guérin shore path",

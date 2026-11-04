@@ -201,8 +201,9 @@ describe('the existing-site verification boundary',()=>{
     // dell’Usciolo and the Lago del Capezzone.
     // Then 467 and 465 with two Lake Como mountain walks: Campoè to Cassina Enco
     // above Caglio, and the Passo del Giovo to the Rifugio Sommafiume.
-    expect(catalogue).toHaveLength(467);
-    expect(currentSiteTrails(catalogue)).toHaveLength(465);
+    // Then 468 and 466 with the Fornet waterfall loop above Val d’Isère (Tarentaise).
+    expect(catalogue).toHaveLength(468);
+    expect(currentSiteTrails(catalogue)).toHaveLength(466);
   });
 
   test('requires the artwork the public trail page needs',()=>{
