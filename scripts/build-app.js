@@ -33,27 +33,23 @@ const ENTRY_PAGES = [
   'settings.html', 'terms.html', 'trail-report.html', 'trail.html', 'walk.html',
 ];
 
-// Files fetched at runtime by JS rather than referenced from markup.
-// Sources: regions-runtime-manifest.js, detail-pois.js, script.js, hike-mode.js.
+// Files fetched at runtime by JS rather than referenced from markup. Region
+// files are not listed here: they come from the region manifest, below, so a
+// new region or trail ships without anyone editing this script.
+// Sources: detail-pois.js, script.js, hike-mode.js, alpine-plants-guide.js,
+// and mobile-nav.js, which injects the two hazard scripts on every page.
 const RUNTIME_FILES = [
   'data/regions-manifest.json',
-  'data/regions/dolomites-trails.js',
-  'data/regions/savoy-trails.js',
-  'data/regions/dolomites-water.geojson',
-  'data/regions/savoy-water.geojson',
-  'data/regions/dolomites-huts-bars.geojson',
-  'data/regions/savoy-huts-bars.geojson',
-  'data/trail-amenities/dolomites-amenities.geojson',
-  'data/trail-amenities/savoy-amenities.geojson',
+  'hazard-location.js',
+  'trail-hazards.js',
   'data/dynamic-hazards.json',
   'data/alpine-plants.json',
-  'dog-friendly-routes.geojson',
-  'dog-friendly-routes-savoy.geojson',
+  'data/alpine-plants-it.json',
   'manifest.json',
 ];
 
 // Whole directories that ship as-is.
-const RUNTIME_DIRS = ['offline/packages', 'routing-graphs', 'trails', 'guides'];
+const RUNTIME_DIRS = ['offline/packages', 'routing-graphs', 'trails', 'guides', 'data/trail-text-it'];
 
 // Never ships, even if something links to it.
 const DENY = [
@@ -68,6 +64,11 @@ const FONTS = [
   ['inter', [400, 500, 600, 700, 800]],
   ['bricolage-grotesque', [600, 700]],
 ];
+
+// The trail route lines on every map are tiles built at deploy time, so they
+// exist only on the website. Like the base map, they need the network anyway.
+const SITE_ORIGIN = 'https://www.app-orma.com';
+const HIKING_ORIGIN_LINE = 'const HIKING_ORIGIN = null;';
 
 const rel = (abs) => path.relative(root, abs).split(path.sep).join('/');
 const denied = (r) => DENY.some((pattern) => pattern.test(r));
@@ -104,6 +105,58 @@ function scanHtml(r){
     const target = rel(path.resolve(path.dirname(path.join(root, r)), clean));
     if(addFile(target) && target.endsWith('.html')) scanHtml(target);
   }
+}
+
+// Everything regional-trails-loader.js and detail-pois.js load for a region:
+// its trail list, one detail file per trail, its water, huts and dog routes,
+// and the amenities layer where one exists. The manifest is the loader's own
+// index, so the app ships exactly what a page can ask for. Trail images are
+// named only inside the trail records, so those are read out of the files.
+function addRegionFiles(){
+  const manifest = JSON.parse(fs.readFileSync(path.join(root, 'data/regions-manifest.json'), 'utf8'));
+  const named = new Set();
+  for(const [region, entry] of Object.entries(manifest.regions)){
+    const files = [entry.trails, entry.water, entry.hutsBars, entry.dogRoutes,
+      ...Object.values(entry.details || {}), ...(entry.optional || [])];
+    for(const file of files){
+      if(!file) continue;
+      const clean = file.split(/[?#]/)[0];
+      addFile(clean);
+      if(/^data\/(regions|trail-details)\/.+\.js$/.test(clean)) named.add(clean);
+    }
+    const amenities = `data/trail-amenities/${region}-amenities.geojson`;
+    if(fs.existsSync(path.join(root, amenities))) addFile(amenities);
+  }
+  for(const file of named){
+    const source = fs.readFileSync(path.join(root, file), 'utf8');
+    for(const match of source.matchAll(/"(images\/[^"?#]+)"/g)) addFile(match[1]);
+  }
+}
+
+// Smaller copies of a photo (lago-di-braies-480.webp) are swapped in by script
+// for narrow screens, by name, so ship each one next to the photo it shrinks.
+function addImageVariants(){
+  const dir = path.join(root, 'images');
+  const bases = new Set([...collected].filter((r) => r.startsWith('images/'))
+    .map((r) => r.replace(/\.[a-z0-9]+$/i, '')));
+  for(const name of fs.readdirSync(dir)){
+    const base = `images/${name}`.replace(/-\d+\.[a-z0-9]+$/i, '');
+    if(base !== `images/${name}` && bases.has(base)) addFile(`images/${name}`);
+  }
+}
+
+// The whole whitelist, without copying anything, so tests can check it.
+function collectAppFiles(){
+  collected.clear();
+  missing.length = 0;
+  for(const page of ENTRY_PAGES){
+    if(addFile(page)) scanHtml(page);
+  }
+  for(const file of RUNTIME_FILES) addFile(file);
+  addRegionFiles();
+  for(const dir of RUNTIME_DIRS) addDir(dir);
+  addImageVariants();
+  return { files: new Set(collected), missing: Array.from(new Set(missing)) };
 }
 
 function write(r, contents){
@@ -164,29 +217,31 @@ function rewriteRemoteRefs(){
         '<link rel="stylesheet" href="/vendor/fonts/fonts.css">')
       .replace(/<link[^>]+rel=["']preconnect["'][^>]*href=["']https:\/\/fonts\.g(?:oogleapis|static)\.com["'][^>]*>\s*/g, '')
       .replace(/https:\/\/unpkg\.com\/maplibre-gl@[^/'"`]+\/dist\/maplibre-gl\.(js|css)/g,
-        '/vendor/maplibre-gl/maplibre-gl.$1');
+        '/vendor/maplibre-gl/maplibre-gl.$1')
+      .replace(HIKING_ORIGIN_LINE, `const HIKING_ORIGIN = '${SITE_ORIGIN}';`);
     if(after !== before){ fs.writeFileSync(dest, after); rewritten += 1; }
   }
   return rewritten;
 }
 
-for(const page of ENTRY_PAGES){
-  if(addFile(page)) scanHtml(page);
-}
-for(const file of RUNTIME_FILES) addFile(file);
-for(const dir of RUNTIME_DIRS) addDir(dir);
+function build(){
+  const { missing } = collectAppFiles();
+  fs.rmSync(outDir, { recursive:true, force:true });
+  let bytes = 0;
+  for(const r of collected) bytes += copyInto(path.join(root, r), r);
+  bytes += vendorFonts() + vendorMaplibre();
+  const rewritten = rewriteRemoteRefs();
 
-fs.rmSync(outDir, { recursive:true, force:true });
-let bytes = 0;
-for(const r of collected) bytes += copyInto(path.join(root, r), r);
-bytes += vendorFonts() + vendorMaplibre();
-const rewritten = rewriteRemoteRefs();
-
-const files = fs.readdirSync(outDir, { recursive:true })
-  .filter((entry) => fs.statSync(path.join(outDir, entry)).isFile()).length;
-console.log(`App bundle: ${files} files, ${(bytes / (1024 * 1024)).toFixed(1)} MB -> ${rel(outDir)}`);
-console.log(`Rewrote remote references in ${rewritten} file(s).`);
-if(missing.length){
-  console.error(`Missing ${missing.length} referenced file(s):\n${Array.from(new Set(missing)).join('\n')}`);
-  process.exitCode = 1;
+  const files = fs.readdirSync(outDir, { recursive:true })
+    .filter((entry) => fs.statSync(path.join(outDir, entry)).isFile()).length;
+  console.log(`App bundle: ${files} files, ${(bytes / (1024 * 1024)).toFixed(1)} MB -> ${rel(outDir)}`);
+  console.log(`Rewrote remote references in ${rewritten} file(s).`);
+  if(missing.length){
+    console.error(`Missing ${missing.length} referenced file(s):\n${missing.join('\n')}`);
+    process.exitCode = 1;
+  }
 }
+
+if(require.main === module) build();
+
+module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN };
