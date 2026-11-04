@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-cudan-dumat",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 3.5,
+    "ascentM": 110,
+    "highestPointM": 1372,
+    "expectedDuration": "1 hour",
+    "difficulty": "Moderate",
+    "shadePercent": 25
+  },
+  "trailhead": {
+    "lat": 46.577879,
+    "lng": 11.672247,
+    "label": "The valley station of the Resciesa funicular in Ortisei, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.578263,
+      "lng": 11.662298,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.579258,
+      "lng": 11.652326,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.576091,
+      "lng": 11.671756,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.575933,
+      "lng": 11.6716306,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5750854,
+      "lng": 11.6716411,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5751397,
+      "lng": 11.6712388,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5750266,
+      "lng": 11.6708529,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.574734,
+      "lng": 11.6704661,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Village streets at the start and about 700 m down Via Mureda at the end: keep your dog on a short lead.",
+    "The meadow and woodland path can be slippery in the wet, as the board warns.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -3489,6 +3489,38 @@
       "quote": "Distance 8 km · Duration 2:13 h · Ascent 55 m · Descent 55 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "valgardena-troi-unika": {
+      "url": "https://www.outdooractive.com/it/r/64024449",
+      "publisher": "Tourist board of S. Cristina (Val Gardena) (Outdooractive)",
+      "name": "Sentiero d’arte e natura – Troi Unika",
+      "quote": "Distanza 1,6 km · Durata 0:30 h · Salita 54 m · Discesa 55 m · Punto più alto 1.690 m · Punto più basso 1.633 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T20:00:00.000Z"
+    },
+    "valgardena-cudan-dumat": {
+      "url": "https://www.outdooractive.com/it/r/66473926",
+      "publisher": "Tourist board of Ortisei (Val Gardena) (Outdooractive)",
+      "name": "Passeggiata Cudan-Dumat",
+      "quote": "Distanza 3,5 km · Durata 1:01 h · Salita 110 m · Discesa 133 m · Punto più alto 1.356 m · Punto più basso 1.229 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T20:00:00.000Z"
+    },
+    "seiseralm-miglio-geologico-siusi": {
+      "url": "https://www.outdooractive.com/it/r/802958877",
+      "publisher": "Kastelruth tourist board (Seiser Alm Marketing) (Outdooractive)",
+      "name": "Miglio geologico Siusi",
+      "quote": "Distanza 1 km · Durata 0:30 h · Salita 17 m · Discesa 17 m · Punto più alto 1.014 m · Punto più basso 997 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T20:00:00.000Z"
+    },
+    "seiseralm-fie-laghetto-di-fie-siusi": {
+      "url": "https://www.outdooractive.com/it/r/64902375",
+      "publisher": "Kastelruth tourist board (Seiser Alm Marketing) (Outdooractive)",
+      "name": "Da Fiè al laghetto di Fiè fino a Siusi",
+      "quote": "Distanza 6,3 km · Durata 2:00 h · Salita 299 m · Discesa 154 m · Punto più alto 1.054 m · Punto più basso 859 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T20:00:00.000Z"
     }
   }
 }
