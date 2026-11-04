@@ -63061,6 +63061,228 @@
       startPoint: { lat: 46.697757, lng: 10.090268, label: 'Zernez station, the board’s start' },
       desc: 'A sunny walk on the Via Engiadina from Zernez station along flower meadows above the Inn to the hamlet of Brail, facing the National Park. The board lists 7.5 km, 257 m up and 92 m down, 2 h.'
     },
+    'isere-boucle-du-couzon': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 2, Isère).
+      // “Boucle du Couzon”, published by the Chartreuse Tourisme, drawn on 46 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 6995851). Communes: Saint-Pierre-de-Chartreuse (its 2006 order bans dogs from 10 June to 15 October on the Chamechaude, Grand Som west side, Valombré-Malamille and Charmant Som alpages only, none of which the loop enters; the page says dogs on a lead are welcome).
+      // Inside the Parc naturel régional de Chartreuse (no dog rule of its own); no national park, nature reserve, biotope order or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Saint-Pierre-de-Chartreuse – Couzon valley (Chartreuse)',
+      distance: 7,
+      elevation: 310,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Plan de Ville in Saint-Pierre-de-Chartreuse: up the Perquelin road to the Croix Saint-Claude, along a balcony path past the Chapelle du Rosaire to Le Paquet and the Cochatière hamlet, through the forest by the old Batour lift site to Champ Massot, down along the Couzon by its footbridges to La Coche, and back by Merlatière, the orchid path, Patassière, Carlinière and the Bois des Lièvres.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Plan de Ville, in the centre of Saint-Pierre-de-Chartreuse beside the tourist office.",
+        "sequence": "Walk between the tourist office and the pizzeria to the Place de la Mairie and take the Perquelin road past the Parking du Bourg to the Croix Saint-Claude. Climb the path on the left past old barns, carry straight on along the balcony path at the Sentier des Amoureux to the Chapelle du Rosaire, then turn right up through the meadows between dry-stone walls to Le Paquet. Turn left on the track, carry straight on down the tarmac road to Cochatière, turn right through the hamlet and climb into the forest at the Le Batour signpost. Follow the forest track to the Télésiège du Batour signpost (the lift is gone) and on past a timber yard to the Combe de l’Ours chairlift; opposite it take the steep path down through the forest, cross the road, pass behind the gîte and cross the footbridge to Champ Massot. Go down to the Sentier du Col des Aures, cross the footbridge and follow the Couzon stream by several footbridges to La Coche. Turn right through the hamlet to Merlatière, go down between the houses and over a little footbridge, then left down the orchid path to the road and on to Patassière; turn right to Carlinière, then left down the little valley, cross the Couzon by a small bridge and climb through the Bois des Lièvres back to the Plan de Ville.",
+        "switches": "Left up the path at the Croix Saint-Claude; right at the Chapelle du Rosaire; left at Le Paquet; right through Cochatière; down opposite the Combe de l’Ours chairlift; right at La Coche; left down the orchid path after Merlatière; right at Patassière; left down the valley at Carlinière.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Chartreuse Tourisme, Boucle du Couzon (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/boucle-du-couzon-6995851/",
+            "authority": "Chartreuse Tourisme",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The village streets of Saint-Pierre-de-Chartreuse with the loop’s signposts, below the Chartreuse peaks, in May 2017 (pgiraud on Mapillary, CC BY-SA 4.0), taken on foot on the line.',
+        route: 'Official loop 7 km from the Plan de Ville in Saint-Pierre-de-Chartreuse, as the Chartreuse Tourisme publishes it; the stored line is drawn on 46 OSM ways along the board’s published line, 7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the Plan de Ville pass between the tourist office and the pizzeria to the Place de la Mairie, then up the Perquelin road past the Parking du Bourg to the Croix Saint-Claude; left up the path, straight on at the Sentier des Amoureux to the Chapelle du Rosaire, right up the meadows to Le Paquet, left on the track to Cochatière; right through the hamlet and up into the forest at Le Batour to the Télésiège du Batour signpost and the Combe de l’Ours chairlift; down the steep forest path, across the road, past the gîte and over the footbridge to Champ Massot; down to the Sentier du Col des Aures and along the Couzon by its footbridges to La Coche; right through the hamlet to Merlatière, down the orchid path to Patassière, right to Carlinière, left down the little valley across the Couzon to the Bois des Lièvres and the Plan de Ville. Signposts named with their altitude and painted waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 7 km, 310 m up and 310 m down, 2:30 h average walking time (Chartreuse Tourisme, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Chartreuse Tourisme, Boucle du Couzon (alpes-isere.com, Apidae 6995851) and its official GPX',
+          'Saint-Pierre-de-Chartreuse order no. 23/2006 bans dogs, even on a lead, from 10 June to 15 October on the Chamechaude, Grand Som west side, Valombré-Malamille and Charmant Som alpages; the loop stays in the valley and enters none of them; the official page: dogs on a lead welcome',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional de Chartreuse: a regional park sets no dog rule of its own outside the Hauts de Chartreuse nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (46 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 58,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Clay stretches between Merlatière and the orchid path, and the drop to the Couzon after Carlinière, can be slippery after rain; one short steep section', 'A departmental road is crossed halfway round, and the start and end follow village streets', 'Several footbridges over the Couzon stream'],
+      terrainType: 'Village streets, forest paths and tracks, hamlet lanes',
+      shadeDescription: 'Over half under trees: the forest above Cochatière, the descent from the Combe de l’Ours and the Couzon banks are wooded; the meadows and hamlets are open.',
+      terrainDescription: 'A two-and-a-half-hour loop around the Chartreuse village of Saint-Pierre-de-Chartreuse, through meadows, hamlets and forest with views of the Grand Som and Chamechaude, and along the Couzon stream by its footbridges.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs on a lead are welcome, according to the official page. Saint-Pierre-de-Chartreuse bans dogs, even on a lead, from 10 June to 15 October on four named alpages (Chamechaude, the west side of the Grand Som, Valombré-Malamille and Charmant Som); this valley loop enters none of them. The national rule applies too: no straying, and a lead in woods and fields off the paths from 15 April to 30 June.',
+      tips: 'Park at the Plan de Ville or the Parking du Bourg in Saint-Pierre-de-Chartreuse, or come by the T40 bus from Grenoble (stop Plan de Ville): 7 km round, 310 m up and down, about 2 h 30. Open 1 April to 31 October.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Boucle du Couzon (Chartreuse Tourisme)', url: 'https://www.alpes-isere.com/itineraire/boucle-du-couzon-6995851/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/224/15/23793632/boucle-du-cozon.gpx' },
+        { label: 'Saint-Pierre-de-Chartreuse, arrêté 23/2006 on dogs in alpages', url: 'https://www.saintpierredechartreuse.fr/uploads/2253/arrete-chiens-alpages-2006.pdf' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.343081, lng: 5.814632, label: 'Plan de Ville in the centre of Saint-Pierre-de-Chartreuse, the board’s start' },
+      desc: 'A loop around Saint-Pierre-de-Chartreuse through meadows, hamlets and forest past the Chapelle du Rosaire, then down along the Couzon stream by its footbridges and back by the orchid path. The official page lists 7 km, 310 m up and down, about 2 h 30.'
+    },
+    'isere-le-plateau-de-la-moliere': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 2, Isère).
+      // “Le plateau de la Molière”, published by the Isère Attractivité, drawn on 18 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 4894442). Communes: Autrans-Méaudre en Vercors and Engins (no dog order found online for either, probably exists: the national rule applies; the Vercors park’s page for this walk says to keep dogs on a lead).
+      // Inside the Parc naturel régional du Vercors (no dog rule of its own) and, for about three quarters of the line, the Plateau de la Molière et du Sornin sensitive natural area (ENS) of the Isère department, whose rules are posted at the site entrance; the Vercors park’s page for this walk says to keep dogs on a lead. No national park, nature reserve or biotope order on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'La Molière – Charande – Pas de l’Ours (Vercors, Autrans-Méaudre and Engins)',
+      distance: 5,
+      elevation: 153,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the La Molière car park: north by the Pas du Tracollet on the Tour des 4 Montagnes to Charande, the highest point of Autrans (1,709 m), on by Sous Charande towards the Pas de l’Ours, then down to the Gîte de la Molière and back across the alpage by Sous le Tracollet.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the La Molière car park, at the end of the forest road above the Feneys refuge.",
+        "sequence": "Head north towards the Col de la Croix Perrin, passing the Pas du Tracollet, on the yellow-and-red waymarks of the Tour des 4 Montagnes. At Charande, the highest point of Autrans at 1,709 m, stop for the view over the Alps, then carry on along the edge towards the Pas de l’Ours by Sous Charande. Leave the yellow-and-red waymarks and go down to the Gîte de la Molière, then cross the alpage, where heifers graze in summer, back to La Molière and past Sous le Tracollet to the car park.",
+        "switches": "North at the car park for the Croix Perrin by the Pas du Tracollet; on at Charande towards the Pas de l’Ours; leave the yellow-and-red waymarks down to the Gîte de la Molière; across the alpage back by Sous le Tracollet.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Isère Attractivité, Le plateau de la Molière (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/le-plateau-de-la-moliere-4894442/",
+            "authority": "Isère Attractivité",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The track across the Molière alpage beside its huts, in September 2025 (eric_s on Mapillary, CC BY-SA 4.0), on the line.',
+        route: 'Official loop 5 km from the La Molière car park, as the Isère Attractivité publishes it; the stored line is drawn on 18 OSM ways along the board’s published line, 5.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From La Molière head for the Col de la Croix Perrin by the Pas du Tracollet, on the yellow-and-red waymarks of the Tour des 4 Montagnes GR de Pays; at Charande (1,709 m) carry on towards the Pas de l’Ours by Sous Charande, then leave the GR de Pays and go down to the Gîte de la Molière; on to La Molière across the alpage, past Sous le Tracollet back to the car park. Yellow-and-green PR and yellow-and-red GR de Pays waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 5 km, 153 m up and 153 m down, 1:30 h average walking time (Isère Attractivité, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Isère Attractivité, Le plateau de la Molière (alpes-isere.com, Apidae 4894442) and its official GPX',
+          'Vercors park page for this walk: “If you have a dog, keep it on a leash”; the loop crosses the Plateau de la Molière et du Sornin ENS (Isère department), whose specific rules are posted at the site entrance',
+          'Autrans-Méaudre en Vercors and Engins publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional du Vercors: a regional park sets no dog rule of its own outside the Hauts-Plateaux nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (18 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 39,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpage: several hundred heifers graze in summer, and guard dogs may be with flocks; keep your dog on a lead and walk round the herd calmly', 'Open plateau at about 1,600–1,700 m with quick weather changes and cliffs on the edge near Charande', 'On summer weekends and holidays (11 July to 16 August in 2026) the road to La Molière is closed to cars from 10 am to 7 pm: come by the paying shuttle from La Sure'],
+      terrainType: 'Alpage tracks, mountain paths and grassy ridge',
+      shadeDescription: 'Mostly open: just under two fifths of the line runs along the edge of the woods; the alpage and Charande are open.',
+      terrainDescription: 'An easy family loop on the Molière plateau above Autrans, up to Charande, the highest point of Autrans at 1,709 m, with a wide view over the Alps from Mont Blanc to the Écrins, and back across the alpage past the Gîte de la Molière.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Keep your dog on a lead: the Vercors park’s page for this walk asks for it, the loop crosses the Plateau de la Molière et du Sornin sensitive natural area with its own rules posted at the entrance, and heifers and guard dogs use the alpage in summer. Autrans-Méaudre en Vercors and Engins publish no dog order online, so the national rule applies too.',
+      tips: 'Drive up from Autrans by the La Sure resort and the Feneys forest road to the La Molière car park: 5 km round, 153 m up and down, about 1 h 30. On summer weekends the road is closed from 10 am to 7 pm and a shuttle runs from La Sure; ask about snow outside summer.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Le plateau de la Molière (Isère Attractivité)', url: 'https://www.alpes-isere.com/itineraire/le-plateau-de-la-moliere-4894442/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/178/75/3492786/TracesGPS_1_le+plateau+de+la+Molire.gpx' },
+        { label: 'Parc du Vercors, Le plateau de la Molière walk page', url: 'https://rando.parc-du-vercors.fr/en/trek/27741-The-Moliere-plateau' },
+        { label: 'Isère Attractivité, ENS du plateau de la Molière et du Sornin', url: 'https://www.alpes-isere.com/patrimoine-naturel/espace-naturel-sensible-du-plateau-de-la-moliere-et-du-sornin' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.197969, lng: 5.591038, label: 'La Molière car park at the end of the forest road, the board’s start' },
+      desc: 'An easy loop on the Molière plateau above Autrans, up to the Charande viewpoint over the Alps and back across the summer alpage past the Gîte de la Molière. The official page lists 5 km, 153 m up and down, about 1 h 30.'
+    },
+    'isere-le-fort-du-murier': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 2, Isère).
+      // “Le fort du Murier”, published by the Office de Tourisme Grenoble Alpes, drawn on 25 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 6086222). Communes: Gières and Saint-Martin-d’Hères (no dog order found online for either, probably exists: the national rule applies; the page says dogs on a lead).
+      // No national park, nature reserve, biotope order, regional park or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Fort du Murier – Le Bigot – Batteries Hautes (Gières, above Grenoble)',
+      distance: 4.2,
+      elevation: 152,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Fort du Murier car park: down to the Le Murier hamlet past the leisure centre, up the road by Les Collodes to the hamlet of Le Bigot, along a broad track to the ruins of the Batteries Hautes, down through the forest to the Col du Courlu and by the sunken lane of Les Combettes back to Le Murier and the car park.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Fort du Murier car park, on the hill above Gières.",
+        "sequence": "Turn right out of the car park and walk down towards the hamlet of Le Murier, past the leisure centre. At the crossroads turn right towards Les Collodes, then at the next junction go left up the road towards Le Bigot. At the top of the climb leave the road on the left and carry on along the path, then walk through the hamlet of Le Bigot. In the bend at the end of the hamlet take the path on the right; at its end cross the road and follow the broad track to the Batteries Hautes, with picnic tables and a view over the Vercors and Grenoble. Walk along the ruins and take the path down through the forest to the Col du Courlu, then turn left down the sunken lane towards Les Combettes to a track along the meadows and down to Le Murier. Back at the crossroads by the D 112, walk up to the car park the way you came.",
+        "switches": "Right out of the car park; right at the crossroads for Les Collodes; left up towards Le Bigot; right in the bend after Le Bigot; left at the Col du Courlu towards Les Combettes; back up from the D 112 crossroads.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme Grenoble Alpes, Le fort du Murier (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/le-fort-du-murier-6086222/",
+            "authority": "Office de Tourisme Grenoble Alpes",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The woodland track on the loop below the Batteries Hautes, in September 2025 (eric_s on Mapillary, CC BY-SA 4.0), on the line.',
+        route: 'Official loop 4.2 km from the Fort du Murier car park, as the Office de Tourisme Grenoble Alpes publishes it; the stored line is drawn on 25 OSM ways along the board’s published line, 4.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the Fort du Murier car park turn right down towards Le Murier past the leisure centre; right at the crossroads towards Les Collodes; left up the road towards Le Bigot, on along the path where the road bends left, through the hamlet of Le Bigot; at the bend after the hamlet take the path on the right, cross the road and follow the broad track to the Batteries Hautes; past the ruins down the forest path to the Col du Courlu, left down the sunken lane towards Les Combettes to Le Murier, and back up to the car park the way you came. Yellow PR waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.2 km, 152 m up and 152 m down, 2:00 h average walking time (Office de Tourisme Grenoble Alpes, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme Grenoble Alpes, Le fort du Murier (alpes-isere.com, Apidae 6086222) and its official GPX',
+          'Gières and Saint-Martin-d’Hères publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs on a lead',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (25 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 48,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About a third of the loop is on quiet hamlet roads; the D 112 is reached at the Le Murier crossroads', 'Stony, earthy tracks and a sunken lane that can be muddy after rain', 'Low altitude (about 430–580 m): warm on summer afternoons'],
+      terrainType: 'Hamlet roads, broad tracks and forest paths',
+      shadeDescription: 'About half under trees: the descent from the Batteries Hautes to the Col du Courlu and the sunken lane are wooded; the hamlet roads and meadows are open.',
+      terrainDescription: 'A short family loop on the green hillside above Gières and Grenoble, through the hamlets of Le Murier and Le Bigot to the ruins of the Batteries Hautes, with views over the Vercors and the city, past the goat farm of the Ferme des Maquis.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs on a lead, according to the official page. Gières and Saint-Martin-d’Hères publish no dog order online, so the national rule applies too: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Goats and other livestock may be near the path.',
+      tips: 'Park at the Fort du Murier car park above Gières: 4.2 km round, 152 m up and down, about 2 h. Open all year; picnic tables at the Batteries Hautes.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Le fort du Murier (Office de Tourisme Grenoble Alpes)', url: 'https://www.alpes-isere.com/itineraire/le-fort-du-murier-6086222/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/150/66/29377174/le_fort_du_murier-20766434-1740392307-70.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.173594, lng: 5.781196, label: 'Fort du Murier car park above Gières, the board’s start' },
+      desc: 'A short family loop above Gières through the hamlets of Le Murier and Le Bigot to the ruins of the Batteries Hautes, with views over the Vercors and Grenoble, and back down through the woods by the Col du Courlu. The official page lists 4.2 km, 152 m up and down, about 2 h.'
+    },
     'eggental-passo-nigra-malga-hagner': {
       // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
       // “Escursione per famiglie dal Passo Nigra alla malga Hagner Alm”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 11 OSM ways along the line it publishes

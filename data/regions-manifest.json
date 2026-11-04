@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T22:58:39.247Z",
+  "generatedAt": "2026-11-04T23:07:37.930Z",
   "regions": {
     "dolomites": {
       "trailCount": 348,
@@ -430,13 +430,16 @@
       "optional": []
     },
     "frenchalps": {
-      "trailCount": 4,
-      "trails": "data/regions/frenchalps-trails.js?v=71c4ab82e3ba",
+      "trailCount": 7,
+      "trails": "data/regions/frenchalps-trails.js?v=7389e770a056",
       "details": {
         "isere-circuit-pedestre-alpage-des-cloutons": "data/trail-details/isere-circuit-pedestre-alpage-des-cloutons.js?v=49a687efe1a9",
         "isere-la-vallee-de-la-gresse": "data/trail-details/isere-la-vallee-de-la-gresse.js?v=878e858a0fc3",
         "isere-le-canal-de-clelles": "data/trail-details/isere-le-canal-de-clelles.js?v=dadf2cf428a2",
-        "isere-tour-de-chichilianne": "data/trail-details/isere-tour-de-chichilianne.js?v=9fe67c828900"
+        "isere-tour-de-chichilianne": "data/trail-details/isere-tour-de-chichilianne.js?v=9fe67c828900",
+        "isere-boucle-du-couzon": "data/trail-details/isere-boucle-du-couzon.js?v=821e54383fdc",
+        "isere-le-plateau-de-la-moliere": "data/trail-details/isere-le-plateau-de-la-moliere.js?v=fdf8929a4e60",
+        "isere-le-fort-du-murier": "data/trail-details/isere-le-fort-du-murier.js?v=4b304a86fdea"
       },
       "water": "data/regions/frenchalps-water.geojson",
       "hutsBars": "data/regions/frenchalps-huts-bars.geojson",
@@ -1003,6 +1006,9 @@
     "isere-la-vallee-de-la-gresse": "frenchalps",
     "isere-le-canal-de-clelles": "frenchalps",
     "isere-tour-de-chichilianne": "frenchalps",
+    "isere-boucle-du-couzon": "frenchalps",
+    "isere-le-plateau-de-la-moliere": "frenchalps",
+    "isere-le-fort-du-murier": "frenchalps",
     "lario-brunate-e-le-sue-chiese": "lombardy",
     "lario-pognana-lario-e-le-sculture-simposio": "lombardy",
     "lario-alla-ricerca-di-un-panorama-unico": "lombardy",
@@ -1582,6 +1588,9 @@
     "unterengadin-guarda-ardez-hike-between-two-engadin-villages": "guarda-to-ardez",
     "unterengadin-s-charl-alp-sesvenna-return": "s-charl-to-alp-sesvenna-and-back",
     "unterengadin-zernez-brail": "zernez-to-brail",
+    "isere-boucle-du-couzon": "couzon-loop-saint-pierre-de-chartreuse",
+    "isere-le-plateau-de-la-moliere": "moliere-plateau-loop-autrans",
+    "isere-le-fort-du-murier": "fort-du-murier-loop-gieres",
     "eggental-passo-nigra-malga-hagner": "passo-nigra-malga-hagner",
     "eggental-kaiserstein-baita-masare": "kaiserstein-baita-masare",
     "eggental-jolanda-baita-messnerjoch": "jolanda-baita-messnerjoch",
@@ -2082,6 +2091,9 @@
     "guarda-to-ardez": "unterengadin-guarda-ardez-hike-between-two-engadin-villages",
     "s-charl-to-alp-sesvenna-and-back": "unterengadin-s-charl-alp-sesvenna-return",
     "zernez-to-brail": "unterengadin-zernez-brail",
+    "couzon-loop-saint-pierre-de-chartreuse": "isere-boucle-du-couzon",
+    "moliere-plateau-loop-autrans": "isere-le-plateau-de-la-moliere",
+    "fort-du-murier-loop-gieres": "isere-le-fort-du-murier",
     "passo-nigra-malga-hagner": "eggental-passo-nigra-malga-hagner",
     "kaiserstein-baita-masare": "eggental-kaiserstein-baita-masare",
     "jolanda-baita-messnerjoch": "eggental-jolanda-baita-messnerjoch",

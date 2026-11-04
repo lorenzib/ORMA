@@ -218,12 +218,15 @@ describe('the existing-site verification boundary',()=>{
     // Then 491 and 489 with six Lower Engadin walks: Vnà to Ramosch and to Val
     // Sinestra, Scuol to Ftan, Guarda to Ardez, S-charl to Alp Sesvenna and back,
     // and Zernez to Brail.
-    // Then 498 and 496 with seven Dolomites walks: six in the Eggental (Passo Nigra
+    // Then 494 and 492 with three more Isère walks: the Couzon loop from
+    // Saint-Pierre-de-Chartreuse, the Molière plateau above Autrans, and the Fort
+    // du Murier above Gières.
+    // Then 501 and 499 with seven Dolomites walks: six in the Eggental (Passo Nigra
     // to the Malga Hagner Alm and to the Baita Messnerjoch, Kaiserstein to the Baita
     // Masarè, Jolanda to the Baita Messnerjoch, Malga Frommer to the Ochsenhütte,
     // Pietralba to the Petersberger Leger) and the cammino dei pitores in Mazzin.
-    expect(catalogue).toHaveLength(498);
-    expect(currentSiteTrails(catalogue)).toHaveLength(496);
+    expect(catalogue).toHaveLength(501);
+    expect(currentSiteTrails(catalogue)).toHaveLength(499);
   });
 
   test('requires the artwork the public trail page needs',()=>{

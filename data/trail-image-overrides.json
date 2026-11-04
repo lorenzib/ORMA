@@ -2213,6 +2213,23 @@
       }
     },
     {
+      "id": "isere-boucle-du-couzon",
+      "approvedReviewId": "mapillary-isere-boucle-du-couzon-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-boucle-du-couzon-village.jpg",
+        "heroImage": "images/trails/isere-boucle-du-couzon-village.jpg",
+        "imageAlt": "A village crossroads of old stone houses with steep tiled roofs and walking signposts, under forested slopes and a pointed limestone peak in early-summer sun",
+        "imageCredit": "Saint-Pierre-de-Chartreuse at the start of the loop",
+        "imageCreditText": "Saint-Pierre-de-Chartreuse at the start of the loop by pgiraud",
+        "imageCreator": "pgiraud",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=487979325982794",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "isere-circuit-pedestre-alpage-des-cloutons",
       "approvedReviewId": "commons-isere-circuit-pedestre-alpage-des-cloutons-on-route",
       "approvedAt": "2026-11-04T12:00:00.000Z",
@@ -2277,6 +2294,40 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Meadow_in_the_pré_Alps.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-le-fort-du-murier",
+      "approvedReviewId": "mapillary-isere-le-fort-du-murier-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-le-fort-du-murier-forest-track.jpg",
+        "heroImage": "images/trails/isere-le-fort-du-murier-forest-track.jpg",
+        "imageAlt": "A stony sunken track climbing gently through a green broadleaf wood, with fallen leaves on the verges in late summer",
+        "imageCredit": "The woodland track on the Fort du Murier loop",
+        "imageCreditText": "The woodland track on the Fort du Murier loop by eric_s",
+        "imageCreator": "eric_s",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1202870195214589",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-le-plateau-de-la-moliere",
+      "approvedReviewId": "mapillary-isere-le-plateau-de-la-moliere-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-le-plateau-de-la-moliere-alpage-track.jpg",
+        "heroImage": "images/trails/isere-le-plateau-de-la-moliere-alpage-track.jpg",
+        "imageAlt": "A stony track across a green mountain pasture beside a small wooden hut and a farm gate, with a wooded ridge rising on the right under a hazy autumn sky",
+        "imageCredit": "The alpage track on the Molière plateau",
+        "imageCreditText": "The alpage track on the Molière plateau by eric_s",
+        "imageCreator": "eric_s",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=835775935466013",
         "imageSourceType": "licensed-source"
       }
     },
