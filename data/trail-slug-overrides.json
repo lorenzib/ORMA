@@ -1723,6 +1723,31 @@
       "name": "Lago Bianco loop from Ospizio Bernina",
       "slug": "lago-bianco-loop-from-ospizio-bernina",
       "gloss": "round the lake on the Bernina Pass"
+    },
+    "isere-circuit-pedestre-alpage-des-cloutons": {
+      "name": "Alpage des Cloutons loop from Saint-Honoré 1500",
+      "slug": "alpage-des-cloutons-loop-saint-honore-1500",
+      "gloss": "Matheysine ridge loop past the Lac Charlet"
+    },
+    "isere-la-vallee-de-la-gresse": {
+      "name": "Gresse valley loop from Miribel-Lanchâtre",
+      "slug": "gresse-valley-loop-miribel-lanchatre",
+      "gloss": "Trièves village loop down to the Gresse"
+    },
+    "isere-de-st-pierre-dentremont-a-corbel": {
+      "name": "Saint-Pierre-d’Entremont to Corbel loop",
+      "slug": "saint-pierre-dentremont-corbel-loop",
+      "gloss": "Chartreuse loop over the Pas de la Coche"
+    },
+    "isere-le-canal-de-clelles": {
+      "name": "Clelles canal loop",
+      "slug": "clelles-canal-loop",
+      "gloss": "Trièves farmland loop below the Mont Aiguille"
+    },
+    "isere-tour-de-chichilianne": {
+      "name": "Tour de Chichilianne",
+      "slug": "tour-de-chichilianne-loop",
+      "gloss": "short loop at the foot of the Mont Aiguille"
     }
   }
 }

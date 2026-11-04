@@ -209,8 +209,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 476 and 474 with four Val Poschiavo walks: Alp Grüm down to Cavaglia via
     // Stablini and via Lagh da Palü, the Lago di Poschiavo loop from Le Prese, and
     // the Lago Bianco loop on the Bernina Pass.
-    expect(catalogue).toHaveLength(476);
-    expect(currentSiteTrails(catalogue)).toHaveLength(474);
+    // Then 481 and 479 with five Isère walks, the first in the French Alps region:
+    // Alpage des Cloutons, the Gresse valley, Saint-Pierre-d’Entremont to Corbel
+    // (in Savoy by its nearest town), the Clelles canal and the Tour de Chichilianne.
+    expect(catalogue).toHaveLength(481);
+    expect(currentSiteTrails(catalogue)).toHaveLength(479);
   });
 
   test('requires the artwork the public trail page needs',()=>{
