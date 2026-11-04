@@ -1,6 +1,13 @@
 (function(){
   let mode = 'login'; // 'login' | 'signup' | 'reset'
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   // The one definition of the login dialog.
   //
   // index.html used to ship its own copy and this was the fallback for every
@@ -29,7 +36,7 @@
                 ' loading="lazy" decoding="async" width="900" height="1200">' +
             '</picture>' +
             '<div class="auth-hero-shade"></div>' +
-            '<button id="authClose" class="modal-close" aria-label="Close">&times;</button>' +
+            '<button id="authClose" class="modal-close" aria-label="' + tx('Close') + '">&times;</button>' +
             '<div class="auth-hero-copy">' +
               '<span class="auth-hero-brand"><img src="logo.svg?v=5" alt="">ORMA</span>' +
               '<h2 id="authTitle" data-i18n="nav.login">Log in</h2>' +
@@ -37,11 +44,11 @@
             '</div>' +
           '</div>' +
           '<div class="auth-body">' +
-            '<button type="button" id="authBackToLogin" class="auth-back-link" hidden>&larr; Back to log in</button>' +
+            '<button type="button" id="authBackToLogin" class="auth-back-link" hidden>&larr; ' + tx('Back to log in') + '</button>' +
             '<div id="authResetDone" class="auth-reset-done" aria-live="polite" hidden></div>' +
             '<div id="authError" class="auth-error" role="alert" aria-live="polite" hidden></div>' +
             '<form id="authForm">' +
-              '<label class="field-label auth-signup-field" id="authNameLabel" hidden><span>Your name</span>' +
+              '<label class="field-label auth-signup-field" id="authNameLabel" hidden><span>' + tx('Your name') + '</span>' +
                 '<input type="text" id="authName" autocomplete="name" placeholder="Marta Bianchi">' +
               '</label>' +
               '<label class="field-label"><span data-i18n="auth.email">Email</span>' +
@@ -49,16 +56,16 @@
               '</label>' +
               '<label class="field-label"><span data-i18n="auth.password">Password</span>' +
                 '<input type="password" id="authPassword" required autocomplete="current-password" minlength="6">' +
-                '<small id="authPasswordHint" class="auth-field-hint" hidden>At least 8 characters.</small>' +
+                '<small id="authPasswordHint" class="auth-field-hint" hidden>' + tx('At least 8 characters.') + '</small>' +
               '</label>' +
-              '<label class="field-label auth-signup-field" id="authConfirmLabel" hidden><span>Confirm password</span>' +
+              '<label class="field-label auth-signup-field" id="authConfirmLabel" hidden><span>' + tx('Confirm password') + '</span>' +
                 '<input type="password" id="authConfirmPassword" autocomplete="new-password">' +
               '</label>' +
               '<button type="button" id="forgotPasswordBtn" class="forgot-link" data-i18n="auth.forgot">Forgot password?</button>' +
-              '<label class="auth-terms" id="authTermsLabel" hidden><input type="checkbox" id="authTerms"> <span>I agree to the <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>.</span></label>' +
+              '<label class="auth-terms" id="authTermsLabel" hidden><input type="checkbox" id="authTerms"> <span>' + tx('I agree to the <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>.') + '</span></label>' +
               '<button type="submit" class="auth-submit" id="authSubmit" data-i18n="nav.login">Log in</button>' +
             '</form>' +
-            '<div class="auth-divider"><span>or</span></div>' +
+            '<div class="auth-divider"><span>' + tx('or') + '</span></div>' +
             '<button id="googleBtn" class="google-btn"><span data-i18n="auth.google">Continue with Google</span></button>' +
             '<button id="appleBtn" class="apple-btn" hidden><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 12.9c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-2-.9-3.2-.9-1.7 0-3.2 1-4 2.5-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.4 0 1.9.8 3.2.8 1.3 0 2.1-1.2 2.9-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.4-1-2.4-3.9zM14.2 5.3c.6-.8 1.1-1.9 1-3-1 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg><span data-i18n="auth.apple">Continue with Apple</span></button>' +
             '<p class="auth-toggle">' +
@@ -165,7 +172,7 @@
       };
       const name = String(pending.name || '').trim();
       const describe = dog => [dog.breed, dog.ageBand, dog.weightBand]
-        .map(value => String(value || '').trim()).filter(Boolean).join(' · ') || 'no other details';
+        .map(value => String(value || '').trim()).filter(Boolean).join(' · ') || tx('no other details');
 
       const panel = document.createElement('div');
       panel.className = 'auth-dogclash';
@@ -174,8 +181,8 @@
         '<h3 class="auth-dogclash-title"></h3>' +
         '<p class="auth-dogclash-lede"></p>' +
         '<div class="auth-dogclash-compare">' +
-          '<div><small>On your account</small><span class="auth-dogclash-existing"></span></div>' +
-          '<div><small>Just added here</small><span class="auth-dogclash-pending"></span></div>' +
+          '<div><small>' + tx('On your account') + '</small><span class="auth-dogclash-existing"></span></div>' +
+          '<div><small>' + tx('Just added here') + '</small><span class="auth-dogclash-pending"></span></div>' +
         '</div>' +
         '<button type="button" class="auth-submit" data-clash="update"></button>' +
         '<button type="button" class="auth-dogclash-secondary" data-clash="add"></button>' +

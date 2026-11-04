@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-itineraire-poussette-des-chalets-brules",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 1.6,
+    "ascentM": 20,
+    "highestPointM": 1517,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 45.78856,
+    "lng": 6.531665,
+    "label": "Grande Mouille car park on the road to Les Saisies, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Working alpage: cows and goats graze beside the track in summer; keep your dog on a lead and give the herds room.",
+    "Farm vehicles use the track: lead on.",
+    "About 40 m along the Saisies road at the car park: keep your dog close.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

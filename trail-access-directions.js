@@ -1,6 +1,13 @@
 (function(root){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const DEFAULT_MAX_KM = 100;
   const TRAIL_JOIN_MAX_KM = 5;
   const MAX_GPS_ACCURACY_M = 500;
@@ -61,7 +68,7 @@
       point:{ lat:point.lat, lng:point.lng },
       label:declared && declared.label
         ? declared.label
-        : (trail.curated === false ? 'Mapped route start' : 'Recommended starting point'),
+        : (trail.curated === false ? tx('Mapped route start') : tx('Recommended starting point')),
       kind:trail.curated === false ? 'mapped-start' : 'recommended-start',
     };
   }
@@ -97,22 +104,24 @@
     if(!segments.length) return [];
 
     const steps = [];
-    let action = 'Follow the mapped path';
+    let action = tx('Follow the mapped path');
     let heading = segments[0].bearing;
     let distanceM = 0;
     segments.forEach((segment, index) => {
       const change = signedBearingChange(heading, segment.bearing);
       if(index > 0 && Math.abs(change) >= 35){
         steps.push({ action, distanceM:Math.round(distanceM) });
-        const side = change > 0 ? 'right' : 'left';
-        action = `${Math.abs(change) < 75 ? 'Bear' : 'Turn'} ${side}`;
+        const right = change > 0;
+        action = Math.abs(change) < 75
+          ? (right ? tx('Bear right') : tx('Bear left'))
+          : (right ? tx('Turn right') : tx('Turn left'));
         distanceM = 0;
       }
       distanceM += segment.distanceM;
       heading = segment.bearing;
     });
     if(distanceM > 0) steps.push({ action, distanceM:Math.round(distanceM) });
-    steps.push({ action:'Join the trail', distanceM:0 });
+    steps.push({ action:tx('Join the trail'), distanceM:0 });
     return steps;
   }
 
@@ -171,7 +180,7 @@
         mode:'nearest-route',
         origin,
         target:nearest.point,
-        targetLabel:'Nearest point on this trail',
+        targetLabel:tx('Nearest point on this trail'),
         targetKind:'nearest-route-point',
         accuracyM,
         distanceKm:nearest.distanceKm,

@@ -1,0 +1,13 @@
+// valgardena-escursione-ortisei-passo-sella in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A long climb from Ortisei along the old railway path and past the Tervela waterfall to Monte Pana, then below the Sassolungo to the Rifugio Comici and through the Città dei Sassi to the Passo Sella. The board lists 12.4 km and 1,101 m of ascent one way.": "Una lunga salita da Ortisei lungo il sentiero della vecchia ferrovia e oltre la cascata del Tervela fino al Monte Pana, poi sotto il Sassolungo fino al Rifugio Comici e attraverso la Città dei Sassi fino al Passo Sella. La scheda ufficiale indica 12,4 km e 1.101 m di dislivello in salita, solo andata.",
+  "Start in Ortisei: 12.4 km and about 1,100 m of climbing one way, about four and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Fill water bottles before the climb from Monte Pana, take care in the boulder field, and plan the bus back from the Passo Sella (line 471 to Plan, then 350, 306 or 352); dogs ride muzzled with a ticket.": "Parti da Ortisei: 12,4 km e circa 1.100 m di salita solo andata, circa quattro ore e mezza. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito. Riempi le borracce prima della salita dal Monte Pana, fai attenzione tra i massi e organizza il ritorno in autobus dal Passo Sella (linea 471 fino a Plan, poi 350, 306 o 352); i cani viaggiano con museruola e biglietto.",
+  "Long day: 12 km and 1,100 m of climbing": "Giornata lunga: 12 km e 1.100 m di salita",
+  "Boulder field in the Città dei Sassi: uneven, rocky ground": "Distesa di massi nella Città dei Sassi: terreno irregolare e roccioso",
+  "Beside the Tervela waterfall: keep your dog out of the water": "Accanto alla cascata del Tervela: tieni il cane fuori dall'acqua",
+  "Town streets with traffic in Ortisei and a road crossing at Monte Pana": "Strade cittadine con traffico a Ortisei e un attraversamento stradale al Monte Pana",
+  "Old railway path, mountain paths and boulder field": "Sentiero della vecchia ferrovia, sentieri di montagna e distesa di massi",
+  "Ortisei, the board’s start": "Ortisei, partenza indicata dalla scheda ufficiale",
+  "Grey boulders and stone pines scattered across green alpine grass in the Città dei Sassi, the pale walls of the Sella group rising behind under a blue sky with white clouds": "Massi grigi e pini cembri sparsi sull'erba alpina verde nella Città dei Sassi, le pallide pareti del Gruppo del Sella che si alzano dietro sotto un cielo azzurro con nuvole bianche",
+  "Mostly open: only about a tenth runs through forest.": "Per lo più aperto: solo circa un decimo corre nel bosco."
+});

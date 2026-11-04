@@ -32,7 +32,7 @@ describe('Safety library', () => {
     expect(document.querySelector('.sg-hero-copy').textContent.length).toBeGreaterThan(300);
     expect(document.querySelector('.sg-hero-copy').textContent).toContain('recognise early warning signs');
     // A readable line length rather than a paragraph running edge to edge.
-    expect(html).toMatch(/\.sg-hero-copy\{[^}]*width:100%;[^}]*max-width:72ch/s);
+    expect(html).toMatch(/\.sg-hero-copy\{[^}]*width:100%;[^}]*max-width:none/s);
     expect(html).not.toContain('ORMA mountain guidance');
     expect(html).not.toMatch(/\.sg-hero h1\{[^}]*font-size:/s);
   });
@@ -85,7 +85,7 @@ describe('Safety library', () => {
     expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:var\(--card\)/s);
     expect(html).toMatch(/\.sg-readiness-fab-icon\{[^}]*border-radius:50%/s);
     expect(html).toMatch(/\.sg-readiness-fab-icon img\{[^}]*width:100%;[^}]*height:100%;[^}]*border-radius:50%;[^}]*object-fit:cover/s);
-    expect(html).not.toMatch(/\.sg-readiness-fab\{[^}]*position:fixed/s);
+    expect(html).toMatch(/\.sg-readiness-fab\{[^}]*position:fixed;[^}]*right:max\(24px[^}]*bottom:max\(24px/s);
     expect(document.querySelectorAll('#readinessQuiz .sg-question')).toHaveLength(5);
     expect(document.querySelector('#readinessQuizResult').getAttribute('aria-live')).toBe('polite');
     expect(html).toContain("dialog.showModal()");

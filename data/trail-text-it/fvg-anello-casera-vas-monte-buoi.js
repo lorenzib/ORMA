@@ -1,0 +1,12 @@
+// fvg-anello-casera-vas-monte-buoi in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A long forest loop from Frassenetto in the upper Val Degano to the summer pastures of Casera Vas and Casera Monte dei Buoi, among larch, fir and big limestone boulders. PromoTurismoFVG lists 11.1 km and 659 m of ascent.": "Un lungo anello nel bosco da Frassenetto, in alta Val Degano, fino ai pascoli estivi di Casera Vas e Casera Monte dei Buoi, tra larici, abeti e grandi massi calcarei. PromoTurismoFVG indica 11,1 km e 659 m di dislivello in salita.",
+  "Start in Frassenetto above Forni Avoltri: 11.1 km and about 660 m of climbing, nearly four hours. Keep your dog on a lead near the herds and in the hamlet, and carry a muzzle. Casera Vas can be used as a shelter. A summer walk: not in snow or ice.": "Parti da Frassenetto sopra Forni Avoltri: 11,1 km e circa 660 m di salita, quasi quattro ore. Tieni il cane al guinzaglio vicino alle mandrie e nella frazione, e porta la museruola. Casera Vas può essere usata come riparo. Una passeggiata estiva: non con neve o ghiaccio.",
+  "Heifers graze at Casera Vas in summer: close the electric fence gaps behind you and keep your dog on a short lead": "D'estate a Casera Vas pascolano le manze: richiudi dietro di te i varchi del recinto elettrico e tieni il cane al guinzaglio corto",
+  "Long forest roads shared with forestry vehicles": "Lunghe strade forestali condivise con i mezzi forestali",
+  "In winter the slope above the forest is steep and avalanches run near Casera Monte dei Buoi: summer walk only": "D'inverno il pendio sopra il bosco è ripido e vicino a Casera Monte dei Buoi scendono valanghe: solo passeggiata estiva",
+  "Forest roads and pasture paths": "Strade forestali e sentieri nei pascoli",
+  "Frassenetto, Forni Avoltri, the board’s start": "Frassenetto, Forni Avoltri, partenza indicata dalla scheda ufficiale",
+  "A white church with an onion-domed bell tower on a green slope above a mountain village road, spruces and summer clouds behind": "Una chiesa bianca con il campanile a cipolla su un pendio verde sopra una strada di paese di montagna, abeti rossi e nuvole estive sullo sfondo",
+  "Well shaded: nearly nine tenths of the loop runs through dense spruce, larch and fir forest; the two pastures are open.": "Ben ombreggiato: quasi nove decimi dell'anello passano in un fitto bosco di abeti rossi, larici e abeti bianchi; i due pascoli sono aperti."
+});

@@ -1,0 +1,12 @@
+// rendena-ciclabile-javre-dare-vigo-pelugo in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A flat loop on the floor of the Val Rendena along both banks of the Sarca, between Javrè, Darè, Vigo and Pelugo, mostly on the cycle path and quiet lanes. The APT lists 7.2 km and 79 m of ascent.": "Un anello pianeggiante sul fondovalle della Val Rendena lungo entrambe le rive del Sarca, tra Javrè, Darè, Vigo e Pelugo, soprattutto su pista ciclabile e stradine tranquille. L'APT indica 7,2 km e 79 m di dislivello in salita.",
+  "Start at the information point at Villa Rendena (free parking): 7.2 km, under 100 m of climbing, about two and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The valley floor is hot in summer: go early or late and fill up at the Bici Grill in Vigo.": "Parti dal punto informazioni di Villa Rendena (parcheggio gratuito): 7,2 km, meno di 100 m di salita, circa due ore e mezza. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito. D'estate il fondovalle è caldo: vai presto o tardi e fai rifornimento d'acqua al Bici Grill di Vigo.",
+  "The Val Rendena cycle path is shared with bikes and inline skaters: keep your dog on a short lead": "La pista ciclabile della Val Rendena è condivisa con bici e pattinatori: tieni il cane al guinzaglio corto",
+  "Short stretches on the main road and side roads at Villa Rendena": "Brevi tratti sulla strada principale e su strade secondarie a Villa Rendena",
+  "The path runs beside the Sarca: keep your dog out of the river after rain": "Il sentiero corre lungo il Sarca: dopo la pioggia tieni il cane fuori dal fiume",
+  "Cycle path, tarmac lanes, a track and a short path": "Pista ciclabile, stradine asfaltate, una carrareccia e un breve sentiero",
+  "Porte di Rendena information point, Villa Rendena, the APT’s start": "Punto informazioni Porte di Rendena, Villa Rendena, la partenza indicata dall'APT",
+  "A narrow paved path between wooden fences beside the river Sarca, green meadows and wooded mountains under a blue sky with white clouds": "Un sentiero lastricato stretto tra staccionate di legno lungo il fiume Sarca, prati verdi e montagne boscose sotto un cielo azzurro con nuvole bianche",
+  "Mostly open: about 23% runs under trees, the valley floor is mostly in the sun.": "Per lo più aperto: circa il 23% del percorso passa sotto gli alberi, il fondovalle è quasi tutto al sole."
+});

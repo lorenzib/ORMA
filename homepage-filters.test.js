@@ -1212,7 +1212,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(markerLayer).toContain("'text-field': ['to-string', ['get', 'rank']]");
     expect(markerLayer).toContain("'text-font': window.ORMAMapStyle.FONT_BOLD");
     expect(markerLayer).toContain("'#9AA19C'");
-    expect(script).toContain('Where are we going today, ${profile.name}?');
+    expect(script).toContain("tx('Where are we going today, {name}?', { name:profile.name })");
     // The line under the headline is gone; the headline names the scope.
     expect(script).not.toContain('Trails ranked for ${profile.name}\\u2019s needs');
     expect(script).not.toContain('trails scored`');
@@ -1244,7 +1244,7 @@ describe('map-first returning homepage layout contract', () => {
   });
 
   test('uses a deliberate mobile filter row and compact map controls', () => {
-    expect(html).toContain('<div class="li-mobile-actions" aria-label="Trail actions">');
+    expect(html).toContain('<div class="li-mobile-actions" aria-label="Trail actions" data-i18n-aria-label="page.index.trailActions">');
     expect(mobileCss).toContain('body.mhome-active .li-toolbar-greet-copy{display:none;}');
     // The location pill and the date share a row while both fit and take a
     // line each below that. At 320px they used to fill the row exactly,
@@ -1275,7 +1275,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toContain("mapShell.classList.toggle('map-layers-open', open)");
     expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");
     expect(script).toContain("window.matchMedia('(max-width:700px)').matches");
-    expect(script).toContain("'<button type=\"button\" data-map3d aria-pressed=\"false\">Terrain</button>'");
+    expect(script).toContain("'<button type=\"button\" data-map3d aria-pressed=\"false\">' + tx('Terrain') + '</button>'");
   });
 
   test('groups card actions on the left and gives the dog match a larger right panel', () => {

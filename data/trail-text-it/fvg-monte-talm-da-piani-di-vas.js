@@ -1,0 +1,12 @@
+// fvg-monte-talm-da-piani-di-vas in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A loop from Piani di Vas past the Rifugio Chiampizzulon to the panoramic summit of Monte Talm above the Val Pesarina, and back down through the summit meadows. PromoTurismoFVG lists 10.6 km and 744 m of ascent.": "Un anello dai Piani di Vas oltre il Rifugio Chiampizzulon fino alla cima panoramica del Monte Talm sopra la Val Pesarina, con discesa attraverso i prati sommitali. PromoTurismoFVG indica 10,6 km e 744 m di dislivello in salita.",
+  "Start at the Piani di Vas car park: 10.6 km and about 750 m of climbing, over four hours. Keep your dog on a lead throughout and muzzle a medium or large dog on the Prato Carnico side. There is no water on the loop; the Rifugio Chiampizzulon serves food when open, and the walk can stop there.": "Parti dal parcheggio dei Piani di Vas: 10,6 km e circa 750 m di salita, più di quattro ore. Tieni il cane sempre al guinzaglio e metti la museruola ai cani di taglia media o grande sul versante di Prato Carnico. Lungo l'anello non c'è acqua; il Rifugio Chiampizzulon serve da mangiare quando è aperto, e la passeggiata può fermarsi lì.",
+  "A long climb of about 750 m: plan rests and water for your dog": "Una lunga salita di circa 750 m: prevedi soste e acqua per il tuo cane",
+  "The grassy ridge and the southern descent are steep and slippery when wet; take great care in snow": "La cresta erbosa e la discesa a sud sono ripide e scivolose quando sono bagnate; massima attenzione con la neve",
+  "No water on the loop": "Niente acqua lungo l'anello",
+  "Forest roads, forest paths and a grassy ridge": "Strade forestali, sentieri nel bosco e una cresta erbosa",
+  "Piani di Vas car park, the board’s start": "Parcheggio dei Piani di Vas, partenza indicata dalla scheda ufficiale",
+  "Red and white trail signposts for Malga Chiampiut and the Sella di Talm in green woodland, a rocky mountain ridge under a blue sky behind": "Cartelli segnaletici bianchi e rossi per Malga Chiampiut e la Sella di Talm in un bosco verde, una cresta rocciosa sotto un cielo azzurro sullo sfondo",
+  "About half shaded: the forest road and paths run through woods; the summit ridge and its meadows are open.": "Circa metà all'ombra: la strada forestale e i sentieri passano nel bosco; la cresta sommitale e i suoi prati sono aperti."
+});

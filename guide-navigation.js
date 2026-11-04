@@ -1,4 +1,10 @@
 (function(){
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
   const params = new URLSearchParams(window.location.search);
   const from = params.get('from');
   const validTrailReturn = from && /^trail\.html\?id=[a-z0-9._-]+(?:&tab=(?:overview|safety|reviews))?$/i.test(from);
@@ -9,7 +15,7 @@
     const back = document.createElement('a');
     back.className = 'guide-context-return';
     back.href = rootPrefix + from;
-    back.textContent = '← Back to trail details';
+    back.textContent = tx('← Back to trail details');
     guideBody.insertBefore(back, guideBody.firstChild);
   }
 
@@ -53,9 +59,9 @@
       const copy = link.querySelector('[data-safety-find-copy]');
       link.setAttribute('href', member ? '../browse-trails.html' : '../?wizard=1');
       link.setAttribute('aria-label', member
-        ? 'Find your trail: explore all matches'
-        : 'Find your trail: add your dog');
-      if(copy) copy.textContent = member ? 'Explore all matches' : 'Add your dog';
+        ? tx('Find your trail: explore all matches')
+        : tx('Find your trail: add your dog'));
+      if(copy) copy.textContent = member ? tx('Explore all matches') : tx('Add your dog');
     });
   }
 
@@ -94,8 +100,8 @@
     const nav = document.createElement('nav');
     nav.className = 'guide-page-nav';
     nav.dataset.generated = 'true';
-    nav.setAttribute('aria-label', isItalian ? 'In questa pagina' : 'On this page');
-    nav.innerHTML = `<span class="guide-page-nav__label">${isItalian ? 'In questa pagina' : 'On this page'}</span>` +
+    nav.setAttribute('aria-label', isItalian ? 'In questa pagina' : tx('On this page'));
+    nav.innerHTML = `<span class="guide-page-nav__label">${isItalian ? 'In questa pagina' : tx('On this page')}</span>` +
       `<div class="guide-page-nav__links">${headings.map(h => `<a href="#${h.id}">${h.textContent.trim()}</a>`).join('')}</div>`;
     const back = body.querySelector(':scope > .guide-context-return');
     body.insertBefore(nav, back ? back.nextSibling : body.firstChild);

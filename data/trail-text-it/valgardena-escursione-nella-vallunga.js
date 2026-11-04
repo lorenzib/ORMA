@@ -1,0 +1,14 @@
+// valgardena-escursione-nella-vallunga in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "An easy out-and-back up the Vallunga above Selva, past the San Silvestro chapel to the pastures under the valley’s limestone walls, in the Puez-Odle nature park. The board lists 7.5 km and 201 m of ascent.": "Una facile andata e ritorno su per la Vallunga sopra Selva, oltre la cappella di San Silvestro fino ai pascoli sotto le pareti calcaree della valle, nel parco naturale Puez-Odle. La scheda ufficiale indica 7,5 km e 201 m di dislivello in salita.",
+  "Start at the mouth of the Vallunga above Selva: 7.5 km and about 200 m of climbing there and back, two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Selva and the nature park require. The valley floor is open, so go early on hot days and carry water for the far end.": "Parti dall'imbocco della Vallunga sopra Selva: 7,5 km e circa 200 m di salita andata e ritorno, due ore. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito, come prescrivono Selva e il parco naturale. Il fondovalle è aperto, quindi parti presto nelle giornate calde e porta acqua per il tratto finale.",
+  "Cattle may graze the upper pastures in summer: keep your distance": "In estate sui pascoli alti possono pascolare le mucche: mantieni le distanze",
+  "Open valley floor with little shade": "Fondovalle aperto con poca ombra",
+  "Rocky ground and scree under the valley walls: stay on the track": "Terreno roccioso e ghiaioni sotto le pareti della valle: resta sulla strada",
+  "Gravel track and meadow paths on a valley floor": "Strada sterrata e sentieri tra i prati sul fondovalle",
+  "The mouth of the Vallunga, Selva di Val Gardena, the board’s start": "Imbocco della Vallunga, Selva di Val Gardena, partenza indicata dalla scheda ufficiale",
+  "A wide sunlit meadow on the floor of the Vallunga with a gravel path in the foreground, the small white San Silvestro chapel among spruces and golden larches, and pale limestone cliffs rising on both sides under a deep blue sky": "Un ampio prato soleggiato sul fondovalle della Vallunga con un sentiero sterrato in primo piano, la piccola cappella bianca di San Silvestro tra abeti rossi e larici dorati e pallide pareti calcaree che si alzano ai due lati sotto un cielo blu intenso",
+  "A gravel path through the Vallunga meadows, between forest and cliffs": "Un sentiero sterrato tra i prati della Vallunga, tra bosco e pareti rocciose",
+  "The rock walls of the Vallunga above its meadows": "Le pareti rocciose della Vallunga sopra i suoi prati",
+  "Mostly open: the valley floor is meadow, with forest only along its edges.": "Per lo più aperto: il fondovalle è prato, con bosco solo ai margini."
+});

@@ -1,0 +1,12 @@
+// cembra-san-leonardo-lisignago in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A loop from Lisignago through the vineyards of the lower Val di Cembra to the hilltop chapel of San Leonardo, down to the Rio Ischiele and back by Maso Spedenal. The APT lists 4.4 km and 280 m of ascent.": "Un anello da Lisignago tra i vigneti della bassa Val di Cembra fino alla cappella di San Leonardo sulla collina, giù fino al Rio Ischiele e ritorno per Maso Spedenal. L'APT indica 4,4 km e 280 m di dislivello in salita.",
+  "Start behind the church of San Biagio in Lisignago: 4.4 km, 280 m of climbing, about two hours. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried; keep your dog off the vines. Mostly open and low, so avoid summer middays; no fountain mapped on the way, bring water.": "Partenza dietro la chiesa di San Biagio a Lisignago: 4,4 km, 280 m di salita, circa due ore. Vale la norma italiana: guinzaglio di al massimo 1,5 m e museruola al seguito; tieni il cane lontano dalle viti. Per lo più aperto e in bassa quota, quindi evita le ore centrali d'estate; nessuna fontana segnalata lungo il percorso, porta acqua.",
+  "Mostly tarred farm lanes and quiet roads, used by farm vehicles at harvest": "Per lo più stradine poderali asfaltate e strade tranquille, percorse dai mezzi agricoli durante la vendemmia",
+  "Vineyards on both sides: keep your dog on the lead and off the vines": "Vigneti su entrambi i lati: tieni il cane al guinzaglio e lontano dalle viti",
+  "A climb of about 280 m back to Lisignago": "Una salita di circa 280 m per tornare a Lisignago",
+  "Farm lanes, quiet roads and a forest track": "Stradine poderali, strade tranquille e una strada forestale",
+  "Lisignago, behind the church of San Biagio, the APT’s start": "Lisignago, dietro la chiesa di San Biagio, la partenza indicata dall'APT",
+  "The small church of San Leonardo on a wooded hilltop seen from above, terraced vineyards and the pale bed of the Avisio below in summer": "La chiesetta di San Leonardo su una collina boscosa vista dall'alto, vigneti terrazzati e il chiaro greto dell'Avisio più in basso d'estate",
+  "Mostly open: about a third of the loop is shaded, in the woods by the Rio Ischiele.": "Per lo più aperto: circa un terzo dell'anello è all'ombra, nei boschi lungo il Rio Ischiele."
+});

@@ -1,0 +1,12 @@
+// fvg-salita-casera-canin in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A walk in the Prealpi Giulie nature park from Malga Coot through woods and pastures at the foot of Monte Canin to Casera Canin, a balcony over the Val Resia. PromoTurismoFVG lists 7.9 km and 401 m of ascent.": "Una passeggiata nel parco naturale delle Prealpi Giulie da Malga Coot attraverso boschi e pascoli ai piedi del Monte Canin fino a Casera Canin, un balcone sulla Val Resia. PromoTurismoFVG indica 7,9 km e 401 m di dislivello in salita.",
+  "Park below Malga Coot in the Val Resia: 7.9 km there and back and about 400 m of climbing, three hours. Keep your dog on a lead the whole way, as the park requires, and carry a muzzle. Malga Coot serves food on the way back. Best in late spring and autumn.": "Parcheggia sotto Malga Coot in Val Resia: 7,9 km andata e ritorno e circa 400 m di salita, tre ore. Tieni il cane al guinzaglio per tutto il percorso, come richiede il parco, e porta la museruola. Al ritorno Malga Coot serve da mangiare. Il periodo migliore è tarda primavera e autunno.",
+  "Ibex and chamois on the steeper slopes: keep your dog on the lead": "Stambecchi e camosci sui pendii più ripidi: tieni il cane al guinzaglio",
+  "Cows may graze the pastures in summer": "D'estate nei pascoli possono pascolare le mucche",
+  "Not advised in bad weather or the hottest summer hours": "Sconsigliato con il maltempo o nelle ore più calde d'estate",
+  "Forest and pasture paths": "Sentieri nel bosco e nei pascoli",
+  "Car park below Malga Coot, Val Resia, the board’s start": "Parcheggio sotto Malga Coot, Val Resia, partenza indicata dalla scheda ufficiale",
+  "A green mountain pasture with a trail signpost and old stone ruins, wooded slopes falling to a wide valley and mountains in summer haze": "Un pascolo di montagna verde con un cartello segnaletico e antichi ruderi in pietra, pendii boscosi che scendono verso un'ampia valle e montagne nella foschia estiva",
+  "About half shaded: the lower part runs through beech woods; the pastures round Berdo and Casera Canin are open.": "Circa metà all'ombra: la parte bassa passa nelle faggete; i pascoli intorno a Berdo e Casera Canin sono aperti."
+});

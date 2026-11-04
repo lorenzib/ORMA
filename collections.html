@@ -17,40 +17,40 @@
 </head>
 <body>
 <div class="topnav">
-  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Collections</span>
+  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page" data-i18n="account.nav.collections">Collections</span>
   <div class="links">
-    <a href="browse-trails.html">Trails</a>
-    <a href="collections.html" class="active">Collections</a>
-    <a href="safety-guide.html">Safety library</a>
-    <a href="journal.html">My walk journal</a>
+    <a href="browse-trails.html" data-i18n="account.nav.browse">Trails</a>
+    <a href="collections.html" class="active" data-i18n="account.nav.collections">Collections</a>
+    <a href="safety-guide.html" data-i18n="account.nav.safety">Safety library</a>
+    <a href="journal.html" data-i18n="account.nav.journal">My walk journal</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
   </div>
 </div>
 
 <header class="collections-intro section-page-head content-canvas browse-canvas-head">
-  <h1>Collections</h1>
-  <p class="section-page-subtitle">Area-based shortlists for planning a few days or a week with your dog. Every collection stays within one country and one region.</p>
+  <h1 data-i18n="account.nav.collections">Collections</h1>
+  <p class="section-page-subtitle" data-i18n="page.collections.areabasedShortlistsForPlanningA">Area-based shortlists for planning a few days or a week with your dog. Every collection stays within one country and one region.</p>
 </header>
 
 <main class="collections-wrap section-page-wrap content-canvas browse-canvas-wrap">
-  <section class="collection-discovery" aria-label="Search and filter collections">
+  <section class="collection-discovery" aria-label="Search and filter collections" data-i18n-aria-label="page.collections.searchAndFilterCollections">
     <label class="collection-search">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
-      <input id="collectionSearch" type="search" placeholder="Search collections" aria-label="Search collections">
+      <input id="collectionSearch" type="search" placeholder="Search collections" aria-label="Search collections" data-i18n-aria-label="page.collections.searchCollections" data-i18n-ph="page.collections.searchCollections">
     </label>
-    <div class="collection-area-filters" aria-label="Collection location">
+    <div class="collection-area-filters" aria-label="Collection location" data-i18n-aria-label="page.collections.collectionLocation">
       <span class="collection-area-filter area-select-shell geo-filter-control"><select id="collectionCountrySelect" data-compact-label data-control-kicker="Country" data-kicker-until-selected aria-label="Filter collections by country"></select></span>
       <span class="collection-area-filter area-select-shell geo-filter-control"><select id="collectionRegionSelect" data-compact-label data-control-kicker="Region" data-kicker-until-selected aria-label="Filter collections by region"></select></span>
       <span class="collection-area-filter area-select-shell geo-filter-control"><select id="collectionValleySelect" data-compact-label data-control-kicker="Valley" data-kicker-until-selected aria-label="Filter collections by valley"></select></span>
     </div>
-    <div class="collection-theme-choices" aria-label="Collection themes">
-      <button type="button" data-collection-theme="gentle" aria-pressed="false"><span data-dp-icon="gentle" data-dp-icon-size="20" aria-hidden="true"></span><span>Gentle walks</span></button>
-      <button type="button" data-collection-theme="summer" aria-pressed="false"><span data-dp-icon="summer" data-dp-icon-size="20" aria-hidden="true"></span><span>Summer</span></button>
-      <button type="button" data-collection-theme="scenic" aria-pressed="false"><span data-dp-icon="scenic" data-dp-icon-size="20" aria-hidden="true"></span><span>Scenic</span></button>
+    <div class="collection-theme-choices" aria-label="Collection themes" data-i18n-aria-label="page.collections.collectionThemes">
+      <button type="button" data-collection-theme="gentle" aria-pressed="false"><span data-dp-icon="gentle" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="page.collections.gentleWalks">Gentle walks</span></button>
+      <button type="button" data-collection-theme="summer" aria-pressed="false"><span data-dp-icon="summer" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="page.collections.summer">Summer</span></button>
+      <button type="button" data-collection-theme="scenic" aria-pressed="false"><span data-dp-icon="scenic" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="page.collections.scenic">Scenic</span></button>
     </div>
   </section>
-  <div class="collection-results-meta"><span id="collectionResultCount" aria-live="polite"></span><button id="collectionFiltersClear" type="button" hidden>Clear all filters</button></div>
-  <section id="collectionsGrid" class="collections-grid" aria-label="Trail collections" aria-live="polite"></section>
+  <div class="collection-results-meta"><span id="collectionResultCount" aria-live="polite"></span><button id="collectionFiltersClear" type="button" hidden data-i18n="page.collections.clearAllFilters">Clear all filters</button></div>
+  <section id="collectionsGrid" class="collections-grid" aria-label="Trail collections" aria-live="polite" data-i18n-aria-label="page.collections.trailCollections"></section>
 </main>
 
 <footer class="site-footer hp-footer">

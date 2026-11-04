@@ -1,0 +1,12 @@
+// fvg-sappada-rifugio-calvi in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "An easy climb on a gravel road from the Piave springs above Sappada to the Rifugio Calvi, the highest hut in the region, below Monte Peralba. PromoTurismoFVG lists 4 km and 333 m of ascent.": "Una facile salita su strada sterrata dalle sorgenti del Piave sopra Sappada fino al Rifugio Calvi, il rifugio più alto della regione, sotto il Monte Peralba. PromoTurismoFVG indica 4 km e 333 m di dislivello in salita.",
+  "Drive to the car park by the Piave springs junction above Cima Sappada: 4 km there and back and about 330 m of climbing, an hour and forty minutes. Keep your dog on a lead and carry a muzzle. No shade and no water on the way up: start early and bring water. The Rifugio Calvi is open in summer.": "Raggiungi in auto il parcheggio al bivio per le sorgenti del Piave sopra Cima Sappada: 4 km andata e ritorno e circa 330 m di salita, un'ora e quaranta. Tieni il cane al guinzaglio e porta la museruola. Niente ombra e niente acqua in salita: parti presto e porta acqua. Il Rifugio Calvi è aperto d'estate.",
+  "High and open above 1,800 m: storms build fast on summer afternoons": "In quota e aperto sopra i 1.800 m: nei pomeriggi estivi i temporali si formano in fretta",
+  "Loose gravel on the steeper bends": "Ghiaia smossa sui tornanti più ripidi",
+  "Grazing animals may be about: keep your dog close": "Possono esserci animali al pascolo: tieni il cane vicino",
+  "A gravel road and short paths above the tree line": "Una strada sterrata e brevi sentieri sopra il limite del bosco",
+  "Car park at the junction for the Piave springs above Cima Sappada, the board’s start": "Parcheggio al bivio per le sorgenti del Piave sopra Cima Sappada, partenza indicata dalla scheda ufficiale",
+  "A wide gravel road on an open mountainside, a jagged grey limestone range above dark forest across the valley under a clear blue sky": "Un'ampia strada sterrata su un versante aperto, una frastagliata catena calcarea grigia sopra il bosco scuro dall'altra parte della valle sotto un cielo azzurro limpido",
+  "No shade: the whole walk is above the trees on open slopes.": "Nessuna ombra: tutta la passeggiata è sopra il limite del bosco, su pendii aperti."
+});

@@ -12,6 +12,12 @@
    keep the plain responsive page. */
 (function(){
   'use strict';
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
+  }
 
   var page = document.querySelector('.td2');
   if(!page) return;
@@ -72,7 +78,7 @@
         var collapsed = card.classList.toggle('is-mobile-collapsed');
         button.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
         var action = button.querySelector('.td2-mobile-toggle-action');
-        if(action) action.innerHTML = (collapsed ? 'Show <span aria-hidden="true">⌄</span>' : 'Hide <span aria-hidden="true">⌃</span>');
+        if(action) action.innerHTML = (collapsed ? tx('Show') + ' <span aria-hidden="true">⌄</span>' : tx('Hide') + ' <span aria-hidden="true">⌃</span>');
       });
     });
   }
@@ -107,9 +113,9 @@
       top.className = 'mtrail-top';
       top.id = 'mtrailTop';
       top.innerHTML =
-        '<a class="back" href="browse-trails.html">← <span>Trails</span></a>' +
+        '<a class="back" href="browse-trails.html">← <span>' + tx('Trails') + '</span></a>' +
         '<a class="brand" href="/"><img src="logo.svg" alt="">ORMA</a>' +
-        '<a class="avlink" href="account.html" aria-label="Your account">' + dogAvatarHtml() + '</a>' +
+        '<a class="avlink" href="account.html" aria-label="' + tx('Your account') + '">' + dogAvatarHtml() + '</a>' +
         '<div class="mtrail-progress" aria-hidden="true"><span id="mtrailProgress"></span></div>';
       document.body.insertBefore(top, document.body.firstChild);
     }

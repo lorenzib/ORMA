@@ -1,4 +1,11 @@
 (function(global){
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const VALID_VIEWS = new Set(['new', 'returning']);
 
   /**
@@ -64,13 +71,13 @@
     if(results) results.hidden = false;
 
     if(accountBtn){
-      accountBtn.textContent = view === 'returning' ? 'My account' : 'Log in';
+      accountBtn.textContent = view === 'returning' ? tx('My account') : tx('Log in');
     }
 
     // Personalise the returning hero with the signed-in user's display name.
     if(returningName && view === 'returning'){
       const name = currentWindow.DoloPawsAuth?.currentUser?.displayName;
-      returningName.textContent = name || 'you';
+      returningName.textContent = name || tx('you');
     }
 
     return view;

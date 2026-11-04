@@ -1,6 +1,13 @@
 (function(){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   // Zoom at which the marked hiking network stops being clutter and starts
   // being wayfinding. Shared with the trail detail map.
   const NETWORK_MIN_ZOOM = 13.5;
@@ -34,10 +41,10 @@
   let renderGeneration = 0;
   const themes = new Set();
   const difficultyLabel = value => ({
-    'low-risk':'Low-risk terrain',
-    moderate:'Moderate terrain',
-    caution:'Caution terrain',
-  })[value] || 'Difficulty not rated';
+    'low-risk':tx('Low-risk terrain'),
+    moderate:tx('Moderate terrain'),
+    caution:tx('Caution terrain'),
+  })[value] || tx('Difficulty not rated');
   // Route colour answers "how well does this walk suit the dog", never "how
   // hard is this trail", the same question, palette and thresholds as the
   // homepage and trail detail maps. This replaces a third near-identical
@@ -103,19 +110,19 @@
   window.addEventListener('dolopaws-auth-changed', resolveMatchSubject);
 
   const COUNTRIES = [
-    { value:'all', label:'All countries' },
-    { value:'IT', label:'Italy' },
-    { value:'FR', label:'France' },
-    { value:'AT', label:'Austria' },
+    { value:'all', label:tx('All countries') },
+    { value:'IT', label:tx('Italy') },
+    { value:'FR', label:tx('France') },
+    { value:'AT', label:tx('Austria') },
   ];
   const REGIONS = [
-    { value:'all', label:'All regions', countryCode:'all' },
-    { value:'dolomites', label:'Dolomites', countryCode:'IT' },
-    { value:'savoy', label:'Savoy', countryCode:'FR' },
-    { value:'lombardy', label:'Lombardy', countryCode:'IT' },
+    { value:'all', label:tx('All regions'), countryCode:'all' },
+    { value:'dolomites', label:tx('Dolomites'), countryCode:'IT' },
+    { value:'savoy', label:tx('Savoy'), countryCode:'FR' },
+    { value:'lombardy', label:tx('Lombardy'), countryCode:'IT' },
     { value:'friuli', label:'Friuli Venezia Giulia', countryCode:'IT' },
     { value:'aosta', label:'Valle d\'Aosta', countryCode:'IT' },
-    { value:'tyrol', label:'Tyrol & Carinthia', countryCode:'AT' },
+    { value:'tyrol', label:tx('Tyrol & Carinthia'), countryCode:'AT' },
   ];
 
   const THEME_MATCHERS = {
@@ -188,7 +195,7 @@
     const areaCollectionCount = api.all().filter(collection => (country === 'all' || collection.countryCode === country)
       && (region === 'all' || collection.region === region)).length;
     valleySelect.replaceChildren(
-      option({ value:'all', label:'All valleys' }, areaCollectionCount),
+      option({ value:'all', label:tx('All valleys') }, areaCollectionCount),
       ...valleys.map(([name, count]) => option({ value:name, label:name }, count)),
     );
     valleySelect.value = valley;
@@ -392,7 +399,7 @@
       trail.valley || trail.area || null,
     ].filter(Boolean).join(' · ');
     return `<a class="collection-inline-trail" href="${trailHref(trail)}" data-inline-map-trail="${esc(trail.id)}">
-      <span class="collection-inline-trail__index" data-difficulty="${difficulty}" aria-label="Trail ${index + 1}: ${esc(difficultyLabel(trail.safetyLevel))}">${index + 1}</span>
+      <span class="collection-inline-trail__index" data-difficulty="${difficulty}" aria-label="${tx('Trail {n}: {difficulty}', { n:index + 1, difficulty:esc(difficultyLabel(trail.safetyLevel)) })}">${index + 1}</span>
       <span class="collection-inline-trail__copy">
         <strong>${esc(trail.name)}</strong>
         ${meta ? `<small>${esc(meta)}</small>` : ''}
@@ -441,7 +448,7 @@
       const whole = credit.sourcePage
         ? `<a href="${esc(credit.sourcePage)}" rel="noopener nofollow">${esc(credit.text)}</a>`
         : esc(credit.text);
-      return `<p class="collection-list-card__credit">Cover: ${whole}</p>`;
+      return `<p class="collection-list-card__credit">${tx('Cover: {credit}', { credit:whole })}</p>`;
     }
     const title = credit.sourcePage
       ? `<a href="${esc(credit.sourcePage)}" rel="noopener nofollow">${esc(credit.title)}</a>`
@@ -449,7 +456,7 @@
     const licence = credit.licenceUrl
       ? `<a href="${esc(credit.licenceUrl)}" rel="license noopener">${esc(credit.licence)}</a>`
       : esc(credit.licence);
-    return `<p class="collection-list-card__credit">Cover: ${title} by ${esc(credit.creator)} · ${licence}</p>`;
+    return `<p class="collection-list-card__credit">${tx('Cover: {title} by {creator}', { title, creator:esc(credit.creator) })} · ${licence}</p>`;
   }
 
   function card(collection){
@@ -461,30 +468,30 @@
       <div class="photo collection-list-card__photo" style="background-image:url('${esc(collection.coverImage)}')" aria-hidden="true"></div>
       <div class="simple-card__main">
         <div class="name">${esc(collection.title)}</div>
-        <div class="simple-card__meta">${esc(collection.regionLabel)} · ${esc(collection.country)} · ${count} ${count === 1 ? 'trail' : 'trails'}</div>
+        <div class="simple-card__meta">${esc(collection.regionLabel)} · ${esc(collection.country)} · ${count === 1 ? tx('{n} trail', { n:count }) : tx('{n} trails', { n:count })}</div>
       </div>
       <p class="collection-list-card__summary">${esc(collection.subtitle)}</p>
       ${coverCreditHtml(collection)}
       <div class="simple-card__match collection-list-card__scope">
         <button type="button" class="collection-list-card__expand" data-collection-expand="${esc(collection.id)}" aria-expanded="${isOpen}" aria-controls="${detailsId}">
-          <span>${isOpen && expandedCollectionView === 'trails' ? 'Hide trails' : 'Show trails'}</span>
+          <span>${isOpen && expandedCollectionView === 'trails' ? tx('Hide trails') : tx('Show trails')}</span>
           <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5.5 7.5 4.5 4.5 4.5-4.5"/></svg>
         </button>
         <button type="button" class="collection-list-card__map-action" data-collection-map-open="${esc(collection.id)}" aria-expanded="${isOpen && expandedCollectionView === 'map'}" aria-controls="collection-inline-map-wrap-${esc(collection.id)}">
-          <span>${isOpen && expandedCollectionView === 'map' ? 'Hide map' : 'Show map'}</span>
+          <span>${isOpen && expandedCollectionView === 'map' ? tx('Hide map') : tx('Show map')}</span>
           <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 5.2 8 3l4 2 4.5-2.2v12L12 17l-4-2-4.5 2.2zM8 3v12M12 5v12"/></svg>
         </button>
       </div>
       <div class="collection-list-card__details" id="${detailsId}"${isOpen ? '' : ' hidden'}>
         ${isOpen ? `
         <div class="collection-list-card__details-head">
-          <span>${expandedCollectionView === 'map' ? 'Select a numbered route or marker to preview its trail.' : 'Choose a trail to open its full details.'}</span>
+          <span>${expandedCollectionView === 'map' ? tx('Select a numbered route or marker to preview its trail.') : tx('Choose a trail to open its full details.')}</span>
         </div>
         <div class="collection-inline-workspace" data-collection-view="${expandedCollectionView}">
           ${expandedCollectionView === 'trails' ? `<div class="collection-inline-trails">${collectionTrails.map(trailRow).join('')}</div>` : ''}
           ${expandedCollectionView === 'map' ? `<div class="collection-inline-map-wrap is-visible" id="collection-inline-map-wrap-${esc(collection.id)}">
-            <div id="collection-inline-map-${esc(collection.id)}" class="collection-trail-map collection-inline-map" aria-label="Map showing the trails in ${esc(collection.title)}"><div class="collection-map-loading">Loading collection map…</div></div>
-            <div class="collection-inline-map-key" aria-label="Difficulty colours"><span><i data-difficulty="low-risk"></i>Low-risk</span><span><i data-difficulty="moderate"></i>Moderate</span><span><i data-difficulty="caution"></i>Caution</span></div>
+            <div id="collection-inline-map-${esc(collection.id)}" class="collection-trail-map collection-inline-map" aria-label="${tx('Map showing the trails in {title}', { title:esc(collection.title) })}"><div class="collection-map-loading">${tx('Loading collection map…')}</div></div>
+            <div class="collection-inline-map-key" aria-label="${tx('Difficulty colours')}"><span><i data-difficulty="low-risk"></i>${tx('Low-risk')}</span><span><i data-difficulty="moderate"></i>${tx('Moderate')}</span><span><i data-difficulty="caution"></i>${tx('Caution')}</span></div>
           </div>` : ''}
         </div>
         ` : ''}
@@ -502,7 +509,7 @@
       updateCollectionUrl(null, 'replace');
     }
     grid.innerHTML = filtered.map(card).join('');
-    resultCount.textContent = `${filtered.length} ${filtered.length === 1 ? 'collection' : 'collections'}`;
+    resultCount.textContent = filtered.length === 1 ? tx('{n} collection', { n:filtered.length }) : tx('{n} collections', { n:filtered.length });
     themeButtons.forEach(button => button.setAttribute('aria-pressed', String(themes.has(button.dataset.collectionTheme))));
     clear.hidden = country === 'all' && region === 'all' && valley === 'all' && !query && themes.size === 0;
     if(expandedCollectionId && expandedCollectionView === 'map'){

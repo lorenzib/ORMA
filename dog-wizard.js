@@ -1,15 +1,22 @@
 (function () {
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars) {
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, function (m, k) { return (k in vars ? vars[k] : m); }) : text;
+  }
+
   var OTHER_VALUE = '__other__';
   var DRAFT_KEY_PREFIX = 'dolopaws-dog-draft';
 
   var STEPS = [
-    { id: 'basics', label: 'Basics' },
-    { id: 'breed',  label: 'Breed & Size' },
-    { id: 'health', label: 'Health' },
-    { id: 'behaviour', label: 'Behaviour' },
-    { id: 'review', label: 'Review' },
+    { id: 'basics', label: tx('Basics') },
+    { id: 'breed',  label: tx('Breed & Size') },
+    { id: 'health', label: tx('Health') },
+    { id: 'behaviour', label: tx('Behaviour') },
+    { id: 'review', label: tx('Review') },
   ];
 
   // ---- State ----
@@ -79,15 +86,15 @@
   }
 
   var AGE_BANDS = [
-    ['u1', 'Under 1 year (puppy)'], ['1-2', '1–2 years'],
-    ['3-4', '3–4 years'], ['5-6', '5–6 years'],
-    ['7-8', '7–8 years'], ['9-10', '9–10 years'],
-    ['11-12', '11–12 years'], ['13plus', '13 years or older'],
+    ['u1', tx('Under 1 year (puppy)')], ['1-2', tx('1–2 years')],
+    ['3-4', tx('3–4 years')], ['5-6', tx('5–6 years')],
+    ['7-8', tx('7–8 years')], ['9-10', tx('9–10 years')],
+    ['11-12', tx('11–12 years')], ['13plus', tx('13 years or older')],
   ];
   var WEIGHT_BANDS = [
-    ['u5', 'Under 5 kg'], ['5-10', '5–10 kg'], ['10-15', '10–15 kg'],
+    ['u5', tx('Under 5 kg')], ['5-10', '5–10 kg'], ['10-15', '10–15 kg'],
     ['15-20', '15–20 kg'], ['20-30', '20–30 kg'], ['30-40', '30–40 kg'],
-    ['40-55', '40–55 kg'], ['55plus', 'Over 55 kg'],
+    ['40-55', '40–55 kg'], ['55plus', tx('Over 55 kg')],
   ];
   // Each scale is ordered easiest-to-hardest, matching
   // scoring/recommendation-v1.js. Leaving one blank is meaningful: the
@@ -96,52 +103,52 @@
   // scoring/recommendation-v1.js. Leaving one blank is meaningful: the
   // scorer stays silent about that trait rather than assuming the easy end.
   var BEHAVIOUR_FIELDS = [
-    ['recall', 'Recall off-lead', [
-      ['reliable', 'Reliable, comes back first time'],
-      ['variable', 'Variable, usually but not always'],
-      ['unreliable', 'Unreliable, stays on the lead'],
+    ['recall', tx('Recall off-lead'), [
+      ['reliable', tx('Reliable, comes back first time')],
+      ['variable', tx('Variable, usually but not always')],
+      ['unreliable', tx('Unreliable, stays on the lead')],
     ]],
-    ['reactivity', 'Reactivity to dogs or people', [
-      ['none', 'Relaxed, takes others in their stride'],
-      ['mild', 'Mild, needs a little space'],
-      ['strong', 'Strong, needs real distance'],
+    ['reactivity', tx('Reactivity to dogs or people'), [
+      ['none', tx('Relaxed, takes others in their stride')],
+      ['mild', tx('Mild, needs a little space')],
+      ['strong', tx('Strong, needs real distance')],
     ]],
-    ['preyDrive', 'Prey drive', [
-      ['low', 'Low, ignores wildlife'],
-      ['moderate', 'Moderate, notices and follows'],
-      ['high', 'High, will chase given the chance'],
+    ['preyDrive', tx('Prey drive'), [
+      ['low', tx('Low, ignores wildlife')],
+      ['moderate', tx('Moderate, notices and follows')],
+      ['high', tx('High, will chase given the chance')],
     ]],
-    ['livestockComfort', 'Around livestock', [
-      ['confident', 'Confident, settled around stock'],
-      ['cautious', 'Unsure, wary or over-interested'],
-      ['reactive', 'Reactive, barks or lunges'],
+    ['livestockComfort', tx('Around livestock'), [
+      ['confident', tx('Confident, settled around stock')],
+      ['cautious', tx('Unsure, wary or over-interested')],
+      ['reactive', tx('Reactive, barks or lunges')],
     ]],
-    ['trafficComfort', 'Around traffic', [
-      ['confident', 'Confident, ignores passing vehicles'],
-      ['cautious', 'Unsure, startles near roads'],
-      ['reactive', 'Reactive, bolts or lunges at vehicles'],
+    ['trafficComfort', tx('Around traffic'), [
+      ['confident', tx('Confident, ignores passing vehicles')],
+      ['cautious', tx('Unsure, startles near roads')],
+      ['reactive', tx('Reactive, bolts or lunges at vehicles')],
     ]],
-    ['crowdComfort', 'In crowds', [
-      ['confident', 'Confident, fine on a busy path'],
-      ['cautious', 'Unsure, prefers quieter routes'],
-      ['reactive', 'Reactive, needs to avoid busy trails'],
+    ['crowdComfort', tx('In crowds'), [
+      ['confident', tx('Confident, fine on a busy path')],
+      ['cautious', tx('Unsure, prefers quieter routes')],
+      ['reactive', tx('Reactive, needs to avoid busy trails')],
     ]],
-    ['heatTolerance', 'Heat tolerance', [
-      ['robust', 'Robust, copes well in warm weather'],
-      ['average', 'Average, slows down when it is hot'],
-      ['low', 'Low, struggles in the heat'],
+    ['heatTolerance', tx('Heat tolerance'), [
+      ['robust', tx('Robust, copes well in warm weather')],
+      ['average', tx('Average, slows down when it is hot')],
+      ['low', tx('Low, struggles in the heat')],
     ]],
     // Open chairlifts can be fatal for a dog not used to them. Only a "rides
     // calmly" answer, and only for a dog light enough to be held (8 kg or
     // under), keeps chairlift-assisted routes in the recommendations.
-    ['chairlift', 'Open chairlifts', [
-      ['never', 'Not for us, or never tried'],
-      ['ok', 'Rides calmly, held on my lap with harness and leash (8 kg or under)'],
+    ['chairlift', tx('Open chairlifts'), [
+      ['never', tx('Not for us, or never tried')],
+      ['ok', tx('Rides calmly, held on my lap with harness and leash (8 kg or under)')],
     ]],
   ];
   var DURATION_OPTIONS = [
-    ['30', 'About 30 minutes'], ['60', 'About 1 hour'], ['90', 'About 1.5 hours'],
-    ['120', 'About 2 hours'], ['180', 'About 3 hours'], ['240', '4 hours or more'],
+    ['30', tx('About 30 minutes')], ['60', tx('About 1 hour')], ['90', tx('About 1.5 hours')],
+    ['120', tx('About 2 hours')], ['180', tx('About 3 hours')], ['240', tx('4 hours or more')],
   ];
   var BEHAVIOUR_LABELS = {};
   BEHAVIOUR_FIELDS.forEach(function (f) {
@@ -150,19 +157,19 @@
   });
 
   var CONDITION_OPTIONS = [
-    ['joints', 'Joint or mobility issues (hip or elbow dysplasia, arthritis, luxating patella)'],
-    ['back', 'Back or disc problems (e.g. IVDD)'],
-    ['heat', 'Heat sensitivity or breathing difficulty (incl. flat-nosed breeds)'],
-    ['cardiac', 'Heart condition'],
-    ['recovering', 'Recovering from injury or surgery'],
-    ['vision', 'Impaired vision or hearing'],
-    ['overweight', 'Overweight'],
+    ['joints', tx('Joint or mobility issues (hip or elbow dysplasia, arthritis, luxating patella)')],
+    ['back', tx('Back or disc problems (e.g. IVDD)')],
+    ['heat', tx('Heat sensitivity or breathing difficulty (incl. flat-nosed breeds)')],
+    ['cardiac', tx('Heart condition')],
+    ['recovering', tx('Recovering from injury or surgery')],
+    ['vision', tx('Impaired vision or hearing')],
+    ['overweight', tx('Overweight')],
   ];
   var CONDITION_LABELS = {
-    joints: 'Joint or mobility issues', back: 'Back or disc problems',
-    heat: 'Heat sensitivity / breathing', cardiac: 'Heart condition',
-    recovering: 'Recovering from injury or surgery', vision: 'Impaired vision or hearing',
-    overweight: 'Overweight',
+    joints: tx('Joint or mobility issues'), back: tx('Back or disc problems'),
+    heat: tx('Heat sensitivity / breathing'), cardiac: tx('Heart condition'),
+    recovering: tx('Recovering from injury or surgery'), vision: tx('Impaired vision or hearing'),
+    overweight: tx('Overweight'),
   };
 
   function esc(str) {
@@ -263,7 +270,7 @@
     }
     if (stepCountEl) {
       stepCountEl.hidden = false;
-      stepCountEl.textContent = 'Step ' + (stepIndex + 1) + ' of ' + STEPS.length;
+      stepCountEl.textContent = tx('Step {n} of {total}', { n: stepIndex + 1, total: STEPS.length });
     }
     stepperEl.hidden = false;
     stepperEl.innerHTML = STEPS.map(function (s, i) {
@@ -293,10 +300,12 @@
     var isLast = stepIndex === STEPS.length - 1;
     var isGuest = !(window.DoloPawsAuth && window.DoloPawsAuth.currentUser);
     if (isLast) {
-      nextBtn.textContent = isEditing ? 'Save changes'
-        : (isGuest ? 'See ' + (data.name.trim() || 'my dog') + '\u2019s matches \u2192' : 'Save dog');
+      nextBtn.textContent = isEditing ? tx('Save changes')
+        : (isGuest
+          ? (data.name.trim() ? tx('See {name}\u2019s matches \u2192', { name: data.name.trim() }) : tx('See my dog\u2019s matches \u2192'))
+          : tx('Save dog'));
     } else {
-      nextBtn.textContent = 'Next \u2192';
+      nextBtn.textContent = tx('Next \u2192');
     }
     nextBtn.disabled = false;
   }
@@ -318,19 +327,18 @@
   // ---- Draft prompt view ----
   function renderDraftPrompt() {
     var draft = loadDraft();
-    var dogName = draft && draft.data && draft.data.name
-      ? ' for ' + esc(draft.data.name)
-      : '';
-    titleEl.textContent = 'Resume your draft?';
+    var draftText = draft && draft.data && draft.data.name
+      ? tx('You have an unfinished profile for {name}. Pick up where you left off or start fresh.', { name: esc(draft.data.name) })
+      : tx('You have an unfinished profile. Pick up where you left off or start fresh.');
+    titleEl.textContent = tx('Resume your draft?');
     subtitleEl.textContent = '';
     bodyEl.innerHTML =
       '<div class="dw-info-panel">' +
         '<div class="dw-info-icon" aria-hidden="true">&#128221;</div>' +
-        '<p class="dw-info-text">You have an unfinished profile' + dogName + '. ' +
-          'Pick up where you left off or start fresh.</p>' +
+        '<p class="dw-info-text">' + draftText + '</p>' +
         '<div class="dw-info-actions">' +
-          '<button class="dw-btn-primary" id="dwResumeDraftBtn">Resume draft</button>' +
-          '<button class="dw-btn-ghost" id="dwStartOverBtn">Start over</button>' +
+          '<button class="dw-btn-primary" id="dwResumeDraftBtn">' + tx('Resume draft') + '</button>' +
+          '<button class="dw-btn-ghost" id="dwStartOverBtn">' + tx('Start over') + '</button>' +
         '</div>' +
       '</div>';
     document.getElementById('dwResumeDraftBtn').addEventListener('click', resumeDraft);
@@ -364,18 +372,17 @@
 
   // ---- Close-confirm view ----
   function renderCloseConfirm() {
-    titleEl.textContent = 'Save your progress?';
+    titleEl.textContent = tx('Save your progress?');
     subtitleEl.textContent = '';
     bodyEl.innerHTML =
       '<div class="dw-info-panel">' +
         '<div class="dw-info-icon" aria-hidden="true">&#128190;</div>' +
-        '<p class="dw-info-text">You haven\'t finished adding your dog. ' +
-          'Save a draft to continue later, or discard your changes.</p>' +
+        '<p class="dw-info-text">' + tx('You haven\'t finished adding your dog. Save a draft to continue later, or discard your changes.') + '</p>' +
         '<div class="dw-info-actions">' +
-          '<button class="dw-btn-primary" id="dwSaveDraftBtn">Save draft</button>' +
-          '<button class="dw-btn-ghost" id="dwDiscardCloseBtn">Discard &amp; close</button>' +
+          '<button class="dw-btn-primary" id="dwSaveDraftBtn">' + tx('Save draft') + '</button>' +
+          '<button class="dw-btn-ghost" id="dwDiscardCloseBtn">' + tx('Discard &amp; close') + '</button>' +
         '</div>' +
-        '<button class="dw-keep-link" id="dwKeepEditingBtn">&#8592; Keep editing</button>' +
+        '<button class="dw-keep-link" id="dwKeepEditingBtn">&#8592; ' + tx('Keep editing') + '</button>' +
       '</div>';
     document.getElementById('dwSaveDraftBtn').addEventListener('click', function () {
       saveDraft();
@@ -404,7 +411,7 @@
   }
 
   function renderBasicsStep() {
-    var ageOpts = '<option value="">Select an age\u2026</option>' +
+    var ageOpts = '<option value="">' + tx('Select an age\u2026') + '</option>' +
       AGE_BANDS.map(function (b) {
         return '<option value="' + b[0] + '"' + (data.ageBand === b[0] ? ' selected' : '') + '>' + b[1] + '</option>';
       }).join('');
@@ -412,37 +419,37 @@
     bodyEl.innerHTML =
       '<div class="dw-field-group">' +
         '<label class="dw-label" for="dwName">' +
-          'Dog name <span class="dw-required" aria-label="required">*</span>' +
+          tx('Dog name') + ' <span class="dw-required" aria-label="' + tx('required') + '">*</span>' +
         '</label>' +
-        '<input type="text" class="dw-input" id="dwName" placeholder="e.g. Eddie"' +
+        '<input type="text" class="dw-input" id="dwName" placeholder="' + tx('e.g. Eddie') + '"' +
                ' value="' + esc(data.name) + '" maxlength="40" autocomplete="off"' +
                ' aria-required="true" aria-describedby="dwNameErr">' +
         '<span class="dw-field-error" id="dwNameErr" role="alert" hidden>' +
-          'Please enter your dog\'s name (2\u201340 characters).' +
+          tx('Please enter your dog\'s name (2\u201340 characters).') +
         '</span>' +
       '</div>' +
       '<div class="dw-field-group">' +
         '<label class="dw-label" for="dwAgeBand">' +
-          'Age <span class="dw-required" aria-label="required">*</span>' +
+          tx('Age') + ' <span class="dw-required" aria-label="' + tx('required') + '">*</span>' +
         '</label>' +
         '<select class="dw-select" id="dwAgeBand" aria-required="true" aria-describedby="dwAgeErr">' +
           ageOpts +
         '</select>' +
         '<span class="dw-field-error" id="dwAgeErr" role="alert" hidden>' +
-          'Please select an age range.' +
+          tx('Please select an age range.') +
         '</span>' +
       '</div>' +
       '<div class="dw-field-group">' +
-        '<span class="dw-label">Photo <span class="dw-optional">(optional)</span></span>' +
+        '<span class="dw-label">' + tx('Photo') + ' <span class="dw-optional">' + tx('(optional)') + '</span></span>' +
         '<div class="dw-photo-picker">' +
           '<div class="dw-photo-preview" id="dwPhotoPreview" aria-hidden="true"></div>' +
           '<div class="dw-photo-actions">' +
             '<button type="button" class="dw-btn-ghost" id="dwPhotoBtn">' +
-              (isDogPhoto(data.photo) ? 'Change photo' : 'Add photo') +
+              (isDogPhoto(data.photo) ? tx('Change photo') : tx('Add photo')) +
             '</button>' +
             '<button type="button" class="dw-photo-remove" id="dwPhotoRemove"' +
-              (isDogPhoto(data.photo) ? '' : ' hidden') + '>Remove</button>' +
-            '<span class="dw-photo-help" id="dwPhotoHelp">JPG, PNG or WebP · maximum 8 MB</span>' +
+              (isDogPhoto(data.photo) ? '' : ' hidden') + '>' + tx('Remove') + '</button>' +
+            '<span class="dw-photo-help" id="dwPhotoHelp">' + tx('JPG, PNG or WebP · maximum 8 MB') + '</span>' +
           '</div>' +
         '</div>' +
         '<input type="file" id="dwPhotoInput" accept="image/jpeg,image/png,image/webp" hidden>' +
@@ -470,12 +477,12 @@
       if (isDogPhoto(data.photo)) {
         photoPreview.style.backgroundImage = 'url("' + data.photo + '")';
         photoPreview.classList.add('has-photo');
-        photoButton.textContent = 'Change photo';
+        photoButton.textContent = tx('Change photo');
         photoRemove.hidden = false;
       } else {
         photoPreview.style.backgroundImage = '';
         photoPreview.classList.remove('has-photo');
-        photoButton.textContent = 'Add photo';
+        photoButton.textContent = tx('Add photo');
         photoRemove.hidden = true;
       }
     }
@@ -484,28 +491,28 @@
     photoRemove.addEventListener('click', function () {
       data.photo = null;
       isDirty = true;
-      photoHelp.textContent = 'Photo removed';
+      photoHelp.textContent = tx('Photo removed');
       paintPhoto();
     });
     photoInput.addEventListener('change', function () {
       var file = photoInput.files && photoInput.files[0];
       if (!file) return;
       if (!file.type.startsWith('image/') || file.size > 8 * 1024 * 1024) {
-        photoHelp.textContent = 'Choose a JPG, PNG or WebP smaller than 8 MB.';
+        photoHelp.textContent = tx('Choose a JPG, PNG or WebP smaller than 8 MB.');
         photoInput.value = '';
         return;
       }
       photoButton.disabled = true;
-      photoHelp.textContent = 'Preparing photo…';
+      photoHelp.textContent = tx('Preparing photo…');
       downscaleDogPhoto(file).then(function (photo) {
         data.photo = photo;
         isDirty = true;
         photoButton.disabled = false;
-        photoHelp.textContent = 'Photo ready to save with this dog.';
+        photoHelp.textContent = tx('Photo ready to save with this dog.');
         paintPhoto();
       }).catch(function () {
         photoButton.disabled = false;
-        photoHelp.textContent = 'That image could not be read. Please choose another.';
+        photoHelp.textContent = tx('That image could not be read. Please choose another.');
       });
       photoInput.value = '';
     });
@@ -520,24 +527,24 @@
     bodyEl.innerHTML =
       '<div class="dw-field-group">' +
         '<label class="dw-label" for="dwBreed">' +
-          'Breed <span class="dw-required" aria-label="required">*</span>' +
+          tx('Breed') + ' <span class="dw-required" aria-label="' + tx('required') + '">*</span>' +
         '</label>' +
         '<input type="text" class="dw-input" id="dwBreed" role="combobox"' +
-               ' autocomplete="off" placeholder="Start typing a breed\u2026"' +
+               ' autocomplete="off" placeholder="' + tx('Start typing a breed\u2026') + '"' +
                ' value="' + esc(startValue) + '"' +
                ' aria-autocomplete="list" aria-expanded="false" aria-controls="dwBreedList"' +
                ' aria-required="true" aria-describedby="dwBreedErr">' +
         '<div id="dwBreedList" class="breed-suggestions" role="listbox" hidden></div>' +
         '<span class="dw-field-error" id="dwBreedErr" role="alert" hidden>' +
-          'Please tell us the breed \u2014 pick a suggestion or type your own.' +
+          tx('Please tell us the breed \u2014 pick a suggestion or type your own.') +
         '</span>' +
       '</div>' +
       '<div class="dw-field-group">' +
         '<label class="dw-label" for="dwWeightBand">' +
-          'Weight <span class="dw-optional">(optional \u2014 improves accuracy)</span>' +
+          tx('Weight') + ' <span class="dw-optional">' + tx('(optional \u2014 improves accuracy)') + '</span>' +
         '</label>' +
         '<select class="dw-select" id="dwWeightBand">' +
-          '<option value="">Select a weight range\u2026</option>' +
+          '<option value="">' + tx('Select a weight range\u2026') + '</option>' +
           WEIGHT_BANDS.map(function (b) {
             return '<option value="' + b[0] + '"' + (data.weightBand === b[0] ? ' selected' : '') + '>' + b[1] + '</option>';
           }).join('') +
@@ -545,15 +552,15 @@
       '</div>' +
       '<div class="dw-field-group">' +
         '<span class="dw-label" id="dwFitnessLabel">' +
-          'Fitness level <span class="dw-required" aria-label="required">*</span>' +
+          tx('Fitness level') + ' <span class="dw-required" aria-label="' + tx('required') + '">*</span>' +
         '</span>' +
         '<div class="dw-option-group" role="group" aria-labelledby="dwFitnessLabel">' +
-          optBtn('fitness', 'low',      'Low \u2014 puppy, senior, or just starting out') +
-          optBtn('fitness', 'moderate', 'Moderate \u2014 everyday walker') +
-          optBtn('fitness', 'high',     'High \u2014 mountain-ready') +
+          optBtn('fitness', 'low',      tx('Low \u2014 puppy, senior, or just starting out')) +
+          optBtn('fitness', 'moderate', tx('Moderate \u2014 everyday walker')) +
+          optBtn('fitness', 'high',     tx('High \u2014 mountain-ready')) +
         '</div>' +
         '<span class="dw-field-error" id="dwFitnessErr" role="alert" hidden>' +
-          'Please select a fitness level.' +
+          tx('Please select a fitness level.') +
         '</span>' +
       '</div>';
 
@@ -616,10 +623,10 @@
 
   function renderHealthStep() {
     bodyEl.innerHTML =
-      '<p class="dw-step-hint">All fields in this step are optional, they help us flag trails that might not be a good fit. Only these structured facts move the score; free-text notes are kept for you.</p>' +
+      '<p class="dw-step-hint">' + tx('All fields in this step are optional, they help us flag trails that might not be a good fit. Only these structured facts move the score; free-text notes are kept for you.') + '</p>' +
       '<div class="dw-field-group">' +
         '<span class="dw-label" id="dwCondLabel">' +
-          'Health conditions <span class="dw-optional">(optional)</span>' +
+          tx('Health conditions') + ' <span class="dw-optional">' + tx('(optional)') + '</span>' +
         '</span>' +
         '<div class="dw-cond-list" role="group" aria-labelledby="dwCondLabel">' +
           CONDITION_OPTIONS.map(function (c) {
@@ -630,10 +637,10 @@
       '</div>' +
       '<div class="dw-field-group">' +
         '<label class="dw-label" for="dwNotes">' +
-          'Anything else worth knowing? <span class="dw-optional">(optional)</span>' +
+          tx('Anything else worth knowing?') + ' <span class="dw-optional">' + tx('(optional)') + '</span>' +
         '</label>' +
         '<textarea class="dw-textarea" id="dwNotes" rows="3" maxlength="400"' +
-                  ' placeholder="Allergies, medications, recent injuries, vet notes…">' + esc(data.healthNotes) + '</textarea>' +
+                  ' placeholder="' + tx('Allergies, medications, recent injuries, vet notes…') + '">' + esc(data.healthNotes) + '</textarea>' +
       '</div>';
 
     bodyEl.querySelectorAll('input[name="dwCond"]').forEach(function (cb) {
@@ -651,10 +658,10 @@
     function selectFor(key, label, options, value) {
       return '<div class="dw-field-group">' +
           '<label class="dw-label" for="dwB_' + key + '">' +
-            esc(label) + ' <span class="dw-optional">(optional)</span>' +
+            esc(label) + ' <span class="dw-optional">' + tx('(optional)') + '</span>' +
           '</label>' +
           '<select class="dw-select" id="dwB_' + key + '" data-behaviour-key="' + key + '">' +
-            '<option value="">Not sure yet\u2026</option>' +
+            '<option value="">' + tx('Not sure yet\u2026') + '</option>' +
             options.map(function (o) {
               return '<option value="' + o[0] + '"' +
                 (value === o[0] ? ' selected' : '') + '>' + o[1] + '</option>';
@@ -664,12 +671,11 @@
     }
 
     bodyEl.innerHTML =
-      '<p class="dw-step-hint">These shape where a route is safe for your dog, not just how hard it is. ' +
-      'Every answer is optional. Leave one blank and ORMA stays quiet about it rather than guessing.</p>' +
+      '<p class="dw-step-hint">' + tx('These shape where a route is safe for your dog, not just how hard it is. Every answer is optional. Leave one blank and ORMA stays quiet about it rather than guessing.') + '</p>' +
       BEHAVIOUR_FIELDS.map(function (f) {
         return selectFor(f[0], f[1], f[2], data.behaviour[f[0]]);
       }).join('') +
-      selectFor('preferredDurationMin', 'Preferred walk length', DURATION_OPTIONS, data.preferredDurationMin);
+      selectFor('preferredDurationMin', tx('Preferred walk length'), DURATION_OPTIONS, data.preferredDurationMin);
 
     bodyEl.querySelectorAll('select[data-behaviour-key]').forEach(function (sel) {
       sel.addEventListener('change', function () {
@@ -688,7 +694,7 @@
 
   function renderReviewStep() {
     var breedDisplay = data.breed === OTHER_VALUE ? data.breedOther : data.breed;
-    var fitMap = { low: 'Low', moderate: 'Moderate', high: 'High' };
+    var fitMap = { low: tx('Low'), moderate: tx('Moderate'), high: tx('High') };
     var ageLabel = (AGE_BANDS.filter(function (b) { return b[0] === data.ageBand; })[0] || [])[1] || '';
     var weightLabel = (WEIGHT_BANDS.filter(function (b) { return b[0] === data.weightBand; })[0] || [])[1] || '';
     var condLabels = data.conditions.map(function (c) { return CONDITION_LABELS[c] || c; }).join(', ');
@@ -702,10 +708,10 @@
 
     var healthSection = (data.conditions.length || data.healthNotes)
       ? '<div class="dw-review-section">' +
-          '<div class="dw-review-title">Health</div>' +
+          '<div class="dw-review-title">' + tx('Health') + '</div>' +
           '<div class="dw-review-rows">' +
-            row('Conditions', condLabels) +
-            row('Notes', data.healthNotes) +
+            row(tx('Conditions'), condLabels) +
+            row(tx('Notes'), data.healthNotes) +
           '</div>' +
         '</div>'
       : '';
@@ -717,30 +723,30 @@
     var durationLabel = (DURATION_OPTIONS.filter(function (o) {
       return o[0] === data.preferredDurationMin;
     })[0] || [])[1] || '';
-    if (durationLabel) behaviourRows += row('Preferred walk length', durationLabel);
+    if (durationLabel) behaviourRows += row(tx('Preferred walk length'), durationLabel);
     var behaviourSection = behaviourRows
       ? '<div class="dw-review-section">' +
-          '<div class="dw-review-title">Behaviour</div>' +
+          '<div class="dw-review-title">' + tx('Behaviour') + '</div>' +
           '<div class="dw-review-rows">' + behaviourRows + '</div>' +
         '</div>'
       : '';
 
     bodyEl.innerHTML =
-      '<p class="dw-step-hint">Review your dog\'s profile before saving.</p>' +
+      '<p class="dw-step-hint">' + tx('Review your dog\'s profile before saving.') + '</p>' +
       '<div class="dw-review-card">' +
         '<div class="dw-review-section">' +
-          '<div class="dw-review-title">Basics</div>' +
+          '<div class="dw-review-title">' + tx('Basics') + '</div>' +
           '<div class="dw-review-rows">' +
-            row('Name', data.name) +
-            row('Age',  ageLabel) +
+            row(tx('Name'), data.name) +
+            row(tx('Age'),  ageLabel) +
           '</div>' +
         '</div>' +
         '<div class="dw-review-section">' +
-          '<div class="dw-review-title">Breed &amp; Size</div>' +
+          '<div class="dw-review-title">' + tx('Breed &amp; Size') + '</div>' +
           '<div class="dw-review-rows">' +
-            row('Breed',         breedDisplay) +
-            row('Weight',        weightLabel) +
-            row('Fitness level', fitMap[data.fitness] || data.fitness) +
+            row(tx('Breed'),         breedDisplay) +
+            row(tx('Weight'),        weightLabel) +
+            row(tx('Fitness level'), fitMap[data.fitness] || data.fitness) +
           '</div>' +
         '</div>' +
         healthSection +
@@ -900,7 +906,7 @@
       // unnecessary second network round-trip and could leave this button
       // stuck even though the subsequent transaction was never started.
       nextBtn.disabled = true;
-      nextBtn.textContent = 'Saving…';
+      nextBtn.textContent = tx('Saving…');
       Promise.resolve().then(function () {
         if (isEditing && editingDogId && typeof auth.setDogProfile === 'function') {
           return auth.setDogProfile(profile, editingDogId);
@@ -918,12 +924,12 @@
         clearDraft();
         window.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', { detail: { profile: profile } }));
         doClose();
-        showToast(profile.name + ' was saved successfully.');
+        showToast(tx('{name} was saved successfully.', { name: profile.name }));
       }).catch(function (error) {
         console.error('Failed to save dog from wizard:', error);
         nextBtn.disabled = false;
-        nextBtn.textContent = isEditing ? 'Save changes' : 'Save dog';
-        showToast('We couldn’t save your dog. Check your connection and try again.');
+        nextBtn.textContent = isEditing ? tx('Save changes') : tx('Save dog');
+        showToast(tx('We couldn’t save your dog. Check your connection and try again.'));
       });
       return;
     }
@@ -978,12 +984,11 @@
       // as no filter at all. When matches are abundant, lead with the
       // strong ones instead; the number stays honest either way.
       if (good.length > trails.length * 0.6 && strong.length > 0) {
-        titleEl.textContent = strong.length + ' trails are a strong match for ' + profile.name;
+        titleEl.textContent = tx('{count} trails are a strong match for {name}', { count: strong.length, name: profile.name });
       } else {
-        titleEl.textContent = good.length + ' of ' + trails.length + ' trails match ' + profile.name;
+        titleEl.textContent = tx('{count} of {total} trails match {name}', { count: good.length, total: trails.length, name: profile.name });
       }
-      subtitleEl.textContent = 'Scored on terrain, distance, exposure, heat and shade, for ' +
-        profile.name + '’s build, age and health.';
+      subtitleEl.textContent = tx('Scored on terrain, distance, exposure, heat and shade, for {name}’s build, age and health.', { name: profile.name });
 
       topCards = '<div class="dw-payoff-list">' +
         scored.slice(0, 3).map(function (s) {
@@ -995,7 +1000,7 @@
         }).join('') +
         '</div>';
     } else {
-      titleEl.textContent = profile.name + '’s profile is ready';
+      titleEl.textContent = tx('{name}’s profile is ready', { name: profile.name });
       subtitleEl.textContent = '';
     }
 
@@ -1003,10 +1008,10 @@
       '<div class="dw-payoff">' +
         topCards +
         '<button class="dw-btn-primary dw-payoff-cta" id="dwSaveProfileBtn">' +
-          'Create a free account to save ' + esc(profile.name) + '’s profile →' +
+          tx('Create a free account to save {name}’s profile →', { name: esc(profile.name) }) +
         '</button>' +
-        '<p class="dw-payoff-hint">Their matches will follow you across devices, nothing to re-enter.</p>' +
-        '<button class="dw-keep-link" id="dwSkipSaveBtn">Not now, keep browsing</button>' +
+        '<p class="dw-payoff-hint">' + tx('Their matches will follow you across devices, nothing to re-enter.') + '</p>' +
+        '<button class="dw-keep-link" id="dwSkipSaveBtn">' + tx('Not now, keep browsing') + '</button>' +
       '</div>';
 
     document.getElementById('dwSaveProfileBtn').addEventListener('click', function () {
@@ -1019,15 +1024,14 @@
         // Reframe the auth modal: the user is saving, not "registering".
         var authTitle = document.getElementById('authTitle');
         var authHint  = document.getElementById('authHint');
-        if (authTitle) authTitle.textContent = 'Save ' + profile.name + '’s profile';
-        if (authHint)  authHint.textContent  = 'Create a free account so ' + profile.name +
-          '’s matches follow you across devices.';
+        if (authTitle) authTitle.textContent = tx('Save {name}’s profile', { name: profile.name });
+        if (authHint)  authHint.textContent  = tx('Create a free account so {name}’s matches follow you across devices.', { name: profile.name });
       }
     });
     document.getElementById('dwSkipSaveBtn').addEventListener('click', function () {
       // Draft already saved, they can resume any time from the CTA.
       doClose();
-      showToast(profile.name + '’s profile is kept as a draft on this device.');
+      showToast(tx('{name}’s profile is kept as a draft on this device.', { name: profile.name }));
     });
   }
 
@@ -1047,10 +1051,10 @@
 
   // ---- Title helper ----
   function setFormTitle() {
-    titleEl.textContent   = isEditing ? 'Edit dog' : 'Add a dog';
+    titleEl.textContent   = isEditing ? tx('Edit dog') : tx('Add a dog');
     subtitleEl.textContent = isEditing
-      ? 'Update your dog\'s profile.'
-      : 'Tell us about your dog to personalize trail recommendations.';
+      ? tx('Update your dog\'s profile.')
+      : tx('Tell us about your dog to personalize trail recommendations.');
   }
 
   // ---- Open ----
