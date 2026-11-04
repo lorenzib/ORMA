@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lario-dal-passo-del-giovo-al-rifugio-sommafiume",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 5.1,
+    "ascentM": 168,
+    "highestPointM": 1834,
+    "expectedDuration": "1.25 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.155606,
+    "lng": 9.170851,
+    "label": "The Passo del Giovo (1,706 m), by its fountain, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Cattle graze the Valle Albano pastures in summer: keep your distance and your dog on a short lead.",
+    "Open ground at 1,700–1,830 m with no shade: storms and fog build fast on summer afternoons.",
+    "The road up to the Passo del Giovo is narrow and closed in winter or in ice and snow.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

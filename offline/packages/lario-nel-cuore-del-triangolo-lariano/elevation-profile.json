@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lario-nel-cuore-del-triangolo-lariano",
+  "distanceKm": 3.1,
+  "ascentM": 133,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 887
+    },
+    {
+      "km": 0.2,
+      "elev": 892
+    },
+    {
+      "km": 0.5,
+      "elev": 842
+    },
+    {
+      "km": 0.7,
+      "elev": 837
+    },
+    {
+      "km": 0.9,
+      "elev": 864
+    },
+    {
+      "km": 1.2,
+      "elev": 844
+    },
+    {
+      "km": 1.4,
+      "elev": 837
+    },
+    {
+      "km": 1.7,
+      "elev": 849
+    },
+    {
+      "km": 1.9,
+      "elev": 847
+    },
+    {
+      "km": 2.1,
+      "elev": 838
+    },
+    {
+      "km": 2.3,
+      "elev": 783
+    },
+    {
+      "km": 2.6,
+      "elev": 775
+    },
+    {
+      "km": 2.8,
+      "elev": 800
+    },
+    {
+      "km": 3,
+      "elev": 805
+    },
+    {
+      "km": 3.1,
+      "elev": 793
+    }
+  ]
+}

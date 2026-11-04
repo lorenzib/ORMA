@@ -60779,6 +60779,152 @@
       startPoint: { lat: 46.4435, lng: 9.33401, label: 'Isola, at the foot of the consortium road to Cà Raseri, the board’s start' },
       desc: 'A long but never too hard climb from Isola in the Valle San Giacomo past Cà Raseri and the Alpe Borghetto, across wide pastures and up a moraine to Lago Grande and the Rifugio Baldiscio. The board lists 7.22 km, 1,056 m up and 5 m down, 3 h 40 one way.'
     },
+    'lario-nel-cuore-del-triangolo-lariano': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lombardy batch 6).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Nel cuore del triangolo lariano” by Orobie Active, drawn on 11 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Caglio (no regulation found, national rule); Rezzago (own 1966 rule: a lead unless muzzled).
+      // No Natura 2000 site, park, reserve, local park or natural monument on the line (Regione Lombardia geoportal layers); the Funghi di Terra natural monument lies off the line, on an optional side trip the page mentions.
+      area: 'Campoè (Caglio) – Selva di Rezzago – Cassina Enco, Triangolo Lariano',
+      distance: 3,
+      elevation: 133,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the car park past the Campoè sanctuary above Caglio along a paved mule track through beech and chestnut woods and the Selva di Rezzago to the Cassina Enco farm; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the dirt car park just past the Campoè sanctuary above Caglio, reached from the SP 44 towards the Ghisallo and then signs for Rezzago, the published start.",
+        "sequence": "Walk on along the road, turning left past the Chalet restaurant to where a paved mule track begins. Follow the paving through a chestnut wood with tables and benches on the left and a rope adventure park on the right, then through the Selva di Rezzago and down to a clearing with wooden benches. At the small stone shrine take the dirt track on the right, not the tarmac road on the left, and carry on through the chestnuts to the Cassina Enco farm. Come back the same way.",
+        "switches": "Key turns: left on the road past the Chalet restaurant onto the paved track; at the small stone shrine right onto the dirt track, not the tarmac.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "in-Lombardia, Nel cuore del triangolo lariano (itinerary by Orobie Active, route description)",
+            "url": "https://www.in-lombardia.it/itinerari/nel-cuore-del-triangolo-lariano",
+            "authority": "Regione Lombardia (in-Lombardia)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Madonna di Campoè sanctuary above Caglio, which the walk passes at its start, on 5 September 2020 (Iolanda Pensa on Wikimedia Commons, CC BY-SA 4.0), 30 m from the line.',
+        route: 'Official one-way walk 3 km from the Campoè sanctuary above Caglio, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 11 OSM ways along the published GPX, 3.1 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.',
+        routeNumbers: 'From the dirt car park past the Campoè sanctuary, along the road to the left past the Chalet restaurant to the start of the paved mule track; on through a chestnut wood with picnic tables (an adventure park on the right) to the Selva di Rezzago; down the old track to a clearing with benches, and at the small stone shrine take the dirt track on the right, not the tarmac on the left, through chestnuts to the Cassina Enco farm. Back the same way.',
+        mapPoints: 'Start at the published start; no drinking water mapped on the line.',
+        elevation: 'Official 3 km, 133 m up, 1:00 h, highest point 892 m, lowest 775 m (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Orobie Active). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Nel cuore del triangolo lariano” (itinerary by Orobie Active, with its GPX)',
+          'Comune di Caglio publishes no dog regulation (none in its register of regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Rezzago, Regolamento di Polizia Urbana (the printed 1963 text, published at the albo in June 1966), Art. 74: dogs may not roam public places or places open to the public without a muzzle, and a dog without a muzzle must always be on a lead; Art. 75: large breeds need a muzzle and a lead',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'Regione Lombardia geoportal layers (Natura 2000, parks, reserves, PLIS, natural monuments): no protected area on the line',
+          'OpenStreetMap ways along the published line (11 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 92,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The first stretch follows the access road past the Chalet restaurant: keep your dog close', 'A rope adventure park beside the track in the chestnut wood: keep your dog on a short lead past it', 'The paved mule track can be slippery with wet leaves'],
+      terrainType: 'Paved mule track and woodland track',
+      shadeDescription: 'Almost all shaded: about nine tenths of the way runs through mapped beech and chestnut woods; only the start by the sanctuary is open.',
+      terrainDescription: 'A short, easy walk at 780–890 m in the heart of the Triangolo Lariano, from the Campoè sanctuary above Caglio on an old paved mule track through beech, chestnut and birch woods and the Selva di Rezzago to the Cassina Enco farm. Fine for families and dogs that are not used to long walks.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Chalet restaurant near the start and the Cassina Enco farm at the end serve food when open.',
+      dogNotes: 'Caglio publishes no dog rule, so the national one applies: a lead of at most 1.5 m and a muzzle carried. Rezzago’s police regulation requires a dog to be on a lead unless it wears a muzzle, and large breeds to wear both. Keep your dog on a lead of at most 1.5 m the whole way and carry a muzzle.',
+      tips: 'Park at the dirt car park past the Campoè sanctuary above Caglio: 3 km and, as the portal lists, 133 m of climbing, about an hour to the Cassina Enco farm, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Signs near the farm point to a short side trip to the Funghi di Rezzago, earth pillars that are a protected natural monument; it is not part of this walk.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Nel cuore del triangolo lariano', url: 'https://www.in-lombardia.it/itinerari/nel-cuore-del-triangolo-lariano' },
+        { label: 'in-Lombardia, Nel cuore del triangolo lariano: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/182201/setNametrackg6bzxwu7ct37jijsjaxhymaeslqgg6tn.gpx' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Comune di Caglio, Statuto e regolamenti comunali (no dog or police regulation listed)', url: 'https://comune.caglio.co.it/c013037/zf/index.php/atti-generali/index/dettaglio-atto/atto/16' },
+        { label: 'Comune di Rezzago, Regolamento di Polizia Urbana (Art. 74–75)', url: 'https://www.comune.rezzago.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_52.html' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.871106, lng: 9.226426, label: 'The dirt car park just past the Campoè sanctuary above Caglio, the published start' },
+      desc: 'An easy, shady walk in the heart of the Triangolo Lariano, from the Campoè sanctuary above Caglio along an old paved mule track through beech and chestnut woods to the Cassina Enco farm. The portal lists 3 km, 133 m up and an hour one way.'
+    },
+    'lario-dal-passo-del-giovo-al-rifugio-sommafiume': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lombardy batch 6).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Dal Passo del Giovo a Sommafiume” by LakeComo.is, drawn on 2 OSM ways along its published GPX
+      // (data/board-line-routes.geojson). Communes: Garzeno (no regulation found, national rule); Gravedona ed Uniti (own rule, lead on all public ground).
+      // It runs through the PLIS Valle Albano, a local park run by the Comune di Gravedona ed Uniti with no park regulation of its own; no Natura 2000 site, regional park, reserve or natural monument on the line (Regione Lombardia geoportal layers).
+      area: 'Passo del Giovo – Valle Albano – Rifugio Sommafiume, Alto Lario',
+      distance: 5.1,
+      elevation: 168,
+      hours: '1.25',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Passo del Giovo across the head of the Valle Albano, past the Fonte del Cavallante and two alpine pastures, to the Rifugio Sommafiume; come back the same way, in the same time.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Passo del Giovo (1,706 m), above Garzeno, where a fountain stands by the road, the published start; the road up is closed in winter and in ice or snow.",
+        "sequence": "Follow the easy path that crosses the whole head of the Valle Albano through meadows and shrubs. After about a quarter of an hour pass the Fonte del Cavallante spring with its metal plaque, carry on with gentle ups and downs over small streams past the turn for the Nembruno Superiore pasture, and after about 25 minutes more reach a second pasture with a trough. The path then drops gently to the Albano stream, where it forks: go left to reach the Rifugio Sommafiume in about ten minutes. Come back the same way.",
+        "switches": "Key turns: keep straight on past the turn for the Nembruno Superiore pasture; at the fork by the Albano stream go left for the Rifugio Sommafiume, not right for the Bocchetta di Sommafiume.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "in-Lombardia, Dal Passo del Giovo a Sommafiume (itinerary by LakeComo.is, route description)",
+            "url": "https://www.in-lombardia.it/itinerari/dal-passo-del-giovo-al-rifugio-sommafiume",
+            "authority": "Regione Lombardia (in-Lombardia)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Picnic tables at the Passo del Giovo looking across the head of the Valle Albano, where the walk starts, on 30 August 2015 (kaitu on Mapillary, CC BY-SA 4.0), 14 m from the line.',
+        route: 'Official one-way walk 5.1 km from the Passo del Giovo, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 2 OSM ways along the published GPX, 5.1 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.',
+        routeNumbers: 'From the Passo del Giovo on the easy path across the head of the Valle Albano: after about 15 minutes (1.1 km) the Fonte del Cavallante spring with its metal plaque; on with gentle ups and downs over small streams to the turn for the Nembruno Superiore pasture (2.2 km); about 25 minutes more to a second pasture with a trough, then gently down to the Albano stream, where the path forks: left, not right to the Bocchetta di Sommafiume, to the Rifugio Sommafiume (1,784 m) in about 10 minutes. Back the same way.',
+        mapPoints: 'Start at the published start; no drinking water mapped on the line.',
+        elevation: 'Official 5.1 km, 168 m up, 1:15 h, highest point 1,834 m, lowest 1,707 m (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by LakeComo.is). The stored line follows the published GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'in-Lombardia, the official tourism portal of Regione Lombardia, “Dal Passo del Giovo a Sommafiume” (itinerary by LakeComo.is, with its GPX)',
+          'Comune di Garzeno publishes no dog regulation (none in its register of regulations), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Comune di Gravedona ed Uniti, Regolamento di Polizia Urbana (DCC 26 of 24 October 2022, amended by DCC 25 of 21 September 2026), Art. 53: dogs may use all public streets and all public or public-use areas only on a lead; no dogs in fenced, signed play areas; a muzzle for dogs prone to bite; Art. 55: clean up after your dog on any public ground',
+          'PLIS Valle Albano (local park of supra-municipal interest, recognised by the Provincia di Como, DGP 365/53042 of 17 November 2005, 652 ha, all in Gravedona ed Uniti and run by the commune): no park regulation of its own was found, so the commune’s Art. 53 lead rule applies inside it',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'OpenStreetMap ways along the published line (2 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Cattle graze the Valle Albano pastures in summer: keep your distance and your dog on a short lead', 'Open ground at 1,700–1,830 m with no shade: storms and fog build fast on summer afternoons', 'The road up to the Passo del Giovo is narrow and closed in winter or in ice and snow'],
+      terrainType: 'Mountain path',
+      shadeDescription: 'No shade: the whole way runs over open meadows and shrubs at the head of the Valle Albano.',
+      terrainDescription: 'An easy, nearly level mountain walk at 1,700–1,830 m above Lake Como, from the Passo del Giovo across the head of the Valle Albano with its pastures and streams to the Rifugio Sommafiume, below Cima Verta, Cima Pomodoro and Monte Albano. A summer walk: the road to the pass is closed in winter.',
+      waterDescription: 'No drinking water mapped on the line, though the portal mentions a fountain at the Passo del Giovo, the Fonte del Cavallante spring after 1.1 km and a trough at the Rifugio Sommafiume: bring water for your dog anyway. The Rifugio Sommafiume serves food and drink when open.',
+      dogNotes: 'Garzeno publishes no dog rule, so the national one applies: a lead of at most 1.5 m and a muzzle carried. Gravedona ed Uniti, which runs the Valle Albano local park, requires dogs to be on a lead on all public ground and a muzzle on dogs prone to bite, and you must clean up after your dog. Keep your dog on a lead of at most 1.5 m the whole way and carry a muzzle.',
+      tips: 'Drive up to the Passo del Giovo above Garzeno (not in winter or in ice and snow): 5.1 km and, as the portal lists, 168 m of climbing, an hour and a quarter to the Rifugio Sommafiume, then the same way back in the same time. Walk it from June to October. Keep your dog on a lead of at most 1.5 m and carry a muzzle; cattle graze the pastures in summer. The rifugio serves food and drink when open.',
+      sourceLinks: [
+        { label: 'in-Lombardia, Dal Passo del Giovo a Sommafiume', url: 'https://www.in-lombardia.it/itinerari/dal-passo-del-giovo-al-rifugio-sommafiume' },
+        { label: 'in-Lombardia, Dal Passo del Giovo a Sommafiume: GPX', url: 'https://www.in-lombardia.it/sites/default/files/itinerari/gpx/178391/dalpassodigiovoalrifugiosommafiume-gpx.gpx' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Comune di Gravedona ed Uniti, Regolamento di Polizia Urbana (Art. 53)', url: 'https://www.comune.gravedonaeduniti.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_226.html' },
+        { label: 'Parks.it, Parco della Valle Albano (PLIS)', url: 'https://www.parks.it/parco.valle.albano/par.php' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.155606, lng: 9.170851, label: 'The Passo del Giovo (1,706 m), by its fountain, the published start' },
+      desc: 'An easy, almost level walk high above Lake Como, from the Passo del Giovo across the open head of the Valle Albano past a spring and two pastures to the Rifugio Sommafiume. The portal lists 5.1 km, 168 m up and an hour and a quarter one way.'
+    },
     'valsesia-cervatto-madonna-del-balmone': {
       // Hand audit: 2026-11-03, verified on arrival (new-trail Piedmont batch 1, Valsesia).
       // “Cervatto - Madonna del Balmone”, published by Ente di gestione delle aree protette della Valsesia, drawn on 9 OSM ways along the line it publishes
@@ -61198,6 +61344,77 @@
       ],
       startPoint: { lat: 45.935842, lng: 8.236739, label: 'Campello Monti (1,305 m), the Region’s start' },
       desc: 'Stage 21 of the GTA, over the ridge from the Walser village of Campello Monti in the Valle Strona to Rimella in the Val Mastallone, by the Alpe Scarpia, the Bocchetta di Campello and the Alpe Pianello. The Region lists 8.6 km, 620 m up and 750 m down, 3 h 15.'
+    },
+    'savoie-boucle-du-fornet-par-la-cascade-du-fornet': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 1, Beaufortain – Val d’Arly).
+      // “Boucle du Fornet – Par la cascade du Fornet”, published by the Val d’Isère Tourisme, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 6531064). Communes: Val-d’Isère (no dog order found online, probably exists: the national rule applies).
+      // No national park core, nature reserve, biotope order or regional park on the line (IGN PatriNat layers); the Vanoise core lies outside it.
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Le Fornet – Pont des Cognons – Cascade du Fornet (Haute Tarentaise)',
+      distance: 3.7,
+      elevation: 204,
+      hours: '1.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the fountain in the hamlet of Le Fornet: out along the farm track on the left bank of the Isère to the Pont des Cognons, then back along the edge of the forest past the Fornet waterfall and down into the village.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the fountain in the hamlet of Le Fornet, above Val d’Isère on the road to the Col de l’Iseran.",
+        "sequence": "From the fountain turn left for about 30 m, then right in front of the Chalet la Cascade, climbing gently, and after about 20 m turn left again. Follow the farm track along the left bank of the Isère up to the Pont des Cognons. At the path junction on the edge of the forest keep right to reach the Fornet waterfall, then walk back down to the village.",
+        "switches": "Three turns in the first 50 m from the fountain (left, right at the Chalet la Cascade, left again), then keep right at the junction by the forest edge for the waterfall.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Val d’Isère Tourisme, Boucle du Fornet – Par la cascade du Fornet (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/boucle-du-fornet-par-la-cascade-du-fornet-6531064/",
+            "authority": "Val d’Isère Tourisme",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Isère between Le Fornet and the Pont des Cognons, in July 2022 (Florian Pépellin on Wikimedia Commons, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official loop 3.7 km from the fountain in the hamlet of Le Fornet, as the Val d’Isère Tourisme publishes it; the stored line is drawn on 17 OSM ways along the board’s published line, 3.73 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Start at the Fornet fountain: left for 30 m, right in front of the Chalet la Cascade, then left again after about 20 m onto the farm track on the left bank of the Isère to the Pont des Cognons; at the path junction by the forest edge keep right for the Fornet waterfall, then go down to the village. Waymarked, no path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 2425357254, 5335526986).',
+        elevation: 'Official 3.7 km, 204 m up and 204 m down, 1:45 h average walking time (Val d’Isère Tourisme, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Val d’Isère Tourisme, Boucle du Fornet – Par la cascade du Fornet (Explore Savoie, Apidae 6531064) and its official GPX',
+          'Val-d’Isère publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 48,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The farm track runs beside the young Isère: keep your dog out of the fast, cold water', 'Cows may graze along the track in summer: keep your dog on a lead near the herds', 'High ground at about 1,925–2,110 m: quick weather changes and strong sun'],
+      terrainType: 'Farm track and forest-edge path',
+      shadeDescription: 'About half in shade: 48% passes under the larch forest on the return along the forest edge; the farm track by the Isère is open.',
+      terrainDescription: 'A short loop at about 1,925–2,110 m from the old hamlet of Le Fornet up the farm track beside the young Isère to the Pont des Cognons, and back along the forest edge past the Fornet waterfall.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'The official page does not say whether dogs are accepted. Val-d’Isère publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Cows may graze along the Isère in summer: keep your dog on a lead near them. The Vanoise national park, where dogs are banned, begins higher up the valley; this loop stays outside it.',
+      tips: 'Le Fornet is the last hamlet above Val d’Isère on the road to the Col de l’Iseran: 3.7 km round, 204 m up and down, about 1 h 45. Open June to the end of October, depending on snow.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Boucle du Fornet – Par la cascade du Fornet (Val d’Isère Tourisme)', url: 'https://www.explore-savoie.com/randonnees-et-balades/boucle-du-fornet-par-la-cascade-du-fornet-6531064/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/232/236/38268136/Boucle+du+Fornet+-+Par+la+cascade+du+Fornet.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.44895, lng: 7.010191, label: 'Fountain in the hamlet of Le Fornet, the board’s start' },
+      desc: 'A short loop from the old hamlet of Le Fornet above Val d’Isère, up the farm track beside the young Isère to the Pont des Cognons and back along the forest edge past the Fornet waterfall. The official page lists 3.7 km, 204 m up and 204 m down, about 1 h 45.'
     }
   };
 
