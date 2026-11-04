@@ -1603,6 +1603,36 @@
       "name": "Val Susauna from Chapella",
       "slug": "val-susauna-from-chapella",
       "gloss": "a quiet side valley to Alp Pignaint"
+    },
+    "meran-itinerario-raststeinweg": {
+      "name": "Raststeinweg loop, Schenna",
+      "slug": "raststeinweg-loop-schenna",
+      "gloss": "farms and a shady path above Schenna"
+    },
+    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
+      "name": "Taser Höhenweg to the Haashof, Schenna",
+      "slug": "taser-hoehenweg-haashof-schenna",
+      "gloss": "from the Taser Alm to Videgg and Tall"
+    },
+    "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell": {
+      "name": "Meraner Höhenweg from the Texelbahn to Unterstell",
+      "slug": "hoehenweg-texelbahn-to-unterstell",
+      "gloss": "through the Thousand Steps gorge"
+    },
+    "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": {
+      "name": "Maiser and Moschwald alms loop from Falzeben",
+      "slug": "maiser-moschwald-alms-falzeben",
+      "gloss": "two alms on Meran 2000"
+    },
+    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": {
+      "name": "Terrainkur path 1, Aschbach to St. Vigil",
+      "slug": "aschbach-st-vigil-terrainkur-1",
+      "gloss": "a steady forest climb to the Vigiljoch"
+    },
+    "meran-giro-delle-malghe-monte-tramontana": {
+      "name": "Nörderberg alms loop, Naturns",
+      "slug": "noerderberg-alms-loop-naturns",
+      "gloss": "three alms on a shady slope"
     }
   }
 }

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-itinerario-raststeinweg",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.5,
+    "ascentM": 311,
+    "highestPointM": 896,
+    "expectedDuration": "2.25 hours",
+    "difficulty": "Hard",
+    "shadePercent": 33
+  },
+  "trailhead": {
+    "lat": 46.686077,
+    "lng": 11.18994,
+    "label": "The mini-golf in Schenna, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.686918,
+      "lng": 11.18891,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.69001,
+      "lng": 11.19357,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6918595,
+      "lng": 11.1993651,
+      "label": "Kneippanlage",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6939606,
+      "lng": 11.198924,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6941664,
+      "lng": 11.1980298,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.683724,
+      "lng": 11.192311,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Most of the loop is on quiet tarred lanes and farm access roads shared with cars and tractors: lead on and keep to the side.",
+    "Short crossings of St.-Georgener-Straße in Schenna: lead short.",
+    "Orchards, vineyards and meadows beside the lanes are farmed and closed to dogs in Schenna in the growing season: keep to the lane.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}
