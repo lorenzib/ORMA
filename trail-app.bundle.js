@@ -12998,9 +12998,15 @@ function initDetailPois(map, trail){
     return normalizeCredit(trail?.imageCredit,trail?.imageSourcePage);
   }
 
+  // The app loads trail photos from the website (scripts/build-app.js), so a
+  // photo path may carry the site's address in front of images/.
+  const SITE='(?:https:\\/\\/www\\.app-orma\\.com\\/)?';
+  const EDITORIAL_IMAGE=new RegExp('^'+SITE+'images\\/[A-Za-z0-9_./-]+\\.(?:avif|jpe?g|png|webp)$','i');
+  const LICENSED_IMAGE=new RegExp('^'+SITE+'images\\/trails\\/[A-Za-z0-9_.-]+\\.(?:jpe?g|webp)$','i');
+
   function editorialPhotos(trail){
     return (Array.isArray(trail?.editorialPhotos)?trail.editorialPhotos:[])
-      .filter(photo=>photo&&photo.source==='orma-editorial'&&/^images\/[A-Za-z0-9_./-]+\.(?:avif|jpe?g|png|webp)$/i.test(clean(photo.image)))
+      .filter(photo=>photo&&photo.source==='orma-editorial'&&EDITORIAL_IMAGE.test(clean(photo.image)))
       .map((photo,index)=>({...photo,image:clean(photo.image),isEditorial:true,editorialOrder:index,status:'approved'}));
   }
 
@@ -13008,7 +13014,7 @@ function initDetailPois(map, trail){
   // (data/trail-gallery-photos.json). Credited with creator and licence.
   function licensedPhotos(trail){
     return (Array.isArray(trail?.licensedPhotos)?trail.licensedPhotos:[])
-      .filter(photo=>photo&&/^images\/trails\/[A-Za-z0-9_.-]+\.(?:jpe?g|webp)$/i.test(clean(photo.image))&&clean(photo.creator)&&clean(photo.licence)&&/^https:\/\//i.test(clean(photo.sourcePage)))
+      .filter(photo=>photo&&LICENSED_IMAGE.test(clean(photo.image))&&clean(photo.creator)&&clean(photo.licence)&&/^https:\/\//i.test(clean(photo.sourcePage)))
       .map((photo,index)=>({...photo,image:clean(photo.image),isLicensed:true,licensedOrder:index,status:'approved'}));
   }
 
