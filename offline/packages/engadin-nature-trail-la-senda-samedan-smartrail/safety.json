@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-nature-trail-la-senda-samedan-smartrail",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.5,
+    "ascentM": 227,
+    "highestPointM": 1983,
+    "expectedDuration": "2.25 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 39
+  },
+  "trailhead": {
+    "lat": 46.541885,
+    "lng": 9.87691,
+    "label": "Muntarütsch car park above Samedan, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Upper-village roads at the end: lead short for passing cars.",
+    "Forest path with roots and short steep stretches above Muntarütsch.",
+    "Hay meadows near Samedan are closed 15 May–30 September: keep to the path.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

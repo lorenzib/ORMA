@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-sils-chaste-peninsula-sils",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.4,
+    "ascentM": 49,
+    "highestPointM": 1829,
+    "expectedDuration": "1.25 hours",
+    "difficulty": "Easy",
+    "shadePercent": 55
+  },
+  "trailhead": {
+    "lat": 46.428706,
+    "lng": 9.763688,
+    "label": "Sils/Segl Maria car park, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Rocky and rooty forest path on the peninsula.",
+    "Steep banks down to the lake on the peninsula: keep your dog on a lead near the water.",
+    "Hay meadows on the plain are closed from 1 June until the hay harvest: keep to the track.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}
