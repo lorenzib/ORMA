@@ -1688,6 +1688,21 @@
       "name": "Val Pelouse crest path and Perrière refuge",
       "slug": "val-pelouse-crest-path-perriere-refuge",
       "gloss": "Belledonne ridge loop above Arvillard"
+    },
+    "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": {
+      "name": "Murtèl to Surlej via Alpetta",
+      "slug": "murtel-to-surlej-via-alpetta",
+      "gloss": "down from the Corvatsch middle station"
+    },
+    "engadin-corvatsch-hahnensee-st-moritz": {
+      "name": "Hahnensee from Murtèl to St. Moritz",
+      "slug": "hahnensee-from-murtel-to-st-moritz",
+      "gloss": "down past alpine lakes to St. Moritz Bad"
+    },
+    "engadin-eulalia-and-gian-plaiv": {
+      "name": "Eulalia and Gian Plaiv trail, Zuoz",
+      "slug": "eulalia-gian-plaiv-trail-zuoz",
+      "gloss": "a story trail through the old village"
     }
   }
 }
