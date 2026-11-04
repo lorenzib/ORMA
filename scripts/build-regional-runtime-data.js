@@ -50,10 +50,11 @@ const regionsApi = (() => {
 // West of 9°E a point is Savoy's unless its nearest locality is in Valle
 // d'Aosta: Courmayeur and Chamonix share a meridian, so a longitude cannot
 // split them. A lift says which country it is in, so a French one stays in
-// Savoy whatever its lower station's position.
+// Savoy whatever its lower station's position. Ticino lies west of 9°E too, so
+// a point whose nearest locality is Swiss goes to Switzerland the same way.
 // Piedmont is the same: Bardonecchia and Modane share the Fréjus, and the
 // Ossola lies west of 9°E too.
-const WEST_REGIONS = ['aosta', 'piedmont'];
+const WEST_REGIONS = ['aosta', 'piedmont', 'switzerland'];
 let anchorTrails = [];
 function regionForPoint(lng, lat) {
   if (!Number.isFinite(lng) || !Number.isFinite(lat)) return null;

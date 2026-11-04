@@ -1062,6 +1062,7 @@ window.ORMA_PHRASES_IT = {
   "Surface hazards": "Pericoli del fondo",
   "Switching to {name}…": "Passaggio a {name}…",
   "Switching…": "Cambio in corso…",
+  "Switzerland": "Svizzera",
   "TRAIL TALE": "TRAIL TALE",
   "Take care here.": "Fai attenzione qui.",
   "Tap": "Tocca",

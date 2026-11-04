@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T00:04:09.491Z",
+  "generatedAt": "2026-11-04T00:21:26.500Z",
   "regions": {
     "dolomites": {
       "trailCount": 331,
-      "trails": "data/regions/dolomites-trails.js?v=8cd923236c14",
+      "trails": "data/regions/dolomites-trails.js?v=38b0824bbbb9",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=6faa6455cd45",
@@ -312,7 +312,7 @@
         "villnoess-ranui-zannes": "data/trail-details/villnoess-ranui-zannes.js?v=27dec396051e",
         "villnoess-da-russis-fino-al-passo-delle-erbe": "data/trail-details/villnoess-da-russis-fino-al-passo-delle-erbe.js?v=0ad365a95a5d",
         "villnoess-dolorama-3a-tappa": "data/trail-details/villnoess-dolorama-3a-tappa.js?v=02d4cd4104fd",
-        "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": "data/trail-details/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles.js?v=803d6067f278",
+        "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": "data/trail-details/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles.js?v=2020d9522e89",
         "vinschgau-sentiero-della-roggia-latschanderwaal-4954": "data/trail-details/vinschgau-sentiero-della-roggia-latschanderwaal-4954.js?v=0dd313d401b4",
         "vinschgau-sentiero-della-roggia-kastanienwaal": "data/trail-details/vinschgau-sentiero-della-roggia-kastanienwaal.js?v=803183242867",
         "vinschgau-escursione-al-lago-bergsee-da-burgusio": "data/trail-details/vinschgau-escursione-al-lago-bergsee-da-burgusio.js?v=a0fb67d98e71",
@@ -475,7 +475,7 @@
     },
     "piedmont": {
       "trailCount": 0,
-      "trails": "data/regions/piedmont-trails.js?v=27b1da905e0f",
+      "trails": "data/regions/piedmont-trails.js?v=c1c4baf8d226",
       "details": {},
       "water": "data/regions/piedmont-water.geojson",
       "hutsBars": "data/regions/piedmont-huts-bars.geojson",
@@ -512,6 +512,15 @@
       },
       "water": "data/regions/tyrol-water.geojson",
       "hutsBars": "data/regions/tyrol-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
+      "optional": []
+    },
+    "switzerland": {
+      "trailCount": 0,
+      "trails": "data/regions/switzerland-trails.js?v=1693c551ac00",
+      "details": {},
+      "water": "data/regions/switzerland-water.geojson",
+      "hutsBars": "data/regions/switzerland-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     }

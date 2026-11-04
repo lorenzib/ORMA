@@ -6,8 +6,8 @@
   'use strict';
 
   const ALLOWED = Object.freeze({
-    country: ['italy', 'france', 'austria'],
-    region: ['dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'piedmont', 'tyrol'],
+    country: ['italy', 'france', 'austria', 'switzerland'],
+    region: ['dolomites', 'savoy', 'lombardy', 'friuli', 'aosta', 'piedmont', 'tyrol', 'switzerland'],
     risk: ['low-risk', 'moderate', 'caution'],
     distance: ['3', '5', '6', '10', '20', 'u5', '5to10', '10p'],
     duration: ['day', 'multi'],
