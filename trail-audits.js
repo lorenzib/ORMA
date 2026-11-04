@@ -62270,6 +62270,370 @@
       ],
       startPoint: { lat: 46.518743, lng: 11.504462, label: 'The roundabout in Fiè allo Sciliar (880 m), the board’s start' },
       desc: 'A one-way walk from Fiè allo Sciliar up through meadows past the Zimmerlehen manor to the Laghetto di Fiè under the Sciliar, then through woods to Siusi. The board lists 6.3 km, 299 m up and two hours.'
+    },
+    'isere-circuit-pedestre-alpage-des-cloutons': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 1, Isère).
+      // “Circuit pédestre : Alpage des Cloutons”, published by the Matheysine Tourisme, drawn on 20 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 6057481). Communes: Saint-Honoré and Villard-Saint-Christophe (no dog order found online for either, probably exists: the national rule applies; the page says dogs on a lead).
+      // No national park, nature reserve, biotope order, regional park or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Saint-Honoré 1500 – Croix de Gouret – Col de l’Oullière (Matheysine)',
+      distance: 10.7,
+      elevation: 635,
+      hours: '4.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Saint-Honoré 1500 resort: up by Les Tibannes and Pracouiret to the Croix de Gouret, along the ridge by the Col du Parché and La Chinarde to the Col de l’Oullière, and back down by the Lac Charlet and Aux Alisiers.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Saint-Honoré 1500 resort car park, at the top of the D 115c above Saint-Honoré.",
+        "sequence": "Follow the signposts for La Croix de Gouret, passing Les Tibannes and Pracouiret. From the Croix de Gouret carry on along the ridge to the Col du Parché, then by La Chinarde to the Col de l’Oullière. From the col head back down past the Lac Charlet and Aux Alisiers to the resort.",
+        "switches": "At the Croix de Gouret turn along the ridge towards the Col du Parché; at the Col de l’Oullière turn down towards the Lac Charlet; at Aux Alisiers follow Saint-Honoré 1500.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Matheysine Tourisme, Circuit pédestre : Alpage des Cloutons (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/circuit-pedestre-alpage-des-cloutons-6057481/",
+            "authority": "Matheysine Tourisme",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Pérollier reflected in the Lac Charlet, on the return leg, in October 2023 (Rémih on Wikimedia Commons, CC BY-SA 4.0), 13 m from the line.',
+        route: 'Official loop 10.7 km from the Saint-Honoré 1500 resort car park, as the Matheysine Tourisme publishes it; the stored line is drawn on 20 OSM ways along the board’s published line, 10.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From Saint-Honoré 1500 follow the signposts for La Croix de Gouret by Les Tibannes and Pracouiret; from the Croix de Gouret go on by the Col du Parché and La Chinarde to the Col de l’Oullière; return to Saint-Honoré 1500 by the Lac Charlet and Aux Alisiers. Yellow waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 10.7 km, 635 m up and 635 m down, 4:15 h average walking time (Matheysine Tourisme, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Matheysine Tourisme, Circuit pédestre : Alpage des Cloutons (alpes-isere.com, Apidae 6057481) and its official GPX',
+          'Saint-Honoré and Villard-Saint-Christophe publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs on a lead only, possible guard dogs and flocks on the heights',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (20 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 29,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpages: sheep and cattle graze the heights in summer, often with guard dogs (patous); keep your dog on a lead and walk round the flock', 'Open ridge at about 1,500–2,100 m with little shade and quick weather changes', 'Snow can linger on the crests early and late in the season'],
+      terrainType: 'Ski-resort tracks, mountain path and grassy ridge',
+      shadeDescription: 'Mostly open: just under a third of the line passes woodland near the resort; the ridge, the cols and the lake are open.',
+      terrainDescription: 'A half-day loop on the Matheysine plateau’s mountain, from the Saint-Honoré 1500 resort up to the Croix de Gouret and along a grassy ridge of cols with views over the Matheysine lakes, the Vercors and the Obiou, then down past the little Lac Charlet.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs are accepted on a lead only, according to the official page, and flocks with guard dogs graze the heights: keep your dog close and give the herds a wide berth. Saint-Honoré and Villard-Saint-Christophe publish no dog order online, so the national rule applies on top: no straying, and a lead in woods and fields off the paths from 15 April to 30 June.',
+      tips: 'Drive up the D 115c from Saint-Honoré to the Saint-Honoré 1500 resort: 10.7 km round, 635 m up and down, about 4 h 15. Open 15 June to 15 October; ask about snow on the crests early in the season.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Circuit pédestre : Alpage des Cloutons (Matheysine Tourisme)', url: 'https://www.alpes-isere.com/itineraire/circuit-pedestre-alpage-des-cloutons-6057481/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/59/162/43426363/Alpage+des+Cloutons.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 44.972445, lng: 5.825698, label: 'Saint-Honoré 1500 resort car park on the D 115c, the board’s start' },
+      desc: 'A half-day loop above the Matheysine from the Saint-Honoré 1500 resort to the Croix de Gouret, along a grassy ridge of cols to the Col de l’Oullière and back past the Lac Charlet. The official page lists 10.7 km, 635 m up and down, about 4 h 15.'
+    },
+    'isere-la-vallee-de-la-gresse': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 1, Isère).
+      // “La vallée de la Gresse”, published by the Office de Tourisme Grenoble Alpes, drawn on 23 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 6086482). Communes: Miribel-Lanchâtre (no dog order found online, probably exists: the national rule applies; the page says dogs on a lead).
+      // Inside the Parc naturel régional du Vercors (no dog rule of its own); no national park, nature reserve, biotope order or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Miribel-Lanchâtre – Gresse valley (Trièves, Vercors)',
+      distance: 6.2,
+      elevation: 286,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Miribel-Lanchâtre town hall: down past Les Gouveyrts and the Fond Carle farm to the Gresse torrent, up through the forest to the Plan de Miribel ridge and back along a broad track to the village.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Miribel-Lanchâtre town hall, in the village centre.",
+        "sequence": "Walk up the street towards Les Adrets, cross the D 8 and carry straight on along the Chemin du Pré Tarachou, then take the stony path on the left and turn right on the road towards Les Gouveyrts. Just after the Fond Carle farm turn left onto the path for the Pont Péron and the Gresse torrent; do not cross the footbridge but climb straight on through the gates (close them behind you). At the Malamorta signpost turn right for the Serre du Roux, up through the forest and across the ford of the Pierre du Mai stream to the Plan de Miribel signpost on the ridge. Turn left onto the broad track back towards the village; at La Tournie carry straight on along a grassy path, walk up beside the D 8 and turn right before the bus stop back to the town hall.",
+        "switches": "Left after the Fond Carle farm for the Pont Péron; right at Malamorta for the Serre du Roux; left at Plan de Miribel; straight on at La Tournie; right before the bus stop.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme Grenoble Alpes, La vallée de la Gresse (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/la-vallee-de-la-gresse-6086482/",
+            "authority": "Office de Tourisme Grenoble Alpes",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Miribel-Lanchâtre from the loop, in May 2017 (Jvillafruela on Wikimedia Commons, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 6.2 km from the Miribel-Lanchâtre town hall, as the Office de Tourisme Grenoble Alpes publishes it; the stored line is drawn on 23 OSM ways along the board’s published line, 6.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the Miribel-Lanchâtre town hall walk up the street towards Les Adrets, cross the D 8 to the Chemin du Pré Tarachou, then down the road towards Les Gouveyrts; after the Fond Carle farm take the path towards the Pont Péron to the Gresse; at the Malamorta signpost turn right for the Serre du Roux, up through the forest to the Plan de Miribel signpost, left on the broad track back to the village by La Tournie. Yellow PR waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 6.2 km, 286 m up and 286 m down, 2:00 h average walking time (Office de Tourisme Grenoble Alpes, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme Grenoble Alpes, La vallée de la Gresse (alpes-isere.com, Apidae 6086482) and its official GPX',
+          'Miribel-Lanchâtre publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs on a lead',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional du Vercors: a regional park sets no dog rule of its own outside the Hauts-Plateaux nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 49,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A short stretch of scree before the Gresse torrent can be slippery after heavy rain', 'A ford across the Pierre du Mai stream', 'Farm gates to close behind you; the D 8 is crossed and briefly followed at the end'],
+      terrainType: 'Village lanes, quiet roads, forest path and broad track',
+      shadeDescription: 'About half under trees: the climb from the Gresse to the Plan de Miribel is in forest; the lanes and the ridge track are open.',
+      terrainDescription: 'An easy two-hour loop in the Trièves from the village of Miribel-Lanchâtre, down to the Gresse torrent and back up through the forest to a ridge with views over the Trièves, the Chartreuse and the northern Vercors.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs on a lead, according to the official page. Miribel-Lanchâtre publishes no dog order online, so the national rule applies too: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. The loop crosses pastures with gates; livestock may be near the path.',
+      tips: 'Park near the Miribel-Lanchâtre town hall: 6.2 km round, 286 m up and down, about 2 h. Open all year; the scree before the Gresse is slippery after heavy rain.',
+      sourceLinks: [
+        { label: 'Alpes Isère, La vallée de la Gresse (Office de Tourisme Grenoble Alpes)', url: 'https://www.alpes-isere.com/itineraire/la-vallee-de-la-gresse-6086482/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/20/68/29377556/08-Le+pr+du+Pleynet.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 44.975302, lng: 5.620315, label: 'Miribel-Lanchâtre town hall, the board’s start' },
+      desc: 'An easy loop from the village of Miribel-Lanchâtre in the Trièves, down to the Gresse torrent and back up through the forest to the Plan de Miribel ridge with views to the Chartreuse and the Vercors. The official page lists 6.2 km, 286 m up and down, about 2 h.'
+    },
+    'isere-de-st-pierre-dentremont-a-corbel': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 1, Isère).
+      // “De St Pierre d’Entremont à Corbel”, published by the Chartreuse Tourisme, drawn on 44 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 6779364). Communes: Saint-Pierre-d’Entremont (Isère), Saint-Pierre-d’Entremont (Savoie) and Corbel (no dog order found online for any of them, probably exists: the national rule applies; the page says dogs on a lead).
+      // Inside the Parc naturel régional de Chartreuse (no dog rule of its own); no national park, nature reserve, biotope order or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Saint-Pierre-d’Entremont – Pas de la Coche – Corbel (Chartreuse)',
+      distance: 9,
+      elevation: 450,
+      hours: '3.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Saint-Pierre-d’Entremont tourist office: up by Le Téchet and Sous la Roche to the Pas de la Coche, over to Les Fiolins and down to Corbel, then back by La Baroëlle and the hamlets of Les Gants and Les Buis.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Saint-Pierre-d’Entremont tourist office, in the village centre.",
+        "sequence": "Walk through the village towards Chambéry to the Saint-Alexis church, cross the bridge over the Cozon on the left and turn left. At the Le Pré du Comte signpost follow the Pas de la Coche up the path beside a building, past Le Téchet and along the broad track to Sous la Roche, where you turn left for the Pas de la Coche. From the Pas de la Coche follow Les Fiolins – Corbel; at Les Fiolins take the Tour de Chartreuse path that drops down to the right behind the communal bread oven, join a road at a hairpin and turn right into Corbel. Walk past the church to the cemetery, and at La Baroëlle carry on towards Saint-Pierre-d’Entremont on the path that joins the little road through Les Gants and Les Buis back to the village.",
+        "switches": "Left over the Cozon after the church; right at Le Pré du Comte; left at Sous la Roche; at Les Fiolins down to the right behind the bread oven; right at the road hairpin; on at La Baroëlle for Saint-Pierre-d’Entremont.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Chartreuse Tourisme, De St Pierre d’Entremont à Corbel (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/de-st-pierre-dentremont-a-corbel-6779364/",
+            "authority": "Chartreuse Tourisme",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Corbel church, which the loop passes on its way to the cemetery, in October 2018 (pgiraud on Mapillary, CC BY-SA 4.0), taken on foot 1 m from the line.',
+        route: 'Official loop 9 km from the Saint-Pierre-d’Entremont tourist office, as the Chartreuse Tourisme publishes it; the stored line is drawn on 44 OSM ways along the board’s published line, 9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the tourist office cross the village towards Chambéry to the Saint-Alexis church, cross the Cozon and at Le Pré du Comte (645 m) follow the Pas de la Coche past Le Téchet (730 m) to Sous la Roche; left to the Pas de la Coche (1,005 m), then Les Fiolins – Corbel; at Les Fiolins (870 m) follow Corbel on the Tour de Chartreuse; through Corbel past the church to the cemetery; at La Baroëlle (760 m) follow Saint-Pierre-d’Entremont by Les Gants (685 m) and Les Buis (640 m). Yellow, then red-and-yellow and red-and-white waymarks; signposts named with their altitude, no path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.1, km 0.2, km 3.3, km 4.4, km 4.6, km 5.3, km 5.4 and km 6 (OSM nodes 3755019492, 740167309, 12242308754, 6715574153, 11586911924, 2400460603, 5537243981, 5537247445, 5537247443).',
+        elevation: 'Official 9 km, 450 m up and 450 m down, 3:15 h average walking time (Chartreuse Tourisme, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Chartreuse Tourisme, De St Pierre d’Entremont à Corbel (alpes-isere.com, Apidae 6779364) and its official GPX',
+          'Saint-Pierre-d’Entremont (Isère), Saint-Pierre-d’Entremont (Savoie) and Corbel publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs accepted on a lead',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional de Chartreuse: a regional park sets no dog rule of its own outside the Hauts de Chartreuse nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (44 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 50,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About half the loop is on village streets and small roads; the Route du Dauphiné through Saint-Pierre-d’Entremont carries traffic', 'A steady forest climb to the Pas de la Coche (about 1,005 m)', 'Livestock may be in the meadows around Corbel'],
+      terrainType: 'Village streets, forest path and track, small roads',
+      shadeDescription: 'About half under trees: the climb from Le Téchet to the Pas de la Coche and the path down from Les Fiolins are in woodland; Corbel, the hamlets and the village streets are open.',
+      terrainDescription: 'A three-hour loop in the Chartreuse from Saint-Pierre-d’Entremont over the Pas de la Coche to the mountain village of Corbel under its limestone cliffs, and back through the hamlets of Les Gants and Les Buis.',
+      waterDescription: 'Drinking water at km 0.1, km 0.2, km 3.3, km 4.4, km 4.6, km 5.3, km 5.4 and km 6; places to eat on the way.',
+      dogNotes: 'Dogs are accepted on a lead, according to the official page. The two Saint-Pierre-d’Entremont communes and Corbel publish no dog order online, so the national rule applies too: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. The loop stays outside the Hauts de Chartreuse nature reserve, where dogs are banned.',
+      tips: 'Park at the Saint-Pierre-d’Entremont school car park: 9 km round, 450 m up and down, about 3 h 15. Open 1 May to 30 November.',
+      sourceLinks: [
+        { label: 'Alpes Isère, De St Pierre d’Entremont à Corbel (Chartreuse Tourisme)', url: 'https://www.alpes-isere.com/itineraire/de-st-pierre-dentremont-a-corbel-6779364/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/248/44/20851960/de-spe-a-corbel.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.415169, lng: 5.854643, label: 'Saint-Pierre-d’Entremont tourist office, the board’s start' },
+      desc: 'A loop in the Chartreuse from Saint-Pierre-d’Entremont through the forest to the Pas de la Coche, down to the mountain village of Corbel under its cliffs and back through the hamlets of Les Gants and Les Buis. The official page lists 9 km, 450 m up and down, about 3 h 15.'
+    },
+    'isere-le-canal-de-clelles': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 1, Isère).
+      // “Le canal de Clelles”, published by the Office de Tourisme du Trièves, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 7810267). Communes: Clelles (no dog order found online, probably exists: the national rule applies; the page says dogs accepted).
+      // Inside the Parc naturel régional du Vercors (no dog rule of its own); no national park, nature reserve, biotope order or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Clelles – Mont Aiguille foothills (Trièves, Vercors)',
+      distance: 4.8,
+      elevation: 92,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Clelles-Mens station: up to Le Réservoir and its Mont Aiguille viewpoint, on to La Celle and Le Génie, along the canal by the Bois du Trièves and the Bois de l’Hote to Mailletère, and back to Le Réservoir and the station.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the La Gare signpost in front of the Clelles-Mens railway station.",
+        "sequence": "Take the tarred road opposite towards Le Réservoir, turn left at the farm onto the track and reach the Le Réservoir signpost with its Mont Aiguille viewpoint board. Carry straight on towards La Celle, then turn right towards Le Génie, taking care crossing the departmental road. Continue towards Bois des Chaux, then left towards Bois du Trièves, and follow the canal towards Bois de l’Hote, crossing the departmental road again, and on along the canal to Mailletère. From Mailletère follow the track down and turn left back to Le Réservoir, then return to the station.",
+        "switches": "Left at the farm onto the track; right at La Celle for Le Génie; left after Bois des Chaux for Bois du Trièves; at Mailletère down the track and left for Le Réservoir.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme du Trièves, Le canal de Clelles (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/le-canal-de-clelles-7810267/",
+            "authority": "Office de Tourisme du Trièves",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Hay meadows by the loop near Clelles, at about 860 m, in June 2009 (Smiley.toerist on Wikimedia Commons, CC BY-SA 3.0), 1 m from the line.',
+        route: 'Official loop 4.8 km from the Clelles-Mens railway station, as the Office de Tourisme du Trièves publishes it; the stored line is drawn on 17 OSM ways along the board’s published line, 4.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the La Gare signpost at the Clelles-Mens station follow Le Réservoir, then La Celle; at La Celle turn right for Le Génie (crossing the departmental road), then Bois des Chaux and left for Bois du Trièves; along the canal towards Bois de l’Hote (crossing the departmental road again) and Mailletère; from Mailletère down the track and left back to Le Réservoir and La Gare. Green and yellow waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.8 km, 92 m up and 92 m down, 1:30 h average walking time (Office de Tourisme du Trièves, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme du Trièves, Le canal de Clelles (alpes-isere.com, Apidae 7810267) and its official GPX',
+          'Clelles publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs accepted',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional du Vercors: a regional park sets no dog rule of its own outside the Hauts-Plateaux nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 67,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The departmental road is crossed twice: keep your dog close', 'Stretches of open farmland between the woods, with little shade there on hot days', 'Livestock may be in the fields beside the track'],
+      terrainType: 'Farm tracks, woodland canal path and short tarred stretches',
+      shadeDescription: 'About two-thirds under trees: the canal runs through the Bois des Chaux, the Bois du Trièves and the Bois de l’Hote; the start from the station and the fields by Le Réservoir are open.',
+      terrainDescription: 'An easy, almost flat loop from the Clelles-Mens station through the Trièves farmland and woods along an old irrigation canal, with the Mont Aiguille in view from the open stretches.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs are accepted, according to the official page. Clelles publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Keep your dog on a lead at the two road crossings.',
+      tips: 'Park at the Clelles-Mens station or come by train (TER Grenoble – Gap): 4.8 km round, 92 m up and down, about 1 h 30. Open all year.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Le canal de Clelles (Office de Tourisme du Trièves)', url: 'https://www.alpes-isere.com/itineraire/le-canal-de-clelles-7810267/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/66/28/41098306/le_canal_de_clelles.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 44.827348, lng: 5.605135, label: 'Clelles-Mens railway station, the board’s start' },
+      desc: 'An easy loop from the Clelles-Mens station across the Trièves farmland and along an old canal, with the Mont Aiguille in view. The official page lists 4.8 km, 92 m up and down, about 1 h 30.'
+    },
+    'isere-tour-de-chichilianne': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 1, Isère).
+      // “Tour de Chichilianne”, published by the Office de Tourisme du Trièves, drawn on 26 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 7219269). Communes: Chichilianne (no dog order found online, probably exists: the national rule applies; the page says dogs on a lead).
+      // Inside the Parc naturel régional du Vercors (no dog rule of its own); no national park, nature reserve, biotope order or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Chichilianne – Le Châtel (Trièves, Vercors)',
+      distance: 3.8,
+      elevation: 116,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Place de la Fontaine in Chichilianne: across the river to the Le Châtel viewpoint, through the hamlet of Château-Vieux to the Pierre aux Corneilles, west along Les Crêtes to Le Cros and back by Le Rapon.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Chichilianne signpost on the Place de la Fontaine, beside the church and the tourist information point.",
+        "sequence": "Follow Près des Oches along the road past the town hall towards the east end of the village. At Près des Oches take the track down to the left, ford the river and a few metres on climb left up the steep little forest path to the Le Châtel viewpoint. Go down towards Chevalanche, then turn right towards Pierre aux Corneilles through the hamlet of Château-Vieux. Follow the crest due west to Les Crêtes and on to Le Cros, going straight over the D 7B and crossing the river to the left. From Le Cros follow the track towards Le Rapon, then Chichilianne, back to the start.",
+        "switches": "Left down the track at Près des Oches; left up the forest path after the ford; right towards Pierre aux Corneilles after Chevalanche; straight over the D 7B; at Le Cros follow Le Rapon.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme du Trièves, Tour de Chichilianne (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/tour-de-chichilianne-7219269/",
+            "authority": "Office de Tourisme du Trièves",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The bell tower of Chichilianne church, at the loop’s start on the Place de la Fontaine, in August 2014 (Jvillafruela on Wikimedia Commons, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 3.8 km from the Place de la Fontaine in Chichilianne, as the Office de Tourisme du Trièves publishes it; the stored line is drawn on 26 OSM ways along the board’s published line, 3.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the Chichilianne signpost follow Près des Oches past the town hall; at Près des Oches down the track, across the river by the ford and up left to Le Châtel; down towards Chevalanche, then right for Pierre aux Corneilles through Château-Vieux; west along the crest to Les Crêtes and Le Cros (crossing the D 7B and the river); from Le Cros follow Le Rapon, then Chichilianne. Yellow and green waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3.8 km, 116 m up and 116 m down, 1:30 h average walking time (Office de Tourisme du Trièves, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme du Trièves, Tour de Chichilianne (alpes-isere.com, Apidae 7219269) and its official GPX',
+          'Chichilianne publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs on a lead',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional du Vercors: a regional park sets no dog rule of its own outside the Hauts-Plateaux nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (26 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 28,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Two river crossings, one by a ford: the stones can be slippery and the water higher after rain', 'A short steep forest climb to Le Châtel', 'The D 7B is crossed once'],
+      terrainType: 'Village roads, forest path, crest path and farm tracks',
+      shadeDescription: 'About a quarter under trees: the forest climb to Le Châtel and the wooded stretches by the river; the crest, the hamlet and the tracks are mostly open.',
+      terrainDescription: 'A short loop around Chichilianne at the foot of the Mont Aiguille, fording the river to the Le Châtel viewpoint and following a low crest through the hamlet of Château-Vieux.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs on a lead, according to the official page. Chichilianne publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June.',
+      tips: 'Park on the Place de la Fontaine or at the La Richardière car park: 3.8 km round, 116 m up and down, about 1 h 30. Open all year; the ford can be higher after rain.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Tour de Chichilianne (Office de Tourisme du Trièves)', url: 'https://www.alpes-isere.com/itineraire/tour-de-chichilianne-7219269/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/111/118/28341871/tour_de_chichilianne-20521172-1736771375-418.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 44.811042, lng: 5.573311, label: 'Place de la Fontaine in Chichilianne, by the church, the board’s start' },
+      desc: 'A short loop around Chichilianne at the foot of the Mont Aiguille, across the river by a ford to the Le Châtel viewpoint and back along a low crest through the hamlet of Château-Vieux. The official page lists 3.8 km, 116 m up and down, about 1 h 30.'
     }
   };
 

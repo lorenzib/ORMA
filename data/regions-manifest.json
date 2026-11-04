@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T19:51:10.956Z",
+  "generatedAt": "2026-11-04T20:33:55.184Z",
   "regions": {
     "dolomites": {
       "trailCount": 341,
@@ -354,8 +354,8 @@
       "optional": []
     },
     "savoy": {
-      "trailCount": 58,
-      "trails": "data/regions/savoy-trails.js?v=0b859fe3205f",
+      "trailCount": 59,
+      "trails": "data/regions/savoy-trails.js?v=19c87a2c2655",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=00f655015445",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=7fbe40937d7a",
@@ -414,7 +414,8 @@
         "savoie-areches-beaufort-la-grande-berge": "data/trail-details/savoie-areches-beaufort-la-grande-berge.js?v=258b84a73a43",
         "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": "data/trail-details/savoie-areches-beaufort-croix-du-berger-et-lac-des-fees.js?v=85c1d4bfe334",
         "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "data/trail-details/savoie-boucle-du-fornet-par-la-cascade-du-fornet.js?v=3c6eebc2b6d0",
-        "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": "data/trail-details/savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere.js?v=6a96984e937e"
+        "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": "data/trail-details/savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere.js?v=6a96984e937e",
+        "isere-de-st-pierre-dentremont-a-corbel": "data/trail-details/isere-de-st-pierre-dentremont-a-corbel.js?v=18e846cd6600"
       },
       "water": "data/regions/savoy-water.geojson",
       "hutsBars": "data/regions/savoy-huts-bars.geojson",
@@ -422,9 +423,14 @@
       "optional": []
     },
     "frenchalps": {
-      "trailCount": 0,
-      "trails": "data/regions/frenchalps-trails.js?v=5c23f1a8921e",
-      "details": {},
+      "trailCount": 4,
+      "trails": "data/regions/frenchalps-trails.js?v=71c4ab82e3ba",
+      "details": {
+        "isere-circuit-pedestre-alpage-des-cloutons": "data/trail-details/isere-circuit-pedestre-alpage-des-cloutons.js?v=49a687efe1a9",
+        "isere-la-vallee-de-la-gresse": "data/trail-details/isere-la-vallee-de-la-gresse.js?v=878e858a0fc3",
+        "isere-le-canal-de-clelles": "data/trail-details/isere-le-canal-de-clelles.js?v=dadf2cf428a2",
+        "isere-tour-de-chichilianne": "data/trail-details/isere-tour-de-chichilianne.js?v=9fe67c828900"
+      },
       "water": "data/regions/frenchalps-water.geojson",
       "hutsBars": "data/regions/frenchalps-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
@@ -972,6 +978,11 @@
     "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": "savoy",
     "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "savoy",
     "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": "savoy",
+    "isere-de-st-pierre-dentremont-a-corbel": "savoy",
+    "isere-circuit-pedestre-alpage-des-cloutons": "frenchalps",
+    "isere-la-vallee-de-la-gresse": "frenchalps",
+    "isere-le-canal-de-clelles": "frenchalps",
+    "isere-tour-de-chichilianne": "frenchalps",
     "lario-brunate-e-le-sue-chiese": "lombardy",
     "lario-pognana-lario-e-le-sculture-simposio": "lombardy",
     "lario-alla-ricerca-di-un-panorama-unico": "lombardy",
@@ -1534,6 +1545,11 @@
     "valgardena-cudan-dumat": "ortisei-cudan-dumat",
     "seiseralm-miglio-geologico-siusi": "siusi-geological-mile",
     "seiseralm-fie-laghetto-di-fie-siusi": "fie-laghetto-di-fie-siusi",
+    "isere-circuit-pedestre-alpage-des-cloutons": "alpage-des-cloutons-loop-saint-honore-1500",
+    "isere-la-vallee-de-la-gresse": "gresse-valley-loop-miribel-lanchatre",
+    "isere-de-st-pierre-dentremont-a-corbel": "saint-pierre-dentremont-corbel-loop",
+    "isere-le-canal-de-clelles": "clelles-canal-loop",
+    "isere-tour-de-chichilianne": "tour-de-chichilianne-loop",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2016,6 +2032,11 @@
     "ortisei-cudan-dumat": "valgardena-cudan-dumat",
     "siusi-geological-mile": "seiseralm-miglio-geologico-siusi",
     "fie-laghetto-di-fie-siusi": "seiseralm-fie-laghetto-di-fie-siusi",
+    "alpage-des-cloutons-loop-saint-honore-1500": "isere-circuit-pedestre-alpage-des-cloutons",
+    "gresse-valley-loop-miribel-lanchatre": "isere-la-vallee-de-la-gresse",
+    "saint-pierre-dentremont-corbel-loop": "isere-de-st-pierre-dentremont-a-corbel",
+    "clelles-canal-loop": "isere-le-canal-de-clelles",
+    "tour-de-chichilianne-loop": "isere-tour-de-chichilianne",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

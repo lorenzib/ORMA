@@ -212,8 +212,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 480 and 478 with four Dolomites walks: the Troi Unika art loop on Monte
     // Pana, Cudan to Dumat above Ortisei, the Siusi geological mile, and Fiè to
     // Siusi by the Laghetto di Fiè.
-    expect(catalogue).toHaveLength(480);
-    expect(currentSiteTrails(catalogue)).toHaveLength(478);
+    // Then 485 and 483 with five Isère walks, the first in the French Alps region:
+    // Alpage des Cloutons, the Gresse valley, Saint-Pierre-d’Entremont to Corbel
+    // (in Savoy by its nearest town), the Clelles canal and the Tour de Chichilianne.
+    expect(catalogue).toHaveLength(485);
+    expect(currentSiteTrails(catalogue)).toHaveLength(483);
   });
 
   test('requires the artwork the public trail page needs',()=>{
