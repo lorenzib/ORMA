@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "trailId": "savoie-promenade-confort-lac-et-barrage-de-saint-guerin",
-  "generatedAt": "2026-11-03T00:00:00Z",
+  "generatedAt": "2026-11-04T00:00:00Z",
   "verificationStatus": "source-verified",
   "facts": {
     "routeType": "Loop",
@@ -32,12 +32,12 @@
   "sources": [
     {
       "name": "ORMA repository route geometry",
-      "reviewedAt": "2026-11-03"
+      "reviewedAt": "2026-11-04"
     },
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-11-03",
+      "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
   ]

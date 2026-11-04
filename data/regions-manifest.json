@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T09:44:31.631Z",
+  "generatedAt": "2026-11-04T10:15:00.389Z",
   "regions": {
     "dolomites": {
       "trailCount": 337,
@@ -417,8 +417,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 12,
-      "trails": "data/regions/lombardy-trails.js?v=de0d0540f0bd",
+      "trailCount": 14,
+      "trails": "data/regions/lombardy-trails.js?v=91281ee88cce",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=fbf7190b5c12",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
@@ -431,7 +431,9 @@
         "bormio-da-arnoga-al-rifugio-federico": "data/trail-details/bormio-da-arnoga-al-rifugio-federico.js?v=b466bc6017f9",
         "valtellina-rifugi-porro-e-ventina": "data/trail-details/valtellina-rifugi-porro-e-ventina.js?v=d0fa0a4a06ca",
         "valtellina-passo-di-campagneda": "data/trail-details/valtellina-passo-di-campagneda.js?v=293c7d409443",
-        "valchiavenna-ai-laghi-del-baldiscio": "data/trail-details/valchiavenna-ai-laghi-del-baldiscio.js?v=f65b682eff3c"
+        "valchiavenna-ai-laghi-del-baldiscio": "data/trail-details/valchiavenna-ai-laghi-del-baldiscio.js?v=f65b682eff3c",
+        "lario-nel-cuore-del-triangolo-lariano": "data/trail-details/lario-nel-cuore-del-triangolo-lariano.js?v=ad7b58eaf314",
+        "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "data/trail-details/lario-dal-passo-del-giovo-al-rifugio-sommafiume.js?v=9ecdda6bfbfa"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -956,6 +958,8 @@
     "valtellina-rifugi-porro-e-ventina": "lombardy",
     "valtellina-passo-di-campagneda": "lombardy",
     "valchiavenna-ai-laghi-del-baldiscio": "lombardy",
+    "lario-nel-cuore-del-triangolo-lariano": "lombardy",
+    "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1482,6 +1486,8 @@
     "valsesia-campello-monti-alpe-fornale-di-sopra": "campello-monti-alpe-fornale",
     "valsesia-campello-monti-colle-dell-usciolo": "campello-monti-colle-usciolo",
     "valsesia-campello-monti-lago-del-capezzone": "campello-monti-lago-capezzone",
+    "lario-nel-cuore-del-triangolo-lariano": "caglio-campoe-cassina-enco",
+    "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "passo-del-giovo-rifugio-sommafiume",
     "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "fornet-waterfall-loop-val-disere",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
@@ -1950,6 +1956,8 @@
     "campello-monti-alpe-fornale": "valsesia-campello-monti-alpe-fornale-di-sopra",
     "campello-monti-colle-usciolo": "valsesia-campello-monti-colle-dell-usciolo",
     "campello-monti-lago-capezzone": "valsesia-campello-monti-lago-del-capezzone",
+    "caglio-campoe-cassina-enco": "lario-nel-cuore-del-triangolo-lariano",
+    "passo-del-giovo-rifugio-sommafiume": "lario-dal-passo-del-giovo-al-rifugio-sommafiume",
     "fornet-waterfall-loop-val-disere": "savoie-boucle-du-fornet-par-la-cascade-du-fornet",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
