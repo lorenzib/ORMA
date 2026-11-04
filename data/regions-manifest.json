@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T10:41:21.900Z",
+  "generatedAt": "2026-11-04T11:26:26.062Z",
   "regions": {
     "dolomites": {
       "trailCount": 337,
@@ -415,6 +415,15 @@
       "water": "data/regions/savoy-water.geojson",
       "hutsBars": "data/regions/savoy-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes-savoy.geojson",
+      "optional": []
+    },
+    "frenchalps": {
+      "trailCount": 0,
+      "trails": "data/regions/frenchalps-trails.js?v=5c23f1a8921e",
+      "details": {},
+      "water": "data/regions/frenchalps-water.geojson",
+      "hutsBars": "data/regions/frenchalps-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     },
     "lombardy": {
