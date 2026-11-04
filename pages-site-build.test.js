@@ -29,6 +29,12 @@ beforeAll(() => {
   execFileSync('node', [path.join(ROOT, 'scripts', 'build-pages-site.js'), SITE], { cwd: ROOT });
 });
 
+// Our own build is about 560 MB; left in the temp folder, every gate run
+// piled up another copy until the disk filled. Never delete the shipped _site.
+afterAll(() => {
+  if (SITE && SITE !== path.join(ROOT, '_site')) fs.rmSync(SITE, { recursive: true, force: true });
+});
+
 const inSite = relative => fs.existsSync(path.join(SITE, relative));
 
 describe('the published site matches its allowlist', () => {
