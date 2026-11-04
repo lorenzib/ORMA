@@ -202,8 +202,9 @@ describe('the existing-site verification boundary',()=>{
     // Then 467 and 465 with two Lake Como mountain walks: Campoè to Cassina Enco
     // above Caglio, and the Passo del Giovo to the Rifugio Sommafiume.
     // Then 468 and 466 with the Fornet waterfall loop above Val d’Isère (Tarentaise).
-    expect(catalogue).toHaveLength(468);
-    expect(currentSiteTrails(catalogue)).toHaveLength(466);
+    // Then 469 and 467 with the Val Pelouse crest loop above Arvillard (Belledonne).
+    expect(catalogue).toHaveLength(469);
+    expect(currentSiteTrails(catalogue)).toHaveLength(467);
   });
 
   test('requires the artwork the public trail page needs',()=>{

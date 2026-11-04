@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.7,
+    "ascentM": 368,
+    "highestPointM": 2002,
+    "expectedDuration": "2.75 hours",
+    "difficulty": "Hard",
+    "shadePercent": 15
+  },
+  "trailhead": {
+    "lat": 45.418628,
+    "lng": 6.169215,
+    "label": "Val Pelouse car park at the end of the D 208, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.4148946,
+      "lng": 6.1786073,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.409912,
+      "lng": 6.1852746,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.4083491,
+      "lng": 6.1848293,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.4074838,
+      "lng": 6.1854516,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Working alpages: sheep or cows may graze around the refuge and the col in summer, possibly with guard dogs; keep your dog on a lead and walk round the herds.",
+    "Open crest at about 1,720–2,000 m: little shade and quick weather changes.",
+    "The descent follows a grassy ski slope that is steep in places.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

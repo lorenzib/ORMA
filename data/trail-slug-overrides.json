@@ -1683,6 +1683,11 @@
       "name": "Fornet waterfall loop from Le Fornet",
       "slug": "fornet-waterfall-loop-val-disere",
       "gloss": "up the young Isère to the Pont des Cognons"
+    },
+    "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": {
+      "name": "Val Pelouse crest path and Perrière refuge",
+      "slug": "val-pelouse-crest-path-perriere-refuge",
+      "gloss": "Belledonne ridge loop above Arvillard"
     }
   }
 }
