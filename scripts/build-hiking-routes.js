@@ -33,6 +33,10 @@ const NETWORK_RANK = { iwn: 1, nwn: 2, rwn: 3, lwn: 4 };
 const REGIONS = {
   dolomites: { bbox: [10.83, 45.96, 12.66, 47.03], extract: 'europe/italy/nord-est' },
   savoy: { bbox: [5.65, 45.06, 7.05, 46.45], extract: 'europe/france/rhone-alpes' },
+  // The whole country, Jura to Val Müstair, so each canton's walks find their
+  // routes as batches arrive. Its corner by Lake Geneva and the Chablais
+  // overlaps Savoy's box; tile-join merges the shared tiles.
+  switzerland: { bbox: [5.95, 45.81, 10.50, 47.81], extract: 'europe/switzerland' },
 };
 
 // OPL escapes awkward characters as %<hex codepoint>%.
