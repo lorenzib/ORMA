@@ -1584,5 +1584,10 @@ window.ORMA_PHRASES_IT = {
   "🛒 Supermarket": "🛒 Supermercato",
   "🛖 Bivouac": "🛖 Bivacco",
   "🥐 Bakery": "🥐 Panetteria",
-  "＋ Add photos": "＋ Aggiungi foto"
+  "＋ Add photos": "＋ Aggiungi foto",
+  "All {count} cards shown.": "Tutte le {count} schede sono visibili.",
+  "No breed called “{query}” in our list. Try the filters instead.": "Nessuna razza chiamata “{query}” nella nostra lista. Prova invece i filtri.",
+  "No cards match these filters. Try fewer.": "Nessuna scheda corrisponde a questi filtri. Prova con meno filtri.",
+  "{breed}: {shown} of {total} cards apply, plus the card for every dog.": "{breed}: valgono {shown} schede su {total}, più quella per ogni cane.",
+  "{shown} of {total} cards match, plus the card for every dog.": "{shown} schede su {total} corrispondono, più quella per ogni cane.",
 };

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-morteratsch-glacier-route",
+  "distanceKm": 2.9,
+  "ascentM": 130,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1898
+    },
+    {
+      "km": 0.2,
+      "elev": 1903
+    },
+    {
+      "km": 0.5,
+      "elev": 1930
+    },
+    {
+      "km": 0.7,
+      "elev": 1950
+    },
+    {
+      "km": 0.9,
+      "elev": 1968
+    },
+    {
+      "km": 1.1,
+      "elev": 1972
+    },
+    {
+      "km": 1.3,
+      "elev": 1976
+    },
+    {
+      "km": 1.5,
+      "elev": 1997
+    },
+    {
+      "km": 1.8,
+      "elev": 2011
+    },
+    {
+      "km": 2,
+      "elev": 2011
+    },
+    {
+      "km": 2.2,
+      "elev": 2017
+    },
+    {
+      "km": 2.4,
+      "elev": 2030
+    },
+    {
+      "km": 2.6,
+      "elev": 2027
+    },
+    {
+      "km": 2.9,
+      "elev": 2030
+    }
+  ]
+}

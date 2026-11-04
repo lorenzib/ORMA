@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-diavolezza-sass-queder",
+  "distanceKm": 1.4,
+  "ascentM": 123,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 2973
+    },
+    {
+      "km": 0.1,
+      "elev": 2976
+    },
+    {
+      "km": 0.2,
+      "elev": 2959
+    },
+    {
+      "km": 0.4,
+      "elev": 2953
+    },
+    {
+      "km": 0.5,
+      "elev": 2958
+    },
+    {
+      "km": 0.7,
+      "elev": 3033
+    },
+    {
+      "km": 0.8,
+      "elev": 3033
+    },
+    {
+      "km": 0.9,
+      "elev": 3002
+    },
+    {
+      "km": 1,
+      "elev": 2958
+    },
+    {
+      "km": 1.1,
+      "elev": 2954
+    },
+    {
+      "km": 1.2,
+      "elev": 2959
+    },
+    {
+      "km": 1.3,
+      "elev": 2976
+    },
+    {
+      "km": 1.4,
+      "elev": 2973
+    }
+  ]
+}

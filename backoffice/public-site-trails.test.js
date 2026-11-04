@@ -186,13 +186,21 @@ describe('the existing-site verification boundary',()=>{
     // Ventina huts, and Campo Moro to the Passo di Campagneda.
     // Then 444 and 442 with two more Beaufortain walks: La Grande Berge from the
     // Plan de la Lai and the Croix du Berger from the Lac des Fées.
-    // Then 450 and 448 with six Valsesia walks, the first in Piedmont: GTA stage 21
+    // Then 452 and 450 with eight Engadin walks, the first in Switzerland: Lake
+    // St. Moritz, the Chastè peninsula, the Morteratsch glacier path, the Surlej
+    // waterfall loop, Fuorcla Surlej, Sass Queder, La Senda and Val Susauna.
+    // Then 458 and 456 with six more Meran-area walks: the Raststeinweg loop at
+    // Schenna, the Taser Höhenweg to the Haashof, the Meraner Höhenweg from the
+    // Texelbahn to Unterstell, the Maiser and Moschwald alms from Falzeben, the
+    // Terrainkur path from Aschbach to St. Vigil, and the Nörderberg alms loop.
+    const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
+    // Then 459 and 457 with the Valchiavenna walk from Isola to the Baldiscio lakes.
+    // Then 465 and 463 with six Valsesia walks, the first in Piedmont: GTA stage 21
     // from Campello Monti to Rimella, Cervatto to the Madonna del Balmone, the Giro
     // del Ginepro from Carcoforo, and Campello Monti to the Alpe Fornale, the Colle
     // dell’Usciolo and the Lago del Capezzone.
-    const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(450);
-    expect(currentSiteTrails(catalogue)).toHaveLength(448);
+    expect(catalogue).toHaveLength(465);
+    expect(currentSiteTrails(catalogue)).toHaveLength(463);
   });
 
   test('requires the artwork the public trail page needs',()=>{

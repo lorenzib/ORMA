@@ -1564,6 +1564,81 @@
       "slug": "croix-du-berger-from-lac-des-fees",
       "gloss": "up to the Cormet d’Arêches and along the humps"
     },
+    "engadin-around-lake-st-moritz": {
+      "name": "Lake St. Moritz shore loop",
+      "slug": "lake-st-moritz-shore-loop",
+      "gloss": "a flat loop from the station"
+    },
+    "engadin-sils-chaste-peninsula-sils": {
+      "name": "Chastè peninsula loop from Sils",
+      "slug": "chaste-peninsula-loop-sils",
+      "gloss": "a wooded peninsula on Lake Sils"
+    },
+    "engadin-morteratsch-glacier-route": {
+      "name": "Morteratsch glacier path",
+      "slug": "morteratsch-glacier-path",
+      "gloss": "up the valley to the glacier forefield"
+    },
+    "engadin-surlej-waterfall-lake-silvaplana-surlej": {
+      "name": "Surlej waterfall and Lake Silvaplana loop",
+      "slug": "surlej-waterfall-lake-silvaplana-loop",
+      "gloss": "forest, a waterfall and the lake shore"
+    },
+    "engadin-corvatsch-murtel-fuorcla-surlej": {
+      "name": "Fuorcla Surlej from Murtèl",
+      "slug": "fuorcla-surlej-from-murtel",
+      "gloss": "a high pass with the view to Piz Bernina"
+    },
+    "engadin-diavolezza-sass-queder": {
+      "name": "Sass Queder from Diavolezza",
+      "slug": "sass-queder-from-diavolezza",
+      "gloss": "a 3,000 m summit facing the Bernina glaciers"
+    },
+    "engadin-nature-trail-la-senda-samedan-smartrail": {
+      "name": "La Senda nature trail, Samedan",
+      "slug": "la-senda-nature-trail-samedan",
+      "gloss": "a forest nature trail above the village"
+    },
+    "engadin-chapella-val-susauna": {
+      "name": "Val Susauna from Chapella",
+      "slug": "val-susauna-from-chapella",
+      "gloss": "a quiet side valley to Alp Pignaint"
+    },
+    "meran-itinerario-raststeinweg": {
+      "name": "Raststeinweg loop, Schenna",
+      "slug": "raststeinweg-loop-schenna",
+      "gloss": "farms and a shady path above Schenna"
+    },
+    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
+      "name": "Taser Höhenweg to the Haashof, Schenna",
+      "slug": "taser-hoehenweg-haashof-schenna",
+      "gloss": "from the Taser Alm to Videgg and Tall"
+    },
+    "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell": {
+      "name": "Meraner Höhenweg from the Texelbahn to Unterstell",
+      "slug": "hoehenweg-texelbahn-to-unterstell",
+      "gloss": "through the Thousand Steps gorge"
+    },
+    "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": {
+      "name": "Maiser and Moschwald alms loop from Falzeben",
+      "slug": "maiser-moschwald-alms-falzeben",
+      "gloss": "two alms on Meran 2000"
+    },
+    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": {
+      "name": "Terrainkur path 1, Aschbach to St. Vigil",
+      "slug": "aschbach-st-vigil-terrainkur-1",
+      "gloss": "a steady forest climb to the Vigiljoch"
+    },
+    "meran-giro-delle-malghe-monte-tramontana": {
+      "name": "Nörderberg alms loop, Naturns",
+      "slug": "noerderberg-alms-loop-naturns",
+      "gloss": "three alms on a shady slope"
+    },
+    "valchiavenna-ai-laghi-del-baldiscio": {
+      "name": "Isola to the Baldiscio lakes",
+      "slug": "isola-laghi-del-baldiscio",
+      "gloss": "past the Alpe Borghetto to a lake below the pass"
+    },
     "valsesia-cervatto-madonna-del-balmone": {
       "name": "Cervatto to the Madonna del Balmone",
       "slug": "cervatto-madonna-del-balmone",
