@@ -141,9 +141,9 @@
   const HIKING_WALK_REF_LAYER = 'orma-hiking-routes-ref-walk';
   const HIKING_TILES_PATH = '/data/hiking-routes/{z}/{x}/{y}.pbf';
   const HIKING_METADATA_PATH = '/data/hiking-routes/metadata.json';
-  // Both regions' padded extents (REGIONS in build-hiking-routes.js), so the
-  // map does not ask for tiles across the rest of Europe.
-  const HIKING_BOUNDS = [5.65, 45.06, 12.66, 47.03];
+  // The regions' padded extents together (REGIONS in build-hiking-routes.js),
+  // so the map does not ask for tiles across the rest of Europe.
+  const HIKING_BOUNDS = [5.65, 45.06, 12.66, 47.81];
   const HIKING_LINE_COLOUR = '#5F665F';
   const HIKING_REF_COLOUR = '#4D554E';
   const HIKING_WALK_REF_COLOUR = '#2E4034';
