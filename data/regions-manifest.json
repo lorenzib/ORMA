@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T01:40:45.959Z",
+  "generatedAt": "2026-11-04T04:06:00.124Z",
   "regions": {
     "dolomites": {
       "trailCount": 337,
@@ -350,8 +350,8 @@
       "optional": []
     },
     "savoy": {
-      "trailCount": 56,
-      "trails": "data/regions/savoy-trails.js?v=79c4a24d1734",
+      "trailCount": 57,
+      "trails": "data/regions/savoy-trails.js?v=6a40d419794e",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=07be5ff5d5e1",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=6206ef4046f2",
@@ -408,7 +408,8 @@
         "savoie-itineraire-poussette-des-chalets-brules": "data/trail-details/savoie-itineraire-poussette-des-chalets-brules.js?v=498ee943fa4f",
         "savoie-itineraire-poussette-de-belavoine": "data/trail-details/savoie-itineraire-poussette-de-belavoine.js?v=695a9e3d6bb8",
         "savoie-areches-beaufort-la-grande-berge": "data/trail-details/savoie-areches-beaufort-la-grande-berge.js?v=0c48a5db6cbe",
-        "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": "data/trail-details/savoie-areches-beaufort-croix-du-berger-et-lac-des-fees.js?v=a589fd108f85"
+        "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": "data/trail-details/savoie-areches-beaufort-croix-du-berger-et-lac-des-fees.js?v=a589fd108f85",
+        "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "data/trail-details/savoie-boucle-du-fornet-par-la-cascade-du-fornet.js?v=7e9c32d5e07d"
       },
       "water": "data/regions/savoy-water.geojson",
       "hutsBars": "data/regions/savoy-huts-bars.geojson",
@@ -942,6 +943,7 @@
     "savoie-itineraire-poussette-de-belavoine": "savoy",
     "savoie-areches-beaufort-la-grande-berge": "savoy",
     "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": "savoy",
+    "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "savoy",
     "lario-brunate-e-le-sue-chiese": "lombardy",
     "lario-pognana-lario-e-le-sculture-simposio": "lombardy",
     "lario-alla-ricerca-di-un-panorama-unico": "lombardy",
@@ -1480,6 +1482,7 @@
     "valsesia-campello-monti-alpe-fornale-di-sopra": "campello-monti-alpe-fornale",
     "valsesia-campello-monti-colle-dell-usciolo": "campello-monti-colle-usciolo",
     "valsesia-campello-monti-lago-del-capezzone": "campello-monti-lago-capezzone",
+    "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "fornet-waterfall-loop-val-disere",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1947,6 +1950,7 @@
     "campello-monti-alpe-fornale": "valsesia-campello-monti-alpe-fornale-di-sopra",
     "campello-monti-colle-usciolo": "valsesia-campello-monti-colle-dell-usciolo",
     "campello-monti-lago-capezzone": "valsesia-campello-monti-lago-del-capezzone",
+    "fornet-waterfall-loop-val-disere": "savoie-boucle-du-fornet-par-la-cascade-du-fornet",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
