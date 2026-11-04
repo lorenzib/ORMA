@@ -60699,6 +60699,76 @@
       ],
       startPoint: { lat: 46.621407, lng: 11.025644, label: 'The Kreuzbrünnl car park on the Nörderberg above Naturns, the board’s start' },
       desc: 'A shady loop on the Nörderberg above Naturns from Kreuzbrünnl to the Naturnser, Zetn and Mausloch alms on the alm path. The board lists 11 km, 541 m up and 541 m down, 3 h 54.'
+    },
+    'valchiavenna-ai-laghi-del-baldiscio': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Lombardy batch 5).
+      // “Ai laghi del Baldiscio”, published by the Consorzio Turistico Valchiavenna (Valtellina Outdoor), drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour for Valtellina Outdoor. Communes: Madesimo (its rural police regulation, Art. 51: lead always, muzzle as well for medium and large dogs).
+      // No Natura 2000 site, park, reserve or natural monument on the line (Regione Lombardia geoportal layers).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Isola – Cà Raseri – Alpe Borghetto – Laghi del Baldiscio, Valle San Giacomo (Madesimo)',
+      distance: 7.22,
+      elevation: 1056,
+      hours: '3.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Isola up the hairpins of the consortium road to the huts of Cà Raseri, then on a dirt road and over a wooden footbridge through larches to the Alpe Borghetto, and west across the pastures and along a moraine ridge to Lago Grande and the Rifugio Baldiscio; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in Isola, in the Valle San Giacomo below Madesimo, where the consortium road to Cà Raseri leaves the village, the board’s start.",
+        "sequence": "Walk up the hairpins of the consortium road to the huts of Cà Raseri, cross the bridge on the left and turn right at once onto the dirt road to the car parks. Cross the stream on the small wooden footbridge into a larch wood and follow the well-signed path up to the Alpe Borghetto. Beyond its huts the path turns west across wide pastures and climbs a moraine ridge to the shore of Lago Grande, where the Rifugio Baldiscio stands by the water. Come back the same way.",
+        "switches": "Key turns: at Cà Raseri left over the bridge and then right onto the dirt road; at the car parks over the wooden footbridge onto the signed path; beyond the Alpe Borghetto west across the pastures.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Consorzio Turistico Valchiavenna (Valtellina Outdoor), Ai laghi del Baldiscio (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/812014696",
+            "authority": "Consorzio Turistico Valchiavenna (Valtellina Outdoor)",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The wooden footbridge over the Valle Febbraro torrent at 1,487 m, which the walk crosses below the Alpe Borghetto, among autumn larches in October (Mænsard vokser on Wikimedia Commons, CC BY-SA 4.0); OSM maps this footbridge (way 322689972) on the line, 32 m from the photo’s position.',
+        route: 'Official one-way walk 7.22 km from Isola in the Valle San Giacomo, as the Consorzio Turistico Valchiavenna (Valtellina Outdoor) publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 7.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From Isola up the consortium road with its hairpins to the huts of Cà Raseri; over the bridge on the left and straight away right onto the dirt road to the car parks; over the stream on a wooden footbridge through a larch wood (its post marked C19), and on the well-signed path to the Alpe Borghetto (1,897 m); past the huts the path swings west across wide pastures and up a moraine ridge to the shore of Lago Grande and the Rifugio Baldiscio. Back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 7.22 km, 1056 m up and 5 m down, 3:40 h, highest point 2,306 m, lowest 1,250 m (Consorzio Turistico Valchiavenna (Valtellina Outdoor), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Consorzio Turistico Valchiavenna (Valtellina Outdoor), Ai laghi del Baldiscio (its Outdooractive tour for Valtellina Outdoor, the tourism network of the Province of Sondrio and its mountain communities)',
+          'Comune di Madesimo, Regolamento di polizia rurale, Art. 51 (Cani): dogs always on a lead except in places set aside for them, and a muzzle as well for medium or large dogs or any aggressive dog; carry bags and clean up in public spaces',
+          'Regione Lombardia, Regolamento regionale 13 aprile 2017 n. 2: its lead-and-muzzle rule (Art. 23) covers only animals visiting care homes and hospitals, so it sets nothing for paths',
+          'Regione Lombardia geoportal layers (Natura 2000, parks, reserves, PLIS, natural monuments): no protected area on the line',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 22,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The consortium road above Isola is open to cars with a permit: keep your dog close on the hairpins', 'Cattle graze the Alpe Borghetto and the pastures above in summer: keep your distance and your dog on a short lead', 'A long climb of over 1,000 m with open ground above 1,900 m; storms build fast on summer afternoons'],
+      terrainType: 'Consortium road, dirt road and mountain path',
+      shadeDescription: 'Partly shaded low down: about a fifth runs through mapped woods, mostly the larches near the footbridge; the pastures and the moraine above the Alpe Borghetto are open.',
+      terrainDescription: 'A long climb from 1,250 m at Isola, in the Valle San Giacomo below Madesimo, past the huts of Cà Raseri and the Alpe Borghetto to the Baldiscio lakes at about 2,300 m, on a road, a dirt road and a well-signed path that is never too hard. A summer walk: snow lies late up here.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Rifugio Baldiscio by Lago Grande serves food and drink when it is open.',
+      dogNotes: 'Madesimo’s rural police regulation requires dogs to be on a lead at all times except in places set aside for them, and medium and large dogs (or any aggressive dog) to wear a muzzle as well; carry bags and clean up after your dog. There is no Natura 2000 site or park on the line.',
+      tips: 'Start in Isola, below Madesimo: 7.2 km and, as the board lists, 1,056 m of climbing, about three and three quarter hours to the Baldiscio lakes, then the same way back. Walk it from late June to early October. Keep your dog on a lead the whole way, and a muzzle on if it is medium-sized or larger: Madesimo requires both. The Rifugio Baldiscio by the lake serves food and drink when open.',
+      sourceLinks: [
+        { label: 'Outdooractive, Ai laghi del Baldiscio (Consorzio Turistico Valchiavenna (Valtellina Outdoor))', url: 'https://www.outdooractive.com/it/r/812014696' },
+        { label: 'Comune di Madesimo, Regolamento di polizia rurale (Art. 51, Cani)', url: 'https://www.halleyweb.com/c014035/zf/index.php/atti-generali/index/dettaglio-voce/atto/3/voce/22' },
+        { label: 'Regione Lombardia, Regolamento regionale 2/2017 (animali d’affezione)', url: 'https://normelombardia.consiglio.regione.lombardia.it/normelombardia/Accessibile/main.aspx?view=showdoc&iddoc=rr002017041300002' },
+        { label: 'Regione Lombardia geoportal, protected-area services (Natura 2000, parks, reserves, PLIS, natural monuments)', url: 'https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.4435, lng: 9.33401, label: 'Isola, at the foot of the consortium road to Cà Raseri, the board’s start' },
+      desc: 'A long but never too hard climb from Isola in the Valle San Giacomo past Cà Raseri and the Alpe Borghetto, across wide pastures and up a moraine to Lago Grande and the Rifugio Baldiscio. The board lists 7.22 km, 1,056 m up and 5 m down, 3 h 40 one way.'
     }
   };
 

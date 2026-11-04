@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T01:17:09.402Z",
+  "generatedAt": "2026-11-04T01:25:20.148Z",
   "regions": {
     "dolomites": {
       "trailCount": 337,
@@ -416,8 +416,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 11,
-      "trails": "data/regions/lombardy-trails.js?v=55c09f27efbf",
+      "trailCount": 12,
+      "trails": "data/regions/lombardy-trails.js?v=de0d0540f0bd",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=fbf7190b5c12",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=7bafa0afcfc6",
@@ -429,7 +429,8 @@
         "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": "data/trail-details/lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza.js?v=a15ee9697efc",
         "bormio-da-arnoga-al-rifugio-federico": "data/trail-details/bormio-da-arnoga-al-rifugio-federico.js?v=b466bc6017f9",
         "valtellina-rifugi-porro-e-ventina": "data/trail-details/valtellina-rifugi-porro-e-ventina.js?v=d0fa0a4a06ca",
-        "valtellina-passo-di-campagneda": "data/trail-details/valtellina-passo-di-campagneda.js?v=293c7d409443"
+        "valtellina-passo-di-campagneda": "data/trail-details/valtellina-passo-di-campagneda.js?v=293c7d409443",
+        "valchiavenna-ai-laghi-del-baldiscio": "data/trail-details/valchiavenna-ai-laghi-del-baldiscio.js?v=f65b682eff3c"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -514,7 +515,7 @@
     },
     "switzerland": {
       "trailCount": 8,
-      "trails": "data/regions/switzerland-trails.js?v=f4c6fd9c16d6",
+      "trails": "data/regions/switzerland-trails.js?v=501c8d67f756",
       "details": {
         "engadin-around-lake-st-moritz": "data/trail-details/engadin-around-lake-st-moritz.js?v=ac3c479365c2",
         "engadin-sils-chaste-peninsula-sils": "data/trail-details/engadin-sils-chaste-peninsula-sils.js?v=1dcf61c59018",
@@ -936,6 +937,7 @@
     "bormio-da-arnoga-al-rifugio-federico": "lombardy",
     "valtellina-rifugi-porro-e-ventina": "lombardy",
     "valtellina-passo-di-campagneda": "lombardy",
+    "valchiavenna-ai-laghi-del-baldiscio": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1449,6 +1451,7 @@
     "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": "maiser-moschwald-alms-falzeben",
     "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": "aschbach-st-vigil-terrainkur-1",
     "meran-giro-delle-malghe-monte-tramontana": "noerderberg-alms-loop-naturns",
+    "valchiavenna-ai-laghi-del-baldiscio": "isola-laghi-del-baldiscio",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1909,6 +1912,7 @@
     "maiser-moschwald-alms-falzeben": "meran-escursione-alle-malghe-maiser-alm-moschwaldalm",
     "aschbach-st-vigil-terrainkur-1": "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo",
     "noerderberg-alms-loop-naturns": "meran-giro-delle-malghe-monte-tramontana",
+    "isola-laghi-del-baldiscio": "valchiavenna-ai-laghi-del-baldiscio",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

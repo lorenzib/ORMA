@@ -194,8 +194,9 @@ describe('the existing-site verification boundary',()=>{
     // Texelbahn to Unterstell, the Maiser and Moschwald alms from Falzeben, the
     // Terrainkur path from Aschbach to St. Vigil, and the Nörderberg alms loop.
     const catalogue=loadProductionTrails(path.resolve(__dirname,'..'));
-    expect(catalogue).toHaveLength(458);
-    expect(currentSiteTrails(catalogue)).toHaveLength(456);
+    // Then 459 and 457 with the Valchiavenna walk from Isola to the Baldiscio lakes.
+    expect(catalogue).toHaveLength(459);
+    expect(currentSiteTrails(catalogue)).toHaveLength(457);
   });
 
   test('requires the artwork the public trail page needs',()=>{
