@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const { loadProductionTrails } = require('./scripts/load-production-trails');
+const { loadSlugOverrides, overriddenName, overriddenGloss } = require('./scripts/trail-slug-overrides');
 
 const root = __dirname;
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
@@ -77,6 +78,29 @@ describe('DATA-03 regional runtime boundaries', () => {
         expect(payload).toHaveLength(1);
         expect(payload[0].id).toBe(trailId);
       });
+    }
+  });
+
+  test('renamed trails carry their published name in the regional and detail payloads', () => {
+    // The static page names a trail from data/trail-slug-overrides.json; the
+    // dynamic page and the cards read these payloads, so they must say the same.
+    const overrides = loadSlugOverrides(root);
+    const renamed = Object.keys(overrides.trails)
+      .filter(trailId => overriddenName(overrides, trailId) && manifest.trailRegion[trailId]);
+    expect(renamed.length).toBeGreaterThan(0);
+    // The trail this was found on, by its published address.
+    expect(renamed).toContain(manifest.slugToId['raststeinweg-loop-schenna']);
+    const byRegion = {};
+    for (const trailId of renamed) {
+      const region = manifest.trailRegion[trailId];
+      byRegion[region] = byRegion[region] || loadRegionalTrailFile(`data/regions/${region}-trails.js`);
+      const listed = byRegion[region].find(trail => trail.id === trailId);
+      const [detail] = loadTrailDetailFile(manifest.regions[region].details[trailId].split('?')[0]);
+      for (const payload of [listed, detail]) {
+        expect({ id: trailId, name: payload.name }).toEqual({ id: trailId, name: overriddenName(overrides, trailId) });
+        const gloss = overriddenGloss(overrides, trailId);
+        if (gloss) expect(payload.nameGloss).toBe(gloss);
+      }
     }
   });
 
