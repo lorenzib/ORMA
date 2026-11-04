@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fassa-cammino-dei-pitores",
+  "distanceKm": 7.6,
+  "ascentM": 248,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1383
+    },
+    {
+      "km": 0.6,
+      "elev": 1479
+    },
+    {
+      "km": 1.2,
+      "elev": 1487
+    },
+    {
+      "km": 1.7,
+      "elev": 1572
+    },
+    {
+      "km": 2.3,
+      "elev": 1637
+    },
+    {
+      "km": 2.9,
+      "elev": 1573
+    },
+    {
+      "km": 3.5,
+      "elev": 1483
+    },
+    {
+      "km": 4.1,
+      "elev": 1393
+    },
+    {
+      "km": 4.7,
+      "elev": 1386
+    },
+    {
+      "km": 5.2,
+      "elev": 1386
+    },
+    {
+      "km": 5.9,
+      "elev": 1370
+    },
+    {
+      "km": 6.4,
+      "elev": 1378
+    },
+    {
+      "km": 7,
+      "elev": 1375
+    },
+    {
+      "km": 7.6,
+      "elev": 1381
+    }
+  ]
+}

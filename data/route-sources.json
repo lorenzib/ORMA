@@ -3609,6 +3609,62 @@
       "quote": "Distance 7.5 km · Duration 2:00 h · Ascent 257 m · Descent 92 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "eggental-passo-nigra-malga-hagner": {
+      "url": "https://www.outdooractive.com/it/r/16570878",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Escursione per famiglie dal Passo Nigra alla malga Hagner Alm",
+      "quote": "Distanza 11,8 km · Durata 3:13 h · Salita 231 m · Discesa 234 m · Punto più alto 1.691 m · Punto più basso 1.563 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "eggental-kaiserstein-baita-masare": {
+      "url": "https://www.outdooractive.com/it/r/19007850",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Dal parcheggio Kaiserstein alla baita Masarè",
+      "quote": "Distanza 1,5 km · Durata 0:40 h · Salita 189 m · Discesa 0 m · Punto più alto 1.934 m · Punto più basso 1.744 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "eggental-jolanda-baita-messnerjoch": {
+      "url": "https://www.outdooractive.com/it/r/19201109",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Escursione per famiglie dal Jolanda alla baita Messnerjoch",
+      "quote": "Distanza 4 km · Durata 1:11 h · Salita 152 m · Discesa 152 m · Punto più alto 1.925 m · Punto più basso 1.770 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "eggental-frommer-ochsenhuette": {
+      "url": "https://www.outdooractive.com/it/r/35328779",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Escursione per famiglie dalla Malga Frommer alla baita Ochsenhütte",
+      "quote": "Distanza 2,1 km · Durata 0:38 h · Salita 102 m · Discesa 53 m · Punto più alto 1.805 m · Punto più basso 1.738 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "eggental-passo-nigra-baita-messnerjoch": {
+      "url": "https://www.outdooractive.com/it/r/58607867",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Escursione per famiglie dal Passo Nigra alla baita Messnerjoch",
+      "quote": "Distanza 3,9 km · Durata 1:16 h · Salita 242 m · Discesa 242 m · Punto più alto 1.925 m · Punto più basso 1.683 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "eggental-pietralba-petersberger-leger": {
+      "url": "https://www.outdooractive.com/it/r/810054677",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Escursione per famiglie da Pietralba alla Malga Monte San Pietro",
+      "quote": "Distanza 4,6 km · Durata 1:20 h · Salita 139 m · Discesa 139 m · Punto più alto 1.530 m · Punto più basso 1.457 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "fassa-cammino-dei-pitores": {
+      "url": "https://www.outdooractive.com/it/r/802230888",
+      "publisher": "APT Val di Fassa (Outdooractive)",
+      "name": "Il cammino dei “pitores”",
+      "quote": "Distanza 7,7 km · Durata 2:25 h · Salita 248 m · Discesa 249 m · Punto più alto 1.601 m · Punto più basso 1.354 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
     }
   }
 }

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "eggental-passo-nigra-malga-hagner",
+  "distanceKm": 11.7,
+  "ascentM": 231,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1691
+    },
+    {
+      "km": 0.9,
+      "elev": 1693
+    },
+    {
+      "km": 1.8,
+      "elev": 1666
+    },
+    {
+      "km": 2.7,
+      "elev": 1635
+    },
+    {
+      "km": 3.6,
+      "elev": 1632
+    },
+    {
+      "km": 4.5,
+      "elev": 1601
+    },
+    {
+      "km": 5.3,
+      "elev": 1588
+    },
+    {
+      "km": 6.3,
+      "elev": 1587
+    },
+    {
+      "km": 7.1,
+      "elev": 1597
+    },
+    {
+      "km": 8,
+      "elev": 1628
+    },
+    {
+      "km": 8.9,
+      "elev": 1628
+    },
+    {
+      "km": 9.8,
+      "elev": 1667
+    },
+    {
+      "km": 10.7,
+      "elev": 1682
+    },
+    {
+      "km": 11.6,
+      "elev": 1710
+    },
+    {
+      "km": 11.7,
+      "elev": 1691
+    }
+  ]
+}

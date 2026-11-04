@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "eggental-pietralba-petersberger-leger",
+  "distanceKm": 4.6,
+  "ascentM": 139,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1523
+    },
+    {
+      "km": 0.4,
+      "elev": 1511
+    },
+    {
+      "km": 0.7,
+      "elev": 1500
+    },
+    {
+      "km": 1,
+      "elev": 1500
+    },
+    {
+      "km": 1.4,
+      "elev": 1464
+    },
+    {
+      "km": 1.8,
+      "elev": 1474
+    },
+    {
+      "km": 2.1,
+      "elev": 1492
+    },
+    {
+      "km": 2.4,
+      "elev": 1502
+    },
+    {
+      "km": 2.8,
+      "elev": 1474
+    },
+    {
+      "km": 3.2,
+      "elev": 1458
+    },
+    {
+      "km": 3.5,
+      "elev": 1500
+    },
+    {
+      "km": 3.8,
+      "elev": 1489
+    },
+    {
+      "km": 4.2,
+      "elev": 1511
+    },
+    {
+      "km": 4.6,
+      "elev": 1523
+    }
+  ]
+}

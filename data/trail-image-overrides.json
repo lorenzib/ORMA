@@ -955,6 +955,108 @@
       }
     },
     {
+      "id": "eggental-frommer-ochsenhuette",
+      "approvedReviewId": "mapillary-eggental-frommer-ochsenhuette-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-frommer-ochsenhuette-malga-frommer.jpg",
+        "heroImage": "images/trails/eggental-frommer-ochsenhuette-malga-frommer.jpg",
+        "imageAlt": "A wooden “Malga Frommeralm” sign on a green slope beside a lane, with an alpine hut under sunshades and grey rock peaks behind",
+        "imageCredit": "The Malga Frommer Alm at the start",
+        "imageCreditText": "The Malga Frommer Alm at the start by beautiful-places",
+        "imageCreator": "beautiful-places",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=736745362510894",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-jolanda-baita-messnerjoch",
+      "approvedReviewId": "mapillary-eggental-jolanda-baita-messnerjoch-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-jolanda-baita-messnerjoch-forest-road-1a.jpg",
+        "heroImage": "images/trails/eggental-jolanda-baita-messnerjoch-forest-road-1a.jpg",
+        "imageAlt": "A gravel forest road climbing into a spruce wood from a mountain road, with a bus-stop sign and wooden signposts on the grassy bank",
+        "imageCredit": "The start of forest road 1A on the Via Nigra",
+        "imageCreditText": "The start of forest road 1A on the Via Nigra by beautiful-places",
+        "imageCreator": "beautiful-places",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1077654067886897",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-kaiserstein-baita-masare",
+      "approvedReviewId": "mapillary-eggental-kaiserstein-baita-masare-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-kaiserstein-baita-masare-kaiserstein.jpg",
+        "heroImage": "images/trails/eggental-kaiserstein-baita-masare-kaiserstein.jpg",
+        "imageAlt": "Walkers on a gravel path by a stone wall and a Tyrolean flag at the edge of a spruce wood, with grey rock towers above the trees",
+        "imageCredit": "The trailhead at the Kaiserstein car park",
+        "imageCreditText": "The trailhead at the Kaiserstein car park by beautiful-places",
+        "imageCreator": "beautiful-places",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=24367381759616695",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-passo-nigra-baita-messnerjoch",
+      "approvedReviewId": "mapillary-eggental-passo-nigra-baita-messnerjoch-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-passo-nigra-baita-messnerjoch-catinaccio.jpg",
+        "heroImage": "images/trails/eggental-passo-nigra-baita-messnerjoch-catinaccio.jpg",
+        "imageAlt": "The grey walls and towers of the Catinaccio above dark spruce forest under a blue sky with white clouds, seen from the Passo Nigra",
+        "imageCredit": "The Catinaccio from the Passo Nigra",
+        "imageCreditText": "The Catinaccio from the Passo Nigra by beautiful-places",
+        "imageCreator": "beautiful-places",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1098170745148686",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-passo-nigra-malga-hagner",
+      "approvedReviewId": "mapillary-eggental-passo-nigra-malga-hagner-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-passo-nigra-malga-hagner-passo-nigra.jpg",
+        "heroImage": "images/trails/eggental-passo-nigra-malga-hagner-passo-nigra.jpg",
+        "imageAlt": "A gravel forest road leaving a mountain road beside a wooden inn sign and a meadow, with spruce woods and a tall pale rock face behind",
+        "imageCredit": "The start of forest road 1 at the Passo Nigra",
+        "imageCreditText": "The start of forest road 1 at the Passo Nigra by beautiful-places",
+        "imageCreator": "beautiful-places",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1420898302509769",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-pietralba-petersberger-leger",
+      "approvedReviewId": "mapillary-eggental-pietralba-petersberger-leger-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-pietralba-petersberger-leger-path-2.jpg",
+        "heroImage": "images/trails/eggental-pietralba-petersberger-leger-path-2.jpg",
+        "imageAlt": "A wide gravel track curving past a small stone outbuilding with a tiled roof, between meadows and leafy trees under a grey sky",
+        "imageCredit": "Path 2 near Pietralba",
+        "imageCreditText": "Path 2 near Pietralba by santon",
+        "imageCreator": "santon",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=24293086773657058",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "engadin-around-lake-st-moritz",
       "approvedReviewId": "commons-engadin-around-lake-st-moritz-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",
@@ -1206,6 +1308,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Soraga.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-cammino-dei-pitores",
+      "approvedReviewId": "commons-fassa-cammino-dei-pitores-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-cammino-dei-pitores-pordoi.jpg",
+        "heroImage": "images/trails/fassa-cammino-dei-pitores-pordoi.jpg",
+        "imageAlt": "The pale rock massif of the Pordoi rising above steep forested slopes, with the houses of Mazzin at the foot of the valley",
+        "imageCredit": "The Pordoi group seen from Mazzin",
+        "imageCreditText": "The Pordoi group seen from Mazzin by Adert",
+        "imageCreator": "Adert",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pordoi_da_Mazzin.jpg",
         "imageSourceType": "licensed-source"
       }
     },
