@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere",
+  "distanceKm": 5.8,
+  "ascentM": 368,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1720
+    },
+    {
+      "km": 0.4,
+      "elev": 1761
+    },
+    {
+      "km": 0.9,
+      "elev": 1789
+    },
+    {
+      "km": 1.3,
+      "elev": 1804
+    },
+    {
+      "km": 1.8,
+      "elev": 1882
+    },
+    {
+      "km": 2.2,
+      "elev": 1851
+    },
+    {
+      "km": 2.6,
+      "elev": 1894
+    },
+    {
+      "km": 3.1,
+      "elev": 1987
+    },
+    {
+      "km": 3.5,
+      "elev": 2002
+    },
+    {
+      "km": 4,
+      "elev": 1926
+    },
+    {
+      "km": 4.4,
+      "elev": 1896
+    },
+    {
+      "km": 4.9,
+      "elev": 1851
+    },
+    {
+      "km": 5.3,
+      "elev": 1814
+    },
+    {
+      "km": 5.7,
+      "elev": 1733
+    },
+    {
+      "km": 5.8,
+      "elev": 1720
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T10:44:36.356Z",
+  "generatedAt": "2026-11-04T10:53:34.942Z",
   "regions": {
     "dolomites": {
       "trailCount": 337,
@@ -350,8 +350,8 @@
       "optional": []
     },
     "savoy": {
-      "trailCount": 57,
-      "trails": "data/regions/savoy-trails.js?v=6a40d419794e",
+      "trailCount": 58,
+      "trails": "data/regions/savoy-trails.js?v=9373f7c4bc84",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=07be5ff5d5e1",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=6206ef4046f2",
@@ -409,7 +409,8 @@
         "savoie-itineraire-poussette-de-belavoine": "data/trail-details/savoie-itineraire-poussette-de-belavoine.js?v=695a9e3d6bb8",
         "savoie-areches-beaufort-la-grande-berge": "data/trail-details/savoie-areches-beaufort-la-grande-berge.js?v=0c48a5db6cbe",
         "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": "data/trail-details/savoie-areches-beaufort-croix-du-berger-et-lac-des-fees.js?v=a589fd108f85",
-        "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "data/trail-details/savoie-boucle-du-fornet-par-la-cascade-du-fornet.js?v=7e9c32d5e07d"
+        "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "data/trail-details/savoie-boucle-du-fornet-par-la-cascade-du-fornet.js?v=7e9c32d5e07d",
+        "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": "data/trail-details/savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere.js?v=7ff1899eede0"
       },
       "water": "data/regions/savoy-water.geojson",
       "hutsBars": "data/regions/savoy-huts-bars.geojson",
@@ -949,6 +950,7 @@
     "savoie-areches-beaufort-la-grande-berge": "savoy",
     "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": "savoy",
     "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "savoy",
+    "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": "savoy",
     "lario-brunate-e-le-sue-chiese": "lombardy",
     "lario-pognana-lario-e-le-sculture-simposio": "lombardy",
     "lario-alla-ricerca-di-un-panorama-unico": "lombardy",
@@ -1495,6 +1497,7 @@
     "lario-nel-cuore-del-triangolo-lariano": "caglio-campoe-cassina-enco",
     "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "passo-del-giovo-rifugio-sommafiume",
     "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "fornet-waterfall-loop-val-disere",
+    "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": "val-pelouse-crest-path-perriere-refuge",
     "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": "murtel-to-surlej-via-alpetta",
     "engadin-corvatsch-hahnensee-st-moritz": "hahnensee-from-murtel-to-st-moritz",
     "engadin-eulalia-and-gian-plaiv": "eulalia-gian-plaiv-trail-zuoz",
@@ -1968,6 +1971,7 @@
     "caglio-campoe-cassina-enco": "lario-nel-cuore-del-triangolo-lariano",
     "passo-del-giovo-rifugio-sommafiume": "lario-dal-passo-del-giovo-al-rifugio-sommafiume",
     "fornet-waterfall-loop-val-disere": "savoie-boucle-du-fornet-par-la-cascade-du-fornet",
+    "val-pelouse-crest-path-perriere-refuge": "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere",
     "murtel-to-surlej-via-alpetta": "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej",
     "hahnensee-from-murtel-to-st-moritz": "engadin-corvatsch-hahnensee-st-moritz",
     "eulalia-gian-plaiv-trail-zuoz": "engadin-eulalia-and-gian-plaiv",

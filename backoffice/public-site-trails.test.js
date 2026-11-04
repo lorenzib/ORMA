@@ -202,11 +202,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 467 and 465 with two Lake Como mountain walks: Campoè to Cassina Enco
     // above Caglio, and the Passo del Giovo to the Rifugio Sommafiume.
     // Then 468 and 466 with the Fornet waterfall loop above Val d’Isère (Tarentaise).
-    // Then 471 and 469 with three more Engadin walks: Murtèl down to Surlej via
+    // Then 469 and 467 with the Val Pelouse crest loop above Arvillard (Belledonne).
+    // Then 472 and 470 with three more Engadin walks: Murtèl down to Surlej via
     // Alpetta, Murtèl past Hahnensee to St. Moritz, and the Eulalia and Gian Plaiv
     // story trail in Zuoz.
-    expect(catalogue).toHaveLength(471);
-    expect(currentSiteTrails(catalogue)).toHaveLength(469);
+    expect(catalogue).toHaveLength(472);
+    expect(currentSiteTrails(catalogue)).toHaveLength(470);
   });
 
   test('requires the artwork the public trail page needs',()=>{

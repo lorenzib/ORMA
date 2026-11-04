@@ -6299,6 +6299,23 @@
       }
     },
     {
+      "id": "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere",
+      "approvedReviewId": "commons-savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere-on-route",
+      "approvedAt": "2026-11-03T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere-crest-path.jpg",
+        "heroImage": "images/trails/savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere-crest-path.jpg",
+        "imageAlt": "A stony path winding along a green grassy ridge with low shrubs, with hazy blue mountain ranges in the distance under a summer sky",
+        "imageCredit": "The crest path towards Val Pelouse",
+        "imageCreditText": "The crest path towards Val Pelouse by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sentier_Grande_Montagne_d'Arvillard_direction_Val_Pelouse_(août_2024).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "seceda",
       "approvedReviewId": "commons-seceda",
       "approvedAt": "2026-09-06T10:40:40.582Z",
