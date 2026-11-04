@@ -93,7 +93,44 @@ describe('interactive breed and build guide', () => {
     expect(instruction).not.toMatch(/AI-generated images/i);
     expect(sourcesBody.querySelectorAll('p')).toHaveLength(1);
     expect(caveat).toMatch(/^This is general information, not a diagnosis or a substitute for veterinary care\./);
-    expect(caveat).toMatch(/Breed examples and AI-generated images help you recognise a pattern/);
+    expect(caveat).toMatch(/Breed examples and photos help you recognise a pattern/);
     expect(caveat).not.toMatch(/Veterinary material checked/i);
+  });
+});
+
+describe('breed finder', () => {
+  const breedsData = fs.readFileSync(path.join(__dirname, 'breeds-data.js'), 'utf8');
+  beforeEach(() => {
+    document.documentElement.innerHTML = html;
+    window.eval(breedsData + '\n' + controller);
+  });
+  const shown = () => [...document.querySelectorAll('[data-breed-trait]')]
+    .filter(card => !card.hidden).map(card => card.dataset.breedTrait);
+
+  test('shows only the cards that apply to a typed breed, plus the card for every dog', () => {
+    const input = document.querySelector('[data-breed-input]');
+    input.value = 'pug';
+    input.dispatchEvent(new Event('change'));
+    expect(input.value).toBe('Pug');
+    expect(shown()).toContain('airway');
+    expect(shown()).toContain('individual');
+    expect(shown()).not.toContain('guardian');
+    expect(document.querySelector('[data-breed-status]').textContent).toMatch(/^Pug: \d+ of 12 cards apply/);
+  });
+
+  test('filters by trait and resets to every card', () => {
+    document.querySelector('[data-breed-filter="guard"]').click();
+    expect(shown().sort()).toEqual(['guardian', 'individual']);
+    document.querySelector('[data-breed-reset]').click();
+    expect(shown()).toHaveLength(13);
+  });
+
+  test('says so when a typed breed is not in the list', () => {
+    const input = document.querySelector('[data-breed-input]');
+    input.value = 'Not a breed';
+    input.dispatchEvent(new Event('change'));
+    expect(document.querySelector('[data-breed-status]').textContent).toMatch(/No breed called/);
+    expect(shown()).toEqual(['individual']);
+    expect(document.querySelector('[data-breed-reset]').hidden).toBe(false);
   });
 });
