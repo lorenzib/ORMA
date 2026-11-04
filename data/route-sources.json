@@ -3433,6 +3433,30 @@
       "quote": "Durée moyenne 2H45 · Dénivelé cumulé positif 368m · Dénivelé négatif 368m · Distance 5.7Km · Itinéraire balisé · Animaux acceptés",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": {
+      "url": "https://www.outdooractive.com/en/r/59235526",
+      "publisher": "Engadin Tourismus AG (Outdooractive, engadin.ch)",
+      "name": "Mid-station Murtèl – Alpetta – valley station Corvatsch, Surlej",
+      "quote": "Distance 5.9 km · Duration 1:50 h · Ascent 2 m · Descent 839 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "engadin-corvatsch-hahnensee-st-moritz": {
+      "url": "https://www.outdooractive.com/en/r/23436434",
+      "publisher": "Engadin Tourismus AG (Outdooractive, engadin.ch)",
+      "name": "Corvatsch - Hahnensee - St.Moritz",
+      "quote": "Distance 10.5 km · Duration 3:11 h · Ascent 115 m · Descent 1042 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "engadin-eulalia-and-gian-plaiv": {
+      "url": "https://www.outdooractive.com/en/r/812019339",
+      "publisher": "Engadin Tourismus AG (Outdooractive, engadin.ch)",
+      "name": "Eulalia and Gian Plaiv",
+      "quote": "Distance 2.9 km · Duration 2:00 h · Ascent 197 m · Descent 109 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
     }
   }
 }

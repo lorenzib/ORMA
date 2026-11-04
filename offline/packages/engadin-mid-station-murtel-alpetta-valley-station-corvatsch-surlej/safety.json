@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 5.9,
+    "ascentM": 2,
+    "highestPointM": 2691,
+    "expectedDuration": "1.75 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 32
+  },
+  "trailhead": {
+    "lat": 46.431932,
+    "lng": 9.823917,
+    "label": "Murtèl, the middle station of the Corvatsch cable car, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A long descent of 840 m: hard on knees and paws, take breaks.",
+    "Steep, stony switchbacks just below Murtèl.",
+    "Cows graze around Alp Surlej in summer: lead short and go round the herd.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

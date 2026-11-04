@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-eulalia-and-gian-plaiv",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 2.9,
+    "ascentM": 197,
+    "highestPointM": 1926,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 24
+  },
+  "trailhead": {
+    "lat": 46.602008,
+    "lng": 9.959768,
+    "label": "The village square (Plaz) in Zuoz, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Village streets in Zuoz, including a short stretch of the main street: lead short for passing cars.",
+    "Steep cobbled lanes in the old village.",
+    "Hay meadows are closed in the growing season: keep to the track.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

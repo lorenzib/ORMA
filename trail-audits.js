@@ -61486,6 +61486,221 @@
       ],
       startPoint: { lat: 45.418628, lng: 6.169215, label: 'Val Pelouse car park at the end of the D 208, the board’s start' },
       desc: 'A half-day loop from the old Val Pelouse ski station above Arvillard, through fir wood and rhododendron meadows to the Perrière refuge on the GR738 and the Col de la Perrière, then back along a grassy crest with wide views to Mont Blanc and the Chartreuse. The official page lists 5.7 km, 368 m up and 368 m down, about 2 h 45.'
+    },
+    'engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Engadin batch 2, Switzerland batch 2).
+      // “Mid-station Murtèl – Alpetta – valley station Corvatsch, Surlej”, published by the Engadin Tourismus AG, drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Silvaplana (a lead in forest, wildlife areas and the settlement area).
+      // The line crosses the Foppa and Schinellas–Val Verda–Crap Alv wildlife rest zones, closed only 20 December–30 April. No National Park and no federal reserve.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Murtèl (Corvatsch middle station) – Alpetta – Alp Surlej – Surlej valley station (Silvaplana)',
+      distance: 5.9,
+      elevation: 2,
+      hours: '1.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way down: from Murtèl, the middle station of the Corvatsch cable car, over alpine meadows and through the larch forest back to the valley station in Surlej.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Ride the Corvatsch cable car up from Surlej and start at Murtèl, the middle station, the board’s start.",
+        "sequence": "Leave the station on the mountain path that drops in small switchbacks across the open slope, with Lake Silvaplana and Lake Champfèr below. At the first junction continue left on Via da l’Alp, the gravel track that descends gently to Margun Surlej and the Alpetta restaurant. Carry on down the same track into the larch forest to Alp Surlej, a working alp with a place to eat, then through the forest again down to the valley station of the Corvatsch cable car in Surlej, where the walk ends.",
+        "switches": "Key turns: below the switchbacks left onto Via da l’Alp; then stay on it past Alpetta and Alp Surlej to the valley station.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Tourismus AG, Mid-station Murtèl – Alpetta – valley station Corvatsch, Surlej (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/59235526",
+            "authority": "Engadin Tourismus AG",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Alpetta restaurant with Alp Surlej below, in August (Tiia Monto on Wikimedia Commons, CC BY-SA 4.0), 12 m from the line.',
+        route: 'Official one-way walk 5.9 km from Murtèl, the middle station of the Corvatsch cable car, as the Engadin Tourismus AG publishes it; the stored line is drawn on 9 OSM ways along the board’s published line, 5.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Murtèl, the Corvatsch middle station, down the switchbacks, then left along Via da l’Alp past the Alpetta restaurant and Alp Surlej through the larch forest to the Surlej valley station.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 5.9 km, 2 m up and 839 m down, 1:50 h, highest point 2,701 m, lowest 1,862 m (Engadin Tourismus AG, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Tourismus AG, Mid-station Murtèl – Alpetta – valley station Corvatsch, Surlej (its Outdooractive tour, also listed on engadin.ch)',
+          'Gemeinde Silvaplana, Gesetz über das Halten von Hunden (revised 28.11.2008), art. 10 and 12, and Polizeigesetz (24.6.2020), art. 12, 24 and 25: a lead in forest, wildlife areas and wherever wildlife is likely, and in the settlement area; no dogs on playgrounds, school grounds, in churches or cemeteries; meadows closed from 1 June until the end of the hay harvest; wildlife protection zones closed November–15 May',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the Foppa and Schinellas–Val Verda–Crap Alv wildlife rest zones, closed only 20 December–30 April, so open in the walking season; no National Park and no federal reserve',
+          'OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 32,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A long descent of 840 m: hard on knees and paws, take breaks', 'Steep, stony switchbacks just below Murtèl', 'Cows graze around Alp Surlej in summer: lead short and go round the herd', 'Mountain bikes share Via da l’Alp: keep your dog close'],
+      terrainType: 'Alpine path and gravel alp track',
+      shadeDescription: 'Mostly open: about a third runs through the mapped larch forest in the lower half; the upper slope has no shade.',
+      terrainDescription: 'A downhill walk from 2,700 m to 1,860 m, first on a stony mountain path and then on a wide gravel alp track, with views over the Upper Engadin lakes.',
+      waterDescription: 'No drinking water mapped on the way: bring water for your dog.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Silvaplana requires a lead in forest, in wildlife areas and wherever wildlife is likely. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. Check the lift’s dog rule before you ride.',
+      tips: 'Take the Corvatsch cable car up from Surlej to Murtèl and walk 5.9 km down to the car park, 839 m down, about two hours. Keep your dog on a lead. No drinking water mapped: bring water. Food at Alpetta and Alp Surlej.',
+      sourceLinks: [
+        { label: 'Outdooractive, Mid-station Murtèl – Alpetta – valley station Corvatsch, Surlej (Engadin Tourismus AG)', url: 'https://www.outdooractive.com/en/r/59235526' },
+        { label: 'Gemeinde Silvaplana, Hundegesetz (2008)', url: 'https://gemeinde-silvaplana.ch/assets/dokumente/politik/gesetze/hundegesetz_2008.pdf' },
+        { label: 'Gemeinde Silvaplana, Polizeigesetz (2020)', url: 'https://gemeinde-silvaplana.ch/assets/dokumente/politik/gesetze/2020_06_24-polizeigesetz.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.431932, lng: 9.823917, label: 'Murtèl, the middle station of the Corvatsch cable car, the board’s start' },
+      desc: 'A downhill walk from Murtèl, the Corvatsch middle station, over alpine meadows past the Alpetta restaurant and Alp Surlej, and through the larch forest back to the valley station in Surlej. The board lists 5.9 km, 2 m up and 839 m down, 1 h 50.'
+    },
+    'engadin-corvatsch-hahnensee-st-moritz': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Engadin batch 2, Switzerland batch 2).
+      // “Corvatsch - Hahnensee - St.Moritz”, published by the Engadin Tourismus AG, drawn on 41 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Silvaplana (a lead in forest, wildlife areas and the settlement area) and St. Moritz (a lead only in listed places such as playgrounds and parks).
+      // The line crosses the Schinellas–Val Verda–Crap Alv wildlife rest zone, closed only 20 December–30 April. No National Park and no federal reserve.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Murtèl (Corvatsch middle station) – Lej da la Fuorcla – Hahnensee – Lej Nair – St. Moritz Bad',
+      distance: 10.5,
+      elevation: 115,
+      hours: '3',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way down: from Murtèl, the middle station of the Corvatsch cable car, past Lej da la Fuorcla and the Hahnensee restaurant, then through the forest past two small lakes to St. Moritz Bad.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Ride the Corvatsch cable car up from Surlej and start at Murtèl, the middle station, the board’s start.",
+        "sequence": "Take the path down to the small lake Lej da la Fuorcla. After a short climb the path meets the one to Fuorcla Surlej; from that junction follow the signs for Hahnensee. The path goes steeply down a scree slope and across moorland to the Hahnensee restaurant beside the moor lake Lej dals Chöds. From the restaurant go steeply down through the forest, first on a narrow path and then on a wide one. At the second junction leave the wide path to the left and walk past Lej Nair and Lej Marsch, then down Via San Gian and Via Mezdi into St. Moritz Bad, where the walk ends.",
+        "switches": "Key turns: at the junction with the Fuorcla Surlej path, follow the signs for Hahnensee; below the restaurant, at the second junction, leave the wide path to the left for Lej Nair; then down Via Mezdi to St. Moritz Bad.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Tourismus AG, Corvatsch - Hahnensee - St.Moritz (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/23436434",
+            "authority": "Engadin Tourismus AG",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Lej da la Fuorcla, the first lake on the way down from Murtèl, in August (Tiia Monto on Wikimedia Commons, CC BY-SA 4.0), 10 m from the line.',
+        route: 'Official one-way walk 10.5 km from Murtèl, the middle station of the Corvatsch cable car, as the Engadin Tourismus AG publishes it; the stored line is drawn on 41 OSM ways along the board’s published line, 10.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Murtèl, the Corvatsch middle station, down to Lej da la Fuorcla, then follow the signs for Hahnensee down to the restaurant, through the forest past Lej Nair and Lej Marsch to St. Moritz Bad.',
+        mapPoints: 'Start at the board’s start; drinking water at km 6.4 (OSM nodes 2987230281).',
+        elevation: 'Official 10.5 km, 115 m up and 1042 m down, 3:11 h, highest point 2,698 m, lowest 1,772 m (Engadin Tourismus AG, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Tourismus AG, Corvatsch - Hahnensee - St.Moritz (its Outdooractive tour, also listed on engadin.ch)',
+          'Gemeinde Silvaplana, Gesetz über das Halten von Hunden (revised 28.11.2008), art. 10 and 12, and Polizeigesetz (24.6.2020), art. 12, 24 and 25: a lead in forest, wildlife areas and wherever wildlife is likely, and in the settlement area; no dogs on playgrounds, school grounds, in churches or cemeteries; meadows closed from 1 June until the end of the hay harvest; wildlife protection zones closed November–15 May',
+          'Gemeinde St. Moritz, Polizeigesetz (7.7, amended 26.11.2025, in force 1.2.2026), art. 14 and 29: a lead on playgrounds, sports grounds, school grounds, cemeteries and in public parks; no dog may run unsupervised; dog mess picked up on all roads and paths; hay meadows closed to walkers 1 June–31 August',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the Schinellas–Val Verda–Crap Alv wildlife rest zone, closed only 20 December–30 April, so open in the walking season; no National Park and no federal reserve',
+          'OpenStreetMap ways along the board’s line (41 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A long descent of over 1,000 m: hard on knees and paws, take breaks', 'Steep scree slope below the Fuorcla Surlej junction: lead short and go slowly', 'Steep, narrow forest path below the Hahnensee restaurant', 'Black grouse nest on the moorland: keep your dog on the path', 'Streets in St. Moritz Bad at the end: lead short for passing cars'],
+      terrainType: 'Alpine path, scree, forest path and gravel track',
+      shadeDescription: 'Mostly open: about a third runs through the mapped forest below Hahnensee; the upper half has no shade.',
+      terrainDescription: 'A long downhill walk from 2,700 m to 1,770 m, past an alpine lake and the moorland of Hahnensee, then through the larch forest to St. Moritz Bad.',
+      waterDescription: 'Drinking water at km 6.4; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Silvaplana requires a lead in forest, in wildlife areas and wherever wildlife is likely; St. Moritz asks for a lead only in listed places, and no dog may run unsupervised. Check the lift’s dog rule before you ride. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the Corvatsch cable car up from Surlej to Murtèl and walk 10.5 km down to St. Moritz Bad, 115 m up and 1,042 m down, about three hours. Keep your dog on a lead. Drinking water at km 6.4, near the Hahnensee restaurant. Bus 601 links St. Moritz and Surlej for the way back.',
+      sourceLinks: [
+        { label: 'Outdooractive, Corvatsch - Hahnensee - St.Moritz (Engadin Tourismus AG)', url: 'https://www.outdooractive.com/en/r/23436434' },
+        { label: 'Gemeinde Silvaplana, Hundegesetz (2008)', url: 'https://gemeinde-silvaplana.ch/assets/dokumente/politik/gesetze/hundegesetz_2008.pdf' },
+        { label: 'Gemeinde Silvaplana, Polizeigesetz (2020)', url: 'https://gemeinde-silvaplana.ch/assets/dokumente/politik/gesetze/2020_06_24-polizeigesetz.pdf' },
+        { label: 'Gemeinde St. Moritz, Polizeigesetz 7.7', url: 'https://www.gemeinde-stmoritz.ch/fileadmin/user_upload/dokumente/pdf/gesetze/7.7_Polizeigesetz_Anhang_Teilrevision_vom_26.11.2025_in_Kraft_am_01.02.2026.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.432123, lng: 9.824217, label: 'Murtèl, the middle station of the Corvatsch cable car, the board’s start' },
+      desc: 'A long downhill walk from Murtèl, the Corvatsch middle station, past Lej da la Fuorcla to the Hahnensee restaurant by a moor lake, then through the forest past Lej Nair and Lej Marsch to St. Moritz Bad. The board lists 10.5 km, 115 m up and 1,042 m down, 3 h 11.'
+    },
+    'engadin-eulalia-and-gian-plaiv': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Engadin batch 2, Switzerland batch 2).
+      // “Eulalia and Gian Plaiv”, published by the Engadin Tourismus AG, drawn on 16 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Zuoz (a lead in the settlement area, including roads and paths up to 50 m past the last building, and in wildlife refuges and rest zones).
+      // The line crosses the God Salets–Albanas wildlife rest zone on its allowed path; the zone is closed only 20 December–30 April. No National Park and no federal reserve.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Zuoz village square – Somvih – Via Cuort San Gian – forest above Zuoz',
+      distance: 2.9,
+      elevation: 197,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way: a children’s story trail from the village square in Zuoz up through the old village and onto forest tracks above it.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the village square (Plaz) in Zuoz, the board’s start, by the Planta houses; pick up the trail booklet at the tourist office or at the first checkpoint.",
+        "sequence": "From the square, beside the church of San Luzi, walk up the cobbled lane Somvih through the old village. Above the last houses keep on Somvih to the junction with Via Cuort San Gian and follow it out of the village. The trail then climbs on forest tracks towards Munt d’Albanas, past benches with views over the valley, to the last checkpoint where the walk ends.",
+        "switches": "Key turns: from the square up Somvih; above the village onto Via Cuort San Gian; then up the forest track towards Munt d’Albanas.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Tourismus AG, Eulalia and Gian Plaiv (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/812019339",
+            "authority": "Engadin Tourismus AG",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Planta house on the village square in Zuoz, at the start, in August (Rikki Mitterer on Wikimedia Commons, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 2.9 km from the village square in Zuoz, as the Engadin Tourismus AG publishes it; the stored line is drawn on 16 OSM ways along the board’s published line, 2.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the village square in Zuoz up Somvih, then along Via Cuort San Gian and up the forest track towards Munt d’Albanas, following the trail’s checkpoints.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 2.9 km, 197 m up and 109 m down, 2:00 h, highest point 1,911 m, lowest 1,714 m (Engadin Tourismus AG, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Tourismus AG, Eulalia and Gian Plaiv (its Outdooractive tour, also listed on engadin.ch)',
+          'Gemeinde Zuoz, Polizeigesetz (6.2.2008), art. 18 and 23, and its leaflet for dog owners (June 2020): a lead in the whole settlement area, including roads and paths up to 50 m past the last building, and in all wildlife refuges and wildlife rest zones; hay meadows closed in the growing season; no dogs in schools, churches or cemeteries',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the God Salets–Albanas wildlife rest zone, closed only 20 December–30 April, so open in the walking season; no National Park and no federal reserve',
+          'OpenStreetMap ways along the board’s line (16 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 24,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Village streets in Zuoz, including a short stretch of the main street: lead short for passing cars', 'Steep cobbled lanes in the old village', 'Hay meadows are closed in the growing season: keep to the track'],
+      terrainType: 'Cobbled village lanes, tarred streets and forest tracks',
+      shadeDescription: 'Mostly open: about a quarter runs under the mapped forest above the village.',
+      terrainDescription: 'A short climb at 1,710–1,910 m from the old village of Zuoz, with its painted Engadin houses, onto forest tracks above it.',
+      waterDescription: 'No drinking water mapped on the way: bring water for your dog.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Zuoz requires a lead in the whole village, including its roads and paths up to 50 m past the last house, and in wildlife refuges and rest zones. Dogs are not allowed in its schools, churches or cemeteries. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Start on the village square in Zuoz: a 2.9 km story trail, 197 m up and 109 m down, about two hours with the puzzles. Keep your dog on a lead. No drinking water mapped: bring water. Cafés on the square.',
+      sourceLinks: [
+        { label: 'Outdooractive, Eulalia and Gian Plaiv (Engadin Tourismus AG)', url: 'https://www.outdooractive.com/en/r/812019339' },
+        { label: 'Gemeinde Zuoz, Polizeigesetz', url: 'https://www.zuoz.ch/fileadmin/user_upload/Zuoz_Dokumente/Gesetze/Polizeigesetz_03.pdf' },
+        { label: 'Gemeinde Zuoz, leaflet for dog owners (2020)', url: 'https://www.zuoz.ch/fileadmin/user_upload/Zuoz_Dokumente/Gesetze/Merkblatt_fuer_Hundehalter_Juni_2020_RO.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.602008, lng: 9.959768, label: 'The village square (Plaz) in Zuoz, the board’s start' },
+      desc: 'A short story trail for families from the village square in Zuoz up through the old village and into the forest above it, following Eulalia and Gian Plaiv as they search for a lost bell. The board lists 2.9 km, 197 m up and 109 m down, 2 h.'
     }
   };
 
