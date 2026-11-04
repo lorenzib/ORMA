@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-cudan-dumat",
+  "distanceKm": 3.5,
+  "ascentM": 110,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1292
+    },
+    {
+      "km": 0.3,
+      "elev": 1327
+    },
+    {
+      "km": 0.6,
+      "elev": 1364
+    },
+    {
+      "km": 0.8,
+      "elev": 1365
+    },
+    {
+      "km": 1.1,
+      "elev": 1372
+    },
+    {
+      "km": 1.3,
+      "elev": 1351
+    },
+    {
+      "km": 1.6,
+      "elev": 1352
+    },
+    {
+      "km": 1.9,
+      "elev": 1319
+    },
+    {
+      "km": 2.1,
+      "elev": 1286
+    },
+    {
+      "km": 2.4,
+      "elev": 1285
+    },
+    {
+      "km": 2.7,
+      "elev": 1294
+    },
+    {
+      "km": 2.9,
+      "elev": 1293
+    },
+    {
+      "km": 3.2,
+      "elev": 1260
+    },
+    {
+      "km": 3.5,
+      "elev": 1241
+    }
+  ]
+}

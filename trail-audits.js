@@ -61993,6 +61993,283 @@
       ],
       startPoint: { lat: 46.408774, lng: 10.019757, label: 'Ospizio Bernina station on the Bernina railway, the board’s start' },
       desc: 'A nearly flat loop round Lago Bianco at the top of the Bernina Pass, from Ospizio Bernina station along both shores and over its two dams, with glaciers above. The board lists 8 km, 55 m up and down, 2 h 13.'
+    },
+    'valgardena-troi-unika': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 1).
+      // “Sentiero d’arte e natura – Troi Unika”, published by the Tourist board of S. Cristina (Val Gardena), drawn on 4 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: St. Christina in Gröden (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // No Natura 2000 site, nature park or natural monument on the line (Province of Bolzano landscape-plan layers).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Monte Pana, Santa Cristina Valgardena',
+      distance: 1.6,
+      elevation: 54,
+      hours: '0.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from the Hotel Cendevaves on Monte Pana past the wooden sculptures of the Troi Unika and back to the hotel.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Hotel Cendevaves on Monte Pana above Santa Cristina, by the P2 car park, the board’s start; Monte Pana is reached by car (paid car parks P1 and P2) or on foot on path 30 from Santa Cristina.",
+        "sequence": "Follow the signed art trail on the loop around the Monte Pana meadows, past the wooden sculptures “Pultredes” and “La piuma” with the Sassolungo straight ahead, and keep on it back round to the Hotel Cendevaves.",
+        "switches": "Keep to the signed Troi Unika loop past the sculptures; it ends back at the Hotel Cendevaves where it began.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Tourist board of S. Cristina (Val Gardena), Sentiero d’arte e natura – Troi Unika (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/64024449",
+            "authority": "Tourist board of S. Cristina (Val Gardena)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Monte Pana meadows under the Sassolungo, on the loop, on 29 July 2019 (highlander on Mapillary, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official loop 1.6 km from the Hotel Cendevaves on Monte Pana, as the Tourist board of S. Cristina (Val Gardena) publishes it; the stored line is drawn on 4 OSM ways along the board’s published line, 1.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'A signed art trail: from the Hotel Cendevaves on Monte Pana the loop passes the sculptures “Pultredes” by Stephan Perathoner and “La piuma” by Eric Perathoner, with the Sassolungo above, and comes back to the hotel.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 1.6 km, 54 m up and 55 m down, 0:30 h, highest point 1,690 m, lowest 1,633 m (Tourist board of S. Cristina (Val Gardena), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourist board of S. Cristina (Val Gardena), Sentiero d’arte e natura – Troi Unika (its Outdooractive tour)',
+          'Gemeinde St. Christina in Gröden / Comune di Santa Cristina Valgardena, Gemeindeverordnung zur Hundehaltung (Ratsbeschluss Nr. 2, 08.02.2010), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried in public places, and no dogs on farmed meadows',
+          'Province of Bolzano landscape-plan layers (Natura 2000, nature parks, protected areas, natural monuments): no park, Natura 2000 site or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (4 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Cars around the Monte Pana car parks at the start: keep your dog close', 'Open meadows that are mown for hay in summer: keep your dog on the path'],
+      terrainType: 'Wide gravel path, suitable for pushchairs',
+      shadeDescription: 'Mostly open: about a quarter of the loop runs along mapped woodland, the rest over the Monte Pana meadows.',
+      terrainDescription: 'A short, nearly level loop at 1,630–1,690 m on the Monte Pana plateau above Santa Cristina, past wooden sculptures by Val Gardena carvers, with the Sassolungo and Sella above. The board calls it suitable for pushchairs in summer.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Hotel Cendevaves and the bars at Monte Pana serve food and drink when open.',
+      dogNotes: 'Santa Cristina requires a lead of at most 1.5 m and a muzzle carried in public places, and keeps dogs off farmed meadows. Keep your dog on the path and on a short lead past the hotel and car parks.',
+      tips: 'Start at the Hotel Cendevaves on Monte Pana: a 1.6 km loop, 54 m of climbing, about half an hour, as the board lists. Come up by car (paid car park) or on foot on path 30 from Santa Cristina in about 40 minutes. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Outdooractive, Sentiero d’arte e natura – Troi Unika (Tourist board of S. Cristina (Val Gardena))', url: 'https://www.outdooractive.com/it/r/64024449' },
+        { label: 'St. Christina, dog regulation', url: 'https://www.gemeinde.stchristina.bz.it/system/web/GetDocument.ashx?cts=1536582042&fileId=1004815' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.551456, lng: 11.71302, label: 'The Hotel Cendevaves on Monte Pana above Santa Cristina, the board’s start' },
+      desc: 'A short art and nature loop on Monte Pana above Santa Cristina, past wooden sculptures by Val Gardena carvers, with the Sassolungo above. The board lists 1.6 km, 54 m up and half an hour.'
+    },
+    'valgardena-cudan-dumat': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 1).
+      // “Passeggiata Cudan-Dumat”, published by the Tourist board of Ortisei (Val Gardena), drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: St. Ulrich in Gröden (its 2019 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // No Natura 2000 site, nature park or natural monument on the line; about 1% is in a landscape protection zone, which limits building, not dogs (Province of Bolzano landscape-plan layers).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Ortisei / St. Ulrich, Val Gardena',
+      distance: 3.5,
+      elevation: 110,
+      hours: '1',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'From the Resciesa funicular valley station up past the Solaria and Cudan houses, along path 8A over a meadow and through woods to the Dumat farm, then down Via Mureda and Via Mëisules into the centre of Ortisei, about 300 m from the start.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the valley station of the Resciesa funicular in Ortisei, the board’s start.",
+        "sequence": "Walk up Via Resciesa, gently, to the Solaria house, then keep left to the Cudan house, where path 8A begins. Follow 8A across a wide meadow with views over Ortisei and into a quiet conifer wood to the Dumat farm. Come back down along Via Mureda and after about 700 m turn left at the junction into Via Mëisules, which leads back to the centre of Ortisei.",
+        "switches": "Keep left at the Solaria house; path 8A from the Cudan house; left from Via Mureda into Via Mëisules after about 700 m.",
+        "sources": [
+          {
+            "label": "Tourist board of Ortisei (Val Gardena), Passeggiata Cudan-Dumat (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/66473926",
+            "authority": "Tourist board of Ortisei (Val Gardena)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Ortisei below the Sassolungo, seen from the slope the walk climbs, on 29 September 2008 (József Kovács on Wikimedia Commons, CC BY-SA 3.0), 12 m from the line.',
+        route: 'Official one-way walk 3.5 km from the Resciesa funicular valley station in Ortisei, as the Tourist board of Ortisei (Val Gardena) publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 3.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the Resciesa funicular valley station up Via Resciesa to the Solaria house, left to the Cudan house where path 8A begins; path 8A across a meadow above Ortisei and through conifer woods to the Dumat farm; back down Via Mureda for about 700 m, then left at the junction into Via Mëisules to the centre of Ortisei.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.8, km 1.5, km 3.3 and km 3.4 (OSM nodes 7831831585, 7831774186, 7831539385, 12070294715, 7831444285, 7831500785, 7831511185, 12001148483).',
+        elevation: 'Official 3.5 km, 110 m up and 133 m down, 1:01 h, highest point 1,356 m, lowest 1,229 m (Tourist board of Ortisei (Val Gardena), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourist board of Ortisei (Val Gardena), Passeggiata Cudan-Dumat (its Outdooractive tour)',
+          'Gemeinde St. Ulrich in Gröden / Comune di Ortisei, Verordnung über die Haltung und das Führen von Hunden (GR Nr. 28, 06.08.2019), Art. 4 and 6: a lead of at most 1.5 m and a muzzle carried in public places, and no dogs on farmed meadows or in public fountains',
+          'Province of Bolzano landscape-plan layers (Natura 2000, nature parks, protected areas, natural monuments): about 1% in a landscape protection zone; no park, Natura 2000 site or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Village streets at the start and about 700 m down Via Mureda at the end: keep your dog on a short lead', 'The meadow and woodland path can be slippery in the wet, as the board warns'],
+      terrainType: 'Village streets, meadow and woodland path',
+      shadeDescription: 'Mostly open: about a quarter runs through mapped conifer woods before the Dumat farm; the streets and meadow are in the sun.',
+      terrainDescription: 'An easy walk at 1,230–1,360 m on the slope above Ortisei, from the Resciesa funicular past old Ladin houses, over a meadow with views of the village and through conifer woods to the Dumat farm, then back down quiet streets. The board advises against pushchairs on the meadow and woodland stretch.',
+      waterDescription: 'Drinking water at km 0.8, km 1.5 and several fountains in the centre of Ortisei at the end (OSM). Dogs may not drink from or bathe in public fountains, so bring a bowl.',
+      dogNotes: 'Ortisei requires a lead of at most 1.5 m and a muzzle carried in public places, and keeps dogs off farmed meadows and out of public fountains. Keep your dog on the path across the meadow.',
+      tips: 'Start at the Resciesa funicular valley station in Ortisei: 3.5 km, 110 m up and 133 m down, about an hour, as the board lists, ending in the village centre a few minutes from the start. Good shoes help on the meadow and woodland path when it is wet. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Outdooractive, Passeggiata Cudan-Dumat (Tourist board of Ortisei (Val Gardena))', url: 'https://www.outdooractive.com/it/r/66473926' },
+        { label: 'St. Ulrich, dog regulation', url: 'https://www.gemeinde.stulrich.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_das_Fuehren_von_Hunden_1' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.577879, lng: 11.672247, label: 'The valley station of the Resciesa funicular in Ortisei, the board’s start' },
+      desc: 'An easy walk above Ortisei, from the Resciesa funicular past the old Solaria and Cudan houses, over a meadow and through conifer woods to the Dumat farm, and back down into the village. The board lists 3.5 km, 110 m up and an hour.'
+    },
+    'seiseralm-miglio-geologico-siusi': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 1).
+      // “Miglio geologico Siusi”, published by the Kastelruth tourist board (Seiser Alm Marketing), drawn on 20 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Kastelruth (its 2024 Ortspolizeiordnung plus the national rule: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site, nature park or natural monument on the line (Province of Bolzano landscape-plan layers).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Siusi allo Sciliar / Seis am Schlern',
+      distance: 1,
+      elevation: 17,
+      hours: '0.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop through the village of Siusi from the main square, past the house of culture and the playground, across to the post office and the Maria Ausiliatrice church, and back to the square.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the main square in the centre of Siusi allo Sciliar, the board’s start, near the Siusi bus station.",
+        "sequence": "Follow the geological-mile signs along Via Santner to the roundabout and on to the house of culture, where the trail turns left towards the playground. Cross the main road towards the post office, go left down Vicolo della Posta to the Maria Ausiliatrice church, and walk back to the main square.",
+        "switches": "Key turns: left at the house of culture towards the playground; across the main road to the post office; left down Vicolo della Posta to the church.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Kastelruth tourist board (Seiser Alm Marketing), Miglio geologico Siusi (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/802958877",
+            "authority": "Kastelruth tourist board (Seiser Alm Marketing)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The centre of Siusi on the loop, on 29 June 2015 (madel on Mapillary, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official loop 1 km from the main square of Siusi, as the Kastelruth tourist board (Seiser Alm Marketing) publishes it; the stored line is drawn on 20 OSM ways along the board’s published line, 1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'A signed geological trail: from the main square of Siusi along Via Santner to the roundabout, on to the house of culture and left towards the playground, across the main road towards the post office, left down Vicolo della Posta to the Maria Ausiliatrice church and back to the square.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 0.1 (OSM nodes 10102756464, 11650620377, 3517543947, 4219119638, 2352648817).',
+        elevation: 'Official 1 km, 17 m up and 17 m down, 0:30 h, highest point 1,014 m, lowest 997 m (Kastelruth tourist board (Seiser Alm Marketing), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Kastelruth tourist board (Seiser Alm Marketing), Miglio geologico Siusi (its Outdooractive tour)',
+          'Gemeinde Kastelruth, Ortspolizeiordnung (Gemeinderat Nr. 57 of 4 September 2024), Art. 13: dogs never left unattended and owners clean up after them; it sets no lead rule, so the national rule applies (Ministero della Salute ordinance of 6 August 2013, extended to September 2027: a lead of at most 1.5 m and a muzzle carried)',
+          'Province of Bolzano landscape-plan layers (Natura 2000, nature parks, protected areas, natural monuments): no park, Natura 2000 site or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (20 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A village walk on streets and pavements: you cross the main road (SP 24) towards the post office, so keep your dog on a short lead', 'No dogs in the playground the trail passes'],
+      terrainType: 'Village streets and pavements',
+      shadeDescription: 'No mapped shade: the whole loop runs through the village streets.',
+      terrainDescription: 'A short, level loop at about 1,000 m through the village of Siusi, with panels on the volcanic eruptions and ice ages that shaped the Sciliar. An easy half hour for families.',
+      waterDescription: 'Drinking fountains at the start and by the playground (OSM); bars and cafés in the village.',
+      dogNotes: 'Kastelruth forbids leaving dogs unattended and requires you to clean up after them; on public ground the national rule applies, so keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      tips: 'Start at the main square in Siusi: a 1 km loop, 17 m of climbing, half an hour, as the board lists. Reach it by bus (Siusi bus station) or park in the paid underground car park behind the petrol station. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Outdooractive, Miglio geologico Siusi (Kastelruth tourist board (Seiser Alm Marketing))', url: 'https://www.outdooractive.com/it/r/802958877' },
+        { label: 'Gemeinde Kastelruth, Ortspolizeiordnung (2024)', url: 'https://www.gemeinde.kastelruth.bz.it/de/Verwaltung/Dokumente/Ortspolizeiordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.544354, lng: 11.560179, label: 'The main square of Siusi allo Sciliar, the board’s start' },
+      desc: 'A short loop through the village of Siusi along the geological mile, telling how volcanoes and glaciers made the Sciliar. The board lists 1 km, 17 m up and half an hour.'
+    },
+    'seiseralm-fie-laghetto-di-fie-siusi': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 1).
+      // “Da Fiè al laghetto di Fiè fino a Siusi”, published by the Kastelruth tourist board (Seiser Alm Marketing), drawn on 53 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Völs am Schlern (its 2015 dog regulation, amended 2019: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows); Kastelruth (its 2024 Ortspolizeiordnung plus the national rule).
+      // About 60% is in the Schlern-Rosengarten nature park (also a Natura 2000 site), where dogs stay on a lead; no reserve zone on the line.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Fiè allo Sciliar – Laghetto di Fiè – Siusi allo Sciliar',
+      distance: 6.3,
+      elevation: 299,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the roundabout in Fiè allo Sciliar up through the Fiè di Sopra meadows past the Zimmerlehen farm to the Laghetto di Fiè, then on path 2 through woods past the Hotel Salego to Siusi; back by bus 170.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the roundabout in Fiè allo Sciliar (880 m), the board’s start, on bus line 170.",
+        "sequence": "Take the tarmac road marked 1 towards Umes as far as the Hotel Heubad and turn left opposite the hotel. Leave the houses and climb gently on the path through the Fiè di Sopra meadows to the Zimmerlehen farm and on to the Laghetto di Fiè. At the fork by the lake follow path 2 along its right shore and into the woods, down a little, across a marshy clearing and on through the forest to the Hotel Salego. Follow the small tarmac lane to the Seiser Alm gondola valley station and take path 2 into Siusi.",
+        "switches": "Left opposite the Hotel Heubad; path 2 at the fork by the Laghetto di Fiè; from the Hotel Salego the lane to the gondola station, then path 2 to Siusi.",
+        "sources": [
+          {
+            "label": "Kastelruth tourist board (Seiser Alm Marketing), Da Fiè al laghetto di Fiè fino a Siusi (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/64902375",
+            "authority": "Kastelruth tourist board (Seiser Alm Marketing)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The meadows above Fiè allo Sciliar near the start, on 4 August 2018 (houtari on Mapillary, CC BY-SA 4.0), 12 m from the line.',
+        route: 'Official one-way walk 6.3 km from the roundabout in Fiè allo Sciliar, as the Kastelruth tourist board (Seiser Alm Marketing) publishes it; the stored line is drawn on 53 OSM ways along the board’s published line, 6.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 1 and 2: from the Fiè roundabout the tarmac road marked 1 towards Umes to the Hotel Heubad, left opposite the hotel and up through the Fiè di Sopra meadows to the Zimmerlehen farm and the Laghetto di Fiè; at the fork by the lake path 2 along its right shore into the woods, across a marshy clearing to the Hotel Salego; the lane to the Seiser Alm gondola valley station and path 2 into Siusi.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.3, km 0.7, km 1.7 and km 2.8 (OSM nodes 3660286171, 6638554033, 8937624320, 1444898642, 13039124756, 7318189294, 7318188914, 13039096453, 1815540565, 4340441032).',
+        elevation: 'Official 6.3 km, 299 m up and 154 m down, 2:00 h, highest point 1,054 m, lowest 859 m (Kastelruth tourist board (Seiser Alm Marketing), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Kastelruth tourist board (Seiser Alm Marketing), Da Fiè al laghetto di Fiè fino a Siusi (its Outdooractive tour)',
+          'Gemeinde Völs am Schlern / Comune di Fiè allo Sciliar, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 57, 23.11.2015, amended Nr. 39, 11.07.2019), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds',
+          'Gemeinde Kastelruth, Ortspolizeiordnung (Gemeinderat Nr. 57 of 4 September 2024), Art. 13: dogs never left unattended and owners clean up after them; it sets no lead rule, so the national rule applies (Ministero della Salute ordinance of 6 August 2013, extended to September 2027: a lead of at most 1.5 m and a muzzle carried)',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks); about 60% of the line is in the Schlern-Rosengarten nature park (also a Natura 2000 site), with no reserve zone on it',
+          'OpenStreetMap ways along the board’s line (53 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 67,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The first stretch follows the tarmac road (path 1) towards Umes and the last runs on a lane past the gondola station: keep your dog on a short lead', 'The Fiè di Sopra meadows are farmed: Völs keeps dogs off farmed land, so stay on the path', 'Busy around the Laghetto di Fiè in summer; swimming is for people: keep your dog out of the bathing area'],
+      terrainType: 'Tarmac lanes, meadow paths and forest paths',
+      shadeDescription: 'Mostly shaded: about two thirds runs through mapped forest between the lake and Siusi; the meadows above Fiè are open.',
+      terrainDescription: 'A walk at 860–1,050 m from Fiè allo Sciliar up through south-west-facing meadows past the 13th-century Zimmerlehen manor to the Laghetto di Fiè, a lily-covered lake under the Sciliar, then through woods and clearings to Siusi.',
+      waterDescription: 'Drinking water in Fiè at the start, at km 0.3 and km 0.7, near the lake at km 1.7 and at km 2.8 (OSM); places to eat at the lake and the Hotel Salego.',
+      dogNotes: 'Völs requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs off farmed meadows; in Kastelruth the national rule applies. About 60% of the way is in the Schlern-Rosengarten nature park, where dogs stay on a lead at all times.',
+      tips: 'Start at the roundabout in Fiè allo Sciliar: 6.3 km one way, 299 m up and 154 m down, about two hours, as the board lists; come back from Siusi on bus 170. Keep your dog on a lead of at most 1.5 m and carry a muzzle; the nature park asks for a lead throughout.',
+      sourceLinks: [
+        { label: 'Outdooractive, Da Fiè al laghetto di Fiè fino a Siusi (Kastelruth tourist board (Seiser Alm Marketing))', url: 'https://www.outdooractive.com/it/r/64902375' },
+        { label: 'Gemeinde Völs am Schlern, dog regulation (2015, amended 2019)', url: 'https://www.gemeinde.voels.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Gemeinde Kastelruth, Ortspolizeiordnung (2024)', url: 'https://www.gemeinde.kastelruth.bz.it/de/Verwaltung/Dokumente/Ortspolizeiordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.518743, lng: 11.504462, label: 'The roundabout in Fiè allo Sciliar (880 m), the board’s start' },
+      desc: 'A one-way walk from Fiè allo Sciliar up through meadows past the Zimmerlehen manor to the Laghetto di Fiè under the Sciliar, then through woods to Siusi. The board lists 6.3 km, 299 m up and two hours.'
     }
   };
 
