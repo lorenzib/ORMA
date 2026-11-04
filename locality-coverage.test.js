@@ -49,6 +49,17 @@ const byName = new Map(regions.LOCALITIES.map(([name, lat, lng]) => [name, [lat,
 const trails = loadProductionTrails(ROOT).filter((t) => typeof t.lat === 'number');
 
 describe('locality table coverage', () => {
+  test('Piedmont valley heads are not named after the town over the ridge', () => {
+    // Each of these sits a valley away from a Savoy, Aosta or Swiss-side town.
+    expect(regions.nearestLocality(45.0780, 6.7040).region).toBe('piedmont'); // Bardonecchia, not Modane
+    expect(regions.nearestLocality(45.8540, 7.9380).region).toBe('piedmont'); // Alagna, not Gressoney
+    expect(regions.nearestLocality(45.9690, 7.9660).region).toBe('piedmont'); // Macugnaga
+    expect(regions.nearestLocality(45.4320, 7.2370).region).toBe('piedmont'); // Ceresole, not Valsavarenche
+    expect(regions.nearestLocality(45.2016, 6.6580).region).toBe('savoy'); // Modane stays in Savoy
+    expect(regions.nearestLocality(45.5920, 7.2100).region).toBe('aosta'); // Valsavarenche stays in Aosta
+    expect(regions.REGIONS.piedmont).toEqual(expect.objectContaining({ countryCode: 'IT' }));
+  });
+
   test('Mont Blanc splits Courmayeur from Chamonix', () => {
     // The two towns share a meridian, so only the nearest locality separates
     // Valle d'Aosta from Savoy, in the Val Veny and the Val Ferret right under

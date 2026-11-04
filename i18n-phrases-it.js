@@ -812,6 +812,7 @@ window.ORMA_PHRASES_IT = {
   "Photo:": "Foto:",
   "Photo: {creator} · {licence}": "Foto: {creator} · {licence}",
   "Photo: {credit}": "Foto: {credit}",
+  "Piedmont": "Piemonte",
   "Place": "Luogo",
   "Place on map": "Posiziona sulla mappa",
   "Plan for limited shade": "Prevedi poca ombra",

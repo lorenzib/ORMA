@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-04T01:25:20.148Z",
+  "generatedAt": "2026-11-04T01:36:29.807Z",
   "regions": {
     "dolomites": {
       "trailCount": 337,
@@ -480,6 +480,15 @@
       "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     },
+    "piedmont": {
+      "trailCount": 0,
+      "trails": "data/regions/piedmont-trails.js?v=c1c4baf8d226",
+      "details": {},
+      "water": "data/regions/piedmont-water.geojson",
+      "hutsBars": "data/regions/piedmont-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
+      "optional": []
+    },
     "tyrol": {
       "trailCount": 23,
       "trails": "data/regions/tyrol-trails.js?v=dc332ec43fa6",
@@ -515,7 +524,7 @@
     },
     "switzerland": {
       "trailCount": 8,
-      "trails": "data/regions/switzerland-trails.js?v=501c8d67f756",
+      "trails": "data/regions/switzerland-trails.js?v=06a45d96a8e5",
       "details": {
         "engadin-around-lake-st-moritz": "data/trail-details/engadin-around-lake-st-moritz.js?v=ac3c479365c2",
         "engadin-sils-chaste-peninsula-sils": "data/trail-details/engadin-sils-chaste-peninsula-sils.js?v=1dcf61c59018",
