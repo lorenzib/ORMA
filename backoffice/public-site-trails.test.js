@@ -199,8 +199,9 @@ describe('the existing-site verification boundary',()=>{
     // from Campello Monti to Rimella, Cervatto to the Madonna del Balmone, the Giro
     // del Ginepro from Carcoforo, and Campello Monti to the Alpe Fornale, the Colle
     // dell’Usciolo and the Lago del Capezzone.
-    expect(catalogue).toHaveLength(465);
-    expect(currentSiteTrails(catalogue)).toHaveLength(463);
+    // Then 466 and 464 with the Val Pelouse crest loop above Arvillard (Belledonne).
+    expect(catalogue).toHaveLength(466);
+    expect(currentSiteTrails(catalogue)).toHaveLength(464);
   });
 
   test('requires the artwork the public trail page needs',()=>{

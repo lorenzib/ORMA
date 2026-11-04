@@ -3401,6 +3401,14 @@
       "quote": "GTA Tappa 21: Campello Monti - Rimella. Lunghezza 8,6 km, tempo 3 ore 15 minuti, dislivello salita 620 m, dislivello discesa 750 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-03T18:00:00.000Z"
+    },
+    "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": {
+      "url": "https://www.explore-savoie.com/randonnees-et-balades/sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere-671208/",
+      "publisher": "Office de tourisme Cœur de Savoie (Apidae, Explore Savoie)",
+      "name": "Sentier des crêtes de Val Pelouse – Refuge de la Perriére",
+      "quote": "Durée moyenne 2H45 · Dénivelé cumulé positif 368m · Dénivelé négatif 368m · Distance 5.7Km · Itinéraire balisé · Animaux acceptés",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
     }
   }
 }

@@ -61189,6 +61189,77 @@
       ],
       startPoint: { lat: 45.935842, lng: 8.236739, label: 'Campello Monti (1,305 m), the Region’s start' },
       desc: 'Stage 21 of the GTA, over the ridge from the Walser village of Campello Monti in the Valle Strona to Rimella in the Val Mastallone, by the Alpe Scarpia, the Bocchetta di Campello and the Alpe Pianello. The Region lists 8.6 km, 620 m up and 750 m down, 3 h 15.'
+    },
+    'savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere': {
+      // Hand audit: 3 November 2026, verified on arrival (new-trail Savoy batch 1, Beaufortain – Val d’Arly).
+      // “Sentier des crêtes de Val Pelouse – Refuge de la Perriére”, published by the Office de tourisme Cœur de Savoie, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Explore Savoie (Apidae 671208). Communes: Arvillard (no dog order found online, probably exists: the national rule applies; the page says dogs on a lead only).
+      // No national park, nature reserve, biotope order or regional park on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Val Pelouse – Refuge de la Perrière – Col de la Perrière (Belledonne)',
+      distance: 5.7,
+      elevation: 368,
+      hours: '2.75',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Val Pelouse car park: up through the fir wood and the rhododendron meadows to the Perrière refuge and the Col de la Perrière, then back along the crest path and down the ski slope to the car park.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Val Pelouse car park, at the end of the D 208 above Arvillard, at the old ski station.",
+        "sequence": "Walk up the forest track from the car park and take the path that turns off to the right into the fir wood. Out of the trees, cross the rhododendron meadow to the unstaffed Perrière refuge, where you cross the GR738. Climb more steeply to the Col de la Perrière, then follow the crest path along the ridge and finally join the ski slope down to the car park.",
+        "switches": "Turn right off the forest track onto the path into the firs; at the Col de la Perrière turn onto the crest path; at the end of the crest join the ski slope down.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de tourisme Cœur de Savoie, Sentier des crêtes de Val Pelouse – Refuge de la Perriére (official route page, Topo/pas à pas)",
+            "url": "https://www.explore-savoie.com/randonnees-et-balades/sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere-671208/",
+            "authority": "Office de tourisme Cœur de Savoie",
+            "reviewedAt": "2026-11-03"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-03',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The crest path on the Grande Montagne d’Arvillard towards Val Pelouse, in August 2024 (Florian Pépellin on Wikimedia Commons, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official loop 5.7 km from the Val Pelouse car park at the end of the D 208, as the Office de tourisme Cœur de Savoie publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 5.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the Val Pelouse car park walk up the forest track, then take the path on the right into the fir wood, out across the rhododendron meadows to the Perrière refuge (on the GR738) and up to the Col de la Perrière (2,003 m); return along the crest path and down the ski slope to the car park. Waymarked, no path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1, km 2.1, km 2.2 and km 2.3 (OSM nodes 13244636850, 12056147671, 12056147681, 302657542).',
+        elevation: 'Official 5.7 km, 368 m up and 368 m down, 2:45 h average walking time (Office de tourisme Cœur de Savoie, Explore Savoie). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de tourisme Cœur de Savoie, Sentier des crêtes de Val Pelouse – Refuge de la Perriére (Explore Savoie, Apidae 671208) and its official GPX',
+          'Arvillard publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs accepted on a lead only',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, regional parks, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-03'
+      },
+      shadeCoverage: 15,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpages: sheep or cows may graze around the refuge and the col in summer, possibly with guard dogs; keep your dog on a lead and walk round the herds', 'Open crest at about 1,720–2,000 m: little shade and quick weather changes', 'The descent follows a grassy ski slope that is steep in places'],
+      terrainType: 'Forest track, mountain path and grassy crest',
+      shadeDescription: 'Mostly open: about 15% passes under the fir wood near the start; the meadows, the col and the crest are open.',
+      terrainDescription: 'A half-day loop at about 1,720–2,000 m from the old Val Pelouse ski station on the Belledonne side of Arvillard, through fir wood and rhododendron meadows to the Perrière refuge and col, and back along a broad grassy crest with views to Mont Blanc, the Bauges, Chartreuse and Vercors.',
+      waterDescription: 'Drinking water at km 1, km 2.1, km 2.2 and km 2.3; places to eat on the way.',
+      dogNotes: 'Dogs are accepted on a lead only, according to the official page. Arvillard publishes no dog order online, so the national rule applies on top: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Herds graze the alpages in summer and guard dogs may be present: keep your dog on a lead and give them room.',
+      tips: 'Drive up the D 208 from Arvillard to the Val Pelouse car park (the road can close for forestry work or snow; the Cœur de Savoie tourist office lists closures): 5.7 km round, 368 m up and down, about 2 h 45. Open June to mid-October.',
+      sourceLinks: [
+        { label: 'Explore Savoie, Sentier des crêtes de Val Pelouse – Refuge de la Perriére (Office de tourisme Cœur de Savoie)', url: 'https://www.explore-savoie.com/randonnees-et-balades/sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere-671208/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/232/187/29604840/Sentier+des+cretes+de+Val+Pelouse.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.418628, lng: 6.169215, label: 'Val Pelouse car park at the end of the D 208, the board’s start' },
+      desc: 'A half-day loop from the old Val Pelouse ski station above Arvillard, through fir wood and rhododendron meadows to the Perrière refuge on the GR738 and the Col de la Perrière, then back along a grassy crest with wide views to Mont Blanc and the Chartreuse. The official page lists 5.7 km, 368 m up and 368 m down, about 2 h 45.'
     }
   };
 

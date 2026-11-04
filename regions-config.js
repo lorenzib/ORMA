@@ -149,6 +149,7 @@
     ['Évian-les-Bains', 46.4009, 6.5877, 'Chablais – Portes du Soleil', 'savoy', 'haute-savoie'],
     ['Chambéry', 45.5646, 5.9178, 'Chambéry – Bauges', 'savoy', 'savoie'],
     ['Aix-les-Bains', 45.6886, 5.9151, 'Chambéry – Bauges', 'savoy', 'savoie'],
+    ['Arvillard / Val Pelouse', 45.4185, 6.1689, 'Chambéry – Bauges', 'savoy', 'savoie'],
     ['Albertville', 45.6754, 6.3925, 'Beaufortain', 'savoy', 'savoie'],
     ['Beaufort / Beaufortain', 45.7192, 6.5735, 'Beaufortain', 'savoy', 'savoie'],
     ['Crest-Voland / Val d\'Arly', 45.7930, 6.5050, 'Beaufortain', 'savoy', 'savoie'],

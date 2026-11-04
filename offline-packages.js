@@ -270,6 +270,7 @@
     'savoie-itineraire-poussette-de-belavoine': "Bel’Avoine road, Le Cernix to Paravy",
     'savoie-itineraire-poussette-des-chalets-brules': "Chalets Brûlés pasture track, Crest-Voland",
     'savoie-promenade-confort-lac-et-barrage-de-saint-guerin': "Lac de Saint-Guérin shore path",
+    'savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere': "Val Pelouse crest path and Perrière refuge",
     'seiseralm-alla-volta-della-trappola-d-orso-a-s-michele': "Kastelruth bear-trap loop",
     'seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del': "Passo Nigra to Tiers by the Jocher farm",
     'seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff': "Umes, Hofer Alpl and Malga Tuff loop",

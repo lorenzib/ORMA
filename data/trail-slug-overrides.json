@@ -1668,6 +1668,11 @@
       "name": "Campello Monti to Rimella over the Bocchetta",
       "slug": "gta-campello-monti-rimella",
       "gloss": "over the old route of the dead between two Walser villages"
+    },
+    "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": {
+      "name": "Val Pelouse crest path and Perrière refuge",
+      "slug": "val-pelouse-crest-path-perriere-refuge",
+      "gloss": "Belledonne ridge loop above Arvillard"
     }
   }
 }
