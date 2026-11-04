@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "engadin-surlej-waterfall-lake-silvaplana-surlej",
+  "distanceKm": 6.2,
+  "ascentM": 166,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1791
+    },
+    {
+      "km": 0.5,
+      "elev": 1797
+    },
+    {
+      "km": 1,
+      "elev": 1811
+    },
+    {
+      "km": 1.4,
+      "elev": 1808
+    },
+    {
+      "km": 1.9,
+      "elev": 1847
+    },
+    {
+      "km": 2.4,
+      "elev": 1849
+    },
+    {
+      "km": 2.8,
+      "elev": 1897
+    },
+    {
+      "km": 3.4,
+      "elev": 1922
+    },
+    {
+      "km": 3.8,
+      "elev": 1902
+    },
+    {
+      "km": 4.3,
+      "elev": 1869
+    },
+    {
+      "km": 4.7,
+      "elev": 1846
+    },
+    {
+      "km": 5.2,
+      "elev": 1794
+    },
+    {
+      "km": 5.7,
+      "elev": 1797
+    },
+    {
+      "km": 6.2,
+      "elev": 1791
+    }
+  ]
+}

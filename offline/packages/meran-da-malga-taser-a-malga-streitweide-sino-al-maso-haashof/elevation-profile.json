@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof",
+  "distanceKm": 8.4,
+  "ascentM": 350,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1432
+    },
+    {
+      "km": 0.7,
+      "elev": 1458
+    },
+    {
+      "km": 1.3,
+      "elev": 1448
+    },
+    {
+      "km": 1.9,
+      "elev": 1470
+    },
+    {
+      "km": 2.6,
+      "elev": 1450
+    },
+    {
+      "km": 3.2,
+      "elev": 1528
+    },
+    {
+      "km": 3.9,
+      "elev": 1456
+    },
+    {
+      "km": 4.5,
+      "elev": 1429
+    },
+    {
+      "km": 5.1,
+      "elev": 1561
+    },
+    {
+      "km": 5.8,
+      "elev": 1531
+    },
+    {
+      "km": 6.4,
+      "elev": 1534
+    },
+    {
+      "km": 7.1,
+      "elev": 1556
+    },
+    {
+      "km": 7.7,
+      "elev": 1501
+    },
+    {
+      "km": 8.3,
+      "elev": 1448
+    },
+    {
+      "km": 8.4,
+      "elev": 1424
+    }
+  ]
+}

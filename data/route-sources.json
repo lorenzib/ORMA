@@ -3234,6 +3234,118 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-03T12:00:00.000Z"
     },
+    "engadin-around-lake-st-moritz": {
+      "url": "https://www.outdooractive.com/en/r/40793603",
+      "publisher": "Engadin Tourismus AG (Outdooractive, engadin.ch)",
+      "name": "Around Lake St. Moritz",
+      "quote": "Distance 4.3 km · Duration 1:05 h · Ascent 2 m · Descent 2 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "engadin-sils-chaste-peninsula-sils": {
+      "url": "https://www.outdooractive.com/en/r/37804893",
+      "publisher": "Engadin Tourismus AG (Outdooractive, engadin.ch)",
+      "name": "Sils – Chastè Peninsula – Sils",
+      "quote": "Distance 4.4 km · Duration 1:12 h · Ascent 49 m · Descent 49 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "engadin-morteratsch-glacier-route": {
+      "url": "https://www.outdooractive.com/en/r/23436574",
+      "publisher": "Engadin Tourismus AG (Outdooractive, engadin.ch)",
+      "name": "Morteratsch Glacier route",
+      "quote": "Distance 2.9 km · Duration 0:50 h · Ascent 130 m · Descent 0 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "engadin-surlej-waterfall-lake-silvaplana-surlej": {
+      "url": "https://www.outdooractive.com/en/r/56233674",
+      "publisher": "Engadin Tourismus AG (Outdooractive, engadin.ch)",
+      "name": "Surlej - waterfall - Lake Silvaplana - Surlej",
+      "quote": "Distance 6.2 km · Duration 1:50 h · Ascent 166 m · Descent 166 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "engadin-corvatsch-murtel-fuorcla-surlej": {
+      "url": "https://www.outdooractive.com/en/r/59235211",
+      "publisher": "Engadin Tourismus AG (Outdooractive, engadin.ch)",
+      "name": "Corvatsch Murtèl - Fuorcla Surlej",
+      "quote": "Distance 4.6 km · Duration 1:20 h · Ascent 141 m · Descent 141 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "engadin-diavolezza-sass-queder": {
+      "url": "https://www.outdooractive.com/en/r/23436083",
+      "publisher": "Engadin Tourismus AG (Outdooractive, engadin.ch)",
+      "name": "Diavolezza - Sass Queder",
+      "quote": "Distance 1.5 km · Duration 0:35 h · Ascent 123 m · Descent 123 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "engadin-nature-trail-la-senda-samedan-smartrail": {
+      "url": "https://www.outdooractive.com/en/r/23436569",
+      "publisher": "Engadin Tourismus AG (Outdooractive, engadin.ch)",
+      "name": "Nature Trail La Senda, Samedan (SmarTrail)",
+      "quote": "Distance 6.5 km · Duration 2:20 h · Ascent 227 m · Descent 219 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "engadin-chapella-val-susauna": {
+      "url": "https://www.outdooractive.com/en/r/56676943",
+      "publisher": "Engadin Tourismus AG (Outdooractive, engadin.ch)",
+      "name": "Chapella - Val Susauna",
+      "quote": "Distance 11.6 km · Duration 3:05 h · Ascent 236 m · Descent 236 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-itinerario-raststeinweg": {
+      "url": "https://www.outdooractive.com/it/r/810055880",
+      "publisher": "Schenna tourist board (Outdooractive, suedtirol.info)",
+      "name": "Itinerario \"Raststeinweg\"",
+      "quote": "Distanza 6,5 km · Durata 2:12 h · Salita 311 m · Discesa 311 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
+      "url": "https://www.outdooractive.com/it/r/801657631",
+      "publisher": "Schenna tourist board (Outdooractive, suedtirol.info)",
+      "name": "Da malga Taser a malga Streitweide sino al maso Haashof",
+      "quote": "Distanza 8,4 km · Durata 3:00 h · Salita 350 m · Discesa 380 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell": {
+      "url": "https://www.outdooractive.com/it/r/810054419",
+      "publisher": "Partschins tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sull’Alta Via di Merano: da Giggelberg a Unterstell",
+      "quote": "Distanza 8,3 km · Durata 3:17 h · Salita 360 m · Discesa 643 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": {
+      "url": "https://www.outdooractive.com/it/r/17276661",
+      "publisher": "Hafling-Vöran-Meran 2000 tourist board (Outdooractive, suedtirol.info)",
+      "name": "Escursione alle malghe Maiser Alm & Moschwaldalm",
+      "quote": "Distanza 9,1 km · Durata 2:40 h · Salita 369 m · Discesa 369 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": {
+      "url": "https://www.outdooractive.com/it/r/810055325",
+      "publisher": "Partschins tourist board (Outdooractive, suedtirol.info)",
+      "name": "Sentiero circolare Rio Lagundo – Monte San Vigilio – Rio Lagundo (sentiero Terrainkur n° 1)",
+      "quote": "Distanza 6,8 km · Durata 2:34 h · Salita 440 m · Discesa 440 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
+    "meran-giro-delle-malghe-monte-tramontana": {
+      "url": "https://www.outdooractive.com/it/r/810055092",
+      "publisher": "Naturns tourist board (Outdooractive, suedtirol.info)",
+      "name": "Giro delle malghe - Monte Tramontana",
+      "quote": "Distanza 11 km · Durata 3:54 h · Salita 541 m · Discesa 541 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-03T12:00:00.000Z"
+    },
     "valchiavenna-ai-laghi-del-baldiscio": {
       "url": "https://www.outdooractive.com/it/r/812014696",
       "publisher": "Consorzio Turistico Valchiavenna (Valtellina Outdoor) (Outdooractive)",

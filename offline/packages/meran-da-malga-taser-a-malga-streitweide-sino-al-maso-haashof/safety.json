@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 8.4,
+    "ascentM": 350,
+    "highestPointM": 1561,
+    "expectedDuration": "3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 78
+  },
+  "trailhead": {
+    "lat": 46.705065,
+    "lng": 11.222211,
+    "label": "Top station of the Taser cable car at the Taser Alm, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.705439,
+      "lng": 11.2224,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7079589,
+      "lng": 11.2393244,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The last hour to Tall is on a tarred access road open to cars: lead on and keep to the side.",
+    "Cattle may graze around the Taser and Streitweider alms in summer: keep your dog on a short lead and give cows a wide berth.",
+    "A few short, steeper stretches of mountain path on the Höhenweg.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

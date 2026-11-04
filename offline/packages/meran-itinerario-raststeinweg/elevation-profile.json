@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-itinerario-raststeinweg",
+  "distanceKm": 6.6,
+  "ascentM": 311,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 590
+    },
+    {
+      "km": 0.5,
+      "elev": 643
+    },
+    {
+      "km": 1,
+      "elev": 707
+    },
+    {
+      "km": 1.5,
+      "elev": 793
+    },
+    {
+      "km": 2,
+      "elev": 896
+    },
+    {
+      "km": 2.5,
+      "elev": 860
+    },
+    {
+      "km": 3,
+      "elev": 857
+    },
+    {
+      "km": 3.5,
+      "elev": 825
+    },
+    {
+      "km": 4,
+      "elev": 822
+    },
+    {
+      "km": 4.5,
+      "elev": 791
+    },
+    {
+      "km": 5,
+      "elev": 746
+    },
+    {
+      "km": 5.5,
+      "elev": 678
+    },
+    {
+      "km": 6,
+      "elev": 624
+    },
+    {
+      "km": 6.5,
+      "elev": 598
+    },
+    {
+      "km": 6.6,
+      "elev": 590
+    }
+  ]
+}

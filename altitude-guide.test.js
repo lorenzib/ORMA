@@ -17,13 +17,14 @@ describe('altitude health and safety guide', () => {
     expect(hero.getAttribute('alt')).toBe('');
     expect(hero.getAttribute('width')).toBe('1200');
     expect(hero.getAttribute('height')).toBe('800');
-    expect(document.querySelector('.alt-meta').textContent).toMatch(/2 min guide/i);
+    expect(document.querySelector('.alt-meta').textContent).toMatch(/1 min guide/i);
     expect(document.querySelector('.alt-meta').textContent).not.toMatch(/reviewed/i);
     expect(document.querySelector('.alt-jump')).toBeNull();
   });
 
   test('opens with the altitude explanation followed by the veterinary caution', () => {
-    const firstSection = document.querySelector('.alt-shell > section');
+    expect(document.querySelector('.alt-shell > section').classList.contains('guide-quick')).toBe(true);
+    const firstSection = document.querySelector('.alt-shell > section:not(.guide-quick)');
     expect(firstSection.id).toBe('why-altitude');
     expect(firstSection.textContent).toMatch(/Higher altitude means less available oxygen/i);
     expect(firstSection.textContent).toMatch(/Ask your vet before travelling/i);

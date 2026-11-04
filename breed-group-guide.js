@@ -27,7 +27,7 @@
     const label = card.querySelector('.scan-card-label');
     const examples = card.querySelector('.scan-examples');
     const guidance = Array.from(card.children).filter(element =>
-      element.matches('.scan-rule, .scan-list, .breed-edge')
+      element.matches('.scan-rule, .scan-list, .breed-edge, .breed-photo-credit')
     );
     if(!image || !label || !title || !examples || !guidance.length) return;
 
@@ -70,4 +70,136 @@
 
   const hashCard = window.location.hash && document.getElementById(window.location.hash.slice(1));
   if(hashCard && hashCard.matches('[data-breed-trait]')) setCardOpen(hashCard, true);
+
+  // Breed finder: type a breed, or filter by what you know, and only the cards
+  // that apply stay visible. Matching uses the trait lists in breeds-data.js;
+  // three cards have no list there, so they match on the breeds the card names.
+  const finder = document.querySelector('[data-breed-finder]');
+  if(!finder || typeof FCI_BREED_GROUPS === 'undefined') return;
+
+  const input = finder.querySelector('[data-breed-input]');
+  const list = finder.querySelector('datalist');
+  const groupSelect = finder.querySelector('[data-breed-group]');
+  const chips = Array.from(finder.querySelectorAll('[data-breed-filter]'));
+  const status = finder.querySelector('[data-breed-status]');
+  const reset = finder.querySelector('[data-breed-reset]');
+
+  const lists = {
+    brachy: typeof BRACHY_BREEDS !== 'undefined' ? BRACHY_BREEDS : [],
+    thick: typeof THICK_COAT_BREEDS !== 'undefined' ? THICK_COAT_BREEDS : [],
+    giant: typeof GIANT_BREEDS !== 'undefined' ? GIANT_BREEDS : [],
+    heavy: typeof HEAVY_BUILD_BREEDS !== 'undefined' ? HEAVY_BUILD_BREEDS : [],
+    shortLegged: typeof SHORT_LEGGED_BREEDS !== 'undefined' ? SHORT_LEGGED_BREEDS : [],
+    backRisk: typeof BACK_RISK_BREEDS !== 'undefined' ? BACK_RISK_BREEDS : [],
+    toy: typeof TOY_BREEDS !== 'undefined' ? TOY_BREEDS : [],
+    lean: typeof LEAN_PRIMITIVE_BREEDS !== 'undefined' ? LEAN_PRIMITIVE_BREEDS : [],
+    guardian: typeof LIVESTOCK_GUARDIAN_BREEDS !== 'undefined' ? LIVESTOCK_GUARDIAN_BREEDS : [],
+    spitz: typeof INDEPENDENT_SPITZ_BREEDS !== 'undefined' ? INDEPENDENT_SPITZ_BREEDS : [],
+    curly: typeof CURLY_COAT_BREEDS !== 'undefined' ? CURLY_COAT_BREEDS : [],
+    wiry: typeof WIRY_COAT_BREEDS !== 'undefined' ? WIRY_COAT_BREEDS : [],
+  };
+  const groupOf = {};
+  FCI_BREED_GROUPS.forEach(group => group.breeds.forEach(name => { groupOf[name] = group.id; }));
+  const allBreeds = Object.keys(groupOf).sort((a, b) => a.localeCompare(b, 'en'));
+  const has = (key, name) => lists[key].includes(name);
+  const inGroups = (name, ids) => ids.includes(groupOf[name]);
+
+  const MATCH = {
+    airway:name => has('brachy', name),
+    dense:name => has('thick', name),
+    giant:name => has('giant', name) || has('heavy', name),
+    deep:name => /Great Dane|Weimaraner|Irish Red Setter|Gordon Setter|Poodle|Dobermann|German Shepherd|Saint Bernard/i.test(name),
+    spine:name => has('shortLegged', name) || has('backRisk', name),
+    small:name => has('toy', name),
+    thin:name => inGroups(name, ['g10']) || has('lean', name),
+    drive:name => inGroups(name, ['g1', 'g7', 'g8']),
+    prey:name => inGroups(name, ['g3', 'g6', 'g7', 'g10']) || has('spitz', name),
+    guardian:name => has('guardian', name),
+    coat:name => has('curly', name) || has('wiry', name) || /Spaniel|Setter|Bearded Collie|Briard|Golden Retriever|Flat Coated Retriever|Basset/i.test(name),
+    collapse:name => /Labrador|Border Collie/i.test(name),
+  };
+  // Which cards each filter button keeps.
+  const FILTERS = {
+    small:['small'], spine:['spine'], giant:['giant', 'deep'],
+    heat:['airway', 'dense', 'drive'], cold:['small', 'thin'],
+    dense:['dense'], thin:['thin'], coat:['coat'],
+    herd:['drive'], hunt:['prey'], guard:['guardian'],
+  };
+  const traitBreeds = {};
+  Object.keys(MATCH).forEach(trait => { traitBreeds[trait] = allBreeds.filter(MATCH[trait]); });
+
+  allBreeds.forEach(name => {
+    const option = document.createElement('option');
+    option.value = name;
+    list.appendChild(option);
+  });
+
+  const state = { breed:'', unknown:'', filters:new Set(), group:'' };
+
+  function findBreed(query){
+    const q = query.trim().toLowerCase();
+    if(!q) return '';
+    return allBreeds.find(name => name.toLowerCase() === q)
+      || allBreeds.find(name => name.toLowerCase().startsWith(q))
+      || allBreeds.find(name => name.toLowerCase().includes(q))
+      || null;
+  }
+
+  function cardApplies(card){
+    const trait = card.dataset.breedTrait;
+    if(trait === 'individual') return true;
+    if(state.unknown) return false;
+    if(state.breed && !MATCH[trait](state.breed)) return false;
+    if(state.filters.size && ![...state.filters].some(filter => FILTERS[filter].includes(trait))) return false;
+    if(state.group && !traitBreeds[trait].some(name => groupOf[name] === state.group)) return false;
+    return true;
+  }
+
+  function render(){
+    const active = Boolean(state.breed || state.unknown || state.filters.size || state.group);
+    let shown = 0;
+    cards.forEach(card => {
+      const applies = cardApplies(card);
+      card.hidden = !applies;
+      if(applies && card.dataset.breedTrait !== 'individual') shown += 1;
+    });
+    const total = cards.length - 1;
+    if(state.unknown) status.textContent = tx('No breed called “{query}” in our list. Try the filters instead.', { query:state.unknown });
+    else if(state.breed) status.textContent = tx('{breed}: {shown} of {total} cards apply, plus the card for every dog.', { breed:state.breed, shown, total });
+    else if(active && !shown) status.textContent = tx('No cards match these filters. Try fewer.');
+    else if(active) status.textContent = tx('{shown} of {total} cards match, plus the card for every dog.', { shown, total });
+    else status.textContent = tx('All {count} cards shown.', { count:cards.length });
+    reset.hidden = !active;
+  }
+
+  input.addEventListener('change', () => {
+    const value = input.value.trim();
+    const match = findBreed(value);
+    state.breed = match || '';
+    state.unknown = value && !match ? value : '';
+    if(match) input.value = match;
+    render();
+  });
+  input.addEventListener('keydown', event => {
+    if(event.key === 'Enter'){
+      event.preventDefault();
+      input.dispatchEvent(new Event('change'));
+    }
+  });
+  input.addEventListener('search', () => input.dispatchEvent(new Event('change')));
+  chips.forEach(chip => chip.addEventListener('click', () => {
+    const key = chip.dataset.breedFilter;
+    const on = !state.filters.has(key);
+    if(on) state.filters.add(key); else state.filters.delete(key);
+    chip.setAttribute('aria-pressed', String(on));
+    render();
+  }));
+  groupSelect.addEventListener('change', () => { state.group = groupSelect.value; render(); });
+  reset.addEventListener('click', () => {
+    state.breed = ''; state.unknown = ''; state.group = ''; state.filters.clear();
+    input.value = ''; groupSelect.value = '';
+    chips.forEach(chip => chip.setAttribute('aria-pressed', 'false'));
+    render();
+  });
+  render();
 })();
