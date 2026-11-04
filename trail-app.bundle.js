@@ -26082,10 +26082,11 @@ function effectiveOverrides(profile, adjustOverride){
       // Hand audit: 23 October 2026, verified on arrival (new-trail batch 1).
       // Terrain-cure path no. 5 of the Partschins tourist board, signed route
       // 91 in the province register, Partschins to Naturns. Outside the
-      // Texelgruppe nature park. Neither Partschins nor Naturns publishes a
-      // dog rule, so the national dog ordinance (6 August 2013, extended to
-      // September 2027) applies: a lead of at most 1.5 m and a muzzle carried
-      // in towns and public places.
+      // Texelgruppe nature park. Partschins publishes no dog rule; Naturns has
+      // a 2006 dog regulation (a lead in the village, a muzzle on public
+      // transport, no dogs in playgrounds). The national dog ordinance
+      // (6 August 2013, extended to September 2027) applies on top: a lead of
+      // at most 1.5 m and a muzzle carried in towns and public places.
       area: 'Partschins – Naturns / Parcines – Naturno',
       distance: 7.7,
       elevation: 186,
@@ -26109,6 +26110,7 @@ function effectiveOverrides(profile, adjustOverride){
         sources: [
           'Tourismusverein Partschins, Rabland und Töll, Partschins – Sonnenberger Panoramaweg – Naturns (Terrainkurweg Nr. 5)',
           'Province hiking-trail register, route 91 Sonnenberger Panoramaweg',
+          'Gemeinde Naturns / Comune di Naturno, Verordnung über die Hundehaltung (Gemeindeausschuss Nr. 503, 04.09.2006, amended by Gemeinderat Nr. 85, 21.12.2006): dogs on a lead in the village, parks, car parks and on the Adige embankment; walking, waal and field paths outside the village are exempt, though owners are asked to lead their dogs on the Waalweg; a muzzle on public transport; no dogs in playgrounds or sports and leisure grounds',
           'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026',
           'IDM Südtirol / Refill Südtirol drinking-water points (Open Data Hub)',
           'OpenStreetMap relation 7655311, surface, barrier and farm data'
@@ -26123,11 +26125,12 @@ function effectiveOverrides(profile, adjustOverride){
       shadeDescription: 'Almost entirely open: the board gives the route as 90% open ground on a south-facing slope, rated thermally strong. Very hot in summer.',
       terrainDescription: 'An easy panoramic path along the sunny Sonnenberg above the Vinschgau, through vineyards, orchards and farmyards, with one short demanding stretch of steps and rocky path with rails.',
       waterDescription: 'Fountains in Partschins at the start and at St. Prokulus at the end, and none in between for about 7 km. Carry plenty of water for your dog.',
-      dogNotes: 'Partschins and Naturns publish no dog rule of their own, so the Italian national rule applies: a lead of at most 1.5 m and a muzzle carried in villages and public places. The path crosses several working farmyards and a cattle grid, so animals may be close; keep your dog on the lead there and carry a smaller dog over the grid.',
+      dogNotes: 'Partschins publishes no dog rule of its own, so the Italian national rule applies there: a lead of at most 1.5 m and a muzzle carried in villages and public places. Naturns keeps dogs on a lead in the village, parks and car parks and on the Adige embankment, and the national rule applies on top. The path crosses several working farmyards and a cattle grid, so animals may be close; keep your dog on the lead there and carry a smaller dog over the grid.',
       tips: 'Start in Partschins and follow route 91 and the yellow “SP” waymark along the Sonnenberg to Naturns: 7.7 km, 186 m up and 295 m down, about 2½ hours, and take the train or bus back. The slope is fully open and very hot, so walk it in spring or autumn or very early, and carry water: there is none between the villages. Keep your dog on the lead through the farmyards, on the steps and rocky stretch with rails, and over the short suspension bridge.',
       sourceLinks: [
         { label: 'Tourismusverein Partschins, Sonnenberger Panoramaweg (Terrainkurweg Nr. 5)', url: 'https://www.merano-suedtirol.it/de/partschins-rabland-und-toell/natur-kultur/wasserwelten/gsund-bleibm-salute-take-care/die-klimatische-terrainkur-gesundheit-und-fitness-fuer-herz-und-kreislauf/121155122-partschins-sonnenberger-panoramaweg-naturns-terrainkurweg-nr-5.html' },
         { label: 'Province hiking-trail register, route 91 (Open Data Hub)', url: 'https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427766' },
+        { label: 'Gemeinde Naturns, dog regulation (2006)', url: 'https://www.gemeinde.naturns.bz.it/system/web/GetDocument.ashx?cts=1754554283&fileId=1236043' },
         { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/7655311' }
       ],
