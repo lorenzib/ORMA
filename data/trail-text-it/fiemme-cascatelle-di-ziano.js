@@ -1,0 +1,20 @@
+// fiemme-cascatelle-di-ziano in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short loop from Roda through the damp wood above Ziano di Fiemme, crossing little mountain streams to the Rio Sadole. The APT lists 2.2 km and 100 m of ascent.": "Un breve anello da Roda attraverso il bosco umido sopra Ziano di Fiemme, attraversando piccoli ruscelli di montagna fino al Rio Sadole. L'APT indica 2,2 km e 100 m di dislivello in salita.",
+  "Start in Roda, Ziano di Fiemme: 2.2 km, 100 m of climbing, an hour. Ziano requires a lead and a muzzle (or other safety device) in public places and bags to pick up after your dog. No fountain is mapped on the way, so bring water; wear shoes with a good grip after rain.": "Parti da Roda, Ziano di Fiemme: 2,2 km, 100 m di salita, un'ora. Ziano richiede guinzaglio e museruola (o altro dispositivo di sicurezza) nei luoghi pubblici e sacchetti per raccogliere i bisogni del tuo cane. Lungo il percorso non risultano fontane, quindi porta acqua; dopo la pioggia indossa scarpe con una buona presa.",
+  "The last stretch down from the Cercenai junction is bare earth and very muddy after rain": "L'ultimo tratto in discesa dal bivio di Cercenai è terra nuda e molto fangoso dopo la pioggia",
+  "Several small streams to cross in the wood": "Diversi piccoli ruscelli da attraversare nel bosco",
+  "Two crossings of the valley cycle path: watch for bikes": "Due attraversamenti della ciclabile di fondovalle: attenzione alle bici",
+  "Forest paths and a dirt track": "Sentieri nel bosco e una strada in terra battuta",
+  "Ziano di Fiemme (Roda), the APT’s start": "Ziano di Fiemme (Roda), partenza indicata dall'APT",
+  "A white wayside shrine with a copper roof by a lane near Roda, a meadow, a rail fence and a wooded slope behind under a summer sky": "Un capitello bianco con il tetto di rame lungo una stradina vicino a Roda, un prato, una staccionata e un pendio boscoso sullo sfondo sotto un cielo estivo",
+  "Mostly shaded: about three quarters runs through the wood above Roda and Bosin.": "Per lo più all'ombra: circa tre quarti passano nel bosco sopra Roda e Bosin.",
+  "Start in the hamlet of Roda, Ziano di Fiemme, the tourist board’s start.": "Parti dalla frazione di Roda, Ziano di Fiemme, la partenza indicata dall'ente turistico.",
+  "Up Via Baster, across the cycle path towards Bosin, then up through the wood to the Rio Sadole stream, and back down a dirt track past the Mas del Marino to the cycle path and Roda.": "Su per Via Baster, attraverso la ciclabile verso Bosin, poi su nel bosco fino al rio Sadole, e ritorno in discesa per una strada in terra battuta oltre il Mas del Marino fino alla ciclabile e a Roda.",
+  "Right across the cycle path after 150 m. Sharp left before the first houses of Bosin. Down the dirt track at the Rio Sadole. Left on the cycle path back to Roda.": "A destra attraverso la ciclabile dopo 150 m. Secco a sinistra prima delle prime case di Bosin. Giù per la strada in terra battuta al Rio Sadole. A sinistra sulla ciclabile per tornare a Roda.",
+  "From Roda take Via Baster.": "Da Roda prendi Via Baster.",
+  "After 150 m, cross the cycle path on your right and carry on along a path for about 300 m towards Bosin, until you see the first houses of the hamlet.": "Dopo 150 m attraversa la ciclabile alla tua destra e prosegui lungo un sentiero per circa 300 m verso Bosin, finché vedi le prime case della frazione.",
+  "Turn sharp left. The path climbs towards the Cercenai road until it reaches the Rio Sadole stream.": "Svolta secco a sinistra. Il sentiero sale verso la strada di Cercenai fino a raggiungere il rio Sadole.",
+  "Here take the dirt track going down, past the Mas del Marino, to the Fiemme cycle path.": "Qui prendi la strada in terra battuta in discesa, oltre il Mas del Marino, fino alla ciclabile della Val di Fiemme.",
+  "Turn left to reach Roda and the start.": "Svolta a sinistra per raggiungere Roda e la partenza."
+});

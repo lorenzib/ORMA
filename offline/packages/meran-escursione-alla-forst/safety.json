@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-escursione-alla-forst",
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.2,
+    "ascentM": 295,
+    "highestPointM": 588,
+    "expectedDuration": "2.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 3
+  },
+  "trailhead": {
+    "lat": 46.682643,
+    "lng": 11.121937,
+    "label": "The village centre of Algund, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6824599,
+      "lng": 11.1220129,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.68259,
+      "lng": 11.122144,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6825055,
+      "lng": 11.1228896,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.681209,
+      "lng": 11.121845,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Crosses the old Vinschgau state road, which has little traffic: lead short while crossing.",
+    "Steps up from the Alperia power station to the old state road.",
+    "Access roads to Josefsberg and road 9 are tarred and open to cars: lead on.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-03"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-03",
+      "licence": "ODbL"
+    }
+  ]
+}

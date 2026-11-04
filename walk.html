@@ -57,34 +57,35 @@
 <body>
 <div class="wr-shell">
   <div class="wr-top">
-    <a class="wr-back" href="/" id="wrBack">&larr; Back</a>
-    <span class="wr-dog" id="wrDog">Recording</span>
+    <a class="wr-back" href="/" id="wrBack" data-i18n="page.index.back">&larr; Back</a>
+    <span class="wr-dog" id="wrDog" data-i18n="page.walk.recording">Recording</span>
   </div>
   <div class="wr-stats">
-    <div class="wr-stat"><b id="wrTime">0:00</b><span>Time</span></div>
-    <div class="wr-stat"><b id="wrDist">0.00</b><span>km</span></div>
+    <div class="wr-stat"><b id="wrTime">0:00</b><span data-i18n="journal.durationShort">Time</span></div>
+    <div class="wr-stat"><b id="wrDist">0.00</b><span data-i18n="page.walk.km">km</span></div>
   </div>
   <div class="wr-map">
     <div id="wrMap"></div>
-    <span class="wr-gps" id="wrGps">Waiting for GPS…</span>
+    <span class="wr-gps" id="wrGps" data-i18n="page.walk.waitingForGps">Waiting for GPS…</span>
   </div>
-  <p class="wr-note" id="wrNote">Keep the screen on while recording, background tracking needs the page open.</p>
+  <p class="wr-note" id="wrNote" data-i18n="page.walk.keepTheScreenOnWhile">Keep the screen on while recording, background tracking needs the page open.</p>
   <div class="wr-controls">
-    <button type="button" class="wr-btn wr-btn--ghost" id="wrDiscard" hidden>Discard</button>
-    <button type="button" class="wr-btn wr-btn--start" id="wrStart">Start walk</button>
-    <button type="button" class="wr-btn wr-btn--pause" id="wrPause" hidden>Pause</button>
-    <button type="button" class="wr-btn wr-btn--finish" id="wrFinish" hidden>Finish &amp; save</button>
+    <button type="button" class="wr-btn wr-btn--ghost" id="wrDiscard" hidden data-i18n="hike.discard">Discard</button>
+    <button type="button" class="wr-btn wr-btn--start" id="wrStart" data-i18n="page.walk.startWalk">Start walk</button>
+    <button type="button" class="wr-btn wr-btn--pause" id="wrPause" hidden data-i18n="hike.pause">Pause</button>
+    <button type="button" class="wr-btn wr-btn--finish" id="wrFinish" hidden data-i18n="page.walk.finishSave">Finish &amp; save</button>
   </div>
 </div>
 
 <div class="wr-gate" id="wrGate" hidden>
   <div class="wr-gate-card">
-    <h1>Record a walk</h1>
-    <p>Walks are saved to your journal, so recording needs your account. Sign in and press start, any walk, anywhere, not just catalogued trails.</p>
-    <a href="/">Sign in on the homepage &rarr;</a>
+    <h1 data-i18n="page.walk.recordAWalk">Record a walk</h1>
+    <p data-i18n="page.walk.walksAreSavedToYour">Walks are saved to your journal, so recording needs your account. Sign in and press start, any walk, anywhere, not just catalogued trails.</p>
+    <a href="/" data-i18n="page.walk.signInOnTheHomepage">Sign in on the homepage &rarr;</a>
   </div>
 </div>
 
+<script src="i18n.js?v=20261006-1"></script>
 <script src="device-handoff.js?v=20260904-1"></script>
 <script type="module" src="firebase-init.js?v=20261030-1"></script>
 <script src="journal-store.js?v=20261016-1"></script>
@@ -93,6 +94,6 @@
 <script src="map-runtime.js?v=20260826-1"></script>
 <script src="map-style.js?v=20261029-2"></script>
 <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
-<script src="regions-config.js?v=20261102-2"></script>
+<script src="regions-config.js?v=20261103-1"></script>
 <script src="walk-page.js?v=20260901-1"></script>
 </body></html>

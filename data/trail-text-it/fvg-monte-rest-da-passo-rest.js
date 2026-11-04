@@ -1,0 +1,12 @@
+// fvg-monte-rest-da-passo-rest in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A panoramic climb from Passo Rest past Casera Rest to the summit of Monte Rest along a wide grassy crest, with views over the Carnic Prealps. PromoTurismoFVG lists 7.6 km and 737 m of ascent.": "Una salita panoramica dal Passo Rest oltre Casera Rest fino alla cima del Monte Rest lungo un'ampia cresta erbosa, con vista sulle Prealpi Carniche. PromoTurismoFVG indica 7,6 km e 737 m di dislivello in salita.",
+  "Drive to Passo Rest (open about April to November): 7.6 km and about 740 m of climbing, nearly four hours. Keep your dog on a lead and carry a muzzle. No water on the ridge: bring plenty and avoid the hottest hours. Casera Rest can be used as an emergency bivouac.": "Raggiungi in auto il Passo Rest (aperto all'incirca da aprile a novembre): 7,6 km e circa 740 m di salita, quasi quattro ore. Tieni il cane al guinzaglio e porta la museruola. Niente acqua sulla cresta: portane in abbondanza ed evita le ore più calde. Casera Rest può essere usata come bivacco d'emergenza.",
+  "A climb of about 740 m, with a steeper last stretch to the summit": "Una salita di circa 740 m, con un ultimo tratto più ripido verso la cima",
+  "Open ridge: avoid the hot middle of summer days and storms": "Cresta aperta: evita le ore centrali delle giornate estive e i temporali",
+  "Passo Rest is reached only from April to November (SR 552 closed in winter)": "Il Passo Rest è raggiungibile solo da aprile a novembre (SR 552 chiusa d'inverno)",
+  "Dirt road, meadow paths and a grassy ridge": "Strada sterrata, sentieri nei prati e una cresta erbosa",
+  "Passo Rest, the board’s start": "Passo Rest, partenza indicata dalla scheda ufficiale",
+  "A forested mountain with pale cliffs under grey clouds, dwarf mountain pines on a white stony ridge in the foreground": "Una montagna boscosa con pareti chiare sotto nuvole grigie, pini mughi su una cresta bianca e sassosa in primo piano",
+  "Mostly shaded on the way up: about three fifths of the line runs through beech and mountain pine; the ridge and summit are open.": "Per lo più all'ombra in salita: circa tre quinti del tracciato passano tra faggi e pini mughi; la cresta e la cima sono aperte."
+});

@@ -1,0 +1,12 @@
+// altabadia-sentiero-degli-artisti-tru-di-artisc in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "The artists’ path from La Villa along the San Cassiano stream to San Cassiano and on through meadows to Armentarola. The board lists 5.2 km and 245 m of ascent, one way.": "Il sentiero degli artisti da La Villa lungo il rio di San Cassiano fino a San Cassiano, e poi tra i prati fino ad Armentarola. La scheda ufficiale indica 5,2 km e 245 m di dislivello in salita, solo andata.",
+  "Start at the La Villa bus stop: 5.2 km one way, about 250 m of climbing and an hour and forty minutes to Armentarola, then come back the same way. In Badia your dog must be on a lead of at most 1.5 m on the whole walk and you must carry a muzzle; keep off the hay meadows. There are fountains and places to eat in San Cassiano.": "Partenza dalla fermata dell'autobus di La Villa: 5,2 km solo andata, circa 250 m di salita e un'ora e quaranta minuti fino ad Armentarola, poi ritorno per la stessa via. A Badia il cane deve stare al guinzaglio di al massimo 1,5 m per tutta la camminata e devi portare la museruola al seguito; stai fuori dai prati da fieno. A San Cassiano ci sono fontane e posti dove mangiare.",
+  "Crossing roads in La Villa and San Cassiano: keep your dog close": "Attraversamento di strade a La Villa e a San Cassiano: tieni il cane vicino",
+  "Paths shared with cyclists": "Sentieri condivisi con i ciclisti",
+  "The path runs beside the stream": "Il sentiero corre accanto al torrente",
+  "Riverside forest path and meadow paths": "Sentiero nel bosco lungo il fiume e sentieri tra i prati",
+  "La Villa bus stop, the board’s start": "Fermata dell'autobus di La Villa, la partenza indicata dalla scheda ufficiale",
+  "Green meadows with old wooden barns and a white farmhouse at San Cassiano, the cliffs of the Sas dla Crusc partly in cloud behind": "Prati verdi con vecchi fienili di legno e un maso bianco a San Cassiano, le pareti del Sas dla Crusc in parte tra le nuvole dietro",
+  "Partly shaded: about a fifth runs under trees along the stream; the meadows beyond San Cassiano are open.": "In parte all'ombra: circa un quinto passa sotto gli alberi lungo il torrente; i prati oltre San Cassiano sono aperti."
+});

@@ -86,7 +86,7 @@ describe('guest homepage editorial structure', () => {
     expect(controller).toContain('catalogue.trailsFor(collection, trails)');
     expect(controller).toContain("'collections.html?collection=' + encodeURIComponent(collection.id)");
     expect(controller).toContain('class="hp-featured-title-link"');
-    expect(controller).toContain("'See all ' + featCollectionCount + ' trails in this collection →'");
+    expect(controller).toContain("tx('See all {count} trails in this collection →', { count: featCollectionCount })");
     expect(controller).not.toContain('var THEMES');
   });
 

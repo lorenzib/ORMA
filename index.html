@@ -33,12 +33,12 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <body>
 
 <div class="topnav">
-  <a class="brand" href="/" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
+  <a class="brand" href="/" aria-label="ORMA | Dog Trails &amp; Terrain Guide" data-i18n-aria-label="page.index.ormaDogTrailsTerrainGuide"><img src="logo.svg?v=5" alt="">ORMA</a>
   <div class="links">
-    <a href="browse-trails.html">Trails</a>
-    <a href="collections.html">Collections</a>
-    <a href="safety-guide.html">Safety library</a>
-    <a href="journal.html">My walk journal</a>
+    <a href="browse-trails.html" data-i18n="account.nav.browse">Trails</a>
+    <a href="collections.html" data-i18n="account.nav.collections">Collections</a>
+    <a href="safety-guide.html" data-i18n="account.nav.safety">Safety library</a>
+    <a href="journal.html" data-i18n="account.nav.journal">My walk journal</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
   </div>
 </div>
@@ -51,11 +51,11 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
   <div class="hp-guestbar hp-guestbar--homepage">
     <div class="hp-guestbar-copy">
       <span class="hp-guestbar-kicker" data-i18n="hp.guest.kicker">Guest mode</span>
-      <b id="hpGuestTitle">Scores use a medium-dog profile.</b>
-      <span id="hpGuestSub">Add your dog for personalised matches. Create a free account only when you choose to save.</span>
+      <b id="hpGuestTitle" data-i18n="hp.guest.medium.title">Scores use a medium-dog profile.</b>
+      <span id="hpGuestSub" data-i18n="hp.guest.medium.sub">Add your dog for personalised matches. Create a free account only when you choose to save.</span>
     </div>
     <button type="button" class="hp-guestbar-cta hp-dog-profile-cta" id="hpGuestCta">
-      <span id="hpGuestCtaLabel">Add your dog</span>
+      <span id="hpGuestCtaLabel" data-i18n="hp.guest.addDog">Add your dog</span>
     </button>
   </div>
 
@@ -137,23 +137,23 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
   <!-- ================= DARK APP HEADER ================= -->
   <header class="li-top">
-    <a class="li-brand" href="/" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
-    <nav class="li-nav" aria-label="Site">
-      <a href="browse-trails.html">Trails</a>
-      <a href="collections.html">Collections</a>
-      <a href="safety-guide.html">Safety library</a>
-      <a href="journal.html">My walk journal</a>
+    <a class="li-brand" href="/" aria-label="ORMA | Dog Trails &amp; Terrain Guide" data-i18n-aria-label="page.index.ormaDogTrailsTerrainGuide"><img src="logo.svg?v=5" alt="">ORMA</a>
+    <nav class="li-nav" aria-label="Site" data-i18n-aria-label="page.index.site">
+      <a href="browse-trails.html" data-i18n="account.nav.browse">Trails</a>
+      <a href="collections.html" data-i18n="account.nav.collections">Collections</a>
+      <a href="safety-guide.html" data-i18n="account.nav.safety">Safety library</a>
+      <a href="journal.html" data-i18n="account.nav.journal">My walk journal</a>
     </nav>
     <div class="li-top-spacer"></div>
     <div class="li-top-actions">
       <!-- What's-new bell (design TopNav notifications) -->
       <div class="li-menuwrap" id="liBellWrap">
-        <button type="button" id="liBellBtn" class="li-bell" aria-haspopup="true" aria-expanded="false" aria-label="What's new">
+        <button type="button" id="liBellBtn" class="li-bell" aria-haspopup="true" aria-expanded="false" aria-label="What's new" data-i18n-aria-label="page.index.whatsNew">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10.5a6 6 0 1 1 12 0c0 3 1 4.8 2 6H4c1-1.2 2-3 2-6Z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg>
           <span class="li-bell-dot" id="liBellDot" hidden></span>
         </button>
         <div class="li-menu" id="liBellMenu" hidden>
-          <div class="li-menu-kick">What’s new</div>
+          <div class="li-menu-kick" data-i18n="page.index.whatsNew2">What’s new</div>
         </div>
       </div>
       <!-- Dog pill, the shared switcher pattern (TopNav dog pill): avatar +
@@ -162,25 +162,25 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <div class="li-menuwrap" id="liAccountWrap">
         <button type="button" id="liAccountBtn" class="li-account" aria-haspopup="true" aria-expanded="false">
           <span class="li-avatar" id="liAccountAvatar" aria-hidden="true"></span>
-          <span class="li-account-name" id="liAccountName">Your dog</span>
+          <span class="li-account-name" id="liAccountName" data-i18n="account.yourDog">Your dog</span>
           <span class="li-caret" aria-hidden="true">▾</span>
         </button>
         <div class="li-menu li-account-menu" id="liAccountMenu" hidden>
-          <div class="li-menu-kick">Switch dog</div>
+          <div class="li-menu-kick" data-i18n="mobile.switchDog">Switch dog</div>
           <div id="liDogList"></div>
-          <button type="button" class="li-menu-item" id="liAddDogBtn">＋ Add another dog</button>
-          <a class="li-menu-item" id="liManageLink" href="account.html?next=%2F" hidden>Set up your dog's profile</a>
+          <button type="button" class="li-menu-item" id="liAddDogBtn" data-i18n="mobile.addDog">＋ Add another dog</button>
+          <a class="li-menu-item" id="liManageLink" href="account.html?next=%2F" hidden data-i18n="page.index.setUpYourDogsProfile">Set up your dog's profile</a>
           <div class="li-menu-div" role="separator"></div>
-          <a class="li-menu-item" href="saved.html">Saved trails</a>
-          <a class="li-menu-item" href="downloads.html">Downloaded trails</a>
+          <a class="li-menu-item" href="saved.html" data-i18n="mobile.savedTrails">Saved trails</a>
+          <a class="li-menu-item" href="downloads.html" data-i18n="mobile.downloads">Downloaded trails</a>
           <!-- The last trails opened, where the rest of this dog's things are.
                Empty until one is, and it says so rather than showing nothing. -->
-          <div class="li-menu-kick">Recently viewed</div>
-          <div id="liRecentList"><span class="li-menu-note">Trails you open will appear here.</span></div>
+          <div class="li-menu-kick" data-i18n="mobile.recentlyViewed">Recently viewed</div>
+          <div id="liRecentList"><span class="li-menu-note" data-i18n="page.index.trailsYouOpenWillAppear">Trails you open will appear here.</span></div>
           <div class="li-menu-div" role="separator"></div>
-          <a class="li-menu-item" href="settings.html">Account settings</a>
+          <a class="li-menu-item" href="settings.html" data-i18n="mobile.settings">Account settings</a>
           <div class="li-menu-div" role="separator"></div>
-          <button type="button" class="li-menu-item li-logout" id="liLogoutBtn">Log out</button>
+          <button type="button" class="li-menu-item li-logout" id="liLogoutBtn" data-i18n="mobile.logout">Log out</button>
         </div>
       </div>
     </div>
@@ -194,21 +194,21 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <!-- The avatar is the dog switcher (design: greeting avatar + caret
            opens the Switch dog panel; no separate Edit button) -->
       <div class="li-menuwrap li-greetswitch" id="liGreetSwitchWrap">
-        <button type="button" class="li-greetswitch-btn" id="liGreetSwitchBtn" aria-haspopup="true" aria-expanded="false" aria-label="Switch dog">
+        <button type="button" class="li-greetswitch-btn" id="liGreetSwitchBtn" aria-haspopup="true" aria-expanded="false" aria-label="Switch dog" data-i18n-aria-label="mobile.switchDog">
           <span class="li-dogavatar" id="companionDogAvatar"><span data-dp-icon="dog" data-dp-icon-size="24" aria-hidden="true"></span></span>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="li-menu li-greetswitch-menu" id="liGreetSwitchMenu" hidden>
-          <div class="li-menu-kick">Switch dog</div>
+          <div class="li-menu-kick" data-i18n="mobile.switchDog">Switch dog</div>
           <div id="liGreetDogList"></div>
-          <button type="button" class="li-menu-item" id="liGreetAddDogBtn">＋ Add another dog</button>
-          <a class="li-menu-item" id="liGreetManageLink" href="account.html?next=%2F" hidden>Set up your dog's profile</a>
+          <button type="button" class="li-menu-item" id="liGreetAddDogBtn" data-i18n="mobile.addDog">＋ Add another dog</button>
+          <a class="li-menu-item" id="liGreetManageLink" href="account.html?next=%2F" hidden data-i18n="page.index.setUpYourDogsProfile">Set up your dog's profile</a>
         </div>
       </div>
       <div class="li-dog-copy">
-        <h1 class="li-greet" id="returningHeading">Where are we heading today?</h1>
+        <h1 class="li-greet" id="returningHeading" data-i18n="home.bubble">Where are we heading today?</h1>
         <div class="li-chips-row">
-          <span class="li-dogname" id="companionDogName">Your dog</span>
+          <span class="li-dogname" id="companionDogName" data-i18n="account.yourDog">Your dog</span>
           <span class="li-pchip" id="companionDogMeta"></span>
           <span class="li-chips" id="companionDogChips"></span>
         </div>
@@ -224,8 +224,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <div class="li-dogctx-static">
         <span class="li-avatar li-dogctx-avatar" id="liDogCtxAvatar" aria-hidden="true">🐾</span>
         <span class="li-dogctx-copy">
-          <span class="li-control-kicker">Tailored to</span>
-          <span class="li-dogctx-name"><span id="liDogCtxName">Your dog</span><span id="liDogCtxBreedSep" hidden>, </span><a id="liDogCtxBreed" href="guides/breed-group-caveats.html" hidden></a></span>
+          <span class="li-control-kicker" data-i18n="page.index.tailoredTo">Tailored to</span>
+          <span class="li-dogctx-name"><span id="liDogCtxName" data-i18n="account.yourDog">Your dog</span><span id="liDogCtxBreedSep" hidden>, </span><a id="liDogCtxBreed" href="guides/breed-group-caveats.html" hidden></a></span>
         </span>
       </div>
     </div>
@@ -237,7 +237,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     <div class="li-toolbar-greet">
       <span class="li-avatar li-greet-avatar" id="liGreetAvatar" aria-hidden="true">🐾</span>
       <span class="li-toolbar-greet-copy">
-        <strong id="liToolbarGreeting">Where are we going today?</strong>
+        <strong id="liToolbarGreeting" data-i18n="hero.h1">Where are we going today?</strong>
       </span>
       <!-- Create actions are not filters, so they sit out of the refine zone.
            Recording is the one you do standing on the trail, so it is the
@@ -245,38 +245,38 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <div class="li-menuwrap li-new-wrap" id="liNewWrap">
         <a class="li-new li-new-main" id="liRecordBtn" href="walk.html">
           <span class="li-rec-dot" aria-hidden="true"></span>
-          <span class="li-new-label">Record<span class="li-new-label-rest"> a walk</span></span>
+          <span class="li-new-label" data-i18n="page.index.recordAWalk">Record<span class="li-new-label-rest"> a walk</span></span>
         </a>
-        <button type="button" id="liNewBtn" class="li-new li-new-more" aria-haspopup="true" aria-expanded="false" aria-label="More ways to create">
+        <button type="button" id="liNewBtn" class="li-new li-new-more" aria-haspopup="true" aria-expanded="false" aria-label="More ways to create" data-i18n-aria-label="page.index.moreWaysToCreate">
           <span class="li-caret" aria-hidden="true">▾</span>
         </button>
         <div class="li-menu li-new-menu" id="liNewMenu" hidden>
-          <div class="li-menu-kick">Create</div>
-          <a class="li-menu-item li-plan-route" href="route-planner.html"><span class="li-menu-title">Draw your own route <span class="li-menu-badge">New</span></span><small>Loop, one-way or out and back · experimental</small></a>
+          <div class="li-menu-kick" data-i18n="page.index.create">Create</div>
+          <a class="li-menu-item li-plan-route" href="route-planner.html"><span class="li-menu-title" data-i18n="page.index.drawYourOwnRouteNew">Draw your own route <span class="li-menu-badge">New</span></span><small data-i18n="page.index.loopOnewayOrOutAnd">Loop, one-way or out and back · experimental</small></a>
         </div>
         <!-- Said once: what is new and where it lives. Closing it, trying it,
              or opening the menu above puts it away for good on this browser. -->
         <div class="li-new-callout" id="liNewCallout" role="status" hidden>
           <div class="li-new-callout-head">
-            <span class="li-menu-badge">New</span>
-            <strong>Draw your own route</strong>
-            <button type="button" class="li-new-callout-close" id="liNewCalloutClose" aria-label="Dismiss">×</button>
+            <span class="li-menu-badge" data-i18n="page.index.new">New</span>
+            <strong data-i18n="page.index.drawYourOwnRoute">Draw your own route</strong>
+            <button type="button" class="li-new-callout-close" id="liNewCalloutClose" aria-label="Dismiss" data-i18n-aria-label="page.index.dismiss">×</button>
           </div>
-          <p>Loop, one-way or out and back, along mapped walking paths. It is still experimental.</p>
+          <p data-i18n="page.index.loopOnewayOrOutAnd2">Loop, one-way or out and back, along mapped walking paths. It is still experimental.</p>
           <div class="li-new-callout-actions">
-            <a class="li-new-callout-try" id="liNewCalloutTry" href="route-planner.html">Try it</a>
-            <span>Also under the arrow beside Record a walk</span>
+            <a class="li-new-callout-try" id="liNewCalloutTry" href="route-planner.html" data-i18n="page.index.tryIt">Try it</a>
+            <span data-i18n="page.index.alsoUnderTheArrowBeside">Also under the arrow beside Record a walk</span>
           </div>
         </div>
       </div>
       <!-- Opened from "in Alta Pusteria" in the headline. -->
-      <div class="li-menu li-head-menu" id="liAreaMenu" role="dialog" aria-label="Where to look" hidden>
+      <div class="li-menu li-head-menu" id="liAreaMenu" role="dialog" aria-label="Where to look" hidden data-i18n-aria-label="page.index.whereToLook">
         <span class="li-location-summary" id="liLocationSummary" hidden>
-          <span><small id="liLocationSummaryKick">Looking near</small><strong id="liLocationSummaryLabel"></strong></span>
+          <span><small id="liLocationSummaryKick" data-i18n="page.index.lookingNear">Looking near</small><strong id="liLocationSummaryLabel"></strong></span>
         </span>
         <!-- One region at a time: a walk is planned in one place, never in
              the Dolomites and Savoy at once. -->
-        <div class="li-head-kick">Region</div>
+        <div class="li-head-kick" data-i18n="browse.geo.region">Region</div>
         <button type="button" class="li-head-option li-head-region" data-li-region="dolomites" aria-pressed="false">The Dolomites<small data-li-region-count></small></button>
         <button type="button" class="li-head-option li-head-region" data-li-region="savoy" aria-pressed="false">Savoy<small data-li-region-count></small></button>
         <button type="button" class="li-head-option li-head-region" data-li-region="lombardy" aria-pressed="false">Lombardy<small data-li-region-count></small></button>
@@ -284,14 +284,14 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <button type="button" class="li-head-option li-head-region" data-li-region="aosta" aria-pressed="false">Valle d’Aosta<small data-li-region-count></small></button>
         <button type="button" class="li-head-option li-head-region" data-li-region="tyrol" aria-pressed="false">Tyrol &amp; Carinthia<small data-li-region-count></small></button>
         <div class="li-head-sep" role="separator"></div>
-        <button type="button" class="li-head-option" id="liNearMeBtn">Near me</button>
-        <button type="button" class="li-head-option" id="liChangeLocationBtn">Search a valley or town</button>
+        <button type="button" class="li-head-option" id="liNearMeBtn" data-i18n="page.index.nearMe">Near me</button>
+        <button type="button" class="li-head-option" id="liChangeLocationBtn" data-i18n="page.index.searchAValleyOrTown">Search a valley or town</button>
       </div>
       <!-- Opened from "today" in the headline. -->
-      <div class="li-menu li-head-menu" id="liDayMenu" role="dialog" aria-label="When you are walking" hidden>
-        <button type="button" class="li-head-option" data-li-day="0">Today</button>
-        <button type="button" class="li-head-option" data-li-day="1">Tomorrow</button>
-        <label class="li-date-summary"><small>Another day</small><input id="liRecommendationDate" type="date" aria-label="Recommendation date"></label>
+      <div class="li-menu li-head-menu" id="liDayMenu" role="dialog" aria-label="When you are walking" hidden data-i18n-aria-label="page.index.whenYouAreWalking">
+        <button type="button" class="li-head-option" data-li-day="0" data-i18n="page.index.today">Today</button>
+        <button type="button" class="li-head-option" data-li-day="1" data-i18n="page.index.tomorrow">Tomorrow</button>
+        <label class="li-date-summary"><small data-i18n="page.index.anotherDay">Another day</small><input id="liRecommendationDate" type="date" aria-label="Recommendation date" data-i18n-aria-label="page.index.recommendationDate"></label>
       </div>
     </div>
     <!-- Today, for this area. Hidden until a forecast actually arrives: an
@@ -305,41 +305,41 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
          session once dismissed; Near me in the headline still works either way. -->
     <div class="li-location-nudge" id="liLocationNudge" hidden>
       <span class="li-location-nudge-pin" aria-hidden="true">⌖</span>
-      <span class="li-location-nudge-copy"><strong id="liLocationNudgeTitle">See trails near you</strong><small id="liLocationNudgeDetail">Your position stays in this browser session and is not added to your profile.</small></span>
-      <button type="button" class="li-location-nudge-action" id="liLocationNudgeBtn">Turn on location</button>
-      <button type="button" class="li-location-nudge-dismiss" id="liLocationNudgeDismiss" aria-label="Dismiss">×</button>
+      <span class="li-location-nudge-copy"><strong id="liLocationNudgeTitle" data-i18n="page.index.seeTrailsNearYou">See trails near you</strong><small id="liLocationNudgeDetail" data-i18n="page.index.yourPositionStaysInThis">Your position stays in this browser session and is not added to your profile.</small></span>
+      <button type="button" class="li-location-nudge-action" id="liLocationNudgeBtn" data-i18n="page.index.turnOnLocation">Turn on location</button>
+      <button type="button" class="li-location-nudge-dismiss" id="liLocationNudgeDismiss" aria-label="Dismiss" data-i18n-aria-label="page.index.dismiss">×</button>
     </div>
     <div class="li-search">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="liSearch" type="search" placeholder="Search by trail, area or valley" aria-label="Search by trail, area or valley" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="liSearchSuggest" autocomplete="off">
+      <input id="liSearch" type="search" placeholder="Search by trail, area or valley" aria-label="Search by trail, area or valley" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="liSearchSuggest" autocomplete="off" data-i18n-aria-label="page.index.searchByTrailAreaOr" data-i18n-ph="page.index.searchByTrailAreaOr">
       <kbd class="li-search-shortcut" aria-hidden="true">⌘K</kbd>
-      <div class="li-search-suggest" id="liSearchSuggest" role="listbox" aria-label="Recommended routes" hidden></div>
+      <div class="li-search-suggest" id="liSearchSuggest" role="listbox" aria-label="Recommended routes" hidden data-i18n-aria-label="page.index.recommendedRoutes"></div>
     </div>
-    <div class="li-mobile-actions" aria-label="Trail actions">
+    <div class="li-mobile-actions" aria-label="Trail actions" data-i18n-aria-label="page.index.trailActions">
     <div class="li-menuwrap" id="liFiltersWrap">
       <button type="button" id="liFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
-        <span class="li-filt-label">Filters</span><span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
+        <span class="li-filt-label" data-i18n="browse.filters.button">Filters</span><span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
       </button>
       <div class="li-menu li-filters-menu discovery-filter-panel" id="liFiltersMenu" hidden>
         <div class="li-fhead">
-          <span>Filter trails</span>
-          <button type="button" id="liFiltersReset">Reset all</button>
+          <span data-i18n="browse.filters.title">Filter trails</span>
+          <button type="button" id="liFiltersReset" data-i18n="browse.filters.resetAll">Reset all</button>
         </div>
-        <div class="li-fsec">Conditions</div>
-        <div class="li-quick-filters" aria-label="Quick dog filters">
-          <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
-          <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
+        <div class="li-fsec" data-i18n="journal.conditions">Conditions</div>
+        <div class="li-quick-filters" aria-label="Quick dog filters" data-i18n-aria-label="browse.quick.aria">
+          <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.quick.shade">High shade</span></button>
+          <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="chips.fountains">Water</span></button>
         </div>
-        <div class="li-fsec">Distance</div>
+        <div class="li-fsec" data-i18n="browse.filters.distance">Distance</div>
         <div class="li-seg" id="liDistSeg"></div>
-        <div class="li-fsec">Trail rating</div>
+        <div class="li-fsec" data-i18n="browse.filters.rating">Trail rating</div>
         <div class="li-seg" id="liRiskSeg"></div>
-        <div class="li-fsec">Terrain underfoot</div>
+        <div class="li-fsec" data-i18n="browse.filters.terrain">Terrain underfoot</div>
         <div class="li-seg" id="liTerrainSeg"></div>
-        <div class="li-fsec" id="liMatchSecLabel">Minimum match</div>
+        <div class="li-fsec" id="liMatchSecLabel" data-i18n="browse.filters.minMatch">Minimum match</div>
         <div class="li-seg" id="liMatchSeg"></div>
-        <button type="button" class="li-apply" id="liFiltersApply">Show trails</button>
+        <button type="button" class="li-apply" id="liFiltersApply" data-i18n="browse.filters.show">Show trails</button>
       </div>
     </div>
     </div>
@@ -352,28 +352,28 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
   <div class="li-body">
 
     <div class="li-map" id="trailMapWrap">
-      <div id="trailMap" role="region" aria-label="Trail map. Numbered markers correspond to the ranked shortlist; other trails are grey."></div>
+      <div id="trailMap" role="region" aria-label="Trail map. Numbered markers correspond to the ranked shortlist; other trails are grey." data-i18n-aria-label="page.index.trailMapNumberedMarkersCorrespond"></div>
       <!-- The map doubles as the geography control: pan/zoom, then refilter the
            list to the visible area. Hidden until the view actually moves. -->
-      <button id="liSearchThisArea" type="button" class="li-search-area" hidden>Search this area</button>
+      <button id="liSearchThisArea" type="button" class="li-search-area" hidden data-i18n="browse.map.searchArea">Search this area</button>
       <!-- The route planner, opened on the area on screen. It sits on the map
            because the map is where a route is drawn; the link follows the
            view as it moves. -->
-      <a id="homeMapDrawBtn" class="li-map-draw" href="route-planner.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H16"/></svg><span>Draw a route here</span></a>
-      <button id="homeMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
-      <div class="li-rank-map-key" aria-label="Map key">
-        <span><i class="is-ranked">1</i>Matches list</span>
-        <span><i class="is-strong"></i>Strong</span>
-        <span><i class="is-caution"></i>Cautions</span>
-        <span><i class="is-stop"></i>Not recommended</span>
-        <span><i class="is-other"></i>Other trails</span>
+      <a id="homeMapDrawBtn" class="li-map-draw" href="route-planner.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H16"/></svg><span data-i18n="page.index.drawARouteHere">Draw a route here</span></a>
+      <button id="homeMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Expand map" aria-expanded="false" data-i18n-aria-label="page.index.expandMap"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span data-i18n="page.index.expandMap">Expand map</span></button>
+      <div class="li-rank-map-key" aria-label="Map key" data-i18n-aria-label="page.index.mapKey">
+        <span data-i18n="page.index.1MatchesList"><i class="is-ranked">1</i>Matches list</span>
+        <span data-i18n="page.index.strong"><i class="is-strong"></i>Strong</span>
+        <span data-i18n="page.index.cautions"><i class="is-caution"></i>Cautions</span>
+        <span data-i18n="page.index.notRecommended"><i class="is-stop"></i>Not recommended</span>
+        <span data-i18n="page.index.otherTrails"><i class="is-other"></i>Other trails</span>
       </div>
       <!-- Dog conditions card, real profile-derived readings, no invented weather -->
       <div class="li-cond" id="liConditionsCard" hidden>
         <div class="li-cond-head">
           <span class="li-avatar li-avatar-lg" id="liCondAvatar" aria-hidden="true"></span>
           <div>
-            <div class="li-cond-title" id="liCondTitle">Conditions</div>
+            <div class="li-cond-title" id="liCondTitle" data-i18n="journal.conditions">Conditions</div>
             <div class="li-cond-sub" id="liCondSub"></div>
           </div>
         </div>
@@ -390,59 +390,59 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <a class="li-row-name" id="mapCalloutName" href="#"></a>
           <div class="li-row-meta" id="mapCalloutMeta"></div>
           <div class="map-callout-info-row">
-            <div class="li-rating-row"><span class="li-rating-kick">Trail rating</span><span id="mapCalloutRating"></span></div>
+            <div class="li-rating-row"><span class="li-rating-kick" data-i18n="browse.filters.rating">Trail rating</span><span id="mapCalloutRating"></span></div>
           </div>
           <div class="map-callout-actions">
-            <a class="map-callout-open" id="mapCalloutOpen" href="#">Open trail →</a>
+            <a class="map-callout-open" id="mapCalloutOpen" href="#" data-i18n="page.index.openTrail">Open trail →</a>
             <div class="li-dir-wrap">
-              <button type="button" class="map-callout-directions" id="mapCalloutDirections" aria-haspopup="true" aria-expanded="false">Directions</button>
+              <button type="button" class="map-callout-directions" id="mapCalloutDirections" aria-haspopup="true" aria-expanded="false" data-i18n="readiness.action.directions">Directions</button>
               <div class="li-dir-menu" id="mapCalloutDirMenu" hidden>
-                <a id="mapCalloutDirApple" target="_blank" rel="noopener">Apple Maps</a>
-                <a id="mapCalloutDirGoogle" target="_blank" rel="noopener">Google Maps</a>
+                <a id="mapCalloutDirApple" target="_blank" rel="noopener" data-i18n="page.index.appleMaps">Apple Maps</a>
+                <a id="mapCalloutDirGoogle" target="_blank" rel="noopener" data-i18n="page.index.googleMaps">Google Maps</a>
               </div>
             </div>
-            <button type="button" class="map-callout-save" id="mapCalloutSave">♡ Save</button>
+            <button type="button" class="map-callout-save" id="mapCalloutSave" data-i18n="page.index.save">♡ Save</button>
           </div>
         </div>
         <span id="mapCalloutMatch"></span>
-        <span class="close" id="mapCalloutClose" role="button" tabindex="0" aria-label="Clear selection">&times;</span>
+        <span class="close" id="mapCalloutClose" role="button" tabindex="0" aria-label="Clear selection" data-i18n-aria-label="page.index.clearSelection">&times;</span>
       </div>
     </div>
 
     <!-- ================= LIST ================= -->
-    <aside class="li-list" aria-label="Personalised trail recommendation">
+    <aside class="li-list" aria-label="Personalised trail recommendation" data-i18n-aria-label="page.index.personalisedTrailRecommendation">
       <!-- One line: what this is, how many, and the two ways to change the
            view. "New for <dog>" lives on the card it is about, with what it
            means; Browse all trails sits at the foot of the list. -->
       <div class="li-list-head">
         <div class="li-list-title-row">
-          <h2 class="li-list-title" id="companionListTitle">Trails</h2>
+          <h2 class="li-list-title" id="companionListTitle" data-i18n="account.nav.browse">Trails</h2>
           <span class="li-list-count" id="companionListCount"></span>
           <!-- Out of the area and filters into the whole catalogue, still ranked
                for the dog; once there it offers the way back. -->
-          <button type="button" class="li-list-showall" id="liShowAllTrails" hidden>Show all trails</button>
+          <button type="button" class="li-list-showall" id="liShowAllTrails" hidden data-i18n="browse.saved.showAll">Show all trails</button>
           <div class="li-list-tools">
             <!-- ORMA's own menu, like Filters and the headline's: a native
                  select opened the system's grey popup inside a pill. -->
             <div class="li-menuwrap li-sort-wrap">
-              <button type="button" id="liSortBtn" class="li-sort-pill" aria-haspopup="menu" aria-expanded="false" aria-controls="liSortMenu"><span class="li-sort-label">Sort:</span><span id="liSortValue">Best fit</span></button>
-              <div class="li-menu li-sort-menu" id="liSortMenu" role="menu" aria-label="Sort trails" hidden>
-                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="match" aria-checked="true">Best fit</button>
-                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="distance" aria-checked="false">Shortest</button>
-                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="effort" aria-checked="false">Least climb</button>
-                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="today" aria-checked="false">For today</button>
+              <button type="button" id="liSortBtn" class="li-sort-pill" aria-haspopup="menu" aria-expanded="false" aria-controls="liSortMenu"><span class="li-sort-label" data-i18n="page.index.sort">Sort:</span><span id="liSortValue" data-i18n="page.index.bestFit">Best fit</span></button>
+              <div class="li-menu li-sort-menu" id="liSortMenu" role="menu" aria-label="Sort trails" hidden data-i18n-aria-label="page.index.sortTrails">
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="match" aria-checked="true" data-i18n="page.index.bestFit">Best fit</button>
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="distance" aria-checked="false" data-i18n="page.index.shortest">Shortest</button>
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="effort" aria-checked="false" data-i18n="page.index.leastClimb">Least climb</button>
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="today" aria-checked="false" data-i18n="page.index.forToday">For today</button>
               </div>
             </div>
-            <button type="button" id="liReasonsToggle" class="li-saved-toggle li-reasons-toggle" aria-pressed="false"><span class="li-reasons-word">Hide reasons</span></button>
-            <button type="button" id="liViewSaved" class="li-saved-toggle" aria-pressed="false" aria-label="Saved trails"><span class="orma-saved-heart" aria-hidden="true">♥</span><span class="li-saved-word">Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span></button>
+            <button type="button" id="liReasonsToggle" class="li-saved-toggle li-reasons-toggle" aria-pressed="false"><span class="li-reasons-word" data-i18n="page.index.hideReasons">Hide reasons</span></button>
+            <button type="button" id="liViewSaved" class="li-saved-toggle" aria-pressed="false" aria-label="Saved trails" data-i18n-aria-label="mobile.savedTrails"><span class="orma-saved-heart" aria-hidden="true">♥</span><span class="li-saved-word" data-i18n="card.saved">Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span></button>
           </div>
         </div>
       </div>
       <div class="li-rows" id="returningTrailList"></div>
-      <a class="li-list-foot" href="browse-trails.html">Browse all trails →</a>
+      <a class="li-list-foot" href="browse-trails.html" data-i18n="page.index.browseAllTrails">Browse all trails →</a>
     </aside>
 
-    <button type="button" id="liCollapseTrailsBtn" class="li-trails-toggle" aria-expanded="true" aria-label="Collapse ranked trails panel" title="Hide the trail list">⇥</button>
+    <button type="button" id="liCollapseTrailsBtn" class="li-trails-toggle" aria-expanded="true" aria-label="Collapse ranked trails panel" title="Hide the trail list" data-i18n-title="page.index.hideTheTrailList" data-i18n-aria-label="page.index.collapseRankedTrailsPanel">⇥</button>
 
   </div>
 </div>
@@ -451,16 +451,16 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <!-- DOG PROFILE WIZARD (opened by the hero CTA; works for guests) -->
 <div id="dogWizard" class="dw-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="dwTitle">
   <div class="dw-modal">
-    <button id="dwCloseBtn" class="dw-close" aria-label="Close">&times;</button>
-    <h2 id="dwTitle" class="dw-title">Add a dog</h2>
+    <button id="dwCloseBtn" class="dw-close" aria-label="Close" data-i18n-aria-label="journal.close">&times;</button>
+    <h2 id="dwTitle" class="dw-title" data-i18n="page.index.addADog">Add a dog</h2>
     <div id="dwStepCount" class="dw-stepcount" hidden></div>
     <p id="dwSubtitle" class="dw-subtitle"></p>
     <div id="dwStepper" class="dw-stepper" role="list"></div>
     <div id="dwProgress" class="dw-progress" hidden aria-hidden="true"><span></span></div>
     <div id="dwBody" class="dw-body"></div>
     <div id="dwFooter" class="dw-footer">
-      <button id="dwBackBtn" type="button" class="dw-btn-ghost">&larr; Back</button>
-      <button id="dwNextBtn" type="button" class="dw-btn-primary">Next &rarr;</button>
+      <button id="dwBackBtn" type="button" class="dw-btn-ghost" data-i18n="page.index.back">&larr; Back</button>
+      <button id="dwNextBtn" type="button" class="dw-btn-primary" data-i18n="page.index.next">Next &rarr;</button>
     </div>
   </div>
 </div>
@@ -471,7 +471,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
   <div class="hp-wiz-modal">
     <div class="hp-wiz-head">
       <button type="button" id="hpWizClose" class="hp-wiz-close" aria-label="Close" data-i18n-aria-label="hp.wizard.close">&times;</button>
-      <div class="hp-wiz-step" id="hpWizStepLabel" role="status" aria-live="polite">Step 1 of 3</div>
+      <div class="hp-wiz-step" id="hpWizStepLabel" role="status" aria-live="polite" data-i18n="page.index.step1Of3">Step 1 of 3</div>
       <h2 id="hpWizTitle" data-i18n="hp.wizard.title">Tell us about your dog</h2>
       <div class="hp-wiz-bars"><span id="hpWizBar1"></span><span id="hpWizBar2"></span><span id="hpWizBar3"></span></div>
     </div>
@@ -572,7 +572,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="regional-trails-loader.js?v=20261007-2" data-default-region="all"></script>
 <script src="notifications-feed.js?v=20261023-1" defer></script>
 <script src="trail-audits.js?v=20260815-4" defer></script>
-<script src="regions-config.js?v=20261102-2" defer></script>
+<script src="regions-config.js?v=20261103-1" defer></script>
 <script src="guest-context.js?v=20261030-1" defer></script>
 <script src="auth-ui.js?v=20261030-1" defer></script>
 <script src="discovery-state.js?v=20261007-1" defer></script>

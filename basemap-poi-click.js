@@ -52,27 +52,58 @@ function isHistoricPoi(props){
   return [props.class, props.subclass].some(value => HISTORIC_POI_TYPES.has(value));
 }
 
+// Script-written wording goes through i18n.js; the English sentence is its own key.
+function tx(text, vars){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+  return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+}
+
 // subclass (raw OSM value) → label. Falls back to prettified text for
 // anything not listed, so unknown types still get a sensible popup.
-const POI_LABELS = {
-  restaurant: '🍽️ Restaurant', fast_food: '🍔 Fast food', cafe: '☕ Café',
-  bar: '🍺 Bar', pub: '🍻 Pub', biergarten: '🍺 Beer garden',
-  ice_cream: '🍦 Ice cream', bakery: '🥐 Bakery',
-  alpine_hut: '🏔️ Mountain hut (rifugio)', wilderness_hut: '🛖 Bivouac',
-  shelter: '⛺ Shelter', viewpoint: '👀 Viewpoint', attraction: '⭐ Attraction',
-  hotel: '🏨 Hotel', guest_house: '🏡 Guest house', camp_site: '🏕️ Campsite',
-  parking: '🅿️ Parking', bus_stop: '🚌 Bus stop', bus_station: '🚌 Bus station',
-  station: '🚉 Station', drinking_water: '🚰 Drinking water',
-  spring: '💧 Spring', peak: '⛰️ Peak', supermarket: '🛒 Supermarket',
-  pharmacy: '💊 Pharmacy', hospital: '🏥 Hospital', bank: '🏦 Bank',
-  museum: '🏛️ Museum', castle: '🏰 Castle', church: '⛪ Church',
-  chapel: '⛪ Chapel', information: 'ℹ️ Information',
-};
+// Built on each popup so the labels follow the page language.
+function poiLabels(){
+  return {
+    restaurant: tx('🍽️ Restaurant'),
+    fast_food: tx('🍔 Fast food'),
+    cafe: tx('☕ Café'),
+    bar: tx('🍺 Bar'),
+    pub: tx('🍻 Pub'),
+    biergarten: tx('🍺 Beer garden'),
+    ice_cream: tx('🍦 Ice cream'),
+    bakery: tx('🥐 Bakery'),
+    alpine_hut: tx('🏔️ Mountain hut (rifugio)'),
+    wilderness_hut: tx('🛖 Bivouac'),
+    shelter: tx('⛺ Shelter'),
+    viewpoint: tx('👀 Viewpoint'),
+    attraction: tx('⭐ Attraction'),
+    hotel: tx('🏨 Hotel'),
+    guest_house: tx('🏡 Guest house'),
+    camp_site: tx('🏕️ Campsite'),
+    parking: tx('🅿️ Parking'),
+    bus_stop: tx('🚌 Bus stop'),
+    bus_station: tx('🚌 Bus station'),
+    station: tx('🚉 Station'),
+    drinking_water: tx('🚰 Drinking water'),
+    spring: tx('💧 Spring'),
+    peak: tx('⛰️ Peak'),
+    supermarket: tx('🛒 Supermarket'),
+    pharmacy: tx('💊 Pharmacy'),
+    hospital: tx('🏥 Hospital'),
+    bank: tx('🏦 Bank'),
+    museum: tx('🏛️ Museum'),
+    castle: tx('🏰 Castle'),
+    church: tx('⛪ Church'),
+    chapel: tx('⛪ Chapel'),
+    information: tx('ℹ️ Information'),
+  };
+}
 
 function poiLabel(props){
   const key = props.subclass || props.class || '';
-  if (POI_LABELS[key]) return POI_LABELS[key];
-  if (!key) return '📍 Place';
+  const labels = poiLabels();
+  if (labels[key]) return labels[key];
+  if (!key) return tx('📍 Place');
   const pretty = String(key).replace(/_/g, ' ');
   return '📍 ' + pretty.charAt(0).toUpperCase() + pretty.slice(1);
 }
@@ -94,12 +125,12 @@ function buildDetailLines(tags){
   if (phone) html += `<br>📞 <a href="tel:${escHtml(String(phone).replace(/\s/g,''))}">${escHtml(phone)}</a>`;
   const site = tags.website || tags['contact:website'] || tags.url;
   if (site && /^https?:\/\//.test(site))
-    html += `<br>🔗 <a href="${escHtml(site)}" target="_blank" rel="noopener">Website</a>`;
+    html += `<br>🔗 <a href="${escHtml(site)}" target="_blank" rel="noopener">${tx('Website')}</a>`;
   if (tags.cuisine)
     html += `<br>🍴 ${escHtml(String(tags.cuisine).split(';').join(', ').replace(/_/g,' '))}`;
-  if (tags.dog === 'yes') html += `<br>🐕 Dogs welcome`;
-  else if (tags.dog === 'leashed') html += `<br>🦮 Dogs on leash`;
-  else if (tags.dog === 'no') html += `<br>🚫 No dogs`;
+  if (tags.dog === 'yes') html += `<br>🐕 ${tx('Dogs welcome')}`;
+  else if (tags.dog === 'leashed') html += `<br>🦮 ${tx('Dogs on leash')}`;
+  else if (tags.dog === 'no') html += `<br>🚫 ${tx('No dogs')}`;
   // e.g. "it:Lago di Braies" → link to Italian Wikipedia article
   if (tags.wikipedia && /^[a-z]{2,3}:./.test(tags.wikipedia)){
     const [lang, ...title] = tags.wikipedia.split(':');
@@ -158,7 +189,7 @@ function makeBasemapPoisClickable(map){
     // basic popup immediately with a quiet loading hint, then update the
     // popup in place when (if) details arrive.
     popup.setHTML(baseHtml
-      + `<div style="margin-top:4px;font-size:11px;color:#8b8578;font-style:italic;">looking up details…</div>`
+      + `<div style="margin-top:4px;font-size:11px;color:#8b8578;font-style:italic;">${tx('looking up details…')}</div>`
       + footer);
 
     fetchOsmDetails(name, lng, lat).then(tags => {

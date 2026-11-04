@@ -1,0 +1,12 @@
+// valdisole-marilleva-1400-malga-alta-di-fazzon in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A forest walk from Marilleva 1400 along the hillside to the farm at Malga Alta di Fazzon and down to the Lago dei Caprioli. The APT lists 4.4 km, 211 m of ascent and 352 m of descent, one way.": "Una camminata nel bosco da Marilleva 1400 lungo il versante fino all'azienda agricola di Malga Alta di Fazzon e giù fino al Lago dei Caprioli. L'APT indica 4,4 km, 211 m di dislivello in salita e 352 m di discesa, solo andata.",
+  "Start at the car park in front of the church at Marilleva 1400 (the cable car from Marilleva 900 is closed in summer): 4.4 km, about 210 m up and 350 m down to the lake, two hours one way, then back the same way. Keep your dog on a lead all the way, and on a short one around the farm animals at Malga Alta.": "Parti dal parcheggio davanti alla chiesa di Marilleva 1400 (la funivia da Marilleva 900 è chiusa in estate): 4,4 km, circa 210 m in salita e 350 m in discesa fino al lago, due ore solo andata, poi ritorno per la stessa via. Tieni il cane al guinzaglio per tutto il percorso, e al guinzaglio corto vicino agli animali di Malga Alta.",
+  "The Sentiero delle coste is a mountain path with roots and stones": "Il Sentiero delle coste è un sentiero di montagna con radici e sassi",
+  "Farm animals at Malga Alta di Fazzon: cows, goats, sheep and pigs in summer": "Animali alla Malga Alta di Fazzon: mucche, capre, pecore e maiali in estate",
+  "Cobbled and gravel stretches at Marilleva 1400": "Tratti acciottolati e sterrati a Marilleva 1400",
+  "Mountain path, forest road and cobbled lanes": "Sentiero di montagna, strada forestale e stradine acciottolate",
+  "Marilleva 1400, by the church car park, the APT’s start": "Marilleva 1400, presso il parcheggio della chiesa, partenza indicata dall'APT",
+  "Lago dei Caprioli mirror-still in autumn, golden larches and dark spruces reflected in blue water, a wooden hut on the far shore and snowy peaks in the distance": "Il Lago dei Caprioli immobile come uno specchio in autunno, larici dorati e scuri abeti rossi riflessi nell'acqua azzurra, una baita di legno sulla riva opposta e cime innevate in lontananza",
+  "Mostly shaded: about 87% runs under trees, with open pasture at the malga.": "Per lo più all'ombra: circa l'87% corre sotto gli alberi, con pascolo aperto alla malga."
+});

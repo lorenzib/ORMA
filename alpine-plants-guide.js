@@ -1,46 +1,93 @@
 (function(global){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
+  // The catalogue and its photos sit beside this script, not beside the page:
+  // the guide is also served one folder deeper, as the Italian copy in /it/.
+  const SCRIPT_URL = (typeof document !== 'undefined' && document.currentScript && document.currentScript.src) || '';
+  const fromSite = path => (SCRIPT_URL ? new URL(path, SCRIPT_URL).href : '../' + path);
+  // Photo paths in the catalogue are written for guides/, where the English page lives.
+  const photoUrl = src => (SCRIPT_URL && src && !/^[a-z]+:|^\//i.test(src) ? new URL(src, new URL('guides/', SCRIPT_URL)).href : src);
+
   const PRESENTATION = {
-    safe:{ label:'Low concern', groupTitle:'Safe to pass, not to eat', icon:'shield', tone:'safe', meaning:'No known poisoning risk from normal proximity or sniffing. This does not mean edible.' },
-    caution:{ label:'In-between', groupTitle:'Avoid chewing or contact', icon:'triangle', tone:'caution', meaning:'Prevent chewing, ingestion or irritating contact.' },
-    dangerous:{ label:'Toxic if eaten', groupTitle:'Toxic if eaten', icon:'octagon', tone:'dangerous', meaning:'Prevent chewing and keep fallen berries, seeds, bulbs and cuttings out of reach.' },
+    safe:{ label:tx('Low concern'), groupTitle:tx('Safe to pass, not to eat'), icon:'shield', tone:'safe', meaning:tx('No known poisoning risk from normal proximity or sniffing. This does not mean edible.') },
+    caution:{ label:tx('In-between'), groupTitle:tx('Avoid chewing or contact'), icon:'triangle', tone:'caution', meaning:tx('Prevent chewing, ingestion or irritating contact.') },
+    dangerous:{ label:tx('Toxic if eaten'), groupTitle:tx('Toxic if eaten'), icon:'octagon', tone:'dangerous', meaning:tx('Prevent chewing and keep fallen berries, seeds, bulbs and cuttings out of reach.') },
   };
   const HABITATS = {
-    meadow:{ label:'Meadow / pasture', pattern:/meadow|pasture|grassland|lawn|field/i },
-    woodland:{ label:'Woodland / edge', pattern:/wood|forest|hedge|scrub|edge|shade/i },
-    wet:{ label:'Wet / streamside', pattern:/wet|stream|marsh|damp|river|water|moist/i },
-    rocky:{ label:'Rocky / dry', pattern:/rock|scree|dry|wall|alpine turf|slope/i },
-    village:{ label:'Village / garden', pattern:/garden|village|roadside|park|ornamental|settlement/i },
+    meadow:{ label:tx('Meadow / pasture'), pattern:/meadow|pasture|grassland|lawn|field/i },
+    woodland:{ label:tx('Woodland / edge'), pattern:/wood|forest|hedge|scrub|edge|shade/i },
+    wet:{ label:tx('Wet / streamside'), pattern:/wet|stream|marsh|damp|river|water|moist/i },
+    rocky:{ label:tx('Rocky / dry'), pattern:/rock|scree|dry|wall|alpine turf|slope/i },
+    village:{ label:tx('Village / garden'), pattern:/garden|village|roadside|park|ornamental|settlement/i },
   };
-  const MONTH_INITIALS = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
-  const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const MONTHS = [tx('January'), tx('February'), tx('March'), tx('April'), tx('May'), tx('June'), tx('July'), tx('August'), tx('September'), tx('October'), tx('November'), tx('December')];
+  // Initials follow the month names, so they stay right in every language.
+  const MONTH_INITIALS = MONTHS.map(name => name.charAt(0));
+  const SEASON_LABELS = { winter:tx('Winter'), spring:tx('Spring'), summer:tx('Summer'), autumn:tx('Autumn') };
   const SEARCH_SYNONYMS = {
     fruit:['fruit', 'berry', 'berries', 'aril', 'arils', 'hip', 'hips'],
     berry:['berry', 'berries', 'fruit', 'aril', 'arils', 'hip', 'hips'],
     berries:['berry', 'berries', 'fruit', 'aril', 'arils', 'hip', 'hips'],
     purple:['purple', 'violet', 'lilac'],
+    frutto:['frutt', 'bacc', 'arill', 'cinorrod'],
+    frutti:['frutt', 'bacc', 'arill', 'cinorrod'],
+    bacca:['bacc', 'frutt', 'arill', 'cinorrod'],
+    bacche:['bacc', 'frutt', 'arill', 'cinorrod'],
+    viola:['viola', 'violett', 'lilla'],
   };
+
+  // The catalogue is written in English; the Italian page swaps each text field
+  // for its translation from data/alpine-plants-it.json (keyed by the English).
+  // Codes used for filtering and sorting (ids, safety, severity, season, months)
+  // stay as they are, and habitat facets keep reading the English habitats.
+  const TEXT_FIELDS = ['commonName', 'summary', 'ingestionRisk', 'elevation', 'dogSafety', 'avoid', 'interestingFact'];
+  const LIST_FIELDS = ['aliases', 'habitats', 'identification', 'lookalikes', 'symptoms', 'monitor', 'actionIfIngested'];
+
+  function pageLang(){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(i18n && i18n.lang) return i18n.lang;
+    return (typeof document !== 'undefined' && document.documentElement.getAttribute('data-orma-lang')) || 'en';
+  }
+
+  function localizePlant(plant, dictionary){
+    if(!plant || !dictionary) return plant;
+    const say = text => (typeof text === 'string' && Object.prototype.hasOwnProperty.call(dictionary, text) ? dictionary[text] : text);
+    const localized = { ...plant, habitatsEn:plant.habitatsEn || plant.habitats };
+    TEXT_FIELDS.forEach(field => { if(typeof plant[field] === 'string') localized[field] = say(plant[field]); });
+    LIST_FIELDS.forEach(field => { if(Array.isArray(plant[field])) localized[field] = plant[field].map(say); });
+    if(Array.isArray(localized.aliases)){
+      localized.aliases = localized.aliases.filter((alias, index, list) => alias !== localized.commonName && list.indexOf(alias) === index);
+    }
+    if(plant.image) localized.image = { ...plant.image, alt:say(plant.image.alt) };
+    return localized;
+  }
   const AVOID_COPY = {
-    'common-yarrow':'Do not let your dog graze the flower heads or leaves.',
-    'wild-rose':'Keep your dog out of thorny growth and discourage eating hips or foliage.',
-    'hens-and-chicks':'Discourage chewing, even though this plant is classed as non-toxic.',
-    'buttercup':'Do not let your dog chew fresh flowers, leaves or stems.',
-    'stinging-nettle':'Avoid face, eye, paw and bare-skin contact with the stinging hairs.',
-    'monkshood':'Do not let your dog chew or lick any part of the plant.',
-    'autumn-crocus':'Keep your dog away from flowers, leaves, seeds and bulbs.',
-    'alpine-rhododendron':'Do not allow chewing of flowers, leaves or woody stems.',
-    'foxglove':'Do not let your dog chew any part, including fallen flowers and leaves.',
-    'lily-of-the-valley':'Prevent chewing of leaves, flowers, berries and underground stems.',
-    'european-yew':'Keep your dog from needles, twigs, seeds, red arils and hedge clippings.',
-    'daffodil':'Prevent chewing and digging; bulbs carry the greatest concentration of toxin.',
-    'arum':'Keep your dog from biting the leaves, flower or bright berry spike.',
-    'spring-crocus':'Prevent grazing and digging; an uncertain crocus-like plant should be treated cautiously.',
-    'alpine-cyclamen':'Prevent chewing and digging; the underground tuber carries the greatest risk.',
-    'roman-chamomile':'Do not let your dog graze the flowers or foliage.',
-    'golden-cinquefoil':'Discourage grazing even though cinquefoil is classed as non-toxic.',
-    'fireweed':'Discourage eating large amounts of flowers or foliage.',
-    'cornflower':'Discourage grazing and do not assume every blue flower is cornflower.',
+    'common-yarrow':tx('Do not let your dog graze the flower heads or leaves.'),
+    'wild-rose':tx('Keep your dog out of thorny growth and discourage eating hips or foliage.'),
+    'hens-and-chicks':tx('Discourage chewing, even though this plant is classed as non-toxic.'),
+    'buttercup':tx('Do not let your dog chew fresh flowers, leaves or stems.'),
+    'stinging-nettle':tx('Avoid face, eye, paw and bare-skin contact with the stinging hairs.'),
+    'monkshood':tx('Do not let your dog chew or lick any part of the plant.'),
+    'autumn-crocus':tx('Keep your dog away from flowers, leaves, seeds and bulbs.'),
+    'alpine-rhododendron':tx('Do not allow chewing of flowers, leaves or woody stems.'),
+    'foxglove':tx('Do not let your dog chew any part, including fallen flowers and leaves.'),
+    'lily-of-the-valley':tx('Prevent chewing of leaves, flowers, berries and underground stems.'),
+    'european-yew':tx('Keep your dog from needles, twigs, seeds, red arils and hedge clippings.'),
+    'daffodil':tx('Prevent chewing and digging; bulbs carry the greatest concentration of toxin.'),
+    'arum':tx('Keep your dog from biting the leaves, flower or bright berry spike.'),
+    'spring-crocus':tx('Prevent grazing and digging; an uncertain crocus-like plant should be treated cautiously.'),
+    'alpine-cyclamen':tx('Prevent chewing and digging; the underground tuber carries the greatest risk.'),
+    'roman-chamomile':tx('Do not let your dog graze the flowers or foliage.'),
+    'golden-cinquefoil':tx('Discourage grazing even though cinquefoil is classed as non-toxic.'),
+    'fireweed':tx('Discourage eating large amounts of flowers or foliage.'),
+    'cornflower':tx('Discourage grazing and do not assume every blue flower is cornflower.'),
   };
 
   function escapeHtml(value){
@@ -54,7 +101,7 @@
   }
 
   function habitatFacets(plant){
-    const source = (plant.habitats || []).join(' ');
+    const source = (plant.habitatsEn || plant.habitats || []).join(' ');
     return Object.keys(HABITATS).filter(key => HABITATS[key].pattern.test(source));
   }
 
@@ -103,33 +150,33 @@
 
   function floweringMonths(values){
     const months = (values || []).map(value => MONTHS[Number(value) - 1]).filter(Boolean);
-    return months.length ? months.join(', ') : 'Varies / not applicable';
+    return months.length ? months.join(', ') : tx('Varies / not applicable');
   }
 
   // Plain-language reading of the catalogue's severity field.
   const SEVERITY = {
-    critical:{ label:'If eaten: emergency', tone:'dangerous' },
-    high:{ label:'If eaten: serious', tone:'dangerous' },
-    moderate:{ label:'If eaten: moderate', tone:'caution' },
-    low:{ label:'If eaten: mild', tone:'safe' },
+    critical:{ label:tx('If eaten: emergency'), tone:'dangerous' },
+    high:{ label:tx('If eaten: serious'), tone:'dangerous' },
+    moderate:{ label:tx('If eaten: moderate'), tone:'caution' },
+    low:{ label:tx('If eaten: mild'), tone:'safe' },
   };
 
   function monthBar(plant){
     const flowering = new Set(plant.floweringMonths || []);
     const cells = MONTH_INITIALS.map((initial, index) => `<li class="${flowering.has(index + 1) ? 'is-on' : ''}"><span>${initial}</span></li>`).join('');
-    return `<ol class="apg-months apg-months--${PRESENTATION[plant.safety].tone}" aria-label="Flowers in ${escapeHtml(floweringMonths(plant.floweringMonths))}">${cells}</ol>`;
+    return `<ol class="apg-months apg-months--${PRESENTATION[plant.safety].tone}" aria-label="${tx('Flowers in {months}', { months:escapeHtml(floweringMonths(plant.floweringMonths)) })}">${cells}</ol>`;
   }
 
   function plantCard(plant, month){
     const status = PRESENTATION[plant.safety];
     const image = plant.image && plant.image.src
-      ? `<figure class="apg-image"><img src="${escapeHtml(plant.image.src)}" alt="${escapeHtml(plant.image.alt)}" loading="lazy"><details class="apg-photo-credit"><summary aria-label="Show photo credit" title="Photo credit">C</summary><div>Photo: <a href="${escapeHtml(plant.image.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(plant.image.credit)}</a> · ${escapeHtml(plant.image.license)}</div></details></figure>`
-      : '<div class="apg-image apg-image--missing" aria-label="No botanically verified image is available"><span aria-hidden="true">⌁</span><b>Verified image pending</b><small>Use the visible identification features below.</small></div>';
+      ? `<figure class="apg-image"><img src="${escapeHtml(plant.image.src)}" alt="${escapeHtml(plant.image.alt)}" loading="lazy"><details class="apg-photo-credit"><summary aria-label="${tx('Show photo credit')}" title="${tx('Photo credit')}">C</summary><div>${tx('Photo:')} <a href="${escapeHtml(plant.image.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(plant.image.credit)}</a> · ${escapeHtml(plant.image.license)}</div></details></figure>`
+      : `<div class="apg-image apg-image--missing" aria-label="${tx('No botanically verified image is available')}"><span aria-hidden="true">⌁</span><b>${tx('Verified image pending')}</b><small>${tx('Use the visible identification features below.')}</small></div>`;
     const avoid = plant.avoid || AVOID_COPY[plant.id] || plant.summary;
     const monitor = (plant.monitor || plant.symptoms || []).slice(0, 5).join(', ');
     const expandButton = plant.image && plant.image.src
-      ? `<button class="apg-photo-expand" type="button" data-plant-image="${escapeHtml(plant.image.src)}" data-plant-alt="${escapeHtml(plant.image.alt)}" aria-label="Expand ${escapeHtml(plant.commonName)} photograph">${expandIcon()}</button>` : '';
-    const flowering = inFlower(plant, month) ? `<span class="apg-in-flower">In flower in ${MONTHS[Number(month) - 1]}</span>` : '';
+      ? `<button class="apg-photo-expand" type="button" data-plant-image="${escapeHtml(plant.image.src)}" data-plant-alt="${escapeHtml(plant.image.alt)}" aria-label="${tx('Expand {name} photograph', { name:escapeHtml(plant.commonName) })}">${expandIcon()}</button>` : '';
+    const flowering = inFlower(plant, month) ? `<span class="apg-in-flower">${tx('In flower in {month}', { month:MONTHS[Number(month) - 1] })}</span>` : '';
     const detailId = `plant-more-${escapeHtml(plant.id)}`;
     const identification = (plant.identification || []).slice(0, 3).map(line => `<li>${escapeHtml(line)}</li>`).join('');
     const lookalike = (plant.lookalikes || [])[0];
@@ -144,23 +191,23 @@
         ${flowering}
         <h2>${escapeHtml(plant.commonName)}</h2>
         <p class="apg-scientific"><i>${escapeHtml(plant.scientificName)}</i></p>
-        <p class="apg-dog-rule"><b>Avoid:</b> ${escapeHtml(avoid)}</p>
-        <button class="apg-more" type="button" aria-expanded="false" aria-controls="${detailId}"><span>How to recognise it</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <p class="apg-dog-rule"><b>${tx('Avoid:')}</b> ${escapeHtml(avoid)}</p>
+        <button class="apg-more" type="button" aria-expanded="false" aria-controls="${detailId}"><span>${tx('How to recognise it')}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
       </div>
       <div class="apg-card-more" id="${detailId}" hidden>
         <div class="apg-more-col">
-          <p class="apg-facts">${severity ? `<span class="apg-fact-pill apg-fact-pill--${severity.tone}">${severity.label}</span>` : ''}<span class="apg-fact-pill">${plant.proximitySafe === false ? 'Avoid touching it too' : 'Safe to walk past'}</span></p>
-          ${plant.ingestionRisk ? `<h3>Why it matters</h3><p>${escapeHtml(plant.ingestionRisk)}</p>` : ''}
-          ${identification ? `<h3>Look for</h3><ul>${identification}</ul>` : ''}
-          ${lookalike ? `<h3>Can be confused with</h3><p>${escapeHtml(lookalike)}</p>` : ''}
-          ${aliases ? `<h3>Also called</h3><p>${aliases}</p>` : ''}
+          <p class="apg-facts">${severity ? `<span class="apg-fact-pill apg-fact-pill--${severity.tone}">${severity.label}</span>` : ''}<span class="apg-fact-pill">${plant.proximitySafe === false ? tx('Avoid touching it too') : tx('Safe to walk past')}</span></p>
+          ${plant.ingestionRisk ? `<h3>${tx('Why it matters')}</h3><p>${escapeHtml(plant.ingestionRisk)}</p>` : ''}
+          ${identification ? `<h3>${tx('Look for')}</h3><ul>${identification}</ul>` : ''}
+          ${lookalike ? `<h3>${tx('Can be confused with')}</h3><p>${escapeHtml(lookalike)}</p>` : ''}
+          ${aliases ? `<h3>${tx('Also called')}</h3><p>${aliases}</p>` : ''}
         </div>
         <div class="apg-more-col">
-          ${habitats ? `<h3>Where it grows</h3><p>${habitatsText}${plant.elevation ? `. ${escapeHtml(plant.elevation)}` : ''}.</p>` : ''}
-          <h3>Flowers</h3>${monthBar(plant)}
-          <p class="apg-monitor"><b>Monitor for:</b> ${escapeHtml(monitor || 'persistent vomiting, diarrhoea or unusual behaviour after chewing plant material')}.</p>
-          ${plant.interestingFact ? `<p class="apg-fact"><b>Did you know?</b> ${escapeHtml(plant.interestingFact)}</p>` : ''}
-          ${source ? `<p class="apg-source">Source: <a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a></p>` : ''}
+          ${habitats ? `<h3>${tx('Where it grows')}</h3><p>${habitatsText}${plant.elevation ? `. ${escapeHtml(plant.elevation)}` : ''}.</p>` : ''}
+          <h3>${tx('Flowers')}</h3>${monthBar(plant)}
+          <p class="apg-monitor"><b>${tx('Monitor for:')}</b> ${escapeHtml(monitor || tx('persistent vomiting, diarrhoea or unusual behaviour after chewing plant material'))}.</p>
+          ${plant.interestingFact ? `<p class="apg-fact"><b>${tx('Did you know?')}</b> ${escapeHtml(plant.interestingFact)}</p>` : ''}
+          ${source ? `<p class="apg-source">${tx('Source:')} <a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a></p>` : ''}
         </div>
       </div>
     </article>`;
@@ -191,8 +238,8 @@
     let activeExpandTrigger = null;
     const lightbox = document.createElement('dialog');
     lightbox.className = 'apg-lightbox';
-    lightbox.setAttribute('aria-label', 'Expanded plant photograph');
-    lightbox.innerHTML = `<div class="apg-lightbox__panel"><img class="apg-lightbox__image" alt=""><button class="apg-lightbox__close" type="button" aria-label="Close expanded photograph">${collapseIcon()}</button></div>`;
+    lightbox.setAttribute('aria-label', tx('Expanded plant photograph'));
+    lightbox.innerHTML = `<div class="apg-lightbox__panel"><img class="apg-lightbox__image" alt=""><button class="apg-lightbox__close" type="button" aria-label="${tx('Close expanded photograph')}">${collapseIcon()}</button></div>`;
     document.body.append(lightbox);
 
     function closeLightbox(){
@@ -215,7 +262,7 @@
       const panel = document.getElementById(button.getAttribute('aria-controls'));
       const open = button.getAttribute('aria-expanded') !== 'true';
       button.setAttribute('aria-expanded', String(open));
-      button.querySelector('span').textContent = open ? 'Show less' : 'How to recognise it';
+      button.querySelector('span').textContent = open ? tx('Show less') : tx('How to recognise it');
       panel.hidden = !open;
       card.classList.toggle('is-open', open);
     }
@@ -243,7 +290,7 @@
     function renderControls(){
       const others = key => plants.filter(plant => matches(plant, { ...state, [key]:'' }));
       const bySafety = others('safety');
-      controls.safety.innerHTML = [['', 'All plants'], ['dangerous', PRESENTATION.dangerous.label], ['caution', PRESENTATION.caution.label], ['safe', PRESENTATION.safe.label]]
+      controls.safety.innerHTML = [['', tx('All plants')], ['dangerous', PRESENTATION.dangerous.label], ['caution', PRESENTATION.caution.label], ['safe', PRESENTATION.safe.label]]
         .map(([key, label]) => {
           const count = bySafety.filter(plant => !key || plant.safety === key).length;
           return `<button type="button" data-plant-safety="${key}" aria-pressed="${state.safety === key}">${key ? `<span class="apg-dot apg-dot--${PRESENTATION[key].tone}" aria-hidden="true"></span>` : ''}${label} <small>${count}</small></button>`;
@@ -254,11 +301,11 @@
         return `<i class="apg-bar apg-bar--${PRESENTATION[safety].tone}" style="height:${count ? Math.min(34, 4 + count * 4) : 0}px"></i>`;
       };
       const thisMonth = new Date().getMonth() + 1;
-      controls.months.innerHTML = `<button type="button" class="apg-month apg-month--any" data-plant-month="" aria-pressed="${!state.month}">Any time</button>` +
+      controls.months.innerHTML = `<button type="button" class="apg-month apg-month--any" data-plant-month="" aria-pressed="${!state.month}">${tx('Any time')}</button>` +
         MONTHS.map((name, index) => {
           const month = index + 1;
           const flowering = byMonth.filter(plant => inFlower(plant, month));
-          return `<button type="button" class="apg-month${month === thisMonth ? ' is-now' : ''}" data-plant-month="${month}" aria-pressed="${String(state.month) === String(month)}" aria-label="${name}: ${flowering.length} plants in flower"><span class="apg-bars" aria-hidden="true">${bar(flowering, 'dangerous')}${bar(flowering, 'caution')}${bar(flowering, 'safe')}</span>${name.slice(0, 3)}</button>`;
+          return `<button type="button" class="apg-month${month === thisMonth ? ' is-now' : ''}" data-plant-month="${month}" aria-pressed="${String(state.month) === String(month)}" aria-label="${tx('{month}: {count} plants in flower', { month:name, count:flowering.length })}"><span class="apg-bars" aria-hidden="true">${bar(flowering, 'dangerous')}${bar(flowering, 'caution')}${bar(flowering, 'safe')}</span>${name.slice(0, 3)}</button>`;
         }).join('');
       const pressedMonth = controls.months.querySelector('[aria-pressed="true"]');
       if(pressedMonth && controls.months.scrollWidth > controls.months.clientWidth){
@@ -284,18 +331,20 @@
       const order = { dangerous:0, caution:1, safe:2 };
       filtered.sort((a, b) => order[a.safety] - order[b.safety] || Number(inFlower(b, state.month)) - Number(inFlower(a, state.month)) || a.commonName.localeCompare(b.commonName));
       const flowering = filtered.filter(plant => inFlower(plant, state.month)).length;
-      controls.count.textContent = `${filtered.length} ${filtered.length === 1 ? 'plant' : 'plants'}` +
-        (state.month ? ` around in ${MONTHS[state.month - 1]}, ${flowering} in flower` : '');
+      const plantCount = filtered.length === 1 ? tx('1 plant') : tx('{count} plants', { count:filtered.length });
+      controls.count.textContent = state.month
+        ? tx('{plants} around in {month}, {flowering} in flower', { plants:plantCount, month:MONTHS[state.month - 1], flowering })
+        : plantCount;
       const active = [
-        state.query && `Search: ${state.query}`,
-        state.season && state.season[0].toUpperCase() + state.season.slice(1),
+        state.query && tx('Search: {query}', { query:state.query }),
+        state.season && (SEASON_LABELS[state.season] || state.season[0].toUpperCase() + state.season.slice(1)),
       ].filter(Boolean);
       controls.active.innerHTML = active.map(value => `<span class="apg-active-chip">${escapeHtml(value)}</span>`).join('');
       controls.clear.hidden = !(active.length || state.safety || state.month || state.habitat);
       renderControls();
       controls.results.innerHTML = filtered.length
         ? `<div class="apg-grid">${filtered.map(plant => plantCard(plant, state.month)).join('')}</div>`
-        : '<div class="apg-empty"><h2>No plants match these filters</h2><p>Clear filters, and treat any unknown plant cautiously.</p><button type="button" data-clear-plants>Clear all filters</button></div>';
+        : '<div class="apg-empty"><h2>' + tx('No plants match these filters') + '</h2><p>' + tx('Clear filters, and treat any unknown plant cautiously.') + '</p><button type="button" data-clear-plants>' + tx('Clear all filters') + '</button></div>';
       const emptyClear = controls.results.querySelector('[data-clear-plants]');
       if(emptyClear) emptyClear.addEventListener('click', clearAll);
       controls.results.setAttribute('aria-busy', 'false');
@@ -325,20 +374,26 @@
     controls.clear.addEventListener('click', clearAll);
     controls.query.value = state.query;
 
-    fetch('../data/alpine-plants.json')
-      .then(response => { if(!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); })
-      .then(collection => {
-        plants = Array.isArray(collection.plants) ? collection.plants : [];
+    const fetchJson = path => fetch(fromSite(path))
+      .then(response => { if(!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); });
+    // A missing translation file leaves the catalogue in English rather than failing.
+    const translation = pageLang() === 'it' ? fetchJson('data/alpine-plants-it.json').catch(() => null) : Promise.resolve(null);
+    Promise.all([fetchJson('data/alpine-plants.json'), translation])
+      .then(([collection, dictionary]) => {
+        plants = (Array.isArray(collection.plants) ? collection.plants : []).map(plant => {
+          const localized = localizePlant(plant, dictionary && typeof dictionary === 'object' ? dictionary : null);
+          return localized && localized.image && localized.image.src ? { ...localized, image:{ ...localized.image, src:photoUrl(localized.image.src) } } : localized;
+        });
         render();
       })
       .catch(() => {
         controls.results.setAttribute('aria-busy', 'false');
-        controls.results.innerHTML = '<div class="apg-empty"><h2>The plant catalogue could not load</h2><p>The emergency guidance above remains available. Reload when you have a connection, and treat unknown plants cautiously.</p></div>';
-        controls.count.textContent = 'Plant catalogue unavailable';
+        controls.results.innerHTML = '<div class="apg-empty"><h2>' + tx('The plant catalogue could not load') + '</h2><p>' + tx('The emergency guidance above remains available. Reload when you have a connection, and treat unknown plants cautiously.') + '</p></div>';
+        controls.count.textContent = tx('Plant catalogue unavailable');
       });
   }
 
-  const api = { PRESENTATION, HABITATS, normalized, habitatFacets, matches, floweringMonths, seasonOfMonth, inFlower, stateFromUrl, plantCard };
+  const api = { PRESENTATION, HABITATS, normalized, habitatFacets, matches, floweringMonths, seasonOfMonth, inFlower, stateFromUrl, plantCard, localizePlant };
   global.DoloPawsAlpinePlants = api;
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   if(typeof document !== 'undefined'){

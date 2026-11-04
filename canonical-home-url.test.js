@@ -31,7 +31,7 @@ describe('canonical homepage URL', () => {
   test('the trail-page generator keeps regenerated navigation canonical', () => {
     const generator = fs.readFileSync(path.join(root, 'scripts/generate-trail-pages.js'), 'utf8');
     expect(generator).toContain('<a class="brand" href="/">');
-    expect(generator).toContain('href="/?view=login&amp;next=trails/${slug}.html"');
+    expect(generator).toContain('href="/?view=login&amp;next=${it ? `${IT_DIR}/` : \'\'}trails/${slug}.html"');
     expect(generator).not.toContain('href="../index.html');
   });
 });

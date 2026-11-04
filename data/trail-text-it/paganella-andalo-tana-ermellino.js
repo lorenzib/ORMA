@@ -1,0 +1,11 @@
+// paganella-andalo-tana-ermellino in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A nearly level loop from Andalo past its little lake and through the woods to the Tana dell’Ermellino at Priori. The APT lists 3.8 km and 32 m of ascent.": "Un anello quasi pianeggiante da Andalo oltre il suo laghetto e attraverso i boschi fino alla Tana dell’Ermellino ai Priori. L'APT indica 3,8 km e 32 m di dislivello in salita.",
+  "Start at the riding stables in the Andalo Life park: 3.8 km and almost level, about an hour. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Carry water: the only stop is the Tana dell’Ermellino at Priori.": "Parti dal maneggio nel parco Andalo Life: 3,8 km quasi in piano, circa un'ora. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito. Porta acqua: l'unico punto di sosta è la Tana dell’Ermellino ai Priori.",
+  "Mostly tarmac and gravel road, shared with bikes and the odd car": "Per lo più strada asfaltata e sterrata, condivisa con bici e qualche auto",
+  "The Andalo Life park and the lake shore are busy with families and horses from the riding stables": "Il parco Andalo Life e la riva del lago sono affollati di famiglie e di cavalli del maneggio",
+  "Gravel road, tarmac and a short nature path": "Strada sterrata, asfalto e un breve sentiero naturalistico",
+  "Andalo Life park, the APT’s start": "Parco Andalo Life, la partenza indicata dall'APT",
+  "A gravel path running through a mown meadow with hay bales between spruce woods, mountains and a blue sky with white clouds beyond": "Un sentiero sterrato che attraversa un prato falciato con balle di fieno tra boschi di abeti rossi, con montagne e un cielo azzurro con nuvole bianche sullo sfondo",
+  "Part shade: about 67% runs under trees, in the woods towards Priori.": "In parte all'ombra: circa il 67% passa sotto gli alberi, nei boschi verso i Priori."
+});

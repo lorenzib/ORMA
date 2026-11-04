@@ -1,0 +1,10 @@
+// osttirol-spazierweg-kreuzweg in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "A short loop from the centre of Matrei in Osttirol up the Stations of the Cross to the old hamlet and chapel of Klaunz above the parish church. The board lists 3 km and 130 m of ascent.": "Un breve anello dal centro di Matrei in Osttirol lungo la Via Crucis fino all'antica frazione e alla cappella di Klaunz sopra la chiesa parrocchiale. La scheda ufficiale indica 3 km e 130 m di dislivello in salita.",
+  "Start at the Rauterplatz in the centre of Matrei in Osttirol: 3 km and about 130 m of climbing, an hour. Most of the loop is on village lanes, so keep your dog on a lead throughout. Carry a muzzle for buses and lifts.": "Parti dalla Rauterplatz nel centro di Matrei in Osttirol: 3 km e circa 130 m di dislivello in salita, un'ora. Gran parte dell'anello è su stradine di paese, quindi tieni il cane al guinzaglio per tutto il percorso. Porta la museruola al seguito per autobus e impianti.",
+  "Village lanes with some traffic, and a short stretch beside the Felbertauern road bridge on the way back: keep your dog close": "Stradine di paese con un po' di traffico e un breve tratto accanto al ponte della strada del Felbertauern al ritorno: tieni il cane vicino a te",
+  "Village lanes and a wide gravel track up to the Klaunz chapel": "Stradine di paese e un'ampia strada sterrata che sale alla cappella di Klaunz",
+  "the Rauterplatz in the centre of Matrei in Osttirol, the board’s start": "La Rauterplatz nel centro di Matrei in Osttirol, la partenza indicata dalla scheda ufficiale",
+  "Farmhouses on a green meadow at Klaunz above Matrei in Osttirol, with forested slopes and a rocky peak in cloud behind": "Masi su un prato verde a Klaunz sopra Matrei in Osttirol, con pendii boscosi e una cima rocciosa tra le nuvole alle spalle",
+  "Mostly open: village lanes and meadows at Klaunz, with a little woodland on the climb to the chapel.": "Per lo più aperto: stradine di paese e prati a Klaunz, con un po' di bosco nella salita alla cappella."
+});

@@ -1,6 +1,13 @@
 (function(global){
   'use strict';
 
+  // Script-written wording goes through i18n.js; the English sentence is its own key.
+  function tx(text, vars){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
+    return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
+  }
+
   const VERSION = '5.24.0';
   const SCRIPT_URL = `https://unpkg.com/maplibre-gl@${VERSION}/dist/maplibre-gl.js`;
   const STYLE_URL = `https://unpkg.com/maplibre-gl@${VERSION}/dist/maplibre-gl.css`;
@@ -109,7 +116,7 @@
         })
         .catch(error => {
           target.dataset.mapState = 'error';
-          target.setAttribute('aria-label', 'Map unavailable. Trail details remain available below.');
+          target.setAttribute('aria-label', tx('Map unavailable. Trail details remain available below.'));
           console.error('ORMA map failed to initialise:', error);
           return null;
         });

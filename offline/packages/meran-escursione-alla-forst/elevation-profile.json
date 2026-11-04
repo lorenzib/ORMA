@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "meran-escursione-alla-forst",
+  "distanceKm": 8.1,
+  "ascentM": 295,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 349
+    },
+    {
+      "km": 0.6,
+      "elev": 358
+    },
+    {
+      "km": 1.2,
+      "elev": 375
+    },
+    {
+      "km": 1.9,
+      "elev": 408
+    },
+    {
+      "km": 2.5,
+      "elev": 480
+    },
+    {
+      "km": 3.1,
+      "elev": 588
+    },
+    {
+      "km": 3.7,
+      "elev": 574
+    },
+    {
+      "km": 4.3,
+      "elev": 478
+    },
+    {
+      "km": 4.9,
+      "elev": 433
+    },
+    {
+      "km": 5.6,
+      "elev": 527
+    },
+    {
+      "km": 6.2,
+      "elev": 414
+    },
+    {
+      "km": 6.8,
+      "elev": 384
+    },
+    {
+      "km": 7.4,
+      "elev": 362
+    },
+    {
+      "km": 8,
+      "elev": 346
+    },
+    {
+      "km": 8.1,
+      "elev": 349
+    }
+  ]
+}
