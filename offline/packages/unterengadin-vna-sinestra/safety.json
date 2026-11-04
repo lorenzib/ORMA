@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "unterengadin-vna-sinestra",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 3.8,
+    "ascentM": 77,
+    "highestPointM": 1658,
+    "expectedDuration": "1.25 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 49
+  },
+  "trailhead": {
+    "lat": 46.84263,
+    "lng": 10.365298,
+    "label": "Vnà, by the Jalmèr PostBus stop, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A descent of 174 m into Val Sinestra: take it slowly with older dogs.",
+    "A short stretch on the road at the end of the valley: lead short.",
+    "Cows may graze the meadows above Vnà: lead short and go round the herd.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

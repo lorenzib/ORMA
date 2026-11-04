@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "unterengadin-vna-ramosch-via-veglia",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 2,
+    "ascentM": 0,
+    "highestPointM": 1643,
+    "expectedDuration": "0.75 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 12
+  },
+  "trailhead": {
+    "lat": 46.84263,
+    "lng": 10.365298,
+    "label": "Vnà, by the PostBus stop, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A steep descent of 385 m in 2 km: take it slowly with older dogs.",
+    "A short stretch on the Ramosch–Vnà road: lead short and keep to the side.",
+    "Cows may graze the meadows near the farm: lead short and go round the herd.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

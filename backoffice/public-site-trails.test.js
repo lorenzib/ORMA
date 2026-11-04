@@ -209,8 +209,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 476 and 474 with four Val Poschiavo walks: Alp Grüm down to Cavaglia via
     // Stablini and via Lagh da Palü, the Lago di Poschiavo loop from Le Prese, and
     // the Lago Bianco loop on the Bernina Pass.
-    expect(catalogue).toHaveLength(476);
-    expect(currentSiteTrails(catalogue)).toHaveLength(474);
+    // Then 482 and 480 with six Lower Engadin walks: Vnà to Ramosch and to Val
+    // Sinestra, Scuol to Ftan, Guarda to Ardez, S-charl to Alp Sesvenna and back,
+    // and Zernez to Brail.
+    expect(catalogue).toHaveLength(482);
+    expect(currentSiteTrails(catalogue)).toHaveLength(480);
   });
 
   test('requires the artwork the public trail page needs',()=>{
