@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "seiseralm-compatsch-wiedner-eck",
+  "distanceKm": 6.9,
+  "ascentM": 138,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1849
+    },
+    {
+      "km": 0.5,
+      "elev": 1834
+    },
+    {
+      "km": 1.1,
+      "elev": 1848
+    },
+    {
+      "km": 1.6,
+      "elev": 1865
+    },
+    {
+      "km": 2.1,
+      "elev": 1864
+    },
+    {
+      "km": 2.6,
+      "elev": 1870
+    },
+    {
+      "km": 3.2,
+      "elev": 1898
+    },
+    {
+      "km": 3.7,
+      "elev": 1903
+    },
+    {
+      "km": 4.2,
+      "elev": 1945
+    },
+    {
+      "km": 4.7,
+      "elev": 1970
+    },
+    {
+      "km": 5.3,
+      "elev": 1967
+    },
+    {
+      "km": 5.8,
+      "elev": 1916
+    },
+    {
+      "km": 6.3,
+      "elev": 1856
+    },
+    {
+      "km": 6.8,
+      "elev": 1841
+    },
+    {
+      "km": 6.9,
+      "elev": 1849
+    }
+  ]
+}
