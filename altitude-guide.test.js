@@ -44,6 +44,17 @@ describe('altitude health and safety guide', () => {
     expect(document.querySelector('.alt-medication')).toBeNull();
   });
 
+  test('gives each warning point its own icon row and repeats them in the quick summary', () => {
+    const items = document.querySelectorAll('.alt-warning-note .alt-warning-item');
+    expect(items).toHaveLength(2);
+    items.forEach((item) => {
+      expect(item.querySelector('svg.alt-warning-icon[aria-hidden="true"]')).not.toBeNull();
+      expect(item.querySelector('p > b')).not.toBeNull();
+    });
+    expect(document.querySelector('.guide-quick').textContent).toMatch(/Ask your vet first/i);
+    expect(document.querySelector('.guide-quick').textContent).toMatch(/Never give human medication/i);
+  });
+
   test('includes pre-trip veterinary flags and conservative first-day planning', () => {
     const page = document.querySelector('main').textContent;
     expect(page).toMatch(/heart or lung disease/i);
