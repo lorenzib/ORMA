@@ -5722,18 +5722,18 @@
     },
     {
       "id": "osm-9511973",
-      "approvedReviewId": "commons-osm-9511973",
-      "approvedAt": "2026-09-06T10:50:15.084Z",
+      "approvedReviewId": "commons-osm-9511973-on-route",
+      "approvedAt": "2026-11-05T18:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-9511973-commons.jpg",
-        "heroImage": "images/trails/osm-9511973-commons.jpg",
-        "imageAlt": "Walkers crossing the Armentara meadows in Alta Badia",
-        "imageCredit": "Escursioni nei prati",
-        "imageCreditText": "Escursioni nei prati by MartiSorg",
-        "imageCreator": "MartiSorg",
+        "imageIcon": "images/trails/osm-9511973-armentara-sas-dla-crusc.jpg",
+        "heroImage": "images/trails/osm-9511973-armentara-sas-dla-crusc.jpg",
+        "imageAlt": "A gravel track running past old wooden hay barns on the green Armentara meadows, larch and spruce wood behind and the snow-streaked cliffs of Sas dla Crusc above, early June.",
+        "imageCredit": "Prati dell'Armentara, Val Badia",
+        "imageCreditText": "Prati dell'Armentara, Val Badia by FranTN",
+        "imageCreator": "FranTN",
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Escursioni_nei_prati.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Prati_dell%27Armentara,_Val_Badia._Sullo_sfondo_il_Sas_dla_Crusc.jpg",
         "imageSourceType": "licensed-source"
       }
     },

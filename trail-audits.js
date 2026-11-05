@@ -10478,6 +10478,86 @@
       ],
       desc: 'A woodland loop above Pedraces in Badia linking two small lakes: up past the Runch farm to the forest lake Lech Dlà Lunch, down path 10A to Lech da Sompunt below the Sasso di Santa Croce, and back through the hamlets of Paracia and Ciaminades. The official route lists 7.6 km and 278 m of ascent.'
     },
+    'osm-9511973': {
+      // Hand audit: 5 November 2026. The Alta Badia tourist board’s “From Badia through the Armentara
+      // meadows”, the same loop as relation 9511973. The published line was an open 13.4 km copy of the
+      // relation drawn the wrong way round; the routeLine override in data/verified-trail-overrides.json
+      // now carries the relation reversed to run the board’s way, closed at the Badia start.
+      // Communes: Badia (own dog regulation, lead and muzzle) and La Val (no regulation, national rule).
+      // Natura 2000: IT3110048 Prati dell’Armentara on the upper meadows (no dog rule in its 2025 measures).
+      // The photo replaces “Escursioni nei prati”, which carries no location.
+      area: 'Badia / Abtei and La Val (Alta Badia)',
+      distance: 14.3,
+      elevation: 640,
+      hours: '4.5',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Badia (Pedraces) bus stop on the main road, the board’s start, and walk a few metres south to the first “Roda de Armentara” sign.",
+        "sequence": "Head south-east up to San Linert, then north-east on the farm lanes past the Fussé, Ciastel and Valgiarëi farms. Turn left onto the forest road signed “Roda de Armentara – Furnacia” and follow it through the wood to the Arciara farms and on to Furnacia, about two hours from the start. Bear right there and take the road up towards Armentara; from the Furnacia car park it is also path 15A. Once out of the wood, follow the sign for the Ütia Ranch da André, five minutes away. From the hut take “Roda de Armentara – Badia” down across the meadows past the Razuns barns to the Valgiarëi farm, keep on the same signs past the Cialaruns, Alfarëi, Ruac and Fussé farms, and come back into Badia.",
+        "switches": "Left onto the forest road at Valgiarëi (“Roda de Armentara – Furnacia”); right at Furnacia, up towards Armentara (path 15A from the Furnacia car park); at the junction above the wood, towards the Ütia Ranch da André; from the hut, “Roda de Armentara – Badia” all the way back, turning left again at Valgiarëi.",
+        "sources": [
+          {
+            "label": "Alta Badia Tourism Cooperative, From Badia through the Armentara meadows (altabadia.org, roadbook)",
+            "url": "https://www.altabadia.org/en/tour/detail/oa/from-badia-through-the-armentara-meadows",
+            "authority": "Alta Badia Tourism Cooperative",
+            "reviewedAt": "2026-11-05"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-05',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Hay barns beside the gravel track on the Armentara meadows below the Sas dla Crusc, 5 June 2018 (FranTN, CC BY-SA 4.0), geotagged 373 m from the line.',
+        route: 'Official GPX 14.28 km, a closed loop from the Badia bus stop; the stored line is relation 9511973 run the board’s way round: 14.35 km, closed, every GPX point within 126 m of it.',
+        routeNumbers: 'No route number: follow the “Roda de Armentara” name signs. From the Badia bus stop up to San Linert, past the Fussé, Ciastel and Valgiarëi farms, left onto the forest road signed “Roda de Armentara – Furnacia” to Arciara and Furnacia, right up the road towards Armentara and, out of the wood, to the Ütia Ranch da André; then “Roda de Armentara – Badia” past the Razuns barns, Valgiarëi, Cialaruns, Alfarëi, Ruac and Fussé back to Badia.',
+        mapPoints: 'Start at the Badia bus stop (official coordinates 46.610054, 11.893711); drinking water at the start (OSM nodes 12966592504 and 7777367653) and at km 10.4 on the way down from the meadows (node 4600218809); the Ütia Ranch da André at km 8.8.',
+        elevation: 'Official 14.3 km, 640 m up and 640 m down, 4:30 h, highest point 1,855 m, lowest 1,327 m (Alta Badia Tourism Cooperative).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Alta Badia Tourism Cooperative, From Badia through the Armentara meadows (altabadia.org, official page, roadbook and GPX)',
+          'Gemeinde Abtei / Comune di Badia, Verordnung über die Haltung von Hunden (Gemeinderat Nr. 7, 22.02.2010), Art. 4 and 8: a lead of at most 1.5 m everywhere and a muzzle carried; no dogs on farmed meadows in the growing season',
+          'Comune di La Valle / La Val publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended by the ordinance of 16 July 2026): a lead of at most 1.5 m and a muzzle carried',
+          'Natura 2000 IT3110048 Prati dell’Armentara: the Province’s objectives and conservation measures (Giunta provinciale, 19 December 2025) and Legge provinciale 12 May 2010, n. 6, Art. 21 set no rule on dogs; the measures cover fertiliser, drainage and drones',
+          'EEA Natura 2000 sites and OpenStreetMap administrative boundaries: the line touches IT3110048 only, and runs through Badia and La Val',
+          'OpenStreetMap ways of relation 9511973, road, surface, woodland and water data'
+        ],
+        date: '2026-11-05'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About half the loop is on farm access roads, some of them tarred, with occasional farm traffic and no pavement', 'A short stretch beside the main Val Badia road at the start in Badia', 'The Armentara meadows are protected hay meadows: stay on the track and keep your dog off the grass', 'Cattle may graze near the huts in summer'],
+      terrainType: 'Farm access roads (about half), forest roads and gravel tracks (OpenStreetMap)',
+      shadeDescription: 'The first half, from the Valgiarëi farm through Arciara and Furnacia and up towards Armentara, is mostly in larch and spruce wood. The high meadows around the Ütia Ranch da André and the farms on the way back are open. About 45% shaded.',
+      terrainDescription: 'Quiet farm lanes out of Badia, a forest road through the wood to Furnacia, a road up to the Armentara meadows at about 1,850 m, then gravel tracks down across the meadows and farm lanes back. Officially easy, with 640 m of climbing spread over the first nine kilometres.',
+      waterDescription: 'Drinking water at the start in Badia and at km 10.4 on the way down from the meadows. The Ütia Ranch da André at km 8.8 is the only place to eat on the way. Carry water for your dog on the long climb.',
+      dogNotes: 'Badia requires a lead no longer than 1.5 m everywhere, in villages and in open country, and a muzzle carried; dogs may not go onto farmed meadows in the growing season or bathe in fountains. The upper meadows lie in La Val, which has no dog regulation of its own, so the national rule applies there: a lead of at most 1.5 m and a muzzle carried. The Armentara meadows are a Natura 2000 site with no dog rule of its own: stay on the track. Working farms all the way round, so expect cattle and farm dogs.',
+      tips: 'A long, easy loop from Badia: 14.3 km and 640 m of climbing, about four and a half hours. Go the board’s way round, through the wood to Furnacia first, so most of the climb is in the shade. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and keep off the meadows. Fill up at the start: the next water is at km 10.4, after the Ütia Ranch da André.',
+      sourceLinks: [
+        { label: 'Alta Badia, From Badia through the Armentara meadows', url: 'https://www.altabadia.org/en/tour/detail/oa/from-badia-through-the-armentara-meadows' },
+        { label: 'Alta Badia, Da Badia attraverso i prati dell’Armentara', url: 'https://www.altabadia.org/it/tour/detail/oa/da-badia-attraverso-i-prati-dellarmentara' },
+        { label: 'Gemeinde Abtei, dog regulation', url: 'https://www.gemeinde.abtei.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, Prati dell’Armentara (IT3110048): objectives and conservation measures (PDF)', url: 'https://assets-eu-01.kc-usercontent.com:443/e90ea1ed-9101-0155-579f-5243d49e1f43/91d013bd-e72c-48c1-82ab-645a71bc4616/PAB_IT3110048%20-%20obiettivi%20e%20misure.pdf' },
+        { label: 'Alta Badia, Ütia Ranch da André', url: 'https://www.altabadia.org/it/info/ranch-da-andre.html' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/9511973' }
+      ],
+      startPoint: { lat: 46.610054, lng: 11.893711, label: 'Badia (Pedraces) bus stop on the main road, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.6099454, lng: 11.8935583, osmId: 'node/12966592504', label: 'Drinking water at the Badia start' },
+        { km: 0, lat: 46.6104883, lng: 11.8935745, osmId: 'node/7777367653', label: 'Water point at the Badia start' },
+        { km: 10.4, lat: 46.623462, lng: 11.919362, osmId: 'node/4600218809', label: 'Drinking water on the way down from the meadows' }
+      ],
+      rifugi: [
+        { km: 8.8, lat: 46.63419, lng: 11.92187, osmId: 'way/464968939', name: 'Ütia Ranch da André' }
+      ],
+      desc: 'A long loop from Badia: out past the old farms to San Linert and Valgiarëi, through the wood to Furnacia, up to the flower meadows of Armentara below the Sas dla Crusc, and back down past the hay barns of Razuns. The board lists 14.3 km and 640 m of ascent.'
+    },
     'osm-9511999': {
       // Hand audit: 23 October 2026. A loop from La Villa to San Leonardo, in
       // Badia, not San Cassiano. The stored line was a one-way to Pedraces; the
