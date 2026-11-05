@@ -272,6 +272,7 @@
     'primiero-anello-poit-cordogne-san-giovanni': "Anello Poit - Cordognè - San Giovanni",
     'primiero-fiera-pieve': "Fiera-Pieve",
     'primiero-la-guana-di-primiero': "La Guana di Primiero",
+    'primiero-laghi-di-colbricon': "Laghi di Colbricon from Malga Rolle",
     'primiero-malga-ces': "San Martino di Castrozza - Malga Ces",
     'primiero-malga-valcigolera': "San Martino di Castrozza - Malga Valcigolera",
     'primiero-percorso-verde': "Percorso Verde (I percorsi del benessere)",
