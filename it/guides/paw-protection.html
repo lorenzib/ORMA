@@ -229,13 +229,13 @@
   .paw2-advice-list .paw2-advice-stop strong{color:var(--safety-stop);}
   .paw2-panel-link{display:inline-block;margin-top:12px;color:var(--paw-blue);font-size:.75rem;font-weight:800;text-decoration:none;}
   .paw2-panel-link:hover{text-decoration:underline;}
-  .paw2-always{margin:0 25px;padding:16px 0 20px;border-top:1px solid var(--paw-line);}
-  .paw2-always .paw2-kicker{margin-bottom:9px;color:var(--paw-blue);}
-  .paw2-always ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:0;padding:0;list-style:none;}
-  .paw2-always li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:9px;align-items:start;padding:4px 0;}
-  .paw2-always li>b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--safety-safe);color:#fff;font-size:.68rem;}
-  .paw2-always strong{display:block;color:var(--paw-ink);font-size:.82rem;}
-  .paw2-always span{display:block;margin-top:2px;color:var(--paw-soft);font-size:.7rem;line-height:1.42;}
+  .paw2-essentials{height:auto;box-sizing:border-box;padding:20px 21px;border:1px solid var(--paw-line);border-radius:13px;background:var(--paw-card);color:var(--paw-ink);box-shadow:0 8px 26px rgba(46,64,52,.04);}
+  .paw2-essentials .paw2-kicker{margin-bottom:9px;color:var(--paw-blue);}
+  .paw2-essentials ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:0;padding:0;list-style:none;}
+  .paw2-essentials li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:9px;align-items:start;padding:4px 0;}
+  .paw2-essentials li>b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--safety-safe);color:#fff;font-size:.68rem;}
+  .paw2-essentials strong{display:block;color:var(--paw-ink);font-size:.82rem;}
+  .paw2-essentials span{display:block;margin-top:2px;color:var(--paw-soft);font-size:.7rem;line-height:1.42;}
   .paw2-library{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch;margin-top:8px;}
   .paw2-library-head{grid-column:1/-1;padding-bottom:11px;}
   .paw2-library-head h2{margin:0;font-size:clamp(23px,2.4vw,31px);line-height:1.08;}
@@ -287,8 +287,7 @@
     .paw2-hero h1{font-size:clamp(34px,9vw,46px);}
     .paw2-hero-image{width:130px;height:92px;}
     .paw2-shell{width:min(100% - 36px,1180px);}
-    .paw2-always{margin:0 17px;}
-    .paw2-always ol{grid-template-columns:1fr;gap:6px;}
+    .paw2-essentials ol{grid-template-columns:1fr;gap:6px;}
     .paw2-detail-body ul{grid-template-columns:1fr;}
   }
   @media(max-width:560px){
@@ -361,10 +360,6 @@
       </div>
 
       <div class="paw2-surface-grid">
-        <aside class="paw2-first-aid" id="call-vet" aria-labelledby="call-vet-title">
-          <div><h2 id="call-vet-title">Un cuscinetto tagliato chiude l’escursione</h2><p>Sciacqua, premi con forza e copri la zampa, poi rientra per la via più breve. Vai subito dal veterinario se sanguina molto, se la ferita è profonda, se c’è qualcosa conficcato o se il cane non riesce a stare in piedi o a camminare.</p></div>
-        </aside>
-
         <div>
           <div class="paw2-tabs" role="tablist" aria-label="Fondo del sentiero">
             <button class="paw2-tab" id="pawTabHot" type="button" role="tab" aria-selected="true" aria-controls="pawPanelHot" data-paw-surface="hot"><span class="paw2-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle class="paw2-icon-fill-secondary" cx="12" cy="12" r="4.5"/><path class="paw2-icon-stroke-primary" stroke-width="2" d="M12 1.8v3M12 19.2v3M1.8 12h3M19.2 12h3M4.8 4.8l2.1 2.1M17.1 17.1l2.1 2.1M4.8 19.2l2.1-2.1M17.1 6.9l2.1-2.1"/></svg></span>Terreno caldo</button>
@@ -408,17 +403,21 @@
               </ul>
               <a class="paw2-panel-link" href="#paw-check">Apri il controllo delle zampe in 60 secondi →</a>
             </section>
-
-            <div class="paw2-always" role="group" aria-labelledby="pawEssentialsTitle">
-              <span class="paw2-kicker" id="pawEssentialsTitle">Su ogni fondo</span>
-              <ol>
-                <li><b>1</b><div><strong>Controlla prima di partire</strong><span>Guarda cuscinetti, unghie e tra tutte le dita.</span></div></li>
-                <li><b>2</b><div><strong>Controlla presto sul sentiero</strong><span>Fermati dopo il primo tratto caldo, tagliente o con ghiaino.</span></div></li>
-                <li><b>3</b><div><strong>Sciacqua, asciuga e ricontrolla</strong><span>Guarda di nuovo la sera stessa e la mattina dopo.</span></div></li>
-              </ol>
-            </div>
           </div>
         </div>
+
+        <aside class="paw2-essentials" aria-labelledby="pawEssentialsTitle">
+          <span class="paw2-kicker" id="pawEssentialsTitle">Fai sempre queste tre cose</span>
+          <ol>
+            <li><b>1</b><div><strong>Controlla prima di partire</strong><span>Guarda cuscinetti, unghie e tra tutte le dita.</span></div></li>
+            <li><b>2</b><div><strong>Controlla presto sul sentiero</strong><span>Fermati dopo il primo tratto caldo, tagliente o con ghiaino.</span></div></li>
+            <li><b>3</b><div><strong>Sciacqua, asciuga e ricontrolla</strong><span>Guarda di nuovo la sera stessa e la mattina dopo.</span></div></li>
+          </ol>
+        </aside>
+
+        <aside class="paw2-first-aid" id="call-vet" aria-labelledby="call-vet-title">
+          <div><h2 id="call-vet-title">Un cuscinetto tagliato chiude l’escursione</h2><p>Sciacqua, premi con forza e copri la zampa, poi rientra per la via più breve. Vai subito dal veterinario se sanguina molto, se la ferita è profonda, se c’è qualcosa conficcato o se il cane non riesce a stare in piedi o a camminare.</p></div>
+        </aside>
       </div>
     </section>
 
