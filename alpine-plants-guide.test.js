@@ -123,7 +123,7 @@ describe('Alpine plants guide', () => {
     expect(html).not.toContain('apg-hero-mosaic');
     expect(html).not.toContain('apg-emergency-mark');
     expect(html).not.toContain('class="apg-emergency"');
-    expect(html).toContain('<aside class="apg-help" id="plant-emergency" aria-labelledby="plantEmergencyHeading">');
+    expect(html).toContain('<aside class="apg-top-card apg-help" id="plant-emergency" aria-labelledby="plantEmergencyHeading">');
     expect(html).toContain('<h2 id="plantEmergencyHeading">If your dog eats a plant</h2>');
     expect(html).not.toMatch(/your dog.s mouth/);
     expect(html).toContain('id="plantSafety"');
@@ -171,7 +171,7 @@ describe('Alpine plants guide', () => {
       expect(html).toContain('images/editorial/alpine-plants/wall-barley.jpg');
     });
     expect(read('guides/alpine-plants-for-dogs.html')).toContain('See a vet the same day: awns migrate.');
-    expect(read('it/guides/alpine-plants-for-dogs.html')).toContain('Forasacchi: controlla il cane dopo ogni passeggiata');
+    expect(read('it/guides/alpine-plants-for-dogs.html')).toContain('<h2 id="awnsHeading">Forasacchi</h2>');
     const awns = data.plants.find(plant => plant.id === 'wall-barley');
     const card = guide.plantCard(awns);
     expect(card).toContain('Lodged in the body: see a vet');
@@ -181,6 +181,20 @@ describe('Alpine plants guide', () => {
     const italian = require('./data/alpine-plants-it.json');
     expect(guide.localizePlant(awns, italian).commonName).toBe('Forasacchi');
     expect(guide.localizePlant(awns, italian).severityLabel).toBe('Se si conficca: dal veterinario');
+  });
+
+  test('three start-here cards sit side by side above the filters, and the toxic count matches the catalogue', () => {
+    const toxic = data.plants.filter(plant => plant.safety === 'dangerous').length;
+    [['guides/alpine-plants-for-dogs.html', `See all ${toxic} toxic plants`], ['it/guides/alpine-plants-for-dogs.html', `Vedi tutte le ${toxic} piante tossiche`]].forEach(([file, link]) => {
+      const html = read(file);
+      const order = ['class="apg-top"', 'id="grass-awns"', 'id="toxic-plants"', 'id="plant-emergency"', 'id="plantFindHeading"'].map(marker => html.indexOf(marker));
+      expect(order.every(index => index > -1)).toBe(true);
+      expect([...order].sort((a, b) => a - b)).toEqual(order);
+      expect(html).toContain(link);
+      expect(html).toContain('href="?safety=dangerous#plantResults"');
+    });
+    expect(guide.stateFromUrl({ search:'?safety=dangerous' }).safety).toBe('dangerous');
+    expect(read('alpine-plants-guide.css')).toContain('.apg-top{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))');
   });
 
   test('cards open photographs in a dismissible modal lightbox', () => {
