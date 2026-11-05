@@ -62,8 +62,8 @@
   .cg-stop-banner strong{display:block;color:var(--emergency-tint-fg);font-size:.9rem;}
   .cg-stop-banner span{display:block;margin-top:2px;color:var(--ink-soft);font-size:.75rem;line-height:1.4;}
   .cg-section{margin:24px 0;}
-  .cg-chairlifts>p{max-width:72ch;}
-  .cg-chairlifts>p+p{margin-top:6px;}
+  .cg-chairlift-note{max-width:72ch;margin:22px 0 0;color:var(--cg-soft);font-size:.8rem;line-height:1.5;scroll-margin-top:96px;}
+  .cg-chairlift-note strong{color:var(--ink);}
   .cg-section-head{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:14px;}
   .cg-section-head p{max-width:470px;margin:0;color:var(--cg-soft);font-size:.8rem;line-height:1.48;text-align:right;}
   .cg-step-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
@@ -157,16 +157,9 @@
   <div class="cg-shell content-canvas">
   <section class="guide-quick" aria-labelledby="guideQuickTitle">
     <h2 class="guide-quick__title" id="guideQuickTitle">In 20 seconds</h2>
-    <ul><li>Open chairlifts: ORMA only suggests these routes for calm dogs of 8 kg or less, held on your lap for the whole ride.</li><li>Never force a frightened dog into a cabin; choose another route instead.</li><li>Practise the muzzle at home with treats, well before the trip.</li></ul>
+    <ul><li>Never force a frightened dog into a cabin; choose another route instead.</li><li>Practise the muzzle at home with treats, well before the trip.</li><li>Check the lift&rsquo;s dog rules before you go: many ask for a leash and a muzzle.</li></ul>
   </section>
 
-    <section class="cg-section cg-chairlifts cg-decision" id="chairlifts" aria-labelledby="chairlifts-title">
-      <span class="cg-kicker">Read this first</span>
-      <h2 id="chairlifts-title">Open chairlifts are a different risk</h2>
-      <p>A gondola is a closed cabin. A chairlift is an open seat with only a bar. A dog that panics there can fall, and dogs have died this way.</p>
-      <p>ORMA recommends a chairlift route only if your dog weighs 8 kg or less and your dog profile says it rides chairlifts calmly. Even then, hold it on your lap, harnessed and leashed, for the whole ride. For every other dog the route is not recommended.</p>
-      <p>The rest of this guide is about closed cabins, where the risk is stress, not a fall.</p>
-    </section>
     <section class="cg-overview" aria-labelledby="gondola-fit-title">
       <div class="cg-decision">
         <span class="cg-kicker">Start with your dog</span>
@@ -204,6 +197,8 @@
         <article class="cg-step"><b>3</b><h3>Take the easiest ride</h3><p>Choose a quiet time, a short journey and the least crowded cabin available.</p></article>
       </div>
     </section>
+
+    <p class="cg-chairlift-note" id="chairlifts"><strong>Open chairlifts are different:</strong> an open seat a dog can fall from. ORMA marks routes that need one as not recommended, unless your dog weighs 8 kg or less and rides them calmly on your lap.</p>
 
     <nav class="safety-continue" aria-label="Continue in the Safety Library">
       <a class="safety-continue__previous" href="breed-group-caveats.html"><span class="safety-continue__arrow" aria-hidden="true">←</span><span class="safety-continue__label">Past guide</span><strong>Breed-group considerations</strong></a>

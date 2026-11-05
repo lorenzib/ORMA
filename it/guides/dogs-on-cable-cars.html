@@ -62,8 +62,8 @@
   .cg-stop-banner strong{display:block;color:var(--emergency-tint-fg);font-size:.9rem;}
   .cg-stop-banner span{display:block;margin-top:2px;color:var(--ink-soft);font-size:.75rem;line-height:1.4;}
   .cg-section{margin:24px 0;}
-  .cg-chairlifts>p{max-width:72ch;}
-  .cg-chairlifts>p+p{margin-top:6px;}
+  .cg-chairlift-note{max-width:72ch;margin:22px 0 0;color:var(--cg-soft);font-size:.8rem;line-height:1.5;scroll-margin-top:96px;}
+  .cg-chairlift-note strong{color:var(--ink);}
   .cg-section-head{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:14px;}
   .cg-section-head p{max-width:470px;margin:0;color:var(--cg-soft);font-size:.8rem;line-height:1.48;text-align:right;}
   .cg-step-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
@@ -157,16 +157,9 @@
   <div class="cg-shell content-canvas">
   <section class="guide-quick" aria-labelledby="guideQuickTitle">
     <h2 class="guide-quick__title" id="guideQuickTitle">In 20 secondi</h2>
-    <ul><li>Seggiovie aperte: ORMA propone questi percorsi solo per cani tranquilli fino a 8 kg, tenuti in braccio per tutta la salita.</li><li>Non forzare mai un cane spaventato a entrare in cabina: scegli un altro percorso.</li><li>Abitua il cane alla museruola a casa, con dei premi, molto prima della gita.</li></ul>
+    <ul><li>Non forzare mai un cane spaventato a entrare in cabina: scegli un altro percorso.</li><li>Abitua il cane alla museruola a casa, con dei premi, molto prima della gita.</li><li>Prima di partire controlla le regole per i cani dell&rsquo;impianto: molti chiedono guinzaglio e museruola.</li></ul>
   </section>
 
-    <section class="cg-section cg-chairlifts cg-decision" id="chairlifts" aria-labelledby="chairlifts-title">
-      <span class="cg-kicker">Leggi prima questo</span>
-      <h2 id="chairlifts-title">Le seggiovie aperte sono un rischio diverso</h2>
-      <p>Una cabinovia è una cabina chiusa. Una seggiovia è un sedile aperto con solo una sbarra. Un cane che lì va in panico può cadere, e alcuni cani sono morti così.</p>
-      <p>ORMA consiglia un percorso con seggiovia solo se il tuo cane pesa 8 kg o meno e il suo profilo indica che sale in seggiovia con calma. Anche in quel caso, tienilo in braccio, con pettorina e guinzaglio, per tutta la risalita. Per tutti gli altri cani il percorso è sconsigliato.</p>
-      <p>Il resto di questa guida riguarda le cabine chiuse, dove il rischio è lo stress, non la caduta.</p>
-    </section>
     <section class="cg-overview" aria-labelledby="gondola-fit-title">
       <div class="cg-decision">
         <span class="cg-kicker">Parti dal tuo cane</span>
@@ -204,6 +197,8 @@
         <article class="cg-step"><b>3</b><h3>Scegli la corsa più facile</h3><p>Scegli un orario tranquillo, un tragitto breve e la cabina meno affollata disponibile.</p></article>
       </div>
     </section>
+
+    <p class="cg-chairlift-note" id="chairlifts"><strong>Le seggiovie aperte sono un&rsquo;altra cosa:</strong> un sedile aperto da cui un cane può cadere. ORMA segna come sconsigliati i percorsi che ne richiedono una, a meno che il tuo cane pesi 8 kg o meno e ci salga tranquillo in braccio a te.</p>
 
     <nav class="safety-continue" aria-label="Continua nelle Guide di sicurezza">
       <a class="safety-continue__previous" href="breed-group-caveats.html"><span class="safety-continue__arrow" aria-hidden="true">←</span><span class="safety-continue__label">Guida precedente</span><strong>Considerazioni per gruppo di razze</strong></a>
