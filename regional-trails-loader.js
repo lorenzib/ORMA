@@ -128,8 +128,10 @@
     return !!(window.DoloPawsI18n && window.DoloPawsI18n.lang === 'it');
   }
   var textRequested = new Set();
+  // In the app the manifest may come from the website (app-trail-data.js), and
+  // then so does the text of a trail the app does not carry yet.
   function trailTextUrl(id) {
-    return 'data/trail-text-it/' + encodeURIComponent(id) + '.js';
+    return (manifest.base || '') + 'data/trail-text-it/' + encodeURIComponent(id) + '.js';
   }
   function loadTrailText(id) {
     id = resolveTrailId(id);

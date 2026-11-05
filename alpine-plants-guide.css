@@ -13,15 +13,6 @@
 @media(forced-colors:active){.apg-card,.apg-safety-switch button,.apg-month,.apg-chip-button,.apg-photo-expand,.apg-lightbox__close{border-color:CanvasText}.apg-badge svg,.apg-card-label svg{forced-color-adjust:auto}}
 
 
-/* First-aid banner: the immediate steps are always on screen, in calm colours. */
-.apg-help{scroll-margin-top:90px;margin:0 0 20px;padding:18px 20px;border:1px solid var(--paper-line);border-left:4px solid var(--accent);border-radius:16px;background:var(--card)}
-.apg-help h2{margin:0 0 12px;font-size:18px}
-.apg-help-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0;padding:0;list-style:none;counter-reset:apg-step}
-.apg-help-steps li{position:relative;padding:12px 12px 12px 44px;border-radius:12px;background:var(--bg);font-size:12.5px;line-height:1.5;counter-increment:apg-step}
-.apg-help-steps li::before{content:counter(apg-step);position:absolute;left:12px;top:12px;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:800}
-.apg-help-steps b{display:block;margin-bottom:2px}
-.apg-help-dont{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:var(--safety-caution-soft);color:var(--safety-caution);font-size:12.5px;font-weight:600}
-
 /* Filters: risk switch with counts, month picker, place chips. */
 .apg-safety-switch{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:5px;border-radius:15px;background:var(--bg)}
 .apg-safety-switch button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 10px;border:0;border-radius:11px;background:transparent;color:var(--ink);font:700 14px var(--font-sans);cursor:pointer}
@@ -86,7 +77,6 @@
 @media(max-width:700px){
   .apg-hero-copy h1{font-size:42px}.apg-hero-copy>p{font-size:16px}
   .apg-wrap{padding-top:20px;padding-bottom:50px}
-  .apg-help{padding:16px}
   .apg-tools{padding:16px}
   .apg-safety-switch{grid-template-columns:repeat(2,1fr)}
   .apg-months-picker{display:flex;overflow-x:auto;margin-inline:-16px;padding:0 16px 4px;scrollbar-width:none}
@@ -98,17 +88,25 @@
 }
 @media(max-width:480px){.apg-lightbox__panel{padding:7px;border-radius:15px}.apg-lightbox__image{max-width:calc(94vw - 14px);max-height:calc(86vh - 14px)}}
 
-/* Grass awns: not a poison, so they sit above the catalogue as their own warning. */
-.apg-awns{display:grid;grid-template-columns:240px minmax(0,1fr);gap:0;margin:0 0 20px;border:1px solid var(--paper-line);border-left:4px solid var(--safety-caution);border-radius:16px;background:var(--card);overflow:hidden;scroll-margin-top:90px}
-.apg-awns-photo{margin:0;background:var(--sage-dim)}.apg-awns-photo img{display:block;width:100%;height:100%;object-fit:cover}
-.apg-awns-copy{padding:18px 20px}
-.apg-awns-kicker{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--safety-caution)}
-.apg-awns h2{margin:4px 0 8px;font-size:20px;line-height:1.2}
-.apg-awns-lead{margin:0 0 12px;font-size:14px;line-height:1.55}
-.apg-awns-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.apg-awns-grid>div{padding:12px;border-radius:12px;background:var(--bg)}
-.apg-awns-grid h3{margin:0 0 4px;font-size:13px}.apg-awns-grid p{margin:0;font-size:12.5px;line-height:1.5}
-.apg-awns-prevent{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:var(--safety-caution-soft);font-size:12.5px;line-height:1.5}
-.apg-awns-prevent b{margin-right:6px;color:var(--safety-caution)}
-@media(max-width:980px){.apg-awns-grid{grid-template-columns:1fr}}
-@media(max-width:700px){.apg-awns{grid-template-columns:1fr}.apg-awns-photo{height:150px}.apg-awns-photo img{object-position:center 35%}.apg-awns-copy{padding:16px}}
+/* Start here: forasacchi, the seriously toxic plants and first aid, side by side above the catalogue. */
+.apg-top{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 20px;align-items:stretch}
+.apg-top-card{display:flex;flex-direction:column;margin:0;border:1px solid var(--paper-line);border-top:4px solid var(--accent);border-radius:16px;background:var(--card);overflow:hidden;scroll-margin-top:90px}
+.apg-top-card--awns{border-top-color:var(--safety-caution)}.apg-top-card--toxic{border-top-color:var(--safety-stop)}
+.apg-top-photo{display:block;width:100%;height:150px;object-fit:cover;background:var(--sage-dim)}
+.apg-top-card--awns .apg-top-photo{object-position:center 30%}
+.apg-top-body{display:flex;flex:1;flex-direction:column;gap:9px;padding:14px 16px 16px}
+.apg-top-kicker{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.apg-top-card--awns .apg-top-kicker{color:var(--safety-caution)}.apg-top-card--toxic .apg-top-kicker{color:var(--safety-stop)}
+.apg-top-card h2{margin:0;font-size:19px;line-height:1.2}
+.apg-top-body>p{margin:0;font-size:13.5px;line-height:1.5}
+.apg-top-facts{display:grid;gap:7px;margin:0}
+.apg-top-facts div{display:grid;grid-template-columns:76px minmax(0,1fr);gap:8px;padding-top:7px;border-top:1px solid var(--paper-line);font-size:12.5px;line-height:1.45}
+.apg-top-facts dt{font-weight:800}.apg-top-facts dd{margin:0}
+.apg-top-list{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65}
+.apg-top-link{align-self:flex-start;margin-top:auto;padding:10px 14px;border-radius:10px;background:var(--ink);color:#fff;font-size:13px;font-weight:800;text-decoration:none}
+.apg-help-steps{display:grid;gap:8px;margin:0;padding:0;list-style:none;counter-reset:apg-step}
+.apg-help-steps li{position:relative;padding:10px 10px 10px 42px;border-radius:12px;background:var(--bg);font-size:12.5px;line-height:1.5;counter-increment:apg-step}
+.apg-help-steps li::before{content:counter(apg-step);position:absolute;left:11px;top:10px;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:800}
+.apg-help-steps b{display:block;margin-bottom:2px}
+.apg-help-dont{margin:auto 0 0;padding:10px 12px;border-radius:10px;background:var(--safety-caution-soft);color:var(--safety-caution);font-size:12.5px;font-weight:600}
+@media(max-width:980px){.apg-top{grid-template-columns:1fr}.apg-top-photo{height:140px}}

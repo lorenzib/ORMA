@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "paganella-giro-del-lago-di-molveno",
+  "distanceKm": 10.3,
+  "ascentM": 232,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 841
+    },
+    {
+      "km": 0.8,
+      "elev": 861
+    },
+    {
+      "km": 1.6,
+      "elev": 900
+    },
+    {
+      "km": 2.4,
+      "elev": 893
+    },
+    {
+      "km": 3.1,
+      "elev": 960
+    },
+    {
+      "km": 3.9,
+      "elev": 858
+    },
+    {
+      "km": 4.7,
+      "elev": 824
+    },
+    {
+      "km": 5.5,
+      "elev": 817
+    },
+    {
+      "km": 6.3,
+      "elev": 817
+    },
+    {
+      "km": 7,
+      "elev": 840
+    },
+    {
+      "km": 7.8,
+      "elev": 843
+    },
+    {
+      "km": 8.6,
+      "elev": 817
+    },
+    {
+      "km": 9.4,
+      "elev": 847
+    },
+    {
+      "km": 10.2,
+      "elev": 831
+    },
+    {
+      "km": 10.3,
+      "elev": 830
+    }
+  ]
+}
