@@ -61,6 +61,9 @@
   .alt-medication{margin-bottom:23px;}
   .alt-warning-note{border:1px solid var(--alt-red);background:var(--alt-red-soft);}
   .alt-warning-note h3,.alt-warning-note p{color:var(--alt-red);}
+  .alt-warning-item{display:flex;gap:10px;align-items:flex-start;}
+  .alt-warning-item+.alt-warning-item{margin-top:11px;padding-top:11px;border-top:1px solid color-mix(in srgb,var(--alt-red) 30%,transparent);}
+  .alt-warning-icon{flex:none;width:18px;height:18px;margin-top:1px;fill:none;stroke:var(--alt-red);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 
   .alt-sources{margin-top:18px;border-top:1px solid var(--alt-line);color:var(--alt-soft);}
   .alt-sources summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0;cursor:pointer;list-style:none;font-size:.74rem;}
@@ -111,7 +114,7 @@
   <div class="alt-shell content-canvas">
   <section class="guide-quick" aria-labelledby="guideQuickTitle">
     <h2 class="guide-quick__title" id="guideQuickTitle">In 20 seconds</h2>
-    <ul><li>Know your dog’s normal breathing, pace and appetite before the trip.</li><li>Keep the first day short and easy, with an early turnaround.</li><li>A new cough, low stamina or unusual breathing means stop and turn back.</li></ul>
+    <ul><li>Know your dog’s normal breathing, pace and appetite before the trip.</li><li>Keep the first day short and easy, with an early turnaround.</li><li>A new cough, low stamina or unusual breathing means stop and turn back.</li><li>Ask your vet first if your dog has heart or lung problems. Never give human medication.</li></ul>
   </section>
 
     <section class="alt-section alt-context" id="why-altitude" aria-labelledby="altWhyTitle">
@@ -121,8 +124,8 @@
         <p>Higher altitude means less available oxygen. Rapid ascent plus exercise can increase breathing and circulation effort, or reveal a heart or respiratory problem that was subtle at home. Stop for a new cough, low stamina or abnormal breathing.</p>
       </div>
       <div class="alt-vet-note alt-warning-note">
-        <p><b>Ask your vet first</b><br>Book a check before the trip if your dog has heart or lung disease, coughs, faints, tires easily or had trouble at altitude. Take extra care with puppies, seniors and flat-faced dogs.</p>
-        <p><b>No human altitude medication</b><br>Never give human altitude or pain medication unless your vet prescribes it for your dog. Don’t use medication to push through warning signs.</p>
+        <div class="alt-warning-item"><svg class="alt-warning-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 4h-1a2 2 0 0 0 -2 2v3.5a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1"/><path d="M8 15a6 6 0 1 0 12 0v-3"/><path d="M11 3v2M6 3v2"/><circle cx="20" cy="10" r="2"/></svg><p><b>Ask your vet first</b><br>Book a check before the trip if your dog has heart or lung disease, coughs, faints, tires easily or had trouble at altitude. Take extra care with puppies, seniors and flat-faced dogs.</p></div>
+        <div class="alt-warning-item"><svg class="alt-warning-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7"/><path d="M8.5 8.5l7 7"/></svg><p><b>No human altitude medication</b><br>Never give human altitude or pain medication unless your vet prescribes it for your dog. Don’t use medication to push through warning signs.</p></div>
       </div>
     </section>
 
