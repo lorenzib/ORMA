@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "eggental-jolanda-baita-messnerjoch",
+  "distanceKm": 4,
+  "ascentM": 152,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1752
+    },
+    {
+      "km": 0.3,
+      "elev": 1819
+    },
+    {
+      "km": 0.6,
+      "elev": 1794
+    },
+    {
+      "km": 0.9,
+      "elev": 1819
+    },
+    {
+      "km": 1.2,
+      "elev": 1821
+    },
+    {
+      "km": 1.5,
+      "elev": 1871
+    },
+    {
+      "km": 1.8,
+      "elev": 1880
+    },
+    {
+      "km": 2.1,
+      "elev": 1897
+    },
+    {
+      "km": 2.4,
+      "elev": 1871
+    },
+    {
+      "km": 2.7,
+      "elev": 1837
+    },
+    {
+      "km": 3,
+      "elev": 1838
+    },
+    {
+      "km": 3.3,
+      "elev": 1794
+    },
+    {
+      "km": 3.6,
+      "elev": 1798
+    },
+    {
+      "km": 4,
+      "elev": 1774
+    }
+  ]
+}

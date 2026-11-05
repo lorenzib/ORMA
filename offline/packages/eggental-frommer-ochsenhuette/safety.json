@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "eggental-frommer-ochsenhuette",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 2.1,
+    "ascentM": 102,
+    "highestPointM": 1830,
+    "expectedDuration": "0.75 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 56
+  },
+  "trailhead": {
+    "lat": 46.443918,
+    "lng": 11.588565,
+    "label": "The Malga Frommer Alm by the top station of the Nova Levante gondola, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.4335436,
+      "lng": 11.5963862,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Busy around the gondola station and the Malga Frommer Alm in summer: keep your dog on a short lead.",
+    "Path 1A runs just above the Via Nigra road.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

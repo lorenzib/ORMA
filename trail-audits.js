@@ -63287,14 +63287,495 @@
       startPoint: { lat: 45.173594, lng: 5.781196, label: 'Fort du Murier car park above Gières, the board’s start' },
       desc: 'A short family loop above Gières through the hamlets of Le Murier and Le Bigot to the ruins of the Batteries Hautes, with views over the Vercors and Grenoble, and back down through the woods by the Col du Courlu. The official page lists 4.2 km, 152 m up and down, about 2 h.'
     },
+    'eggental-passo-nigra-malga-hagner': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Escursione per famiglie dal Passo Nigra alla malga Hagner Alm”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 11 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows); a few metres at the pass in Tiers (its 2015 regulation, amended 2023, the same rule).
+      // No park, Natura 2000 site or natural monument on the line (Province of Bolzano layers; EEA).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Passo Nigra – Malga Hagner Alm, Nova Levante / Welschnofen',
+      distance: 11.8,
+      elevation: 231,
+      hours: '3.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the Passo Nigra on the wide forest road 1 and path 4A to the Malga Hagner Alm, returning the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Passo Nigra (1,688 m) on the road between Nova Levante and Tires, the board’s start.",
+        "sequence": "Follow the wide forest road 1 as far as the junction with path 4A, then take 4A straight to the Malga Hagner Alm in its meadow. Come back the same way to the pass.",
+        "switches": "Forest road 1 from the pass; at the junction turn onto path 4A for the Malga Hagner Alm; return the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Passo Nigra alla malga Hagner Alm (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16570878",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The start of forest road 1 at the Passo Nigra, a flat view cut from a 360° image of 15 August 2025 (beautiful-places on Mapillary, CC BY-SA 4.0), 6 m from the line.',
+        route: 'Official one-way walk 11.8 km from the Passo Nigra, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 11 OSM ways along the board’s published line, 11.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Forest road 1 and path 4A: from the Passo Nigra along the wide forest road 1 to the junction with path 4A, which leads straight to the Malga Hagner Alm; back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 11.8 km, 231 m up and 234 m down, 3:13 h, highest point 1,691 m, lowest 1,563 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Passo Nigra alla malga Hagner Alm (its Outdooractive tour)',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Gemeinde Tiers / Comune di Tires, Verordnung zur Führung und Haltung von Hunden und Tieren (Gemeinderat Nr. 48, 08.10.2015, amended Nr. 55, 28.12.2023), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds or kindergarten and primary-school yards, on farmed land in the growing season, or in tended public green spaces',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (11 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 93,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The Passo Nigra road is busy in summer: keep your dog on a short lead at the start', 'Cattle may graze around the Malga Hagner Alm in summer: keep your dog close', 'Mountain bikes share the forest road'],
+      terrainType: 'Wide forest road and path, suitable for pushchairs',
+      shadeDescription: 'Almost all shaded: about nine tenths of the way runs through mapped forest below the Catinaccio.',
+      terrainDescription: 'A long but easy walk at 1,560–1,690 m from the Passo Nigra through the forest below the Catinaccio to the Malga Hagner Alm, on a wide forest road the board says is fine for pushchairs.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Malga Hagner Alm serves food and drink when open (the nearby Schiller farm is closed for good).',
+      dogNotes: 'Welschnofen and Tiers both require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows. Keep your dog on the forest road and close near grazing cattle.',
+      tips: 'Start at the Passo Nigra: 11.8 km out and back, 231 m of climbing, about three and a quarter hours, as the board lists. The forest road is shady and fine with a pushchair. Keep your dog on a lead of at most 1.5 m and carry a muzzle; bring water, as none is mapped on the way.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione per famiglie dal Passo Nigra alla malga Hagner Alm (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/16570878' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Gemeinde Tiers, dog regulation (2015, amended 2023)', url: 'https://www.gemeinde.tiers.bz.it/system/web/verordnung.aspx?detailonr=224983319' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.455989, lng: 11.585886, label: 'The Passo Nigra (1,688 m), the board’s start' },
+      desc: 'A long, easy, shady walk from the Passo Nigra through the forest below the Catinaccio to the Malga Hagner Alm and back. The board lists 11.8 km, 231 m up and three and a quarter hours.'
+    },
+    'eggental-kaiserstein-baita-masare': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Dal parcheggio Kaiserstein alla baita Masarè”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 4 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // No park, Natura 2000 site or natural monument on the line; about a quarter is in the Rosengarten landscape protection area, which limits building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Kaiserstein – Baita Masarè, Carezza / Nova Levante',
+      distance: 1.5,
+      elevation: 189,
+      hours: '0.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way up from the Kaiserstein car park on path 6C to the Baita Masarè; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Kaiserstein car park on the road below the Costalunga pass, by the bus stop, the board’s start.",
+        "sequence": "Take path 6C, which climbs steadily through the forest from the car park straight up to the Baita Masarè below the Catinaccio. Come back down the same way.",
+        "switches": "Path 6C the whole way up from the Kaiserstein car park to the Baita Masarè.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Dal parcheggio Kaiserstein alla baita Masarè (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/19007850",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The trailhead at the Kaiserstein car park, where path 6C starts, a flat view cut from a 360° image of 15 August 2025 (beautiful-places on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 1.5 km from the Kaiserstein car park, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 4 OSM ways along the board’s published line, 1.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 6C: from the Kaiserstein car park on the Costalunga road, path 6C climbs steadily through the forest straight up to the Baita Masarè below the Catinaccio; come back down the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 1.5 km, 189 m up, 0:40 h, highest point 1,934 m, lowest 1,744 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Dal parcheggio Kaiserstein alla baita Masarè (its Outdooractive tour)',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line; about 26% is in the Rosengarten landscape protection area, which limits building, not dogs',
+          'OpenStreetMap ways along the board’s line (4 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 89,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The start is beside the busy Costalunga road: keep your dog on a short lead in the car park', 'A steady climb of nearly 190 m in 1.5 km: let your dog set the pace'],
+      terrainType: 'Forest path',
+      shadeDescription: 'Almost all shaded: about nine tenths of the path runs through mapped forest.',
+      terrainDescription: 'A short, steady climb at 1,740–1,930 m from the Kaiserstein car park through the forest below the Catinaccio to the Baita Masarè.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Baita Masarè serves food and drink when open.',
+      dogNotes: 'Welschnofen requires a lead of at most 1.5 m and a muzzle carried on all public ground, and keeps dogs off farmed meadows. Keep your dog on the path.',
+      tips: 'Start at the Kaiserstein car park: 1.5 km and 189 m of climbing, about forty minutes up to the Baita Masarè, as the board lists, then back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle; bring water.',
+      sourceLinks: [
+        { label: 'Outdooractive, Dal parcheggio Kaiserstein alla baita Masarè (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/19007850' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.41873, lng: 11.60076, label: 'The Kaiserstein car park on the Costalunga road, the board’s start' },
+      desc: 'A short, shady climb from the Kaiserstein car park through the forest below the Catinaccio to the Baita Masarè. The board lists 1.5 km, 189 m up and forty minutes.'
+    },
+    'eggental-jolanda-baita-messnerjoch': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Escursione per famiglie dal Jolanda alla baita Messnerjoch”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // No park, Natura 2000 site or natural monument on the line (Province of Bolzano layers; EEA).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Via Nigra – Baita Messnerjoch, Nova Levante / Welschnofen',
+      distance: 4,
+      elevation: 152,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the car park below the Gasthaus Jolanda on forest road 1A and path 1B to the Baita Messnerjoch, returning the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park on the Via Nigra below the Gasthaus Jolanda, the board’s start; forest road 1A begins opposite the car park.",
+        "sequence": "Follow forest road 1A up through the forest, and at a fork turn onto path 1B, which leads straight to the Baita Messnerjoch. Come back the same way.",
+        "switches": "Forest road 1A from the car park; at the fork onto path 1B for the Baita Messnerjoch; return the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Jolanda alla baita Messnerjoch (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/19201109",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The start of forest road 1A on the Via Nigra below the Gasthaus Jolanda, a flat view cut from a 360° image of 15 August 2025 (beautiful-places on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official one-way walk 4 km from the car park below the Gasthaus Jolanda, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Forest road 1A and path 1B: from the car park on the Via Nigra below the Gasthaus Jolanda up forest road 1A, then at a fork path 1B straight to the Baita Messnerjoch; back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4 km, 152 m up and 152 m down, 1:11 h, highest point 1,925 m, lowest 1,770 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Jolanda alla baita Messnerjoch (its Outdooractive tour)',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 76,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The start is on the Via Nigra road: keep your dog on a short lead at the car park', 'Mountain bikes share the forest road'],
+      terrainType: 'Forest road and path, suitable for pushchairs',
+      shadeDescription: 'Mostly shaded: about three quarters runs through mapped forest; the hut stands in an open meadow.',
+      terrainDescription: 'An easy family walk at 1,770–1,925 m on a forest road and path below the Catinaccio to the Baita Messnerjoch, which the board says is fine for pushchairs.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Baita Messnerjoch serves food and drink when open.',
+      dogNotes: 'Welschnofen requires a lead of at most 1.5 m and a muzzle carried on all public ground, and keeps dogs off farmed meadows. Keep your dog on the forest road.',
+      tips: 'Start at the car park below the Gasthaus Jolanda on the Via Nigra: 4 km out and back, 152 m of climbing, about an hour and ten minutes, as the board lists. Fine with a pushchair. Keep your dog on a lead of at most 1.5 m and carry a muzzle; bring water.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione per famiglie dal Jolanda alla baita Messnerjoch (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/19201109' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.433912, lng: 11.589118, label: 'The car park on the Via Nigra below the Gasthaus Jolanda, the board’s start' },
+      desc: 'An easy family walk from the Via Nigra below the Gasthaus Jolanda on a forest road to the Baita Messnerjoch under the Catinaccio, and back. The board lists 4 km, 152 m up and an hour and ten minutes.'
+    },
+    'eggental-frommer-ochsenhuette': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Escursione per famiglie dalla Malga Frommer alla baita Ochsenhütte”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 16 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // No park, Natura 2000 site or natural monument on the line (Province of Bolzano layers; EEA).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Malga Frommer – Baita Ochsenhütte, Nova Levante / Welschnofen',
+      distance: 2.1,
+      elevation: 102,
+      hours: '0.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Malga Frommer Alm by the top station of the Nova Levante gondola on path 1A, above the Via Nigra, to the Baita Ochsenhütte; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Malga Frommer Alm by the top station of the Nova Levante (König Laurin) gondola, the board’s start; it is also reached by car on the Via Nigra.",
+        "sequence": "Follow path 1A, which runs above the Via Nigra and leads gently to the Baita Ochsenhütte. Come back the same way.",
+        "switches": "Path 1A the whole way from the Malga Frommer Alm to the Baita Ochsenhütte; return the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dalla Malga Frommer alla baita Ochsenhütte (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/35328779",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Malga Frommer Alm at the start, a flat view cut from a 360° image of 15 August 2025 (beautiful-places on Mapillary, CC BY-SA 4.0), 13 m from the line.',
+        route: 'Official one-way walk 2.1 km from the Malga Frommer Alm, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 16 OSM ways along the board’s published line, 2.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 1A: from the Malga Frommer Alm by the top station of the Nova Levante gondola, path 1A above the Via Nigra gently to the Baita Ochsenhütte; back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at km 2 (OSM nodes 12232149431).',
+        elevation: 'Official 2.1 km, 102 m up and 53 m down, 0:38 h, highest point 1,805 m, lowest 1,738 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dalla Malga Frommer alla baita Ochsenhütte (its Outdooractive tour)',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (16 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 56,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Busy around the gondola station and the Malga Frommer Alm in summer: keep your dog on a short lead', 'Path 1A runs just above the Via Nigra road'],
+      terrainType: 'Path',
+      shadeDescription: 'Partly shaded: about half runs through mapped forest; the meadows by the Malga Frommer Alm are open.',
+      terrainDescription: 'A short, gentle family walk at 1,740–1,800 m below the Catinaccio, from the Malga Frommer Alm on path 1A to the Baita Ochsenhütte.',
+      waterDescription: 'Drinking water at km 2 near the Baita Ochsenhütte (OSM). The Malga Frommer Alm and the Baita Ochsenhütte serve food and drink when open.',
+      dogNotes: 'Welschnofen requires a lead of at most 1.5 m and a muzzle carried on all public ground, and keeps dogs off farmed meadows. On the gondola your dog needs a lead and a muzzle.',
+      tips: 'Ride the Nova Levante gondola up (or drive the Via Nigra) to the Malga Frommer Alm: 2.1 km and 102 m of climbing to the Baita Ochsenhütte, about forty minutes, as the board lists, then back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione per famiglie dalla Malga Frommer alla baita Ochsenhütte (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/35328779' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.443918, lng: 11.588565, label: 'The Malga Frommer Alm by the top station of the Nova Levante gondola, the board’s start' },
+      desc: 'A short, gentle walk below the Catinaccio from the Malga Frommer Alm on path 1A to the Baita Ochsenhütte. The board lists 2.1 km, 102 m up and forty minutes one way.'
+    },
+    'eggental-passo-nigra-baita-messnerjoch': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Escursione per famiglie dal Passo Nigra alla baita Messnerjoch”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 14 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Tiers (its 2015 dog regulation, amended 2023: lead ≤1.5 m, muzzle carried, no dogs on farmed land in the growing season); Welschnofen near the hut (its 2023 regulation, the same rule).
+      // No park, Natura 2000 site or natural monument on the line (Province of Bolzano layers; EEA).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Passo Nigra – Baita Messnerjoch, Tires / Nova Levante',
+      distance: 3.9,
+      elevation: 242,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the Passo Nigra on forest road 1 to the Baita Messnerjoch, returning the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Passo Nigra (1,688 m) on the road between Nova Levante and Tires, the board’s start.",
+        "sequence": "Follow forest road 1, which climbs steadily through the forest straight to the Baita Messnerjoch at 1,930 m. Come back down the same way.",
+        "switches": "Forest road 1 the whole way from the Passo Nigra to the Baita Messnerjoch; return the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Passo Nigra alla baita Messnerjoch (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/58607867",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Catinaccio from the Passo Nigra at the start, a flat view cut from a 360° image of 15 August 2025 (beautiful-places on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 3.9 km from the Passo Nigra, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 14 OSM ways along the board’s published line, 3.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Forest road 1: from the Passo Nigra straight up forest road 1 to the Baita Messnerjoch (1,930 m); back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3.9 km, 242 m up and 242 m down, 1:16 h, highest point 1,925 m, lowest 1,683 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Passo Nigra alla baita Messnerjoch (its Outdooractive tour)',
+          'Gemeinde Tiers / Comune di Tires, Verordnung zur Führung und Haltung von Hunden und Tieren (Gemeinderat Nr. 48, 08.10.2015, amended Nr. 55, 28.12.2023), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds or kindergarten and primary-school yards, on farmed land in the growing season, or in tended public green spaces',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (14 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 72,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The Passo Nigra road and car park are busy in summer: keep your dog on a short lead at the start', 'Mountain bikes share the forest road'],
+      terrainType: 'Forest road, suitable for pushchairs',
+      shadeDescription: 'Mostly shaded: about seven tenths runs through mapped forest; the meadow at the hut is open.',
+      terrainDescription: 'An easy family climb at 1,680–1,925 m from the Passo Nigra on a forest road through the woods to the Baita Messnerjoch, with the Catinaccio above; the board says it is fine for pushchairs.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Baita Messnerjoch serves food and drink when open.',
+      dogNotes: 'Tiers and Welschnofen both require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows. Keep your dog on the forest road.',
+      tips: 'Start at the Passo Nigra: 3.9 km out and back, 242 m of climbing, about an hour and a quarter, as the board lists. Fine with a pushchair. Keep your dog on a lead of at most 1.5 m and carry a muzzle; bring water.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione per famiglie dal Passo Nigra alla baita Messnerjoch (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/58607867' },
+        { label: 'Gemeinde Tiers, dog regulation (2015, amended 2023)', url: 'https://www.gemeinde.tiers.bz.it/system/web/verordnung.aspx?detailonr=224983319' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.45601, lng: 11.585962, label: 'The Passo Nigra (1,688 m), the board’s start' },
+      desc: 'An easy family walk from the Passo Nigra up a forest road to the Baita Messnerjoch below the Catinaccio, and back. The board lists 3.9 km, 242 m up and an hour and a quarter.'
+    },
+    'eggental-pietralba-petersberger-leger': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Escursione per famiglie da Pietralba alla Malga Monte San Pietro”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Deutschnofen (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // No park, Natura 2000 site or natural monument on the line; about a third is in a landscape protection area, which limits building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Pietralba / Maria Weißenstein – Petersberger Leger, Nova Ponente',
+      distance: 4.6,
+      elevation: 139,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the Maria Weißenstein car park at the Pietralba sanctuary on forest path 2 to the Malga Monte San Pietro (Petersberger Leger), returning the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Maria Weißenstein car park by the Pietralba sanctuary (1,520 m), the board’s start.",
+        "sequence": "Follow the forest path marked 2 through woods and clearings to the Malga Monte San Pietro (Petersberger Leger). Come back the same way.",
+        "switches": "Path 2 the whole way from the Pietralba car park to the Petersberger Leger; return the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie da Pietralba alla Malga Monte San Pietro (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810054677",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Path 2 near the start at Pietralba, on 28 May 2025 (santon on Mapillary, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official one-way walk 4.6 km from the Maria Weißenstein car park at Pietralba, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 9 OSM ways along the board’s published line, 4.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 2: from the Maria Weißenstein car park at the Pietralba sanctuary along forest path 2 to the Malga Monte San Pietro (Petersberger Leger); back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 2.1 (OSM nodes 13056113613, 13055949530, 10610467114).',
+        elevation: 'Official 4.6 km, 139 m up and 139 m down, 1:20 h, highest point 1,530 m, lowest 1,457 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie da Pietralba alla Malga Monte San Pietro (its Outdooractive tour)',
+          'Gemeinde Deutschnofen / Comune di Nova Ponente, Verordnung über die Haltung und Führung von Hunden (Ratsbeschluss Nr. 6, 01.02.2010), Art. 4: a lead of at most 1.5 m in built-up areas and places open to the public, and a muzzle carried; Art. 8: no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, or on farmed land such as meadows and fields',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line; about 37% is in a landscape protection area, which limits building, not dogs',
+          'OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 79,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Busy around the Pietralba sanctuary at weekends: keep your dog on a short lead at the start', 'Meadows along the way are farmed: Deutschnofen keeps dogs off them, so stay on the path'],
+      terrainType: 'Forest path and track',
+      shadeDescription: 'Mostly shaded: about four fifths runs through mapped forest.',
+      terrainDescription: 'An easy, nearly level family walk at 1,460–1,530 m from the Pietralba sanctuary through woods and clearings to the Petersberger Leger alpine hut.',
+      waterDescription: 'Drinking water at the start and at km 2.1 (OSM). The Petersberger Leger serves food and drink when open.',
+      dogNotes: 'Deutschnofen requires a lead of at most 1.5 m and a muzzle carried in places open to the public, and keeps dogs off farmed meadows. Keep your dog on the path.',
+      tips: 'Start at the Maria Weißenstein car park by the Pietralba sanctuary: 4.6 km out and back, 139 m of climbing, about an hour and twenty minutes, as the board lists. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione per famiglie da Pietralba alla Malga Monte San Pietro (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/810054677' },
+        { label: 'Gemeinde Deutschnofen, Verordnung über die Haltung und Führung von Hunden (2010)', url: 'https://www.gemeinde.deutschnofen.bz.it/system/web/GetDocument.ashx?fileId=1001871' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.391601, lng: 11.414909, label: 'The Maria Weißenstein car park at the Pietralba sanctuary (1,520 m), the board’s start' },
+      desc: 'An easy, shady family walk from the Pietralba sanctuary along forest path 2 to the Petersberger Leger alpine hut and back. The board lists 4.6 km, 139 m up and an hour and twenty minutes.'
+    },
+    'fassa-cammino-dei-pitores': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Il cammino dei “pitores””, published by the APT Val di Fassa, drawn on 27 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Mazzin (no dog regulation found, national rule: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site or nature park on the line (EEA).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Mazzin – Fontanazzo – Campestrin, Val di Fassa',
+      distance: 7.7,
+      elevation: 248,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the church of Mazzin up the Ruf de Udai and the Ruf de Dona into the forest at the mouth of the Val di Dona, along path 577 to Redolon, down to Fontanazzo, across the Avisio and back along the forest road by Campestrin to Mazzin.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in front of the church of Mazzin in the Val di Fassa, the board’s start.",
+        "sequence": "Take Strèda de Pian and, before the bridge over the Ruf de Udai, turn right up Strèda dò Ruf beside the stream. Cross the bridge on the left, follow the dirt road for about 150 m and turn right at a boulder with a red-and-white mark onto a lane that climbs through the woods, then levels. Cross a stream and, keeping right up a short ramp, leave the woods above the Solaria houses. Turn left onto the forest road that climbs beside the Ruf de Dona to the junction for the Val di Dona, then turn right on path 577 for about 700 m to Redolon. Keep right and go down past the Barcia Veia farm to Fontanazzo, then along Strada de l’Albolina to the public car park. Cross the Avisio bridge, pass the playground and follow the forest road through the woods towards Campestrin, past the PalaDolomites hall. Keep right at the fork, climb a short ramp to a clearing with benches, go down to a bridge and walk back into Mazzin up Strèda de Chiavacia and Strèda dò Ruf.",
+        "switches": "Key turns: right up Strèda dò Ruf before the bridge; right at the marked boulder; left onto the forest road above the Solaria houses; right on path 577 at the Val di Dona junction; keep right at Redolon down to Fontanazzo; over the Avisio bridge; right at the fork near the PalaDolomites.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "APT Val di Fassa, Il cammino dei “pitores” (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/802230888",
+            "authority": "APT Val di Fassa",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Pordoi group above Mazzin, seen from the loop, on 13 August 2017 (Adert on Wikimedia Commons, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official loop 7.7 km from the church of Mazzin, as the APT Val di Fassa publishes it; the stored line is drawn on 27 OSM ways along the board’s published line, 7.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the church of Mazzin along Strèda de Pian, right up Strèda dò Ruf beside the Ruf de Udai, over the bridge and right at a boulder with a red-and-white mark onto a lane through the woods; out above the Solaria houses, left onto the forest road up beside the Ruf de Dona to the Val di Dona junction; right on path 577 for about 700 m to Redolon, then keep right down past the Barcia Veia farm to Fontanazzo and along Strada de l’Albolina to the public car park; over the Avisio bridge, past the playground and along the forest road towards Campestrin past the PalaDolomites, right at the fork, through a family clearing, over a bridge and up Strèda de Chiavacia and Strèda dò Ruf back into Mazzin.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.1, km 3.7, km 4.2, km 5.9 and km 7.3 (OSM nodes 2997205620, 9959463623, 9959464127, 13091919570, 4187709215, 3668949329, 13096495700, 10003029604).',
+        elevation: 'Official 7.7 km, 248 m up and 249 m down, 2:25 h, highest point 1,601 m, lowest 1,354 m (APT Val di Fassa, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Il cammino dei “pitores” (its Outdooractive tour)',
+          'Comune di Mazzin publishes no dog regulation (none found on its site; one probably exists), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'EEA Natura 2000 map: no Natura 2000 site on the line, and it is outside the Paneveggio–Pale di San Martino and Adamello Brenta nature parks',
+          'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 69,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Village lanes in Mazzin and Fontanazzo and a short stretch beside the SS48 valley road: keep your dog on a short lead', 'Steep climbs on the forest road up to the Val di Dona junction: the board suggests trekking poles'],
+      terrainType: 'Village lanes, forest roads and paths',
+      shadeDescription: 'Mostly shaded: about seven tenths runs through mapped forest; the villages and the meadows at Redolon are open.',
+      terrainDescription: 'A loop at 1,350–1,600 m on both sides of the Avisio, from Mazzin up into the forest at the mouth of the Val di Dona, the hay valley the villagers once moved to in summer, and back through Fontanazzo and the woods by Campestrin. It recalls the “pitores”, the Mazzin painters who decorated houses across the Habsburg empire.',
+      waterDescription: 'Drinking water at the start in Mazzin, at km 3.7 and 4.2 in Fontanazzo, and at km 5.9 and 7.3 (OSM).',
+      dogNotes: 'Mazzin publishes no dog rule, so the national one applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog on a short lead through the villages.',
+      tips: 'Start at the church of Mazzin: a 7.7 km loop, 248 m of climbing, about two and a half hours, as the board lists. The climb to the Val di Dona junction is steep in places, so the board suggests poles. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Outdooractive, Il cammino dei “pitores” (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/802230888' },
+        { label: 'Comune di Mazzin (no dog regulation found on its site)', url: 'https://www.comune.mazzin.tn.it/' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'EEA, Natura 2000 sites (none on the line)', url: 'https://natura2000.eea.europa.eu/' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.457593, lng: 11.701138, label: 'The church of Mazzin, the board’s start' },
+      desc: 'A loop from Mazzin up into the forest at the mouth of the Val di Dona and back through Fontanazzo and the woods by Campestrin, on the trail of the village’s travelling painters. The board lists 7.7 km, 248 m up and two and a half hours.'
+    },
     'seiseralm-compatsch-wiedner-eck': {
-      // Hand audit: 5 November 2026, verified on arrival (Dolomites headline fix). Replaces alpe-siusi,
-      // the old Alpe di Siusi meadow loop, whose line was not the board’s and whose figures had no source.
+      // Hand audit: 5 November 2026, verified on arrival (Dolomites headline fix). The board's own loop beside alpe-siusi,
+      // the older meadow loop (the offline-map pilot), whose line and figures are not the board's.
       // “Compatsch - Wiedner Eck”, published by the Kastelruth tourist association (Seiser Alm) on Outdooractive (owner: Kastelruth),
       // drawn on 13 OSM ways along the line it publishes (data/board-line-routes.geojson): 100% each way,
       // 6.9 km against the published 7 km, no spur or doubling back. Commune: Kastelruth. Longest run on a
       // main road: 100 m (the tertiary Seiser Alm road in Compatsch). No chairlift: the optional cable car is closed cabins.
-      name: 'Alpe di Siusi meadow loop by the Wiedner Eck',
+      name: 'Compatsch – Wiedner Eck loop',
       area: 'Compatsch – Wiedner Eck – Rifugio Laurin – Compatsch, Seiser Alm / Alpe di Siusi',
       distance: 7,
       elevation: 138,
@@ -63324,7 +63805,7 @@
       routeAudit: {
         photo: 'The Schlern seen from the Seiser Alm meadows, in June (Wolfgang Moroder on Wikimedia Commons, CC BY-SA 3.0), 3 m from the line.',
         route: 'Official loop 7 km from Compatsch, as the Kastelruth tourist association publishes it; the stored line is drawn on 13 OSM ways along the board’s published line, 6.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
-        routeNumbers: 'Paths 30, 6B, 6, 5B and 10, in the order the board’s route description gives them, with its landmarks: Franziskuskirche, Hotel Steger, Tuene hut, Heualm, Albergo Panorama, Rifugio Laurin.',
+        routeNumbers: 'Start behind the Franziskuskirche in Compatsch and take path 30 east past the Hotel Steger; turn left onto 6B past the Tuene hut, then right onto 6 past the Heualm, over the Panorama saddle to the Rifugio Laurin; at the fork go right onto 5B, and follow path 10 back east to Compatsch.',
         mapPoints: 'Start behind the Franziskuskirche in Compatsch, the board’s start; drinking water at km 0.9, 2.3 and 3.7 (OSM nodes 4468099891, 1444149822, 8949692865).',
         elevation: 'Official 7 km, 138 m up and 138 m down, 1:54 h, highest point 1,974 m, lowest 1,836 m (Kastelruth tourist association, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
       },
@@ -63361,12 +63842,6 @@
       ],
       startPoint: { lat: 46.540174, lng: 11.618069, label: 'Behind the Franziskuskirche in Compatsch, the board’s start' },
       desc: 'A loop over the high meadows of the Seiser Alm from Compatsch, past the Hotel Steger and the Heualm to the Panorama saddle and the Rifugio Laurin, and back below the Schlern on path 10. The Kastelruth tourist association lists 7 km, 138 m up and 138 m down, 1 h 54.'
-    },
-    'alpe-siusi': {
-      // Withdrawn 5 November 2026 on the owner’s decision (Dolomites launch focus): replaced by
-      // seiseralm-compatsch-wiedner-eck, which takes over its address.
-      ormaVerified: false,
-      withdrawal: { reason: 'replaced', at: '2026-11-05', note: 'Replaced by the Kastelruth tourist association’s own Compatsch – Wiedner Eck loop (seiseralm-compatsch-wiedner-eck), whose line and figures the board publishes; this line and its figures had no source.' }
     },
     'cadini': {
       // Withdrawn 5 November 2026 on the owner’s decision (Dolomites launch focus).

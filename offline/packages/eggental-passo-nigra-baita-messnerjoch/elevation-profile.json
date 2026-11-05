@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "eggental-passo-nigra-baita-messnerjoch",
+  "distanceKm": 3.9,
+  "ascentM": 242,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1691
+    },
+    {
+      "km": 0.4,
+      "elev": 1720
+    },
+    {
+      "km": 0.6,
+      "elev": 1765
+    },
+    {
+      "km": 0.9,
+      "elev": 1791
+    },
+    {
+      "km": 1.2,
+      "elev": 1830
+    },
+    {
+      "km": 1.5,
+      "elev": 1865
+    },
+    {
+      "km": 1.8,
+      "elev": 1892
+    },
+    {
+      "km": 2.1,
+      "elev": 1886
+    },
+    {
+      "km": 2.4,
+      "elev": 1845
+    },
+    {
+      "km": 2.6,
+      "elev": 1830
+    },
+    {
+      "km": 3,
+      "elev": 1791
+    },
+    {
+      "km": 3.2,
+      "elev": 1765
+    },
+    {
+      "km": 3.6,
+      "elev": 1690
+    },
+    {
+      "km": 3.8,
+      "elev": 1695
+    },
+    {
+      "km": 3.9,
+      "elev": 1688
+    }
+  ]
+}

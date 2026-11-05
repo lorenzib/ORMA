@@ -10,25 +10,39 @@
     "regions-config.js"
   ],
   "totals": {
-    "sourceRecords": 494,
-    "canonicalRecords": 494,
-    "published": 493,
-    "draft": 1,
+    "sourceRecords": 502,
+    "canonicalRecords": 502,
+    "published": 499,
+    "draft": 3,
     "errors": 0
   },
   "byOrigin": {
     "curated": {
-      "total": 332,
-      "published": 332,
+      "total": 340,
+      "published": 340,
       "draft": 0
     },
     "osm": {
       "total": 162,
-      "published": 161,
-      "draft": 1
+      "published": 159,
+      "draft": 3
     }
   },
   "excludedFromGeneration": [
+    {
+      "id": "cadini",
+      "slug": "cadini-di-misurina-viewpoint",
+      "reasons": [
+        "withdrawn pending review: no-official-figures"
+      ]
+    },
+    {
+      "id": "lago-sorapis",
+      "slug": "lago-di-sorapis-trail",
+      "reasons": [
+        "withdrawn pending review: expert-terrain"
+      ]
+    },
     {
       "id": "osm-11891581",
       "slug": "sentiero-alpago-natura",

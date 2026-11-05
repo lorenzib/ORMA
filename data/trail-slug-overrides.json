@@ -1814,13 +1814,45 @@
       "slug": "fort-du-murier-loop-gieres",
       "gloss": "hillside loop to the Batteries Hautes above Grenoble"
     },
+    "eggental-passo-nigra-malga-hagner": {
+      "name": "Passo Nigra to the Malga Hagner Alm",
+      "slug": "passo-nigra-malga-hagner",
+      "gloss": "a shady forest road below the Catinaccio"
+    },
+    "eggental-kaiserstein-baita-masare": {
+      "name": "Kaiserstein to the Baita Masarè",
+      "slug": "kaiserstein-baita-masare",
+      "gloss": "a short forest climb below the Catinaccio"
+    },
+    "eggental-jolanda-baita-messnerjoch": {
+      "name": "Jolanda to the Baita Messnerjoch",
+      "slug": "jolanda-baita-messnerjoch",
+      "gloss": "a forest road to a hut below the Catinaccio"
+    },
+    "eggental-frommer-ochsenhuette": {
+      "name": "Malga Frommer to the Baita Ochsenhütte",
+      "slug": "malga-frommer-ochsenhuette",
+      "gloss": "a short family walk below the Catinaccio"
+    },
+    "eggental-passo-nigra-baita-messnerjoch": {
+      "name": "Passo Nigra to the Baita Messnerjoch",
+      "slug": "passo-nigra-baita-messnerjoch",
+      "gloss": "a forest road climb below the Catinaccio"
+    },
+    "eggental-pietralba-petersberger-leger": {
+      "name": "Pietralba to the Petersberger Leger",
+      "slug": "pietralba-petersberger-leger",
+      "gloss": "a shady forest path from the sanctuary"
+    },
+    "fassa-cammino-dei-pitores": {
+      "name": "Il cammino dei pitores",
+      "slug": "mazzin-cammino-dei-pitores",
+      "gloss": "a loop from Mazzin into the Val di Dona"
+    },
     "seiseralm-compatsch-wiedner-eck": {
-      "name": "Alpe di Siusi meadow loop by the Wiedner Eck",
-      "slug": "alpe-di-siusi-wiedner-eck-loop",
-      "gloss": "high meadows under the Schlern from Compatsch",
-      "retired": [
-        "alpe-di-siusi-meadow-loop"
-      ]
+      "name": "Compatsch – Wiedner Eck loop",
+      "slug": "compatsch-wiedner-eck-loop",
+      "gloss": "high meadows of the Alpe di Siusi under the Schlern"
     }
   }
 }
