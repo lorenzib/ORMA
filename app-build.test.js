@@ -57,6 +57,15 @@ describe('the app ships every trail a page can ask for', () => {
     expect(variants.filter(file => !files.has(file))).toEqual([]);
   });
 
+  test('a picture a script names by path ships, even with a version suffix', () => {
+    // homepage-search.js names its "how it works" pictures as
+    // 'images/orma-how-assess.jpg?v=...', which the markup scan never sees.
+    const named = [...fs.readFileSync(path.join(root, 'homepage-search.js'), 'utf8')
+      .matchAll(/'(images\/orma-how-[^'?]+)\?v=/g)].map(match => match[1]);
+    expect(named).toContain('images/orma-how-assess-1920.jpg');
+    expect(named.filter(file => !files.has(file))).toEqual([]);
+  });
+
   test('no operator surface ships inside the app', () => {
     expect([...files].filter(file => /^backoffice|-desk\.html$|^scripts\/|\.test\.js$/.test(file))).toEqual([]);
   });

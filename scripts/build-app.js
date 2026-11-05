@@ -147,6 +147,18 @@ function addRegionFiles(){
   }
 }
 
+// Pictures a script or stylesheet names by path, such as the homepage's
+// "how it works" images in homepage-search.js. The markup scan above reads
+// only href and src, so these were left out and showed broken in the app.
+const NAMED_IMAGE = /["'(`](?:\.\.\/|\.\/|\/)?(images\/[^"'`()?#\s${}]+\.(?:jpe?g|png|webp|svg|gif|avif))(?=[?#"'`)])/gi;
+function addNamedImages(){
+  for(const r of [...collected]){
+    if(!/\.(js|css|html)$/.test(r)) continue;
+    const text = fs.readFileSync(path.join(root, r), 'utf8');
+    for(const match of text.matchAll(NAMED_IMAGE)) addFile(match[1]);
+  }
+}
+
 // Smaller copies of a photo (lago-di-braies-480.webp) are swapped in by script
 // for narrow screens, by name, so ship each one next to the photo it shrinks.
 function addImageVariants(){
@@ -169,6 +181,7 @@ function collectAppFiles(){
   for(const file of RUNTIME_FILES) addFile(file);
   addRegionFiles();
   for(const dir of RUNTIME_DIRS) addDir(dir);
+  addNamedImages();
   addImageVariants();
   return { files: new Set(collected), missing: Array.from(new Set(missing)) };
 }
