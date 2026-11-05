@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "unterengadin-s-charl-alp-sesvenna-return",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.2,
+    "ascentM": 288,
+    "highestPointM": 2075,
+    "expectedDuration": "1.75 hours",
+    "difficulty": "Hard",
+    "shadePercent": 57
+  },
+  "trailhead": {
+    "lat": 46.715451,
+    "lng": 10.334716,
+    "label": "The S-charl PostAuto stop, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Cows graze around Alp Sesvenna in summer: lead short and go round the herd.",
+    "At 1,800–2,100 m the weather turns fast: bring a layer for you and your dog.",
+    "The alp road is used by farm vehicles and bikes: keep your dog close.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

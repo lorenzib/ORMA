@@ -62270,6 +62270,1499 @@
       ],
       startPoint: { lat: 46.518743, lng: 11.504462, label: 'The roundabout in Fiè allo Sciliar (880 m), the board’s start' },
       desc: 'A one-way walk from Fiè allo Sciliar up through meadows past the Zimmerlehen manor to the Laghetto di Fiè under the Sciliar, then through woods to Siusi. The board lists 6.3 km, 299 m up and two hours.'
+    },
+    'isere-circuit-pedestre-alpage-des-cloutons': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 1, Isère).
+      // “Circuit pédestre : Alpage des Cloutons”, published by the Matheysine Tourisme, drawn on 20 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 6057481). Communes: Saint-Honoré and Villard-Saint-Christophe (no dog order found online for either, probably exists: the national rule applies; the page says dogs on a lead).
+      // No national park, nature reserve, biotope order, regional park or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Saint-Honoré 1500 – Croix de Gouret – Col de l’Oullière (Matheysine)',
+      distance: 10.7,
+      elevation: 635,
+      hours: '4.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Saint-Honoré 1500 resort: up by Les Tibannes and Pracouiret to the Croix de Gouret, along the ridge by the Col du Parché and La Chinarde to the Col de l’Oullière, and back down by the Lac Charlet and Aux Alisiers.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Saint-Honoré 1500 resort car park, at the top of the D 115c above Saint-Honoré.",
+        "sequence": "Follow the signposts for La Croix de Gouret, passing Les Tibannes and Pracouiret. From the Croix de Gouret carry on along the ridge to the Col du Parché, then by La Chinarde to the Col de l’Oullière. From the col head back down past the Lac Charlet and Aux Alisiers to the resort.",
+        "switches": "At the Croix de Gouret turn along the ridge towards the Col du Parché; at the Col de l’Oullière turn down towards the Lac Charlet; at Aux Alisiers follow Saint-Honoré 1500.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Matheysine Tourisme, Circuit pédestre : Alpage des Cloutons (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/circuit-pedestre-alpage-des-cloutons-6057481/",
+            "authority": "Matheysine Tourisme",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Pérollier reflected in the Lac Charlet, on the return leg, in October 2023 (Rémih on Wikimedia Commons, CC BY-SA 4.0), 13 m from the line.',
+        route: 'Official loop 10.7 km from the Saint-Honoré 1500 resort car park, as the Matheysine Tourisme publishes it; the stored line is drawn on 20 OSM ways along the board’s published line, 10.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From Saint-Honoré 1500 follow the signposts for La Croix de Gouret by Les Tibannes and Pracouiret; from the Croix de Gouret go on by the Col du Parché and La Chinarde to the Col de l’Oullière; return to Saint-Honoré 1500 by the Lac Charlet and Aux Alisiers. Yellow waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 10.7 km, 635 m up and 635 m down, 4:15 h average walking time (Matheysine Tourisme, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Matheysine Tourisme, Circuit pédestre : Alpage des Cloutons (alpes-isere.com, Apidae 6057481) and its official GPX',
+          'Saint-Honoré and Villard-Saint-Christophe publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs on a lead only, possible guard dogs and flocks on the heights',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (20 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 29,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpages: sheep and cattle graze the heights in summer, often with guard dogs (patous); keep your dog on a lead and walk round the flock', 'Open ridge at about 1,500–2,100 m with little shade and quick weather changes', 'Snow can linger on the crests early and late in the season'],
+      terrainType: 'Ski-resort tracks, mountain path and grassy ridge',
+      shadeDescription: 'Mostly open: just under a third of the line passes woodland near the resort; the ridge, the cols and the lake are open.',
+      terrainDescription: 'A half-day loop on the Matheysine plateau’s mountain, from the Saint-Honoré 1500 resort up to the Croix de Gouret and along a grassy ridge of cols with views over the Matheysine lakes, the Vercors and the Obiou, then down past the little Lac Charlet.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs are accepted on a lead only, according to the official page, and flocks with guard dogs graze the heights: keep your dog close and give the herds a wide berth. Saint-Honoré and Villard-Saint-Christophe publish no dog order online, so the national rule applies on top: no straying, and a lead in woods and fields off the paths from 15 April to 30 June.',
+      tips: 'Drive up the D 115c from Saint-Honoré to the Saint-Honoré 1500 resort: 10.7 km round, 635 m up and down, about 4 h 15. Open 15 June to 15 October; ask about snow on the crests early in the season.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Circuit pédestre : Alpage des Cloutons (Matheysine Tourisme)', url: 'https://www.alpes-isere.com/itineraire/circuit-pedestre-alpage-des-cloutons-6057481/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/59/162/43426363/Alpage+des+Cloutons.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 44.972445, lng: 5.825698, label: 'Saint-Honoré 1500 resort car park on the D 115c, the board’s start' },
+      desc: 'A half-day loop above the Matheysine from the Saint-Honoré 1500 resort to the Croix de Gouret, along a grassy ridge of cols to the Col de l’Oullière and back past the Lac Charlet. The official page lists 10.7 km, 635 m up and down, about 4 h 15.'
+    },
+    'isere-la-vallee-de-la-gresse': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 1, Isère).
+      // “La vallée de la Gresse”, published by the Office de Tourisme Grenoble Alpes, drawn on 23 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 6086482). Communes: Miribel-Lanchâtre (no dog order found online, probably exists: the national rule applies; the page says dogs on a lead).
+      // Inside the Parc naturel régional du Vercors (no dog rule of its own); no national park, nature reserve, biotope order or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Miribel-Lanchâtre – Gresse valley (Trièves, Vercors)',
+      distance: 6.2,
+      elevation: 286,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Miribel-Lanchâtre town hall: down past Les Gouveyrts and the Fond Carle farm to the Gresse torrent, up through the forest to the Plan de Miribel ridge and back along a broad track to the village.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Miribel-Lanchâtre town hall, in the village centre.",
+        "sequence": "Walk up the street towards Les Adrets, cross the D 8 and carry straight on along the Chemin du Pré Tarachou, then take the stony path on the left and turn right on the road towards Les Gouveyrts. Just after the Fond Carle farm turn left onto the path for the Pont Péron and the Gresse torrent; do not cross the footbridge but climb straight on through the gates (close them behind you). At the Malamorta signpost turn right for the Serre du Roux, up through the forest and across the ford of the Pierre du Mai stream to the Plan de Miribel signpost on the ridge. Turn left onto the broad track back towards the village; at La Tournie carry straight on along a grassy path, walk up beside the D 8 and turn right before the bus stop back to the town hall.",
+        "switches": "Left after the Fond Carle farm for the Pont Péron; right at Malamorta for the Serre du Roux; left at Plan de Miribel; straight on at La Tournie; right before the bus stop.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme Grenoble Alpes, La vallée de la Gresse (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/la-vallee-de-la-gresse-6086482/",
+            "authority": "Office de Tourisme Grenoble Alpes",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Miribel-Lanchâtre from the loop, in May 2017 (Jvillafruela on Wikimedia Commons, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 6.2 km from the Miribel-Lanchâtre town hall, as the Office de Tourisme Grenoble Alpes publishes it; the stored line is drawn on 23 OSM ways along the board’s published line, 6.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the Miribel-Lanchâtre town hall walk up the street towards Les Adrets, cross the D 8 to the Chemin du Pré Tarachou, then down the road towards Les Gouveyrts; after the Fond Carle farm take the path towards the Pont Péron to the Gresse; at the Malamorta signpost turn right for the Serre du Roux, up through the forest to the Plan de Miribel signpost, left on the broad track back to the village by La Tournie. Yellow PR waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 6.2 km, 286 m up and 286 m down, 2:00 h average walking time (Office de Tourisme Grenoble Alpes, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme Grenoble Alpes, La vallée de la Gresse (alpes-isere.com, Apidae 6086482) and its official GPX',
+          'Miribel-Lanchâtre publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs on a lead',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional du Vercors: a regional park sets no dog rule of its own outside the Hauts-Plateaux nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 49,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A short stretch of scree before the Gresse torrent can be slippery after heavy rain', 'A ford across the Pierre du Mai stream', 'Farm gates to close behind you; the D 8 is crossed and briefly followed at the end'],
+      terrainType: 'Village lanes, quiet roads, forest path and broad track',
+      shadeDescription: 'About half under trees: the climb from the Gresse to the Plan de Miribel is in forest; the lanes and the ridge track are open.',
+      terrainDescription: 'An easy two-hour loop in the Trièves from the village of Miribel-Lanchâtre, down to the Gresse torrent and back up through the forest to a ridge with views over the Trièves, the Chartreuse and the northern Vercors.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs on a lead, according to the official page. Miribel-Lanchâtre publishes no dog order online, so the national rule applies too: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. The loop crosses pastures with gates; livestock may be near the path.',
+      tips: 'Park near the Miribel-Lanchâtre town hall: 6.2 km round, 286 m up and down, about 2 h. Open all year; the scree before the Gresse is slippery after heavy rain.',
+      sourceLinks: [
+        { label: 'Alpes Isère, La vallée de la Gresse (Office de Tourisme Grenoble Alpes)', url: 'https://www.alpes-isere.com/itineraire/la-vallee-de-la-gresse-6086482/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/20/68/29377556/08-Le+pr+du+Pleynet.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 44.975302, lng: 5.620315, label: 'Miribel-Lanchâtre town hall, the board’s start' },
+      desc: 'An easy loop from the village of Miribel-Lanchâtre in the Trièves, down to the Gresse torrent and back up through the forest to the Plan de Miribel ridge with views to the Chartreuse and the Vercors. The official page lists 6.2 km, 286 m up and down, about 2 h.'
+    },
+    'isere-de-st-pierre-dentremont-a-corbel': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 1, Isère).
+      // “De St Pierre d’Entremont à Corbel”, published by the Chartreuse Tourisme, drawn on 44 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 6779364). Communes: Saint-Pierre-d’Entremont (Isère), Saint-Pierre-d’Entremont (Savoie) and Corbel (no dog order found online for any of them, probably exists: the national rule applies; the page says dogs on a lead).
+      // Inside the Parc naturel régional de Chartreuse (no dog rule of its own); no national park, nature reserve, biotope order or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Saint-Pierre-d’Entremont – Pas de la Coche – Corbel (Chartreuse)',
+      distance: 9,
+      elevation: 450,
+      hours: '3.25',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Saint-Pierre-d’Entremont tourist office: up by Le Téchet and Sous la Roche to the Pas de la Coche, over to Les Fiolins and down to Corbel, then back by La Baroëlle and the hamlets of Les Gants and Les Buis.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Saint-Pierre-d’Entremont tourist office, in the village centre.",
+        "sequence": "Walk through the village towards Chambéry to the Saint-Alexis church, cross the bridge over the Cozon on the left and turn left. At the Le Pré du Comte signpost follow the Pas de la Coche up the path beside a building, past Le Téchet and along the broad track to Sous la Roche, where you turn left for the Pas de la Coche. From the Pas de la Coche follow Les Fiolins – Corbel; at Les Fiolins take the Tour de Chartreuse path that drops down to the right behind the communal bread oven, join a road at a hairpin and turn right into Corbel. Walk past the church to the cemetery, and at La Baroëlle carry on towards Saint-Pierre-d’Entremont on the path that joins the little road through Les Gants and Les Buis back to the village.",
+        "switches": "Left over the Cozon after the church; right at Le Pré du Comte; left at Sous la Roche; at Les Fiolins down to the right behind the bread oven; right at the road hairpin; on at La Baroëlle for Saint-Pierre-d’Entremont.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Chartreuse Tourisme, De St Pierre d’Entremont à Corbel (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/de-st-pierre-dentremont-a-corbel-6779364/",
+            "authority": "Chartreuse Tourisme",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Corbel church, which the loop passes on its way to the cemetery, in October 2018 (pgiraud on Mapillary, CC BY-SA 4.0), taken on foot 1 m from the line.',
+        route: 'Official loop 9 km from the Saint-Pierre-d’Entremont tourist office, as the Chartreuse Tourisme publishes it; the stored line is drawn on 44 OSM ways along the board’s published line, 9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the tourist office cross the village towards Chambéry to the Saint-Alexis church, cross the Cozon and at Le Pré du Comte (645 m) follow the Pas de la Coche past Le Téchet (730 m) to Sous la Roche; left to the Pas de la Coche (1,005 m), then Les Fiolins – Corbel; at Les Fiolins (870 m) follow Corbel on the Tour de Chartreuse; through Corbel past the church to the cemetery; at La Baroëlle (760 m) follow Saint-Pierre-d’Entremont by Les Gants (685 m) and Les Buis (640 m). Yellow, then red-and-yellow and red-and-white waymarks; signposts named with their altitude, no path numbers.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.1, km 0.2, km 3.3, km 4.4, km 4.6, km 5.3, km 5.4 and km 6 (OSM nodes 3755019492, 740167309, 12242308754, 6715574153, 11586911924, 2400460603, 5537243981, 5537247445, 5537247443).',
+        elevation: 'Official 9 km, 450 m up and 450 m down, 3:15 h average walking time (Chartreuse Tourisme, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Chartreuse Tourisme, De St Pierre d’Entremont à Corbel (alpes-isere.com, Apidae 6779364) and its official GPX',
+          'Saint-Pierre-d’Entremont (Isère), Saint-Pierre-d’Entremont (Savoie) and Corbel publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs accepted on a lead',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional de Chartreuse: a regional park sets no dog rule of its own outside the Hauts de Chartreuse nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (44 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 50,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About half the loop is on village streets and small roads; the Route du Dauphiné through Saint-Pierre-d’Entremont carries traffic', 'A steady forest climb to the Pas de la Coche (about 1,005 m)', 'Livestock may be in the meadows around Corbel'],
+      terrainType: 'Village streets, forest path and track, small roads',
+      shadeDescription: 'About half under trees: the climb from Le Téchet to the Pas de la Coche and the path down from Les Fiolins are in woodland; Corbel, the hamlets and the village streets are open.',
+      terrainDescription: 'A three-hour loop in the Chartreuse from Saint-Pierre-d’Entremont over the Pas de la Coche to the mountain village of Corbel under its limestone cliffs, and back through the hamlets of Les Gants and Les Buis.',
+      waterDescription: 'Drinking water at km 0.1, km 0.2, km 3.3, km 4.4, km 4.6, km 5.3, km 5.4 and km 6; places to eat on the way.',
+      dogNotes: 'Dogs are accepted on a lead, according to the official page. The two Saint-Pierre-d’Entremont communes and Corbel publish no dog order online, so the national rule applies too: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. The loop stays outside the Hauts de Chartreuse nature reserve, where dogs are banned.',
+      tips: 'Park at the Saint-Pierre-d’Entremont school car park: 9 km round, 450 m up and down, about 3 h 15. Open 1 May to 30 November.',
+      sourceLinks: [
+        { label: 'Alpes Isère, De St Pierre d’Entremont à Corbel (Chartreuse Tourisme)', url: 'https://www.alpes-isere.com/itineraire/de-st-pierre-dentremont-a-corbel-6779364/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/248/44/20851960/de-spe-a-corbel.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.415169, lng: 5.854643, label: 'Saint-Pierre-d’Entremont tourist office, the board’s start' },
+      desc: 'A loop in the Chartreuse from Saint-Pierre-d’Entremont through the forest to the Pas de la Coche, down to the mountain village of Corbel under its cliffs and back through the hamlets of Les Gants and Les Buis. The official page lists 9 km, 450 m up and down, about 3 h 15.'
+    },
+    'isere-le-canal-de-clelles': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 1, Isère).
+      // “Le canal de Clelles”, published by the Office de Tourisme du Trièves, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 7810267). Communes: Clelles (no dog order found online, probably exists: the national rule applies; the page says dogs accepted).
+      // Inside the Parc naturel régional du Vercors (no dog rule of its own); no national park, nature reserve, biotope order or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Clelles – Mont Aiguille foothills (Trièves, Vercors)',
+      distance: 4.8,
+      elevation: 92,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Clelles-Mens station: up to Le Réservoir and its Mont Aiguille viewpoint, on to La Celle and Le Génie, along the canal by the Bois du Trièves and the Bois de l’Hote to Mailletère, and back to Le Réservoir and the station.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the La Gare signpost in front of the Clelles-Mens railway station.",
+        "sequence": "Take the tarred road opposite towards Le Réservoir, turn left at the farm onto the track and reach the Le Réservoir signpost with its Mont Aiguille viewpoint board. Carry straight on towards La Celle, then turn right towards Le Génie, taking care crossing the departmental road. Continue towards Bois des Chaux, then left towards Bois du Trièves, and follow the canal towards Bois de l’Hote, crossing the departmental road again, and on along the canal to Mailletère. From Mailletère follow the track down and turn left back to Le Réservoir, then return to the station.",
+        "switches": "Left at the farm onto the track; right at La Celle for Le Génie; left after Bois des Chaux for Bois du Trièves; at Mailletère down the track and left for Le Réservoir.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme du Trièves, Le canal de Clelles (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/le-canal-de-clelles-7810267/",
+            "authority": "Office de Tourisme du Trièves",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Hay meadows by the loop near Clelles, at about 860 m, in June 2009 (Smiley.toerist on Wikimedia Commons, CC BY-SA 3.0), 1 m from the line.',
+        route: 'Official loop 4.8 km from the Clelles-Mens railway station, as the Office de Tourisme du Trièves publishes it; the stored line is drawn on 17 OSM ways along the board’s published line, 4.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the La Gare signpost at the Clelles-Mens station follow Le Réservoir, then La Celle; at La Celle turn right for Le Génie (crossing the departmental road), then Bois des Chaux and left for Bois du Trièves; along the canal towards Bois de l’Hote (crossing the departmental road again) and Mailletère; from Mailletère down the track and left back to Le Réservoir and La Gare. Green and yellow waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.8 km, 92 m up and 92 m down, 1:30 h average walking time (Office de Tourisme du Trièves, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme du Trièves, Le canal de Clelles (alpes-isere.com, Apidae 7810267) and its official GPX',
+          'Clelles publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs accepted',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional du Vercors: a regional park sets no dog rule of its own outside the Hauts-Plateaux nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (17 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 67,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The departmental road is crossed twice: keep your dog close', 'Stretches of open farmland between the woods, with little shade there on hot days', 'Livestock may be in the fields beside the track'],
+      terrainType: 'Farm tracks, woodland canal path and short tarred stretches',
+      shadeDescription: 'About two-thirds under trees: the canal runs through the Bois des Chaux, the Bois du Trièves and the Bois de l’Hote; the start from the station and the fields by Le Réservoir are open.',
+      terrainDescription: 'An easy, almost flat loop from the Clelles-Mens station through the Trièves farmland and woods along an old irrigation canal, with the Mont Aiguille in view from the open stretches.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs are accepted, according to the official page. Clelles publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Keep your dog on a lead at the two road crossings.',
+      tips: 'Park at the Clelles-Mens station or come by train (TER Grenoble – Gap): 4.8 km round, 92 m up and down, about 1 h 30. Open all year.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Le canal de Clelles (Office de Tourisme du Trièves)', url: 'https://www.alpes-isere.com/itineraire/le-canal-de-clelles-7810267/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/66/28/41098306/le_canal_de_clelles.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 44.827348, lng: 5.605135, label: 'Clelles-Mens railway station, the board’s start' },
+      desc: 'An easy loop from the Clelles-Mens station across the Trièves farmland and along an old canal, with the Mont Aiguille in view. The official page lists 4.8 km, 92 m up and down, about 1 h 30.'
+    },
+    'isere-tour-de-chichilianne': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 1, Isère).
+      // “Tour de Chichilianne”, published by the Office de Tourisme du Trièves, drawn on 26 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 7219269). Communes: Chichilianne (no dog order found online, probably exists: the national rule applies; the page says dogs on a lead).
+      // Inside the Parc naturel régional du Vercors (no dog rule of its own); no national park, nature reserve, biotope order or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Chichilianne – Le Châtel (Trièves, Vercors)',
+      distance: 3.8,
+      elevation: 116,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Place de la Fontaine in Chichilianne: across the river to the Le Châtel viewpoint, through the hamlet of Château-Vieux to the Pierre aux Corneilles, west along Les Crêtes to Le Cros and back by Le Rapon.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Chichilianne signpost on the Place de la Fontaine, beside the church and the tourist information point.",
+        "sequence": "Follow Près des Oches along the road past the town hall towards the east end of the village. At Près des Oches take the track down to the left, ford the river and a few metres on climb left up the steep little forest path to the Le Châtel viewpoint. Go down towards Chevalanche, then turn right towards Pierre aux Corneilles through the hamlet of Château-Vieux. Follow the crest due west to Les Crêtes and on to Le Cros, going straight over the D 7B and crossing the river to the left. From Le Cros follow the track towards Le Rapon, then Chichilianne, back to the start.",
+        "switches": "Left down the track at Près des Oches; left up the forest path after the ford; right towards Pierre aux Corneilles after Chevalanche; straight over the D 7B; at Le Cros follow Le Rapon.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme du Trièves, Tour de Chichilianne (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/tour-de-chichilianne-7219269/",
+            "authority": "Office de Tourisme du Trièves",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The bell tower of Chichilianne church, at the loop’s start on the Place de la Fontaine, in August 2014 (Jvillafruela on Wikimedia Commons, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official loop 3.8 km from the Place de la Fontaine in Chichilianne, as the Office de Tourisme du Trièves publishes it; the stored line is drawn on 26 OSM ways along the board’s published line, 3.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the Chichilianne signpost follow Près des Oches past the town hall; at Près des Oches down the track, across the river by the ford and up left to Le Châtel; down towards Chevalanche, then right for Pierre aux Corneilles through Château-Vieux; west along the crest to Les Crêtes and Le Cros (crossing the D 7B and the river); from Le Cros follow Le Rapon, then Chichilianne. Yellow and green waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3.8 km, 116 m up and 116 m down, 1:30 h average walking time (Office de Tourisme du Trièves, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme du Trièves, Tour de Chichilianne (alpes-isere.com, Apidae 7219269) and its official GPX',
+          'Chichilianne publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs on a lead',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional du Vercors: a regional park sets no dog rule of its own outside the Hauts-Plateaux nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (26 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 28,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Two river crossings, one by a ford: the stones can be slippery and the water higher after rain', 'A short steep forest climb to Le Châtel', 'The D 7B is crossed once'],
+      terrainType: 'Village roads, forest path, crest path and farm tracks',
+      shadeDescription: 'About a quarter under trees: the forest climb to Le Châtel and the wooded stretches by the river; the crest, the hamlet and the tracks are mostly open.',
+      terrainDescription: 'A short loop around Chichilianne at the foot of the Mont Aiguille, fording the river to the Le Châtel viewpoint and following a low crest through the hamlet of Château-Vieux.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs on a lead, according to the official page. Chichilianne publishes no dog order online, so the national rule applies: no straying, and a lead in woods and fields off the paths from 15 April to 30 June.',
+      tips: 'Park on the Place de la Fontaine or at the La Richardière car park: 3.8 km round, 116 m up and down, about 1 h 30. Open all year; the ford can be higher after rain.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Tour de Chichilianne (Office de Tourisme du Trièves)', url: 'https://www.alpes-isere.com/itineraire/tour-de-chichilianne-7219269/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/111/118/28341871/tour_de_chichilianne-20521172-1736771375-418.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 44.811042, lng: 5.573311, label: 'Place de la Fontaine in Chichilianne, by the church, the board’s start' },
+      desc: 'A short loop around Chichilianne at the foot of the Mont Aiguille, across the river by a ford to the Le Châtel viewpoint and back along a low crest through the hamlet of Château-Vieux. The official page lists 3.8 km, 116 m up and down, about 1 h 30.'
+    },
+    'unterengadin-vna-ramosch-via-veglia': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “Vnà - Ramosch, via veglia”, published by the Engadin Samnaun Val Müstair, drawn on 13 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Valsot (no dog rule found online; the Graubünden and federal rules apply).
+      // The line crosses the Bos-cha Grischa wildlife rest zone on its marked path; the zone is closed only 20 December–20 April. No National Park and no federal reserve.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Vnà – Riatsch farm – forest – Ramosch (Valsot)',
+      distance: 2,
+      elevation: 0,
+      hours: '0.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way down the old path from the village of Vnà to Ramosch, then back by PostBus.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the PostBus from Scuol, change in Ramosch and ride up to Vnà; start at the bus stop on the road, the board’s start.",
+        "sequence": "From the bus stop walk back a little to the junction, past the village museum and the church of Vnà. Head towards the Riatsch family farm and take the lower path along the farm. Follow it until it enters the forest, then keep going down. After a while the path comes out on the Ramosch–Vnà road: follow the hiking signs along it for a short way and on down to the first houses of Ramosch. Walk down through the village, past the Plazsura fountain at about km 1.9, and at the school keep left towards the church of San Flurin at km 2.0. The walk ends at the Ramosch, Plaz bus stop.",
+        "switches": "Key turns: at the junction below the Vnà bus stop take the lower path past the Riatsch farm; at the school in Ramosch keep left towards the church.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, Vnà - Ramosch, via veglia (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/32029554",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Stradella in Vnà at the start of the walk, in September (Agnes Monkelbaan on Wikimedia Commons, CC BY-SA 4.0), 4 m from the line.',
+        route: 'Official one-way walk 2 km from the PostBus stop in Vnà, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 13 OSM ways along the board’s published line, 2.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the bus stop in Vnà go back to the junction, take the lower path past the Riatsch farm and down through the forest, then follow the hiking trail down into Ramosch to the church.',
+        mapPoints: 'Start at the board’s start; drinking water at km 1.9 and km 2 (OSM nodes 11017687651, 807897363).',
+        elevation: 'Official 2 km, 0 m up and 385 m down, 0:40 h, highest point 1,618 m, lowest 1,232 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, Vnà - Ramosch, via veglia (its Outdooractive tour, also listed on engadin.com)',
+          'Vschinauncha Valsot: no dog rule found online; one probably exists, so the walk carries the Graubünden and federal rules',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the Bos-cha Grischa wildlife rest zone, closed only 20 December–20 April, so open in the walking season; no National Park and no federal reserve',
+          'OpenStreetMap ways along the board’s line (13 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 12,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steep descent of 385 m in 2 km: take it slowly with older dogs', 'A short stretch on the Ramosch–Vnà road: lead short and keep to the side', 'Cows may graze the meadows near the farm: lead short and go round the herd'],
+      terrainType: 'Field path, forest path and village lanes',
+      shadeDescription: 'Mostly open: only about an eighth runs under the mapped forest.',
+      terrainDescription: 'A short, steep downhill walk from 1,620 m to 1,230 m on the old path between two Lower Engadin villages, through meadows and forest.',
+      waterDescription: 'Drinking water at km 1.9 and km 2; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Valsot publishes no dog rule online: follow the lead rule above. The path crosses a wildlife rest zone that is closed only in winter. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the PostBus up to Vnà and walk 2 km down to Ramosch, 385 m down, about 40 minutes, then take the PostBus back. Drinking water at the fountains in Ramosch. Café in Ramosch and a pension in Vnà.',
+      sourceLinks: [
+        { label: 'Outdooractive, Vnà - Ramosch, via veglia (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/32029554' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.84263, lng: 10.365298, label: 'Vnà, by the PostBus stop, the board’s start' },
+      desc: 'A short walk down the old path from Vnà, a village of Engadin houses high above the Inn, through meadows and forest to Ramosch and its church of San Flurin. The board lists 2 km, 0 m up and 385 m down, 40 min.'
+    },
+    'unterengadin-vna-sinestra': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “Vnà – Sinestra”, published by the Engadin Samnaun Val Müstair, drawn on 20 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Valsot (no dog rule found online) and Scuol (a short lead in restaurants, parks and signposted areas; never unsupervised).
+      // The line is outside the Swiss National Park and every federal reserve and wildlife rest zone.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Vnà – Prà San Peider path – Val Sinestra (Valsot, Scuol)',
+      distance: 3.8,
+      elevation: 77,
+      hours: '1.25',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the village of Vnà along the hillside and down into Val Sinestra, then back by PostBus.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the PostBus from Scuol, change in Ramosch and ride up to Vnà, Jalmèr; start at the bus stop, the board’s start.",
+        "sequence": "From the bus stop walk through the whole village of Vnà, past the Bügl Grond fountain at about km 0.2 and the Pension Arina. At the end of the village the path runs flat along the hillside towards Prà San Peider and Zuort. At the first junction take the path down towards Val Sinestra and keep following it down until you reach the Brancla stream in the valley floor. Past the Berghaus Val Sinestra at about km 3.2 the walk ends at the Hotel Val Sinestra, where the PostBus runs to Sent and Scuol.",
+        "switches": "Key turns: at the end of Vnà keep on the flat path towards Prà San Peider; at the first junction turn down towards Val Sinestra.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, Vnà – Sinestra (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/32233851",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Piz S-chalambert from Val Sinestra, in September (Dominicus Johannes Bergsma on Wikimedia Commons, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official one-way walk 3.8 km from the Vnà, Jalmèr PostBus stop, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 20 OSM ways along the board’s published line, 3.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the Vnà, Jalmèr bus stop cross the whole village, follow the flat path towards Prà San Peider, and at the first junction go down into Val Sinestra.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.2 and km 0.3 (OSM nodes 859002359, 830644548).',
+        elevation: 'Official 3.8 km, 77 m up and 174 m down, 1:15 h, highest point 1,646 m, lowest 1,472 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, Vnà – Sinestra (its Outdooractive tour, also listed on engadin.com)',
+          'Vschinauncha Valsot: no dog rule found online; one probably exists, so the walk carries the Graubünden and federal rules',
+          'Gemeinde Scuol, Ledscha da pulizia (14.6.2015, in force 1.7.2015, revised 2022 and 2025), art. 33: no dog may go unsupervised; a short lead in administrative buildings, school and kindergarten grounds, playgrounds and sports grounds, restaurants, public parks, wildlife sanctuaries and signposted areas; no dogs in baths, churches, cemeteries, concert halls, theatres or cinemas; dog mess picked up at once; fines CHF 50–10,000',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is outside the Swiss National Park and every federal reserve and wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (20 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 49,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['A descent of 174 m into Val Sinestra: take it slowly with older dogs', 'A short stretch on the road at the end of the valley: lead short', 'Cows may graze the meadows above Vnà: lead short and go round the herd'],
+      terrainType: 'Village lanes, hillside path and forest path',
+      shadeDescription: 'About half runs under the mapped forest on the way down into Val Sinestra.',
+      terrainDescription: 'An easy walk from 1,650 m to 1,470 m along the sunny hillside above the Inn and down into the wooded side valley of Val Sinestra with its old spa hotel.',
+      waterDescription: 'Drinking water at km 0.2 and km 0.3; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Valsot publishes no dog rule online: follow the lead rule above. Scuol never lets a dog go unsupervised, and requires a short lead in restaurants, playgrounds, public parks, wildlife sanctuaries and signposted areas. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the PostBus up to Vnà and walk 3.8 km into Val Sinestra, 77 m up and 174 m down, about an hour and a quarter, then take the PostBus to Sent and Scuol. Drinking water at the fountains in Vnà. Food at the Berghaus and Hotel Val Sinestra.',
+      sourceLinks: [
+        { label: 'Outdooractive, Vnà – Sinestra (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/32233851' },
+        { label: 'Gemeinde Scuol, Ledscha da pulizia (2015)', url: 'https://www.scuol.net/public/upload/assets/920/111_Ledscha%20da%20pulizia_r.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.84263, lng: 10.365298, label: 'Vnà, by the Jalmèr PostBus stop, the board’s start' },
+      desc: 'An easy walk from the village of Vnà along the hillside and down through the forest into Val Sinestra, ending at its old spa hotel. The board lists 3.8 km, 77 m up and 174 m down, 1 h 15.'
+    },
+    'unterengadin-scuol-ftan': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “Scuol – Ftan”, published by the Engadin Samnaun Val Müstair, drawn on 36 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Scuol (a short lead in restaurants, parks and signposted areas; never unsupervised).
+      // The line is outside the Swiss National Park and every federal reserve and wildlife rest zone.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Scuol-Tarasp station – Rachögnia – Ftan Pitschen – Ftan Grond (Scuol)',
+      distance: 4.1,
+      elevation: 366,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way up from Scuol-Tarasp station through the forest to the village of Ftan, then back by PostAuto.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the Rhaetian Railway to Scuol-Tarasp and start at the station, the board’s start.",
+        "sequence": "From the station walk to the valley station of the Scuol mountain railway, crossing the railway tracks on the way, at about km 0.3. The first signpost there points towards Ftan: follow it up past the Rachögnia drag lift, at about km 0.7. There a narrow hiking trail begins and climbs through the forest to a plateau, passing a wildlife-zone sign at about km 2.0. From there the path is wider but steeper. It soon reaches Ftan Pitschen, with fountains at about km 3.7, and shortly after Ftan Grond, where the walk ends at the PostAuto stop.",
+        "switches": "Key turns: at the mountain railway take the signpost towards Ftan; at the Rachögnia lift take the narrow trail into the forest.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, Scuol – Ftan (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/15670033",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The forecourt of Scuol-Tarasp station at the start of the walk, in October (Global Fish on Wikimedia Commons, CC BY-SA 4.0), 12 m from the line.',
+        route: 'Official one-way walk 4.1 km from Scuol-Tarasp station, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 36 OSM ways along the board’s published line, 4.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Scuol-Tarasp station walk to the mountain railway, follow the signpost towards Ftan, go up past the Rachögnia lift on the narrow trail through the forest, and on via Ftan Pitschen to Ftan Grond.',
+        mapPoints: 'Start at the board’s start; drinking water at km 3.7, km 3.8, km 4 and km 4.2 (OSM nodes 861518099, 861518095, 861518078, 6274613029, 861518094).',
+        elevation: 'Official 4.1 km, 366 m up and 14 m down, 1:30 h, highest point 1,642 m, lowest 1,280 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, Scuol – Ftan (its Outdooractive tour, also listed on engadin.com)',
+          'Gemeinde Scuol, Ledscha da pulizia (14.6.2015, in force 1.7.2015, revised 2022 and 2025), art. 33: no dog may go unsupervised; a short lead in administrative buildings, school and kindergarten grounds, playgrounds and sports grounds, restaurants, public parks, wildlife sanctuaries and signposted areas; no dogs in baths, churches, cemeteries, concert halls, theatres or cinemas; dog mess picked up at once; fines CHF 50–10,000',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is outside the Swiss National Park and every federal reserve and wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (36 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 26,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steady climb of 366 m: take it slowly with older dogs', 'The walk crosses the railway near Scuol station: lead short at the crossing', 'The upper path is steeper: let your dog set the pace'],
+      terrainType: 'Town streets, forest trail and mountain path',
+      shadeDescription: 'Partly shaded: about a quarter runs under the mapped forest below the plateau.',
+      terrainDescription: 'A walk up from Scuol at 1,280 m through forest to the sunny terrace village of Ftan at 1,640 m, with views over Scuol and Tarasp.',
+      waterDescription: 'Drinking water at km 3.7, km 3.8, km 4 and km 4.2; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Scuol never lets a dog go unsupervised, and requires a short lead in restaurants, playgrounds, public parks, wildlife sanctuaries and signposted areas. The Rhaetian Railway runs close by: keep your dog on a short lead near the tracks and at the crossings. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Start at Scuol-Tarasp station and walk 4.1 km up to Ftan, 366 m up, about an hour and a half, then take the PostAuto back. Drinking water at the fountains in Ftan. Food at the station and in Ftan.',
+      sourceLinks: [
+        { label: 'Outdooractive, Scuol – Ftan (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/15670033' },
+        { label: 'Gemeinde Scuol, Ledscha da pulizia (2015)', url: 'https://www.scuol.net/public/upload/assets/920/111_Ledscha%20da%20pulizia_r.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.793699, lng: 10.287044, label: 'Scuol-Tarasp station, the board’s start' },
+      desc: 'A walk from Scuol-Tarasp station up through the forest to the village of Ftan, with views over Scuol and Tarasp Castle. The board lists 4.1 km, 366 m up and 14 m down, 1 h 30.'
+    },
+    'unterengadin-guarda-ardez-hike-between-two-engadin-villages': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “Guarda – Ardez: hike between two Engadin villages”, published by the Engadin Samnaun Val Müstair, drawn on 34 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Scuol (a short lead in restaurants, parks and signposted areas; never unsupervised).
+      // The line crosses the Laret and God da San Steivan wildlife rest zones, closed only 20 December–20 April. No National Park and no federal reserve.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Guarda – Bos-cha – Ardez station (Scuol)',
+      distance: 4.8,
+      elevation: 47,
+      hours: '1.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the village of Guarda by Bos-cha to Ardez, then back by train.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the PostBus from Guarda station up to Guarda, cumün, and start in the village centre, the board’s start.",
+        "sequence": "Walk east through Guarda past the Plazzetta fountain and the Schellen-Ursli museum to the eastern end of the village. From there a small road runs almost level along the sunny terrace above the Inn, past the ruins of an old mill at about km 1.3, to the hamlet of Bos-cha at about km 1.7, which has a fountain. Stay on the same road as it leads down towards Ardez, past a fountain at about km 2.6. In Ardez walk down through the village with its painted houses and fountains to Ardez station at km 4.8, where the walk ends.",
+        "switches": "Key turns: at the east end of Guarda take the small road towards Bos-cha; at Bos-cha stay on the same road down to Ardez.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, Guarda – Ardez: hike between two Engadin villages (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/17695297",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The road between Bos-cha and Guarda, in October (Böhringer on Wikimedia Commons, CC BY-SA 3.0 AT, credited as the author as he asks), 3 m from the line.',
+        route: 'Official one-way walk 4.8 km from the village of Guarda, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 34 OSM ways along the board’s published line, 4.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the east end of Guarda follow the small road almost level to the hamlet of Bos-cha, then stay on the same road down into Ardez and on to the station.',
+        mapPoints: 'Start at the board’s start; drinking water at km 0.1, km 0.2, km 1.7, km 2.6, km 4.4 and km 4.6 (OSM nodes 863735957, 1639132528, 2686306549, 3764314647, 863175637, 5760720965).',
+        elevation: 'Official 4.8 km, 47 m up and 274 m down, 1:30 h, highest point 1,671 m, lowest 1,434 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, Guarda – Ardez: hike between two Engadin villages (its Outdooractive tour, also listed on engadin.com)',
+          'Gemeinde Scuol, Ledscha da pulizia (14.6.2015, in force 1.7.2015, revised 2022 and 2025), art. 33: no dog may go unsupervised; a short lead in administrative buildings, school and kindergarten grounds, playgrounds and sports grounds, restaurants, public parks, wildlife sanctuaries and signposted areas; no dogs in baths, churches, cemeteries, concert halls, theatres or cinemas; dog mess picked up at once; fines CHF 50–10,000',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the Laret and God da San Steivan wildlife rest zones, closed only 20 December–20 April, so open in the walking season; no National Park and no federal reserve',
+          'OpenStreetMap ways along the board’s line (34 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 10,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Most of the walk is on a small road: lead short for the odd car', 'Little shade on the sunny terrace: carry water on hot days', 'A descent of 274 m into Ardez: take it slowly with older dogs'],
+      terrainType: 'Small road and village lanes',
+      shadeDescription: 'Mostly open: only about a tenth runs under the mapped forest.',
+      terrainDescription: 'An easy walk from 1,670 m to 1,430 m between two Lower Engadin villages famous for their sgraffito houses, along a sunny terrace with mountain views.',
+      waterDescription: 'Drinking water at km 0.1, km 0.2, km 1.7, km 2.6, km 4.4 and km 4.6; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Scuol never lets a dog go unsupervised, and requires a short lead in restaurants, playgrounds, public parks, wildlife sanctuaries and signposted areas. The road crosses two wildlife rest zones that are closed only in winter. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the PostBus up to Guarda and walk 4.8 km to Ardez station, 47 m up and 274 m down, about an hour and a half, then take the train back. Drinking water at the fountains in Guarda, Bos-cha and Ardez. Food in both villages.',
+      sourceLinks: [
+        { label: 'Outdooractive, Guarda – Ardez: hike between two Engadin villages (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/17695297' },
+        { label: 'Gemeinde Scuol, Ledscha da pulizia (2015)', url: 'https://www.scuol.net/public/upload/assets/920/111_Ledscha%20da%20pulizia_r.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.77554, lng: 10.152411, label: 'Guarda village centre, the board’s start' },
+      desc: 'An easy walk between two picture-book Engadin villages, from Guarda along a small road to the hamlet of Bos-cha and down to Ardez. The board lists 4.8 km, 47 m up and 274 m down, 1 h 30.'
+    },
+    'unterengadin-s-charl-alp-sesvenna-return': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “S-charl – Alp Sesvenna (return)”, published by the Engadin Samnaun Val Müstair, drawn on 11 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Scuol (a short lead in restaurants, parks and signposted areas; never unsupervised).
+      // The line is outside the Swiss National Park and every federal reserve and wildlife rest zone.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way; it is walked out and back the same way, as the board describes.
+      area: 'S-charl – Alp Sesvenna (Scuol)',
+      distance: 5.2,
+      elevation: 288,
+      hours: '1.75',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'There and back the same way from the summer village of S-charl up the valley to Alp Sesvenna.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the PostAuto from Scuol to S-charl, about 25 minutes, and start at the S-charl stop, the board’s start.",
+        "sequence": "From the stop walk through the summer village of S-charl, past its fountains and the Chasa Sesvenna guest house. Follow the signs to Alp Sesvenna up the valley on the alp road, climbing gently through open meadows and stone-pine forest, to the alp buildings of Alp Sesvenna at about km 2.6. Turn round there and walk back the same way to S-charl.",
+        "switches": "Key turns: in S-charl follow the signs to Alp Sesvenna; at Alp Sesvenna turn round and come back the same way.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, S-charl – Alp Sesvenna (return) (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/15845656",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The alp road from S-charl towards Alp Sesvenna, in September (Dominicus Johannes Bergsma on Wikimedia Commons, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official there-and-back walk 5.2 km from the S-charl PostAuto stop, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 11 OSM ways along the board’s published line, 5.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from the S-charl PostAuto stop follow the signs up the valley to Alp Sesvenna, then come back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 0.1 (OSM nodes 282881810, 282881787).',
+        elevation: 'Official 5.2 km, 288 m up and 288 m down, 1:45 h, highest point 2,099 m, lowest 1,812 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, S-charl – Alp Sesvenna (return) (its Outdooractive tour, also listed on engadin.com)',
+          'Gemeinde Scuol, Ledscha da pulizia (14.6.2015, in force 1.7.2015, revised 2022 and 2025), art. 33: no dog may go unsupervised; a short lead in administrative buildings, school and kindergarten grounds, playgrounds and sports grounds, restaurants, public parks, wildlife sanctuaries and signposted areas; no dogs in baths, churches, cemeteries, concert halls, theatres or cinemas; dog mess picked up at once; fines CHF 50–10,000',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line is outside the Swiss National Park and every federal reserve and wildlife rest zone',
+          'OpenStreetMap ways along the board’s line (11 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 57,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Cows graze around Alp Sesvenna in summer: lead short and go round the herd', 'At 1,800–2,100 m the weather turns fast: bring a layer for you and your dog', 'The alp road is used by farm vehicles and bikes: keep your dog close'],
+      terrainType: 'Alp road',
+      shadeDescription: 'Over half runs under the mapped stone-pine forest.',
+      terrainDescription: 'A gentle walk up the alp road from S-charl at 1,810 m to Alp Sesvenna at 2,100 m and back, in a quiet side valley south of Scuol.',
+      waterDescription: 'Drinking water at the start and km 0.1; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Scuol never lets a dog go unsupervised, and requires a short lead in restaurants, playgrounds, public parks, wildlife sanctuaries and signposted areas. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Take the PostAuto from Scuol to S-charl and walk 5.2 km there and back to Alp Sesvenna, 288 m up and down, about an hour and three quarters. Drinking water at the fountains in S-charl, at the start and end. Food in S-charl.',
+      sourceLinks: [
+        { label: 'Outdooractive, S-charl – Alp Sesvenna (return) (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/15845656' },
+        { label: 'Gemeinde Scuol, Ledscha da pulizia (2015)', url: 'https://www.scuol.net/public/upload/assets/920/111_Ledscha%20da%20pulizia_r.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.715451, lng: 10.334716, label: 'The S-charl PostAuto stop, the board’s start' },
+      desc: 'A gentle walk from the summer village of S-charl up a quiet side valley to Alp Sesvenna, and back the same way. The board lists 5.2 km, 288 m up and down, 1 h 45.'
+    },
+    'unterengadin-zernez-brail': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Lower Engadin batch 1, Switzerland batch 4).
+      // “Zernez – Brail”, published by the Engadin Samnaun Val Müstair, drawn on 24 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes (Graubünden): Zernez (a lead in the forest and wherever wildlife may appear).
+      // The line crosses the God Muntatsch–Ertas Vallanzun and Munt Barlas-ch wildlife rest zones on their marked path; the zones are closed only 1 January–30 April. No National Park and no federal reserve.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Zernez station – Ertas – Prazet – Brail (Zernez)',
+      distance: 7.5,
+      elevation: 257,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from Zernez station along the Via Engiadina to the hamlet of Brail, then back by train.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Take the Rhaetian Railway to Zernez and start at the station, the board’s start; there is a fountain by the station.",
+        "sequence": "From the station walk to the campsite and cross the bridge there. After the bridge the sunny path of the Via Engiadina climbs gently along flower meadows above the Inn, past the Ertas signpost at about km 2.1 and the Prazet signpost at about km 4.9, with views across to the National Park on the other side of the valley. The walk ends at the Brail signpost in the hamlet of Brail at km 7.5; take the train back to Zernez from Brail station.",
+        "switches": "Key turns: cross the bridge by the campsite; then stay on the Via Engiadina via Ertas and Prazet to Brail.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Engadin Samnaun Val Müstair, Zernez – Brail (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/en/r/38628640",
+            "authority": "Engadin Samnaun Val Müstair",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Zernez station at the start of the walk, in August (Global Fish on Wikimedia Commons, CC BY-SA 4.0), 8 m from the line.',
+        route: 'Official one-way walk 7.5 km from Zernez station, as the Engadin Samnaun Val Müstair publishes it; the stored line is drawn on 24 OSM ways along the board’s published line, 7.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'No route number: from Zernez station cross the bridge by the campsite, then follow the Via Engiadina gently up via Ertas and Prazet to the hamlet of Brail.',
+        mapPoints: 'Start at the board’s start; drinking water at the start (OSM nodes 9933635810).',
+        elevation: 'Official 7.5 km, 257 m up and 92 m down, 2:00 h, highest point 1,723 m, lowest 1,466 m (Engadin Samnaun Val Müstair, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Engadin Samnaun Val Müstair, Zernez – Brail (its Outdooractive tour, also listed on engadin.com)',
+          'Vschinauncha Zernez, Dispusiziuns in merit il tgnair chans (January 1994), points 2, 3 and 5: no dog may roam unaccompanied; dogs relieved outside the settlement; a lead in the forest and wherever wildlife may appear; fines CHF 50–200',
+          'Canton of Graubünden, Veterinärgesetz (BR 914.000), art. 64 and 66: no cantonal lead rule in open country, left to the communes; a lead or muzzle only for individual dogs found dangerous',
+          'Federal geodata (map.geo.admin.ch: parks of national importance, federal hunting and bird reserves, wildlife rest zones): the line crosses the God Muntatsch–Ertas Vallanzun and Munt Barlas-ch wildlife rest zones, closed only 1 January–30 April, so open in the walking season; no National Park and no federal reserve',
+          'OpenStreetMap ways along the board’s line (24 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 4,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Almost no shade on the sunny path: carry water on hot days', 'No drinking water mapped after the start: bring enough for your dog', 'Cows may graze the meadows: lead short and go round the herd'],
+      terrainType: 'Field path and gravel path',
+      shadeDescription: 'Open: almost none of the path runs under the mapped forest.',
+      terrainDescription: 'A sunny, stroller-friendly walk from 1,470 m to 1,720 m along the Via Engiadina through flower meadows above the Inn, facing the National Park.',
+      waterDescription: 'Drinking water at the start; places to eat on the way.',
+      dogNotes: 'Keep your dog on a lead for the whole walk. Graubünden has no lead law of its own; the commune’s rule and the federal reserve rules apply. Wardens may shoot a dog that kills game. Zernez requires a lead in the forest and wherever wild animals may appear, and asks that dogs relieve themselves outside the village. The path crosses two wildlife rest zones that are closed only in winter. Cows with calves and guardian dogs graze many summer pastures. Keep your dog on a short lead, go round the herd, and let go of the lead if the cows come at you. A dog needs its own ticket on Swiss trains and buses.',
+      tips: 'Start at Zernez station and walk 7.5 km to Brail, 257 m up and 92 m down, about two hours, then take the train back. Fill up at the fountain by Zernez station: no drinking water is mapped after the start.',
+      sourceLinks: [
+        { label: 'Outdooractive, Zernez – Brail (Engadin Samnaun Val Müstair)', url: 'https://www.outdooractive.com/en/r/38628640' },
+        { label: 'Vschinauncha Zernez, Dispusiziuns in merit il tgnair chans (1994)', url: 'https://www.zernez.ch/fileadmin/user_upload/dokumente/pdf/Gesetze_und_Reglemente/Zernez/Disposiziun_chans_1994.pdf' },
+        { label: 'Canton of Graubünden, Veterinärgesetz BR 914.000', url: 'https://gr.lexwork.naz.ch/de/dta/914.000.pdf' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'map.geo.admin.ch, federal protected-area layers', url: 'https://map.geo.admin.ch/?layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.bundesinventare-jagdbanngebiete,ch.bafu.wrz-wildruhezonen_portal' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.697757, lng: 10.090268, label: 'Zernez station, the board’s start' },
+      desc: 'A sunny walk on the Via Engiadina from Zernez station along flower meadows above the Inn to the hamlet of Brail, facing the National Park. The board lists 7.5 km, 257 m up and 92 m down, 2 h.'
+    },
+    'isere-boucle-du-couzon': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 2, Isère).
+      // “Boucle du Couzon”, published by the Chartreuse Tourisme, drawn on 46 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 6995851). Communes: Saint-Pierre-de-Chartreuse (its 2006 order bans dogs from 10 June to 15 October on the Chamechaude, Grand Som west side, Valombré-Malamille and Charmant Som alpages only, none of which the loop enters; the page says dogs on a lead are welcome).
+      // Inside the Parc naturel régional de Chartreuse (no dog rule of its own); no national park, nature reserve, biotope order or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Saint-Pierre-de-Chartreuse – Couzon valley (Chartreuse)',
+      distance: 7,
+      elevation: 310,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Plan de Ville in Saint-Pierre-de-Chartreuse: up the Perquelin road to the Croix Saint-Claude, along a balcony path past the Chapelle du Rosaire to Le Paquet and the Cochatière hamlet, through the forest by the old Batour lift site to Champ Massot, down along the Couzon by its footbridges to La Coche, and back by Merlatière, the orchid path, Patassière, Carlinière and the Bois des Lièvres.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Plan de Ville, in the centre of Saint-Pierre-de-Chartreuse beside the tourist office.",
+        "sequence": "Walk between the tourist office and the pizzeria to the Place de la Mairie and take the Perquelin road past the Parking du Bourg to the Croix Saint-Claude. Climb the path on the left past old barns, carry straight on along the balcony path at the Sentier des Amoureux to the Chapelle du Rosaire, then turn right up through the meadows between dry-stone walls to Le Paquet. Turn left on the track, carry straight on down the tarmac road to Cochatière, turn right through the hamlet and climb into the forest at the Le Batour signpost. Follow the forest track to the Télésiège du Batour signpost (the lift is gone) and on past a timber yard to the Combe de l’Ours chairlift; opposite it take the steep path down through the forest, cross the road, pass behind the gîte and cross the footbridge to Champ Massot. Go down to the Sentier du Col des Aures, cross the footbridge and follow the Couzon stream by several footbridges to La Coche. Turn right through the hamlet to Merlatière, go down between the houses and over a little footbridge, then left down the orchid path to the road and on to Patassière; turn right to Carlinière, then left down the little valley, cross the Couzon by a small bridge and climb through the Bois des Lièvres back to the Plan de Ville.",
+        "switches": "Left up the path at the Croix Saint-Claude; right at the Chapelle du Rosaire; left at Le Paquet; right through Cochatière; down opposite the Combe de l’Ours chairlift; right at La Coche; left down the orchid path after Merlatière; right at Patassière; left down the valley at Carlinière.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Chartreuse Tourisme, Boucle du Couzon (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/boucle-du-couzon-6995851/",
+            "authority": "Chartreuse Tourisme",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The village streets of Saint-Pierre-de-Chartreuse with the loop’s signposts, below the Chartreuse peaks, in May 2017 (pgiraud on Mapillary, CC BY-SA 4.0), taken on foot on the line.',
+        route: 'Official loop 7 km from the Plan de Ville in Saint-Pierre-de-Chartreuse, as the Chartreuse Tourisme publishes it; the stored line is drawn on 46 OSM ways along the board’s published line, 7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the Plan de Ville pass between the tourist office and the pizzeria to the Place de la Mairie, then up the Perquelin road past the Parking du Bourg to the Croix Saint-Claude; left up the path, straight on at the Sentier des Amoureux to the Chapelle du Rosaire, right up the meadows to Le Paquet, left on the track to Cochatière; right through the hamlet and up into the forest at Le Batour to the Télésiège du Batour signpost and the Combe de l’Ours chairlift; down the steep forest path, across the road, past the gîte and over the footbridge to Champ Massot; down to the Sentier du Col des Aures and along the Couzon by its footbridges to La Coche; right through the hamlet to Merlatière, down the orchid path to Patassière, right to Carlinière, left down the little valley across the Couzon to the Bois des Lièvres and the Plan de Ville. Signposts named with their altitude and painted waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 7 km, 310 m up and 310 m down, 2:30 h average walking time (Chartreuse Tourisme, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Chartreuse Tourisme, Boucle du Couzon (alpes-isere.com, Apidae 6995851) and its official GPX',
+          'Saint-Pierre-de-Chartreuse order no. 23/2006 bans dogs, even on a lead, from 10 June to 15 October on the Chamechaude, Grand Som west side, Valombré-Malamille and Charmant Som alpages; the loop stays in the valley and enters none of them; the official page: dogs on a lead welcome',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional de Chartreuse: a regional park sets no dog rule of its own outside the Hauts de Chartreuse nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (46 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 58,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Clay stretches between Merlatière and the orchid path, and the drop to the Couzon after Carlinière, can be slippery after rain; one short steep section', 'A departmental road is crossed halfway round, and the start and end follow village streets', 'Several footbridges over the Couzon stream'],
+      terrainType: 'Village streets, forest paths and tracks, hamlet lanes',
+      shadeDescription: 'Over half under trees: the forest above Cochatière, the descent from the Combe de l’Ours and the Couzon banks are wooded; the meadows and hamlets are open.',
+      terrainDescription: 'A two-and-a-half-hour loop around the Chartreuse village of Saint-Pierre-de-Chartreuse, through meadows, hamlets and forest with views of the Grand Som and Chamechaude, and along the Couzon stream by its footbridges.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs on a lead are welcome, according to the official page. Saint-Pierre-de-Chartreuse bans dogs, even on a lead, from 10 June to 15 October on four named alpages (Chamechaude, the west side of the Grand Som, Valombré-Malamille and Charmant Som); this valley loop enters none of them. The national rule applies too: no straying, and a lead in woods and fields off the paths from 15 April to 30 June.',
+      tips: 'Park at the Plan de Ville or the Parking du Bourg in Saint-Pierre-de-Chartreuse, or come by the T40 bus from Grenoble (stop Plan de Ville): 7 km round, 310 m up and down, about 2 h 30. Open 1 April to 31 October.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Boucle du Couzon (Chartreuse Tourisme)', url: 'https://www.alpes-isere.com/itineraire/boucle-du-couzon-6995851/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/224/15/23793632/boucle-du-cozon.gpx' },
+        { label: 'Saint-Pierre-de-Chartreuse, arrêté 23/2006 on dogs in alpages', url: 'https://www.saintpierredechartreuse.fr/uploads/2253/arrete-chiens-alpages-2006.pdf' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.343081, lng: 5.814632, label: 'Plan de Ville in the centre of Saint-Pierre-de-Chartreuse, the board’s start' },
+      desc: 'A loop around Saint-Pierre-de-Chartreuse through meadows, hamlets and forest past the Chapelle du Rosaire, then down along the Couzon stream by its footbridges and back by the orchid path. The official page lists 7 km, 310 m up and down, about 2 h 30.'
+    },
+    'isere-le-plateau-de-la-moliere': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 2, Isère).
+      // “Le plateau de la Molière”, published by the Isère Attractivité, drawn on 18 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 4894442). Communes: Autrans-Méaudre en Vercors and Engins (no dog order found online for either, probably exists: the national rule applies; the Vercors park’s page for this walk says to keep dogs on a lead).
+      // Inside the Parc naturel régional du Vercors (no dog rule of its own) and, for about three quarters of the line, the Plateau de la Molière et du Sornin sensitive natural area (ENS) of the Isère department, whose rules are posted at the site entrance; the Vercors park’s page for this walk says to keep dogs on a lead. No national park, nature reserve or biotope order on the line (IGN PatriNat layers).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'La Molière – Charande – Pas de l’Ours (Vercors, Autrans-Méaudre and Engins)',
+      distance: 5,
+      elevation: 153,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the La Molière car park: north by the Pas du Tracollet on the Tour des 4 Montagnes to Charande, the highest point of Autrans (1,709 m), on by Sous Charande towards the Pas de l’Ours, then down to the Gîte de la Molière and back across the alpage by Sous le Tracollet.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the La Molière car park, at the end of the forest road above the Feneys refuge.",
+        "sequence": "Head north towards the Col de la Croix Perrin, passing the Pas du Tracollet, on the yellow-and-red waymarks of the Tour des 4 Montagnes. At Charande, the highest point of Autrans at 1,709 m, stop for the view over the Alps, then carry on along the edge towards the Pas de l’Ours by Sous Charande. Leave the yellow-and-red waymarks and go down to the Gîte de la Molière, then cross the alpage, where heifers graze in summer, back to La Molière and past Sous le Tracollet to the car park.",
+        "switches": "North at the car park for the Croix Perrin by the Pas du Tracollet; on at Charande towards the Pas de l’Ours; leave the yellow-and-red waymarks down to the Gîte de la Molière; across the alpage back by Sous le Tracollet.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Isère Attractivité, Le plateau de la Molière (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/le-plateau-de-la-moliere-4894442/",
+            "authority": "Isère Attractivité",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The track across the Molière alpage beside its huts, in September 2025 (eric_s on Mapillary, CC BY-SA 4.0), on the line.',
+        route: 'Official loop 5 km from the La Molière car park, as the Isère Attractivité publishes it; the stored line is drawn on 18 OSM ways along the board’s published line, 5.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From La Molière head for the Col de la Croix Perrin by the Pas du Tracollet, on the yellow-and-red waymarks of the Tour des 4 Montagnes GR de Pays; at Charande (1,709 m) carry on towards the Pas de l’Ours by Sous Charande, then leave the GR de Pays and go down to the Gîte de la Molière; on to La Molière across the alpage, past Sous le Tracollet back to the car park. Yellow-and-green PR and yellow-and-red GR de Pays waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 5 km, 153 m up and 153 m down, 1:30 h average walking time (Isère Attractivité, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Isère Attractivité, Le plateau de la Molière (alpes-isere.com, Apidae 4894442) and its official GPX',
+          'Vercors park page for this walk: “If you have a dog, keep it on a leash”; the loop crosses the Plateau de la Molière et du Sornin ENS (Isère department), whose specific rules are posted at the site entrance',
+          'Autrans-Méaudre en Vercors and Engins publishes no dog order online (not found, probably exists), so the national rule applies',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'Parc naturel régional du Vercors: a regional park sets no dog rule of its own outside the Hauts-Plateaux nature reserve, which this walk does not enter',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves): none on the line',
+          'OpenStreetMap ways along the board’s line (18 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 39,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['Working alpage: several hundred heifers graze in summer, and guard dogs may be with flocks; keep your dog on a lead and walk round the herd calmly', 'Open plateau at about 1,600–1,700 m with quick weather changes and cliffs on the edge near Charande', 'On summer weekends and holidays (11 July to 16 August in 2026) the road to La Molière is closed to cars from 10 am to 7 pm: come by the paying shuttle from La Sure'],
+      terrainType: 'Alpage tracks, mountain paths and grassy ridge',
+      shadeDescription: 'Mostly open: just under two fifths of the line runs along the edge of the woods; the alpage and Charande are open.',
+      terrainDescription: 'An easy family loop on the Molière plateau above Autrans, up to Charande, the highest point of Autrans at 1,709 m, with a wide view over the Alps from Mont Blanc to the Écrins, and back across the alpage past the Gîte de la Molière.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Keep your dog on a lead: the Vercors park’s page for this walk asks for it, the loop crosses the Plateau de la Molière et du Sornin sensitive natural area with its own rules posted at the entrance, and heifers and guard dogs use the alpage in summer. Autrans-Méaudre en Vercors and Engins publish no dog order online, so the national rule applies too.',
+      tips: 'Drive up from Autrans by the La Sure resort and the Feneys forest road to the La Molière car park: 5 km round, 153 m up and down, about 1 h 30. On summer weekends the road is closed from 10 am to 7 pm and a shuttle runs from La Sure; ask about snow outside summer.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Le plateau de la Molière (Isère Attractivité)', url: 'https://www.alpes-isere.com/itineraire/le-plateau-de-la-moliere-4894442/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/178/75/3492786/TracesGPS_1_le+plateau+de+la+Molire.gpx' },
+        { label: 'Parc du Vercors, Le plateau de la Molière walk page', url: 'https://rando.parc-du-vercors.fr/en/trek/27741-The-Moliere-plateau' },
+        { label: 'Isère Attractivité, ENS du plateau de la Molière et du Sornin', url: 'https://www.alpes-isere.com/patrimoine-naturel/espace-naturel-sensible-du-plateau-de-la-moliere-et-du-sornin' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.197969, lng: 5.591038, label: 'La Molière car park at the end of the forest road, the board’s start' },
+      desc: 'An easy loop on the Molière plateau above Autrans, up to the Charande viewpoint over the Alps and back across the summer alpage past the Gîte de la Molière. The official page lists 5 km, 153 m up and down, about 1 h 30.'
+    },
+    'isere-le-fort-du-murier': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail French Alps batch 2, Isère).
+      // “Le fort du Murier”, published by the Office de Tourisme Grenoble Alpes, drawn on 25 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from its Apidae page on Alpes Isère, alpes-isere.com (Apidae 6086222). Communes: Gières and Saint-Martin-d’Hères (no dog order found online for either, probably exists: the national rule applies; the page says dogs on a lead).
+      // No national park, nature reserve, biotope order, regional park or sensitive natural area (ENS) on the line (IGN PatriNat layers, ENS AURA).
+      // The stored line follows the board’s own GPX, 100% each way.
+      area: 'Fort du Murier – Le Bigot – Batteries Hautes (Gières, above Grenoble)',
+      distance: 4.2,
+      elevation: 152,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Fort du Murier car park: down to the Le Murier hamlet past the leisure centre, up the road by Les Collodes to the hamlet of Le Bigot, along a broad track to the ruins of the Batteries Hautes, down through the forest to the Col du Courlu and by the sunken lane of Les Combettes back to Le Murier and the car park.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Fort du Murier car park, on the hill above Gières.",
+        "sequence": "Turn right out of the car park and walk down towards the hamlet of Le Murier, past the leisure centre. At the crossroads turn right towards Les Collodes, then at the next junction go left up the road towards Le Bigot. At the top of the climb leave the road on the left and carry on along the path, then walk through the hamlet of Le Bigot. In the bend at the end of the hamlet take the path on the right; at its end cross the road and follow the broad track to the Batteries Hautes, with picnic tables and a view over the Vercors and Grenoble. Walk along the ruins and take the path down through the forest to the Col du Courlu, then turn left down the sunken lane towards Les Combettes to a track along the meadows and down to Le Murier. Back at the crossroads by the D 112, walk up to the car park the way you came.",
+        "switches": "Right out of the car park; right at the crossroads for Les Collodes; left up towards Le Bigot; right in the bend after Le Bigot; left at the Col du Courlu towards Les Combettes; back up from the D 112 crossroads.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "Office de Tourisme Grenoble Alpes, Le fort du Murier (official route page, Topo/pas à pas)",
+            "url": "https://www.alpes-isere.com/itineraire/le-fort-du-murier-6086222/",
+            "authority": "Office de Tourisme Grenoble Alpes",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The woodland track on the loop below the Batteries Hautes, in September 2025 (eric_s on Mapillary, CC BY-SA 4.0), on the line.',
+        route: 'Official loop 4.2 km from the Fort du Murier car park, as the Office de Tourisme Grenoble Alpes publishes it; the stored line is drawn on 25 OSM ways along the board’s published line, 4.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the Fort du Murier car park turn right down towards Le Murier past the leisure centre; right at the crossroads towards Les Collodes; left up the road towards Le Bigot, on along the path where the road bends left, through the hamlet of Le Bigot; at the bend after the hamlet take the path on the right, cross the road and follow the broad track to the Batteries Hautes; past the ruins down the forest path to the Col du Courlu, left down the sunken lane towards Les Combettes to Le Murier, and back up to the car park the way you came. Yellow PR waymarks, no path numbers.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.2 km, 152 m up and 152 m down, 2:00 h average walking time (Office de Tourisme Grenoble Alpes, alpes-isere.com). The stored line follows the board’s own GPX.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Office de Tourisme Grenoble Alpes, Le fort du Murier (alpes-isere.com, Apidae 6086222) and its official GPX',
+          'Gières and Saint-Martin-d’Hères publishes no dog order online (not found, probably exists), so the national rule applies; the official page: dogs on a lead',
+          'Arrêté du 16 mars 1955 on dogs straying (national baseline): a dog must not stray; on a lead in woods and fields off the paths from 15 April to 30 June',
+          'IGN Géoplateforme protected-area layers (PatriNat: national parks, national and regional reserves, biotope orders, biological and hunting reserves) and the Isère/Drôme sensitive natural areas (ENS AURA): none on the line',
+          'OpenStreetMap ways along the board’s line (25 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 48,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About a third of the loop is on quiet hamlet roads; the D 112 is reached at the Le Murier crossroads', 'Stony, earthy tracks and a sunken lane that can be muddy after rain', 'Low altitude (about 430–580 m): warm on summer afternoons'],
+      terrainType: 'Hamlet roads, broad tracks and forest paths',
+      shadeDescription: 'About half under trees: the descent from the Batteries Hautes to the Col du Courlu and the sunken lane are wooded; the hamlet roads and meadows are open.',
+      terrainDescription: 'A short family loop on the green hillside above Gières and Grenoble, through the hamlets of Le Murier and Le Bigot to the ruins of the Batteries Hautes, with views over the Vercors and the city, past the goat farm of the Ferme des Maquis.',
+      waterDescription: 'No drinking water on the way: bring water for your dog.',
+      dogNotes: 'Dogs on a lead, according to the official page. Gières and Saint-Martin-d’Hères publish no dog order online, so the national rule applies too: no straying, and a lead in woods and fields off the paths from 15 April to 30 June. Goats and other livestock may be near the path.',
+      tips: 'Park at the Fort du Murier car park above Gières: 4.2 km round, 152 m up and down, about 2 h. Open all year; picnic tables at the Batteries Hautes.',
+      sourceLinks: [
+        { label: 'Alpes Isère, Le fort du Murier (Office de Tourisme Grenoble Alpes)', url: 'https://www.alpes-isere.com/itineraire/le-fort-du-murier-6086222/' },
+        { label: 'Official GPX', url: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/150/66/29377174/le_fort_du_murier-20766434-1740392307-70.gpx' },
+        { label: 'Arrêté du 16 mars 1955 (national baseline)', url: 'https://aida.ineris.fr/reglementation/arrete-160355-divagation-chiens' },
+        { label: 'Service Public France, seasonal forest leash rule', url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343' },
+        { label: 'Espaces naturels sensibles AURA (departmental ENS perimeters, data.gouv.fr)', url: 'https://www.data.gouv.fr/datasets/espace-naturel-sensible-aura-lo' },
+        { label: 'IGN Géoplateforme, PatriNat protected-area layers (WFS)', url: 'https://data.geopf.fr/wfs/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 45.173594, lng: 5.781196, label: 'Fort du Murier car park above Gières, the board’s start' },
+      desc: 'A short family loop above Gières through the hamlets of Le Murier and Le Bigot to the ruins of the Batteries Hautes, with views over the Vercors and Grenoble, and back down through the woods by the Col du Courlu. The official page lists 4.2 km, 152 m up and down, about 2 h.'
+    },
+    'eggental-passo-nigra-malga-hagner': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Escursione per famiglie dal Passo Nigra alla malga Hagner Alm”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 11 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows); a few metres at the pass in Tiers (its 2015 regulation, amended 2023, the same rule).
+      // No park, Natura 2000 site or natural monument on the line (Province of Bolzano layers; EEA).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Passo Nigra – Malga Hagner Alm, Nova Levante / Welschnofen',
+      distance: 11.8,
+      elevation: 231,
+      hours: '3.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the Passo Nigra on the wide forest road 1 and path 4A to the Malga Hagner Alm, returning the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Passo Nigra (1,688 m) on the road between Nova Levante and Tires, the board’s start.",
+        "sequence": "Follow the wide forest road 1 as far as the junction with path 4A, then take 4A straight to the Malga Hagner Alm in its meadow. Come back the same way to the pass.",
+        "switches": "Forest road 1 from the pass; at the junction turn onto path 4A for the Malga Hagner Alm; return the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Passo Nigra alla malga Hagner Alm (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16570878",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The start of forest road 1 at the Passo Nigra, a flat view cut from a 360° image of 15 August 2025 (beautiful-places on Mapillary, CC BY-SA 4.0), 6 m from the line.',
+        route: 'Official one-way walk 11.8 km from the Passo Nigra, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 11 OSM ways along the board’s published line, 11.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Forest road 1 and path 4A: from the Passo Nigra along the wide forest road 1 to the junction with path 4A, which leads straight to the Malga Hagner Alm; back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 11.8 km, 231 m up and 234 m down, 3:13 h, highest point 1,691 m, lowest 1,563 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Passo Nigra alla malga Hagner Alm (its Outdooractive tour)',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Gemeinde Tiers / Comune di Tires, Verordnung zur Führung und Haltung von Hunden und Tieren (Gemeinderat Nr. 48, 08.10.2015, amended Nr. 55, 28.12.2023), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds or kindergarten and primary-school yards, on farmed land in the growing season, or in tended public green spaces',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (11 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 93,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The Passo Nigra road is busy in summer: keep your dog on a short lead at the start', 'Cattle may graze around the Malga Hagner Alm in summer: keep your dog close', 'Mountain bikes share the forest road'],
+      terrainType: 'Wide forest road and path, suitable for pushchairs',
+      shadeDescription: 'Almost all shaded: about nine tenths of the way runs through mapped forest below the Catinaccio.',
+      terrainDescription: 'A long but easy walk at 1,560–1,690 m from the Passo Nigra through the forest below the Catinaccio to the Malga Hagner Alm, on a wide forest road the board says is fine for pushchairs.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Malga Hagner Alm serves food and drink when open (the nearby Schiller farm is closed for good).',
+      dogNotes: 'Welschnofen and Tiers both require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows. Keep your dog on the forest road and close near grazing cattle.',
+      tips: 'Start at the Passo Nigra: 11.8 km out and back, 231 m of climbing, about three and a quarter hours, as the board lists. The forest road is shady and fine with a pushchair. Keep your dog on a lead of at most 1.5 m and carry a muzzle; bring water, as none is mapped on the way.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione per famiglie dal Passo Nigra alla malga Hagner Alm (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/16570878' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Gemeinde Tiers, dog regulation (2015, amended 2023)', url: 'https://www.gemeinde.tiers.bz.it/system/web/verordnung.aspx?detailonr=224983319' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.455989, lng: 11.585886, label: 'The Passo Nigra (1,688 m), the board’s start' },
+      desc: 'A long, easy, shady walk from the Passo Nigra through the forest below the Catinaccio to the Malga Hagner Alm and back. The board lists 11.8 km, 231 m up and three and a quarter hours.'
+    },
+    'eggental-kaiserstein-baita-masare': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Dal parcheggio Kaiserstein alla baita Masarè”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 4 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // No park, Natura 2000 site or natural monument on the line; about a quarter is in the Rosengarten landscape protection area, which limits building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Kaiserstein – Baita Masarè, Carezza / Nova Levante',
+      distance: 1.5,
+      elevation: 189,
+      hours: '0.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way up from the Kaiserstein car park on path 6C to the Baita Masarè; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Kaiserstein car park on the road below the Costalunga pass, by the bus stop, the board’s start.",
+        "sequence": "Take path 6C, which climbs steadily through the forest from the car park straight up to the Baita Masarè below the Catinaccio. Come back down the same way.",
+        "switches": "Path 6C the whole way up from the Kaiserstein car park to the Baita Masarè.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Dal parcheggio Kaiserstein alla baita Masarè (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/19007850",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The trailhead at the Kaiserstein car park, where path 6C starts, a flat view cut from a 360° image of 15 August 2025 (beautiful-places on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 1.5 km from the Kaiserstein car park, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 4 OSM ways along the board’s published line, 1.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 6C: from the Kaiserstein car park on the Costalunga road, path 6C climbs steadily through the forest straight up to the Baita Masarè below the Catinaccio; come back down the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 1.5 km, 189 m up, 0:40 h, highest point 1,934 m, lowest 1,744 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Dal parcheggio Kaiserstein alla baita Masarè (its Outdooractive tour)',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line; about 26% is in the Rosengarten landscape protection area, which limits building, not dogs',
+          'OpenStreetMap ways along the board’s line (4 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 89,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The start is beside the busy Costalunga road: keep your dog on a short lead in the car park', 'A steady climb of nearly 190 m in 1.5 km: let your dog set the pace'],
+      terrainType: 'Forest path',
+      shadeDescription: 'Almost all shaded: about nine tenths of the path runs through mapped forest.',
+      terrainDescription: 'A short, steady climb at 1,740–1,930 m from the Kaiserstein car park through the forest below the Catinaccio to the Baita Masarè.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Baita Masarè serves food and drink when open.',
+      dogNotes: 'Welschnofen requires a lead of at most 1.5 m and a muzzle carried on all public ground, and keeps dogs off farmed meadows. Keep your dog on the path.',
+      tips: 'Start at the Kaiserstein car park: 1.5 km and 189 m of climbing, about forty minutes up to the Baita Masarè, as the board lists, then back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle; bring water.',
+      sourceLinks: [
+        { label: 'Outdooractive, Dal parcheggio Kaiserstein alla baita Masarè (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/19007850' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.41873, lng: 11.60076, label: 'The Kaiserstein car park on the Costalunga road, the board’s start' },
+      desc: 'A short, shady climb from the Kaiserstein car park through the forest below the Catinaccio to the Baita Masarè. The board lists 1.5 km, 189 m up and forty minutes.'
+    },
+    'eggental-jolanda-baita-messnerjoch': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Escursione per famiglie dal Jolanda alla baita Messnerjoch”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // No park, Natura 2000 site or natural monument on the line (Province of Bolzano layers; EEA).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Via Nigra – Baita Messnerjoch, Nova Levante / Welschnofen',
+      distance: 4,
+      elevation: 152,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the car park below the Gasthaus Jolanda on forest road 1A and path 1B to the Baita Messnerjoch, returning the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park on the Via Nigra below the Gasthaus Jolanda, the board’s start; forest road 1A begins opposite the car park.",
+        "sequence": "Follow forest road 1A up through the forest, and at a fork turn onto path 1B, which leads straight to the Baita Messnerjoch. Come back the same way.",
+        "switches": "Forest road 1A from the car park; at the fork onto path 1B for the Baita Messnerjoch; return the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Jolanda alla baita Messnerjoch (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/19201109",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The start of forest road 1A on the Via Nigra below the Gasthaus Jolanda, a flat view cut from a 360° image of 15 August 2025 (beautiful-places on Mapillary, CC BY-SA 4.0), 5 m from the line.',
+        route: 'Official one-way walk 4 km from the car park below the Gasthaus Jolanda, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Forest road 1A and path 1B: from the car park on the Via Nigra below the Gasthaus Jolanda up forest road 1A, then at a fork path 1B straight to the Baita Messnerjoch; back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4 km, 152 m up and 152 m down, 1:11 h, highest point 1,925 m, lowest 1,770 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Jolanda alla baita Messnerjoch (its Outdooractive tour)',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 76,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The start is on the Via Nigra road: keep your dog on a short lead at the car park', 'Mountain bikes share the forest road'],
+      terrainType: 'Forest road and path, suitable for pushchairs',
+      shadeDescription: 'Mostly shaded: about three quarters runs through mapped forest; the hut stands in an open meadow.',
+      terrainDescription: 'An easy family walk at 1,770–1,925 m on a forest road and path below the Catinaccio to the Baita Messnerjoch, which the board says is fine for pushchairs.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Baita Messnerjoch serves food and drink when open.',
+      dogNotes: 'Welschnofen requires a lead of at most 1.5 m and a muzzle carried on all public ground, and keeps dogs off farmed meadows. Keep your dog on the forest road.',
+      tips: 'Start at the car park below the Gasthaus Jolanda on the Via Nigra: 4 km out and back, 152 m of climbing, about an hour and ten minutes, as the board lists. Fine with a pushchair. Keep your dog on a lead of at most 1.5 m and carry a muzzle; bring water.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione per famiglie dal Jolanda alla baita Messnerjoch (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/19201109' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.433912, lng: 11.589118, label: 'The car park on the Via Nigra below the Gasthaus Jolanda, the board’s start' },
+      desc: 'An easy family walk from the Via Nigra below the Gasthaus Jolanda on a forest road to the Baita Messnerjoch under the Catinaccio, and back. The board lists 4 km, 152 m up and an hour and ten minutes.'
+    },
+    'eggental-frommer-ochsenhuette': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Escursione per famiglie dalla Malga Frommer alla baita Ochsenhütte”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 16 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Welschnofen (its 2023 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // No park, Natura 2000 site or natural monument on the line (Province of Bolzano layers; EEA).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Malga Frommer – Baita Ochsenhütte, Nova Levante / Welschnofen',
+      distance: 2.1,
+      elevation: 102,
+      hours: '0.75',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'One way from the Malga Frommer Alm by the top station of the Nova Levante gondola on path 1A, above the Via Nigra, to the Baita Ochsenhütte; come back the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Malga Frommer Alm by the top station of the Nova Levante (König Laurin) gondola, the board’s start; it is also reached by car on the Via Nigra.",
+        "sequence": "Follow path 1A, which runs above the Via Nigra and leads gently to the Baita Ochsenhütte. Come back the same way.",
+        "switches": "Path 1A the whole way from the Malga Frommer Alm to the Baita Ochsenhütte; return the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dalla Malga Frommer alla baita Ochsenhütte (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/35328779",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Malga Frommer Alm at the start, a flat view cut from a 360° image of 15 August 2025 (beautiful-places on Mapillary, CC BY-SA 4.0), 13 m from the line.',
+        route: 'Official one-way walk 2.1 km from the Malga Frommer Alm, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 16 OSM ways along the board’s published line, 2.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 1A: from the Malga Frommer Alm by the top station of the Nova Levante gondola, path 1A above the Via Nigra gently to the Baita Ochsenhütte; back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at km 2 (OSM nodes 12232149431).',
+        elevation: 'Official 2.1 km, 102 m up and 53 m down, 0:38 h, highest point 1,805 m, lowest 1,738 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dalla Malga Frommer alla baita Ochsenhütte (its Outdooractive tour)',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (16 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 56,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Busy around the gondola station and the Malga Frommer Alm in summer: keep your dog on a short lead', 'Path 1A runs just above the Via Nigra road'],
+      terrainType: 'Path',
+      shadeDescription: 'Partly shaded: about half runs through mapped forest; the meadows by the Malga Frommer Alm are open.',
+      terrainDescription: 'A short, gentle family walk at 1,740–1,800 m below the Catinaccio, from the Malga Frommer Alm on path 1A to the Baita Ochsenhütte.',
+      waterDescription: 'Drinking water at km 2 near the Baita Ochsenhütte (OSM). The Malga Frommer Alm and the Baita Ochsenhütte serve food and drink when open.',
+      dogNotes: 'Welschnofen requires a lead of at most 1.5 m and a muzzle carried on all public ground, and keeps dogs off farmed meadows. On the gondola your dog needs a lead and a muzzle.',
+      tips: 'Ride the Nova Levante gondola up (or drive the Via Nigra) to the Malga Frommer Alm: 2.1 km and 102 m of climbing to the Baita Ochsenhütte, about forty minutes, as the board lists, then back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione per famiglie dalla Malga Frommer alla baita Ochsenhütte (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/35328779' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.443918, lng: 11.588565, label: 'The Malga Frommer Alm by the top station of the Nova Levante gondola, the board’s start' },
+      desc: 'A short, gentle walk below the Catinaccio from the Malga Frommer Alm on path 1A to the Baita Ochsenhütte. The board lists 2.1 km, 102 m up and forty minutes one way.'
+    },
+    'eggental-passo-nigra-baita-messnerjoch': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Escursione per famiglie dal Passo Nigra alla baita Messnerjoch”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 14 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Tiers (its 2015 dog regulation, amended 2023: lead ≤1.5 m, muzzle carried, no dogs on farmed land in the growing season); Welschnofen near the hut (its 2023 regulation, the same rule).
+      // No park, Natura 2000 site or natural monument on the line (Province of Bolzano layers; EEA).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Passo Nigra – Baita Messnerjoch, Tires / Nova Levante',
+      distance: 3.9,
+      elevation: 242,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the Passo Nigra on forest road 1 to the Baita Messnerjoch, returning the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Passo Nigra (1,688 m) on the road between Nova Levante and Tires, the board’s start.",
+        "sequence": "Follow forest road 1, which climbs steadily through the forest straight to the Baita Messnerjoch at 1,930 m. Come back down the same way.",
+        "switches": "Forest road 1 the whole way from the Passo Nigra to the Baita Messnerjoch; return the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Passo Nigra alla baita Messnerjoch (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/58607867",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Catinaccio from the Passo Nigra at the start, a flat view cut from a 360° image of 15 August 2025 (beautiful-places on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 3.9 km from the Passo Nigra, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 14 OSM ways along the board’s published line, 3.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Forest road 1: from the Passo Nigra straight up forest road 1 to the Baita Messnerjoch (1,930 m); back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 3.9 km, 242 m up and 242 m down, 1:16 h, highest point 1,925 m, lowest 1,683 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie dal Passo Nigra alla baita Messnerjoch (its Outdooractive tour)',
+          'Gemeinde Tiers / Comune di Tires, Verordnung zur Führung und Haltung von Hunden und Tieren (Gemeinderat Nr. 48, 08.10.2015, amended Nr. 55, 28.12.2023), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds or kindergarten and primary-school yards, on farmed land in the growing season, or in tended public green spaces',
+          'Gemeinde Welschnofen / Comune di Nova Levante, Verordnung über die Haltung und Führung von Hunden (Gemeinderatsbeschluss Nr. 73, 19.12.2023), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds; no bathing in fountains or troughs',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line',
+          'OpenStreetMap ways along the board’s line (14 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 72,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The Passo Nigra road and car park are busy in summer: keep your dog on a short lead at the start', 'Mountain bikes share the forest road'],
+      terrainType: 'Forest road, suitable for pushchairs',
+      shadeDescription: 'Mostly shaded: about seven tenths runs through mapped forest; the meadow at the hut is open.',
+      terrainDescription: 'An easy family climb at 1,680–1,925 m from the Passo Nigra on a forest road through the woods to the Baita Messnerjoch, with the Catinaccio above; the board says it is fine for pushchairs.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Baita Messnerjoch serves food and drink when open.',
+      dogNotes: 'Tiers and Welschnofen both require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows. Keep your dog on the forest road.',
+      tips: 'Start at the Passo Nigra: 3.9 km out and back, 242 m of climbing, about an hour and a quarter, as the board lists. Fine with a pushchair. Keep your dog on a lead of at most 1.5 m and carry a muzzle; bring water.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione per famiglie dal Passo Nigra alla baita Messnerjoch (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/58607867' },
+        { label: 'Gemeinde Tiers, dog regulation (2015, amended 2023)', url: 'https://www.gemeinde.tiers.bz.it/system/web/verordnung.aspx?detailonr=224983319' },
+        { label: 'Gemeinde Welschnofen, Hundeverordnung (2023)', url: 'https://www.gemeinde.welschnofen.bz.it/de/Verwaltung/Dokumente/Hundeverordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.45601, lng: 11.585962, label: 'The Passo Nigra (1,688 m), the board’s start' },
+      desc: 'An easy family walk from the Passo Nigra up a forest road to the Baita Messnerjoch below the Catinaccio, and back. The board lists 3.9 km, 242 m up and an hour and a quarter.'
+    },
+    'eggental-pietralba-petersberger-leger': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Escursione per famiglie da Pietralba alla Malga Monte San Pietro”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 9 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Deutschnofen (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // No park, Natura 2000 site or natural monument on the line; about a third is in a landscape protection area, which limits building, not dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Pietralba / Maria Weißenstein – Petersberger Leger, Nova Ponente',
+      distance: 4.6,
+      elevation: 139,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the Maria Weißenstein car park at the Pietralba sanctuary on forest path 2 to the Malga Monte San Pietro (Petersberger Leger), returning the same way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Maria Weißenstein car park by the Pietralba sanctuary (1,520 m), the board’s start.",
+        "sequence": "Follow the forest path marked 2 through woods and clearings to the Malga Monte San Pietro (Petersberger Leger). Come back the same way.",
+        "switches": "Path 2 the whole way from the Pietralba car park to the Petersberger Leger; return the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie da Pietralba alla Malga Monte San Pietro (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810054677",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Path 2 near the start at Pietralba, on 28 May 2025 (santon on Mapillary, CC BY-SA 4.0), 2 m from the line.',
+        route: 'Official one-way walk 4.6 km from the Maria Weißenstein car park at Pietralba, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 9 OSM ways along the board’s published line, 4.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 2: from the Maria Weißenstein car park at the Pietralba sanctuary along forest path 2 to the Malga Monte San Pietro (Petersberger Leger); back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 2.1 (OSM nodes 13056113613, 13055949530, 10610467114).',
+        elevation: 'Official 4.6 km, 139 m up and 139 m down, 1:20 h, highest point 1,530 m, lowest 1,457 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione per famiglie da Pietralba alla Malga Monte San Pietro (its Outdooractive tour)',
+          'Gemeinde Deutschnofen / Comune di Nova Ponente, Verordnung über die Haltung und Führung von Hunden (Ratsbeschluss Nr. 6, 01.02.2010), Art. 4: a lead of at most 1.5 m in built-up areas and places open to the public, and a muzzle carried; Art. 8: no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, or on farmed land such as meadows and fields',
+          'Province of Bolzano landscape-plan layers and the EEA Natura 2000 map: no park, Natura 2000 site or natural monument on the line; about 37% is in a landscape protection area, which limits building, not dogs',
+          'OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 79,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Busy around the Pietralba sanctuary at weekends: keep your dog on a short lead at the start', 'Meadows along the way are farmed: Deutschnofen keeps dogs off them, so stay on the path'],
+      terrainType: 'Forest path and track',
+      shadeDescription: 'Mostly shaded: about four fifths runs through mapped forest.',
+      terrainDescription: 'An easy, nearly level family walk at 1,460–1,530 m from the Pietralba sanctuary through woods and clearings to the Petersberger Leger alpine hut.',
+      waterDescription: 'Drinking water at the start and at km 2.1 (OSM). The Petersberger Leger serves food and drink when open.',
+      dogNotes: 'Deutschnofen requires a lead of at most 1.5 m and a muzzle carried in places open to the public, and keeps dogs off farmed meadows. Keep your dog on the path.',
+      tips: 'Start at the Maria Weißenstein car park by the Pietralba sanctuary: 4.6 km out and back, 139 m of climbing, about an hour and twenty minutes, as the board lists. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione per famiglie da Pietralba alla Malga Monte San Pietro (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/810054677' },
+        { label: 'Gemeinde Deutschnofen, Verordnung über die Haltung und Führung von Hunden (2010)', url: 'https://www.gemeinde.deutschnofen.bz.it/system/web/GetDocument.ashx?fileId=1001871' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.391601, lng: 11.414909, label: 'The Maria Weißenstein car park at the Pietralba sanctuary (1,520 m), the board’s start' },
+      desc: 'An easy, shady family walk from the Pietralba sanctuary along forest path 2 to the Petersberger Leger alpine hut and back. The board lists 4.6 km, 139 m up and an hour and twenty minutes.'
+    },
+    'fassa-cammino-dei-pitores': {
+      // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 2).
+      // “Il cammino dei “pitores””, published by the APT Val di Fassa, drawn on 27 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Mazzin (no dog regulation found, national rule: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site or nature park on the line (EEA).
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Mazzin – Fontanazzo – Campestrin, Val di Fassa',
+      distance: 7.7,
+      elevation: 248,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the church of Mazzin up the Ruf de Udai and the Ruf de Dona into the forest at the mouth of the Val di Dona, along path 577 to Redolon, down to Fontanazzo, across the Avisio and back along the forest road by Campestrin to Mazzin.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in front of the church of Mazzin in the Val di Fassa, the board’s start.",
+        "sequence": "Take Strèda de Pian and, before the bridge over the Ruf de Udai, turn right up Strèda dò Ruf beside the stream. Cross the bridge on the left, follow the dirt road for about 150 m and turn right at a boulder with a red-and-white mark onto a lane that climbs through the woods, then levels. Cross a stream and, keeping right up a short ramp, leave the woods above the Solaria houses. Turn left onto the forest road that climbs beside the Ruf de Dona to the junction for the Val di Dona, then turn right on path 577 for about 700 m to Redolon. Keep right and go down past the Barcia Veia farm to Fontanazzo, then along Strada de l’Albolina to the public car park. Cross the Avisio bridge, pass the playground and follow the forest road through the woods towards Campestrin, past the PalaDolomites hall. Keep right at the fork, climb a short ramp to a clearing with benches, go down to a bridge and walk back into Mazzin up Strèda de Chiavacia and Strèda dò Ruf.",
+        "switches": "Key turns: right up Strèda dò Ruf before the bridge; right at the marked boulder; left onto the forest road above the Solaria houses; right on path 577 at the Val di Dona junction; keep right at Redolon down to Fontanazzo; over the Avisio bridge; right at the fork near the PalaDolomites.",
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "APT Val di Fassa, Il cammino dei “pitores” (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/802230888",
+            "authority": "APT Val di Fassa",
+            "reviewedAt": "2026-11-04"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-04',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Pordoi group above Mazzin, seen from the loop, on 13 August 2017 (Adert on Wikimedia Commons, CC BY-SA 4.0), 1 m from the line.',
+        route: 'Official loop 7.7 km from the church of Mazzin, as the APT Val di Fassa publishes it; the stored line is drawn on 27 OSM ways along the board’s published line, 7.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'From the church of Mazzin along Strèda de Pian, right up Strèda dò Ruf beside the Ruf de Udai, over the bridge and right at a boulder with a red-and-white mark onto a lane through the woods; out above the Solaria houses, left onto the forest road up beside the Ruf de Dona to the Val di Dona junction; right on path 577 for about 700 m to Redolon, then keep right down past the Barcia Veia farm to Fontanazzo and along Strada de l’Albolina to the public car park; over the Avisio bridge, past the playground and along the forest road towards Campestrin past the PalaDolomites, right at the fork, through a family clearing, over a bridge and up Strèda de Chiavacia and Strèda dò Ruf back into Mazzin.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.1, km 3.7, km 4.2, km 5.9 and km 7.3 (OSM nodes 2997205620, 9959463623, 9959464127, 13091919570, 4187709215, 3668949329, 13096495700, 10003029604).',
+        elevation: 'Official 7.7 km, 248 m up and 249 m down, 2:25 h, highest point 1,601 m, lowest 1,354 m (APT Val di Fassa, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Il cammino dei “pitores” (its Outdooractive tour)',
+          'Comune di Mazzin publishes no dog regulation (none found on its site; one probably exists), so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'EEA Natura 2000 map: no Natura 2000 site on the line, and it is outside the Paneveggio–Pale di San Martino and Adamello Brenta nature parks',
+          'OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-04'
+      },
+      shadeCoverage: 69,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Village lanes in Mazzin and Fontanazzo and a short stretch beside the SS48 valley road: keep your dog on a short lead', 'Steep climbs on the forest road up to the Val di Dona junction: the board suggests trekking poles'],
+      terrainType: 'Village lanes, forest roads and paths',
+      shadeDescription: 'Mostly shaded: about seven tenths runs through mapped forest; the villages and the meadows at Redolon are open.',
+      terrainDescription: 'A loop at 1,350–1,600 m on both sides of the Avisio, from Mazzin up into the forest at the mouth of the Val di Dona, the hay valley the villagers once moved to in summer, and back through Fontanazzo and the woods by Campestrin. It recalls the “pitores”, the Mazzin painters who decorated houses across the Habsburg empire.',
+      waterDescription: 'Drinking water at the start in Mazzin, at km 3.7 and 4.2 in Fontanazzo, and at km 5.9 and 7.3 (OSM).',
+      dogNotes: 'Mazzin publishes no dog rule, so the national one applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog on a short lead through the villages.',
+      tips: 'Start at the church of Mazzin: a 7.7 km loop, 248 m of climbing, about two and a half hours, as the board lists. The climb to the Val di Dona junction is steep in places, so the board suggests poles. Keep your dog on a lead of at most 1.5 m and carry a muzzle.',
+      sourceLinks: [
+        { label: 'Outdooractive, Il cammino dei “pitores” (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/802230888' },
+        { label: 'Comune di Mazzin (no dog regulation found on its site)', url: 'https://www.comune.mazzin.tn.it/' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'EEA, Natura 2000 sites (none on the line)', url: 'https://natura2000.eea.europa.eu/' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.457593, lng: 11.701138, label: 'The church of Mazzin, the board’s start' },
+      desc: 'A loop from Mazzin up into the forest at the mouth of the Val di Dona and back through Fontanazzo and the woods by Campestrin, on the trail of the village’s travelling painters. The board lists 7.7 km, 248 m up and two and a half hours.'
     }
   };
 

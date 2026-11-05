@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "unterengadin-scuol-ftan",
+  "distanceKm": 4.3,
+  "ascentM": 366,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1291
+    },
+    {
+      "km": 0.3,
+      "elev": 1307
+    },
+    {
+      "km": 0.7,
+      "elev": 1367
+    },
+    {
+      "km": 1,
+      "elev": 1447
+    },
+    {
+      "km": 1.3,
+      "elev": 1518
+    },
+    {
+      "km": 1.6,
+      "elev": 1576
+    },
+    {
+      "km": 2,
+      "elev": 1611
+    },
+    {
+      "km": 2.3,
+      "elev": 1607
+    },
+    {
+      "km": 2.6,
+      "elev": 1605
+    },
+    {
+      "km": 2.9,
+      "elev": 1617
+    },
+    {
+      "km": 3.2,
+      "elev": 1631
+    },
+    {
+      "km": 3.6,
+      "elev": 1649
+    },
+    {
+      "km": 3.9,
+      "elev": 1644
+    },
+    {
+      "km": 4.2,
+      "elev": 1648
+    },
+    {
+      "km": 4.3,
+      "elev": 1648
+    }
+  ]
+}

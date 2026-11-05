@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "eggental-frommer-ochsenhuette",
+  "distanceKm": 2.1,
+  "ascentM": 102,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1736
+    },
+    {
+      "km": 0.2,
+      "elev": 1744
+    },
+    {
+      "km": 0.3,
+      "elev": 1759
+    },
+    {
+      "km": 0.5,
+      "elev": 1753
+    },
+    {
+      "km": 0.7,
+      "elev": 1785
+    },
+    {
+      "km": 0.8,
+      "elev": 1768
+    },
+    {
+      "km": 1,
+      "elev": 1798
+    },
+    {
+      "km": 1.1,
+      "elev": 1819
+    },
+    {
+      "km": 1.3,
+      "elev": 1775
+    },
+    {
+      "km": 1.5,
+      "elev": 1774
+    },
+    {
+      "km": 1.6,
+      "elev": 1794
+    },
+    {
+      "km": 1.8,
+      "elev": 1830
+    },
+    {
+      "km": 2,
+      "elev": 1794
+    },
+    {
+      "km": 2.1,
+      "elev": 1779
+    }
+  ]
+}

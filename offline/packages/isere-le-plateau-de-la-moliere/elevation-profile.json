@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "isere-le-plateau-de-la-moliere",
+  "distanceKm": 5.1,
+  "ascentM": 153,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1630
+    },
+    {
+      "km": 0.4,
+      "elev": 1656
+    },
+    {
+      "km": 0.8,
+      "elev": 1653
+    },
+    {
+      "km": 1.2,
+      "elev": 1688
+    },
+    {
+      "km": 1.6,
+      "elev": 1703
+    },
+    {
+      "km": 1.9,
+      "elev": 1668
+    },
+    {
+      "km": 2.3,
+      "elev": 1658
+    },
+    {
+      "km": 2.7,
+      "elev": 1561
+    },
+    {
+      "km": 3.1,
+      "elev": 1572
+    },
+    {
+      "km": 3.5,
+      "elev": 1576
+    },
+    {
+      "km": 3.9,
+      "elev": 1585
+    },
+    {
+      "km": 4.3,
+      "elev": 1611
+    },
+    {
+      "km": 4.6,
+      "elev": 1617
+    },
+    {
+      "km": 5,
+      "elev": 1630
+    },
+    {
+      "km": 5.1,
+      "elev": 1630
+    }
+  ]
+}

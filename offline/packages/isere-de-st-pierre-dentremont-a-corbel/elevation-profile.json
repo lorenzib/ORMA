@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "isere-de-st-pierre-dentremont-a-corbel",
+  "distanceKm": 9,
+  "ascentM": 450,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 645
+    },
+    {
+      "km": 0.7,
+      "elev": 730
+    },
+    {
+      "km": 1.4,
+      "elev": 825
+    },
+    {
+      "km": 2,
+      "elev": 958
+    },
+    {
+      "km": 2.7,
+      "elev": 962
+    },
+    {
+      "km": 3.4,
+      "elev": 861
+    },
+    {
+      "km": 4.1,
+      "elev": 864
+    },
+    {
+      "km": 4.8,
+      "elev": 843
+    },
+    {
+      "km": 5.5,
+      "elev": 711
+    },
+    {
+      "km": 6.1,
+      "elev": 675
+    },
+    {
+      "km": 6.8,
+      "elev": 663
+    },
+    {
+      "km": 7.5,
+      "elev": 642
+    },
+    {
+      "km": 8.2,
+      "elev": 641
+    },
+    {
+      "km": 8.9,
+      "elev": 641
+    },
+    {
+      "km": 9,
+      "elev": 645
+    }
+  ]
+}

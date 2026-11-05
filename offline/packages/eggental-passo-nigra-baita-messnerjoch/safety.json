@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "eggental-passo-nigra-baita-messnerjoch",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.9,
+    "ascentM": 242,
+    "highestPointM": 1892,
+    "expectedDuration": "1.25 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 72
+  },
+  "trailhead": {
+    "lat": 46.45601,
+    "lng": 11.585962,
+    "label": "The Passo Nigra (1,688 m), the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The Passo Nigra road and car park are busy in summer: keep your dog on a short lead at the start.",
+    "Mountain bikes share the forest road.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

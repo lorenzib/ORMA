@@ -3521,6 +3521,174 @@
       "quote": "Distanza 6,3 km · Durata 2:00 h · Salita 299 m · Discesa 154 m · Punto più alto 1.054 m · Punto più basso 859 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-04T20:00:00.000Z"
+    },
+    "isere-circuit-pedestre-alpage-des-cloutons": {
+      "url": "https://www.alpes-isere.com/itineraire/circuit-pedestre-alpage-des-cloutons-6057481/",
+      "publisher": "Matheysine Tourisme (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Circuit pédestre : Alpage des Cloutons",
+      "quote": "Distance 10.7Km · Dénivelé 635m · Durée 4H15 · Boucle · 635m D+ · 635m D- · Animaux acceptés · Les chiens doivent obligatoirement être tenus en laisse",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-la-vallee-de-la-gresse": {
+      "url": "https://www.alpes-isere.com/itineraire/la-vallee-de-la-gresse-6086482/",
+      "publisher": "Office de Tourisme Grenoble Alpes (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "La vallée de la Gresse",
+      "quote": "Distance 6.2Km · Dénivelé 286m · Durée 2H · Boucle · 286m D+ · 286m D- · Animaux acceptés · Chiens tenus en laisse",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-de-st-pierre-dentremont-a-corbel": {
+      "url": "https://www.alpes-isere.com/itineraire/de-st-pierre-dentremont-a-corbel-6779364/",
+      "publisher": "Chartreuse Tourisme (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "De St Pierre d’Entremont à Corbel",
+      "quote": "Distance 9Km · Dénivelé 450m · Durée 3H15 · Boucle · 450m D+ · 450m D- · Animaux acceptés · Chiens acceptés sous réserve d’être tenus en laisse",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-le-canal-de-clelles": {
+      "url": "https://www.alpes-isere.com/itineraire/le-canal-de-clelles-7810267/",
+      "publisher": "Office de Tourisme du Trièves (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Le canal de Clelles",
+      "quote": "Distance 4.8Km · Dénivelé 92m · Durée 1H30 · Boucle · 92m D+ · 92m D- · Animaux acceptés",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-tour-de-chichilianne": {
+      "url": "https://www.alpes-isere.com/itineraire/tour-de-chichilianne-7219269/",
+      "publisher": "Office de Tourisme du Trièves (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Tour de Chichilianne",
+      "quote": "Distance 3.8Km · Dénivelé 116m · Durée 1H30 · Boucle · 116m D+ · 116m D- · Animaux acceptés · Chiens tenus en laisse",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-vna-ramosch-via-veglia": {
+      "url": "https://www.outdooractive.com/en/r/32029554",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "Vnà - Ramosch, via veglia",
+      "quote": "Distance 2 km · Duration 0:40 h · Ascent 0 m · Descent 385 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-vna-sinestra": {
+      "url": "https://www.outdooractive.com/en/r/32233851",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "Vnà – Sinestra",
+      "quote": "Distance 3.8 km · Duration 1:15 h · Ascent 77 m · Descent 174 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-scuol-ftan": {
+      "url": "https://www.outdooractive.com/en/r/15670033",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "Scuol – Ftan",
+      "quote": "Distance 4.1 km · Duration 1:30 h · Ascent 366 m · Descent 14 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-guarda-ardez-hike-between-two-engadin-villages": {
+      "url": "https://www.outdooractive.com/en/r/17695297",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "Guarda – Ardez: hike between two Engadin villages",
+      "quote": "Distance 4.8 km · Duration 1:30 h · Ascent 47 m · Descent 274 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-s-charl-alp-sesvenna-return": {
+      "url": "https://www.outdooractive.com/en/r/15845656",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "S-charl – Alp Sesvenna (return)",
+      "quote": "Distance 5.2 km · Duration 1:45 h · Ascent 288 m · Descent 288 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "unterengadin-zernez-brail": {
+      "url": "https://www.outdooractive.com/en/r/38628640",
+      "publisher": "Engadin Samnaun Val Müstair (Outdooractive, engadin.com)",
+      "name": "Zernez – Brail",
+      "quote": "Distance 7.5 km · Duration 2:00 h · Ascent 257 m · Descent 92 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-boucle-du-couzon": {
+      "url": "https://www.alpes-isere.com/itineraire/boucle-du-couzon-6995851/",
+      "publisher": "Chartreuse Tourisme (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Boucle du Couzon",
+      "quote": "Distance 7Km · Dénivelé 310m · Durée 2H30 · Boucle · 310m D+ · 310m D- · Animaux acceptés · Les chiens tenus en laisse sont les bienvenus sur cet itinéraire",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-le-plateau-de-la-moliere": {
+      "url": "https://www.alpes-isere.com/itineraire/le-plateau-de-la-moliere-4894442/",
+      "publisher": "Isère Attractivité (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Le plateau de la Molière",
+      "quote": "Distance 5Km · Dénivelé 153m · Durée 1H30 · Boucle · 153m D+ · 153m D- · Vous traversez un Espace Naturel Sensible avec une règlementation spécifique à respecter",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "isere-le-fort-du-murier": {
+      "url": "https://www.alpes-isere.com/itineraire/le-fort-du-murier-6086222/",
+      "publisher": "Office de Tourisme Grenoble Alpes (Apidae, Isère Attractivité: alpes-isere.com)",
+      "name": "Le fort du Murier",
+      "quote": "Distance 4.2Km · Dénivelé 152m · Durée 2H · Boucle · 152m D+ · 152m D- · Animaux acceptés · Chiens tenus en laisse",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T12:00:00.000Z"
+    },
+    "eggental-passo-nigra-malga-hagner": {
+      "url": "https://www.outdooractive.com/it/r/16570878",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Escursione per famiglie dal Passo Nigra alla malga Hagner Alm",
+      "quote": "Distanza 11,8 km · Durata 3:13 h · Salita 231 m · Discesa 234 m · Punto più alto 1.691 m · Punto più basso 1.563 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "eggental-kaiserstein-baita-masare": {
+      "url": "https://www.outdooractive.com/it/r/19007850",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Dal parcheggio Kaiserstein alla baita Masarè",
+      "quote": "Distanza 1,5 km · Durata 0:40 h · Salita 189 m · Discesa 0 m · Punto più alto 1.934 m · Punto più basso 1.744 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "eggental-jolanda-baita-messnerjoch": {
+      "url": "https://www.outdooractive.com/it/r/19201109",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Escursione per famiglie dal Jolanda alla baita Messnerjoch",
+      "quote": "Distanza 4 km · Durata 1:11 h · Salita 152 m · Discesa 152 m · Punto più alto 1.925 m · Punto più basso 1.770 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "eggental-frommer-ochsenhuette": {
+      "url": "https://www.outdooractive.com/it/r/35328779",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Escursione per famiglie dalla Malga Frommer alla baita Ochsenhütte",
+      "quote": "Distanza 2,1 km · Durata 0:38 h · Salita 102 m · Discesa 53 m · Punto più alto 1.805 m · Punto più basso 1.738 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "eggental-passo-nigra-baita-messnerjoch": {
+      "url": "https://www.outdooractive.com/it/r/58607867",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Escursione per famiglie dal Passo Nigra alla baita Messnerjoch",
+      "quote": "Distanza 3,9 km · Durata 1:16 h · Salita 242 m · Discesa 242 m · Punto più alto 1.925 m · Punto più basso 1.683 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "eggental-pietralba-petersberger-leger": {
+      "url": "https://www.outdooractive.com/it/r/810054677",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Escursione per famiglie da Pietralba alla Malga Monte San Pietro",
+      "quote": "Distanza 4,6 km · Durata 1:20 h · Salita 139 m · Discesa 139 m · Punto più alto 1.530 m · Punto più basso 1.457 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "fassa-cammino-dei-pitores": {
+      "url": "https://www.outdooractive.com/it/r/802230888",
+      "publisher": "APT Val di Fassa (Outdooractive)",
+      "name": "Il cammino dei “pitores”",
+      "quote": "Distanza 7,7 km · Durata 2:25 h · Salita 248 m · Discesa 249 m · Punto più alto 1.601 m · Punto più basso 1.354 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-04T23:00:00.000Z"
     }
   }
 }

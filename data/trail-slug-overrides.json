@@ -1743,6 +1743,111 @@
       "name": "Fiè to Siusi by the Laghetto di Fiè",
       "slug": "fie-laghetto-di-fie-siusi",
       "gloss": "meadows, a lily lake under the Sciliar and woods to Siusi"
+    },
+    "isere-circuit-pedestre-alpage-des-cloutons": {
+      "name": "Alpage des Cloutons loop from Saint-Honoré 1500",
+      "slug": "alpage-des-cloutons-loop-saint-honore-1500",
+      "gloss": "Matheysine ridge loop past the Lac Charlet"
+    },
+    "isere-la-vallee-de-la-gresse": {
+      "name": "Gresse valley loop from Miribel-Lanchâtre",
+      "slug": "gresse-valley-loop-miribel-lanchatre",
+      "gloss": "Trièves village loop down to the Gresse"
+    },
+    "isere-de-st-pierre-dentremont-a-corbel": {
+      "name": "Saint-Pierre-d’Entremont to Corbel loop",
+      "slug": "saint-pierre-dentremont-corbel-loop",
+      "gloss": "Chartreuse loop over the Pas de la Coche"
+    },
+    "isere-le-canal-de-clelles": {
+      "name": "Clelles canal loop",
+      "slug": "clelles-canal-loop",
+      "gloss": "Trièves farmland loop below the Mont Aiguille"
+    },
+    "isere-tour-de-chichilianne": {
+      "name": "Tour de Chichilianne",
+      "slug": "tour-de-chichilianne-loop",
+      "gloss": "short loop at the foot of the Mont Aiguille"
+    },
+    "unterengadin-vna-ramosch-via-veglia": {
+      "name": "Vnà to Ramosch on the old path",
+      "slug": "vna-to-ramosch-on-the-old-path",
+      "gloss": "down through meadows and forest"
+    },
+    "unterengadin-vna-sinestra": {
+      "name": "Vnà to Val Sinestra",
+      "slug": "vna-to-val-sinestra",
+      "gloss": "along the hillside and down into the side valley"
+    },
+    "unterengadin-scuol-ftan": {
+      "name": "Scuol to Ftan",
+      "slug": "scuol-to-ftan",
+      "gloss": "up through the forest to the terrace village"
+    },
+    "unterengadin-guarda-ardez-hike-between-two-engadin-villages": {
+      "name": "Guarda to Ardez",
+      "slug": "guarda-to-ardez",
+      "gloss": "between two painted Engadin villages"
+    },
+    "unterengadin-s-charl-alp-sesvenna-return": {
+      "name": "S-charl to Alp Sesvenna and back",
+      "slug": "s-charl-to-alp-sesvenna-and-back",
+      "gloss": "up a quiet side valley to the alp"
+    },
+    "unterengadin-zernez-brail": {
+      "name": "Zernez to Brail",
+      "slug": "zernez-to-brail",
+      "gloss": "along the Via Engiadina above the Inn"
+    },
+    "isere-boucle-du-couzon": {
+      "name": "Couzon loop from Saint-Pierre-de-Chartreuse",
+      "slug": "couzon-loop-saint-pierre-de-chartreuse",
+      "gloss": "Chartreuse village loop along the Couzon"
+    },
+    "isere-le-plateau-de-la-moliere": {
+      "name": "Molière plateau loop above Autrans",
+      "slug": "moliere-plateau-loop-autrans",
+      "gloss": "Vercors alpage loop to the Charande viewpoint"
+    },
+    "isere-le-fort-du-murier": {
+      "name": "Fort du Murier loop above Gières",
+      "slug": "fort-du-murier-loop-gieres",
+      "gloss": "hillside loop to the Batteries Hautes above Grenoble"
+    },
+    "eggental-passo-nigra-malga-hagner": {
+      "name": "Passo Nigra to the Malga Hagner Alm",
+      "slug": "passo-nigra-malga-hagner",
+      "gloss": "a shady forest road below the Catinaccio"
+    },
+    "eggental-kaiserstein-baita-masare": {
+      "name": "Kaiserstein to the Baita Masarè",
+      "slug": "kaiserstein-baita-masare",
+      "gloss": "a short forest climb below the Catinaccio"
+    },
+    "eggental-jolanda-baita-messnerjoch": {
+      "name": "Jolanda to the Baita Messnerjoch",
+      "slug": "jolanda-baita-messnerjoch",
+      "gloss": "a forest road to a hut below the Catinaccio"
+    },
+    "eggental-frommer-ochsenhuette": {
+      "name": "Malga Frommer to the Baita Ochsenhütte",
+      "slug": "malga-frommer-ochsenhuette",
+      "gloss": "a short family walk below the Catinaccio"
+    },
+    "eggental-passo-nigra-baita-messnerjoch": {
+      "name": "Passo Nigra to the Baita Messnerjoch",
+      "slug": "passo-nigra-baita-messnerjoch",
+      "gloss": "a forest road climb below the Catinaccio"
+    },
+    "eggental-pietralba-petersberger-leger": {
+      "name": "Pietralba to the Petersberger Leger",
+      "slug": "pietralba-petersberger-leger",
+      "gloss": "a shady forest path from the sanctuary"
+    },
+    "fassa-cammino-dei-pitores": {
+      "name": "Il cammino dei pitores",
+      "slug": "mazzin-cammino-dei-pitores",
+      "gloss": "a loop from Mazzin into the Val di Dona"
     }
   }
 }

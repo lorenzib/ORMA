@@ -141,6 +141,10 @@
   const HIKING_WALK_REF_LAYER = 'orma-hiking-routes-ref-walk';
   const HIKING_TILES_PATH = '/data/hiking-routes/{z}/{x}/{y}.pbf';
   const HIKING_METADATA_PATH = '/data/hiking-routes/metadata.json';
+  // The tiles are built at deploy time and live only on the website, so the
+  // app build (scripts/build-app.js) points this at the website. On the site
+  // it stays null and the page's own origin serves them.
+  const HIKING_ORIGIN = null;
   // The regions' padded extents together (REGIONS in build-hiking-routes.js),
   // so the map does not ask for tiles across the rest of Europe.
   const HIKING_BOUNDS = [5.25, 43.73, 12.66, 47.81];
@@ -154,8 +158,12 @@
   // Every numbered route, before a walk takes its own routes' numbers.
   const ALL_ROUTE_NUMBERS = ['!=', ['get', 'ref'], ''];
 
+  function hikingOrigin() {
+    return HIKING_ORIGIN || (global.location && global.location.origin);
+  }
+
   function hikingTilesUrl() {
-    const origin = global.location && global.location.origin;
+    const origin = hikingOrigin();
     // A file:// page has no origin to serve tiles from.
     if (!origin || origin === 'null') return null;
     return origin + HIKING_TILES_PATH;
@@ -368,7 +376,7 @@
     };
     map.on('error', onError);
     if (typeof global.fetch === 'function') {
-      global.fetch(global.location.origin + HIKING_METADATA_PATH, { method: 'HEAD' })
+      global.fetch(hikingOrigin() + HIKING_METADATA_PATH, { method: 'HEAD' })
         .then(response => { if (!response.ok) fallBackToWaymarked(map); })
         .catch(() => { /* offline: Waymarked could not load either */ });
     }

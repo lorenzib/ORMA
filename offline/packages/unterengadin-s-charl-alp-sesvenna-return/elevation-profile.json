@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "unterengadin-s-charl-alp-sesvenna-return",
+  "distanceKm": 5.2,
+  "ascentM": 288,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1810
+    },
+    {
+      "km": 0.5,
+      "elev": 1856
+    },
+    {
+      "km": 0.8,
+      "elev": 1879
+    },
+    {
+      "km": 1.2,
+      "elev": 1961
+    },
+    {
+      "km": 1.6,
+      "elev": 1975
+    },
+    {
+      "km": 2,
+      "elev": 2014
+    },
+    {
+      "km": 2.4,
+      "elev": 2075
+    },
+    {
+      "km": 2.8,
+      "elev": 2075
+    },
+    {
+      "km": 3.2,
+      "elev": 2026
+    },
+    {
+      "km": 3.6,
+      "elev": 1996
+    },
+    {
+      "km": 4,
+      "elev": 1961
+    },
+    {
+      "km": 4.4,
+      "elev": 1879
+    },
+    {
+      "km": 4.8,
+      "elev": 1847
+    },
+    {
+      "km": 5.2,
+      "elev": 1818
+    }
+  ]
+}

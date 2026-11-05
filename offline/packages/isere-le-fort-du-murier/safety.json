@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "isere-le-fort-du-murier",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.2,
+    "ascentM": 152,
+    "highestPointM": 577,
+    "expectedDuration": "2 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 48
+  },
+  "trailhead": {
+    "lat": 45.173594,
+    "lng": 5.781196,
+    "label": "Fort du Murier car park above Gières, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About a third of the loop is on quiet hamlet roads; the D 112 is reached at the Le Murier crossroads.",
+    "Stony, earthy tracks and a sunken lane that can be muddy after rain.",
+    "Low altitude (about 430–580 m): warm on summer afternoons.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}

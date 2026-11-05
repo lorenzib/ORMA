@@ -955,6 +955,108 @@
       }
     },
     {
+      "id": "eggental-frommer-ochsenhuette",
+      "approvedReviewId": "mapillary-eggental-frommer-ochsenhuette-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-frommer-ochsenhuette-malga-frommer.jpg",
+        "heroImage": "images/trails/eggental-frommer-ochsenhuette-malga-frommer.jpg",
+        "imageAlt": "A wooden “Malga Frommeralm” sign on a green slope beside a lane, with an alpine hut under sunshades and grey rock peaks behind",
+        "imageCredit": "The Malga Frommer Alm at the start",
+        "imageCreditText": "The Malga Frommer Alm at the start by beautiful-places",
+        "imageCreator": "beautiful-places",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=736745362510894",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-jolanda-baita-messnerjoch",
+      "approvedReviewId": "mapillary-eggental-jolanda-baita-messnerjoch-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-jolanda-baita-messnerjoch-forest-road-1a.jpg",
+        "heroImage": "images/trails/eggental-jolanda-baita-messnerjoch-forest-road-1a.jpg",
+        "imageAlt": "A gravel forest road climbing into a spruce wood from a mountain road, with a bus-stop sign and wooden signposts on the grassy bank",
+        "imageCredit": "The start of forest road 1A on the Via Nigra",
+        "imageCreditText": "The start of forest road 1A on the Via Nigra by beautiful-places",
+        "imageCreator": "beautiful-places",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1077654067886897",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-kaiserstein-baita-masare",
+      "approvedReviewId": "mapillary-eggental-kaiserstein-baita-masare-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-kaiserstein-baita-masare-kaiserstein.jpg",
+        "heroImage": "images/trails/eggental-kaiserstein-baita-masare-kaiserstein.jpg",
+        "imageAlt": "Walkers on a gravel path by a stone wall and a Tyrolean flag at the edge of a spruce wood, with grey rock towers above the trees",
+        "imageCredit": "The trailhead at the Kaiserstein car park",
+        "imageCreditText": "The trailhead at the Kaiserstein car park by beautiful-places",
+        "imageCreator": "beautiful-places",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=24367381759616695",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-passo-nigra-baita-messnerjoch",
+      "approvedReviewId": "mapillary-eggental-passo-nigra-baita-messnerjoch-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-passo-nigra-baita-messnerjoch-catinaccio.jpg",
+        "heroImage": "images/trails/eggental-passo-nigra-baita-messnerjoch-catinaccio.jpg",
+        "imageAlt": "The grey walls and towers of the Catinaccio above dark spruce forest under a blue sky with white clouds, seen from the Passo Nigra",
+        "imageCredit": "The Catinaccio from the Passo Nigra",
+        "imageCreditText": "The Catinaccio from the Passo Nigra by beautiful-places",
+        "imageCreator": "beautiful-places",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1098170745148686",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-passo-nigra-malga-hagner",
+      "approvedReviewId": "mapillary-eggental-passo-nigra-malga-hagner-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-passo-nigra-malga-hagner-passo-nigra.jpg",
+        "heroImage": "images/trails/eggental-passo-nigra-malga-hagner-passo-nigra.jpg",
+        "imageAlt": "A gravel forest road leaving a mountain road beside a wooden inn sign and a meadow, with spruce woods and a tall pale rock face behind",
+        "imageCredit": "The start of forest road 1 at the Passo Nigra",
+        "imageCreditText": "The start of forest road 1 at the Passo Nigra by beautiful-places",
+        "imageCreator": "beautiful-places",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1420898302509769",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "eggental-pietralba-petersberger-leger",
+      "approvedReviewId": "mapillary-eggental-pietralba-petersberger-leger-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/eggental-pietralba-petersberger-leger-path-2.jpg",
+        "heroImage": "images/trails/eggental-pietralba-petersberger-leger-path-2.jpg",
+        "imageAlt": "A wide gravel track curving past a small stone outbuilding with a tiled roof, between meadows and leafy trees under a grey sky",
+        "imageCredit": "Path 2 near Pietralba",
+        "imageCreditText": "Path 2 near Pietralba by santon",
+        "imageCreator": "santon",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=24293086773657058",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "engadin-around-lake-st-moritz",
       "approvedReviewId": "commons-engadin-around-lake-st-moritz-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",
@@ -1206,6 +1308,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Soraga.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "fassa-cammino-dei-pitores",
+      "approvedReviewId": "commons-fassa-cammino-dei-pitores-on-route",
+      "approvedAt": "2026-11-04T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fassa-cammino-dei-pitores-pordoi.jpg",
+        "heroImage": "images/trails/fassa-cammino-dei-pitores-pordoi.jpg",
+        "imageAlt": "The pale rock massif of the Pordoi rising above steep forested slopes, with the houses of Mazzin at the foot of the valley",
+        "imageCredit": "The Pordoi group seen from Mazzin",
+        "imageCreditText": "The Pordoi group seen from Mazzin by Adert",
+        "imageCreator": "Adert",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pordoi_da_Mazzin.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -2090,6 +2209,142 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=838669567007655",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-boucle-du-couzon",
+      "approvedReviewId": "mapillary-isere-boucle-du-couzon-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-boucle-du-couzon-village.jpg",
+        "heroImage": "images/trails/isere-boucle-du-couzon-village.jpg",
+        "imageAlt": "A village crossroads of old stone houses with steep tiled roofs and walking signposts, under forested slopes and a pointed limestone peak in early-summer sun",
+        "imageCredit": "Saint-Pierre-de-Chartreuse at the start of the loop",
+        "imageCreditText": "Saint-Pierre-de-Chartreuse at the start of the loop by pgiraud",
+        "imageCreator": "pgiraud",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=487979325982794",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-circuit-pedestre-alpage-des-cloutons",
+      "approvedReviewId": "commons-isere-circuit-pedestre-alpage-des-cloutons-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-circuit-pedestre-alpage-des-cloutons-lac-charlet.jpg",
+        "heroImage": "images/trails/isere-circuit-pedestre-alpage-des-cloutons-lac-charlet.jpg",
+        "imageAlt": "A still mountain lake reflecting a golden grassy peak under a clear blue sky in autumn light",
+        "imageCredit": "The Pérollier above the Lac Charlet",
+        "imageCreditText": "The Pérollier above the Lac Charlet by Rémih",
+        "imageCreator": "Rémih",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pérollier_Lac_de_Charlet_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-de-st-pierre-dentremont-a-corbel",
+      "approvedReviewId": "mapillary-isere-de-st-pierre-dentremont-a-corbel-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-de-st-pierre-dentremont-a-corbel-corbel-church.jpg",
+        "heroImage": "images/trails/isere-de-st-pierre-dentremont-a-corbel-corbel-church.jpg",
+        "imageAlt": "A stone church with a clock tower and pointed spire on a quiet village lane, with a limestone cliff on the left under an autumn sky",
+        "imageCredit": "Corbel church on the loop",
+        "imageCreditText": "Corbel church on the loop by pgiraud",
+        "imageCreator": "pgiraud",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=248424963741229",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-la-vallee-de-la-gresse",
+      "approvedReviewId": "commons-isere-la-vallee-de-la-gresse-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-la-vallee-de-la-gresse-village.jpg",
+        "heroImage": "images/trails/isere-la-vallee-de-la-gresse-village.jpg",
+        "imageAlt": "A small village of tiled roofs on a wooded green hillside, with limestone peaks of the Vercors on the skyline under summer clouds",
+        "imageCredit": "Miribel-Lanchâtre from the loop",
+        "imageCreditText": "Miribel-Lanchâtre from the loop by Jvillafruela",
+        "imageCreator": "Jvillafruela",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Le_village_de_Miribel-Lanchâtre_-_2017-05-30.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-le-canal-de-clelles",
+      "approvedReviewId": "commons-isere-le-canal-de-clelles-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-le-canal-de-clelles-meadow.jpg",
+        "heroImage": "images/trails/isere-le-canal-de-clelles-meadow.jpg",
+        "imageAlt": "A summer hay meadow full of red poppies and wild grasses, with a line of trees and low mountains on the horizon",
+        "imageCredit": "Poppy meadow by the loop near Clelles",
+        "imageCreditText": "Poppy meadow by the loop near Clelles by Smiley.toerist",
+        "imageCreator": "Smiley.toerist",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Meadow_in_the_pré_Alps.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-le-fort-du-murier",
+      "approvedReviewId": "mapillary-isere-le-fort-du-murier-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-le-fort-du-murier-forest-track.jpg",
+        "heroImage": "images/trails/isere-le-fort-du-murier-forest-track.jpg",
+        "imageAlt": "A stony sunken track climbing gently through a green broadleaf wood, with fallen leaves on the verges in late summer",
+        "imageCredit": "The woodland track on the Fort du Murier loop",
+        "imageCreditText": "The woodland track on the Fort du Murier loop by eric_s",
+        "imageCreator": "eric_s",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1202870195214589",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-le-plateau-de-la-moliere",
+      "approvedReviewId": "mapillary-isere-le-plateau-de-la-moliere-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-le-plateau-de-la-moliere-alpage-track.jpg",
+        "heroImage": "images/trails/isere-le-plateau-de-la-moliere-alpage-track.jpg",
+        "imageAlt": "A stony track across a green mountain pasture beside a small wooden hut and a farm gate, with a wooded ridge rising on the right under a hazy autumn sky",
+        "imageCredit": "The alpage track on the Molière plateau",
+        "imageCreditText": "The alpage track on the Molière plateau by eric_s",
+        "imageCreator": "eric_s",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=835775935466013",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "isere-tour-de-chichilianne",
+      "approvedReviewId": "commons-isere-tour-de-chichilianne-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/isere-tour-de-chichilianne-church.jpg",
+        "heroImage": "images/trails/isere-tour-de-chichilianne-church.jpg",
+        "imageAlt": "The stone bell tower of a village church with clock faces, beside a tall tree under a blue summer sky with white clouds",
+        "imageCredit": "Chichilianne church at the start",
+        "imageCreditText": "Chichilianne church at the start by Jvillafruela",
+        "imageCreator": "Jvillafruela",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Clocher_de_l'église_de_Chichilianne.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -6907,6 +7162,108 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villabassa_-_Comune_di_Villabassa_-_2023-09-10_03-11-35_001.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "unterengadin-guarda-ardez-hike-between-two-engadin-villages",
+      "approvedReviewId": "commons-unterengadin-guarda-ardez-hike-between-two-engadin-villages-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-guarda-ardez-hike-between-two-engadin-villages-bos-cha.jpg",
+        "heroImage": "images/trails/unterengadin-guarda-ardez-hike-between-two-engadin-villages-bos-cha.jpg",
+        "imageAlt": "A small road running along a sunny meadow terrace between Guarda and Bos-cha, with forested mountains across the valley",
+        "imageCredit": "The road between Guarda and Bos-cha",
+        "imageCreditText": "The road between Guarda and Bos-cha by Böhringer",
+        "imageCreator": "Böhringer",
+        "imageLicence": "CC BY-SA 3.0 AT",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Zwischen_Bos-cha_und_Guarda_im_Unterengadin.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "unterengadin-s-charl-alp-sesvenna-return",
+      "approvedReviewId": "commons-unterengadin-s-charl-alp-sesvenna-return-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-s-charl-alp-sesvenna-return-alp-sesvenna.jpg",
+        "heroImage": "images/trails/unterengadin-s-charl-alp-sesvenna-return-alp-sesvenna.jpg",
+        "imageAlt": "A gravel alp road climbing a green valley between stone pines towards bare mountains",
+        "imageCredit": "The alp road from S-charl towards Alp Sesvenna",
+        "imageCreditText": "The alp road from S-charl towards Alp Sesvenna by Dominicus Johannes Bergsma",
+        "imageCreator": "Dominicus Johannes Bergsma",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:S-charl_richting_Alp_Sesvenna._21-09-2026._(d.j.b)_08.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "unterengadin-scuol-ftan",
+      "approvedReviewId": "commons-unterengadin-scuol-ftan-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-scuol-ftan-station.jpg",
+        "heroImage": "images/trails/unterengadin-scuol-ftan-station.jpg",
+        "imageAlt": "The forecourt of Scuol-Tarasp station with the station building and mountains behind",
+        "imageCredit": "Scuol-Tarasp station, where the walk starts",
+        "imageCreditText": "Scuol-Tarasp station, where the walk starts by Global Fish",
+        "imageCreator": "Global Fish",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:BfScuolTaraspVorplatz.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "unterengadin-vna-ramosch-via-veglia",
+      "approvedReviewId": "commons-unterengadin-vna-ramosch-via-veglia-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-vna-ramosch-via-veglia-vna.jpg",
+        "heroImage": "images/trails/unterengadin-vna-ramosch-via-veglia-vna.jpg",
+        "imageAlt": "A narrow village street in Vnà between old Engadin stone houses with painted walls and deep-set windows",
+        "imageCredit": "The Stradella in Vnà, where the walk starts",
+        "imageCreditText": "The Stradella in Vnà, where the walk starts by Agnes Monkelbaan",
+        "imageCreator": "Agnes Monkelbaan",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Straat_in_Vn%C3%A0,_Stradella._16-09-2023._(actm.).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "unterengadin-vna-sinestra",
+      "approvedReviewId": "commons-unterengadin-vna-sinestra-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-vna-sinestra-piz-s-chalambert.jpg",
+        "heroImage": "images/trails/unterengadin-vna-sinestra-piz-s-chalambert.jpg",
+        "imageAlt": "A forested valley with a rocky mountain peak rising above the trees under a blue sky",
+        "imageCredit": "Piz S-chalambert seen from Val Sinestra",
+        "imageCreditText": "Piz S-chalambert seen from Val Sinestra by Dominicus Johannes Bergsma",
+        "imageCreator": "Dominicus Johannes Bergsma",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Zicht_op_de_Piz_S-chalambert_vanuit_Val_Sinestra_(d.j.b)_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "unterengadin-zernez-brail",
+      "approvedReviewId": "commons-unterengadin-zernez-brail-on-route",
+      "approvedAt": "2026-11-04T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/unterengadin-zernez-brail-station.jpg",
+        "heroImage": "images/trails/unterengadin-zernez-brail-station.jpg",
+        "imageAlt": "Zernez railway station with its platforms and the station building under the mountains",
+        "imageCredit": "Zernez station, where the walk starts",
+        "imageCreditText": "Zernez station, where the walk starts by Global Fish",
+        "imageCreator": "Global Fish",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:BfZernezTotal.jpg",
         "imageSourceType": "licensed-source"
       }
     },
