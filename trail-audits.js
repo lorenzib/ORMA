@@ -51652,8 +51652,8 @@
       desc: 'A steep climb from the centre of Ortisei past Col de Flam and the San Giacomo church through the forest to the Sëurasas viewpoint. The board lists 5.2 km and 900 m of ascent one way.'
     },
     'valgardena-escursione-da-s-cristina-al-passo-sella': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 8.60 (53 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 5 November 2026: the drawn line went out and straight back at km 8.60 (53 m), a turn the board’s own line does not make and no source explains, and that stretch was cut by the owner's decision (as in #1214).
+      // The line is now 8.5 km on 47 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 3).
       // The Val Gardena tourist board’s walk “Escursione da S. Cristina al Passo Sella”, drawn on 48 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Santa Cristina and Selva (their own 2010 dog regulations: lead ≤1.5 m, muzzle carried).
@@ -51666,17 +51666,17 @@
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from Santa Cristina up the zigzag path 30 to Monte Pana, on path 528 through the forest to the Rifugio Comici, and through the Città dei Sassi on path 526 to the Passo Sella.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Rifugio Emilio Comici below the Sassolungo, August (Leo72, CC BY 4.0), on the line.',
-        route: 'Official one-way walk 8.4 km from Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 48 OSM ways along the board’s published line, 8.6 km, with 100% of the board’s line within 25 m of it.',
+        route: 'Official one-way walk 8.4 km from Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 47 OSM ways along the board’s published line, 8.5 km, with 99% of the board’s line within 25 m of it.',
         routeNumbers: 'Paths 30, 528 and 526: from Santa Cristina the zigzag path 30 climbs to Monte Pana and its flowering meadows; path 528 leads through the forest ever closer to the Sassolungo to the Rifugio Emilio Comici; from there path 526 runs at the foot of the Sassolungo through the Città dei Sassi boulder field to the Passo Sella. No lift is used.',
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.1, at km 2 (OSM nodes 7056279960, 7872979185, 6687083316, 7050362863).',
         elevation: 'Official 8.4 km, 800 m up and 23 m down, 3:24 h, highest point 2,184 m, lowest 1,388 m (S. Cristina – Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 8.60 (53 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -52002,8 +52002,8 @@
       desc: 'A climb from the top of the Col Raiser gondola across the Mastlé pastures below the Odle to the Seceda, the start of its famous ridge. The board lists 3.5 km and 423 m of ascent one way.'
     },
     'valgardena-seceda-dal-rifugio-firenze': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 7.05 (86 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 5 November 2026: the drawn line went out and straight back at km 7.05 (86 m), a turn the board’s own line does not make and no source explains, and that stretch was cut by the owner's decision (as in #1214).
+      // The line is now 7.8 km on 26 OSM ways with 98% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 4).
       // The Val Gardena tourist board’s walk “Seceda - Ridge Line da S. Cristina per Col Raiser (Stazione a valle) - Rifugio Firenze”, drawn on 26 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Santa Cristina and Selva (their own 2010 dog regulations: lead ≤1.5 m, muzzle carried).
@@ -52016,17 +52016,17 @@
       routeShape: 'point-to-point',
       routeShapeNote: 'One way up from the Col Raiser gondola valley station above Santa Cristina on path 1 to the Rifugio Firenze, then on paths 2 and 1A across the pastures to the Seceda; ride the Seceda cable car down to Ortisei or the Col Raiser gondola back to the start.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Lech de Ciaulonch pond on the Cisles alp, August (Wolfgang Moroder, CC BY-SA 3.0), 13 m from the line.',
-        route: 'Official one-way walk 7.9 km from Col Raiser gondola valley station, above Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 26 OSM ways along the board’s published line, 8 km, with 100% of the board’s line within 25 m of it.',
+        route: 'Official one-way walk 7.9 km from Col Raiser gondola valley station, above Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 26 OSM ways along the board’s published line, 7.8 km, with 98% of the board’s line within 25 m of it.',
         routeNumbers: 'Paths 1, 2 and 1A: from the Col Raiser gondola valley station on path 1 up to the Rifugio Firenze; from there on path 2, then path 1A across the panoramic slopes to the Seceda, the start of the Ridge Line trail.',
         mapPoints: 'Start at the board’s start; drinking water at km 2.8, at km 3.5, at km 6.2 (OSM nodes 5114422338, 5111795361, 7737540070).',
         elevation: 'Official 7.9 km, 983 m up and 15 m down, 3:25 h, highest point 2,510 m, lowest 1,546 m (S. Cristina – Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 7.05 (86 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -52076,8 +52076,8 @@
       desc: 'A long climb from the Col Raiser valley station above Santa Cristina past the Rifugio Firenze and across the pastures below the Odle to the Seceda. The board lists 7.9 km and 983 m of ascent one way.'
     },
     'valgardena-escursione-ortisei-passo-sella': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.33 (419 m), km 5.48 (203 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 5 November 2026: the drawn line went out and straight back at km 4.33 (419 m) and km 5.48 (203 m), turns the board’s own line does not make and no source explains, and those stretches were cut by the owner's decision (as in #1214).
+      // The line is now 12.3 km on 67 OSM ways with 97% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 4).
       // The Val Gardena tourist board’s walk “Escursione Ortisei - Passo Sella”, drawn on 84 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Ortisei, Santa Cristina and Selva (their own dog regulations: lead ≤1.5 m, muzzle carried).
@@ -52090,17 +52090,17 @@
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from Ortisei along the old railway path towards Santa Cristina, up path 30B past the Tervela waterfall to Monte Pana, on paths 23 and 528 by Tramans to the Rifugio Comici, and through the Città dei Sassi on paths 526 and 526C to the Passo Sella; back by bus 471 to Plan and a connecting bus to Ortisei.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Città dei Sassi boulder field with the Sella behind, August (Marie-Lan Taÿ Pamart, CC BY 4.0), on the line.',
-        route: 'Official one-way walk 12.4 km from Ortisei, as the Val Gardena tourist board publishes it; the stored line is drawn on 84 OSM ways along the board’s published line, 13.5 km, with 100% of the board’s line within 25 m of it.',
+        route: 'Official one-way walk 12.4 km from Ortisei, as the Val Gardena tourist board publishes it; the stored line is drawn on 67 OSM ways along the board’s published line, 12.3 km, with 97% of the board’s line within 25 m of it.',
         routeNumbers: 'Old railway path, then paths 30B, 23, 528, 526 and 526C: from Ortisei along the old railway path towards Santa Cristina; before the village onto path 30B up to Monte Pana, past the Tervela waterfall; at the junction onto path 23, then path 528 towards Tramans to the Rifugio Comici; from there paths 526 and 526C through the Città dei Sassi to the Passo Sella. Back the same way, or bus 471 to Selva (Plan) and bus 350, 306 or 352 to Ortisei.',
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.3, at km 0.7, at km 3.2, at km 3.9 (OSM nodes 7831357086, 7831367385, 9151291238, 13985445559, 6652727100, 7831356985, 6652727098, 7831367386, 7823639986, 7872930685).',
         elevation: 'Official 12.4 km, 1101 m up and 125 m down, 4:28 h, highest point 2,248 m, lowest 1,215 m (Ortisei – Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.33 (419 m), km 5.48 (203 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -52157,8 +52157,8 @@
       desc: 'A long climb from Ortisei along the old railway path and past the Tervela waterfall to Monte Pana, then below the Sassolungo to the Rifugio Comici and through the Città dei Sassi to the Passo Sella. The board lists 12.4 km and 1,101 m of ascent one way.'
     },
     'valgardena-seceda-da-cristauta-pic': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 0.40 (253 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 5 November 2026: the drawn line went out and straight back at km 0.40 (253 m), a turn the board’s own line does not make and no source explains, and that stretch was cut by the owner's decision (as in #1214).
+      // The line is now 6.2 km on 18 OSM ways with 96% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 5).
       // The Val Gardena tourist board’s walk “Seceda - Ridge Line da S. Cristina per Cristauta - Sëurasas”, drawn on 19 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Santa Cristina and Ortisei (their own dog regulations: lead ≤1.5 m, muzzle carried).
@@ -52171,17 +52171,17 @@
       routeShape: 'point-to-point',
       routeShapeNote: 'One way up from the Cristauta car park above Santa Cristina on paths 4 and 41 through the forest to the Sëurasas, on path 20 towards Monte Pic, path 6A (Troi de Tuei) to the Passo Cuca and path 6 to the Seceda; ride the closed Seceda cable car down to Ortisei or the Col Raiser gondola to Santa Cristina.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Sassolungo from the meadows above Santa Cristina near the start, August (Wolfgang Moroder, CC BY-SA 3.0), 3 m from the line.',
-        route: 'Official one-way walk 6.3 km from Cristauta car park, above Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 6.7 km, with 100% of the board’s line within 25 m of it.',
+        route: 'Official one-way walk 6.3 km from Cristauta car park, above Santa Cristina, as the Val Gardena tourist board publishes it; the stored line is drawn on 18 OSM ways along the board’s published line, 6.2 km, with 96% of the board’s line within 25 m of it.',
         routeNumbers: 'Paths 4, 41, 20, 6A and 6: from Cristauta on path 4, at the first fork onto path 41 through the forest to the Sëurasas (path 20); at the junction on path 20 towards Monte Pic, then path 6A, the “Troi de Tuei”; at the Passo Cuca onto path 6, which leads to the Seceda, the start of the Ridge Line trail.',
         mapPoints: 'Start at the board’s start; drinking water at km 4.3 (OSM nodes 6362321526).',
         elevation: 'Official 6.3 km, 861 m up and 102 m down, 3:04 h, highest point 2,511 m, lowest 1,752 m (S. Cristina – Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 0.40 (253 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -53281,8 +53281,8 @@
       desc: 'An easy forest walk from Madonna di Campiglio to the Ritort pastures and their view of the Brenta Dolomites, in the Adamello Brenta Nature Park. The APT lists 6 km and 212 m of ascent.'
     },
     'campiglio-lago-ritorto-nel-blu-dipinto-di-blu': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 2.56 (143 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 5 November 2026: the drawn line went out and straight back at km 2.56 (143 m), a turn the board’s own line does not make and no source explains, and that stretch was cut by the owner's decision (as in #1214).
+      // The line is now 5.4 km on 8 OSM ways with 97% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
       // APT Madonna di Campiglio’s walk “Lago Ritorto, nel blu dipinto di blu”, drawn on 9 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Commune: Pinzolo (Regolamento di Polizia Urbana 2024, Art. 66).
@@ -53296,17 +53296,17 @@
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from Patascoss on a quiet tarmac road and track to Malga Ritorto, then on path SAT 277 across the Pian dei Mughi and past the ruins of Malga della Pozza dei Garzoni to the Lago Ritorto; come back the same way.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Brenta group seen from the Ritort pastures, on the line, in September (Marco Ober, CC BY-SA 4.0), 13 m from the line.',
-        route: 'Official one-way walk 5.4 km from Patascoss, as APT Madonna di Campiglio publishes it; the stored line is drawn on 9 OSM ways along the APT’s published line, 5.7 km, with 100% of the APT’s line within 25 m of it.',
+        route: 'Official one-way walk 5.4 km from Patascoss, as APT Madonna di Campiglio publishes it; the stored line is drawn on 8 OSM ways along the APT’s published line, 5.4 km, with 97% of the APT’s line within 25 m of it.',
         routeNumbers: 'Path SAT 277 for the upper part: from Patascoss, a couple of kilometres north of Madonna di Campiglio, gently up a small tarmac road and then a track through clearings and spruce woods to Malga Ritorto (restaurant, wide view of the Brenta); then SAT 277 across the Pian dei Mughi, where chamois and roe deer are often seen, past the ruins of Malga della Pozza dei Garzoni, to the Lago Ritorto (2,055 m). Back the same way.',
         mapPoints: 'Start at the APT’s start, Patascoss; no drinking fountain is mapped on the line.',
         elevation: 'Official 5.4 km, 339 m up and 2 m down one way, 2 h 30 min, highest point 2,065 m, lowest 1,726 m (Madonna di Campiglio Azienda per il Turismo); the stored line ends at 2,060 m by the lake.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 2.56 (143 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -53577,8 +53577,8 @@
       desc: 'A short walk through the old village of Carisolo to its chestnut grove, the frescoed chapel of Santo Stefano and the old glassworks. The APT lists 3.5 km and 88 m of ascent.'
     },
     'paganella-giro-del-lago-di-molveno': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 6.80 (91 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 5 November 2026: the drawn line went out and straight back at km 6.80 (91 m), a turn the board’s own line does not make and no source explains, and that stretch was cut by the owner's decision (as in #1214).
+      // The line is now 10.3 km on 32 OSM ways with 99% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
       // APT Dolomiti Paganella’s walk “Giro del lago di Molveno”, drawn on 33 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: San Lorenzo Dorsino (San Lorenzo in Banale rules, Art. 10) and Molveno (no dog regulation, national rule).
@@ -53591,17 +53591,17 @@
       routeShape: 'loop',
       routeShapeNote: 'A loop round the Lago di Molveno from the campsite past the Roman bridge and the Napoleonic forts, along the west and then the more panoramic east shore, and back to Molveno on the path named after the King of the Belgians and over the Bior bridge.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Lago di Molveno with rocks on the shore, on the loop, in August (Italo Greco, CC BY 2.0), 1 m from the line.',
-        route: 'Official loop 10.1 km from the Molveno campsite, as Visit Paganella publishes it; the stored line is drawn on 33 OSM ways along the APT’s published line, 10.5 km, with 100% of the APT’s line within 25 m of it.',
+        route: 'Official loop 10.1 km from the Molveno campsite, as Visit Paganella publishes it; the stored line is drawn on 32 OSM ways along the APT’s published line, 10.3 km, with 99% of the APT’s line within 25 m of it.',
         routeNumbers: 'Not a numbered route: from the campsite at Molveno towards the Roman bridge and the Fortini di Napoleone (fortifications of 1796–1801, a short detour), along the west shore and then the east shore, the most panoramic stretch; cross the main road but do not walk along it, the path runs first in the woods above the road and then below it; back to Molveno on the King of the Belgians’ path and over the Bior bridge.',
         mapPoints: 'Start at the APT’s start, the Molveno campsite; drinking water at km 1.7, at km 1.8, at km 3.5, at km 9.5, at km 9.8 and at km 9.9 (OSM nodes 11007893285, 12139299941, 13068447066, 1524975924, 1524976036, 9014232206, 427547571, 2952130045).',
         elevation: 'Official 10.1 km, 232 m up and 233 m down, 2 h 15 min, highest point 897 m (Corno di Napoleone), lowest 817 m (Molveno) (Visit Paganella).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 6.80 (91 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -53675,8 +53675,8 @@
       desc: 'A loop round the Lago di Molveno below the Brenta Dolomites, past the Roman bridge and the Napoleonic forts, partly in the Adamello Brenta Nature Park. The APT lists 10.1 km and 232 m of ascent.'
     },
     'paganella-passeggiata-del-ciclamino': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 1.88 (80 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 5 November 2026: the drawn line went out and straight back at km 1.88 (80 m), a turn the board’s own line does not make and no source explains, and that stretch was cut by the owner's decision (as in #1214).
+      // The line is now 2.9 km on 17 OSM ways with 98% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
       // APT Dolomiti Paganella’s walk “Passeggiata del Ciclamino”, drawn on 18 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Commune: Molveno (no dog regulation, national rule).
@@ -53689,17 +53689,17 @@
       routeShape: 'point-to-point',
       routeShapeNote: 'A short walk from the centre of Molveno along Via Dolomiti to the Madonnina shrine, on a level path to Ciclamino below the Croz dell’Altissimo, and down beside the Rio Massò towards the lido.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The path beside the Rio Massodi above Molveno, on the walk, in September (Giorgio Galeotti, CC BY-SA 4.0), 7 m from the line.',
-        route: 'Official walk 2.8 km from the centre of Molveno, as Visit Paganella publishes it; the stored line is drawn on 18 OSM ways along the APT’s published line, 3 km, with 100% of the APT’s line within 25 m of it.',
+        route: 'Official walk 2.8 km from the centre of Molveno, as Visit Paganella publishes it; the stored line is drawn on 17 OSM ways along the APT’s published line, 2.9 km, with 98% of the APT’s line within 25 m of it.',
         routeNumbers: 'Not a numbered route: from the centre of Molveno along Via Dolomiti to the Capitello della Madonnina; on a level path to Ciclamino at the foot of the great wall of the Croz dell’Altissimo; down the other side of the stream to the Capitello di Sant’Antonio, past the little waterfalls at Molin dei Mori, and beside the Rio Massò to the lido (or right, along the Rio dei Molini, to the old Taialacqua sawmill by the campsite).',
         mapPoints: 'Start at the APT’s start in the centre of Molveno; drinking water at the start and at km 0.4 (OSM nodes 427547571, 2987324988).',
         elevation: 'Official 2.8 km, 76 m up and 110 m down, 50 min, highest point 941 m (Ciclamino), lowest 831 m (Molveno) (Visit Paganella).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 1.88 (80 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -54298,8 +54298,8 @@
       desc: 'A demanding high loop from Valina d’Amola up to the Rifugio Segantini and towards the Cornisello lakes, below the Presanella, in the Adamello Brenta Nature Park. The APT lists 9.4 km and 559 m of ascent.'
     },
     'bormio-da-arnoga-al-rifugio-federico': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 4.95 (226 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 5 November 2026: the drawn line went out and straight back at km 4.95 (226 m), a turn the board’s own line does not make and no source explains, and that stretch was cut by the owner's decision (as in #1214).
+      // The line is now 6.6 km on 19 OSM ways with 96% of the board's line within 25 m of it, and it passes the board-walk bar.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Lombardy batch 3).
       // in-Lombardia, the official tourism portal of Regione Lombardia: “Da Arnoga al Rifugio Federico” by Orobie Active, drawn on 28 OSM ways along its published GPX
       // (data/board-line-routes.geojson). Communes: Valdidentro (no regulation, national rule).
@@ -54311,17 +54311,17 @@
       routeShape: 'point-to-point',
       routeShapeNote: 'One way up the Val Viola from Arnoga past Paluetta, the Baite dell’Orsa and the Caricc farm to the Rifugio Federico at the mouth of the Val Dosdè; come back the same way.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The larch forest of the Valdidentro below Arnoga and the mountains towards Bormio, beside the start of the walk, in late June (qwesy qwesy, CC BY 3.0), 75 m from the line.',
-        route: 'Official one-way walk 7 km from the lower car park at the Arnoga hairpin, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 28 OSM ways along the published GPX, 7 km, with 99% of the published line within 25 m of it.',
+        route: 'Official one-way walk 7 km from the lower car park at the Arnoga hairpin, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 19 OSM ways along the published GPX, 6.6 km, with 96% of the published line within 25 m of it.',
         routeNumbers: 'From the lower car park on the Arnoga hairpin along the almost level dirt road on the left side of the valley, through Swiss stone pine, spruce and larch, to just beyond Paluetta; over a bridge with wooden sleepers to the right bank and gently up to the Baite dell’Orsa, a cluster of old summer huts in a clearing; on a well-trodden path through larches, with a few short climbs, to the Caricc farm (1,990 m); steeper from here, with a natural balcony halfway over the canyon of the Viola torrent; where the trees thin out the climb ends, with a wide view over the Val Dosdè, and the path runs level to the Rifugio Federico. Back the same way.',
         mapPoints: 'Start at the published start; drinking water at km 0.2 (OSM nodes 7553509309).',
         elevation: 'Official 7 km, 562 m up, 2 h (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Orobie Active). The stored line follows the published GPX.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.95 (226 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
