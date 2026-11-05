@@ -46,6 +46,8 @@ const RUNTIME_FILES = [
   'data/alpine-plants.json',
   'data/alpine-plants-it.json',
   'manifest.json',
+  // Takes the place of regions-runtime-manifest.js on every app page.
+  'app-trail-data.js',
 ];
 
 // Whole directories that ship as-is.
@@ -75,6 +77,12 @@ const HIKING_ORIGIN_LINE = 'const HIKING_ORIGIN = null;';
 // like AllTrails and Komoot do; an offline package carries no photos anyway.
 const REMOTE = /^images\/trails\//;
 const REMOTE_REF = /(["'(])(?:\.\.\/|\.\/|\/)?(images\/trails\/)/g;
+
+// A trail published after a release should reach the app the same day, not with
+// the next App Store update, so app pages read the trail list from the website
+// when online. app-trail-data.js does that and falls back to the copy inside.
+const MANIFEST_TAG = /<script src="regions-runtime-manifest\.js(?:\?[^"]*)?"><\/script>/g;
+const APP_MANIFEST_TAG = '<script src="app-trail-data.js"></script>';
 
 const rel = (abs) => path.relative(root, abs).split(path.sep).join('/');
 const denied = (r) => DENY.some((pattern) => pattern.test(r));
@@ -225,7 +233,8 @@ function rewriteRemoteRefs(){
       .replace(/https:\/\/unpkg\.com\/maplibre-gl@[^/'"`]+\/dist\/maplibre-gl\.(js|css)/g,
         '/vendor/maplibre-gl/maplibre-gl.$1')
       .replace(HIKING_ORIGIN_LINE, `const HIKING_ORIGIN = '${SITE_ORIGIN}';`)
-      .replace(REMOTE_REF, `$1${SITE_ORIGIN}/$2`);
+      .replace(REMOTE_REF, `$1${SITE_ORIGIN}/$2`)
+      .replace(MANIFEST_TAG, APP_MANIFEST_TAG);
     if(after !== before){ fs.writeFileSync(dest, after); rewritten += 1; }
   }
   return rewritten;
@@ -251,4 +260,4 @@ function build(){
 
 if(require.main === module) build();
 
-module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF };
+module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG };
