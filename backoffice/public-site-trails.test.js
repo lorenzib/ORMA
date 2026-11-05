@@ -228,8 +228,10 @@ describe('the existing-site verification boundary',()=>{
     // Then 502 and 500 with the Compatsch – Wiedner Eck loop on the Alpe di Siusi.
     // Then 503 and 501 with the Colbricon lakes walk from Malga Rolle below the
     // Passo Rolle (Dolomites batch 3).
-    expect(catalogue).toHaveLength(503);
-    expect(currentSiteTrails(catalogue)).toHaveLength(501);
+    // Then 504 and 502 with the walk from Colfosco over the Forcela Ciampëi to the
+    // Rifugio Puez (Dolomites batch 4).
+    expect(catalogue).toHaveLength(504);
+    expect(currentSiteTrails(catalogue)).toHaveLength(502);
   });
 
   test('requires the artwork the public trail page needs',()=>{

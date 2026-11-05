@@ -63916,6 +63916,74 @@
       ],
       startPoint: { lat: 46.295807, lng: 11.775923, label: 'Malga Rolle below the Passo Rolle, the board’s start' },
       desc: 'A short forest walk from Malga Rolle below the Passo Rolle to the two Colbricon lakes and the Rifugio Colbricon, with the Pale di San Martino in view. The board lists 4.2 km, 101 m up and an hour and a half.'
+    },
+    'altabadia-colfosco-rifugio-puez': {
+      // Hand audit: 5 November 2026, verified on arrival (new-trail Dolomites batch 4).
+      // “Escursione nel parco naturale UNESCO Puez-Odle”, published by the Società Cooperativa Turistica Alta Badia, drawn on 20 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Corvara (its 2011 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
+      // About three quarters of the line is in the Puez-Geisler nature park (DLH 19/2013: dogs on a lead) and Natura 2000 IT3110027, whose measures set no rule on dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Colfosco – Val Stella Alpina – Rifugio Puez, Alta Badia',
+      distance: 12.1,
+      elevation: 836,
+      hours: '5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from the centre of Colfosco on path 4 up the Val Stella Alpina past the Rifugio Edelweiss and the Lech de Ciampëi to the Forcela Ciampëi, then on path 2 across the Puez plateau to the Rifugio Puez; come back the same way, as the board says.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in the centre of Colfosco, above Corvara in Alta Badia, the board’s start.",
+        "sequence": "Take path 4 west up the Val Stella Alpina to the Rifugio Edelweiss. Past the hut and the votive chapel just beyond it, stay on path 4 beside the Lech de Ciampëi, then climb the zigzags over scree and rocky spurs to the Forcela Ciampëi (2,366 m) at the edge of the Puez plateau. Turn onto path 2 and cross the wide plateau, first north, then west, to the Rifugio Puez (2,475 m) below the Col de Puez. Come back the same way.",
+        "switches": "Path 4 from Colfosco to the Forcela Ciampëi; path 2 from the Forcela across the plateau to the Rifugio Puez; then back the same way.",
+        "sources": [
+          {
+            "label": "Società Cooperativa Turistica Alta Badia, Escursione nel parco naturale UNESCO Puez-Odle (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810055894",
+            "authority": "Società Cooperativa Turistica Alta Badia",
+            "reviewedAt": "2026-11-05"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-05',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Vallunga seen from the Puez plateau near the Rifugio Puez, on 25 July 2020 (highlander on Mapillary, CC BY-SA 4.0), 3 m from the line.',
+        route: 'Official one-way walk 12.1 km from the centre of Colfosco, as the Società Cooperativa Turistica Alta Badia publishes it; the stored line is drawn on 20 OSM ways along the board’s published line, 12.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 4 and 2: from the centre of Colfosco take path 4 west up the Val Stella Alpina to the Rifugio Edelweiss, past the votive chapel and along the Lech de Ciampëi, then up the zigzags over scree to the Forcela Ciampëi (2,366 m); there path 2 crosses the Puez plateau, first north, then west, to the Rifugio Puez (2,475 m); come back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at the start and km 6 (OSM nodes 5812713361, 3701031758).',
+        elevation: 'Official 12.1 km, 836 m up and 836 m down, 4:55 h, highest point 2,480 m, lowest 1,644 m (Società Cooperativa Turistica Alta Badia, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Società Cooperativa Turistica Alta Badia, Escursione nel parco naturale UNESCO Puez-Odle (its Outdooractive tour)',
+          'Gemeinde Corvara / Comune di Corvara in Badia, Verordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 17, 27.06.2011), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs on farmed meadows in the growing season',
+          'Naturpark Puez-Geisler / Parco naturale Puez-Odle (DLH 19/2013 rules of conduct): dogs only under strict supervision, on a lead, never roaming; Natura 2000 IT3110027 Gardena – Valle Lunga – Puez: the Province’s objectives and conservation measures (Giunta provinciale, 19 December 2025) set no rule on dogs; no strict reserve zone. About three quarters of the line is inside the park and the site (Province of Bolzano landscape-plan layers)',
+          'OpenStreetMap ways along the board’s line (20 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-05'
+      },
+      shadeCoverage: 4,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A steep climb over scree and rocky spurs to the Forcela Ciampëi: sure footing needed, for you and your dog', 'High, open ground at 2,000–2,480 m with no shade: storms build quickly on summer afternoons', 'About 1.9 km on tarmac at the start in Colfosco: keep your dog on a short lead'],
+      terrainType: 'Village lanes, gravel tracks and mountain paths over scree and limestone plateau',
+      shadeDescription: 'Almost no shade: the line is open almost the whole way above the village, on the Val Stella Alpina slopes and the bare Puez plateau.',
+      terrainDescription: 'A long mountain walk at 1,640–2,480 m from Colfosco up the Val Stella Alpina and over the Forcela Ciampëi onto the karst plateau of the Puez, in the heart of the Puez-Odle nature park, a UNESCO World Heritage site since 2009, to the Rifugio Puez.',
+      waterDescription: 'Drinking water at the start in Colfosco and at the Rifugio Puez at km 6 (OSM); the Rifugio Edelweiss and the Rifugio Puez serve food and drink when open. Carry water for your dog on the climb.',
+      dogNotes: 'About three quarters of the walk is in the Puez-Odle nature park, where dogs must be on a lead and under close control. Corvara also requires a lead of at most 1.5 m and a muzzle carried on all public ground, and keeps dogs off farmed meadows in the growing season.',
+      tips: 'Start in Colfosco: 12.1 km there and back, 836 m of climbing, about five hours, as the board lists. Fit dogs only: the climb to the Forcela Ciampëi is steep over scree. Keep your dog on a lead in the park, carry a muzzle and plenty of water, and turn back if storms build.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione nel parco naturale UNESCO Puez-Odle (Società Cooperativa Turistica Alta Badia)', url: 'https://www.outdooractive.com/it/r/810055894' },
+        { label: 'Gemeinde Corvara, dog regulation (PDF)', url: 'https://www.comune.corvara.bz.it/system/web/GetDocument.ashx?cts=1536582119&fileId=1025436' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.554378, lng: 11.855601, label: 'The centre of Colfosco, the board’s start' },
+      desc: 'A demanding walk from Colfosco up the Val Stella Alpina and over the Forcela Ciampëi onto the Puez plateau, to the Rifugio Puez in the heart of the Puez-Odle nature park. The board lists 12.1 km, 836 m up and just under five hours.'
     }
   };
 
