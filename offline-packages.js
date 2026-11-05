@@ -10,6 +10,7 @@
     'ahrntal-sentiero-del-conte-cadipietra': "Count’s path above Steinhaus",
     'ahrntal-sentiero-panoramico-cadipietra': "Steinhaus panoramic path",
     'alpe-siusi': "Alpe di Siusi Meadow Loop",
+    'altabadia-colfosco-rifugio-puez': "Colfosco to the Rifugio Puez",
     'altabadia-da-furnacia-a-la-crusc': "Furnacia – La Crusc",
     'altabadia-da-la-val-ai-prati-di-rit': "La Val – Prati di Rit",
     'altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa': "Pederoa – Picedac – Costa",

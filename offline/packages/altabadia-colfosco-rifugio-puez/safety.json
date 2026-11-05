@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altabadia-colfosco-rifugio-puez",
+  "generatedAt": "2026-11-05T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 12.1,
+    "ascentM": 836,
+    "highestPointM": 2485,
+    "expectedDuration": "5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 4
+  },
+  "trailhead": {
+    "lat": 46.554378,
+    "lng": 11.855601,
+    "label": "The centre of Colfosco, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5544812,
+      "lng": 11.8553401,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5900605,
+      "lng": 11.8290293,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A steep climb over scree and rocky spurs to the Forcela Ciampëi: sure footing needed, for you and your dog.",
+    "High, open ground at 2,000–2,480 m with no shade: storms build quickly on summer afternoons.",
+    "About 1.9 km on tarmac at the start in Colfosco: keep your dog on a short lead.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-05",
+      "licence": "ODbL"
+    }
+  ]
+}
