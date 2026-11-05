@@ -6,12 +6,12 @@ const data = require('./data/alpine-plants.json');
 const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
 
 describe('Alpine plants guide', () => {
-  test('imports all 33 stable plant records without claiming approval', () => {
-    expect(data.plants).toHaveLength(33);
-    expect(new Set(data.plants.map(plant => plant.id)).size).toBe(33);
+  test('imports all 37 stable plant records without claiming approval', () => {
+    expect(data.plants).toHaveLength(37);
+    expect(new Set(data.plants.map(plant => plant.id)).size).toBe(37);
     expect(data.meta.editorialStatus).toBe('draft');
     expect(data.plants.every(plant => plant.reviewStatus === 'veterinary_review_required')).toBe(true);
-    expect(data.plants.filter(plant => plant.safety === 'dangerous')).toHaveLength(17);
+    expect(data.plants.filter(plant => plant.safety === 'dangerous')).toHaveLength(20);
   });
 
   test('search is case- and diacritic-insensitive across names and aliases', () => {
@@ -73,7 +73,7 @@ describe('Alpine plants guide', () => {
   test('every plant has a local, licensed and attributed reference photograph', () => {
     const pictured = data.plants.filter(plant => plant.image && plant.image.src);
     const pending = data.plants.filter(plant => !plant.image || !plant.image.src);
-    expect(pictured).toHaveLength(33);
+    expect(pictured).toHaveLength(37);
     expect(pending).toHaveLength(0);
     pictured.forEach(plant => {
       expect(plant.image.src).toMatch(/^\.\.\/images\/editorial\/alpine-plants\//);
@@ -131,8 +131,8 @@ describe('Alpine plants guide', () => {
     expect(html).toContain('id="plantHabitat"');
     expect(html).toContain('Do not induce vomiting');
     expect(html).toContain('aria-live="polite"');
-    expect(html).toContain('numberOfItems":33');
-    expect(html).toContain('Last reviewed: 26 August 2026');
+    expect(html).toContain('numberOfItems":37');
+    expect(html).toContain('Last reviewed: 5 November 2026');
     expect(html).toContain('<h3>About the cards and photographs</h3>');
     expect(html).toContain('not an identification guarantee');
     expect(html).toContain('All card photographs are reusable Commons references');
@@ -155,6 +155,32 @@ describe('Alpine plants guide', () => {
     const newRecords = data.plants.filter(plant => plant.lastReviewed === '2026-08-26');
     expect(newRecords).toHaveLength(14);
     expect(newRecords.every(plant => plant.evidence.every(source => source.accessed === '2026-08-26'))).toBe(true);
+  });
+
+  test('November records cite a dated source for every new card', () => {
+    const added = data.plants.filter(plant => plant.lastReviewed === '2026-11-05');
+    expect(added.map(plant => plant.id)).toEqual(['wall-barley', 'white-false-hellebore', 'mezereon', 'wild-mushrooms']);
+    expect(added.every(plant => plant.evidence.length && plant.evidence.every(source => source.accessed === '2026-11-05'))).toBe(true);
+  });
+
+  test('grass awns lead the page, in English and Italian, and their card does not say "if eaten"', () => {
+    ['guides/alpine-plants-for-dogs.html', 'it/guides/alpine-plants-for-dogs.html'].forEach(file => {
+      const html = read(file);
+      expect(html.indexOf('id="grass-awns"')).toBeGreaterThan(-1);
+      expect(html.indexOf('id="grass-awns"')).toBeLessThan(html.indexOf('id="plant-emergency"'));
+      expect(html).toContain('images/editorial/alpine-plants/wall-barley.jpg');
+    });
+    expect(read('guides/alpine-plants-for-dogs.html')).toContain('See a vet the same day: awns migrate.');
+    expect(read('it/guides/alpine-plants-for-dogs.html')).toContain('Forasacchi: controlla il cane dopo ogni passeggiata');
+    const awns = data.plants.find(plant => plant.id === 'wall-barley');
+    const card = guide.plantCard(awns);
+    expect(card).toContain('Lodged in the body: see a vet');
+    expect(card).not.toContain('If eaten:');
+    expect(card).toContain('Avoid touching it too');
+    expect(guide.matches(awns, { query:'forasacchi', safety:'', season:'', habitat:'' })).toBe(true);
+    const italian = require('./data/alpine-plants-it.json');
+    expect(guide.localizePlant(awns, italian).commonName).toBe('Forasacchi');
+    expect(guide.localizePlant(awns, italian).severityLabel).toBe('Se si conficca: dal veterinario');
   });
 
   test('cards open photographs in a dismissible modal lightbox', () => {

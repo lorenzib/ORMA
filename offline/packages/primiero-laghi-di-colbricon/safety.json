@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-laghi-di-colbricon",
+  "generatedAt": "2026-11-05T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.2,
+    "ascentM": 101,
+    "highestPointM": 1949,
+    "expectedDuration": "1.5 hours",
+    "difficulty": "Easy",
+    "shadePercent": 79
+  },
+  "trailhead": {
+    "lat": 46.295807,
+    "lng": 11.775923,
+    "label": "Malga Rolle below the Passo Rolle, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.2812633,
+      "lng": 11.7667468,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Roots and rocky stretches on the mule track: not for pushchairs, as the board warns.",
+    "The start is by the Passo Rolle road: keep your dog on a short lead in the car park.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-05"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-05",
+      "licence": "ODbL"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-laghi-di-colbricon",
+  "distanceKm": 4.2,
+  "ascentM": 101,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1895
+    },
+    {
+      "km": 0.3,
+      "elev": 1875
+    },
+    {
+      "km": 0.7,
+      "elev": 1892
+    },
+    {
+      "km": 1,
+      "elev": 1909
+    },
+    {
+      "km": 1.3,
+      "elev": 1919
+    },
+    {
+      "km": 1.6,
+      "elev": 1949
+    },
+    {
+      "km": 1.9,
+      "elev": 1938
+    },
+    {
+      "km": 2.2,
+      "elev": 1920
+    },
+    {
+      "km": 2.6,
+      "elev": 1937
+    },
+    {
+      "km": 2.9,
+      "elev": 1919
+    },
+    {
+      "km": 3.2,
+      "elev": 1909
+    },
+    {
+      "km": 3.5,
+      "elev": 1885
+    },
+    {
+      "km": 3.8,
+      "elev": 1875
+    },
+    {
+      "km": 4.2,
+      "elev": 1895
+    }
+  ]
+}
