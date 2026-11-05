@@ -10,8 +10,8 @@ describe('Safety library', () => {
 
   test('uses the approved guide-first structure with photo-led links', () => {
     expect(document.querySelector('h1').textContent).toBe('Safety library');
-    expect(document.querySelectorAll('.sg-guide-card')).toHaveLength(8);
-    expect(document.querySelectorAll('.sg-guide-card img')).toHaveLength(8);
+    expect(document.querySelectorAll('.sg-guide-card')).toHaveLength(9);
+    expect(document.querySelectorAll('.sg-guide-card img')).toHaveLength(9);
     expect([...document.querySelectorAll('.sg-guide-card')].every(card => card.getAttribute('href'))).toBe(true);
     expect(document.querySelectorAll('.sg-category')).toHaveLength(3);
     expect(html).toMatch(/\.sg-library\{[^}]*grid-template-columns:repeat\(3/s);
@@ -101,6 +101,7 @@ describe('Safety library', () => {
       'images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg',
       'images/editorial/safety-library/dogs-on-cable-cars-v6.jpg',
       'images/editorial/safety-library/heat-hydration-stream-dog-v1.jpg',
+      'images/editorial/safety-library/dog-hydration-lake-unbranded-v1.jpg',
       'images/editorial/safety-library/paw-protection-forest-dog-v4.jpg',
       'images/editorial/safety-library/flowers-plants-dogs.jpg',
       'images/editorial/safety-library/livestock-guardian-dogs-v1.jpg',

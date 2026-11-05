@@ -60,11 +60,11 @@ describe('Safety Library continuation component', () => {
     expect(page.querySelector('.section-page-head')?.textContent || '').not.toMatch(/reviewed/i);
   });
 
-  test('the Safety Library articles and water-planning guide are all covered', () => {
+  test('every Safety Library article, the water guide included, has a card in the library', () => {
     const library = readPage('../safety-guide.html');
     const linkedGuides = Array.from(library.querySelectorAll('.sg-guide-card'))
       .map(link => path.basename(link.getAttribute('href')));
-    expect(new Set(safetyPages)).toEqual(new Set([...linkedGuides, 'water-for-dogs-on-trail.html']));
+    expect(new Set(safetyPages)).toEqual(new Set(linkedGuides));
   });
 
   test('shared styles support desktop, compact and mobile layouts', () => {
