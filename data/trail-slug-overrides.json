@@ -1813,6 +1813,14 @@
       "name": "Fort du Murier loop above Gières",
       "slug": "fort-du-murier-loop-gieres",
       "gloss": "hillside loop to the Batteries Hautes above Grenoble"
+    },
+    "seiseralm-compatsch-wiedner-eck": {
+      "name": "Alpe di Siusi meadow loop by the Wiedner Eck",
+      "slug": "alpe-di-siusi-wiedner-eck-loop",
+      "gloss": "high meadows under the Schlern from Compatsch",
+      "retired": [
+        "alpe-di-siusi-meadow-loop"
+      ]
     }
   }
 }

@@ -23669,6 +23669,10 @@
       ]
     },
     'lago-sorapis': {
+      // Withdrawn 5 November 2026 on the owner’s decision (Dolomites launch focus): Cortina Marketing rates
+      // the path “for experts”, with ladders and a wire-rope ledge.
+      ormaVerified: false,
+      withdrawal: { reason: 'expert-terrain', at: '2026-11-05', note: 'Cortina Marketing rates the path for experts: ladders and a ledge with a wire rope that a dog cannot be helped along safely.' },
       // Correction, 24 October 2026 (not a verification: no authority says whether dogs manage the ladders and roped ledges,
       // and there is no reliable water on the way). The elevation profile showed the path reaching 2,250 m; it is recomputed on the
       // line (high point about 1,930 m at the lake). Official climb and time from Cortina Marketing; the false 'stream crossing' at km 2
@@ -63282,6 +63286,92 @@
       ],
       startPoint: { lat: 45.173594, lng: 5.781196, label: 'Fort du Murier car park above Gières, the board’s start' },
       desc: 'A short family loop above Gières through the hamlets of Le Murier and Le Bigot to the ruins of the Batteries Hautes, with views over the Vercors and Grenoble, and back down through the woods by the Col du Courlu. The official page lists 4.2 km, 152 m up and down, about 2 h.'
+    },
+    'seiseralm-compatsch-wiedner-eck': {
+      // Hand audit: 5 November 2026, verified on arrival (Dolomites headline fix). Replaces alpe-siusi,
+      // the old Alpe di Siusi meadow loop, whose line was not the board’s and whose figures had no source.
+      // “Compatsch - Wiedner Eck”, published by the Kastelruth tourist association (Seiser Alm) on Outdooractive (owner: Kastelruth),
+      // drawn on 13 OSM ways along the line it publishes (data/board-line-routes.geojson): 100% each way,
+      // 6.9 km against the published 7 km, no spur or doubling back. Commune: Kastelruth. Longest run on a
+      // main road: 100 m (the tertiary Seiser Alm road in Compatsch). No chairlift: the optional cable car is closed cabins.
+      name: 'Alpe di Siusi meadow loop by the Wiedner Eck',
+      area: 'Compatsch – Wiedner Eck – Rifugio Laurin – Compatsch, Seiser Alm / Alpe di Siusi',
+      distance: 7,
+      elevation: 138,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from Compatsch on paths 30, 6B, 6, 5B and 10: east across the meadows past the Hotel Steger, south and back west over the Panorama saddle to the Rifugio Laurin, and home along the Schlern path.',
+      routeNumberStatus: 'official-numbered-route',
+      routeNumberSource: { provider: 'Kastelruth tourist association (Seiser Alm)', name: 'Compatsch - Wiedner Eck', url: 'https://www.outdooractive.com/it/r/65714204' },
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Compatsch, the top station of the Seiser Alm cable car. The loop leaves from just behind the Franziskuskirche (Chiesa San Francesco), on path 30.",
+        "sequence": "Follow path 30 across the meadows towards the Hotel Steger, cross the asphalt road and keep gently uphill on 30, with the hotel and its pond on your right. Turn left onto path 6B past the Tuene hut to the next junction, then right onto path 6 past the Heualm. Path 6 climbs easily to the saddle at the Albergo Panorama and runs level to the Rifugio Laurin. Stay on 6 to a fork, go right on 5B for about 650 m to the Schlern path, 10, and follow 10 east across meadows and pasture back to Compatsch, about 30 minutes.",
+        "switches": "Five turns: across the asphalt road on 30 after the Hotel Steger; left onto 6B; right onto 6 at the junction after the Tuene hut; right onto 5B at the fork past the Rifugio Laurin; and onto 10 at the end of 5B, which leads back to Compatsch.",
+        "sources": [
+          {
+            "label": "Kastelruth tourist association (Seiser Alm), Compatsch - Wiedner Eck (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/65714204",
+            "authority": "Kastelruth tourist association (Seiser Alm)",
+            "reviewedAt": "2026-11-05"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-05',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Schlern seen from the Seiser Alm meadows, in June (Wolfgang Moroder on Wikimedia Commons, CC BY-SA 3.0), 3 m from the line.',
+        route: 'Official loop 7 km from Compatsch, as the Kastelruth tourist association publishes it; the stored line is drawn on 13 OSM ways along the board’s published line, 6.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 30, 6B, 6, 5B and 10, in the order the board’s route description gives them, with its landmarks: Franziskuskirche, Hotel Steger, Tuene hut, Heualm, Albergo Panorama, Rifugio Laurin.',
+        mapPoints: 'Start behind the Franziskuskirche in Compatsch, the board’s start; drinking water at km 0.9, 2.3 and 3.7 (OSM nodes 4468099891, 1444149822, 8949692865).',
+        elevation: 'Official 7 km, 138 m up and 138 m down, 1:54 h, highest point 1,974 m, lowest 1,836 m (Kastelruth tourist association, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Kastelruth tourist association (Seiser Alm), Compatsch - Wiedner Eck (its Outdooractive tour)',
+          'Gemeinde Kastelruth, Ortspolizeiordnung (Gemeinderat Nr. 57 of 4 September 2024), Art. 13: dogs never left unattended and their mess cleared',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public',
+          'Landschaftlicher Gebietsplan Seiser Alm (DLH 10 February 1992 Nr. 269), Art. 2, 9, 12: no dog ban; Art. 12(4) forbids disturbing wildlife. About 350 m of the line runs beside the Großes Moos biotope it protects; the line keeps to the marked paths',
+          'Seiser Alm Marketing, Urlaub mit dem Hund: dogs on a lead on the Alm and on its lifts and buses, with a muzzle carried',
+          'OpenStreetMap ways along the board’s line (13 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-05'
+      },
+      shadeCoverage: 17,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 2 km on asphalt, mostly the farm and hotel lanes around Compatsch and the Hotel Steger; one crossing of the Seiser Alm road: lead short', 'Open pasture with grazing cattle and horses in summer: lead on, and give the herds room', 'The Großes Moos wetland beside path 10: keep your dog on the path'],
+      terrainType: 'Meadow paths, gravel Alm tracks and short asphalt lanes',
+      shadeDescription: 'Mostly open alpine meadow at 1,840–1,970 m; about a sixth runs past spruce and larch stands.',
+      terrainDescription: 'An easy loop on the high meadows south of Compatsch, on gravel tracks and meadow paths with short asphalt lanes, gently over the Panorama saddle and back below the Schlern.',
+      waterDescription: 'Drinking water at km 0.9, 2.3 and 3.7; huts and inns on the way, including the Heualm, the Albergo Panorama and the Rifugio Laurin.',
+      dogNotes: 'Keep your dog on a lead of at most 1.5 m and carry a muzzle (Italian national rule; the Seiser Alm asks for a lead everywhere on the Alm). Grazing cattle on open pasture in summer. Dogs ride the Seiser Alm cable car on a lead and muzzled.',
+      tips: 'Start behind the Franziskuskirche in Compatsch: a 7 km loop, 138 m up and down, about two hours, with the Schlern ahead for much of the way. Take the Seiser Alm cable car up from Seis (closed cabins), as the Alm road is closed to private cars by day in summer. Water at three fountains on the first half.',
+      sourceLinks: [
+        { label: 'Outdooractive, Compatsch - Wiedner Eck (Kastelruth tourist association (Seiser Alm))', url: 'https://www.outdooractive.com/it/r/65714204' },
+        { label: 'Seiser Alm Marketing, Urlaub mit dem Hund', url: 'https://www.seiseralm.it/de/info-service/aktuelle-infos/urlaub-mit-dem-hund.html' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Kastelruth, Ortspolizeiordnung (2024)', url: 'https://www.gemeinde.kastelruth.bz.it/de/Verwaltung/Dokumente/Ortspolizeiordnung' },
+        { label: 'Landschaftlicher Gebietsplan Seiser Alm, Durchführungsbestimmungen', url: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Landschaftlicher_Gebietsplan_Seiser_Alm_%E2%80%93_Piano_Paesaggistico_Dell\'Alpe_di_Susi.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.540174, lng: 11.618069, label: 'Behind the Franziskuskirche in Compatsch, the board’s start' },
+      desc: 'A loop over the high meadows of the Seiser Alm from Compatsch, past the Hotel Steger and the Heualm to the Panorama saddle and the Rifugio Laurin, and back below the Schlern on path 10. The Kastelruth tourist association lists 7 km, 138 m up and 138 m down, 1 h 54.'
+    },
+    'alpe-siusi': {
+      // Withdrawn 5 November 2026 on the owner’s decision (Dolomites launch focus): replaced by
+      // seiseralm-compatsch-wiedner-eck, which takes over its address.
+      ormaVerified: false,
+      withdrawal: { reason: 'replaced', at: '2026-11-05', note: 'Replaced by the Kastelruth tourist association’s own Compatsch – Wiedner Eck loop (seiseralm-compatsch-wiedner-eck), whose line and figures the board publishes; this line and its figures had no source.' }
+    },
+    'cadini': {
+      // Withdrawn 5 November 2026 on the owner’s decision (Dolomites launch focus).
+      ormaVerified: false,
+      withdrawal: { reason: 'no-official-figures', at: '2026-11-05', note: 'No authority publishes a distance, climb or time for this viewpoint walk; the usual approach rides the Col de Varda chairlift, and the path beyond is rated EEA (equipped).' }
     }
   };
 
