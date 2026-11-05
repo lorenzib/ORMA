@@ -38,31 +38,30 @@ describe('scan-first safety guide layouts', () => {
     expect(html).not.toContain('<table');
   });
 
-  test('guardian-dog guidance runs spot, pasture, approach, after', () => {
+  test('guardian-dog guidance runs as green, amber and red stages, then afterwards', () => {
     const html = read('livestock-guard-dogs.html');
     document.body.innerHTML = html;
     expect(document.querySelector('h1').textContent).toBe('Meeting a livestock guardian dog with your own dog');
     expect(document.title).toBe('Meeting a livestock guardian dog with your own dog | ORMA');
-    const headings = Array.from(document.querySelectorAll('.guardian-section h2')).map(h => h.textContent);
-    expect(headings).toEqual([
-      'How to recognise guardian dogs',
-      'Before you walk into a pasture',
-      'If a guardian dog comes over',
-      'After an incident',
-    ]);
     expect(html).toContain('guide-scan-cards.css?v=20260825-1');
+    expect(document.querySelector('.guide-quick')).not.toBeNull();
     expect(document.querySelector('.safety-sources')).not.toBeNull();
     expect(document.body.textContent).toContain('Last reviewed 5 November 2026');
+    const stages = Array.from(document.querySelectorAll('.guardian-stage'));
+    expect(stages.map(stage => stage.className.match(/guardian-stage--(\w+)/)[1])).toEqual(['green', 'amber', 'red', 'after']);
+    expect(stages.map(stage => stage.querySelector('h2').textContent)).toEqual([
+      'Lead on, go wide',
+      'Stop, don’t stare, back away',
+      'Let go of the lead',
+      'After an incident',
+    ]);
     expect(html).toContain('Maremmano-Abruzzese');
     expect(html).toContain('French national guidance says to let go of the lead');
-    expect(document.querySelectorAll('.guardian-steps > li')).toHaveLength(4);
-    // Every section is one white card, and there is a single warning box.
-    expect(document.querySelectorAll('.guardian-section > .guardian-content-card')).toHaveLength(4);
-    expect(document.querySelectorAll('.scan-alert')).toHaveLength(1);
-    expect(Array.from(document.querySelectorAll('.guardian-section-head')).every(head => !head.closest('.guardian-content-card'))).toBe(true);
+    expect(document.querySelectorAll('.guardian-stage--amber .guardian-steps > li')).toHaveLength(4);
+    // The red stage is the only warning; no separate alert box.
+    expect(document.querySelectorAll('.scan-alert')).toHaveLength(0);
     expect(html).not.toContain('Three moves, in order');
     expect(html).not.toContain('scan-grid');
-    expect(html).not.toContain('Explore Savoie');
     expect(html).not.toContain('class="gp-steps"');
   });
 });
