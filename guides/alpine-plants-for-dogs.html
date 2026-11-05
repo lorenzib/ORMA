@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css?v=20260916-5">
-<link rel="stylesheet" href="../alpine-plants-guide.css?v=20261105-1">
+<link rel="stylesheet" href="../alpine-plants-guide.css?v=20261105-2">
 <link rel="stylesheet" href="safety-guide-system.css?v=20261104-1">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CollectionPage","name":"Alpine Plants Guide for Dogs","description":"A trail-first catalogue of Alpine plants and dog-safety awareness.","url":"https://www.app-orma.com/guides/alpine-plants-for-dogs.html","mainEntity":{"@type":"ItemList","numberOfItems":37}}
@@ -51,30 +51,57 @@
 </header>
 
 <main class="apg-wrap content-canvas" id="alpinePlantsGuide">
-  <section class="apg-awns" id="grass-awns" aria-labelledby="awnsHeading">
-    <figure class="apg-awns-photo"><img src="../images/editorial/alpine-plants/wall-barley.jpg" alt="Bristly seed heads of wall barley" width="1280" height="1861" loading="lazy" decoding="async"></figure>
-    <div class="apg-awns-copy">
-      <span class="apg-awns-kicker">Late spring to late summer</span>
-      <h2 id="awnsHeading">Grass seeds (awns): check your dog after every walk</h2>
-      <p class="apg-awns-lead">Dry, barbed seed heads of wall barley, brome and similar grasses hook into the coat and push into the body. They are not poisonous, but they keep moving deeper.</p>
-      <div class="apg-awns-grid">
-        <div><h3>Where they get in</h3><p>Between the toes, ears, nose, eyes, genitals.</p></div>
-        <div><h3>Signs</h3><p>Sudden head shaking, sneezing or a nosebleed, licking a paw, a swelling between the toes, squinting.</p></div>
-        <div><h3>What to do</h3><p>See a vet the same day: awns migrate. Don’t try to dig one out of an ear or nose.</p></div>
-      </div>
-      <p class="apg-awns-prevent"><b>Prevent it</b>Stay off dry grass at path edges. Brush the coat and check paws, ears and eyes after the walk. Keep the hair between the toes trimmed short in summer.</p>
-    </div>
+  <section class="guide-quick" aria-labelledby="guideQuickTitle">
+    <h2 class="guide-quick__title" id="guideQuickTitle">In 20 seconds</h2>
+    <ul><li>After every walk, check paws, ears and eyes for grass seeds. If you think one has gone in, see a vet the same day.</li><li>If your dog eats a plant, move away, take photos of it and call your vet, even if your dog seems fine.</li><li>Do not make your dog vomit or give food or medicine unless a vet tells you to.</li></ul>
   </section>
 
-  <aside class="apg-help" id="plant-emergency" aria-labelledby="plantEmergencyHeading">
-    <h2 id="plantEmergencyHeading">If your dog eats a plant</h2>
-    <ol class="apg-help-steps">
-      <li><b>Move away</b>Lead your dog away and stop any more chewing.</li>
-      <li><b>Take photos</b>The whole plant, its leaves, flowers or fruit and where it grew. Note the time, the part eaten and roughly how much. Keep a sample only if it is safe and legal to collect, and use gloves.</li>
-      <li><b>Call your vet</b>Or the nearest emergency clinic, promptly, even if your dog seems fine.</li>
-    </ol>
-    <p class="apg-help-dont">Do not induce vomiting or give food, milk, charcoal or medication unless a vet tells you to.</p>
-  </aside>
+  <div class="apg-top">
+    <section class="apg-top-card apg-top-card--awns" id="grass-awns" aria-labelledby="awnsHeading">
+      <img class="apg-top-photo" src="../images/editorial/alpine-plants/wall-barley.jpg" alt="Bristly seed heads of wall barley" width="1280" height="1861" decoding="async">
+      <div class="apg-top-body">
+        <span class="apg-top-kicker">Late spring to late summer</span>
+        <h2 id="awnsHeading">Forasacchi (grass seeds)</h2>
+        <p>Barbed seeds of wall barley, brome and similar grasses hook into the coat and push into the body. Not poisonous, but they travel deeper.</p>
+        <dl class="apg-top-facts">
+          <div><dt>Where</dt><dd>Between the toes, ears, nose, eyes, genitals.</dd></div>
+          <div><dt>Signs</dt><dd>Sudden head shaking, sneezing or a nosebleed, licking a paw, a swelling between the toes, squinting.</dd></div>
+          <div><dt>Do</dt><dd>See a vet the same day: awns migrate. Don’t try to dig one out of an ear or nose.</dd></div>
+          <div><dt>Prevent</dt><dd>Stay off dry grass at path edges. Check your dog after every walk. Keep the hair between the toes short.</dd></div>
+        </dl>
+      </div>
+    </section>
+    <section class="apg-top-card apg-top-card--toxic" id="toxic-plants" aria-labelledby="toxicHeading">
+      <img class="apg-top-photo" src="../images/editorial/alpine-plants/monkshood.jpg" alt="Violet, helmet-shaped monkshood flowers" decoding="async">
+      <div class="apg-top-body">
+        <span class="apg-top-kicker">Toxic if eaten</span>
+        <h2 id="toxicHeading">The seriously toxic ones</h2>
+        <p>Safe to walk past. A few leaves, berries or one mushroom can be an emergency.</p>
+        <ul class="apg-top-list">
+          <li>Monkshood (aconite)</li>
+          <li>White false hellebore</li>
+          <li>Yew</li>
+          <li>Autumn crocus</li>
+          <li>Foxglove and lily of the valley</li>
+          <li>Alpine rhododendron</li>
+          <li>Wild mushrooms</li>
+        </ul>
+        <a class="apg-top-link" href="?safety=dangerous#plantResults">See all 20 toxic plants</a>
+      </div>
+    </section>
+    <aside class="apg-top-card apg-help" id="plant-emergency" aria-labelledby="plantEmergencyHeading">
+      <div class="apg-top-body">
+        <span class="apg-top-kicker">If it happens</span>
+        <h2 id="plantEmergencyHeading">If your dog eats a plant</h2>
+        <ol class="apg-help-steps">
+          <li><b>Move away</b>Lead your dog away and stop any more chewing.</li>
+          <li><b>Take photos</b>Of the plant and where it grew. Note the time, the part eaten and roughly how much.</li>
+          <li><b>Call your vet</b>Or the nearest emergency clinic, now, even if your dog seems fine.</li>
+        </ol>
+        <p class="apg-help-dont">Do not induce vomiting or give food, milk, charcoal or medication unless a vet tells you to.</p>
+      </div>
+    </aside>
+  </div>
 
   <section class="apg-tools" aria-labelledby="plantFindHeading">
     <h2 id="plantFindHeading" class="sr-only">Find a plant</h2>

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-05T16:08:43.191Z",
+  "generatedAt": "2026-11-05T17:16:47.188Z",
   "regions": {
     "dolomites": {
-      "trailCount": 350,
-      "trails": "data/regions/dolomites-trails.js?v=369f67aeaf33",
+      "trailCount": 351,
+      "trails": "data/regions/dolomites-trails.js?v=26d6df8a45e8",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=6faa6455cd45",
@@ -355,6 +355,7 @@
         "fassa-cammino-dei-pitores": "data/trail-details/fassa-cammino-dei-pitores.js?v=990c67cd2c3c",
         "seiseralm-compatsch-wiedner-eck": "data/trail-details/seiseralm-compatsch-wiedner-eck.js?v=888392d3aa09",
         "primiero-laghi-di-colbricon": "data/trail-details/primiero-laghi-di-colbricon.js?v=0cb13b4c941b",
+        "altabadia-colfosco-rifugio-puez": "data/trail-details/altabadia-colfosco-rifugio-puez.js?v=0dd7e648f81a",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=0b5726d89d69"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -946,6 +947,7 @@
     "fassa-cammino-dei-pitores": "dolomites",
     "seiseralm-compatsch-wiedner-eck": "dolomites",
     "primiero-laghi-di-colbricon": "dolomites",
+    "altabadia-colfosco-rifugio-puez": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1604,6 +1606,7 @@
     "fassa-cammino-dei-pitores": "mazzin-cammino-dei-pitores",
     "seiseralm-compatsch-wiedner-eck": "compatsch-wiedner-eck-loop",
     "primiero-laghi-di-colbricon": "laghi-di-colbricon-malga-rolle",
+    "altabadia-colfosco-rifugio-puez": "colfosco-rifugio-puez",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2109,6 +2112,7 @@
     "mazzin-cammino-dei-pitores": "fassa-cammino-dei-pitores",
     "compatsch-wiedner-eck-loop": "seiseralm-compatsch-wiedner-eck",
     "laghi-di-colbricon-malga-rolle": "primiero-laghi-di-colbricon",
+    "colfosco-rifugio-puez": "altabadia-colfosco-rifugio-puez",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
