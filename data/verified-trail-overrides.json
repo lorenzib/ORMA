@@ -69,7 +69,8 @@
           "date": "2026-08-18"
         },
         "graduation": {
-          "status": "verified",
+          "status": "in-progress",
+          "stage": "hand-verification-withdrawn",
           "required": [
             "photo",
             "route",
@@ -93,9 +94,11 @@
             "heat",
             "exposure",
             "livestock",
-            "surfaceHazards",
-            "access"
-          ]
+            "surfaceHazards"
+          ],
+          "blockers": {
+            "access": "Seal pulled 5 November 2026 on the owner’s decision: the walk depends on the 5 Torri chairlift, whose chairs are open, and a walk that needs a chairlift is held."
+          }
         },
         "verifiedAt": "2026-08-18T15:06:17.733Z",
         "id": "cinque-torri-assisted",
