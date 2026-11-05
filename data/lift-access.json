@@ -341,6 +341,17 @@
           "notes": "Ride up from Surlej to Murtèl, the middle station of the Corvatsch cable car, where the walk starts; its cabins are closed. Check the lift’s dog rule before you ride."
         }
       }
+    },
+    {
+      "id": "seiseralm-compatsch-wiedner-eck",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "optional",
+          "name": "Seiser Alm cable car",
+          "notes": "Closed cabins from Seis to Compatsch spare the Alm road, which is closed to private cars by day in summer; the loop itself needs no lift. Dogs ride on a lead and muzzled."
+        }
+      }
     }
   ]
 }
