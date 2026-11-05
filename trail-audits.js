@@ -63847,6 +63847,75 @@
       // Withdrawn 5 November 2026 on the owner’s decision (Dolomites launch focus).
       ormaVerified: false,
       withdrawal: { reason: 'no-official-figures', at: '2026-11-05', note: 'No authority publishes a distance, climb or time for this viewpoint walk; the usual approach rides the Col de Varda chairlift, and the path beyond is rated EEA (equipped).' }
+    },
+    'primiero-laghi-di-colbricon': {
+      // Hand audit: 5 November 2026, verified on arrival (new-trail Dolomites batch 3).
+      // “Escursione ai Laghi di Colbricon”, published by the APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, drawn on 4 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Primiero San Martino di Castrozza (Regolamento di Polizia Urbana, Art. 28: lead ≤1.5 m in public places).
+      // Inside the Paneveggio – Pale di San Martino nature park (Art. 54 c. 2: dogs always on a lead, banned nowhere) and the Lagorai Natura 2000 sites, whose measures set no rule on dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Malga Rolle – Laghi di Colbricon, Passo Rolle',
+      distance: 4.2,
+      elevation: 101,
+      hours: '1.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back from Malga Rolle, just below the Passo Rolle, on path 348 through the forest to the two Colbricon lakes and the Rifugio Colbricon; come back the same way, as the board says.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Malga Rolle, just beyond the Passo Rolle as you come up from San Martino di Castrozza, the board’s start; the path begins about a hundred metres below the main road near the Chalet la Baita.",
+        "sequence": "Follow path 348, a wide mule track that climbs gently and steadily through the forest until the trees thin out. The lower Colbricon lake appears on the right; carry on to the clearing with the upper lake and the Rifugio Colbricon. Come back the same way.",
+        "switches": "Path 348 the whole way from Malga Rolle to the Rifugio Colbricon, then back the same way.",
+        "sources": [
+          {
+            "label": "APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Escursione ai Laghi di Colbricon (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/1552123",
+            "authority": "APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi",
+            "reviewedAt": "2026-11-05"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-05',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Colbricon and its lake seen through the larches from the path, on 4 October 2009 (Maurizio Ceol on Wikimedia Commons, from Panoramio, CC BY 3.0), 7 m from the line.',
+        route: 'Official one-way walk 4.2 km from Malga Rolle, as the APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi publishes it; the stored line is drawn on 4 OSM ways along the board’s published line, 4.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 348: from Malga Rolle, below the Passo Rolle on the San Martino side, path 348 starts about a hundred metres below the main road by the Chalet la Baita and climbs gently through the forest to the lower Colbricon lake and on to the upper lake and the Rifugio Colbricon; come back the same way.',
+        mapPoints: 'Start at the board’s start; drinking water at km 2 (OSM nodes 287658790).',
+        elevation: 'Official 4.2 km, 101 m up and 102 m down, 1:30 h, highest point 1,954 m, lowest 1,874 m (APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Escursione ai Laghi di Colbricon (its Outdooractive tour)',
+          'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (2016, amended 2018), Art. 26 and 28: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches',
+          'Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco, Norme di Attuazione (2016), Art. 54 c. 2: dogs always on a lead in the park, banned nowhere',
+          'Natura 2000 ZSC IT3120168 Lagorai Orientale – Cima Bocche and ZPS IT3120160 Lagorai (EEA map), whose conservation measures (the park’s measures and Del. G.P. 632/2013) set no rule on dogs',
+          'OpenStreetMap ways along the board’s line (4 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-05'
+      },
+      shadeCoverage: 79,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Roots and rocky stretches on the mule track: not for pushchairs, as the board warns', 'The start is by the Passo Rolle road: keep your dog on a short lead in the car park'],
+      terrainType: 'Forest track and mule track',
+      shadeDescription: 'Mostly shaded: about four fifths runs through the pine and larch forest on the north side of the Colbricon; the lakes are open.',
+      terrainDescription: 'A short walk at 1,870–1,950 m from Malga Rolle through the forest below the Colbricon and the Cavallazza to the two Colbricon lakes among junipers and alpenrose, with views of the Cima Bocche and the Pale di San Martino.',
+      waterDescription: 'Drinking water at the Rifugio Colbricon at km 2 (OSM); the rifugio serves food and drink when open. Your dog can drink at the lakes.',
+      dogNotes: 'The walk is in the Paneveggio – Pale di San Martino nature park, where dogs must always be on a lead. Primiero San Martino di Castrozza’s rules also apply: a lead of at most 1.5 m in public places, a muzzle in public buildings and in crowds, and bags to pick up after your dog.',
+      tips: 'Start at Malga Rolle: 4.2 km there and back, about 100 m of climbing, an hour and a half, as the board lists. Parking at Malga Rolle is free but small. You are in the nature park the whole way: keep your dog on a lead.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione ai Laghi di Colbricon (APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi)', url: 'https://www.outdooractive.com/it/r/1552123' },
+        { label: 'Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)', url: 'https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf' },
+        { label: 'Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco (Norme di Attuazione, Art. 54)', url: 'https://parcopan.org/ente-parco/il-piano-del-parco/' },
+        { label: 'Provincia autonoma di Trento, Natura 2000 conservation measures (Del. G.P. 632/2013)', url: 'https://www.provincia.tn.it/Amministrazione/Documenti/Deliberazione-della-Giunta-Provinciale-n.-632-del-12-04-2013' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.295807, lng: 11.775923, label: 'Malga Rolle below the Passo Rolle, the board’s start' },
+      desc: 'A short forest walk from Malga Rolle below the Passo Rolle to the two Colbricon lakes and the Rifugio Colbricon, with the Pale di San Martino in view. The board lists 4.2 km, 101 m up and an hour and a half.'
     }
   };
 

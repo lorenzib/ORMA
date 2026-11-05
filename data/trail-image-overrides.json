@@ -6197,6 +6197,23 @@
       }
     },
     {
+      "id": "primiero-laghi-di-colbricon",
+      "approvedReviewId": "commons-primiero-laghi-di-colbricon-on-route",
+      "approvedAt": "2026-11-05T13:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/primiero-laghi-di-colbricon-lake.jpg",
+        "heroImage": "images/trails/primiero-laghi-di-colbricon-lake.jpg",
+        "imageAlt": "The rocky peak of the Colbricon above a small dark lake, framed by golden autumn larches",
+        "imageCredit": "The Colbricon above its lake",
+        "imageCreditText": "The Colbricon above its lake by Maurizio Ceol",
+        "imageCreator": "Maurizio Ceol",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Il_colbricon_con_il_suo_lago_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "primiero-malga-ces",
       "approvedReviewId": "mapillary-primiero-malga-ces-on-route",
       "approvedAt": "2026-10-26T21:00:00.000Z",
