@@ -124,12 +124,21 @@ describe('every Verified board walk clears the bar', () => {
     expect(source).toContain('passes: line.clean && directions.written && directions.shownOnPage');
   });
 
-  test('Ortisei – Passo Sella, the walk this bar was set for, fails it on its spurs and is not Verified', () => {
+  // Ortisei – Passo Sella is the walk this bar was set for: its line ran 400 m up
+  // a road and straight back. On 5 November 2026 that spur was cut from the stored
+  // line, so the walk now passes. The bar must still refuse such a spur: one is
+  // put back here, out along the line's own path and straight back.
+  test('Ortisei – Passo Sella, the walk this bar was set for, fails it with a spur and passes without', () => {
     const routes = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'data', 'board-line-routes.geojson'), 'utf8'));
     const feature = routes.features.find(item => item.properties.trail_id === 'valgardena-escursione-ortisei-passo-sella');
-    const line = bar.lineShape(feature.geometry.coordinates.map(([lng, lat]) => [lat, lng]), { declared: 'point-to-point' });
+    const stored = feature.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
+    expect(bar.lineShape(stored, { declared: 'point-to-point' }).kind).toBe('clean');
+
+    const middle = Math.floor(stored.length / 2);
+    const outward = stored.slice(middle, middle + 60);
+    const folded = stored.slice(0, middle).concat(outward, outward.slice(0, -1).reverse(), stored.slice(middle + 1));
+    const line = bar.lineShape(folded, { declared: 'point-to-point' });
     expect(line.kind).toBe('folds');
     expect(line.spurs.map(spur => spur.metres).some(metres => metres > 400)).toBe(true);
-    expect(results.map(result => result.id)).not.toContain('valgardena-escursione-ortisei-passo-sella');
   });
 });
