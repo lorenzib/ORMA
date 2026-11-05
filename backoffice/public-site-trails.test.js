@@ -225,8 +225,11 @@ describe('the existing-site verification boundary',()=>{
     // to the Malga Hagner Alm and to the Baita Messnerjoch, Kaiserstein to the Baita
     // Masarè, Jolanda to the Baita Messnerjoch, Malga Frommer to the Ochsenhütte,
     // Pietralba to the Petersberger Leger) and the cammino dei pitores in Mazzin.
-    expect(catalogue).toHaveLength(501);
-    expect(currentSiteTrails(catalogue)).toHaveLength(499);
+    // Then 502 and 500 with the Compatsch – Wiedner Eck loop on the Alpe di Siusi.
+    // Then 503 and 501 with the Colbricon lakes walk from Malga Rolle below the
+    // Passo Rolle (Dolomites batch 3).
+    expect(catalogue).toHaveLength(503);
+    expect(currentSiteTrails(catalogue)).toHaveLength(501);
   });
 
   test('requires the artwork the public trail page needs',()=>{

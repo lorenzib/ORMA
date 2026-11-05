@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "trailId": "cinque-torri-assisted",
-  "name": "Cinque Torri three-refuges assisted circuit",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:34.013Z",
+  "trailId": "primiero-laghi-di-colbricon",
+  "name": "Laghi di Colbricon from Malga Rolle",
+  "version": "2026.11.05-beta.1",
+  "generatedAt": "2026-11-05T14:08:12.288Z",
   "scoringVersion": "1.7.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 335654,
+  "packageBytes": 469195,
   "packageBudgetBytes": 5242880,
   "bounds": {
-    "south": 46.50444,
-    "west": 12.03299,
-    "north": 46.5237,
-    "east": 12.06425
+    "south": 46.27805,
+    "west": 11.76086,
+    "north": 46.2994,
+    "east": 11.78404
   },
   "image": {
     "width": 1200,
-    "height": 1074
+    "height": 1600
   },
   "mapCorridor": {
     "strategy": "fixed-bounds-svg-v1",
@@ -24,21 +24,21 @@
       1
     ],
     "width": 1200,
-    "height": 1074
+    "height": 1600
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 2161,
-    "edgeCount": 2197,
-    "trailNodeCount": 684,
+    "nodeCount": 420,
+    "edgeCount": 417,
+    "trailNodeCount": 131,
     "maxRejoinRouteM": 1500
   },
   "elevationProfile": {
     "strategy": "route-profile-v1",
-    "pointCount": 12,
-    "distanceKm": 5.3,
-    "ascentM": 10,
-    "source": "Open-Meteo ground height sampled along the ORMA route",
+    "pointCount": 14,
+    "distanceKm": 4.2,
+    "ascentM": 101,
+    "source": "ORMA route profile",
     "demPackaged": false
   },
   "evidence": {
@@ -198,42 +198,42 @@
     {
       "role": "map",
       "required": true,
-      "label": "Cinque Torri three-refuges assisted circuit OSM offline map",
+      "label": "Laghi di Colbricon from Malga Rolle OSM offline map",
       "url": "map.svg",
-      "bytes": 112107,
-      "sha256": "a75c0677ecd55b8682e4ac4dfc11ec3ed794379fa640769248fe5e0a099c43c0"
+      "bytes": 327247,
+      "sha256": "c85011cd2a75f97c6619534e3873627f97017e05cbb5ba16568097bf31e798b0"
     },
     {
       "role": "route",
       "required": true,
-      "label": "Cinque Torri three-refuges assisted circuit route",
+      "label": "Laghi di Colbricon from Malga Rolle route",
       "url": "route.geojson",
-      "bytes": 14734,
-      "sha256": "6e734c49d0bca1f52ac66ed8d9d53c669bb4fccd7777a9b0ce0d5bafcf082d94"
+      "bytes": 17712,
+      "sha256": "a704fcc40b3d257940c09fd10625855687e2b34a168ff2a0ccf4eb798a3d1821"
     },
     {
       "role": "footpath-network",
       "required": true,
-      "label": "Cinque Torri three-refuges assisted circuit routable footpath corridor",
+      "label": "Laghi di Colbricon from Malga Rolle routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 104342,
-      "sha256": "317b1a8c6ca6447d5d04c47e8516307a9877c3bd01cd06dce2249a54c717b17d"
+      "bytes": 19340,
+      "sha256": "f82b3ce68628e42232f72a01eb4c8fb978ce2eed034d3fc4a38e133294b3e2a4"
     },
     {
       "role": "elevation-profile",
       "required": true,
-      "label": "Cinque Torri three-refuges assisted circuit stored route elevation profile",
+      "label": "Laghi di Colbricon from Malga Rolle stored route elevation profile",
       "url": "elevation-profile.json",
-      "bytes": 772,
-      "sha256": "d5a18922205208f6c24ab15ad8f2121caa9550543690a9b33c6f0b61b6dbebb9"
+      "bytes": 842,
+      "sha256": "952f44065433164f15ee5e4483c4ee3627b7019aa220dbb5bd4cd8939464dbe0"
     },
     {
       "role": "safety",
       "required": true,
-      "label": "Cinque Torri three-refuges assisted circuit safety information",
+      "label": "Laghi di Colbricon from Malga Rolle safety information",
       "url": "safety.json",
-      "bytes": 1115,
-      "sha256": "6a7d5838852c10f29d7be57de39d9594d1a4f0b9a7b28bec3c3521c003bab2b4"
+      "bytes": 1470,
+      "sha256": "74f8a3ac5083bfc1a7473d5e6dbbbcb68499c722500ba71da05d1042d82b1f2a"
     }
   ]
 }
