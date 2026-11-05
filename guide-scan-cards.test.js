@@ -4,7 +4,6 @@ const path = require('path');
 const GUIDE_FILES = [
   'breed-group-caveats.html',
   'dogs-at-rifugi.html',
-  'livestock-guard-dogs.html',
 ];
 
 function read(name) {
@@ -39,23 +38,30 @@ describe('scan-first safety guide layouts', () => {
     expect(html).not.toContain('<table');
   });
 
-  test('guardian-dog guidance separates prevention, approach and direct contact', () => {
+  test('guardian-dog guidance runs spot, pasture, approach, after', () => {
     const html = read('livestock-guard-dogs.html');
     document.body.innerHTML = html;
     expect(document.querySelector('h1').textContent).toBe('Meeting a livestock guardian dog with your own dog');
     expect(document.title).toBe('Meeting a livestock guardian dog with your own dog | ORMA');
-    expect(html).toContain('Three moves, in order');
-    expect(html).toContain('You see the herd first');
-    expect(html).toContain('A guardian approaches');
-    expect(html).toContain('Actual dog-to-dog conflict');
-    expect(html).toContain('French national guidance says to release the lead');
-    expect(document.querySelectorAll('.scan-card')).toHaveLength(3);
-    expect(document.querySelectorAll('.scan-step')).toHaveLength(3);
-    expect(document.querySelectorAll('.guardian-content-card')).toHaveLength(3);
-    expect(Array.from(document.querySelectorAll('.guardian-section-head,.scan-section-head')).every(head => !head.closest('.guardian-content-card'))).toBe(true);
-    expect(html).not.toContain('Default move: leash early and go around');
-    expect(html).not.toContain('Prevent contact first. Release the lead only if actual dog-to-dog conflict begins.');
-    expect(html).not.toContain('Plan for the pasture');
+    const headings = Array.from(document.querySelectorAll('.guardian-section h2')).map(h => h.textContent);
+    expect(headings).toEqual([
+      'How to recognise guardian dogs',
+      'Before you walk into a pasture',
+      'If a guardian dog comes over',
+      'After an incident',
+    ]);
+    expect(html).toContain('guide-scan-cards.css?v=20260825-1');
+    expect(document.querySelector('.safety-sources')).not.toBeNull();
+    expect(document.body.textContent).toContain('Last reviewed 5 November 2026');
+    expect(html).toContain('Maremmano-Abruzzese');
+    expect(html).toContain('French national guidance says to let go of the lead');
+    expect(document.querySelectorAll('.guardian-steps > li')).toHaveLength(4);
+    // Every section is one white card, and there is a single warning box.
+    expect(document.querySelectorAll('.guardian-section > .guardian-content-card')).toHaveLength(4);
+    expect(document.querySelectorAll('.scan-alert')).toHaveLength(1);
+    expect(Array.from(document.querySelectorAll('.guardian-section-head')).every(head => !head.closest('.guardian-content-card'))).toBe(true);
+    expect(html).not.toContain('Three moves, in order');
+    expect(html).not.toContain('scan-grid');
     expect(html).not.toContain('Explore Savoie');
     expect(html).not.toContain('class="gp-steps"');
   });
