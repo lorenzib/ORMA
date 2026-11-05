@@ -3689,6 +3689,14 @@
       "quote": "Distanza 7,7 km · Durata 2:25 h · Salita 248 m · Discesa 249 m · Punto più alto 1.601 m · Punto più basso 1.354 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-04T23:00:00.000Z"
+    },
+    "seiseralm-compatsch-wiedner-eck": {
+      "url": "https://www.outdooractive.com/it/r/65714204",
+      "publisher": "Kastelruth tourist association (Seiser Alm) (Outdooractive, suedtirol.info)",
+      "name": "Compatsch - Wiedner Eck",
+      "quote": "Distanza 7 km · Durata 1:54 h · Salita 138 m · Discesa 138 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-05T12:00:00.000Z"
     }
   }
 }

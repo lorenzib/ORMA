@@ -6605,6 +6605,23 @@
       }
     },
     {
+      "id": "seiseralm-compatsch-wiedner-eck",
+      "approvedReviewId": "commons-seiseralm-compatsch-wiedner-eck-on-route",
+      "approvedAt": "2026-11-05T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-compatsch-wiedner-eck-schlern.jpg",
+        "heroImage": "images/trails/seiseralm-compatsch-wiedner-eck-schlern.jpg",
+        "imageAlt": "Larches on a green meadow sloping down to the right, with the sheer grey wall and pointed peaks of the Schlern under white clouds",
+        "imageCredit": "The Schlern from the Seiser Alm meadows",
+        "imageCreditText": "The Schlern from the Seiser Alm meadows by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Schlern_aus_der_Seiseralm.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del",
       "approvedReviewId": "commons-seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del-on-route",
       "approvedAt": "2026-10-29T20:00:00.000Z",

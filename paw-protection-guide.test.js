@@ -107,9 +107,16 @@ describe('paw protection question-led guide', () => {
     expect(document.querySelector('#call-vet a')).toBeNull();
     expect(document.querySelector('#call-vet .paw2-first-aid-icon')).toBeNull();
     const firstAidAlert = document.getElementById('call-vet');
-    expect(firstAidAlert.parentElement.className).toBe('paw2-side-stack');
-    expect(firstAidAlert.nextElementSibling.className).toBe('paw2-essentials');
-    expect(document.querySelector('.paw2-side-stack').children).toHaveLength(2);
+    // One column: surface panel, the three checks, then the cut-pad alert, so no side column leaves a gap.
+    expect(firstAidAlert.parentElement.className).toBe('paw2-surface-grid');
+    expect(firstAidAlert.previousElementSibling.className).toBe('paw2-essentials');
+    expect(document.querySelector('.paw2-side-stack')).toBeNull();
+    expect(html).toContain('.paw2-surface-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;}');
+    expect(firstAidAlert.textContent).toMatch(/see a vet urgently/i);
+    expect(firstAidAlert.textContent).toMatch(/cannot stand or walk/i);
+    // Section intros sit under their heading, not right-aligned beside it.
+    expect(html).not.toContain('text-align:right');
+    expect(document.querySelector('.paw2-surface-heading > p').textContent.trim()).toBe('Pick the ground your dog will walk on most.');
     expect(document.querySelector('.paw2-essentials').textContent).toMatch(/Always do these three/i);
     expect(html).toContain('background:var(--paw-card);color:var(--paw-ink)');
     const adviceLists = Array.from(document.querySelectorAll('.paw2-advice-list'));

@@ -27,7 +27,7 @@ describe('altitude health and safety guide', () => {
     const firstSection = document.querySelector('.alt-shell > section:not(.guide-quick)');
     expect(firstSection.id).toBe('why-altitude');
     expect(firstSection.textContent).toMatch(/Higher altitude means less available oxygen/i);
-    expect(firstSection.textContent).toMatch(/Ask your vet before travelling/i);
+    expect(firstSection.textContent).toMatch(/Ask your vet first/i);
     expect(firstSection.querySelector('.alt-context-copy').nextElementSibling.classList.contains('alt-vet-note')).toBe(true);
     expect(firstSection.querySelector('.alt-vet-note').classList.contains('alt-warning-note')).toBe(true);
     expect(firstSection.querySelector('.alt-vet-note strong')).toBeNull();
@@ -38,7 +38,7 @@ describe('altitude health and safety guide', () => {
   test('keeps the medication guidance inside the veterinary warning', () => {
     const warning = document.querySelector('.alt-vet-note');
     expect(warning.classList.contains('alt-warning-note')).toBe(true);
-    expect(warning.textContent).toMatch(/Ask your vet before travelling/i);
+    expect(warning.textContent).toMatch(/Ask your vet first/i);
     expect(warning.textContent).toMatch(/No human altitude medication/i);
     expect(warning.textContent).toMatch(/Never give human altitude or pain medication/i);
     expect(document.querySelector('.alt-medication')).toBeNull();
@@ -47,7 +47,7 @@ describe('altitude health and safety guide', () => {
   test('includes pre-trip veterinary flags and conservative first-day planning', () => {
     const page = document.querySelector('main').textContent;
     expect(page).toMatch(/heart or lung disease/i);
-    expect(page).toMatch(/coughing/i);
+    expect(page).toMatch(/coughs/i);
     expect(page).toMatch(/Puppies, seniors and flat-faced dogs/i);
     expect(page).toMatch(/skip the ambitious route/i);
     expect(page).toMatch(/No human altitude medication/i);
