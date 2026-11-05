@@ -47,7 +47,7 @@
   // for its translation from data/alpine-plants-it.json (keyed by the English).
   // Codes used for filtering and sorting (ids, safety, severity, season, months)
   // stay as they are, and habitat facets keep reading the English habitats.
-  const TEXT_FIELDS = ['commonName', 'summary', 'ingestionRisk', 'elevation', 'dogSafety', 'avoid', 'interestingFact'];
+  const TEXT_FIELDS = ['commonName', 'summary', 'ingestionRisk', 'elevation', 'dogSafety', 'avoid', 'interestingFact', 'severityLabel'];
   const LIST_FIELDS = ['aliases', 'habitats', 'identification', 'lookalikes', 'symptoms', 'monitor', 'actionIfIngested'];
 
   function pageLang(){
@@ -196,7 +196,7 @@
       </div>
       <div class="apg-card-more" id="${detailId}" hidden>
         <div class="apg-more-col">
-          <p class="apg-facts">${severity ? `<span class="apg-fact-pill apg-fact-pill--${severity.tone}">${severity.label}</span>` : ''}<span class="apg-fact-pill">${plant.proximitySafe === false ? tx('Avoid touching it too') : tx('Safe to walk past')}</span></p>
+          <p class="apg-facts">${severity ? `<span class="apg-fact-pill apg-fact-pill--${severity.tone}">${plant.severityLabel ? escapeHtml(plant.severityLabel) : severity.label}</span>` : ''}<span class="apg-fact-pill">${plant.proximitySafe === false ? tx('Avoid touching it too') : tx('Safe to walk past')}</span></p>
           ${plant.ingestionRisk ? `<h3>${tx('Why it matters')}</h3><p>${escapeHtml(plant.ingestionRisk)}</p>` : ''}
           ${identification ? `<h3>${tx('Look for')}</h3><ul>${identification}</ul>` : ''}
           ${lookalike ? `<h3>${tx('Can be confused with')}</h3><p>${escapeHtml(lookalike)}</p>` : ''}
