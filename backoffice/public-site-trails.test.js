@@ -221,8 +221,12 @@ describe('the existing-site verification boundary',()=>{
     // Then 494 and 492 with three more Isère walks: the Couzon loop from
     // Saint-Pierre-de-Chartreuse, the Molière plateau above Autrans, and the Fort
     // du Murier above Gières.
-    expect(catalogue).toHaveLength(494);
-    expect(currentSiteTrails(catalogue)).toHaveLength(492);
+    // Then 501 and 499 with seven Dolomites walks: six in the Eggental (Passo Nigra
+    // to the Malga Hagner Alm and to the Baita Messnerjoch, Kaiserstein to the Baita
+    // Masarè, Jolanda to the Baita Messnerjoch, Malga Frommer to the Ochsenhütte,
+    // Pietralba to the Petersberger Leger) and the cammino dei pitores in Mazzin.
+    expect(catalogue).toHaveLength(501);
+    expect(currentSiteTrails(catalogue)).toHaveLength(499);
   });
 
   test('requires the artwork the public trail page needs',()=>{

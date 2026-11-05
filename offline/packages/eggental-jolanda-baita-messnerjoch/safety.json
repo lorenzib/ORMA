@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "eggental-jolanda-baita-messnerjoch",
+  "generatedAt": "2026-11-04T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4,
+    "ascentM": 152,
+    "highestPointM": 1897,
+    "expectedDuration": "1.25 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 76
+  },
+  "trailhead": {
+    "lat": 46.433912,
+    "lng": 11.589118,
+    "label": "The car park on the Via Nigra below the Gasthaus Jolanda, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The start is on the Via Nigra road: keep your dog on a short lead at the car park.",
+    "Mountain bikes share the forest road.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-04"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-04",
+      "licence": "ODbL"
+    }
+  ]
+}
