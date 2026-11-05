@@ -6,6 +6,16 @@ const data = require('./data/alpine-plants.json');
 const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
 
 describe('Alpine plants guide', () => {
+  test('opens with the In 20 seconds box like the other Safety guides, in both languages', () => {
+    for (const [file, title] of [['guides/alpine-plants-for-dogs.html', 'In 20 seconds'], ['it/guides/alpine-plants-for-dogs.html', 'In 20 secondi']]) {
+      const html = read(file);
+      const main = html.slice(html.indexOf('<main'));
+      expect(main.indexOf('class="guide-quick"')).toBeLessThan(main.indexOf('id="grass-awns"'));
+      expect(html).toContain(`id="guideQuickTitle">${title}</h2>`);
+      expect((html.match(/<section class="guide-quick"[\s\S]*?<\/section>/)[0].match(/<li>/g) || []).length).toBe(3);
+    }
+  });
+
   test('imports all 37 stable plant records without claiming approval', () => {
     expect(data.plants).toHaveLength(37);
     expect(new Set(data.plants.map(plant => plant.id)).size).toBe(37);
