@@ -45,10 +45,10 @@ describe('shared Safety Library colour system', () => {
       .every(card => !card.classList.contains('gp-section'))).toBe(true);
   });
 
-  test('heat guide uses white sections, blue selections, pale-red alerts and white numbered actions', () => {
+  test('heat guide uses white sections, blue selections, no red banner and white numbered actions', () => {
     const html = fs.readFileSync(path.join(__dirname, 'guides', 'heat-overheating.html'), 'utf8');
 
-    expect(html).toMatch(/\.hs-risk\{[^}]*background:[^;]*var\(--hs-red\)/s);
+    expect(html).not.toContain('class="hs-risk"');
     expect(guideSystem).toMatch(/\.hs-readiness[^}]*\.hs-observation[^}]*background:var\(--card\)/s);
     expect(guideSystem).toMatch(/\.hs-check:has\(input:checked\)[^}]*background:var\(--safety-info-soft\)/s);
     expect(guideSystem).toMatch(/\.hs-risk[^}]*background:var\(--safety-stop-soft\)/s);
@@ -67,7 +67,7 @@ describe('shared Safety Library colour system', () => {
 
     expect(assignments).toEqual([
       { heading:'Before you leave', tone:'info', cards:3 },
-      { heading:'On the trail', tone:'caution', cards:3 },
+      { heading:'On the trail', tone:'caution', cards:4 },
       { heading:'Shared spaces', tone:'safe', cards:2 },
     ]);
     expect(libraryHtml).not.toContain('.sg-category[data-tone="caution"]');
