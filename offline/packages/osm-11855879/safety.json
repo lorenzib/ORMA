@@ -6,8 +6,8 @@
   "facts": {
     "routeType": "Loop",
     "distanceKm": 2.7,
-    "ascentM": 70,
-    "highestPointM": 2100,
+    "ascentM": 45,
+    "highestPointM": 2096,
     "expectedDuration": "1 hour",
     "difficulty": "Easy",
     "shadePercent": 0

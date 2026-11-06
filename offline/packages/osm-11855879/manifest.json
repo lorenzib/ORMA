@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11855879",
   "name": "Roda de Cherz",
-  "version": "2026.11.06-beta.1",
-  "generatedAt": "2026-11-06T21:05:31.572Z",
+  "version": "2026.11.06-beta.2",
+  "generatedAt": "2026-11-06T23:28:00.581Z",
   "scoringVersion": "1.7.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 218162,
+  "packageBytes": 218160,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.50295,
@@ -37,7 +37,7 @@
     "strategy": "route-profile-v1",
     "pointCount": 15,
     "distanceKm": 2.7,
-    "ascentM": 70,
+    "ascentM": 45,
     "source": "ORMA route profile",
     "demPackaged": false
   },
@@ -209,7 +209,7 @@
       "label": "Roda de Cherz route",
       "url": "route.geojson",
       "bytes": 9282,
-      "sha256": "a5a2f2f977dd8a477b62760b2917ff9a226a4512412f4a57d3814d839028d8a3"
+      "sha256": "83e3c2e11a7dfaadf3746f2271c94a9a4294c1a9f35acdf8beebaae69aae8736"
     },
     {
       "role": "footpath-network",
@@ -224,8 +224,8 @@
       "required": true,
       "label": "Roda de Cherz stored route elevation profile",
       "url": "elevation-profile.json",
-      "bytes": 875,
-      "sha256": "27bfaee4b816a6b7fb8dc5f05a0c8ad2fef4628e810c86fc67023ea4be856e0a"
+      "bytes": 873,
+      "sha256": "1badc91f8550cdd0e8b38f07d723082617f93450923122f38798f5b03f667329"
     },
     {
       "role": "safety",
@@ -233,7 +233,7 @@
       "label": "Roda de Cherz safety information",
       "url": "safety.json",
       "bytes": 1473,
-      "sha256": "6012156f727eb4e88b70edad56b058cfe60b57706a6c23d01aa7a3930bb9c4ea"
+      "sha256": "add1dc2e180c87d5d0dd07faac8103c2615a186c127c29c0877e0aecb92914ad"
     }
   ]
 }

@@ -7,7 +7,7 @@
       "properties": {
         "name": "Kastelaz Promenade",
         "distanceKm": 1.3,
-        "ascentM": 85,
+        "ascentM": 60,
         "durationHours": 0.5,
         "source": "ORMA repository route geometry",
         "verificationStatus": "source-verified"
