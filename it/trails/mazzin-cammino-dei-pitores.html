@@ -39,6 +39,20 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-months{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;list-style:none;padding:0;margin:10px 0 6px;max-width:460px;}
+  .sp-month{position:relative;text-align:center;font-size:.75rem;font-weight:600;padding:6px 0;border-radius:6px;border:2px solid transparent;}
+  .sp-month--good{background:#BFDDB8;color:#1D4523;}
+  .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
+  .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--now{border-color:#1F2A24;}
+  .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
+  .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
+  .sp-key--good{background:#BFDDB8;}
+  .sp-key--off{background:rgba(0,0,0,.08);}
+  .sp-key--snow{background:#C9DAF0;}
+  .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
+  .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
+  .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   /* The waymark shield, as the app draws it in trail.html: a number a reader
      can match against the paint on a rock without reading a sentence first. */
   .sp-route-refs{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 4px;}
@@ -176,6 +190,31 @@
     </svg>
     <figcaption class="sp-src">Profilo altimetrico: punto più basso 1370 m, punto più alto 1637 m.</figcaption>
   </figure>
+    <section class="sp-season" id="season" data-season-notes="[&quot;gennaio è fuori dalla stagione che l’ente turistico pubblica per questo percorso.&quot;,&quot;febbraio è fuori dalla stagione che l’ente turistico pubblica per questo percorso.&quot;,&quot;marzo è fuori dalla stagione che l’ente turistico pubblica per questo percorso.&quot;,&quot;aprile è fuori dalla stagione che l’ente turistico pubblica per questo percorso.&quot;,&quot;maggio è nella stagione di questo percorso.&quot;,&quot;giugno è nella stagione di questo percorso.&quot;,&quot;luglio è nella stagione di questo percorso.&quot;,&quot;agosto è nella stagione di questo percorso.&quot;,&quot;settembre è nella stagione di questo percorso.&quot;,&quot;ottobre è nella stagione di questo percorso.&quot;,&quot;novembre è fuori dalla stagione che l’ente turistico pubblica per questo percorso.&quot;,&quot;dicembre è fuori dalla stagione che l’ente turistico pubblica per questo percorso.&quot;]" data-season-warn="111100000011">
+    <h2>Quando andare</h2>
+    <p class="sp-season-now" hidden></p>
+    <ol class="sp-months" aria-label="Mesi dell’anno"><li class="sp-month sp-month--off" data-month="1"><span aria-hidden="true">G</span><span class="sp-vh">gennaio: Fuori stagione</span></li><li class="sp-month sp-month--off" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">febbraio: Fuori stagione</span></li><li class="sp-month sp-month--off" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">marzo: Fuori stagione</span></li><li class="sp-month sp-month--off" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">aprile: Fuori stagione</span></li><li class="sp-month sp-month--good" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">maggio: Consigliato</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">G</span><span class="sp-vh">giugno: Consigliato</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">L</span><span class="sp-vh">luglio: Consigliato</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">agosto: Consigliato</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">settembre: Consigliato</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">ottobre: Consigliato</span></li><li class="sp-month sp-month--off" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">novembre: Fuori stagione</span></li><li class="sp-month sp-month--off" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">dicembre: Fuori stagione</span></li></ol>
+    <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Consigliato <span class="sp-key sp-key--off"></span>Fuori stagione</p>
+    <p>Consigliato tra maggio e ottobre.</p>
+    <p class="sp-src">Fonte: <a href="https://www.outdooractive.com/it/r/802230888" rel="noopener">Outdooractive</a>, consultata il 6 novembre 2026.</p>
+    
+  </section>
+  <script>
+  (function(){
+    var box = document.getElementById('season');
+    if(!box) return;
+    var m = new Date().getMonth();
+    var notes = []; try{ notes = JSON.parse(box.getAttribute('data-season-notes')); }catch(e){}
+    var li = box.querySelector('[data-month="' + (m + 1) + '"]');
+    if(li) li.classList.add('sp-month--now');
+    var note = box.querySelector('.sp-season-now');
+    if(note && notes[m]){
+      note.textContent = notes[m];
+      if((box.getAttribute('data-season-warn') || '').charAt(m) === '1') note.classList.add('sp-season-now--warn');
+      note.hidden = false;
+    }
+  })();
+  </script>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> Da dove partire</h2>
     <p>The church of Mazzin, the board’s start</p>
     <h2>Come seguire questo percorso</h2>

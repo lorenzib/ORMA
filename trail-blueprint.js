@@ -666,7 +666,18 @@
     addAssessment(trust ? trust.waterAssessment(t) : (hasWater
       ? { ok: true, title: tx('Water'), detail: tx('A water source is mapped on this route. Bring a bowl.') }
       : { ok: false, title: tx('Water'), detail: tx('No water source is mapped. Carry enough for the dog.') }), 'water');
-    if (maxAlt >= 1800) caution(tx('Season & altitude'), tx('Tops out around {alt} m. Snow lingers into early summer and weather turns quickly.', { alt: maxAlt }), 'altitude');
+    // This month against the walk's season (trail-season-words.js): outside the
+    // board's months, snowy by the altitude estimate, or a month the ski runs on
+    // the line are likely open. The altitude line stays for the other months.
+    const seasonWords = window.DoloPawsTrailSeasonWords;
+    const month = new Date().getMonth() + 1;
+    if (seasonWords && t.season && seasonWords.outOfSeason(t.season, month)) {
+      const words = seasonWords.describe(t.season);
+      const basis = t.season.recommended ? words.line : (t.season.snow ? tx('An estimate from the walk’s high point.') : '');
+      caution(tx('Season'), [seasonWords.nowNote(t.season, month), basis].filter(Boolean).join(' '), 'altitude');
+    } else if (maxAlt >= 1800) {
+      caution(tx('Season & altitude'), tx('Tops out around {alt} m. Snow lingers into early summer and weather turns quickly.', { alt: maxAlt }), 'altitude');
+    }
 
     if (!rows.length) {
       box.innerHTML = '<p class="safety-clear">' + tx('No additional route cautions are highlighted. Continue to check live weather and local signs.') + '</p>';
