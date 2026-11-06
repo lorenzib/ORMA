@@ -27,17 +27,31 @@
   const hikeHome = heroBtn && heroBtn.parentElement;
   const hikeNext = heroBtn && heroBtn.nextSibling;
 
+  const hikeSlot = document.getElementById('mobileMapHikeSlot');
+  const phone = window.matchMedia ? window.matchMedia('(max-width:700px)') : null;
+
+  // On a phone the map's own End button is hidden, and a recording hike
+  // fills the screen with the map, so the hero button moves onto the map as
+  // "End · 12:34". Without this, a phone had no way to end a hike by hand.
   function placeHikeAction() {
     if (!heroBtn || !hikeHome) return;
-    if (heroBtn.parentElement !== hikeHome) {
+    const onMap = !!(hikeSlot && phone && phone.matches && recording() &&
+      mapBox.classList.contains('map-fs'));
+    if (onMap) {
+      if (heroBtn.parentElement !== hikeSlot) hikeSlot.appendChild(heroBtn);
+    } else if (heroBtn.parentElement !== hikeHome) {
       hikeHome.insertBefore(heroBtn, hikeNext);
     }
   }
-  placeHikeAction();
 
+  // Hike mode marks its own map container, not this box, and keeps that mark
+  // after a hike ends so the last message stays up. Pause is shown exactly
+  // while a hike runs.
   function recording() {
-    return !!(mapBox && mapBox.classList.contains('hike-status-visible'));
+    const pause = document.getElementById('mapPauseHikeBtn');
+    return !!(pause && !pause.hidden);
   }
+  placeHikeAction();
 
   // Live progress mirrored from hike-mode (elapsed clock + km walked), shown
   // in the banner and in the hero End button ("End · 12:34", per prototype).
@@ -85,6 +99,7 @@
           : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> ' + tx('Start the hike');
       }
     }
+    placeHikeAction();
     if (liveBanner) liveBanner.hidden = !rec;
     if (!rec && elapsedTimer) { clearInterval(elapsedTimer); elapsedTimer = null; hikeStartedAt = null; }
   }
@@ -97,9 +112,10 @@
   if (mapBox) {
     // hike-mode.js injects #mapStartHikeBtn and toggles .hike-status-visible.
     new MutationObserver(syncHike).observe(mapBox, {
-      attributes: true, attributeFilter: ['class'], childList: true, subtree: true,
+      attributes: true, attributeFilter: ['class', 'hidden'], childList: true, subtree: true,
     });
   }
+  if (phone && phone.addEventListener) phone.addEventListener('change', syncHike);
   // Poll briefly until hike-mode has injected its button, then let the
   // observer take over.
   let tries = 0;

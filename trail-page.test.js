@@ -127,6 +127,65 @@ describe('trail page map controls', () => {
     }
   });
 
+  test('a phone recording a hike has End on the full-screen map, and gets it back on the page after', () => {
+    const ui = fs.readFileSync(path.join(__dirname, 'trail-detail-ui.js'), 'utf8');
+    document.body.innerHTML = `
+      <main class="td2">
+        <div id="desktopActions"><button id="heroStartHike" hidden>Start hike</button></div>
+        <div id="trailMapBox"><div id="trailDetailMap">
+          <button id="mapStartHikeBtn"></button><button id="mapPauseHikeBtn" hidden></button>
+        </div><div id="mobileMapHikeSlot"></div></div>
+      </main>`;
+    const hero = document.getElementById('heroStartHike');
+    const box = document.getElementById('trailMapBox');
+    const pause = document.getElementById('mapPauseHikeBtn');
+    const callbacks = [];
+    const OriginalObserver = window.MutationObserver;
+    const originalMatchMedia = window.matchMedia;
+    const originalSetInterval = window.setInterval;
+    window.MutationObserver = class {
+      constructor(callback){ callbacks.push(callback); }
+      observe(){}
+    };
+    window.matchMedia = () => ({ matches:true, addEventListener(){} });
+    window.setInterval = () => 1;
+    try {
+      window.eval(ui);
+      const sync = () => callbacks[0]([]);
+      // Hike mode starts: Pause shows and the map fills the screen.
+      pause.hidden = false;
+      box.classList.add('map-fs');
+      sync();
+      expect(hero.parentElement.id).toBe('mobileMapHikeSlot');
+      expect(hero.classList.contains('recording')).toBe(true);
+      expect(hero.textContent).toContain('End');
+      // It ends: hike mode keeps its status mark for the last message, but
+      // Pause hides and the map leaves full screen.
+      document.getElementById('trailDetailMap').classList.add('hike-status-visible');
+      pause.hidden = true;
+      box.classList.remove('map-fs');
+      sync();
+      expect(hero.parentElement.id).toBe('desktopActions');
+      expect(hero.classList.contains('recording')).toBe(false);
+    } finally {
+      window.MutationObserver = OriginalObserver;
+      window.matchMedia = originalMatchMedia;
+      window.setInterval = originalSetInterval;
+    }
+  });
+
+  test('while a hike records on a phone, the bottom controls form one stack', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const live = '.td2 .trail-map-box.map-fs:has(.hike-status-visible)';
+    expect(html).toContain(`${live} .map-nearest-directions,`);
+    expect(html).toContain(`${live} #mapHikeStatus{bottom:calc(var(--hk-base) + 46px)!important;`);
+    expect(html).toContain(`${live} .map-hazard-report-btn{bottom:var(--hk-base)!important;}`);
+    expect(html).toContain(`${live} .mobile-map-hike-slot{left:`);
+    const hikeMode = fs.readFileSync(path.join(__dirname, 'hike-mode.js'), 'utf8');
+    expect(hikeMode).toContain("<small>/km</small>");
+    expect(hikeMode).not.toContain("' min/km'");
+  });
+
   test('uses the main-map Layers pattern and removes the redundant map key', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     document.body.innerHTML = html;
@@ -245,7 +304,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20261006-1');
-    expect(html).toContain('trail-app.bundle.js?v=20261106-5');
+    expect(html).toContain('trail-app.bundle.js?v=20261106-6');
     expect(html).toContain('trail-mobile.css?v=20260904-3');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -724,7 +783,8 @@ describe('trail page map controls', () => {
     expect(hikeMode).toContain("rejoinBtn.id = 'mapHikeRejoinBtn'");
     expect(hikeMode).toContain("rejoinBtn.textContent = hikeLabel('hike.rejoinAction', 'Route me to the trail')");
     expect(hikeMode).toContain("rejoinBtn.textContent = hikeLabel('hike.rejoinWaitingGps'");
-    expect(hikeMode).toContain('rejoinBtn.hidden = false');
+    // Offered only off the trail, as the off-route banner is.
+    expect(hikeMode).toContain("latestAssessment.farFromRoute || latestAssessment.offRouteState === 'confirmed'");
     expect(hikeMode).not.toContain('routeDistanceM > Math.max(15');
     expect(trail).toContain('if(!routeIsLoop)');
   });
