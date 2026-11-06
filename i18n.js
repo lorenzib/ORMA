@@ -1867,7 +1867,7 @@
     'nav.guide': 'Guida sicurezza cani',
     'nav.about': 'Chi siamo',
     'about.eyebrow': 'Chi siamo',
-    'about.h1': 'La camminata deve adattarsi al cane',
+    'about.h1': 'Passeggiate a misura di cane',
     'about.sub': 'orma \u00b7 sostantivo /\u02c8or.ma/, un\u2019impronta, una traccia, un segno lasciato.',
     'nav.login': 'Accedi',
     'nav.account': 'Il mio account',
