@@ -754,14 +754,6 @@
       "foundBy": "orma-route-source-scout",
       "verifiedAt": "2026-10-12T19:40:50.460Z"
     },
-    "lago-sorapis": {
-      "url": "https://cortina.dolomiti.org/it/escursioni/al-lago-del-sorapis/",
-      "publisher": "Cortina Marketing",
-      "name": "Al Lago del Sorapis (path 215)",
-      "quote": "Tempo 4 h · Lunghezza 10,5 km · Dislivello positivo 434 m",
-      "foundBy": "orma-hand-audit",
-      "verifiedAt": "2026-10-24T12:00:00.000Z"
-    },
     "lario-alla-ricerca-di-un-panorama-unico": {
       "url": "https://www.in-lombardia.it/itinerari/alla-ricerca-di-un-panorama-unico",
       "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",

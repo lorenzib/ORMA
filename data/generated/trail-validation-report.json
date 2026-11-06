@@ -12,8 +12,8 @@
   "totals": {
     "sourceRecords": 504,
     "canonicalRecords": 504,
-    "published": 501,
-    "draft": 3,
+    "published": 502,
+    "draft": 2,
     "errors": 0
   },
   "byOrigin": {
@@ -24,8 +24,8 @@
     },
     "osm": {
       "total": 162,
-      "published": 159,
-      "draft": 3
+      "published": 160,
+      "draft": 2
     }
   },
   "excludedFromGeneration": [
@@ -34,13 +34,6 @@
       "slug": "cadini-di-misurina-viewpoint",
       "reasons": [
         "withdrawn pending review: no-official-figures"
-      ]
-    },
-    {
-      "id": "lago-sorapis",
-      "slug": "lago-di-sorapis-trail",
-      "reasons": [
-        "withdrawn pending review: expert-terrain"
       ]
     },
     {

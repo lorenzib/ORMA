@@ -9488,6 +9488,8 @@
       // up), and the Seiser Alm landscape plan (DLH 269/1992) Art. 12(4) (no
       // disturbing wildlife); neither the park decree nor the plans ban dogs.
       area: 'Seiser Alm / Alpe di Siusi, Compatsch to Saltria – Kastelruth',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way walk from Compatsch to Saltria (Seiser Alm Marketing, 8.7 km one way); the Almbus brings walkers back to Compatsch.',
       elevation: 301,
       descent: 475,
       hours: '2–2.5',
@@ -23648,6 +23650,8 @@
       // ordinance 23/2026 (lead on public ground, advised everywhere because of bears and wolves); Spormaggiore regulation in villages;
       // Mezzolombardo publishes no dog rule, so the national rule applies there. No Natura 2000 site or park on the line.
       "area": "Fai della Paganella, Spormaggiore and Mezzolombardo",
+      "routeShape": "point-to-point",
+      "routeShapeNote": "A one-way walk on SAT path 603 from Santèl to Fai Le Coste; SAT gives 3 hours for walking it back the other way.",
       "elevation": 436,
       "hours": "2.75–3",
       "startPoint": {
@@ -23749,86 +23753,64 @@
       ]
     },
     'lago-sorapis': {
-      // Withdrawn 5 November 2026 on the owner’s decision (Dolomites launch focus): Cortina Marketing rates
-      // the path “for experts”, with ladders and a wire-rope ledge.
+      // Back on the site 6 November 2026 on the owner's decision, rebuilt on CAI path 217 from Federa Vecia
+      // (the former Albergo Cristallo) instead of path 215 from Passo Tre Croci, which the 5 November withdrawal
+      // was about (metal ladders and a ledge with a wire rope). Path 217 has no ladders or cables (Dolomiti.it;
+      // no way on OSM relation 3985800 is tagged with a rope, handrail or ladder), but it is steep, and one walker's
+      // report (Bagaglio Leggero, updated 2024) describes a short, fairly exposed ledge and rock steps where hands
+      // help: so it stays a caution walk with exposure, and stays unverified (no authority publishes 217's climb
+      // and time). Line, distance, climb, time and profile: data/verified-trail-overrides.json (routeLine).
+      // Dog rules: Auronzo publishes none (national rule); Cortina police regulation Art. 36 (lead in public
+      // areas) for the last stretch; Natura 2000 IT3230081 (national lead rule).
       ormaVerified: false,
-      withdrawal: { reason: 'expert-terrain', at: '2026-11-05', note: 'Cortina Marketing rates the path for experts: ladders and a ledge with a wire rope that a dog cannot be helped along safely.' },
-      // Correction, 24 October 2026 (not a verification: no authority says whether dogs manage the ladders and roped ledges,
-      // and there is no reliable water on the way). The elevation profile showed the path reaching 2,250 m; it is recomputed on the
-      // line (high point about 1,930 m at the lake). Official climb and time from Cortina Marketing; the false 'stream crossing' at km 2
-      // is removed; the dog rules are added (Cortina police regulation Art. 36; Natura 2000 IT3230081, national lead rule).
-      "elevation": 434,
-      "hours": "4",
-      "elevationProfile": [
+      area: "Val d'Ansiei – Lago di Sorapis",
+      source: 'https://www.openstreetmap.org/relation/3985800',
+      sourceLinks: [
+        { label: 'CAI path 217, Federa Vecia – Rifugio Vandelli (OpenStreetMap relation 3985800)', url: 'https://www.openstreetmap.org/relation/3985800', categories: ['access'] },
+        { label: 'Dolomiti.it, Sorapis Lake: the 217 approach has no ladders or cables', url: 'https://www.dolomiti.it/en/rivers-lakes-waterfalls/sorapis-lake-where-it-is-and-how-to-get-there', categories: ['exposure', 'surfaceHazards'] },
+        { label: 'Bagaglio Leggero, Lago di Sorapis by path 217 (walked, updated 2024)', url: 'https://www.bagaglioleggero.it/lago-di-sorapis-rifugio-vandelli-217/', categories: ['exposure', 'surfaceHazards'] }
+      ],
+      verified: { categories: ['exposure', 'surfaceHazards'], sources: ['Dolomiti.it, Sorapis Lake', 'Bagaglio Leggero, path 217 walked'], date: '2026-11-06' },
+      startPoint: { lat: 46.54689, lng: 12.2486, label: 'Start here, by the former Albergo Cristallo on the Auronzo–Misurina road (Dolomitibus stop Auronzo - Albergo Cristallo)' },
+      routeSource: { name: 'Path 217, Federa Vecia to Rifugio Vandelli', provider: 'Waymarked Trails / OpenStreetMap', relation: 3985800, fetchedAt: '2026-11-06' },
+      osmRelation: 3985800,
+      terrainType: 'Forest path, then steep rocky steps',
+      terrainRank: 2,
+      safetyLevel: 'caution',
+      exposure: true,
+      surfaceHazards: ['Steep rock steps where a dog may need a hand', 'A short, fairly exposed ledge with no cable'],
+      waterSources: [],
+      rifugi: [
         {
-          "km": 0,
-          "elev": 1807
-        },
-        {
-          "km": 0.4,
-          "elev": 1769
-        },
-        {
-          "km": 0.9,
-          "elev": 1720
-        },
-        {
-          "km": 1.3,
-          "elev": 1744
-        },
-        {
-          "km": 1.6,
-          "elev": 1736
-        },
-        {
-          "km": 2.1,
-          "elev": 1783
-        },
-        {
-          "km": 2.4,
-          "elev": 1795
-        },
-        {
-          "km": 2.8,
-          "elev": 1805
-        },
-        {
-          "km": 3.2,
-          "elev": 1773
-        },
-        {
-          "km": 3.6,
-          "elev": 1826
-        },
-        {
-          "km": 4.1,
-          "elev": 1903
-        },
-        {
-          "km": 4.5,
-          "elev": 1891
-        },
-        {
-          "km": 4.9,
-          "elev": 1897
-        },
-        {
-          "km": 5.2,
-          "elev": 1934
+          km: 4.3,
+          lat: 46.52167,
+          lng: 12.22662,
+          osmId: 'way/200789472',
+          name: 'Rifugio Vandelli (seasonal; closed until 20 June 2027)'
         }
       ],
-      "waterSources": [],
-      "rifugi": [
-        {
-          "km": 5.1,
-          "lat": 46.52167,
-          "lng": 12.22662,
-          "osmId": "way/200789472",
-          "name": "Rifugio Vandelli (seasonal; closed until 20 June 2027)"
-        }
-      ],
-      "desc": "A striking turquoise glacial lake below the Sorapiss, reached on path 215 from Passo Tre Croci and back the same way: officially 10.5 km and 4 hours, with 434 m of climb, rated for expert hikers. After a flat first section through the forest, the path crosses a more demanding stretch with metal ladders and exposed sections along a ledge protected by wire ropes, about 4 km in, before the lake and Rifugio Vandelli.\n\nCortina's police regulation requires dogs to be kept on a lead in all public areas, and most of the walk lies in the Natura 2000 site of the Antelao, Marmarole and Sorapiss, where the national rule applies: a lead of at most 1.5 m and a muzzle carried.",
-      "tips": "The official route is for expert hikers and includes metal ladders and exposed ledges protected by wire ropes: only consider it with a small or very sure-footed dog you can lift or guide safely, and turn back if your dog is unsure. Keep your dog on a short lead (1.5 m at most) and carry a muzzle. Carry all the water you need: there is no reliable water on the way, and Rifugio Vandelli is closed out of season (it reopens on 20 June 2027). Parking at Passo Tre Croci fills early in summer, so the tourist board recommends the bus and an early start."
+      routeNumberGuidance: {
+        mode: 'numbered',
+        start: 'Start by the former Albergo Cristallo on the Auronzo–Misurina road, where the Dolomitibus stops; park along the road.',
+        sequence: 'Cross the Ansiei on the footbridge, pass the barrier and turn left onto path 217. It crosses the Rudavoi stream and the cycle path, then climbs through the forest and up the rocky steps beside the waterfall cliff below the lake. Near the top it joins path 215 for the last metres to Rifugio Vandelli; the lake is just behind the hut. Come back the same way.',
+        switches: 'One: near Rifugio Vandelli path 217 meets path 215; keep to the hut and the lake, and come back down on 217, not on 215 towards Passo Tre Croci.',
+        sources: [
+          {
+            label: 'Bagaglio Leggero, Lago di Sorapis e Rifugio Vandelli by path 217 (walked, updated 2024)',
+            url: 'https://www.bagaglioleggero.it/lago-di-sorapis-rifugio-vandelli-217/',
+            authority: 'Bagaglio Leggero',
+            reviewedAt: '2026-11-06'
+          },
+          {
+            label: 'CAI path 217, Federa Vecia – Rifugio A. Vandelli (OpenStreetMap relation 3985800)',
+            url: 'https://www.openstreetmap.org/relation/3985800',
+            authority: 'Club Alpino Italiano (OpenStreetMap)',
+            reviewedAt: '2026-11-06'
+          }
+        ]
+      },
+      desc: "The quieter way to the turquoise Lago di Sorapis: CAI path 217 climbs from Federa Vecia in the Ansiei valley to Rifugio Vandelli and the lake, and back the same way, about 8.9 km with some 660 m of climb. Unlike path 215 from Passo Tre Croci, there are no metal ladders or wire ropes. It is a steep walk all the same: after the forest, the path climbs rocky steps beside the cliff below the lake, with a short, fairly exposed ledge where you may need your hands.\n\nThere is no dog rule from Auronzo online, so the national rule applies, and most of the walk lies in the Natura 2000 site of the Antelao, Marmarole and Sorapiss: a lead of at most 1.5 m and a muzzle carried. Cortina's police regulation keeps dogs on a lead at the lake end too.",
+      tips: "A walk for a fit, sure-footed dog used to rocky climbs: on the rock steps by the waterfall cliff a dog may need a hand, and on the short ledge keep your dog close on a short lead. Turn back if your dog is unsure. Carry all the water you need: there is no reliable water on the way, and Rifugio Vandelli is closed out of season (it reopens on 20 June 2027). Start early: the lake is very busy in summer."
     },
     'osm-7424683': {
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 3).
