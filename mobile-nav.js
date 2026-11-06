@@ -312,8 +312,10 @@
 
   syncStickyNavOffset();
   window.addEventListener('resize', syncStickyNavOffset);
+  // Border box, because the iPhone app makes room for the clock with a top
+  // border that appears after the first measurement.
   if(navEl && typeof ResizeObserver !== 'undefined'){
-    new ResizeObserver(syncStickyNavOffset).observe(navEl);
+    new ResizeObserver(syncStickyNavOffset).observe(navEl, { box:'border-box' });
   }
 
   function copy(key, fallback, vars){

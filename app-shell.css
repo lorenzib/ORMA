@@ -1,0 +1,14 @@
+/* App-only rules. scripts/build-app.js links this into every page of the
+   iPhone app; the website never loads it.
+
+   The app draws edge to edge (viewport-fit=cover), so the top of every page
+   sits under the clock and battery. A transparent top border the height of
+   that strip pushes the header's content below it while the header's own
+   background still fills it. A border, not padding, so it adds to whatever
+   padding each screen size gives the header, and the mobile homepage, which
+   measures the header's height, makes room for it too. */
+.topnav{border-top:env(safe-area-inset-top,0px) solid transparent;}
+
+/* The footer tells website visitors how to add ORMA to their home screen.
+   Inside the app that advice is meaningless. */
+.hp-footer-get{display:none;}
