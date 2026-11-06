@@ -22,6 +22,11 @@
  *    round once, near the middle; a walk declared a lollipop may walk its stem
  *    both ways. A real side trip -- to a waterfall, a viewpoint -- is declared
  *    in the audit as `sideTrips: [{ km, note }]` and is then not a spur.
+ *    A stretch the board's own line walks twice -- a stem back to the start,
+ *    a lane through a village used both ways -- is declared as
+ *    `walkedTwice: [{ from, to, note }]`, one entry per pass, in km along the
+ *    drawn line, and is then not counted as running over itself (the owner's
+ *    decision of 6 November 2026).
  * 2. The walk has directions: where to start and which way to go, with path
  *    numbers or named turns, in words a walker can follow.
  */
@@ -145,7 +150,7 @@ const ACCEPTS = {
  * Whether a drawn line ([lat, lng] points) can be followed, for the shape the
  * walk declares ('loop', 'point-to-point', 'out-and-back' or 'lollipop').
  */
-function lineShape(line, { declared = 'point-to-point', sideTrips = [] } = {}) {
+function lineShape(line, { declared = 'point-to-point', sideTrips = [], walkedTwice = [] } = {}) {
   const points = densify(line, STEP_M);
   const along = [0];
   for (let i = 1; i < points.length; i += 1) along.push(along[i - 1] + meters(points[i - 1], points[i]));
@@ -155,8 +160,12 @@ function lineShape(line, { declared = 'point-to-point', sideTrips = [] } = {}) {
   const declaredTrip = spur => sideTrips.some(trip => Math.abs(Number(trip && trip.km) - spur.km) <= 0.15);
   const trips = spursOf(points, along).filter(declaredTrip);
   const spurs = spursOf(points, along).filter(spur => !declaredTrip(spur));
+  // A stretch the board's own line walks twice is declared, pass by pass.
+  const passes = walkedTwice.filter(pass => pass && Number(pass.to) > Number(pass.from));
+  const onDeclaredPass = metres => passes.some(pass => metres >= pass.from * 1000 - STEP_M && metres <= pass.to * 1000 + STEP_M);
   const flags = overlapFlags(points, along).map((flag, i) => flag
-    && !trips.some(trip => Math.abs(along[i] - trip.km * 1000) <= trip.metres + SAME_TRACK_M));
+    && !trips.some(trip => Math.abs(along[i] - trip.km * 1000) <= trip.metres + SAME_TRACK_M)
+    && !onDeclaredPass(along[i]));
   const overlap = flags.filter(Boolean).length / (flags.length || 1);
   let { kind } = readShape(points, along, flags, spurs);
   // A declared out-and-back that also has spurs folds; its tip is not one of them.
@@ -183,6 +192,7 @@ function lineShape(line, { declared = 'point-to-point', sideTrips = [] } = {}) {
     kind,
     spurs: shownSpurs,
     sideTrips: trips,
+    walkedTwice: passes,
     problems,
     clean: !problems.length,
   };
@@ -235,7 +245,7 @@ function audit(root = ROOT) {
         ? 'out-and-back'
         : trail.routeShape || (feature && feature.properties.loop ? 'loop' : 'point-to-point');
       const line = feature
-        ? lineShape(feature.geometry.coordinates.map(([lng, lat]) => [lat, lng]), { declared, sideTrips: trail.sideTrips || [] })
+        ? lineShape(feature.geometry.coordinates.map(([lng, lat]) => [lat, lng]), { declared, sideTrips: trail.sideTrips || [], walkedTwice: trail.walkedTwice || [] })
         : { clean: false, kind: null, declared, problems: ['no drawn line in data/board-line-routes.geojson'], spurs: [], overlap: null, km: null };
       const directions = directionsOf(trail);
       return {

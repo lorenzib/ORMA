@@ -84,6 +84,18 @@ describe('the line check', () => {
     const line = walk([0, 0], [400, 0], [400, 200], [0, 200], [0, 400], [400, 400], [400, 200], [0, 200], [0, 0]);
     expect(bar.lineShape(line, { declared: 'loop' }).kind).toBe('overlaps');
   });
+
+  test('the same figure of eight passes when both passes of its middle path are declared', () => {
+    // The owner's decision of 6 November 2026: a stretch the board's own line
+    // walks twice may be walked twice by ours, declared pass by pass.
+    const line = walk([0, 0], [400, 0], [400, 200], [0, 200], [0, 400], [400, 400], [400, 200], [0, 200], [0, 0]);
+    const walkedTwice = [{ from: 0.6, to: 1.0, note: 'out' }, { from: 1.8, to: 2.2, note: 'back' }];
+    const result = bar.lineShape(line, { declared: 'loop', walkedTwice });
+    expect(result.clean).toBe(true);
+    expect(result.walkedTwice).toHaveLength(2);
+    // Declaring one pass only is not enough.
+    expect(bar.lineShape(line, { declared: 'loop', walkedTwice: walkedTwice.slice(0, 1) }).clean).toBe(false);
+  });
 });
 
 describe('the directions check', () => {

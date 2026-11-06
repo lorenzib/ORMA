@@ -1133,7 +1133,13 @@ and the rest of the hand audit:
   its stem both ways. Where the line only crosses a path it has already
   walked, or brushes past it at a junction, for less than 25 m, that is a
   crossing, not a stretch walked twice. A real side trip -- to a waterfall, a viewpoint -- is
-  declared in the audit as `sideTrips: [{ km, note }]`. A line that is an
+  declared in the audit as `sideTrips: [{ km, note }]`. A stretch the
+  board's own published line walks twice -- a stem back to the start, a lane
+  through a village used both ways -- may be walked twice by ours too (owner's
+  decision, 6 November 2026): declare each pass as
+  `walkedTwice: [{ from, to, note }]` (km along the drawn line), and say it in
+  the route sentence. A turn-back the board's line does not make is still cut.
+  A line that is an
   out-and-back while the page calls it a loop fails until the label is right.
 - **It has directions.** The audit's route sentence says where to start and
   which way to go, with path numbers or named turns.

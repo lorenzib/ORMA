@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-06T21:55:58.248Z",
+  "generatedAt": "2026-11-06T21:58:13.303Z",
   "regions": {
     "dolomites": {
       "trailCount": 352,
-      "trails": "data/regions/dolomites-trails.js?v=393286c88919",
+      "trails": "data/regions/dolomites-trails.js?v=12b7f0d5df69",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=8181fdfdffc2",
         "seceda": "data/trail-details/seceda.js?v=a5efa0fc81de",
@@ -141,7 +141,7 @@
         "osm-11833313": "data/trail-details/osm-11833313.js?v=55660de68a61",
         "osm-12737724": "data/trail-details/osm-12737724.js?v=f0f1550cd8b0",
         "osm-6401355": "data/trail-details/osm-6401355.js?v=f9888942ee4e",
-        "fassa-da-canazei-a-penia": "data/trail-details/fassa-da-canazei-a-penia.js?v=069adacf14c4",
+        "fassa-da-canazei-a-penia": "data/trail-details/fassa-da-canazei-a-penia.js?v=ff986c830143",
         "fassa-sentiero-della-foresta": "data/trail-details/fassa-sentiero-della-foresta.js?v=267f1ea38f1e",
         "fassa-antichi-bagnes": "data/trail-details/fassa-antichi-bagnes.js?v=1cc483b8b6f0",
         "fassa-borgo-dei-patins": "data/trail-details/fassa-borgo-dei-patins.js?v=f370cc406b68",
@@ -219,7 +219,7 @@
         "trecime-sentiero-gustav-mahler": "data/trail-details/trecime-sentiero-gustav-mahler.js?v=91d3d2791a67",
         "trecime-san-candido-costa-dei-nosellari-dobbiaco": "data/trail-details/trecime-san-candido-costa-dei-nosellari-dobbiaco.js?v=f806c92de30d",
         "trecime-bagni-di-san-candido": "data/trail-details/trecime-bagni-di-san-candido.js?v=bd29c7218129",
-        "trecime-circolare-maistatt": "data/trail-details/trecime-circolare-maistatt.js?v=e38e1304f561",
+        "trecime-circolare-maistatt": "data/trail-details/trecime-circolare-maistatt.js?v=a34b3341dd1e",
         "trecime-villabassa-mooskirche": "data/trail-details/trecime-villabassa-mooskirche.js?v=afb6cba8d85c",
         "trecime-lago-di-braies-malga-foresta": "data/trail-details/trecime-lago-di-braies-malga-foresta.js?v=59eaf829411e",
         "fassa-borgo-di-tamion": "data/trail-details/fassa-borgo-di-tamion.js?v=d91b1476a6f0",
