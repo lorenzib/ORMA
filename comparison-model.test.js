@@ -8,7 +8,7 @@ const { requireAll } = require('./test-support/page-runtime');
 // "unknown" -- so the page decides what exists and in what order, and a name
 // it no longer loads fails this file rather than hiding inside it.
 requireAll('compare.html', [
-  'trust/evidence-v1.js', 'match-verdict.js', 'recommendation-decision.js',
+  'route-return.js', 'trust/evidence-v1.js', 'match-verdict.js', 'recommendation-decision.js',
 ]);
 const model = require('./comparison-model');
 
@@ -61,11 +61,11 @@ describe('comparison presentation model', () => {
     expect(result.cells.verification.text).toBe('Verified by ORMA');
     expect(result.cells.water.text).toBe('1 reviewed water point');
     expect(result.cells.restrictions.text).toBe('Dogs allowed on leash');
-    expect(result.cells.duration.text).toBe('1.5 h');
+    expect(result.cells.duration.text).toBe('1 h 30 min');
     expect(model.build({ ...baseTrail, hours:'2–2.5' }, {
       normalizeTrail:value => value,
       recommendation,
-    }).cells.duration.text).toBe('2–2.5 h');
+    }).cells.duration.text).toBe('2 h – 2 h 30 min');
   });
 
   test('unreviewed absence remains unknown rather than safe', () => {
