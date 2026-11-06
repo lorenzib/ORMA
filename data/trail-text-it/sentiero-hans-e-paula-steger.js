@@ -9,5 +9,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Wide, mostly flat alpine path": "Ampio sentiero alpino, per lo più pianeggiante",
   "Seiser Alm Bahn mountain station, Compatsch": "Stazione a monte della Seiser Alm Bahn, Compatsch",
   "Sentiero Hans e Paula Steger trail": "Sentiero Hans e Paula Steger",
-  "Mostly open alpine meadow at 1,700–1,960 m; roughly a third runs along or through spruce and larch woods, mainly on the descent towards Saltria.": "Per lo più prati alpini aperti a 1.700–1.960 m; circa un terzo corre lungo o dentro boschi di abete rosso e larice, soprattutto nella discesa verso Saltria."
+  "Mostly open alpine meadow at 1,700–1,960 m; roughly a third runs along or through spruce and larch woods, mainly on the descent towards Saltria.": "Per lo più prati alpini aperti a 1.700–1.960 m; circa un terzo corre lungo o dentro boschi di abete rosso e larice, soprattutto nella discesa verso Saltria.",
+  "From the Compatsch church follow route 30 past Hotel Steger Dellai; at the Saltria road turn right onto the wide Alm track (12A) down to the Laranz hut; shortly after, turn left onto route 12 down into the Saltria valley and walk up-valley to Saltria; return by Almbus.": "Dalla chiesa di Compatsch segui il percorso 30 oltre l'Hotel Steger Dellai; alla strada per Saltria svolta a destra sull'ampia carrareccia d'alpeggio (12A) giù fino alla baita Laranz; poco dopo svolta a sinistra sul percorso 12 giù nella valle di Saltria e risali la valle fino a Saltria; ritorno con l'Almbus."
 });

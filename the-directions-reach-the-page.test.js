@@ -290,7 +290,8 @@ describe('a walk without numbers shows the route audit\'s directions',()=>{
   test('the app prints the same sentence and note',()=>{
     const blueprint=read('trail-blueprint.js');
     expect(blueprint).toContain('window.DoloPawsTrailRouteRefs.writtenDirections(t)');
-    expect(blueprint).toContain("<b>${tx('Directions:')}</b> ${esc(auditDirections.text");
+    // In the reader's language: the sentence is one of the trail's own words (data/trail-text-it).
+    expect(blueprint).toContain("<b>${tx('Directions:')}</b> ${esc(trailWords(auditDirections.text");
     expect(blueprint).toContain(`tx('${routeRefs.AUDIT_DIRECTIONS_NOTE.replace(/'/g,"\\'")}')`);
     expect(blueprint).toContain(': auditDirections.written ? auditDirectionsMarkup : noRouteNumbers;');
   });

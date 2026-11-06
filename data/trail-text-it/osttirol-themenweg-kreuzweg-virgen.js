@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village streets, a paved lane and a farm track past the stations": "Strade di paese, una stradina asfaltata e una strada di campagna lungo le stazioni",
   "the centre of Virgen by the parish church, the board’s start": "Il centro di Virgen vicino alla chiesa parrocchiale, la partenza indicata dalla scheda ufficiale",
   "A tall green serpentine block with a bronze relief standing in a meadow beside the path, with mountains of the Virgental behind, in summer": "Un alto blocco di serpentino verde con un rilievo in bronzo in un prato accanto al sentiero, con le montagne della Virgental alle spalle, d'estate",
-  "Mostly open: village streets, meadows and the farm track, with a few trees by the stations.": "Per lo più aperto: strade di paese, prati e la strada di campagna, con qualche albero vicino alle stazioni."
+  "Mostly open: village streets, meadows and the farm track, with a few trees by the stations.": "Per lo più aperto: strade di paese, prati e la strada di campagna, con qualche albero vicino alle stazioni.",
+  "From the centre of Virgen west through the village and along the Stations of the Cross by Göriach to the pilgrimage church of Maria Schnee at Obermauern, and back the same way to the centre.": "Dal centro di Virgen verso ovest attraverso il paese e lungo la Via Crucis passando da Göriach fino alla chiesa di pellegrinaggio di Maria Schnee a Obermauern, e ritorno per la stessa strada fino al centro."
 });

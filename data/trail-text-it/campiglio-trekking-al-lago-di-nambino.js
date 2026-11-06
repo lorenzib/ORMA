@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Little road and a mountain path with stone steps": "Stradina e sentiero di montagna con gradini di pietra",
   "Piana di Nambino, the APT’s start": "Piana di Nambino, la partenza indicata dall'APT",
   "Stone steps of a mountain path climbing through spruce forest with ferns and mossy boulders on either side": "Gradini di pietra di un sentiero di montagna che sale nel bosco di abeti rossi, con felci e massi muschiosi ai lati",
-  "Mostly open: about 37% runs under trees, with the open lake basin at the top.": "Per lo più aperto: circa il 37% passa sotto gli alberi, con la conca aperta del lago in cima."
+  "Mostly open: about 37% runs under trees, with the open lake basin at the top.": "Per lo più aperto: circa il 37% passa sotto gli alberi, con la conca aperta del lago in cima.",
+  "Path SAT 217: from the Piana di Nambino west on the little road towards the Lago di Nambino; at the cableway hut, right on path 217, which climbs along the left bank of the Rio Nambino to the lake basin (about 170 m, under half an hour); walk round the lake. Back the same way.": "Sentiero SAT 217: dalla Piana di Nambino verso ovest sulla stradina verso il Lago di Nambino; al casotto della funivia, a destra sul sentiero 217, che sale lungo la riva sinistra del Rio Nambino fino alla conca del lago (circa 170 m, meno di mezz'ora); fai il giro del lago. Ritorno per la stessa strada."
 });

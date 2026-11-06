@@ -11,5 +11,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "The Maiser Waalweg, a stony path strewn with autumn leaves, running beside a water-filled irrigation channel on a wooded slope with ferns and ivy": "Il Maiser Waalweg, un sentiero sassoso coperto di foglie autunnali, lungo una roggia piena d'acqua su un pendio boscoso con felci ed edera",
   "The Waalweg path running between apple orchards above Schenna": "Il sentiero del Waalweg tra i meleti sopra Schenna",
   "The Passer river below Schenna, with wooded banks and mountains": "Il fiume Passer sotto Schenna, con rive boscose e montagne",
-  "About half the walk is wooded, mostly on the slopes above the Passer; the stretches through orchards and towards Obermais are open.": "Circa metà del percorso è nel bosco, soprattutto sui pendii sopra la Passer; i tratti tra i frutteti e verso Obermais sono aperti."
+  "About half the walk is wooded, mostly on the slopes above the Passer; the stretches through orchards and towards Obermais are open.": "Circa metà del percorso è nel bosco, soprattutto sui pendii sopra la Passer; i tratti tra i frutteti e verso Obermais sono aperti.",
+  "From the Hirzer cable car car park in Saltaus take path 1 down to the Passerdammweg, then follow the “Maiser Waalweg” signs past the Torgglerhof and along the channel all the way to Meran.": "Dal parcheggio della funivia Hirzer a Saltaus prendi il sentiero 1 giù fino al Passerdammweg, poi segui i cartelli “Maiser Waalweg” oltre il Torgglerhof e lungo la roggia fino a Meran."
 });

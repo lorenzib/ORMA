@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest tracks and a woodland path, with a short stretch on the lakeside road": "Strade forestali e un sentiero nel bosco, con un breve tratto sulla strada lungolago",
   "car park P 7 on the south shore at Techendorf, the board’s start (Nordic Walking centre “Süd”)": "parcheggio P 7 sulla riva sud a Techendorf, partenza indicata dalla scheda ufficiale (centro di nordic walking “Süd”)",
   "Wooden boathouses and a jetty on the clear green Weissensee at Techendorf, below wooded mountains, on a summer day": "Rimesse per barche in legno e un pontile sul limpido Weissensee verde a Techendorf, sotto montagne boscose, in una giornata estiva",
-  "About a third in woodland; the tracks at the edge of the woods and the lakeside start are open.": "Circa un terzo nel bosco; le strade ai margini del bosco e la partenza sul lago sono aperte."
+  "About a third in woodland; the tracks at the edge of the woods and the lakeside start are open.": "Circa un terzo nel bosco; le strade ai margini del bosco e la partenza sul lago sono aperte.",
+  "From car park P 7 at Techendorf briefly along the lakeside road (L7a), then on the signed Nordic walking trail 6 up the forest tracks and woodland path to the Rothn’s Bichl and back down to the start.": "Dal parcheggio P 7 a Techendorf brevemente lungo la strada del lago (L7a), poi sul percorso di nordic walking 6 segnalato su per le carrarecce forestali e il sentiero nel bosco fino al Rothn’s Bichl e di nuovo giù fino alla partenza."
 });

@@ -8,5 +8,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Cobbled path and a few steps": "Sentiero acciottolato e alcuni gradini",
   "Partially mapped: paved (68%), natural ground (21%), fine gravel (5%), from OSM surface data": "Mappatura parziale: asfalto (68%), terreno naturale (21%), ghiaia fine (5%), dai dati sul fondo di OSM",
   "Salurn village centre, near the town hall car park (official start area)": "Centro del paese di Salurn, vicino al parcheggio del municipio (zona di partenza ufficiale)",
-  "A cobbled path climbing through woodland past a small whitewashed Stations of the Cross chapel above Salurn": "Una mulattiera acciottolata che sale nel bosco accanto a una piccola cappella imbiancata della Via Crucis sopra Salurn"
+  "A cobbled path climbing through woodland past a small whitewashed Stations of the Cross chapel above Salurn": "Una mulattiera acciottolata che sale nel bosco accanto a una piccola cappella imbiancata della Via Crucis sopra Salurn",
+  "Start in Salurn village centre near the town hall and follow the Kapellenrunde up along the old Stations of the Cross chapels to the Salurn waterfall on the Titschenbach, then back down to the village centre. The loop shares the Dürerweg (1) and path 409B for a stretch.": "Parti dal centro di Salurn vicino al municipio e segui la Kapellenrunde in salita lungo le antiche cappelle della Via Crucis fino alla cascata di Salurn sul Titschenbach, poi torna giù al centro del paese. Per un tratto l'anello coincide con il Dürerweg (1) e il sentiero 409B."
 });
