@@ -88,10 +88,17 @@ const APP_MANIFEST_TAG = '<script src="app-trail-data.js"></script>';
 
 // The app draws under the clock and battery, so its pages opt into the full
 // screen and load app-shell.css, which moves the header below that strip and
-// drops the website's add-to-home-screen advice. Root-absolute, like the
+// drops the website's add-to-home-screen advice. They also hold the page at its
+// own size: an iPhone zooms in on any text box set smaller than 16px when it is
+// tapped, and many are, so a search left the page zoomed and cut off at the
+// right. A native app never zooms its pages; maps still pinch to zoom. Root-absolute, like the
 // vendored files, because trail pages sit one directory down.
-const VIEWPORT_TAG = /<meta name="viewport" content="(?![^"]*viewport-fit)([^"]*)">/g;
-const APP_VIEWPORT_TAG = '<meta name="viewport" content="$1, viewport-fit=cover">';
+const VIEWPORT_TAG = /<meta name="viewport" content="([^"]*)">/g;
+const APP_VIEWPORT_TAG = (tag, content) => {
+  const own = content.split(',').map(part => part.trim())
+    .filter(part => part && !/^(?:maximum-scale|viewport-fit)=/.test(part));
+  return `<meta name="viewport" content="${[...own, 'maximum-scale=1', 'viewport-fit=cover'].join(', ')}">`;
+};
 const APP_SHELL_TAG = '<link rel="stylesheet" href="/app-shell.css">';
 
 const rel = (abs) => path.relative(root, abs).split(path.sep).join('/');
