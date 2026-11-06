@@ -52,6 +52,11 @@ const BLOCKER_TEXT = Object.freeze({
   'automated-resolution-attempts-exhausted': 'automatic attempts ran out',
   'disconnected-components': 'the line is in disconnected pieces',
 });
+// The graduation check a withdrawn seal still lacks, in board words.
+const WITHDRAWN_REASON = Object.freeze({
+  route: 'the drawn line cannot be followed',
+  routeNumbers: 'no written directions',
+});
 const TERMINAL = new Set(['imported', 'rejected', 'blocked']);
 const ACTIVE_JOB = new Set(['queued', 'running', 'in-progress', 'processing']);
 
@@ -188,10 +193,15 @@ function entryFor(trail, flow, publication, jobOwed, slug, paidResearch){
     entry.stage = 'stopped';
     entry.stopKind = state === 'imported' ? 'resting' : state;
     if(state === 'imported' && flow.stage === WITHDRAWN_STAGE){
-      // A seal taken off by hand had an official page; what it lacked was an
-      // authority's climb and walking time.
-      entry.next = 'Seal withdrawn: no official climb or walking time';
-      entry.detail = 'Reopens when an authority publishes both';
+      // A seal taken off by hand had an official page. What it lacks is the
+      // record's own graduation blocker: on 6 Nov all 15 lacked a followable
+      // line or written directions, not a climb or time as this used to say.
+      const held = trail.graduation?.blockers || {};
+      const why = Object.keys(held).find(check => WITHDRAWN_REASON[check]);
+      entry.next = why ? `Seal withdrawn: ${WITHDRAWN_REASON[why]}` : 'Seal withdrawn';
+      // The blocker's first clause says where; the rest is advice to us.
+      const where = why ? plainBlocker(String(held[why]).split(/; |\. |: /)[0]) : '';
+      entry.detail = where ? `${where.replace(/\.$/, '')}. Reopens when the record is fixed` : 'Reopens when the record is fixed';
     }else if(state === 'imported'){
       entry.next = 'Resting: no official page to research from';
       entry.detail = 'Reopens only if a source appears';

@@ -57,8 +57,21 @@ describe('the board describes how trails are verified now',()=>{
 
   test('a seal withdrawn by hand is not described as having no official page',()=>{
     const board=buildTrailBoard({trails:['withdrawn','resting'].map(trail),orchestration});
-    expect(entry(board,'withdrawn').next).toBe('Seal withdrawn: no official climb or walking time');
+    expect(entry(board,'withdrawn').next).toBe('Seal withdrawn');
     expect(entry(board,'resting').next).toBe('Resting: no official page to research from');
+  });
+
+  test('a withdrawn seal names the check the record still lacks, not a climb or time',()=>{
+    const held=(id,blockers)=>({...trail(id),graduation:{status:'imported',blockers}});
+    const withdrawn=id=>flow(id,'imported',{stage:WITHDRAWN_STAGE});
+    const board=buildTrailBoard({trails:[
+      held('line',{route:'The drawn line goes out and comes straight back mid-walk, at km 0.18 (53 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.'}),
+      held('words',{routeNumbers:'The page shows no directions a walker can follow: no trail numbers. Write sourced directions.'})],
+    orchestration:{trails:[withdrawn('line'),withdrawn('words')]}});
+    expect(entry(board,'line').next).toBe('Seal withdrawn: the drawn line cannot be followed');
+    expect(entry(board,'line').detail).toBe('The drawn line goes out and comes straight back mid-walk, at km 0.18 (53 m). Reopens when the record is fixed');
+    expect(entry(board,'words').next).toBe('Seal withdrawn: no written directions');
+    expect(JSON.stringify(board)).not.toContain('climb or walking time');
   });
 
   test('a running worker is automation, not agents',()=>{
