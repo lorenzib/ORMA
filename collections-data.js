@@ -40,7 +40,7 @@
     {
       id:'cable-car-days', title:'Lift-assisted Dolomites week', subtitle:'Seven high-level options with a lift near the start',
       description:'A Dolomites week of walks that can begin with a cable car, gondola or lift. Services and dog policies are seasonal, so use each trail’s access notes and verify the operator timetable.',
-      coverImage:'images/trails/giro-del-sasso-lungo-commons.jpg', chips:['Lift-assisted access','High-level starts','Verify dog policy'],
+      coverImage:'images/trails/giro-del-sasso-lungo-friedrich-august-weg.jpg', chips:['Lift-assisted access','High-level starts','Verify dog policy'],
       countryCode:'IT', country:'Italy', region:'dolomites', regionLabel:'Dolomites', tripLength:'4–7 days',
       trailIds:['alpe-siusi','seceda','sentiero-hans-e-paula-steger','osm-1116675','osm-11828233','osm-11855879','osm-19697977'],
     },

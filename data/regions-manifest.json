@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-06T17:10:16.952Z",
+  "generatedAt": "2026-11-06T20:07:52.366Z",
   "regions": {
     "dolomites": {
       "trailCount": 352,
-      "trails": "data/regions/dolomites-trails.js?v=154e06633a7a",
+      "trails": "data/regions/dolomites-trails.js?v=6584acd5aec1",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=8181fdfdffc2",
         "seceda": "data/trail-details/seceda.js?v=a5efa0fc81de",
@@ -23,7 +23,7 @@
         "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=118b3c61024a",
         "sentiero-hans-e-paula-steger": "data/trail-details/sentiero-hans-e-paula-steger.js?v=55b3d2b5ebe6",
         "sentiero-del-trenino": "data/trail-details/sentiero-del-trenino.js?v=bc8b5df4c409",
-        "giro-del-sasso-lungo": "data/trail-details/giro-del-sasso-lungo.js?v=f3910de4f655",
+        "giro-del-sasso-lungo": "data/trail-details/giro-del-sasso-lungo.js?v=f533b80298d6",
         "osm-123162": "data/trail-details/osm-123162.js?v=6afc7ed1ae0c",
         "osm-1116675": "data/trail-details/osm-1116675.js?v=e24eb8e62397",
         "osm-1116680": "data/trail-details/osm-1116680.js?v=794d961f3422",
@@ -212,7 +212,7 @@
         "valgardena-tour-alla-volta-del-lech-sant": "data/trail-details/valgardena-tour-alla-volta-del-lech-sant.js?v=8fa72ce7e1dc",
         "valgardena-passeggiata-da-ortisei-a-s-cristina": "data/trail-details/valgardena-passeggiata-da-ortisei-a-s-cristina.js?v=1f0ea078ea18",
         "valgardena-escursione-al-resciesa": "data/trail-details/valgardena-escursione-al-resciesa.js?v=1ffd32b684c4",
-        "valgardena-giro-della-via-crucis": "data/trail-details/valgardena-giro-della-via-crucis.js?v=d14d810b9161",
+        "valgardena-giro-della-via-crucis": "data/trail-details/valgardena-giro-della-via-crucis.js?v=329769b2dd5c",
         "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": "data/trail-details/valgardena-escursione-dalla-cappella-santa-croce-al-brogles.js?v=4f1dd709368d",
         "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": "data/trail-details/valgardena-passeggiata-alla-chiesetta-di-san-giacomo.js?v=9a5252e6dd41",
         "trecime-dobbiaco-lago-di-dobbiaco": "data/trail-details/trecime-dobbiaco-lago-di-dobbiaco.js?v=f96157dc60e5",

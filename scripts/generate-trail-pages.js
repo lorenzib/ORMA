@@ -29,6 +29,7 @@ const { loadSlugOverrides, allRetiredSlugs, validateSlugOverrides } = require('.
 // The same module the app reads its trail numbers from, so a page and a card
 // show the same numbers in the same order for the same walk.
 const routeRefs = require('../trail-route-refs.js');
+const routeReturn = require('../route-return.js');
 const routeGuidanceSources = require('../route-guidance-sources.js');
 // The same season sentences the app shows, from data/trail-seasons.json.
 const seasonWords = require('../trail-season-words.js');
@@ -880,7 +881,7 @@ function renderTrailPage(t, slug, all) {
     [L('Distance'), L('{km} km', { km: num(t.distance) })],
     [L('Elevation gain'), t.elevation != null ? L('{m} m', { m: num(t.elevation) }) : null],
     [L('Highest point'), highest !== null ? L('{m} m', { m: num(highest) }) : null],
-    [L('Duration'), t.hours != null ? L('{h} h', { h: num(t.hours) }) : null],
+    [L('Duration'), routeReturn.formatDuration(t.hours) || null],
     [L('Terrain'), terrain],
     [L('Trail rating'), displaySafetyLabel(t)],
     [L('Area'), `${t.area} · ${regionLabel}`],

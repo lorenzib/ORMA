@@ -121,5 +121,27 @@
     return current===VIEWS.OUT_AND_BACK&&isOneWay(trail)?outAndBack(trail):trail;
   }
 
-  return {VIEWS,isOneWay,netGain,parseHoursRange,formatHours,ruleHours,outAndBack,view,setView,forView};
+  // Hours as a reader says them: "3.9" is "3 h 55 min", not 3 h 9 min.
+  // Rounded to 5 minutes; a range keeps both ends ("1 h 30 min – 2 h",
+  // "2–3 h"). Empty when there is no number to read.
+  function durationParts(hours){
+    const minutes=Math.max(5,Math.round(hours*12)*5);
+    return {h:Math.floor(minutes/60),m:minutes%60};
+  }
+  function durationText({h,m}){
+    if(!h)return `${m} min`;
+    return m?`${h} h ${m} min`:`${h} h`;
+  }
+  function formatDuration(value){
+    const bounds=parseHoursRange(value);
+    if(!bounds)return '';
+    const parts=bounds.map(durationParts);
+    const texts=parts.map(durationText).filter((v,i,all)=>all.indexOf(v)===i);
+    if(texts.length===1)return texts[0];
+    if(parts.every(p=>p.h&&!p.m))return `${parts[0].h}–${parts[1].h} h`;
+    if(parts.every(p=>!p.h))return `${parts[0].m}–${parts[1].m} min`;
+    return texts.join(' – ');
+  }
+
+  return {VIEWS,isOneWay,netGain,parseHoursRange,formatHours,formatDuration,ruleHours,outAndBack,view,setView,forView};
 });

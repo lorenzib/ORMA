@@ -1,6 +1,6 @@
 {
   "contractVersion": "trail-seasons-v1",
-  "generatedAt": "2026-11-06T17:10:16.938Z",
+  "generatedAt": "2026-11-06T20:07:52.356Z",
   "note": "When in the year each Dolomites walk is a walk. recommended: the months the walk's tourist board marks as its season, read off the board's page. snow: where no board publishes months, the snowy months estimated from the walk's high point (2,000 m and over: November to May; 1,600 m and over: December to April; lower: snow possible December to February). winterUse: stretches of the line mapped as a ski run, sled run or cross-country track, 0.5 km or more of a kind. Written by npm run build:trail-seasons; nothing here is a verification.",
   "sources": {
     "winterUse": {
@@ -5706,8 +5706,8 @@
           12
         ],
         "source": {
-          "label": "Outdooractive",
-          "url": "https://www.outdooractive.com/it/r/810054903",
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/giro-della-via-crucis/810054903/",
           "accessedAt": "2026-11-06"
         }
       }
