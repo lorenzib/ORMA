@@ -17,7 +17,7 @@ describe('altitude health and safety guide', () => {
     expect(hero.getAttribute('alt')).toBe('');
     expect(hero.getAttribute('width')).toBe('1200');
     expect(hero.getAttribute('height')).toBe('800');
-    expect(document.querySelector('.alt-meta').textContent).toMatch(/1 min guide/i);
+    expect(document.querySelector('.alt-meta').textContent).toMatch(/2 min guide/i);
     expect(document.querySelector('.alt-meta').textContent).not.toMatch(/reviewed/i);
     expect(document.querySelector('.alt-jump')).toBeNull();
   });
