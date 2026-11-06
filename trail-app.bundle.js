@@ -11705,7 +11705,10 @@ function initHikeMode(map, trail, options){
       rejoinBtn.hidden = true;
       return;
     }
-    rejoinBtn.hidden = false;
+    // Offered only once the walker is off the trail, as the off-route banner
+    // is: on the line it only crowded the status card on a phone.
+    rejoinBtn.hidden = !(manualRejoinActive || (latestAssessment &&
+      (latestAssessment.farFromRoute || latestAssessment.offRouteState === 'confirmed')));
     rejoinBtn.disabled = true;
     rejoinBtn.style.opacity = '.78';
     if(!latestFix){
@@ -12475,7 +12478,12 @@ function initHikeMode(map, trail, options){
     const dog = dogSummary();
     const dogName = dog.name || tx('Your dog');
     const km = completion.distanceKm;
-    const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : ', ';
+    // Minutes and seconds per km, as walking apps print it; "18.9 min/km"
+    // was too wide for its third of the card on a phone and got clipped.
+    const paceSeconds = km > 0.1 ? Math.round(elapsedSeconds / km) : 0;
+    const pace = paceSeconds
+      ? `${Math.floor(paceSeconds / 60)}:${String(paceSeconds % 60).padStart(2, '0')}<small>/km</small>`
+      : '–';
     // The trail rating, in the words the rest of the product uses. This held
     // its own English table -- "Low-risk", "Moderate", "Caution" -- so the one
     // badge a walker sees at the end of a hike stayed English on the Italian
@@ -19260,17 +19268,31 @@ if(document.querySelector('.td2')){
   const hikeHome = heroBtn && heroBtn.parentElement;
   const hikeNext = heroBtn && heroBtn.nextSibling;
 
+  const hikeSlot = document.getElementById('mobileMapHikeSlot');
+  const phone = window.matchMedia ? window.matchMedia('(max-width:700px)') : null;
+
+  // On a phone the map's own End button is hidden, and a recording hike
+  // fills the screen with the map, so the hero button moves onto the map as
+  // "End · 12:34". Without this, a phone had no way to end a hike by hand.
   function placeHikeAction() {
     if (!heroBtn || !hikeHome) return;
-    if (heroBtn.parentElement !== hikeHome) {
+    const onMap = !!(hikeSlot && phone && phone.matches && recording() &&
+      mapBox.classList.contains('map-fs'));
+    if (onMap) {
+      if (heroBtn.parentElement !== hikeSlot) hikeSlot.appendChild(heroBtn);
+    } else if (heroBtn.parentElement !== hikeHome) {
       hikeHome.insertBefore(heroBtn, hikeNext);
     }
   }
-  placeHikeAction();
 
+  // Hike mode marks its own map container, not this box, and keeps that mark
+  // after a hike ends so the last message stays up. Pause is shown exactly
+  // while a hike runs.
   function recording() {
-    return !!(mapBox && mapBox.classList.contains('hike-status-visible'));
+    const pause = document.getElementById('mapPauseHikeBtn');
+    return !!(pause && !pause.hidden);
   }
+  placeHikeAction();
 
   // Live progress mirrored from hike-mode (elapsed clock + km walked), shown
   // in the banner and in the hero End button ("End · 12:34", per prototype).
@@ -19318,6 +19340,7 @@ if(document.querySelector('.td2')){
           : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> ' + tx('Start the hike');
       }
     }
+    placeHikeAction();
     if (liveBanner) liveBanner.hidden = !rec;
     if (!rec && elapsedTimer) { clearInterval(elapsedTimer); elapsedTimer = null; hikeStartedAt = null; }
   }
@@ -19330,9 +19353,10 @@ if(document.querySelector('.td2')){
   if (mapBox) {
     // hike-mode.js injects #mapStartHikeBtn and toggles .hike-status-visible.
     new MutationObserver(syncHike).observe(mapBox, {
-      attributes: true, attributeFilter: ['class'], childList: true, subtree: true,
+      attributes: true, attributeFilter: ['class', 'hidden'], childList: true, subtree: true,
     });
   }
+  if (phone && phone.addEventListener) phone.addEventListener('change', syncHike);
   // Poll briefly until hike-mode has injected its button, then let the
   // observer take over.
   let tries = 0;

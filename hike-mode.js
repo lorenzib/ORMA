@@ -208,7 +208,10 @@ function initHikeMode(map, trail, options){
       rejoinBtn.hidden = true;
       return;
     }
-    rejoinBtn.hidden = false;
+    // Offered only once the walker is off the trail, as the off-route banner
+    // is: on the line it only crowded the status card on a phone.
+    rejoinBtn.hidden = !(manualRejoinActive || (latestAssessment &&
+      (latestAssessment.farFromRoute || latestAssessment.offRouteState === 'confirmed')));
     rejoinBtn.disabled = true;
     rejoinBtn.style.opacity = '.78';
     if(!latestFix){
@@ -978,7 +981,12 @@ function initHikeMode(map, trail, options){
     const dog = dogSummary();
     const dogName = dog.name || tx('Your dog');
     const km = completion.distanceKm;
-    const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : ', ';
+    // Minutes and seconds per km, as walking apps print it; "18.9 min/km"
+    // was too wide for its third of the card on a phone and got clipped.
+    const paceSeconds = km > 0.1 ? Math.round(elapsedSeconds / km) : 0;
+    const pace = paceSeconds
+      ? `${Math.floor(paceSeconds / 60)}:${String(paceSeconds % 60).padStart(2, '0')}<small>/km</small>`
+      : '–';
     // The trail rating, in the words the rest of the product uses. This held
     // its own English table -- "Low-risk", "Moderate", "Caution" -- so the one
     // badge a walker sees at the end of a hike stayed English on the Italian
