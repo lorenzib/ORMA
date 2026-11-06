@@ -14,7 +14,8 @@ function realBreedGroupId(){
 describe('SOCIAL-01 one-tap "We walked this"', () => {
   let walked;
   const noon = new Date(2026, 10, 6, 12, 0).getTime();
-  const community = (ok = true) => ({ calls: [], recordTrailWalk(trailId, group){ this.calls.push([trailId, group]); return Promise.resolve(ok); } });
+  const community = (ok = true) => ({ calls: [], recordTrailWalk(trailId, group, proof){ this.calls.push([trailId, group, proof]); return Promise.resolve(ok); } });
+  const proof = 'checkin';
 
   beforeEach(() => {
     jest.resetModules();
@@ -26,30 +27,39 @@ describe('SOCIAL-01 one-tap "We walked this"', () => {
 
   test('a tap writes one anonymous walk and the same day does not count twice', async () => {
     const service = community();
-    expect(await walked.record('lago-carezza', 'g1', { community: service, now: noon })).toBe('recorded');
-    expect(await walked.record('lago-carezza', 'g1', { community: service, now: noon + 3600000 })).toBe('already');
-    expect(service.calls).toEqual([['lago-carezza', 'g1']]);
+    expect(await walked.record('lago-carezza', 'g1', { community: service, now: noon, proof })).toBe('recorded');
+    expect(await walked.record('lago-carezza', 'g1', { community: service, now: noon + 3600000, proof })).toBe('already');
+    expect(service.calls).toEqual([['lago-carezza', 'g1', 'checkin']]);
     expect(walked.walkedToday('lago-carezza', { now: noon })).toBe(true);
     expect(walked.walkedToday('lago-braies', { now: noon })).toBe(false);
   });
 
   test('the next calendar day counts again', async () => {
     const service = community();
-    await walked.record('lago-carezza', 'g1', { community: service, now: noon });
-    expect(await walked.record('lago-carezza', 'g1', { community: service, now: noon + 86400000 })).toBe('recorded');
+    await walked.record('lago-carezza', 'g1', { community: service, now: noon, proof });
+    expect(await walked.record('lago-carezza', 'g1', { community: service, now: noon + 86400000, proof })).toBe('recorded');
     expect(service.calls).toHaveLength(2);
   });
 
   test('a refused or missing write leaves the tap free to retry', async () => {
-    expect(await walked.record('lago-carezza', 'g1', { community: community(false), now: noon })).toBe('failed');
-    expect(await walked.record('lago-carezza', 'g1', { community: null, now: noon })).toBe('unavailable');
+    expect(await walked.record('lago-carezza', 'g1', { community: community(false), now: noon, proof })).toBe('failed');
+    expect(await walked.record('lago-carezza', 'g1', { community: null, now: noon, proof })).toBe('unavailable');
     expect(walked.walkedToday('lago-carezza', { now: noon })).toBe(false);
-    expect(await walked.record('lago-carezza', 'g1', { community: community(), now: noon })).toBe('recorded');
+    expect(await walked.record('lago-carezza', 'g1', { community: community(), now: noon, proof })).toBe('recorded');
   });
 
   test('a write that throws is a failed tap, not a broken page', async () => {
     const throwing = { recordTrailWalk(){ throw new Error('offline'); } };
-    expect(await walked.record('lago-carezza', 'g1', { community: throwing, now: noon })).toBe('failed');
+    expect(await walked.record('lago-carezza', 'g1', { community: throwing, now: noon, proof })).toBe('failed');
+  });
+
+  test('a tap without proof writes nothing and leaves the day free', async () => {
+    const service = community();
+    for(const missing of [undefined, null, 'trust-me', 'none']){
+      expect(await walked.record('lago-carezza', 'g1', { community: service, now: noon, proof: missing })).toBe('unproven');
+    }
+    expect(service.calls).toEqual([]);
+    expect(walked.walkedToday('lago-carezza', { now: noon })).toBe(false);
   });
 
   test('marks older than thirty days are dropped', () => {
@@ -94,11 +104,16 @@ describe('SOCIAL-01 trail page wiring', () => {
     expect(SOURCES.indexOf('walked-this.js')).toBeGreaterThan(-1);
     expect(SOURCES.indexOf('walked-this.js')).toBeLessThan(SOURCES.indexOf('hike-mode.js'));
     expect(SOURCES.indexOf('walked-this.js')).toBeLessThan(SOURCES.indexOf('trail.js'));
+    expect(SOURCES.indexOf('walk-proof.js')).toBeGreaterThan(-1);
+    expect(SOURCES.indexOf('walk-proof.js')).toBeLessThan(SOURCES.indexOf('hike-mode.js'));
+    expect(SOURCES.indexOf('walk-proof.js')).toBeLessThan(SOURCES.indexOf('trail.js'));
   });
 
   test('every label exists in English and Italian', () => {
     const i18n = read('i18n.js');
-    for(const key of ['page.trail.walkedThis', 'trail.walkedToday', 'trail.walkedRetry', 'trail.walkedThanks']){
+    for(const key of ['page.trail.walkedThis', 'trail.walkedToday', 'trail.walkedRetry', 'trail.walkedThanks',
+      'trail.walkedLocating', 'trail.walkedNotHere', 'trail.walkedNoLocation', 'trail.walkedHowToCount',
+      'hike.proofGps', 'hike.proofShort', 'hike.proofUnconfirmed']){
       expect(i18n.split(`'${key}':`).length - 1).toBe(2);
     }
   });

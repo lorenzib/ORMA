@@ -43,6 +43,7 @@ const SOURCES = [
   'hike-completions.js',
   'post-hike-outcomes.js',
   // The one-tap tally; hike mode tags its walks through it too.
+  'walk-proof.js',
   'walked-this.js',
   'hike-mode.js',
   'detail-pois.js',
