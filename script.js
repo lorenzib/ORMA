@@ -3680,7 +3680,7 @@ function liRowMeta(t){
   const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:shown.distance }) : ''; return v && v !== key ? v : fallback; };
   const parts = [back ? tr('card.thereAndBack', `${shown.distance} km there and back`) : `${t.distance} km`];
   if(Number.isFinite(shown.elevation)) parts.push(tx('{m} m climb', { m:shown.elevation }));
-  if(shown.hours) parts.push(`${back ? '≈ ' : ''}${shown.hours} h`);
+  if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? routeReturn.formatDuration(shown.hours) : `${shown.hours} h`}`);
   const exposure = liExposureLabel(t.exposure);
   if(exposure) parts.push(exposure);
   const shade = liShadeLabel(t.shadeCoverage);

@@ -81,8 +81,9 @@
   function formatDuration(value){
     if(value === null || value === undefined || value === '') return null;
     const text = String(value).trim();
-    return /\b(?:h|hr|hour|hours|min|minute|minutes)\b/i.test(text)
-      ? text : `${text} h`;
+    if(/\b(?:h|hr|hour|hours|min|minute|minutes)\b/i.test(text)) return text;
+    const routeReturn = root.ORMARouteReturn;
+    return (routeReturn && routeReturn.formatDuration(text)) || `${text} h`;
   }
 
   function build(trail, options){
