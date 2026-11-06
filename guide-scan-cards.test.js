@@ -61,6 +61,14 @@ describe('scan-first safety guide layouts', () => {
     expect(document.querySelectorAll('.hs-action')).toHaveLength(6);
     expect(document.querySelectorAll('.scan-alert')).toHaveLength(1);
     expect(document.querySelector('.scan-alert strong').textContent).toBe('If a fight starts, let go of the lead');
+    const sign = document.querySelector('.hs-section .guardian-sign');
+    expect(sign.querySelector('img').getAttribute('src')).toBe('../images/editorial/safety-library/livestock-guardian-dog-sign-v1.jpg');
+    expect(sign.querySelector('img').getAttribute('alt')).toMatch(/guardian dog/);
+    expect(sign.querySelector('h3').textContent).toBe('What the sign says');
+    expect(sign.querySelectorAll('ol > li')).toHaveLength(3);
+    const italian = fs.readFileSync(path.join(__dirname, 'it', 'guides', 'livestock-guard-dogs.html'), 'utf8');
+    expect(italian).toContain('src="../../images/editorial/safety-library/livestock-guardian-dog-sign-v1.jpg"');
+    expect(fs.existsSync(path.join(__dirname, 'images', 'editorial', 'safety-library', 'livestock-guardian-dog-sign-v1.jpg'))).toBe(true);
     expect(html).toContain('Maremmano-Abruzzese');
     expect(html).toContain('French national guidance says to let go of the lead');
     expect(html).not.toContain('guardian-section');
