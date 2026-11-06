@@ -42,10 +42,17 @@
   .hs-action::before{content:counter(guardian-step);display:grid;grid-column:1;grid-row:1;place-items:center;width:25px;height:25px;border-radius:50%;background:var(--safety-safe);color:#fff;font-weight:800;font-size:.7rem;}
   .hs-action strong{display:flex;grid-column:2;grid-row:1;align-items:center;min-height:25px;margin-bottom:6px;color:var(--ink);font-size:1.03rem;}
   .hs-action span{display:block;grid-column:2;grid-row:2;color:var(--ink-soft);font-size:.78rem;line-height:1.48;}
+  .guardian-sign{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:24px;align-items:center;margin:14px 0 0;padding:16px;border:1px solid var(--paper-line);border-radius:13px;background:var(--card);}
+  .guardian-sign img{display:block;width:100%;height:auto;aspect-ratio:650/520;border-radius:9px;}
+  .guardian-sign figcaption h3{margin:0 0 4px;font-size:1.2rem;line-height:1.25;}
+  .guardian-sign figcaption>p{margin:0;color:var(--ink-soft);font-size:.78rem;line-height:1.45;}
+  .guardian-sign ol{display:grid;gap:10px;margin:12px 0 0;padding:0;list-style:none;counter-reset:sign-line;}
+  .guardian-sign li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;color:var(--ink);font-size:.88rem;line-height:1.5;counter-increment:sign-line;}
+  .guardian-sign li::before{content:counter(sign-line);display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--safety-safe-soft);color:var(--safety-safe);font-size:.68rem;font-weight:800;}
   .guardian-note{margin:12px 0 0;color:var(--ink-soft);font-size:.78rem;line-height:1.5;}
   .guardian-note strong{color:var(--ink);}
   .hs-section .scan-alert{margin-top:14px;}
-  @media(max-width:620px){.hs-observations,.hs-actions{grid-template-columns:1fr;}.hs-section-head p{margin-top:6px;}}
+  @media(max-width:620px){.hs-observations,.hs-actions,.guardian-sign{grid-template-columns:1fr;}.hs-section-head p{margin-top:6px;}}
 </style>
 <link rel="stylesheet" href="safety-guide-system.css?v=20261104-1">
 <script type="application/ld+json">
@@ -126,6 +133,18 @@
         <p>The dog is warning you to keep away from its flock. Stop and follow the three steps below.</p>
       </article>
     </div>
+    <figure class="guardian-sign">
+      <img src="../images/editorial/safety-library/livestock-guardian-dog-sign-v1.jpg" alt="A green sign at a mountain pasture headed “Amis promeneurs !”, showing a white guardian dog beside a flock of sheep, with text in French and English." width="650" height="520" loading="lazy" decoding="async">
+      <figcaption>
+        <h3>What the sign says</h3>
+        <p>A guardian-dog sign at a pasture in the French Alps.</p>
+        <ol>
+          <li>Don’t go near the animals, and keep your dog on a lead where dogs are allowed.</li>
+          <li>Farmers here use guardian dogs to protect their flocks from wolves, dogs and lynx.</li>
+          <li>The dogs need to check who you are. If they come over, stay calm and keep going around the flock, or stop.</li>
+        </ol>
+      </figcaption>
+    </figure>
     <p class="guardian-note"><strong>Cattle are different:</strong> give them, especially cows with calves, a wide berth. Keep your dog on the lead, but let go if cattle chase you, so you can both reach safety separately.</p>
   </section>
 
