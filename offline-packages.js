@@ -324,6 +324,7 @@
     'trecime-monte-casella-di-fuori': "Außergsell – Innergsell loop",
     'trecime-monte-elmo-da-moso': "Moos – Helm",
     'trecime-monte-elmo-versciaco': "Helm – Vierschach",
+    'trecime-moso-monte-arnese': "Moos to Monte Arnese (Hornischeck)",
     'trecime-rotwandwiesen-moos': "Rotwandwiesen – Moos",
     'trecime-san-candido-costa-dei-nosellari-dobbiaco': "Innichen – Haselsberg – Toblach",
     'trecime-sasso-di-sesto': "Fischleintal – Sextner Stein",
