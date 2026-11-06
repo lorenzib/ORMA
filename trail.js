@@ -1577,11 +1577,37 @@ function renderTrail(t){
         setTimeout(done, 6000);
       });
     if(walked.walkedToday(t.id)) showWalked();
+    // SOCIAL-02: a tap counts only as a check-in, made on the trail. The
+    // phone's position is asked for once, compared with the line here and
+    // never stored or sent.
+    const whereAmI = () => new Promise(resolve => {
+      if(!navigator.geolocation) return resolve(null);
+      navigator.geolocation.getCurrentPosition(resolve, () => resolve(null), {
+        enableHighAccuracy: true, timeout: 15000, maximumAge: 60000,
+      });
+    });
+    const notCounted = labelKey => {
+      walkedThisBtn.textContent = window.t(labelKey);
+      if(walkedStatus) walkedStatus.textContent = window.t('trail.walkedHowToCount');
+      walkedThisBtn.title = window.t('trail.walkedHowToCount');
+      walkedThisBtn.disabled = false;
+    };
     walkedThisBtn.addEventListener('click', async () => {
       walkedThisBtn.disabled = true;
-      const result = await walked.record(t.id, walked.activeDogGroup(), { community: await communityReady() });
+      if(walked.walkedToday(t.id)) return showWalked();
+      const proofCheck = window.DoloPawsWalkProof;
+      if(!proofCheck) return notCounted('trail.walkedRetry');
+      walkedThisBtn.textContent = window.t('trail.walkedLocating');
+      const position = await whereAmI();
+      if(!position) return notCounted('trail.walkedNoLocation');
+      const checkIn = proofCheck.assessCheckIn(position, t.path);
+      if(!checkIn.proof) return notCounted('trail.walkedNotHere');
+      const result = await walked.record(t.id, walked.activeDogGroup(), {
+        community: await communityReady(), proof: checkIn.proof,
+      });
       if(result === 'recorded' || result === 'already'){
         showWalked();
+        walkedThisBtn.removeAttribute('title');
         if(walkedStatus && result === 'recorded') walkedStatus.textContent = window.t('trail.walkedThanks');
         return;
       }

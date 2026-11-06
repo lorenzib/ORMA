@@ -7,9 +7,12 @@
   // the same anonymous event -- server time plus the dog's coarse FCI group --
   // so the tally can fill without anyone recording a track.
   //
+  // SOCIAL-02: a tap counts only with proof (walk-proof.js): 'checkin' when
+  // the phone places the walker on the trail, 'gps' for a recorded hike that
+  // covered the route. A tap at home proves nothing and writes nothing.
+  //
   // One walk per trail per day per browser. This only stops a double tap or a
-  // tap after a recorded hike from counting twice; the aggregate that reads
-  // the tally must still treat the counts as unverified.
+  // tap after a recorded hike from counting twice.
 
   const STORAGE_KEY = 'orma-walked-this-v1';
   const KEEP_DAYS = 30;
@@ -82,19 +85,22 @@
     }
   }
 
-  // Resolves to 'recorded', 'already' (counted today), 'unavailable' (the
-  // community service never loaded) or 'failed' (the write was refused or the
-  // walker is offline). Only 'recorded' marks the day, so a failed tap can be
-  // tried again.
+  const PROOFS = ['gps', 'checkin'];
+
+  // Resolves to 'recorded', 'already' (counted today), 'unproven' (no proof
+  // came with it, so nothing was written), 'unavailable' (the community
+  // service never loaded) or 'failed' (the write was refused or the walker is
+  // offline). Only 'recorded' marks the day, so a failed tap can be tried again.
   async function record(trailId, group, options){
     const opts = options || {};
     if(!trailId) return 'failed';
     if(walkedToday(trailId, opts)) return 'already';
+    if(!PROOFS.includes(opts.proof)) return 'unproven';
     const community = opts.community;
     if(!community || typeof community.recordTrailWalk !== 'function') return 'unavailable';
     let ok = false;
     try {
-      ok = await community.recordTrailWalk(trailId, group || 'unknown');
+      ok = await community.recordTrailWalk(trailId, group || 'unknown', opts.proof);
     } catch (error) {
       ok = false;
     }
@@ -103,7 +109,7 @@
     return 'recorded';
   }
 
-  const api = { STORAGE_KEY, dayKey, walkedToday, markWalked, activeDogGroup, record };
+  const api = { STORAGE_KEY, PROOFS, dayKey, walkedToday, markWalked, activeDogGroup, record };
   root.DoloPawsWalkedThis = api;
   if(typeof module !== 'undefined' && module.exports){ module.exports = api; }
 })(typeof window !== 'undefined' ? window : globalThis);

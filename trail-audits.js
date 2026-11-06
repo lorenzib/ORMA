@@ -180,20 +180,18 @@
       ],
       imagePlaceholder: true,
       curated: true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      tier: 'under-review',
-      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
+      // Seal restored 6 November 2026 by the owner's decision: where the official page gives only the start and the signed route, the route sentence says that start, the signed name and the places it passes, and the walker follows the mapped line.
+      tier: 'route-audited',
       reviewedAt: '2026-10-21',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'No reusable trail photograph is used; the official board image is retained only as a source, not copied.',
         route: 'Closed OSM relation checked against the official Laugen–Elvas overview board; the official board lists a 4.2 km circuit.',
-        routeNumbers: 'Bezirksgemeinschaft Eisacktal describes this circuit by name only, with no numbered waymark and no numbered switch, so the named-only statement stands in place of trail-number guidance.',
+        routeNumbers: 'Start at the route start beside the bus stop in Elvas and follow the signed Rundweg Laugen Elvas out to the Laugen wetland and its information stations, then back to Elvas. The circuit has no path number of its own.',
         mapPoints: 'Two water points and the suggested start were traced to exact source coordinates.',
         elevation: 'Profile present and scaled to 4.2 km; headline ascent corrected from the sampled 181 m to the official 100 m. Official time 1:30 h, 4.2 km, 100 m (Bezirksgemeinschaft Eisacktal overview board).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -9549,20 +9547,18 @@
       elevation: 38,
       hours: '2',
       curated: true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      tier: 'under-review',
-      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
+      // Seal restored 6 November 2026 by the owner's decision: where the official page gives only the start and the signed route, the route sentence says that start, the signed name and the places it passes, and the walker follows the mapped line.
+      tier: 'route-audited',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Zoggler Stausee from the dam, 170 m from the start, autumn (Memorino, CC BY 3.0).',
         route: 'Official GPX 7.75 km, closed loop; rebuilt on OSM ways along it and the province register Seeweg: 7.77 km, closed.',
-        routeNumbers: 'No route number: follow the “Seeweg” signs all the way round the lake. From the dam the first 1.5 km also carries path 20, and at Kuppelwies the signs are shared with path 19 and the Ultner Höfeweg.',
+        routeNumbers: 'Start at the St. Walburg dam of the Zoggler reservoir and follow the “Seeweg” signs along the shore all the way round the lake to Kuppelwies and back to the dam. From the dam the first 1.5 km also carries path 20, and at Kuppelwies the signs are shared with path 19 and the Ultner Höfeweg.',
         mapPoints: 'Start at the info board on the St. Walburg dam (OSM node 3740490405), bus stop Ulten, Zoggler Staudamm beside it; drinking water OSM node 14245045764 at km 0.7.',
         elevation: 'Official 7.7 km, 38 m up and down, 1:58 h, high point 1,149 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -10227,32 +10223,18 @@
         "url": "https://www.castelfeder.info/de/castelfeder/touren/rid-64923703-.html"
       },
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 6 November 2026 by the owner's decision: where the official page gives only the start and the signed route, the route sentence says that start, the signed name and the places it passes, and the walker follows the mapped line.
+      "tier": "route-audited",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
         "photo": "Commons, Syrio, CC BY-SA 4.0: a cobbled path past a Stations of the Cross chapel above Salurn, on the loop (replaces a view of Buchholz 1.7 km away).",
         "route": "Published line 2.80 km; official 2.7 km; the official GPX lies within 34 m of the line throughout.",
-        "routeNumbers": "No number of its own: the loop shares the Dürerweg (1) and path 409B for a stretch; the official page routes by the chapels and the waterfall.",
+        "routeNumbers": "Start in Salurn village centre near the town hall and follow the Kapellenrunde up along the old Stations of the Cross chapels to the Salurn waterfall on the Titschenbach, then back down to the village centre. The loop shares the Dürerweg (1) and path 409B for a stretch.",
         "mapPoints": "Start in Salurn village centre as the official page states; taps traced to OSM.",
         "elevation": "Official 194 m of climb (was 259)."
       },
-      "graduation": { "status": "in-progress", "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
       "verified": {
         "categories": [
           "water",
@@ -14681,13 +14663,14 @@
       "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Deutschnofen requires, and stay off the meadows. The loop passes through two working farmyards and uses about 500 m of the farm road, where cars come and go. There is no water on the way, so bring some. Two thirds of the loop is in forest, so it stays fairly cool."
     },
     'osm-12190538': {
-      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
-      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
+      // Seal restored 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
+      // measured by ORMA from the map (Open-Meteo ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: the line matches the province trail register's 'Flaaser Rundweg' (routes-hikingtrails.11425436,
       // 4.98 km): every register point within 39 m, one 70 m dog-leg past the Leitlkeller. Dogs: Jenesien dog regulation Art. 4 and 8.
       // No Natura 2000 site, park or biotope on the line.
       "area": "Flaas, San Genesio / Jenesien",
-      "elevation": 180,
+      "elevation": 260,
+      "hours": "2",
       "shadeCoverage": 60,
       "heatRisk": "low",
       "exposure": false,
@@ -14699,14 +14682,108 @@
         "name": "Flaaser Rundweg",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425436"
       },
-      "desc": "A 5 km loop round the hamlet of Flaas on the Tschögglberg above Jenesien, through fenced meadows, past farmsteads and the Leitlkeller inn, and back through spruce forest. About 180 m of up and down, between 1,350 and 1,530 m, in an hour and a half to two hours.\n\nJenesien's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows during the growing season, so keep to the path where it crosses them.",
-      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Jenesien requires, and keep off the meadows; horses graze in the fenced pastures. About 1.2 km follows quiet public roads. The only tap is by Flaas church, about 160 m off the loop. The first stretch over the meadows is open; most of the second half is in forest."
+      "desc": "A 5 km loop round the hamlet of Flaas on the Tschögglberg above Jenesien, through fenced meadows, past farmsteads and the Leitlkeller inn, and back through spruce forest. About 260 m of up and down, between 1,340 and 1,530 m, in about two hours, as measured by ORMA (no official figure).\n\nJenesien's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows during the growing season, so keep to the path where it crosses them.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Jenesien requires, and keep off the meadows; horses graze in the fenced pastures. About 1.2 km follows quiet public roads. The only tap is by Flaas church, about 160 m off the loop. The first stretch over the meadows is open; most of the second half is in forest.",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the small car park on the Lanzenweg above Flaas, where the loop begins on the map. This is ORMA’s reading of the map: no operator publishes directions for this loop.",
+        "sequence": "Walk a few metres west along the Lanzenweg, then take the path down across the meadows to meet the Lanzenweg again. Follow the road down past the Neuhaus farms, where for about 300 m the loop shares path 8, to the Kreuzer wayside shrine at the top of Flaas. Turn left onto the Kampidellerweg and follow it east, then keep on the farm track past the Leitlkeller inn (about km 1.9). Where the track bends back north, take the path north through the wood to the Aisl farms, cross the Kampideller Weg and follow the track and path north-west through the wood back to the car park. Read off the province trail register’s line and OpenStreetMap, not from directions an operator published.",
+        "switches": "Left onto the Kampidellerweg at the Kreuzer shrine in Flaas; onto the farm track past the Leitlkeller where the road ends; north onto the woodland path where the track bends back; across the Kampideller Weg at Aisl, then north-west back to the car park.",
+        "sources": [
+          {
+            "label": "South Tyrol trail register, Flaaser Rundweg (Open Data Hub)",
+            "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425436",
+            "authority": "Autonome Provinz Bozen",
+            "reviewedAt": "2026-11-06"
+          },
+          {
+            "label": "OpenStreetMap relation 12190538, Flaaser Rundweg",
+            "url": "https://www.openstreetmap.org/relation/12190538",
+            "authority": "OpenStreetMap",
+            "reviewedAt": "2026-11-06"
+          }
+        ]
+      },
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons (kept): Flaas and its church seen from the meadow slope above the village, which the loop crosses.",
+        "route": "Published line 5.05 km against the province register's Flaaser Rundweg (4.98 km): every register point within 39 m; one 70 m dog-leg past the Leitlkeller.",
+        "routeNumbers": "The register names the loop without a number; about 300 m shares path 8.",
+        "mapPoints": "Start at the car park on the loop; the only tap is by Flaas church, 160 m off the line.",
+        "elevation": "No official figure. Measured by ORMA from the map: 5.06 km, about 260 m up and down between 1,337 and 1,531 m, 2 h by DIN 33466."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Flaaser Rundweg', line routes-hikingtrails.11425436, 4,978 m; every register point within 39 m of the line",
+          "Gemeinde Jenesien, Verordnung über die Haltung und Führung von Hunden (GR 8/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields in the growing season), Art. 12 (applies outside built-up areas)",
+          "Jenesien landscape plan (newPlan PPC-21079): dogs may not run free in biotopes; no biotope on the line; no Natura 2000 site on the line (EEA)",
+          "OpenStreetMap: road classes, surfaces, forest, farmyards and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Flaaser Rundweg (Open Data Hub)",
+          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425436"
+        },
+        {
+          "label": "Gemeinde Jenesien, dog regulation",
+          "url": "https://www.gemeinde.jenesien.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden"
+        },
+        {
+          "label": "OpenStreetMap relation 12190538",
+          "url": "https://www.openstreetmap.org/relation/12190538"
+        }
+      ]
     },
     'osm-12371666': {
-      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
-      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
+      // Seal restored 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
+      // measured by ORMA from the map (Open-Meteo ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: the line matches the province trail register's 'Kastelaz Promenade' (routes-hikingtrails.11425908,
       // 1.27 km) within 15 m everywhere. Dogs: Tramin dog regulation Art. 4 and 8. No Natura 2000 site, park or biotope on the line.
+      "elevation": 85,
+      "hours": "0.5",
       "shadeCoverage": 5,
       "heatRisk": "high",
       "exposure": false,
@@ -14718,8 +14795,97 @@
         "name": "Kastelaz Promenade",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425908"
       },
-      "desc": "A short promenade of about 1.3 km above Tramin, up the lane towards the hill of Kastelaz and its St. Jakob church and back on footpaths between the vineyards, with views over the village spire and the Etsch valley. Allow half an hour.\n\nTramin's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed land during the growing season, so keep your dog out of the vineyards.",
-      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Tramin requires, and keep it out of the vineyards. About half the walk is on asphalt lanes where cars pass. There is almost no shade on this low, sunny vineyard slope, so avoid summer middays. Fountains are mapped in the village, 45 to 120 m off the route."
+      "desc": "A short promenade of about 1.3 km above Tramin, up the lane towards the hill of Kastelaz and its St. Jakob church and back on footpaths between the vineyards, with views over the village spire and the Etsch valley. About 85 m of up and down in about 35 minutes, as measured by ORMA (no official figure).\n\nTramin's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed land during the growing season, so keep your dog out of the vineyards.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Tramin requires, and keep it out of the vineyards. About half the walk is on asphalt lanes where cars pass. There is almost no shade on this low, sunny vineyard slope, so avoid summer middays. Fountains are mapped in the village, 45 to 120 m off the route.",
+      "imageIcon": "images/trails/osm-12371666-tramin-spire.jpg",
+      "imageCredit": "Tramin parish church and the Etsch valley",
+      "heroImage": "images/trails/osm-12371666-tramin-spire.jpg",
+      "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Quiricus_Julitta_Tramin_2021.jpg",
+      "imageCreator": "Plentn",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "imageCreditText": "Tramin parish church and the Etsch valley by Plentn",
+      "imageAlt": "The tall Gothic spire of Tramin parish church above red roofs, with the Etsch valley floor and the mountains across the valley behind",
+      "imageSourceType": "licensed-source",
+      "routeNumberGuidance": {"mode": "numbered", "start": "Start at the bus stop Tramin, Altersheim, 14 m from the route, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.", "status": "The mapped route carries trail numbers VR, 6; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.", "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails VR and then 6, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "switches": "On the mapped route, trail VR gives way to trail 6 about 0.8 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "establishedBy": {"start": "orma-record", "status": "orma-record", "sequence": "route-relations", "switches": "route-relations"}, "sources": [{"label": "OpenStreetMap route 6", "url": "https://www.openstreetmap.org/relation/12363193", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.092Z"}, {"label": "OpenStreetMap route VR", "url": "https://www.openstreetmap.org/relation/13347902", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.092Z"}]},
+      "terrainType": "Sparsely mapped: paved (100%), gravel (0%), from OSM surface data",
+      "terrainRank": 2,
+      "safetyLevel": "caution",
+      "waterSources": [{"km": 0.8, "lat": 46.345499, "lng": 11.240812, "osmId": "node/5530094131", "label": "Drinking water (OSM-verified location)"}, {"km": 0.8, "lat": 46.3442182, "lng": 11.2410776, "osmId": "node/5530105313", "label": "Drinking water (OSM-verified location)"}, {"km": 0.9, "lat": 46.343847, "lng": 11.242018, "osmId": "node/9855080620", "label": "Drinking water (OSM-verified location)"}],
+      "startPoint": {"lat": 46.342607, "lng": 11.2372893, "label": "Start here — Bus stop Tramin, Altersheim, 14 m from the route (OSM-verified access point)"},
+      "path": [[46.3442079, 11.235883], [46.344211, 11.2359109], [46.3442237, 11.2359455], [46.3442482, 11.2359831], [46.3442749, 11.2360115], [46.3442994, 11.2360552], [46.3443421, 11.2361044], [46.3444029, 11.236317], [46.344425, 11.2364877], [46.34445, 11.2366057], [46.3445129, 11.2368022], [46.3445322, 11.2369784], [46.3445629, 11.2370707], [46.3446035, 11.2372312], [46.3446501, 11.2374203], [46.3446838, 11.2376115], [46.3447065, 11.2376618], [46.3447128, 11.2377003], [46.3447333, 11.237748], [46.3447727, 11.2379032], [46.3447706, 11.2379519], [46.3446553, 11.2381728], [46.3446211, 11.2383096], [46.3446196, 11.2384968], [46.3446352, 11.2386174], [46.3446567, 11.2387357], [46.344656, 11.2388132], [46.3446852, 11.2390153], [46.3446852, 11.2391682], [46.3446951, 11.2392427], [46.3446866, 11.2393151], [46.3447002, 11.2394448], [46.344724, 11.2395344], [46.3448574, 11.2397701], [46.3449099, 11.2397821], [46.3449546, 11.2398271], [46.344962, 11.2399045], [46.3449442, 11.2399803], [46.3449527, 11.2400044], [46.3449872, 11.2399692], [46.3450113, 11.2399062], [46.3450525, 11.2398539], [46.3450124, 11.2400036], [46.3449947, 11.2400426], [46.3449611, 11.2400967], [46.3449124, 11.2401459], [46.3448021, 11.2402548], [46.3446413, 11.2403831], [46.3445894, 11.2404179], [46.3445102, 11.2404658], [46.3444405, 11.2405015], [46.3443985, 11.2405118], [46.344362, 11.2405106], [46.3442579, 11.2405069], [46.3440858, 11.2404943], [46.3440142, 11.2404875], [46.3439913, 11.2404855], [46.3439541, 11.2404762], [46.3439194, 11.2404599], [46.3438709, 11.240436], [46.3438185, 11.2404016], [46.3437782, 11.2403648], [46.3437267, 11.2402994], [46.3436389, 11.2401557], [46.3436, 11.2400834], [46.3435211, 11.2399365], [46.3432823, 11.2394453], [46.3432334, 11.2392791], [46.3431846, 11.2390514], [46.3431327, 11.2387174], [46.3430702, 11.2383758], [46.3429701, 11.238023], [46.3428138, 11.2376496], [46.3426971, 11.2374317], [46.342607, 11.2372893], [46.3426468, 11.2372503], [46.3426916, 11.2372491], [46.3427441, 11.2372527], [46.3427722, 11.2372347], [46.3427982, 11.2372108], [46.342822, 11.2371731], [46.3428516, 11.2371083], [46.3428717, 11.2370437], [46.3428945, 11.2369502], [46.3429202, 11.2368309], [46.3429458, 11.2367161], [46.3429792, 11.2365537], [46.3430123, 11.2364256], [46.3430869, 11.2362355], [46.3433276, 11.2357092], [46.3433803, 11.2356407], [46.3434429, 11.2355945], [46.3434976, 11.2355475], [46.3435425, 11.2355006], [46.3435691, 11.2354514], [46.3435832, 11.2354058], [46.3435908, 11.2353442], [46.3435845, 11.23529], [46.3435699, 11.2352479], [46.3435522, 11.2352017], [46.3434848, 11.2350264], [46.3434049, 11.234847], [46.3434245, 11.2348351], [46.343462, 11.2348445], [46.3435177, 11.2348676], [46.3435606, 11.2348928], [46.3436985, 11.2349837], [46.3438031, 11.2350772], [46.3438117, 11.2350849], [46.343864, 11.235167], [46.343904, 11.2351778], [46.343932, 11.2351744], [46.3439496, 11.2351798], [46.3439679, 11.2352066], [46.3440392, 11.2352908], [46.3440695, 11.2353032], [46.3441313, 11.2353655], [46.3442012, 11.2353525], [46.3444236, 11.2352083], [46.3444602, 11.2352137], [46.3444658, 11.2352462], [46.3443584, 11.235448], [46.3443442, 11.2354993], [46.3443827, 11.2354892], [46.3445549, 11.2353484], [46.3446061, 11.2353218], [46.3445729, 11.2354084], [46.3444386, 11.235616], [46.3444148, 11.2356818], [46.3443372, 11.2357212], [46.3442913, 11.2357533], [46.3442509, 11.2357943], [46.3442303, 11.235824], [46.3442228, 11.2358349], [46.3442079, 11.235883]],
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Plentn, CC BY-SA 4.0 (cropped): the Tramin parish spire and the Etsch valley from the St. Jakob lane, 26 m from the line (replaces a Kalterer See view 610 m away).",
+        "route": "Published line 1.28 km, within 15 m of the province register's Kastelaz Promenade (1.27 km) everywhere.",
+        "routeNumbers": "The register names the promenade without a number.",
+        "mapPoints": "Start at the Altersheim bus stop on the route; the fountains are in the village just off it.",
+        "elevation": "No official figure. Measured by ORMA from the map: 1.30 km, about 85 m up and down between 330 and 411 m, 35 min by DIN 33466."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Kastelaz Promenade', line routes-hikingtrails.11425908, 1,270 m; every register point within 10 m of the line",
+          "Gemeinde Tramin, Gemeindeverordnung über die Haltung und Führung von Hunden (GR 7/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed land in the growing season), Art. 12 (applies outside built-up areas)",
+          "Tramin landscape plan (newPlan PPC-21098): no biotope or natural monument on the line and no dog rule; no Natura 2000 site on the line (EEA)",
+          "OpenStreetMap: road classes, surfaces, vineyards and water along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Kastelaz Promenade (Open Data Hub)",
+          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425908"
+        },
+        {
+          "label": "Gemeinde Tramin, dog regulation",
+          "url": "https://www.gemeinde.tramin.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden"
+        },
+        {
+          "label": "OpenStreetMap relation 12371666",
+          "url": "https://www.openstreetmap.org/relation/12371666"
+        }
+      ]
     },
     'osm-123162': {
       // Hand audit 23 October 2026: route, waymarks and figures from the official Planetenweg description (suedtirol.info / Eggental
@@ -16303,14 +16469,15 @@
       desc: 'A loop round the sunny terrace of Terenten: west along the village, up past the Pillinghof and the Pirchner Moos wetland, over the meadows to Margen and the Jakobihof, and back through the Mühlental past the earth pyramids. The official route lists 7.2 km, with the detour to St. Margareth, and 329 m of ascent.'
     },
     'osm-11855879': {
-      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
-      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
+      // Seal restored 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
+      // measured by ORMA from the map (Open-Meteo ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: the line matches the province trail register's 'Roda de Cherz' (routes-hikingtrails.11427015,
       // 2.77 km) within 6 m everywhere. Dogs: Livinallongo del Col di Lana publishes no dog rule, so the national rule applies
       // (Ministry of Health ordinance of 6 August 2013, Art. 1(3)); Arabba Fodom Turismo asks for a lead on all paths because of grazing
       // animals. No Natura 2000 site or park on the line.
       "area": "Cherz plateau, Arabba (Livinallongo del Col di Lana)",
-      "elevation": 90,
+      "elevation": 70,
+      "hours": "1",
       "shadeCoverage": 0,
       "heatRisk": "high",
       "exposure": false,
@@ -16323,8 +16490,102 @@
         "name": "Roda de Cherz",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427015"
       },
-      "desc": "A gentle 2.8 km loop over the open Cherz plateau above Arabba, at about 2,050 m, through grassland and alpenrose with wide views of the surrounding Dolomites. It shares its tracks with CAI paths 22 and 45, and passes close to the Ütia Cherz hut and the ski lifts. About 90 m of up and down.\n\nLivinallongo publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Arabba's tourist office asks for dogs to be kept on a lead on all paths, because grazing animals are common.",
-      "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle: the national rule requires it and the tourist office asks for a lead on every path, as animals graze on the plateau. Watch for mountain bikes and the occasional ski-area vehicle on the tracks. There is no shade and no water on the loop, so bring water and avoid hot middays; the Ütia Cherz is about 150 m off the route. If you take the Cherz chairlift up, dogs ride on a lead and muzzled, for a small fee."
+      "desc": "A gentle 2.8 km loop over the open Cherz plateau above Arabba, at about 2,050 m, through grassland and alpenrose with wide views of the surrounding Dolomites. It shares its tracks with CAI paths 22 and 45, and passes close to the Ütia Cherz hut and the ski lifts. About 70 m of up and down and under an hour, as measured by ORMA (no official figure).\n\nLivinallongo publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Arabba's tourist office asks for dogs to be kept on a lead on all paths, because grazing animals are common.",
+      "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle: the national rule requires it and the tourist office asks for a lead on every path, as animals graze on the plateau. Watch for mountain bikes and the occasional ski-area vehicle on the tracks. There is no shade and no water on the loop, so bring water and avoid hot middays; the Ütia Cherz is about 150 m off the route. If you take the Cherz chairlift up, dogs ride on a lead and muzzled, for a small fee.",
+      "imageIcon": "images/trails/osm-11855879-cherz-alpenrose.jpg",
+      "imageCredit": "Alpenrose on the Cherz pasture",
+      "heroImage": "images/trails/osm-11855879-cherz-alpenrose.jpg",
+      "imageSourcePage": "https://www.inaturalist.org/observations/294576616",
+      "imageCreator": "Mike Noren",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "imageCreditText": "Alpenrose on the Cherz pasture by Mike Noren",
+      "imageAlt": "Alpenrose in flower on the Cherz pasture at about 2080 m, the meadow rising to a Dolomite skyline behind",
+      "imageSourceType": "licensed-source",
+      "routeNumberGuidance": {"mode": "numbered", "start": "Start at Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs about 220 m from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.", "status": "The mapped route carries trail numbers 022, 045; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.", "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails 022, 045 and then 022, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "switches": "On the mapped route, trail 022 gives way to trail 045 about 0.1 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "establishedBy": {"start": "orma-record", "status": "orma-record", "sequence": "route-relations", "switches": "route-relations"}, "sources": [{"label": "OpenStreetMap route 022", "url": "https://www.openstreetmap.org/relation/19266004", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.221Z"}, {"label": "OpenStreetMap route 045", "url": "https://www.openstreetmap.org/relation/19267819", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.221Z"}]},
+      "terrainType": "Surface not yet field-verified",
+      "terrainRank": 0,
+      "safetyLevel": "low-risk",
+      "waterSources": [],
+      "startPoint": {"lat": 46.52004, "lng": 11.87393, "label": "Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs about 220 m from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs"},
+      "path": [[46.5155873, 11.8856421], [46.5155965, 11.885872], [46.5155877, 11.8860373], [46.5155631, 11.8861767], [46.5155432, 11.8862649], [46.5155199, 11.8863356], [46.5154754, 11.8864091], [46.5153453, 11.8864929], [46.515301, 11.8866022], [46.515241, 11.8866934], [46.5152174, 11.8867739], [46.5151911, 11.8868154], [46.5151607, 11.8869033], [46.5150845, 11.8869878], [46.5150545, 11.8870877], [46.5149433, 11.8872875], [46.514912, 11.8874317], [46.5148058, 11.8877193], [46.5147703, 11.8879131], [46.5145626, 11.888296], [46.5142405, 11.8888351], [46.513959, 11.8891751], [46.5138912, 11.889334], [46.5137459, 11.8894722], [46.5135054, 11.8896438], [46.5127702, 11.890039], [46.512601, 11.890254], [46.5124305, 11.8903824], [46.5121473, 11.8905397], [46.5120283, 11.8906999], [46.5119055, 11.8908294], [46.511846, 11.8909413], [46.5116762, 11.8911023], [46.5115986, 11.8912692], [46.5115211, 11.8914033], [46.5114085, 11.8915227], [46.5113863, 11.8915918], [46.5111671, 11.8918989], [46.5109687, 11.8922462], [46.5108021, 11.8924789], [46.5107477, 11.8925004], [46.5104675, 11.8928041], [46.5103725, 11.8929979], [46.5103674, 11.8931186], [46.5102608, 11.8933211], [46.5102488, 11.8934016], [46.5102026, 11.8934754], [46.5101283, 11.8937623], [46.5099333, 11.8941269], [46.5097518, 11.8943873], [46.5097005, 11.8945456], [46.5096452, 11.8945643], [46.5095496, 11.8946683], [46.5094989, 11.894795], [46.5094548, 11.8948307], [46.5093313, 11.89486], [46.5091949, 11.8949594], [46.5088984, 11.8952852], [46.5085097, 11.8955688], [46.5081743, 11.8957626], [46.5080484, 11.8957894], [46.5079256, 11.8957753], [46.5078047, 11.895721], [46.5077082, 11.8956151], [46.5074013, 11.8956064], [46.5073653, 11.8955205], [46.5069643, 11.895546], [46.5069329, 11.8956117], [46.5066784, 11.8956976], [46.506578, 11.8956633], [46.5065484, 11.8956203], [46.5068734, 11.8953457], [46.506976, 11.8952531], [46.5070132, 11.8950954], [46.5071101, 11.8950203], [46.5073261, 11.8948232], [46.5075661, 11.8946193], [46.5085029, 11.893525], [46.5089252, 11.8925922], [46.5089451, 11.8924943], [46.5089215, 11.8922167], [46.5089248, 11.8920974], [46.5089538, 11.8919606], [46.5091703, 11.8913296], [46.5093641, 11.8909031], [46.5094924, 11.890537], [46.5095325, 11.8902983], [46.5095972, 11.8901145], [46.5096978, 11.8899053], [46.5098985, 11.8896706], [46.5100614, 11.889503], [46.5101583, 11.8893595], [46.510306, 11.8892475], [46.5105884, 11.8891188], [46.5107135, 11.8890135], [46.5108109, 11.8888962], [46.5109207, 11.8887406], [46.5110084, 11.8885978], [46.5110601, 11.8884737], [46.5111538, 11.8881076], [46.5112565, 11.8878613], [46.5113687, 11.887681], [46.5116046, 11.8874377], [46.5117957, 11.8873096], [46.5119955, 11.8872929], [46.5125816, 11.88738], [46.5127445, 11.8874793], [46.5129111, 11.8875088], [46.5130693, 11.8874209], [46.5132138, 11.8873344], [46.5140859, 11.8870888], [46.5143979, 11.8868798], [46.5146821, 11.8868744], [46.5148833, 11.8867111], [46.5150047, 11.8866364], [46.5151141, 11.886517], [46.5152299, 11.8864265], [46.5152631, 11.8863601], [46.5152849, 11.8862476], [46.5154205, 11.8861402], [46.5155139, 11.8860158], [46.515561, 11.8859611], [46.5155965, 11.885872]],
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-10-23",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "iNaturalist, Mike Noren, CC BY-SA (kept): alpenrose on the Cherz grassland with the Dolomites behind, 18 m from the line.",
+        "route": "Published line 2.74 km, within 6 m of the register's Roda de Cherz (2.77 km) everywhere.",
+        "routeNumbers": "The register names the loop without a number; it shares its tracks with CAI paths 22 and 45.",
+        "mapPoints": "Start from Passo Campolongo, as before; no water on the loop.",
+        "elevation": "No official figure. Measured by ORMA from the map: 2.74 km, about 70 m up and down between 2,034 and 2,104 m, 55 min by DIN 33466."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (geoservices1.civis.bz.it, Open Data Hub): 'Roda de Cherz', line routes-hikingtrails.11427015, 2,768 m; every register point within 6 m of the line",
+          "National rule: Ministry of Health, Ordinanza 6 agosto 2013, Art. 1(3), renewed to 5 Sep 2027: 'utilizzare sempre il guinzaglio a una misura non superiore a mt 1,50' and a muzzle carried. The commune of Livinallongo del Col di Lana publishes no dog or police regulation (checked its list of 18 regulations, site search and web searches)",
+          "Arabba Fodom Turismo, travelling with a dog: 'Il cane deve essere necessariamente accompagnato al guinzaglio, anche all'aperto e sui sentieri, è infatti facile trovare animali al pascolo'",
+          "No Natura 2000 site or park on the line (EEA)",
+          "OpenStreetMap: surfaces, mountain-bike tags, CAI paths 22 and 45, and huts along the line"
+        ],
+        "date": "2026-10-23"
+      },
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Roda de Cherz (Open Data Hub)",
+          "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427015"
+        },
+        {
+          "label": "Arabba Fodom Turismo, on holiday with your dog",
+          "url": "https://www.arabba.it/it/info-eventi/servizi-informazioni-utili/in-vacanza-con-l-amico-a-quattro-zampe/175-0.html"
+        },
+        {
+          "label": "Ministry of Health ordinance of 6 August 2013 (text)",
+          "url": "https://www.certifico.com/id/26170"
+        },
+        {
+          "label": "OpenStreetMap relation 11855879",
+          "url": "https://www.openstreetmap.org/relation/11855879"
+        }
+      ]
     },
     'osm-12018939': {
       // Correction, 23 October 2026 (not a verification: no usable photo of the walk exists yet). Line rebuilt on OSM ways along
@@ -39403,20 +39664,18 @@
       routeShape: 'loop',
       routeShapeNote: 'A short loop from the church in Aicha round the village and its orchards, following the Dorfrundweg symbol.',
       curated: true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      tier: 'under-review',
-      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
+      // Seal restored 6 November 2026 by the owner's decision: where the official page gives only the start and the signed route, the route sentence says that start, the signed name and the places it passes, and the walker follows the mapped line.
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The parish church of St. Nikolaus in Aicha, where the walk starts, in August (Michielverbeek, CC BY-SA 4.0), 55 m from the line.',
         route: 'Official loop 2.3 km from the church in Aicha; the stored OSM line (relation 11791915, Dorfrundweg Aicha) is the same loop, 2.3 km, turned to start where it passes the church (10 m away).',
-        routeNumbers: 'Signed with the Dorfrundweg symbol from the church in Aicha; the board gives no further directions.',
+        routeNumbers: 'Start at the church of St. Nikolaus in Aicha and follow the Dorfrundweg symbol round the village, past orchards and old farms, and back to the church.',
         mapPoints: 'Start at the church of St. Nikolaus in Aicha (official start); drinking water near the church at km 2.2 (OSM node 289017239).',
         elevation: 'Official 2.3 km, 89 m up and down, 45 min, 724–798 m (Brixen Tourismus, Südtirol.info).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [

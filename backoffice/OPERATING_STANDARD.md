@@ -2448,6 +2448,11 @@ resting and rejection are unchanged.
    says which it is -- `basis: published | measured | estimated` -- and a
    measured or estimated answer is recorded as unresolved, so it goes round
    the ladder looking for the published one.
+   *Exception, owner's decision of 6 November 2026:* Roda de Cherz,
+   Kastelaz Promenade and Flaaser Rundweg carry a climb and a time measured
+   by ORMA from the map (Open-Meteo ground heights every 100 m with a 10 m
+   threshold; time by DIN 33466), because no authority publishes either.
+   Their pages say so in words. The rule stands for every other walk.
 2. **Every municipality the line crosses.** The Ranger is given sample points
    along the whole line -- the start, one every kilometre, the point farthest
    from the start, and the end -- because a loop often crosses into the next

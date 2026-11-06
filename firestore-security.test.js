@@ -74,11 +74,13 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toMatch(/match \/\{document=\*\*\}[\s\S]*allow read, write: if false;/);
   });
 
-  test('the anonymous trail-walk tally can only be an {at, group} create', () => {
+  test('the anonymous trail-walk tally can only be an {at, group, proof} create', () => {
     const start = rules.indexOf('match /trailWalks/{trailId}/walks/{walkId}');
     const block = rules.slice(start, rules.indexOf('match ', start + 1));
     // Anonymous, fixed shape: only server time plus a short group string.
-    expect(block).toContain("request.resource.data.keys().hasOnly(['at', 'group'])");
+    expect(block).toContain("request.resource.data.keys().hasOnly(['at', 'group', 'proof'])");
+    // SOCIAL-02: only a proven walk counts, and the proof is required.
+    expect(block).toContain("request.resource.data.proof in ['gps', 'checkin']");
     expect(block).toContain('request.resource.data.at == request.time');
     expect(block).toContain('request.resource.data.group is string');
     expect(block).toContain('request.resource.data.group.size() <= 12');

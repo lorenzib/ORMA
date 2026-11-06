@@ -38,6 +38,20 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-months{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;list-style:none;padding:0;margin:10px 0 6px;max-width:460px;}
+  .sp-month{position:relative;text-align:center;font-size:.75rem;font-weight:600;padding:6px 0;border-radius:6px;border:2px solid transparent;}
+  .sp-month--good{background:#BFDDB8;color:#1D4523;}
+  .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
+  .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--now{border-color:#1F2A24;}
+  .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
+  .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
+  .sp-key--good{background:#BFDDB8;}
+  .sp-key--off{background:rgba(0,0,0,.08);}
+  .sp-key--snow{background:#C9DAF0;}
+  .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
+  .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
+  .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   /* The waymark shield, as the app draws it in trail.html: a number a reader
      can match against the paint on a rock without reading a sentence first. */
   .sp-route-refs{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 4px;}
@@ -138,7 +152,7 @@
   
   <div class="sp-badges">
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Caution terrain</span></span>
-    <span class="dp-badge dp-badge--neutral"><span>Reviewed by ORMA</span></span>
+    <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verified by ORMA</span></span>
     
     
   </div>
@@ -174,9 +188,36 @@
     </svg>
     <figcaption class="sp-src">Elevation profile: lowest 815 m, highest 930 m.</figcaption>
   </figure>
+    <section class="sp-season" id="season" data-season-notes="[&quot;In January snow is possible on this walk.&quot;,&quot;In February snow is possible on this walk.&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;In December snow is possible on this walk.&quot;]" data-season-warn="000000000000">
+    <h2>When to go</h2>
+    <p class="sp-season-now" hidden></p>
+    <ol class="sp-months" aria-label="Months of the year"><li class="sp-month sp-month--snow" data-month="1"><span aria-hidden="true">J</span><span class="sp-vh">January: Snow possible</span></li><li class="sp-month sp-month--snow" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">February: Snow possible</span></li><li class="sp-month sp-month--good" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">March: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">April: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">May: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">J</span><span class="sp-vh">June: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">J</span><span class="sp-vh">July: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">August: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">September: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">October: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">November: Usually snow-free</span></li><li class="sp-month sp-month--snow" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">December: Snow possible</span></li></ol>
+    <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Usually snow-free <span class="sp-key sp-key--snow"></span>Snow possible</p>
+    <p>Snow is possible here from December to February.</p>
+    <p class="sp-src">Estimated from the walk’s high point (930 m). No tourist board publishes this walk’s season, and every winter is different.</p>
+    
+  </section>
+  <script>
+  (function(){
+    var box = document.getElementById('season');
+    if(!box) return;
+    var m = new Date().getMonth();
+    var notes = []; try{ notes = JSON.parse(box.getAttribute('data-season-notes')); }catch(e){}
+    var li = box.querySelector('[data-month="' + (m + 1) + '"]');
+    if(li) li.classList.add('sp-month--now');
+    var note = box.querySelector('.sp-season-now');
+    if(note && notes[m]){
+      note.textContent = notes[m];
+      if((box.getAttribute('data-season-warn') || '').charAt(m) === '1') note.classList.add('sp-season-now--warn');
+      note.hidden = false;
+    }
+  })();
+  </script>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> Where to start</h2>
     <p>Elvas route start beside the mapped bus stop</p>
-    
+    <h2>How to follow this route</h2>
+    <p><b>Directions:</b> Start at the route start beside the bus stop in Elvas and follow the signed Rundweg Laugen Elvas out to the Laugen wetland and its information stations, then back to Elvas. The circuit has no path number of its own.</p>
+    <p class="sp-route-source">From ORMA's route audit of the official route description. Follow the mapped ORMA line and local signs.</p>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> Water on trail</h2>
     <ul><li>km 0 · Seasonal church fountain mapped in Elvas</li><li>km 4.2 · Drinking-water well mapped in Elvas</li></ul>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M4 11l8-7 8 7" fill="none" stroke="#8A5A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 10v9h12v-9" fill="#D6A038" stroke="#8A5A16" stroke-width="1.6" stroke-linejoin="round"></path><path d="M10 19v-5h4v5" fill="#8A5A16"></path></svg> Rifugi &amp; refreshment</h2>
@@ -184,7 +225,7 @@
     <h2>Good to know</h2>
     <p>The official circuit starts in Elvas and visits the Laugen wetland and its information stations. The route is 4.2 km with about 100 m ascent and takes roughly 1½ hours. Brixen requires a lead in Elvas and a muzzle carried, and dogs may not run free in the Laugen biotope: keep your dog on a short lead, on the marked path and out of the pond.</p>
     
-<p class="sp-review-meta">Reviewed by ORMA on 21 Oct 2026. Check current conditions before setting out.</p>
+<p class="sp-review-meta">Verified by ORMA on 21 Oct 2026. Check current conditions before setting out.</p>
     <div id="dogFit">
     <h2>Is this trail right for <em>your</em> dog?</h2>
     <!-- This used to say ORMA "can't tell you" how the route pairs with a

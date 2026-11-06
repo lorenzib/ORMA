@@ -101,6 +101,14 @@ function initHikeMode(map, trail, options){
   // outbound one. Both are the same line in the same direction of travel.
   let furthestRouteM = 0;
   const RETURN_MARGIN_M = 150;
+  // SOCIAL-02: which stretches of the line this hike has walked. A finished
+  // hike counts as a walk only when they cover most of the route.
+  const walkProof = window.DoloPawsWalkProof || null;
+  let coverage = null;
+  // SOCIAL-03: where this recording began, so a loop started from any car
+  // park on it ends back there. A resumed hike falls back to the line's start.
+  let recordingStart = null;
+  const walkShape = isLoop ? 'loop' : outAndBack ? 'out-and-back' : 'one-way';
 
   // ---- UI elements ---------------------------------------------------------
   const startBtn = document.createElement('button');
@@ -284,7 +292,14 @@ function initHikeMode(map, trail, options){
 
   function clearDurableSession(){
     if(window.DoloPawsHikeSession) window.DoloPawsHikeSession.clear();
+    if(walkProof) walkProof.clearCoverage();
     durableSession = null;
+  }
+
+  function markCoverage(alongM, distanceM){
+    if(!walkProof || !coverage) return;
+    coverage = walkProof.markFix(coverage, { alongM, distanceM });
+    if(durableSession) walkProof.saveCoverage(durableSession.sessionId, coverage);
   }
 
   function setStartLabel(key, fallback){
@@ -573,6 +588,19 @@ function initHikeMode(map, trail, options){
         lastKnownKm = distanceTracker.distanceM / 1000;
       }
       lastValidFixAt = fixTimestamp;
+      markCoverage(routeProgressM, routeDistanceM);
+      if(!recordingStart) recordingStart = [lat, lng];
+      if(walkProof && walkProof.reachedFinish({
+        coverage,
+        shape: walkShape,
+        toStartM: metersBetween(lat, lng, recordingStart[0], recordingStart[1]),
+        toEndM: metersBetween(lat, lng, trail.path[trail.path.length - 1][0], trail.path[trail.path.length - 1][1]),
+        furthestShare: furthestRouteM / totalMeters,
+      })){
+        // Back at the end of a proven walk: finish it for the walker, after
+        // this fix's progress is stored.
+        setTimeout(() => { if(active) finishHike(); }, 0);
+      }
       persistProgress(
         lastKnownKm,
         snap.idx,
@@ -728,6 +756,8 @@ function initHikeMode(map, trail, options){
     hikeStartRecorded = false;
     hikeStartedAt = Date.now();
     lastKnownKm = 0;
+    coverage = walkProof ? walkProof.createCoverage(totalMeters) : null;
+    recordingStart = null;
     distanceTracker = window.DoloPawsHikeDistance
       ? window.DoloPawsHikeDistance.create(0)
       : null;
@@ -752,8 +782,10 @@ function initHikeMode(map, trail, options){
     }));
     panel.style.display = 'block';
     container.classList.add('hike-status-visible');
-    panel.innerHTML = window.t('hike.getting');
-    announceStatus(panel.textContent);
+    // One short line while the GPS warms up: the walk ends itself, and the
+    // waymarks still lead (the boundary the readiness sheet used to state).
+    panel.innerHTML = `${window.t('hike.getting')}<span style="display:block;margin-top:4px;font-weight:500;opacity:.85;">${esc(window.t('hike.autoFinishNote'))}</span>`;
+    announceStatus(`${window.t('hike.getting')} ${window.t('hike.autoFinishNote')}`);
     showLiveDot();
     acquireWakeLock();
     watchId = navigator.geolocation.watchPosition(onFix, onError, {
@@ -763,13 +795,18 @@ function initHikeMode(map, trail, options){
     });
   }
 
+  // SOCIAL-03: one tap starts recording, as in every walking app. The phone
+  // asks for location itself, and onError explains a refusal. The readiness
+  // sheet repeated what the trail page already shows (offline map, weather,
+  // directions, safety guide), so it opens only on a phone with no GPS.
   function requestNewHike(){
-    if(window.DoloPawsReadiness && window.DoloPawsReadiness.open){
-      window.DoloPawsReadiness.open(trail, startHike);
-    }else{
-      startHike();
+    if(!navigator.geolocation && window.DoloPawsReadiness && window.DoloPawsReadiness.open){
+      window.DoloPawsReadiness.open(trail, null);
+      return;
     }
+    startHike();
   }
+
 
   function stopHike(keepPanel){
     active = false;
@@ -800,6 +837,11 @@ function initHikeMode(map, trail, options){
     hikeStartRecorded = !!progress;
     hikeStartedAt = durableSession.startedAt;
     lastKnownKm = progress ? progress.km : 0;
+    // The stretches already walked before the app closed still count.
+    coverage = walkProof
+      ? walkProof.loadCoverage(durableSession.sessionId) || walkProof.createCoverage(totalMeters)
+      : null;
+    recordingStart = progress ? trail.path[0] : null;
     distanceTracker = window.DoloPawsHikeDistance
       ? window.DoloPawsHikeDistance.create(lastKnownKm)
       : null;
@@ -868,17 +910,22 @@ function initHikeMode(map, trail, options){
       return false;
     }
     // SOCIAL-01 stage 1: one anonymous tally per completed walk, tagged only
-    // with the dog's coarse FCI group. Fire-and-forget; a finished hike must
-    // never depend on it.
-    if(window.DoloPawsCommunity && typeof window.DoloPawsCommunity.recordTrailWalk === 'function'){
-      window.DoloPawsCommunity.recordTrailWalk(trail.id, activeDogGroup());
+    // with the dog's coarse FCI group. SOCIAL-02: only a hike whose fixes
+    // covered the route counts. Fire-and-forget; a finished hike must never
+    // depend on it.
+    const proof = walkProof
+      ? walkProof.assessHike({ coverage, startedAt: hikeStartedAt, completedAt })
+      : null;
+    if(proof && proof.proof === 'gps' &&
+       window.DoloPawsCommunity && typeof window.DoloPawsCommunity.recordTrailWalk === 'function'){
+      window.DoloPawsCommunity.recordTrailWalk(trail.id, activeDogGroup(), 'gps');
       // A tap on "We walked this" after the hike must not count it again.
       if(window.DoloPawsWalkedThis) window.DoloPawsWalkedThis.markWalked(trail.id);
     }
     completionRetry = null;
     clearDurableSession();
     stopHike(false);
-    showCompletionScreen(result.record);
+    showCompletionScreen(result.record, proof);
     return true;
   }
 
@@ -925,7 +972,7 @@ function initHikeMode(map, trail, options){
     return { name, photo };
   }
 
-  function showCompletionScreen(completion){
+  function showCompletionScreen(completion, proof){
     const elapsedSeconds = completion.durationSeconds;
     const elapsedMinutes = Math.max(1, Math.round(elapsedSeconds / 60));
     const dog = dogSummary();
@@ -972,6 +1019,11 @@ function initHikeMode(map, trail, options){
           ${ratingLabel ? `<span class="safety-badge ${ratingClass}">${esc(ratingLabel)}</span>` : ''}
           ${Number.isFinite(matchPct) ? `<span class="pct">${esc(window.t('hike.matchFor', {pct: matchPct, name: dogName}))}</span>` : ''}
         </div>
+        ${proof ? `<p class="hk-proof" style="margin:-8px 0 18px;font:600 13px 'Inter',sans-serif;color:${proof.proof ? 'var(--success)' : 'var(--ink-soft)'};">${esc(proof.proof
+          ? window.t('hike.proofGps')
+          : proof.reason === 'too-little-of-the-route'
+            ? window.t('hike.proofShort', { pct: Math.round(proof.share * 100) })
+            : window.t('hike.proofUnconfirmed'))}</p>` : ''}
         <div class="hk-block hk-outcome-block">
           <div class="hk-label">${esc(tx('Private trail feedback'))}</div>
           <p class="hk-outcome-intro">${esc(tx('Did this trail suit {name}? This helps assess the recommendation and never becomes a public review.', { name: dogName }))}</p>

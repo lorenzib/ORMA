@@ -43,6 +43,7 @@ const SOURCES = [
   'hike-completions.js',
   'post-hike-outcomes.js',
   // The one-tap tally; hike mode tags its walks through it too.
+  'walk-proof.js',
   'walked-this.js',
   'hike-mode.js',
   'detail-pois.js',
@@ -55,6 +56,8 @@ const SOURCES = [
   'route-guidance-sources.js',
   // One-way walks seen there and back; trail.js and trail-recommendation.js read it.
   'route-return.js',
+  // When in the year a walk is a walk; trail-blueprint.js reads it.
+  'trail-season-words.js',
   'trail.js',
   'trail-blueprint.js',
   'trail-detail-ui.js',
