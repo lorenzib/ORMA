@@ -131,6 +131,8 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
+    "globalSetup": "<rootDir>/scripts/jest-temp-setup.js",
+    "globalTeardown": "<rootDir>/scripts/jest-temp-teardown.js",
     "testMatch": [
       "**/*.test.js"
     ],
