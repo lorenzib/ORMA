@@ -22,27 +22,30 @@
 <link rel="stylesheet" href="../../styles.css?v=20260916-5">
 <link rel="stylesheet" href="../../guides/guide-scan-cards.css?v=20260825-1">
 <style>
-  /* One reading pattern for every section: kicker and heading on the page,
-     then a white card with a full-width intro and a single-column list. */
+  /* Same reading pattern as the heat guide: three "what are you seeing?"
+     cards, numbered action cards, and one pale-red alert. */
   .scan-shell{padding-top:32px;}
-  .guardian-section{margin-top:34px;}
-  .guardian-section+.guardian-section{padding-top:28px;border-top:1px solid var(--paper-line);}
-  .guardian-section-head{margin-bottom:14px;}
-  .guardian-section-head h2{margin:0;font-size:clamp(22px,2.3vw,29px);line-height:1.1;}
-  .guardian-content-card{padding:22px 24px;border:1px solid var(--paper-line);border-radius:14px;background:#fff;box-shadow:0 10px 26px -24px rgba(23,42,28,.45);}
-  .guardian-intro{margin:0;color:var(--scan-ink);font-size:.88rem;line-height:1.6;}
-  .guardian-content-card .scan-list{margin-top:14px;gap:9px;}
-  .guardian-content-card .scan-list li{font-size:.82rem;line-height:1.55;}
-  .guardian-content-card .scan-list strong{color:var(--scan-ink);}
-  .guardian-steps{display:grid;gap:16px;margin:16px 0 0;padding:0;list-style:none;}
-  .guardian-steps li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;align-items:start;}
-  .guardian-steps h3{margin:5px 0 3px;font-size:1rem;line-height:1.25;}
-  .guardian-steps p{margin:0;color:var(--scan-soft);font-size:.82rem;line-height:1.55;}
-  .guardian-never{margin:18px 0 0;padding-top:14px;border-top:1px solid var(--paper-line);color:var(--scan-soft);font-size:.82rem;line-height:1.55;}
-  .guardian-never strong,.guardian-note strong{color:var(--scan-ink);}
-  .guardian-note{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--paper-line);color:var(--scan-soft);font-size:.8rem;line-height:1.55;}
-  .guardian-content-card .scan-alert{margin-top:20px;}
-  @media(max-width:680px){.guardian-content-card{padding:18px;}.guardian-section{margin-top:28px;}.guardian-section+.guardian-section{padding-top:24px;}}
+  .hs-kicker{display:block;margin-bottom:7px;color:var(--safety-info);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
+  .hs-section{margin:24px 0;}
+  .hs-section-head{margin-bottom:14px;}
+  .hs-section-head h2{margin:0;font-size:clamp(25px,2.6vw,34px);line-height:1.08;letter-spacing:-.025em;}
+  .hs-section-head p{max-width:720px;margin:8px 0 0;color:var(--ink-soft);font-size:.8rem;line-height:1.48;}
+  .hs-observations,.hs-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+  .hs-observation{padding:18px 19px;border:1px solid var(--paper-line);border-radius:13px;background:var(--card);}
+  .hs-observation-label{display:block;margin-bottom:8px;color:var(--safety-safe);font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;}
+  .hs-observation--early .hs-observation-label{color:var(--safety-caution);}
+  .hs-observation--emergency .hs-observation-label{color:var(--safety-stop);}
+  .hs-observation h3{margin:0 0 7px;font-size:1.03rem;line-height:1.25;}
+  .hs-observation p{margin:0;color:var(--ink-soft);font-size:.78rem;line-height:1.48;}
+  .hs-actions{counter-reset:guardian-step;}
+  .hs-action{position:relative;display:grid;grid-template-columns:25px minmax(0,1fr);column-gap:10px;align-items:start;padding:18px 19px;border:1px solid var(--paper-line);border-radius:13px;background:var(--card);counter-increment:guardian-step;}
+  .hs-action::before{content:counter(guardian-step);display:grid;grid-column:1;grid-row:1;place-items:center;width:25px;height:25px;border-radius:50%;background:var(--safety-safe);color:#fff;font-weight:800;font-size:.7rem;}
+  .hs-action strong{display:flex;grid-column:2;grid-row:1;align-items:center;min-height:25px;margin-bottom:6px;color:var(--ink);font-size:1.03rem;}
+  .hs-action span{display:block;grid-column:2;grid-row:2;color:var(--ink-soft);font-size:.78rem;line-height:1.48;}
+  .guardian-note{margin:12px 0 0;color:var(--ink-soft);font-size:.78rem;line-height:1.5;}
+  .guardian-note strong{color:var(--ink);}
+  .hs-section .scan-alert{margin-top:14px;}
+  @media(max-width:620px){.hs-observations,.hs-actions{grid-template-columns:1fr;}.hs-section-head p{margin-top:6px;}}
 </style>
 <link rel="stylesheet" href="../../guides/safety-guide-system.css?v=20261104-1">
 <script type="application/ld+json">
@@ -100,62 +103,62 @@
     <ul><li>Metti il cane al guinzaglio corto al primo segnale di un gregge: campanacci, una griglia per il bestiame, animali o un cartello.</li><li>Gira largo attorno al gregge, mai in mezzo. Torna indietro se non c’è un modo sicuro per aggirarlo.</li><li>Se arriva un cane da guardiania, fermati, resta calmo e non fissarlo. Poi indietreggia lentamente.</li></ul>
   </section>
 
-  <section class="guardian-section" aria-labelledby="guardianSpotTitle">
-    <div class="guardian-section-head"><span class="scan-kicker">Riconoscili presto</span><h2 id="guardianSpotTitle">Come riconoscere i cani da guardiania</h2></div>
-    <div class="guardian-content-card">
-      <p class="guardian-intro">I cani da guardiania vivono con il gregge e lo proteggono da soli, giorno e notte. Se abbaiano, ti corrono incontro o ti sbarrano il sentiero, ti stanno avvertendo di stare lontano.</p>
-      <ul class="scan-list">
-        <li><strong>Cani grandi, spesso bianchi</strong>, come il Pastore maremmano-abruzzese o il Cane da montagna dei Pirenei.</li>
-        <li><strong>Difficili da vedere:</strong> spesso stanno sdraiati tra pecore o capre, quindi potresti notarli solo quando sei vicino.</li>
-        <li><strong>Più attenti</strong> al tramonto e quando il gregge si sposta.</li>
-        <li><strong>Cartelli su cancelli e recinzioni</strong> avvisano che lì lavorano cani da guardiania. In Svizzera chiedono di mantenere la distanza e sconsigliano di portare il cane.</li>
-      </ul>
+  <section class="hs-section" aria-labelledby="guardianSeeTitle">
+    <div class="hs-section-head">
+      <span class="hs-kicker">Leggi il gregge</span>
+      <h2 id="guardianSeeTitle">Cosa vedi?</h2>
+      <p>Le indicazioni italiane e svizzere sconsigliano di portare il cane dove lavorano i cani da guardiania. Prima di partire, controlla cartelli locali, mappe dei pascoli e segnalazioni recenti. Sul sentiero, usa la scheda più vicina a ciò che vedi.</p>
+    </div>
+    <div class="hs-observations">
+      <article class="hs-observation hs-observation--normal">
+        <span class="hs-observation-label">Segni di un gregge</span>
+        <h3>Campanacci, una griglia per il bestiame o un cartello</h3>
+        <p>Metti subito il cane al guinzaglio corto e gira largo attorno agli animali, mai in mezzo. In bici, scendi e spingila. I cartelli svizzeri chiedono di mantenere la distanza.</p>
+      </article>
+      <article class="hs-observation hs-observation--early">
+        <span class="hs-observation-label">Cane da guardiania in vista</span>
+        <h3>Un grande cane bianco tra le pecore</h3>
+        <p>Spesso un Pastore maremmano-abruzzese o un Cane da montagna dei Pirenei. Può stare nascosto nel gregge ed è più attento al tramonto e quando il gregge si sposta. Non prendere in braccio il tuo cane. Torna indietro se i cani sono vietati o non c’è modo di girare largo.</p>
+      </article>
+      <article class="hs-observation hs-observation--emergency">
+        <span class="hs-observation-label">Si avvicina</span>
+        <h3>Abbaia, ti corre incontro o ti sbarra il sentiero</h3>
+        <p>Il cane ti sta avvertendo di stare lontano dal suo gregge. Fermati e segui i tre passi qui sotto.</p>
+      </article>
+    </div>
+    <p class="guardian-note"><strong>Con i bovini è diverso:</strong> stai alla larga, soprattutto dalle mucche con i vitelli. Tieni il cane al guinzaglio, ma lascialo andare se i bovini vi inseguono, così potete mettervi in salvo ciascuno per conto suo.</p>
+  </section>
+
+  <section class="hs-section" aria-labelledby="guardianDecisionTitle">
+    <div class="hs-section-head">
+      <span class="hs-kicker">Se arriva un cane da guardiania</span>
+      <h2 id="guardianDecisionTitle">Fermati, poi indietreggia</h2>
+      <p>Il cane vuole capire se sei una minaccia. Dagli tempo e non cercare di passare. Non correre, non urlare, non lanciare sassi né agitare bastoni, e non accarezzarlo né nutrirlo.</p>
+    </div>
+    <div class="hs-actions">
+      <div class="hs-action"><strong>Fermati e resta calmo</strong><span>Stai fermo, o muoviti molto lentamente. Non dare comandi al cane da guardiania: non ti obbedirà.</span></div>
+      <div class="hs-action"><strong>Non fissarlo</strong><span>Resta rivolto verso il cane ma evita di guardarlo negli occhi. Tieni i bastoncini bassi e il tuo cane vicino, al guinzaglio corto. Non prenderlo in braccio.</span></div>
+      <div class="hs-action"><strong>Indietreggia lentamente</strong><span>Arretra senza voltarti finché smette di abbaiare. Poi gira largo attorno al gregge, o torna indietro.</span></div>
+    </div>
+    <div class="scan-alert">
+      <strong>Se scoppia uno scontro, lascia il guinzaglio</strong>
+      <p>Il guinzaglio va bene finché puoi ancora tenere la distanza. Se il cane da guardiania attacca davvero il tuo cane, le indicazioni nazionali francesi dicono di lasciare il guinzaglio. Non prendere mai in braccio il tuo cane. Allontanati con calma e torna indietro.</p>
     </div>
   </section>
 
-  <section class="guardian-section" aria-labelledby="pasturePlanTitle">
-    <div class="guardian-section-head"><span class="scan-kicker">Prima del pascolo</span><h2 id="pasturePlanTitle">Prima di entrare in un pascolo</h2></div>
-    <div class="guardian-content-card">
-      <p class="guardian-intro">Le indicazioni italiane e svizzere sconsigliano di portare il cane dove lavorano i cani da guardiania. Se il tuo percorso passa comunque di lì:</p>
-      <ul class="scan-list">
-        <li>Controlla cartelli locali, mappe dei pascoli e segnalazioni recenti prima di partire.</li>
-        <li>Metti il cane al guinzaglio corto al primo indizio: campanacci, una griglia per il bestiame, animali o un cartello. Non prenderlo in braccio.</li>
-        <li>Gira largo attorno al gregge, mai in mezzo o tra gli animali. In bici, scendi e spingila.</li>
-        <li><strong>Torna indietro</strong> se lì i cani sono vietati o non c’è modo di girare largo.</li>
-      </ul>
-      <p class="guardian-note"><strong>Con i bovini è diverso:</strong> stai alla larga, soprattutto dalle mucche con i vitelli. Tieni il cane al guinzaglio, ma lascialo andare se i bovini vi inseguono, così potete mettervi in salvo ciascuno per conto suo.</p>
+  <section class="hs-section" aria-labelledby="guardianAfterTitle">
+    <div class="hs-section-head">
+      <span class="hs-kicker">Dopo</span>
+      <h2 id="guardianAfterTitle">Dopo un incidente</h2>
+      <p>Quando sei ben lontano dal gregge:</p>
+    </div>
+    <div class="hs-actions">
+      <div class="hs-action"><strong>Vai dal medico</strong><span>Un morso a una persona richiede primo soccorso e un medico.</span></div>
+      <div class="hs-action"><strong>Vai dal veterinario</strong><span>Un morso al tuo cane richiede un veterinario, anche se la ferita sembra piccola.</span></div>
+      <div class="hs-action"><strong>Segnalalo</strong><span>Avvisa il pastore o l’azienda e la polizia locale o il comune, indicando luogo e ora. In Svizzera indaga l’ufficio veterinario cantonale.</span></div>
     </div>
   </section>
 
-  <section class="guardian-section" aria-labelledby="guardianDecisionTitle">
-    <div class="guardian-section-head"><span class="scan-kicker">Sul momento</span><h2 id="guardianDecisionTitle">Se arriva un cane da guardiania</h2></div>
-    <div class="guardian-content-card">
-      <p class="guardian-intro">Il cane vuole capire se sei una minaccia. Dagli tempo e non cercare di passare.</p>
-      <ol class="guardian-steps">
-        <li><span class="scan-step-number">1</span><div><h3>Fermati e resta calmo</h3><p>Stai fermo, o muoviti molto lentamente. Non dare comandi al cane da guardiania: non ti obbedirà.</p></div></li>
-        <li><span class="scan-step-number">2</span><div><h3>Non fissarlo</h3><p>Resta rivolto verso il cane ma evita di guardarlo negli occhi. Tieni i bastoncini bassi.</p></div></li>
-        <li><span class="scan-step-number">3</span><div><h3>Tieni vicino il tuo cane</h3><p>Tienilo al guinzaglio corto, al tuo fianco. Non prenderlo in braccio.</p></div></li>
-        <li><span class="scan-step-number">4</span><div><h3>Indietreggia lentamente</h3><p>Arretra senza voltarti finché il cane smette di abbaiare. Poi gira largo attorno al gregge, o torna indietro.</p></div></li>
-      </ol>
-      <p class="guardian-never"><strong>Mai</strong> correre, urlare, lanciare sassi o agitare bastoni. Non accarezzare né nutrire il cane da guardiania, e non avvicinarti per una foto.</p>
-      <div class="scan-alert">
-        <strong>Se scoppia uno scontro, lascia il guinzaglio</strong>
-        <p>Il guinzaglio va bene finché puoi ancora tenere la distanza. Se il cane da guardiania attacca davvero il tuo cane, le indicazioni nazionali francesi dicono di lasciare il guinzaglio. Non prendere mai in braccio il tuo cane. Allontanati con calma e torna indietro.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="guardian-section" aria-labelledby="guardianAfterTitle">
-    <div class="guardian-section-head"><span class="scan-kicker">Dopo</span><h2 id="guardianAfterTitle">Dopo un incidente</h2></div>
-    <div class="guardian-content-card">
-      <p class="guardian-intro">Quando sei ben lontano dal gregge:</p>
-      <ul class="scan-list">
-        <li><strong>Un morso a una persona</strong> richiede primo soccorso e un medico.</li>
-        <li><strong>Un morso al tuo cane</strong> richiede un veterinario, anche se la ferita sembra piccola.</li>
-        <li><strong>Segnalalo</strong> al pastore o all’azienda e alla polizia locale o al comune, indicando luogo e ora. In Svizzera i morsi dei cani da guardiania sono esaminati dall’ufficio veterinario cantonale.</li>
-      </ul>
-    </div>
-  </section>
   <nav class="safety-continue" aria-label="Continua nelle guide di sicurezza">
     <a class="safety-continue__previous" href="alpine-plants-for-dogs.html"><span class="safety-continue__arrow" aria-hidden="true">←</span><span class="safety-continue__label">Guida precedente</span><strong>Fiori, piante e cani</strong></a>
     <a class="safety-continue__next" href="dogs-at-rifugi.html"><span class="safety-continue__label">Guida successiva</span><strong>Cani nei rifugi</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>

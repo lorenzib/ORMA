@@ -22,27 +22,30 @@
 <link rel="stylesheet" href="../styles.css?v=20260916-5">
 <link rel="stylesheet" href="guide-scan-cards.css?v=20260825-1">
 <style>
-  /* One reading pattern for every section: kicker and heading on the page,
-     then a white card with a full-width intro and a single-column list. */
+  /* Same reading pattern as the heat guide: three "what are you seeing?"
+     cards, numbered action cards, and one pale-red alert. */
   .scan-shell{padding-top:32px;}
-  .guardian-section{margin-top:34px;}
-  .guardian-section+.guardian-section{padding-top:28px;border-top:1px solid var(--paper-line);}
-  .guardian-section-head{margin-bottom:14px;}
-  .guardian-section-head h2{margin:0;font-size:clamp(22px,2.3vw,29px);line-height:1.1;}
-  .guardian-content-card{padding:22px 24px;border:1px solid var(--paper-line);border-radius:14px;background:#fff;box-shadow:0 10px 26px -24px rgba(23,42,28,.45);}
-  .guardian-intro{margin:0;color:var(--scan-ink);font-size:.88rem;line-height:1.6;}
-  .guardian-content-card .scan-list{margin-top:14px;gap:9px;}
-  .guardian-content-card .scan-list li{font-size:.82rem;line-height:1.55;}
-  .guardian-content-card .scan-list strong{color:var(--scan-ink);}
-  .guardian-steps{display:grid;gap:16px;margin:16px 0 0;padding:0;list-style:none;}
-  .guardian-steps li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;align-items:start;}
-  .guardian-steps h3{margin:5px 0 3px;font-size:1rem;line-height:1.25;}
-  .guardian-steps p{margin:0;color:var(--scan-soft);font-size:.82rem;line-height:1.55;}
-  .guardian-never{margin:18px 0 0;padding-top:14px;border-top:1px solid var(--paper-line);color:var(--scan-soft);font-size:.82rem;line-height:1.55;}
-  .guardian-never strong,.guardian-note strong{color:var(--scan-ink);}
-  .guardian-note{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--paper-line);color:var(--scan-soft);font-size:.8rem;line-height:1.55;}
-  .guardian-content-card .scan-alert{margin-top:20px;}
-  @media(max-width:680px){.guardian-content-card{padding:18px;}.guardian-section{margin-top:28px;}.guardian-section+.guardian-section{padding-top:24px;}}
+  .hs-kicker{display:block;margin-bottom:7px;color:var(--safety-info);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
+  .hs-section{margin:24px 0;}
+  .hs-section-head{margin-bottom:14px;}
+  .hs-section-head h2{margin:0;font-size:clamp(25px,2.6vw,34px);line-height:1.08;letter-spacing:-.025em;}
+  .hs-section-head p{max-width:720px;margin:8px 0 0;color:var(--ink-soft);font-size:.8rem;line-height:1.48;}
+  .hs-observations,.hs-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+  .hs-observation{padding:18px 19px;border:1px solid var(--paper-line);border-radius:13px;background:var(--card);}
+  .hs-observation-label{display:block;margin-bottom:8px;color:var(--safety-safe);font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;}
+  .hs-observation--early .hs-observation-label{color:var(--safety-caution);}
+  .hs-observation--emergency .hs-observation-label{color:var(--safety-stop);}
+  .hs-observation h3{margin:0 0 7px;font-size:1.03rem;line-height:1.25;}
+  .hs-observation p{margin:0;color:var(--ink-soft);font-size:.78rem;line-height:1.48;}
+  .hs-actions{counter-reset:guardian-step;}
+  .hs-action{position:relative;display:grid;grid-template-columns:25px minmax(0,1fr);column-gap:10px;align-items:start;padding:18px 19px;border:1px solid var(--paper-line);border-radius:13px;background:var(--card);counter-increment:guardian-step;}
+  .hs-action::before{content:counter(guardian-step);display:grid;grid-column:1;grid-row:1;place-items:center;width:25px;height:25px;border-radius:50%;background:var(--safety-safe);color:#fff;font-weight:800;font-size:.7rem;}
+  .hs-action strong{display:flex;grid-column:2;grid-row:1;align-items:center;min-height:25px;margin-bottom:6px;color:var(--ink);font-size:1.03rem;}
+  .hs-action span{display:block;grid-column:2;grid-row:2;color:var(--ink-soft);font-size:.78rem;line-height:1.48;}
+  .guardian-note{margin:12px 0 0;color:var(--ink-soft);font-size:.78rem;line-height:1.5;}
+  .guardian-note strong{color:var(--ink);}
+  .hs-section .scan-alert{margin-top:14px;}
+  @media(max-width:620px){.hs-observations,.hs-actions{grid-template-columns:1fr;}.hs-section-head p{margin-top:6px;}}
 </style>
 <link rel="stylesheet" href="safety-guide-system.css?v=20261104-1">
 <script type="application/ld+json">
@@ -100,62 +103,62 @@
     <ul><li>Put your dog on a short lead at the first sign of a flock: bells, a cattle grid, animals or a warning sign.</li><li>Go wide around the flock, never through it. Turn back if there is no safe way round.</li><li>If a guardian dog comes over, stop, stay calm and don’t stare. Then back away slowly.</li></ul>
   </section>
 
-  <section class="guardian-section" aria-labelledby="guardianSpotTitle">
-    <div class="guardian-section-head"><span class="scan-kicker">Spot them early</span><h2 id="guardianSpotTitle">How to recognise guardian dogs</h2></div>
-    <div class="guardian-content-card">
-      <p class="guardian-intro">Guardian dogs live with the flock and protect it on their own, day and night. Barking, running towards you or blocking the path is a warning to keep away.</p>
-      <ul class="scan-list">
-        <li><strong>Large, often white dogs</strong>, such as the Maremmano-Abruzzese or the Pyrenean mountain dog.</li>
-        <li><strong>Hard to see:</strong> they often lie among the sheep or goats, so you may only notice them when you are close.</li>
-        <li><strong>More alert</strong> at dusk and when the flock is moving.</li>
-        <li><strong>Signs at gates and fences</strong> warn that guardian dogs are working there. Swiss signs ask you to keep your distance and advise against bringing a pet dog.</li>
-      </ul>
+  <section class="hs-section" aria-labelledby="guardianSeeTitle">
+    <div class="hs-section-head">
+      <span class="hs-kicker">Read the flock</span>
+      <h2 id="guardianSeeTitle">What are you seeing?</h2>
+      <p>Italian and Swiss guidance advises against bringing a pet dog where guardian dogs work. Before you set off, check local signs, pasture maps and recent trail reports. On the trail, use the closest card.</p>
+    </div>
+    <div class="hs-observations">
+      <article class="hs-observation hs-observation--normal">
+        <span class="hs-observation-label">Signs of a flock</span>
+        <h3>Bells, a cattle grid or a sign</h3>
+        <p>Put your dog on a short lead now and go wide around the animals, never through them. On a bike, get off and push. Swiss signs ask you to keep your distance.</p>
+      </article>
+      <article class="hs-observation hs-observation--early">
+        <span class="hs-observation-label">Guardian dog in sight</span>
+        <h3>A large white dog among the sheep</h3>
+        <p>Often a Maremmano-Abruzzese or Pyrenean mountain dog. They may lie hidden in the flock and are more alert at dusk and when it moves. Don’t pick your dog up. Turn back if dogs are banned or there is no wide way round.</p>
+      </article>
+      <article class="hs-observation hs-observation--emergency">
+        <span class="hs-observation-label">It comes over</span>
+        <h3>Barking, running at you or blocking the path</h3>
+        <p>The dog is warning you to keep away from its flock. Stop and follow the three steps below.</p>
+      </article>
+    </div>
+    <p class="guardian-note"><strong>Cattle are different:</strong> give them, especially cows with calves, a wide berth. Keep your dog on the lead, but let go if cattle chase you, so you can both reach safety separately.</p>
+  </section>
+
+  <section class="hs-section" aria-labelledby="guardianDecisionTitle">
+    <div class="hs-section-head">
+      <span class="hs-kicker">If a guardian dog comes over</span>
+      <h2 id="guardianDecisionTitle">Stop, then back away</h2>
+      <p>The dog wants to check that you are no threat. Give it time and don’t try to get past. Never run, shout, throw stones or wave sticks, and don’t pet or feed it.</p>
+    </div>
+    <div class="hs-actions">
+      <div class="hs-action"><strong>Stop and stay calm</strong><span>Stand still, or move very slowly. Don’t give the guardian dog commands: it won’t obey them.</span></div>
+      <div class="hs-action"><strong>Don’t stare</strong><span>Face the dog but avoid eye contact. Keep your poles down and your dog close on a short lead. Don’t pick it up.</span></div>
+      <div class="hs-action"><strong>Back away slowly</strong><span>Step back without turning your back until it stops barking. Then go wide around the flock, or turn back.</span></div>
+    </div>
+    <div class="scan-alert">
+      <strong>If a fight starts, let go of the lead</strong>
+      <p>The lead is right while you can still keep your distance. If the guardian dog actually attacks your dog, French national guidance says to let go of the lead. Never pick your dog up. Move away calmly and turn back.</p>
     </div>
   </section>
 
-  <section class="guardian-section" aria-labelledby="pasturePlanTitle">
-    <div class="guardian-section-head"><span class="scan-kicker">Before the pasture</span><h2 id="pasturePlanTitle">Before you walk into a pasture</h2></div>
-    <div class="guardian-content-card">
-      <p class="guardian-intro">Italian and Swiss guidance advises against bringing a pet dog where guardian dogs work. If your walk takes you there anyway:</p>
-      <ul class="scan-list">
-        <li>Check local signs, pasture maps and recent trail reports before you set off.</li>
-        <li>Put your dog on a short lead at the first clue: bells, a cattle grid, animals or a sign. Don’t pick it up.</li>
-        <li>Go wide around the flock, never through it or between the animals. On a bike, get off and push.</li>
-        <li><strong>Turn back</strong> if dogs are banned there or there is no wide way round.</li>
-      </ul>
-      <p class="guardian-note"><strong>Cattle are different:</strong> give them, especially cows with calves, a wide berth. Keep your dog on the lead, but let go if cattle chase you, so you can both reach safety separately.</p>
+  <section class="hs-section" aria-labelledby="guardianAfterTitle">
+    <div class="hs-section-head">
+      <span class="hs-kicker">Afterwards</span>
+      <h2 id="guardianAfterTitle">After an incident</h2>
+      <p>Once you are well away from the flock:</p>
+    </div>
+    <div class="hs-actions">
+      <div class="hs-action"><strong>See a doctor</strong><span>Any bite to a person needs first aid and a doctor.</span></div>
+      <div class="hs-action"><strong>See a vet</strong><span>A bite to your dog needs a vet, even if the wound looks small.</span></div>
+      <div class="hs-action"><strong>Report it</strong><span>Tell the shepherd or farm and the local police or commune, with the place and time. In Switzerland, the cantonal veterinary office investigates.</span></div>
     </div>
   </section>
 
-  <section class="guardian-section" aria-labelledby="guardianDecisionTitle">
-    <div class="guardian-section-head"><span class="scan-kicker">On the spot</span><h2 id="guardianDecisionTitle">If a guardian dog comes over</h2></div>
-    <div class="guardian-content-card">
-      <p class="guardian-intro">The dog wants to check that you are no threat. Give it time and don’t try to get past.</p>
-      <ol class="guardian-steps">
-        <li><span class="scan-step-number">1</span><div><h3>Stop and stay calm</h3><p>Stand still, or move very slowly. Don’t give the guardian dog commands: it won’t obey them.</p></div></li>
-        <li><span class="scan-step-number">2</span><div><h3>Don’t stare</h3><p>Keep facing the dog but avoid eye contact. Keep your poles down.</p></div></li>
-        <li><span class="scan-step-number">3</span><div><h3>Keep your dog close</h3><p>Hold it on a short lead at your side. Don’t pick it up.</p></div></li>
-        <li><span class="scan-step-number">4</span><div><h3>Back away slowly</h3><p>Step back without turning your back until the dog stops barking. Then go wide around the flock, or turn back.</p></div></li>
-      </ol>
-      <p class="guardian-never"><strong>Never</strong> run, shout, throw stones or wave sticks. Don’t pet or feed the guardian dog, or go closer for a photo.</p>
-      <div class="scan-alert">
-        <strong>If a fight starts, let go of the lead</strong>
-        <p>The lead is right while you can still keep your distance. If the guardian dog actually attacks your dog, French national guidance says to let go of the lead. Never pick your dog up. Move away calmly and turn back.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="guardian-section" aria-labelledby="guardianAfterTitle">
-    <div class="guardian-section-head"><span class="scan-kicker">Afterwards</span><h2 id="guardianAfterTitle">After an incident</h2></div>
-    <div class="guardian-content-card">
-      <p class="guardian-intro">Once you are well away from the flock:</p>
-      <ul class="scan-list">
-        <li><strong>A bite to a person</strong> needs first aid and a doctor.</li>
-        <li><strong>A bite to your dog</strong> needs a vet, even if the wound looks small.</li>
-        <li><strong>Report it</strong> to the shepherd or farm and to the local police or commune, with the place and time. In Switzerland, the cantonal veterinary office investigates guardian-dog bites.</li>
-      </ul>
-    </div>
-  </section>
   <nav class="safety-continue" aria-label="Continue in the Safety Library">
     <a class="safety-continue__previous" href="alpine-plants-for-dogs.html"><span class="safety-continue__arrow" aria-hidden="true">←</span><span class="safety-continue__label">Past guide</span><strong>Flowers, plants and dogs</strong></a>
     <a class="safety-continue__next" href="dogs-at-rifugi.html"><span class="safety-continue__label">Next guide</span><strong>Dogs at rifugi</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
