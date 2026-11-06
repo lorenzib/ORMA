@@ -9975,6 +9975,79 @@
       ],
       desc: 'A loop from Oberolang: out on path 39 across open fields to the Salla farms, and back through the forest on the Bödenstraße and path 20. The official route lists 7.7 km and 332 m of ascent.'
     },
+    'giro-del-sasso-lungo': {
+      // Hand audit: 6 November 2026. APT Val di Fassa’s “Il giro del Sassolungo”, a hiking page with
+      // its own climb and time (about 400 m, 5:45 h) but no distance; IDM Südtirol publishes the same
+      // circuit at 15.7 km (as a mountain run, the other way round, 751 m and 4:53 h). By the owner’s
+      // decision the walk shows the APT’s hiking figures and IDM’s distance. The stored line is the
+      // approved composite of paths 526, 527 and 557: 16.2 km, closed at Passo Sella, run the APT’s way
+      // round. Communes: Selva, Santa Cristina and Kastelruth (own rules), Canazei and Campitello di
+      // Fassa (no rule, national rule). No Natura 2000 site on the line. The photo replaces a view of
+      // the Sassolungo from Sacun, about 5 km off the walk.
+      distance: 15.7,
+      elevation: 400,
+      hours: '5.75',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Passo Sella, by the Rifugio Passo Sella (Passo Sella Dolomiti Mountain Resort) at 2,183 m, the APT’s start; paid parking behind it.",
+        "sequence": "Head north on the wide path past the edge of the Città dei Sassi boulder field and a couple of ski lifts to the Rifugio Comici (about 45 minutes). Carry on under the north face of the Sassolungo on the path across the scree to the Piz Ciaulong (Col de Mesdì) above Santa Cristina, then south-west to the mouth of the valley up to the Rifugio Vicenza. Do not go up it: at the junction keep right across the scree and join path 527, which drops to the meadow balcony of the Piz da Uridl and goes round the west side of the Sassopiatto to the Rifugio Sassopiatto at the Giogo di Fassa (about 3 hours from Comici). From there take the Friedrich-August-Weg (557) east under the Punta Grohmann, up and down past the Rifugio Pertini and the Rifugio Federico Augusto to the Forcella Rodella, and back down to Passo Sella (about 2 hours).",
+        "switches": "At the Rifugio Comici keep on the path under the Sassolungo (526/526A); at the junction below the Rifugio Vicenza keep right across the scree onto 527, not up the valley; at the Rifugio Sassopiatto turn east onto the Friedrich-August-Weg (557, signed 594 on the Trentino side), not up the summit path; at the Forcella Rodella keep down to Passo Sella.",
+        "sources": [
+          {
+            "label": "APT Val di Fassa, Il giro del Sassolungo (valdifassa.it)",
+            "url": "https://www.valdifassa.it/escursioni-e-passeggiate-in-val-di-fassa/gruppo-sassolungo/il-giro-del-sassolungo/",
+            "authority": "APT Val di Fassa",
+            "reviewedAt": "2026-11-06"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-06',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Sassolungo group from the Friedrich-August-Weg, walkers on the gravel path, 19 August 2020 (Marie-Lan Taÿ Pamart, CC BY 4.0), geotagged 3 m from the line.',
+        route: 'IDM Südtirol publishes the circuit at 15.7 km; the stored line is the approved composite of OSM relations 526, 527 and 557: 16.2 km, closed at Passo Sella, 3% longer.',
+        routeNumbers: 'Paths 526, 527 and 557: from Passo Sella north past the Città dei Sassi to the Rifugio Comici, on under the north face of the Sassolungo across the scree towards the Rifugio Vicenza, right across the scree onto 527 round the Sassopiatto to the Rifugio Sassopiatto, then east on the Friedrich-August-Weg (557) past the Pertini and Federico Augusto huts and the Forcella Rodella back to Passo Sella.',
+        mapPoints: 'Start at Passo Sella by the Rifugio Passo Sella (the APT’s start); drinking water on the Seiser Alm side at km 7.7 and km 9.2 (OSM nodes 7052066656 and 7052066585); huts at Comici (km 2.7), Sassopiatto (km 10.0), Pertini (km 12.5) and Federico Augusto (km 14.5), open in summer only.',
+        elevation: 'APT Val di Fassa: about 400 m of climb, 5:45 h, start and finish at 2,183 m. IDM Südtirol: 15.7 km. ORMA’s elevation profile, measured from the line, adds up to about 750 m of climbing and the same down, because the circuit rises and falls between 2,000 and 2,330 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Il giro del Sassolungo (valdifassa.it): start and finish at the Rifugio Passo Sella, about 400 m of climb, 5:45 h, rated escursionistico (E), late June to October, route and times between the huts',
+          'IDM Südtirol, Sassolungo circuit (suedtirol.info): 15.7 km, paths 557, 527 and 526',
+          'Gemeinde Wolkenstein / Comune di Selva di Val Gardena, Gemeindeverordnung über die Haltung und Führung von Hunden (Ratsbeschluss Nr. 5, 05.02.2010), Art. 4 and 8: a lead of at most 1.5 m in public places, a muzzle carried, no dogs on farmed meadows in the growing season',
+          'Gemeinde St. Christina in Gröden / Comune di Santa Cristina Valgardena, Gemeindeverordnung zur Hundehaltung (Ratsbeschluss Nr. 2, 08.02.2010), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried in public places, and no dogs on farmed meadows',
+          'Gemeinde Kastelruth / Comune di Castelrotto, Ortspolizeiordnung (GR Nr. 57, 4 Sep 2024), Art. 13: dogs never left unattended, droppings picked up; otherwise the national rule applies',
+          'Canazei and Campitello di Fassa publish no dog rule, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended by the ordinance of 16 July 2026): a lead of at most 1.5 m and a muzzle carried',
+          'EEA Natura 2000 sites and OpenStreetMap administrative boundaries: no protected site on the line; it runs through Selva, Santa Cristina, Kastelruth, Campitello di Fassa and Canazei',
+          'OpenStreetMap ways of relations 9435720 (526), 1640019 (527) and 5412043 (557), water, hut, surface and woodland data'
+        ],
+        date: '2026-11-06'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['The SS242 road at Passo Sella, with traffic and buses, at the start and finish', 'Scree crossings under the north face of the Sassolungo and below the Rifugio Vicenza', 'The edge of the Città dei Sassi boulder field', 'Cattle grazing on the Seiser Alm side in summer, with gates to close', 'A long day above 2,000 m with almost no shade; storms build quickly in the afternoon'],
+      terrainType: 'Mountain paths, scree crossings and gravel tracks round the massif; no cables or ladders (APT rating E)',
+      shadeDescription: 'Almost no shade the whole way round, between 2,000 and 2,330 m: a few stone pines near the Città dei Sassi and on the north side, then open meadow and scree. About 3% shaded.',
+      terrainDescription: 'A long circuit on good mountain paths: wide and busy from Passo Sella to the Comici hut, narrower across the scree under the north and west faces, then the broad Friedrich-August-Weg back along the south side. The APT rates it a hiking path (E) and gives about 400 m of climb; with the ups and downs it adds up to nearer 750 m.',
+      waterDescription: 'Two drinking-water points on the Seiser Alm side, at km 7.7 and km 9.2, and four huts (Comici, Sassopiatto, Pertini, Federico Augusto) that open in summer only. Nothing in the first 7 km: carry plenty of water for your dog.',
+      dogNotes: 'The walk crosses five communes. Selva and Santa Cristina, on the Val Gardena side, require a lead of at most 1.5 m in public places and a muzzle carried, and keep dogs off farmed meadows in the growing season. Kastelruth, on the Seiser Alm side, and Canazei and Campitello di Fassa, on the Trentino side, follow the national rule: a lead of at most 1.5 m and a muzzle carried. Cattle graze on the Seiser Alm in summer: keep your dog close and give the herds a wide berth.',
+      tips: 'A long day round the Sassolungo from Passo Sella: 15.7 km, about 400 m of climb by the APT’s count (nearer 750 m with all the ups and downs), 5:45 h. Go the APT’s way round, north to the Comici hut first. Start early, carry water for the first 7 km, keep your dog on a lead of at most 1.5 m with a muzzle carried, and give the cattle on the Seiser Alm room. At the Rifugio Sassopiatto take the Friedrich-August-Weg east, not the summit path.',
+      sourceLinks: [
+        { label: 'APT Val di Fassa, Il giro del Sassolungo', url: 'https://www.valdifassa.it/escursioni-e-passeggiate-in-val-di-fassa/gruppo-sassolungo/il-giro-del-sassolungo/' },
+        { label: 'IDM Südtirol, Sassolungo circuit', url: 'https://www.suedtirol.info/en/en/experiences-and-events/plp-experiences/experiences-south-tyrol/pdp-experience.smgpoi7ef96943537e5bda7078c3947e197032.sassolungo-circuit.selva-selva-wolkenstein-selva' },
+        { label: 'Wolkenstein / Selva, dog regulation (2010)', url: 'https://www.selva.eu/system/web/Verordnung.aspx?detailonr=225185593&menuonr=219901528' },
+        { label: 'St. Christina / Santa Cristina, dog regulation (2010)', url: 'https://www.gemeinde.stchristina.bz.it/system/web/GetDocument.ashx?cts=1536582042&fileId=1004815' },
+        { label: 'Gemeinde Kastelruth, Ortspolizeiordnung (2024)', url: 'https://www.gemeinde.kastelruth.bz.it/de/Verwaltung/Dokumente/Ortspolizeiordnung' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      desc: 'The classic circuit round the Sassolungo from Passo Sella: north past the Città dei Sassi to the Rifugio Comici, under the north and west faces to the Rifugio Sassopiatto, and back along the Friedrich-August-Weg past the Pertini and Federico Augusto huts. APT Val di Fassa gives about 400 m of climb and 5:45 h; IDM Südtirol gives 15.7 km.'
+    },
     'santa-maddalena': {
       // Hand audit: 23 October 2026. The official ODLES loop (3.2 km) replaces
       // the 1.6 km OSM loop through the routeLine override. Guideposts surveyed

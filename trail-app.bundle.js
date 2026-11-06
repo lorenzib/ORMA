@@ -3316,6 +3316,7 @@ ${points}
     'fvg-monte-rest-da-passo-rest': "Dal Passo Rest al Monte Rest",
     'fvg-sappada-rifugio-calvi': "Rifugio Calvi",
     'giro-del-bulacia': "Giro della Bullaccia",
+    'giro-del-sasso-lungo': "Giro del Sasso Lungo",
     'giudicarie-san-martino-bosco-scolpito': "San Martino – Bosco Scolpito",
     'giudicarie-san-vigilio-senter-dei-cavai': "San Vigilio and the Senter dei Cavai",
     'giudicarie-senter-dei-popi-madonna-del-lares': "Senter dei Popi – Madonna del Lares",
@@ -13335,19 +13336,21 @@ function initDetailPois(map, trail){
     const maximum=Number.isFinite(result.maxTemperatureC)?' '+tx('(up to {temp}°C)',{temp:result.maxTemperatureC}):'';
     let lead;
     let tail;
-    const vars={hours:result.durationHours,finish};
+    const routeReturn=typeof globalThis!=='undefined'?globalThis.ORMARouteReturn:null;
+    const duration=(routeReturn&&routeReturn.formatDuration(result.durationHours))||`${result.durationHours} h`;
+    const vars={duration,finish};
     if(result.reason==='comfortable'){
       lead=tx('The forecast stays cool during the walk{maximum}. Suggested start: {when}',{maximum,when});
-      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong>.',vars);
+      tail=tx('for this {duration} route, finish around <strong>{finish}</strong>.',vars);
     }else if(result.reason==='avoid-heat'){
       lead=tx('Cooler forecast window{maximum}: start {when}',{maximum,when});
-      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong> before the warmer part of the day.',vars);
+      tail=tx('for this {duration} route, finish around <strong>{finish}</strong> before the warmer part of the day.',vars);
     }else if(result.reason==='least-warm'){
       lead=tx('Least-warm forecast window{maximum}: start {when}',{maximum,when});
-      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong> before the hottest available hours.',vars);
+      tail=tx('for this {duration} route, finish around <strong>{finish}</strong> before the hottest available hours.',vars);
     }else{
       lead=tx('Suggested daylight start: {when}',{when});
-      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong>.',vars);
+      tail=tx('for this {duration} route, finish around <strong>{finish}</strong>.',vars);
     }
     const daylightMargin=result.sunsetMinutes-result.finishMinutes;
     const leftHours=Math.max(1,Math.floor(daylightMargin/60));
@@ -14949,7 +14952,29 @@ function initTrailReports(map, trail){
     return current===VIEWS.OUT_AND_BACK&&isOneWay(trail)?outAndBack(trail):trail;
   }
 
-  return {VIEWS,isOneWay,netGain,parseHoursRange,formatHours,ruleHours,outAndBack,view,setView,forView};
+  // Hours as a reader says them: "3.9" is "3 h 55 min", not 3 h 9 min.
+  // Rounded to 5 minutes; a range keeps both ends ("1 h 30 min – 2 h",
+  // "2–3 h"). Empty when there is no number to read.
+  function durationParts(hours){
+    const minutes=Math.max(5,Math.round(hours*12)*5);
+    return {h:Math.floor(minutes/60),m:minutes%60};
+  }
+  function durationText({h,m}){
+    if(!h)return `${m} min`;
+    return m?`${h} h ${m} min`:`${h} h`;
+  }
+  function formatDuration(value){
+    const bounds=parseHoursRange(value);
+    if(!bounds)return '';
+    const parts=bounds.map(durationParts);
+    const texts=parts.map(durationText).filter((v,i,all)=>all.indexOf(v)===i);
+    if(texts.length===1)return texts[0];
+    if(parts.every(p=>p.h&&!p.m))return `${parts[0].h}–${parts[1].h} h`;
+    if(parts.every(p=>!p.h))return `${parts[0].m}–${parts[1].m} min`;
+    return texts.join(' – ');
+  }
+
+  return {VIEWS,isOneWay,netGain,parseHoursRange,formatHours,formatDuration,ruleHours,outAndBack,view,setView,forView};
 });
 ;
 
@@ -16655,7 +16680,7 @@ function renderTrail(t){
     }
   }
   document.getElementById('trailMeta').textContent =
-    `${t.area} · ${t.distance} km · ${tx('{m} m gain', { m: t.elevation })} · ${t.hours} h · ${trailWords(t.terrainType)}`;
+    `${t.area} · ${t.distance} km · ${tx('{m} m gain', { m: t.elevation })} · ${window.ORMARouteReturn ? window.ORMARouteReturn.formatDuration(t.hours) : `${t.hours} h`} · ${trailWords(t.terrainType)}`;
   document.getElementById('trailBadges').innerHTML =
     trailProductBadge(t.safetyLevel, trailSafetyLabel(t)) +
     (t.paid ? trailProductBadge('neutral', window.t('card.paid')) : '');
@@ -16747,7 +16772,7 @@ function renderTrail(t){
     const facts = [
       [`${shown.distance} km`, window.t('trail.fact.distance')],
       [`${shown.elevation} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
-      [`${back ? '≈ ' : ''}${shown.hours} h`, window.t('trail.fact.duration')],
+      [shown.hours ? `${back ? '≈ ' : ''}${routeReturn.formatDuration(shown.hours)}` : null, window.t('trail.fact.duration')],
     ].filter(([val]) => !/null|undefined/.test(val)); // hide facts the data honestly lacks
     if(Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1){
       facts.splice(2, 0, [`${Math.max(...t.elevationProfile.map(p => p.elev))} m`, window.t('trail.fact.high')]);
