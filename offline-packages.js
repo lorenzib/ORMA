@@ -118,6 +118,7 @@
     'fvg-monte-rest-da-passo-rest': "Dal Passo Rest al Monte Rest",
     'fvg-sappada-rifugio-calvi': "Rifugio Calvi",
     'giro-del-bulacia': "Giro della Bullaccia",
+    'giro-del-sasso-lungo': "Giro del Sasso Lungo",
     'giudicarie-san-martino-bosco-scolpito': "San Martino – Bosco Scolpito",
     'giudicarie-san-vigilio-senter-dei-cavai': "San Vigilio and the Senter dei Cavai",
     'giudicarie-senter-dei-popi-madonna-del-lares': "Senter dei Popi – Madonna del Lares",
