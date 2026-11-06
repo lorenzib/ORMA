@@ -37,14 +37,27 @@ describe('UX-06 pre-hike readiness model', () => {
   test.each([
     [{ supported:false, permission:'prompt', fix:null }, 'GPS is unavailable'],
     [{ supported:true, permission:'denied', fix:null }, 'Location permission is blocked'],
-    [{ supported:true, permission:'prompt', fix:null }, 'GPS fix not checked'],
-    [{ supported:true, permission:'granted', fix:{ usableForProgress:false, accuracyM:180 } }, 'GPS fix is not usable yet'],
-  ])('blocks unsafe GPS state %#', (gps, title) => {
+  ])('blocks a phone that cannot give a position %#', (gps, title) => {
     const input = readyInput();
     input.gps = gps;
     const result = readiness.assess(input, NOW);
     expect(result.canStart).toBe(false);
     expect(result.items.find(entry => entry.id === 'gps').title).toBe(title);
+  });
+
+  // SOCIAL-03: hike mode finds the position once recording starts, so a fix
+  // nobody checked yet is worth knowing, never a gate.
+  test.each([
+    [{ supported:true, permission:'prompt', fix:null }, 'GPS fix not checked'],
+    [{ supported:true, permission:'granted', fix:{ usableForProgress:false, accuracyM:180 } }, 'GPS fix is not usable yet'],
+  ])('only advises on a GPS fix not found yet %#', (gps, title) => {
+    const input = readyInput();
+    input.gps = gps;
+    const result = readiness.assess(input, NOW);
+    expect(result.canStart).toBe(true);
+    const entry = result.items.find(item => item.id === 'gps');
+    expect(entry.level).toBe('advisory');
+    expect(entry.title).toBe(title);
   });
 
   test('keeps missing offline coverage advisory while showing its state', () => {
@@ -137,7 +150,13 @@ describe('UX-06 pre-hike readiness model', () => {
     expect(page).toContain('pre-hike-readiness.css');
     expectTrailBundleLoaded();
     expectBundledBefore('pre-hike-readiness.js', 'hike-mode.js');
-    expect(hikeMode).toContain('window.DoloPawsReadiness.open(trail, startHike)');
+    // SOCIAL-03: a tap starts recording; the sheet opens only on a phone
+    // without GPS, and then as a checklist with no Start button.
+    expect(hikeMode).not.toContain('window.DoloPawsReadiness.open(trail, startHike)');
+    expect(hikeMode).toContain('window.DoloPawsReadiness.open(trail, null)');
+    const request = hikeMode.slice(hikeMode.indexOf('function requestNewHike'), hikeMode.indexOf('function stopHike'));
+    expect(request).toContain('startHike();');
+    expect(request).toContain('!navigator.geolocation');
     expect(blueprint).toContain("new CustomEvent('dolopaws-weather-ready'");
   });
 
