@@ -496,6 +496,14 @@ describe('trail page map controls', () => {
     expect(html).toContain('.td2-hero-weather{grid-area:weather;');
   });
 
+  test('the name gloss sits under the name in light ink on the hero photo', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    // The base rule is dark grey for a light page; on the hero it vanished,
+    // and with no grid area it fell below the action row.
+    expect(html).toMatch(/\.td2-hero \.trail-name-gloss\{grid-area:gloss;[^}]*color:#D5DED6;/);
+    expect(html).toContain('.td2-hero-copy:has(#trailNameGloss:not([hidden])){grid-template-areas:"tags weather" "title weather" "gloss weather" "facts weather" "actions weather";}');
+  });
+
   test('trail detail pages do not link to the scoring explainer', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const generator = fs.readFileSync(path.join(__dirname, 'scripts', 'generate-trail-pages.js'), 'utf8');
