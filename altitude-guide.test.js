@@ -10,14 +10,14 @@ describe('altitude health and safety guide', () => {
   });
 
   test('leads with health-first framing and the library image behind the header', () => {
-    expect(document.querySelector('h1').textContent).toMatch(/altitude changes the effort/i);
-    expect(document.querySelector('.alt-subtitle').textContent).toMatch(/altitude, exertion and heat can look alike/i);
+    expect(document.querySelector('h1').textContent).toBe('Your dog at altitude');
+    expect(document.querySelector('.alt-subtitle').textContent).toMatch(/altitude, effort and heat can look alike/i);
     const hero = document.querySelector('.alt-hero.safety-photo-header .safety-photo-header__image');
     expect(hero.getAttribute('src')).toBe('../images/editorial/safety-library/altitude-with-your-dog-v1.jpg');
     expect(hero.getAttribute('alt')).toBe('');
     expect(hero.getAttribute('width')).toBe('1200');
     expect(hero.getAttribute('height')).toBe('800');
-    expect(document.querySelector('.alt-meta').textContent).toMatch(/1 min guide/i);
+    expect(document.querySelector('.alt-meta').textContent).toMatch(/2 min guide/i);
     expect(document.querySelector('.alt-meta').textContent).not.toMatch(/reviewed/i);
     expect(document.querySelector('.alt-jump')).toBeNull();
   });
@@ -26,7 +26,7 @@ describe('altitude health and safety guide', () => {
     expect(document.querySelector('.alt-shell > section').classList.contains('guide-quick')).toBe(true);
     const firstSection = document.querySelector('.alt-shell > section:not(.guide-quick)');
     expect(firstSection.id).toBe('why-altitude');
-    expect(firstSection.textContent).toMatch(/Higher altitude means less available oxygen/i);
+    expect(firstSection.textContent).toMatch(/Higher up, there’s less oxygen/i);
     expect(firstSection.textContent).toMatch(/Ask your vet first/i);
     expect(firstSection.querySelector('.alt-context-copy').nextElementSibling.classList.contains('alt-vet-note')).toBe(true);
     expect(firstSection.querySelector('.alt-vet-note').classList.contains('alt-warning-note')).toBe(true);
@@ -52,7 +52,7 @@ describe('altitude health and safety guide', () => {
       expect(item.querySelector('p > b')).not.toBeNull();
     });
     expect(document.querySelector('.guide-quick').textContent).toMatch(/Ask your vet first/i);
-    expect(document.querySelector('.guide-quick').textContent).toMatch(/Never give human medication/i);
+    expect(document.querySelector('.guide-quick').textContent).toMatch(/Never give human altitude or pain medication/i);
   });
 
   test('includes pre-trip veterinary flags and conservative first-day planning', () => {
@@ -60,7 +60,7 @@ describe('altitude health and safety guide', () => {
     expect(page).toMatch(/heart or lung disease/i);
     expect(page).toMatch(/coughs/i);
     expect(page).toMatch(/Puppies, seniors and flat-faced dogs/i);
-    expect(page).toMatch(/skip the ambitious route/i);
+    expect(page).toMatch(/skip the big route/i);
     expect(page).toMatch(/No human altitude medication/i);
     expect(document.querySelectorAll('.alt-plan-panel')).toHaveLength(2);
     expect(document.querySelectorAll('.alt-plan-list li')).toHaveLength(4);
@@ -70,9 +70,9 @@ describe('altitude health and safety guide', () => {
 
   test('places the first-day explanation directly below its title', () => {
     const head = document.querySelector('.alt-plan-head');
-    expect(head.querySelector('h2').textContent).toBe('Keep the first day simple');
+    expect(head.querySelector('h2').textContent).toBe('Keep the first day easy');
     expect(head.querySelector('h2').closest('div').nextElementSibling.textContent).toBe(
-      'A fit dog can still struggle after a fast drive or lift ascent.'
+      'Even fit dogs can struggle after a fast drive or lift up.'
     );
   });
 

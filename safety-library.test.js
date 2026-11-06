@@ -117,7 +117,7 @@ describe('Safety library', () => {
     expect(html).toMatch(/\.sg-guide-card img\{[^}]*border-radius:10px;[^}]*object-fit:cover/s);
     expect(html).not.toMatch(/\.sg-guide-card img\{[^}]*filter:/s);
     expect(html).toContain('.sg-guide-card img.sg-guide-image-paw{object-position:center 72%;}');
-    expect(document.body.textContent).toContain('Flowers, plants and dogs');
+    expect(document.body.textContent).toContain('Alpine plants and your dog');
   });
 
   test('shows a tailored recommendation as soon as all five answers are complete', () => {

@@ -139,7 +139,7 @@ describe('Alpine plants guide', () => {
     expect(html).toContain('id="plantSafety"');
     expect(html).toContain('id="plantMonths"');
     expect(html).toContain('id="plantHabitat"');
-    expect(html).toContain('Do not induce vomiting');
+    expect(html).toContain('Don’t make your dog vomit');
     expect(html).toContain('aria-live="polite"');
     expect(html).toContain('numberOfItems":37');
     expect(html).toContain('Last reviewed: 5 November 2026');
@@ -180,7 +180,7 @@ describe('Alpine plants guide', () => {
       expect(html.indexOf('id="grass-awns"')).toBeLessThan(html.indexOf('id="plant-emergency"'));
       expect(html).toContain('images/editorial/alpine-plants/wall-barley.jpg');
     });
-    expect(read('guides/alpine-plants-for-dogs.html')).toContain('See a vet the same day: awns migrate.');
+    expect(read('guides/alpine-plants-for-dogs.html')).toContain('See a vet the same day. Don’t dig one out');
     expect(read('it/guides/alpine-plants-for-dogs.html')).toContain('<h2 id="awnsHeading">Forasacchi</h2>');
     const awns = data.plants.find(plant => plant.id === 'wall-barley');
     const card = guide.plantCard(awns);
