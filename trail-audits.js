@@ -9488,6 +9488,8 @@
       // up), and the Seiser Alm landscape plan (DLH 269/1992) Art. 12(4) (no
       // disturbing wildlife); neither the park decree nor the plans ban dogs.
       area: 'Seiser Alm / Alpe di Siusi, Compatsch to Saltria – Kastelruth',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way walk from Compatsch to Saltria (Seiser Alm Marketing, 8.7 km one way); the Almbus brings walkers back to Compatsch.',
       elevation: 301,
       descent: 475,
       hours: '2–2.5',
@@ -23648,6 +23650,8 @@
       // ordinance 23/2026 (lead on public ground, advised everywhere because of bears and wolves); Spormaggiore regulation in villages;
       // Mezzolombardo publishes no dog rule, so the national rule applies there. No Natura 2000 site or park on the line.
       "area": "Fai della Paganella, Spormaggiore and Mezzolombardo",
+      "routeShape": "point-to-point",
+      "routeShapeNote": "A one-way walk on SAT path 603 from Santèl to Fai Le Coste; SAT gives 3 hours for walking it back the other way.",
       "elevation": 436,
       "hours": "2.75–3",
       "startPoint": {
