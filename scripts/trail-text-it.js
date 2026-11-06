@@ -21,13 +21,16 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const routeRefs = require('../trail-route-refs');
 
 const ROOT = path.resolve(__dirname, '..');
 const DETAIL_DIR = path.join(ROOT, 'data', 'trail-details');
 const OUT_DIR = path.join(ROOT, 'data', 'trail-text-it');
 
 // The trail fields a visitor reads. Sources, credits and the reviewers' route
-// audit notes are evidence, not page text, and stay as written.
+// audit notes are evidence, not page text, and stay as written -- except the
+// audit's route sentence, which a page shows as the walk's directions when it
+// has no trail numbers and no structured guidance (see shownAuditDirections).
 const FIELDS = [
   'desc', 'tips', 'surfaceHazards[]', 'terrainType', 'startPoint.label', 'imageAlt',
   'licensedPhotos[].alt', 'liftAccess.notes', 'shadeDescription',
@@ -58,8 +61,16 @@ function valuesAt(object, fieldPath){
   return current.filter(value => typeof value === 'string' && /[A-Za-z]/.test(value));
 }
 
+// The audit's route sentence, when the page and the app show it as the walk's
+// directions: the same test generate-trail-pages.js and trail-blueprint.js ask.
+function shownAuditDirections(trail){
+  if(trail.routeNumberGuidance && typeof trail.routeNumberGuidance === 'object') return [];
+  const written = routeRefs.writtenDirections(trail);
+  return written.written && !routeRefs.forTrail(trail).length ? [written.text] : [];
+}
+
 function sentencesOf(trail){
-  return [...new Set(FIELDS.flatMap(field => valuesAt(trail, field)))];
+  return [...new Set([...FIELDS.flatMap(field => valuesAt(trail, field)), ...shownAuditDirections(trail)])];
 }
 
 function fileFor(id){

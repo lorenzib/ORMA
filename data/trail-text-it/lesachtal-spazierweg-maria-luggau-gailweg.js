@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village road, a farm track and a footpath along the Gail": "Strada di paese, una strada agricola e un sentiero lungo il Gail",
   "below the pilgrimage church in Maria Luggau, the board’s start": "Sotto la chiesa di pellegrinaggio di Maria Luggau, la partenza indicata dalla scheda ufficiale",
   "The main street of Maria Luggau with an old inn and village houses below steep green wooded slopes, in late spring": "La strada principale di Maria Luggau con una vecchia locanda e case del paese sotto ripidi pendii verdi e boscosi, a fine primavera",
-  "Mostly open meadows and the village, with a short wooded stretch on the path back up from the river.": "Per lo più prati aperti e il paese, con un breve tratto nel bosco sul sentiero che risale dal fiume."
+  "Mostly open meadows and the village, with a short wooded stretch on the path back up from the river.": "Per lo più prati aperti e il paese, con un breve tratto nel bosco sul sentiero che risale dal fiume.",
+  "From below the church in Maria Luggau west along the Gailtalstraße, left down to the Gail, left along the Gailweg by the river, and left again up the woodland path before the Moos bridge back to the start.": "Da sotto la chiesa di Maria Luggau verso ovest lungo la Gailtalstraße, a sinistra scendi al Gail, a sinistra lungo il Gailweg accanto al fiume, e di nuovo a sinistra sali per il sentiero nel bosco prima del ponte di Moos per tornare alla partenza."
 });

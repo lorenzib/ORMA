@@ -9,5 +9,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest and meadow paths with about 3.8 km of narrow mountain road": "Sentieri nel bosco e tra i prati, con circa 3,8 km di stretta strada di montagna",
   "Katharinaberg village centre, free car park, bus 261 stop Katharinaberg (official start)": "Centro di Katharinaberg, parcheggio gratuito, fermata dell'autobus 261 Katharinaberg (partenza ufficiale)",
   "The hill village of Katharinaberg in the Schnalstal, houses and a white church with a red spire on a green slope below dense forest": "Il paese collinare di Katharinaberg in Schnalstal, con case e una chiesa bianca dal campanile rosso su un pendio verde sotto un bosco fitto",
-  "About three fifths runs through forest; the farm meadows round Kopfron and the road stretches are open.": "Circa tre quinti attraversano il bosco; i prati dei masi attorno a Kopfron e i tratti su strada sono aperti."
+  "About three fifths runs through forest; the farm meadows round Kopfron and the road stretches are open.": "Circa tre quinti attraversano il bosco; i prati dei masi attorno a Kopfron e i tratti su strada sono aperti.",
+  "From Katharinaberg follow the “Katharinaberg Rundweg” signs by Durst and the Versanthöfe, along the Sonnenberg road (route 10A) to Kopfron, then down by Wand and Unterperfl back to the village.": "Da Katharinaberg segui i cartelli “Katharinaberg Rundweg” passando per Durst e i Versanthöfe, lungo la strada del Sonnenberg (percorso 10A) fino a Kopfron, poi scendi passando per Wand e Unterperfl e torna in paese."
 });

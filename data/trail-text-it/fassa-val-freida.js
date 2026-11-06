@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Narrow tarmac lane through pasture and larch wood; pram-friendly": "Stretta stradina asfaltata tra pascoli e lariceto; adatto ai passeggini",
   "Malga Boer (Passo San Pellegrino), the APT’s start": "Malga Boer (Passo San Pellegrino), partenza indicata dall'APT",
   "A wide green meadow edged by spruce forest at the mouth of Val Freida, a gravel track on the right and the jagged Pale di San Martino on the skyline": "Un ampio prato verde bordato da un bosco di abeti rossi all'imbocco della Val Freida, una strada sterrata a destra e le frastagliate Pale di San Martino all'orizzonte",
-  "About a third passes larch and spruce wood; the pastures are open.": "Circa un terzo passa nel bosco di larici e abeti rossi; i pascoli sono aperti."
+  "About a third passes larch and spruce wood; the pastures are open.": "Circa un terzo passa nel bosco di larici e abeti rossi; i pascoli sono aperti.",
+  "No route number: from Malga Boer along the lane to the Fuciade and Flora Alpina refuges, through pastures, larch woods and restored hay barns, to the Rifugio Flora Alpina at the mouth of Val Freida, and back.": "Nessun numero di sentiero: da Malga Boer lungo la stradina verso i rifugi Fuciade e Flora Alpina, tra pascoli, lariceti e fienili restaurati, fino al Rifugio Flora Alpina allo sbocco della Val Freida, e ritorno."
 });
