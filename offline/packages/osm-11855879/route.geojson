@@ -7,7 +7,7 @@
       "properties": {
         "name": "Roda de Cherz",
         "distanceKm": 2.7,
-        "ascentM": 70,
+        "ascentM": 45,
         "durationHours": 1,
         "source": "ORMA repository route geometry",
         "verificationStatus": "source-verified"

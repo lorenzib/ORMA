@@ -7,8 +7,8 @@
       "properties": {
         "name": "Flaaser Rundweg",
         "distanceKm": 5.1,
-        "ascentM": 260,
-        "durationHours": 2,
+        "ascentM": 200,
+        "durationHours": 1.8,
         "source": "ORMA repository route geometry",
         "verificationStatus": "source-verified"
       },
