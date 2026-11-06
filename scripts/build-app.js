@@ -48,6 +48,8 @@ const RUNTIME_FILES = [
   'manifest.json',
   // Takes the place of regions-runtime-manifest.js on every app page.
   'app-trail-data.js',
+  // Linked into every app page, below.
+  'app-shell.css',
 ];
 
 // Whole directories that ship as-is.
@@ -83,6 +85,14 @@ const REMOTE_REF = /(["'(])(?:\.\.\/|\.\/|\/)?(images\/trails\/)/g;
 // when online. app-trail-data.js does that and falls back to the copy inside.
 const MANIFEST_TAG = /<script src="regions-runtime-manifest\.js(?:\?[^"]*)?"><\/script>/g;
 const APP_MANIFEST_TAG = '<script src="app-trail-data.js"></script>';
+
+// The app draws under the clock and battery, so its pages opt into the full
+// screen and load app-shell.css, which moves the header below that strip and
+// drops the website's add-to-home-screen advice. Root-absolute, like the
+// vendored files, because trail pages sit one directory down.
+const VIEWPORT_TAG = /<meta name="viewport" content="(?![^"]*viewport-fit)([^"]*)">/g;
+const APP_VIEWPORT_TAG = '<meta name="viewport" content="$1, viewport-fit=cover">';
+const APP_SHELL_TAG = '<link rel="stylesheet" href="/app-shell.css">';
 
 const rel = (abs) => path.relative(root, abs).split(path.sep).join('/');
 const denied = (r) => DENY.some((pattern) => pattern.test(r));
@@ -248,7 +258,10 @@ function rewriteRemoteRefs(){
       .replace(HIKING_ORIGIN_LINE, `const HIKING_ORIGIN = '${SITE_ORIGIN}';`)
       .replace(REMOTE_REF, `$1${SITE_ORIGIN}/$2`)
       .replace(MANIFEST_TAG, APP_MANIFEST_TAG);
-    if(after !== before){ fs.writeFileSync(dest, after); rewritten += 1; }
+    const page = /\.html$/.test(r)
+      ? after.replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_SHELL_TAG}\n</head>`)
+      : after;
+    if(page !== before){ fs.writeFileSync(dest, page); rewritten += 1; }
   }
   return rewritten;
 }
@@ -273,4 +286,5 @@ function build(){
 
 if(require.main === module) build();
 
-module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG };
+module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG,
+  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG };
