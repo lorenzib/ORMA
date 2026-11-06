@@ -14785,9 +14785,11 @@ function initTrailReports(map, trail){
     const km=Number(trail.distance);
     const up=Number.isFinite(Number(trail.elevation))?Math.max(0,Number(trail.elevation)):null;
     const net=netGain(trail);
+    const statedDown=trail.descent==null||!Number.isFinite(Number(trail.descent))?null:Math.max(0,Number(trail.descent));
     // A profile that gains more than the stated ascent is noise at the ends;
-    // the descent cannot be below zero.
-    const down=up===null?null:net===null?up:Math.max(0,up-net);
+    // the descent cannot be below zero. Without a profile, the authority's own
+    // descent says how much of the way back is climb.
+    const down=up===null?null:net!==null?Math.max(0,up-net):statedDown!==null?statedDown:up;
     const climb=up===null?null:Math.round(up+down);
     const bounds=parseHoursRange(trail.hours);
     let hours=trail.hours;
