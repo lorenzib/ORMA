@@ -258,6 +258,7 @@
     'osm-9450411': "Poststeig",
     'osm-9492594': "Vogelweider Rundweg",
     'osm-9493733': "Tru di Lëc",
+    'osm-9511973': "Roda de Armentara",
     'osm-9511999': "Tru dles Viles",
     'osm-9648632': "Pana Raida",
     'osm-9937537': "Le Mont Jovet",
