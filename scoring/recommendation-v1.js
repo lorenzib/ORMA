@@ -527,6 +527,29 @@
       { lift: liftName || 'gondola' }, liftName ? 'trail.lift.gondola.named' : 'trail.lift.gondola'));
     }
 
+    // The walk's season in the month the reader is planning for
+    // (data/trail-seasons.json). Only when a month is given: the engine says
+    // nothing about a season it was not asked about. Outside the months the
+    // walk's board publishes, or in months the altitude estimate makes snowy,
+    // the walk is a poor choice for any dog; ski runs on the line are a
+    // caution in the months they are likely open.
+    const season = suitability.season;
+    const month = Number.isInteger(input.month) && input.month >= 1 && input.month <= 12 ? input.month : null;
+    if(season && month){
+      const recommended = season.recommended && Array.isArray(season.recommended.months) ? season.recommended.months : null;
+      const snow = season.snow && Array.isArray(season.snow.months) ? season.snow : null;
+      if(recommended && !recommended.includes(month)){
+        penalise(25, item('trail.season.outside', 'The month you are planning for is outside the season the walk’s tourist board publishes.', { month }));
+      }else if(!recommended && snow && snow.likelihood === 'likely' && snow.months.includes(month)){
+        penalise(20, item('trail.season.snow-likely', 'Snow is likely on this walk in the month you are planning for (an estimate from its high point).', { month }));
+      }else if(recommended){
+        positives.push(item('trail.season.inside', 'The month you are planning for is in the season the walk’s tourist board publishes.', { month }));
+      }
+      if(Array.isArray(season.winterUse) && season.winterUse.length && [12, 1, 2, 3, 4].includes(month)){
+        penalise(10, item('trail.season.winter-use', 'Part of this walk is a ski run or track, likely in use in the month you are planning for.', { month }));
+      }
+    }
+
     if(access.status === 'prohibited'){
       const stop = item('trail.dog-access.prohibited', 'Dogs are prohibited on this route.');
       // A prohibition is not a deduction, it is a ceiling. Recording the drop

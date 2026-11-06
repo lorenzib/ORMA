@@ -49,6 +49,8 @@
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-plan{display:inline-flex;align-items:center;gap:8px;margin:0 0 6px;font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-plan-month{font:inherit;color:var(--ink,#1F2A24);padding:4px 8px;border:1px solid rgba(0,0,0,.18);border-radius:8px;background:#fff;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
   .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
@@ -188,8 +190,9 @@
     </svg>
     <figcaption class="sp-src">Elevation profile: lowest 1401 m, highest 2178 m.</figcaption>
   </figure>
-    <section class="sp-season" id="season" data-season-notes="[&quot;January is outside the season the board publishes for this walk. Parts of it are likely to be ski runs or tracks now.&quot;,&quot;February is outside the season the board publishes for this walk. Parts of it are likely to be ski runs or tracks now.&quot;,&quot;March is outside the season the board publishes for this walk. Parts of it are likely to be ski runs or tracks now.&quot;,&quot;April is outside the season the board publishes for this walk. Parts of it are likely to be ski runs or tracks now.&quot;,&quot;May is outside the season the board publishes for this walk.&quot;,&quot;June is in this walk’s season.&quot;,&quot;July is in this walk’s season.&quot;,&quot;August is in this walk’s season.&quot;,&quot;September is in this walk’s season.&quot;,&quot;October is in this walk’s season.&quot;,&quot;November is outside the season the board publishes for this walk.&quot;,&quot;December is outside the season the board publishes for this walk. Parts of it are likely to be ski runs or tracks now.&quot;]" data-season-warn="111110000011">
+    <section class="sp-season" id="season" data-season-notes="[&quot;January is outside the season the board publishes for this walk. In January, parts of it are likely to be ski runs or tracks.&quot;,&quot;February is outside the season the board publishes for this walk. In February, parts of it are likely to be ski runs or tracks.&quot;,&quot;March is outside the season the board publishes for this walk. In March, parts of it are likely to be ski runs or tracks.&quot;,&quot;April is outside the season the board publishes for this walk. In April, parts of it are likely to be ski runs or tracks.&quot;,&quot;May is outside the season the board publishes for this walk.&quot;,&quot;June is in this walk’s season.&quot;,&quot;July is in this walk’s season.&quot;,&quot;August is in this walk’s season.&quot;,&quot;September is in this walk’s season.&quot;,&quot;October is in this walk’s season.&quot;,&quot;November is outside the season the board publishes for this walk.&quot;,&quot;December is outside the season the board publishes for this walk. In December, parts of it are likely to be ski runs or tracks.&quot;]" data-season-warn="111110000011">
     <h2>When to go</h2>
+    <label class="sp-plan">Planning for <select class="sp-plan-month"><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></label>
     <p class="sp-season-now" hidden></p>
     <ol class="sp-months" aria-label="Months of the year"><li class="sp-month sp-month--off" data-month="1"><span aria-hidden="true">J</span><span class="sp-vh">January: Outside the season</span></li><li class="sp-month sp-month--off" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">February: Outside the season</span></li><li class="sp-month sp-month--off" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">March: Outside the season</span></li><li class="sp-month sp-month--off" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">April: Outside the season</span></li><li class="sp-month sp-month--off" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">May: Outside the season</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">J</span><span class="sp-vh">June: Recommended</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">J</span><span class="sp-vh">July: Recommended</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">August: Recommended</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">September: Recommended</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">October: Recommended</span></li><li class="sp-month sp-month--off" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">November: Outside the season</span></li><li class="sp-month sp-month--off" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">December: Outside the season</span></li></ol>
     <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Recommended <span class="sp-key sp-key--off"></span>Outside the season</p>
@@ -200,18 +203,36 @@
   </section>
   <script>
   (function(){
+    // The month the reader is planning for, shared with the trail list
+    // (trail-planning-month.js keeps it under the same key); this month if unset.
+    var KEY = 'orma-planning-month';
     var box = document.getElementById('season');
     if(!box) return;
-    var m = new Date().getMonth();
+    var today = new Date().getMonth() + 1;
     var notes = []; try{ notes = JSON.parse(box.getAttribute('data-season-notes')); }catch(e){}
-    var li = box.querySelector('[data-month="' + (m + 1) + '"]');
-    if(li) li.classList.add('sp-month--now');
+    var warn = box.getAttribute('data-season-warn') || '';
+    var select = box.querySelector('.sp-plan-month');
     var note = box.querySelector('.sp-season-now');
-    if(note && notes[m]){
-      note.textContent = notes[m];
-      if((box.getAttribute('data-season-warn') || '').charAt(m) === '1') note.classList.add('sp-season-now--warn');
-      note.hidden = false;
+    function planned(){
+      var v = 0; try{ v = Number(localStorage.getItem(KEY)); }catch(e){}
+      return v >= 1 && v <= 12 ? v : today;
     }
+    function show(m){
+      var lis = box.querySelectorAll('[data-month]');
+      for(var i = 0; i < lis.length; i++) lis[i].classList.toggle('sp-month--now', Number(lis[i].getAttribute('data-month')) === m);
+      if(select) select.value = String(m);
+      if(note){
+        note.textContent = notes[m - 1] || '';
+        note.classList.toggle('sp-season-now--warn', warn.charAt(m - 1) === '1');
+        note.hidden = !notes[m - 1];
+      }
+    }
+    if(select) select.addEventListener('change', function(){
+      var m = Number(select.value);
+      try{ if(m === today) localStorage.removeItem(KEY); else localStorage.setItem(KEY, String(m)); }catch(e){}
+      show(m);
+    });
+    show(planned());
   })();
   </script>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> Where to start</h2>

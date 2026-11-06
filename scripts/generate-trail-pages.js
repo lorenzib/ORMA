@@ -675,8 +675,11 @@ function seasonHtml(t) {
     ? `<p>${words.winter.map(escapeHtml).join(' ')} ${escapeHtml(words.winterNote)}</p>
     <p class="sp-src">${escapeHtml(words.winterSource)}</p>`
     : '';
+  const options = seasonWords.MONTH_NAMES
+    .map((_, i) => `<option value="${i + 1}">${escapeHtml(seasonWords.monthName(i + 1))}</option>`).join('');
   return `<section class="sp-season" id="season" data-season-notes="${escapeHtml(JSON.stringify(notes))}" data-season-warn="${warn.join('')}">
     <h2>${L('When to go')}</h2>
+    <label class="sp-plan">${L('Planning for')} <select class="sp-plan-month">${options}</select></label>
     <p class="sp-season-now" hidden></p>
     ${strip}
     ${words.line ? `<p>${escapeHtml(words.line)}</p>` : ''}
@@ -685,18 +688,36 @@ function seasonHtml(t) {
   </section>
   <script>
   (function(){
+    // The month the reader is planning for, shared with the trail list
+    // (trail-planning-month.js keeps it under the same key); this month if unset.
+    var KEY = 'orma-planning-month';
     var box = document.getElementById('season');
     if(!box) return;
-    var m = new Date().getMonth();
+    var today = new Date().getMonth() + 1;
     var notes = []; try{ notes = JSON.parse(box.getAttribute('data-season-notes')); }catch(e){}
-    var li = box.querySelector('[data-month="' + (m + 1) + '"]');
-    if(li) li.classList.add('sp-month--now');
+    var warn = box.getAttribute('data-season-warn') || '';
+    var select = box.querySelector('.sp-plan-month');
     var note = box.querySelector('.sp-season-now');
-    if(note && notes[m]){
-      note.textContent = notes[m];
-      if((box.getAttribute('data-season-warn') || '').charAt(m) === '1') note.classList.add('sp-season-now--warn');
-      note.hidden = false;
+    function planned(){
+      var v = 0; try{ v = Number(localStorage.getItem(KEY)); }catch(e){}
+      return v >= 1 && v <= 12 ? v : today;
     }
+    function show(m){
+      var lis = box.querySelectorAll('[data-month]');
+      for(var i = 0; i < lis.length; i++) lis[i].classList.toggle('sp-month--now', Number(lis[i].getAttribute('data-month')) === m);
+      if(select) select.value = String(m);
+      if(note){
+        note.textContent = notes[m - 1] || '';
+        note.classList.toggle('sp-season-now--warn', warn.charAt(m - 1) === '1');
+        note.hidden = !notes[m - 1];
+      }
+    }
+    if(select) select.addEventListener('change', function(){
+      var m = Number(select.value);
+      try{ if(m === today) localStorage.removeItem(KEY); else localStorage.setItem(KEY, String(m)); }catch(e){}
+      show(m);
+    });
+    show(planned());
   })();
   </script>`;
 }
@@ -1026,6 +1047,8 @@ function renderTrailPage(t, slug, all) {
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-plan{display:inline-flex;align-items:center;gap:8px;margin:0 0 6px;font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-plan-month{font:inherit;color:var(--ink,#1F2A24);padding:4px 8px;border:1px solid rgba(0,0,0,.18);border-radius:8px;background:#fff;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
   .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}

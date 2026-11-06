@@ -85,7 +85,7 @@ describe('the season words', () => {
     expect(words.outOfSeason(board, 11)).toBe(true);
     const piste = { ...board, winterUse: [{ kind: 'downhill', km: 1, names: [] }] };
     expect(words.outOfSeason(piste, 1)).toBe(true);
-    expect(words.nowNote(piste, 1)).toMatch(/ski runs or tracks now/);
+    expect(words.nowNote(piste, 1)).toBe("January is outside the season the board publishes for this walk. In January, parts of it are likely to be ski runs or tracks.");
   });
 });
 

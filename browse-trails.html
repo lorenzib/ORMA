@@ -69,6 +69,12 @@
   /* Search and geography form the primary row; refinements stay together on
      the row below instead of stretching across unrelated grid columns. */
   .browse-tools{position:relative;display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:18px;}
+  .browse-plan-month{width:100%;min-height:38px;margin:0 0 8px;padding:0 10px;border:1.5px solid var(--paper-line);border-radius:10px;background:var(--card);color:var(--ink);font:600 13px 'Inter',sans-serif;}
+  .browse-walkable{width:100%;}
+  .browse-season{display:inline-flex;align-items:center;min-height:22px;padding:2px 9px;border-radius:999px;font:700 11px/1.2 'Inter',sans-serif;white-space:nowrap;}
+  .browse-season--good{background:#E3F0E0;color:#24502A;}
+  .browse-season--check{background:#F7EBD2;color:#6D4916;}
+  .browse-season--out{background:#F6E3DE;color:#7A2E1E;}
   .browse-filter-divider{width:1px;height:22px;background:var(--divider);margin:0 3px;}
   .browse-search-shell{flex:1 1 240px;max-width:320px;display:flex;align-items:center;gap:9px;background:var(--card);border:var(--border-strong);border-radius:var(--radius-pill);padding:9px 15px;color:var(--ink-soft);}
   .browse-tools .browse-search{flex:1;min-width:0;max-width:none;}
@@ -375,6 +381,12 @@
               <button type="button" class="browse-quick-filter" id="browseChairlifts" aria-pressed="false" data-audit-label="Chairlift-assisted routes" title="Routes that ride an open chairlift are hidden by default: they can be fatal for a dog not used to one" data-i18n-title="browse.chairlifts.title"><span aria-hidden="true">⚠</span><span data-i18n="browse.chairlifts.label">Include chairlift routes</span></button>
               <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)" data-i18n-title="browse.quick.multiDayTitle"><span aria-hidden="true">🏕️</span><span data-i18n="browse.quick.multiDay">Multi-day</span></button>
             </div>
+          </div>
+          <div class="browse-filter-group">
+            <div class="browse-filter-group__title" data-i18n="browse.filters.when">When</div>
+            <label class="li-fsec" for="browsePlanMonth" data-i18n="browse.when.planning">Planning for</label>
+            <select id="browsePlanMonth" class="browse-plan-month"></select>
+            <button type="button" class="browse-quick-filter browse-walkable" id="browseWalkable" aria-pressed="false" data-audit-label="Walkable then" title="Only walks whose season allows the month you are planning for" data-i18n-title="browse.quick.walkableTitle"><span aria-hidden="true">📅</span><span data-i18n="browse.quick.walkable">Walkable then</span></button>
           </div>
           <div class="browse-filter-group">
             <div class="browse-filter-group__title" data-i18n="browse.filters.essentials">Route essentials</div>
@@ -1082,6 +1094,7 @@
 <script src="scoring/recommendation-adapters-v1.js?v=20260917-1"></script>
 <script src="scoring-conditions.js?v=1"></script>
 <script src="route-return.js?v=20261106-2"></script>
+<script src="trail-planning-month.js?v=20261106-1"></script>
 <script src="scoring.js?v=20260815-4"></script>
 <script type="module" src="firebase-init.js?v=20261106-1"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
@@ -1092,7 +1105,8 @@
 <script src="guest-context.js?v=20261030-1" defer></script>
 <script src="auth-ui.js?v=20261030-1" defer></script>
 <script src="discovery-state.js?v=20261007-1" defer></script>
-<script src="discovery-filters.js?v=20261024-1" defer></script>
+<script src="trail-season-words.js?v=20261106-1" defer></script>
+<script src="discovery-filters.js?v=20261106-1" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
@@ -1150,6 +1164,10 @@
     const shadeBtn = document.getElementById('browseQuickShade');
     const multiDayBtn = document.getElementById('browseMultiDay');
     const chairliftsBtn = document.getElementById('browseChairlifts');
+    const walkableBtn = document.getElementById('browseWalkable');
+    const planMonth = document.getElementById('browsePlanMonth');
+    const planner = window.ORMAPlanningMonth;
+    const seasonWords = window.DoloPawsTrailSeasonWords;
     const savedOnlyBtn = document.getElementById('browseSavedOnly');
     const savedCount = document.getElementById('browseSavedCount');
     const filtersBtn = document.getElementById('browseFiltersBtn');
@@ -1168,6 +1186,7 @@
     let regionValue = 'all';
     let valleyValue = 'all';
     let waterOnly = false;
+    let walkableOnly = false;
     let durationValue = 'day';
     let liftsValue = '';
     let difficultyValue = '';
@@ -1319,6 +1338,7 @@
       durationValue = canonical.duration === 'multi' ? 'multi' : 'day';
       liftsValue = canonical.lifts === 'include' ? 'include' : '';
       waterOnly = canonical.water === true;
+      walkableOnly = canonical.walkable === true;
       collectionKey = COLLECTIONS[canonical.collection] ? canonical.collection : 'all';
       difficultyValue = canonical.difficulty || '';
       terrain.value = canonical.terrain || '';
@@ -1346,6 +1366,7 @@
         duration: durationValue,
         lifts: liftsValue,
         water: waterOnly,
+        walkable: walkableOnly,
         collection: collectionKey === 'all' ? '' : collectionKey,
         difficulty: difficultyValue,
         terrain: terrain.value,
@@ -1454,6 +1475,16 @@
       }
     }
 
+    // The walk in the planning month, from its season record: nothing for a
+    // walk without one.
+    function seasonPill(trail){
+      if(!seasonWords || !planner) return '';
+      const month = planner.current().month;
+      const kind = seasonWords.verdict(trail.season, month);
+      if(!kind) return '';
+      return `<span class="browse-season browse-season--${kind}">${esc(seasonWords.verdictLabel(kind, month))}</span>`;
+    }
+
     function currentFilterState(){
       return {
         search: search.value,
@@ -1465,6 +1496,7 @@
         duration: durationValue,
         lifts: liftsValue,
         water: waterOnly,
+        walkable: walkableOnly,
         collection: collectionKey === 'all' ? '' : collectionKey,
         difficulty: difficultyValue,
         terrain: terrain.value,
@@ -1619,6 +1651,7 @@
     // Phone-width: rating / distance / water condense behind one Filters chip.
     function syncFiltersChip(){
       if(waterBtn) waterBtn.setAttribute('aria-pressed', String(waterOnly));
+      if(walkableBtn) walkableBtn.setAttribute('aria-pressed', String(walkableOnly));
       if(shadeBtn) shadeBtn.setAttribute('aria-pressed', String(heat.value === 'shade-60'));
       if(multiDayBtn) multiDayBtn.setAttribute('aria-pressed', String(durationValue === 'multi'));
       if(chairliftsBtn) chairliftsBtn.setAttribute('aria-pressed', String(liftsValue === 'include'));
@@ -1670,7 +1703,7 @@
     if(filtersReset) filtersReset.addEventListener('click', () => {
       distance.value = 'all'; risk.value = 'all'; terrain.value = ''; heat.value = '';
       exposure.value = ''; access.value = '';
-      minMatchValue = ''; waterOnly = false;
+      minMatchValue = ''; waterOnly = false; walkableOnly = false;
       page = 1; renderPage('push'); buildFilterPanel();
     });
     const filtersApply = document.getElementById('browseFiltersApply');
@@ -1882,6 +1915,7 @@
               ? icons.badgeHtml(t.safetyLevel, ratingLabel)
               : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${ratingLabel}</span>`, ratingLabel)}
             ${provenance}
+            ${seasonPill(t)}
           </div>
           <div class="simple-card__match simple-card__match--${tierClass}">
             <div class="simple-card__score">
@@ -2026,6 +2060,32 @@
       page = 1;
       renderPage('push');
     });
+    if(walkableBtn) walkableBtn.addEventListener('click', () => {
+      walkableOnly = !walkableOnly;
+      walkableBtn.setAttribute('aria-pressed', String(walkableOnly));
+      page = 1;
+      renderPage('push');
+    });
+    // The month the cards, the "Walkable then" filter and the trail pages
+    // talk about. Kept on the device, not in the address (trail-planning-month.js).
+    function renderPlanMonth(){
+      if(!planMonth || !planner || !seasonWords) return;
+      const chosen = planner.current();
+      const today = planner.today();
+      planMonth.innerHTML = seasonWords.MONTH_NAMES.map((_, i) => {
+        const m = i + 1;
+        const label = m === today
+          ? bt('browse.when.thisMonth', 'This month ({month})', { month: seasonWords.monthName(m) })
+          : seasonWords.monthName(m);
+        return `<option value="${m}"${m === chosen.month ? ' selected' : ''}>${esc(label)}</option>`;
+      }).join('');
+    }
+    if(planMonth && planner) planMonth.addEventListener('change', () => {
+      planner.set(Number(planMonth.value));
+      page = 1;
+      renderPage('replace');
+    });
+    renderPlanMonth();
     if(shadeBtn) shadeBtn.addEventListener('click', () => {
       heat.value = heat.value === 'shade-60' ? '' : 'shade-60';
       page = 1;
@@ -2060,6 +2120,8 @@
       valleyValue = 'all';
       waterOnly = false;
       if(waterBtn) waterBtn.setAttribute('aria-pressed', 'false');
+      walkableOnly = false;
+      if(walkableBtn) walkableBtn.setAttribute('aria-pressed', 'false');
       durationValue = 'day';
       if(multiDayBtn) multiDayBtn.setAttribute('aria-pressed', 'false');
       liftsValue = '';

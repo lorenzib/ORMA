@@ -22,7 +22,7 @@
   // the Node test harness alike.
   const MULTI_DAY_MIN_KM = 25;
   const FILTER_ORDER = [
-    'search', 'country', 'region', 'valley', 'risk', 'distance', 'duration', 'difficulty', 'terrain', 'water', 'heat',
+    'search', 'country', 'region', 'valley', 'risk', 'distance', 'duration', 'difficulty', 'terrain', 'water', 'walkable', 'heat',
     'exposure', 'access', 'collection', 'minMatch', 'lifts',
   ];
 
@@ -94,6 +94,13 @@
       && parts.verification.categories[category] === 'verified';
   }
 
+  function planningMonth(state, options){
+    const given = Number(state && state.month) || Number(options && options.month);
+    if(Number.isInteger(given) && given >= 1 && given <= 12) return given;
+    const planner = root && root.ORMAPlanningMonth;
+    return planner ? planner.current().month : new Date().getMonth() + 1;
+  }
+
   function matches(trail, state, options){
     state = state || {};
     const parts = normalizedTrail(trail);
@@ -163,6 +170,15 @@
       const hasWater = Array.isArray(parts.waypoints)
         && parts.waypoints.some(point => point && point.type === 'water');
       if(!hasWater) return false;
+    }
+
+    // "Walkable then": the walk's season (trail-season-words.js) says nothing
+    // stands in the way in the planning month. A walk with no season record
+    // has no answer, so it is not shown as walkable.
+    if(state.walkable){
+      const words = root && root.DoloPawsTrailSeasonWords;
+      const month = planningMonth(state, options);
+      if(!words || words.verdict(trail.season, month) !== 'good') return false;
     }
 
     if(state.heat === 'shade-40' || state.heat === 'shade-60'){
@@ -243,6 +259,12 @@
         rocky: tr('filters.chip.terrainRocky', 'Rocky terrain is okay'),
       }[state.terrain],
       water: tr('filters.chip.water', 'Water point listed'),
+      walkable: (() => {
+        const words = root && root.DoloPawsTrailSeasonWords;
+        const month = planningMonth(state, null);
+        const name = words ? words.monthName(month) : String(month);
+        return tr('filters.chip.walkable', 'Walkable in {month}', { month: name });
+      })(),
       heat: state.heat === 'low-reviewed' ? tr('filters.chip.heatLow', 'Lower heat exposure')
         : state.heat === 'shade-40' ? tr('filters.chip.shade40', 'Over 40% shade')
         : state.heat === 'shade-60' ? tr('filters.chip.shade60', 'Over 60% shade')
@@ -273,7 +295,7 @@
     // Removing the multi-day chip returns to the default day-hike view, not to
     // an unfiltered "show everything" state.
     if(key === 'duration') return { ...state, duration: 'day' };
-    return { ...state, [key]: key === 'water' ? false : '' };
+    return { ...state, [key]: key === 'water' || key === 'walkable' ? false : '' };
   }
 
   function safeBroadenings(trails, state, options){

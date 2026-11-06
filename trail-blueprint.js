@@ -670,7 +670,8 @@
     // board's months, snowy by the altitude estimate, or a month the ski runs on
     // the line are likely open. The altitude line stays for the other months.
     const seasonWords = window.DoloPawsTrailSeasonWords;
-    const month = new Date().getMonth() + 1;
+    const planner = window.ORMAPlanningMonth;
+    const month = planner ? planner.current().month : new Date().getMonth() + 1;
     if (seasonWords && t.season && seasonWords.outOfSeason(t.season, month)) {
       const words = seasonWords.describe(t.season);
       const basis = t.season.recommended ? words.line : (t.season.snow ? tx('An estimate from the walk’s high point.') : '');

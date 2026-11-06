@@ -102,7 +102,7 @@
         : tx('In {month} snow is possible on this walk.', { month: name }));
     }
     if ((season.winterUse || []).length && WINTER_SPORT_MONTHS.includes(month)) {
-      notes.push(tx('Parts of it are likely to be ski runs or tracks now.'));
+      notes.push(tx('In {month}, parts of it are likely to be ski runs or tracks.', { month: name }));
     }
     return notes.join(' ');
   }
@@ -116,7 +116,31 @@
     return (season.winterUse || []).length > 0 && WINTER_SPORT_MONTHS.includes(month);
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, monthRange, describe, nowNote, outOfSeason };
+  // One word for a walk in a month, for a card or a filter:
+  //   'out'   outside the board's season, or snow likely by the estimate;
+  //   'check' in season, but ski runs on the line are likely open, or snow is
+  //           possible;
+  //   'good'  nothing about the month stands in the way.
+  // null when the walk has no season record: no answer, not a good one.
+  function verdict(season, month) {
+    if (!season || !month) return null;
+    if (!season.recommended && !season.snow && !(season.winterUse || []).length) return null;
+    if (season.recommended && !season.recommended.months.includes(month)) return 'out';
+    if (!season.recommended && season.snow && season.snow.likelihood === 'likely' && season.snow.months.includes(month)) return 'out';
+    if ((season.winterUse || []).length && WINTER_SPORT_MONTHS.includes(month)) return 'check';
+    if (!season.recommended && season.snow && season.snow.months.includes(month)) return 'check';
+    return 'good';
+  }
+
+  function verdictLabel(kind, month) {
+    const name = monthName(month);
+    if (kind === 'good') return tx('Good in {month}', { month: name });
+    if (kind === 'check') return tx('Check first in {month}', { month: name });
+    if (kind === 'out') return tx('Out of season in {month}', { month: name });
+    return '';
+  }
+
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, monthName, monthRange, describe, nowNote, outOfSeason, verdict, verdictLabel };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
