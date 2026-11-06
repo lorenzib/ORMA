@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-06T22:40:37.153Z",
+  "generatedAt": "2026-11-06T22:51:32.499Z",
   "regions": {
     "dolomites": {
       "trailCount": 352,
-      "trails": "data/regions/dolomites-trails.js?v=e448d2500bf8",
+      "trails": "data/regions/dolomites-trails.js?v=12b7f0d5df69",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=8181fdfdffc2",
         "seceda": "data/trail-details/seceda.js?v=a5efa0fc81de",
@@ -25,7 +25,7 @@
         "sentiero-del-trenino": "data/trail-details/sentiero-del-trenino.js?v=bc8b5df4c409",
         "giro-del-sasso-lungo": "data/trail-details/giro-del-sasso-lungo.js?v=f533b80298d6",
         "osm-123162": "data/trail-details/osm-123162.js?v=6afc7ed1ae0c",
-        "osm-1116675": "data/trail-details/osm-1116675.js?v=e24eb8e62397",
+        "osm-1116675": "data/trail-details/osm-1116675.js?v=08c72d2f0515",
         "osm-1116680": "data/trail-details/osm-1116680.js?v=794d961f3422",
         "osm-1780768": "data/trail-details/osm-1780768.js?v=4dafdf58e996",
         "osm-2179746": "data/trail-details/osm-2179746.js?v=2c59ea49e95b",
