@@ -97,6 +97,31 @@ describe('SOCIAL-02 proven walks', () => {
     expect(proof.loadCoverage('session-1')).toBeNull();
   });
 
+  describe('a recording ends itself', () => {
+    const proven = () => walkLine(proof, trail.path).coverage;
+    const half = () => walkLine(proof, trail.path, { upToShare: 0.5 }).coverage;
+
+    test('a loop ends back where the recording started, once it is proven', () => {
+      expect(proof.reachedFinish({ coverage: proven(), shape: 'loop', toStartM: 20, toEndM: 5000 })).toBe(true);
+      expect(proof.reachedFinish({ coverage: proven(), shape: 'loop', toStartM: proof.FINISH_M + 1, toEndM: 0 })).toBe(false);
+    });
+
+    test('a walk not yet proven never ends itself, even at the finish', () => {
+      expect(proof.reachedFinish({ coverage: half(), shape: 'loop', toStartM: 0 })).toBe(false);
+      expect(proof.reachedFinish({ coverage: half(), shape: 'one-way', toEndM: 0 })).toBe(false);
+    });
+
+    test('an out-and-back must reach the far end before the start ends it', () => {
+      expect(proof.reachedFinish({ coverage: proven(), shape: 'out-and-back', toStartM: 10, furthestShare: 0.6 })).toBe(false);
+      expect(proof.reachedFinish({ coverage: proven(), shape: 'out-and-back', toStartM: 10, furthestShare: 0.95 })).toBe(true);
+    });
+
+    test('a one-way walk ends at the far end of the line', () => {
+      expect(proof.reachedFinish({ coverage: proven(), shape: 'one-way', toStartM: 0, toEndM: 30 })).toBe(true);
+      expect(proof.reachedFinish({ coverage: proven(), shape: 'one-way', toStartM: 0, toEndM: 500 })).toBe(false);
+    });
+  });
+
   describe('a tap on "We walked this"', () => {
     const at = (lat, lng, accuracy = 15) => ({ coords: { latitude: lat, longitude: lng, accuracy } });
 
@@ -145,6 +170,14 @@ describe('SOCIAL-02 wiring', () => {
     expect(finish).toContain("proof.proof === 'gps'");
     expect(finish).toContain("recordTrailWalk(trail.id, activeDogGroup(), 'gps')");
     expect(finish.indexOf('assessHike')).toBeLessThan(finish.indexOf('clearDurableSession()'));
+  });
+
+  test('hike mode ends a proven walk by itself, after the fix is stored', () => {
+    const hikeMode = read('hike-mode.js');
+    const onFix = hikeMode.slice(hikeMode.indexOf('function onFix'), hikeMode.indexOf('function onError'));
+    expect(onFix).toContain('walkProof.reachedFinish(');
+    expect(onFix).toContain('finishHike()');
+    expect(onFix.indexOf('markCoverage(')).toBeLessThan(onFix.indexOf('reachedFinish('));
   });
 
   test('the tap checks where the phone is before it records', () => {

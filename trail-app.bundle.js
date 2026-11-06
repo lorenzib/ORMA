@@ -9593,13 +9593,15 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
         'check-gps'
       ));
     }else{
+      // SOCIAL-03: hike mode finds the position itself once recording
+      // starts, so an unchecked or weak fix is worth knowing, not a gate.
       items.push(item(
         'gps',
-        'blocker',
+        'advisory',
         gps.error || gps.fix
           ? tr('readiness.gps.unusable.title', 'GPS fix is not usable yet')
           : tr('readiness.gps.notChecked.title', 'GPS fix not checked'),
-        gps.error || tr('readiness.gps.notChecked.detail', 'Check your position before starting hike mode.'),
+        gps.error || tr('readiness.gps.notChecked.detail', 'ORMA finds your position when recording starts.'),
         'check-gps'
       ));
     }
@@ -9751,6 +9753,11 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
           { count:result.counts.blocker + result.counts.checking }
         );
       const proceed = modal.querySelector('[data-readiness-action="continue"]');
+      // Opened from a running hike, the sheet is a checklist to read.
+      proceed.hidden = typeof continuation !== 'function';
+      modal.querySelector('.pre-hike-secondary').textContent = proceed.hidden
+        ? tr('readiness.close', 'Close')
+        : tr('readiness.notYet', 'Not yet');
       proceed.disabled = !result.canStart;
       proceed.textContent = result.canStart
         ? tr('readiness.start', 'Start hike')
@@ -11190,6 +11197,8 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
   const MAX_HOURS = 16;        // one walk, one day
   const CHECKIN_M = 150;       // how close a check-in must be to the line
   const MAX_ACCURACY_M = 100;  // a vaguer position proves nothing
+  const FINISH_M = 75;         // this close to the finish ends a proven walk
+  const FAR_END_SHARE = 0.9;   // an out-and-back has turned round past here
   const STORAGE_KEY = 'orma-walk-coverage-v1';
 
   const M_PER_DEG = 111000;
@@ -11273,6 +11282,23 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     return result('gps', 'proven');
   }
 
+  // SOCIAL-03: a recording ends itself, so nobody has to remember Finish.
+  // The walk is over once it is proven (MIN_SHARE of the line walked) and the
+  // walker is back where the walk ends:
+  //   loop / out-and-back  where the recording started (a loop may be begun
+  //                        from any car park on it; an out-and-back must
+  //                        also have reached the far end first);
+  //   one-way              the far end of the line.
+  function reachedFinish(input){
+    const opts = input || {};
+    if(share(opts.coverage) < MIN_SHARE) return false;
+    if(opts.shape === 'out-and-back'){
+      return Number(opts.furthestShare) >= FAR_END_SHARE && Number(opts.toStartM) <= FINISH_M;
+    }
+    if(opts.shape === 'loop') return Number(opts.toStartM) <= FINISH_M;
+    return Number(opts.toEndM) <= FINISH_M;
+  }
+
   // Judge a tap on "We walked this" against where the phone says it is.
   // Returns { proof: 'checkin' | null, reason, distanceM }.
   function assessCheckIn(position, path){
@@ -11331,8 +11357,9 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
 
   const api = {
     BIN_M, NEAR_M, FILL_M, MIN_SHARE, MAX_KMH, MAX_HOURS, CHECKIN_M, MAX_ACCURACY_M, STORAGE_KEY,
+    FINISH_M, FAR_END_SHARE,
     PROOFS: ['gps', 'checkin'],
-    distanceToLine, createCoverage, markFix, share, assessHike, assessCheckIn,
+    distanceToLine, createCoverage, markFix, share, assessHike, assessCheckIn, reachedFinish,
     saveCoverage, loadCoverage, clearCoverage,
   };
   root.DoloPawsWalkProof = api;
@@ -11566,6 +11593,10 @@ function initHikeMode(map, trail, options){
   // hike counts as a walk only when they cover most of the route.
   const walkProof = window.DoloPawsWalkProof || null;
   let coverage = null;
+  // SOCIAL-03: where this recording began, so a loop started from any car
+  // park on it ends back there. A resumed hike falls back to the line's start.
+  let recordingStart = null;
+  const walkShape = isLoop ? 'loop' : outAndBack ? 'out-and-back' : 'one-way';
 
   // ---- UI elements ---------------------------------------------------------
   const startBtn = document.createElement('button');
@@ -12046,6 +12077,18 @@ function initHikeMode(map, trail, options){
       }
       lastValidFixAt = fixTimestamp;
       markCoverage(routeProgressM, routeDistanceM);
+      if(!recordingStart) recordingStart = [lat, lng];
+      if(walkProof && walkProof.reachedFinish({
+        coverage,
+        shape: walkShape,
+        toStartM: metersBetween(lat, lng, recordingStart[0], recordingStart[1]),
+        toEndM: metersBetween(lat, lng, trail.path[trail.path.length - 1][0], trail.path[trail.path.length - 1][1]),
+        furthestShare: furthestRouteM / totalMeters,
+      })){
+        // Back at the end of a proven walk: finish it for the walker, after
+        // this fix's progress is stored.
+        setTimeout(() => { if(active) finishHike(); }, 0);
+      }
       persistProgress(
         lastKnownKm,
         snap.idx,
@@ -12202,6 +12245,7 @@ function initHikeMode(map, trail, options){
     hikeStartedAt = Date.now();
     lastKnownKm = 0;
     coverage = walkProof ? walkProof.createCoverage(totalMeters) : null;
+    recordingStart = null;
     distanceTracker = window.DoloPawsHikeDistance
       ? window.DoloPawsHikeDistance.create(0)
       : null;
@@ -12226,8 +12270,10 @@ function initHikeMode(map, trail, options){
     }));
     panel.style.display = 'block';
     container.classList.add('hike-status-visible');
-    panel.innerHTML = window.t('hike.getting');
-    announceStatus(panel.textContent);
+    // One short line while the GPS warms up: the walk ends itself, and the
+    // waymarks still lead (the boundary the readiness sheet used to state).
+    panel.innerHTML = `${window.t('hike.getting')}<span style="display:block;margin-top:4px;font-weight:500;opacity:.85;">${esc(window.t('hike.autoFinishNote'))}</span>`;
+    announceStatus(`${window.t('hike.getting')} ${window.t('hike.autoFinishNote')}`);
     showLiveDot();
     acquireWakeLock();
     watchId = navigator.geolocation.watchPosition(onFix, onError, {
@@ -12237,13 +12283,18 @@ function initHikeMode(map, trail, options){
     });
   }
 
+  // SOCIAL-03: one tap starts recording, as in every walking app. The phone
+  // asks for location itself, and onError explains a refusal. The readiness
+  // sheet repeated what the trail page already shows (offline map, weather,
+  // directions, safety guide), so it opens only on a phone with no GPS.
   function requestNewHike(){
-    if(window.DoloPawsReadiness && window.DoloPawsReadiness.open){
-      window.DoloPawsReadiness.open(trail, startHike);
-    }else{
-      startHike();
+    if(!navigator.geolocation && window.DoloPawsReadiness && window.DoloPawsReadiness.open){
+      window.DoloPawsReadiness.open(trail, null);
+      return;
     }
+    startHike();
   }
+
 
   function stopHike(keepPanel){
     active = false;
@@ -12278,6 +12329,7 @@ function initHikeMode(map, trail, options){
     coverage = walkProof
       ? walkProof.loadCoverage(durableSession.sessionId) || walkProof.createCoverage(totalMeters)
       : null;
+    recordingStart = progress ? trail.path[0] : null;
     distanceTracker = window.DoloPawsHikeDistance
       ? window.DoloPawsHikeDistance.create(lastKnownKm)
       : null;
