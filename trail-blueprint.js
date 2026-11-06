@@ -569,6 +569,7 @@
     // keeps a score calculated before the day was known.
     window.addEventListener('dolopaws-conditions-ready', paintPersonalMatch);
     window.addEventListener('orma-route-view-changed', paintPersonalMatch);
+    window.addEventListener('orma-planning-month', paintPersonalMatch);
 
     // Trail description inside the white box
     const descEl = $('matchDescription');
@@ -638,6 +639,7 @@
       : null);
     paint();
     window.addEventListener('dolopaws-conditions-ready', paint);
+    window.addEventListener('orma-planning-month', paint);
   })();
 
   function paintSafetyRows(box, conditions) {

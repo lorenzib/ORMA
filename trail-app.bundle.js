@@ -6810,12 +6810,17 @@ function breedInsights(name){
     if(!engine || typeof engine.calculateRecommendation !== 'function'){
       throw new Error('The canonical recommendation engine is unavailable.');
     }
+    const month = planningMonth(options);
+    // A forecast is for the coming days. Planning for another month, it says
+    // nothing about the walk, so the score is worked out without one.
+    const planner = root && root.ORMAPlanningMonth;
+    const elsewhere = planner && month && month !== planner.today();
     return engine.calculateRecommendation({
       dog: normalizeDog(subjectProfile(subject), options),
       trail: normalizeTrail(trail),
-      currentConditions: currentConditions || { status: 'not-provided' },
+      currentConditions: (!elsewhere && currentConditions) || { status: 'not-provided' },
       effectiveLimits: effectiveLimits(subject),
-      month: planningMonth(options),
+      month,
     });
   }
 
@@ -18908,6 +18913,7 @@ if(document.querySelector('.td2')){
     // keeps a score calculated before the day was known.
     window.addEventListener('dolopaws-conditions-ready', paintPersonalMatch);
     window.addEventListener('orma-route-view-changed', paintPersonalMatch);
+    window.addEventListener('orma-planning-month', paintPersonalMatch);
 
     // Trail description inside the white box
     const descEl = $('matchDescription');
@@ -18977,6 +18983,7 @@ if(document.querySelector('.td2')){
       : null);
     paint();
     window.addEventListener('dolopaws-conditions-ready', paint);
+    window.addEventListener('orma-planning-month', paint);
   })();
 
   function paintSafetyRows(box, conditions) {
@@ -20355,6 +20362,18 @@ if(document.querySelector('.td2')){
       : `<p class="recommendation-route-view">${esc(scored !== trail
         ? tr('recommendation.routeView.back', 'Scored for walking there and back: {km} km, about {climb} m up and the same down. The time is an estimate.', { km:scored.distance, climb:scored.elevation })
         : tr('recommendation.routeView.oneWay', 'Scored for one way. This walk ends away from its start, so plan how you will get back.'))}</p>`;
+    // The month the score was worked out for, and the place to change it, on a
+    // walk whose season ORMA knows (trail-planning-month.js); the list and the
+    // trail page share it.
+    const planner = window.ORMAPlanningMonth;
+    const seasonWords = window.DoloPawsTrailSeasonWords;
+    const planNote = !(trail.season && planner && seasonWords) ? ''
+      : `<label class="recommendation-plan">${esc(tr('recommendation.plan.label', 'Planning for'))} <select data-plan-month>${
+        seasonWords.MONTH_NAMES.map((_, i) => `<option value="${i + 1}"${i + 1 === planner.current().month ? ' selected' : ''}>${esc(
+          i + 1 === planner.today()
+            ? tr('browse.when.thisMonth', 'This month ({month})', { month:seasonWords.monthName(i + 1) })
+            : seasonWords.monthName(i + 1))}</option>`).join('')
+      }</select></label>`;
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
       translate:window.t,
@@ -20394,6 +20413,7 @@ if(document.querySelector('.td2')){
           `<div class="recommendation-kicker">${esc(view.contextLabel)}</div>` +
           `<h2>${esc(view.conclusion)} ${score} ${chip}</h2>` +
           routeNote +
+          planNote +
           gapCta +
         '</div>' +
       '</div>' +
@@ -20414,6 +20434,8 @@ if(document.querySelector('.td2')){
         `<button type="button" data-recommendation-download disabled>${esc(tr('recommendation.action.offlineUnavailable', 'Offline map unavailable'))}</button>` +
       '</div>';
     root.hidden = false;
+    const planSelect = root.querySelector('[data-plan-month]');
+    if(planSelect) planSelect.addEventListener('change', () => window.ORMAPlanningMonth.set(Number(planSelect.value)));
 
     renderGuideLinks(recommendation);
     const hero = document.getElementById('heroVerdict');
@@ -20537,5 +20559,6 @@ if(document.querySelector('.td2')){
   window.addEventListener('dolopaws-conditions-ready', renderCurrent);
   window.addEventListener('orma-area-warnings-ready', renderCurrent);
   window.addEventListener('orma-route-view-changed', renderCurrent);
+  window.addEventListener('orma-planning-month', renderCurrent);
 })();
 ;

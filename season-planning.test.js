@@ -129,3 +129,36 @@ describe('the pages', () => {
     }
   });
 });
+
+describe('planning for another month', () => {
+  afterEach(() => { delete globalThis.ORMAPlanningMonth; delete globalThis.DoloPawsRecommendationV1; jest.resetModules(); });
+
+  test('scores without the forecast, which is for the coming days', () => {
+    jest.resetModules();
+    globalThis.DoloPawsRecommendationV1 = require('./scoring/recommendation-v1');
+    const adapters = require('./scoring/recommendation-adapters-v1');
+    const today = new Date().getMonth() + 1;
+    const other = (today % 12) + 1;
+    const seen = [];
+    const engine = globalThis.DoloPawsRecommendationV1;
+    const spy = jest.spyOn(engine, 'calculateRecommendation').mockImplementation(input => { seen.push(input); return { score: 1 }; });
+    const cold = { status: 'known', dayMaxC: 1 };
+    globalThis.ORMAPlanningMonth = { today: () => today, current: () => ({ month: other, chosen: true }) };
+    adapters.recommendLegacyTrail({ id: 'x' }, {}, cold);
+    globalThis.ORMAPlanningMonth = { today: () => today, current: () => ({ month: today, chosen: false }) };
+    adapters.recommendLegacyTrail({ id: 'x' }, {}, cold);
+    spy.mockRestore();
+    expect(seen[0]).toMatchObject({ month: other, currentConditions: { status: 'not-provided' } });
+    expect(seen[1]).toMatchObject({ month: today, currentConditions: cold });
+  });
+});
+
+describe('the app trail page', () => {
+  test('names the planning month on the score card and repaints when it changes', () => {
+    const src = fs.readFileSync(path.join(__dirname, 'trail-recommendation.js'), 'utf8');
+    expect(src).toContain('data-plan-month');
+    expect(src).toContain("window.addEventListener('orma-planning-month', renderCurrent);");
+    const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
+    expect(blueprint).toContain("window.addEventListener('orma-planning-month', paint);");
+  });
+});

@@ -291,12 +291,17 @@
     if(!engine || typeof engine.calculateRecommendation !== 'function'){
       throw new Error('The canonical recommendation engine is unavailable.');
     }
+    const month = planningMonth(options);
+    // A forecast is for the coming days. Planning for another month, it says
+    // nothing about the walk, so the score is worked out without one.
+    const planner = root && root.ORMAPlanningMonth;
+    const elsewhere = planner && month && month !== planner.today();
     return engine.calculateRecommendation({
       dog: normalizeDog(subjectProfile(subject), options),
       trail: normalizeTrail(trail),
-      currentConditions: currentConditions || { status: 'not-provided' },
+      currentConditions: (!elsewhere && currentConditions) || { status: 'not-provided' },
       effectiveLimits: effectiveLimits(subject),
-      month: planningMonth(options),
+      month,
     });
   }
 
