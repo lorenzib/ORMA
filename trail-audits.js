@@ -14664,13 +14664,14 @@
     },
     'osm-12190538': {
       // Seal restored 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
-      // measured by ORMA from the map (Open-Meteo ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: the line matches the province trail register's 'Flaaser Rundweg' (routes-hikingtrails.11425436,
       // 4.98 km): every register point within 39 m, one 70 m dog-leg past the Leitlkeller. Dogs: Jenesien dog regulation Art. 4 and 8.
       // No Natura 2000 site, park or biotope on the line.
       "area": "Flaas, San Genesio / Jenesien",
-      "elevation": 260,
-      "hours": "2",
+      "elevation": 200,
+      "hours": "1.8",
+      "elevationProfile": [{"km": 0, "elev": 1522}, {"km": 0.4, "elev": 1483}, {"km": 0.8, "elev": 1422}, {"km": 1.2, "elev": 1381}, {"km": 1.6, "elev": 1375}, {"km": 2, "elev": 1394}, {"km": 2.4, "elev": 1382}, {"km": 2.8, "elev": 1343}, {"km": 3.2, "elev": 1349}, {"km": 3.6, "elev": 1393}, {"km": 4, "elev": 1438}, {"km": 4.4, "elev": 1478}, {"km": 4.8, "elev": 1509}, {"km": 5.1, "elev": 1522}],
       "shadeCoverage": 60,
       "heatRisk": "low",
       "exposure": false,
@@ -14682,7 +14683,7 @@
         "name": "Flaaser Rundweg",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425436"
       },
-      "desc": "A 5 km loop round the hamlet of Flaas on the Tschögglberg above Jenesien, through fenced meadows, past farmsteads and the Leitlkeller inn, and back through spruce forest. About 260 m of up and down, between 1,340 and 1,530 m, in about two hours, as measured by ORMA (no official figure).\n\nJenesien's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows during the growing season, so keep to the path where it crosses them.",
+      "desc": "A 5 km loop round the hamlet of Flaas on the Tschögglberg above Jenesien, through fenced meadows, past farmsteads and the Leitlkeller inn, and back through spruce forest. About 200 m of up and down, between 1,330 and 1,520 m, in about 1¾ hours, as measured by ORMA (no official figure).\n\nJenesien's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows during the growing season, so keep to the path where it crosses them.",
       "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Jenesien requires, and keep off the meadows; horses graze in the fenced pastures. About 1.2 km follows quiet public roads. The only tap is by Flaas church, about 160 m off the loop. The first stretch over the meadows is open; most of the second half is in forest.",
       "routeNumberGuidance": {
         "mode": "landmarks",
@@ -14713,7 +14714,7 @@
         "route": "Published line 5.05 km against the province register's Flaaser Rundweg (4.98 km): every register point within 39 m; one 70 m dog-leg past the Leitlkeller.",
         "routeNumbers": "The register names the loop without a number; about 300 m shares path 8.",
         "mapPoints": "Start at the car park on the loop; the only tap is by Flaas church, 160 m off the line.",
-        "elevation": "No official figure. Measured by ORMA from the map: 5.06 km, about 260 m up and down between 1,337 and 1,531 m, 2 h by DIN 33466."
+        "elevation": "No official figure. Measured by ORMA from the map: 5.06 km, about 200 m up and down between 1,334 and 1,524 m, 1 h 47 min by DIN 33466 (25 m EU-DEM heights)."
       },
       "graduation": {
         "status": "verified",
@@ -14779,11 +14780,12 @@
     },
     'osm-12371666': {
       // Seal restored 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
-      // measured by ORMA from the map (Open-Meteo ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: the line matches the province trail register's 'Kastelaz Promenade' (routes-hikingtrails.11425908,
       // 1.27 km) within 15 m everywhere. Dogs: Tramin dog regulation Art. 4 and 8. No Natura 2000 site, park or biotope on the line.
-      "elevation": 85,
+      "elevation": 60,
       "hours": "0.5",
+      "elevationProfile": [{"km": 0, "elev": 388}, {"km": 0.1, "elev": 381}, {"km": 0.2, "elev": 374}, {"km": 0.3, "elev": 359}, {"km": 0.4, "elev": 345}, {"km": 0.5, "elev": 347}, {"km": 0.6, "elev": 343}, {"km": 0.7, "elev": 340}, {"km": 0.8, "elev": 328}, {"km": 0.9, "elev": 348}, {"km": 1, "elev": 379}, {"km": 1.1, "elev": 387}, {"km": 1.2, "elev": 390}, {"km": 1.3, "elev": 388}],
       "shadeCoverage": 5,
       "heatRisk": "high",
       "exposure": false,
@@ -14795,7 +14797,7 @@
         "name": "Kastelaz Promenade",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425908"
       },
-      "desc": "A short promenade of about 1.3 km above Tramin, up the lane towards the hill of Kastelaz and its St. Jakob church and back on footpaths between the vineyards, with views over the village spire and the Etsch valley. About 85 m of up and down in about 35 minutes, as measured by ORMA (no official figure).\n\nTramin's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed land during the growing season, so keep your dog out of the vineyards.",
+      "desc": "A short promenade of about 1.3 km above Tramin, up the lane towards the hill of Kastelaz and its St. Jakob church and back on footpaths between the vineyards, with views over the village spire and the Etsch valley. About 60 m of up and down in about half an hour, as measured by ORMA (no official figure).\n\nTramin's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed land during the growing season, so keep your dog out of the vineyards.",
       "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Tramin requires, and keep it out of the vineyards. About half the walk is on asphalt lanes where cars pass. There is almost no shade on this low, sunny vineyard slope, so avoid summer middays. Fountains are mapped in the village, 45 to 120 m off the route.",
       "imageIcon": "images/trails/osm-12371666-tramin-spire.jpg",
       "imageCredit": "Tramin parish church and the Etsch valley",
@@ -14823,7 +14825,7 @@
         "route": "Published line 1.28 km, within 15 m of the province register's Kastelaz Promenade (1.27 km) everywhere.",
         "routeNumbers": "The register names the promenade without a number.",
         "mapPoints": "Start at the Altersheim bus stop on the route; the fountains are in the village just off it.",
-        "elevation": "No official figure. Measured by ORMA from the map: 1.30 km, about 85 m up and down between 330 and 411 m, 35 min by DIN 33466."
+        "elevation": "No official figure. Measured by ORMA from the map: 1.30 km, about 60 m up and down between 328 and 390 m, 29 min by DIN 33466 (25 m EU-DEM heights)."
       },
       "graduation": {
         "status": "verified",
@@ -16470,14 +16472,15 @@
     },
     'osm-11855879': {
       // Seal restored 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
-      // measured by ORMA from the map (Open-Meteo ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: the line matches the province trail register's 'Roda de Cherz' (routes-hikingtrails.11427015,
       // 2.77 km) within 6 m everywhere. Dogs: Livinallongo del Col di Lana publishes no dog rule, so the national rule applies
       // (Ministry of Health ordinance of 6 August 2013, Art. 1(3)); Arabba Fodom Turismo asks for a lead on all paths because of grazing
       // animals. No Natura 2000 site or park on the line.
       "area": "Cherz plateau, Arabba (Livinallongo del Col di Lana)",
-      "elevation": 70,
+      "elevation": 45,
       "hours": "1",
+      "elevationProfile": [{"km": 0, "elev": 2070}, {"km": 0.2, "elev": 2071}, {"km": 0.4, "elev": 2066}, {"km": 0.6, "elev": 2065}, {"km": 0.8, "elev": 2046}, {"km": 1, "elev": 2054}, {"km": 1.2, "elev": 2057}, {"km": 1.4, "elev": 2061}, {"km": 1.6, "elev": 2072}, {"km": 1.8, "elev": 2081}, {"km": 2, "elev": 2086}, {"km": 2.2, "elev": 2096}, {"km": 2.4, "elev": 2092}, {"km": 2.6, "elev": 2077}, {"km": 2.7, "elev": 2070}],
       "shadeCoverage": 0,
       "heatRisk": "high",
       "exposure": false,
@@ -16490,7 +16493,7 @@
         "name": "Roda de Cherz",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427015"
       },
-      "desc": "A gentle 2.8 km loop over the open Cherz plateau above Arabba, at about 2,050 m, through grassland and alpenrose with wide views of the surrounding Dolomites. It shares its tracks with CAI paths 22 and 45, and passes close to the Ütia Cherz hut and the ski lifts. About 70 m of up and down and under an hour, as measured by ORMA (no official figure).\n\nLivinallongo publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Arabba's tourist office asks for dogs to be kept on a lead on all paths, because grazing animals are common.",
+      "desc": "A gentle 2.8 km loop over the open Cherz plateau above Arabba, at about 2,050 m, through grassland and alpenrose with wide views of the surrounding Dolomites. It shares its tracks with CAI paths 22 and 45, and passes close to the Ütia Cherz hut and the ski lifts. About 45 m of up and down and under an hour, as measured by ORMA (no official figure).\n\nLivinallongo publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Arabba's tourist office asks for dogs to be kept on a lead on all paths, because grazing animals are common.",
       "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle: the national rule requires it and the tourist office asks for a lead on every path, as animals graze on the plateau. Watch for mountain bikes and the occasional ski-area vehicle on the tracks. There is no shade and no water on the loop, so bring water and avoid hot middays; the Ütia Cherz is about 150 m off the route. If you take the Cherz chairlift up, dogs ride on a lead and muzzled, for a small fee.",
       "imageIcon": "images/trails/osm-11855879-cherz-alpenrose.jpg",
       "imageCredit": "Alpenrose on the Cherz pasture",
@@ -16518,7 +16521,7 @@
         "route": "Published line 2.74 km, within 6 m of the register's Roda de Cherz (2.77 km) everywhere.",
         "routeNumbers": "The register names the loop without a number; it shares its tracks with CAI paths 22 and 45.",
         "mapPoints": "Start from Passo Campolongo, as before; no water on the loop.",
-        "elevation": "No official figure. Measured by ORMA from the map: 2.74 km, about 70 m up and down between 2,034 and 2,104 m, 55 min by DIN 33466."
+        "elevation": "No official figure. Measured by ORMA from the map: 2.74 km, about 45 m up and down between 2,046 and 2,096 m, 48 min by DIN 33466 (25 m EU-DEM heights)."
       },
       "graduation": {
         "status": "verified",

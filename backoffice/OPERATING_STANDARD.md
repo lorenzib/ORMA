@@ -2456,12 +2456,12 @@ resting and rejection are unchanged.
    the ladder looking for the published one.
    *Exception, owner's decision of 6 November 2026:* Roda de Cherz,
    Kastelaz Promenade and Flaaser Rundweg carry a climb and a time measured
-   by ORMA from the map (Open-Meteo ground heights every 100 m with a 10 m
+   by ORMA from the map (25 m EU-DEM ground heights every 100 m with a 10 m
    threshold; time by DIN 33466), because no authority publishes either.
    Their pages say so in words. The same decision, later that day, covers
-   Familienrundweg (Sexten, path 19); its heights come from the 25 m EU-DEM,
-   because the coarser Open-Meteo grid puts a false dip on its steep meadow
-   edge. The rule stands for every other walk.
+   Familienrundweg (Sexten, path 19). The coarser Open-Meteo grid was tried
+   first and gave false dips on steep ground, so all four use the EU-DEM.
+   The rule stands for every other walk.
 2. **Every municipality the line crosses.** The Ranger is given sample points
    along the whole line -- the start, one every kilometre, the point farthest
    from the start, and the end -- because a loop often crosses into the next
