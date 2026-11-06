@@ -64045,6 +64045,74 @@
       ],
       startPoint: { lat: 46.554378, lng: 11.855601, label: 'The centre of Colfosco, the board’s start' },
       desc: 'A demanding walk from Colfosco up the Val Stella Alpina and over the Forcela Ciampëi onto the Puez plateau, to the Rifugio Puez in the heart of the Puez-Odle nature park. The board lists 12.1 km, 836 m up and just under five hours.'
+    },
+    'trecime-moso-monte-arnese': {
+      // Hand audit: 6 November 2026, verified on arrival (new-trail Dolomites batch 5).
+      // “Escursione in montagna: Monte Arnese”, published by the Tre Cime Dolomites tourist board, drawn on 36 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Sexten (no dog regulation of its own published; the national rule applies: lead ≤1.5 m, muzzle carried).
+      // No park or Natura 2000 site on the line; about 2% crosses the protected village ensemble of Moos, which sets no rule on dogs.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Moos – Helmhanghütte – Klammbachalm – Hornischeck (Monte Arnese), Sexten',
+      distance: 9.4,
+      elevation: 1212,
+      hours: '4.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: 'A one-way climb from Moos past the Helmhanghütte and the Klammbachalm to the Hornischeck summit (2,550 m), as the board publishes it (1,212 m up, 4:22 h); come back the same way or, in summer, walk over to the Helmjet or Tre Cime gondola and ride down.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Schäfer shop in Moos, in the Sexten valley, the board’s start.",
+        "sequence": "Walk up the Helmstraße past the houses of Palmstatt to a small bridge on the right of the road. There take path 1 to the left, cross the ski piste and follow the fence up to the Kristler farms and the Helmhanghütte. Keep right along the piste past the hut to Egge, then take path 13: level at first, then steeper through open woods and pasture to the Klammbachalm (1,944 m). From the hut take path 133 north up the mountain ridge to a saddle at 2,418 m, then follow the broad, easy ridge to the summit of the Hornischeck (2,550 m). Come back the same way, or walk over to the top station of the Helmjet or Tre Cime gondola and ride down.",
+        "switches": "Helmstraße from Moos to the bridge past Palmstatt; path 1 to the Helmhanghütte; along the piste to Egge; path 13 to the Klammbachalm; path 133 up the ridge to the Hornischeck.",
+        "sources": [
+          {
+            "label": "Tre Cime Dolomites tourist board, Escursione in montagna: Monte Arnese (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/810054501",
+            "authority": "Tre Cime Dolomites tourist board",
+            "reviewedAt": "2026-11-06"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-06',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The parish church of St. Joseph in Moos at the start, on 28 September 2019 (F. Riedelio on Wikimedia Commons, public domain), 17 m from the line. No photo on the mountain section is on Commons or Mapillary.',
+        route: 'Official one-way walk 9.4 km from the Schäfer shop in Moos, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 36 OSM ways along the board’s published line, 9.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 1, 13 and 133: from the Schäfer shop in Moos up the Helmstraße past Palmstatt, then path 1 across the piste and along the fence to the Kristler farms and the Helmhanghütte; keep right along the piste past the hut to Egge, then path 13 through open woods to the Klammbachalm (1,944 m); from the hut path 133 north up the ridge to a saddle at 2,418 m and along the broad ridge to the Hornischeck summit (2,550 m).',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 5.2 and km 7 (OSM nodes 2414239878, 5822854012, 12467118789).',
+        elevation: 'Official 9.4 km, 1212 m up, 4:22 h, highest point 2,550 m, lowest 1,338 m (Tre Cime Dolomites tourist board, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tre Cime Dolomites tourist board, Escursione in montagna: Monte Arnese (its Outdooractive tour)',
+          'Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried; the Gemeinde Sexten / Comune di Sesto publishes no dog regulation of its own (its pet and police pages list none, checked 6 November 2026)',
+          'No nature park, Natura 2000 site or reserve on the line: only about 2% crosses the protected village ensemble of Moos, which sets no rule on dogs (Province of Bolzano landscape-plan layers)',
+          'OpenStreetMap ways along the board’s line (36 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-06'
+      },
+      shadeCoverage: 20,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['About 200 m beside the SS52 in Moos at the start: keep your dog on a short lead', 'Steep, narrow paths above the Klammbachalm: sure footing needed, for you and your dog', 'High, open ridge at 2,000–2,550 m with no shade: storms build quickly on summer afternoons'],
+      terrainType: 'Village lanes, piste tracks, forest and mountain paths, and an open grassy ridge',
+      shadeDescription: 'Some shade low down in the woods between the Helmhanghütte and the Klammbachalm; above the hut the ridge is open all the way to the summit.',
+      terrainDescription: 'A big one-way climb of 1,200 m from Moos in the Sexten valley, over the Helm pistes and pastures to the Klammbachalm and up a broad ridge to the Hornischeck (Monte Arnese, 2,550 m), with a 360° view over the Sexten Dolomites and the tips of the Tre Cime.',
+      waterDescription: 'Drinking water at the start in Moos, near the Klammbachalm at km 5 and at km 7 (OSM); the Helmhanghütte (km 1.5) and the Klammbachalm (km 5) serve food and drink when open. Nothing above that: carry water for your dog on the ridge.',
+      dogNotes: 'Sexten publishes no dog rule of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m in public places and carry a muzzle. Keep a short lead on the pastures around the Klammbachalm, where livestock may graze in summer, and on the gondola if you ride down.',
+      tips: 'Start at the Schäfer shop in Moos: 9.4 km and 1,212 m up to the summit, about 4½ hours one way, as the board lists. Fit dogs only. Come back the same way, or walk over to the Helmjet or Tre Cime gondola and ride down in summer. Carry a muzzle and plenty of water, and turn back if storms build.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione in montagna: Monte Arnese (Tre Cime Dolomites tourist board)', url: 'https://www.outdooractive.com/it/r/810054501' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Gemeinde Sexten, pets (Haustier) page', url: 'https://www.gemeinde.sexten.bz.it/de/Themen/Haustier/Haustier' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.689451, lng: 12.366215, label: 'The Schäfer shop in Moos, the board’s start' },
+      desc: 'A demanding climb from Moos past the Helmhanghütte and the Klammbachalm and up a broad ridge to the Hornischeck (Monte Arnese), with a 360° view over the Sexten Dolomites. The board lists 9.4 km and 1,212 m up, one way.'
     }
   };
 

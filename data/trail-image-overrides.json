@@ -7047,6 +7047,23 @@
       }
     },
     {
+      "id": "trecime-moso-monte-arnese",
+      "approvedReviewId": "commons-trecime-moso-monte-arnese-on-route",
+      "approvedAt": "2026-11-06T11:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/trecime-moso-monte-arnese-moos-church.jpg",
+        "heroImage": "images/trails/trecime-moso-monte-arnese-moos-church.jpg",
+        "imageAlt": "The clock tower and shingled roof of the parish church of Moos, with wooded mountain slopes and a grey summit behind, under a cloudy sky",
+        "imageCredit": "The parish church of Moos, at the start",
+        "imageCreditText": "The parish church of Moos, at the start by F. Riedelio",
+        "imageCreator": "F. Riedelio",
+        "imageLicence": "Public domain",
+        "imageLicenceUrl": "https://commons.wikimedia.org/wiki/Help:Public_domain",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sexten_Heideckstraße_1_001_2019_09_28.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-rotwandwiesen-moos",
       "approvedReviewId": "commons-trecime-rotwandwiesen-moos-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
