@@ -42,6 +42,8 @@ const SOURCES = [
   'journal-photos.js',
   'hike-completions.js',
   'post-hike-outcomes.js',
+  // The one-tap tally; hike mode tags its walks through it too.
+  'walked-this.js',
   'hike-mode.js',
   'detail-pois.js',
   'trail-photo-provenance.js',
