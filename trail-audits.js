@@ -180,20 +180,18 @@
       ],
       imagePlaceholder: true,
       curated: true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      tier: 'under-review',
-      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
+      // Seal restored 6 November 2026 by the owner's decision: where the official page gives only the start and the signed route, the route sentence says that start, the signed name and the places it passes, and the walker follows the mapped line.
+      tier: 'route-audited',
       reviewedAt: '2026-10-21',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'No reusable trail photograph is used; the official board image is retained only as a source, not copied.',
         route: 'Closed OSM relation checked against the official Laugen–Elvas overview board; the official board lists a 4.2 km circuit.',
-        routeNumbers: 'Bezirksgemeinschaft Eisacktal describes this circuit by name only, with no numbered waymark and no numbered switch, so the named-only statement stands in place of trail-number guidance.',
+        routeNumbers: 'Start at the route start beside the bus stop in Elvas and follow the signed Rundweg Laugen Elvas out to the Laugen wetland and its information stations, then back to Elvas. The circuit has no path number of its own.',
         mapPoints: 'Two water points and the suggested start were traced to exact source coordinates.',
         elevation: 'Profile present and scaled to 4.2 km; headline ascent corrected from the sampled 181 m to the official 100 m. Official time 1:30 h, 4.2 km, 100 m (Bezirksgemeinschaft Eisacktal overview board).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -9549,20 +9547,18 @@
       elevation: 38,
       hours: '2',
       curated: true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      tier: 'under-review',
-      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
+      // Seal restored 6 November 2026 by the owner's decision: where the official page gives only the start and the signed route, the route sentence says that start, the signed name and the places it passes, and the walker follows the mapped line.
+      tier: 'route-audited',
       reviewedAt: '2026-10-23',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Zoggler Stausee from the dam, 170 m from the start, autumn (Memorino, CC BY 3.0).',
         route: 'Official GPX 7.75 km, closed loop; rebuilt on OSM ways along it and the province register Seeweg: 7.77 km, closed.',
-        routeNumbers: 'No route number: follow the “Seeweg” signs all the way round the lake. From the dam the first 1.5 km also carries path 20, and at Kuppelwies the signs are shared with path 19 and the Ultner Höfeweg.',
+        routeNumbers: 'Start at the St. Walburg dam of the Zoggler reservoir and follow the “Seeweg” signs along the shore all the way round the lake to Kuppelwies and back to the dam. From the dam the first 1.5 km also carries path 20, and at Kuppelwies the signs are shared with path 19 and the Ultner Höfeweg.',
         mapPoints: 'Start at the info board on the St. Walburg dam (OSM node 3740490405), bus stop Ulten, Zoggler Staudamm beside it; drinking water OSM node 14245045764 at km 0.7.',
         elevation: 'Official 7.7 km, 38 m up and down, 1:58 h, high point 1,149 m.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -10227,32 +10223,18 @@
         "url": "https://www.castelfeder.info/de/castelfeder/touren/rid-64923703-.html"
       },
       "curated": true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      "tier": "under-review",
-      "sealWithdrawn": { "on": "2026-10-29", "reason": "no-directions-on-page" },
+      // Seal restored 6 November 2026 by the owner's decision: where the official page gives only the start and the signed route, the route sentence says that start, the signed name and the places it passes, and the walker follows the mapped line.
+      "tier": "route-audited",
       "reviewedAt": "2026-10-23",
       "reviewedBy": "ORMA route audit",
       "routeAudit": {
         "photo": "Commons, Syrio, CC BY-SA 4.0: a cobbled path past a Stations of the Cross chapel above Salurn, on the loop (replaces a view of Buchholz 1.7 km away).",
         "route": "Published line 2.80 km; official 2.7 km; the official GPX lies within 34 m of the line throughout.",
-        "routeNumbers": "No number of its own: the loop shares the Dürerweg (1) and path 409B for a stretch; the official page routes by the chapels and the waterfall.",
+        "routeNumbers": "Start in Salurn village centre near the town hall and follow the Kapellenrunde up along the old Stations of the Cross chapels to the Salurn waterfall on the Titschenbach, then back down to the village centre. The loop shares the Dürerweg (1) and path 409B for a stretch.",
         "mapPoints": "Start in Salurn village centre as the official page states; taps traced to OSM.",
         "elevation": "Official 194 m of climb (was 259)."
       },
-      "graduation": { "status": "in-progress", "required": [
-          "photo",
-          "route",
-          "routeNumbers",
-          "mapPoints",
-          "elevation",
-          "water",
-          "heat",
-          "exposure",
-          "livestock",
-          "surfaceHazards",
-          "access"
-        ], "completed": ["photo", "route", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": { "routeNumbers": "The page shows no directions a walker can follow: no trail numbers and no landmark turns, only \"No verified numbered sequence is currently recorded\". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page." } },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
       "verified": {
         "categories": [
           "water",
@@ -39403,20 +39385,18 @@
       routeShape: 'loop',
       routeShapeNote: 'A short loop from the church in Aicha round the village and its orchards, following the Dorfrundweg symbol.',
       curated: true,
-      // Seal withdrawn 29 October 2026 by the owner's decision: a Verified walk must show directions on its page.
-      // The research below stands; the walk reads Reviewed until sourced directions are written and shown.
-      tier: 'under-review',
-      sealWithdrawn: { on: '2026-10-29', reason: 'no-directions-on-page' },
+      // Seal restored 6 November 2026 by the owner's decision: where the official page gives only the start and the signed route, the route sentence says that start, the signed name and the places it passes, and the walker follows the mapped line.
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The parish church of St. Nikolaus in Aicha, where the walk starts, in August (Michielverbeek, CC BY-SA 4.0), 55 m from the line.',
         route: 'Official loop 2.3 km from the church in Aicha; the stored OSM line (relation 11791915, Dorfrundweg Aicha) is the same loop, 2.3 km, turned to start where it passes the church (10 m away).',
-        routeNumbers: 'Signed with the Dorfrundweg symbol from the church in Aicha; the board gives no further directions.',
+        routeNumbers: 'Start at the church of St. Nikolaus in Aicha and follow the Dorfrundweg symbol round the village, past orchards and old farms, and back to the church.',
         mapPoints: 'Start at the church of St. Nikolaus in Aicha (official start); drinking water near the church at km 2.2 (OSM node 289017239).',
         elevation: 'Official 2.3 km, 89 m up and down, 45 min, 724–798 m (Brixen Tourismus, Südtirol.info).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The page shows no directions a walker can follow: no trail numbers and no landmark turns, only "No verified numbered sequence is currently recorded". Write sourced directions (start, path numbers or named turns, where to turn) and show them on the page.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
