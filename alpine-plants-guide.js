@@ -344,7 +344,7 @@
       renderControls();
       controls.results.innerHTML = filtered.length
         ? `<div class="apg-grid">${filtered.map(plant => plantCard(plant, state.month)).join('')}</div>`
-        : '<div class="apg-empty"><h2>' + tx('No plants match these filters') + '</h2><p>' + tx('Clear filters, and treat any unknown plant cautiously.') + '</p><button type="button" data-clear-plants>' + tx('Clear all filters') + '</button></div>';
+        : '<div class="apg-empty"><h2>' + tx('No plants match these filters') + '</h2><p>' + tx('Try fewer filters. If you don’t know a plant, keep your dog away from it.') + '</p><button type="button" data-clear-plants>' + tx('Clear all filters') + '</button></div>';
       const emptyClear = controls.results.querySelector('[data-clear-plants]');
       if(emptyClear) emptyClear.addEventListener('click', clearAll);
       controls.results.setAttribute('aria-busy', 'false');
@@ -388,8 +388,8 @@
       })
       .catch(() => {
         controls.results.setAttribute('aria-busy', 'false');
-        controls.results.innerHTML = '<div class="apg-empty"><h2>' + tx('The plant catalogue could not load') + '</h2><p>' + tx('The emergency guidance above remains available. Reload when you have a connection, and treat unknown plants cautiously.') + '</p></div>';
-        controls.count.textContent = tx('Plant catalogue unavailable');
+        controls.results.innerHTML = '<div class="apg-empty"><h2>' + tx('The plant list didn’t load') + '</h2><p>' + tx('The emergency steps above still apply. Reload when you have signal, and keep your dog away from plants you don’t know.') + '</p></div>';
+        controls.count.textContent = tx('Plant list unavailable');
       });
   }
 

@@ -12,12 +12,12 @@ describe('Heat and hydration safety guide', () => {
   });
 
   test('presents a concise prevention and emergency structure', () => {
-    expect(document.querySelector('h1').textContent).toBe('Heat and hydration safety');
+    expect(document.querySelector('h1').textContent).toBe('Heat and your dog');
     expect(document.querySelector('main').id).toBe('mainContent');
     expect(document.querySelectorAll('[data-heat-check]')).toHaveLength(4);
     expect(document.querySelectorAll('[data-heat-level]')).toHaveLength(0);
     expect(document.querySelectorAll('.hs-observation')).toHaveLength(3);
-    expect(document.body.textContent).toContain('Cool first, travel second');
+    expect(document.body.textContent).toContain('How to cool your dog');
     expect(document.querySelector('.hs-risk')).toBeNull();
     expect(document.body.textContent).not.toContain('Emergency boundary');
     expect(html).not.toContain('wet the belly and paw pads');
@@ -47,13 +47,13 @@ describe('Heat and hydration safety guide', () => {
   test('updates the pre-walk readiness result as checks are completed', () => {
     const checks = [...document.querySelectorAll('[data-heat-check]')];
     const status = document.getElementById('heatChecklistStatus');
-    expect(status.textContent).toContain('0 of 4 checked');
+    expect(status.textContent).toContain('0 of 4 ticked');
     checks.forEach(check => {
       check.checked = true;
       check.dispatchEvent(new Event('change', { bubbles:true }));
     });
     expect(status.dataset.state).toBe('ready');
-    expect(status.textContent).toContain('Start cautiously');
+    expect(status.textContent).toContain('Start slowly');
   });
 
   test('shows every symptom response without requiring a selection', () => {
