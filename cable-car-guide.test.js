@@ -12,7 +12,7 @@ describe('cable-car guide compact alignment', () => {
 
   test('keeps the muzzle-practice title on one line', () => {
     const css = document.querySelector('style').textContent;
-    expect(document.querySelector('#muzzle-practice-title').textContent).toBe('Make the muzzle predict treats');
+    expect(document.querySelector('#muzzle-practice-title').textContent).toBe('Make the muzzle mean treats');
     expect(css).toMatch(/\.cg-muzzle-practice h2\{[^}]*white-space:nowrap/);
     expect(css).toMatch(/\.cg-muzzle-practice h2\{[^}]*font-size:clamp\(\.92rem,4\.6vw,1\.25rem\)/);
   });
@@ -21,7 +21,7 @@ describe('cable-car guide compact alignment', () => {
     const css = document.querySelector('style').textContent;
     const steps = [...document.querySelectorAll('.cg-step')];
     expect(steps.map(step => step.querySelector('h3').textContent)).toEqual([
-      'Rehearse the full routine',
+      'Rehearse at home',
       'Visit without boarding',
       'Take the easiest ride',
     ]);
