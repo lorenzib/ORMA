@@ -80,7 +80,7 @@ describe('shared Safety Library guide visual system', () => {
     expect(document.querySelectorAll('.water-card--info')).toHaveLength(1);
     expect(document.querySelectorAll('.water-card--caution')).toHaveLength(1);
     expect(document.querySelectorAll('.water-card--safe')).toHaveLength(0);
-    expect(document.querySelector('#waterArithmeticTitle').closest('.water-card').textContent).toContain('Build a carrying margin into that arithmetic');
+    expect(document.querySelector('#waterArithmeticTitle').closest('.water-card').textContent).toContain('Then carry a bit more than that');
     expect(document.body.textContent).not.toContain('Pack with margin');
   });
 });

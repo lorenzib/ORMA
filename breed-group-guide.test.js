@@ -42,7 +42,8 @@ describe('interactive breed and build guide', () => {
   test('keeps the emergency and breed cards together without a separate selector', () => {
     const experience = document.querySelector('.breed-check-experience');
     expect(experience).not.toBeNull();
-    expect(experience.firstElementChild.classList.contains('breed-emergency')).toBe(true);
+    expect(experience.firstElementChild.classList.contains('guide-quick')).toBe(true);
+    expect(experience.firstElementChild.nextElementSibling.classList.contains('breed-emergency')).toBe(true);
     expect(experience.querySelector('.breed-picker')).toBeNull();
     expect(experience.querySelector('[data-breed-grid]')).not.toBeNull();
   });
@@ -89,7 +90,7 @@ describe('interactive breed and build guide', () => {
     const sourcesBody = document.querySelector('.safety-sources__body');
     const caveat = sourcesBody.querySelector('.safety-sources__caveat').textContent.trim();
 
-    expect(instruction).toBe('Choose the most conservative adjustment when more than one card applies. Open any row to reveal its trail guidance.');
+    expect(instruction).toBe('If more than one card fits, follow the most careful one. Open a card to see its advice.');
     expect(instruction).not.toMatch(/AI-generated images/i);
     expect(sourcesBody.querySelectorAll('p')).toHaveLength(1);
     expect(caveat).toMatch(/^This is general information, not a diagnosis or a substitute for veterinary care\./);
@@ -129,7 +130,7 @@ describe('breed finder', () => {
     const input = document.querySelector('[data-breed-input]');
     input.value = 'Not a breed';
     input.dispatchEvent(new Event('change'));
-    expect(document.querySelector('[data-breed-status]').textContent).toMatch(/No breed called/);
+    expect(document.querySelector('[data-breed-status]').textContent).toMatch(/isn’t in our list/);
     expect(shown()).toEqual(['individual']);
     expect(document.querySelector('[data-breed-reset]').hidden).toBe(false);
   });

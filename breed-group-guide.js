@@ -17,8 +17,8 @@
     card.classList.toggle('is-open', open);
     content.hidden = !open;
     button.setAttribute('aria-expanded', String(open));
-    button.setAttribute('aria-label', open ? tx('Close {title} trail advice', { title:cardTitle }) : tx('Open {title} trail advice', { title:cardTitle }));
-    button.querySelector('.breed-card-toggle__label').textContent = open ? tx('Close trail advice') : tx('Open trail advice');
+    button.setAttribute('aria-label', open ? tx('Hide advice for {title}', { title:cardTitle }) : tx('Show advice for {title}', { title:cardTitle }));
+    button.querySelector('.breed-card-toggle__label').textContent = open ? tx('Hide advice') : tx('Show advice');
   }
 
   cards.forEach((card, index) => {
@@ -50,7 +50,7 @@
     button.dataset.breedCardToggle = '';
     button.setAttribute('aria-expanded', 'false');
     button.setAttribute('aria-controls', content.id);
-    button.innerHTML = '<span class="breed-card-toggle__label">' + tx('Open trail advice') + '</span><span class="breed-card-toggle__icon" aria-hidden="true">+</span>';
+    button.innerHTML = '<span class="breed-card-toggle__label">' + tx('Show advice') + '</span><span class="breed-card-toggle__icon" aria-hidden="true">+</span>';
 
     summary.append(button);
     card.prepend(summary);
@@ -164,11 +164,11 @@
       if(applies && card.dataset.breedTrait !== 'individual') shown += 1;
     });
     const total = cards.length - 1;
-    if(state.unknown) status.textContent = tx('No breed called “{query}” in our list. Try the filters instead.', { query:state.unknown });
+    if(state.unknown) status.textContent = tx('“{query}” isn’t in our list. Try the filters instead.', { query:state.unknown });
     else if(state.breed) status.textContent = tx('{breed}: {shown} of {total} cards apply, plus the card for every dog.', { breed:state.breed, shown, total });
-    else if(active && !shown) status.textContent = tx('No cards match these filters. Try fewer.');
+    else if(active && !shown) status.textContent = tx('No cards match. Try fewer filters.');
     else if(active) status.textContent = tx('{shown} of {total} cards match, plus the card for every dog.', { shown, total });
-    else status.textContent = tx('All {count} cards shown.', { count:cards.length });
+    else status.textContent = tx('Showing all {count} cards.', { count:cards.length });
     reset.hidden = !active;
   }
 
