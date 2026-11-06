@@ -39963,11 +39963,12 @@
       desc: 'A short family loop round the summit of the Kronplatz at 2,275 m: past the Concordia 2000 peace bell, the MMM Corones and LUMEN museums and a series of viewpoints, with the Dolomites to the south and the main Alpine ridge to the north. The official route lists 2.4 km and 75 m of ascent.'
     },
     'fassa-da-canazei-a-penia': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 5.64 (74 m), km 5.90 (121 m), km 6.20 (58 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 6 November 2026 by the owner's decision: a stretch the board's own line walks twice may be walked twice by ours.
+      // The 1 km between the Pènt de la Roa and the ice stadium is walked out and back, as the APT's directions and line do (walkedTwice);
+      // the three turn-backs at the Canazei end (km 5.64, 5.90, 6.20), where OSM has no path along the APT's line, were cut from the line.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Da Canazei a Penìa”, tagged “animali accettati”. The line
-      // is drawn on 48 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // is drawn on 40 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
       // Canazei publishes no dog rule, so the national dog ordinance
       // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
       // dog standard; Trentino’s animal law leaves leads and muzzles to it.
@@ -39977,7 +39978,11 @@
       elevation: 58,
       hours: '1.5',
       routeShape: 'loop',
-      routeShapeNote: 'A loop from the centre of Canazei up the Avisio to Alba and Penìa on one bank and back on the other, over wooden bridges; it ends in Canazei about 230 m from where it starts.',
+      routeShapeNote: 'A loop from the centre of Canazei up the Avisio to Alba and Penìa on one bank and back on the other, over wooden bridges; the 1 km between the Pènt de la Roa and the ice stadium at Alba is walked both ways, as the APT’s directions say. It ends in Canazei about 230 m from where it starts.',
+      walkedTwice: [
+        { from: 1.41, to: 2.4, note: 'Out from the Pènt de la Roa up Strèda dò Veisc towards Alba.' },
+        { from: 3.84, to: 4.84, note: 'Back the same way from the ice stadium to the Pènt de la Roa, as the APT’s directions say (“come back the same way as far as the Pènt de la Roa”), and as its own line does.' },
+      ],
       routeNumberGuidance: {
         "mode": "landmarks",
         "start": "Start at the tourist office on the main square of Canazei, the tourist board’s start.",
@@ -40032,17 +40037,17 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Penìa, the walk’s far end, with its church below the wooded slope, in July (Syrio, CC BY-SA 4.0).',
-        route: 'Official loop 6.3 km from Canazei (Piaz G. Marconi), as APT Val di Fassa publishes it; the stored line is drawn on 48 OSM ways along the APT’s published line, 6.4 km, with 100% of the APT line within 25 m of it.',
-        routeNumbers: 'No route number: from Piaz G. Marconi in Canazei along the Avisio past Alba, with its sandy river beach, play park and a small climbing crag with a cave, to Penìa, the last village before the Fedaia pass, and back down the other bank to Canazei.',
+        route: 'Official loop 6.3 km from Canazei (Piaz G. Marconi), as APT Val di Fassa publishes it; the stored line is drawn on 40 OSM ways along the APT’s published line, 5.8 km, with 98% of the APT line within 25 m of it and all of it within 25 m of the APT line. The 1 km from the Pènt de la Roa to the ice stadium is walked both ways, as on the APT’s line; three turn-backs of 58–121 m at the Canazei end, where OSM has no path along the APT’s line, were cut on 6 November 2026.',
+        routeNumbers: 'No route number: from Piaz G. Marconi in Canazei along the Avisio past Alba, with its sandy river beach, play park and a small climbing crag with a cave, to Penìa, the last village before the Fedaia pass, back down the other bank to the ice stadium, the same way to the Pènt de la Roa, and on the Ciasates walk to Canazei.',
         mapPoints: 'Start at Canazei (Piaz G. Marconi), the APT’s start; drinking water at the start, at km 1.1 and at km 1.8 (OSM nodes 7810377008, 3679999685, 2370878525).',
         elevation: 'Official 6.3 km, 58 m up and 68 m down, 1 h 35 min, highest point 1,487 m, lowest 1,435 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 5.64 (74 m), km 5.90 (121 m), km 6.20 (58 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -40050,7 +40055,7 @@
           'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Canazei publishes no dog rule)',
           'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
           'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
-          'OpenStreetMap ways along the APT line (48 ways), road, surface, woodland and water data'
+          'OpenStreetMap ways along the APT line (40 ways), road, surface, woodland and water data'
         ],
         date: '2026-10-24'
       },
@@ -47563,8 +47568,8 @@
       desc: 'A short forest walk from Innichen up to the old spa at Wildbad Innichen on the edge of the Drei Zinnen nature park. The board lists 3.3 km and 145 m of ascent, one way.'
     },
     'trecime-circolare-maistatt': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): 38% of the drawn line runs over itself mid-walk.
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 6 November 2026 by the owner's decision: a stretch the board's own line walks twice may be walked twice by ours.
+      // Every stretch the line walks twice the board's own GPX walks twice too (34% of it), and its directions say so (walkedTwice).
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
       // The Tre Cime Dolomites tourist board’s walk “Escursione circolare Maistatt”, drawn on 67 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Niederdorf (own regulation).
@@ -47575,19 +47580,25 @@
       elevation: 133,
       hours: '1.35',
       routeShape: 'loop',
-      routeShapeNote: 'A loop from the primary school in Niederdorf through the village and under the railway to the Maistatt meadows and the warm spring at Maistatt, through the forest to the Reahwinkl forest road, and back by the Maistatt road.',
+      routeShapeNote: 'A loop from the primary school in Niederdorf through the village and under the railway to the Maistatt meadows and the warm spring at Maistatt, through the forest to the Reahwinkl forest road, and back by the Maistatt road. The way between the school and the Maistatt road (about 600 m) and about 110 m at the Maistatt bridge are walked both ways, as on the board’s own line.',
+      walkedTwice: [
+        { from: 0.01, to: 0.64, note: 'Out from the school through the village and under the railway towards Maistatt.' },
+        { from: 1.6, to: 1.71, note: 'To the Maistatt bridge from Graapach.' },
+        { from: 3.48, to: 3.59, note: 'Back down to the Maistatt bridge from the Reahwinkl forest road, as the board’s directions say.' },
+        { from: 4.19, to: 4.83, note: 'Back along the Maistatt road, under the railway and through the village to the school, as the board’s directions say.' },
+      ],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Holy Trinity hospital church by the Rienz in Niederdorf, where the loop starts, in July (Mattana, CC BY-SA 3.0); the church stands 17 m from the line.',
-        route: 'Official loop 4.8 km from the primary school in Niederdorf, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 67 OSM ways along the GPX on the board’s page, 4.8 km, with 100% of the board’s line within 25 m of it.',
+        route: 'Official loop 4.8 km from the primary school in Niederdorf, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 67 OSM ways along the GPX on the board’s page, 4.8 km, with 100% of the board’s line within 25 m of it. 38% of the line is walked twice, all where the board’s own GPX is walked twice too (34% of it): the way from the school to the Maistatt road and a stretch at the Maistatt bridge.',
         routeNumbers: 'The board names no path numbers and gives the way: from the primary school over the bridge to the Von-Kurz-Platz, east on Jakob-Traunsteiner-Straße and a short stretch of Johann-Jaeger-Straße to the Roda square, under the railway and gently up to the first rise at Maistatt; left and down beside the railway, under a second underpass to Graapach, then right and south back to the Maistatt road and the Maistatt bridge. Along the road across the Maistatt meadows to the wayside shrine of the Fourteen Holy Helpers and the house at Maistatt with its chapel and warm spring; a narrow path follows the spring west into the forest, past a game feeder, and left to the Reahwinkl forest road. Back down to the Maistatt bridge and left along the Maistatt road, past the cow pasture gate, under the railway and through the village to the school.',
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.1, at km 0.3 and at km 0.5 (OSM nodes 7597331186, 7597331187, 13134731994, 13134734620, 13134757751, 279716575, 12434334285, 279716583, 279716589).',
         elevation: 'Official 4.8 km, 133 m up and 133 m down, 1 h 21 min, highest point 1,263 m, lowest 1,147 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: '38% of the drawn line runs over itself mid-walk; it cannot be followed as drawn.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
