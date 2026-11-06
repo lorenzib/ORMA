@@ -1,0 +1,6215 @@
+{
+  "contractVersion": "trail-seasons-v1",
+  "generatedAt": "2026-11-06T17:10:16.938Z",
+  "note": "When in the year each Dolomites walk is a walk. recommended: the months the walk's tourist board marks as its season, read off the board's page. snow: where no board publishes months, the snowy months estimated from the walk's high point (2,000 m and over: November to May; 1,600 m and over: December to April; lower: snow possible December to February). winterUse: stretches of the line mapped as a ski run, sled run or cross-country track, 0.5 km or more of a kind. Written by npm run build:trail-seasons; nothing here is a verification.",
+  "sources": {
+    "winterUse": {
+      "label": "Read off the map (OpenStreetMap)",
+      "url": "https://www.openstreetmap.org/copyright",
+      "accessedAt": "2026-11-06"
+    }
+  },
+  "trails": {
+    "ahrntal-escursione-rifugio-ponte-di-ghiaccio": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055959",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "ahrntal-sentiero-del-conte-cadipietra": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805426773",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "ahrntal-sentiero-panoramico-cadipietra": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055139",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "alpe-siusi": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1950
+      }
+    },
+    "altabadia-colfosco-rifugio-puez": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055894",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.3,
+          "names": [
+            "Colfosco 2",
+            "Col Pradat",
+            "Stella Alpina"
+          ]
+        }
+      ]
+    },
+    "altabadia-da-furnacia-a-la-crusc": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-furnacia-a-la-crusc",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 1.5,
+          "names": []
+        }
+      ]
+    },
+    "altabadia-da-la-val-ai-prati-di-rit": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-la-val-ai-prati-di-rit",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "sled",
+          "km": 1.9,
+          "names": [
+            "Rit-Biei"
+          ]
+        }
+      ]
+    },
+    "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-san-cassiano-al-pralongia-fino-a-corvara",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.7,
+          "names": [
+            "La Fraina",
+            "Piz Sorega B",
+            "Ciampai - La Fraina"
+          ]
+        }
+      ]
+    },
+    "altabadia-escursione-corvara-colfosco": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-colfosco",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "altabadia-escursione-corvara-la-villa": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-la-villa",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.5,
+          "names": []
+        }
+      ]
+    },
+    "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-da-la-villa-al-lago-lech-da-sompunt",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "altabadia-passeggiata-borest-cascate-del-pisciadu": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/passeggiata-borest-cascate-del-pisciadu",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "altabadia-sentiero-degli-artisti-tru-di-artisc": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/sentiero-degli-artisti-tru-di-artisc",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "brixen-alto-sentiero-di-lazfons": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/811220560",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/60357933",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "brixen-escursione-al-rifugio-bressanone": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/802415364",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/802415362",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cadini": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2600
+      }
+    },
+    "campiglio-carisolo-centro-storico": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/59208875",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/51240770",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/19612017",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "campiglio-lago-ritorto-nel-blu-dipinto-di-blu": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/66794358",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "campiglio-madonna-di-campiglio-monte-spinale": {
+      "recommended": {
+        "months": [
+          7,
+          8
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/51478105",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "campiglio-monte-spinale-rifugio-graffer": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/50352617",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.1,
+          "names": [
+            "Spinale diretta",
+            "Boch"
+          ]
+        }
+      ]
+    },
+    "campiglio-trekking-al-lago-di-nambino": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/1510360",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "campiglio-trekking-al-rifugio-segantini": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/1510456",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/19614908",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-castello-segonzano": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/36899316",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-dos-paion": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/51459361",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-erbe-della-salute": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/801012170",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-giro-masi-grumes": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/36900096",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-giro-monte-corona": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806162354",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-lago-lases-buse-giaz": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/59900305",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-lago-santo": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/811025021",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-monte-pat-malga-vernera": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/800200711",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-paese-beghei": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/60452612",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-pascoli-malga-vernera": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/811025195",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-pietra-del-futuro": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806536848",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-piz-de-le-agole": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1076
+      }
+    },
+    "cembra-rifugio-potzmauer": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/21344543",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-san-leonardo-lisignago": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/59999829",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cembra-vecchi-mestieri-grumes": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/36923488",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cortina-castello-di-botestagno": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805071171",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cortina-malga-ra-stua": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/50620094",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cortina-mortisa-e-le-grotte-di-volpera": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/50621938",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "cortina-passeggiata-gourmet": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/50643108",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.6,
+          "names": [
+            "Rosà",
+            "Pista di Collegamento"
+          ]
+        }
+      ]
+    },
+    "cortina-sotecordes": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2404
+      }
+    },
+    "eggental-dal-passo-costalunga-al-lago-di-carezza": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055748",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810054675",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "eggental-frommer-ochsenhuette": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/35328779",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "eggental-jolanda-baita-messnerjoch": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/19201109",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "eggental-kaiserstein-baita-masare": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/19007850",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "eggental-passo-nigra-baita-messnerjoch": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/58607867",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "eggental-passo-nigra-malga-hagner": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/16570878",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "eggental-pietralba-petersberger-leger": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810054677",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-alpe-di-fuciade": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/37940398",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-antichi-bagnes": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/38026217",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-borgo-dei-patins": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/802245917",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-borgo-di-tamion": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/801487737",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-cammino-dei-pitores": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/802230888",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-ciajeole-malga-roncac": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/65358337",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-da-alba-a-penia": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810153437",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-da-canazei-a-penia": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1491
+      }
+    },
+    "fassa-dipinti-del-giotto": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/38039594",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-malga-aloch": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/38025468",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-moena-soraga-acqua": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/65325200",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-moena-soraga-someda": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/803917703",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-molin-de-pezol": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/38027154",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-passato-ritrovato": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/41639219",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-pastori-erranti": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/38000950",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-prato-di-sorte": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/37904523",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-santuario-dei-pellegrini": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/38000437",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-segreti-di-una-volta": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/38024391",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-sentiero-della-foresta": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/63862495",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fassa-val-freida": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/801492686",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fiemme-cascatelle-di-ziano": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/14463016",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fiemme-cavalese-passeggiata-panoramica": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/14462737",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fiemme-giro-cavalese-castello": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806626824",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fiemme-larici-verso-anterivo": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/18830621",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fiemme-masi-comunicanti": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/36900242",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fiemme-passeggiata-insolita": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/807072839",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fiemme-passo-oclini": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/11308608",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fiemme-pradi-da-le-fior": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/811025075",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fiemme-scalata-alle-malghette": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/808275016",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fiemme-sentiero-botanico": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/36860671",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "fiemme-varena-spianez": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/12575463",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "geotrail-bulla": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1599
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.7,
+          "names": [
+            "Loipe Panider Sattel - Pista Passo Pinei"
+          ]
+        }
+      ]
+    },
+    "giro-del-bulacia": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2139
+      }
+    },
+    "giro-del-sasso-lungo": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2326
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.8,
+          "names": [
+            "Sef",
+            "Gabia",
+            "Rodella"
+          ]
+        }
+      ]
+    },
+    "giudicarie-san-martino-bosco-scolpito": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805956763",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "giudicarie-san-vigilio-senter-dei-cavai": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805485056",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "giudicarie-senter-dei-popi-madonna-del-lares": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805811260",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "giudicarie-tione-bolbeno-madonna-del-lares": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805502035",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055675",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055911",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "kronplatz-passeggiata-leggendaria-sul-kienberg": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/16570385",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "kronplatz-passeggiata-san-vigilio-le-dla-creda": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/16570262",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/800341743",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "kronplatz-passeggiata-valdaora-monguelfo": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055571",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "kronplatz-san-lorenzo-maria-sares": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/35857532",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/27623622",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "kronplatz-sentiero-tematico-tru-dles-liondes": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1245
+      }
+    },
+    "kronplatz-valdaora-di-sopra-goste": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/807440421",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/807440420",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "lago-braies": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/en/activity/family-hiking-tour-walk-around-the-pragser-wildsee-lake_49953",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "lago-carezza": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Eggental tourist board",
+          "url": "https://eggental.com/it/activity/breve-giro-del-lago-di-carezza_5712",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "lago-sorapis": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1935
+      }
+    },
+    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/801657631",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055796",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805406435",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-escursione-alla-forst": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/800061150",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/17276661",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.9,
+          "names": [
+            "Falzeben 1"
+          ]
+        }
+      ]
+    },
+    "meran-escursione-sentiero-del-sole-a-stulles": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/16571389",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-facile-escursione-da-verano-ad-avelengo": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810963557",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-giro-dei-masi-sul-monte-sole": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/50815999",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-giro-delle-malghe-monte-tramontana": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055092",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-itinerario-raststeinweg": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055880",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/16571460",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055325",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-sentiero-della-roggia-brandis-a-lana": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810054528",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810054419",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/54554380",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "nuvolau": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2524
+      }
+    },
+    "osm-10220399": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1455
+      }
+    },
+    "osm-1116675": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1975
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.3,
+          "names": [
+            "4b",
+            "Rotwandwiesen",
+            "Porzen variante"
+          ]
+        }
+      ]
+    },
+    "osm-1116680": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1450
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.2,
+          "names": [
+            "III - Skiweg Kreuzbergpass-Signaue",
+            "41b",
+            "Drei Zinnen - Tre Cime"
+          ]
+        }
+      ]
+    },
+    "osm-11270309": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 288
+      }
+    },
+    "osm-11764094": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 901
+      }
+    },
+    "osm-11768853": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1041
+      }
+    },
+    "osm-11774783": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 735
+      }
+    },
+    "osm-11775760": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 806
+      }
+    },
+    "osm-11775923": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 709
+      }
+    },
+    "osm-11780502": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/de/route/810055071/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-11790553": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 820
+      }
+    },
+    "osm-11791915": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 832
+      }
+    },
+    "osm-11792795": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 889
+      }
+    },
+    "osm-11795103": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1301
+      }
+    },
+    "osm-11795251": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 816
+      }
+    },
+    "osm-11814834": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1599
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.7,
+          "names": [
+            "Loipe Panider Sattel - Pista Passo Pinei"
+          ]
+        }
+      ]
+    },
+    "osm-11814895": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1101
+      }
+    },
+    "osm-11815025": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/de/r/16420568",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-11816373": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 997
+      }
+    },
+    "osm-11828233": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1450
+      }
+    },
+    "osm-11832013": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1590
+      }
+    },
+    "osm-11833313": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 845
+      }
+    },
+    "osm-11839597": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1215
+      }
+    },
+    "osm-11855879": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2100
+      }
+    },
+    "osm-11860429": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/de/tour/oadetail/oa/weilerrundgang-in-la-val",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-11891581": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1254
+      }
+    },
+    "osm-12018939": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1335
+      }
+    },
+    "osm-12025052": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2039
+      }
+    },
+    "osm-12027153": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1747
+      }
+    },
+    "osm-12044077": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1267
+      }
+    },
+    "osm-12047303": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1215
+      }
+    },
+    "osm-12132169": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2540
+      }
+    },
+    "osm-12142337": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/de/r/16570300",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 1.4,
+          "names": [
+            "Peitlerkofel - Sass de Putia"
+          ]
+        }
+      ]
+    },
+    "osm-12150790": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 411
+      }
+    },
+    "osm-12164395": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 894
+      }
+    },
+    "osm-12165590": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1115
+      }
+    },
+    "osm-12172440": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1472
+      }
+    },
+    "osm-12173549": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1435
+      }
+    },
+    "osm-12173965": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1141
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.7,
+          "names": []
+        }
+      ]
+    },
+    "osm-12173984": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1194
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 2.6,
+          "names": []
+        }
+      ]
+    },
+    "osm-12174210": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1026
+      }
+    },
+    "osm-12182516": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1096
+      }
+    },
+    "osm-12182895": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1176
+      }
+    },
+    "osm-12182936": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1001
+      }
+    },
+    "osm-12189165": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1478
+      }
+    },
+    "osm-12190538": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1529
+      }
+    },
+    "osm-12190657": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1520
+      }
+    },
+    "osm-12302137": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1378
+      }
+    },
+    "osm-12302182": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1174
+      }
+    },
+    "osm-12302191": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1212
+      }
+    },
+    "osm-123162": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1397
+      }
+    },
+    "osm-12363235": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 630
+      }
+    },
+    "osm-12371666": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 411
+      }
+    },
+    "osm-12371689": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 356
+      }
+    },
+    "osm-12731853": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 930
+      }
+    },
+    "osm-12736753": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 887
+      }
+    },
+    "osm-12737724": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 928
+      }
+    },
+    "osm-12953352": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 844
+      }
+    },
+    "osm-13491868": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Klausen tourist board",
+          "url": "https://www.klausen.it/en/nature-experiences/hiking/theme-based-trails-and-gastronomic-trails/-birmehl-trail.html",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-13528390": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 938
+      }
+    },
+    "osm-14058492": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 689
+      }
+    },
+    "osm-14058632": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 690
+      }
+    },
+    "osm-1506470": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 396
+      }
+    },
+    "osm-15791408": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/route/escursionismo/trentino/giro-di-bedolpian-il-laghetto-delle-rane-e-la-bellavista/67534499/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-1671736": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1090
+      }
+    },
+    "osm-1780768": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1576
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 5.1,
+          "names": []
+        },
+        {
+          "kind": "sled",
+          "km": 0.8,
+          "names": []
+        }
+      ]
+    },
+    "osm-19330972": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/de/route/wanderung/suedtirols-sueden/dorfwanderung-altrei/19007940/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-19697977": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2250
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.5,
+          "names": [
+            "Kesselberg 2 - Costa Valcanova 2",
+            "Kesselberg 1 - Costa Valcanova 1"
+          ]
+        }
+      ]
+    },
+    "osm-19703479": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1341
+      }
+    },
+    "osm-19974724": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Eggental tourist board",
+          "url": "https://eggental.com/en/activity/middle-circular-route-at-lake-carezza_5711",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-19974725": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Eggental tourist board",
+          "url": "https://eggental.com/en/activity/long-circular-route-at-lake-carezza_5705",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-20380913": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 844
+      }
+    },
+    "osm-2179746": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 400
+      }
+    },
+    "osm-2376630": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1457
+      }
+    },
+    "osm-3202880": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 555
+      }
+    },
+    "osm-3707731": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1158
+      }
+    },
+    "osm-5512443": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 851
+      }
+    },
+    "osm-5597577": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 787
+      }
+    },
+    "osm-6244965": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/oar-suedtirol-alto-adige/r/810055605",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-6401355": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2266
+      }
+    },
+    "osm-6404258": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Olang tourist board",
+          "url": "https://www.olang.com/de/activity/spaziergang-oberolang-salla-oberolang_5019",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-6404633": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1300
+      }
+    },
+    "osm-6404634": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1526
+      }
+    },
+    "osm-6410700": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Antholzertal tourist board",
+          "url": "https://www.antholzertal.com/de/activity/dolomitenblickrunde_211086",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-6453504": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1429
+      }
+    },
+    "osm-6529356": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2144
+      }
+    },
+    "osm-6601608": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1023
+      }
+    },
+    "osm-6823031": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 941
+      }
+    },
+    "osm-7045225": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1405
+      }
+    },
+    "osm-7086961": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2511
+      }
+    },
+    "osm-7277805": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2710
+      }
+    },
+    "osm-7388748": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1864
+      }
+    },
+    "osm-7424683": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 560
+      }
+    },
+    "osm-7426648": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 538
+      }
+    },
+    "osm-7426666": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 461
+      }
+    },
+    "osm-7446701": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1533
+      }
+    },
+    "osm-7546708": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1356
+      }
+    },
+    "osm-7547653": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1849
+      }
+    },
+    "osm-7547983": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1634
+      }
+    },
+    "osm-7548201": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1534
+      }
+    },
+    "osm-7548344": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1114
+      }
+    },
+    "osm-7548489": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1604
+      }
+    },
+    "osm-7549783": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1139
+      }
+    },
+    "osm-7567918": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1716
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.5,
+          "names": [
+            "Sentiero Natura Lago di Anterselva"
+          ]
+        }
+      ]
+    },
+    "osm-7655311": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 748
+      }
+    },
+    "osm-8396539": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 643
+      }
+    },
+    "osm-8510456": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 841
+      }
+    },
+    "osm-9450411": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1282
+      }
+    },
+    "osm-9487078": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1201
+      }
+    },
+    "osm-9492594": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1091
+      }
+    },
+    "osm-9493733": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/en/dolomites/hiking-alta-badia/detail/oa/lakes-path-tru-di-lec",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-9511973": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/en/tour/detail/oa/from-badia-through-the-armentara-meadows",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 1.3,
+          "names": []
+        }
+      ]
+    },
+    "osm-9511999": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Alta Badia tourist board",
+          "url": "https://www.altabadia.org/it/tour/detail/oa/sentiero-dei-masi-tru-dles-viles",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-9648632": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1687
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.8,
+          "names": []
+        }
+      ]
+    },
+    "osm-9651462": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/de/r/810055342",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "osm-9675994": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1340
+      }
+    },
+    "paganella-andalo-tana-ermellino": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/22486693",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "paganella-giro-del-lago-di-molveno": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/17453714",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "paganella-giro-della-toresela": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805497810",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "paganella-passeggiata-del-ciclamino": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/19077979",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "paganella-sette-passi-sette-ville": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 832
+      }
+    },
+    "piancavallo": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1358
+      }
+    },
+    "prato-piazza": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/de/activity/sommerwanderung-parkplatz-pl-tzwiese-strudelkopf_50065",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-anello-di-valpiana": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/811789531",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-anello-molaren-via-nova-marine": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/811787705",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-anello-poit-cordogne-san-giovanni": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/29921340",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-fiera-pieve": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/23513958",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-la-guana-di-primiero": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810318018",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-laghi-di-colbricon": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/1552123",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-malga-ces": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/812171998",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-malga-crel": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1611
+      }
+    },
+    "primiero-malga-valcigolera": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/812093313",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-monte-vederna": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1560
+      }
+    },
+    "primiero-percorso-verde": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810847366",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-ponte-su-funi": {
+      "recommended": {
+        "months": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/811789417",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-san-martino-di-castrozza-val-di-roda-prati-col": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810399072",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-siror": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/23515939",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-tonadico": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/23514755",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-transacqua": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/23514265",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "primiero-via-della-frutta-antica": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804368222",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "rendena-ciclabile-javre-dare-vigo-pelugo": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/63124726",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "rendena-giro-del-belvedere-giustino": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/59358310",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "santa-maddalena": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1352
+      }
+    },
+    "sassolungo": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2680
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1,
+          "names": [
+            "Rodella",
+            "Gabia",
+            "Comici - Tramans"
+          ]
+        }
+      ]
+    },
+    "seceda": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2426
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 2.2,
+          "names": [
+            "Seceda - Fermeda",
+            "Gardenissima",
+            "Curona"
+          ]
+        }
+      ]
+    },
+    "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/62653103",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.5,
+          "names": [
+            "Loipe Panider Sattel - Pista Passo Pinei"
+          ]
+        }
+      ]
+    },
+    "seiseralm-compatsch-wiedner-eck": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/65714204",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.5,
+          "names": []
+        }
+      ]
+    },
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055751",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/16570256",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810054454",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "seiseralm-fie-laghetto-di-fie-siusi": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/64902375",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "seiseralm-miglio-geologico-siusi": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/802958877",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "sentiero-del-trenino": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/de/outdoor/base/outdoor/groedner-bahnweg-la-ferata-de-gherdeeina/810054758/",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.6,
+          "names": [
+            "Skiweg Skilift Nives - La Poza"
+          ]
+        }
+      ]
+    },
+    "tre-cime": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2454
+      }
+    },
+    "trecime-bagni-di-san-candido": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-a-tema-bagni-di-san-candido_630",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 1.6,
+          "names": []
+        }
+      ]
+    },
+    "trecime-bellavista-montecosta": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-bellavista-montecosta_640",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-carbonin-rifugio-vallandro": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-carbonin-rifugio-vallandro_832",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-cimabanche-prato-piazza": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-cimabanche-prato-piazza_735",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-circolare-maistatt": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1273
+      }
+    },
+    "trecime-dobbiaco-lago-di-dobbiaco": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-dobbiaco-lago-di-dobbiaco-percorso-naturalistico-attorno-al-lago-dobbiaco_553",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 3.6,
+          "names": [
+            "Toblacher See - Lago di Dobbiaco"
+          ]
+        }
+      ]
+    },
+    "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/passeggiata-con-il-passeggino-gasthof-panorama-rifugio-pendio-monte-elmo_7510",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-giro-delle-baite-lago-di-braies": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-giro-estivo-giro-delle-baite-lago-di-braies_73638",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-haus-der-berge-rifugio-larice": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-haus-der-berge-rifugio-larice_14721",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.5,
+          "names": [
+            "11- Helm Sexten  -  11 - Elmo Sesto",
+            "11- Helm Sexten"
+          ]
+        }
+      ]
+    },
+    "trecime-helmjet-waldruhe-sexten": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-stazione-a-monte-della-funivia-monte-elmo-baita-del-cacciatore-gasthof-waldruhe-sesto_50095",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.9,
+          "names": [
+            "Helm Vierschach - Elmo Versciaco",
+            "13 - Helm Vierschach - 13 - Elmo Versciaco"
+          ]
+        }
+      ]
+    },
+    "trecime-innichen-waldkapelle-sexten": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-cimitero-dei-soldati-burg-capella-del-bosco-sesto_560",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-lago-di-braies-malga-foresta": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-foresta-_651",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-lago-di-braies-malga-rossalm": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-rossalm-_473",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-monte-casella-di-fuori": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-in-montagna-giro-per-il-monte-casella-di-fuori_701",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-monte-elmo-da-moso": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-monte-elmo-_50062",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-monte-elmo-versciaco": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/sentiero-nel-bosco-fino-a-versciaco_68483",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1,
+          "names": [
+            "Helm Vierschach - Elmo Versciaco",
+            "13 - Helm Vierschach - 13 - Elmo Versciaco"
+          ]
+        }
+      ]
+    },
+    "trecime-moso-monte-arnese": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810054501",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-rotwandwiesen-moos": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/passeggiata-nella-valle-di-sesto_68498",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "sled",
+          "km": 2.8,
+          "names": []
+        },
+        {
+          "kind": "downhill",
+          "km": 1.4,
+          "names": [
+            "4b",
+            "Bad Moos - Rotwand",
+            "Bad Moos - Rotwandwiesen"
+          ]
+        }
+      ]
+    },
+    "trecime-san-candido-costa-dei-nosellari-dobbiaco": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-san-candido-costa-dei-nosellari-dobbiaco_628",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-sasso-di-sesto": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-in-montagna-sasso-di-sesto-_424",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.7,
+          "names": []
+        }
+      ]
+    },
+    "trecime-sentiero-gustav-mahler": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-sentiero-gustav-mahler_50104",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-sesto-alte-saege-val-campo-di-dentro": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/passeggiata-con-il-passeggino-sesto-alte-s-ge-val-campo-di-dentro_49959",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 3.6,
+          "names": []
+        }
+      ]
+    },
+    "trecime-sesto-cappella-del-bosco": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-da-sesto-alla-cappella-del-bosco-_49977",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-sesto-chiesa-gasthof-panorama": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-sesto-chiesa-parocchiale-gasthof-panorama-_412",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-sesto-san-candido": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/passeggiata-sesto-san-candido_724",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 1,
+          "names": []
+        }
+      ]
+    },
+    "trecime-villabassa-lanaweg": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-circolare-villabassa-lanaweg_605",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "trecime-villabassa-mooskirche": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/passeggiata-per-famiglie-villabassa-giro-del-bosco-mooskirche-villabassa_606",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valdisole-bivacco-malga-baselga": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805260256",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valdisole-fazzon-lago-dei-caprioli": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/21345216",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valdisole-lago-dei-caprioli-malga-alta-di-fazzon": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/58069977",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valdisole-marilleva-1400-malga-alta-di-fazzon": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805260236",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valdisole-monclassico-presson-meridiane": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/58792487",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valdisole-ortise-malga-stabli": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/801252686",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valdisole-passo-tonale-forte-mero": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805866880",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valdisole-passo-tonale-forte-mero-forte-zaccarana": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805867213",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valdisole-rifugio-stavel-denza": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/22488266",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-arte-e-storia": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/arte-e-storia/16570787/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-cudan-dumat": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/66473926",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-escursione-al-brogles": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-brogles/810055933/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-escursione-al-resciesa": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-resciesa/16420468/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-escursione-al-seeurasas": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-seeurasas/811360645/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-escursione-al-terrazzo-panoramico-seeurasas": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-terrazzo-panoramico-seeurasas/67905450/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-escursione-da-s-cristina-al-passo-sella": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-da-s-cristina-al-passo-sella/810055923/",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 2.5,
+          "names": [
+            "Tschucky",
+            "Charly",
+            "Verbindung Monte Pana-Saslong"
+          ]
+        }
+      ]
+    },
+    "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-dalla-cappella-santa-croce-al-brogles/800791260/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-escursione-nella-vallunga": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-nella-vallunga/810055896/",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 5.9,
+          "names": []
+        }
+      ]
+    },
+    "valgardena-escursione-ortisei-passo-sella": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-ortisei-passo-sella/65027101/",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 2.8,
+          "names": [
+            "Verbindung Monte Pana-Saslong",
+            "Charly",
+            "Tramans"
+          ]
+        }
+      ]
+    },
+    "valgardena-giro-della-via-crucis": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810054903",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-giro-storico-del-paese-di-ortisei": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1329
+      }
+    },
+    "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/passeggiata-alla-chiesetta-di-san-giacomo/16570805/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-passeggiata-da-ortisei-a-s-cristina": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/passeggiata-da-ortisei-a-s-cristina/16420476/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-percorso-dei-masi-tradizionali": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/percorso-dei-masi-tradizionali/64155465/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-raida-dl-luech-giro-del-paese": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/raida-dl-luech-giro-del-paese/17086259/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-seceda-da-col-raiser": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-monte/810055439/",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1,
+          "names": [
+            "Colraiser - Fermeda",
+            "Fermeda 2",
+            "Gardenissima"
+          ]
+        }
+      ]
+    },
+    "valgardena-seceda-da-cristauta-pic": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-cristauta-seeurasas/810055443/",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.9,
+          "names": [
+            "La Longia",
+            "Gardenissima",
+            "Seceda - Fermeda"
+          ]
+        }
+      ]
+    },
+    "valgardena-seceda-dal-rifugio-firenze": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-col-raiser-stazione-a-valle-rifugio-firenze/808744765/",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.3,
+          "names": [
+            "Colraiser",
+            "Fermeda - S. Cristina",
+            "Fermeda 2"
+          ]
+        }
+      ]
+    },
+    "valgardena-tour-alla-volta-del-lech-sant": {
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/tour-alla-volta-del-lech-sant/49659382/",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.5,
+          "names": []
+        }
+      ]
+    },
+    "valgardena-troi-unika": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/64024449",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-uciei-de-freeines": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/uciei-de-freeines-arte-che-invita-il-sentiero-dei-richiami-degli-uccelli/810055690/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valgardena-val-danna-percorso-kneipp": {
+      "recommended": {
+        "months": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Val Gardena tourist board",
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/val-danna-percorso-kneipp/810054401/",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "valley-view": {
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1426
+      }
+    },
+    "villnoess-da-russis-fino-al-passo-delle-erbe": {
+      "recommended": {
+        "months": [
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/65390947",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.8,
+          "names": [
+            "Peitlerkofel - Sass de Putia"
+          ]
+        }
+      ]
+    },
+    "villnoess-dolorama-3a-tappa": {
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/38332052",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "villnoess-ranui-zannes": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810055210",
+          "accessedAt": "2026-11-06"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "sled",
+          "km": 0.8,
+          "names": []
+        }
+      ]
+    },
+    "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": {
+      "recommended": {
+        "months": [
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805297533",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "vinschgau-escursione-al-lago-bergsee-da-burgusio": {
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809978024",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "vinschgau-piani-di-annenberg": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/45666706",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "vinschgau-sentiero-della-roggia-kastanienwaal": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/16421089",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "vinschgau-sentiero-della-roggia-latschanderwaal-4954": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810054954",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal": {
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/16571164",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "vinschgau-sentiero-della-roggia-schnalswaal": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/37149933",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    },
+    "vinschgau-sentiero-della-roggia-stabnerwaal": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805506819",
+          "accessedAt": "2026-11-06"
+        }
+      }
+    }
+  }
+}

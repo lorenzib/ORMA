@@ -55,6 +55,8 @@ const SOURCES = [
   'route-guidance-sources.js',
   // One-way walks seen there and back; trail.js and trail-recommendation.js read it.
   'route-return.js',
+  // When in the year a walk is a walk; trail-blueprint.js reads it.
+  'trail-season-words.js',
   'trail.js',
   'trail-blueprint.js',
   'trail-detail-ui.js',
