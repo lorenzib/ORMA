@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-06T15:35:33.270Z",
+  "generatedAt": "2026-11-06T17:16:49.340Z",
   "regions": {
     "dolomites": {
       "trailCount": 352,
-      "trails": "data/regions/dolomites-trails.js?v=ad270af2ccd2",
+      "trails": "data/regions/dolomites-trails.js?v=44fec2909b55",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=6faa6455cd45",
@@ -73,7 +73,7 @@
         "osm-11828233": "data/trail-details/osm-11828233.js?v=e4a1f65fd3af",
         "osm-11832013": "data/trail-details/osm-11832013.js?v=ebcbdda9f3c5",
         "osm-11839597": "data/trail-details/osm-11839597.js?v=adb88a2c3b11",
-        "osm-11855879": "data/trail-details/osm-11855879.js?v=5ae5d5d28dfd",
+        "osm-11855879": "data/trail-details/osm-11855879.js?v=f98270a7ffbb",
         "osm-11860429": "data/trail-details/osm-11860429.js?v=725be64f11d7",
         "osm-11891581": "data/trail-details/osm-11891581.js?v=5e812be219a8",
         "osm-12018939": "data/trail-details/osm-12018939.js?v=55be0a8da0e4",
@@ -94,11 +94,11 @@
         "osm-12182895": "data/trail-details/osm-12182895.js?v=cffb62cbc98f",
         "osm-12182936": "data/trail-details/osm-12182936.js?v=ffd1e38871e3",
         "osm-12189165": "data/trail-details/osm-12189165.js?v=251c430f718f",
-        "osm-12190538": "data/trail-details/osm-12190538.js?v=79f5adef96ab",
+        "osm-12190538": "data/trail-details/osm-12190538.js?v=7f010c733bd5",
         "osm-12190657": "data/trail-details/osm-12190657.js?v=e9c12d8ee262",
         "osm-12302191": "data/trail-details/osm-12302191.js?v=e4b5c47f399f",
         "osm-12363235": "data/trail-details/osm-12363235.js?v=92a942461dbc",
-        "osm-12371666": "data/trail-details/osm-12371666.js?v=4dcb5ea2c53e",
+        "osm-12371666": "data/trail-details/osm-12371666.js?v=69cdb536f881",
         "osm-12371689": "data/trail-details/osm-12371689.js?v=c3efddcbda5e",
         "osm-12731853": "data/trail-details/osm-12731853.js?v=a75812133ad0",
         "osm-12736753": "data/trail-details/osm-12736753.js?v=e94f8094ce6c",
