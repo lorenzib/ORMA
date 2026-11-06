@@ -33,7 +33,7 @@ describe('Heat and hydration safety guide', () => {
   test('makes the next-guide action prominent', () => {
     const nextGuide = document.querySelector('.safety-continue__next');
     expect(nextGuide.classList.contains('hs-next-cta')).toBe(false);
-    expect(html).toContain('safety-guide-system.css?v=20261104-1');
+    expect(html).toContain('safety-guide-system.css?v=20261106-1');
     expect(nextGuide.getAttribute('href')).toBe('water-for-dogs-on-trail.html');
   });
 
