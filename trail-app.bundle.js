@@ -11159,6 +11159,118 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
 });
 ;
 
+// ---- walked-this.js ----
+(function(root){
+  'use strict';
+
+  // SOCIAL-01 one-tap "We walked this". A GPS hike finished in hike mode was
+  // the only way a walk reached the anonymous trailWalks tally, and in eight
+  // weeks none did (23 starts, 0 completions). A tap on the trail page writes
+  // the same anonymous event -- server time plus the dog's coarse FCI group --
+  // so the tally can fill without anyone recording a track.
+  //
+  // One walk per trail per day per browser. This only stops a double tap or a
+  // tap after a recorded hike from counting twice; the aggregate that reads
+  // the tally must still treat the counts as unverified.
+
+  const STORAGE_KEY = 'orma-walked-this-v1';
+  const KEEP_DAYS = 30;
+
+  function safeStorage(storage){
+    if(storage) return storage;
+    try {
+      return root.localStorage;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  // The walker's own calendar day, not UTC: a walk at 00:30 in the Dolomites
+  // belongs to that morning.
+  function dayKey(now){
+    const date = new Date(now);
+    const pad = value => String(value).padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  }
+
+  function read(storage){
+    const store = safeStorage(storage);
+    if(!store) return {};
+    try {
+      const value = JSON.parse(store.getItem(STORAGE_KEY) || '{}');
+      return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+    } catch (error) {
+      return {};
+    }
+  }
+
+  function walkedToday(trailId, options){
+    const opts = options || {};
+    return read(opts.storage)[String(trailId)] === dayKey(opts.now == null ? Date.now() : opts.now);
+  }
+
+  function markWalked(trailId, options){
+    const opts = options || {};
+    const store = safeStorage(opts.storage);
+    if(!store) return false;
+    const now = opts.now == null ? Date.now() : opts.now;
+    const oldest = dayKey(now - KEEP_DAYS * 86400000);
+    const kept = {};
+    for(const [id, day] of Object.entries(read(store))){
+      if(typeof day === 'string' && day >= oldest) kept[id] = day;
+    }
+    kept[String(trailId)] = dayKey(now);
+    try {
+      store.setItem(STORAGE_KEY, JSON.stringify(kept));
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  // The active dog's coarse FCI group, the only thing the tally keeps about a
+  // dog. Shared with hike mode so a tap and a recorded hike tag alike.
+  function activeDogGroup(storage){
+    const store = safeStorage(storage);
+    try {
+      const raw = JSON.parse((store && store.getItem('dolopaws-profile-summary')) || 'null');
+      const active = raw && Array.isArray(raw.dogs)
+        ? raw.dogs.find(dog => dog.id === raw.activeDogId) || raw.dogs[0]
+        : null;
+      const breed = (active && active.breed) || (raw && raw.breed) || '';
+      return typeof root.breedGroupId === 'function' ? root.breedGroupId(breed) : 'unknown';
+    } catch (error) {
+      return 'unknown';
+    }
+  }
+
+  // Resolves to 'recorded', 'already' (counted today), 'unavailable' (the
+  // community service never loaded) or 'failed' (the write was refused or the
+  // walker is offline). Only 'recorded' marks the day, so a failed tap can be
+  // tried again.
+  async function record(trailId, group, options){
+    const opts = options || {};
+    if(!trailId) return 'failed';
+    if(walkedToday(trailId, opts)) return 'already';
+    const community = opts.community;
+    if(!community || typeof community.recordTrailWalk !== 'function') return 'unavailable';
+    let ok = false;
+    try {
+      ok = await community.recordTrailWalk(trailId, group || 'unknown');
+    } catch (error) {
+      ok = false;
+    }
+    if(!ok) return 'failed';
+    markWalked(trailId, opts);
+    return 'recorded';
+  }
+
+  const api = { STORAGE_KEY, dayKey, walkedToday, markWalked, activeDogGroup, record };
+  root.DoloPawsWalkedThis = api;
+  if(typeof module !== 'undefined' && module.exports){ module.exports = api; }
+})(typeof window !== 'undefined' ? window : globalThis);
+;
+
 // ---- hike-mode.js ----
 /**
  * hike-mode.js, "Start hike" companion for the trail detail page.
@@ -12034,6 +12146,8 @@ function initHikeMode(map, trail, options){
     // never depend on it.
     if(window.DoloPawsCommunity && typeof window.DoloPawsCommunity.recordTrailWalk === 'function'){
       window.DoloPawsCommunity.recordTrailWalk(trail.id, activeDogGroup());
+      // A tap on "We walked this" after the hike must not count it again.
+      if(window.DoloPawsWalkedThis) window.DoloPawsWalkedThis.markWalked(trail.id);
     }
     completionRetry = null;
     clearDurableSession();
@@ -12046,16 +12160,7 @@ function initHikeMode(map, trail, options){
   // breedGroupId comes from breeds-data.js (same trail bundle); guarded so a
   // context without it degrades to 'unknown' rather than throwing.
   function activeDogGroup(){
-    try {
-      const raw = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null');
-      const active = raw && Array.isArray(raw.dogs)
-        ? raw.dogs.find(dog => dog.id === raw.activeDogId) || raw.dogs[0]
-        : null;
-      const breed = (active && active.breed) || (raw && raw.breed) || '';
-      return typeof breedGroupId === 'function' ? breedGroupId(breed) : 'unknown';
-    } catch (e) {
-      return 'unknown';
-    }
+    return window.DoloPawsWalkedThis ? window.DoloPawsWalkedThis.activeDogGroup() : 'unknown';
   }
 
   function finishHike(){
@@ -16403,6 +16508,40 @@ function renderTrail(t){
   if(logWalkBtn){
     const journalReturn = encodeURIComponent(`trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))}`);
     logWalkBtn.href = `journal.html?trail=${encodeURIComponent(t.id)}&from=${journalReturn}`;
+  }
+  // One tap counts a walk in the anonymous tally, the same event a finished
+  // GPS hike writes. Firebase loads after the page is idle, so a tap before
+  // then waits for it briefly rather than failing.
+  const walkedThisBtn = document.getElementById('walkedThisBtn');
+  const walked = window.DoloPawsWalkedThis;
+  // The label is set here, not by data-i18n, so a later translation pass
+  // cannot put "We walked this" back on a walk already counted.
+  if(walkedThisBtn && walked && !walkedThisBtn.dataset.bound){
+    walkedThisBtn.dataset.bound = '1';
+    walkedThisBtn.textContent = window.t('page.trail.walkedThis');
+    const walkedStatus = document.getElementById('walkedThisStatus');
+    const showWalked = () => {
+      walkedThisBtn.textContent = window.t('trail.walkedToday');
+      walkedThisBtn.disabled = true;
+    };
+    const communityReady = () => window.DoloPawsCommunity ? Promise.resolve(window.DoloPawsCommunity)
+      : new Promise(resolve => {
+        const done = () => resolve(window.DoloPawsCommunity || null);
+        window.addEventListener('dolopaws-auth-ready', done, { once: true });
+        setTimeout(done, 6000);
+      });
+    if(walked.walkedToday(t.id)) showWalked();
+    walkedThisBtn.addEventListener('click', async () => {
+      walkedThisBtn.disabled = true;
+      const result = await walked.record(t.id, walked.activeDogGroup(), { community: await communityReady() });
+      if(result === 'recorded' || result === 'already'){
+        showWalked();
+        if(walkedStatus && result === 'recorded') walkedStatus.textContent = window.t('trail.walkedThanks');
+        return;
+      }
+      walkedThisBtn.textContent = window.t('trail.walkedRetry');
+      walkedThisBtn.disabled = false;
+    });
   }
   // Do not reserve an empty elevation panel for routes without profile data.
   const elevationCard = document.getElementById('tdElevationPanel');
