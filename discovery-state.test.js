@@ -11,7 +11,6 @@ describe('canonical discovery state', () => {
       distance: '6',
       duration: 'day',
       water: true,
-      walkable: true,
       collection: 'water',
       dog: 'rufus',
       difficulty: 'Easy',

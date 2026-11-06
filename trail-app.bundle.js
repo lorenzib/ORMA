@@ -5901,6 +5901,20 @@ function breedInsights(name){
     };
   }
 
+  // Kept in step with trail-season-words.js bestMonths.
+  function seasonBestMonths(season){
+    const winterUse = Array.isArray(season.winterUse) && season.winterUse.length > 0;
+    const recommended = season.recommended && Array.isArray(season.recommended.months) ? season.recommended.months : null;
+    const snow = season.snow && Array.isArray(season.snow.months) ? season.snow.months : null;
+    if(!recommended && !snow && !winterUse) return null;
+    let months = recommended ? recommended.slice() : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter(m => !(snow && snow.includes(m)));
+    if(winterUse){
+      const summer = months.filter(m => ![12, 1, 2, 3, 4].includes(m));
+      if(summer.length) months = summer;
+    }
+    return months.length ? months : null;
+  }
+
   function calculateRecommendation(input){
     input = input || {};
     const positives = [];
@@ -6095,27 +6109,18 @@ function breedInsights(name){
       { lift: liftName || 'gondola' }, liftName ? 'trail.lift.gondola.named' : 'trail.lift.gondola'));
     }
 
-    // The walk's season in the month the reader is planning for
-    // (data/trail-seasons.json). Only when a month is given: the engine says
-    // nothing about a season it was not asked about. Outside the months the
-    // walk's board publishes, or in months the altitude estimate makes snowy,
-    // the walk is a poor choice for any dog; ski runs on the line are a
-    // caution in the months they are likely open.
+    // The walk's season this month (data/trail-seasons.json), by the rule
+    // the "Out of season" tag uses (trail-season-words.js bestMonths): the
+    // board's months, else the months the estimate keeps free of snow, less
+    // the months ski runs on the line are usually open. Only when a month is
+    // given: the engine says nothing about a season it was not asked about.
     const season = suitability.season;
     const month = Number.isInteger(input.month) && input.month >= 1 && input.month <= 12 ? input.month : null;
-    if(season && month){
-      const recommended = season.recommended && Array.isArray(season.recommended.months) ? season.recommended.months : null;
-      const snow = season.snow && Array.isArray(season.snow.months) ? season.snow : null;
-      if(recommended && !recommended.includes(month)){
-        penalise(25, item('trail.season.outside', 'The month you are planning for is outside the season the walk’s tourist board publishes.', { month }));
-      }else if(!recommended && snow && snow.likelihood === 'likely' && snow.months.includes(month)){
-        penalise(20, item('trail.season.snow-likely', 'Snow is likely on this walk in the month you are planning for (an estimate from its high point).', { month }));
-      }else if(recommended){
-        positives.push(item('trail.season.inside', 'The month you are planning for is in the season the walk’s tourist board publishes.', { month }));
-      }
-      if(Array.isArray(season.winterUse) && season.winterUse.length && [12, 1, 2, 3, 4].includes(month)){
-        penalise(10, item('trail.season.winter-use', 'Part of this walk is a ski run or track, likely in use in the month you are planning for.', { month }));
-      }
+    const best = season && month ? seasonBestMonths(season) : null;
+    if(best && !best.includes(month)){
+      penalise(25, item('trail.season.outside', 'This walk is out of season this month.', { month }));
+    }else if(best && best.length < 12){
+      positives.push(item('trail.season.inside', 'This walk is in season this month.', { month }));
     }
 
     if(access.status === 'prohibited'){
@@ -6798,14 +6803,13 @@ function breedInsights(name){
     };
   }
 
-  // The month a page is planning for: the caller's, else the reader's choice
-  // (trail-planning-month.js), else none, so Node callers and tests that never
-  // name a month score exactly as before.
-  function planningMonth(options){
+  // The month to score the season for: the caller's, else this month on a
+  // page, else none, so Node callers and tests that never name a month score
+  // exactly as before.
+  function scoringMonth(options){
     const given = options && Number(options.month);
     if(Number.isInteger(given) && given >= 1 && given <= 12) return given;
-    const planner = root && root.ORMAPlanningMonth;
-    return planner ? planner.current().month : null;
+    return root && root.document ? new Date().getMonth() + 1 : null;
   }
 
   function recommendLegacyTrail(trail, subject, currentConditions, options){
@@ -6813,17 +6817,12 @@ function breedInsights(name){
     if(!engine || typeof engine.calculateRecommendation !== 'function'){
       throw new Error('The canonical recommendation engine is unavailable.');
     }
-    const month = planningMonth(options);
-    // A forecast is for the coming days. Planning for another month, it says
-    // nothing about the walk, so the score is worked out without one.
-    const planner = root && root.ORMAPlanningMonth;
-    const elsewhere = planner && month && month !== planner.today();
     return engine.calculateRecommendation({
       dog: normalizeDog(subjectProfile(subject), options),
       trail: normalizeTrail(trail),
-      currentConditions: (!elsewhere && currentConditions) || { status: 'not-provided' },
+      currentConditions: currentConditions || { status: 'not-provided' },
       effectiveLimits: effectiveLimits(subject),
-      month,
+      month: scoringMonth(options),
     });
   }
 
@@ -15411,97 +15410,52 @@ function initTrailReports(map, trail){
     return notes.join(' ');
   }
 
-  // Whether this month is one to warn about: outside the board's season, snowy
-  // by the estimate, or a month the pistes on the line are likely in use.
-  function outOfSeason(season, month) {
-    if (!season || !month) return false;
-    if (season.recommended && !season.recommended.months.includes(month)) return true;
-    if (!season.recommended && season.snow && season.snow.likelihood === 'likely' && season.snow.months.includes(month)) return true;
-    return (season.winterUse || []).length > 0 && WINTER_SPORT_MONTHS.includes(month);
-  }
-
-  // One word for a walk in a month, for a card or a filter:
-  //   'out'   outside the board's season, or snow likely by the estimate;
-  //   'check' in season, but ski runs on the line are likely open, or snow is
-  //           possible;
-  //   'good'  nothing about the month stands in the way.
-  // null when the walk has no season record: no answer, not a good one.
-  function verdict(season, month) {
-    if (!season || !month) return null;
+  // The months that suit the walk: the board's months, else the months the
+  // estimate keeps free of snow; with ski runs on the line, less the months
+  // those are usually open (unless that leaves nothing, as for a winter walk).
+  // null when the walk has no season record.
+  function bestMonths(season) {
+    if (!season || typeof season !== 'object') return null;
     if (!season.recommended && !season.snow && !(season.winterUse || []).length) return null;
-    if (season.recommended && !season.recommended.months.includes(month)) return 'out';
-    if (!season.recommended && season.snow && season.snow.likelihood === 'likely' && season.snow.months.includes(month)) return 'out';
-    if ((season.winterUse || []).length && WINTER_SPORT_MONTHS.includes(month)) return 'check';
-    if (!season.recommended && season.snow && season.snow.months.includes(month)) return 'check';
-    return 'good';
+    let months = season.recommended
+      ? season.recommended.months.slice()
+      : MONTH_NAMES.map((_, i) => i + 1).filter(m => !(season.snow && season.snow.months.includes(m)));
+    if ((season.winterUse || []).length) {
+      const summer = months.filter(m => !WINTER_SPORT_MONTHS.includes(m));
+      if (summer.length) months = summer;
+    }
+    return months.length ? months.sort((a, b) => a - b) : null;
   }
 
-  function verdictLabel(kind, month) {
-    const name = monthName(month);
-    if (kind === 'good') return tx('Good in {month}', { month: name });
-    if (kind === 'check') return tx('Check first in {month}', { month: name });
-    if (kind === 'out') return tx('Out of season in {month}', { month: name });
-    return '';
+  // Out of season: this month is not one of the walk's best months. The one
+  // rule behind the "Out of season" tag, the trail page's Season caution and
+  // the match score, so they never disagree.
+  function outOfSeason(season, month) {
+    const best = bestMonths(season);
+    return Boolean(best && month && !best.includes(month));
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, monthName, monthRange, describe, nowNote, outOfSeason, verdict, verdictLabel };
+  // "Best time: June to October" on a trail page, "Best time: Jun–Oct" on a
+  // card, "Good all year" when every month suits. A run across New Year reads
+  // as one run.
+  function bestTime(season, short) {
+    const best = bestMonths(season);
+    if (!best) return '';
+    if (best.length === 12) return tx('Good all year');
+    const set = new Set(best);
+    const name = m => (short ? monthName(m).slice(0, 3) : monthName(m));
+    const runs = [];
+    for (let m = 1; m <= 12; m += 1) {
+      if (!set.has(m) || set.has(m === 1 ? 12 : m - 1)) continue;
+      let end = m;
+      while (set.has(end === 12 ? 1 : end + 1)) end = end === 12 ? 1 : end + 1;
+      runs.push(end === m ? name(m) : (short ? `${name(m)}–${name(end)}` : tx('{from} to {to}', { from: name(m), to: name(end) })));
+    }
+    return tx('Best time: {range}', { range: runs.join(', ') });
+  }
+
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, monthName, monthRange, describe, nowNote, bestMonths, outOfSeason, bestTime };
   global.DoloPawsTrailSeasonWords = api;
-  if (typeof module !== 'undefined' && module.exports) module.exports = api;
-})(typeof window !== 'undefined' ? window : globalThis);
-;
-
-// ---- trail-planning-month.js ----
-(function (global) {
-  'use strict';
-
-  // The month a reader is planning for. Unset, it is this month; chosen on the
-  // trail list or a trail page, it is kept on the device and every page that
-  // talks about a walk's season (trail-season-words.js) uses it instead of
-  // today, so a list filtered for March opens trail pages that talk about March.
-  const KEY = 'orma-planning-month';
-  const EVENT = 'orma-planning-month';
-
-  function today() {
-    return new Date().getMonth() + 1;
-  }
-
-  function stored() {
-    try {
-      const value = Number(global.localStorage && global.localStorage.getItem(KEY));
-      return Number.isInteger(value) && value >= 1 && value <= 12 ? value : null;
-    } catch (error) {
-      return null;
-    }
-  }
-
-  // { month: 1-12, chosen: whether the reader picked it }
-  function current() {
-    const month = stored();
-    return month ? { month, chosen: true } : { month: today(), chosen: false };
-  }
-
-  // A month 1-12 keeps it; null, or this month, goes back to following the
-  // calendar, so a reader who picks the current month is not stuck on it.
-  function set(month) {
-    const value = Number(month);
-    try {
-      if (Number.isInteger(value) && value >= 1 && value <= 12 && value !== today()) {
-        global.localStorage.setItem(KEY, String(value));
-      } else {
-        global.localStorage.removeItem(KEY);
-      }
-    } catch (error) {
-      // Private windows refuse storage; the page still uses the month for now.
-    }
-    const next = Number.isInteger(value) && value >= 1 && value <= 12 ? value : today();
-    if (typeof global.dispatchEvent === 'function' && typeof global.CustomEvent === 'function') {
-      global.dispatchEvent(new global.CustomEvent(EVENT, { detail: { month: next } }));
-    }
-    return next;
-  }
-
-  const api = { KEY, EVENT, today, current, set };
-  global.ORMAPlanningMonth = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
 ;
@@ -18666,6 +18620,15 @@ if(document.querySelector('.td2')){
         : esc(tx('Chairlift-assisted · not for most dogs'));
       tags.appendChild(warning);
     }
+    // The season at a glance (trail-season-words.js): "Out of season" this
+    // month, and the walk's best months, beside the other tags.
+    const seasonWords = window.DoloPawsTrailSeasonWords;
+    const best = seasonWords ? seasonWords.bestTime(t.season) : '';
+    if (best && tags && !tags.querySelector('.trail-season-tag')) {
+      const out = seasonWords.outOfSeason(t.season, new Date().getMonth() + 1)
+        ? `<span class="dp-badge trail-season-tag trail-season-tag--out"><span>${esc(tx('Out of season'))}</span></span>` : '';
+      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>`);
+    }
 
     // Elevation figures under the real chart; hide the block honestly
     // when the trail has no profile data.
@@ -18924,7 +18887,6 @@ if(document.querySelector('.td2')){
     // keeps a score calculated before the day was known.
     window.addEventListener('dolopaws-conditions-ready', paintPersonalMatch);
     window.addEventListener('orma-route-view-changed', paintPersonalMatch);
-    window.addEventListener('orma-planning-month', paintPersonalMatch);
 
     // Trail description inside the white box
     const descEl = $('matchDescription');
@@ -18994,7 +18956,6 @@ if(document.querySelector('.td2')){
       : null);
     paint();
     window.addEventListener('dolopaws-conditions-ready', paint);
-    window.addEventListener('orma-planning-month', paint);
   })();
 
   function paintSafetyRows(box, conditions) {
@@ -19027,8 +18988,7 @@ if(document.querySelector('.td2')){
     // board's months, snowy by the altitude estimate, or a month the ski runs on
     // the line are likely open. The altitude line stays for the other months.
     const seasonWords = window.DoloPawsTrailSeasonWords;
-    const planner = window.ORMAPlanningMonth;
-    const month = planner ? planner.current().month : new Date().getMonth() + 1;
+    const month = new Date().getMonth() + 1;
     if (seasonWords && t.season && seasonWords.outOfSeason(t.season, month)) {
       const words = seasonWords.describe(t.season);
       const basis = t.season.recommended ? words.line : (t.season.snow ? tx('An estimate from the walk’s high point.') : '');
@@ -20389,18 +20349,6 @@ if(document.querySelector('.td2')){
       : `<p class="recommendation-route-view">${esc(scored !== trail
         ? tr('recommendation.routeView.back', 'Scored for walking there and back: {km} km, about {climb} m up and the same down. The time is an estimate.', { km:scored.distance, climb:scored.elevation })
         : tr('recommendation.routeView.oneWay', 'Scored for one way. This walk ends away from its start, so plan how you will get back.'))}</p>`;
-    // The month the score was worked out for, and the place to change it, on a
-    // walk whose season ORMA knows (trail-planning-month.js); the list and the
-    // trail page share it.
-    const planner = window.ORMAPlanningMonth;
-    const seasonWords = window.DoloPawsTrailSeasonWords;
-    const planNote = !(trail.season && planner && seasonWords) ? ''
-      : `<label class="recommendation-plan">${esc(tr('recommendation.plan.label', 'Planning for'))} <select data-plan-month>${
-        seasonWords.MONTH_NAMES.map((_, i) => `<option value="${i + 1}"${i + 1 === planner.current().month ? ' selected' : ''}>${esc(
-          i + 1 === planner.today()
-            ? tr('browse.when.thisMonth', 'This month ({month})', { month:seasonWords.monthName(i + 1) })
-            : seasonWords.monthName(i + 1))}</option>`).join('')
-      }</select></label>`;
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
       translate:window.t,
@@ -20440,7 +20388,6 @@ if(document.querySelector('.td2')){
           `<div class="recommendation-kicker">${esc(view.contextLabel)}</div>` +
           `<h2>${esc(view.conclusion)} ${score} ${chip}</h2>` +
           routeNote +
-          planNote +
           gapCta +
         '</div>' +
       '</div>' +
@@ -20461,8 +20408,6 @@ if(document.querySelector('.td2')){
         `<button type="button" data-recommendation-download disabled>${esc(tr('recommendation.action.offlineUnavailable', 'Offline map unavailable'))}</button>` +
       '</div>';
     root.hidden = false;
-    const planSelect = root.querySelector('[data-plan-month]');
-    if(planSelect) planSelect.addEventListener('change', () => window.ORMAPlanningMonth.set(Number(planSelect.value)));
 
     renderGuideLinks(recommendation);
     const hero = document.getElementById('heroVerdict');
@@ -20586,6 +20531,5 @@ if(document.querySelector('.td2')){
   window.addEventListener('dolopaws-conditions-ready', renderCurrent);
   window.addEventListener('orma-area-warnings-ready', renderCurrent);
   window.addEventListener('orma-route-view-changed', renderCurrent);
-  window.addEventListener('orma-planning-month', renderCurrent);
 })();
 ;

@@ -311,6 +311,15 @@
         : esc(tx('Chairlift-assisted · not for most dogs'));
       tags.appendChild(warning);
     }
+    // The season at a glance (trail-season-words.js): "Out of season" this
+    // month, and the walk's best months, beside the other tags.
+    const seasonWords = window.DoloPawsTrailSeasonWords;
+    const best = seasonWords ? seasonWords.bestTime(t.season) : '';
+    if (best && tags && !tags.querySelector('.trail-season-tag')) {
+      const out = seasonWords.outOfSeason(t.season, new Date().getMonth() + 1)
+        ? `<span class="dp-badge trail-season-tag trail-season-tag--out"><span>${esc(tx('Out of season'))}</span></span>` : '';
+      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>`);
+    }
 
     // Elevation figures under the real chart; hide the block honestly
     // when the trail has no profile data.
@@ -569,7 +578,6 @@
     // keeps a score calculated before the day was known.
     window.addEventListener('dolopaws-conditions-ready', paintPersonalMatch);
     window.addEventListener('orma-route-view-changed', paintPersonalMatch);
-    window.addEventListener('orma-planning-month', paintPersonalMatch);
 
     // Trail description inside the white box
     const descEl = $('matchDescription');
@@ -639,7 +647,6 @@
       : null);
     paint();
     window.addEventListener('dolopaws-conditions-ready', paint);
-    window.addEventListener('orma-planning-month', paint);
   })();
 
   function paintSafetyRows(box, conditions) {
@@ -672,8 +679,7 @@
     // board's months, snowy by the altitude estimate, or a month the ski runs on
     // the line are likely open. The altitude line stays for the other months.
     const seasonWords = window.DoloPawsTrailSeasonWords;
-    const planner = window.ORMAPlanningMonth;
-    const month = planner ? planner.current().month : new Date().getMonth() + 1;
+    const month = new Date().getMonth() + 1;
     if (seasonWords && t.season && seasonWords.outOfSeason(t.season, month)) {
       const words = seasonWords.describe(t.season);
       const basis = t.season.recommended ? words.line : (t.season.snow ? tx('An estimate from the walk’s high point.') : '');

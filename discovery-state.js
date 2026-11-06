@@ -47,8 +47,6 @@
       // the long, multi-day itineraries.
       duration: allowed('duration', read(source, 'duration')) || 'day',
       water: read(source, 'water') === '1' || read(source, 'water') === true,
-      // Only walks whose season allows the planning month (trail-planning-month.js).
-      walkable: read(source, 'walkable') === '1' || read(source, 'walkable') === true,
       collection: allowed('collection', read(source, 'collection')),
       dog: allowed('dog', read(source, 'dog')) || 'medium',
       difficulty: allowed('difficulty', read(source, 'difficulty')),
@@ -73,7 +71,6 @@
     if(state.distance) params.set('distance', state.distance);
     if(state.duration === 'multi') params.set('duration', 'multi');
     if(state.water) params.set('water', '1');
-    if(state.walkable) params.set('walkable', '1');
     if(state.collection) params.set('collection', state.collection);
     if(state.dog !== 'medium') params.set('dog', state.dog);
     if(state.difficulty) params.set('difficulty', state.difficulty);
@@ -107,7 +104,7 @@
     const state = normalize(source);
     return Boolean(state.search || state.country || state.region || state.valley || state.risk || state.distance ||
       state.duration === 'multi' ||
-      state.water || state.walkable || state.collection || state.difficulty || state.terrain ||
+      state.water || state.collection || state.difficulty || state.terrain ||
       state.heat || state.exposure || state.access ||
       state.shade || state.minMatch);
   }

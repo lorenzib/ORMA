@@ -276,14 +276,13 @@
     };
   }
 
-  // The month a page is planning for: the caller's, else the reader's choice
-  // (trail-planning-month.js), else none, so Node callers and tests that never
-  // name a month score exactly as before.
-  function planningMonth(options){
+  // The month to score the season for: the caller's, else this month on a
+  // page, else none, so Node callers and tests that never name a month score
+  // exactly as before.
+  function scoringMonth(options){
     const given = options && Number(options.month);
     if(Number.isInteger(given) && given >= 1 && given <= 12) return given;
-    const planner = root && root.ORMAPlanningMonth;
-    return planner ? planner.current().month : null;
+    return root && root.document ? new Date().getMonth() + 1 : null;
   }
 
   function recommendLegacyTrail(trail, subject, currentConditions, options){
@@ -291,17 +290,12 @@
     if(!engine || typeof engine.calculateRecommendation !== 'function'){
       throw new Error('The canonical recommendation engine is unavailable.');
     }
-    const month = planningMonth(options);
-    // A forecast is for the coming days. Planning for another month, it says
-    // nothing about the walk, so the score is worked out without one.
-    const planner = root && root.ORMAPlanningMonth;
-    const elsewhere = planner && month && month !== planner.today();
     return engine.calculateRecommendation({
       dog: normalizeDog(subjectProfile(subject), options),
       trail: normalizeTrail(trail),
-      currentConditions: (!elsewhere && currentConditions) || { status: 'not-provided' },
+      currentConditions: currentConditions || { status: 'not-provided' },
       effectiveLimits: effectiveLimits(subject),
-      month,
+      month: scoringMonth(options),
     });
   }
 

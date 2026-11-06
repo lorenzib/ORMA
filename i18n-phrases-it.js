@@ -1634,8 +1634,8 @@ window.ORMA_PHRASES_IT = {
   "Gitschberg Jochtal tourist board": "ente turistico Gitschberg Jochtal",
   "Klausen tourist board": "ente turistico di Chiusa",
   "An estimate from the walk’s high point.": "Una stima basata sul punto più alto del percorso.",
-  "Good in {month}": "Adatto in {month}",
-  "Check first in {month}": "In {month} verifica prima",
-  "Out of season in {month}": "Fuori stagione in {month}",
-  "Planning for": "Pianifichi per",
+  "Out of season": "Fuori stagione",
+  "Good all year": "Adatto tutto l’anno",
+  "Best time: {range}": "Periodo migliore: {range}",
+  "{from} to {to}": "da {from} a {to}",
 };

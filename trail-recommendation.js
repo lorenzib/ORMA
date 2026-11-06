@@ -138,18 +138,6 @@
       : `<p class="recommendation-route-view">${esc(scored !== trail
         ? tr('recommendation.routeView.back', 'Scored for walking there and back: {km} km, about {climb} m up and the same down. The time is an estimate.', { km:scored.distance, climb:scored.elevation })
         : tr('recommendation.routeView.oneWay', 'Scored for one way. This walk ends away from its start, so plan how you will get back.'))}</p>`;
-    // The month the score was worked out for, and the place to change it, on a
-    // walk whose season ORMA knows (trail-planning-month.js); the list and the
-    // trail page share it.
-    const planner = window.ORMAPlanningMonth;
-    const seasonWords = window.DoloPawsTrailSeasonWords;
-    const planNote = !(trail.season && planner && seasonWords) ? ''
-      : `<label class="recommendation-plan">${esc(tr('recommendation.plan.label', 'Planning for'))} <select data-plan-month>${
-        seasonWords.MONTH_NAMES.map((_, i) => `<option value="${i + 1}"${i + 1 === planner.current().month ? ' selected' : ''}>${esc(
-          i + 1 === planner.today()
-            ? tr('browse.when.thisMonth', 'This month ({month})', { month:seasonWords.monthName(i + 1) })
-            : seasonWords.monthName(i + 1))}</option>`).join('')
-      }</select></label>`;
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
       translate:window.t,
@@ -189,7 +177,6 @@
           `<div class="recommendation-kicker">${esc(view.contextLabel)}</div>` +
           `<h2>${esc(view.conclusion)} ${score} ${chip}</h2>` +
           routeNote +
-          planNote +
           gapCta +
         '</div>' +
       '</div>' +
@@ -210,8 +197,6 @@
         `<button type="button" data-recommendation-download disabled>${esc(tr('recommendation.action.offlineUnavailable', 'Offline map unavailable'))}</button>` +
       '</div>';
     root.hidden = false;
-    const planSelect = root.querySelector('[data-plan-month]');
-    if(planSelect) planSelect.addEventListener('change', () => window.ORMAPlanningMonth.set(Number(planSelect.value)));
 
     renderGuideLinks(recommendation);
     const hero = document.getElementById('heroVerdict');
@@ -335,5 +320,4 @@
   window.addEventListener('dolopaws-conditions-ready', renderCurrent);
   window.addEventListener('orma-area-warnings-ready', renderCurrent);
   window.addEventListener('orma-route-view-changed', renderCurrent);
-  window.addEventListener('orma-planning-month', renderCurrent);
 })();
