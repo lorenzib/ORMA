@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11855879",
+  "generatedAt": "2026-11-06T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.7,
+    "ascentM": 70,
+    "highestPointM": 2100,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.52004,
+    "lng": 11.87393,
+    "label": "Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs about 220 m from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Paths and tracks shared with mountain bikes.",
+    "Ski-area service tracks: occasional service vehicles.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-06",
+      "licence": "ODbL"
+    }
+  ]
+}
