@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "giro-del-sasso-lungo",
+  "generatedAt": "2026-11-06T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 15.7,
+    "ascentM": 400,
+    "highestPointM": 2326,
+    "expectedDuration": "5.75 hours",
+    "difficulty": "Hard",
+    "shadePercent": 3
+  },
+  "trailhead": {
+    "lat": 46.5092544,
+    "lng": 11.7574789,
+    "label": "Start here, Passo Sella, paid parking lot behind Hotel Passo Sella"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.520214,
+      "lng": 11.700462,
+      "label": "Drinking water, Seiser Alm",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.509653,
+      "lng": 11.700287,
+      "label": "Drinking water, Seiser Alm",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The SS242 road at Passo Sella, with traffic and buses, at the start and finish.",
+    "Scree crossings under the north face of the Sassolungo and below the Rifugio Vicenza.",
+    "The edge of the Città dei Sassi boulder field.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-06",
+      "licence": "ODbL"
+    }
+  ]
+}

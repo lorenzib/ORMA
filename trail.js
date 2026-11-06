@@ -1725,7 +1725,7 @@ function renderTrail(t){
     }
   }
   document.getElementById('trailMeta').textContent =
-    `${t.area} · ${t.distance} km · ${tx('{m} m gain', { m: t.elevation })} · ${t.hours} h · ${trailWords(t.terrainType)}`;
+    `${t.area} · ${t.distance} km · ${tx('{m} m gain', { m: t.elevation })} · ${window.ORMARouteReturn ? window.ORMARouteReturn.formatDuration(t.hours) : `${t.hours} h`} · ${trailWords(t.terrainType)}`;
   document.getElementById('trailBadges').innerHTML =
     trailProductBadge(t.safetyLevel, trailSafetyLabel(t)) +
     (t.paid ? trailProductBadge('neutral', window.t('card.paid')) : '');
@@ -1817,7 +1817,7 @@ function renderTrail(t){
     const facts = [
       [`${shown.distance} km`, window.t('trail.fact.distance')],
       [`${shown.elevation} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
-      [`${back ? '≈ ' : ''}${shown.hours} h`, window.t('trail.fact.duration')],
+      [shown.hours ? `${back ? '≈ ' : ''}${routeReturn.formatDuration(shown.hours)}` : null, window.t('trail.fact.duration')],
     ].filter(([val]) => !/null|undefined/.test(val)); // hide facts the data honestly lacks
     if(Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1){
       facts.splice(2, 0, [`${Math.max(...t.elevationProfile.map(p => p.elev))} m`, window.t('trail.fact.high')]);

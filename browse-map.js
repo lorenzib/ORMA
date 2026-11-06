@@ -156,7 +156,7 @@
       const metadata = [
         trail.area || trail.valley || '',
         trail.distance ? `${trail.distance} km` : '',
-        trail.hours ? `${trail.hours} h` : '',
+        trail.hours ? (root.ORMARouteReturn ? root.ORMARouteReturn.formatDuration(trail.hours) : `${trail.hours} h`) : '',
       ].filter(Boolean).join(' · ');
       // The same verdict, for the same dog, as the trail's card in the list.
       const verdict = verdictFor(trail);

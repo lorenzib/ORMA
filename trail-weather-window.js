@@ -158,19 +158,21 @@
     const maximum=Number.isFinite(result.maxTemperatureC)?' '+tx('(up to {temp}°C)',{temp:result.maxTemperatureC}):'';
     let lead;
     let tail;
-    const vars={hours:result.durationHours,finish};
+    const routeReturn=typeof globalThis!=='undefined'?globalThis.ORMARouteReturn:null;
+    const duration=(routeReturn&&routeReturn.formatDuration(result.durationHours))||`${result.durationHours} h`;
+    const vars={duration,finish};
     if(result.reason==='comfortable'){
       lead=tx('The forecast stays cool during the walk{maximum}. Suggested start: {when}',{maximum,when});
-      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong>.',vars);
+      tail=tx('for this {duration} route, finish around <strong>{finish}</strong>.',vars);
     }else if(result.reason==='avoid-heat'){
       lead=tx('Cooler forecast window{maximum}: start {when}',{maximum,when});
-      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong> before the warmer part of the day.',vars);
+      tail=tx('for this {duration} route, finish around <strong>{finish}</strong> before the warmer part of the day.',vars);
     }else if(result.reason==='least-warm'){
       lead=tx('Least-warm forecast window{maximum}: start {when}',{maximum,when});
-      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong> before the hottest available hours.',vars);
+      tail=tx('for this {duration} route, finish around <strong>{finish}</strong> before the hottest available hours.',vars);
     }else{
       lead=tx('Suggested daylight start: {when}',{when});
-      tail=tx('for this {hours} h route, finish around <strong>{finish}</strong>.',vars);
+      tail=tx('for this {duration} route, finish around <strong>{finish}</strong>.',vars);
     }
     const daylightMargin=result.sunsetMinutes-result.finishMinutes;
     const leftHours=Math.max(1,Math.floor(daylightMargin/60));
