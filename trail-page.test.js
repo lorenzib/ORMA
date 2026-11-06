@@ -245,7 +245,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20261006-1');
-    expect(html).toContain('trail-app.bundle.js?v=20261030-1');
+    expect(html).toContain('trail-app.bundle.js?v=20261106-1');
     expect(html).toContain('trail-mobile.css?v=20260904-3');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -494,6 +494,14 @@ describe('trail page map controls', () => {
     expect(html).toContain('margin-left:var(--trail-detail-gutter);margin-right:var(--trail-detail-gutter);');
     expect(html).toContain('grid-template-areas:"tags weather" "title weather" "facts weather" "actions weather"');
     expect(html).toContain('.td2-hero-weather{grid-area:weather;');
+  });
+
+  test('the name gloss sits under the name in light ink on the hero photo', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    // The base rule is dark grey for a light page; on the hero it vanished,
+    // and with no grid area it fell below the action row.
+    expect(html).toMatch(/\.td2-hero \.trail-name-gloss\{grid-area:gloss;[^}]*color:#D5DED6;/);
+    expect(html).toContain('.td2-hero-copy:has(#trailNameGloss:not([hidden])){grid-template-areas:"tags weather" "title weather" "gloss weather" "facts weather" "actions weather";}');
   });
 
   test('trail detail pages do not link to the scoring explainer', () => {

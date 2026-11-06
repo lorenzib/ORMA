@@ -814,6 +814,11 @@ body{background:#EFECE2;}
 .td2-hero-copy{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);grid-template-areas:"tags weather" "title weather" "facts weather" "actions weather";column-gap:20px;row-gap:13px;align-items:start;margin-top:30px;max-width:100%;}
 .td2-hero #trailName{grid-area:title;max-width:760px;margin:0;font-size:clamp(36px,4.4vw,54px);line-height:1;letter-spacing:-.035em;}
 .td2-hero .td2-tags{grid-area:tags;margin:0;}
+/* What the name means sits right under the name, in the hero's light ink.
+   The page's base rule is dark grey for a light page, which nearly vanished
+   on the photo; and with no grid area the line fell below the action row. */
+.td2-hero .trail-name-gloss{grid-area:gloss;margin:-4px 0 0;color:#D5DED6;font-size:15px;}
+.td2-hero-copy:has(#trailNameGloss:not([hidden])){grid-template-areas:"tags weather" "title weather" "gloss weather" "facts weather" "actions weather";}
 .td2-hero #heroVerdict[hidden]{display:none;}
 
 /* Dense facts immediately under the title. The dog fit has a dedicated card
@@ -983,6 +988,7 @@ body{background:#EFECE2;}
   .td2-actrow>#offlinePackagePanel:not([hidden]),.td2-actrow>#offlinePackagePanel:not([hidden]) .offline-package-row{display:contents;}
   .td2-actrow>#offlinePackagePanel #offlineDownloadBtn,.td2-actrow>#offlinePackagePanel #offlineOpenBtn,.td2-actrow>#offlinePackagePanel #offlineRemoveBtn{order:7;grid-column:auto;white-space:normal;}
   .td2-actrow>#detailSaveBtn{order:2;}
+  .td2-actrow>#walkedThisBtn{order:3;}
   .td2-actrow>#logWalkBtn{order:3;}
   .td2-actrow>#getDirectionsBtn{order:4;}
   .td2-actrow>#exportGpxBtn{order:5;}
@@ -1170,10 +1176,12 @@ body.trail-photo-viewer-open{overflow:hidden;}
              stay unchanged so the existing account, map and export handlers
              continue to own behavior. -->
         <div class="td-actions td2-hero-actions">
+          <span id="walkedThisStatus" class="sr-only" aria-live="polite"></span>
           <div class="td2-actrow">
             <button id="heroStartHike" class="td2-btn-p" type="button" hidden><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start hike</button>
             <button id="detailSaveBtn" class="td2-btn-g" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.4S4.2 14.5 4.2 9.2A4.3 4.3 0 0 1 12 6.6a4.3 4.3 0 0 1 7.8 2.6c0 5.3-7.8 11.2-7.8 11.2z"/></svg> Save</button>
             <a id="getDirectionsBtn" class="td2-textlink" href="#"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg><span data-i18n="page.trail.directionsLink">Directions</span></a>
+            <button id="walkedThisBtn" class="td2-textlink" type="button" aria-describedby="walkedThisStatus">We walked this</button>
             <a id="logWalkBtn" class="td2-textlink" href="journal.html" data-i18n="page.trail.logWalk">Log walk</a>
             <button id="exportGpxBtn" class="td2-textlink" type="button" data-i18n="page.trail.exportGpx">Export GPX</button>
             <button id="detailShareBtn" class="td2-textlink" type="button" aria-haspopup="true" aria-expanded="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2"></path><path d="M12 3v12"></path><path d="M8 7l4-4 4 4"></path></svg><span data-i18n="page.trail.shareLink">Share</span></button>
@@ -1532,6 +1540,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20261030-1" defer></script>
+<script src="trail-app.bundle.js?v=20261106-1" defer></script>
 </body>
 </html>
