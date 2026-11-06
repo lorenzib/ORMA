@@ -3,7 +3,10 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
-const { collectAppFiles, ENTRY_PAGES, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG } = require('./scripts/build-app');
+const {
+  collectAppFiles, ENTRY_PAGES, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG,
+  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG,
+} = require('./scripts/build-app');
 
 const root = __dirname;
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'data/regions-manifest.json'), 'utf8'));
@@ -217,5 +220,37 @@ describe('the app reads new trails from the website when online', () => {
     const { window, written } = page();
     window.DoloPawsAppTrailData.settle();
     expect(written[2]).toBe('<script src="regions-runtime-manifest.js"></script>');
+  });
+});
+
+// The app draws edge to edge, so without app-shell.css the header sits under
+// the clock and the footer tells someone already in the app to install it.
+describe('app pages make room for the clock and drop the install advice', () => {
+  const { files } = collectAppFiles();
+  const pages = [...files].filter(file => file.endsWith('.html'));
+  const shell = fs.readFileSync(path.join(root, 'app-shell.css'), 'utf8');
+
+  test('every app page opts into the full screen, never zooms on a tap, and loads app-shell.css', () => {
+    expect(files.has('app-shell.css')).toBe(true);
+    const unfit = pages.filter((file) => {
+      const app = fs.readFileSync(path.join(root, file), 'utf8')
+        .replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_SHELL_TAG}\n</head>`);
+      return !/<meta name="viewport" content="[^"]*maximum-scale=1, viewport-fit=cover">/.test(app) || !app.includes(APP_SHELL_TAG);
+    });
+    expect(unfit).toEqual([]);
+  });
+
+  test('the rules still name the header and the footer block the pages use', () => {
+    const styles = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
+    const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+    expect(shell).toMatch(/\.topnav\{[^}]*safe-area-inset-top/);
+    expect(styles).toMatch(/\.topnav\{/);
+    expect(shell).toMatch(/\.hp-footer-get\{display:none;\}/);
+    expect(index).toContain('class="hp-footer-get"');
+  });
+
+  test('the website never loads the app rules', () => {
+    const linked = pages.filter(file => fs.readFileSync(path.join(root, file), 'utf8').includes('app-shell.css'));
+    expect(linked).toEqual([]);
   });
 });
