@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest and meadow path": "Sentiero tra boschi e prati",
   "Prima di Gressoney-La-Trinité, the register’s start": "Prima di Gressoney-La-Trinité, la partenza indicata dal catasto",
   "Stone houses with grey slab roofs on a flowering alpine meadow, a large tree beside them and green pastures and forest below": "Case in pietra con tetti di lose grigie su un prato alpino fiorito, un grande albero accanto e pascoli verdi e bosco più in basso",
-  "Partly shaded: more than half runs through larch woods, the rest over the meadows of the hamlets.": "In parte all'ombra: più di metà passa nei lariceti, il resto sui prati dei borghi."
+  "Partly shaded: more than half runs through larch woods, the rest over the meadows of the hamlets.": "In parte all'ombra: più di metà passa nei lariceti, il resto sui prati dei borghi.",
+  "Path W (the Walser path): from the start of the W by the valley road up through the larch woods past the junctions with paths 6, 7 and 10A to Alpenzù Piccolo, then on across the meadows to Alpenzù Grande and its hut. Back the same way.": "Sentiero W (il sentiero Walser): dall'inizio del W presso la strada di fondovalle sali attraverso i lariceti oltre i bivi con i sentieri 6, 7 e 10A fino ad Alpenzù Piccolo, poi prosegui attraverso i prati fino ad Alpenzù Grande e al suo rifugio. Ritorno per la stessa strada."
 });

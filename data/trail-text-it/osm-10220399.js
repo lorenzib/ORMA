@@ -8,5 +8,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest roads and tracks with a short path; the board calls it pram-friendly": "Strade forestali e piste con un breve sentiero; la scheda ufficiale lo indica adatto ai passeggini",
   "Public car park at the Gasthaus Eggerhof, bus 268 terminus Eggerhof (official start)": "Parcheggio pubblico al Gasthaus Eggerhof, capolinea Eggerhof dell'autobus 268 (partenza ufficiale)",
   "The small St. Martin chapel with its shingle roof and wooden bell turret on a meadow by the forest, the Meran basin far below": "La piccola cappella di San Martino con il tetto in scandole e il campanile a vela in legno su un prato al margine del bosco, la conca di Merano molto più in basso",
-  "Almost all in the wood above Marling; only the car park and the viewpoint are open.": "Quasi tutto nel bosco sopra Marling; solo il parcheggio e il punto panoramico sono aperti."
+  "Almost all in the wood above Marling; only the car park and the viewpoint are open.": "Quasi tutto nel bosco sopra Marling; solo il parcheggio e il punto panoramico sono aperti.",
+  "Signed as the Martinsweg: from the Gasthaus Eggerhof car park first path 9, then path 27, up to a viewpoint and back past the inn to the car park.": "Segnalato come Martinsweg: dal parcheggio del Gasthaus Eggerhof prima il sentiero 9, poi il sentiero 27, su fino a un punto panoramico e ritorno oltre la locanda fino al parcheggio."
 });

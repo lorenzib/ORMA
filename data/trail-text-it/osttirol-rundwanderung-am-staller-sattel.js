@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Footpaths, gravel tracks and pasture by the lake": "Sentieri, strade sterrate e pascolo lungo il lago",
   "Grünbichl bus stop and car park below the Staller Sattel, the board’s start": "Fermata dell'autobus e parcheggio di Grünbichl sotto lo Staller Sattel, la partenza indicata dalla scheda ufficiale",
   "A blue mountain lake in front of grassy slopes with larches and grey peaks under a part-cloudy sky, below the Staller Sattel": "Un lago di montagna blu davanti a pendii erbosi con larici e cime grigie sotto un cielo parzialmente nuvoloso, sotto lo Staller Sattel",
-  "No shade: the loop is on open pasture and lakeshore at 2,000 m.": "Nessuna ombra: l'anello si svolge su pascoli aperti e sulla riva del lago a 2.000 m."
+  "No shade: the loop is on open pasture and lakeshore at 2,000 m.": "Nessuna ombra: l'anello si svolge su pascoli aperti e sulla riva del lago a 2.000 m.",
+  "From the Grünbichl bus stop and car park gently up the footpath to the Obersee, along the lake shore past the Alpengasthaus Obersee, and back over the pastures by the Außerweger and Hinterpassler huts of the Staller Almen to Grünbichl, with a short stretch of the pass road (L25).": "Dalla fermata dell'autobus e parcheggio di Grünbichl sali dolcemente per il sentiero fino all'Obersee, lungo la riva del lago oltre l'Alpengasthaus Obersee, e ritorno sui pascoli passando dalle baite Außerweger e Hinterpassler delle Staller Almen fino a Grünbichl, con un breve tratto sulla strada del passo (L25)."
 });

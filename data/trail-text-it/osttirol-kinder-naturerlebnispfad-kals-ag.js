@@ -8,5 +8,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Earth and gravel paths and farm tracks along the Kalserbach, with wooden bridges": "Sentieri di terra e ghiaia e strade di campagna lungo il Kalserbach, con ponti di legno",
   "the Großdorf car park in Kals am Großglockner, the board’s start": "Il parcheggio di Großdorf a Kals am Großglockner, la partenza indicata dalla scheda ufficiale",
   "A small dark wooden water mill with a shingle roof and flowers at the window, beside a wooden walkway among larch trees, at Kals am Großglockner": "Un piccolo mulino ad acqua in legno scuro con tetto in scandole e fiori alla finestra, accanto a una passerella di legno tra i larici, a Kals am Großglockner",
-  "About half under larch and spruce along the Kalserbach; the meadows by Großdorf are open.": "Circa metà sotto larici e abeti rossi lungo il Kalserbach; i prati presso Großdorf sono aperti."
+  "About half under larch and spruce along the Kalserbach; the meadows by Großdorf are open.": "Circa metà sotto larici e abeti rossi lungo il Kalserbach; i prati presso Großdorf sono aperti.",
+  "From Großdorf along the Mühlenweg beside the Kalserbach past the Stockmühlen mills to the Taurer, and back the same way to Großdorf.": "Da Großdorf lungo il Mühlenweg accanto al Kalserbach, oltre i mulini Stockmühlen, fino al Taurer, e ritorno a Großdorf per la stessa strada."
 });

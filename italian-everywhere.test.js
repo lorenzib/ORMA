@@ -36,6 +36,17 @@ describe("each trail's own words", () => {
     expect(stale).toEqual([]);
   });
 
+  test("the route audit's sentence is translated when it is the walk's directions, and only then", () => {
+    const sentence = 'Start at the church in the village and follow the signed loop past the farms and back to the church.';
+    const shown = { id: 'x', routeAudit: { routeNumbers: sentence } };
+    expect(trailText.sentencesOf(shown)).toContain(sentence);
+    // With structured guidance the page shows that instead, so the sentence is evidence only.
+    const guided = { ...shown, routeNumberGuidance: { start: 'a', sequence: 'b', switches: 'c' } };
+    expect(trailText.sentencesOf(guided)).not.toContain(sentence);
+    // The app wraps it for translation too.
+    expect(read('trail-blueprint.js')).toContain('esc(trailWords(auditDirections.text');
+  });
+
   test('no file is left for a trail that is no longer in the catalogue', () => {
     const live = new Set(trails.map(trail => trail.id));
     const orphans = fs.readdirSync(path.join(__dirname, 'data', 'trail-text-it'))

@@ -8,5 +8,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Field tracks, earth paths and wooden bridges along the Mellitzbach": "Strade di campagna, sentieri di terra e ponti di legno lungo il Mellitzbach",
   "the tourist office in the centre of Virgen, the board’s start": "L'ufficio turistico nel centro di Virgen, la partenza indicata dalla scheda ufficiale",
   "An earth path leading into green deciduous woodland, with a small wooden sign on a tree trunk, on the Weg der Sinne below Virgen in summer": "Un sentiero di terra che entra in un verde bosco di latifoglie, con un piccolo cartello di legno su un tronco, sul Weg der Sinne sotto Virgen d'estate",
-  "About a third under trees along the Mellitzbach; the fields and the village are open.": "Circa un terzo sotto gli alberi lungo il Mellitzbach; i campi e il paese sono aperti."
+  "About a third under trees along the Mellitzbach; the fields and the village are open.": "Circa un terzo sotto gli alberi lungo il Mellitzbach; i campi e il paese sono aperti.",
+  "From the tourist office in Virgen down the Dorfweg into the fields, along the Mellitzbach on paths and wooden bridges past the stations of the Weg der Sinne, and back up through the Feldflur to the village.": "Dall'ufficio turistico di Virgen giù per il Dorfweg nei campi, lungo il Mellitzbach su sentieri e ponticelli di legno oltre le stazioni del Weg der Sinne, e ritorno in salita attraverso la Feldflur fino al paese."
 });

@@ -9,5 +9,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Asphalt lanes with a short earth path down the castle hill": "Stradine asfaltate con un breve sentiero in terra battuta in discesa dalla collina del castello",
   "Welsberg tourist office (official start), 180 m from the loop via the main square": "Ufficio turistico di Welsberg (partenza ufficiale), a 180 m dall'anello passando per la piazza principale",
   "Schloss Welsperg with its tall square keep above a summer meadow and wooded hills.": "Schloss Welsperg con il suo alto mastio quadrato sopra un prato estivo e colline boscose.",
-  "About two fifths in woodland on the castle hill and along the Gsieser Bach; the village part is open.": "Circa due quinti nel bosco sulla collina del castello e lungo il Gsieser Bach; la parte in paese è aperta."
+  "About two fifths in woodland on the castle hill and along the Gsieser Bach; the village part is open.": "Circa due quinti nel bosco sulla collina del castello e lungo il Gsieser Bach; la parte in paese è aperta.",
+  "No number: from the school centre follow the “Schlossrunde” waymarks up to Schloss Welsperg, down the castle hill to the bridge over the Gsieser Bach, and back along the old Gsiesertal road.": "Senza numero: dal centro scolastico segui i segnavia “Schlossrunde” fino a Schloss Welsperg, scendi dal colle del castello fino al ponte sul Gsieser Bach, e torna lungo la vecchia strada della Gsiesertal."
 });
