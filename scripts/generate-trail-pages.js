@@ -653,6 +653,19 @@ function highestPoint(t) {
   return Math.max(...ep.map((p) => p.elev));
 }
 
+// The season at a glance, beside the walk's other tags: its best months, and
+// "Out of season" when this month is not one of them. The page is built once
+// and read all year, so the tag carries the twelve answers and the script
+// under the tags shows it in the reader's month.
+function seasonTagsHtml(t) {
+  const best = seasonWords.bestTime(t.season);
+  if (!best) return '';
+  const out = seasonWords.MONTH_NAMES.map((_, i) => (seasonWords.outOfSeason(t.season, i + 1) ? 1 : 0)).join('');
+  return `<span class="dp-badge sp-tag sp-tag--out" data-season-out="${out}" hidden><span>${L('Out of season')}</span></span>
+    <span class="dp-badge sp-tag sp-tag--best"><span>${escapeHtml(best)}</span></span>
+    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>`;
+}
+
 // "When to go": the walk's months as its board publishes them, or the snowy
 // months estimated from its high point, and the stretches mapped as ski runs.
 // The page is built once and read all year, so the month a reader is in is
@@ -1026,6 +1039,9 @@ function renderTrailPage(t, slug, all) {
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-tag[hidden]{display:none;}
+  .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
   .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
@@ -1089,6 +1105,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
   <h1>${escapeHtml(t.name)}</h1>
   ${t.nameGloss ? `<p class="sp-gloss">${escapeHtml(tr(t.nameGloss))}</p>` : ''}
   <div class="sp-badges">
+    ${seasonTagsHtml(t)}
     <span class="dp-badge dp-badge--${t.safetyLevel}"><span data-dp-icon="${t.safetyLevel === 'low-risk' ? 'verified' : 'warning'}" data-dp-icon-size="13" aria-hidden="true"></span><span>${displaySafetyLabel(t)}</span></span>
     ${badge}
     ${t.paid ? `<span class="dp-badge dp-badge--neutral"><span>${L('Paid access')}</span></span>` : ''}

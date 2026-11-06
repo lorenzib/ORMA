@@ -49,6 +49,9 @@
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-tag[hidden]{display:none;}
+  .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
   .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
@@ -151,6 +154,9 @@
   <h1>Monclassico and Presson, the sundial villages</h1>
   <p class="sp-gloss">the village loop past the painted sundials</p>
   <div class="sp-badges">
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="000000000000" hidden><span>Out of season</span></span>
+    <span class="dp-badge sp-tag sp-tag--best"><span>Good all year</span></span>
+    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
     <span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate terrain</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verified by ORMA</span></span>
     
