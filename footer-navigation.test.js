@@ -54,7 +54,7 @@ describe('footer navigation', () => {
       ['collections.html', 'Collections'],
       ['compare.html', 'Compare trails'],
       ['how-scoring-works.html', 'How scoring works'],
-      ['guides/water-for-dogs-on-trail.html', 'Heat &amp; hydration'],
+      ['guides/heat-overheating.html', 'Heat &amp; hydration'],
       ['guides/paw-protection.html', 'Paw protection'],
       ['guides/breed-group-caveats.html', 'Breed group caveats'],
       ['guides/alpine-plants-for-dogs.html', 'Alpine plants guide'],

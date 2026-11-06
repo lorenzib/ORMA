@@ -62,8 +62,16 @@
   .cg-stop-banner strong{display:block;color:var(--emergency-tint-fg);font-size:.9rem;}
   .cg-stop-banner span{display:block;margin-top:2px;color:var(--ink-soft);font-size:.75rem;line-height:1.4;}
   .cg-section{margin:24px 0;}
-  .cg-chairlifts>p{max-width:72ch;}
-  .cg-chairlifts>p+p{margin-top:6px;}
+  .cg-fit{margin:24px 0 16px;}
+  .cg-fit+.cg-overview{margin-top:16px;}
+  .cg-prepare{padding:22px 24px;border:1px solid var(--cg-line);border-radius:var(--safety-guide-card-radius,15px);background:var(--card);}
+  .cg-prepare h2{margin:0 0 14px;font-size:clamp(.92rem,4.6vw,1.25rem);line-height:1.15;letter-spacing:-.015em;}
+  .cg-prepare .cg-step-grid{grid-template-columns:1fr;gap:14px;}
+  .safety-guide-article .cg-prepare .cg-step-grid .cg-step{padding:0;border:0;border-radius:0;background:none;}
+  .cg-prepare .cg-step h3{margin:2px 0 4px;font-size:.86rem;}
+  .cg-prepare .cg-step p{font-size:.74rem;}
+  .cg-chairlift-note{max-width:72ch;margin:22px 0 0;color:var(--cg-soft);font-size:.8rem;line-height:1.5;scroll-margin-top:96px;}
+  .cg-chairlift-note strong{color:var(--ink);}
   .cg-section-head{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:14px;}
   .cg-section-head p{max-width:470px;margin:0;color:var(--cg-soft);font-size:.8rem;line-height:1.48;text-align:right;}
   .cg-step-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
@@ -90,7 +98,7 @@
     .cg-hero .section-page-subtitle{font-size:14px;}
     .cg-hero-media img{aspect-ratio:2.4/1;}
     .cg-overview{margin-top:20px;}
-    .cg-decision,.cg-muzzle-practice{padding:19px 17px;}
+    .cg-decision,.cg-muzzle-practice,.cg-prepare{padding:19px 17px;}
     .cg-decision-list,.cg-muzzle-practice ol,.cg-step-grid{grid-template-columns:1fr;}
     .cg-section-head{display:block;}
     .cg-section-head p{margin-top:6px;text-align:left;}
@@ -157,30 +165,23 @@
   <div class="cg-shell content-canvas">
   <section class="guide-quick" aria-labelledby="guideQuickTitle">
     <h2 class="guide-quick__title" id="guideQuickTitle">In 20 secondi</h2>
-    <ul><li>Seggiovie aperte: ORMA propone questi percorsi solo per cani tranquilli fino a 8 kg, tenuti in braccio per tutta la salita.</li><li>Non forzare mai un cane spaventato a entrare in cabina: scegli un altro percorso.</li><li>Abitua il cane alla museruola a casa, con dei premi, molto prima della gita.</li></ul>
+    <ul><li>Non forzare mai un cane spaventato a entrare in cabina: scegli un altro percorso.</li><li>Abitua il cane alla museruola a casa, con dei premi, molto prima della gita.</li><li>Prima di partire controlla le regole per i cani dell&rsquo;impianto: molti chiedono guinzaglio e museruola.</li></ul>
   </section>
 
-    <section class="cg-section cg-chairlifts cg-decision" id="chairlifts" aria-labelledby="chairlifts-title">
-      <span class="cg-kicker">Leggi prima questo</span>
-      <h2 id="chairlifts-title">Le seggiovie aperte sono un rischio diverso</h2>
-      <p>Una cabinovia è una cabina chiusa. Una seggiovia è un sedile aperto con solo una sbarra. Un cane che lì va in panico può cadere, e alcuni cani sono morti così.</p>
-      <p>ORMA consiglia un percorso con seggiovia solo se il tuo cane pesa 8 kg o meno e il suo profilo indica che sale in seggiovia con calma. Anche in quel caso, tienilo in braccio, con pettorina e guinzaglio, per tutta la risalita. Per tutti gli altri cani il percorso è sconsigliato.</p>
-      <p>Il resto di questa guida riguarda le cabine chiuse, dove il rischio è lo stress, non la caduta.</p>
-    </section>
-    <section class="cg-overview" aria-labelledby="gondola-fit-title">
-      <div class="cg-decision">
-        <span class="cg-kicker">Parti dal tuo cane</span>
-        <h2 id="gondola-fit-title">Oggi è una giornata da cabinovia?</h2>
-        <p>Un impianto può evitarti una salita impegnativa, ma la cabina deve comunque essere gestibile per il cane.</p>
-        <div class="cg-decision-list">
-          <div class="cg-decision-item"><strong>Probabilmente pronto</strong><span>Si tranquillizza negli spazi piccoli e si riprende facilmente dai rumori.</span></div>
-          <div class="cg-decision-item"><strong>Pianifica con attenzione</strong><span>Giovane, anziano, soffre il mal di movimento o è insicuro tra la folla e vicino alle porte.</span></div>
-          <div class="cg-decision-item"><strong>Scegli un altro percorso</strong><span>Va in panico, fatica a respirare o deve essere costretto a entrare.</span></div>
-        </div>
-        <aside class="cg-stop-banner" aria-label="Non forzarlo a salire">
-          <strong>Non forzare mai un cane spaventato a entrare in cabina.</strong><span>Trascinarlo, prenderlo in braccio o aspettare che il panico passi può aumentare la paura. Allontanati e passa al piano alternativo.</span>
-        </aside>
+    <section class="cg-decision cg-fit" aria-labelledby="gondola-fit-title">
+      <span class="cg-kicker">Parti dal tuo cane</span>
+      <h2 id="gondola-fit-title">Oggi è una giornata da cabinovia?</h2>
+      <p>Un impianto può evitarti una salita impegnativa, ma la cabina deve comunque essere gestibile per il cane.</p>
+      <div class="cg-decision-list">
+        <div class="cg-decision-item"><strong>Probabilmente pronto</strong><span>Si tranquillizza negli spazi piccoli e si riprende facilmente dai rumori.</span></div>
+        <div class="cg-decision-item"><strong>Pianifica con attenzione</strong><span>Giovane, anziano, soffre il mal di movimento o è insicuro tra la folla e vicino alle porte.</span></div>
+        <div class="cg-decision-item"><strong>Scegli un altro percorso</strong><span>Va in panico, fatica a respirare o deve essere costretto a entrare, oppure il percorso richiede una seggiovia aperta.</span></div>
       </div>
+      <aside class="cg-stop-banner" aria-label="Non forzarlo a salire">
+        <strong>Non forzare mai un cane spaventato a entrare in cabina.</strong><span>Trascinarlo, prenderlo in braccio o aspettare che il panico passi può aumentare la paura. Allontanati e passa al piano alternativo.</span>
+      </aside>
+    </section>
+    <div class="cg-overview">
       <aside class="cg-muzzle-practice" aria-labelledby="muzzle-practice-title">
         <span class="cg-kicker">Esercitati a casa</span>
         <h2 id="muzzle-practice-title">Fai della museruola un annuncio di premi</h2>
@@ -193,17 +194,18 @@
         </ol>
         <p class="cg-muzzle-note">Se il cane si blocca, cerca di togliersi la museruola con la zampa o smette di accettare il cibo, fermati e la volta successiva torna a un passo più facile.</p>
       </aside>
-    </section>
-    <section class="cg-section" aria-labelledby="prepare-title">
-      <div class="cg-section-head">
-        <div><span class="cg-kicker">Prima del giorno della funivia</span><h2 id="prepare-title">Preparati in tre piccoli passi</h2></div>
-      </div>
-      <div class="cg-step-grid">
-        <article class="cg-step"><b>1</b><h3>Prova tutta la routine</h3><p>Esercitati a casa a chiudere la museruola, dare premi, camminare e bere. La coda alla stazione non deve mai essere la prima volta che la indossa per intero.</p></article>
-        <article class="cg-step"><b>2</b><h3>Vai a vedere senza salire</h3><p>Guarda le cabine da una distanza comoda, poi vai via prima che inizi a preoccuparsi.</p></article>
-        <article class="cg-step"><b>3</b><h3>Scegli la corsa più facile</h3><p>Scegli un orario tranquillo, un tragitto breve e la cabina meno affollata disponibile.</p></article>
-      </div>
-    </section>
+      <section class="cg-prepare" aria-labelledby="prepare-title">
+        <span class="cg-kicker">Prima del giorno della funivia</span>
+        <h2 id="prepare-title">Preparati in tre piccoli passi</h2>
+        <div class="cg-step-grid">
+          <article class="cg-step"><b>1</b><h3>Prova tutta la routine</h3><p>Esercitati a casa a chiudere la museruola, dare premi, camminare e bere. La coda alla stazione non deve mai essere la prima volta che la indossa per intero.</p></article>
+          <article class="cg-step"><b>2</b><h3>Vai a vedere senza salire</h3><p>Guarda le cabine da una distanza comoda, poi vai via prima che inizi a preoccuparsi.</p></article>
+          <article class="cg-step"><b>3</b><h3>Scegli la corsa più facile</h3><p>Scegli un orario tranquillo, un tragitto breve e la cabina meno affollata disponibile.</p></article>
+        </div>
+      </section>
+    </div>
+
+    <p class="cg-chairlift-note" id="chairlifts"><strong>Le seggiovie aperte sono un&rsquo;altra cosa:</strong> un sedile aperto da cui un cane può cadere. ORMA segna come sconsigliati i percorsi che ne richiedono una, a meno che il tuo cane pesi 8 kg o meno e ci salga tranquillo in braccio a te.</p>
 
     <nav class="safety-continue" aria-label="Continua nelle Guide di sicurezza">
       <a class="safety-continue__previous" href="breed-group-caveats.html"><span class="safety-continue__arrow" aria-hidden="true">←</span><span class="safety-continue__label">Guida precedente</span><strong>Considerazioni per gruppo di razze</strong></a>
@@ -245,7 +247,7 @@
     <div>
       <div class="hp-footer-h">Prendersi cura del cane</div>
       <div class="hp-footer-links">
-        <a href="../guides/water-for-dogs-on-trail.html">Caldo e idratazione</a>
+        <a href="../guides/heat-overheating.html">Caldo e idratazione</a>
         <a href="../guides/paw-protection.html">Protezione delle zampe</a>
         <a href="../guides/breed-group-caveats.html">Avvertenze per gruppo di razze</a>
         <a href="../guides/alpine-plants-for-dogs.html">Guida alle piante alpine</a>

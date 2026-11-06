@@ -62,8 +62,16 @@
   .cg-stop-banner strong{display:block;color:var(--emergency-tint-fg);font-size:.9rem;}
   .cg-stop-banner span{display:block;margin-top:2px;color:var(--ink-soft);font-size:.75rem;line-height:1.4;}
   .cg-section{margin:24px 0;}
-  .cg-chairlifts>p{max-width:72ch;}
-  .cg-chairlifts>p+p{margin-top:6px;}
+  .cg-fit{margin:24px 0 16px;}
+  .cg-fit+.cg-overview{margin-top:16px;}
+  .cg-prepare{padding:22px 24px;border:1px solid var(--cg-line);border-radius:var(--safety-guide-card-radius,15px);background:var(--card);}
+  .cg-prepare h2{margin:0 0 14px;font-size:clamp(.92rem,4.6vw,1.25rem);line-height:1.15;letter-spacing:-.015em;}
+  .cg-prepare .cg-step-grid{grid-template-columns:1fr;gap:14px;}
+  .safety-guide-article .cg-prepare .cg-step-grid .cg-step{padding:0;border:0;border-radius:0;background:none;}
+  .cg-prepare .cg-step h3{margin:2px 0 4px;font-size:.86rem;}
+  .cg-prepare .cg-step p{font-size:.74rem;}
+  .cg-chairlift-note{max-width:72ch;margin:22px 0 0;color:var(--cg-soft);font-size:.8rem;line-height:1.5;scroll-margin-top:96px;}
+  .cg-chairlift-note strong{color:var(--ink);}
   .cg-section-head{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:14px;}
   .cg-section-head p{max-width:470px;margin:0;color:var(--cg-soft);font-size:.8rem;line-height:1.48;text-align:right;}
   .cg-step-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
@@ -90,7 +98,7 @@
     .cg-hero .section-page-subtitle{font-size:14px;}
     .cg-hero-media img{aspect-ratio:2.4/1;}
     .cg-overview{margin-top:20px;}
-    .cg-decision,.cg-muzzle-practice{padding:19px 17px;}
+    .cg-decision,.cg-muzzle-practice,.cg-prepare{padding:19px 17px;}
     .cg-decision-list,.cg-muzzle-practice ol,.cg-step-grid{grid-template-columns:1fr;}
     .cg-section-head{display:block;}
     .cg-section-head p{margin-top:6px;text-align:left;}
@@ -157,30 +165,23 @@
   <div class="cg-shell content-canvas">
   <section class="guide-quick" aria-labelledby="guideQuickTitle">
     <h2 class="guide-quick__title" id="guideQuickTitle">In 20 seconds</h2>
-    <ul><li>Open chairlifts: ORMA only suggests these routes for calm dogs of 8 kg or less, held on your lap for the whole ride.</li><li>Never force a frightened dog into a cabin; choose another route instead.</li><li>Practise the muzzle at home with treats, well before the trip.</li></ul>
+    <ul><li>Never force a frightened dog into a cabin; choose another route instead.</li><li>Practise the muzzle at home with treats, well before the trip.</li><li>Check the lift&rsquo;s dog rules before you go: many ask for a leash and a muzzle.</li></ul>
   </section>
 
-    <section class="cg-section cg-chairlifts cg-decision" id="chairlifts" aria-labelledby="chairlifts-title">
-      <span class="cg-kicker">Read this first</span>
-      <h2 id="chairlifts-title">Open chairlifts are a different risk</h2>
-      <p>A gondola is a closed cabin. A chairlift is an open seat with only a bar. A dog that panics there can fall, and dogs have died this way.</p>
-      <p>ORMA recommends a chairlift route only if your dog weighs 8 kg or less and your dog profile says it rides chairlifts calmly. Even then, hold it on your lap, harnessed and leashed, for the whole ride. For every other dog the route is not recommended.</p>
-      <p>The rest of this guide is about closed cabins, where the risk is stress, not a fall.</p>
-    </section>
-    <section class="cg-overview" aria-labelledby="gondola-fit-title">
-      <div class="cg-decision">
-        <span class="cg-kicker">Start with your dog</span>
-        <h2 id="gondola-fit-title">Is today a gondola day?</h2>
-        <p>A lift can remove a difficult climb, but the cabin itself must still feel manageable.</p>
-        <div class="cg-decision-list">
-          <div class="cg-decision-item"><strong>Likely ready</strong><span>Settles in small spaces and recovers easily from noise.</span></div>
-          <div class="cg-decision-item"><strong>Plan carefully</strong><span>Young, older, motion-sick or unsure around crowds and doors.</span></div>
-          <div class="cg-decision-item"><strong>Choose another route</strong><span>Panics, struggles to breathe or must be forced inside.</span></div>
-        </div>
-        <aside class="cg-stop-banner" aria-label="Do not force boarding">
-          <strong>Never force a frightened dog into the cabin.</strong><span>Dragging, carrying or waiting for panic to pass can deepen the fear. Step away and use the alternative plan.</span>
-        </aside>
+    <section class="cg-decision cg-fit" aria-labelledby="gondola-fit-title">
+      <span class="cg-kicker">Start with your dog</span>
+      <h2 id="gondola-fit-title">Is today a gondola day?</h2>
+      <p>A lift can remove a difficult climb, but the cabin itself must still feel manageable.</p>
+      <div class="cg-decision-list">
+        <div class="cg-decision-item"><strong>Likely ready</strong><span>Settles in small spaces and recovers easily from noise.</span></div>
+        <div class="cg-decision-item"><strong>Plan carefully</strong><span>Young, older, motion-sick or unsure around crowds and doors.</span></div>
+        <div class="cg-decision-item"><strong>Choose another route</strong><span>Panics, struggles to breathe or must be forced inside, or the route needs an open chairlift.</span></div>
       </div>
+      <aside class="cg-stop-banner" aria-label="Do not force boarding">
+        <strong>Never force a frightened dog into the cabin.</strong><span>Dragging, carrying or waiting for panic to pass can deepen the fear. Step away and use the alternative plan.</span>
+      </aside>
+    </section>
+    <div class="cg-overview">
       <aside class="cg-muzzle-practice" aria-labelledby="muzzle-practice-title">
         <span class="cg-kicker">Practise at home</span>
         <h2 id="muzzle-practice-title">Make the muzzle predict treats</h2>
@@ -193,17 +194,18 @@
         </ol>
         <p class="cg-muzzle-note">If your dog freezes, paws at the muzzle or stops taking food, pause and return to an easier step next time.</p>
       </aside>
-    </section>
-    <section class="cg-section" aria-labelledby="prepare-title">
-      <div class="cg-section-head">
-        <div><span class="cg-kicker">Before lift day</span><h2 id="prepare-title">Prepare in three small steps</h2></div>
-      </div>
-      <div class="cg-step-grid">
-        <article class="cg-step"><b>1</b><h3>Rehearse the full routine</h3><p>Practise fastening, treating, walking and drinking at home. The station queue should never be the first full fitting.</p></article>
-        <article class="cg-step"><b>2</b><h3>Visit without boarding</h3><p>Watch the cabins from a comfortable distance, then leave before worry begins.</p></article>
-        <article class="cg-step"><b>3</b><h3>Take the easiest ride</h3><p>Choose a quiet time, a short journey and the least crowded cabin available.</p></article>
-      </div>
-    </section>
+      <section class="cg-prepare" aria-labelledby="prepare-title">
+        <span class="cg-kicker">Before lift day</span>
+        <h2 id="prepare-title">Prepare in three small steps</h2>
+        <div class="cg-step-grid">
+          <article class="cg-step"><b>1</b><h3>Rehearse the full routine</h3><p>Practise fastening, treating, walking and drinking at home. The station queue should never be the first full fitting.</p></article>
+          <article class="cg-step"><b>2</b><h3>Visit without boarding</h3><p>Watch the cabins from a comfortable distance, then leave before worry begins.</p></article>
+          <article class="cg-step"><b>3</b><h3>Take the easiest ride</h3><p>Choose a quiet time, a short journey and the least crowded cabin available.</p></article>
+        </div>
+      </section>
+    </div>
+
+    <p class="cg-chairlift-note" id="chairlifts"><strong>Open chairlifts are different:</strong> an open seat a dog can fall from. ORMA marks routes that need one as not recommended, unless your dog weighs 8 kg or less and rides them calmly on your lap.</p>
 
     <nav class="safety-continue" aria-label="Continue in the Safety Library">
       <a class="safety-continue__previous" href="breed-group-caveats.html"><span class="safety-continue__arrow" aria-hidden="true">←</span><span class="safety-continue__label">Past guide</span><strong>Breed-group considerations</strong></a>
@@ -245,7 +247,7 @@
     <div>
       <div class="hp-footer-h">Caring for your dog</div>
       <div class="hp-footer-links">
-        <a href="../guides/water-for-dogs-on-trail.html">Heat &amp; hydration</a>
+        <a href="../guides/heat-overheating.html">Heat &amp; hydration</a>
         <a href="../guides/paw-protection.html">Paw protection</a>
         <a href="../guides/breed-group-caveats.html">Breed group caveats</a>
         <a href="../guides/alpine-plants-for-dogs.html">Alpine plants guide</a>

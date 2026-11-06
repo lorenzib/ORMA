@@ -25,7 +25,7 @@ describe('a route’s shape is declared, not guessed from its geometry', () => {
     expect(trail.tips).toMatch(/438/);
   });
 
-  test.each(['cadini','lago-sorapis'])('%s is recorded as an out-and-back', id => {
+  test.each(['cadini'])('%s is recorded as an out-and-back', id => {
     const trail=byId(id);
     expect(trail.routeShape).toBe('out-and-back');
     // The evidence that put it there: an open line about half the walk.
@@ -34,6 +34,20 @@ describe('a route’s shape is declared, not guessed from its geometry', () => {
     expect(gapM).toBeGreaterThan(300);
     expect(trail.distance/line).toBeGreaterThan(1.9);
     expect(trail.distance/line).toBeLessThan(2.2);
+  });
+
+  // lago-sorapis was withdrawn on 5 November 2026 for path 215's ladders and
+  // wire-rope ledge, and came back on 6 November rebuilt on CAI path 217 from
+  // Federa Vecia, drawn up and back the same way rather than one way.
+  test('lago-sorapis is an out-and-back on path 217, not 215 from Passo Tre Croci', () => {
+    const trail=byId('lago-sorapis');
+    expect(trail.routeShape).toBe('out-and-back');
+    expect(trail.routeSource.relation).toBe(3985800);
+    expect(km(trail.path[0], trail.path[trail.path.length-1])*1000).toBeLessThan(50);
+    expect(km(trail.path[0], [46.55621, 12.20445])).toBeGreaterThan(3);
+    expect(trail.distance/lineKm(trail.path)).toBeGreaterThan(0.95);
+    expect(trail.distance/lineKm(trail.path)).toBeLessThan(1.05);
+    expect(trail.withdrawal).toBeUndefined();
   });
 
   // prato-piazza was held out of this list because its old description called

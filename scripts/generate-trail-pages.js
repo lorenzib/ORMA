@@ -666,7 +666,10 @@ function atAGlance(t) {
   const loop = isLoop(t);
   const gain = typeof t.elevation === 'number' ? t.elevation : null;
 
-  if (loop === true) bits.push(L('This is a true loop: it closes back on its own start point, so there\'s no return leg to plan'));
+  // The stored shape wins over the line's ends: an out-and-back line also
+  // closes on its start, and is not a loop.
+  if (t.routeShape === 'out-and-back') bits.push(L('This is an out-and-back walk: you come back the same way you went up, so you can turn round at any point'));
+  else if (loop === true) bits.push(L('This is a true loop: it closes back on its own start point, so there\'s no return leg to plan'));
   else if (loop === false) bits.push(L('This is a point-to-point route, so plan the return: retrace your steps or check local buses'));
 
   if (gain !== null) {
@@ -1112,7 +1115,7 @@ ${reviewRecord}
     <div>
       <div class="hp-footer-h">${L('Caring for your dog')}</div>
       <div class="hp-footer-links">
-        <a href="../guides/water-for-dogs-on-trail.html">${L('Heat &amp; hydration')}</a>
+        <a href="../guides/heat-overheating.html">${L('Heat &amp; hydration')}</a>
         <a href="../guides/paw-protection.html">${L('Paw protection')}</a>
         <a href="../guides/breed-group-caveats.html">${L('Breed group caveats')}</a>
         <a href="../guides/alpine-plants-for-dogs.html">${L('Alpine plants guide')}</a>
