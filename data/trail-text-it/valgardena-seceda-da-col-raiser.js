@@ -12,5 +12,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "The grassy Seceda ridge dropping to its steep edge": "La dorsale erbosa del Seceda che scende fino al suo bordo ripido",
   "Val Gardena seen from the slopes below Seceda": "La Val Gardena vista dai pendii sotto il Seceda",
   "The walk starts at the top of the Col Raiser gondola from Santa Cristina, with closed cabins; the Seceda cable car down to Ortisei is closed too. Dogs ride on a lead and muzzled.": "La camminata parte dalla stazione a monte della cabinovia Col Raiser da Santa Cristina, con cabine chiuse; anche la funivia del Seceda che scende a Ortisei è chiusa. I cani viaggiano al guinzaglio e con museruola.",
-  "Almost no shade: the whole climb crosses open alpine pasture.": "Quasi nessuna ombra: tutta la salita attraversa pascoli alpini aperti."
+  "Almost no shade: the whole climb crosses open alpine pasture.": "Quasi nessuna ombra: tutta la salita attraversa pascoli alpini aperti.",
+  "Forest road 2 and path 1A: from the top station of the Col Raiser gondola on forest road 2 towards the Seceda; at the second fork onto path 1A, which climbs straight to the Seceda, the start of the Ridge Line trail.": "Strada forestale 2 e sentiero 1A: dalla stazione a monte della cabinovia del Col Raiser sulla strada forestale 2 verso il Seceda; al secondo bivio prendi il sentiero 1A, che sale dritto al Seceda, punto di partenza del sentiero Ridge Line."
 });

@@ -1133,7 +1133,13 @@ and the rest of the hand audit:
   its stem both ways. Where the line only crosses a path it has already
   walked, or brushes past it at a junction, for less than 25 m, that is a
   crossing, not a stretch walked twice. A real side trip -- to a waterfall, a viewpoint -- is
-  declared in the audit as `sideTrips: [{ km, note }]`. A line that is an
+  declared in the audit as `sideTrips: [{ km, note }]`. A stretch the
+  board's own published line walks twice -- a stem back to the start, a lane
+  through a village used both ways -- may be walked twice by ours too (owner's
+  decision, 6 November 2026): declare each pass as
+  `walkedTwice: [{ from, to, note }]` (km along the drawn line), and say it in
+  the route sentence. A turn-back the board's line does not make is still cut.
+  A line that is an
   out-and-back while the page calls it a loop fails until the label is right.
 - **It has directions.** The audit's route sentence says where to start and
   which way to go, with path numbers or named turns.
@@ -2450,9 +2456,12 @@ resting and rejection are unchanged.
    the ladder looking for the published one.
    *Exception, owner's decision of 6 November 2026:* Roda de Cherz,
    Kastelaz Promenade and Flaaser Rundweg carry a climb and a time measured
-   by ORMA from the map (Open-Meteo ground heights every 100 m with a 10 m
+   by ORMA from the map (25 m EU-DEM ground heights every 100 m with a 10 m
    threshold; time by DIN 33466), because no authority publishes either.
-   Their pages say so in words. The rule stands for every other walk.
+   Their pages say so in words. The same decision, later that day, covers
+   Familienrundweg (Sexten, path 19). The coarser Open-Meteo grid was tried
+   first and gave false dips on steep ground, so all four use the EU-DEM.
+   The rule stands for every other walk.
 2. **Every municipality the line crosses.** The Ranger is given sample points
    along the whole line -- the start, one every kilometre, the point farthest
    from the start, and the end -- because a loop often crosses into the next

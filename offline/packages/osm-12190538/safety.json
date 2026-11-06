@@ -6,10 +6,10 @@
   "facts": {
     "routeType": "Loop",
     "distanceKm": 5.1,
-    "ascentM": 260,
-    "highestPointM": 1529,
-    "expectedDuration": "2 hours",
-    "difficulty": "Hard",
+    "ascentM": 200,
+    "highestPointM": 1522,
+    "expectedDuration": "1.8 hours",
+    "difficulty": "Moderate",
     "shadePercent": 60
   },
   "trailhead": {

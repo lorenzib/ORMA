@@ -600,7 +600,28 @@ body{background:#EFECE2;}
   .td2 .trail-map-box.map-fs .map-btn{top:max(12px,env(safe-area-inset-top));}
   .td2 .trail-map-box.map-fs .map-panel{top:calc(max(12px,env(safe-area-inset-top)) + 44px);}
   .td2 .trail-map-box.map-fs .mobile-map-hike-slot{right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));}
+  /* While a hike records, the bottom of the phone screen is one stack, so
+     nothing covers the live status: elevation at the foot, End and the
+     hazard report on a row above it, the status card across the full width
+     above that, and "Route me to the trail" (shown only off the trail) on
+     top. End takes the map-style row (Layers stays at the top); directions
+     to the trail have no use once you are walking it. */
+  .td2 .trail-map-box.map-fs:has(.hike-status-visible){--hk-base:max(12px,env(safe-area-inset-bottom));}
+  .td2 .trail-map-box.map-fs:has(.hike-status-visible):has(.td2-elev:not([hidden])){--hk-base:calc(max(10px,env(safe-area-inset-bottom)) + 152px);}
+  .td2 .trail-map-box.map-fs:has(.hike-status-visible):has(.td2-elev.is-mobile-collapsed:not([hidden])){--hk-base:calc(max(10px,env(safe-area-inset-bottom)) + 58px);}
+  .td2 .trail-map-box.map-fs:has(.hike-status-visible) .map-nearest-directions,
+  .td2 .trail-map-box.map-fs:has(.hike-status-visible) .map-nearest-directions-panel{display:none!important;}
+  .td2 .trail-map-box.map-fs:has(.hike-status-visible) .td-layer-switch{bottom:var(--hk-base)!important;}
+  .td2 .trail-map-box.map-fs:has(.mobile-map-hike-slot #heroStartHike) .td-layer-switch{display:none!important;}
+  .td2 .trail-map-box.map-fs:has(.hike-status-visible) .mobile-map-hike-slot{left:max(12px,env(safe-area-inset-left));right:auto;bottom:var(--hk-base);}
+  .td2 .trail-map-box.map-fs:has(.hike-status-visible) .map-hazard-report-btn{bottom:var(--hk-base)!important;}
+  .td2 .trail-map-box.map-fs:has(.hike-status-visible) #mapHikeStatus{bottom:calc(var(--hk-base) + 46px)!important;left:12px!important;right:12px!important;transform:none!important;max-width:none!important;}
+  .td2 .trail-map-box.map-fs:has(.hike-status-visible) #mapHikeRejoinBtn{bottom:calc(var(--hk-base) + 140px)!important;}
 }
+/* Completion card: the pace unit is small and the figures shrink a little on
+   a narrow phone, so "18:54/km" or "1:42:07" fits its third of the card. */
+.hk-stat b{font-size:clamp(17px,5.2vw,22px)!important;}
+.hk-stat b small{font-size:12px;font-weight:700;margin-left:1px;}
 
 /* ---- Consistency pass: one visual language across the page ---- */
 /* Review stars: the same gold everywhere (hero, average, review rows). */

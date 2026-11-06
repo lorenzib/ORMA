@@ -8,5 +8,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village streets, then a forest path": "Vie del paese, poi un sentiero nel bosco",
   "Champoluc, the register’s start": "Champoluc, la partenza indicata dal catasto",
   "An aerial view down onto the village of Champoluc in a green valley, forested slopes rising on the right and snowy peaks of Monte Rosa on the horizon": "Una veduta aerea sul paese di Champoluc in una valle verde, versanti boscosi che salgono a destra e le cime innevate del Monte Rosa all'orizzonte",
-  "Mostly shaded: nearly three quarters runs through the forest above Champoluc.": "Per lo più all'ombra: quasi tre quarti passano nel bosco sopra Champoluc."
+  "Mostly shaded: nearly three quarters runs through the forest above Champoluc.": "Per lo più all'ombra: quasi tre quarti passano nel bosco sopra Champoluc.",
+  "Path 14D: from the centre of Champoluc on the village road to the start of path 14D, then up the forest path to the Mascognaz waterfall, where it meets path 13A. Back the same way.": "Sentiero 14D: dal centro di Champoluc lungo la strada del paese fino all'inizio del sentiero 14D, poi su per il sentiero nel bosco fino alla cascata di Mascognaz, dove incontra il sentiero 13A. Ritorno per la stessa strada."
 });

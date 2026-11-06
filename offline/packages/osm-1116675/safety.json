@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-1116675",
+  "generatedAt": "2026-11-06T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.3,
+    "ascentM": 90,
+    "highestPointM": 1969,
+    "expectedDuration": "1 hour",
+    "difficulty": "Moderate",
+    "shadePercent": 25
+  },
+  "trailhead": {
+    "lat": 46.6650281,
+    "lng": 12.3729343,
+    "label": "Rotwand gondola top station, Rotwandwiesen (1,925 m)"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Ski-slope tracks shared with mountain bikes and the occasional lift-service vehicle.",
+    "Check the Rotwand gondola is running before you set out.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-06",
+      "licence": "ODbL"
+    }
+  ]
+}

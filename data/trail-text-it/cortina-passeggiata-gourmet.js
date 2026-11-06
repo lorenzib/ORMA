@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest paths and meadow tracks": "Sentieri nel bosco e tracce tra i prati",
   "Malga Pezié de Parù, the board’s start": "Malga Pezié de Parù, la partenza indicata dalla scheda ufficiale",
   "The sheer grey walls of Punta Marietta, lightly dusted with snow, above a dark green forest": "Le pareti grigie a picco di Punta Marietta, leggermente spolverate di neve, sopra un bosco verde scuro",
-  "Mostly shaded: about seven tenths runs through forest; the meadows round Baita Resch are open.": "Per lo più all'ombra: circa sette decimi passano nel bosco; i prati intorno a Baita Resch sono aperti."
+  "Mostly shaded: about seven tenths runs through forest; the meadows round Baita Resch are open.": "Per lo più all'ombra: circa sette decimi passano nel bosco; i prati intorno a Baita Resch sono aperti.",
+  "Paths 406 and 403: from the car park by Malga Peziè de Parù on path 406, the Sentiero Allaria, to the Locanda del Cantoniere on the Dolomites road (about 30 minutes), on to the junction with path 403 and right to Baita Resch, then back on path 406 to the start.": "Sentieri 406 e 403: dal parcheggio vicino a Malga Peziè de Parù sul sentiero 406, il Sentiero Allaria, fino alla Locanda del Cantoniere sulla strada delle Dolomiti (circa 30 minuti), avanti fino al bivio con il sentiero 403 e a destra fino a Baita Resch, poi ritorno sul sentiero 406 fino alla partenza."
 });

@@ -14664,13 +14664,14 @@
     },
     'osm-12190538': {
       // Seal restored 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
-      // measured by ORMA from the map (Open-Meteo ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: the line matches the province trail register's 'Flaaser Rundweg' (routes-hikingtrails.11425436,
       // 4.98 km): every register point within 39 m, one 70 m dog-leg past the Leitlkeller. Dogs: Jenesien dog regulation Art. 4 and 8.
       // No Natura 2000 site, park or biotope on the line.
       "area": "Flaas, San Genesio / Jenesien",
-      "elevation": 260,
-      "hours": "2",
+      "elevation": 200,
+      "hours": "1.8",
+      "elevationProfile": [{"km": 0, "elev": 1522}, {"km": 0.4, "elev": 1483}, {"km": 0.8, "elev": 1422}, {"km": 1.2, "elev": 1381}, {"km": 1.6, "elev": 1375}, {"km": 2, "elev": 1394}, {"km": 2.4, "elev": 1382}, {"km": 2.8, "elev": 1343}, {"km": 3.2, "elev": 1349}, {"km": 3.6, "elev": 1393}, {"km": 4, "elev": 1438}, {"km": 4.4, "elev": 1478}, {"km": 4.8, "elev": 1509}, {"km": 5.1, "elev": 1522}],
       "shadeCoverage": 60,
       "heatRisk": "low",
       "exposure": false,
@@ -14682,7 +14683,7 @@
         "name": "Flaaser Rundweg",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425436"
       },
-      "desc": "A 5 km loop round the hamlet of Flaas on the Tschögglberg above Jenesien, through fenced meadows, past farmsteads and the Leitlkeller inn, and back through spruce forest. About 260 m of up and down, between 1,340 and 1,530 m, in about two hours, as measured by ORMA (no official figure).\n\nJenesien's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows during the growing season, so keep to the path where it crosses them.",
+      "desc": "A 5 km loop round the hamlet of Flaas on the Tschögglberg above Jenesien, through fenced meadows, past farmsteads and the Leitlkeller inn, and back through spruce forest. About 200 m of up and down, between 1,330 and 1,520 m, in about 1¾ hours, as measured by ORMA (no official figure).\n\nJenesien's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows during the growing season, so keep to the path where it crosses them.",
       "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Jenesien requires, and keep off the meadows; horses graze in the fenced pastures. About 1.2 km follows quiet public roads. The only tap is by Flaas church, about 160 m off the loop. The first stretch over the meadows is open; most of the second half is in forest.",
       "routeNumberGuidance": {
         "mode": "landmarks",
@@ -14713,7 +14714,7 @@
         "route": "Published line 5.05 km against the province register's Flaaser Rundweg (4.98 km): every register point within 39 m; one 70 m dog-leg past the Leitlkeller.",
         "routeNumbers": "The register names the loop without a number; about 300 m shares path 8.",
         "mapPoints": "Start at the car park on the loop; the only tap is by Flaas church, 160 m off the line.",
-        "elevation": "No official figure. Measured by ORMA from the map: 5.06 km, about 260 m up and down between 1,337 and 1,531 m, 2 h by DIN 33466."
+        "elevation": "No official figure. Measured by ORMA from the map: 5.06 km, about 200 m up and down between 1,334 and 1,524 m, 1 h 47 min by DIN 33466 (25 m EU-DEM heights)."
       },
       "graduation": {
         "status": "verified",
@@ -14779,11 +14780,12 @@
     },
     'osm-12371666': {
       // Seal restored 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
-      // measured by ORMA from the map (Open-Meteo ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: the line matches the province trail register's 'Kastelaz Promenade' (routes-hikingtrails.11425908,
       // 1.27 km) within 15 m everywhere. Dogs: Tramin dog regulation Art. 4 and 8. No Natura 2000 site, park or biotope on the line.
-      "elevation": 85,
+      "elevation": 60,
       "hours": "0.5",
+      "elevationProfile": [{"km": 0, "elev": 388}, {"km": 0.1, "elev": 381}, {"km": 0.2, "elev": 374}, {"km": 0.3, "elev": 359}, {"km": 0.4, "elev": 345}, {"km": 0.5, "elev": 347}, {"km": 0.6, "elev": 343}, {"km": 0.7, "elev": 340}, {"km": 0.8, "elev": 328}, {"km": 0.9, "elev": 348}, {"km": 1, "elev": 379}, {"km": 1.1, "elev": 387}, {"km": 1.2, "elev": 390}, {"km": 1.3, "elev": 388}],
       "shadeCoverage": 5,
       "heatRisk": "high",
       "exposure": false,
@@ -14795,7 +14797,7 @@
         "name": "Kastelaz Promenade",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425908"
       },
-      "desc": "A short promenade of about 1.3 km above Tramin, up the lane towards the hill of Kastelaz and its St. Jakob church and back on footpaths between the vineyards, with views over the village spire and the Etsch valley. About 85 m of up and down in about 35 minutes, as measured by ORMA (no official figure).\n\nTramin's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed land during the growing season, so keep your dog out of the vineyards.",
+      "desc": "A short promenade of about 1.3 km above Tramin, up the lane towards the hill of Kastelaz and its St. Jakob church and back on footpaths between the vineyards, with views over the village spire and the Etsch valley. About 60 m of up and down in about half an hour, as measured by ORMA (no official figure).\n\nTramin's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed land during the growing season, so keep your dog out of the vineyards.",
       "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Tramin requires, and keep it out of the vineyards. About half the walk is on asphalt lanes where cars pass. There is almost no shade on this low, sunny vineyard slope, so avoid summer middays. Fountains are mapped in the village, 45 to 120 m off the route.",
       "imageIcon": "images/trails/osm-12371666-tramin-spire.jpg",
       "imageCredit": "Tramin parish church and the Etsch valley",
@@ -14823,7 +14825,7 @@
         "route": "Published line 1.28 km, within 15 m of the province register's Kastelaz Promenade (1.27 km) everywhere.",
         "routeNumbers": "The register names the promenade without a number.",
         "mapPoints": "Start at the Altersheim bus stop on the route; the fountains are in the village just off it.",
-        "elevation": "No official figure. Measured by ORMA from the map: 1.30 km, about 85 m up and down between 330 and 411 m, 35 min by DIN 33466."
+        "elevation": "No official figure. Measured by ORMA from the map: 1.30 km, about 60 m up and down between 328 and 390 m, 29 min by DIN 33466 (25 m EU-DEM heights)."
       },
       "graduation": {
         "status": "verified",
@@ -16470,14 +16472,15 @@
     },
     'osm-11855879': {
       // Seal restored 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
-      // measured by ORMA from the map (Open-Meteo ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: the line matches the province trail register's 'Roda de Cherz' (routes-hikingtrails.11427015,
       // 2.77 km) within 6 m everywhere. Dogs: Livinallongo del Col di Lana publishes no dog rule, so the national rule applies
       // (Ministry of Health ordinance of 6 August 2013, Art. 1(3)); Arabba Fodom Turismo asks for a lead on all paths because of grazing
       // animals. No Natura 2000 site or park on the line.
       "area": "Cherz plateau, Arabba (Livinallongo del Col di Lana)",
-      "elevation": 70,
+      "elevation": 45,
       "hours": "1",
+      "elevationProfile": [{"km": 0, "elev": 2070}, {"km": 0.2, "elev": 2071}, {"km": 0.4, "elev": 2066}, {"km": 0.6, "elev": 2065}, {"km": 0.8, "elev": 2046}, {"km": 1, "elev": 2054}, {"km": 1.2, "elev": 2057}, {"km": 1.4, "elev": 2061}, {"km": 1.6, "elev": 2072}, {"km": 1.8, "elev": 2081}, {"km": 2, "elev": 2086}, {"km": 2.2, "elev": 2096}, {"km": 2.4, "elev": 2092}, {"km": 2.6, "elev": 2077}, {"km": 2.7, "elev": 2070}],
       "shadeCoverage": 0,
       "heatRisk": "high",
       "exposure": false,
@@ -16490,7 +16493,7 @@
         "name": "Roda de Cherz",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427015"
       },
-      "desc": "A gentle 2.8 km loop over the open Cherz plateau above Arabba, at about 2,050 m, through grassland and alpenrose with wide views of the surrounding Dolomites. It shares its tracks with CAI paths 22 and 45, and passes close to the Ütia Cherz hut and the ski lifts. About 70 m of up and down and under an hour, as measured by ORMA (no official figure).\n\nLivinallongo publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Arabba's tourist office asks for dogs to be kept on a lead on all paths, because grazing animals are common.",
+      "desc": "A gentle 2.8 km loop over the open Cherz plateau above Arabba, at about 2,050 m, through grassland and alpenrose with wide views of the surrounding Dolomites. It shares its tracks with CAI paths 22 and 45, and passes close to the Ütia Cherz hut and the ski lifts. About 45 m of up and down and under an hour, as measured by ORMA (no official figure).\n\nLivinallongo publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Arabba's tourist office asks for dogs to be kept on a lead on all paths, because grazing animals are common.",
       "tips": "Keep your dog on a lead (1.5 m at most) and carry a muzzle: the national rule requires it and the tourist office asks for a lead on every path, as animals graze on the plateau. Watch for mountain bikes and the occasional ski-area vehicle on the tracks. There is no shade and no water on the loop, so bring water and avoid hot middays; the Ütia Cherz is about 150 m off the route. If you take the Cherz chairlift up, dogs ride on a lead and muzzled, for a small fee.",
       "imageIcon": "images/trails/osm-11855879-cherz-alpenrose.jpg",
       "imageCredit": "Alpenrose on the Cherz pasture",
@@ -16518,7 +16521,7 @@
         "route": "Published line 2.74 km, within 6 m of the register's Roda de Cherz (2.77 km) everywhere.",
         "routeNumbers": "The register names the loop without a number; it shares its tracks with CAI paths 22 and 45.",
         "mapPoints": "Start from Passo Campolongo, as before; no water on the loop.",
-        "elevation": "No official figure. Measured by ORMA from the map: 2.74 km, about 70 m up and down between 2,034 and 2,104 m, 55 min by DIN 33466."
+        "elevation": "No official figure. Measured by ORMA from the map: 2.74 km, about 45 m up and down between 2,046 and 2,096 m, 48 min by DIN 33466 (25 m EU-DEM heights)."
       },
       "graduation": {
         "status": "verified",
@@ -16586,6 +16589,108 @@
           "url": "https://www.openstreetmap.org/relation/11855879"
         }
       ]
+    },
+    'osm-1116675': {
+      // Sealed 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are measured by
+      // ORMA from the map. Here the ground heights come from the 25 m EU-DEM every 100 m (10 m threshold; time by DIN 33466): the
+      // coarser Open-Meteo grid puts a false 96 m dip near the start, where the meadow edge drops steeply into the valley.
+      // Hand audit 6 November 2026: the line matches the province trail register's 'Familienrundweg' (routes-hikingtrails.11425373,
+      // AVS path 19, 2,205 m): every register point within 21 m of the line. Dogs: Sexten publishes no dog rule, so the national rule
+      // applies; about a fifth of the loop is in the Drei Zinnen nature park (IT3110050), where dogs must be on a lead.
+      area: 'Rotwandwiesen above Sexten / Sesto',
+      distance: 2.3,
+      elevation: 90,
+      hours: '1',
+      elevationProfile: [
+        { km: 0, elev: 1916 },
+        { km: 0.2, elev: 1881 },
+        { km: 0.4, elev: 1892 },
+        { km: 0.6, elev: 1928 },
+        { km: 0.8, elev: 1960 },
+        { km: 1.0, elev: 1969 },
+        { km: 1.2, elev: 1942 },
+        { km: 1.4, elev: 1931 },
+        { km: 1.6, elev: 1919 },
+        { km: 1.8, elev: 1932 },
+        { km: 2.0, elev: 1907 },
+        { km: 2.3, elev: 1916 }
+      ],
+      routeNumberSource: {
+        provider: 'Autonome Provinz Bozen, hiking-trail register',
+        name: 'Familienrundweg',
+        url: 'https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425373'
+      },
+      routeNumberGuidance: {
+        mode: 'numbered',
+        start: 'Start at the top of the Rotwand gondola from Bad Moos, on the Rotwandwiesen (1,925 m), beside the Rotwandwiesenhütte and the Rudi-Hütte. The loop begins and ends here. If the gondola is not running, path 17 climbs about 570 m from the valley station in Moos.',
+        status: 'The loop is AVS path 19 in the province trail register and is signed 19 on the ground (red-white-red with a black 19, per OpenStreetMap). For about 0.6 km it shares the way with path 18.',
+        sequence: 'Path 19 all the way: from the top station a short way down the ski track, then on path up through larch meadows to the junction with path 18; together on 18/19 and along the Skiweg Unesco track; then path 19 leaves the track and runs back over the meadows to the top station.',
+        switches: 'At about 0.9 km path 19 meets path 18; at about 1.5 km path 19 leaves the Skiweg Unesco track to the right of path 18 and heads back to the top station. Read off the map (OpenStreetMap) and the province register; no operator publishes turn-by-turn directions.',
+        sources: [
+          {
+            label: 'South Tyrol trail register, Familienrundweg, path 19 (Open Data Hub)',
+            url: 'https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425373',
+            authority: 'Autonome Provinz Bozen, hiking-trail register',
+            reviewedAt: '2026-11-06'
+          },
+          {
+            label: 'OpenStreetMap relation 1116675 (AVS 19)',
+            url: 'https://www.openstreetmap.org/relation/1116675',
+            authority: 'OpenStreetMap',
+            reviewedAt: '2026-11-06'
+          }
+        ]
+      },
+      startPoint: { lat: 46.6650281, lng: 12.3729343, label: 'Rotwand gondola top station, Rotwandwiesen (1,925 m)' },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-06',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Commons, FkMohr, CC BY-SA 3.0 de (kept): the Altensteiner Tal and the Sexten Dolomites, geotagged 434 m from the line.',
+        route: 'Closed loop of 2.27 km; every point of the register’s Familienrundweg (2,205 m) is within 21 m of the line.',
+        routeNumbers: 'AVS path 19 in the province register and on OpenStreetMap; it shares about 0.6 km with path 18.',
+        mapPoints: 'Start at the Rotwand gondola top station; the Rotwandwiesenhütte and the Rudi-Hütte are at the start; no drinking fountain on the loop.',
+        elevation: 'No official figure. Measured by ORMA from the map: 2.27 km, about 90 m up and down between 1,881 and 1,969 m, 49 min by DIN 33466 (25 m EU-DEM heights).'
+      },
+      graduation: {
+        status: 'verified',
+        required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        blockers: {}
+      },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Autonome Provinz Bozen, hiking-trail register (Open Data Hub): Familienrundweg, AVS path 19, routes-hikingtrails.11425373, 2,205 m; every register point within 21 m of the line',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks)',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): about a fifth of the line is in the Drei Zinnen nature park and Natura 2000 site IT3110050; no biotope or natural monument on the line; land cover about half pasture and alpine grassland and a quarter forest',
+          'OpenStreetMap relation 1116675: ski-slope tracks (piste 4b, Skiweg Unesco), mountain-bike tags, and the huts at the top station'
+        ],
+        date: '2026-11-06'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'Ski-slope tracks shared with mountain bikes and the occasional lift-service vehicle',
+        'Check the Rotwand gondola is running before you set out'
+      ],
+      terrainType: 'Gravel tracks over ski meadows and meadow paths',
+      shadeDescription: 'Mostly open: about half the loop crosses pasture and alpine grassland, and about a quarter runs under larch and spruce.',
+      terrainDescription: 'A short family loop at 1,880–1,970 m on the Rotwandwiesen meadows above Sexten, reached by gondola, on gravel tracks and meadow paths with views of the Sexten Dolomites.',
+      waterDescription: 'No drinking fountain on the loop. The Rotwandwiesenhütte and the Rudi-Hütte at the top station serve food and drink in summer; carry water for your dog.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. About a fifth of the loop is in the Drei Zinnen nature park, where dogs must be on a lead at all times. Half the loop crosses pasture, so expect grazing cattle in summer. The Rotwand gondola has closed cabins: keep your dog on a lead and carry a muzzle.',
+      tips: 'Ride the Rotwand gondola up from Bad Moos and follow path 19 round the meadows back to the top station: 2.3 km, about 90 m of up and down, under an hour. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Give grazing cattle room, watch for mountain bikes on the tracks, and check the gondola is running before you go.',
+      sourceLinks: [
+        { label: 'South Tyrol trail register, Familienrundweg (Open Data Hub)', url: 'https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425373' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap relation 1116675', url: 'https://www.openstreetmap.org/relation/1116675' }
+      ],
+      desc: 'A short family loop on path 19 over the Rotwandwiesen meadows above Sexten, reached by the Rotwand gondola from Bad Moos, through larch pasture with views of the Sexten Dolomites. 2.3 km, about 90 m of up and down, in under an hour, as measured by ORMA (no official figure).'
     },
     'osm-12018939': {
       // Correction, 23 October 2026 (not a verification: no usable photo of the walk exists yet). Line rebuilt on OSM ways along
@@ -39963,11 +40068,12 @@
       desc: 'A short family loop round the summit of the Kronplatz at 2,275 m: past the Concordia 2000 peace bell, the MMM Corones and LUMEN museums and a series of viewpoints, with the Dolomites to the south and the main Alpine ridge to the north. The official route lists 2.4 km and 75 m of ascent.'
     },
     'fassa-da-canazei-a-penia': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 5.64 (74 m), km 5.90 (121 m), km 6.20 (58 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 6 November 2026 by the owner's decision: a stretch the board's own line walks twice may be walked twice by ours.
+      // The 1 km between the Pènt de la Roa and the ice stadium is walked out and back, as the APT's directions and line do (walkedTwice);
+      // the three turn-backs at the Canazei end (km 5.64, 5.90, 6.20), where OSM has no path along the APT's line, were cut from the line.
       // Hand audit: 24 October 2026, verified on arrival (new-trail batch 10).
       // APT Val di Fassa’s walk “Da Canazei a Penìa”, tagged “animali accettati”. The line
-      // is drawn on 48 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
+      // is drawn on 40 OSM ways along the line the APT publishes (data/board-line-routes.geojson).
       // Canazei publishes no dog rule, so the national dog ordinance
       // (6 August 2013, extended to September 2027) applies under ORMA’s Italian
       // dog standard; Trentino’s animal law leaves leads and muzzles to it.
@@ -39977,7 +40083,11 @@
       elevation: 58,
       hours: '1.5',
       routeShape: 'loop',
-      routeShapeNote: 'A loop from the centre of Canazei up the Avisio to Alba and Penìa on one bank and back on the other, over wooden bridges; it ends in Canazei about 230 m from where it starts.',
+      routeShapeNote: 'A loop from the centre of Canazei up the Avisio to Alba and Penìa on one bank and back on the other, over wooden bridges; the 1 km between the Pènt de la Roa and the ice stadium at Alba is walked both ways, as the APT’s directions say. It ends in Canazei about 230 m from where it starts.',
+      walkedTwice: [
+        { from: 1.41, to: 2.4, note: 'Out from the Pènt de la Roa up Strèda dò Veisc towards Alba.' },
+        { from: 3.84, to: 4.84, note: 'Back the same way from the ice stadium to the Pènt de la Roa, as the APT’s directions say (“come back the same way as far as the Pènt de la Roa”), and as its own line does.' },
+      ],
       routeNumberGuidance: {
         "mode": "landmarks",
         "start": "Start at the tourist office on the main square of Canazei, the tourist board’s start.",
@@ -40032,17 +40142,17 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-24',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Penìa, the walk’s far end, with its church below the wooded slope, in July (Syrio, CC BY-SA 4.0).',
-        route: 'Official loop 6.3 km from Canazei (Piaz G. Marconi), as APT Val di Fassa publishes it; the stored line is drawn on 48 OSM ways along the APT’s published line, 6.4 km, with 100% of the APT line within 25 m of it.',
-        routeNumbers: 'No route number: from Piaz G. Marconi in Canazei along the Avisio past Alba, with its sandy river beach, play park and a small climbing crag with a cave, to Penìa, the last village before the Fedaia pass, and back down the other bank to Canazei.',
+        route: 'Official loop 6.3 km from Canazei (Piaz G. Marconi), as APT Val di Fassa publishes it; the stored line is drawn on 40 OSM ways along the APT’s published line, 5.8 km, with 98% of the APT line within 25 m of it and all of it within 25 m of the APT line. The 1 km from the Pènt de la Roa to the ice stadium is walked both ways, as on the APT’s line; three turn-backs of 58–121 m at the Canazei end, where OSM has no path along the APT’s line, were cut on 6 November 2026.',
+        routeNumbers: 'No route number: from Piaz G. Marconi in Canazei along the Avisio past Alba, with its sandy river beach, play park and a small climbing crag with a cave, to Penìa, the last village before the Fedaia pass, back down the other bank to the ice stadium, the same way to the Pènt de la Roa, and on the Ciasates walk to Canazei.',
         mapPoints: 'Start at Canazei (Piaz G. Marconi), the APT’s start; drinking water at the start, at km 1.1 and at km 1.8 (OSM nodes 7810377008, 3679999685, 2370878525).',
         elevation: 'Official 6.3 km, 58 m up and 68 m down, 1 h 35 min, highest point 1,487 m, lowest 1,435 m (APT Val di Fassa).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 5.64 (74 m), km 5.90 (121 m), km 6.20 (58 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -40050,7 +40160,7 @@
           'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Canazei publishes no dog rule)',
           'APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa',
           'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
-          'OpenStreetMap ways along the APT line (48 ways), road, surface, woodland and water data'
+          'OpenStreetMap ways along the APT line (40 ways), road, surface, woodland and water data'
         ],
         date: '2026-10-24'
       },
@@ -47563,8 +47673,8 @@
       desc: 'A short forest walk from Innichen up to the old spa at Wildbad Innichen on the edge of the Drei Zinnen nature park. The board lists 3.3 km and 145 m of ascent, one way.'
     },
     'trecime-circolare-maistatt': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): 38% of the drawn line runs over itself mid-walk.
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 6 November 2026 by the owner's decision: a stretch the board's own line walks twice may be walked twice by ours.
+      // Every stretch the line walks twice the board's own GPX walks twice too (34% of it), and its directions say so (walkedTwice).
       // Hand audit: 28 October 2026, verified on arrival (new-trail Hochpustertal batch 1).
       // The Tre Cime Dolomites tourist board’s walk “Escursione circolare Maistatt”, drawn on 67 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Niederdorf (own regulation).
@@ -47575,19 +47685,25 @@
       elevation: 133,
       hours: '1.35',
       routeShape: 'loop',
-      routeShapeNote: 'A loop from the primary school in Niederdorf through the village and under the railway to the Maistatt meadows and the warm spring at Maistatt, through the forest to the Reahwinkl forest road, and back by the Maistatt road.',
+      routeShapeNote: 'A loop from the primary school in Niederdorf through the village and under the railway to the Maistatt meadows and the warm spring at Maistatt, through the forest to the Reahwinkl forest road, and back by the Maistatt road. The way between the school and the Maistatt road (about 600 m) and about 110 m at the Maistatt bridge are walked both ways, as on the board’s own line.',
+      walkedTwice: [
+        { from: 0.01, to: 0.64, note: 'Out from the school through the village and under the railway towards Maistatt.' },
+        { from: 1.6, to: 1.71, note: 'To the Maistatt bridge from Graapach.' },
+        { from: 3.48, to: 3.59, note: 'Back down to the Maistatt bridge from the Reahwinkl forest road, as the board’s directions say.' },
+        { from: 4.19, to: 4.83, note: 'Back along the Maistatt road, under the railway and through the village to the school, as the board’s directions say.' },
+      ],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Holy Trinity hospital church by the Rienz in Niederdorf, where the loop starts, in July (Mattana, CC BY-SA 3.0); the church stands 17 m from the line.',
-        route: 'Official loop 4.8 km from the primary school in Niederdorf, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 67 OSM ways along the GPX on the board’s page, 4.8 km, with 100% of the board’s line within 25 m of it.',
+        route: 'Official loop 4.8 km from the primary school in Niederdorf, as the Tre Cime Dolomites tourist board publishes it; the stored line is drawn on 67 OSM ways along the GPX on the board’s page, 4.8 km, with 100% of the board’s line within 25 m of it. 38% of the line is walked twice, all where the board’s own GPX is walked twice too (34% of it): the way from the school to the Maistatt road and a stretch at the Maistatt bridge.',
         routeNumbers: 'The board names no path numbers and gives the way: from the primary school over the bridge to the Von-Kurz-Platz, east on Jakob-Traunsteiner-Straße and a short stretch of Johann-Jaeger-Straße to the Roda square, under the railway and gently up to the first rise at Maistatt; left and down beside the railway, under a second underpass to Graapach, then right and south back to the Maistatt road and the Maistatt bridge. Along the road across the Maistatt meadows to the wayside shrine of the Fourteen Holy Helpers and the house at Maistatt with its chapel and warm spring; a narrow path follows the spring west into the forest, past a game feeder, and left to the Reahwinkl forest road. Back down to the Maistatt bridge and left along the Maistatt road, past the cow pasture gate, under the railway and through the village to the school.',
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 0.1, at km 0.3 and at km 0.5 (OSM nodes 7597331186, 7597331187, 13134731994, 13134734620, 13134757751, 279716575, 12434334285, 279716583, 279716589).',
         elevation: 'Official 4.8 km, 133 m up and 133 m down, 1 h 21 min, highest point 1,263 m, lowest 1,147 m (Tre Cime Dolomites tourist board, dreizinnen.com). The stored line follows the GPX on the board’s page.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: '38% of the drawn line runs over itself mid-walk; it cannot be followed as drawn.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [

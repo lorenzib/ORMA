@@ -12,5 +12,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "The stone-arched portal of the old railway tunnel at St. Christina, dated 1915 and 1916, with its doors open onto the lit walkway.": "Il portale ad arco in pietra della vecchia galleria ferroviaria a St. Christina, datato 1915 e 1916, con le porte aperte sul passaggio illuminato.",
   "Ortisei from above, with its church and green slopes": "Ortisei dall'alto, con la chiesa e i pendii verdi",
   "Trail signposts beside the old railway path at Roncadizza": "Cartelli segnaletici lungo il sentiero della vecchia ferrovia a Roncadizza",
-  "Mostly open, on the sunny side of the valley through villages and meadows; short wooded stretches near Ortisei and St. Christina.": "Per lo più aperto, sul versante soleggiato della valle tra paesi e prati; brevi tratti nel bosco vicino a Ortisei e St. Christina."
+  "Mostly open, on the sunny side of the valley through villages and meadows; short wooded stretches near Ortisei and St. Christina.": "Per lo più aperto, sul versante soleggiato della valle tra paesi e prati; brevi tratti nel bosco vicino a Ortisei e St. Christina.",
+  "No path number: follow the old railway line (La Ferata / Grödner Bahnweg), marked by history boards, from Runggaditsch through Ortisei and St. Christina to Plan in Selva.": "Senza numero di sentiero: segui la vecchia linea ferroviaria (La Ferata / Grödner Bahnweg), segnalata da pannelli storici, da Runggaditsch attraverso Ortisei e St. Christina fino a Plan in Selva."
 });
