@@ -25,6 +25,8 @@
   const MAX_HOURS = 16;        // one walk, one day
   const CHECKIN_M = 150;       // how close a check-in must be to the line
   const MAX_ACCURACY_M = 100;  // a vaguer position proves nothing
+  const FINISH_M = 75;         // this close to the finish ends a proven walk
+  const FAR_END_SHARE = 0.9;   // an out-and-back has turned round past here
   const STORAGE_KEY = 'orma-walk-coverage-v1';
 
   const M_PER_DEG = 111000;
@@ -108,6 +110,23 @@
     return result('gps', 'proven');
   }
 
+  // SOCIAL-03: a recording ends itself, so nobody has to remember Finish.
+  // The walk is over once it is proven (MIN_SHARE of the line walked) and the
+  // walker is back where the walk ends:
+  //   loop / out-and-back  where the recording started (a loop may be begun
+  //                        from any car park on it; an out-and-back must
+  //                        also have reached the far end first);
+  //   one-way              the far end of the line.
+  function reachedFinish(input){
+    const opts = input || {};
+    if(share(opts.coverage) < MIN_SHARE) return false;
+    if(opts.shape === 'out-and-back'){
+      return Number(opts.furthestShare) >= FAR_END_SHARE && Number(opts.toStartM) <= FINISH_M;
+    }
+    if(opts.shape === 'loop') return Number(opts.toStartM) <= FINISH_M;
+    return Number(opts.toEndM) <= FINISH_M;
+  }
+
   // Judge a tap on "We walked this" against where the phone says it is.
   // Returns { proof: 'checkin' | null, reason, distanceM }.
   function assessCheckIn(position, path){
@@ -166,8 +185,9 @@
 
   const api = {
     BIN_M, NEAR_M, FILL_M, MIN_SHARE, MAX_KMH, MAX_HOURS, CHECKIN_M, MAX_ACCURACY_M, STORAGE_KEY,
+    FINISH_M, FAR_END_SHARE,
     PROOFS: ['gps', 'checkin'],
-    distanceToLine, createCoverage, markFix, share, assessHike, assessCheckIn,
+    distanceToLine, createCoverage, markFix, share, assessHike, assessCheckIn, reachedFinish,
     saveCoverage, loadCoverage, clearCoverage,
   };
   root.DoloPawsWalkProof = api;
