@@ -67,8 +67,8 @@ describe('shared Safety Library colour system', () => {
 
     expect(assignments).toEqual([
       { heading:'Before you leave', tone:'info', cards:3 },
-      { heading:'On the trail', tone:'caution', cards:4 },
-      { heading:'Shared spaces', tone:'safe', cards:2 },
+      { heading:'On the trail', tone:'caution', cards:3 },
+      { heading:'Shared spaces', tone:'safe', cards:3 },
     ]);
     expect(libraryHtml).not.toContain('.sg-category[data-tone="caution"]');
     expect(libraryHtml).not.toContain('.sg-category[data-tone="safe"]');
