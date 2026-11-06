@@ -1555,6 +1555,40 @@ function renderTrail(t){
     const journalReturn = encodeURIComponent(`trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))}`);
     logWalkBtn.href = `journal.html?trail=${encodeURIComponent(t.id)}&from=${journalReturn}`;
   }
+  // One tap counts a walk in the anonymous tally, the same event a finished
+  // GPS hike writes. Firebase loads after the page is idle, so a tap before
+  // then waits for it briefly rather than failing.
+  const walkedThisBtn = document.getElementById('walkedThisBtn');
+  const walked = window.DoloPawsWalkedThis;
+  // The label is set here, not by data-i18n, so a later translation pass
+  // cannot put "We walked this" back on a walk already counted.
+  if(walkedThisBtn && walked && !walkedThisBtn.dataset.bound){
+    walkedThisBtn.dataset.bound = '1';
+    walkedThisBtn.textContent = window.t('page.trail.walkedThis');
+    const walkedStatus = document.getElementById('walkedThisStatus');
+    const showWalked = () => {
+      walkedThisBtn.textContent = window.t('trail.walkedToday');
+      walkedThisBtn.disabled = true;
+    };
+    const communityReady = () => window.DoloPawsCommunity ? Promise.resolve(window.DoloPawsCommunity)
+      : new Promise(resolve => {
+        const done = () => resolve(window.DoloPawsCommunity || null);
+        window.addEventListener('dolopaws-auth-ready', done, { once: true });
+        setTimeout(done, 6000);
+      });
+    if(walked.walkedToday(t.id)) showWalked();
+    walkedThisBtn.addEventListener('click', async () => {
+      walkedThisBtn.disabled = true;
+      const result = await walked.record(t.id, walked.activeDogGroup(), { community: await communityReady() });
+      if(result === 'recorded' || result === 'already'){
+        showWalked();
+        if(walkedStatus && result === 'recorded') walkedStatus.textContent = window.t('trail.walkedThanks');
+        return;
+      }
+      walkedThisBtn.textContent = window.t('trail.walkedRetry');
+      walkedThisBtn.disabled = false;
+    });
+  }
   // Do not reserve an empty elevation panel for routes without profile data.
   const elevationCard = document.getElementById('tdElevationPanel');
   const hasElevationProfile = Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1;

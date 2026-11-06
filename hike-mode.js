@@ -872,6 +872,8 @@ function initHikeMode(map, trail, options){
     // never depend on it.
     if(window.DoloPawsCommunity && typeof window.DoloPawsCommunity.recordTrailWalk === 'function'){
       window.DoloPawsCommunity.recordTrailWalk(trail.id, activeDogGroup());
+      // A tap on "We walked this" after the hike must not count it again.
+      if(window.DoloPawsWalkedThis) window.DoloPawsWalkedThis.markWalked(trail.id);
     }
     completionRetry = null;
     clearDurableSession();
@@ -884,16 +886,7 @@ function initHikeMode(map, trail, options){
   // breedGroupId comes from breeds-data.js (same trail bundle); guarded so a
   // context without it degrades to 'unknown' rather than throwing.
   function activeDogGroup(){
-    try {
-      const raw = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null');
-      const active = raw && Array.isArray(raw.dogs)
-        ? raw.dogs.find(dog => dog.id === raw.activeDogId) || raw.dogs[0]
-        : null;
-      const breed = (active && active.breed) || (raw && raw.breed) || '';
-      return typeof breedGroupId === 'function' ? breedGroupId(breed) : 'unknown';
-    } catch (e) {
-      return 'unknown';
-    }
+    return window.DoloPawsWalkedThis ? window.DoloPawsWalkedThis.activeDogGroup() : 'unknown';
   }
 
   function finishHike(){
