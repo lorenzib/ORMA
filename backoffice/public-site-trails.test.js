@@ -230,8 +230,10 @@ describe('the existing-site verification boundary',()=>{
     // Passo Rolle (Dolomites batch 3).
     // Then 504 and 502 with the walk from Colfosco over the Forcela Ciampëi to the
     // Rifugio Puez (Dolomites batch 4).
-    expect(catalogue).toHaveLength(504);
-    expect(currentSiteTrails(catalogue)).toHaveLength(502);
+    // Then 505 and 503 with the climb from Moos past the Klammbachalm to the
+    // Hornischeck (Monte Arnese) (Dolomites batch 5).
+    expect(catalogue).toHaveLength(505);
+    expect(currentSiteTrails(catalogue)).toHaveLength(503);
   });
 
   test('requires the artwork the public trail page needs',()=>{

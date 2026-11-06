@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "trecime-moso-monte-arnese",
+  "distanceKm": 9.4,
+  "ascentM": 1212,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1339
+    },
+    {
+      "km": 0.7,
+      "elev": 1420
+    },
+    {
+      "km": 1.4,
+      "elev": 1615
+    },
+    {
+      "km": 2.2,
+      "elev": 1684
+    },
+    {
+      "km": 2.9,
+      "elev": 1739
+    },
+    {
+      "km": 3.6,
+      "elev": 1888
+    },
+    {
+      "km": 4.3,
+      "elev": 1953
+    },
+    {
+      "km": 5,
+      "elev": 1950
+    },
+    {
+      "km": 5.7,
+      "elev": 2021
+    },
+    {
+      "km": 6.4,
+      "elev": 2123
+    },
+    {
+      "km": 7.2,
+      "elev": 2235
+    },
+    {
+      "km": 7.9,
+      "elev": 2361
+    },
+    {
+      "km": 8.6,
+      "elev": 2482
+    },
+    {
+      "km": 9.3,
+      "elev": 2532
+    },
+    {
+      "km": 9.4,
+      "elev": 2493
+    }
+  ]
+}
