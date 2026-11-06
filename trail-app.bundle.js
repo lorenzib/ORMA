@@ -3370,6 +3370,7 @@ ${points}
     'meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole': "Meraner Höhenweg west and the Sonnenberg farms, Partschins",
     'nuvolau': "Passo Giau to Rifugio Nuvolau",
     'osm-10220399': "Martinsweg",
+    'osm-1116675': "Familienrundweg",
     'osm-11270309': "Passeggiata delle Sorgenti - Quellenpromenade",
     'osm-11517208': "La Croix des Salles",
     'osm-11764094': "Dörferrunde: Natz, Raas, Schabs and Viums",
