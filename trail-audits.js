@@ -10553,6 +10553,153 @@
       ],
       desc: 'A woodland loop above Pedraces in Badia linking two small lakes: up past the Runch farm to the forest lake Lech Dlà Lunch, down path 10A to Lech da Sompunt below the Sasso di Santa Croce, and back through the hamlets of Paracia and Ciaminades. The official route lists 7.6 km and 278 m of ascent.'
     },
+    'osm-11815025': {
+      // Hand audit: 6 November 2026. Tourismusgenossenschaft Lajen’s “Rundwanderung Kasserol”
+      // (Outdooractive 16420568), the walk relation 11815025 maps. The relation was rejected as
+      // disconnected; the routeLine override in data/verified-trail-overrides.json now carries a
+      // line drawn on OSM ways along the board’s own line, closed at the village square.
+      // Wholly in Lajen, not Kastelruth: Lajen’s dog regulation (Gemeinderat 15/2010) applies.
+      // The loop crosses the Wasserbühel biotope (Lajen landscape plan, Art. 3): no dog rule there,
+      // but disturbing wild animals is forbidden. No Natura 2000 site or park on the line.
+      area: 'Lajen / Laion – Eisacktal',
+      distance: 2.7,
+      elevation: 82,
+      hours: '1',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start on the village square (Dorfplatz) in Lajen, the board’s start.",
+        "sequence": "Briefly on path 5 out of the village, then on the signs for Wasserbühl and the Wetterkreuz across the plateau, and back into Lajen.",
+        "switches": "Leave path 5 after a short way for the Wasserbühl signs; from the Wasserbühl, follow the signs for the Wetterkreuz, then back to Lajen.",
+        "steps": [
+          { "text": "From the village square in Lajen, follow path 5 for a short way out of the village.", "from": [0] },
+          { "text": "Then follow the signs for Wasserbühl, the wooded knoll west of the village where traces of a prehistoric settlement were found.", "from": [0] },
+          { "text": "Follow the signs on to the Wetterkreuz, the weather cross, where there is a place for a picnic. The last short stretch up to it is steep: the board says a pushchair has to be carried there.", "from": [0] },
+          { "text": "Come back to Lajen and the village square.", "from": [0] }
+        ],
+        "sources": [
+          { "tag": "tourist board", "label": "Rundwanderung Kasserol: Wegbeschreibung", "authority": "Tourismusgenossenschaft Lajen, on Outdooractive", "url": "https://www.outdooractive.com/de/r/16420568", "reviewedAt": "2026-11-06" }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-06',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Pasture, farms and spruce forest on the slope above the Eisack valley at Lajen (FkMohr, CC BY-SA 3.0 de), geotagged 468 m from the line, in Lajen.',
+        route: 'Official loop 2.7 km from the village square in Lajen, as Tourismusgenossenschaft Lajen publishes it; the stored line is drawn on 13 OSM ways along the board’s published line, 2.62 km, closed, with 100% of the board line within 25 m of it.',
+        routeNumbers: 'Not a numbered route: from the village square in Lajen, briefly along path 5, then on the signs for Wasserbühl and the Wetterkreuz, and back to Lajen.',
+        mapPoints: 'Start on the village square in Lajen (official coordinates 46.609182, 11.564165); drinking water at the village fountain on the square (OSM node 11808110869, seasonal).',
+        elevation: 'Official 2.7 km, 82 m up and 81 m down, 1:00 h, highest point 1,097 m, lowest 1,016 m (Tourismusgenossenschaft Lajen).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Lajen, Rundwanderung Kasserol (Outdooractive tour 16420568: route text, figures and line; status open)',
+          'Gemeinde Lajen, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 15/2010), Art. 4 and 8: a lead of at most 1.5 m on public land and a muzzle carried; no dogs on meadows and fields in the growing season',
+          'Landschaftsplan Lajen, Durchführungsbestimmungen, Art. 3 (newPlan doc 3430): biotope 40/1 Wasserbühel, where disturbing wild animals is forbidden; no rule on dogs',
+          'EEA Natura 2000 sites and OpenStreetMap administrative boundaries: no Natura 2000 site on the line, which lies wholly in Lajen',
+          'OpenStreetMap ways along the line, road, surface, woodland and water data'
+        ],
+        date: '2026-11-06'
+      },
+      shadeCoverage: 10,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ['A short steep stretch up to the Wetterkreuz', 'About 400 m on village lanes at the start (Wasserbühl-Weg, Kasserol-Weg), shared with local traffic', 'The Wasserbühel is a protected biotope: stay on the path'],
+      terrainType: 'Paths (about half) and farm tracks (about a third), with village lanes at the start (OpenStreetMap)',
+      shadeDescription: 'Mostly open: the plateau round Lajen is meadow and farmland, with short stretches of wood around the Wasserbühl. About 10% shaded.',
+      terrainDescription: 'Village lanes out of Lajen, then farm tracks and paths across the sunny plateau to the wooded Wasserbühl and a short steep climb to the Wetterkreuz. Officially easy, about 80 m of up and down in all.',
+      waterDescription: 'Drinking water only at the village fountain on the square, at the start and end (seasonal). Carry water for your dog on a warm day.',
+      dogNotes: 'Lajen requires a lead of at most 1.5 m on all public land and a muzzle carried, and dogs must stay off meadows and fields in the growing season; the loop crosses farmland. The Wasserbühl is a protected biotope where wild animals must not be disturbed, so keep your dog on the path.',
+      tips: 'A short, easy loop from the village square in Lajen: 2.7 km and about 80 m of climbing, an hour. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The plateau is sunny and open, so go in the morning or evening in summer, and fill up at the village fountain before you set off.',
+      sourceLinks: [
+        { label: 'Tourismusgenossenschaft Lajen, Rundwanderung Kasserol (Outdooractive)', url: 'https://www.outdooractive.com/de/r/16420568' },
+        { label: 'Gemeinde Lajen, dog regulation', url: 'https://www.gemeinde.lajen.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden_im_Gemeindegebiet_von_Lajen_1' },
+        { label: 'Landschaftsplan Lajen, Durchführungsbestimmungen (newPlan)', url: 'https://newplan.civis.bz.it/newplan/api/newp/api/document/3430' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/11815025' }
+      ],
+      startPoint: { lat: 46.609182, lng: 11.564165, label: 'Village square (Dorfplatz) in Lajen, the board’s start' },
+      waterSources: [
+        { km: 0, lat: 46.609325, lng: 11.56429, osmId: 'node/11808110869', label: 'Village fountain on the square in Lajen (seasonal)' }
+      ],
+      rifugi: [
+        { km: 0, lat: 46.60897, lng: 11.56382, osmId: 'node/3658506325', name: 'Gasthof zur Krone' }
+      ],
+      desc: 'A short loop from the village square in Lajen across the sunny plateau to the Wasserbühl, a wooded knoll with traces of prehistoric settlement, and up to the Wetterkreuz, with views over the Eisack valley. The board lists 2.7 km and 82 m of ascent.'
+    },
+    'osm-9651462': {
+      // Hand audit: 6 November 2026. Bruneck Kronplatz Tourismus’s “Sagenweg St. Lorenzen”
+      // (Outdooractive 810055342), the walk relation 9651462 maps. The relation was rejected as
+      // disconnected; the routeLine override in data/verified-trail-overrides.json now carries a
+      // line drawn on OSM ways along the board’s own line, closed at the information office.
+      // Wholly in St. Lorenzen: its dog regulation (Gemeinderat Nr. 25, 2009) applies. No biotope,
+      // Natura 2000 site or park on the line; it passes landscape-protection zones with no dog rule.
+      area: 'San Lorenzo di Sebato / St. Lorenzen, Pustertal',
+      distance: 4.1,
+      elevation: 93,
+      hours: '1.2',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the information office in the centre of St. Lorenzen, the board’s start.",
+        "sequence": "Through the village to the railway underpass, left on path 1A along the cycle path towards Bruneck-Waldheim, right at the underpass of the main road, and back on the footpath beside the Stefansdorfer Straße.",
+        "switches": "Left onto path 1A beside the cycle path after the railway underpass; right at the underpass of the main road (SS49); back along the footpath by the Stefansdorfer Straße.",
+        "steps": [
+          { "text": "From the information office, walk towards the railway underpass.", "from": [0] },
+          { "text": "After it, turn left onto path 1A, which runs beside the cycle path, towards Bruneck-Waldheim.", "from": [0] },
+          { "text": "At the underpass of the main road, turn right.", "from": [0] },
+          { "text": "Follow the footpath beside the Stefansdorfer Straße back to the start. Ten painted panels along the way tell the village’s old legends.", "from": [0] }
+        ],
+        "sources": [
+          { "tag": "tourist board", "label": "Sagenweg St. Lorenzen: Wegbeschreibung", "authority": "Bruneck Kronplatz Tourismus, on Outdooractive", "url": "https://www.outdooractive.com/de/r/810055342", "reviewedAt": "2026-11-06" }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-06',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The church of Heiligkreuz in Fronwies near St. Lorenzen, in August (Michielverbeek, CC BY-SA 4.0), geotagged 493 m from the line, in St. Lorenzen.',
+        route: 'Official loop 4.1 km from the information office in St. Lorenzen, as Bruneck Kronplatz Tourismus publishes it; the stored line is drawn on 37 OSM ways along the board’s published line, 4.16 km, closed, with 100% of the board line within 25 m of it. The first and last 600 m are the same stretch.',
+        routeNumbers: 'Not a numbered route as a whole: from the information office in St. Lorenzen to the railway underpass, then left on path 1A along the cycle path towards Bruneck-Waldheim, right at the main-road underpass, and back on the footpath beside the Stefansdorfer Straße.',
+        mapPoints: 'Start at the information office in St. Lorenzen (official coordinates 46.782895, 11.902339); drinking water at km 0.1 and km 0.3 (OSM nodes 2038685178, 10066930057), passed again on the way back.',
+        elevation: 'Official 4.1 km, 93 m up and 92 m down, 1:10 h, highest point 903 m, lowest 810 m (Bruneck Kronplatz Tourismus).'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Bruneck Kronplatz Tourismus, Sagenweg St. Lorenzen (Outdooractive tour 810055342: route text, figures and line; status open)',
+          'Marktgemeinde St. Lorenzen / Comune di San Lorenzo di Sebato, Gemeindeverordnung über die Haltung und Führung von Hunden (Beschluss des Gemeinderates Nr. 25, 29.12.2009): a lead of at most 1.5 m on public ground and a muzzle carried; no dogs in cemeteries, playgrounds or school yards, or on farmed meadows and fields in the growing season; no bathing in the village fountains',
+          'Province landscape-plan layers (biotopes, protected areas, protected landscape elements): no biotope on the line; landscape-protection zones and a riverside wood with no rule on dogs',
+          'EEA Natura 2000 sites and OpenStreetMap administrative boundaries: no Natura 2000 site on the line, which lies wholly in St. Lorenzen',
+          'OpenStreetMap ways along the line, road, surface, woodland and water data'
+        ],
+        date: '2026-11-06'
+      },
+      shadeCoverage: 12,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['About 600 m beside the cycle path (path 1A): watch for bikes', 'Two road crossings in the village and a short stretch on village lanes', 'Much of it paved or asphalt, which gets hot in summer'],
+      terrainType: 'Farm tracks and paths, a stretch beside the cycle path, and village lanes and footways (OpenStreetMap)',
+      shadeDescription: 'Mostly open: the valley floor and the fields round St. Lorenzen, with short stretches of wood on the hill in the second half. About 12% shaded.',
+      terrainDescription: 'Village lanes and footways out of St. Lorenzen, a level stretch beside the cycle path, then tracks and paths over the low hill above the village (about 90 m up) and back on a footpath beside the road. Officially easy.',
+      waterDescription: 'Drinking water near the start, at km 0.1 and km 0.3, passed again at the end. Nothing in the middle: carry water for your dog in summer.',
+      dogNotes: 'St. Lorenzen requires a lead of at most 1.5 m and a muzzle carried, keeps dogs off farmed meadows and fields in the growing season, out of playgrounds and cemeteries, and out of the village fountains. Expect bikes on the cycle path.',
+      tips: 'An easy loop from the information office in St. Lorenzen: 4.1 km and about 90 m of climbing, just over an hour, past ten panels telling the village legends. It is low and mostly open, so avoid the middle of a summer day. Keep your dog on a lead of at most 1.5 m and carry a muzzle; fill up at the fountains near the start.',
+      sourceLinks: [
+        { label: 'Bruneck Kronplatz Tourismus, Sagenweg St. Lorenzen (Outdooractive)', url: 'https://www.outdooractive.com/de/r/810055342' },
+        { label: 'Marktgemeinde St. Lorenzen, dog regulation (2009)', url: 'https://www.gemeinde.stlorenzen.bz.it/system/web/GetDocument.ashx?cts=1434451081&fileId=884603' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/9651462' }
+      ],
+      startPoint: { lat: 46.782895, lng: 11.902339, label: 'Information office in the centre of St. Lorenzen, the board’s start' },
+      waterSources: [
+        { km: 0.1, lat: 46.7822729, lng: 11.9024778, osmId: 'node/2038685178', label: 'Drinking water in St. Lorenzen' },
+        { km: 0.3, lat: 46.7815109, lng: 11.9033691, osmId: 'node/10066930057', label: 'Drinking fountain in St. Lorenzen' }
+      ],
+      rifugi: [],
+      desc: 'An easy loop from the centre of St. Lorenzen past ten painted panels that tell the village’s old legends, drawn by its primary-school children: along the cycle path, over the low hill above the village and back beside the road. The board lists 4.1 km and 93 m of ascent.'
+    },
     'osm-9511973': {
       // Hand audit: 5 November 2026. The Alta Badia tourist board’s “From Badia through the Armentara
       // meadows”, the same loop as relation 9511973. The published line was an open 13.4 km copy of the
