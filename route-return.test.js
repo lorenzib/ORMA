@@ -52,6 +52,15 @@ describe('a one-way walk seen there and back', () => {
     expect(back.elevation).toBe(160);
   });
 
+  test('without a profile counts the stated descent as climb on the way back', () => {
+    // Sentiero Hans e Paula Steger: 301 m up and 475 m down, Compatsch to Saltria.
+    const steger = { ...level, elevation:301, descent:475, elevationProfile:undefined };
+    expect(routeReturn.outAndBack(steger).elevation).toBe(776);
+    // Sentiero del Trenino climbs 454 m and drops 2 m: the way back is downhill.
+    const trenino = { ...level, elevation:454, descent:2, elevationProfile:undefined };
+    expect(routeReturn.outAndBack(trenino).elevation).toBe(456);
+  });
+
   test('leaves loops and out-and-back walks alone', () => {
     expect(routeReturn.isOneWay({ ...level, routeShape:'loop' })).toBe(false);
     expect(routeReturn.isOneWay({ ...level, routeShape:'out-and-back' })).toBe(false);
