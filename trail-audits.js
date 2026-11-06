@@ -51506,8 +51506,7 @@
       desc: 'A circuit from the Pragser Wildsee up to the Kaseralm, down to the Grünwaldalm and back along the lake. The board lists 7.5 km and 590 m of ascent.'
     },
     'valgardena-arte-e-storia': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 0.98 (160 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 6 November 2026: the turn at km 0.98 is the side trip to the ruins of Castel Wolkenstein, which the board's route text says can be visited in the warm season and lists as a stop at 1 km; declared in sideTrips.
       // Hand audit: 27 October 2026, verified on arrival (new-trail Val Gardena batch 3).
       // The Val Gardena tourist board’s walk “Arte e storia”, drawn on 10 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Communes: Selva di Val Gardena (its 2010 dog regulation: lead ≤1.5 m, muzzle carried).
@@ -51519,8 +51518,9 @@
       hours: '1.5',
       routeShape: 'point-to-point',
       routeShapeNote: 'One way from the Daunëi quarter of Selva along the old Way of the Cross under the Stevia walls, past the ruins of Castel Wolkenstein, to the San Silvestro chapel at the mouth of the Vallunga; come back the same way or down the Vallunga path into Selva.',
+      sideTrips: [{ km: 0.98, note: 'Up to the ruins of Castel Wolkenstein (Ciastel de Val), the seat of the Wolkenstein family since the 12th century, which the board says can be visited in the warm season, and back to the Way of the Cross.' }],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
@@ -51530,7 +51530,7 @@
         mapPoints: 'Start at the board’s start; drinking water at the start, at km 1.9 (OSM nodes 7829764787, 6345373431).',
         elevation: 'Official 2.1 km, 76 m up and 124 m down, 1:31 h, highest point 1,707 m, lowest 1,628 m (Selva – Dolomites Val Gardena tourist board). The stored line follows the board’s own Outdooractive tour.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 0.98 (160 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -53557,8 +53557,7 @@
       desc: 'A high pasture walk from the top of the Spinale gondola past the Lago Spinale to the Rifugio Graffer, between the Brenta Dolomites and the Adamello glaciers. The APT lists 7.5 km and 300 m of ascent.'
     },
     'campiglio-carisolo-centro-storico': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): its written directions do not say where to start and which way to go.
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 6 November 2026: the route sentence is rewritten from the board's own Outdooractive directions so it says where to start, and now ends where the board's does, along Via Negrelli back into the village.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
       // APT Madonna di Campiglio’s walk “Carisolo - centro storico”, drawn on 22 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Commune: Carisolo (Regolamento di Polizia Urbana, Art. 35).
@@ -53572,17 +53571,17 @@
       routeShape: 'point-to-point',
       routeShapeNote: 'A short walk from Carisolo town hall through the old village to the church of San Nicolò, up the road into the Val Genova to the old chestnut grove, along the cobbled Way of the Cross to the frescoed chapel of Santo Stefano, and down through the woods to the old glassworks.',
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'An old chestnut tree in the Carisolo chestnut grove, on the walk, in June (Oscar Collini, CC BY-SA 4.0), 29 m from the line.',
         route: 'Official walk 3.5 km from Carisolo town hall, as APT Madonna di Campiglio publishes it; the stored line is drawn on 22 OSM ways along the APT’s published line, 3.7 km, with 100% of the APT’s line within 25 m of it.',
-        routeNumbers: 'Not a numbered route: with your back to Carisolo town hall, right into the village to Piazza 2 Maggio and up to the church of San Nicolò; along Via Val Genova for about 800 m, then left down a path to the old chestnut grove (a “library in the woods”); up the cobbled Way of the Cross to the cemetery chapel of Santo Stefano, with its Baschenis frescoes; past the chapel, left down a woodland path to the Antica Vetreria glass museum, and on towards the sanctuary of the Beata Vergine del Potere.',
+        routeNumbers: 'Not a numbered route: from Carisolo town hall, with your back to it, right on the road into the village to the main square (Piazza 2 Maggio) and up to the church of San Nicolò; on along Via Val Genova for about 800 m, then left on the path down to the old chestnut grove (a “library in the woods”); follow it to the cobbled Way of the Cross and up to the cemetery chapel of Santo Stefano, with its Baschenis frescoes; past the chapel, left on a path down through the woods to the Antica Vetreria glass museum; then the road towards the sanctuary of the Beata Vergine del Potere, and along Via Negrelli back into the village.',
         mapPoints: 'Start at the APT’s start, Carisolo town hall; drinking water at the start, at km 1.1, at km 1.2, at km 1.6 and at km 2.7 (OSM nodes 2422077386, 8834879824, 2422076383, 5987934137, 5987934138, 12115087008, 12860517028).',
         elevation: 'Official 3.5 km, 88 m up and 80 m down, 1 h 30 min, highest point 868 m, lowest 790 m (Madonna di Campiglio Azienda per il Turismo).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { routeNumbers: 'The written directions do not say where to start and which way to go.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [

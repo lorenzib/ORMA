@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-06T10:39:54.206Z",
+  "generatedAt": "2026-11-06T10:34:41.888Z",
   "regions": {
     "dolomites": {
       "trailCount": 351,
-      "trails": "data/regions/dolomites-trails.js?v=1ac51f0fa8f4",
+      "trails": "data/regions/dolomites-trails.js?v=724f4646e234",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=4222fc301715",
         "seceda": "data/trail-details/seceda.js?v=6faa6455cd45",
@@ -16,7 +16,7 @@
         "sassolungo": "data/trail-details/sassolungo.js?v=5f5c54d67194",
         "lago-braies": "data/trail-details/lago-braies.js?v=8de4cf962fd4",
         "lago-carezza": "data/trail-details/lago-carezza.js?v=dad3c0f56b01",
-        "lago-sorapis": "data/trail-details/lago-sorapis.js?v=0799649689a0",
+        "lago-sorapis": "data/trail-details/lago-sorapis.js?v=14ea50eb0748",
         "valley-view": "data/trail-details/valley-view.js?v=53ee6d860870",
         "piancavallo": "data/trail-details/piancavallo.js?v=dfc83ef7e4ce",
         "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=28e241191dba",
@@ -263,7 +263,7 @@
         "paganella-sette-passi-sette-ville": "data/trail-details/paganella-sette-passi-sette-ville.js?v=6b9eb9fb0a39",
         "trecime-villabassa-lanaweg": "data/trail-details/trecime-villabassa-lanaweg.js?v=5c9613239960",
         "trecime-giro-delle-baite-lago-di-braies": "data/trail-details/trecime-giro-delle-baite-lago-di-braies.js?v=7cba24b13ac3",
-        "valgardena-arte-e-storia": "data/trail-details/valgardena-arte-e-storia.js?v=0179a0cd8b8e",
+        "valgardena-arte-e-storia": "data/trail-details/valgardena-arte-e-storia.js?v=8e8351813ae0",
         "valgardena-escursione-al-brogles": "data/trail-details/valgardena-escursione-al-brogles.js?v=52dde27ba585",
         "valgardena-escursione-al-seeurasas": "data/trail-details/valgardena-escursione-al-seeurasas.js?v=30e78ea90a88",
         "valgardena-escursione-da-s-cristina-al-passo-sella": "data/trail-details/valgardena-escursione-da-s-cristina-al-passo-sella.js?v=f78a57e51aa7",
@@ -282,7 +282,7 @@
         "trecime-sesto-alte-saege-val-campo-di-dentro": "data/trail-details/trecime-sesto-alte-saege-val-campo-di-dentro.js?v=2c78f9ff5316",
         "trecime-cimabanche-prato-piazza": "data/trail-details/trecime-cimabanche-prato-piazza.js?v=f4c08a73dba6",
         "campiglio-lago-ritorto-nel-blu-dipinto-di-blu": "data/trail-details/campiglio-lago-ritorto-nel-blu-dipinto-di-blu.js?v=e7e00b887457",
-        "campiglio-carisolo-centro-storico": "data/trail-details/campiglio-carisolo-centro-storico.js?v=f187e10c1303",
+        "campiglio-carisolo-centro-storico": "data/trail-details/campiglio-carisolo-centro-storico.js?v=065a1605268c",
         "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa": "data/trail-details/campiglio-laghi-di-san-giuliano-garzone-e-vacarsa.js?v=6666f5871c10",
         "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio": "data/trail-details/campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio.js?v=a32c6faa8907",
         "campiglio-monte-spinale-rifugio-graffer": "data/trail-details/campiglio-monte-spinale-rifugio-graffer.js?v=1560c0998e79",
