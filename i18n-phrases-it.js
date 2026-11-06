@@ -1139,6 +1139,7 @@ window.ORMA_PHRASES_IT = {
   "This image could not be decoded.": "Non è stato possibile leggere questa immagine.",
   "This image has invalid dimensions.": "Questa immagine ha dimensioni non valide.",
   "This is a busy route, and this dog needs space from other people and dogs.": "È un percorso affollato, e questo cane ha bisogno di spazio da persone e altri cani.",
+  "This is an out-and-back walk: you come back the same way you went up, so you can turn round at any point": "È un percorso di andata e ritorno: si torna per la stessa via dell'andata, quindi puoi tornare indietro in qualsiasi punto",
   "This is a point-to-point route, so plan the return: retrace your steps or check local buses": "È un percorso solo andata, quindi organizza il ritorno: torna sui tuoi passi o controlla gli autobus della zona",
   "This is a quiet route with room to give other walkers space.": "È un percorso tranquillo, con spazio per lasciare passare gli altri escursionisti.",
   "This is a true loop: it closes back on its own start point, so there's no return leg to plan": "È un vero anello: torna al punto di partenza, quindi non c'è un ritorno da organizzare",
