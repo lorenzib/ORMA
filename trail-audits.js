@@ -16587,6 +16587,108 @@
         }
       ]
     },
+    'osm-1116675': {
+      // Sealed 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are measured by
+      // ORMA from the map. Here the ground heights come from the 25 m EU-DEM every 100 m (10 m threshold; time by DIN 33466): the
+      // coarser Open-Meteo grid puts a false 96 m dip near the start, where the meadow edge drops steeply into the valley.
+      // Hand audit 6 November 2026: the line matches the province trail register's 'Familienrundweg' (routes-hikingtrails.11425373,
+      // AVS path 19, 2,205 m): every register point within 21 m of the line. Dogs: Sexten publishes no dog rule, so the national rule
+      // applies; about a fifth of the loop is in the Drei Zinnen nature park (IT3110050), where dogs must be on a lead.
+      area: 'Rotwandwiesen above Sexten / Sesto',
+      distance: 2.3,
+      elevation: 90,
+      hours: '1',
+      elevationProfile: [
+        { km: 0, elev: 1916 },
+        { km: 0.2, elev: 1881 },
+        { km: 0.4, elev: 1892 },
+        { km: 0.6, elev: 1928 },
+        { km: 0.8, elev: 1960 },
+        { km: 1.0, elev: 1969 },
+        { km: 1.2, elev: 1942 },
+        { km: 1.4, elev: 1931 },
+        { km: 1.6, elev: 1919 },
+        { km: 1.8, elev: 1932 },
+        { km: 2.0, elev: 1907 },
+        { km: 2.3, elev: 1916 }
+      ],
+      routeNumberSource: {
+        provider: 'Autonome Provinz Bozen, hiking-trail register',
+        name: 'Familienrundweg',
+        url: 'https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425373'
+      },
+      routeNumberGuidance: {
+        mode: 'numbered',
+        start: 'Start at the top of the Rotwand gondola from Bad Moos, on the Rotwandwiesen (1,925 m), beside the Rotwandwiesenhütte and the Rudi-Hütte. The loop begins and ends here. If the gondola is not running, path 17 climbs about 570 m from the valley station in Moos.',
+        status: 'The loop is AVS path 19 in the province trail register and is signed 19 on the ground (red-white-red with a black 19, per OpenStreetMap). For about 0.6 km it shares the way with path 18.',
+        sequence: 'Path 19 all the way: from the top station a short way down the ski track, then on path up through larch meadows to the junction with path 18; together on 18/19 and along the Skiweg Unesco track; then path 19 leaves the track and runs back over the meadows to the top station.',
+        switches: 'At about 0.9 km path 19 meets path 18; at about 1.5 km path 19 leaves the Skiweg Unesco track to the right of path 18 and heads back to the top station. Read off the map (OpenStreetMap) and the province register; no operator publishes turn-by-turn directions.',
+        sources: [
+          {
+            label: 'South Tyrol trail register, Familienrundweg, path 19 (Open Data Hub)',
+            url: 'https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425373',
+            authority: 'Autonome Provinz Bozen, hiking-trail register',
+            reviewedAt: '2026-11-06'
+          },
+          {
+            label: 'OpenStreetMap relation 1116675 (AVS 19)',
+            url: 'https://www.openstreetmap.org/relation/1116675',
+            authority: 'OpenStreetMap',
+            reviewedAt: '2026-11-06'
+          }
+        ]
+      },
+      startPoint: { lat: 46.6650281, lng: 12.3729343, label: 'Rotwand gondola top station, Rotwandwiesen (1,925 m)' },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-06',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Commons, FkMohr, CC BY-SA 3.0 de (kept): the Altensteiner Tal and the Sexten Dolomites, geotagged 434 m from the line.',
+        route: 'Closed loop of 2.27 km; every point of the register’s Familienrundweg (2,205 m) is within 21 m of the line.',
+        routeNumbers: 'AVS path 19 in the province register and on OpenStreetMap; it shares about 0.6 km with path 18.',
+        mapPoints: 'Start at the Rotwand gondola top station; the Rotwandwiesenhütte and the Rudi-Hütte are at the start; no drinking fountain on the loop.',
+        elevation: 'No official figure. Measured by ORMA from the map: 2.27 km, about 90 m up and down between 1,881 and 1,969 m, 49 min by DIN 33466 (25 m EU-DEM heights).'
+      },
+      graduation: {
+        status: 'verified',
+        required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        blockers: {}
+      },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Autonome Provinz Bozen, hiking-trail register (Open Data Hub): Familienrundweg, AVS path 19, routes-hikingtrails.11425373, 2,205 m; every register point within 21 m of the line',
+          'Gemeinde Sexten publishes no dog regulation, so the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'South Tyrol nature parks: dogs on a lead at all times (Decree of the Governor of the Province no. 19 of 8 July 2013 and the Province’s code of conduct for the nature parks)',
+          'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans): about a fifth of the line is in the Drei Zinnen nature park and Natura 2000 site IT3110050; no biotope or natural monument on the line; land cover about half pasture and alpine grassland and a quarter forest',
+          'OpenStreetMap relation 1116675: ski-slope tracks (piste 4b, Skiweg Unesco), mountain-bike tags, and the huts at the top station'
+        ],
+        date: '2026-11-06'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: [
+        'Ski-slope tracks shared with mountain bikes and the occasional lift-service vehicle',
+        'Check the Rotwand gondola is running before you set out'
+      ],
+      terrainType: 'Gravel tracks over ski meadows and meadow paths',
+      shadeDescription: 'Mostly open: about half the loop crosses pasture and alpine grassland, and about a quarter runs under larch and spruce.',
+      terrainDescription: 'A short family loop at 1,880–1,970 m on the Rotwandwiesen meadows above Sexten, reached by gondola, on gravel tracks and meadow paths with views of the Sexten Dolomites.',
+      waterDescription: 'No drinking fountain on the loop. The Rotwandwiesenhütte and the Rudi-Hütte at the top station serve food and drink in summer; carry water for your dog.',
+      dogNotes: 'Sexten publishes no dog regulation of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. About a fifth of the loop is in the Drei Zinnen nature park, where dogs must be on a lead at all times. Half the loop crosses pasture, so expect grazing cattle in summer. The Rotwand gondola has closed cabins: keep your dog on a lead and carry a muzzle.',
+      tips: 'Ride the Rotwand gondola up from Bad Moos and follow path 19 round the meadows back to the top station: 2.3 km, about 90 m of up and down, under an hour. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Give grazing cattle room, watch for mountain bikes on the tracks, and check the gondola is running before you go.',
+      sourceLinks: [
+        { label: 'South Tyrol trail register, Familienrundweg (Open Data Hub)', url: 'https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425373' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap relation 1116675', url: 'https://www.openstreetmap.org/relation/1116675' }
+      ],
+      desc: 'A short family loop on path 19 over the Rotwandwiesen meadows above Sexten, reached by the Rotwand gondola from Bad Moos, through larch pasture with views of the Sexten Dolomites. 2.3 km, about 90 m of up and down, in under an hour, as measured by ORMA (no official figure).'
+    },
     'osm-12018939': {
       // Correction, 23 October 2026 (not a verification: no usable photo of the walk exists yet). Line rebuilt on OSM ways along
       // the Eggental Tourismus track for the Steinegger Höhenweg (13.1 km, via the Lerchhof), which the old line left for about 3 km;

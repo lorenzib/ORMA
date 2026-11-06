@@ -2452,7 +2452,10 @@ resting and rejection are unchanged.
    Kastelaz Promenade and Flaaser Rundweg carry a climb and a time measured
    by ORMA from the map (Open-Meteo ground heights every 100 m with a 10 m
    threshold; time by DIN 33466), because no authority publishes either.
-   Their pages say so in words. The rule stands for every other walk.
+   Their pages say so in words. The same decision, later that day, covers
+   Familienrundweg (Sexten, path 19); its heights come from the 25 m EU-DEM,
+   because the coarser Open-Meteo grid puts a false dip on its steep meadow
+   edge. The rule stands for every other walk.
 2. **Every municipality the line crosses.** The Ranger is given sample points
    along the whole line -- the start, one every kilometre, the point farthest
    from the start, and the end -- because a loop often crosses into the next
