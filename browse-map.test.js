@@ -82,7 +82,7 @@ describe('Trails page map', () => {
     expect(html).toContain('id="browseSearchArea"');
     expect(html).toContain('data-browse-view="list"');
     expect(html).toContain('data-browse-view="map"');
-    expect(html).toContain('src="browse-map.js?v=20261028-1"');
+    expect(html).toContain('src="browse-map.js?v=20261106-2"');
     expect(html).toContain('scoreFor:matchScore');
     expect(html).toContain('savedFor:trail => !!currentFavorites[trail.id]');
   });

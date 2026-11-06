@@ -1,3 +1,4 @@
+require('./route-return');
 const weatherWindow = require('./trail-weather-window');
 
 function forecast(days = ['2026-08-20', '2026-08-21']){
