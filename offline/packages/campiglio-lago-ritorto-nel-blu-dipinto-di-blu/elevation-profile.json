@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "campiglio-lago-ritorto-nel-blu-dipinto-di-blu",
+  "distanceKm": 5.4,
+  "ascentM": 339,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1727
+    },
+    {
+      "km": 0.4,
+      "elev": 1745
+    },
+    {
+      "km": 0.9,
+      "elev": 1764
+    },
+    {
+      "km": 1.3,
+      "elev": 1770
+    },
+    {
+      "km": 1.7,
+      "elev": 1762
+    },
+    {
+      "km": 2.1,
+      "elev": 1758
+    },
+    {
+      "km": 2.5,
+      "elev": 1802
+    },
+    {
+      "km": 2.9,
+      "elev": 1848
+    },
+    {
+      "km": 3.3,
+      "elev": 1910
+    },
+    {
+      "km": 3.7,
+      "elev": 1961
+    },
+    {
+      "km": 4.2,
+      "elev": 2009
+    },
+    {
+      "km": 4.6,
+      "elev": 2017
+    },
+    {
+      "km": 5,
+      "elev": 2006
+    },
+    {
+      "km": 5.4,
+      "elev": 2060
+    }
+  ]
+}

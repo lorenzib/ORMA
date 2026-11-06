@@ -38,31 +38,41 @@ describe('scan-first safety guide layouts', () => {
     expect(html).not.toContain('<table');
   });
 
-  test('guardian-dog guidance runs spot, pasture, approach, after', () => {
+  test('guardian-dog guidance follows the heat guide pattern: what you see, steps, alert, afterwards', () => {
     const html = read('livestock-guard-dogs.html');
     document.body.innerHTML = html;
     expect(document.querySelector('h1').textContent).toBe('Meeting a livestock guardian dog with your own dog');
     expect(document.title).toBe('Meeting a livestock guardian dog with your own dog | ORMA');
-    const headings = Array.from(document.querySelectorAll('.guardian-section h2')).map(h => h.textContent);
-    expect(headings).toEqual([
-      'How to recognise guardian dogs',
-      'Before you walk into a pasture',
-      'If a guardian dog comes over',
-      'After an incident',
-    ]);
     expect(html).toContain('guide-scan-cards.css?v=20260825-1');
+    expect(document.querySelector('.guide-quick')).not.toBeNull();
     expect(document.querySelector('.safety-sources')).not.toBeNull();
     expect(document.body.textContent).toContain('Last reviewed 5 November 2026');
+    expect(Array.from(document.querySelectorAll('.hs-section h2')).map(h => h.textContent)).toEqual([
+      'What are you seeing?',
+      'Stop, then back away',
+      'After an incident',
+    ]);
+    expect(Array.from(document.querySelectorAll('.hs-observation-label')).map(l => l.textContent)).toEqual([
+      'Signs of a flock',
+      'Guardian dog in sight',
+      'It comes over',
+    ]);
+    expect(document.querySelectorAll('.hs-actions')).toHaveLength(2);
+    expect(document.querySelectorAll('.hs-action')).toHaveLength(6);
+    expect(document.querySelectorAll('.scan-alert')).toHaveLength(1);
+    expect(document.querySelector('.scan-alert strong').textContent).toBe('If a fight starts, let go of the lead');
+    const sign = document.querySelector('.hs-section .guardian-sign');
+    expect(sign.querySelector('img').getAttribute('src')).toBe('../images/editorial/safety-library/livestock-guardian-dog-sign-v1.jpg');
+    expect(sign.querySelector('img').getAttribute('alt')).toMatch(/guardian dog/);
+    expect(sign.querySelector('h3').textContent).toBe('What the sign says');
+    expect(sign.querySelectorAll('ol > li')).toHaveLength(3);
+    const italian = fs.readFileSync(path.join(__dirname, 'it', 'guides', 'livestock-guard-dogs.html'), 'utf8');
+    expect(italian).toContain('src="../../images/editorial/safety-library/livestock-guardian-dog-sign-v1.jpg"');
+    expect(fs.existsSync(path.join(__dirname, 'images', 'editorial', 'safety-library', 'livestock-guardian-dog-sign-v1.jpg'))).toBe(true);
     expect(html).toContain('Maremmano-Abruzzese');
     expect(html).toContain('French national guidance says to let go of the lead');
-    expect(document.querySelectorAll('.guardian-steps > li')).toHaveLength(4);
-    // Every section is one white card, and there is a single warning box.
-    expect(document.querySelectorAll('.guardian-section > .guardian-content-card')).toHaveLength(4);
-    expect(document.querySelectorAll('.scan-alert')).toHaveLength(1);
-    expect(Array.from(document.querySelectorAll('.guardian-section-head')).every(head => !head.closest('.guardian-content-card'))).toBe(true);
-    expect(html).not.toContain('Three moves, in order');
+    expect(html).not.toContain('guardian-section');
+    expect(html).not.toContain('guardian-stage');
     expect(html).not.toContain('scan-grid');
-    expect(html).not.toContain('Explore Savoie');
-    expect(html).not.toContain('class="gp-steps"');
   });
 });

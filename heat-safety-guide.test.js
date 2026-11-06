@@ -18,22 +18,20 @@ describe('Heat and hydration safety guide', () => {
     expect(document.querySelectorAll('[data-heat-level]')).toHaveLength(0);
     expect(document.querySelectorAll('.hs-observation')).toHaveLength(3);
     expect(document.body.textContent).toContain('Cool first, travel second');
-    expect(document.body.textContent).toContain('Turn back earlier for higher-risk dogs');
+    expect(document.querySelector('.hs-risk')).toBeNull();
     expect(document.body.textContent).not.toContain('Emergency boundary');
     expect(html).not.toContain('wet the belly and paw pads');
     expect(html).not.toContain('not ice-cold');
   });
 
-  test('makes the higher-risk warning and next-guide action prominent', () => {
-    const warning = document.querySelector('.hs-risk');
-    const overview = document.querySelector('.hs-overview');
-    const cooling = document.getElementById('coolFirstTitle').closest('.hs-section');
+  test('puts the higher-risk dogs and the wet-towel warning in the quick list', () => {
+    const quick = document.querySelector('.guide-quick');
+    expect(quick.textContent).toContain('turn back earlier');
+    expect(quick.textContent).toContain('Never cover an overheating dog with a wet towel');
+  });
+
+  test('makes the next-guide action prominent', () => {
     const nextGuide = document.querySelector('.safety-continue__next');
-    expect(warning.tagName).toBe('ASIDE');
-    expect(warning.querySelector('.hs-risk-avatar').getAttribute('src')).toContain('heat-risk-pug-v1.png');
-    expect(warning.textContent).toContain('Never cover an overheating dog with a wet towel');
-    expect(warning.compareDocumentPosition(overview) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(warning.compareDocumentPosition(cooling) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(nextGuide.classList.contains('hs-next-cta')).toBe(false);
     expect(html).toContain('safety-guide-system.css?v=20261104-1');
     expect(nextGuide.getAttribute('href')).toBe('water-for-dogs-on-trail.html');

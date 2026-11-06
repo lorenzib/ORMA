@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "bormio-da-arnoga-al-rifugio-federico",
+  "distanceKm": 6.6,
+  "ascentM": 562,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1906
+    },
+    {
+      "km": 0.5,
+      "elev": 1909
+    },
+    {
+      "km": 1,
+      "elev": 1898
+    },
+    {
+      "km": 1.5,
+      "elev": 1939
+    },
+    {
+      "km": 2,
+      "elev": 1903
+    },
+    {
+      "km": 2.5,
+      "elev": 1910
+    },
+    {
+      "km": 3,
+      "elev": 1916
+    },
+    {
+      "km": 3.5,
+      "elev": 1926
+    },
+    {
+      "km": 4,
+      "elev": 1954
+    },
+    {
+      "km": 4.5,
+      "elev": 1971
+    },
+    {
+      "km": 5,
+      "elev": 1984
+    },
+    {
+      "km": 5.5,
+      "elev": 2015
+    },
+    {
+      "km": 6.1,
+      "elev": 2099
+    },
+    {
+      "km": 6.5,
+      "elev": 2131
+    },
+    {
+      "km": 6.6,
+      "elev": 2130
+    }
+  ]
+}

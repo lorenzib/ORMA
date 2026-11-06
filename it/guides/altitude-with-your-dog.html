@@ -61,6 +61,9 @@
   .alt-medication{margin-bottom:23px;}
   .alt-warning-note{border:1px solid var(--alt-red);background:var(--alt-red-soft);}
   .alt-warning-note h3,.alt-warning-note p{color:var(--alt-red);}
+  .alt-warning-item{display:flex;gap:10px;align-items:flex-start;}
+  .alt-warning-item+.alt-warning-item{margin-top:11px;padding-top:11px;border-top:1px solid color-mix(in srgb,var(--alt-red) 30%,transparent);}
+  .alt-warning-icon{flex:none;width:18px;height:18px;margin-top:1px;fill:none;stroke:var(--alt-red);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 
   .alt-sources{margin-top:18px;border-top:1px solid var(--alt-line);color:var(--alt-soft);}
   .alt-sources summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0;cursor:pointer;list-style:none;font-size:.74rem;}
@@ -111,7 +114,7 @@
   <div class="alt-shell content-canvas">
   <section class="guide-quick" aria-labelledby="guideQuickTitle">
     <h2 class="guide-quick__title" id="guideQuickTitle">In 20 secondi</h2>
-    <ul><li>Prima del viaggio annota come respira, cammina e mangia di solito il tuo cane.</li><li>Il primo giorno scegli un giro breve e facile, con un punto per tornare indietro presto.</li><li>Tosse nuova, poca resistenza o respiro insolito: fermati e torna indietro.</li></ul>
+    <ul><li>Prima del viaggio annota come respira, cammina e mangia di solito il tuo cane.</li><li>Il primo giorno scegli un giro breve e facile, con un punto per tornare indietro presto.</li><li>Tosse nuova, poca resistenza o respiro insolito: fermati e torna indietro.</li><li>Se il tuo cane ha problemi al cuore o ai polmoni, chiedi prima al veterinario. Mai farmaci umani.</li></ul>
   </section>
 
     <section class="alt-section alt-context" id="why-altitude" aria-labelledby="altWhyTitle">
@@ -121,8 +124,8 @@
         <p>Più si sale, meno ossigeno è disponibile. Una salita rapida unita all’esercizio può aumentare lo sforzo di respirazione e circolazione, oppure far emergere un problema cardiaco o respiratorio che a casa passava quasi inosservato. Fermati se compaiono una tosse nuova, poca resistenza o un respiro anomalo.</p>
       </div>
       <div class="alt-vet-note alt-warning-note">
-        <p><b>Chiedi prima al veterinario</b><br>Fai un controllo prima di partire se il tuo cane ha malattie cardiache o polmonari, tosse, svenimenti, si stanca facilmente o ha già avuto problemi in quota. Fai ancora più attenzione con cuccioli, cani anziani e cani brachicefali.</p>
-        <p><b>Niente farmaci umani per la quota</b><br>Non dare mai farmaci umani per il mal di montagna o antidolorifici, se il veterinario non li ha prescritti per il tuo cane. Non usare farmaci per andare avanti nonostante i segnali d’allarme.</p>
+        <div class="alt-warning-item"><svg class="alt-warning-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 4h-1a2 2 0 0 0 -2 2v3.5a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1"/><path d="M8 15a6 6 0 1 0 12 0v-3"/><path d="M11 3v2M6 3v2"/><circle cx="20" cy="10" r="2"/></svg><p><b>Chiedi prima al veterinario</b><br>Fai un controllo prima di partire se il tuo cane ha malattie cardiache o polmonari, tosse, svenimenti, si stanca facilmente o ha già avuto problemi in quota. Fai ancora più attenzione con cuccioli, cani anziani e cani brachicefali.</p></div>
+        <div class="alt-warning-item"><svg class="alt-warning-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7"/><path d="M8.5 8.5l7 7"/></svg><p><b>Niente farmaci umani per la quota</b><br>Non dare mai farmaci umani per il mal di montagna o antidolorifici, se il veterinario non li ha prescritti per il tuo cane. Non usare farmaci per andare avanti nonostante i segnali d’allarme.</p></div>
       </div>
     </section>
 
@@ -190,7 +193,7 @@
     <div>
       <div class="hp-footer-h">Prendersi cura del cane</div>
       <div class="hp-footer-links">
-        <a href="../guides/water-for-dogs-on-trail.html">Caldo e idratazione</a>
+        <a href="../guides/heat-overheating.html">Caldo e idratazione</a>
         <a href="../guides/paw-protection.html">Protezione delle zampe</a>
         <a href="../guides/breed-group-caveats.html">Avvertenze per gruppo di razze</a>
         <a href="../guides/alpine-plants-for-dogs.html">Guida alle piante alpine</a>

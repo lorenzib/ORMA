@@ -60,11 +60,6 @@
   .hs-action::before{content:counter(heat-step);display:grid;grid-column:1;grid-row:1;place-items:center;width:25px;height:25px;border-radius:50%;background:var(--hs-green);color:var(--hs-card);font-weight:800;font-size:.7rem;}
   .hs-action strong{display:flex;grid-column:2;grid-row:1;align-items:center;min-height:25px;margin-bottom:6px;color:var(--hs-ink);font-size:1.03rem;}
   .hs-action span{display:block;grid-column:2;grid-row:2;color:var(--hs-soft);font-size:.78rem;line-height:1.48;}
-  .hs-risk{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:center;max-width:none;margin:18px 0 20px;border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:16px 19px;background:linear-gradient(135deg,#A43E29 0%,var(--hs-red) 100%);color:rgba(255,255,255,.92);box-shadow:0 14px 30px -22px rgba(128,44,28,.72);}
-  .hs-risk-avatar{display:block;width:44px;height:44px;border:2px solid rgba(255,255,255,.62);border-radius:50%;object-fit:cover;background:#F1D6B0;box-shadow:0 4px 12px rgba(80,24,14,.24);}
-  .hs-risk-label{display:block;margin-bottom:3px;color:#FFD9CB;font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
-  .hs-risk strong{display:block;margin-bottom:4px;color:#fff;font:700 clamp(1.02rem,1.7vw,1.2rem)/1.15 "Bricolage Grotesque",sans-serif;}
-  .hs-risk p{max-width:980px;margin:0;color:rgba(255,255,255,.92);font-size:.78rem;line-height:1.5;}
   @media(max-width:820px){
     .guide-hero{width:min(100% - 36px,1120px);padding:30px 28px 24px;}
     .gp-body{width:min(100% - 36px,1120px);}
@@ -78,8 +73,6 @@
     .hs-readiness{padding:19px 17px;}
     .hs-checks,.hs-observations,.hs-actions{grid-template-columns:1fr;}
     .hs-section-head p{margin-top:6px;}
-    .hs-risk{grid-template-columns:38px minmax(0,1fr);gap:11px;padding:14px;}
-    .hs-risk-avatar{width:38px;height:38px;}
   }
 </style>
 <link rel="stylesheet" href="../../guides/safety-guide-system.css?v=20261104-1">
@@ -114,17 +107,9 @@
 <main class="gp-body content-canvas" id="mainContent">
   <section class="guide-quick" aria-labelledby="guideQuickTitle">
     <h2 class="guide-quick__title" id="guideQuickTitle">In 20 secondi</h2>
-    <ul><li>Prima di partire controlla: ombra o una via breve per tornare, acqua sufficiente, l’ora meno calda e un cane che si comporta come sempre.</li><li>Ansima forte, rallenta o cerca l’ombra: fermati, portalo all’ombra e inizia a rinfrescarlo.</li><li>Debolezza, gengive di colore strano, confusione o collasso: rinfrescalo subito e chiama ora un veterinario.</li></ul>
+    <ul><li>Prima di partire controlla: ombra o una via breve per tornare, acqua sufficiente, l’ora meno calda e un cane che si comporta come sempre.</li><li>Ansima forte, rallenta o cerca l’ombra: fermati, portalo all’ombra e inizia a rinfrescarlo.</li><li>Debolezza, gengive di colore strano, confusione o collasso: rinfrescalo subito e chiama ora un veterinario.</li><li>I cani brachicefali, in sovrappeso, a pelo folto, molto giovani, anziani, poco allenati o non in salute si surriscaldano prima: torna indietro prima. Non coprire mai un cane surriscaldato con un asciugamano bagnato: può trattenere il calore.</li></ul>
   </section>
 
-  <aside class="hs-risk" role="note" aria-labelledby="higherRiskTitle">
-    <img class="hs-risk-avatar" src="../../images/editorial/safety-library/heat-risk-pug-v1.png" alt="" width="320" height="320" decoding="async">
-    <div>
-      <span class="hs-risk-label">Cani più a rischio</span>
-      <strong id="higherRiskTitle">Con i cani più a rischio, torna indietro prima.</strong>
-      <p>Sii più prudente con cani brachicefali, in sovrappeso, a pelo folto, molto giovani, anziani, poco allenati o non in salute. Non coprire mai un cane surriscaldato con un asciugamano bagnato: può trattenere il calore.</p>
-    </div>
-  </aside>
 
   <section class="hs-overview" aria-label="Preparazione al caldo">
     <div class="hs-readiness" aria-labelledby="startCheckTitle">
@@ -219,7 +204,7 @@
     <div>
       <div class="hp-footer-h">Prendersi cura del cane</div>
       <div class="hp-footer-links">
-        <a href="../guides/water-for-dogs-on-trail.html">Caldo e idratazione</a>
+        <a href="../guides/heat-overheating.html">Caldo e idratazione</a>
         <a href="../guides/paw-protection.html">Protezione delle zampe</a>
         <a href="../guides/breed-group-caveats.html">Avvertenze per gruppo di razze</a>
         <a href="../guides/alpine-plants-for-dogs.html">Guida alle piante alpine</a>

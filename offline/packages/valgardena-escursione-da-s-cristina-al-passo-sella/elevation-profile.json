@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-escursione-da-s-cristina-al-passo-sella",
+  "distanceKm": 8.5,
+  "ascentM": 800,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1401
+    },
+    {
+      "km": 0.7,
+      "elev": 1451
+    },
+    {
+      "km": 1.3,
+      "elev": 1604
+    },
+    {
+      "km": 2,
+      "elev": 1643
+    },
+    {
+      "km": 2.6,
+      "elev": 1712
+    },
+    {
+      "km": 3.3,
+      "elev": 1753
+    },
+    {
+      "km": 3.9,
+      "elev": 1871
+    },
+    {
+      "km": 4.6,
+      "elev": 1937
+    },
+    {
+      "km": 5.2,
+      "elev": 1998
+    },
+    {
+      "km": 5.8,
+      "elev": 2121
+    },
+    {
+      "km": 6.5,
+      "elev": 2145
+    },
+    {
+      "km": 7.1,
+      "elev": 2166
+    },
+    {
+      "km": 7.8,
+      "elev": 2175
+    },
+    {
+      "km": 8.4,
+      "elev": 2178
+    },
+    {
+      "km": 8.5,
+      "elev": 2169
+    }
+  ]
+}

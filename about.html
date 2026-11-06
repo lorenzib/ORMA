@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Story of ORMA, Dog Trails &amp; Terrain Guide</title>
-<meta name="description" content="Born in the Italian Dolomites. Orma means footprint, the story, the name, and the mission behind the dog-specific topographic guide.">
+<title>About us, ORMA</title>
+<meta name="description" content="ORMA was born in the Italian Dolomites. Why it exists, what the name means, and what the trail guide does for you and your dog.">
 <meta name="theme-color" content="#2E4034">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -15,19 +15,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260916-5">
 <style>
-  /* About-page-only: the brand mark lives in the page itself, full-bleed in
-     the hero, and as a quiet stamp behind the article. */
-  .about-hero{position:relative;overflow:hidden;background:#22312A;color:#F2EDDF;padding:72px 0 80px;}
-  .about-hero-inner{position:relative;z-index:1;max-width:880px;margin:0 auto;}
+  /* About-page-only: a photo header, then the founder's story set as a
+     single editorial column rather than a card. */
+  .about-hero{position:relative;overflow:hidden;background:#22312A;color:#F2EDDF;min-height:500px;display:flex;align-items:flex-end;}
+  .about-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;}
+  .about-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,30,25,0) 35%,rgba(20,30,25,.78));}
+  .about-hero-inner{position:relative;z-index:1;padding-bottom:44px;}
   .about-hero .eyebrow{color:#C9D6C4;}
   .about-dict{font-size:15px;line-height:1.6;color:#D8D2BE;margin:18px 0 0;max-width:34em;}
   .about-dict b{color:#F2EDDF;}
-  .about-hero h1{font-size:clamp(30px,5vw,44px);margin:14px 0 0;color:#F2EDDF;}
-  .guide-article{position:relative;z-index:1;}
-  .orma-spell b{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15em;color:#22312A;}
-  .orma-sign{font-family:'Bricolage Grotesque',sans-serif;font-size:15px;color:#22312A;margin-top:18px;}
+  .about-hero h1{color:#F2EDDF;}
+  .about-story .kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 10px;}
+  .about-story p{font-size:17px;line-height:1.75;color:var(--ink);margin:0 0 18px;}
+  .about-story p.lead::first-letter{float:left;font-family:'Bricolage Grotesque',sans-serif;font-size:56px;line-height:.9;margin:6px 10px 0 0;color:#22312A;}
+  .about-story blockquote{margin:30px 0;padding:0 0 0 20px;border-left:3px solid #22312A;font-family:'Bricolage Grotesque',sans-serif;font-size:25px;line-height:1.3;color:#22312A;}
+  .about-photo{margin:34px 0 10px;}
+  .about-photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:30% 40%;border-radius:4px;}
+  .about-photo figcaption{font-size:13px;color:var(--ink-soft);margin-top:8px;}
+  .orma-sign{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;color:#22312A;margin-top:18px;}
   @media (max-width:700px){
-    .about-hero{padding:56px 0 64px;}
+    .about-hero{min-height:380px;}
+    .about-hero-bg{object-position:38% 40%;}
+    .about-page .guide-article{padding-left:18px;padding-right:18px;}
+    .about-story p{font-size:16px;}
+    .about-story blockquote{font-size:21px;}
   }
 </style>
 </head>
@@ -45,9 +56,10 @@
 </div>
 
 <div class="about-hero">
+  <img class="about-hero-bg" src="images/about/freddy-paw.jpg" alt="" width="540" height="359">
   <div class="about-hero-inner section-page-head">
     <div class="eyebrow" data-i18n="about.eyebrow">About us</div>
-    <h1 data-i18n="about.h1">The Story of ORMA</h1>
+    <h1 data-i18n="about.h1">The walk should fit the dog</h1>
     <p class="about-dict section-page-subtitle" data-i18n="about.sub"><b>orma</b> · noun [Italian] /ˈor.ma/, a footprint, a track, a trace left behind.</p>
   </div>
 </div>
@@ -56,32 +68,32 @@
 <div class="guide-article">
   <div data-lang-block="en">
 
-    <section class="guide-section">
-      <h2>About us</h2>
-      <p>ORMA was born in the Italian Dolomites. The Tre Cime ridge in our logo represents the mountains that shaped my life and inspired our mission. I grew up hiking these trails with my best friend, a terrier mix who went from a whirlwind of puppy energy to a steady companion, and eventually an old dog choosing his steps with quiet care. Learning to match my stride to his through every stage of his life became the foundation of everything we build today.</p>
-      <p>He is gone now, but his legacy echoes in how I look at the outdoors. A lifetime of hiking together taught me a fundamental truth that standard maps ignore. Not every path is kind to a dog, and not every dog is built for every trail.</p>
+    <article class="about-story">
+      <div class="kicker">Our story</div>
+      <p class="lead">ORMA was born in the Italian Dolomites. The Tre Cime ridge in our logo represents the mountains that shaped my life and inspired our mission. I grew up hiking these trails with my best friend Freddy, a terrier mix who went from a whirlwind of puppy energy to a steady companion, and eventually an old dog choosing his steps with quiet care. Learning to match my stride to his through every stage of his life became the foundation of everything we build today.</p>
+      <p>Today Freddy runs on other trails, but his legacy echoes in how I look at the outdoors. A lifetime of hiking together taught me a fundamental truth that standard maps ignore. Not every path is kind to a dog, and not every dog is built for every trail.</p>
       <p>We realized the route must adapt to the dog, never the other way around. Knowing the terrain before you set out isn't just a matter of safety. It is the key to preserving the joy of the experience.</p>
-      <p>That realization became ORMA. In Italian, an <em>orma</em> is the footprint a dog leaves on a trail and on your life. For our brand, it is a commitment to <span class="orma-spell"><b>O</b>ptimised <b>R</b>oute <b>M</b>apping for <b>A</b>ll dogs</span> and their humans. We built this platform to take the guesswork out of your adventures.</p>
-      <p>Today, ORMA features over 150 meticulously dog-scored trails across the Dolomites. As we expand into the French Alps and beyond, our purpose remains simple. We map these routes because a walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.</p>
+      <p>That realization became ORMA. In Italian, an <em>orma</em> is the footprint a dog leaves on a trail and on your life. We built this platform to take the guesswork out of your adventures.</p>
+      <p>Right now, ORMA covers more than 270 verified dog walks in the Dolomites. We are kicking off where our paws know the way best, with plans to take them further across the Alps. Our purpose remains simple.</p>
+      <blockquote>We map these routes because a walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.</blockquote>
+      <figure class="about-photo"><img src="images/about/freddy.jpg" alt="Freddy, a brown and white terrier mix, looking up" width="720" height="480" loading="lazy"><figcaption>Freddy</figcaption></figure>
       <p class="orma-sign">– Benedetta, Founder of ORMA</p>
-    </section>
-
-
+    </article>
 
   </div>
   <div data-lang-block="it" hidden>
 
-    <section class="guide-section">
-      <h2>Chi siamo</h2>
-      <p>ORMA affonda le sue radici nelle Dolomiti italiane, come suggeriscono le Tre Cime nel nostro logo: le montagne in cui scappo appena il mondo me lo concede. Sono cresciuta camminando su quei sentieri accanto al mio migliore amico, un terrier meticcio che è stato prima un turbine di giovane energia, poi un compagno sicuro, e infine un cane anziano che sceglieva ogni passo con quieta cura. Attraverso ogni stagione della sua vita, ho imparato ad accordare il mio passo al suo.</p>
-      <p>Oggi lui non c'è più, e nessuna camminata è più stata davvero la stessa. Ma tutto ciò che mi ha insegnato continua a camminare con me: nel modo in cui leggo il terreno prima di fidarmi, nell'acqua che metto nello zaino prima della salita, nel passo che tengo con i compagni che oggi camminano al mio fianco.</p>
-      <p>Una vita di camminate con lui mi ha insegnato ciò che nessuna mappa diceva: non ogni sentiero è gentile con un cane, e non ogni cane è fatto per ciò che un sentiero richiede, qualunque siano la sua età o corporatura. È la camminata a doversi adattare al cane, mai il contrario. Conoscere il terreno prima di partire è ciò che rende sicure le ore passate insieme. Ed è ciò che le mantiene pura gioia.</p>
-      <p>È così che è nata ORMA. In italiano, l'<em>orma</em> è l'impronta che un cane lascia su un sentiero, e nella tua vita. Lettera per lettera, è anche una promessa: un'<span class="orma-spell"><b>O</b>ptimised <b>R</b>oute <b>M</b>apping for <b>A</b>ll dogs</span>, una mappatura ottimizzata dei percorsi per tutti i cani (e i loro umani).</p>
-      <p>Oggi ORMA copre più di 150 sentieri valutati nelle Dolomiti, e da poco le nostre zampe hanno varcato le Alpi francesi, con l'intenzione di crescere ancora... perché una passeggiata non è mai solo una passeggiata quando la condividi con un cane; diventa un atto di compagnia, curiosità e gioia.</p>
+    <article class="about-story">
+      <div class="kicker">La nostra storia</div>
+      <p class="lead">ORMA affonda le sue radici nelle Dolomiti, come suggeriscono le Tre Cime nel nostro logo: le montagne in cui mi rifugio appena il mondo me lo concede. Sono cresciuta percorrendo quei sentieri accanto al mio migliore amico Freddy, un meticcio di terrier che è stato prima un turbine di energia da cucciolo, poi un compagno su cui contare, e infine un cane anziano che sceglieva ogni passo con calma e attenzione. In ogni stagione della sua vita ho imparato ad accordare il mio passo al suo.</p>
+      <p>Oggi Freddy corre su altri sentieri, ma ciò che mi ha insegnato è ancora con me: nel modo in cui leggo il terreno prima di fidarmi di un sentiero, nell'acqua che metto nello zaino prima della salita, nel passo che tengo con i compagni che oggi mi stanno accanto.</p>
+      <p>Una vita di sentieri insieme mi ha insegnato ciò che nessuna mappa dice: non tutti i sentieri sono adatti a un cane, e non tutti i cani sono fatti per ogni sentiero. È il percorso ad adattarsi al cane, mai il contrario. Conoscere il terreno prima di partire rende sicure le ore passate insieme, e lascia spazio solo alla gioia.</p>
+      <p>È così che è nata ORMA. Un'<em>orma</em> è l'impronta che un cane lascia su un sentiero, e nella tua vita.</p>
+      <p>Al momento ORMA conta più di 270 passeggiate verificate nelle Dolomiti. Partiamo da dove le nostre zampe conoscono meglio la strada, con l'intenzione di portarle presto oltre, nel resto delle Alpi. Il nostro scopo resta semplice.</p>
+      <blockquote>Tracciamo questi percorsi perché una passeggiata non è mai solo una passeggiata, quando la condividi con un cane: è complicità, curiosità e gioia.</blockquote>
+      <figure class="about-photo"><img src="images/about/freddy.jpg" alt="Freddy, un meticcio di terrier bianco e marrone, che guarda in alto" width="720" height="480" loading="lazy"><figcaption>Freddy</figcaption></figure>
       <p class="orma-sign">– Benedetta, fondatrice di ORMA</p>
-    </section>
-
-
+    </article>
 
   </div>
 </div>
@@ -111,7 +123,7 @@
     <div>
       <div class="hp-footer-h">Caring for your dog</div>
       <div class="hp-footer-links">
-        <a href="guides/water-for-dogs-on-trail.html">Heat &amp; hydration</a>
+        <a href="guides/heat-overheating.html">Heat &amp; hydration</a>
         <a href="guides/paw-protection.html">Paw protection</a>
         <a href="guides/breed-group-caveats.html">Breed group caveats</a>
         <a href="guides/alpine-plants-for-dogs.html">Alpine plants guide</a>
