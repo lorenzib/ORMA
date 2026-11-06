@@ -230,12 +230,12 @@ describe('app pages make room for the clock and drop the install advice', () => 
   const pages = [...files].filter(file => file.endsWith('.html'));
   const shell = fs.readFileSync(path.join(root, 'app-shell.css'), 'utf8');
 
-  test('every app page opts into the full screen and loads app-shell.css', () => {
+  test('every app page opts into the full screen, never zooms on a tap, and loads app-shell.css', () => {
     expect(files.has('app-shell.css')).toBe(true);
     const unfit = pages.filter((file) => {
       const app = fs.readFileSync(path.join(root, file), 'utf8')
         .replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_SHELL_TAG}\n</head>`);
-      return !/<meta name="viewport" content="[^"]*viewport-fit=cover">/.test(app) || !app.includes(APP_SHELL_TAG);
+      return !/<meta name="viewport" content="[^"]*maximum-scale=1, viewport-fit=cover">/.test(app) || !app.includes(APP_SHELL_TAG);
     });
     expect(unfit).toEqual([]);
   });
