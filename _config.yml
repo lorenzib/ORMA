@@ -83,3 +83,4 @@ exclude:
   - ios
   # Loaded only inside the native app; the website reads the trail list directly.
   - app-trail-data.js
+  - app-shell.css
