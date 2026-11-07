@@ -10610,6 +10610,97 @@
       ],
       desc: 'A short loop from the village square in Lajen across the sunny plateau to the Wasserbühl, a wooded knoll with traces of prehistoric settlement, and up to the Wetterkreuz, with views over the Eisack valley. The board lists 2.7 km and 82 m of ascent.'
     },
+    'osm-12132169': {
+      // Hand audit: 7 November 2026. Tourismusgenossenschaft Drei Zinnen’s “Toblacher Höhenweg” (dreizinnen.com
+      // activity 543: 27.1 km, 1,801 m up, 9:00 h, with a GPX), the walk relation 12132169 maps. The relation took a
+      // 1.2 km side loop to the Enzianhütte that the board’s line does not; the routeLine override in
+      // data/verified-trail-overrides.json cuts it at the board’s start, the junction for Kandellen, Frondeigen and the
+      // Silvestertal above Wahlen, and swaps two ridge variants for the board’s own on OSM ways.
+      // Communes: Toblach for most of it, about 2.5 km of the Golfen ridge in Gsies, about 0.6 km of the border ridge
+      // in Innervillgraten (Tyrol, Austria) and about 100 m in Innichen at the Marchkinkele. No Natura 2000 site or
+      // park on the line (the Drei Zinnen and Fanes-Sennes-Prags parks lie south of the Puster valley).
+      area: 'Toblach / Dobbiaco – Golfen, Pfannhorn and Silvestertal',
+      distance: 27.1,
+      elevation: 1801,
+      hours: '9',
+      sideTrips: [{ km: 10.82, note: 'Up to the Gaishörndl summit and back to the ridge path: the board names the Gaishörndl on the ridge and its own line turns at the summit.' }],
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the junction for Kandellen, Frondeigen and the Silvestertal just above Wahlen, the board’s start.",
+        "sequence": "Path 24 by road and forest to Frondeigen and up the forest road to the treeline, steep grass up to the summit cross on the Golfen, east along the ridge over the Hochhorn and the Gaishörndl to the Pfannhorn, along the border ridge past the Blankenstein to the Marchkinkele, down path 1 through the Blankental past the Steinbergalm, and down the Silvestertal past the Silvesteralm back to the start.",
+        "switches": "Leave the forest road at the treeline for the steep grass to the Golfen; at the Marchkinkele turn south onto path 1 into the Blankental; at the Silvesteralm take the forest road down the Silvestertal.",
+        "steps": [
+          { "text": "From the junction above Wahlen, follow path 24 along the road and then through the forest to the hamlet of Frondeigen.", "from": [0] },
+          { "text": "Stay on path 24 up the forest road to the treeline, then climb the steep grass slopes to the summit cross on the Golfen. This is most of the day’s climbing.", "from": [0] },
+          { "text": "Follow the ridge east over the Hochhorn and the Gaishörndl to the Pfannhorn, at 2,662 m the highest point; the Bonnerhütte sits just below it.", "from": [0] },
+          { "text": "Carry on along the border with Austria past the Blankenstein to the Marchkinkele and its summit cross, with the Marchhütte just below.", "from": [0] },
+          { "text": "Go down path 1 through the Blankental past the Steinbergalm, then take the forest road down the Silvestertal past the Silvesteralm.", "from": [0] },
+          { "text": "The last kilometre back to the start is on asphalt, or on the forest path that branches off to the left.", "from": [0] }
+        ],
+        "sources": [
+          { "tag": "tourist board", "label": "Toblacher Höhenweg: Wegbeschreibung", "authority": "Tourismusgenossenschaft Drei Zinnen Dolomiten", "url": "https://www.dreizinnen.com/de/activity/toblacher-h-henweg-_543", "reviewedAt": "2026-11-07" }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-07',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The summit cross on the Marchkinkele (2,545 m) on the border ridge, looking north over the Villgraten mountains (flocki on Mapillary, CC BY-SA 4.0, July 2020), 38 m from the line.',
+        route: 'Official loop 27.1 km, as Tourismusgenossenschaft Drei Zinnen publishes it with its GPX; the stored line is the OSM relation with the Enzianhütte side loop cut and two ridge variants redrawn on OSM ways along the board’s GPX, 26.67 km, closed at the board’s start, with 99.3% of the board’s GPX within 25 m of it and 100% of it within 25 m of the GPX.',
+        routeNumbers: 'Start at the junction for Kandellen, Frondeigen and the Silvestertal above Wahlen; path 24 to Frondeigen and up to the Golfen, along the ridge over the Hochhorn, the Gaishörndl and the Pfannhorn to the Marchkinkele, then path 1 down the Blankental and the Silvestertal back to the start.',
+        mapPoints: 'Start at the board’s junction above Wahlen (46.75629, 12.24174); drinking water only in the first 1.5 km near Toblach (OSM nodes 2454680055, 1825698637) and at the Silvesteralm and above Wahlen on the way down (OSM nodes 9026030519, 9022921278).',
+        elevation: 'Official 27.1 km, 1,801 m up and down, 9:00 h, highest point 2,662 m (Pfannhorn), lowest 1,393 m, rated difficult (Tourismusgenossenschaft Drei Zinnen). The stored line measures 1,695 m on EU-DEM 25 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Drei Zinnen Dolomiten, Toblacher Höhenweg (dreizinnen.com activity 543: route text, figures, GPX and status open)',
+          'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden (January 2010 text), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields',
+          'Gemeinde Gsies, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 39/2009), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields in the growing season',
+          'Gemeinde Innichen, Haltung und Führung von Hunden (council resolution no. 4 of 3 March 2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields in the growing season',
+          'Innervillgraten publishes no dog ordinance (none found on its website or in RIS); Tiroler Landes-Polizeigesetz § 6a (a lead or a muzzle in villages) and Almschutzverordnung § 2 (a short lead on grazed alpine pasture) apply on the 0.6 km of border ridge',
+          'EEA Natura 2000 sites and OpenStreetMap administrative boundaries: no Natura 2000 site or park on the line',
+          'OpenStreetMap ways along the line: SAC grades, road, surface, woodland, huts and water data'
+        ],
+        date: '2026-11-07'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Steep grass slopes up to the Golfen with no clear path in places', 'About 9 km of open ridge above 2,400 m, mountain-hiking ground (SAC T2), far from shelter in a storm', 'About 4 km on roads, the last kilometre on asphalt', 'A very long day: 27 km and 1,800 m of climbing'],
+      terrainType: 'Forest roads and tracks at both ends, steep grass and a mountain path along the ridge (OpenStreetMap)',
+      shadeDescription: 'Shaded in the forest on the way up to Frondeigen and down the Silvestertal; the whole ridge, from the Golfen to the Marchkinkele, is open and above the trees. About a quarter shaded.',
+      terrainDescription: 'Forest roads and tracks climb from Wahlen past Frondeigen to the treeline, then steep grass leads up to the Golfen. The ridge from the Golfen to the Marchkinkele is a mountain path over grass and stony ground above 2,400 m. Path 1 and the Silvestertal forest road lead back down. Rated difficult by the tourist board: 27 km and 1,800 m of climbing.',
+      waterDescription: 'Drinking water near Toblach at the start, then nothing on the ridge: the next tap is at the Silvesteralm, about 21 km in, and one more on the way down above Wahlen. The Marchhütte and the Steinbergalm on the way down may serve drinks in summer. Carry plenty for you and your dog.',
+      dogNotes: 'Toblach, Gsies and Innichen all require a lead of at most 1.5 m on public ground and a muzzle carried, and dogs must stay off farmed meadows and fields. The Steinbergalm and the Silvesteralm are summer pastures with cattle, so keep your dog close on the way down. This is a very long, hard day with an open ridge and no water for most of it: only for a fit dog used to big mountain days.',
+      tips: 'A long, hard ridge loop above Toblach: 27 km and about 1,800 m of climbing, nine hours. Only for fit walkers and fit dogs; the board suggests splitting it over two days with a night at the Bonnerhütte. Start early, carry all the water you need for the ridge, and keep your dog on a lead of at most 1.5 m.',
+      sourceLinks: [
+        { label: 'Tourismusgenossenschaft Drei Zinnen, Toblacher Höhenweg', url: 'https://www.dreizinnen.com/de/activity/toblacher-h-henweg-_543' },
+        { label: 'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.toblach.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Gemeinde Gsies, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.gsies.bz.it/system/web/GetDocument.ashx?fileId=99668' },
+        { label: 'Gemeinde Innichen, Haltung und Führung von Hunden', url: 'https://www.gemeinde.innichen.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden_1' },
+        { label: 'Tiroler Landes-Polizeigesetz § 6a (dogs in villages and on public transport)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40052150/LTI40052150.html' },
+        { label: 'Tiroler Almschutzverordnung § 2 (dogs on grazed alpine pastures)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40044604/LTI40044604.html' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12132169' }
+      ],
+      startPoint: { lat: 46.756289, lng: 12.241742, label: 'Junction for Kandellen, Frondeigen and the Silvestertal above Wahlen, the board’s start' },
+      waterSources: [
+        { km: 1.2, lat: 46.7616095, lng: 12.2316901, osmId: 'node/2454680055', label: 'Drinking water near Toblach' },
+        { km: 1.3, lat: 46.7624356, lng: 12.2307357, osmId: 'node/1825698637', label: 'Drinking water near Toblach' },
+        { km: 21.3, lat: 46.7601757, lng: 12.304996, osmId: 'node/9026030519', label: 'Drinking water at the Silvesteralm' },
+        { km: 24.8, lat: 46.7589954, lng: 12.2637228, osmId: 'node/9022921278', label: 'Drinking water on the way down above Wahlen' }
+      ],
+      rifugi: [
+        { km: 2, lat: 46.76387, lng: 12.23039, osmId: 'node/1314040458', name: 'Gasthof Kurterhof' },
+        { km: 16.4, lat: 46.78071, lng: 12.32723, osmId: 'node/9917675843', name: 'Marchhütte' },
+        { km: 20.3, lat: 46.76979, lng: 12.3022, osmId: 'way/517722085', name: 'Steinberghütte' },
+        { km: 21.3, lat: 46.76002, lng: 12.30491, osmId: 'way/236711949', name: 'Silvesteralm - Malga San Silvestro' },
+        { km: 25.4, lat: 46.75879, lng: 12.25658, osmId: 'node/11073787152', name: 'Schnegga Soge' }
+      ],
+      desc: 'A long ridge loop above Toblach: up through the forest past Frondeigen to the summit cross on the Golfen, along the open ridge over the Hochhorn, the Gaishörndl and the Pfannhorn and the Austrian border to the Marchkinkele, and down through the Blankental and the Silvestertal. The board lists 27.1 km and 1,801 m of ascent, nine hours.'
+    },
     'osm-9651462': {
       // Hand audit: 6 November 2026. Bruneck Kronplatz Tourismus’s “Sagenweg St. Lorenzen”
       // (Outdooractive 810055342), the walk relation 9651462 maps. The relation was rejected as
