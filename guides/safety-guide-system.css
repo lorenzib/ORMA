@@ -252,20 +252,33 @@
   .water-card--wide{grid-column:auto;}
 }
 
-@media(max-width:560px){
-  .safety-guide-article .safety-continue{align-items:stretch;}
+/* On tablets and phones the label sits above the guide title, so a long label
+   such as "Guida precedente" never runs into the title beside it. The arrow
+   keeps its side: left for the previous guide, right for the next one. */
+@media(max-width:760px){
   .safety-guide-article :is(.safety-continue__previous,.safety-continue__next){
     display:grid;
-    grid-template-columns:max-content minmax(0,1fr) max-content;
     align-items:center;
-    justify-content:stretch;
-    gap:12px;
-    width:100%;
+    column-gap:14px;
+    row-gap:3px;
     text-align:left;
   }
-  .safety-guide-article .safety-continue__label{flex-basis:auto;}
-  .safety-guide-article :is(.safety-continue__previous,.safety-continue__next) strong{min-width:0;}
-  .safety-guide-article :is(.safety-continue__previous,.safety-continue__next) .safety-continue__arrow{justify-self:end;}
+  .safety-guide-article .safety-continue__previous{
+    grid-template-columns:max-content minmax(0,1fr);
+    grid-template-areas:"arrow label" "arrow title";
+  }
+  .safety-guide-article .safety-continue__next{
+    grid-template-columns:minmax(0,1fr) max-content;
+    grid-template-areas:"label arrow" "title arrow";
+  }
+  .safety-guide-article .safety-continue__label{grid-area:label;}
+  .safety-guide-article :is(.safety-continue__previous,.safety-continue__next) strong{grid-area:title;min-width:0;}
+  .safety-guide-article :is(.safety-continue__previous,.safety-continue__next) .safety-continue__arrow{grid-area:arrow;}
+}
+
+@media(max-width:560px){
+  .safety-guide-article .safety-continue{align-items:stretch;}
+  .safety-guide-article :is(.safety-continue__previous,.safety-continue__next){width:100%;}
   .water-card{padding:19px 17px;}
 }
 

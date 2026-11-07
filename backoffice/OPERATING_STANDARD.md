@@ -2461,7 +2461,9 @@ resting and rejection are unchanged.
    Their pages say so in words. The same decision, later that day, covers
    Familienrundweg (Sexten, path 19). The coarser Open-Meteo grid was tried
    first and gave false dips on steep ground, so all four use the EU-DEM.
-   The rule stands for every other walk.
+   The owner extended it on 7 November 2026 to the Castelfeder nature trail
+   (Montan), whose only official figures are for the 6.1 km tour it is part
+   of. The rule stands for every other walk.
 2. **Every municipality the line crosses.** The Ranger is given sample points
    along the whole line -- the start, one every kilometre, the point farthest
    from the start, and the end -- because a loop often crosses into the next

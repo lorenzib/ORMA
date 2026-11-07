@@ -3439,6 +3439,7 @@ ${points}
     'osm-19974724': "Mittlerer Rundweg am Karer See",
     'osm-19974725': "Langer Rundweg am Karer See",
     'osm-20380913': "Hinzlweg",
+    'osm-2179746': "Ruine Castelfeder - Rovine Castelfeder",
     'osm-2376630': "Rundweg Katharinaberg",
     'osm-3202880': "Rundweg Montiggler Seen",
     'osm-3707731': "Gratschenbergrunde",
