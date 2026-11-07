@@ -8,5 +8,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Pasture paths and grassy ridges": "Sentieri nei pascoli e creste erbose",
   "Malga Confin, on the southern slopes of Monte Plauris, the board’s start": "Malga Confin, sui versanti meridionali del Monte Plauris, partenza indicata dalla scheda ufficiale",
   "Two farm buildings with bright green roofs on a steep grassy mountainside, rocky ridges and autumn-tinted woods above under a blue sky": "Due edifici rurali con i tetti verde brillante su un ripido versante erboso, creste rocciose e boschi dai colori autunnali sopra, sotto un cielo azzurro",
-  "No shade: the loop crosses open pastures and grassy ridges.": "Nessuna ombra: l'anello attraversa pascoli aperti e creste erbose."
+  "No shade: the loop crosses open pastures and grassy ridges.": "Nessuna ombra: l'anello attraversa pascoli aperti e creste erbose.",
+  "Paths CAI 702a and 702: from Malga Confin across the wide pastures and gentle ridges on the southern side of Monte Plauris to Malga Ungarina, and back round to Malga Confin. (The continuation to the summit of the Plauris, with sections graded EE, is not part of this walk.)": "Sentieri CAI 702a e 702: da Malga Confin attraverso gli ampi pascoli e i dolci crinali del versante meridionale del Monte Plauris fino a Malga Ungarina, e ritorno ad anello a Malga Confin. (La prosecuzione fino alla vetta del Plauris, con tratti di grado EE, non fa parte di questa passeggiata.)"
 });

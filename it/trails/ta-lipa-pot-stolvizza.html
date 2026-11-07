@@ -39,6 +39,23 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-months{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;list-style:none;padding:0;margin:10px 0 6px;max-width:460px;}
+  .sp-month{position:relative;text-align:center;font-size:.75rem;font-weight:600;padding:6px 0;border-radius:6px;border:2px solid transparent;}
+  .sp-month--good{background:#BFDDB8;color:#1D4523;}
+  .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
+  .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--now{border-color:#1F2A24;}
+  .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
+  .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
+  .sp-key--good{background:#BFDDB8;}
+  .sp-key--off{background:rgba(0,0,0,.08);}
+  .sp-key--snow{background:#C9DAF0;}
+  .sp-tag[hidden]{display:none;}
+  .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
+  .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
+  .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
+  .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   /* The waymark shield, as the app draws it in trail.html: a number a reader
      can match against the paint on a rock without reading a sentence first. */
   .sp-route-refs{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 4px;}
@@ -139,6 +156,7 @@
   <h1>Ta Lipa Pot - Percorso breve</h1>
   <p class="sp-gloss">the short Ta Lipa Pot loop from Stolvizza</p>
   <div class="sp-badges">
+    
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Terreno impegnativo</span></span>
     <span class="dp-badge dp-badge--neutral"><span>Revisionato da ORMA</span></span>
     
@@ -156,7 +174,7 @@
       <div class="sp-fact"><div class="sp-fact-k">Distanza</div><div class="sp-fact-v">5,5 km</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Dislivello in salita</div><div class="sp-fact-v">152 m</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Punto più alto</div><div class="sp-fact-v">599 m</div></div>
-      <div class="sp-fact"><div class="sp-fact-k">Durata</div><div class="sp-fact-v">1,75 h</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Durata</div><div class="sp-fact-v">1 h 45 min</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Terreno</div><div class="sp-fact-v">Sentieri nel bosco, strade sterrate e brevi tratti di strada asfaltata</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Valutazione del sentiero</div><div class="sp-fact-v">Terreno impegnativo</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Zona</div><div class="sp-fact-v">Stolvizza – Potok waterfall – Zamlin, Resia · Friuli Venezia Giulia, Italia</div></div>
@@ -176,10 +194,11 @@
     </svg>
     <figcaption class="sp-src">Profilo altimetrico: punto più basso 440 m, punto più alto 599 m.</figcaption>
   </figure>
+    
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> Da dove partire</h2>
     <p>Via Pustigost vicino al bar-trattoria All'arrivo, Stolvizza di Resia, partenza indicata dalla scheda ufficiale</p>
     <h2>Come seguire questo percorso</h2>
-    <p><b>Indicazioni:</b> The park’s “Ta Lipa Pot” (“the beautiful road” in Resian), no route number: from via Pustigost in Stolvizza down a steep stretch to the stream and, with some care over rocks and gravel, to the Potok waterfall; along the right bank through pine forest to the meadow of the Casa Resiana; straight on across a stream and past a large meadow to a junction, left down to the tarred road by the bar and campsite Al Ranch; right along the road through the hamlet of Zamlin, then left at a large meadow, following the signs, steeply up through shady woods past meadows and a stable to the road, and finally right off the road on the last stretch of path into Stolvizza.</p>
+    <p><b>Indicazioni:</b> La “Ta Lipa Pot” del parco (“la strada bella” in resiano), percorso senza numero: da via Pustigost a Stolvizza scendi per un tratto ripido fino al torrente e, con un po' di attenzione su rocce e ghiaia, fino alla cascata del Potok; lungo la riva destra attraverso la pineta fino al prato della Casa Resiana; prosegui dritto attraversando un torrente e oltre un grande prato fino a un bivio, a sinistra giù fino alla strada asfaltata presso il bar e campeggio Al Ranch; a destra lungo la strada attraverso la frazione di Zamlin, poi a sinistra a un grande prato, seguendo i cartelli, sali ripido nel bosco ombroso oltre prati e una stalla fino alla strada, e infine a destra, lasciando la strada, sull'ultimo tratto di sentiero fino a Stolvizza.</p>
     <p class="sp-route-source">Dalla verifica ORMA della descrizione ufficiale del percorso. Segui la traccia ORMA sulla mappa e i cartelli sul posto.</p>
     
     

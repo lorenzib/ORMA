@@ -96,3 +96,24 @@ describe('the score for the walk back', () => {
     expect(codes(routeReturn.outAndBack(walk))).toContain('trail.distance.above-range');
   });
 });
+
+// "3.9 h" read as 3 h 9 min; a reader says hours and minutes.
+describe('walking time as hours and minutes', () => {
+  test.each([
+    ['3.9', '3 h 55 min'],
+    ['1', '1 h'],
+    ['0.75', '45 min'],
+    ['3:38', '3 h 40 min'],
+    ['2–3', '2–3 h'],
+    ['1.5–2', '1 h 30 min – 2 h'],
+    ['0.3–0.5', '20–30 min'],
+    [5.75, '5 h 45 min'],
+  ])('%s hours reads "%s"', (hours, text) => {
+    expect(routeReturn.formatDuration(hours)).toBe(text);
+  });
+
+  test('nothing to read gives nothing', () => {
+    expect(routeReturn.formatDuration('')).toBe('');
+    expect(routeReturn.formatDuration(null)).toBe('');
+  });
+});

@@ -266,7 +266,7 @@ let liPendingLocationCenter = null;
 
 // A dog-fit score is not a useful homepage recommendation until it is scoped
 // to somewhere the owner can actually walk. Exact device coordinates live in
-// sessionStorage only; a manually chosen catalogue valley can be remembered
+// sessionStorage only; a manually chosen region or valley is remembered
 // between visits. Neither is written to the user's cloud profile.
 const LI_LOCATION_RADIUS_KM = 25;
 // A town is a place someone is staying, not where they are standing, so it
@@ -275,11 +275,13 @@ const LI_LOCATION_RADIUS_KM = 25;
 const LI_TOWN_RADIUS_KM = 40;
 let liTowns = null;
 const LI_LOCATION_SESSION_KEY = 'orma-home-current-location-v1';
-// A chosen area lasts for the visit, so a trail page and back keeps it; a
-// new visit opens on every trail, or near you when location is already
-// allowed. It used to be kept for good in localStorage, which reopened the
-// page on the last area chosen -- weeks later, and ahead of "near you".
-const LI_AREA_STORAGE_KEY = 'orma-home-selected-area-v1';
+// The region or valley the reader last chose, kept in this browser so a
+// reload or a new visit opens where they left it. It lived in sessionStorage
+// for a while, so a new tab or a reopened app forgot it and fell back to
+// whatever region the page guessed -- Friuli, for anyone who had last opened
+// Laghi di Fusine. v1 was kept per visit; v2 is the durable key.
+const LI_AREA_STORAGE_KEY = 'orma-home-chosen-area-v2';
+const LI_VISIT_AREA_KEY = 'orma-home-selected-area-v1';
 const LI_WALK_DATE_SESSION_KEY = 'orma-home-walk-date-v1';
 const LI_LOCATION_LABEL_ALIASES = Object.freeze({
   'Alta Pusteria – Tre Cime':'Alta Pusteria',
@@ -288,8 +290,8 @@ const LI_LOCATION_LABEL_ALIASES = Object.freeze({
 // place, so the page itself never opens on the Dolomites and Savoy mixed.
 const LI_ALL_TRAILS_CONTEXT = Object.freeze({ kind:'area', country:'all', region:'all', valley:'all', label:'All ORMA trails', transient:true });
 const LI_REGION_LABELS = Object.freeze({ dolomites:'The Dolomites', savoy:'Savoy', frenchalps:'French Alps', lombardy:'Lombardy', friuli:'Friuli Venezia Giulia', aosta:'Valle d’Aosta', piedmont:'Piedmont', tyrol:'Tyrol & Carinthia', switzerland:'Switzerland' });
-// The last trails opened, kept by trail.js in this browser only. Declared up
-// here because the page's opening region is read from them at load.
+// The last trails opened, kept by trail.js in this browser only, for the
+// dog menu's shortlist.
 const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
 
 // One region. `auto` marks a region the page chose for itself, which a
@@ -308,17 +310,11 @@ function liCatalogueTrails(){
   return typeof trails !== 'undefined' && Array.isArray(trails) ? trails : [];
 }
 
-// Where the page opens with nothing chosen: the region of the trail looked at
-// most recently, else the Dolomites, which has the most trails. Location, when
-// already allowed, refines this after load (liProbeLocationPermission).
+// Where the page opens with nothing chosen: the Dolomites, the launch region.
+// It used to follow the trail looked at most recently, so opening one trail
+// elsewhere quietly moved every later visit there. A location already allowed
+// still narrows this to "near you" after load (liProbeLocationPermission).
 function liDefaultLocationContext(){
-  let recent = [];
-  try{ recent = JSON.parse(localStorage.getItem(LI_RECENT_TRAILS_KEY) || '[]'); }catch(error){}
-  const list = liCatalogueTrails();
-  for(const item of Array.isArray(recent) ? recent : []){
-    const trail = item && list.find(candidate => candidate.id === item.id);
-    if(trail && LI_REGION_LABELS[trail.region]) return liRegionContext(trail.region, true);
-  }
   return liRegionContext('dolomites', true);
 }
 function liIsAllTrailsContext(context){
@@ -441,11 +437,16 @@ function liLoadLocationContext(){
     const current = liValidLocationContext(liStoredJson(sessionStorage, LI_LOCATION_SESSION_KEY));
     if(current) return current;
   }
-  // An area kept by an older version, for good, is forgotten here.
-  try{ if(typeof localStorage !== 'undefined') localStorage.removeItem(LI_AREA_STORAGE_KEY); }catch(error){}
+  if(typeof localStorage !== 'undefined'){
+    const area = liValidLocationContext(liStoredJson(localStorage, LI_AREA_STORAGE_KEY));
+    if(area && area.kind !== 'map') return area;
+    // An old v1 key left in localStorage is weeks stale: forget it.
+    try{ localStorage.removeItem(LI_VISIT_AREA_KEY); }catch(error){}
+  }
+  // A choice made under v1 this visit is still a choice: carry it over.
   if(typeof sessionStorage !== 'undefined'){
-    const area = liValidLocationContext(liStoredJson(sessionStorage, LI_AREA_STORAGE_KEY));
-    if(area) return area;
+    const area = liValidLocationContext(liStoredJson(sessionStorage, LI_VISIT_AREA_KEY));
+    if(area && area.kind !== 'map'){ liRememberLocationContext(area); return area; }
   }
   return liDefaultLocationContext();
 }
@@ -453,12 +454,15 @@ function liLoadLocationContext(){
 function liRememberLocationContext(context){
   try{
     if(typeof sessionStorage !== 'undefined') sessionStorage.removeItem(LI_LOCATION_SESSION_KEY);
-    if(typeof sessionStorage !== 'undefined') sessionStorage.removeItem(LI_AREA_STORAGE_KEY);
-    if(typeof localStorage !== 'undefined') localStorage.removeItem(LI_AREA_STORAGE_KEY);
+    if(typeof sessionStorage !== 'undefined') sessionStorage.removeItem(LI_VISIT_AREA_KEY);
+    // Near me is a choice too, and supersedes the area chosen before it, as
+    // does a reset. A transient context (a ?region= link, "Show all", the
+    // page's own pick) leaves the reader's choice for the next visit.
+    if((!context || context.kind === 'current') && typeof localStorage !== 'undefined') localStorage.removeItem(LI_AREA_STORAGE_KEY);
     if(context && context.kind === 'current' && typeof sessionStorage !== 'undefined'){
       sessionStorage.setItem(LI_LOCATION_SESSION_KEY, JSON.stringify(context));
-    } else if(context && (context.kind === 'area' || context.kind === 'town') && !context.transient && !liIsAllTrailsContext(context) && typeof sessionStorage !== 'undefined'){
-      sessionStorage.setItem(LI_AREA_STORAGE_KEY, JSON.stringify(context));
+    } else if(context && (context.kind === 'area' || context.kind === 'town') && !context.transient && !liIsAllTrailsContext(context) && typeof localStorage !== 'undefined'){
+      localStorage.setItem(LI_AREA_STORAGE_KEY, JSON.stringify(context));
     }
   }catch(error){ /* Storage can be unavailable in private browsing. */ }
 }
@@ -857,19 +861,6 @@ function liAnyTrailNear(lat, lng, radiusKm){
   });
 }
 
-// The region of the trail closest to a position, however far away it is.
-function liNearestTrailRegion(lat, lng){
-  let best = null;
-  let bestKm = Infinity;
-  liCatalogueTrails().forEach(trail => {
-    const point = liTrailLngLat(trail);
-    if(!point || !LI_REGION_LABELS[trail.region]) return;
-    const km = liDistanceKm(lat, lng, point[1], point[0]);
-    if(km < bestKm){ bestKm = km; best = trail.region; }
-  });
-  return best;
-}
-
 // `auto` is the page acting on a permission already granted, not the reader
 // pressing Near me: that one is shown even when nothing is close.
 function liRequestCurrentLocation(options){
@@ -888,12 +879,8 @@ function liRequestCurrentLocation(options){
     const lat = Number(position.coords.latitude);
     const lng = Number(position.coords.longitude);
     if(auto && !liAnyTrailNear(lat, lng, LI_LOCATION_RADIUS_KM)){
-      // Nothing within reach: open on the nearer region instead, unless the
-      // reader has picked a place in the meantime.
-      const region = liNearestTrailRegion(lat, lng);
-      if(region && liLocationContext && liLocationContext.auto && region !== liLocationContext.region){
-        liSetLocationContext(liRegionContext(region, true));
-      }
+      // Nothing within reach: stay on the Dolomites. Jumping to whichever
+      // region had the nearest trail opened the page somewhere nobody chose.
       liRenderLocationNudge();
       return;
     }
@@ -3680,7 +3667,7 @@ function liRowMeta(t){
   const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:shown.distance }) : ''; return v && v !== key ? v : fallback; };
   const parts = [back ? tr('card.thereAndBack', `${shown.distance} km there and back`) : `${t.distance} km`];
   if(Number.isFinite(shown.elevation)) parts.push(tx('{m} m climb', { m:shown.elevation }));
-  if(shown.hours) parts.push(`${back ? '≈ ' : ''}${shown.hours} h`);
+  if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? routeReturn.formatDuration(shown.hours) : `${shown.hours} h`}`);
   const exposure = liExposureLabel(t.exposure);
   if(exposure) parts.push(exposure);
   const shade = liShadeLabel(t.shadeCoverage);
@@ -5556,7 +5543,12 @@ Optional color legend:
 (function(){
   try {
     const forced = new URLSearchParams(window.location.search).get('view');
-    if(forced === 'returning'){
+    // The iPhone app opens every visitor, signed in or not, on the map and
+    // ranked list: an app is used, not read about, so the website's guest
+    // landing page has no place in it. scripts/build-app.js marks app pages
+    // with the orma-app class; the website never has it.
+    const inApp = document.documentElement.classList.contains('orma-app');
+    if(forced === 'returning' || inApp){
       liDevView = true;
       window.dispatchEvent(new CustomEvent('dolopaws-auth-changed', { detail: { user: null, devView: 'returning' } }));
     }

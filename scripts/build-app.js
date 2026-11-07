@@ -48,6 +48,9 @@ const RUNTIME_FILES = [
   'manifest.json',
   // Takes the place of regions-runtime-manifest.js on every app page.
   'app-trail-data.js',
+  // Linked into every app page, below.
+  'app-shell.css',
+  'app-tabbar.js',
 ];
 
 // Whole directories that ship as-is.
@@ -83,6 +86,27 @@ const REMOTE_REF = /(["'(])(?:\.\.\/|\.\/|\/)?(images\/trails\/)/g;
 // when online. app-trail-data.js does that and falls back to the copy inside.
 const MANIFEST_TAG = /<script src="regions-runtime-manifest\.js(?:\?[^"]*)?"><\/script>/g;
 const APP_MANIFEST_TAG = '<script src="app-trail-data.js"></script>';
+
+// The app draws under the clock and battery, so its pages opt into the full
+// screen and load app-shell.css, which moves the header below that strip and
+// drops the website's add-to-home-screen advice. They also hold the page at its
+// own size: an iPhone zooms in on any text box set smaller than 16px when it is
+// tapped, and many are, so a search left the page zoomed and cut off at the
+// right. A native app never zooms its pages; maps still pinch to zoom. Root-absolute, like the
+// vendored files, because trail pages sit one directory down.
+const VIEWPORT_TAG = /<meta name="viewport" content="([^"]*)">/g;
+const APP_VIEWPORT_TAG = (tag, content) => {
+  const own = content.split(',').map(part => part.trim())
+    .filter(part => part && !/^(?:maximum-scale|viewport-fit)=/.test(part));
+  return `<meta name="viewport" content="${[...own, 'maximum-scale=1', 'viewport-fit=cover'].join(', ')}">`;
+};
+const APP_SHELL_TAG = '<link rel="stylesheet" href="/app-shell.css">';
+// Every app page also gets the bottom tab bar (app-tabbar.js), which a
+// native app is navigated by.
+const APP_TABBAR_TAG = '<script src="/app-tabbar.js" defer></script>';
+// Marks the page as running inside the app before anything draws, so the
+// homepage can open on the map instead of the website's guest landing page.
+const APP_FLAG_TAG = '<script>document.documentElement.classList.add(\'orma-app\');</script>';
 
 const rel = (abs) => path.relative(root, abs).split(path.sep).join('/');
 const denied = (r) => DENY.some((pattern) => pattern.test(r));
@@ -248,7 +272,10 @@ function rewriteRemoteRefs(){
       .replace(HIKING_ORIGIN_LINE, `const HIKING_ORIGIN = '${SITE_ORIGIN}';`)
       .replace(REMOTE_REF, `$1${SITE_ORIGIN}/$2`)
       .replace(MANIFEST_TAG, APP_MANIFEST_TAG);
-    if(after !== before){ fs.writeFileSync(dest, after); rewritten += 1; }
+    const page = /\.html$/.test(r)
+      ? after.replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_FLAG_TAG}\n${APP_SHELL_TAG}\n${APP_TABBAR_TAG}\n</head>`)
+      : after;
+    if(page !== before){ fs.writeFileSync(dest, page); rewritten += 1; }
   }
   return rewritten;
 }
@@ -273,4 +300,5 @@ function build(){
 
 if(require.main === module) build();
 
-module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG };
+module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG,
+  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG, APP_FLAG_TAG };

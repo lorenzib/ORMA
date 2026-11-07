@@ -441,20 +441,20 @@ describe('returning homepage region + valley filters', () => {
     const context = loadHomepageContext(sampleTrails);
     // The shared harness stubs storage to a no-op, so this test brings a real
     // one: whether a map area quietly erases the stored area is the whole point.
-    // A chosen area lasts for the visit, so it lives in sessionStorage.
+    // A chosen area is kept between visits, so it lives in localStorage.
     const store = new Map();
-    context.sessionStorage = {
+    context.localStorage = {
       getItem: key => (store.has(key) ? store.get(key) : null),
       setItem: (key, value) => { store.set(key, String(value)); },
       removeItem: key => { store.delete(key); },
     };
     vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
       valley:"Val Gardena", label:"Val Gardena" });`, context);
-    const stored = vm.runInContext('sessionStorage.getItem(LI_AREA_STORAGE_KEY)', context);
+    const stored = vm.runInContext('localStorage.getItem(LI_AREA_STORAGE_KEY)', context);
     expect(stored).toContain('Val Gardena');
     vm.runInContext(mapArea(6, 45, 7, 46), context);
     // Still the typed area, untouched, so going back to the page comes back to it.
-    expect(vm.runInContext('sessionStorage.getItem(LI_AREA_STORAGE_KEY)', context)).toBe(stored);
+    expect(vm.runInContext('localStorage.getItem(LI_AREA_STORAGE_KEY)', context)).toBe(stored);
   });
 
   // A map area is applied by a click handler that lives inside the map setup,
@@ -628,13 +628,15 @@ describe('returning homepage region + valley filters', () => {
     expect(context.sessionStorage.getItem('orma-home-selected-area-v1')).toBeNull();
   });
 
-  test('with nothing chosen it opens on the region of the trail looked at last', () => {
+  // Opening one trail elsewhere used to move every later visit to its region:
+  // having looked at Laghi di Fusine, a refresh opened on Friuli.
+  test('with nothing chosen it opens on the Dolomites, whatever trail was looked at last', () => {
     const context = loadHomepageContext(sampleTrails);
     context.localStorage.getItem = key => (key === 'orma-recent-trails-v1'
       ? JSON.stringify([{ id:'tar', name:'Tarentaise Trail' }, { id:'vag', name:'Val Gardena Trail' }])
       : null);
     const opened = vm.runInContext('liLoadLocationContext()', context);
-    expect(opened.region).toBe('savoy');
+    expect(opened.region).toBe('dolomites');
     expect(opened.auto).toBe(true);
   });
 
@@ -728,8 +730,7 @@ describe('returning homepage region + valley filters', () => {
     expect(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8')).not.toContain('liToolbarDogContext');
   });
 
-  // A new visit opens on a region chosen afresh. An area chosen weeks ago used
-  // to be kept for good and reopened every time, ahead of "near you".
+  // The v1 key in localStorage dates from weeks ago and is not this choice.
   test('a new visit forgets an area kept by an older version', () => {
     const context = loadHomepageContext(sampleTrails);
     const durable = new Map([['orma-home-selected-area-v1', JSON.stringify({ kind:'area', country:'IT', region:'dolomites', valley:'Alta Pusteria – Tre Cime', label:'Alta Pusteria – Tre Cime' })]]);
@@ -742,22 +743,66 @@ describe('returning homepage region + valley filters', () => {
     expect(durable.has('orma-home-selected-area-v1')).toBe(false);
   });
 
-  test('an area chosen during the visit is kept for that visit', () => {
+  // A page load with this browser's storage: localStorage carries over, and a
+  // new visit (a new tab, the app reopened) brings a fresh sessionStorage.
+  const storageFrom = map => ({
+    getItem: key => (map.has(key) ? map.get(key) : null),
+    setItem: (key, value) => { map.set(key, String(value)); },
+    removeItem: key => { map.delete(key); },
+  });
+  const loadPage = (local, session) => {
     const context = loadHomepageContext(sampleTrails);
+    context.localStorage = storageFrom(local);
+    context.sessionStorage = storageFrom(session);
+    vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
+    return context;
+  };
+
+  test('a region picked in the headline survives a refresh and a new visit', async () => {
+    const local = new Map([['orma-recent-trails-v1', JSON.stringify([{ id:'tar', name:'Tarentaise Trail' }])]]);
     const session = new Map();
-    context.sessionStorage = {
-      getItem: key => (session.has(key) ? session.get(key) : null),
-      setItem: (key, value) => { session.set(key, String(value)); },
-      removeItem: key => { session.delete(key); },
-    };
+    const first = loadPage(local, session);
+    expect(vm.runInContext('activeRegion', first)).toBe('dolomites');
+    document.querySelector('[data-li-region="savoy"]').click();
+    expect(vm.runInContext('activeRegion', first)).toBe('savoy');
+
+    const refreshed = loadPage(local, session);
+    expect(vm.runInContext('activeRegion', refreshed)).toBe('savoy');
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', refreshed);
+    expect(document.querySelector('#liToolbarGreeting [data-li-head="area"]').textContent).toBe('in Savoy');
+
+    const nextVisit = loadPage(local, new Map());
+    expect(vm.runInContext('liLocationContext.label', nextVisit)).toBe('Savoy');
+    expect(vm.runInContext('activeRegion', nextVisit)).toBe('savoy');
+  });
+
+  test('a valley chosen during the visit is kept, and a reset goes back to the Dolomites', () => {
+    const local = new Map();
+    const session = new Map();
+    const first = loadPage(local, session);
     vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
-      valley:"Val Gardena", label:"Val Gardena" });`, context);
-    expect(vm.runInContext('liLoadLocationContext().label', context)).toBe('Val Gardena');
+      valley:"Val Gardena", label:"Val Gardena" });`, first);
+    expect(vm.runInContext('liLoadLocationContext().label', loadPage(local, new Map()))).toBe('Val Gardena');
+
+    // "Show all" and a ?region= link are passing views, not a new choice.
+    vm.runInContext('window.DoloPawsHomepageLocation.showAll();', first);
+    expect(vm.runInContext('liLoadLocationContext().label', loadPage(local, new Map()))).toBe('Val Gardena');
+
+    vm.runInContext('liResetLocationContext();', first);
+    expect(vm.runInContext('liLoadLocationContext().label', loadPage(local, new Map()))).toBe('The Dolomites');
+  });
+
+  test('a choice kept under the per-visit key is carried over to the durable one', () => {
+    const local = new Map();
+    const session = new Map([['orma-home-selected-area-v1', JSON.stringify({ kind:'area', country:'FR', region:'savoy', valley:'all', label:'Savoy' })]]);
+    expect(vm.runInContext('activeRegion', loadPage(local, session))).toBe('savoy');
+    expect(session.has('orma-home-selected-area-v1')).toBe(false);
+    expect(vm.runInContext('activeRegion', loadPage(local, new Map()))).toBe('savoy');
   });
 
   // Location already allowed moves the page to "near you" when ORMA has a
   // trail there; far from every trail it opens on the nearer region instead.
-  test('a granted location opens near you, or else on the nearer region', async () => {
+  test('a granted location opens near you, or else stays on the Dolomites', async () => {
     const at = (lat, lng) => {
       const context = loadHomepageContext(sampleTrails);
       context.navigator.geolocation = { getCurrentPosition: success => success({ coords:{ latitude:lat, longitude:lng } }) };
@@ -767,8 +812,8 @@ describe('returning homepage region + valley filters', () => {
     };
     const london = at(51.5, -0.12);
     await new Promise(resolve => setTimeout(resolve, 0));
-    // Chamonix is nearer London than any Dolomites trail.
-    expect(vm.runInContext('liLocationContext.region', london)).toBe('savoy');
+    // Chamonix is nearer London than any Dolomites trail, but nobody chose it.
+    expect(vm.runInContext('liLocationContext.region', london)).toBe('dolomites');
     expect(vm.runInContext('liLocationContext.kind', london)).toBe('area');
 
     const gardena = at(46.57, 11.67);

@@ -3,7 +3,10 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
-const { collectAppFiles, ENTRY_PAGES, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG } = require('./scripts/build-app');
+const {
+  collectAppFiles, ENTRY_PAGES, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG,
+  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG, APP_FLAG_TAG,
+} = require('./scripts/build-app');
 
 const root = __dirname;
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'data/regions-manifest.json'), 'utf8'));
@@ -217,5 +220,91 @@ describe('the app reads new trails from the website when online', () => {
     const { window, written } = page();
     window.DoloPawsAppTrailData.settle();
     expect(written[2]).toBe('<script src="regions-runtime-manifest.js"></script>');
+  });
+});
+
+// The app draws edge to edge, so without app-shell.css the header sits under
+// the clock and the footer tells someone already in the app to install it.
+describe('app pages make room for the clock and drop the install advice', () => {
+  const { files } = collectAppFiles();
+  const pages = [...files].filter(file => file.endsWith('.html'));
+  const shell = fs.readFileSync(path.join(root, 'app-shell.css'), 'utf8');
+
+  test('every app page opts into the full screen, never zooms on a tap, and loads app-shell.css', () => {
+    expect(files.has('app-shell.css')).toBe(true);
+    const unfit = pages.filter((file) => {
+      const app = fs.readFileSync(path.join(root, file), 'utf8')
+        .replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_SHELL_TAG}\n</head>`);
+      return !/<meta name="viewport" content="[^"]*maximum-scale=1, viewport-fit=cover">/.test(app) || !app.includes(APP_SHELL_TAG);
+    });
+    expect(unfit).toEqual([]);
+  });
+
+  test('the rules still name the header and the footer block the pages use', () => {
+    const styles = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
+    const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+    expect(shell).toMatch(/\.topnav\{[^}]*safe-area-inset-top/);
+    expect(styles).toMatch(/\.topnav\{/);
+    expect(shell).toMatch(/\.hp-footer-get\{display:none;\}/);
+    expect(index).toContain('class="hp-footer-get"');
+  });
+
+  test('the website never loads the app rules', () => {
+    const linked = pages.filter(file => fs.readFileSync(path.join(root, file), 'utf8').includes('app-shell.css'));
+    expect(linked).toEqual([]);
+  });
+});
+
+// A native app is moved around by its tabs. app-tabbar.js draws them on every
+// app page, so each tab has to lead to a page the app ships, and the website,
+// which has its own header menu, never loads it.
+describe('the app has a bottom tab bar', () => {
+  const { files } = collectAppFiles();
+  const pages = [...files].filter(file => file.endsWith('.html'));
+  const tabbar = fs.readFileSync(path.join(root, 'app-tabbar.js'), 'utf8');
+  const build = fs.readFileSync(path.join(root, 'scripts', 'build-app.js'), 'utf8');
+
+  test('ships the script and links it into every page with the app rules', () => {
+    expect(files.has('app-tabbar.js')).toBe(true);
+    expect(build).toContain('${APP_SHELL_TAG}\\n${APP_TABBAR_TAG}');
+    expect(APP_TABBAR_TAG).toBe('<script src="/app-tabbar.js" defer></script>');
+  });
+
+  test('every tab opens a page inside the app', () => {
+    const targets = [...tabbar.matchAll(/href:'\/([^']+)'/g)].map(match => match[1]);
+    expect(targets).toEqual(['index.html', 'saved.html', 'walk.html', 'account.html']);
+    expect(targets.filter(target => !files.has(target))).toEqual([]);
+  });
+
+  test('the website never loads it', () => {
+    const linked = pages.filter(file => fs.readFileSync(path.join(root, file), 'utf8').includes('app-tabbar.js'));
+    expect(linked).toEqual([]);
+    expect(fs.readFileSync(path.join(root, '_config.yml'), 'utf8')).toMatch(/^  - app-tabbar\.js$/m);
+  });
+});
+
+// An app is used, not read about: it opens on the map and the ranked list for
+// everyone, so the website's guest landing page never shows inside it.
+describe('the app opens on the map for every visitor', () => {
+  const script = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
+  const shell = fs.readFileSync(path.join(root, 'app-shell.css'), 'utf8');
+  const build = fs.readFileSync(path.join(root, 'scripts', 'build-app.js'), 'utf8');
+
+  test('app pages are marked before anything draws', () => {
+    expect(APP_FLAG_TAG).toBe("<script>document.documentElement.classList.add('orma-app');</script>");
+    expect(build).toContain('${APP_FLAG_TAG}\\n${APP_SHELL_TAG}');
+  });
+
+  test('the homepage takes the map view when it is marked', () => {
+    expect(script).toMatch(/const inApp = document\.documentElement\.classList\.contains\('orma-app'\);\s*if\(forced === 'returning' \|\| inApp\)/);
+  });
+
+  test('the guest landing page is hidden from the first paint, and the website is untouched', () => {
+    expect(shell).toContain('html.orma-app #newCustomerHomepage{display:none !important;}');
+    expect(shell).toContain('html.orma-app #returningCustomerHomepage[hidden]{display:flex !important;}');
+    const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+    expect(index).not.toContain('orma-app');
+    expect(index).toContain('id="liNewWrap"');
+    expect(index).toContain('class="li-list-foot"');
   });
 });

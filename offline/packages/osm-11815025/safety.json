@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11815025",
+  "generatedAt": "2026-11-06T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.7,
+    "ascentM": 82,
+    "highestPointM": 1087,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 10
+  },
+  "trailhead": {
+    "lat": 46.609182,
+    "lng": 11.564165,
+    "label": "Village square (Dorfplatz) in Lajen, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.609325,
+      "lng": 11.56429,
+      "label": "Village fountain on the square in Lajen (seasonal)",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A short steep stretch up to the Wetterkreuz.",
+    "About 400 m on village lanes at the start (Wasserbühl-Weg, Kasserol-Weg), shared with local traffic.",
+    "The Wasserbühel is a protected biotope: stay on the path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-06"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-06",
+      "licence": "ODbL"
+    }
+  ]
+}

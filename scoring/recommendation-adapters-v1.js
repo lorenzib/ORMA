@@ -213,6 +213,9 @@
       surfaceHazards: Array.isArray(trail.surfaceHazards) ? trail.surfaceHazards : [],
       dogAccess: legacyDogAccess(trail),
       lift: normalizeLift(trail.liftAccess),
+      // When in the year the walk is a walk (data/trail-seasons.json); the
+      // engine reads it only when given a month.
+      season: trail.season && typeof trail.season === 'object' ? trail.season : null,
       // Legacy presentation records carry no reviewed behaviour attributes.
       // Declaring them unknown keeps the engine's "say nothing without
       // evidence" branch, rather than reading absence as safety.
@@ -273,6 +276,15 @@
     };
   }
 
+  // The month to score the season for: the caller's, else this month on a
+  // page, else none, so Node callers and tests that never name a month score
+  // exactly as before.
+  function scoringMonth(options){
+    const given = options && Number(options.month);
+    if(Number.isInteger(given) && given >= 1 && given <= 12) return given;
+    return root && root.document ? new Date().getMonth() + 1 : null;
+  }
+
   function recommendLegacyTrail(trail, subject, currentConditions, options){
     const engine = root && root.DoloPawsRecommendationV1;
     if(!engine || typeof engine.calculateRecommendation !== 'function'){
@@ -283,6 +295,7 @@
       trail: normalizeTrail(trail),
       currentConditions: currentConditions || { status: 'not-provided' },
       effectiveLimits: effectiveLimits(subject),
+      month: scoringMonth(options),
     });
   }
 

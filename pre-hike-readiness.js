@@ -169,13 +169,15 @@
         'check-gps'
       ));
     }else{
+      // SOCIAL-03: hike mode finds the position itself once recording
+      // starts, so an unchecked or weak fix is worth knowing, not a gate.
       items.push(item(
         'gps',
-        'blocker',
+        'advisory',
         gps.error || gps.fix
           ? tr('readiness.gps.unusable.title', 'GPS fix is not usable yet')
           : tr('readiness.gps.notChecked.title', 'GPS fix not checked'),
-        gps.error || tr('readiness.gps.notChecked.detail', 'Check your position before starting hike mode.'),
+        gps.error || tr('readiness.gps.notChecked.detail', 'ORMA finds your position when recording starts.'),
         'check-gps'
       ));
     }
@@ -327,6 +329,11 @@
           { count:result.counts.blocker + result.counts.checking }
         );
       const proceed = modal.querySelector('[data-readiness-action="continue"]');
+      // Opened from a running hike, the sheet is a checklist to read.
+      proceed.hidden = typeof continuation !== 'function';
+      modal.querySelector('.pre-hike-secondary').textContent = proceed.hidden
+        ? tr('readiness.close', 'Close')
+        : tr('readiness.notYet', 'Not yet');
       proceed.disabled = !result.canStart;
       proceed.textContent = result.canStart
         ? tr('readiness.start', 'Start hike')

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12190538",
+  "generatedAt": "2026-11-06T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.1,
+    "ascentM": 200,
+    "highestPointM": 1522,
+    "expectedDuration": "1.8 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 60
+  },
+  "trailhead": {
+    "lat": 46.5924986,
+    "lng": 11.2985873,
+    "label": "Start here — Parking, 10 m from the route"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 1.2 km on quiet public roads (Kampidellerweg, Lanzenweg) and 300 m of service road, where cars pass.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-10-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-06",
+      "licence": "ODbL"
+    }
+  ]
+}

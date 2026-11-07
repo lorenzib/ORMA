@@ -5,5 +5,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "About 650 m on an asphalt lane used by cars": "Circa 650 m su una stradina asfaltata percorsa dalle auto",
   "compacted gravel (52%), natural ground (33%), paved (15%), from OSM surface data": "ghiaia compatta (52%), terreno naturale (33%), asfalto (15%), dai dati sul fondo di OSM",
   "Start here — Bus stop Schermoos, 49 m from the route (OSM-verified access point)": "Parti da qui — Fermata dell'autobus Schermoos, a 49 m dal percorso (punto di accesso verificato su OSM)",
-  "A path climbing through a green meadow to the church of St. Jakob and the inn at Langfenn on the Salten plateau": "Un sentiero che sale attraverso un prato verde verso la chiesa di St. Jakob e la locanda di Langfenn sull'altopiano del Salto"
+  "A path climbing through a green meadow to the church of St. Jakob and the inn at Langfenn on the Salten plateau": "Un sentiero che sale attraverso un prato verde verso la chiesa di St. Jakob e la locanda di Langfenn sull'altopiano del Salto",
+  "No number of its own; the loop links paths 1 and 4 from Schermoos and Mölten to Langfenn.": "Senza un numero proprio; l'anello collega i sentieri 1 e 4 da Schermoos e Mölten a Langfenn."
 });

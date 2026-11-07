@@ -83,7 +83,7 @@
       research:board.summary.paidResearchEnabled===false?'Paused: paid research is off':STAGE_HINT.research,
       passed:`${board.summary.verified} Verified · ${board.summary.reviewed} Reviewed on the site`,
       hand:`${board.summary.verifiedByHand||0} of the ${board.summary.verified} Verified, checked in Claude`,
-      stopped:`${stopped.resting||0} resting · ${stopped.rejected||0} rejected · ${stopped.blocked||0} blocked`};
+      stopped:`${stopped.resting||0} resting · ${stopped.rejected||0} rejected · ${stopped.blocked||0} blocked${stopped.decided?` · ${stopped.decided} decided`:''}`};
     $('tbJourney').innerHTML=STAGES.map(([key,label])=>`<button type="button" class="tb-step${key==='stopped'?' tb-step-stopped':''}" data-stage="${key}" aria-pressed="${stage===key}">
       <span class="tb-n">${Number(counts[key]||0)}</span><span class="tb-l">${label}</span><span class="tb-h">${esc(hints[key])}</span></button>`).join('');
   }
@@ -110,7 +110,7 @@
       if(entry.stage==='passed'||entry.stage==='hand')cls+=' is-done';
       else if(entry.stage==='stopped'){
         const at=entry.state==='imported'?1:0;
-        cls+=index<at?' is-done':index===at?(entry.stopKind==='resting'?' is-rest':' is-bad'):'';
+        cls+=index<at?' is-done':index===at?(entry.stopKind==='resting'||entry.stopKind==='decided'?' is-rest':' is-bad'):'';
       }else if(entry.stage!=='queued'){
         const at=STAGE_INDEX[entry.stage];
         cls+=index<at?' is-done':index===at?(entry.flag==='stuck'?' is-bad':' is-now'):'';
@@ -133,6 +133,7 @@
     if(entry.flag==='withdrawn')return '<span class="tb-flag tb-f-bad">Off the site</span>';
     if(entry.flag==='audit')return '<span class="tb-flag tb-f-warn">Hand audit</span>';
     if(entry.stopKind==='resting')return '<span class="tb-flag tb-f-rest">Resting</span>';
+    if(entry.stopKind==='decided')return '<span class="tb-flag tb-f-rest">Decided</span>';
     if(entry.stopKind==='rejected')return '<span class="tb-flag tb-f-bad">Rejected</span>';
     return '';
   }

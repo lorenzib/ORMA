@@ -1222,15 +1222,19 @@ async function getWeeklyHikeCount(trailId) {
 }
 
 // SOCIAL-01 stage 1, anonymous "which dogs walked this" tally.
-// One event per COMPLETED walk: trail id, server timestamp, and the dog's
-// coarse FCI group ('g1'..'g10' or 'unknown'). No identity, no name, no
-// breed string, no location. A later batch job aggregates these into a
-// published static file; nothing reads this collection per page view.
-async function recordTrailWalk(trailId, group) {
+// One event per PROVEN walk (SOCIAL-02): trail id, server timestamp, the
+// dog's coarse FCI group ('g1'..'g10' or 'unknown') and how the walk was
+// proven ('gps' for a recorded hike that covered the route, 'checkin' for a
+// tap made on the trail). No identity, no name, no breed string, no
+// location. A later batch job aggregates these into a published static
+// file; nothing reads this collection per page view.
+async function recordTrailWalk(trailId, group, proof) {
+  if (proof !== "gps" && proof !== "checkin") return false;
   try {
     await addDoc(collection(db, "trailWalks", String(trailId).slice(0, 80), "walks"), {
       at: serverTimestamp(),
       group: String(group || "unknown").slice(0, 12),
+      proof,
     });
     return true;
   } catch (e) {

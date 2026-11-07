@@ -29,7 +29,10 @@ const { loadSlugOverrides, allRetiredSlugs, validateSlugOverrides } = require('.
 // The same module the app reads its trail numbers from, so a page and a card
 // show the same numbers in the same order for the same walk.
 const routeRefs = require('../trail-route-refs.js');
+const routeReturn = require('../route-return.js');
 const routeGuidanceSources = require('../route-guidance-sources.js');
+// The same season sentences the app shows, from data/trail-seasons.json.
+const seasonWords = require('../trail-season-words.js');
 
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'trails');
@@ -650,6 +653,67 @@ function highestPoint(t) {
   return Math.max(...ep.map((p) => p.elev));
 }
 
+// The season at a glance, beside the walk's other tags: its best months, and
+// "Out of season" when this month is not one of them. The page is built once
+// and read all year, so the tag carries the twelve answers and the script
+// under the tags shows it in the reader's month.
+function seasonTagsHtml(t) {
+  const best = seasonWords.bestTime(t.season);
+  if (!best) return '';
+  const out = seasonWords.MONTH_NAMES.map((_, i) => (seasonWords.outOfSeason(t.season, i + 1) ? 1 : 0)).join('');
+  return `<span class="dp-badge sp-tag sp-tag--out" data-season-out="${out}" hidden><span>${L('Out of season')}</span></span>
+    <span class="dp-badge sp-tag sp-tag--best"><span>${escapeHtml(best)}</span></span>
+    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>`;
+}
+
+// "When to go": the walk's months as its board publishes them, or the snowy
+// months estimated from its high point, and the stretches mapped as ski runs.
+// The page is built once and read all year, so the month a reader is in is
+// marked by the script underneath, from notes written here for every month.
+function seasonHtml(t) {
+  const words = seasonWords.describe(t.season, num);
+  if (!words || (!words.kind && !words.winter.length)) return '';
+  const notes = seasonWords.MONTH_NAMES.map((_, i) => seasonWords.nowNote(t.season, i + 1));
+  const warn = seasonWords.MONTH_NAMES.map((_, i) => (seasonWords.outOfSeason(t.season, i + 1) ? 1 : 0));
+  const strip = words.strip.length
+    ? `<ol class="sp-months" aria-label="${escapeHtml(L('Months of the year'))}">${words.strip
+      .map((m) => `<li class="sp-month sp-month--${m.state}" data-month="${m.month}"><span aria-hidden="true">${escapeHtml(m.initial)}</span><span class="sp-vh">${escapeHtml(m.name)}: ${escapeHtml((words.legend.find(([state]) => state === m.state) || [])[1] || '')}</span></li>`)
+      .join('')}</ol>
+    <p class="sp-month-key" aria-hidden="true">${words.legend.map(([state, label]) => `<span class="sp-key sp-key--${state}"></span>${escapeHtml(label)}`).join(' ')}</p>`
+    : '';
+  const source = words.source
+    ? `<p class="sp-src">${escapeHtml(words.source.before)}${words.source.url ? `<a href="${escapeHtml(words.source.url)}" rel="noopener">${escapeHtml(words.source.label)}</a>${escapeHtml(words.source.after)}` : ''}</p>`
+    : '';
+  const winter = words.winter.length
+    ? `<p>${words.winter.map(escapeHtml).join(' ')} ${escapeHtml(words.winterNote)}</p>
+    <p class="sp-src">${escapeHtml(words.winterSource)}</p>`
+    : '';
+  return `<section class="sp-season" id="season" data-season-notes="${escapeHtml(JSON.stringify(notes))}" data-season-warn="${warn.join('')}">
+    <h2>${L('When to go')}</h2>
+    <p class="sp-season-now" hidden></p>
+    ${strip}
+    ${words.line ? `<p>${escapeHtml(words.line)}</p>` : ''}
+    ${source}
+    ${winter}
+  </section>
+  <script>
+  (function(){
+    var box = document.getElementById('season');
+    if(!box) return;
+    var m = new Date().getMonth();
+    var notes = []; try{ notes = JSON.parse(box.getAttribute('data-season-notes')); }catch(e){}
+    var li = box.querySelector('[data-month="' + (m + 1) + '"]');
+    if(li) li.classList.add('sp-month--now');
+    var note = box.querySelector('.sp-season-now');
+    if(note && notes[m]){
+      note.textContent = notes[m];
+      if((box.getAttribute('data-season-warn') || '').charAt(m) === '1') note.classList.add('sp-season-now--warn');
+      note.hidden = false;
+    }
+  })();
+  </script>`;
+}
+
 function isLoop(t) {
   if (!Array.isArray(t.path) || t.path.length < 3) return null;
   const a = t.path[0], b = t.path[t.path.length - 1];
@@ -830,7 +894,7 @@ function renderTrailPage(t, slug, all) {
     [L('Distance'), L('{km} km', { km: num(t.distance) })],
     [L('Elevation gain'), t.elevation != null ? L('{m} m', { m: num(t.elevation) }) : null],
     [L('Highest point'), highest !== null ? L('{m} m', { m: num(highest) }) : null],
-    [L('Duration'), t.hours != null ? L('{h} h', { h: num(t.hours) }) : null],
+    [L('Duration'), routeReturn.formatDuration(t.hours) || null],
     [L('Terrain'), terrain],
     [L('Trail rating'), displaySafetyLabel(t)],
     [L('Area'), `${t.area} · ${regionLabel}`],
@@ -921,6 +985,7 @@ function renderTrailPage(t, slug, all) {
   const directionsHtml = directionsSection(t);
   const routeHtml = routeSvg(t);
   const elevHtml = elevSvg(t);
+  const seasonSection = seasonHtml(t);
   const nearbyHtml = nearbySection(t, slug, all);
 
   return `<!DOCTYPE html>
@@ -963,6 +1028,23 @@ function renderTrailPage(t, slug, all) {
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-months{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;list-style:none;padding:0;margin:10px 0 6px;max-width:460px;}
+  .sp-month{position:relative;text-align:center;font-size:.75rem;font-weight:600;padding:6px 0;border-radius:6px;border:2px solid transparent;}
+  .sp-month--good{background:#BFDDB8;color:#1D4523;}
+  .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
+  .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--now{border-color:#1F2A24;}
+  .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
+  .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
+  .sp-key--good{background:#BFDDB8;}
+  .sp-key--off{background:rgba(0,0,0,.08);}
+  .sp-key--snow{background:#C9DAF0;}
+  .sp-tag[hidden]{display:none;}
+  .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
+  .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
+  .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
+  .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   /* The waymark shield, as the app draws it in trail.html: a number a reader
      can match against the paint on a rock without reading a sentence first. */
   .sp-route-refs{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 4px;}
@@ -1023,6 +1105,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
   <h1>${escapeHtml(t.name)}</h1>
   ${t.nameGloss ? `<p class="sp-gloss">${escapeHtml(tr(t.nameGloss))}</p>` : ''}
   <div class="sp-badges">
+    ${seasonTagsHtml(t)}
     <span class="dp-badge dp-badge--${t.safetyLevel}"><span data-dp-icon="${t.safetyLevel === 'low-risk' ? 'verified' : 'warning'}" data-dp-icon-size="13" aria-hidden="true"></span><span>${displaySafetyLabel(t)}</span></span>
     ${badge}
     ${t.paid ? `<span class="dp-badge dp-badge--neutral"><span>${L('Paid access')}</span></span>` : ''}
@@ -1042,6 +1125,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
   <div class="sp-body">
     ${glanceHtml}
     ${elevHtml}
+    ${seasonSection}
     ${startHtml}
     ${directionsHtml}
     ${waterHtml}

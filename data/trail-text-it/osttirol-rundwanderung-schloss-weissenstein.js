@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village streets and a wide gravel path through the castle park": "Strade di paese e un ampio sentiero sterrato nel parco del castello",
   "Rauterplatz, the centre of Matrei in Osttirol, the board’s start": "Rauterplatz, il centro di Matrei in Osttirol, la partenza indicata dalla scheda ufficiale",
   "A pale castle with a square tower on a wooded crag above a rock face, with green slopes and low cloud behind, in Matrei in Osttirol": "Un castello chiaro con una torre quadrata su uno sperone boscoso sopra una parete rocciosa, con pendii verdi e nuvole basse alle spalle, a Matrei in Osttirol",
-  "About half the loop is under trees, mostly in the castle park; the village streets are open.": "Circa metà dell'anello è sotto gli alberi, soprattutto nel parco del castello; le strade del paese sono aperte."
+  "About half the loop is under trees, mostly in the castle park; the village streets are open.": "Circa metà dell'anello è sotto gli alberi, soprattutto nel parco del castello; le strade del paese sono aperte.",
+  "From the Rauterplatz in Matrei along the Proßeggweg to the turn below the castle, up the wide gravel path into the Schloss Weißenstein park, and back along the Felbertauern road past the pharmacy to the centre.": "Dalla Rauterplatz a Matrei lungo il Proßeggweg fino alla svolta sotto il castello, su per l'ampio sentiero di ghiaia nel parco dello Schloss Weißenstein, e ritorno lungo la strada del Felbertauern, oltre la farmacia, fino al centro."
 });

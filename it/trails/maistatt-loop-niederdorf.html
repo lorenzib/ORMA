@@ -39,6 +39,23 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-months{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;list-style:none;padding:0;margin:10px 0 6px;max-width:460px;}
+  .sp-month{position:relative;text-align:center;font-size:.75rem;font-weight:600;padding:6px 0;border-radius:6px;border:2px solid transparent;}
+  .sp-month--good{background:#BFDDB8;color:#1D4523;}
+  .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
+  .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--now{border-color:#1F2A24;}
+  .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
+  .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
+  .sp-key--good{background:#BFDDB8;}
+  .sp-key--off{background:rgba(0,0,0,.08);}
+  .sp-key--snow{background:#C9DAF0;}
+  .sp-tag[hidden]{display:none;}
+  .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
+  .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
+  .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
+  .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   /* The waymark shield, as the app draws it in trail.html: a number a reader
      can match against the paint on a rock without reading a sentence first. */
   .sp-route-refs{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 4px;}
@@ -139,8 +156,11 @@
   <h1>Maistatt loop</h1>
   <p class="sp-gloss">the meadow loop to Maistatt above Niederdorf</p>
   <div class="sp-badges">
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="110000000001" hidden><span>Fuori stagione</span></span>
+    <span class="dp-badge sp-tag sp-tag--best"><span>Periodo migliore: da marzo a novembre</span></span>
+    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
     <span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Terreno moderato</span></span>
-    <span class="dp-badge dp-badge--neutral"><span>Revisionato da ORMA</span></span>
+    <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verificato da ORMA</span></span>
     
     
   </div>
@@ -156,7 +176,7 @@
       <div class="sp-fact"><div class="sp-fact-k">Distanza</div><div class="sp-fact-v">4,8 km</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Dislivello in salita</div><div class="sp-fact-v">133 m</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Punto più alto</div><div class="sp-fact-v">1273 m</div></div>
-      <div class="sp-fact"><div class="sp-fact-k">Durata</div><div class="sp-fact-v">1,35 h</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Durata</div><div class="sp-fact-v">1 h 20 min</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Terreno</div><div class="sp-fact-v">Strade del paese, strade interpoderali asfaltate e sentieri nel bosco</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Valutazione del sentiero</div><div class="sp-fact-v">Terreno moderato</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Zona</div><div class="sp-fact-v">Niederdorf – Maistatt, Niederdorf · Dolomiti, Italia</div></div>
@@ -176,10 +196,35 @@
     </svg>
     <figcaption class="sp-src">Profilo altimetrico: punto più basso 1152 m, punto più alto 1273 m.</figcaption>
   </figure>
+    <section class="sp-season" id="season" data-season-notes="[&quot;Nel mese di gennaio la neve è possibile su questo percorso.&quot;,&quot;Nel mese di febbraio la neve è possibile su questo percorso.&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Nel mese di dicembre la neve è possibile su questo percorso.&quot;]" data-season-warn="110000000001">
+    <h2>Quando andare</h2>
+    <p class="sp-season-now" hidden></p>
+    <ol class="sp-months" aria-label="Mesi dell’anno"><li class="sp-month sp-month--snow" data-month="1"><span aria-hidden="true">G</span><span class="sp-vh">gennaio: Neve possibile</span></li><li class="sp-month sp-month--snow" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">febbraio: Neve possibile</span></li><li class="sp-month sp-month--good" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">marzo: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">aprile: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">maggio: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">G</span><span class="sp-vh">giugno: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">L</span><span class="sp-vh">luglio: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">agosto: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">settembre: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">ottobre: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">novembre: Di solito senza neve</span></li><li class="sp-month sp-month--snow" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">dicembre: Neve possibile</span></li></ol>
+    <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Di solito senza neve <span class="sp-key sp-key--snow"></span>Neve possibile</p>
+    <p>Qui la neve è possibile tra dicembre e febbraio.</p>
+    <p class="sp-src">Stima basata sul punto più alto del percorso (1273 m). Nessun ente turistico pubblica la stagione di questo percorso, e ogni inverno è diverso.</p>
+    
+  </section>
+  <script>
+  (function(){
+    var box = document.getElementById('season');
+    if(!box) return;
+    var m = new Date().getMonth();
+    var notes = []; try{ notes = JSON.parse(box.getAttribute('data-season-notes')); }catch(e){}
+    var li = box.querySelector('[data-month="' + (m + 1) + '"]');
+    if(li) li.classList.add('sp-month--now');
+    var note = box.querySelector('.sp-season-now');
+    if(note && notes[m]){
+      note.textContent = notes[m];
+      if((box.getAttribute('data-season-warn') || '').charAt(m) === '1') note.classList.add('sp-season-now--warn');
+      note.hidden = false;
+    }
+  })();
+  </script>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> Da dove partire</h2>
     <p>Scuola elementare, Niederdorf, la partenza indicata dalla scheda ufficiale</p>
     <h2>Come seguire questo percorso</h2>
-    <p><b>Indicazioni:</b> The board names no path numbers and gives the way: from the primary school over the bridge to the Von-Kurz-Platz, east on Jakob-Traunsteiner-Straße and a short stretch of Johann-Jaeger-Straße to the Roda square, under the railway and gently up to the first rise at Maistatt; left and down beside the railway, under a second underpass to Graapach, then right and south back to the Maistatt road and the Maistatt bridge. Along the road across the Maistatt meadows to the wayside shrine of the Fourteen Holy Helpers and the house at Maistatt with its chapel and warm spring; a narrow path follows the spring west into the forest, past a game feeder, and left to the Reahwinkl forest road. Back down to the Maistatt bridge and left along the Maistatt road, past the cow pasture gate, under the railway and through the village to the school.</p>
+    <p><b>Indicazioni:</b> L'ente turistico non indica numeri di sentiero e descrive il percorso: dalla scuola elementare oltre il ponte fino alla Von-Kurz-Platz, verso est sulla Jakob-Traunsteiner-Straße e un breve tratto della Johann-Jaeger-Straße fino alla piazza Roda, sotto la ferrovia e in leggera salita fino al primo rilievo a Maistatt; a sinistra e giù accanto alla ferrovia, sotto un secondo sottopassaggio fino a Graapach, poi a destra e verso sud di nuovo alla strada di Maistatt e al ponte di Maistatt. Lungo la strada attraverso i prati di Maistatt fino al capitello dei Quattordici Santi Ausiliatori e alla casa di Maistatt con la sua cappella e la sorgente calda; uno stretto sentiero segue la sorgente verso ovest nel bosco, oltre una mangiatoia per la selvaggina, e a sinistra fino alla strada forestale Reahwinkl. Torna giù al ponte di Maistatt e a sinistra lungo la strada di Maistatt, oltre il cancello del pascolo delle mucche, sotto la ferrovia e attraverso il paese fino alla scuola.</p>
     <p class="sp-route-source">Dalla verifica ORMA della descrizione ufficiale del percorso. Segui la traccia ORMA sulla mappa e i cartelli sul posto.</p>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> Acqua sul sentiero</h2>
     <ul><li>km 0 · Drinking fountain at the start (6 punti)</li><li>km 0,1 · Drinking fountain</li><li>km 0,3 · Drinking fountain</li><li>km 0,5 · Drinking fountain</li></ul>
@@ -188,7 +233,7 @@
     <h2>Da sapere</h2>
     <p>Parti dalla scuola elementare di Niederdorf: 4,8 km, circa 130 m di salita, meno di un'ora e mezza. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito, come richiede Niederdorf, e stai fuori dai prati. Passa con calma accanto al pascolo delle mucche.</p>
     
-<p class="sp-review-meta">Revisionato da ORMA il 28 ottobre 2026. Verifica le condizioni attuali prima di partire.</p>
+<p class="sp-review-meta">Verificato da ORMA il 28 ottobre 2026. Verifica le condizioni attuali prima di partire.</p>
     <div id="dogFit">
     <h2>Questo sentiero fa per il <em>tuo</em> cane?</h2>
     <!-- This used to say ORMA "can't tell you" how the route pairs with a

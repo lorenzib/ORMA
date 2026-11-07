@@ -9,5 +9,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "A narrow lakeside path through the woods, with lanes in Neusach and footways at the east end": "Uno stretto sentiero lungolago nel bosco, con stradine a Neusach e marciapiedi all'estremità est",
   "Neusach on the north shore, where the board’s line begins": "Neusach sulla riva nord, dove inizia la traccia della scheda ufficiale",
   "Green meadows and spruce forest rising from the deep blue Weissensee on its north shore": "Prati verdi e bosco di abeti rossi che salgono dal Weissensee blu intenso sulla sua riva nord",
-  "About two thirds in woodland along the shore; Neusach and the east shore are open.": "Circa due terzi nel bosco lungo la riva; Neusach e la riva est sono aperte."
+  "About two thirds in woodland along the shore; Neusach and the east shore are open.": "Circa due terzi nel bosco lungo la riva; Neusach e la riva est sono aperte.",
+  "From Neusach along the village lane, then east on the lakeside path past the Ronacherfels and the Kleine Steinwand to the east shore, ending by the boat landing; return the same way.": "Da Neusach lungo la stradina del paese, poi verso est sul sentiero lungo il lago oltre il Ronacherfels e la Kleine Steinwand fino alla sponda orientale, con arrivo presso l'imbarcadero; ritorno per la stessa strada."
 });

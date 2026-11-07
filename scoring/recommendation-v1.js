@@ -333,6 +333,20 @@
     };
   }
 
+  // Kept in step with trail-season-words.js bestMonths.
+  function seasonBestMonths(season){
+    const winterUse = Array.isArray(season.winterUse) && season.winterUse.length > 0;
+    const recommended = season.recommended && Array.isArray(season.recommended.months) ? season.recommended.months : null;
+    const snow = season.snow && Array.isArray(season.snow.months) ? season.snow.months : null;
+    if(!recommended && !snow && !winterUse) return null;
+    let months = recommended ? recommended.slice() : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter(m => !(snow && snow.includes(m)));
+    if(winterUse){
+      const summer = months.filter(m => ![12, 1, 2, 3, 4].includes(m));
+      if(summer.length) months = summer;
+    }
+    return months.length ? months : null;
+  }
+
   function calculateRecommendation(input){
     input = input || {};
     const positives = [];
@@ -525,6 +539,20 @@
         ? `Rides the ${liftName}, a closed cabin: check the operator's dog rules for a muzzle and a ticket.`
         : 'Rides a closed gondola: check the operator\'s dog rules for a muzzle and a ticket.',
       { lift: liftName || 'gondola' }, liftName ? 'trail.lift.gondola.named' : 'trail.lift.gondola'));
+    }
+
+    // The walk's season this month (data/trail-seasons.json), by the rule
+    // the "Out of season" tag uses (trail-season-words.js bestMonths): the
+    // board's months, else the months the estimate keeps free of snow, less
+    // the months ski runs on the line are usually open. Only when a month is
+    // given: the engine says nothing about a season it was not asked about.
+    const season = suitability.season;
+    const month = Number.isInteger(input.month) && input.month >= 1 && input.month <= 12 ? input.month : null;
+    const best = season && month ? seasonBestMonths(season) : null;
+    if(best && !best.includes(month)){
+      penalise(25, item('trail.season.outside', 'This walk is out of season this month.', { month }));
+    }else if(best && best.length < 12){
+      positives.push(item('trail.season.inside', 'This walk is in season this month.', { month }));
     }
 
     if(access.status === 'prohibited'){

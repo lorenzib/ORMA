@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "A gravel forest road and a grassy path": "Una strada forestale sterrata e un sentiero erboso",
   "Malga Sass car park, Valfloriana, the APT’s start": "Parcheggio di Malga Sass, Valfloriana, partenza indicata dall'APT",
   "Snow-streaked peaks of the Brenta Dolomites above blue valleys, with green larch woods and a single larch in the foreground under a clear summer sky": "Cime delle Dolomiti di Brenta striate di neve sopra valli azzurre, con lariceti verdi e un larice isolato in primo piano sotto un cielo estivo limpido",
-  "Mostly shaded: about 70% of the way runs through larch woods.": "Per lo più all'ombra: circa il 70% del percorso passa nei lariceti."
+  "Mostly shaded: about 70% of the way runs through larch woods.": "Per lo più all'ombra: circa il 70% del percorso passa nei lariceti.",
+  "No route number: from the car park at Malga Sass, reached by the tarred road from Sicina, the highest hamlet of Valfloriana, past the Bait del Manz, along the “Prai de le Fior” forest road for about a kilometre and a half through larch woods and meadows full of flowers, then back the same way.": "Senza numero di percorso: dal parcheggio di Malga Sass, raggiungibile per la strada asfaltata da Sicina, la frazione più alta di Valfloriana, oltre il Bait del Manz, lungo la strada forestale “Prai de le Fior” per circa un chilometro e mezzo tra lariceti e prati fioriti, poi ritorno per la stessa strada."
 });
