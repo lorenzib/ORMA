@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12132169",
+  "generatedAt": "2026-11-07T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 27.1,
+    "ascentM": 1801,
+    "highestPointM": 2523,
+    "expectedDuration": "9 hours",
+    "difficulty": "Hard",
+    "shadePercent": 25
+  },
+  "trailhead": {
+    "lat": 46.756289,
+    "lng": 12.241742,
+    "label": "Junction for Kandellen, Frondeigen and the Silvestertal above Wahlen, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7616095,
+      "lng": 12.2316901,
+      "label": "Drinking water near Toblach",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7624356,
+      "lng": 12.2307357,
+      "label": "Drinking water near Toblach",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7601757,
+      "lng": 12.304996,
+      "label": "Drinking water at the Silvesteralm",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7589954,
+      "lng": 12.2637228,
+      "label": "Drinking water on the way down above Wahlen",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Steep grass slopes up to the Golfen with no clear path in places.",
+    "About 9 km of open ridge above 2,400 m, mountain-hiking ground (SAC T2), far from shelter in a storm.",
+    "About 4 km on roads, the last kilometre on asphalt.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-07"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-07",
+      "licence": "ODbL"
+    }
+  ]
+}
