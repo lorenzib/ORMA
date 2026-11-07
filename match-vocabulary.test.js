@@ -3,16 +3,16 @@ const {verdictFor,evidenceLine,confidenceLabel,CONFIDENCE_LABELS,VERDICTS,STRONG
 const { generatedDirectoryPattern } = require('./scripts/generated-directories');
 
 // One trail, three answers. "Great match" on browse at 75, "Good" in the
-// homepage search at 65, "Possible with cautions" in the homepage list at 60 --
+// homepage search at 65, "Good with care" in the homepage list at 60 --
 // so a trail scoring 80 said something different depending on the screen.
 describe('one vocabulary for one score', () => {
   test.each([
     [92,'Strong option'],
     [85,'Strong option'],
-    [80,'Possible with cautions'],
-    [60,'Possible with cautions'],
-    [59,'Not recommended'],
-    [5,'Not recommended'],
+    [80,'Good with care'],
+    [60,'Good with care'],
+    [59,'Low match'],
+    [5,'Low match'],
   ])('a score of %s reads as "%s" everywhere', (score,label) => {
     expect(verdictFor(score).label).toBe(label);
   });
@@ -23,9 +23,9 @@ describe('one vocabulary for one score', () => {
     expect(engine).toContain(`score >= ${POSSIBLE_AT} ? 'possible-with-cautions'`);
   });
 
-  test('it says what to do, not how well the trail scored', () => {
+  test('it uses the three names the owner chose', () => {
     expect(Object.values(VERDICTS).map(entry=>entry.label))
-      .toEqual(['Strong option','Possible with cautions','Not recommended']);
+      .toEqual(['Strong option','Good with care','Low match']);
   });
 
   // How scoring works once said "Good · 65–84%" and "Check · <65%", in words
@@ -79,12 +79,12 @@ describe('the engine’s verdict outranks the number', () => {
     // recommendation-v1.js: a critical unreviewed category drops a strong
     // option, and a bare score knows nothing about it.
     expect(verdictFor({score:90,category:'possible-with-cautions'}).label)
-      .toBe('Possible with cautions');
+      .toBe('Good with care');
     expect(verdictFor(90).label).toBe('Strong option');
   });
 
   test('a prohibited route is not recommended whatever its number', () => {
-    expect(verdictFor({score:99,category:'not-recommended'}).label).toBe('Not recommended');
+    expect(verdictFor({score:99,category:'not-recommended'}).label).toBe('Low match');
   });
 
   test('a recommendation with no category falls back to its score', () => {
@@ -93,7 +93,7 @@ describe('the engine’s verdict outranks the number', () => {
 
   test('an unusable input is never called a strong option', () => {
     [null,undefined,{},'','abc',NaN].forEach(input=>
-      expect(verdictFor(input).label).toBe('Not recommended'));
+      expect(verdictFor(input).label).toBe('Low match'));
   });
 
   test('the score comes back with the verdict, or null if there was none', () => {
@@ -129,7 +129,7 @@ describe('both surfaces ask the same question', () => {
   // stopped, which is how the guest homepage kept its own table -- with its own
   // words AND its own cut-offs -- for as long as this file has existed. A trail
   // scoring 80 was "Great match" on the first screen a visitor sees and
-  // "Possible with cautions" on every screen after it.
+  // "Good with care" on every screen after it.
   test('no surface keeps a private vocabulary', () => {
     [browse,home,guestSearch].forEach(source=>{
       expect(source).not.toMatch(/'Great match'/);
@@ -153,6 +153,9 @@ describe('both surfaces ask the same question', () => {
       // How scoring works, which explains the three verdicts and their
       // cut-offs to the reader. Its own test above holds it to the module.
       'how-scoring-works.html',
+      // The browse map's key, which names the three colours by the same
+      // words. The test below holds its i18n keys to the verdict labels.
+      'index.html',
     ]);
     // Tests name the vocabulary in order to assert on it, and nothing in a
     // test ships. Everything else is a surface.
@@ -173,13 +176,29 @@ describe('both surfaces ask the same question', () => {
         const source = fs.readFileSync(full, 'utf8');
         // A private table is the three labels together in one file. One of
         // them alone is prose, and prose is allowed to quote a verdict.
-        const spelled = ['Strong option','Possible with cautions','Not recommended']
+        const spelled = ['Strong option','Good with care','Low match']
           .filter(label => source.includes(label));
         if(spelled.length === 3) offenders.push(full);
       }
     };
     walk('.');
     expect(offenders).toEqual([]);
+  });
+
+  test('the map key uses the verdict words, in English and Italian', () => {
+    const i18n = fs.readFileSync('i18n.js', 'utf8');
+    // Each key appears twice: the English dictionary, then the Italian one.
+    const values = key => [...i18n.matchAll(new RegExp(`'${key.replace(/\./g, '\\.')}': '([^']*)'`, 'g'))]
+      .map(match => match[1].replace(/<i class="[^"]*"><\/i>/, ''));
+    const pairs = [
+      ['page.index.strong', 'recommendation.category.strong-option'],
+      ['page.index.cautions', 'recommendation.category.possible-with-cautions'],
+      ['page.index.notRecommended', 'recommendation.category.not-recommended'],
+    ];
+    for(const [mapKey, verdictKey] of pairs){
+      expect(values(mapKey)).toHaveLength(2);
+      expect(values(mapKey)).toEqual(values(verdictKey));
+    }
   });
 
   test('the canonical view and the module agree, label for label', () => {
@@ -320,8 +339,8 @@ describe('the number is gone from browse', () => {
 describe('the verdict words follow the dictionary when one is loaded', () => {
   const italian = key => ({
     'recommendation.category.strong-option':'Ottima scelta',
-    'recommendation.category.possible-with-cautions':'Possibile con precauzioni',
-    'recommendation.category.not-recommended':'Non consigliato',
+    'recommendation.category.possible-with-cautions':'Con attenzione',
+    'recommendation.category.not-recommended':'Poco adatta',
   })[key] || key;
 
   test('an explicit translator renames the verdict and leaves everything else', () => {
@@ -329,22 +348,22 @@ describe('the verdict words follow the dictionary when one is loaded', () => {
     expect(verdict.label).toBe('Ottima scelta');
     expect(verdict.category).toBe('strong-option');
     expect(verdict.color).toBe(VERDICTS['strong-option'].color);
-    expect(verdictFor({score:90,category:'not-recommended'}, italian).label).toBe('Non consigliato');
+    expect(verdictFor({score:90,category:'not-recommended'}, italian).label).toBe('Poco adatta');
   });
 
   test('a translator that does not know the key falls back to the English in VERDICTS', () => {
     expect(verdictFor(92, key => key).label).toBe('Strong option');
-    expect(verdictFor(50, () => '').label).toBe('Not recommended');
+    expect(verdictFor(50, () => '').label).toBe('Low match');
   });
 
   test('the global dictionary is picked up without being passed', () => {
     globalThis.t = italian;
     try {
-      expect(verdictFor(70).label).toBe('Possibile con precauzioni');
+      expect(verdictFor(70).label).toBe('Con attenzione');
       expect(require('./match-verdict.js').categoryLabel('strong-option')).toBe('Ottima scelta');
     } finally {
       delete globalThis.t;
     }
-    expect(verdictFor(70).label).toBe('Possible with cautions');
+    expect(verdictFor(70).label).toBe('Good with care');
   });
 });

@@ -132,7 +132,7 @@ describe('UX-04 canonical recommendation journey', () => {
     const block = document.getElementById('recommendationDecision');
     expect(block.hidden).toBe(false);
     expect(block.textContent).toContain('Unpersonalized planning view');
-    expect(block.textContent).toContain('Possible with cautions');
+    expect(block.textContent).toContain('Good with care');
     expect(block.textContent).toContain('Distance is within range.');
     expect(block.textContent).toContain('Shade is limited.');
     const guideLinks = document.getElementById('trailGuideLinks');
@@ -154,7 +154,7 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(document.body.textContent).not.toContain('Canonical scoring');
     expect(block.textContent).not.toContain('Access is not reviewed.');
     expect(document.getElementById('heroVerdict').textContent)
-      .toBe('Possible with cautions in an unpersonalized planning view.');
+      .toBe('Good with care in an unpersonalized planning view.');
     expect(window.recommendTrail).toHaveBeenCalledTimes(1);
   });
 });
