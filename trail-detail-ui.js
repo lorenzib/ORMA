@@ -27,19 +27,11 @@
   const hikeHome = heroBtn && heroBtn.parentElement;
   const hikeNext = heroBtn && heroBtn.nextSibling;
 
-  const hikeSlot = document.getElementById('mobileMapHikeSlot');
-  const phone = window.matchMedia ? window.matchMedia('(max-width:700px)') : null;
-
-  // On a phone the map's own End button is hidden, and a recording hike
-  // fills the screen with the map, so the hero button moves onto the map as
-  // "End · 12:34". Without this, a phone had no way to end a hike by hand.
+  // SOCIAL-04: a phone ends a hike from the recording panel's pause button
+  // (Resume or Finish walk), so the hero button stays in the page.
   function placeHikeAction() {
     if (!heroBtn || !hikeHome) return;
-    const onMap = !!(hikeSlot && phone && phone.matches && recording() &&
-      mapBox.classList.contains('map-fs'));
-    if (onMap) {
-      if (heroBtn.parentElement !== hikeSlot) hikeSlot.appendChild(heroBtn);
-    } else if (heroBtn.parentElement !== hikeHome) {
+    if (heroBtn.parentElement !== hikeHome) {
       hikeHome.insertBefore(heroBtn, hikeNext);
     }
   }
@@ -99,7 +91,6 @@
           : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> ' + tx('Start the hike');
       }
     }
-    placeHikeAction();
     if (liveBanner) liveBanner.hidden = !rec;
     if (!rec && elapsedTimer) { clearInterval(elapsedTimer); elapsedTimer = null; hikeStartedAt = null; }
   }
@@ -115,7 +106,6 @@
       attributes: true, attributeFilter: ['class', 'hidden'], childList: true, subtree: true,
     });
   }
-  if (phone && phone.addEventListener) phone.addEventListener('change', syncHike);
   // Poll briefly until hike-mode has injected its button, then let the
   // observer take over.
   let tries = 0;

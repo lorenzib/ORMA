@@ -1555,66 +1555,6 @@ function renderTrail(t){
     const journalReturn = encodeURIComponent(`trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))}`);
     logWalkBtn.href = `journal.html?trail=${encodeURIComponent(t.id)}&from=${journalReturn}`;
   }
-  // One tap counts a walk in the anonymous tally, the same event a finished
-  // GPS hike writes. Firebase loads after the page is idle, so a tap before
-  // then waits for it briefly rather than failing.
-  const walkedThisBtn = document.getElementById('walkedThisBtn');
-  const walked = window.DoloPawsWalkedThis;
-  // The label is set here, not by data-i18n, so a later translation pass
-  // cannot put "We walked this" back on a walk already counted.
-  if(walkedThisBtn && walked && !walkedThisBtn.dataset.bound){
-    walkedThisBtn.dataset.bound = '1';
-    walkedThisBtn.textContent = window.t('page.trail.walkedThis');
-    const walkedStatus = document.getElementById('walkedThisStatus');
-    const showWalked = () => {
-      walkedThisBtn.textContent = window.t('trail.walkedToday');
-      walkedThisBtn.disabled = true;
-    };
-    const communityReady = () => window.DoloPawsCommunity ? Promise.resolve(window.DoloPawsCommunity)
-      : new Promise(resolve => {
-        const done = () => resolve(window.DoloPawsCommunity || null);
-        window.addEventListener('dolopaws-auth-ready', done, { once: true });
-        setTimeout(done, 6000);
-      });
-    if(walked.walkedToday(t.id)) showWalked();
-    // SOCIAL-02: a tap counts only as a check-in, made on the trail. The
-    // phone's position is asked for once, compared with the line here and
-    // never stored or sent.
-    const whereAmI = () => new Promise(resolve => {
-      if(!navigator.geolocation) return resolve(null);
-      navigator.geolocation.getCurrentPosition(resolve, () => resolve(null), {
-        enableHighAccuracy: true, timeout: 15000, maximumAge: 60000,
-      });
-    });
-    const notCounted = labelKey => {
-      walkedThisBtn.textContent = window.t(labelKey);
-      if(walkedStatus) walkedStatus.textContent = window.t('trail.walkedHowToCount');
-      walkedThisBtn.title = window.t('trail.walkedHowToCount');
-      walkedThisBtn.disabled = false;
-    };
-    walkedThisBtn.addEventListener('click', async () => {
-      walkedThisBtn.disabled = true;
-      if(walked.walkedToday(t.id)) return showWalked();
-      const proofCheck = window.DoloPawsWalkProof;
-      if(!proofCheck) return notCounted('trail.walkedRetry');
-      walkedThisBtn.textContent = window.t('trail.walkedLocating');
-      const position = await whereAmI();
-      if(!position) return notCounted('trail.walkedNoLocation');
-      const checkIn = proofCheck.assessCheckIn(position, t.path);
-      if(!checkIn.proof) return notCounted('trail.walkedNotHere');
-      const result = await walked.record(t.id, walked.activeDogGroup(), {
-        community: await communityReady(), proof: checkIn.proof,
-      });
-      if(result === 'recorded' || result === 'already'){
-        showWalked();
-        walkedThisBtn.removeAttribute('title');
-        if(walkedStatus && result === 'recorded') walkedStatus.textContent = window.t('trail.walkedThanks');
-        return;
-      }
-      walkedThisBtn.textContent = window.t('trail.walkedRetry');
-      walkedThisBtn.disabled = false;
-    });
-  }
   // Do not reserve an empty elevation panel for routes without profile data.
   const elevationCard = document.getElementById('tdElevationPanel');
   const hasElevationProfile = Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1;

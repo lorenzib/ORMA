@@ -14,6 +14,12 @@ The required response is one of:
 - did not complete;
 - prefer not to answer.
 
+On the finish card (SOCIAL-04, 2026-11-07) the question reads "Did it suit
+{dog}?" with the first three answers as Yes, With care and No. "Did not
+complete" and "prefer not to answer", the optional follow-ups, how the walk
+felt and photos sit behind "Tell us more", so the card asks one thing. The
+response set and the stored record are unchanged.
+
 Water accuracy and material hazards are optional structured follow-ups. Free
 text, precise GPS positions, and dog profile fields are deliberately excluded.
 

@@ -81,7 +81,7 @@ describe('trail page map controls', () => {
   test('renders without waiting for authentication-delayed DOMContentLoaded', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-    expect(html).toContain("firebase.src = 'firebase-init.js?v=20261106-1'");
+    expect(html).toContain("firebase.src = 'firebase-init.js?v=20261107-1'");
     expect(html).toContain("window.addEventListener('load', scheduleTrailFirebase");
     expect(trail).toContain("if(document.querySelector('.td2')){");
     expect(trail).toContain('if(trailInitStarted) return;');
@@ -127,7 +127,7 @@ describe('trail page map controls', () => {
     }
   });
 
-  test('a phone recording a hike has End on the full-screen map, and gets it back on the page after', () => {
+  test('the hero button mirrors a running hike and stays in the page', () => {
     const ui = fs.readFileSync(path.join(__dirname, 'trail-detail-ui.js'), 'utf8');
     document.body.innerHTML = `
       <main class="td2">
@@ -152,20 +152,19 @@ describe('trail page map controls', () => {
     try {
       window.eval(ui);
       const sync = () => callbacks[0]([]);
-      // Hike mode starts: Pause shows and the map fills the screen.
+      // Hike mode starts: Pause shows and the map fills the screen. A phone
+      // ends the walk from the recording panel, so the button stays put.
       pause.hidden = false;
       box.classList.add('map-fs');
       sync();
-      expect(hero.parentElement.id).toBe('mobileMapHikeSlot');
+      expect(hero.parentElement.id).toBe('desktopActions');
       expect(hero.classList.contains('recording')).toBe(true);
-      expect(hero.textContent).toContain('End');
       // It ends: hike mode keeps its status mark for the last message, but
-      // Pause hides and the map leaves full screen.
+      // Pause hides.
       document.getElementById('trailDetailMap').classList.add('hike-status-visible');
       pause.hidden = true;
       box.classList.remove('map-fs');
       sync();
-      expect(hero.parentElement.id).toBe('desktopActions');
       expect(hero.classList.contains('recording')).toBe(false);
     } finally {
       window.MutationObserver = OriginalObserver;
@@ -174,16 +173,21 @@ describe('trail page map controls', () => {
     }
   });
 
-  test('while a hike records on a phone, the bottom controls form one stack', () => {
+  test('while a hike records on a phone, only the map, the calm panel and the hazard button show', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
-    const live = '.td2 .trail-map-box.map-fs:has(.hike-status-visible)';
-    expect(html).toContain(`${live} .map-nearest-directions,`);
-    expect(html).toContain(`${live} #mapHikeStatus{bottom:calc(var(--hk-base) + 46px)!important;`);
-    expect(html).toContain(`${live} .map-hazard-report-btn{bottom:var(--hk-base)!important;}`);
-    expect(html).toContain(`${live} .mobile-map-hike-slot{left:`);
+    const live = '.td2 .trail-map-box.map-fs:has(.hk-live)';
+    const hidden = html.slice(html.indexOf(`${live} :is(`), html.indexOf('{display:none!important;}', html.indexOf(`${live} :is(`)));
+    for(const control of ['#detailLayersBtn', '.maplibregl-ctrl-top-right', '#mapExpandBtn', '.td2-elev',
+      '.td-layer-switch', '.map-nearest-directions', '#mapPauseHikeBtn']){
+      expect(hidden).toContain(control);
+    }
+    expect(hidden).not.toContain('hazard');
+    expect(html).toContain(`${live} #mapHikeDock:not([hidden]){display:block;}`);
+    // The detailed status shows only when it says more than the panel.
+    expect(html).toContain('.td2 .trail-map-box.map-fs:has(.hk-live.hk-routine) #mapHikeStatus{display:none!important;}');
     const hikeMode = fs.readFileSync(path.join(__dirname, 'hike-mode.js'), 'utf8');
+    expect(hikeMode).toContain("setRoutine(!reliabilityNote && !offline && !lead && !(decision && decision.ahead < 0.5));");
     expect(hikeMode).toContain("<small>/km</small>");
-    expect(hikeMode).not.toContain("' min/km'");
   });
 
   test('uses the main-map Layers pattern and removes the redundant map key', () => {
@@ -304,7 +308,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20261006-1');
-    expect(html).toContain('trail-app.bundle.js?v=20261107-1');
+    expect(html).toContain('trail-app.bundle.js?v=20261107-2');
     expect(html).toContain('trail-mobile.css?v=20260904-3');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',

@@ -11,11 +11,8 @@ function realBreedGroupId(){
   return context.breedGroupId;
 }
 
-describe('SOCIAL-01 one-tap "We walked this"', () => {
+describe('SOCIAL-01 walk tally', () => {
   let walked;
-  const noon = new Date(2026, 10, 6, 12, 0).getTime();
-  const community = (ok = true) => ({ calls: [], recordTrailWalk(trailId, group, proof){ this.calls.push([trailId, group, proof]); return Promise.resolve(ok); } });
-  const proof = 'checkin';
 
   beforeEach(() => {
     jest.resetModules();
@@ -23,54 +20,6 @@ describe('SOCIAL-01 one-tap "We walked this"', () => {
     delete window.breedGroupId;
     localStorage.clear();
     walked = require('./walked-this.js');
-  });
-
-  test('a tap writes one anonymous walk and the same day does not count twice', async () => {
-    const service = community();
-    expect(await walked.record('lago-carezza', 'g1', { community: service, now: noon, proof })).toBe('recorded');
-    expect(await walked.record('lago-carezza', 'g1', { community: service, now: noon + 3600000, proof })).toBe('already');
-    expect(service.calls).toEqual([['lago-carezza', 'g1', 'checkin']]);
-    expect(walked.walkedToday('lago-carezza', { now: noon })).toBe(true);
-    expect(walked.walkedToday('lago-braies', { now: noon })).toBe(false);
-  });
-
-  test('the next calendar day counts again', async () => {
-    const service = community();
-    await walked.record('lago-carezza', 'g1', { community: service, now: noon, proof });
-    expect(await walked.record('lago-carezza', 'g1', { community: service, now: noon + 86400000, proof })).toBe('recorded');
-    expect(service.calls).toHaveLength(2);
-  });
-
-  test('a refused or missing write leaves the tap free to retry', async () => {
-    expect(await walked.record('lago-carezza', 'g1', { community: community(false), now: noon, proof })).toBe('failed');
-    expect(await walked.record('lago-carezza', 'g1', { community: null, now: noon, proof })).toBe('unavailable');
-    expect(walked.walkedToday('lago-carezza', { now: noon })).toBe(false);
-    expect(await walked.record('lago-carezza', 'g1', { community: community(), now: noon, proof })).toBe('recorded');
-  });
-
-  test('a write that throws is a failed tap, not a broken page', async () => {
-    const throwing = { recordTrailWalk(){ throw new Error('offline'); } };
-    expect(await walked.record('lago-carezza', 'g1', { community: throwing, now: noon, proof })).toBe('failed');
-  });
-
-  test('a tap without proof writes nothing and leaves the day free', async () => {
-    const service = community();
-    for(const missing of [undefined, null, 'trust-me', 'none']){
-      expect(await walked.record('lago-carezza', 'g1', { community: service, now: noon, proof: missing })).toBe('unproven');
-    }
-    expect(service.calls).toEqual([]);
-    expect(walked.walkedToday('lago-carezza', { now: noon })).toBe(false);
-  });
-
-  test('marks older than thirty days are dropped', () => {
-    walked.markWalked('old-trail', { now: noon - 40 * 86400000 });
-    walked.markWalked('lago-carezza', { now: noon });
-    expect(Object.keys(JSON.parse(localStorage.getItem(walked.STORAGE_KEY)))).toEqual(['lago-carezza']);
-  });
-
-  test('a corrupt store reads as nothing walked', () => {
-    localStorage.setItem(walked.STORAGE_KEY, '[not json');
-    expect(walked.walkedToday('lago-carezza', { now: noon })).toBe(false);
   });
 
   test('the dog is reduced to its FCI group, as the tally rule allows', () => {
@@ -86,34 +35,63 @@ describe('SOCIAL-01 one-tap "We walked this"', () => {
     localStorage.removeItem('dolopaws-profile-summary');
     expect(walked.activeDogGroup()).toBe(breedGroupId(''));
   });
+
+  test('a corrupt profile tags the walk unknown', () => {
+    localStorage.setItem('dolopaws-profile-summary', '[not json');
+    expect(walked.activeDogGroup()).toBe('unknown');
+  });
 });
 
-describe('SOCIAL-01 trail page wiring', () => {
+describe('SOCIAL-04 a walk counts only by recording it', () => {
   const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
 
-  test('the button sits in the trail action row', () => {
+  test('the trail page has no one-tap "We walked this"', () => {
     document.body.innerHTML = read('trail.html');
-    const button = document.querySelector('.td2-actrow #walkedThisBtn');
-    expect(button).not.toBeNull();
-    expect(button.getAttribute('type')).toBe('button');
-    expect(document.getElementById('walkedThisStatus').getAttribute('aria-live')).toBe('polite');
+    expect(document.getElementById('walkedThisBtn')).toBeNull();
+    expect(document.getElementById('walkedThisStatus')).toBeNull();
+    expect(read('trail.js')).not.toContain('walkedThisBtn');
+    expect(read('i18n.js')).not.toContain("'page.trail.walkedThis'");
   });
 
-  test('the bundle loads the tally before hike mode, which tags its walks through it', () => {
+  test('the bundle loads the tally helper before hike mode, which tags its walks through it', () => {
     const { SOURCES } = require('./scripts/build-trail-page-bundle.js');
     expect(SOURCES.indexOf('walked-this.js')).toBeGreaterThan(-1);
     expect(SOURCES.indexOf('walked-this.js')).toBeLessThan(SOURCES.indexOf('hike-mode.js'));
-    expect(SOURCES.indexOf('walked-this.js')).toBeLessThan(SOURCES.indexOf('trail.js'));
     expect(SOURCES.indexOf('walk-proof.js')).toBeGreaterThan(-1);
     expect(SOURCES.indexOf('walk-proof.js')).toBeLessThan(SOURCES.indexOf('hike-mode.js'));
-    expect(SOURCES.indexOf('walk-proof.js')).toBeLessThan(SOURCES.indexOf('trail.js'));
+  });
+});
+
+describe('SOCIAL-04 a simpler walk', () => {
+  const hikeMode = fs.readFileSync(path.join(__dirname, 'hike-mode.js'), 'utf8');
+  const section = (from, to) => hikeMode.slice(hikeMode.indexOf(from), hikeMode.indexOf(to));
+
+  test('pause keeps the map and offers Resume or Finish walk', () => {
+    const pause = section('function pauseHike', 'function persistCompletionAndShow');
+    expect(pause).toContain('stopHike(true, true)');
+    expect(pause).toContain('showPauseSheet()');
+    expect(hikeMode).toContain('data-pause="resume"');
+    expect(hikeMode).toContain('data-pause="finish"');
+    expect(hikeMode).toContain("dock.querySelector('.hk-dock-pause').addEventListener('click', () => pauseHike());");
   });
 
-  test('every label exists in English and Italian', () => {
-    const i18n = read('i18n.js');
-    for(const key of ['page.trail.walkedThis', 'trail.walkedToday', 'trail.walkedRetry', 'trail.walkedThanks',
-      'trail.walkedLocating', 'trail.walkedNotHere', 'trail.walkedNoLocation', 'trail.walkedHowToCount',
-      'hike.proofGps', 'hike.proofShort', 'hike.proofUnconfirmed']){
+  test('finishing short of the proof says so before, not after', () => {
+    const sheet = section('function showPauseSheet', 'function hidePauseSheet');
+    expect(sheet).toContain('routeShare() >= walkProof.MIN_SHARE');
+  });
+
+  test('the finish card asks one question and keeps the rest behind Tell us more', () => {
+    const outcome = section('function renderOutcome', "q('#hkMoreToggle').addEventListener");
+    expect(outcome).toMatch(/\['appropriate', window\.t\('hike\.suitYes'\)\],\s*\['appropriate_with_unexpected_cautions', window\.t\('hike\.suitCare'\)\],\s*\['not_appropriate', window\.t\('hike\.suitNo'\)\],\s*\]\.concat\(showMore/);
+    expect(outcome).toContain("!showMore || !outcomeResponse");
+    expect(hikeMode).toContain('<div class="hk-block hk-more" hidden>');
+  });
+
+  test('every new label exists in English and Italian', () => {
+    const i18n = fs.readFileSync(path.join(__dirname, 'i18n.js'), 'utf8');
+    for(const key of ['hike.dockWalked', 'hike.dockOfRoute', 'hike.pausedTitle', 'hike.pausedSummary',
+      'hike.resumeAction', 'hike.finishWalk', 'hike.finishWontCount', 'hike.suitQuestion',
+      'hike.suitQuestionYourDog', 'hike.suitPrivate', 'hike.suitYes', 'hike.suitCare', 'hike.suitNo', 'hike.tellMore']){
       expect(i18n.split(`'${key}':`).length - 1).toBe(2);
     }
   });
