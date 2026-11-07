@@ -1,7 +1,7 @@
 const fs=require('fs');
 const {STRONG_AT,POSSIBLE_AT,verdictFor}=require('./match-verdict.js');
 
-// A trail scoring 62 read "Possible with cautions" in words and was coloured
+// A trail scoring 62 read "Good with care" in words and was coloured
 // red on the map, because map-style.js kept its own boundary at 65 while the
 // engine and the wording used 60. Colour is what a reader takes in first, so
 // the two disagreeing is worse than either being wrong alone.
@@ -20,7 +20,7 @@ describe('the colour and the word agree', () => {
 
   // The same disagreement, one surface further in: the trail page's match ring
   // drew green from 70 and amber from 50, so a score of 72 was a green ring
-  // beside the words "Possible with cautions".
+  // beside the words "Good with care".
   test('the trail page ring takes its colour from the verdict, not its own bands', () => {
     expect(blueprint).toContain('window.OrmaMatchVerdict.verdictFor(recommendation)');
     expect(blueprint).not.toMatch(/score >= 70/);
@@ -38,9 +38,9 @@ describe('the colour and the word agree', () => {
 
   // The score that was red while being called possible.
   test.each([
-    [62,'Possible with cautions','fair'],
-    [60,'Possible with cautions','fair'],
-    [59,'Not recommended','poor'],
+    [62,'Good with care','fair'],
+    [60,'Good with care','fair'],
+    [59,'Low match','poor'],
     [85,'Strong option','good'],
     [92,'Strong option','good'],
   ])('a score of %s is "%s" and coloured %s', (score,label,band) => {

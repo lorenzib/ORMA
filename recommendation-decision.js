@@ -14,8 +14,8 @@
 
   const CATEGORY = Object.freeze({
     'strong-option': { label:'Strong option', tone:'strong' },
-    'possible-with-cautions': { label:'Possible with cautions', tone:'caution' },
-    'not-recommended': { label:'Not recommended', tone:'stop' },
+    'possible-with-cautions': { label:'Good with care', tone:'caution' },
+    'not-recommended': { label:'Low match', tone:'stop' },
   });
 
   // `extra` carries what the engine does not know, such as the dog's name, so
