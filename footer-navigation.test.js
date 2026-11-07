@@ -22,14 +22,14 @@ describe('footer navigation', () => {
     ].filter(file => footerOf(file));
   }
 
-  test('every dog-care footer links to the breed-group caveats guide', () => {
+  test('every dog-care footer links to the breed-and-build guide', () => {
     const pages = publicFooterPages().filter(file =>
       footerOf(file).includes('<div class="hp-footer-h">Caring for your dog</div>')
     );
     expect(pages.length).toBeGreaterThan(0);
     pages.forEach(file => {
       expect(footerOf(file)).toMatch(
-        /href="(?:\.\.\/|\/)?guides\/breed-group-caveats\.html">Breed group caveats<\/a>/
+        /href="(?:\.\.\/|\/)?guides\/breed-group-caveats\.html">Your dog’s breed and build<\/a>/
       );
     });
   });
@@ -54,10 +54,10 @@ describe('footer navigation', () => {
       ['collections.html', 'Collections'],
       ['compare.html', 'Compare trails'],
       ['how-scoring-works.html', 'How scoring works'],
-      ['guides/heat-overheating.html', 'Heat &amp; hydration'],
+      ['guides/heat-overheating.html', 'Heat and your dog'],
       ['guides/paw-protection.html', 'Paw protection'],
-      ['guides/breed-group-caveats.html', 'Breed group caveats'],
-      ['guides/alpine-plants-for-dogs.html', 'Alpine plants guide'],
+      ['guides/breed-group-caveats.html', 'Your dog’s breed and build'],
+      ['guides/alpine-plants-for-dogs.html', 'Alpine plants and your dog'],
       ['journal.html', 'My walk journal'],
       ['saved.html', 'Saved trails'],
       ['downloads.html', 'Downloaded trails'],
@@ -75,6 +75,25 @@ describe('footer navigation', () => {
       const links = [...footerOf(file).matchAll(/<a\s[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/g)]
         .map(([, href, label]) => [href.replace(/^\.\.\//, ''), label.trim()]);
       expect(links).toEqual(expected);
+    });
+  });
+
+  test('the Italian footer uses the same short guide titles as the Safety library', () => {
+    const pages = [
+      ...htmlFiles(path.join(__dirname, 'it')),
+      ...htmlFiles(path.join(__dirname, 'it', 'guides')),
+      ...htmlFiles(path.join(__dirname, 'it', 'trails')),
+    ].filter(file => footerOf(file));
+    expect(pages.length).toBeGreaterThan(0);
+    pages.forEach(file => {
+      const links = [...footerOf(file).matchAll(/<a\s[^>]*href="(?:\.\.\/)*guides\/([^"]+)"[^>]*>([^<]+)<\/a>/g)]
+        .map(([, href, label]) => [href, label.trim()]);
+      expect(links).toEqual([
+        ['heat-overheating.html', 'Il caldo e il tuo cane'],
+        ['paw-protection.html', 'Proteggere le zampe'],
+        ['breed-group-caveats.html', 'Razza e corporatura del tuo cane'],
+        ['alpine-plants-for-dogs.html', 'Il tuo cane e le piante alpine'],
+      ]);
     });
   });
 

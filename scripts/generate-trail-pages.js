@@ -1199,10 +1199,10 @@ ${reviewRecord}
     <div>
       <div class="hp-footer-h">${L('Caring for your dog')}</div>
       <div class="hp-footer-links">
-        <a href="../guides/heat-overheating.html">${L('Heat &amp; hydration')}</a>
+        <a href="../guides/heat-overheating.html">${L('Heat and your dog')}</a>
         <a href="../guides/paw-protection.html">${L('Paw protection')}</a>
-        <a href="../guides/breed-group-caveats.html">${L('Breed group caveats')}</a>
-        <a href="../guides/alpine-plants-for-dogs.html">${L('Alpine plants guide')}</a>
+        <a href="../guides/breed-group-caveats.html">${L('Your dog’s breed and build')}</a>
+        <a href="../guides/alpine-plants-for-dogs.html">${L('Alpine plants and your dog')}</a>
       </div>
     </div>
     <div>
