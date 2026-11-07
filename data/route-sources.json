@@ -3713,6 +3713,30 @@
       "quote": "Distanza 9,4 km · Durata 4:22 h · Salita 1.212 m · Discesa 0 m · Punto più alto 2.550 m · Punto più basso 1.338 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-06T11:00:00.000Z"
+    },
+    "winter-voels-voelser-weiher": {
+      "url": "https://www.outdooractive.com/it/r/55209890",
+      "publisher": "Völs am Schlern tourist board (Seiser Alm Marketing) (Outdooractive)",
+      "name": "Escursione invernale da Fiè al Laghetto di Fiè",
+      "quote": "Escursione invernale · Distanza 7,1 km · Durata 2:04 h · Salita 247 m · Discesa 247 m · Punto più alto 1.054 m · Punto più basso 841 m · Percorso sgomberato · Percorso ad anello",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-07T21:00:00.000Z"
+    },
+    "winter-pozza-canto-acqua": {
+      "url": "https://www.outdooractive.com/it/r/64571850",
+      "publisher": "APT Val di Fassa (Outdooractive)",
+      "name": "Il canto dell’acqua: due passi lungo l’Avisio e il Ruf de Sèn Nicolò",
+      "quote": "Escursione invernale · Distanza 3,7 km · Durata 0:55 h · Salita 29 m · Discesa 29 m · Punto più alto 1.330 m · Punto più basso 1.303 m · Percorso sgomberato · Percorso preparato",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-07T21:00:00.000Z"
+    },
+    "winter-steinegg-osservatorio": {
+      "url": "https://www.outdooractive.com/it/r/16082606",
+      "publisher": "Eggental tourist board (Eggental – Val d’Ega) (Outdooractive)",
+      "name": "Escursione invernale all’osservatorio di San Valentino",
+      "quote": "Escursione invernale · Distanza 4,9 km · Durata 1:16 h · Salita 57 m · Discesa 57 m · Punto più alto 1.318 m · Punto più basso 1.291 m · Percorso sgomberato · Andata e ritorno",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-07T21:00:00.000Z"
     }
   }
 }

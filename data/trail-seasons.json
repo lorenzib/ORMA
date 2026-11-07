@@ -6210,6 +6210,61 @@
           "accessedAt": "2026-11-06"
         }
       }
+    },
+    "winter-pozza-canto-acqua": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/64571850",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "winter-steinegg-osservatorio": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/16082606",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "winter-voels-voelser-weiher": {
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/55209890",
+          "accessedAt": "2026-11-07"
+        }
+      }
     }
   }
 }
