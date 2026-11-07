@@ -66,3 +66,27 @@ html.orma-app body.mhome-active #returningCustomerHomepage #liToolbar{
 /* "Show all trails" already heads the list; its footer link repeated it and
    took a row of the sheet away from the trails. */
 html.orma-app .li-list-foot{display:none;}
+
+/* Explore list cards in the app: the recommendation, not the argument for
+   it. The reasons (the header switch, each card's toggle and its panel) and
+   the "based on available trail data · checked on" line stay on the website;
+   the card keeps its verdict, Verified by ORMA, See on map and Get directions.
+   The trail page still explains every score. */
+html.orma-app #liReasonsToggle,
+html.orma-app .li-row .li-why-toggle,
+html.orma-app .li-row .li-answer-explanation{display:none !important;}
+html.orma-app .li-row-trust > span,
+html.orma-app .li-rating-kick{display:none;}
+/* Shorter cards: the verdict sits under the trail facts instead of on a row
+   of its own, and the See on map / Get directions bar is slimmer. */
+@media (max-width:700px){
+  html.orma-app .li-row{padding:10px 12px;row-gap:6px;}
+  html.orma-app .li-row .li-match{grid-column:2/-1;grid-row:2;display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 8px;padding:0;margin:0;border:0;text-align:left;}
+  html.orma-app .li-row .li-match,html.orma-app .li-row .li-match b{width:auto;max-width:none;justify-self:start;text-align:left;}
+  html.orma-app .li-row .li-match b{display:inline;font-size:14px;}
+  html.orma-app .li-row .li-match .li-match-lbl{font-size:12px;}
+  html.orma-app .li-row .li-row-trust{margin-top:2px;}
+  html.orma-app .li-row .li-rating-row{margin-top:4px;}
+  html.orma-app .li-row .li-row-bar{margin-top:2px;}
+  html.orma-app .li-row .li-row-bar .li-bar-act{min-height:34px;padding-top:6px;padding-bottom:6px;}
+}

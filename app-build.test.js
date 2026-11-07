@@ -308,3 +308,26 @@ describe('the app opens on the map for every visitor', () => {
     expect(index).toContain('class="li-list-foot"');
   });
 });
+
+// The app's Explore list gives the recommendation, not the argument for it:
+// no reasons and no "based on available trail data · checked on" line, while
+// See on map and Get directions stay. The website keeps all of it.
+describe('the app list cards are compact', () => {
+  const shell = fs.readFileSync(path.join(root, 'app-shell.css'), 'utf8');
+  const script = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
+  const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+
+  test('the reasons and the data-checked line are hidden in the app only', () => {
+    expect(shell).toMatch(/html\.orma-app #liReasonsToggle,\s*html\.orma-app \.li-row \.li-why-toggle,\s*html\.orma-app \.li-row \.li-answer-explanation\{display:none !important;\}/);
+    expect(shell).toContain('html.orma-app .li-row-trust > span');
+    expect(index).toContain('id="liReasonsToggle"');
+    expect(script).toContain('class="li-answer-explanation"');
+    expect(script).toContain('<div class="li-row-trust"><strong>');
+  });
+
+  test('See on map and Get directions are never hidden', () => {
+    expect(shell).not.toMatch(/(locate-btn|li-dir-toggle|li-row-bar)[^{]*\{[^}]*display:none/);
+    expect(script).toContain("tx('See on map')");
+    expect(script).toContain("tx('Get directions')");
+  });
+});
