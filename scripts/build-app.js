@@ -104,6 +104,9 @@ const APP_SHELL_TAG = '<link rel="stylesheet" href="/app-shell.css">';
 // Every app page also gets the bottom tab bar (app-tabbar.js), which a
 // native app is navigated by.
 const APP_TABBAR_TAG = '<script src="/app-tabbar.js" defer></script>';
+// Marks the page as running inside the app before anything draws, so the
+// homepage can open on the map instead of the website's guest landing page.
+const APP_FLAG_TAG = '<script>document.documentElement.classList.add(\'orma-app\');</script>';
 
 const rel = (abs) => path.relative(root, abs).split(path.sep).join('/');
 const denied = (r) => DENY.some((pattern) => pattern.test(r));
@@ -270,7 +273,7 @@ function rewriteRemoteRefs(){
       .replace(REMOTE_REF, `$1${SITE_ORIGIN}/$2`)
       .replace(MANIFEST_TAG, APP_MANIFEST_TAG);
     const page = /\.html$/.test(r)
-      ? after.replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_SHELL_TAG}\n${APP_TABBAR_TAG}\n</head>`)
+      ? after.replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_FLAG_TAG}\n${APP_SHELL_TAG}\n${APP_TABBAR_TAG}\n</head>`)
       : after;
     if(page !== before){ fs.writeFileSync(dest, page); rewritten += 1; }
   }
@@ -298,4 +301,4 @@ function build(){
 if(require.main === module) build();
 
 module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG,
-  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG };
+  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG, APP_FLAG_TAG };
