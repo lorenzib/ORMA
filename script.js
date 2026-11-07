@@ -3915,9 +3915,10 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   // Cautions first (hard stops already lead them), then what is simply not
   // known, which is a different kind of statement and belongs after. Only
   // trail unknowns: a missing profile field becomes the prompt below, and
-  // saying the same thing twice on one card reads as two problems.
-  const concerns = view.cautions.slice(0, 3);
-  if(concerns.length < 2) concerns.push(...view.trailUnknowns.slice(0, 2 - concerns.length));
+  // saying the same thing twice on one card reads as two problems. The card
+  // says them in plain words (cardCautions), not in the engine's own terms.
+  const concerns = view.cardCautions.slice(0, 3);
+  if(concerns.length < 2) concerns.push(...view.cardTrailUnknowns.slice(0, 2 - concerns.length));
   const know = concerns.length
     ? `<div><b>${liWalkDate === liDateOffsetIso(0) ? tx('What to know today') : tx('What to know for this day')}</b><ul>${items(concerns)}</ul></div>`
     : '';
