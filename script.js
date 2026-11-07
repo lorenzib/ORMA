@@ -5556,7 +5556,12 @@ Optional color legend:
 (function(){
   try {
     const forced = new URLSearchParams(window.location.search).get('view');
-    if(forced === 'returning'){
+    // The iPhone app opens every visitor, signed in or not, on the map and
+    // ranked list: an app is used, not read about, so the website's guest
+    // landing page has no place in it. scripts/build-app.js marks app pages
+    // with the orma-app class; the website never has it.
+    const inApp = document.documentElement.classList.contains('orma-app');
+    if(forced === 'returning' || inApp){
       liDevView = true;
       window.dispatchEvent(new CustomEvent('dolopaws-auth-changed', { detail: { user: null, devView: 'returning' } }));
     }
