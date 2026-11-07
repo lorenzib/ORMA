@@ -3723,18 +3723,18 @@
     },
     {
       "id": "osm-12132169",
-      "approvedReviewId": "commons-osm-12132169",
-      "approvedAt": "2026-09-08T10:52:55.014Z",
+      "approvedReviewId": "mapillary-osm-12132169-on-route",
+      "approvedAt": "2026-11-07T20:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-12132169-toblacher-erdpyramiden.jpg",
-        "heroImage": "images/trails/osm-12132169-toblacher-erdpyramiden.jpg",
-        "imageAlt": "The earth pyramids at Toblach, pale eroded pinnacles standing below a spruce forest with green slopes and a ridge behind.",
-        "imageCredit": "Toblacher Erdpyramiden",
-        "imageCreditText": "Toblacher Erdpyramiden by Raphael Mair",
-        "imageCreator": "Raphael Mair",
+        "imageIcon": "images/trails/osm-12132169-marchkinkele-summit-cross.jpg",
+        "heroImage": "images/trails/osm-12132169-marchkinkele-summit-cross.jpg",
+        "imageAlt": "The wooden summit cross on the Marchkinkele, braced with wires, on a stony ridge top under a blue sky with white clouds, green valleys and the Villgraten mountains stretching away behind.",
+        "imageCredit": "The summit cross on the Marchkinkele",
+        "imageCreditText": "The summit cross on the Marchkinkele by flocki",
+        "imageCreator": "flocki",
         "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Toblacher_Erdpyramiden_01.jpg",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=309364880808128",
         "imageSourceType": "licensed-source"
       }
     },
