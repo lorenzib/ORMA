@@ -1619,7 +1619,7 @@ window.ORMA_PHRASES_IT = {
   "{month} is outside the season the board publishes for this walk.": "{month} è fuori dalla stagione che l’ente turistico pubblica per questo percorso.",
   "In {month} snow is likely on this walk.": "Nel mese di {month} la neve è probabile su questo percorso.",
   "In {month} snow is possible on this walk.": "Nel mese di {month} la neve è possibile su questo percorso.",
-  "Parts of it are likely to be ski runs or tracks now.": "In questo periodo alcuni tratti sono probabilmente piste da sci.",
+  "In {month}, parts of it are likely to be ski runs or tracks.": "In {month} alcuni tratti sono probabilmente piste da sci.",
   "Outdooractive": "Outdooractive",
   "Val Gardena tourist board": "ente turistico della Val Gardena",
   "Alta Badia tourist board": "ente turistico dell’Alta Badia",
@@ -1634,4 +1634,8 @@ window.ORMA_PHRASES_IT = {
   "Gitschberg Jochtal tourist board": "ente turistico Gitschberg Jochtal",
   "Klausen tourist board": "ente turistico di Chiusa",
   "An estimate from the walk’s high point.": "Una stima basata sul punto più alto del percorso.",
+  "Out of season": "Fuori stagione",
+  "Good all year": "Adatto tutto l’anno",
+  "Best time: {range}": "Periodo migliore: {range}",
+  "{from} to {to}": "da {from} a {to}",
 };

@@ -102,21 +102,56 @@
         : tx('In {month} snow is possible on this walk.', { month: name }));
     }
     if ((season.winterUse || []).length && WINTER_SPORT_MONTHS.includes(month)) {
-      notes.push(tx('Parts of it are likely to be ski runs or tracks now.'));
+      notes.push(tx('In {month}, parts of it are likely to be ski runs or tracks.', { month: name }));
     }
     return notes.join(' ');
   }
 
-  // Whether this month is one to warn about: outside the board's season, snowy
-  // by the estimate, or a month the pistes on the line are likely in use.
-  function outOfSeason(season, month) {
-    if (!season || !month) return false;
-    if (season.recommended && !season.recommended.months.includes(month)) return true;
-    if (!season.recommended && season.snow && season.snow.likelihood === 'likely' && season.snow.months.includes(month)) return true;
-    return (season.winterUse || []).length > 0 && WINTER_SPORT_MONTHS.includes(month);
+  // The months that suit the walk: the board's months, else the months the
+  // estimate keeps free of snow; with ski runs on the line, less the months
+  // those are usually open (unless that leaves nothing, as for a winter walk).
+  // null when the walk has no season record.
+  function bestMonths(season) {
+    if (!season || typeof season !== 'object') return null;
+    if (!season.recommended && !season.snow && !(season.winterUse || []).length) return null;
+    let months = season.recommended
+      ? season.recommended.months.slice()
+      : MONTH_NAMES.map((_, i) => i + 1).filter(m => !(season.snow && season.snow.months.includes(m)));
+    if ((season.winterUse || []).length) {
+      const summer = months.filter(m => !WINTER_SPORT_MONTHS.includes(m));
+      if (summer.length) months = summer;
+    }
+    return months.length ? months.sort((a, b) => a - b) : null;
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, monthRange, describe, nowNote, outOfSeason };
+  // Out of season: this month is not one of the walk's best months. The one
+  // rule behind the "Out of season" tag, the trail page's Season caution and
+  // the match score, so they never disagree.
+  function outOfSeason(season, month) {
+    const best = bestMonths(season);
+    return Boolean(best && month && !best.includes(month));
+  }
+
+  // "Best time: June to October" on a trail page, "Best time: Jun–Oct" on a
+  // card, "Good all year" when every month suits. A run across New Year reads
+  // as one run.
+  function bestTime(season, short) {
+    const best = bestMonths(season);
+    if (!best) return '';
+    if (best.length === 12) return tx('Good all year');
+    const set = new Set(best);
+    const name = m => (short ? monthName(m).slice(0, 3) : monthName(m));
+    const runs = [];
+    for (let m = 1; m <= 12; m += 1) {
+      if (!set.has(m) || set.has(m === 1 ? 12 : m - 1)) continue;
+      let end = m;
+      while (set.has(end === 12 ? 1 : end + 1)) end = end === 12 ? 1 : end + 1;
+      runs.push(end === m ? name(m) : (short ? `${name(m)}–${name(end)}` : tx('{from} to {to}', { from: name(m), to: name(end) })));
+    }
+    return tx('Best time: {range}', { range: runs.join(', ') });
+  }
+
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, monthName, monthRange, describe, nowNote, bestMonths, outOfSeason, bestTime };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -50,6 +50,9 @@
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-tag[hidden]{display:none;}
+  .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
   .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
@@ -153,6 +156,9 @@
   <h1>Höfeweg</h1>
   
   <div class="sp-badges">
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="110000000001" hidden><span>Fuori stagione</span></span>
+    <span class="dp-badge sp-tag sp-tag--best"><span>Periodo migliore: da marzo a novembre</span></span>
+    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Terreno impegnativo</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verificato da ORMA</span></span>
     
@@ -190,7 +196,7 @@
     </svg>
     <figcaption class="sp-src">Profilo altimetrico: punto più basso 721 m, punto più alto 1090 m.</figcaption>
   </figure>
-    <section class="sp-season" id="season" data-season-notes="[&quot;Nel mese di gennaio la neve è possibile su questo percorso.&quot;,&quot;Nel mese di febbraio la neve è possibile su questo percorso.&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Nel mese di dicembre la neve è possibile su questo percorso.&quot;]" data-season-warn="000000000000">
+    <section class="sp-season" id="season" data-season-notes="[&quot;Nel mese di gennaio la neve è possibile su questo percorso.&quot;,&quot;Nel mese di febbraio la neve è possibile su questo percorso.&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Nel mese di dicembre la neve è possibile su questo percorso.&quot;]" data-season-warn="110000000001">
     <h2>Quando andare</h2>
     <p class="sp-season-now" hidden></p>
     <ol class="sp-months" aria-label="Mesi dell’anno"><li class="sp-month sp-month--snow" data-month="1"><span aria-hidden="true">G</span><span class="sp-vh">gennaio: Neve possibile</span></li><li class="sp-month sp-month--snow" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">febbraio: Neve possibile</span></li><li class="sp-month sp-month--good" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">marzo: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">aprile: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">maggio: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">G</span><span class="sp-vh">giugno: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">L</span><span class="sp-vh">luglio: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">agosto: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">settembre: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">ottobre: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">novembre: Di solito senza neve</span></li><li class="sp-month sp-month--snow" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">dicembre: Neve possibile</span></li></ol>

@@ -311,6 +311,15 @@
         : esc(tx('Chairlift-assisted · not for most dogs'));
       tags.appendChild(warning);
     }
+    // The season at a glance (trail-season-words.js): "Out of season" this
+    // month, and the walk's best months, beside the other tags.
+    const seasonWords = window.DoloPawsTrailSeasonWords;
+    const best = seasonWords ? seasonWords.bestTime(t.season) : '';
+    if (best && tags && !tags.querySelector('.trail-season-tag')) {
+      const out = seasonWords.outOfSeason(t.season, new Date().getMonth() + 1)
+        ? `<span class="dp-badge trail-season-tag trail-season-tag--out"><span>${esc(tx('Out of season'))}</span></span>` : '';
+      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>`);
+    }
 
     // Elevation figures under the real chart; hide the block honestly
     // when the trail has no profile data.
