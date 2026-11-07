@@ -36,7 +36,8 @@ body.app-tabs .ep-mfooter{bottom:var(--app-tab);padding-bottom:14px;}
 body.app-tabs .compare-tray{bottom:calc(var(--app-tab) + 12px);}
 @media (max-width:700px){
   body.app-tabs .hp-fpanel.discovery-filter-panel,
-  body.app-tabs .li-filters-menu{bottom:calc(var(--app-tab) + 8px);max-height:calc(100dvh - var(--app-tab) - 120px);}
+  body.app-tabs .li-filters-menu,
+  body.app-tabs #returningCustomerHomepage #liToolbar #liFiltersWrap .li-filters-menu{bottom:calc(var(--app-tab) + 8px);max-height:calc(100dvh - var(--app-tab) - env(safe-area-inset-top,0px) - 120px);}
   /* The mobile homepage's map and pull-up list fill the screen down to its
      bottom edge; in the app they stop at the tab bar. */
   body.mhome-active.app-tabs .li-map{bottom:var(--app-tab);}
