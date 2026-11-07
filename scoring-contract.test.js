@@ -501,6 +501,7 @@ describe('SCORE-01 canonical recommendation contract', () => {
     expect(caution.vars).toEqual(expect.objectContaining({
       count:2,
       hazards:'Loose rock; Paved road crossing',
+      first:'Loose rock',
     }));
   });
 });

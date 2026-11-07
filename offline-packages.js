@@ -193,6 +193,7 @@
     'osm-12118490': "Le Balcon des Plagnes",
     'osm-12121346': "Le tour des hameaux de Montandré, Champessuit et Grenis",
     'osm-12121798': "Le terroir de Serpolière",
+    'osm-12132169': "Toblacher Höhenweg",
     'osm-12142337': "Rundweg Peitlerkofel",
     'osm-12150790': "Giro dei Capitelli - Kapellenrunde",
     'osm-12164395': "Dörferrundweg",
