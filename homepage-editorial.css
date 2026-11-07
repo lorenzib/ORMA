@@ -116,6 +116,12 @@
   /* With the greeting row taken apart, its menus open under the toolbar. */
   body.mhome-active #returningCustomerHomepage #liToolbar .li-head-menu{top:calc(100% - 4px);width:min(260px,calc(100vw - 20px));}
   body.mhome-active #returningCustomerHomepage #liToolbar #liFiltersWrap .li-menu{left:auto;right:0;}
+  /* Filters is too long for a drop-down: on a phone it opens as a panel along
+     the bottom of the screen. The drop-down placement above squashed it to a
+     sliver, and the toolbar's blur would pin a fixed panel inside the toolbar,
+     so the blur is dropped while the panel is open. */
+  body.mhome-active #returningCustomerHomepage #liToolbar #liFiltersWrap .li-filters-menu{position:fixed;left:8px;right:8px;top:auto;bottom:max(8px,env(safe-area-inset-bottom,0px));width:auto;max-height:70dvh;z-index:80;}
+  body.mhome-active #returningCustomerHomepage #liToolbar:has(.li-filters-menu:not([hidden])){-webkit-backdrop-filter:none;backdrop-filter:none;background:#F7F4EB;}
   body.mhome-active #returningCustomerHomepage #liToolbar .li-new-wrap .li-menu{left:auto;right:0;}
 }
 
