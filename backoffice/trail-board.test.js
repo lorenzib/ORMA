@@ -76,6 +76,33 @@ describe('the trail board', () => {
     expect(b.summary.disagree).toBe(0);
   });
 
+  test('a flag the owner settled moves to Stopped as decided, and only that flag', () => {
+    const decisions = { h: { settles: 'stuck', at: '2026-11-06', decision: 'Held while Savoie is paused', note: 'Looked at again when Savoie resumes.' },
+      f: { settles: 'withdrawn', at: '2026-11-05', decision: 'Withdrawal kept' } };
+    const b = buildTrailBoard({ trails: [trail('h', { curated: true }), verified('f')], decisions,
+      orchestration: { trails: [flow('h', 'blocked', { blockers: ['not-closed-loop'] }), flow('f', 'rejected')] } });
+    const rows = byId(b);
+    expect(rows.get('h').flag).toBe(null);
+    expect(rows.get('h').stopKind).toBe('decided');
+    expect(rows.get('h').next).toBe('Decided 2026-11-06: Held while Savoie is paused');
+    expect(b.summary.stuck).toBe(0);
+    expect(b.summary.stopped.decided).toBe(1);
+    // The decision named a different flag, so the disagreement still shows.
+    expect(rows.get('f').flag).toBe('disagree');
+  });
+
+  test('every settled decision names a catalogue trail and a flag the board raises', () => {
+    const { decisions } = require('../data/board-decisions.json');
+    const { loadProductionTrails } = require('../scripts/load-production-trails');
+    const ids = new Set(loadProductionTrails(path.resolve(__dirname, '..')).map(item => item.id));
+    for(const [id, decision] of Object.entries(decisions)){
+      expect(ids.has(id) ? id : `missing ${id}`).toBe(id);
+      expect(['stuck', 'disagree', 'withdrawn', 'audit']).toContain(decision.settles);
+      expect(decision.at).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(decision.decision).toBeTruthy();
+    }
+  });
+
   test('a publication failure says when it retries rather than claiming it never will', () => {
     const d = byId(board()).get('d');
     expect(d.next).toBe('Publication failed');
