@@ -15060,8 +15060,9 @@
       ]
     },
     'osm-2179746': {
-      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
-      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
+      // Seal restored 7 November 2026 on the owner's decision: no authority publishes this walk's climb or time (the only official
+      // figures are for the 6.1 km Genießertour of Südtirols Süden, of which this is a part), so both are measured by ORMA from the
+      // map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: line rebuilt on OSM ways along the province trail register's 'Naturlehrpfad Castelfeder'
       // (routes-hikingtrails.11426625, 1.71 km), signed on the ground as the Naturerlebnisweg Castelfeder; the old 2.3 km line matched
       // no official route. Dogs: Montan dog regulation Art. 4 and 8; the hill is the Castelfeder biotope (Natura 2000 IT3110035), whose
@@ -15864,66 +15865,9 @@
       "lat": 46.33604,
       "lng": 11.29373,
       "distance": 1.7,
-      "elevation": 65,
-      "hours": "0.75",
-      "elevationProfile": [
-        {
-          "km": 0,
-          "elev": 349
-        },
-        {
-          "km": 0.1,
-          "elev": 339
-        },
-        {
-          "km": 0.3,
-          "elev": 343
-        },
-        {
-          "km": 0.4,
-          "elev": 365
-        },
-        {
-          "km": 0.5,
-          "elev": 360
-        },
-        {
-          "km": 0.6,
-          "elev": 349
-        },
-        {
-          "km": 0.8,
-          "elev": 375
-        },
-        {
-          "km": 0.9,
-          "elev": 381
-        },
-        {
-          "km": 1,
-          "elev": 374
-        },
-        {
-          "km": 1.2,
-          "elev": 399
-        },
-        {
-          "km": 1.3,
-          "elev": 400
-        },
-        {
-          "km": 1.4,
-          "elev": 396
-        },
-        {
-          "km": 1.6,
-          "elev": 371
-        },
-        {
-          "km": 1.7,
-          "elev": 344
-        }
-      ],
+      "elevation": 45,
+      "hours": "0.5",
+      "elevationProfile": [{"km":0,"elev":361}, {"km":0.1,"elev":353}, {"km":0.2,"elev":348}, {"km":0.3,"elev":347}, {"km":0.4,"elev":356}, {"km":0.5,"elev":363}, {"km":0.6,"elev":354}, {"km":0.7,"elev":363}, {"km":0.8,"elev":374}, {"km":0.9,"elev":382}, {"km":1,"elev":380}, {"km":1.1,"elev":393}, {"km":1.2,"elev":392}, {"km":1.3,"elev":390}, {"km":1.4,"elev":386}, {"km":1.5,"elev":376}, {"km":1.6,"elev":351}, {"km":1.7,"elev":344}],
       "waterSources": [
         {
           "km": 0.1,
@@ -15967,8 +15911,38 @@
         "name": "Naturlehrpfad Castelfeder",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426625"
       },
-      "desc": "The nature trail over Castelfeder, the low porphyry hill between Montan and Auer, signed on the ground as the Naturerlebnisweg Castelfeder. It climbs from the sports-zone car park through woodland onto the open, rocky hilltop with its ruins and the 'Heidenrutsche' rock, and comes down on the far side by the youth hostel, about 1.7 km and 65 m of climb in three quarters of an hour.\n\nThe whole hill is the Castelfeder biotope, a Natura 2000 site, where dogs may not run free. Montan's dog regulation requires a lead of at most 1.5 m on all public ground, and owners must carry a muzzle; dogs are not allowed on farmed meadows during the growing season. The hill is grazed, so expect livestock and a cattle grid on the path.",
-      "tips": "Keep your dog on a short lead (1.5 m at most) the whole way and carry a muzzle: this is a protected biotope, and Montan requires it. Stay on the path, as the hill is grazed and the meadows are off limits to dogs. Lift or guide your dog over the cattle grid. It is low, rocky and sunny, so avoid hot middays; taps are mapped near the start and by the ruins."
+      "desc": "The nature trail over Castelfeder, the low porphyry hill between Montan and Auer, signed on the ground as the Naturerlebnisweg Castelfeder. It climbs from the sports-zone car park through woodland onto the open, rocky hilltop with its ruins and the 'Heidenrutsche' rock, and comes down on the far side by the youth hostel, about 1.7 km, 45 m up and 55 m down in about half an hour, as measured by ORMA (no official figure).\n\nThe whole hill is the Castelfeder biotope, a Natura 2000 site, where dogs may not run free. Montan's dog regulation requires a lead of at most 1.5 m on all public ground, and owners must carry a muzzle; dogs are not allowed on farmed meadows during the growing season. The hill is grazed, so expect livestock and a cattle grid on the path.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) the whole way and carry a muzzle: this is a protected biotope, and Montan requires it. Stay on the path, as the hill is grazed and the meadows are off limits to dogs. Lift or guide your dog over the cattle grid. It is low, rocky and sunny, so avoid hot middays; taps are mapped near the start and by the ruins.",
+      "routeShape": "point-to-point",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-11-07",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, DKrieger, CC BY-SA 3.0 (kept): the Heidenrutsche rock and dry grass on the Castelfeder hilltop, about 110 m from the line.",
+        "route": "Line rebuilt on OSM ways along the province register's Naturlehrpfad Castelfeder (1.71 km): 1.70 km, every register point within 14 m. It is the hilltop part of Südtirols Süden's 6.1 km Genießertour (Outdooractive 17277264), which covers 69% of it.",
+        "routeNumbers": "Start at the Castelfeder car park on the Dolomites road in Montan and follow the signs for the Naturerlebnisweg Castelfeder up through the wood onto the open hilltop, past the ruined castle and the St. Barbara chapel, then down the Römerstraße to the Castelfederweg (path 5) by the Jugendheim Castelfeder, about 200 m from the start.",
+        "mapPoints": "Start by the Castelfeder car park; taps traced to OSM near the start and by the ruins.",
+        "elevation": "No official figure. Measured by ORMA from the map: 1.70 km, about 45 m up and 55 m down between 344 and 393 m, 33 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
+      "verified": {
+        "categories": ["water", "heat", "exposure", "livestock", "surfaceHazards", "access"],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Naturlehrpfad Castelfeder', line routes-hikingtrails.11426625, 1,706 m; every register point within 14 m of the rebuilt line",
+          "Südtirols Süden, Auer: Genießertour zur Ruine und Biotop Castelfeder (Outdooractive 17277264): the 6.1 km tour this walk is part of; asks for dogs on a lead in the pasture and biotope and warns of intensive grazing",
+          "Gemeinde Montan, Verordnung über die Haltung und Führung von Hunden (GR 6/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows in the growing season), Art. 12 (applies outside built-up areas)",
+          "Montan landscape plan (newPlan PPC-21053, 2021), Biotop Castelfeder: Art. 6(4)(h) forbids 'Hunde frei laufen zu lassen'; Art. 6(5)(a) allows grazing; Natura 2000 site IT3110035 (EEA)",
+          "OpenStreetMap: path surfaces, guideposts for the Naturerlebnisweg, cattle grid, gates and water along the line"
+        ],
+        "date": "2026-11-07"
+      },
+      "sourceLinks": [
+        { "label": "South Tyrol trail register, Naturlehrpfad Castelfeder (Open Data Hub)", "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426625" },
+        { "label": "Südtirols Süden, Genießertour zur Ruine und Biotop Castelfeder", "url": "https://castelfeder.info/de/castelfeder/touren/rid-17277264-.html" },
+        { "label": "Gemeinde Montan, dog regulation", "url": "https://www.gemeinde.montan.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden" },
+        { "label": "OpenStreetMap relation 2179746", "url": "https://www.openstreetmap.org/relation/2179746" }
+      ]
     },
     'osm-11764094': {
       // Hand audit: 23 October 2026. In Natz-Schabs (the Laugen stretch is in
