@@ -5,7 +5,7 @@ const path = require('path');
 const vm = require('vm');
 const {
   collectAppFiles, ENTRY_PAGES, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG,
-  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG,
+  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG, APP_FLAG_TAG,
 } = require('./scripts/build-app');
 
 const root = __dirname;
@@ -280,5 +280,31 @@ describe('the app has a bottom tab bar', () => {
     const linked = pages.filter(file => fs.readFileSync(path.join(root, file), 'utf8').includes('app-tabbar.js'));
     expect(linked).toEqual([]);
     expect(fs.readFileSync(path.join(root, '_config.yml'), 'utf8')).toMatch(/^  - app-tabbar\.js$/m);
+  });
+});
+
+// An app is used, not read about: it opens on the map and the ranked list for
+// everyone, so the website's guest landing page never shows inside it.
+describe('the app opens on the map for every visitor', () => {
+  const script = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
+  const shell = fs.readFileSync(path.join(root, 'app-shell.css'), 'utf8');
+  const build = fs.readFileSync(path.join(root, 'scripts', 'build-app.js'), 'utf8');
+
+  test('app pages are marked before anything draws', () => {
+    expect(APP_FLAG_TAG).toBe("<script>document.documentElement.classList.add('orma-app');</script>");
+    expect(build).toContain('${APP_FLAG_TAG}\\n${APP_SHELL_TAG}');
+  });
+
+  test('the homepage takes the map view when it is marked', () => {
+    expect(script).toMatch(/const inApp = document\.documentElement\.classList\.contains\('orma-app'\);\s*if\(forced === 'returning' \|\| inApp\)/);
+  });
+
+  test('the guest landing page is hidden from the first paint, and the website is untouched', () => {
+    expect(shell).toContain('html.orma-app #newCustomerHomepage{display:none !important;}');
+    expect(shell).toContain('html.orma-app #returningCustomerHomepage[hidden]{display:flex !important;}');
+    const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+    expect(index).not.toContain('orma-app');
+    expect(index).toContain('id="liNewWrap"');
+    expect(index).toContain('class="li-list-foot"');
   });
 });

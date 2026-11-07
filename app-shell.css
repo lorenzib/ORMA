@@ -49,3 +49,20 @@ body.app-tabs .compare-tray{bottom:calc(var(--app-tab) + 12px);}
 }
 /* A map opened full screen takes the whole screen, tab bar included. */
 body.app-tabs:has(.li-map.map-fs) .app-tabbar{display:none;}
+
+/* The homepage opens on the map and ranked list for everyone in the app
+   (script.js, orma-app). Hide the guest landing page from the first paint,
+   the way a cached member's boot does, so it never flashes up first. */
+html.orma-app #newCustomerHomepage{display:none !important;}
+html.orma-app #returningCustomerHomepage[hidden]{display:flex !important;}
+
+/* The tab bar's Record replaces the homepage's own Record button. Drawing a
+   route stays one tap away on the map ("Draw a route here"). */
+html.orma-app #liNewWrap{display:none !important;}
+html.orma-app body.mhome-active #returningCustomerHomepage #liToolbar{
+  grid-template-columns:minmax(0,1fr) auto;
+  grid-template-areas:"greet greet" "today today" "search filters" "nudge nudge";
+}
+/* "Show all trails" already heads the list; its footer link repeated it and
+   took a row of the sheet away from the trails. */
+html.orma-app .li-list-foot{display:none;}
