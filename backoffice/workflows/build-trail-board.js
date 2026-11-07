@@ -131,7 +131,7 @@ function publicationText(request){
   return { next: 'Waiting to be published', failed: false, stuck: false };
 }
 
-function entryFor(trail, flow, publication, jobOwed, slug, paidResearch){
+function entryFor(trail, flow, publication, jobOwed, slug, paidResearch, decision){
   const badge = badgeOf(trail);
   const checks = completedChecks(trail);
   const missing = CHECKS.filter(check => !checks.includes(check));
@@ -245,6 +245,16 @@ function entryFor(trail, flow, publication, jobOwed, slug, paidResearch){
         ? 'Research found dogs are not allowed on this walk'
         : `Withdrawn: ${trail.withdrawal.reason}`);
   }
+  // The owner has looked at this flag and settled it (data/board-decisions.json).
+  // Only the flag the decision names is cleared, so a new problem still shows.
+  if(decision && entry.flag && decision.settles === entry.flag){
+    entry.flag = null;
+    entry.stage = 'stopped';
+    entry.stopKind = 'decided';
+    entry.next = `Decided ${decision.at}: ${decision.decision}`;
+    entry.detail = decision.note || '';
+    entry.decision = { settles: decision.settles, at: decision.at || null, decision: decision.decision || '' };
+  }
   entry.stageLabel = STAGE_LABELS[entry.stage];
   entry.actions = actionsFor(entry);
   return entry;
@@ -267,12 +277,18 @@ function slugMap(root = path.resolve(__dirname, '../..')){
   catch{ return {}; }
 }
 
-function buildTrailBoard({ trails = [], orchestration = null, publicationRequests = null, jobs = [], at, slugs = slugMap(), paidResearchEnabled = false } = {}){
+/** Flags the owner has settled by hand, by trail id. */
+function decisionMap(root = path.resolve(__dirname, '../..')){
+  try{ return JSON.parse(fs.readFileSync(path.join(root, 'data/board-decisions.json'), 'utf8')).decisions || {}; }
+  catch{ return {}; }
+}
+
+function buildTrailBoard({ trails = [], orchestration = null, publicationRequests = null, jobs = [], at, slugs = slugMap(), paidResearchEnabled = false, decisions = decisionMap() } = {}){
   const flows = new Map((orchestration?.trails || []).map(flow => [flow.trailId || flow.candidateId, flow]));
   const publications = publicationByTrail(publicationRequests);
   const owed = new Set((jobs || []).filter(job => ACTIVE_JOB.has(job.status || 'queued')).map(job => job.candidateId).filter(Boolean));
   const entries = trails.filter(trail => trail && trail.id)
-    .map(trail => entryFor(trail, flows.get(trail.id), publications.get(trail.id), owed.has(trail.id), slugs[trail.id], paidResearchEnabled));
+    .map(trail => entryFor(trail, flows.get(trail.id), publications.get(trail.id), owed.has(trail.id), slugs[trail.id], paidResearchEnabled, decisions[trail.id]));
   // What needs a look first, then what is moving, then what is settled, and
   // the long tail nobody has started last -- in journey order the board opened
   // on 141 untouched trails and buried the ones that mattered.
@@ -299,6 +315,7 @@ function buildTrailBoard({ trails = [], orchestration = null, publicationRequest
         resting: count(entry => entry.stopKind === 'resting'),
         rejected: count(entry => entry.stopKind === 'rejected'),
         blocked: count(entry => entry.stopKind === 'blocked'),
+        decided: count(entry => entry.stopKind === 'decided'),
       },
     },
     trails: entries,

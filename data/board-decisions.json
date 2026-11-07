@@ -1,0 +1,23 @@
+{
+  "_comment": "Flags on the Trails board that the owner has looked at and settled. Each entry clears one flag for one trail and says why. Any other flag on the same trail still shows. Delete an entry to raise the flag again.",
+  "decisions": {
+    "osm-20347406": {
+      "settles": "stuck",
+      "at": "2026-11-06",
+      "decision": "Held while Savoie is paused",
+      "note": "Sentier des Patriotes: the drawn line is one-way, but the official page describes an out-and-back walk. All regions outside the Dolomites are paused for the launch (4 Nov). It is looked at again when Savoie resumes."
+    },
+    "cinque-torri-assisted": {
+      "settles": "disagree",
+      "at": "2026-11-05",
+      "decision": "Seal pulled, the page stays Reviewed",
+      "note": "Cinque Torri three-refuges circuit needs the 5 Torri chairlift to start, so it cannot be Verified (#1280). The pipeline rejected it as well, and the page keeps the Reviewed badge on purpose."
+    },
+    "cadini": {
+      "settles": "withdrawn",
+      "at": "2026-11-05",
+      "decision": "Withdrawal kept",
+      "note": "Cadini di Misurina viewpoint: no authority publishes a distance, climb or time, the usual approach rides the Col de Varda chairlift, and the path beyond is rated EEA (equipped) (#1280). It stays off the site unless an official source appears."
+    }
+  }
+}
