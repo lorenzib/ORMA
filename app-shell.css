@@ -12,3 +12,40 @@
 /* The footer tells website visitors how to add ORMA to their home screen.
    Inside the app that advice is meaningless. */
 .hp-footer-get{display:none;}
+
+/* The bottom tab bar app-tabbar.js draws: the website's dark header colour
+   along the bottom, its icons, and the glacier blue of its Record button.
+   --app-tab is the height it takes, safe area included, so everything else
+   pinned to the bottom of the screen can sit just above it. */
+:root{--app-tab:calc(58px + env(safe-area-inset-bottom,0px));}
+.app-tabbar{position:fixed;left:0;right:0;bottom:0;z-index:55;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  height:var(--app-tab);padding:6px 6px env(safe-area-inset-bottom,0px);box-sizing:border-box;
+  background:#26352A;border-top:1px solid rgba(242,238,226,.09);}
+.app-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  color:#C9D3C6;text-decoration:none;font:600 11px 'Inter',sans-serif;-webkit-tap-highlight-color:transparent;}
+.app-tab-icon{display:flex;align-items:center;justify-content:center;width:54px;height:28px;border-radius:999px;}
+.app-tab[aria-current="page"]{color:#fff;font-weight:700;}
+.app-tab[aria-current="page"] .app-tab-icon{background:rgba(245,242,232,.16);color:#F5F2E8;}
+.app-tab--record .app-tab-icon{background:#3E7A91;}
+.app-tab-record{width:10px;height:10px;border-radius:999px;background:#fff;}
+body.app-tabs{padding-bottom:var(--app-tab);}
+
+/* Bottom-pinned pieces that would otherwise hide behind the tab bar. */
+body.app-tabs .dw-toast{bottom:calc(var(--app-tab) + 16px);}
+body.app-tabs .ep-mfooter{bottom:var(--app-tab);padding-bottom:14px;}
+body.app-tabs .compare-tray{bottom:calc(var(--app-tab) + 12px);}
+@media (max-width:700px){
+  body.app-tabs .hp-fpanel.discovery-filter-panel,
+  body.app-tabs .li-filters-menu{bottom:calc(var(--app-tab) + 8px);max-height:calc(100dvh - var(--app-tab) - 120px);}
+  /* The mobile homepage's map and pull-up list fill the screen down to its
+     bottom edge; in the app they stop at the tab bar. */
+  body.mhome-active.app-tabs .li-map{bottom:var(--app-tab);}
+  body.mhome-active.app-tabs .li-list{bottom:var(--app-tab);padding-bottom:0;}
+  body.mhome-active.app-tabs .li-rows{padding-bottom:14px;}
+  body.mhome-active.app-tabs #trailMap .td-layer-switch{bottom:calc(var(--mhome-sheet,35dvh) + 12px);}
+  body.mhome-active.app-tabs .maplibregl-ctrl-bottom-left,
+  body.mhome-active.app-tabs .maplibregl-ctrl-bottom-right{bottom:calc(var(--mhome-sheet,35dvh) + 6px);}
+  body.mhome-active.app-tabs > .map-callout{bottom:calc(var(--mhome-sheet,35dvh) + var(--app-tab) + 10px);}
+}
+/* A map opened full screen takes the whole screen, tab bar included. */
+body.app-tabs:has(.li-map.map-fs) .app-tabbar{display:none;}

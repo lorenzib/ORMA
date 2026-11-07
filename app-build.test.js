@@ -5,7 +5,7 @@ const path = require('path');
 const vm = require('vm');
 const {
   collectAppFiles, ENTRY_PAGES, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG,
-  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG,
+  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG,
 } = require('./scripts/build-app');
 
 const root = __dirname;
@@ -252,5 +252,33 @@ describe('app pages make room for the clock and drop the install advice', () => 
   test('the website never loads the app rules', () => {
     const linked = pages.filter(file => fs.readFileSync(path.join(root, file), 'utf8').includes('app-shell.css'));
     expect(linked).toEqual([]);
+  });
+});
+
+// A native app is moved around by its tabs. app-tabbar.js draws them on every
+// app page, so each tab has to lead to a page the app ships, and the website,
+// which has its own header menu, never loads it.
+describe('the app has a bottom tab bar', () => {
+  const { files } = collectAppFiles();
+  const pages = [...files].filter(file => file.endsWith('.html'));
+  const tabbar = fs.readFileSync(path.join(root, 'app-tabbar.js'), 'utf8');
+  const build = fs.readFileSync(path.join(root, 'scripts', 'build-app.js'), 'utf8');
+
+  test('ships the script and links it into every page with the app rules', () => {
+    expect(files.has('app-tabbar.js')).toBe(true);
+    expect(build).toContain('${APP_SHELL_TAG}\\n${APP_TABBAR_TAG}');
+    expect(APP_TABBAR_TAG).toBe('<script src="/app-tabbar.js" defer></script>');
+  });
+
+  test('every tab opens a page inside the app', () => {
+    const targets = [...tabbar.matchAll(/href:'\/([^']+)'/g)].map(match => match[1]);
+    expect(targets).toEqual(['index.html', 'saved.html', 'walk.html', 'account.html']);
+    expect(targets.filter(target => !files.has(target))).toEqual([]);
+  });
+
+  test('the website never loads it', () => {
+    const linked = pages.filter(file => fs.readFileSync(path.join(root, file), 'utf8').includes('app-tabbar.js'));
+    expect(linked).toEqual([]);
+    expect(fs.readFileSync(path.join(root, '_config.yml'), 'utf8')).toMatch(/^  - app-tabbar\.js$/m);
   });
 });
