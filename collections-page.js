@@ -134,7 +134,12 @@
     summer: collection => /hot-day|warmer|shade|water|woodland/i.test(`${collection.id} ${collection.title} ${collection.subtitle} ${collection.chips.join(' ')}`),
     scenic: collection => /lake|lakeside|woodland|scenery|high-level/i.test(`${collection.id} ${collection.title} ${collection.subtitle} ${collection.chips.join(' ')}`),
   };
-  const trailsFor = collection => api.trailsFor(collection, trails);
+  // A walk along a ski or sled run sits out its off-season, as on the trail
+  // list (trail-season-words.js hiddenThisMonth).
+  const seasonWords = window.DoloPawsTrailSeasonWords;
+  const month = new Date().getMonth() + 1;
+  const offeredNow = trail => !(seasonWords && trail.season && seasonWords.hiddenThisMonth(trail.season, month));
+  const trailsFor = collection => api.trailsFor(collection, trails).filter(offeredNow);
   const regionCountry = region => (REGIONS.find(item => item.value === region) || { countryCode:'IT' }).countryCode;
   const trailInArea = trail => (country === 'all' || regionCountry(trail.region) === country)
     && (region === 'all' || trail.region === region);

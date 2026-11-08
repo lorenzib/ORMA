@@ -1102,8 +1102,8 @@
 <script src="guest-context.js?v=20261030-1" defer></script>
 <script src="auth-ui.js?v=20261030-1" defer></script>
 <script src="discovery-state.js?v=20261007-1" defer></script>
-<script src="trail-season-words.js?v=20261107-1" defer></script>
-<script src="discovery-filters.js?v=20261024-1" defer></script>
+<script src="trail-season-words.js?v=20261108-1" defer></script>
+<script src="discovery-filters.js?v=20261108-1" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
@@ -1514,7 +1514,8 @@
     }
 
     function filteredTrails(){
-      const filtered = filterApi.filter(trails, currentFilterState(), filterOptions());
+      // Saved walks show whatever the season: the reader chose them.
+      const filtered = filterApi.filter(trails, currentFilterState(), { ...filterOptions(), includeOutOfSeason: savedOnly });
       return savedOnly ? filtered.filter(trail => currentFavorites[trail.id]) : filtered;
     }
 
