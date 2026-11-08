@@ -36,7 +36,8 @@ body.app-tabs .ep-mfooter{bottom:var(--app-tab);padding-bottom:14px;}
 body.app-tabs .compare-tray{bottom:calc(var(--app-tab) + 12px);}
 @media (max-width:700px){
   body.app-tabs .hp-fpanel.discovery-filter-panel,
-  body.app-tabs .li-filters-menu{bottom:calc(var(--app-tab) + 8px);max-height:calc(100dvh - var(--app-tab) - 120px);}
+  body.app-tabs .li-filters-menu,
+  body.app-tabs #returningCustomerHomepage #liToolbar #liFiltersWrap .li-filters-menu{bottom:calc(var(--app-tab) + 8px);max-height:calc(100dvh - var(--app-tab) - env(safe-area-inset-top,0px) - 120px);}
   /* The mobile homepage's map and pull-up list fill the screen down to its
      bottom edge; in the app they stop at the tab bar. */
   body.mhome-active.app-tabs .li-map{bottom:var(--app-tab);}
@@ -66,3 +67,117 @@ html.orma-app body.mhome-active #returningCustomerHomepage #liToolbar{
 /* "Show all trails" already heads the list; its footer link repeated it and
    took a row of the sheet away from the trails. */
 html.orma-app .li-list-foot{display:none;}
+
+/* Explore list cards in the app: the recommendation, not the argument for
+   it. The reasons (the header switch, each card's toggle and its panel) and
+   the "based on available trail data · checked on" line stay on the website;
+   the card keeps its verdict, Verified by ORMA, See on map and Get directions.
+   The trail page still explains every score. */
+html.orma-app #liReasonsToggle,
+html.orma-app .li-row .li-why-toggle,
+html.orma-app .li-row .li-answer-explanation{display:none !important;}
+html.orma-app .li-row-trust > span,
+html.orma-app .li-rating-kick{display:none;}
+/* Shorter cards: the verdict sits under the trail facts instead of on a row
+   of its own, and the See on map / Get directions bar is slimmer. */
+@media (max-width:700px){
+  html.orma-app .li-row{padding:10px 12px;row-gap:6px;}
+  html.orma-app .li-row .li-match{grid-column:2/-1;grid-row:2;display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 8px;padding:0;margin:0;border:0;text-align:left;}
+  html.orma-app .li-row .li-match,html.orma-app .li-row .li-match b{width:auto;max-width:none;justify-self:start;text-align:left;}
+  html.orma-app .li-row .li-match b{display:inline;font-size:14px;}
+  html.orma-app .li-row .li-match .li-match-lbl{font-size:12px;}
+  html.orma-app .li-row .li-row-trust{margin-top:2px;}
+  html.orma-app .li-row .li-rating-row{margin-top:4px;}
+  html.orma-app .li-row .li-row-bar{margin-top:2px;}
+  html.orma-app .li-row .li-row-bar .li-bar-act{min-height:34px;padding-top:6px;padding-bottom:6px;}
+}
+
+/* The trail page in the app: a photo header with a round back button, four
+   fact tiles, the verdict for your dog before the map, and Directions and
+   Start the walk held in a bar above the tab bar. The website keeps its own
+   layout; the signed-in phone layer (trail-mobile.css) is overruled here. */
+@media (max-width:700px){
+  html.orma-app body:has(.td2) .topnav,
+  html.orma-app body:has(.td2) .dog-profile-banner,
+  html.orma-app body:has(.td2) .site-footer,
+  html.orma-app body .mtrail-top{display:none !important;}
+  html.orma-app body .td2{padding-top:0;}
+  html.orma-app body:has(.td2){padding-bottom:calc(var(--app-tab) + 68px);}
+
+  /* No stacking layer on the header, so the fixed bar below it sits on top
+     of the page instead of under it. */
+  html.orma-app body .td2-hero{min-height:calc(420px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;z-index:auto;isolation:auto;}
+  html.orma-app body .td2-hero-photo,
+  html.orma-app body .td2-hero-veil{z-index:0;}
+  html.orma-app body .td2-hero-veil{background:linear-gradient(180deg,rgba(24,39,29,.5) 0%,rgba(24,39,29,.08) 28%,rgba(24,39,29,.45) 55%,rgba(24,39,29,.94) 100%);}
+  html.orma-app body .td2-hero-in{flex:1;display:flex;flex-direction:column;width:100%;box-sizing:border-box;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 18px;}
+  html.orma-app body .td2-hero-copy{margin-top:auto;}
+  html.orma-app body .td2-back{display:flex;align-items:center;justify-content:center;width:40px;height:40px;box-sizing:border-box;border-radius:12px;background:rgba(38,53,42,.55);border:1px solid rgba(245,242,232,.35);font-size:0;color:#F5F2E8;}
+  html.orma-app body .td2-back::before{content:"\2190";font-size:20px;line-height:1;}
+
+  html.orma-app body .td2-hero #heroRating.is-empty,
+  html.orma-app body .td2-hero .trail-season-tag--best{display:none;}
+  html.orma-app body .td2-hero #trailName{font:700 30px/1.06 'Bricolage Grotesque',sans-serif;margin:8px 0 0;}
+
+  html.orma-app body .td2-stat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:14px;border-top:0;}
+  html.orma-app body .td2-stat .f{display:flex;flex-direction:column-reverse;justify-content:flex-end;min-width:0;padding:8px 9px;border:0;border-radius:10px;background:rgba(245,242,232,.12);}
+  html.orma-app body .td2-stat .f + .f{border-left:0;padding-left:9px;}
+  html.orma-app body .td2-stat .f:nth-child(n+5 of .f:not(.match)){display:none;}
+  html.orma-app body .td2-stat .f b{font-size:15px;font-weight:700;white-space:nowrap;}
+  html.orma-app body .td2-stat .f span{margin:0 0 2px;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+  /* Save, Share and the offline map stay in the header; logging and GPX
+     export are left to the website. */
+  html.orma-app body .td2-actrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  html.orma-app body .td2-actrow>#walkedThisBtn,
+  html.orma-app body .td2-actrow>#logWalkBtn,
+  html.orma-app body .td2-actrow>#exportGpxBtn{display:none;}
+  html.orma-app body .td2-hero .td2-actrow .td2-btn-g,
+  html.orma-app body .td2-hero .td2-actrow .td2-textlink{flex:none;width:auto;min-height:36px;padding:7px 12px;border-radius:10px;font-size:13px;}
+
+  /* The two things you do next, always in reach. */
+  html.orma-app body:has(.td2)::after{content:"";position:fixed;left:0;right:0;bottom:var(--app-tab);height:64px;z-index:54;background:#F5F2E8;border-top:1px solid #DEDDD0;}
+  html.orma-app body .td2-actrow>#getDirectionsBtn,
+  html.orma-app body .td2-actrow>#heroStartHike{position:fixed;z-index:55;bottom:calc(var(--app-tab) + 10px);height:44px;min-height:44px;box-sizing:border-box;border-radius:12px;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;}
+  html.orma-app body .td2-actrow>#getDirectionsBtn{left:16px;width:calc(42% - 20px);padding:0 10px;background:#FFFFFF;color:#2E4034;border:1px solid #DEDDD0;}
+  html.orma-app body .td2-actrow>#heroStartHike{right:16px;width:calc(58% - 20px);padding:0 12px;background:#3E7A91;color:#FFFFFF;border:0;}
+  html.orma-app body .td2-actrow>#heroStartHike[hidden]{display:none;}
+  html.orma-app body .td2-actrow>#heroStartHike.recording{background:#9C3A25;}
+
+  /* Is it right for your dog? comes before the map. */
+  html.orma-app body .td2-plan-stack{order:0;}
+  html.orma-app body .td2-wrap{padding-top:16px;}
+
+  /* The big map at the top, with a Photo/Map switch (app-trail.js moves the
+     page's own map, back arrow and switch above the header). Its controls sit
+     clear of the notch, the back arrow and the switch. */
+  html.orma-app body .td2.app-trail-map{position:relative;}
+  html.orma-app body .td2.app-trail-map>.td2-mapcard{margin:0;padding:0;border:0;border-radius:0;box-shadow:none;}
+  html.orma-app body .td2.app-trail-map #trailMapBox{height:calc(520px + env(safe-area-inset-top,0px));min-height:0;border-radius:0;}
+  html.orma-app body .td2.app-trail-map #trailMapBox:not(.map-fs) #detailLayersBtn{top:calc(62px + env(safe-area-inset-top,0px));}
+  html.orma-app body .td2.app-trail-map #trailMapBox:not(.map-fs) #detailLayersPanel{top:calc(104px + env(safe-area-inset-top,0px));}
+  html.orma-app body .td2.app-trail-map #trailMapBox:not(.map-fs) #mapExpandBtn{top:calc(12px + env(safe-area-inset-top,0px));}
+  html.orma-app body .td2.app-trail-map #trailMapBox:not(.map-fs) #tdLivePill{top:calc(62px + env(safe-area-inset-top,0px));}
+  html.orma-app body .td2.app-trail-map #trailMapBox:not(.map-fs) .maplibregl-ctrl-top-right{top:calc(48px + env(safe-area-inset-top,0px));}
+  html.orma-app body .td2.app-trail-map #addReportBtn,
+  html.orma-app body .td2.app-trail-map #mapNearestDirectionsBtn,
+  html.orma-app body .td2.app-trail-map #mapNearestDirectionsPanel{display:none !important;}
+  html.orma-app body .td2.app-trail-map>.td2-back{position:absolute;z-index:30;top:calc(10px + env(safe-area-inset-top,0px));left:16px;}
+  html.orma-app body .app-trail-switch{position:absolute;z-index:30;top:calc(12px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);display:flex;padding:3px;border-radius:999px;background:rgba(38,53,42,.82);}
+  html.orma-app body .app-trail-switch[hidden]{display:none;}
+  html.orma-app body .app-trail-switch button{padding:7px 16px;border:0;border-radius:999px;background:none;color:#E5EBE3;font:600 13px Inter,sans-serif;}
+  html.orma-app body .app-trail-switch button[aria-pressed="true"]{background:#F5F2E8;color:#2E4034;}
+  html.orma-app body .app-trail-thumb{position:absolute;z-index:6;left:16px;bottom:64px;width:76px;height:76px;padding:0;border:3px solid #FFFFFF;border-radius:12px;background:#26352A center/cover no-repeat;box-shadow:0 6px 16px rgba(0,0,0,.25);}
+  html.orma-app body .app-trail-thumb[hidden]{display:none;}
+
+  /* Map view: the header becomes a plain band for the title and facts. */
+  html.orma-app body .td2.app-trail-map:not(.app-trail-photo) .td2-hero{min-height:0;background:#26352A;}
+  html.orma-app body .td2.app-trail-map:not(.app-trail-photo) .td2-hero-photo,
+  html.orma-app body .td2.app-trail-map:not(.app-trail-photo) .td2-hero-veil,
+  html.orma-app body .td2.app-trail-map:not(.app-trail-photo) #tdHeroCredit{display:none;}
+  html.orma-app body .td2.app-trail-map:not(.app-trail-photo) .td2-hero-in{padding:16px 16px 18px;}
+  html.orma-app body .td2.app-trail-map:not(.app-trail-photo) .td2-hero #trailName{font-size:26px;}
+  /* Photo view: the photo header as before, and no map at the top. */
+  html.orma-app body .td2.app-trail-photo>.td2-mapcard{display:none;}
+  html.orma-app body .td2.app-trail-photo .td2-hero-in{padding-top:calc(60px + env(safe-area-inset-top,0px));}
+}

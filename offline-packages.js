@@ -193,6 +193,7 @@
     'osm-12118490': "Le Balcon des Plagnes",
     'osm-12121346': "Le tour des hameaux de Montandré, Champessuit et Grenis",
     'osm-12121798': "Le terroir de Serpolière",
+    'osm-12132169': "Toblacher Höhenweg",
     'osm-12142337': "Rundweg Peitlerkofel",
     'osm-12150790': "Giro dei Capitelli - Kapellenrunde",
     'osm-12164395': "Dörferrundweg",
@@ -240,6 +241,7 @@
     'osm-19974724': "Mittlerer Rundweg am Karer See",
     'osm-19974725': "Langer Rundweg am Karer See",
     'osm-20380913': "Hinzlweg",
+    'osm-2179746': "Ruine Castelfeder - Rovine Castelfeder",
     'osm-2376630': "Rundweg Katharinaberg",
     'osm-3202880': "Rundweg Montiggler Seen",
     'osm-3707731': "Gratschenbergrunde",
@@ -417,6 +419,9 @@
     'weissensee-ortsee-ronacherfels': "Neusach to the east shore by the Kleine Steinwand, Weissensee",
     'weissensee-slow-trail': "Slow Trail Weissensee",
     'weissensee-techendorf-tschabitscher-kreuzwirt': "Techendorf to the Kreuzwirt, Weissensee",
+    'winter-pozza-canto-acqua': "Pozza along the Avisio in winter",
+    'winter-steinegg-osservatorio': "Steinegg to the Gummer observatory in winter",
+    'winter-voels-voelser-weiher': "Völs to the Völser Weiher in winter",
   };
   // </offline-package-registry>
   const PACKAGES = Object.freeze(Object.fromEntries(Object.keys(PACKAGE_NAMES).map(trailId => [trailId, Object.freeze({

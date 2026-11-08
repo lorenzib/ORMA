@@ -490,13 +490,15 @@
     }else if(hazards.length){
       const multiplier = dog.fragile ? 1.5 : 1;
       const hazardCost = Math.min(dog.fragile ? 30 : 20, Math.round(hazards.length * 8 * multiplier));
-      const hazardSummary = hazards
+      const hazardList = hazards
         .map(hazard => String(hazard).trim().replace(/[.;]+$/, ''))
-        .filter(Boolean)
-        .join('; ');
+        .filter(Boolean);
+      const hazardSummary = hazardList.join('; ');
+      // first: the homepage card quotes one caution and counts the rest. Some
+      // cautions carry a semicolon of their own, so the summary cannot be split.
       penalise(hazardCost, item('trail.surface-hazards.present',
         `Recorded route cautions: ${hazardSummary}.`,
-        { count:hazards.length, hazards:hazardSummary },
+        { count:hazards.length, hazards:hazardSummary, first:hazardList[0] || '' },
         hazards.length === 1 ? 'trail.surface-hazards.present.one' : 'trail.surface-hazards.present.many'));
     }else if(categories.surfaceHazards === 'verified'){
       positives.push(item('trail.surface-hazards.none-known',

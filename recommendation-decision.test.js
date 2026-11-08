@@ -26,9 +26,9 @@ describe('canonical recommendation decision presentation', () => {
   test('names the active dog and preserves canonical sections', () => {
     const result = decision.present(recommendation, { dogName:'Eddie' });
 
-    expect(result.conclusion).toBe('Possible with cautions');
+    expect(result.conclusion).toBe('Good with care');
     expect(result.contextLabel).toBe('Recommendation for Eddie');
-    expect(result.heroSummary).toBe('Possible with cautions for Eddie.');
+    expect(result.heroSummary).toBe('Good with care for Eddie.');
     expect(result.reasons).toEqual(['Distance is within range.']);
     expect(result.cautions).toEqual(['Shade is limited.']);
     expect(result.unknowns).toHaveLength(2);
@@ -161,7 +161,7 @@ describe('canonical recommendation decision presentation', () => {
 
   test('translates conclusions and coded reasons without changing the score', () => {
     const translations = {
-      'recommendation.category.possible-with-cautions':'Possibile con precauzioni',
+      'recommendation.category.possible-with-cautions':'Con attenzione',
       'recommendation.context.dog':'Raccomandazione per {name}',
       'recommendation.hero.dog':'{conclusion} per {name}.',
       'recommendation.confidence.medium':'Dati parzialmente verificati',
@@ -182,9 +182,9 @@ describe('canonical recommendation decision presentation', () => {
     }, { dogName:'Eddie', translate:t });
 
     expect(result.score).toBe(72);
-    expect(result.conclusion).toBe('Possibile con precauzioni');
+    expect(result.conclusion).toBe('Con attenzione');
     expect(result.contextLabel).toBe('Raccomandazione per Eddie');
-    expect(result.heroSummary).toBe('Possibile con precauzioni per Eddie.');
+    expect(result.heroSummary).toBe('Con attenzione per Eddie.');
     expect(result.reasons).toEqual(['Il percorso di 7.5 km è adatto.']);
     expect(result.confidenceLabel).toBe('Dati parzialmente verificati');
   });
@@ -196,7 +196,7 @@ describe('canonical recommendation decision presentation', () => {
       hardStops:[{ message:'Dogs are prohibited.' }],
     });
 
-    expect(result.conclusion).toBe('Not recommended');
+    expect(result.conclusion).toBe('Low match');
     expect(result.tone).toBe('stop');
     expect(result.cautions).toEqual(['Dogs are prohibited.', 'Shade is limited.']);
   });
@@ -372,7 +372,7 @@ describe('what the card leads with when it cannot show them all', () => {
 });
 
 describe('the fine line never contradicts the verdict', () => {
-  // The trail page said "Not recommended 49%", listed four costs, then closed
+  // The trail page said "Low match 49%", listed four costs, then closed
   // with a green tick: "Fine for Teo: the terrain, the 454 m climb ...". That
   // reads as reassurance under a verdict that says no.
   const factors = [
@@ -385,14 +385,14 @@ describe('the fine line never contradicts the verdict', () => {
     positiveReasons:factors.filter(f => f.impact === 0).map(f => ({ code:f.code, message:f.message })),
   });
 
-  test('Not recommended never says "Fine for", and says these do not outweigh the reasons', () => {
+  test('Low match never says "Fine for", and says these do not outweigh the reasons', () => {
     const view = decision.present(withVerdict('not-recommended', 49), { dogName:'Teo' });
     expect(view.fineLine).not.toMatch(/fine for/i);
     expect(view.fineLine).toBe('Not the problem here: the terrain and the 454 m climb. These do not outweigh the reasons above.');
     expect(view.fineTone).toBe('neutral');
   });
 
-  test('Possible with cautions keeps the cautions in charge', () => {
+  test('Good with care keeps the cautions in charge', () => {
     const view = decision.present(withVerdict('possible-with-cautions', 72), { dogName:'Teo' });
     expect(view.fineLine).not.toMatch(/fine for/i);
     expect(view.fineLine).toBe('Not a concern for Teo: the terrain and the 454 m climb. The reasons above still apply.');

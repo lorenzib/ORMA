@@ -14,8 +14,8 @@
 
   const CATEGORY = Object.freeze({
     'strong-option': { label:'Strong option', tone:'strong' },
-    'possible-with-cautions': { label:'Possible with cautions', tone:'caution' },
-    'not-recommended': { label:'Not recommended', tone:'stop' },
+    'possible-with-cautions': { label:'Good with care', tone:'caution' },
+    'not-recommended': { label:'Low match', tone:'stop' },
   });
 
   // `extra` carries what the engine does not know, such as the dog's name, so
@@ -101,6 +101,82 @@
     'trail.crowding.quiet': () => tx('The route is usually quiet.'),
     'trail.sightlines.open': () => tx('The sightlines are open.'),
   });
+
+  /**
+   * "What to know today" on the homepage card, in the same plain voice as
+   * FIT_SENTENCES beside it.
+   *
+   * The engine's sentences are written to be checked against the score, so
+   * they carry its working: "The terrain is harder than Teo is up to (grade 2,
+   * tolerance 1)." On a card that is jargon. These say the same thing the way
+   * the safety guides now talk (#1304): short, everyday words, "we" and "you".
+   * The trail page keeps the engine's sentences, beside the points they cost.
+   *
+   * Keyed by messageKey, else code. A caution with no card sentence keeps the
+   * engine's, so nothing is dropped; the hard stops (chairlift, dogs banned)
+   * are already plain and are left as they are on purpose.
+   */
+  const CARD_SENTENCES = Object.freeze({
+    'trail.terrain.above-tolerance': () => tx('The path is rougher than {name} is used to.'),
+    'trail.distance.above-range': () => tx('{distance} km is a long way for {name}.'),
+    'trail.ascent.above-range': () => tx('{ascent} m of climbing is a lot for {name}.'),
+    'trail.descent.joint-load': () => tx('The long way down is hard on {name}’s joints.'),
+    'trail.exposure.present': () => tx('Parts of the path run beside steep drops.'),
+    'trail.heat.high': () => tx('This route gets hot.'),
+    'trail.heat.high.sensitive': () => tx('This route gets hot, and {name} feels the heat.'),
+    'trail.heat.moderate': () => tx('This route can get warm.'),
+    'trail.heat.moderate.sensitive': () => tx('This route can get warm, and {name} feels the heat.'),
+    'trail.shade.very-low': () => tx('There’s almost no shade.'),
+    'trail.shade.low': () => tx('There isn’t much shade.'),
+    'trail.water.none-reviewed': () => tx('We know of no water on the way. Bring all {name} needs.'),
+    'trail.season.outside': () => tx('It’s not the season for this walk.'),
+    'evidence.critical.capped': () => tx('We haven’t checked this trail’s safety details yet.'),
+    'trail.dog-access.unknown': () => tx('We don’t know the local rules for dogs. Check before you go.'),
+    'trail.terrain.unknown': () => tx('We don’t know how rough the path is.'),
+    'trail.distance.unknown': () => tx('We don’t know how long it is.'),
+    'trail.ascent.unknown': () => tx('We don’t know how much climbing there is.'),
+    'trail.descent.unknown': () => tx('We don’t know how much of it is downhill.'),
+    'trail.exposure.unknown': () => tx('We don’t know yet if there are steep drops.'),
+    'trail.heat.unknown': () => tx('We don’t know yet how warm this route gets.'),
+    'trail.shade.unknown': () => tx('We don’t know how much shade there is.'),
+    'trail.surface-hazards.unknown': () => tx('We don’t know what the path is like underfoot.'),
+  });
+
+  // A list of route cautions becomes the first one, as the board wrote it, and
+  // a count of the rest: the trail page has them all. The caution is the
+  // trail's own English, so an Italian reader gets it only where the trail's
+  // Italian text is loaded; otherwise the card counts them, rather than drop an
+  // English sentence into an Italian card.
+  function hazardCardSentence(item, tr, extra){
+    const vars = item.vars || {};
+    const count = Number(vars.count) || 0;
+    const first = String(vars.first || '').trim();
+    const i18n = root && root.DoloPawsI18n;
+    const local = first && i18n && typeof i18n.trailText === 'function' ? i18n.trailText(first) : first;
+    const foreign = Boolean(i18n && i18n.lang && i18n.lang !== 'en' && local === first);
+    if(!first || foreign){
+      return count === 1
+        ? tr('recommendation.card.surface-hazards.count.one', tx('There’s one thing to watch for on this route. The trail page says what.'), extra)
+        : tr('recommendation.card.surface-hazards.count.many', tx('There are {count} things to watch for on this route. The trail page lists them.'), { ...extra, count });
+    }
+    const more = count - 1;
+    const lead = `${local.replace(/[.;:]+$/, '')}.`;
+    if(more < 1) return lead;
+    const tail = more === 1
+      ? tr('recommendation.card.surface-hazards.more.one', tx('The trail page has one more.'), extra)
+      : tr('recommendation.card.surface-hazards.more.many', tx('The trail page has {more} more.'), { ...extra, more });
+    return `${lead} ${tail}`;
+  }
+
+  function cardMessage(item, translate, tr, extra){
+    const key = item && (item.messageKey || item.code);
+    if(key === 'trail.surface-hazards.present.one' || key === 'trail.surface-hazards.present.many'){
+      return hazardCardSentence(item, tr, extra);
+    }
+    const sentence = CARD_SENTENCES[key];
+    if(!sentence) return translatedMessage(item, translate, extra);
+    return tr(`recommendation.card.${key}`, sentence(), { ...extra, ...(item.vars || {}) });
+  }
 
   // Calm framing: confidence describes data completeness, not danger. "low"
   // must not read as a warning, missing data never lowers the score. The words
@@ -312,6 +388,11 @@
     // it as a finding: said twice, one missing field reads as two problems.
     // Callers that render the prompt list these instead of `unknowns`.
     const trailUnknowns = messages(rawUnknowns.filter(item => !isDogGap(item)), translate, extra);
+    // The same cautions and unknowns, in the order above, said the card's way.
+    const cardMessages = items => (Array.isArray(items) ? items : []).filter(Boolean)
+      .map(item => cardMessage(item, translate, tr, extra)).filter(Boolean);
+    const cardCautions = cardMessages(recommendation.hardStops).concat(cardMessages(rankedCautions));
+    const cardTrailUnknowns = cardMessages(rawUnknowns.filter(item => !isDogGap(item)));
 
     return {
       confidenceLabel:confidenceWords(recommendation.confidence, translate) || null,
@@ -349,6 +430,9 @@
       breakdownNote:floorEntry ? translatedMessage(floorEntry, translate, extra) : null,
       unknowns:unknowns.slice(0, 5),
       trailUnknowns:trailUnknowns.slice(0, 5),
+      // For the homepage card's "What to know today" (see CARD_SENTENCES).
+      cardCautions:cardCautions.slice(0, 4),
+      cardTrailUnknowns:cardTrailUnknowns.slice(0, 5),
       additionalUnknowns:Math.max(0, unknowns.length - 5),
       heroSummary:dogName
         ? tr('recommendation.hero.dog', '{conclusion} for {name}.', {

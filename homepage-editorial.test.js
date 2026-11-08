@@ -139,7 +139,19 @@ describe('guest homepage editorial structure', () => {
   test('uses the shared wider website canvas', () => {
     const css = read('homepage-editorial.css');
     expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
-    expect(read('index.html')).toContain('homepage-editorial.css?v=20261030-3');
+    expect(read('index.html')).toContain('homepage-editorial.css?v=20261107-1');
     expect(read('index.html')).toContain('homepage-search.js?v=20261007-1');
+  });
+  test('opens the phone filters as a full panel along the bottom, not a squashed drop-down', () => {
+    const css = read('homepage-editorial.css');
+    const panel = css.match(/body\.mhome-active #returningCustomerHomepage #liToolbar #liFiltersWrap \.li-filters-menu\{([^}]*)\}/);
+    expect(panel).not.toBeNull();
+    expect(panel[1]).toContain('position:fixed');
+    expect(panel[1]).toContain('top:auto');
+    expect(panel[1]).toMatch(/bottom:/);
+    // The toolbar's blur would trap a fixed panel inside the toolbar.
+    expect(css).toMatch(/#liToolbar:has\(\.li-filters-menu:not\(\[hidden\]\)\)\{[^}]*backdrop-filter:none/);
+    // In the app the panel must sit above the tab bar, at the same strength.
+    expect(read('app-shell.css')).toContain('body.app-tabs #returningCustomerHomepage #liToolbar #liFiltersWrap .li-filters-menu');
   });
 });

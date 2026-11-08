@@ -86,11 +86,13 @@ describe('completing a dog from the homepage', () => {
     expect(view.dogGapFields).toEqual(['weight']);
     expect(view.trailUnknowns).toEqual(['Exposure and drop-offs have not been established.']);
     expect(view.unknowns).toHaveLength(2);
+    // The card's plain copy of that split list leaves the gap out too.
+    expect(view.cardTrailUnknowns).toEqual(['We don’t know yet if there are steep drops.']);
 
     // And the card reads the split one rather than the whole list.
     const block = script.slice(script.indexOf('function liRecommendationExplanationHtml('),
       script.indexOf('function liScheduleNewMatchSync('));
-    expect(block).toContain('view.trailUnknowns.slice(0, 2 - concerns.length)');
+    expect(block).toContain('view.cardTrailUnknowns.slice(0, 2 - concerns.length)');
     expect(block).not.toContain('view.unknowns');
   });
 
