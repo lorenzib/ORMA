@@ -45,6 +45,13 @@
       trailIds:['alpe-siusi','seceda','sentiero-hans-e-paula-steger','osm-1116675','osm-11828233','osm-11855879','osm-19697977'],
     },
     {
+      id:'winter-walks', title:'Winter walks with your dog', subtitle:'Five cleared winter paths in the Dolomites',
+      description:'Walks the tourist boards publish for winter and keep clear, away from ski runs and cross-country tracks. Paths can still be icy: take spikes, walk in daylight and check each trail page before you go.',
+      coverImage:'images/trails/winter-voels-voelser-weiher-snowy-path.jpg', chips:['Cleared winter paths','Off ski runs and ski tracks','Under 250 m climb'],
+      countryCode:'IT', country:'Italy', region:'dolomites', regionLabel:'Dolomites', tripLength:'3–5 days',
+      trailIds:['winter-voels-voelser-weiher','winter-pozza-canto-acqua','winter-steinegg-osservatorio','fassa-moena-soraga-someda','fassa-ciajeole-malga-roncac'],
+    },
+    {
       id:'savoy-lake-loops', title:'Savoy lake-loop week', subtitle:'Seven lake walks across one French alpine region',
       description:'A Savoy week of lakeside circuits, from short outings to longer mountain loops. Use the individual trail pages to group nearby valleys and balance distance and climb across the stay.',
       coverImage:'images/boucle-du-lac-vert.webp', chips:['Circular routes','Lakeside scenery','Seven-day shortlist'],

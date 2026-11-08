@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-07T20:33:07.715Z",
+  "generatedAt": "2026-11-07T22:34:58.595Z",
   "regions": {
     "dolomites": {
-      "trailCount": 352,
-      "trails": "data/regions/dolomites-trails.js?v=38366fd95c5d",
+      "trailCount": 355,
+      "trails": "data/regions/dolomites-trails.js?v=cf1cb0ceb84b",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=8181fdfdffc2",
         "seceda": "data/trail-details/seceda.js?v=a5efa0fc81de",
@@ -28,7 +28,7 @@
         "osm-1116675": "data/trail-details/osm-1116675.js?v=08c72d2f0515",
         "osm-1116680": "data/trail-details/osm-1116680.js?v=794d961f3422",
         "osm-1780768": "data/trail-details/osm-1780768.js?v=4dafdf58e996",
-        "osm-2179746": "data/trail-details/osm-2179746.js?v=2c59ea49e95b",
+        "osm-2179746": "data/trail-details/osm-2179746.js?v=dd9405c5551b",
         "osm-3202880": "data/trail-details/osm-3202880.js?v=e6491cbae70e",
         "osm-3885162": "data/trail-details/osm-3885162.js?v=95dc3ead986e",
         "osm-5512443": "data/trail-details/osm-5512443.js?v=3b6a67a90b85",
@@ -357,6 +357,9 @@
         "primiero-laghi-di-colbricon": "data/trail-details/primiero-laghi-di-colbricon.js?v=cad56b36c8bc",
         "altabadia-colfosco-rifugio-puez": "data/trail-details/altabadia-colfosco-rifugio-puez.js?v=1b9b5245432d",
         "trecime-moso-monte-arnese": "data/trail-details/trecime-moso-monte-arnese.js?v=b986a8000309",
+        "winter-voels-voelser-weiher": "data/trail-details/winter-voels-voelser-weiher.js?v=541c45df97c1",
+        "winter-pozza-canto-acqua": "data/trail-details/winter-pozza-canto-acqua.js?v=c3ccd07453c8",
+        "winter-steinegg-osservatorio": "data/trail-details/winter-steinegg-osservatorio.js?v=7b1c897e4ff6",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=0b5726d89d69"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -950,6 +953,9 @@
     "primiero-laghi-di-colbricon": "dolomites",
     "altabadia-colfosco-rifugio-puez": "dolomites",
     "trecime-moso-monte-arnese": "dolomites",
+    "winter-voels-voelser-weiher": "dolomites",
+    "winter-pozza-canto-acqua": "dolomites",
+    "winter-steinegg-osservatorio": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1610,6 +1616,9 @@
     "primiero-laghi-di-colbricon": "laghi-di-colbricon-malga-rolle",
     "altabadia-colfosco-rifugio-puez": "colfosco-rifugio-puez",
     "trecime-moso-monte-arnese": "moso-monte-arnese",
+    "winter-voels-voelser-weiher": "voels-voelser-weiher-winter",
+    "winter-pozza-canto-acqua": "pozza-canto-acqua-winter",
+    "winter-steinegg-osservatorio": "steinegg-osservatorio-winter",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2117,6 +2126,9 @@
     "laghi-di-colbricon-malga-rolle": "primiero-laghi-di-colbricon",
     "colfosco-rifugio-puez": "altabadia-colfosco-rifugio-puez",
     "moso-monte-arnese": "trecime-moso-monte-arnese",
+    "voels-voelser-weiher-winter": "winter-voels-voelser-weiher",
+    "pozza-canto-acqua-winter": "winter-pozza-canto-acqua",
+    "steinegg-osservatorio-winter": "winter-steinegg-osservatorio",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

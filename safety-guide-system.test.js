@@ -24,7 +24,7 @@ describe('shared Safety Library guide visual system', () => {
 
     const stylesheets = [...document.querySelectorAll('link[rel="stylesheet"]')];
     expect(document.body.classList.contains('safety-guide-article')).toBe(true);
-    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20261104-1');
+    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20261106-1');
     expect(document.querySelectorAll('.safety-continue')).toHaveLength(1);
     expect(document.querySelectorAll('.safety-sources')).toHaveLength(1);
     expect(document.querySelector('.safety-photo-header .safety-topic').textContent).toMatch(/^Safety library \/ /);
@@ -46,8 +46,8 @@ describe('shared Safety Library guide visual system', () => {
     expect(systemCss).toMatch(/\.safety-guide-article \.safety-back-link\{[^}]*background:transparent;[^}]*color:#BCE0EE!important/s);
     expect(systemCss).toMatch(/\.safety-guide-article \.safety-back-link\{[^}]*position:absolute!important;[^}]*top:clamp\(22px,3vw,36px\);[^}]*left:max\(/s);
     expect(systemCss).toContain('.safety-guide-article .safety-sources');
-    expect(systemCss).toMatch(/@media\(max-width:560px\)[\s\S]*grid-template-columns:max-content minmax\(0,1fr\) max-content/);
-    expect(systemCss).toMatch(/\.safety-guide-article \.safety-continue__label\{flex-basis:auto;/);
+    expect(systemCss).toMatch(/@media\(max-width:760px\)[\s\S]*grid-template-areas:"arrow label" "arrow title"/);
+    expect(systemCss).toMatch(/\.safety-guide-article \.safety-continue__label\{grid-area:label;/);
   });
 
   test('keeps water cards white while other guide cards use semantic tokens', () => {

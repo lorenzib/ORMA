@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "winter-steinegg-osservatorio",
+  "distanceKm": 4.8,
+  "ascentM": 57,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1317
+    },
+    {
+      "km": 0.4,
+      "elev": 1304
+    },
+    {
+      "km": 0.7,
+      "elev": 1303
+    },
+    {
+      "km": 1.1,
+      "elev": 1282
+    },
+    {
+      "km": 1.5,
+      "elev": 1286
+    },
+    {
+      "km": 1.8,
+      "elev": 1316
+    },
+    {
+      "km": 2.2,
+      "elev": 1314
+    },
+    {
+      "km": 2.6,
+      "elev": 1320
+    },
+    {
+      "km": 2.9,
+      "elev": 1312
+    },
+    {
+      "km": 3.3,
+      "elev": 1313
+    },
+    {
+      "km": 3.7,
+      "elev": 1282
+    },
+    {
+      "km": 4,
+      "elev": 1293
+    },
+    {
+      "km": 4.4,
+      "elev": 1312
+    },
+    {
+      "km": 4.8,
+      "elev": 1317
+    }
+  ]
+}
