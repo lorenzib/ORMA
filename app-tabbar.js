@@ -58,6 +58,18 @@
     document.body.classList.add('app-tabs');
   }
 
+  // The trail page's breadcrumb is a round back arrow in the app, so it goes
+  // back to where you came from (the map, Saved) rather than to the trail list.
+  document.addEventListener('click', (event) => {
+    const back = event.target.closest && event.target.closest('#tdBreadcrumb');
+    if(!back || history.length < 2) return;
+    let fromHere = false;
+    try { fromHere = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch(_) {}
+    if(!fromHere) return;
+    event.preventDefault();
+    history.back();
+  });
+
   if(document.body) mount();
   else document.addEventListener('DOMContentLoaded', mount);
 })();
