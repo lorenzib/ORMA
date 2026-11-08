@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "trailId": "winter-pozza-canto-acqua",
+  "generatedAt": "2026-11-07T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.7,
+    "ascentM": 29,
+    "highestPointM": 1328,
+    "expectedDuration": "1 hour",
+    "difficulty": "Easy",
+    "shadePercent": 25
+  },
+  "trailhead": {
+    "lat": 46.430267,
+    "lng": 11.686029,
+    "label": "Piaza de Comun in Pozza di Fassa, the APT’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.4308146,
+      "lng": 11.6874519,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4301842,
+      "lng": 11.6860863,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4306457,
+      "lng": 11.6875783,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4318492,
+      "lng": 11.6875602,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4309218,
+      "lng": 11.6934045,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.43038,
+      "lng": 11.6947397,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4296872,
+      "lng": 11.693716,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.428992,
+      "lng": 11.6928863,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The APT warns of icy and slippery stretches, above all after snowfall.",
+    "The walk runs beside the Pozza cross-country ski loop and past a children’s ski and sledging area: keep your dog on a lead and off the tracks.",
+    "Short stretches on village streets in Pozza and Meida: keep your dog close.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-07"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-07",
+      "licence": "ODbL"
+    }
+  ]
+}

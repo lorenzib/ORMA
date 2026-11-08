@@ -64773,6 +64773,242 @@
       ],
       startPoint: { lat: 46.689451, lng: 12.366215, label: 'The Schäfer shop in Moos, the board’s start' },
       desc: 'A demanding climb from Moos past the Helmhanghütte and the Klammbachalm and up a broad ridge to the Hornischeck (Monte Arnese), with a 360° view over the Sexten Dolomites. The board lists 9.4 km and 1,212 m up, one way.'
+    },
+    'winter-voels-voelser-weiher': {
+      // Hand audit: 7 November 2026, verified on arrival (new-trail Winter walks batch 1).
+      // “Escursione invernale da Fiè al Laghetto di Fiè”, published by the Völs am Schlern tourist board (Seiser Alm Marketing), drawn on 55 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures and the winter season from the board’s Outdooractive winter tour. Communes: Völs am Schlern (its 2015 dog regulation, amended 2019: lead ≤1.5 m, muzzle carried, no dogs on farmed land).
+      // About 15% of the line, around the Völser Weiher, is in the Schlern-Rosengarten nature park and Natura 2000 site: dogs on a lead (DPP 19/2013). The board files it as a winter walk and marks the way cleared.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Völs – Völser Weiher – St. Konstantin, Völs am Schlern',
+      distance: 7.1,
+      elevation: 247,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the roundabout in Völs up to the Völser Weiher on path 1, down on path 13 to St. Konstantin and back over meadows and through woods to Völs, as the board publishes it. The board says it can be walked either way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the roundabout in Völs am Schlern, the board’s start. Bus 170 stops there.",
+        "sequence": "Walk up towards Völser Aicha and Umes. At the Hotel Heubad turn left onto path 1 and follow it past the Zimmerlehen manor and a few farms to the Völser Weiher, about 45 minutes. From the lake take path 13 down past old summer houses to the little church of St. Konstantin, about 30 minutes. From there the path goes back over the meadows and through the woods to Völs.",
+        "switches": "Road from the roundabout up to the Hotel Heubad; path 1 to the Völser Weiher; path 13 down to St. Konstantin; meadow and forest path back to Völs.",
+        "sources": [
+          {
+            "label": "Völs am Schlern tourist board (Seiser Alm Marketing), Escursione invernale da Fiè al Laghetto di Fiè (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/55209890",
+            "authority": "Völs am Schlern tourist board (Seiser Alm Marketing)",
+            "reviewedAt": "2026-11-07"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-07',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A snowy forest path by the Völser Weiher on 1 March 2020 (Stipa Jennifer on Wikimedia Commons, CC BY-SA 4.0), 82 m from the line.',
+        route: 'Official loop 7.1 km from the roundabout in Völs am Schlern, as the Völs am Schlern tourist board (Seiser Alm Marketing) publishes it; the stored line is drawn on 55 OSM ways along the board’s published line, 7.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 1 and 13: from the roundabout in Völs up towards Völser Aicha and Umes; at the Hotel Heubad turn left onto path 1, past the Zimmerlehen manor and farms to the Völser Weiher (about 45 minutes); then down path 13 past old summer houses to St. Konstantin (about 30 minutes), and back to Völs over the meadows and through the woods.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.2, km 0.3, km 0.6, km 1.7, km 4, km 4.3, km 6.1 and km 6.3 (OSM nodes 3660286171, 6638554033, 8937624320, 1444898642, 13039124756, 7318189294, 7318188914, 13039096453, 1815540565, 12062923457, 7318189194, 7318188988, 7318188913).',
+        elevation: 'Official 7.1 km, 247 m up and 247 m down, 2:04 h, highest point 1,054 m, lowest 841 m (Völs am Schlern tourist board (Seiser Alm Marketing), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Völs am Schlern tourist board (Seiser Alm Marketing), Escursione invernale da Fiè al Laghetto di Fiè (its Outdooractive tour)',
+          'Gemeinde Völs am Schlern / Comune di Fiè allo Sciliar, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 57, 23.11.2015, amended Nr. 39, 11.07.2019), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds',
+          'Province of Bolzano landscape-plan layers: about 15% of the line, around the Völser Weiher, is in the Schlern-Rosengarten nature park and its Natura 2000 site, where dogs stay on a lead (DPP 19/2013)',
+          'OpenStreetMap ways along the board’s line (55 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-07'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Icy patches on lanes and forest paths after a frost', 'The Völser Weiher is used for ice skating in winter: keep your dog off the ice', 'Short stretches on the Bozner Straße in Völs at the start and finish: keep your dog on a short lead'],
+      terrainType: 'Village lanes, farm roads and forest paths',
+      shadeDescription: 'Woods around the Völser Weiher and on the way down to St. Konstantin; open meadows and village lanes elsewhere.',
+      terrainDescription: 'A winter loop above Völs am Schlern: up past old manors and farms to the Völser Weiher, a small lake in the woods below the Schlern, then down to the church of St. Konstantin and back over the meadows.',
+      waterDescription: 'Fountains in Völs at the start and at a few points along the way (OSM); some may be turned off in winter, so carry water for your dog. Bars and inns in Völs.',
+      dogNotes: 'Völs requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs off farmed meadows. Around the Völser Weiher you are in the Schlern-Rosengarten nature park, where dogs stay on a lead. Keep your dog off the frozen lake.',
+      tips: 'Start at the roundabout in Völs (bus 170): 7.1 km and 247 m up and down, about 2 hours, as the board lists. Walk in daylight, take spikes for icy patches, and rinse your dog’s paws after salted lanes.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione invernale da Fiè al Laghetto di Fiè (Völs am Schlern tourist board (Seiser Alm Marketing))', url: 'https://www.outdooractive.com/it/r/55209890' },
+        { label: 'Gemeinde Völs am Schlern, dog regulation (2015, amended 2019)', url: 'https://www.gemeinde.voels.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.518574, lng: 11.504249, label: 'The roundabout in Völs am Schlern, the board’s start' },
+      desc: 'A winter loop from Völs am Schlern up to the Völser Weiher and down past the church of St. Konstantin, on a way the board keeps clear. The board lists 7.1 km and 247 m up.'
+    },
+    'winter-pozza-canto-acqua': {
+      // Hand audit: 7 November 2026, verified on arrival (new-trail Winter walks batch 1).
+      // “Il canto dell’acqua: due passi lungo l’Avisio e il Ruf de Sèn Nicolò”, published by the APT Val di Fassa, drawn on 30 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures and the winter season from the board’s Outdooractive winter tour. Communes: San Giovanni di Fassa (no dog rule of its own; the national rule applies: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site or nature park on the line. The APT files it as a winter walk and marks the way cleared and prepared.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Pozza – Piciocaa – Meida, San Giovanni di Fassa',
+      distance: 3.7,
+      elevation: 29,
+      hours: '1',
+      routeShape: 'lollipop',
+      routeShapeNote: 'From the square in Pozza along the Avisio and the Re Laurino path to Piciocaa and back to the junction, then round by Meida and along the Ruf de Sèn Nicolò stream to the start, as the APT publishes it. The stretch to Piciocaa is walked both ways.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Piaza de Comun in Pozza di Fassa, the APT’s start.",
+        "sequence": "Along the river on Strada Promenada Enlogia Ruf, over the covered bridge and up the Re Laurino path to Piciocaa; back to the junction, then round by Meida, Strada de Ciancoal and Strada del Piz, and down Strada Sas da le Undesc along the Ruf de Sèn Nicolò to the start.",
+        "switches": "Right at the covered bridge onto the gravel lane. At Piciocaa turn back to the junction and keep left past the Fraine playground. Right at the fork onto Strada del Piz; over the bridge, right onto Strada Sas da le Undesc.",
+        "steps": [
+          {
+            "text": "From Piaza de Comun, cross the road and, just before the bridge, take Strada Promenada Enlogia Ruf on the left, beside the river. Cross the footbridge on the left.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the covered bridge turn right onto the gravel lane up the left bank of the Avisio. Cross the stream again and follow the Re Laurino path: after a short rise it is level, under tall pines, with wooden carvings of animals and gnomes.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Out of the woods, carry on north to Piciocaa, with a children’s play area and a small chapel. Then come back the same way to the junction.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Keep left past the Fraine play area and take the leftmost path to the north side of Meida, beside the cross-country ski loop: stay off the ski track. Join Strada de Ciancoal and at the fork turn right onto Strada del Piz.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past the fountain on the left, cross the bridge and turn right onto Strada Sas da le Undesc, gently down along the Ruf de Sèn Nicolò stream past old mills. Strada Promenada Enlogia Ruf brings you back to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "APT Val di Fassa, Il canto dell’acqua: due passi lungo l’Avisio e il Ruf de Sèn Nicolò (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/64571850",
+            "authority": "APT Val di Fassa",
+            "reviewedAt": "2026-11-07"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-07',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Piaza de Comun in Pozza di Fassa at the start, on 18 February 2019 (chrisbeddow on Mapillary, CC BY-SA 4.0), 1 m from the line; taken from the village street.',
+        route: 'Official one-way walk 3.7 km from Piaza de Comun in Pozza di Fassa, as the APT Val di Fassa publishes it; the stored line is drawn on 30 OSM ways along the board’s published line, 3.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Winter walk Pozza – Pera (no. 40), no other numbers: from Piaza de Comun along Strada Promenada Enlogia Ruf by the river, over a footbridge to the covered bridge, up the left bank of the Avisio and along the Re Laurino path to Piciocaa; back to the junction, left past the Fraine playground, along the north side of Meida beside the cross-country loop, Strada de Ciancoal and Strada del Piz, over the bridge onto Strada Sas da le Undesc along the Ruf de Sèn Nicolò, and back on Strada Promenada Enlogia Ruf.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.1, km 2.6, km 2.7, km 2.9 and km 3.1 (OSM nodes 737144778, 12087128220, 12087145417, 11067225731, 298689646, 1358282329, 294679925, 1358282328).',
+        elevation: 'Official 3.7 km, 29 m up and 29 m down, 0:55 h, highest point 1,330 m, lowest 1,303 m (APT Val di Fassa, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Il canto dell’acqua: due passi lungo l’Avisio e il Ruf de Sèn Nicolò (its Outdooractive tour)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)',
+          'APT Val di Fassa, winter safety advice on the walk’s Outdooractive page, points 6 and 8: keep your dog on a lead at all times; do not walk on ski runs, downhill or cross-country',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the board’s line (30 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-07'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The APT warns of icy and slippery stretches, above all after snowfall', 'The walk runs beside the Pozza cross-country ski loop and past a children’s ski and sledging area: keep your dog on a lead and off the tracks', 'Short stretches on village streets in Pozza and Meida: keep your dog close'],
+      terrainType: 'Riverside paths, gravel lanes and village streets; pushchair friendly',
+      shadeDescription: 'Shade under the tall pines of the Re Laurino path; the Meida meadows and village streets are open.',
+      terrainDescription: 'A flat winter walk at 1,300–1,330 m from Pozza along the Avisio, through pine woods with wooden carvings to Piciocaa, and back by Meida and the old mill stream of San Nicolò.',
+      waterDescription: 'Fountains in Pozza at the start and near the finish (OSM); some may be turned off in winter, so carry water for your dog. Bars in Pozza.',
+      dogNotes: 'San Giovanni di Fassa has no dog rule of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The APT asks you to keep your dog on a lead at all times and not to walk on ski runs or cross-country tracks.',
+      tips: 'Start in Piaza de Comun in Pozza: 3.7 km and 29 m up, about an hour, as the APT lists. Flat and pushchair friendly. Keep off the cross-country loop at Meida, and rinse your dog’s paws after salted streets.',
+      sourceLinks: [
+        { label: 'Outdooractive, Il canto dell’acqua: due passi lungo l’Avisio e il Ruf de Sèn Nicolò (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/64571850' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.430267, lng: 11.686029, label: 'Piaza de Comun in Pozza di Fassa, the APT’s start' },
+      desc: 'A flat winter walk from Pozza along the Avisio and the Re Laurino path to Piciocaa, and back by Meida and the old mill stream. The APT clears and prepares the way and lists 3.7 km.'
+    },
+    'winter-steinegg-osservatorio': {
+      // Hand audit: 7 November 2026, verified on arrival (new-trail Winter walks batch 1).
+      // “Escursione invernale all’osservatorio di San Valentino”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures and the winter season from the board’s Outdooractive winter tour. Communes: Karneid (its 2015 dog regulation: lead ≤1.5 m on all public ground, muzzle carried, no dogs on farmed meadows).
+      // No nature park or Natura 2000 site on the line; about 3% crosses a landscape protection zone, which sets no rule on dogs. The board files it as a winter walk and marks the way cleared.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Lantschnay – Gummer observatory (San Valentino di Sopra), Karneid',
+      distance: 4.9,
+      elevation: 57,
+      hours: '1.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back on the quiet access road and path 5A from the Schenken car park, by the Lantschnay bus stop, to the Unteregger farm inn and the Max Valier observatory at Gummer, as the board publishes it.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Schenken car park or the Lantschnay bus stop in San Valentino di Sopra (Gummer), the board’s start.",
+        "sequence": "Follow the quiet access road, on a stretch of the Planets Path and path 5A, to the Unteregger farm inn. The Max Valier observatory and the Peter Anich solar observatory stand there, with a wide view of the Latemar and the mountains around. Come back the same way.",
+        "switches": "Access road and path 5A from the Schenken car park to the Unteregger inn and the observatories; back the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione invernale all’osservatorio di San Valentino (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16082606",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-07"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-07',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Latemar from the Max Valier observatory at Gummer, where the walk turns, on 2 November 2007 (Christian Auer on Wikimedia Commons, CC BY-SA 3.0); the photo the Planets Path page already uses.',
+        route: 'Official one-way walk 4.9 km from the Schenken car park by the Lantschnay bus stop, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 4.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 5A: from the Schenken car park or the Lantschnay bus stop along the quiet access road, on a stretch of the Planets Path and path 5A, to the Unteregger farm inn and the Max Valier and Peter Anich observatories at Gummer; back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.9 km, 57 m up and 57 m down, 1:16 h, highest point 1,318 m, lowest 1,291 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione invernale all’osservatorio di San Valentino (its Outdooractive tour)',
+          'Gemeinde Karneid, Verordnung über die Haltung und Führung von Hunden (in force 13 Sep 2015): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields; no bathing in fountains or troughs), Art. 12 (applies outside built-up areas)',
+          'Province of Bolzano landscape-plan layers: no nature park or Natura 2000 site on the line; about 3% crosses a landscape protection zone (Landschaftliche Bannzone), which sets no rule on dogs',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-07'
+      },
+      shadeCoverage: 15,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The board warns that some stretches can be very icy in winter', 'Almost all on a quiet asphalt road with a few cars: keep your dog on a short lead', 'About 180 m on the provincial road by the start: keep your dog close'],
+      terrainType: 'A quiet asphalt access road and a short path; pushchair friendly',
+      shadeDescription: 'Mostly open, on a sunny plateau; a few trees along the road.',
+      terrainDescription: 'An easy winter walk at about 1,300 m on the sunny plateau above Steinegg, along a quiet road to the Gummer observatory, South Tyrol’s only public observatory, with a wide view of the Latemar.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Unteregger farm inn at the observatory (km 2) serves food and drink; check its winter rest days.',
+      dogNotes: 'Karneid requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs off farmed meadows. Keep your dog on the road and on a short lead where cars pass.',
+      tips: 'Start at the Schenken car park or the Lantschnay bus stop above Steinegg: 4.9 km there and back and 57 m up, about 1¼ hours, as the board lists. Pushchair friendly. Take spikes for icy stretches, and check the Unteregger inn’s winter rest days.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione invernale all’osservatorio di San Valentino (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/16082606' },
+        { label: 'Gemeinde Karneid, dog regulation', url: 'https://www.gemeinde.karneid.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.458406, lng: 11.481495, label: 'The Schenken car park by the Lantschnay bus stop, the board’s start' },
+      desc: 'An easy winter walk above Steinegg on a quiet road the board keeps clear, to the Gummer observatory and its wide view of the Latemar. The board lists 4.9 km there and back.'
     }
   };
 

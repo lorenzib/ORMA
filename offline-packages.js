@@ -419,6 +419,9 @@
     'weissensee-ortsee-ronacherfels': "Neusach to the east shore by the Kleine Steinwand, Weissensee",
     'weissensee-slow-trail': "Slow Trail Weissensee",
     'weissensee-techendorf-tschabitscher-kreuzwirt': "Techendorf to the Kreuzwirt, Weissensee",
+    'winter-pozza-canto-acqua': "Pozza along the Avisio in winter",
+    'winter-steinegg-osservatorio': "Steinegg to the Gummer observatory in winter",
+    'winter-voels-voelser-weiher': "Völs to the Völser Weiher in winter",
   };
   // </offline-package-registry>
   const PACKAGES = Object.freeze(Object.fromEntries(Object.keys(PACKAGE_NAMES).map(trailId => [trailId, Object.freeze({
