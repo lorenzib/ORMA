@@ -54,6 +54,8 @@
   .sp-key--lift{background:#F1DEC4;}
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
@@ -160,7 +162,9 @@
   <div class="sp-badges">
     <span class="dp-badge sp-tag sp-tag--out" data-season-out="110000000001" hidden><span>Fuori stagione</span></span>
     <span class="dp-badge sp-tag sp-tag--best"><span>Periodo migliore: da marzo a novembre</span></span>
-    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
+    <span class="dp-badge sp-tag sp-tag--dog" data-season-out="001111000000" hidden><span>Stagione delle zecche</span></span>
+    <span class="dp-badge sp-tag sp-tag--dog" data-season-out="000001111000" hidden><span>Mucche al pascolo</span></span>
+    <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Terreno impegnativo</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verificato da ORMA</span></span>
     
@@ -207,6 +211,11 @@
     <p class="sp-src">Stima basata sul punto più alto del percorso (1114 m). Nessun ente turistico pubblica la stagione di questo percorso, e ogni inverno è diverso.</p>
     
     
+    <h3 class="sp-season-dog">Per il tuo cane</h3>
+    <p>Da marzo a giugno: zecche nei boschi sotto i 1200 m circa, soprattutto da fine maggio a metà giugno. Controlla il cane dopo la camminata.</p>
+    <p class="sp-src">Fonte: <a href="https://www.ufficiostampa.provincia.tn.it/content/view/pdf/186846" rel="noopener">Provincia di Trento e Fondazione Edmund Mach</a>, consultata il 9 novembre 2026.</p>
+    <p>Da giugno a settembre (una stima): le mucche possono essere al pascolo. Tieni il cane vicino e stai alla larga dalle mandrie.</p>
+    <p class="sp-src">Fonte: <a href="https://www.suedtirol.info/de/das-ist-suedtirol/menschen/tradition/almwirtschaft-und-transhumanz" rel="noopener">IDM Alto Adige</a>, consultata il 9 novembre 2026.</p>
   </section>
   <script>
   (function(){
