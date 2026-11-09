@@ -181,3 +181,48 @@ html.orma-app .li-rating-kick{display:none;}
   html.orma-app body .td2.app-trail-photo>.td2-mapcard{display:none;}
   html.orma-app body .td2.app-trail-photo .td2-hero-in{padding-top:calc(60px + env(safe-area-inset-top,0px));}
 }
+
+/* The You tab: app-you.js draws .app-you at the top of account.html opened
+   plainly, and body.app-you-hub hides the long account page under it. Edit,
+   Settings and every deep link open the account page itself, unchanged. */
+html.orma-app body.app-you-hub{background:#F5F2E8;}
+html.orma-app body.app-you-hub .topnav,
+html.orma-app body.app-you-hub .dog-profile-banner,
+html.orma-app body.app-you-hub .acct-wrap,
+html.orma-app body.app-you-hub .ep-mfooter,
+html.orma-app body.app-you-hub .site-footer{display:none !important;}
+.app-you{font-family:'Inter',-apple-system,sans-serif;color:#2E4034;}
+.app-you-head{display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top,0px)) 16px 14px;background:#26352A;}
+.app-you-title{flex:1;min-width:0;margin:0;font:700 22px 'Bricolage Grotesque',sans-serif;color:#F5F2E8;}
+.app-you-gear{flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;box-sizing:border-box;border-radius:12px;
+  background:rgba(38,53,42,.55);border:1px solid rgba(245,242,232,.35);color:#F5F2E8;}
+.app-you-body{display:flex;flex-direction:column;gap:18px;max-width:560px;margin:0 auto;padding:16px 16px 24px;box-sizing:border-box;}
+.app-you-dog{display:flex;align-items:center;gap:14px;padding:14px;border:1px solid #DEDDD0;border-radius:16px;background:#fff;}
+.app-you-avatar{flex:none;display:flex;align-items:center;justify-content:center;width:60px;height:60px;overflow:hidden;border-radius:14px;background:#E5EFE7;color:#1D9E75;}
+.app-you-avatar img{width:100%;height:100%;object-fit:cover;}
+.app-you-dogtext{flex:1;min-width:0;}
+.app-you-dogname{font:700 21px 'Bricolage Grotesque',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.app-you-dogline{font:400 13.5px/1.35 'Inter',sans-serif;color:#59695D;}
+.app-you-edit{flex:none;height:34px;padding:0 14px;box-sizing:border-box;border:1px solid #DEDDD0;border-radius:10px;background:#F5F2E8;
+  color:#2E4034;text-decoration:none;font:600 13px/32px 'Inter',sans-serif;}
+.app-you-section{display:flex;flex-direction:column;gap:10px;}
+.app-you-hrow{display:flex;align-items:baseline;justify-content:space-between;}
+.app-you-h{margin:0;font:700 19px 'Bricolage Grotesque',sans-serif;color:#2E4034;}
+.app-you-all{font:600 14px 'Inter',sans-serif;color:#3E7A91;text-decoration:none;}
+.app-you-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
+.app-you-tile{padding:9px 10px;border-radius:10px;background:#EFECE2;white-space:nowrap;}
+.app-you-tile-k{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#59695D;}
+.app-you-tile-v{margin-top:3px;font:700 16px 'Inter',sans-serif;color:#2E4034;}
+.app-you-empty{margin:0;padding:14px;border:1px dashed #D3D1C3;border-radius:16px;font:400 14px/1.4 'Inter',sans-serif;color:#59695D;}
+.app-you-walk{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid #DEDDD0;border-radius:16px;background:#fff;color:inherit;text-decoration:none;}
+.app-you-walkicon{flex:none;display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:10px;background:#E5EFE7;color:#2C5C34;}
+.app-you-walktext{flex:1;min-width:0;}
+.app-you-walkname{font:700 15px 'Bricolage Grotesque',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.app-you-walkline{font:400 13px 'Inter',sans-serif;color:#59695D;}
+.app-you-links{padding:0 14px;border:1px solid #DEDDD0;border-radius:16px;background:#fff;}
+.app-you-link{display:flex;align-items:center;gap:10px;min-height:50px;color:#2E4034;text-decoration:none;font:600 15px 'Inter',sans-serif;}
+.app-you-link + .app-you-link{border-top:1px solid #E6E3D8;}
+.app-you-link > svg:last-child{color:#59695D;}
+.app-you-linktext{flex:1;min-width:0;}
+.app-you-linkmeta{color:#59695D;font-weight:500;}
+.app-you-signin{color:#3E7A91;font-weight:700;}
