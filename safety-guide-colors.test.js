@@ -11,6 +11,7 @@ const GUIDE_FILES = [
   'livestock-guard-dogs.html',
   'paw-protection.html',
   'water-for-dogs-on-trail.html',
+  'winter-walks-with-your-dog.html',
 ];
 
 const styles = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
@@ -67,7 +68,7 @@ describe('shared Safety Library colour system', () => {
 
     expect(assignments).toEqual([
       { heading:'Before you leave', tone:'info', cards:3 },
-      { heading:'On the trail', tone:'caution', cards:3 },
+      { heading:'On the trail', tone:'caution', cards:4 },
       { heading:'Shared spaces', tone:'safe', cards:3 },
     ]);
     expect(libraryHtml).not.toContain('.sg-category[data-tone="caution"]');
