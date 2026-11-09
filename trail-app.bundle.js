@@ -15442,6 +15442,19 @@ function initTrailReports(map, trail){
     return Boolean(best && month && !best.includes(month));
   }
 
+  // A high-mountain walk is not offered while it is out of season: it stays off
+  // the trail list, the map, the homepage and the collections. Its own page
+  // still opens from a saved walk or a link, and says it is out of season.
+  // High means it runs along a ski or sled run, or climbs to 1,800 m or more.
+  // Cross-country tracks don't count: they are beside the path, not on it.
+  const HIGH_MOUNTAIN_M = 1800;
+  function hiddenThisMonth(season, month) {
+    if (!season) return false;
+    const onPiste = (season.winterUse || []).some(use => use.kind === 'downhill' || use.kind === 'sled');
+    const high = Number(season.highPoint) >= HIGH_MOUNTAIN_M;
+    return (onPiste || high) && outOfSeason(season, month);
+  }
+
   // "Best time: June to October" on a trail page, "Best time: Jun–Oct" on a
   // card, "Good all year" when every month suits. A run across New Year reads
   // as one run.
@@ -15461,7 +15474,7 @@ function initTrailReports(map, trail){
     return tx('Best time: {range}', { range: runs.join(', ') });
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, monthName, monthRange, describe, nowNote, bestMonths, outOfSeason, bestTime };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

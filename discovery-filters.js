@@ -94,8 +94,27 @@
       && parts.verification.categories[category] === 'verified';
   }
 
+  // A walk along a ski or sled run is not offered while it is out of season
+  // (trail-season-words.js hiddenThisMonth). Saved walks and direct links still
+  // reach it: a caller passes includeOutOfSeason for those.
+  function seasonWords(){
+    if(root && root.DoloPawsTrailSeasonWords) return root.DoloPawsTrailSeasonWords;
+    if(typeof module === 'object' && module.exports && typeof require === 'function'){
+      try{ return require('./trail-season-words.js'); }catch(error){ return null; }
+    }
+    return null;
+  }
+  function hiddenForSeason(trail, options){
+    if(options && options.includeOutOfSeason) return false;
+    const words = seasonWords();
+    if(!words || !trail || !trail.season) return false;
+    const month = options && options.month ? options.month : new Date().getMonth() + 1;
+    return words.hiddenThisMonth(trail.season, month);
+  }
+
   function matches(trail, state, options){
     state = state || {};
+    if(hiddenForSeason(trail, options)) return false;
     const parts = normalizedTrail(trail);
     const suitability = parts.suitability || {};
     const metrics = parts.metrics || {};
