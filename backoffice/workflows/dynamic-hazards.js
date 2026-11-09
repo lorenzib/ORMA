@@ -86,7 +86,7 @@ function dedupeHazards(hazards = []){
   const byKey = new Map();
   for(const hazard of hazards){
     if(hazard.origin === 'community'){ order.push({ community: hazard }); continue; }
-    const key = canonicalWarningId(hazard.sourceKey, hazard.event, hazard.area);
+    const key = warningKey(hazard);
     const normalized = { ...hazard, id: key };
     if(byKey.has(key)) byKey.set(key, mergeWarnings(byKey.get(key), normalized));
     else { byKey.set(key, normalized); order.push({ key }); }
@@ -173,19 +173,95 @@ function trailWarningArea(trail){
   return null;
 }
 
-// An avalanche bulletin names its area by EAWS region code, not in prose, so it
-// is matched on the code rather than by searching text for a province name.
-// IT-32 is Trentino-Alto Adige; BZ and TN are its two provinces.
-const AVALANCHE_REGION_PROVINCE = Object.freeze({'IT-32-BZ':'alto-adige','IT-32-TN':'trentino'});
+// An avalanche bulletin is matched by the small areas ("micro-regions") a walk's
+// line crosses, not by province, and read at the walk's own high point: the
+// same bulletin can say moderate in the valley and high on the ridges.
+// `trail.avalanche` = {regions, highPoint}, from data/trail-avalanche-regions.json.
+//
+// ORMA's walks keep to marked paths, so a moderate level (2) is the normal state
+// of a winter and not news for them. From considerable (3) up the bulletin
+// speaks of avalanches that can reach paths and the foot of slopes.
+const AVALANCHE_PUBLISH_FROM = 3;
+const AVALANCHE_DANGER_WORDS = Object.freeze({1:'low', 2:'moderate', 3:'considerable', 4:'high', 5:'very high'});
+// The bulletins name a band by "treeline" where its height varies by valley.
+// 1,800 m is the low end of the treeline in these mountains, so a walk that
+// climbs past it is read against the upper band: the cautious side.
+const TREELINE_M = 1800;
+
+function avalancheBoundMetres(bound){
+  if(bound === undefined || bound === null || bound === '') return null;
+  if(String(bound).toLowerCase() === 'treeline') return TREELINE_M;
+  const metres = Number(bound);
+  return Number.isFinite(metres) ? metres : null;
+}
+
+/** The highest level among the bands that reach this height; any band if unknown. */
+function avalancheDangerAt(bands = [], metres){
+  const known = Number.isFinite(metres);
+  const levels = bands.filter(band => !known
+    || ((band.from === null || band.from === undefined || metres >= band.from)
+      && (band.below === null || band.below === undefined || metres < band.below)))
+    .map(band => band.level);
+  return levels.length ? Math.max(...levels) : 0;
+}
+
+/** The bulletin's micro-regions this walk crosses, or none. */
+function avalancheRegionsForTrail(alert, trail){
+  const mine = new Set((trail.avalanche && trail.avalanche.regions) || []);
+  return (alert.regions || []).filter(region => mine.has(region.id));
+}
 
 function avalancheAppliesToTrail(alert, trail){
-  const prefix = Object.keys(AVALANCHE_REGION_PROVINCE)
-    .find(code => String(alert.regionCode || '').startsWith(code));
-  return !!prefix && AVALANCHE_REGION_PROVINCE[prefix] === trail.province;
+  return avalancheRegionsForTrail(alert, trail).length > 0
+    && avalancheDangerAt(alert.bands, trail.avalanche.highPoint) >= AVALANCHE_PUBLISH_FROM;
+}
+
+function avalancheSeverity(level){
+  return level >= 5 ? 'extreme' : level >= 4 ? 'severe' : 'moderate';
+}
+
+// One warning per level and set of micro-regions, so every walk on a card has
+// the same level at its own height and the card names only its own areas.
+function avalancheWarnings(alert, trails, at){
+  const groups = new Map();
+  for(const trail of trails){
+    const regions = avalancheRegionsForTrail(alert, trail);
+    if(!regions.length) continue;
+    const level = avalancheDangerAt(alert.bands, trail.avalanche.highPoint);
+    if(level < AVALANCHE_PUBLISH_FROM) continue;
+    const key = `${level}:${regions.map(region => region.id).join('+')}`;
+    if(!groups.has(key)) groups.set(key, { level, regions, trails: [] });
+    groups.get(key).trails.push(trail);
+  }
+  return [...groups.values()].map(({ level, regions, trails: matched }) => {
+    const word = AVALANCHE_DANGER_WORDS[level];
+    // Names can carry their own commas ("Agordino, Zoldano"), so a slash.
+    const area = regions.map(region => region.name).join(' / ');
+    return {
+      // Keyed on the areas and the level, not the bulletin, so tomorrow's
+      // bulletin saying the same thing carries the same warning on.
+      id: `${alert.sourceKey}:avalanche-${level}:${warningSlug(regions.map(region => region.id).join(' '))}`,
+      kind: 'avalanche', state: 'active', severity: avalancheSeverity(level),
+      event: 'Avalanche danger', area, dangerLevel: level, dangerWord: word,
+      regionIds: regions.map(region => region.id),
+      title: `Avalanche danger ${level} of 5, ${word}, for ${area}`,
+      message: `The avalanche bulletin gives ${word} danger (${level} of 5) at this walk's height. Keep to the cleared path, stay away from the foot of steep snowy slopes, and turn back where snow covers the way.`,
+      summary: alert.summary || '',
+      sourceKey: alert.sourceKey, sourceLabel: alert.sourceLabel, sourceUrl: alert.sourceUrl,
+      identifier: alert.identifier, effectiveAt: alert.effectiveAt, expiresAt: alert.expiresAt,
+      firstPublishedAt: at, lastSeenAt: at, removalRequiresHumanReview: true,
+      trailIds: matched.map(trail => trail.id), trailNames: matched.map(trail => trail.name),
+    };
+  });
+}
+
+/** The key two warnings share when they are the same warning. */
+function warningKey(hazard){
+  return hazard.kind === 'avalanche' ? hazard.id : canonicalWarningId(hazard.sourceKey, hazard.event, hazard.area);
 }
 
 function alertAppliesToTrail(alert, trail){
-  if(alert.regionCode) return avalancheAppliesToTrail(alert, trail);
+  if(alert.kind === 'avalanche') return avalancheAppliesToTrail(alert, trail);
   const target = trailWarningArea(trail);
   if(!target) return false;
   const area = alert.area.toLowerCase();
@@ -211,6 +287,12 @@ function shouldPublishAlert(alert){
   return alert.severity === 'moderate' && DOG_CRITICAL_EVENTS.test(alert.event);
 }
 
+function publicWarnings(alert, trails, at){
+  if(alert.kind === 'avalanche') return avalancheWarnings(alert, trails, at);
+  const warning = publicWarning(alert, trails, at);
+  return warning ? [warning] : [];
+}
+
 function publicWarning(alert, trails, at){
   const matched = trails.filter(trail => alertAppliesToTrail(alert, trail));
   if(!matched.length || !shouldPublishAlert(alert)) return null;
@@ -233,10 +315,10 @@ function reconcileHazards(previous = [], observations = [], sourceResults = [], 
   const failed = new Map(sourceResults.filter(source => !source.ok).map(source => [source.key, source.error || 'Source unavailable']));
   const observed = new Map();
   observations.forEach(alert => {
-    const warning = publicWarning(alert, trails, at);
-    if(!warning) return;
-    const existing = observed.get(warning.id);
-    observed.set(warning.id, existing ? mergeWarnings(existing, warning) : warning);
+    publicWarnings(alert, trails, at).forEach(warning => {
+      const existing = observed.get(warning.id);
+      observed.set(warning.id, existing ? mergeWarnings(existing, warning) : warning);
+    });
   });
   const next = [];
   previous.forEach(old => {
@@ -277,9 +359,9 @@ function buildHazardArtifacts(previousData, observations, sourceResults, trails,
   const hazards = reconcileHazards(previousData?.hazards || [], observations, sourceResults, trails, { at });
   // Compare on the canonical key, not the raw id, so a warning that was merged or
   // re-keyed (legacy per-alert id -> canonical id) is not misreported as removed.
-  const remainingKeys = new Set(hazards.map(item => canonicalWarningId(item.sourceKey, item.event, item.area)));
+  const remainingKeys = new Set(hazards.map(warningKey));
   const completeSources = new Set(sourceResults.filter(source => source.ok && source.completeSnapshot === true).map(source => source.key));
-  const automaticallyRemoved = (previousData?.hazards || []).filter(item => item.origin !== 'community' && !remainingKeys.has(canonicalWarningId(item.sourceKey, item.event, item.area))).map(item => ({
+  const automaticallyRemoved = (previousData?.hazards || []).filter(item => item.origin !== 'community' && !remainingKeys.has(warningKey(item))).map(item => ({
     hazardId:item.id, sourceKey:item.sourceKey, sourceLabel:item.sourceLabel || null,
     title:item.title || null, removedAt:at,
     reason:completeSources.has(item.sourceKey)?'absent-from-complete-authoritative-snapshot'
@@ -317,4 +399,4 @@ function applyHazardReview(publicData, ledger, input, options = {}){
   };
 }
 
-module.exports = { feedIsComplete,UNCONFIRMED_REMOVAL_DAYS,daysUnconfirmed,warningExpired,AVALANCHE_REGION_PROVINCE,avalancheAppliesToTrail, parseAtomFeed, trailWarningArea, alertAppliesToTrail, shouldPublishAlert, reconcileHazards, buildHazardArtifacts, applyHazardReview, canonicalWarningId, mergeWarnings, dedupeHazards };
+module.exports = { feedIsComplete,UNCONFIRMED_REMOVAL_DAYS,daysUnconfirmed,warningExpired,AVALANCHE_PUBLISH_FROM,AVALANCHE_DANGER_WORDS,TREELINE_M,avalancheBoundMetres,avalancheDangerAt,avalancheAppliesToTrail,avalancheWarnings,warningKey,publicWarnings, parseAtomFeed, trailWarningArea, alertAppliesToTrail, shouldPublishAlert, reconcileHazards, buildHazardArtifacts, applyHazardReview, canonicalWarningId, mergeWarnings, dedupeHazards };

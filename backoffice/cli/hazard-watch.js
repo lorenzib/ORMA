@@ -9,6 +9,16 @@ const { CONNECTORS, inSeason } = require('../workflows/hazard-sources');
 
 const SOURCES = CONNECTORS;
 
+// Each walk's avalanche micro-regions and high point, so a bulletin reaches the
+// walks in its own small areas at their own height. Written by
+// npm run build:avalanche-regions.
+function withAvalancheRegions(trails, root){
+  let map = {};
+  try{ map = JSON.parse(require('fs').readFileSync(path.resolve(root, 'data', 'trail-avalanche-regions.json'), 'utf8')).trails || {}; }
+  catch(error){ if(error.code !== 'ENOENT') throw error; }
+  return trails.map(trail => map[trail.id] ? { ...trail, avalanche: map[trail.id] } : trail);
+}
+
 async function readJson(file, fallback){ try{return JSON.parse(await fs.readFile(file, 'utf8'));}catch(error){if(error.code === 'ENOENT')return fallback;throw error;} }
 async function writeJson(file, value){ await fs.mkdir(path.dirname(file), { recursive: true }); await fs.writeFile(file, `${JSON.stringify(value, null, 2)}\n`, 'utf8'); }
 
@@ -48,6 +58,14 @@ async function fetchSource(source, fetchImpl, options = {}){
       attempts.push(`${url}: ${error.message}`);
     }
   }
+  // A seasonal bulletin whose dated files do not exist yet has not been issued
+  // -- the first weeks of the window, before the service opens. That is the
+  // same as out of season: nothing read, nothing removed, no failure.
+  if(source.missingMeansNoBulletin && attempts.length && attempts.every(line => /: HTTP 404$/.test(line))){
+    return { result: describe({ ok: true, completeSnapshot: false, alertsRead: 0,
+      noBulletin: `${source.label} has not issued a bulletin for these days; nothing was removed.` }),
+      observations: [] };
+  }
   // Every candidate failed. A dated bulletin legitimately has no edition yet in
   // the early hours, which is why yesterday's is tried too; if both are gone the
   // source is unavailable and the last known warning is retained.
@@ -62,7 +80,7 @@ async function runHazardWatch(options = {}){
   const previous = options.store
     ? (await options.store.getArtifact('dynamic-hazards') || await readJson(path.join(root, 'data', 'dynamic-hazards.json'), { hazards: [] }))
     : await readJson(path.join(root, 'data', 'dynamic-hazards.json'), { hazards: [] });
-  const artifacts = buildHazardArtifacts(previous, runs.flatMap(run => run.observations), runs.map(run => run.result), loadProductionTrails(root), { at });
+  const artifacts = buildHazardArtifacts(previous, runs.flatMap(run => run.observations), runs.map(run => run.result), withAvalancheRegions(options.trails || loadProductionTrails(root), root), { at });
   if(options.store){
     const protectedData={...artifacts.publicData,publicMutationAllowed:false};const protectedQueue={...artifacts.reviewQueue,publicMutationAllowed:false};const status={...artifacts.status,status:'healthy',workflowRunUrl:options.workflowRunUrl||null,runId:options.runId||null,publicMutationAllowed:false};
     await Promise.all([options.store.setArtifact('dynamic-hazards',protectedData,{status:'protected-current'}),options.store.setArtifact('hazard-review-queue',protectedQueue,{status:'awaiting-human'}),options.store.setArtifact('hazard-watch-status',status,{status:'healthy',runId:options.runId||null})]);
@@ -83,4 +101,4 @@ async function main(){
 
 if(require.main === module) main().catch(error => { console.error(`[hazard-watch] ${error.message}`); process.exitCode = 1; });
 
-module.exports = { SOURCES, fetchSource, runHazardWatch };
+module.exports = { SOURCES, fetchSource, runHazardWatch, withAvalancheRegions };
