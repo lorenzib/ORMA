@@ -1,0 +1,82 @@
+{
+  "contractVersion": "dog-seasons-v1",
+  "note": "Seasonal risks to dogs on Dolomites walks, with the months each source gives. scripts/dog-seasons.js decides which walks each risk applies to from the rule here (province or valley, the walk's lowest point, words in the walk's own text) and puts { kind, months } in trail.season.dogSeasons. A walk without a risk is a walk the rule does not reach, not a walk shown to be free of it. Curated by hand; read the sources again each spring.",
+  "risks": {
+    "caterpillars": {
+      "months": [3, 4],
+      "rule": {
+        "regions": [
+          "dolomites"
+        ],
+        "provinces": [
+          "trentino"
+        ],
+        "valleys": [
+          "Val Venosta – Vinschgau"
+        ],
+        "lowPointAtMostM": 1400
+      },
+      "basis": "Pine processionary caterpillars come down from pines from early March to the end of April, from the valley floor to about 1,400 m, and are a danger to people and pets (Province of Trento forestry service). South Tyrol’s forestry service names Vinschgau as the main area and asks for dogs on a lead near pines and cedars in late winter; it gives no altitude, so Trento’s 1,400 m is used.",
+      "sources": [
+        {
+          "label": "Province of Trento, forestry service",
+          "url": "https://www.ufficiostampa.provincia.tn.it/content/view/pdf/167631",
+          "published": "2020-03-02",
+          "accessedAt": "2026-11-09",
+          "appliesTo": {
+            "provinces": [
+              "trentino"
+            ]
+          }
+        },
+        {
+          "label": "South Tyrol forestry service, reported by il Dolomiti",
+          "url": "https://www.ildolomiti.it/ambiente/2024/processionaria-lappello-della-provincia-mantenersi-lontani-da-nidi-e-larve-e-tenere-i-cani-al-guinzaglio",
+          "published": "2024-02-25",
+          "accessedAt": "2026-11-09",
+          "appliesTo": {
+            "valleys": [
+              "Val Venosta – Vinschgau"
+            ]
+          }
+        }
+      ]
+    },
+    "ticks": {
+      "months": [3, 4, 5, 6],
+      "rule": {
+        "regions": [
+          "dolomites"
+        ],
+        "lowPointAtMostM": 1200
+      },
+      "basis": "Ticks are found in woods from March, most of all from late May to mid-June, from the valley floor to about 1,200 m (Province of Trento with the Fondazione Edmund Mach). No source gives an end month, so the tag runs to June; ticks can be met later in the year too. The figures are Trentino’s and are used for the whole Dolomites.",
+      "sources": [
+        {
+          "label": "Province of Trento and Fondazione Edmund Mach",
+          "url": "https://www.ufficiostampa.provincia.tn.it/content/view/pdf/186846",
+          "published": "2021-05-24",
+          "accessedAt": "2026-11-09"
+        }
+      ]
+    },
+    "cows": {
+      "months": [6, 7, 8, 9],
+      "estimate": true,
+      "rule": {
+        "regions": [
+          "dolomites"
+        ],
+        "textMentions": "\\b(cows?|cattle|grazing|graze[sd]?|herds?|pastures?|livestock)\\b"
+      },
+      "basis": "Cattle go up to the high pastures at the start of summer and come down between mid-August and mid-October, depending on height, weather and the farm (South Tyrol tourist board). No authority publishes the months, so June to September is an estimate.",
+      "sources": [
+        {
+          "label": "South Tyrol tourist board",
+          "url": "https://www.suedtirol.info/de/das-ist-suedtirol/menschen/tradition/almwirtschaft-und-transhumanz",
+          "accessedAt": "2026-11-09"
+        }
+      ]
+    }
+  }
+}

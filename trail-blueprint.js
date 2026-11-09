@@ -318,7 +318,10 @@
     if (best && tags && !tags.querySelector('.trail-season-tag')) {
       const out = seasonWords.outOfSeason(t.season, new Date().getMonth() + 1)
         ? `<span class="dp-badge trail-season-tag trail-season-tag--out"><span>${esc(tx('Out of season'))}</span></span>` : '';
-      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>`);
+      // Seasonal risks to dogs, only in the months they apply.
+      const dog = seasonWords.dogSeasonsNow(t.season, new Date().getMonth() + 1)
+        .map(risk => `<span class="dp-badge trail-season-tag trail-season-tag--dog"><span>${esc(risk.label)}</span></span>`).join('');
+      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>${dog}`);
     }
 
     // Elevation figures under the real chart; hide the block honestly
@@ -686,6 +689,16 @@
       caution(tx('Season'), [seasonWords.nowNote(t.season, month), basis].filter(Boolean).join(' '), 'altitude');
     } else if (maxAlt >= 1800) {
       caution(tx('Season & altitude'), tx('Tops out around {alt} m. Snow lingers into early summer and weather turns quickly.', { alt: maxAlt }), 'altitude');
+    }
+    // Seasonal risks to dogs that apply this month (data/dog-seasons.json),
+    // each with the months and where they come from.
+    if (seasonWords && t.season && (t.season.dogSeasons || []).length) {
+      const now = seasonWords.dogSeasonsNow(t.season, month).map(risk => risk.kind);
+      for (const risk of seasonWords.describe(t.season, n => Number(n).toLocaleString()).dogSeasons) {
+        if (!now.includes(risk.kind)) continue;
+        const from = risk.sources.map(source => source.label).join(', ');
+        caution(tx(seasonWords.DOG_SEASON_TAGS[risk.kind]), `${risk.line} ${tx('Source: {source}.', { source: from })}`, risk.kind === 'cows' ? 'livestock' : null);
+      }
     }
 
     if (!rows.length) {
