@@ -16,6 +16,9 @@
   // Ski runs open with the snow; the boards publish no season for a piste, so
   // this is the usual Dolomites ski season and is said to be an estimate.
   const WINTER_SPORT_MONTHS = [12, 1, 2, 3, 4];
+  // A winter walk (season.winterWalk) is the board's winter tour of a path: it
+  // is offered only from November to April, whatever else its board lists.
+  const WINTER_WALK_MONTHS = [11, 12, 1, 2, 3, 4];
 
   const monthName = m => tx(MONTH_NAMES[m - 1]);
   // From the month's name in the reader's language: giugno and luglio are G and L.
@@ -76,6 +79,11 @@
       out.kind = 'recommended';
       out.strip = MONTH_NAMES.map((name, i) => ({ month: i + 1, initial: monthInitial(i + 1), name: monthName(i + 1), state: good.has(i + 1) ? 'good' : 'off' }));
       out.line = tx('Recommended {range}.', { range: monthRange(season.recommended.months) });
+      if (season.winterWalk) {
+        const winter = winterWalkMonths(season.recommended.months);
+        out.strip.forEach(m => { m.state = winter.includes(m.month) ? 'good' : 'off'; });
+        out.line = tx('A winter walk, recommended {range}.', { range: monthRange(winter) });
+      }
       out.source = {
         before: tx('Source: '),
         label: tx(season.recommended.source.label),
@@ -139,7 +147,9 @@
     // A board month the walk's lift is shut is not "in season": the lift's
     // sentence below says why, and the two would contradict each other.
     const liftOut = requiredLifts(season).some(lift => liftShut(lift, month));
-    if (season.recommended && !(liftOut && season.recommended.months.includes(month))) {
+    if (season.winterWalk && !WINTER_WALK_MONTHS.includes(month)) {
+      notes.push(tx('{month} is outside winter, and this is the winter walk.', { month: name }));
+    } else if (season.recommended && !(liftOut && season.recommended.months.includes(month))) {
       notes.push(season.recommended.months.includes(month)
         ? tx('{month} is in this walk’s season.', { month: name })
         : tx('{month} is outside the season the board publishes for this walk.', { month: name }));
@@ -165,8 +175,16 @@
   // those are usually open (unless that leaves nothing, as for a winter walk);
   // and less the months a lift the walk needs is not running.
   // null when the walk has no season record.
+  function winterWalkMonths(months) {
+    const winter = (months || []).filter(m => WINTER_WALK_MONTHS.includes(m));
+    return winter.length ? winter : WINTER_WALK_MONTHS.slice();
+  }
+
   function bestMonths(season) {
     if (!season || typeof season !== 'object') return null;
+    if (season.winterWalk) {
+      return winterWalkMonths(season.recommended ? season.recommended.months : null).sort((a, b) => a - b);
+    }
     if (!season.recommended && !season.snow && !(season.winterUse || []).length) return null;
     let months = season.recommended
       ? season.recommended.months.slice()
@@ -198,12 +216,13 @@
   // still opens from a saved walk or a link, and says it is out of season.
   // High means it runs along a ski or sled run, or climbs to 1,800 m or more.
   // Cross-country tracks don't count: they are beside the path, not on it.
+  // A winter walk sits out the rest of the year the same way.
   const HIGH_MOUNTAIN_M = 1800;
   function hiddenThisMonth(season, month) {
     if (!season) return false;
     const onPiste = (season.winterUse || []).some(use => use.kind === 'downhill' || use.kind === 'sled');
     const high = Number(season.highPoint) >= HIGH_MOUNTAIN_M;
-    return (onPiste || high) && outOfSeason(season, month);
+    return (onPiste || high || Boolean(season.winterWalk)) && outOfSeason(season, month);
   }
 
   // "Best time: June to October" on a trail page, "Best time: Jun–Oct" on a
@@ -225,7 +244,7 @@
     return tx('Best time: {range}', { range: runs.join(', ') });
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

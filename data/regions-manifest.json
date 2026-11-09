@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-09T12:21:59.196Z",
+  "generatedAt": "2026-11-09T21:34:34.799Z",
   "regions": {
     "dolomites": {
       "trailCount": 355,
-      "trails": "data/regions/dolomites-trails.js?v=9a3384d56d5e",
+      "trails": "data/regions/dolomites-trails.js?v=64d90c7968da",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=f18c9795d312",
         "seceda": "data/trail-details/seceda.js?v=368b7027d17a",
@@ -357,9 +357,9 @@
         "primiero-laghi-di-colbricon": "data/trail-details/primiero-laghi-di-colbricon.js?v=864577c33991",
         "altabadia-colfosco-rifugio-puez": "data/trail-details/altabadia-colfosco-rifugio-puez.js?v=162471775827",
         "trecime-moso-monte-arnese": "data/trail-details/trecime-moso-monte-arnese.js?v=9d48dbe26abf",
-        "winter-voels-voelser-weiher": "data/trail-details/winter-voels-voelser-weiher.js?v=a8deadd99493",
-        "winter-pozza-canto-acqua": "data/trail-details/winter-pozza-canto-acqua.js?v=146da0689761",
-        "winter-steinegg-osservatorio": "data/trail-details/winter-steinegg-osservatorio.js?v=ec855e8971c2",
+        "winter-voels-voelser-weiher": "data/trail-details/winter-voels-voelser-weiher.js?v=53a5ca6a717c",
+        "winter-pozza-canto-acqua": "data/trail-details/winter-pozza-canto-acqua.js?v=5f676bbacae1",
+        "winter-steinegg-osservatorio": "data/trail-details/winter-steinegg-osservatorio.js?v=d3fbb0822c8b",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=8691495d36f9"
       },
       "water": "data/regions/dolomites-water.geojson",
