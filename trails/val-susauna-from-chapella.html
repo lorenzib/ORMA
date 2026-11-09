@@ -154,7 +154,9 @@
   <h1>Val Susauna from Chapella</h1>
   <p class="sp-gloss">a quiet side valley to Alp Pignaint</p>
   <div class="sp-badges">
-    
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111110000011" hidden><span>Out of season</span></span>
+    <span class="dp-badge sp-tag sp-tag--best"><span>Best time: June to October</span></span>
+    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
     <span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate terrain</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verified by ORMA</span></span>
     
@@ -192,7 +194,31 @@
     </svg>
     <figcaption class="sp-src">Elevation profile: lowest 1654 m, highest 1872 m.</figcaption>
   </figure>
+    <section class="sp-season" id="season" data-season-notes="[&quot;January is outside the season the board publishes for this walk.&quot;,&quot;February is outside the season the board publishes for this walk.&quot;,&quot;March is outside the season the board publishes for this walk.&quot;,&quot;April is outside the season the board publishes for this walk.&quot;,&quot;May is outside the season the board publishes for this walk.&quot;,&quot;June is in this walk’s season.&quot;,&quot;July is in this walk’s season.&quot;,&quot;August is in this walk’s season.&quot;,&quot;September is in this walk’s season.&quot;,&quot;October is in this walk’s season.&quot;,&quot;November is outside the season the board publishes for this walk.&quot;,&quot;December is outside the season the board publishes for this walk.&quot;]" data-season-warn="111110000011">
+    <h2>When to go</h2>
+    <p class="sp-season-now" hidden></p>
+    <ol class="sp-months" aria-label="Months of the year"><li class="sp-month sp-month--off" data-month="1"><span aria-hidden="true">J</span><span class="sp-vh">January: Outside the season</span></li><li class="sp-month sp-month--off" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">February: Outside the season</span></li><li class="sp-month sp-month--off" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">March: Outside the season</span></li><li class="sp-month sp-month--off" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">April: Outside the season</span></li><li class="sp-month sp-month--off" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">May: Outside the season</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">J</span><span class="sp-vh">June: Recommended</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">J</span><span class="sp-vh">July: Recommended</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">August: Recommended</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">September: Recommended</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">October: Recommended</span></li><li class="sp-month sp-month--off" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">November: Outside the season</span></li><li class="sp-month sp-month--off" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">December: Outside the season</span></li></ol>
+    <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Recommended <span class="sp-key sp-key--off"></span>Outside the season</p>
+    <p>Recommended from June to October.</p>
+    <p class="sp-src">Source: <a href="https://www.outdooractive.com/en/r/56676943" rel="noopener">Outdooractive</a>, read on 7 November 2026.</p>
     
+  </section>
+  <script>
+  (function(){
+    var box = document.getElementById('season');
+    if(!box) return;
+    var m = new Date().getMonth();
+    var notes = []; try{ notes = JSON.parse(box.getAttribute('data-season-notes')); }catch(e){}
+    var li = box.querySelector('[data-month="' + (m + 1) + '"]');
+    if(li) li.classList.add('sp-month--now');
+    var note = box.querySelector('.sp-season-now');
+    if(note && notes[m]){
+      note.textContent = notes[m];
+      if((box.getAttribute('data-season-warn') || '').charAt(m) === '1') note.classList.add('sp-season-now--warn');
+      note.hidden = false;
+    }
+  })();
+  </script>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> Where to start</h2>
     <p>Chapella, La Resgia bus stop, the board’s start</p>
     <h2>How to follow this route</h2>
@@ -285,10 +311,10 @@
     <div>
       <div class="hp-footer-h">Caring for your dog</div>
       <div class="hp-footer-links">
-        <a href="../guides/heat-overheating.html">Heat &amp; hydration</a>
+        <a href="../guides/heat-overheating.html">Heat and your dog</a>
         <a href="../guides/paw-protection.html">Paw protection</a>
-        <a href="../guides/breed-group-caveats.html">Breed group caveats</a>
-        <a href="../guides/alpine-plants-for-dogs.html">Alpine plants guide</a>
+        <a href="../guides/breed-group-caveats.html">Your dog’s breed and build</a>
+        <a href="../guides/alpine-plants-for-dogs.html">Alpine plants and your dog</a>
       </div>
     </div>
     <div>

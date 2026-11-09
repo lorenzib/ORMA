@@ -23,8 +23,8 @@
   // not how well the trail did.
   const VERDICTS=Object.freeze({
     'strong-option':{category:'strong-option',label:'Strong option',color:'#4A7856',tone:'great'},
-    'possible-with-cautions':{category:'possible-with-cautions',label:'Possible with cautions',color:'#A96F1D',tone:'good'},
-    'not-recommended':{category:'not-recommended',label:'Not recommended',color:'#9C3A25',tone:'check'},
+    'possible-with-cautions':{category:'possible-with-cautions',label:'Good with care',color:'#A96F1D',tone:'good'},
+    'not-recommended':{category:'not-recommended',label:'Low match',color:'#9C3A25',tone:'check'},
   });
 
   // Matches recommendation-v1.js. Only reached when a caller has a bare score,

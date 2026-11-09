@@ -3723,18 +3723,18 @@
     },
     {
       "id": "osm-12132169",
-      "approvedReviewId": "commons-osm-12132169",
-      "approvedAt": "2026-09-08T10:52:55.014Z",
+      "approvedReviewId": "mapillary-osm-12132169-on-route",
+      "approvedAt": "2026-11-07T20:00:00.000Z",
       "fields": {
-        "imageIcon": "images/trails/osm-12132169-toblacher-erdpyramiden.jpg",
-        "heroImage": "images/trails/osm-12132169-toblacher-erdpyramiden.jpg",
-        "imageAlt": "The earth pyramids at Toblach, pale eroded pinnacles standing below a spruce forest with green slopes and a ridge behind.",
-        "imageCredit": "Toblacher Erdpyramiden",
-        "imageCreditText": "Toblacher Erdpyramiden by Raphael Mair",
-        "imageCreator": "Raphael Mair",
+        "imageIcon": "images/trails/osm-12132169-marchkinkele-summit-cross.jpg",
+        "heroImage": "images/trails/osm-12132169-marchkinkele-summit-cross.jpg",
+        "imageAlt": "The wooden summit cross on the Marchkinkele, braced with wires, on a stony ridge top under a blue sky with white clouds, green valleys and the Villgraten mountains stretching away behind.",
+        "imageCredit": "The summit cross on the Marchkinkele",
+        "imageCreditText": "The summit cross on the Marchkinkele by flocki",
+        "imageCreator": "flocki",
         "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Toblacher_Erdpyramiden_01.jpg",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=309364880808128",
         "imageSourceType": "licensed-source"
       }
     },
@@ -8454,6 +8454,57 @@
         "imageLicence": "CC BY-SA 3.0 AT",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Weißensee_Kärnten_(2).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "winter-pozza-canto-acqua",
+      "approvedReviewId": "mapillary-winter-pozza-canto-acqua-on-route",
+      "approvedAt": "2026-11-07T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/winter-pozza-canto-acqua-pozza-square.jpg",
+        "heroImage": "images/trails/winter-pozza-canto-acqua-pozza-square.jpg",
+        "imageAlt": "The square in Pozza di Fassa on a sunny winter day, with snow at the roadside, white houses and pale jagged peaks behind",
+        "imageCredit": "Pozza di Fassa at the start, in February",
+        "imageCreditText": "Pozza di Fassa at the start, in February by chrisbeddow",
+        "imageCreator": "chrisbeddow",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=212987737052330",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "winter-steinegg-osservatorio",
+      "approvedReviewId": "commons-winter-steinegg-osservatorio-on-route",
+      "approvedAt": "2026-11-07T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/winter-steinegg-osservatorio-latemar-gummer.jpg",
+        "heroImage": "images/trails/winter-steinegg-osservatorio-latemar-gummer.jpg",
+        "imageAlt": "The pale Latemar peaks above dark forest, seen across a meadow with a lone autumn tree near the Gummer observatory",
+        "imageCredit": "The Latemar from the Gummer observatory",
+        "imageCreditText": "The Latemar from the Gummer observatory by Christian Auer",
+        "imageCreator": "Christian Auer",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Latemar_gummer.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "winter-voels-voelser-weiher",
+      "approvedReviewId": "commons-winter-voels-voelser-weiher-on-route",
+      "approvedAt": "2026-11-07T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/winter-voels-voelser-weiher-snowy-path.jpg",
+        "heroImage": "images/trails/winter-voels-voelser-weiher-snowy-path.jpg",
+        "imageAlt": "A forest path dusted with snow, with a wooden fence and tall spruces and pines, in light snowfall near the Völser Weiher",
+        "imageCredit": "A snowy path by the Völser Weiher, in March",
+        "imageCreditText": "A snowy path by the Völser Weiher, in March by Stipa Jennifer",
+        "imageCreator": "Stipa Jennifer",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Passeggiata_con_i_fiocchi_di_neve.jpg",
         "imageSourceType": "licensed-source"
       }
     }

@@ -80,6 +80,15 @@ describe('Safety Library continuation component', () => {
     expect(css).toContain('.safety-sources{');
   });
 
+  test('on phones the button label sits above the guide title in both languages', () => {
+    const systemCss = fs.readFileSync(path.join(__dirname, 'guides', 'safety-guide-system.css'), 'utf8');
+    // "Guida precedente" is longer than "Past guide". Side-by-side columns let
+    // it run under the title, so the label and title get their own rows.
+    expect(systemCss).toContain('grid-template-areas:"arrow label" "arrow title";');
+    expect(systemCss).toContain('grid-template-areas:"label arrow" "title arrow";');
+    expect(systemCss).not.toContain('grid-template-columns:max-content minmax(0,1fr) max-content;');
+  });
+
   test('the find-trail action follows cached and live authentication state', () => {
     const script = fs.readFileSync(path.join(__dirname, 'guide-navigation.js'), 'utf8');
     document.body.innerHTML = '<a data-safety-find-trail href="../?wizard=1"><strong data-safety-find-copy>Add your dog</strong></a>';

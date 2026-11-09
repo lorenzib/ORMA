@@ -10610,6 +10610,97 @@
       ],
       desc: 'A short loop from the village square in Lajen across the sunny plateau to the Wasserbühl, a wooded knoll with traces of prehistoric settlement, and up to the Wetterkreuz, with views over the Eisack valley. The board lists 2.7 km and 82 m of ascent.'
     },
+    'osm-12132169': {
+      // Hand audit: 7 November 2026. Tourismusgenossenschaft Drei Zinnen’s “Toblacher Höhenweg” (dreizinnen.com
+      // activity 543: 27.1 km, 1,801 m up, 9:00 h, with a GPX), the walk relation 12132169 maps. The relation took a
+      // 1.2 km side loop to the Enzianhütte that the board’s line does not; the routeLine override in
+      // data/verified-trail-overrides.json cuts it at the board’s start, the junction for Kandellen, Frondeigen and the
+      // Silvestertal above Wahlen, and swaps two ridge variants for the board’s own on OSM ways.
+      // Communes: Toblach for most of it, about 2.5 km of the Golfen ridge in Gsies, about 0.6 km of the border ridge
+      // in Innervillgraten (Tyrol, Austria) and about 100 m in Innichen at the Marchkinkele. No Natura 2000 site or
+      // park on the line (the Drei Zinnen and Fanes-Sennes-Prags parks lie south of the Puster valley).
+      area: 'Toblach / Dobbiaco – Golfen, Pfannhorn and Silvestertal',
+      distance: 27.1,
+      elevation: 1801,
+      hours: '9',
+      sideTrips: [{ km: 10.82, note: 'Up to the Gaishörndl summit and back to the ridge path: the board names the Gaishörndl on the ridge and its own line turns at the summit.' }],
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the junction for Kandellen, Frondeigen and the Silvestertal just above Wahlen, the board’s start.",
+        "sequence": "Path 24 by road and forest to Frondeigen and up the forest road to the treeline, steep grass up to the summit cross on the Golfen, east along the ridge over the Hochhorn and the Gaishörndl to the Pfannhorn, along the border ridge past the Blankenstein to the Marchkinkele, down path 1 through the Blankental past the Steinbergalm, and down the Silvestertal past the Silvesteralm back to the start.",
+        "switches": "Leave the forest road at the treeline for the steep grass to the Golfen; at the Marchkinkele turn south onto path 1 into the Blankental; at the Silvesteralm take the forest road down the Silvestertal.",
+        "steps": [
+          { "text": "From the junction above Wahlen, follow path 24 along the road and then through the forest to the hamlet of Frondeigen.", "from": [0] },
+          { "text": "Stay on path 24 up the forest road to the treeline, then climb the steep grass slopes to the summit cross on the Golfen. This is most of the day’s climbing.", "from": [0] },
+          { "text": "Follow the ridge east over the Hochhorn and the Gaishörndl to the Pfannhorn, at 2,662 m the highest point; the Bonnerhütte sits just below it.", "from": [0] },
+          { "text": "Carry on along the border with Austria past the Blankenstein to the Marchkinkele and its summit cross, with the Marchhütte just below.", "from": [0] },
+          { "text": "Go down path 1 through the Blankental past the Steinbergalm, then take the forest road down the Silvestertal past the Silvesteralm.", "from": [0] },
+          { "text": "The last kilometre back to the start is on asphalt, or on the forest path that branches off to the left.", "from": [0] }
+        ],
+        "sources": [
+          { "tag": "tourist board", "label": "Toblacher Höhenweg: Wegbeschreibung", "authority": "Tourismusgenossenschaft Drei Zinnen Dolomiten", "url": "https://www.dreizinnen.com/de/activity/toblacher-h-henweg-_543", "reviewedAt": "2026-11-07" }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-07',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The summit cross on the Marchkinkele (2,545 m) on the border ridge, looking north over the Villgraten mountains (flocki on Mapillary, CC BY-SA 4.0, July 2020), 38 m from the line.',
+        route: 'Official loop 27.1 km, as Tourismusgenossenschaft Drei Zinnen publishes it with its GPX; the stored line is the OSM relation with the Enzianhütte side loop cut and two ridge variants redrawn on OSM ways along the board’s GPX, 26.67 km, closed at the board’s start, with 99.3% of the board’s GPX within 25 m of it and 100% of it within 25 m of the GPX.',
+        routeNumbers: 'Start at the junction for Kandellen, Frondeigen and the Silvestertal above Wahlen; path 24 to Frondeigen and up to the Golfen, along the ridge over the Hochhorn, the Gaishörndl and the Pfannhorn to the Marchkinkele, then path 1 down the Blankental and the Silvestertal back to the start.',
+        mapPoints: 'Start at the board’s junction above Wahlen (46.75629, 12.24174); drinking water only in the first 1.5 km near Toblach (OSM nodes 2454680055, 1825698637) and at the Silvesteralm and above Wahlen on the way down (OSM nodes 9026030519, 9022921278).',
+        elevation: 'Official 27.1 km, 1,801 m up and down, 9:00 h, highest point 2,662 m (Pfannhorn), lowest 1,393 m, rated difficult (Tourismusgenossenschaft Drei Zinnen). The stored line measures 1,695 m on EU-DEM 25 m.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Tourismusgenossenschaft Drei Zinnen Dolomiten, Toblacher Höhenweg (dreizinnen.com activity 543: route text, figures, GPX and status open)',
+          'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden (January 2010 text), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields',
+          'Gemeinde Gsies, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 39/2009), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields in the growing season',
+          'Gemeinde Innichen, Haltung und Führung von Hunden (council resolution no. 4 of 3 March 2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground, a muzzle carried, and no dogs on farmed meadows and fields in the growing season',
+          'Innervillgraten publishes no dog ordinance (none found on its website or in RIS); Tiroler Landes-Polizeigesetz § 6a (a lead or a muzzle in villages) and Almschutzverordnung § 2 (a short lead on grazed alpine pasture) apply on the 0.6 km of border ridge',
+          'EEA Natura 2000 sites and OpenStreetMap administrative boundaries: no Natura 2000 site or park on the line',
+          'OpenStreetMap ways along the line: SAC grades, road, surface, woodland, huts and water data'
+        ],
+        date: '2026-11-07'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ['Steep grass slopes up to the Golfen with no clear path in places', 'About 9 km of open ridge above 2,400 m, mountain-hiking ground (SAC T2), far from shelter in a storm', 'About 4 km on roads, the last kilometre on asphalt', 'A very long day: 27 km and 1,800 m of climbing'],
+      terrainType: 'Forest roads and tracks at both ends, steep grass and a mountain path along the ridge (OpenStreetMap)',
+      shadeDescription: 'Shaded in the forest on the way up to Frondeigen and down the Silvestertal; the whole ridge, from the Golfen to the Marchkinkele, is open and above the trees. About a quarter shaded.',
+      terrainDescription: 'Forest roads and tracks climb from Wahlen past Frondeigen to the treeline, then steep grass leads up to the Golfen. The ridge from the Golfen to the Marchkinkele is a mountain path over grass and stony ground above 2,400 m. Path 1 and the Silvestertal forest road lead back down. Rated difficult by the tourist board: 27 km and 1,800 m of climbing.',
+      waterDescription: 'Drinking water near Toblach at the start, then nothing on the ridge: the next tap is at the Silvesteralm, about 21 km in, and one more on the way down above Wahlen. The Marchhütte and the Steinbergalm on the way down may serve drinks in summer. Carry plenty for you and your dog.',
+      dogNotes: 'Toblach, Gsies and Innichen all require a lead of at most 1.5 m on public ground and a muzzle carried, and dogs must stay off farmed meadows and fields. The Steinbergalm and the Silvesteralm are summer pastures with cattle, so keep your dog close on the way down. This is a very long, hard day with an open ridge and no water for most of it: only for a fit dog used to big mountain days.',
+      tips: 'A long, hard ridge loop above Toblach: 27 km and about 1,800 m of climbing, nine hours. Only for fit walkers and fit dogs; the board suggests splitting it over two days with a night at the Bonnerhütte. Start early, carry all the water you need for the ridge, and keep your dog on a lead of at most 1.5 m.',
+      sourceLinks: [
+        { label: 'Tourismusgenossenschaft Drei Zinnen, Toblacher Höhenweg', url: 'https://www.dreizinnen.com/de/activity/toblacher-h-henweg-_543' },
+        { label: 'Gemeinde Toblach, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.toblach.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Gemeinde Gsies, Verordnung über die Haltung und Führung von Hunden', url: 'https://www.gemeinde.gsies.bz.it/system/web/GetDocument.ashx?fileId=99668' },
+        { label: 'Gemeinde Innichen, Haltung und Führung von Hunden', url: 'https://www.gemeinde.innichen.bz.it/de/Verwaltung/Dokumente/Haltung_und_Fuehrung_von_Hunden_1' },
+        { label: 'Tiroler Landes-Polizeigesetz § 6a (dogs in villages and on public transport)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40052150/LTI40052150.html' },
+        { label: 'Tiroler Almschutzverordnung § 2 (dogs on grazed alpine pastures)', url: 'https://ogd.ris.bka.gv.at/Dokumente/Landesnormen/LTI40044604/LTI40044604.html' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12132169' }
+      ],
+      startPoint: { lat: 46.756289, lng: 12.241742, label: 'Junction for Kandellen, Frondeigen and the Silvestertal above Wahlen, the board’s start' },
+      waterSources: [
+        { km: 1.2, lat: 46.7616095, lng: 12.2316901, osmId: 'node/2454680055', label: 'Drinking water near Toblach' },
+        { km: 1.3, lat: 46.7624356, lng: 12.2307357, osmId: 'node/1825698637', label: 'Drinking water near Toblach' },
+        { km: 21.3, lat: 46.7601757, lng: 12.304996, osmId: 'node/9026030519', label: 'Drinking water at the Silvesteralm' },
+        { km: 24.8, lat: 46.7589954, lng: 12.2637228, osmId: 'node/9022921278', label: 'Drinking water on the way down above Wahlen' }
+      ],
+      rifugi: [
+        { km: 2, lat: 46.76387, lng: 12.23039, osmId: 'node/1314040458', name: 'Gasthof Kurterhof' },
+        { km: 16.4, lat: 46.78071, lng: 12.32723, osmId: 'node/9917675843', name: 'Marchhütte' },
+        { km: 20.3, lat: 46.76979, lng: 12.3022, osmId: 'way/517722085', name: 'Steinberghütte' },
+        { km: 21.3, lat: 46.76002, lng: 12.30491, osmId: 'way/236711949', name: 'Silvesteralm - Malga San Silvestro' },
+        { km: 25.4, lat: 46.75879, lng: 12.25658, osmId: 'node/11073787152', name: 'Schnegga Soge' }
+      ],
+      desc: 'A long ridge loop above Toblach: up through the forest past Frondeigen to the summit cross on the Golfen, along the open ridge over the Hochhorn, the Gaishörndl and the Pfannhorn and the Austrian border to the Marchkinkele, and down through the Blankental and the Silvestertal. The board lists 27.1 km and 1,801 m of ascent, nine hours.'
+    },
     'osm-9651462': {
       // Hand audit: 6 November 2026. Bruneck Kronplatz Tourismus’s “Sagenweg St. Lorenzen”
       // (Outdooractive 810055342), the walk relation 9651462 maps. The relation was rejected as
@@ -14969,8 +15060,9 @@
       ]
     },
     'osm-2179746': {
-      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
-      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
+      // Seal restored 7 November 2026 on the owner's decision: no authority publishes this walk's climb or time (the only official
+      // figures are for the 6.1 km Genießertour of Südtirols Süden, of which this is a part), so both are measured by ORMA from the
+      // map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: line rebuilt on OSM ways along the province trail register's 'Naturlehrpfad Castelfeder'
       // (routes-hikingtrails.11426625, 1.71 km), signed on the ground as the Naturerlebnisweg Castelfeder; the old 2.3 km line matched
       // no official route. Dogs: Montan dog regulation Art. 4 and 8; the hill is the Castelfeder biotope (Natura 2000 IT3110035), whose
@@ -15773,66 +15865,9 @@
       "lat": 46.33604,
       "lng": 11.29373,
       "distance": 1.7,
-      "elevation": 65,
-      "hours": "0.75",
-      "elevationProfile": [
-        {
-          "km": 0,
-          "elev": 349
-        },
-        {
-          "km": 0.1,
-          "elev": 339
-        },
-        {
-          "km": 0.3,
-          "elev": 343
-        },
-        {
-          "km": 0.4,
-          "elev": 365
-        },
-        {
-          "km": 0.5,
-          "elev": 360
-        },
-        {
-          "km": 0.6,
-          "elev": 349
-        },
-        {
-          "km": 0.8,
-          "elev": 375
-        },
-        {
-          "km": 0.9,
-          "elev": 381
-        },
-        {
-          "km": 1,
-          "elev": 374
-        },
-        {
-          "km": 1.2,
-          "elev": 399
-        },
-        {
-          "km": 1.3,
-          "elev": 400
-        },
-        {
-          "km": 1.4,
-          "elev": 396
-        },
-        {
-          "km": 1.6,
-          "elev": 371
-        },
-        {
-          "km": 1.7,
-          "elev": 344
-        }
-      ],
+      "elevation": 45,
+      "hours": "0.5",
+      "elevationProfile": [{"km":0,"elev":361}, {"km":0.1,"elev":353}, {"km":0.2,"elev":348}, {"km":0.3,"elev":347}, {"km":0.4,"elev":356}, {"km":0.5,"elev":363}, {"km":0.6,"elev":354}, {"km":0.7,"elev":363}, {"km":0.8,"elev":374}, {"km":0.9,"elev":382}, {"km":1,"elev":380}, {"km":1.1,"elev":393}, {"km":1.2,"elev":392}, {"km":1.3,"elev":390}, {"km":1.4,"elev":386}, {"km":1.5,"elev":376}, {"km":1.6,"elev":351}, {"km":1.7,"elev":344}],
       "waterSources": [
         {
           "km": 0.1,
@@ -15876,8 +15911,38 @@
         "name": "Naturlehrpfad Castelfeder",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426625"
       },
-      "desc": "The nature trail over Castelfeder, the low porphyry hill between Montan and Auer, signed on the ground as the Naturerlebnisweg Castelfeder. It climbs from the sports-zone car park through woodland onto the open, rocky hilltop with its ruins and the 'Heidenrutsche' rock, and comes down on the far side by the youth hostel, about 1.7 km and 65 m of climb in three quarters of an hour.\n\nThe whole hill is the Castelfeder biotope, a Natura 2000 site, where dogs may not run free. Montan's dog regulation requires a lead of at most 1.5 m on all public ground, and owners must carry a muzzle; dogs are not allowed on farmed meadows during the growing season. The hill is grazed, so expect livestock and a cattle grid on the path.",
-      "tips": "Keep your dog on a short lead (1.5 m at most) the whole way and carry a muzzle: this is a protected biotope, and Montan requires it. Stay on the path, as the hill is grazed and the meadows are off limits to dogs. Lift or guide your dog over the cattle grid. It is low, rocky and sunny, so avoid hot middays; taps are mapped near the start and by the ruins."
+      "desc": "The nature trail over Castelfeder, the low porphyry hill between Montan and Auer, signed on the ground as the Naturerlebnisweg Castelfeder. It climbs from the sports-zone car park through woodland onto the open, rocky hilltop with its ruins and the 'Heidenrutsche' rock, and comes down on the far side by the youth hostel, about 1.7 km, 45 m up and 55 m down in about half an hour, as measured by ORMA (no official figure).\n\nThe whole hill is the Castelfeder biotope, a Natura 2000 site, where dogs may not run free. Montan's dog regulation requires a lead of at most 1.5 m on all public ground, and owners must carry a muzzle; dogs are not allowed on farmed meadows during the growing season. The hill is grazed, so expect livestock and a cattle grid on the path.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) the whole way and carry a muzzle: this is a protected biotope, and Montan requires it. Stay on the path, as the hill is grazed and the meadows are off limits to dogs. Lift or guide your dog over the cattle grid. It is low, rocky and sunny, so avoid hot middays; taps are mapped near the start and by the ruins.",
+      "routeShape": "point-to-point",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-11-07",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, DKrieger, CC BY-SA 3.0 (kept): the Heidenrutsche rock and dry grass on the Castelfeder hilltop, about 110 m from the line.",
+        "route": "Line rebuilt on OSM ways along the province register's Naturlehrpfad Castelfeder (1.71 km): 1.70 km, every register point within 14 m. It is the hilltop part of Südtirols Süden's 6.1 km Genießertour (Outdooractive 17277264), which covers 69% of it.",
+        "routeNumbers": "Start at the Castelfeder car park on the Dolomites road in Montan and follow the signs for the Naturerlebnisweg Castelfeder up through the wood onto the open hilltop, past the ruined castle and the St. Barbara chapel, then down the Römerstraße to the Castelfederweg (path 5) by the Jugendheim Castelfeder, about 200 m from the start.",
+        "mapPoints": "Start by the Castelfeder car park; taps traced to OSM near the start and by the ruins.",
+        "elevation": "No official figure. Measured by ORMA from the map: 1.70 km, about 45 m up and 55 m down between 344 and 393 m, 33 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
+      "verified": {
+        "categories": ["water", "heat", "exposure", "livestock", "surfaceHazards", "access"],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Naturlehrpfad Castelfeder', line routes-hikingtrails.11426625, 1,706 m; every register point within 14 m of the rebuilt line",
+          "Südtirols Süden, Auer: Genießertour zur Ruine und Biotop Castelfeder (Outdooractive 17277264): the 6.1 km tour this walk is part of; asks for dogs on a lead in the pasture and biotope and warns of intensive grazing",
+          "Gemeinde Montan, Verordnung über die Haltung und Führung von Hunden (GR 6/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows in the growing season), Art. 12 (applies outside built-up areas)",
+          "Montan landscape plan (newPlan PPC-21053, 2021), Biotop Castelfeder: Art. 6(4)(h) forbids 'Hunde frei laufen zu lassen'; Art. 6(5)(a) allows grazing; Natura 2000 site IT3110035 (EEA)",
+          "OpenStreetMap: path surfaces, guideposts for the Naturerlebnisweg, cattle grid, gates and water along the line"
+        ],
+        "date": "2026-11-07"
+      },
+      "sourceLinks": [
+        { "label": "South Tyrol trail register, Naturlehrpfad Castelfeder (Open Data Hub)", "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426625" },
+        { "label": "Südtirols Süden, Genießertour zur Ruine und Biotop Castelfeder", "url": "https://castelfeder.info/de/castelfeder/touren/rid-17277264-.html" },
+        { "label": "Gemeinde Montan, dog regulation", "url": "https://www.gemeinde.montan.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden" },
+        { "label": "OpenStreetMap relation 2179746", "url": "https://www.openstreetmap.org/relation/2179746" }
+      ]
     },
     'osm-11764094': {
       // Hand audit: 23 October 2026. In Natz-Schabs (the Laugen stretch is in
@@ -64708,6 +64773,242 @@
       ],
       startPoint: { lat: 46.689451, lng: 12.366215, label: 'The Schäfer shop in Moos, the board’s start' },
       desc: 'A demanding climb from Moos past the Helmhanghütte and the Klammbachalm and up a broad ridge to the Hornischeck (Monte Arnese), with a 360° view over the Sexten Dolomites. The board lists 9.4 km and 1,212 m up, one way.'
+    },
+    'winter-voels-voelser-weiher': {
+      // Hand audit: 7 November 2026, verified on arrival (new-trail Winter walks batch 1).
+      // “Escursione invernale da Fiè al Laghetto di Fiè”, published by the Völs am Schlern tourist board (Seiser Alm Marketing), drawn on 55 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures and the winter season from the board’s Outdooractive winter tour. Communes: Völs am Schlern (its 2015 dog regulation, amended 2019: lead ≤1.5 m, muzzle carried, no dogs on farmed land).
+      // About 15% of the line, around the Völser Weiher, is in the Schlern-Rosengarten nature park and Natura 2000 site: dogs on a lead (DPP 19/2013). The board files it as a winter walk and marks the way cleared.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Völs – Völser Weiher – St. Konstantin, Völs am Schlern',
+      distance: 7.1,
+      elevation: 247,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the roundabout in Völs up to the Völser Weiher on path 1, down on path 13 to St. Konstantin and back over meadows and through woods to Völs, as the board publishes it. The board says it can be walked either way.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the roundabout in Völs am Schlern, the board’s start. Bus 170 stops there.",
+        "sequence": "Walk up towards Völser Aicha and Umes. At the Hotel Heubad turn left onto path 1 and follow it past the Zimmerlehen manor and a few farms to the Völser Weiher, about 45 minutes. From the lake take path 13 down past old summer houses to the little church of St. Konstantin, about 30 minutes. From there the path goes back over the meadows and through the woods to Völs.",
+        "switches": "Road from the roundabout up to the Hotel Heubad; path 1 to the Völser Weiher; path 13 down to St. Konstantin; meadow and forest path back to Völs.",
+        "sources": [
+          {
+            "label": "Völs am Schlern tourist board (Seiser Alm Marketing), Escursione invernale da Fiè al Laghetto di Fiè (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/55209890",
+            "authority": "Völs am Schlern tourist board (Seiser Alm Marketing)",
+            "reviewedAt": "2026-11-07"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-07',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'A snowy forest path by the Völser Weiher on 1 March 2020 (Stipa Jennifer on Wikimedia Commons, CC BY-SA 4.0), 82 m from the line.',
+        route: 'Official loop 7.1 km from the roundabout in Völs am Schlern, as the Völs am Schlern tourist board (Seiser Alm Marketing) publishes it; the stored line is drawn on 55 OSM ways along the board’s published line, 7.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Paths 1 and 13: from the roundabout in Völs up towards Völser Aicha and Umes; at the Hotel Heubad turn left onto path 1, past the Zimmerlehen manor and farms to the Völser Weiher (about 45 minutes); then down path 13 past old summer houses to St. Konstantin (about 30 minutes), and back to Völs over the meadows and through the woods.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.2, km 0.3, km 0.6, km 1.7, km 4, km 4.3, km 6.1 and km 6.3 (OSM nodes 3660286171, 6638554033, 8937624320, 1444898642, 13039124756, 7318189294, 7318188914, 13039096453, 1815540565, 12062923457, 7318189194, 7318188988, 7318188913).',
+        elevation: 'Official 7.1 km, 247 m up and 247 m down, 2:04 h, highest point 1,054 m, lowest 841 m (Völs am Schlern tourist board (Seiser Alm Marketing), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Völs am Schlern tourist board (Seiser Alm Marketing), Escursione invernale da Fiè al Laghetto di Fiè (its Outdooractive tour)',
+          'Gemeinde Völs am Schlern / Comune di Fiè allo Sciliar, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 57, 23.11.2015, amended Nr. 39, 11.07.2019), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds',
+          'Province of Bolzano landscape-plan layers: about 15% of the line, around the Völser Weiher, is in the Schlern-Rosengarten nature park and its Natura 2000 site, where dogs stay on a lead (DPP 19/2013)',
+          'OpenStreetMap ways along the board’s line (55 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-07'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['Icy patches on lanes and forest paths after a frost', 'The Völser Weiher is used for ice skating in winter: keep your dog off the ice', 'Short stretches on the Bozner Straße in Völs at the start and finish: keep your dog on a short lead'],
+      terrainType: 'Village lanes, farm roads and forest paths',
+      shadeDescription: 'Woods around the Völser Weiher and on the way down to St. Konstantin; open meadows and village lanes elsewhere.',
+      terrainDescription: 'A winter loop above Völs am Schlern: up past old manors and farms to the Völser Weiher, a small lake in the woods below the Schlern, then down to the church of St. Konstantin and back over the meadows.',
+      waterDescription: 'Fountains in Völs at the start and at a few points along the way (OSM); some may be turned off in winter, so carry water for your dog. Bars and inns in Völs.',
+      dogNotes: 'Völs requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs off farmed meadows. Around the Völser Weiher you are in the Schlern-Rosengarten nature park, where dogs stay on a lead. Keep your dog off the frozen lake.',
+      tips: 'Start at the roundabout in Völs (bus 170): 7.1 km and 247 m up and down, about 2 hours, as the board lists. Walk in daylight, take spikes for icy patches, and rinse your dog’s paws after salted lanes.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione invernale da Fiè al Laghetto di Fiè (Völs am Schlern tourist board (Seiser Alm Marketing))', url: 'https://www.outdooractive.com/it/r/55209890' },
+        { label: 'Gemeinde Völs am Schlern, dog regulation (2015, amended 2019)', url: 'https://www.gemeinde.voels.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden' },
+        { label: 'Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)', url: 'https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.518574, lng: 11.504249, label: 'The roundabout in Völs am Schlern, the board’s start' },
+      desc: 'A winter loop from Völs am Schlern up to the Völser Weiher and down past the church of St. Konstantin, on a way the board keeps clear. The board lists 7.1 km and 247 m up.'
+    },
+    'winter-pozza-canto-acqua': {
+      // Hand audit: 7 November 2026, verified on arrival (new-trail Winter walks batch 1).
+      // “Il canto dell’acqua: due passi lungo l’Avisio e il Ruf de Sèn Nicolò”, published by the APT Val di Fassa, drawn on 30 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures and the winter season from the board’s Outdooractive winter tour. Communes: San Giovanni di Fassa (no dog rule of its own; the national rule applies: lead ≤1.5 m, muzzle carried).
+      // No Natura 2000 site or nature park on the line. The APT files it as a winter walk and marks the way cleared and prepared.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Pozza – Piciocaa – Meida, San Giovanni di Fassa',
+      distance: 3.7,
+      elevation: 29,
+      hours: '1',
+      routeShape: 'lollipop',
+      routeShapeNote: 'From the square in Pozza along the Avisio and the Re Laurino path to Piciocaa and back to the junction, then round by Meida and along the Ruf de Sèn Nicolò stream to the start, as the APT publishes it. The stretch to Piciocaa is walked both ways.',
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Piaza de Comun in Pozza di Fassa, the APT’s start.",
+        "sequence": "Along the river on Strada Promenada Enlogia Ruf, over the covered bridge and up the Re Laurino path to Piciocaa; back to the junction, then round by Meida, Strada de Ciancoal and Strada del Piz, and down Strada Sas da le Undesc along the Ruf de Sèn Nicolò to the start.",
+        "switches": "Right at the covered bridge onto the gravel lane. At Piciocaa turn back to the junction and keep left past the Fraine playground. Right at the fork onto Strada del Piz; over the bridge, right onto Strada Sas da le Undesc.",
+        "steps": [
+          {
+            "text": "From Piaza de Comun, cross the road and, just before the bridge, take Strada Promenada Enlogia Ruf on the left, beside the river. Cross the footbridge on the left.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "At the covered bridge turn right onto the gravel lane up the left bank of the Avisio. Cross the stream again and follow the Re Laurino path: after a short rise it is level, under tall pines, with wooden carvings of animals and gnomes.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Out of the woods, carry on north to Piciocaa, with a children’s play area and a small chapel. Then come back the same way to the junction.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Keep left past the Fraine play area and take the leftmost path to the north side of Meida, beside the cross-country ski loop: stay off the ski track. Join Strada de Ciancoal and at the fork turn right onto Strada del Piz.",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past the fountain on the left, cross the bridge and turn right onto Strada Sas da le Undesc, gently down along the Ruf de Sèn Nicolò stream past old mills. Strada Promenada Enlogia Ruf brings you back to the start.",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "tag": "tourist board",
+            "label": "APT Val di Fassa, Il canto dell’acqua: due passi lungo l’Avisio e il Ruf de Sèn Nicolò (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/64571850",
+            "authority": "APT Val di Fassa",
+            "reviewedAt": "2026-11-07"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-07',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'Piaza de Comun in Pozza di Fassa at the start, on 18 February 2019 (chrisbeddow on Mapillary, CC BY-SA 4.0), 1 m from the line; taken from the village street.',
+        route: 'Official one-way walk 3.7 km from Piaza de Comun in Pozza di Fassa, as the APT Val di Fassa publishes it; the stored line is drawn on 30 OSM ways along the board’s published line, 3.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Winter walk Pozza – Pera (no. 40), no other numbers: from Piaza de Comun along Strada Promenada Enlogia Ruf by the river, over a footbridge to the covered bridge, up the left bank of the Avisio and along the Re Laurino path to Piciocaa; back to the junction, left past the Fraine playground, along the north side of Meida beside the cross-country loop, Strada de Ciancoal and Strada del Piz, over the bridge onto Strada Sas da le Undesc along the Ruf de Sèn Nicolò, and back on Strada Promenada Enlogia Ruf.',
+        mapPoints: 'Start at the board’s start; drinking water at the start, km 0.1, km 2.6, km 2.7, km 2.9 and km 3.1 (OSM nodes 737144778, 12087128220, 12087145417, 11067225731, 298689646, 1358282329, 294679925, 1358282328).',
+        elevation: 'Official 3.7 km, 29 m up and 29 m down, 0:55 h, highest point 1,330 m, lowest 1,303 m (APT Val di Fassa, Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'APT Val di Fassa, Il canto dell’acqua: due passi lungo l’Avisio e il Ruf de Sèn Nicolò (its Outdooractive tour)',
+          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)',
+          'APT Val di Fassa, winter safety advice on the walk’s Outdooractive page, points 6 and 8: keep your dog on a lead at all times; do not walk on ski runs, downhill or cross-country',
+          'EEA Natura 2000 sites, the Paneveggio – Pale di San Martino and Sciliar-Catinaccio nature parks (none on the line)',
+          'OpenStreetMap ways along the board’s line (30 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-07'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The APT warns of icy and slippery stretches, above all after snowfall', 'The walk runs beside the Pozza cross-country ski loop and past a children’s ski and sledging area: keep your dog on a lead and off the tracks', 'Short stretches on village streets in Pozza and Meida: keep your dog close'],
+      terrainType: 'Riverside paths, gravel lanes and village streets; pushchair friendly',
+      shadeDescription: 'Shade under the tall pines of the Re Laurino path; the Meida meadows and village streets are open.',
+      terrainDescription: 'A flat winter walk at 1,300–1,330 m from Pozza along the Avisio, through pine woods with wooden carvings to Piciocaa, and back by Meida and the old mill stream of San Nicolò.',
+      waterDescription: 'Fountains in Pozza at the start and near the finish (OSM); some may be turned off in winter, so carry water for your dog. Bars in Pozza.',
+      dogNotes: 'San Giovanni di Fassa has no dog rule of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The APT asks you to keep your dog on a lead at all times and not to walk on ski runs or cross-country tracks.',
+      tips: 'Start in Piaza de Comun in Pozza: 3.7 km and 29 m up, about an hour, as the APT lists. Flat and pushchair friendly. Keep off the cross-country loop at Meida, and rinse your dog’s paws after salted streets.',
+      sourceLinks: [
+        { label: 'Outdooractive, Il canto dell’acqua: due passi lungo l’Avisio e il Ruf de Sèn Nicolò (APT Val di Fassa)', url: 'https://www.outdooractive.com/it/r/64571850' },
+        { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
+        { label: 'APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)', url: 'https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.430267, lng: 11.686029, label: 'Piaza de Comun in Pozza di Fassa, the APT’s start' },
+      desc: 'A flat winter walk from Pozza along the Avisio and the Re Laurino path to Piciocaa, and back by Meida and the old mill stream. The APT clears and prepares the way and lists 3.7 km.'
+    },
+    'winter-steinegg-osservatorio': {
+      // Hand audit: 7 November 2026, verified on arrival (new-trail Winter walks batch 1).
+      // “Escursione invernale all’osservatorio di San Valentino”, published by the Eggental tourist board (Eggental – Val d’Ega), drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures and the winter season from the board’s Outdooractive winter tour. Communes: Karneid (its 2015 dog regulation: lead ≤1.5 m on all public ground, muzzle carried, no dogs on farmed meadows).
+      // No nature park or Natura 2000 site on the line; about 3% crosses a landscape protection zone, which sets no rule on dogs. The board files it as a winter walk and marks the way cleared.
+      // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
+      area: 'Lantschnay – Gummer observatory (San Valentino di Sopra), Karneid',
+      distance: 4.9,
+      elevation: 57,
+      hours: '1.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: 'Out and back on the quiet access road and path 5A from the Schenken car park, by the Lantschnay bus stop, to the Unteregger farm inn and the Max Valier observatory at Gummer, as the board publishes it.',
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Schenken car park or the Lantschnay bus stop in San Valentino di Sopra (Gummer), the board’s start.",
+        "sequence": "Follow the quiet access road, on a stretch of the Planets Path and path 5A, to the Unteregger farm inn. The Max Valier observatory and the Peter Anich solar observatory stand there, with a wide view of the Latemar and the mountains around. Come back the same way.",
+        "switches": "Access road and path 5A from the Schenken car park to the Unteregger inn and the observatories; back the same way.",
+        "sources": [
+          {
+            "label": "Eggental tourist board (Eggental – Val d’Ega), Escursione invernale all’osservatorio di San Valentino (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/16082606",
+            "authority": "Eggental tourist board (Eggental – Val d’Ega)",
+            "reviewedAt": "2026-11-07"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-07',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: 'The Latemar from the Max Valier observatory at Gummer, where the walk turns, on 2 November 2007 (Christian Auer on Wikimedia Commons, CC BY-SA 3.0); the photo the Planets Path page already uses.',
+        route: 'Official one-way walk 4.9 km from the Schenken car park by the Lantschnay bus stop, as the Eggental tourist board (Eggental – Val d’Ega) publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 4.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        routeNumbers: 'Path 5A: from the Schenken car park or the Lantschnay bus stop along the quiet access road, on a stretch of the Planets Path and path 5A, to the Unteregger farm inn and the Max Valier and Peter Anich observatories at Gummer; back the same way.',
+        mapPoints: 'Start at the board’s start; no drinking water mapped on the line.',
+        elevation: 'Official 4.9 km, 57 m up and 57 m down, 1:16 h, highest point 1,318 m, lowest 1,291 m (Eggental tourist board (Eggental – Val d’Ega), Outdooractive). The stored line follows the board’s own Outdooractive tour.'
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          'Eggental tourist board (Eggental – Val d’Ega), Escursione invernale all’osservatorio di San Valentino (its Outdooractive tour)',
+          'Gemeinde Karneid, Verordnung über die Haltung und Führung von Hunden (in force 13 Sep 2015): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields; no bathing in fountains or troughs), Art. 12 (applies outside built-up areas)',
+          'Province of Bolzano landscape-plan layers: no nature park or Natura 2000 site on the line; about 3% crosses a landscape protection zone (Landschaftliche Bannzone), which sets no rule on dogs',
+          'OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data'
+        ],
+        date: '2026-11-07'
+      },
+      shadeCoverage: 15,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ['The board warns that some stretches can be very icy in winter', 'Almost all on a quiet asphalt road with a few cars: keep your dog on a short lead', 'About 180 m on the provincial road by the start: keep your dog close'],
+      terrainType: 'A quiet asphalt access road and a short path; pushchair friendly',
+      shadeDescription: 'Mostly open, on a sunny plateau; a few trees along the road.',
+      terrainDescription: 'An easy winter walk at about 1,300 m on the sunny plateau above Steinegg, along a quiet road to the Gummer observatory, South Tyrol’s only public observatory, with a wide view of the Latemar.',
+      waterDescription: 'No drinking water mapped on the line: bring water for your dog. The Unteregger farm inn at the observatory (km 2) serves food and drink; check its winter rest days.',
+      dogNotes: 'Karneid requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs off farmed meadows. Keep your dog on the road and on a short lead where cars pass.',
+      tips: 'Start at the Schenken car park or the Lantschnay bus stop above Steinegg: 4.9 km there and back and 57 m up, about 1¼ hours, as the board lists. Pushchair friendly. Take spikes for icy stretches, and check the Unteregger inn’s winter rest days.',
+      sourceLinks: [
+        { label: 'Outdooractive, Escursione invernale all’osservatorio di San Valentino (Eggental tourist board (Eggental – Val d’Ega))', url: 'https://www.outdooractive.com/it/r/16082606' },
+        { label: 'Gemeinde Karneid, dog regulation', url: 'https://www.gemeinde.karneid.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden' },
+        { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
+        { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
+      ],
+      startPoint: { lat: 46.458406, lng: 11.481495, label: 'The Schenken car park by the Lantschnay bus stop, the board’s start' },
+      desc: 'An easy winter walk above Steinegg on a quiet road the board keeps clear, to the Gummer observatory and its wide view of the Latemar. The board lists 4.9 km there and back.'
     }
   };
 

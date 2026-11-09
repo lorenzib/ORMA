@@ -729,6 +729,7 @@
 <a href="trail.html?id=russis-to-passo-delle-erbe" style="display:block;color:inherit;">Ponte Russis to Passo delle Erbe</a>
 <a href="trail.html?id=ponte-su-funi" style="display:block;color:inherit;">Ponte su Funi Rio San Piero da Mezzano</a>
 <a href="trail.html?id=poststeig" style="display:block;color:inherit;">Poststeig</a>
+<a href="trail.html?id=pozza-canto-acqua-winter" style="display:block;color:inherit;">Pozza along the Avisio in winter</a>
 <a href="trail.html?id=pragser-wildsee-rossalm" style="display:block;color:inherit;">Pragser Wildsee – Rossalm</a>
 <a href="trail.html?id=pragser-wildsee-huts-circuit" style="display:block;color:inherit;">Pragser Wildsee huts circuit</a>
 <a href="trail.html?id=prato-di-sorte-moena" style="display:block;color:inherit;">Prato di Sorte</a>
@@ -813,6 +814,7 @@
 <a href="trail.html?id=stabnerwaal-staben-to-tschars" style="display:block;color:inherit;">Stabnerwaal, Staben to Tschars</a>
 <a href="trail.html?id=steger-buhel-runde" style="display:block;color:inherit;">Steger-Bühel-Runde</a>
 <a href="trail.html?id=steine-erzahlen" style="display:block;color:inherit;">Steine erzählen</a>
+<a href="trail.html?id=steinegg-osservatorio-winter" style="display:block;color:inherit;">Steinegg to the Gummer observatory in winter</a>
 <a href="trail.html?id=steinegger-hohenweg" style="display:block;color:inherit;">Steinegger Höhenweg</a>
 <a href="trail.html?id=steinhaus-panoramic-path" style="display:block;color:inherit;">Steinhaus panoramic path</a>
 <a href="trail.html?id=sui-pascoli-di-malga-vernera" style="display:block;color:inherit;">Sui Pascoli di Malga Vernera</a>
@@ -849,6 +851,7 @@
 <a href="trail.html?id=via-crucis-santa-cristina" style="display:block;color:inherit;">Via Crucis, Santa Cristina</a>
 <a href="trail.html?id=vigo-borgo-dei-patins" style="display:block;color:inherit;">Vigo, borgo dei patins</a>
 <a href="trail.html?id=vogelweider-rundweg" style="display:block;color:inherit;">Vogelweider Rundweg</a>
+<a href="trail.html?id=voels-voelser-weiher-winter" style="display:block;color:inherit;">Völs to the Völser Weiher in winter</a>
 <a href="trail.html?id=voeran-to-hafling" style="display:block;color:inherit;">Vöran to Hafling past the Bruggen pond</a>
 <a href="trail.html?id=walderlebnispfad-aschbach" style="display:block;color:inherit;">Walderlebnispfad Aschbach</a>
 <a href="trail.html?id=wallburgweg" style="display:block;color:inherit;">Wallburgweg</a>
@@ -1046,10 +1049,10 @@
     <div>
       <div class="hp-footer-h">Caring for your dog</div>
       <div class="hp-footer-links">
-        <a href="guides/heat-overheating.html">Heat &amp; hydration</a>
+        <a href="guides/heat-overheating.html">Heat and your dog</a>
         <a href="guides/paw-protection.html">Paw protection</a>
-        <a href="guides/breed-group-caveats.html">Breed group caveats</a>
-        <a href="guides/alpine-plants-for-dogs.html">Alpine plants guide</a>
+        <a href="guides/breed-group-caveats.html">Your dog’s breed and build</a>
+        <a href="guides/alpine-plants-for-dogs.html">Alpine plants and your dog</a>
       </div>
     </div>
     <div>
@@ -1102,8 +1105,8 @@
 <script src="guest-context.js?v=20261030-1" defer></script>
 <script src="auth-ui.js?v=20261030-1" defer></script>
 <script src="discovery-state.js?v=20261007-1" defer></script>
-<script src="trail-season-words.js?v=20261107-1" defer></script>
-<script src="discovery-filters.js?v=20261024-1" defer></script>
+<script src="trail-season-words.js?v=20261108-1" defer></script>
+<script src="discovery-filters.js?v=20261108-1" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
@@ -1514,7 +1517,8 @@
     }
 
     function filteredTrails(){
-      const filtered = filterApi.filter(trails, currentFilterState(), filterOptions());
+      // Saved walks show whatever the season: the reader chose them.
+      const filtered = filterApi.filter(trails, currentFilterState(), { ...filterOptions(), includeOutOfSeason: savedOnly });
       return savedOnly ? filtered.filter(trail => currentFavorites[trail.id]) : filtered;
     }
 

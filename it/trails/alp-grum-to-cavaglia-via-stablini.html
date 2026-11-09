@@ -156,7 +156,9 @@
   <h1>Alp Grüm to Cavaglia via Stablini</h1>
   <p class="sp-gloss">down the mule track beside the Bernina railway</p>
   <div class="sp-badges">
-    
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111110000011" hidden><span>Fuori stagione</span></span>
+    <span class="dp-badge sp-tag sp-tag--best"><span>Periodo migliore: da giugno a ottobre</span></span>
+    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Terreno impegnativo</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verificato da ORMA</span></span>
     
@@ -194,7 +196,31 @@
     </svg>
     <figcaption class="sp-src">Profilo altimetrico: punto più basso 1695 m, punto più alto 2092 m.</figcaption>
   </figure>
+    <section class="sp-season" id="season" data-season-notes="[&quot;Nel mese di gennaio la neve è probabile su questo percorso.&quot;,&quot;Nel mese di febbraio la neve è probabile su questo percorso.&quot;,&quot;Nel mese di marzo la neve è probabile su questo percorso.&quot;,&quot;Nel mese di aprile la neve è probabile su questo percorso.&quot;,&quot;Nel mese di maggio la neve è probabile su questo percorso.&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Nel mese di novembre la neve è probabile su questo percorso.&quot;,&quot;Nel mese di dicembre la neve è probabile su questo percorso.&quot;]" data-season-warn="111110000011">
+    <h2>Quando andare</h2>
+    <p class="sp-season-now" hidden></p>
+    <ol class="sp-months" aria-label="Mesi dell’anno"><li class="sp-month sp-month--snow" data-month="1"><span aria-hidden="true">G</span><span class="sp-vh">gennaio: Neve probabile</span></li><li class="sp-month sp-month--snow" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">febbraio: Neve probabile</span></li><li class="sp-month sp-month--snow" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">marzo: Neve probabile</span></li><li class="sp-month sp-month--snow" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">aprile: Neve probabile</span></li><li class="sp-month sp-month--snow" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">maggio: Neve probabile</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">G</span><span class="sp-vh">giugno: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">L</span><span class="sp-vh">luglio: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">agosto: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">settembre: Di solito senza neve</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">ottobre: Di solito senza neve</span></li><li class="sp-month sp-month--snow" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">novembre: Neve probabile</span></li><li class="sp-month sp-month--snow" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">dicembre: Neve probabile</span></li></ol>
+    <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Di solito senza neve <span class="sp-key sp-key--snow"></span>Neve probabile</p>
+    <p>Qui la neve è probabile tra novembre e maggio.</p>
+    <p class="sp-src">Stima basata sul punto più alto del percorso (2092 m). Nessun ente turistico pubblica la stagione di questo percorso, e ogni inverno è diverso.</p>
     
+  </section>
+  <script>
+  (function(){
+    var box = document.getElementById('season');
+    if(!box) return;
+    var m = new Date().getMonth();
+    var notes = []; try{ notes = JSON.parse(box.getAttribute('data-season-notes')); }catch(e){}
+    var li = box.querySelector('[data-month="' + (m + 1) + '"]');
+    if(li) li.classList.add('sp-month--now');
+    var note = box.querySelector('.sp-season-now');
+    if(note && notes[m]){
+      note.textContent = notes[m];
+      if((box.getAttribute('data-season-warn') || '').charAt(m) === '1') note.classList.add('sp-season-now--warn');
+      note.hidden = false;
+    }
+  })();
+  </script>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> Da dove partire</h2>
     <p>Alp Grüm station on the Bernina railway, the board’s start</p>
     <h2>Come seguire questo percorso</h2>
@@ -287,10 +313,10 @@
     <div>
       <div class="hp-footer-h">Prendersi cura del cane</div>
       <div class="hp-footer-links">
-        <a href="../guides/heat-overheating.html">Caldo e idratazione</a>
-        <a href="../guides/paw-protection.html">Protezione delle zampe</a>
-        <a href="../guides/breed-group-caveats.html">Avvertenze per gruppo di razze</a>
-        <a href="../guides/alpine-plants-for-dogs.html">Guida alle piante alpine</a>
+        <a href="../guides/heat-overheating.html">Il caldo e il tuo cane</a>
+        <a href="../guides/paw-protection.html">Proteggere le zampe</a>
+        <a href="../guides/breed-group-caveats.html">Razza e corporatura del tuo cane</a>
+        <a href="../guides/alpine-plants-for-dogs.html">Il tuo cane e le piante alpine</a>
       </div>
     </div>
     <div>

@@ -3915,9 +3915,10 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   // Cautions first (hard stops already lead them), then what is simply not
   // known, which is a different kind of statement and belongs after. Only
   // trail unknowns: a missing profile field becomes the prompt below, and
-  // saying the same thing twice on one card reads as two problems.
-  const concerns = view.cautions.slice(0, 3);
-  if(concerns.length < 2) concerns.push(...view.trailUnknowns.slice(0, 2 - concerns.length));
+  // saying the same thing twice on one card reads as two problems. The card
+  // says them in plain words (cardCautions), not in the engine's own terms.
+  const concerns = view.cardCautions.slice(0, 3);
+  if(concerns.length < 2) concerns.push(...view.cardTrailUnknowns.slice(0, 2 - concerns.length));
   const know = concerns.length
     ? `<div><b>${liWalkDate === liDateOffsetIso(0) ? tx('What to know today') : tx('What to know for this day')}</b><ul>${items(concerns)}</ul></div>`
     : '';
@@ -5543,7 +5544,12 @@ Optional color legend:
 (function(){
   try {
     const forced = new URLSearchParams(window.location.search).get('view');
-    if(forced === 'returning'){
+    // The iPhone app opens every visitor, signed in or not, on the map and
+    // ranked list: an app is used, not read about, so the website's guest
+    // landing page has no place in it. scripts/build-app.js marks app pages
+    // with the orma-app class; the website never has it.
+    const inApp = document.documentElement.classList.contains('orma-app');
+    if(forced === 'returning' || inApp){
       liDevView = true;
       window.dispatchEvent(new CustomEvent('dolopaws-auth-changed', { detail: { user: null, devView: 'returning' } }));
     }

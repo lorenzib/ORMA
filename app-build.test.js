@@ -5,7 +5,7 @@ const path = require('path');
 const vm = require('vm');
 const {
   collectAppFiles, ENTRY_PAGES, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG,
-  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG,
+  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG, APP_FLAG_TAG,
 } = require('./scripts/build-app');
 
 const root = __dirname;
@@ -282,3 +282,111 @@ describe('the app has a bottom tab bar', () => {
     expect(fs.readFileSync(path.join(root, '_config.yml'), 'utf8')).toMatch(/^  - app-tabbar\.js$/m);
   });
 });
+
+// An app is used, not read about: it opens on the map and the ranked list for
+// everyone, so the website's guest landing page never shows inside it.
+describe('the app opens on the map for every visitor', () => {
+  const script = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
+  const shell = fs.readFileSync(path.join(root, 'app-shell.css'), 'utf8');
+  const build = fs.readFileSync(path.join(root, 'scripts', 'build-app.js'), 'utf8');
+
+  test('app pages are marked before anything draws', () => {
+    expect(APP_FLAG_TAG).toBe("<script>document.documentElement.classList.add('orma-app');</script>");
+    expect(build).toContain('${APP_FLAG_TAG}\\n${APP_SHELL_TAG}');
+  });
+
+  test('the homepage takes the map view when it is marked', () => {
+    expect(script).toMatch(/const inApp = document\.documentElement\.classList\.contains\('orma-app'\);\s*if\(forced === 'returning' \|\| inApp\)/);
+  });
+
+  test('the guest landing page is hidden from the first paint, and the website is untouched', () => {
+    expect(shell).toContain('html.orma-app #newCustomerHomepage{display:none !important;}');
+    expect(shell).toContain('html.orma-app #returningCustomerHomepage[hidden]{display:flex !important;}');
+    const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+    expect(index).not.toContain('orma-app');
+    expect(index).toContain('id="liNewWrap"');
+    expect(index).toContain('class="li-list-foot"');
+  });
+});
+
+// The app's Explore list gives the recommendation, not the argument for it:
+// no reasons and no "based on available trail data · checked on" line, while
+// See on map and Get directions stay. The website keeps all of it.
+describe('the app list cards are compact', () => {
+  const shell = fs.readFileSync(path.join(root, 'app-shell.css'), 'utf8');
+  const script = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
+  const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+
+  test('the reasons and the data-checked line are hidden in the app only', () => {
+    expect(shell).toMatch(/html\.orma-app #liReasonsToggle,\s*html\.orma-app \.li-row \.li-why-toggle,\s*html\.orma-app \.li-row \.li-answer-explanation\{display:none !important;\}/);
+    expect(shell).toContain('html.orma-app .li-row-trust > span');
+    expect(index).toContain('id="liReasonsToggle"');
+    expect(script).toContain('class="li-answer-explanation"');
+    expect(script).toContain('<div class="li-row-trust"><strong>');
+  });
+
+  test('See on map and Get directions are never hidden', () => {
+    expect(shell).not.toMatch(/(locate-btn|li-dir-toggle|li-row-bar)[^{]*\{[^}]*display:none/);
+    expect(script).toContain("tx('See on map')");
+    expect(script).toContain("tx('Get directions')");
+  });
+});
+
+// The app's trail page: a photo header with a back arrow, four fact tiles, the
+// verdict for your dog before the map, and Directions and Start the walk in a
+// bar above the tab bar. The controls are the page's own, only placed anew.
+describe('the app trail page', () => {
+  const shell = fs.readFileSync(path.join(root, 'app-shell.css'), 'utf8');
+  const tabbar = fs.readFileSync(path.join(root, 'app-tabbar.js'), 'utf8');
+  const trail = fs.readFileSync(path.join(root, 'trail.html'), 'utf8');
+
+  test('Directions and Start the walk are pinned above the tab bar', () => {
+    for(const id of ['getDirectionsBtn', 'heroStartHike']) expect(trail).toContain(`id="${id}"`);
+    expect(shell).toMatch(/html\.orma-app body \.td2-actrow>#getDirectionsBtn,\s*html\.orma-app body \.td2-actrow>#heroStartHike\{position:fixed;[^}]*bottom:calc\(var\(--app-tab\) \+ 10px\)/);
+    // A stacking layer on the header would put the fixed bar under the page.
+    expect(shell).toMatch(/\.td2-hero\{[^}]*z-index:auto;isolation:auto;/);
+  });
+
+  test('the verdict for your dog comes before the map', () => {
+    expect(shell).toContain('html.orma-app body .td2-plan-stack{order:0;}');
+  });
+
+  test('Save, Share and the offline map stay; only logging and GPX export leave', () => {
+    const hidden = shell.match(/html\.orma-app body \.td2-actrow>#walkedThisBtn,[^{]*\{display:none;\}/);
+    expect(hidden).not.toBeNull();
+    expect(hidden[0]).toContain('#logWalkBtn');
+    expect(hidden[0]).toContain('#exportGpxBtn');
+    for(const id of ['detailSaveBtn', 'detailShareBtn', 'offlineDownloadBtn', 'getDirectionsBtn', 'heroStartHike']) {
+      expect(hidden[0]).not.toContain(id);
+    }
+  });
+
+  test('four fact tiles, counted past the hidden match score', () => {
+    expect(trail).toContain('id="trailFacts"');
+    expect(shell).toContain('.td2-stat .f:nth-child(n+5 of .f:not(.match)){display:none;}');
+  });
+
+  test('the back arrow goes back to where you came from', () => {
+    expect(trail).toContain('id="tdBreadcrumb"');
+    expect(tabbar).toContain("closest('#tdBreadcrumb')");
+    expect(tabbar).toContain('history.back()');
+  });
+
+  test('the trail page opens on a big map with a Photo/Map switch, in the app only', () => {
+    const { APP_TRAIL_TAG } = require('./scripts/build-app.js');
+    const trailScript = fs.readFileSync(path.join(root, 'app-trail.js'), 'utf8');
+    const config = fs.readFileSync(path.join(root, '_config.yml'), 'utf8');
+    expect(collectAppFiles().files.has('app-trail.js')).toBe(true);
+    expect(APP_TRAIL_TAG).toBe('<script src="/app-trail.js" defer></script>');
+    expect(config).toMatch(/^\s+- app-trail\.js$/m);
+    expect(trail).not.toContain('app-trail.js');
+    // It moves the page's own map, so every map control keeps its handler.
+    expect(trailScript).toContain("td2.querySelector('.td2-mapcard')");
+    expect(trailScript).toContain('td2.insertBefore(mapCard, hero)');
+    expect(trailScript).toContain("td2.classList.toggle('app-trail-photo', view === 'photo')");
+    // A trail without a photo is only the map.
+    expect(trailScript).toMatch(/views\.hidden = !src;/);
+    expect(shell).toContain('html.orma-app body .td2.app-trail-photo>.td2-mapcard{display:none;}');
+  });
+});
+

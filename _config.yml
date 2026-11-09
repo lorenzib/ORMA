@@ -85,3 +85,4 @@ exclude:
   - app-trail-data.js
   - app-shell.css
   - app-tabbar.js
+  - app-trail.js

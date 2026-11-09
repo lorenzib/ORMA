@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "winter-voels-voelser-weiher",
+  "distanceKm": 7.1,
+  "ascentM": 247,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 845
+    },
+    {
+      "km": 0.6,
+      "elev": 911
+    },
+    {
+      "km": 1.1,
+      "elev": 996
+    },
+    {
+      "km": 1.6,
+      "elev": 1067
+    },
+    {
+      "km": 2.1,
+      "elev": 1070
+    },
+    {
+      "km": 2.7,
+      "elev": 1013
+    },
+    {
+      "km": 3.2,
+      "elev": 960
+    },
+    {
+      "km": 3.8,
+      "elev": 951
+    },
+    {
+      "km": 4.3,
+      "elev": 907
+    },
+    {
+      "km": 4.8,
+      "elev": 894
+    },
+    {
+      "km": 5.4,
+      "elev": 884
+    },
+    {
+      "km": 5.9,
+      "elev": 845
+    },
+    {
+      "km": 6.4,
+      "elev": 857
+    },
+    {
+      "km": 7,
+      "elev": 845
+    },
+    {
+      "km": 7.1,
+      "elev": 845
+    }
+  ]
+}

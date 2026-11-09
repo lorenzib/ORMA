@@ -1868,6 +1868,21 @@
       "name": "Moos to Monte Arnese (Hornischeck)",
       "slug": "moso-monte-arnese",
       "gloss": "past the Klammbachalm and up the ridge to the summit"
+    },
+    "winter-voels-voelser-weiher": {
+      "name": "Völs to the Völser Weiher in winter",
+      "slug": "voels-voelser-weiher-winter",
+      "gloss": "a cleared winter loop to the lake and St. Konstantin"
+    },
+    "winter-pozza-canto-acqua": {
+      "name": "Pozza along the Avisio in winter",
+      "slug": "pozza-canto-acqua-winter",
+      "gloss": "a flat cleared winter walk by the river and the mill stream"
+    },
+    "winter-steinegg-osservatorio": {
+      "name": "Steinegg to the Gummer observatory in winter",
+      "slug": "steinegg-osservatorio-winter",
+      "gloss": "a cleared winter walk on a quiet road to the observatory"
     }
   }
 }
