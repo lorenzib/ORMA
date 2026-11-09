@@ -10,8 +10,8 @@ describe('Safety library', () => {
 
   test('uses the approved guide-first structure with photo-led links', () => {
     expect(document.querySelector('h1').textContent).toBe('Safety library');
-    expect(document.querySelectorAll('.sg-guide-card')).toHaveLength(9);
-    expect(document.querySelectorAll('.sg-guide-card img')).toHaveLength(9);
+    expect(document.querySelectorAll('.sg-guide-card')).toHaveLength(10);
+    expect(document.querySelectorAll('.sg-guide-card img')).toHaveLength(10);
     expect([...document.querySelectorAll('.sg-guide-card')].every(card => card.getAttribute('href'))).toBe(true);
     expect(document.querySelectorAll('.sg-category')).toHaveLength(3);
     expect(html).toMatch(/\.sg-library\{[^}]*grid-template-columns:repeat\(3/s);
