@@ -661,9 +661,15 @@ function seasonTagsHtml(t) {
   const best = seasonWords.bestTime(t.season);
   if (!best) return '';
   const out = seasonWords.MONTH_NAMES.map((_, i) => (seasonWords.outOfSeason(t.season, i + 1) ? 1 : 0)).join('');
+  // Seasonal risks to dogs, each shown only in its months, the same way.
+  const dog = ((t.season && t.season.dogSeasons) || []).map((risk) => {
+    const months = seasonWords.MONTH_NAMES.map((_, i) => (risk.months.includes(i + 1) ? 1 : 0)).join('');
+    return `<span class="dp-badge sp-tag sp-tag--dog" data-season-out="${months}" hidden><span>${escapeHtml(L(seasonWords.DOG_SEASON_TAGS[risk.kind]))}</span></span>`;
+  }).join('\n    ');
   return `<span class="dp-badge sp-tag sp-tag--out" data-season-out="${out}" hidden><span>${L('Out of season')}</span></span>
     <span class="dp-badge sp-tag sp-tag--best"><span>${escapeHtml(best)}</span></span>
-    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>`;
+    ${dog}
+    <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>`;
 }
 
 // "When to go": the walk's months as its board publishes them, or the snowy
@@ -672,7 +678,7 @@ function seasonTagsHtml(t) {
 // marked by the script underneath, from notes written here for every month.
 function seasonHtml(t) {
   const words = seasonWords.describe(t.season, num);
-  if (!words || (!words.kind && !words.winter.length && !words.lifts.length)) return '';
+  if (!words || (!words.kind && !words.winter.length && !words.lifts.length && !words.dogSeasons.length)) return '';
   const notes = seasonWords.MONTH_NAMES.map((_, i) => seasonWords.nowNote(t.season, i + 1));
   const warn = seasonWords.MONTH_NAMES.map((_, i) => (seasonWords.outOfSeason(t.season, i + 1) ? 1 : 0));
   const strip = words.strip.length
@@ -690,6 +696,11 @@ function seasonHtml(t) {
     : '';
   const lifts = words.lifts.map((lift) => `<p>${escapeHtml(lift.line)}</p>
     <p class="sp-src">${escapeHtml(lift.source.before)}<a href="${escapeHtml(lift.source.url)}" rel="noopener">${escapeHtml(lift.source.label)}</a>${escapeHtml(lift.source.after)}</p>`).join('\n    ');
+  const dog = words.dogSeasons.length
+    ? `<h3 class="sp-season-dog">${L('For your dog')}</h3>
+    ${words.dogSeasons.map((risk) => `<p>${escapeHtml(risk.line)}</p>
+    <p class="sp-src">${escapeHtml(L('Source: '))}${risk.sources.map((source) => `<a href="${escapeHtml(source.url)}" rel="noopener">${escapeHtml(source.label)}</a>${escapeHtml(source.after)}`).join(' ')}</p>`).join('\n    ')}`
+    : '';
   return `<section class="sp-season" id="season" data-season-notes="${escapeHtml(JSON.stringify(notes))}" data-season-warn="${warn.join('')}">
     <h2>${L('When to go')}</h2>
     <p class="sp-season-now" hidden></p>
@@ -698,6 +709,7 @@ function seasonHtml(t) {
     ${source}
     ${lifts}
     ${winter}
+    ${dog}
   </section>
   <script>
   (function(){
@@ -1046,6 +1058,8 @@ function renderTrailPage(t, slug, all) {
   .sp-key--lift{background:#F1DEC4;}
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
