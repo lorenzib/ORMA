@@ -334,11 +334,24 @@
       ],
       "highPoint": 2248
     },
+    "cortina-anello-dei-tre-rifugi": {
+      "regions": [
+        "IT-32-BZ-19",
+        "IT-34-BL-02"
+      ],
+      "highPoint": 2324
+    },
     "cortina-castello-di-botestagno": {
       "regions": [
         "IT-34-BL-02"
       ],
       "highPoint": 1488
+    },
+    "cortina-forcella-lerosa": {
+      "regions": [
+        "IT-34-BL-02"
+      ],
+      "highPoint": 2020
     },
     "cortina-malga-ra-stua": {
       "regions": [
@@ -363,6 +376,12 @@
         "IT-34-BL-02"
       ],
       "highPoint": 2404
+    },
+    "cortina-zumeles-val-padeon": {
+      "regions": [
+        "IT-34-BL-02"
+      ],
+      "highPoint": 2039
     },
     "eggental-dal-passo-costalunga-al-lago-di-carezza": {
       "regions": [
@@ -2350,6 +2369,12 @@
       ],
       "highPoint": 1932
     },
+    "valdisole-cogolo-chiesa-di-santa-lucia": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 1309
+    },
     "valdisole-fazzon-lago-dei-caprioli": {
       "regions": [
         "IT-32-TN-19"
@@ -2361,6 +2386,12 @@
         "IT-32-TN-19"
       ],
       "highPoint": 1538
+    },
+    "valdisole-malga-strino": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 1920
     },
     "valdisole-marilleva-1400-malga-alta-di-fazzon": {
       "regions": [
@@ -2715,6 +2746,18 @@
         "IT-32-BZ-18-02"
       ],
       "highPoint": 1070
+    },
+    "zoldo-bosco-secolare": {
+      "regions": [
+        "IT-34-BL-01"
+      ],
+      "highPoint": 1116
+    },
+    "zoldo-rifugio-bosconero": {
+      "regions": [
+        "IT-34-BL-01"
+      ],
+      "highPoint": 1366
     }
   }
 }

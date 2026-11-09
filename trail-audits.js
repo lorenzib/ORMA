@@ -65009,6 +65009,613 @@
       ],
       startPoint: { lat: 46.458406, lng: 11.481495, label: 'The Schenken car park by the Lantschnay bus stop, the board’s start' },
       desc: 'An easy winter walk above Steinegg on a quiet road the board keeps clear, to the Gummer observatory and its wide view of the Latemar. The board lists 4.9 km there and back.'
+    },
+    'cortina-zumeles-val-padeon': {
+      // Hand audit: 9 November 2026, verified on arrival (new-trail Dolomites batch 6).
+      // “Tra Forcella Zumeles e Val Padeon”, published by Cortina Marketing, drawn on 26 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Cortina d’Ampezzo (Polizia Urbana Art. 36, lead). The last ~4% of the line, near Ospitale, is in the Ampezzo Dolomites park (rule 7, lead). No Natura 2000 site. About 200 m beside the SR48 at the start (under 300 m).
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Rio Gere – Forcella Zumeles – Val Padeon – Ospitale, Cortina d’Ampezzo",
+      distance: 9.5,
+      elevation: 499,
+      hours: '3.5',
+      routeShape: 'point-to-point',
+      routeShapeNote: "A one-way walk from the Rio Gere car park over Forcella Zumeles (2,072 m) and down the Val Padeon to Ospitale on the SS51, as the board publishes it (499 m up, 706 m down, 3 h 30). The board does not say how to get back: plan a lift by car or the bus along the SS51 to Cortina.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the Rio Gere car park, on the road from Cortina to Passo Tre Croci, the board’s start.",
+        "sequence": "Take path 211 to the El Brite de Larieto farm and keep on the forest road, still path 211, past the turn down to the Rifugio Mietres. At the junction with path 204, turn up it: it climbs steeply, over 300 m, to Forcella Zumeles (2,072 m). Stay on path 204 down the far side to the forest road, path 203, and turn left on it down the Val Padeon to the SS51 at Ospitale.",
+        "switches": "Path 211 from Rio Gere past El Brite de Larieto; path 204 up to Forcella Zumeles and down the far side; path 203 left down the Val Padeon to Ospitale.",
+        "sources": [
+          {
+            "label": "Cortina Marketing, Tra Forcella Zumeles e Val Padeon (route description)",
+            "url": "https://cortina.dolomiti.org/it/escursioni/tra-forcella-zumeles-e-val-padeon/",
+            "authority": "Cortina Marketing",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-09"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-09',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Path 204 above Cortina, on the way to Forcella Zumeles (Tiia Monto on Wikimedia Commons, CC BY-SA 3.0), 17 June 2019, 4 m from the line.",
+        route: "Official one-way walk of 9.5 km from The Rio Gere car park, as Cortina Marketing publishes it; the stored line is drawn on 26 OSM ways along the board’s published line, 9.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 211, 204 and 203: from the Rio Gere car park on path 211 to El Brite de Larieto and along the forest road past the turn to the Rifugio Mietres; up path 204, steep, to Forcella Zumeles (2,072 m); down path 204 to the forest road 203 and left down the Val Padeon to Ospitale on the SS51.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 6.9, km 9.4 (OSM nodes 11097475824, 454399367, 1398755169).",
+        elevation: "Official 9.5 km, 499 m up and 706 m down, 3 h 30 (Cortina Marketing, cortina.dolomiti.org)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Cortina Marketing, Tra Forcella Zumeles e Val Padeon (its Outdooractive tour)",
+          "Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana, Art. 36 (dogs on a lead; large dogs also muzzled on public roads and public transport) and Art. 35 (clean up after your dog)",
+          "Parco Naturale delle Dolomiti d’Ampezzo: only the last few hundred metres near Ospitale touch the park (OpenStreetMap park boundary); its rule 7 asks for dogs on a lead. No Natura 2000 site on the line (EEA, checked every ~1 km)",
+          "OpenStreetMap ways along the board’s line (26 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-09'
+      },
+      shadeCoverage: 72,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["A steep, eroded climb of over 300 m on path 204 to Forcella Zumeles, with loose scree just below the saddle: sure footing needed, for you and your dog","About 200 m beside the SR48 at Rio Gere at the start: keep your dog on a short lead","The walk ends on the SS51 at Ospitale: keep your dog close by the road"],
+      terrainType: "Forest roads, steep mountain paths and a gravel forest road",
+      shadeDescription: "Mostly in larch and spruce forest; open on the grassy ridge and around Forcella Zumeles.",
+      terrainDescription: "A one-way walk north of Cortina: forest roads past El Brite de Larieto, a steep climb on path 204 to Forcella Zumeles with the whole Ampezzo basin below, then a long, easy descent down the Val Padeon between the Pomagagnon and the Cristallo.",
+      waterDescription: "Drinking water at the start and near Ospitale (OSM); El Brite de Larieto (km 1), the Rifugio Mietres (a short detour at km 2) and the Rifugio Ospitale at the end serve food and drink when open. Carry water for your dog on the climb.",
+      dogNotes: "Cortina requires dogs on a lead, and large dogs must also wear a muzzle on public roads and public transport; clean up after your dog. The end near Ospitale is in the Ampezzo Dolomites nature park, which also asks for a lead.",
+      tips: "Start at the Rio Gere car park: 9.5 km, 499 m up and 706 m down, about 3½ hours one way, as the board lists. Fit dogs only for the steep climb to Forcella Zumeles. The walk ends at Ospitale on the SS51: arrange a lift or check the bus back to Cortina before you set off.",
+      sourceLinks: [
+        { label: "Cortina Marketing, Tra Forcella Zumeles e Val Padeon", url: "https://cortina.dolomiti.org/it/escursioni/tra-forcella-zumeles-e-val-padeon/" },
+        { label: "Outdooractive, Tra Forcella Zumeles e Val Padeon (Cortina Marketing)", url: "https://www.outdooractive.com/it/r/805072611" },
+        { label: "Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana (PDF)", url: "https://www.comune.cortinadampezzo.bl.it/content/download/1385/36228/1/N.+42+REGOLAMENTO+POLIZIA+URBANA.pdf" },
+        { label: "Parco Naturale delle Dolomiti d’Ampezzo, Regolamenti", url: "https://www.dolomitiparco.com/Ita/Misc/regolamenti.php" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.551435, lng: 12.189126, label: "The Rio Gere car park, the board’s start" },
+      desc: "A one-way walk from Rio Gere over Forcella Zumeles, with the whole Cortina basin below, and down the quiet Val Padeon to the old hospice of Ospitale. The board lists 9.5 km and 499 m up."
+    },
+    'cortina-anello-dei-tre-rifugi': {
+      // Hand audit: 9 November 2026, verified on arrival (new-trail Dolomites batch 6).
+      // “Anello dei tre rifugi”, published by Cortina Marketing, drawn on 35 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Communes: Cortina d’Ampezzo (Polizia Urbana Art. 36, lead) and Enneberg / Marebbe around the Rifugio Biella (no rule published: national rule). Parks: Ampezzo Dolomites (87% of the line, rule 7, lead) and Fanes-Sennes-Braies (13%, DPP 19/2013, lead). Natura 2000: IT3230071 and IT3110049. No road on the line.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Malga Ra Stua – Rifugio Sennes – Rifugio Biella, Ampezzo Dolomites park",
+      distance: 14.5,
+      elevation: 813,
+      hours: '5',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop from Malga Ra Stua, as the board publishes it (14.5 km, 813 m up, 5 h): up path 6 to the Rifugio Sennes, across to the Rifugio Biella and back down past three small lakes on path 26, then the same path 6 back to the malga. Malga Ra Stua is reached by the summer shuttle bus from the park information point at Fiames; walking up from Sant’Uberto adds about 2 hours, the board says.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Malga Ra Stua, reached by the summer shuttle bus from the Ampezzo park information point at Fiames.",
+        "sequence": "From the malga take path 6 through trees and meadows. Where it forks, keep right on path 6 to Cianpo de Crósc, the springs of the Boite, and climb the Val Salata to the Rifugio Sennes. From there take path 6A up onto the Col de ra Sciores plateau, drop briefly to the track and follow it under the Croda del Beco to the Rifugio Biella (2,327 m). Go down on path 26 past three small lakes, the Lago Gran de Foses, Lago Pizo and Lago de ra Rémeda Rosses, rejoin path 6 at Cianpo de Crósc and return on it to Malga Ra Stua.",
+        "switches": "Path 6 from Malga Ra Stua to the Rifugio Sennes; path 6A over the Col de ra Sciores; the track to the Rifugio Biella; path 26 down past the three lakes; path 6 back from Cianpo de Crósc.",
+        "sources": [
+          {
+            "label": "Cortina Marketing, Anello dei tre rifugi (route description)",
+            "url": "https://cortina.dolomiti.org/it/escursioni/anello-dei-tre-rifugi/",
+            "authority": "Cortina Marketing",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-09"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-09',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Lago de ra Rémeda Rosses, on path 26 (Marie-Lan Taÿ Pamart on Wikimedia Commons, CC BY 4.0), 20 August 2018, 2 m from the line.",
+        route: "Official loop of 14.5 km from Malga Ra Stua, where the shuttle bus from Fiames stops, as Cortina Marketing publishes it; the stored line is drawn on 35 OSM ways along the board’s published line, 14.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 6, 6A and 26: from Malga Ra Stua on path 6, keeping right at the fork, to Cianpo de Crósc and up the Val Salata to the Rifugio Sennes; path 6A over the Col de ra Sciores and the track under the Croda del Beco to the Rifugio Biella (2,327 m); path 26 down past the Lago Gran de Foses, Lago Pizo and Lago de ra Rémeda Rosses to path 6 at Cianpo de Crósc, and back on path 6 to the malga.",
+        mapPoints: "Start at the board’s start; drinking water at km 0.5, km 1.2, km 1.3, km 4.6 (OSM nodes 440364332, 1616662690, 11265406011, 10997424105).",
+        elevation: "Official 14.5 km, 813 m up and 813 m down, 5 h (Cortina Marketing, cortina.dolomiti.org), from Malga Ra Stua."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Cortina Marketing, Anello dei tre rifugi (its Outdooractive tour)",
+          "Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana, Art. 36 (dogs on a lead; large dogs also muzzled on public roads and public transport) and Art. 35 (clean up after your dog)",
+          "Parco Naturale delle Dolomiti d’Ampezzo, park rules, rule 7: keep dogs on a lead",
+          "Province of Bolzano, code of conduct for the nature parks (DPP 19/2013): dogs on a lead; about 13% of the line, around the Rifugio Biella, lies in the Fanes-Sennes-Braies nature park in Enneberg / Marebbe, which publishes no dog rule of its own, so the national rule applies there",
+          "Natura 2000: IT3230071 Dolomiti di Ampezzo (most of the line) and IT3110049 Fanes-Sennes-Braies (around the Rifugio Biella); Veneto’s measures (DGR 786/2016 Art. 99) apply the national rule (EEA)",
+          "Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "OpenStreetMap ways along the board’s line (35 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-09'
+      },
+      shadeCoverage: 13,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["High, open karst plateau at 2,100–2,330 m with almost no shade: storms build quickly on summer afternoons","Stony, rocky path on the descent past the lakes","Cows graze around Malga Ra Stua and Cianpo de Crósc in summer"],
+      terrainType: "Gravel roads, mountain paths and an open, stony plateau",
+      shadeDescription: "Some shade low down near Malga Ra Stua; above the Val Salata the plateau is open all the way round.",
+      terrainDescription: "A big day loop in the heart of the Ampezzo Dolomites park: up the Val Salata past the springs of the Boite to the Sennes plateau, under the tilted rock layers of the Croda del Beco to the Rifugio Biella, and back down past three small alpine lakes.",
+      waterDescription: "Drinking water mapped near the start, around the Rifugio Sennes and at the Rifugio Biella (OSM); Malga Ra Stua, the Rifugio Sennes (km 4.5) and the Rifugio Biella (km 7.5) serve food and drink when open. Carry water for your dog on the open plateau.",
+      dogNotes: "Cortina requires dogs on a lead, and the Ampezzo Dolomites park asks for one too, to protect its wildlife; the stretch around the Rifugio Biella is in the Fanes-Sennes-Braies park in South Tyrol, which also requires a lead. Cows graze near Malga Ra Stua: keep a short lead and give them room. Dogs ride the shuttle bus to Ra Stua on a short lead with a muzzle.",
+      tips: "Take the summer shuttle bus from the park information point at Fiames to Malga Ra Stua: 14.5 km and 813 m up, about 5 hours round, as the board lists. Walking up from Sant’Uberto adds about 2 hours. Fit dogs only; carry water and a muzzle, and turn back if storms build.",
+      sourceLinks: [
+        { label: "Cortina Marketing, Anello dei tre rifugi", url: "https://cortina.dolomiti.org/it/escursioni/anello-dei-tre-rifugi/" },
+        { label: "Outdooractive, Anello dei tre rifugi (Cortina Marketing)", url: "https://www.outdooractive.com/it/r/805072592" },
+        { label: "Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana (PDF)", url: "https://www.comune.cortinadampezzo.bl.it/content/download/1385/36228/1/N.+42+REGOLAMENTO+POLIZIA+URBANA.pdf" },
+        { label: "Parco Naturale delle Dolomiti d’Ampezzo, Regolamenti", url: "https://www.dolomitiparco.com/Ita/Misc/regolamenti.php" },
+        { label: "Province of Bolzano, code of conduct for the nature parks (dogs on a lead, DPP 19/2013)", url: "https://nature-parks.province.bz.it/en/code-of-conduct-for-the-nature-parks" },
+        { label: "Regione del Veneto, DGR 786/2016, Allegato A (Alpine Natura 2000 measures)", url: "https://bur.regione.veneto.it/BurvServices/pubblica/Download.aspx?name=AllegatoA_RegioneBiogeograficaAlpina_324054.pdf&type=9&storico=False" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.625339, lng: 12.098844, label: "Malga Ra Stua, where the shuttle bus from Fiames stops" },
+      desc: "A big loop from Malga Ra Stua up to the Sennes plateau, on to the Rifugio Biella under the Croda del Beco, and back past three small alpine lakes. The board lists 14.5 km and 813 m up."
+    },
+    'cortina-forcella-lerosa': {
+      // Hand audit: 9 November 2026, verified on arrival (new-trail Dolomites batch 6).
+      // “Verso Forcella Lerosa”, published by Cortina Marketing, drawn on 14 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Cortina d’Ampezzo (Polizia Urbana Art. 36, lead). The whole line is in the Ampezzo Dolomites park (rule 7, lead) and Natura 2000 IT3230071. No road on the line beyond the pass car park.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Passo Cimabanche – Val di Gotres – Forcella Lerosa, Ampezzo Dolomites park",
+      distance: 4.8,
+      elevation: 516,
+      hours: '2',
+      routeShape: 'point-to-point',
+      routeShapeNote: "A one-way climb from Passo Cimabanche up the Val di Gotres to Forcella Lerosa (2,020 m), as the board publishes it (4.8 km, 516 m up, 2 h 05); the board says to come back the same way, which doubles the distance.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Passo Cimabanche, on the road from Cortina to Dobbiaco, where you leave the car by the old powder magazine.",
+        "sequence": "Take the mule track up the Val di Gotres, past the disused powder magazine and along the Rio Gotres, through thick forest and then open meadows under the Croda Rossa d’Ampezzo. At the edge of the Lerosa meadows, among 500-year-old stone pines, keep on the track to the end of the valley at Forcella Lerosa (2,020 m), with the view to the Sennes plateau and the Tofane. Come back the same way.",
+        "switches": "The one mule track from Passo Cimabanche up the Val di Gotres to Forcella Lerosa; back the same way.",
+        "steps": [
+          {
+            "text": "Passo Cimabanche, by the disused powder magazine",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Val di Gotres mule track along the Rio Gotres",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Lerosa meadows and old stone pines",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Forcella Lerosa (2,020 m); back the same way",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Cortina Marketing, Verso Forcella Lerosa (route description)",
+            "url": "https://cortina.dolomiti.org/it/escursioni/verso-forcella-lerosa/",
+            "authority": "Cortina Marketing",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-09"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-09',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Folded rock above the Val di Gotres (Armin S Kowalski on Wikimedia Commons, CC BY-SA 2.0), 19 June 2018, 200 m from the line.",
+        route: "Official one-way walk of 4.8 km from Passo Cimabanche, by the disused powder magazine, as Cortina Marketing publishes it; the stored line is drawn on 14 OSM ways along the board’s published line, 4.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number on the board’s page: from Passo Cimabanche, by the disused powder magazine, up the one mule track through the Val di Gotres along the Rio Gotres, through forest and open meadows under the Croda Rossa d’Ampezzo, past the old stone pines of Lerosa to Forcella Lerosa (2,020 m); back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at km 0.8, km 2.7 (OSM nodes 1616662671, 5733602810).",
+        elevation: "Official 4.8 km, 516 m up and 8 m down, 2 h 05, one way (Cortina Marketing, cortina.dolomiti.org); the board says to return the same way."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Cortina Marketing, Verso Forcella Lerosa (its Outdooractive tour)",
+          "Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana, Art. 36 (dogs on a lead; large dogs also muzzled on public roads and public transport) and Art. 35 (clean up after your dog)",
+          "Parco Naturale delle Dolomiti d’Ampezzo, park rules, rule 7: keep dogs on a lead",
+          "Natura 2000: IT3230071 Dolomiti di Ampezzo (the whole line); Veneto’s measures (DGR 786/2016 Art. 99) apply the national rule (EEA)",
+          "OpenStreetMap ways along the board’s line (14 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-09'
+      },
+      shadeCoverage: 95,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["A steady climb of 500 m on a stony mule track","The start is by the busy SS51 at Passo Cimabanche: keep your dog on a short lead in the car park","Cows may graze on the Lerosa meadows in summer"],
+      terrainType: "A gravel mule track through forest and meadow",
+      shadeDescription: "Shaded most of the way by spruce, larch and stone pine; the meadows near the top are open.",
+      terrainDescription: "A steady climb up a quiet side valley of the Ampezzo Dolomites park, from forest along a mountain stream to open meadows and centuries-old stone pines under the Croda Rossa d’Ampezzo, ending at a grassy saddle that looks over to the Sennes plateau.",
+      waterDescription: "Drinking water mapped near the start of the valley and at about km 2.7 (OSM); no hut on the way. Carry water for your dog.",
+      dogNotes: "Cortina requires dogs on a lead, and the Ampezzo Dolomites park asks for one too, to protect its wildlife. Cows may graze on the Lerosa meadows: keep a short lead and give them room.",
+      tips: "Start at Passo Cimabanche: 4.8 km and 516 m up to Forcella Lerosa, about 2 hours one way, as the board lists; come back the same way, so allow 9.6 km and 3½–4 hours in all. Carry water and a muzzle.",
+      sourceLinks: [
+        { label: "Cortina Marketing, Verso Forcella Lerosa", url: "https://cortina.dolomiti.org/it/escursioni/verso-forcella-lerosa/" },
+        { label: "Outdooractive, Verso Forcella Lerosa (Cortina Marketing)", url: "https://www.outdooractive.com/it/r/805071632" },
+        { label: "Comune di Cortina d’Ampezzo, Regolamento di Polizia Urbana (PDF)", url: "https://www.comune.cortinadampezzo.bl.it/content/download/1385/36228/1/N.+42+REGOLAMENTO+POLIZIA+URBANA.pdf" },
+        { label: "Parco Naturale delle Dolomiti d’Ampezzo, Regolamenti", url: "https://www.dolomitiparco.com/Ita/Misc/regolamenti.php" },
+        { label: "Regione del Veneto, DGR 786/2016, Allegato A (Alpine Natura 2000 measures)", url: "https://bur.regione.veneto.it/BurvServices/pubblica/Download.aspx?name=AllegatoA_RegioneBiogeograficaAlpina_324054.pdf&type=9&storico=False" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.616865, lng: 12.170193, label: "Passo Cimabanche, by the disused powder magazine, the board’s start" },
+      desc: "A steady climb from Passo Cimabanche up the quiet Val di Gotres, past 500-year-old stone pines, to the grassy saddle of Forcella Lerosa. The board lists 4.8 km and 516 m up, one way."
+    },
+    'valdisole-cogolo-chiesa-di-santa-lucia': {
+      // Hand audit: 9 November 2026, verified on arrival (new-trail Dolomites batch 6).
+      // “Cogolo - Chiesa di Santa Lucia”, published by APT Valli di Sole, Peio e Rabbi, drawn on 10 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Peio (no dog rule published: national rule). The line runs just outside the Stelvio National Park (OSM boundary ~20 m away); no Natura 2000 site. About 50 m on the SP87 pavement at the start; the rest on lanes and paths.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Cogolo – Chiesa di Santa Lucia – Comasine, Val di Peio",
+      distance: 5.5,
+      elevation: 274,
+      hours: '2.25',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop from the bus-stop car park in Cogolo, as the board publishes it (5.5 km, 274 m up, 2 h 15): out by Le Plaze, up through the woods to the Santa Lucia church, and back over the meadows to Le Plaze, the same lane to the start.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the large car park by the bus stop in Cogolo (1,160 m), the board’s start.",
+        "sequence": "Walk about 50 m along the pavement of the SP87 towards Celledizzo, then turn right on the lane to Le Plaze, a cycle and footpath. Turn right onto the path that climbs through the woods to the small church of Santa Lucia (1,300 m) on its hill outside Comasine. From the church take the clear path down to a wayside shrine, go left across the meadows, then left again on the country lane back to Le Plaze and the start.",
+        "switches": "Right off the SP87 to Le Plaze; right up the woodland path to Santa Lucia; down to the shrine, left over the meadows and left on the lane back to Le Plaze.",
+        "steps": [
+          {
+            "text": "Cogolo, bus-stop car park",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "SP87 pavement towards Celledizzo for 50 m, then right to Le Plaze",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Right on the woodland path up to the Santa Lucia church (1,300 m)",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down to the wayside shrine, left over the meadows",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Left on the country lane back to Le Plaze and Cogolo",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "APT Valli di Sole, Peio e Rabbi, Cogolo - Chiesa di Santa Lucia (route description)",
+            "url": "https://www.visitvaldisole.it/it/activity/cogolo_churchofsantalucia-27724",
+            "authority": "APT Valli di Sole, Peio e Rabbi",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-09"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-09',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The church of Santa Lucia above Comasine, the walk’s goal (Syrio on Wikimedia Commons, CC BY-SA 4.0), 24 July 2022, 13 m from the line.",
+        route: "Official loop of 5.5 km from The bus-stop car park in Cogolo, as APT Valli di Sole, Peio e Rabbi publishes it; the stored line is drawn on 10 OSM ways along the board’s published line, 5.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number on the board’s page: from the bus-stop car park in Cogolo 50 m along the SP87 pavement, right on the lane to Le Plaze, right up the woodland path to the Santa Lucia church (1,300 m) above Comasine; down to a wayside shrine, left across the meadows and left on the country lane back to Le Plaze and Cogolo.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 2.8 (OSM nodes 6638176252, 4394177537).",
+        elevation: "Official 5.5 km, 274 m up and 275 m down, 2:15 h, highest point 1,320 m, lowest 1,154 m (APT Valli di Sole, Peio e Rabbi, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "APT Valli di Sole, Peio e Rabbi, Cogolo - Chiesa di Santa Lucia (its Outdooractive tour)",
+          "The Comune di Peio publishes no dog regulation of its own (searched 9 November 2026), so the italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Parco Nazionale dello Stelvio: the line stays just outside the park (OpenStreetMap boundary, nearest point about 20 m); inside it the park allows dogs only on a lead, on roads and paths (regolamento Art. 34). No Natura 2000 site on the line (EEA)",
+          "OpenStreetMap ways along the board’s line (10 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-09'
+      },
+      shadeCoverage: 72,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["About 50 m along the pavement of the SP87 in Cogolo at the start: keep your dog on a short lead","The Plaze lane is also a cycle path: watch for bikes","Cows may graze on the meadows below the church in summer"],
+      terrainType: "Village lanes, a cycle and footpath, woodland paths and a country lane",
+      shadeDescription: "Mostly in woodland on the climb to the church; the meadows on the way back are open.",
+      terrainDescription: "An easy short loop in the Val di Peio, from Cogolo up through the woods to a lonely hilltop church above the old miners’ village of Comasine, with a wide view down the valley, and back over the meadows.",
+      waterDescription: "Drinking water at the start in Cogolo and at about km 2.8 (OSM). Bring water for your dog on the climb.",
+      dogNotes: "Peio publishes no dog rule of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m in public places and carry a muzzle. The board asks you to keep your dog on a lead if you meet wildlife. The walk skirts the Stelvio National Park; if you stray into it, dogs must stay on a lead and on paths.",
+      tips: "Start at the bus-stop car park in Cogolo: 5.5 km and 274 m up, about 2¼ hours, as the board lists. An easy family walk; carry water and a muzzle.",
+      sourceLinks: [
+        { label: "APT Valli di Sole, Peio e Rabbi, Cogolo - Chiesa di Santa Lucia", url: "https://www.visitvaldisole.it/it/activity/cogolo_churchofsantalucia-27724" },
+        { label: "Outdooractive, Cogolo - Chiesa di Santa Lucia (APT Valli di Sole, Peio e Rabbi)", url: "https://www.outdooractive.com/it/r/58793370" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.349158, lng: 10.693855, label: "The bus-stop car park in Cogolo, the board’s start" },
+      desc: "An easy loop from Cogolo up through the woods to the lonely hilltop church of Santa Lucia above Comasine, with a wide view over the Val di Peio. The board lists 5.5 km and 274 m up."
+    },
+    'valdisole-malga-strino': {
+      // Hand audit: 9 November 2026, verified on arrival (new-trail Dolomites batch 6).
+      // “Malga Strino”, published by APT Valli di Sole, Peio e Rabbi, drawn on 10 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Vermiglio (no dog rule published: national rule). No park or Natura 2000 site. The only main-road stretch is the SS42 crossing at the car park (about 50 m); the military road is gravel, open to cars only with a permit.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Val Strino – Malga Strino, Vermiglio",
+      distance: 6.7,
+      elevation: 338,
+      hours: '2.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: "There and back the same way from the car park on the SS42 at the mouth of the Val Strino, up the old military road to Malga Strino (1,941 m), as the board publishes it (6.7 km, 338 m up, 2:25 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the small car park beside the SS42 at the mouth of the Val Strino, below Passo del Tonale, the board’s start.",
+        "sequence": "Cross the SS42 with care and take the old military road that climbs into the Val Strino. It rises steadily through the forest, then the trees thin out into pasture. Follow the stream beside the gravel road up to Malga Strino, and come back the same way.",
+        "switches": "Across the SS42 onto the old military road; stay on it up the Val Strino to Malga Strino; back the same way.",
+        "steps": [
+          {
+            "text": "Car park on the SS42 at the mouth of the Val Strino",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Cross the SS42; old military road up through the forest",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Pastures along the stream",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Malga Strino (1,941 m); back the same way",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "APT Valli di Sole, Peio e Rabbi, Malga Strino (route description)",
+            "url": "https://www.visitvaldisole.it/it/activity/malgastrino-15288",
+            "authority": "APT Valli di Sole, Peio e Rabbi",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-09"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-09',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Forte Strino, by the start in the Val Strino (Clanc72 on Wikimedia Commons, CC BY-SA 4.0), 1 August 2018, 358 m from the line.",
+        route: "Official 6.7 km there and back from The car park beside the SS42 at the mouth of the Val Strino, as APT Valli di Sole, Peio e Rabbi publishes it; the stored line is drawn on 10 OSM ways along the board’s published line, 6.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number on the board’s page: from the car park on the SS42 at the mouth of the Val Strino, across the road and up the old First World War military road, through forest and then pasture beside the stream, to Malga Strino (1,941 m); back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 6.7 km, 338 m up and 368 m down, 2:25 h, highest point 1,941 m (Malga Strino), lowest 1,590 m (APT Valli di Sole, Peio e Rabbi, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "APT Valli di Sole, Peio e Rabbi, Malga Strino (its Outdooractive tour)",
+          "The Comune di Vermiglio publishes no dog regulation of its own (searched 9 November 2026), so the italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park or Natura 2000 site on the line: the Stelvio National Park boundary is about 3 km away (OpenStreetMap) and the EEA Natura 2000 map shows no site",
+          "OpenStreetMap ways along the board’s line (10 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-09'
+      },
+      shadeCoverage: 68,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["You cross the busy SS42 at the start: keep your dog on a short lead","The gravel military road is open to cars with a permit: keep your dog close if one comes","Cows graze the Val Strino pastures in summer"],
+      terrainType: "A gravel military road through forest and pasture",
+      shadeDescription: "Forest shade on the lower half; the upper valley around the malga is open pasture.",
+      terrainDescription: "An easy, steady climb on a First World War military road into the quiet Val Strino below Passo del Tonale, from forest into open pasture beside a mountain stream, to a malga that once served as a military post.",
+      waterDescription: "No drinking water is mapped on the way (OSM); the stream runs beside the road in the upper valley, and Malga Strino serves food and drink when open in summer. Bring water for your dog.",
+      dogNotes: "Vermiglio publishes no dog rule of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m in public places and carry a muzzle. Cows graze around the malga: keep a short lead and give them room. The board asks you to keep your dog on a lead if you meet marmots or other wildlife.",
+      tips: "Start at the small car park on the SS42 at the mouth of the Val Strino: 6.7 km and 338 m up, about 2½ hours there and back, as the board lists. An easy family walk on a gravel road; carry water and a muzzle.",
+      sourceLinks: [
+        { label: "APT Valli di Sole, Peio e Rabbi, Malga Strino", url: "https://www.visitvaldisole.it/it/activity/malgastrino-15288" },
+        { label: "Outdooractive, Malga Strino (APT Valli di Sole, Peio e Rabbi)", url: "https://www.outdooractive.com/it/r/58070348" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.276234, lng: 10.634871, label: "The car park beside the SS42 at the mouth of the Val Strino, the board’s start" },
+      desc: "An easy climb up an old First World War military road into the quiet Val Strino, from forest into pasture full of marmots, to Malga Strino and back. The board lists 6.7 km and 338 m up."
+    },
+    'zoldo-rifugio-bosconero': {
+      // Hand audit: 9 November 2026, verified on arrival (new-trail Dolomites batch 6).
+      // “Al rifugio Bosconero”, published by Val di Zoldo tourist office, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Val di Zoldo (2025 dog regulation, Art. 9: lead ≤1.5 m, muzzle carried). Natura 2000: IT3230031 and IT3230089. Outside the Dolomiti Bellunesi National Park. No road on the line: path 490 throughout.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Pontesei – Rifugio Bosconero, Val di Zoldo",
+      distance: 6.7,
+      elevation: 642,
+      hours: '4',
+      routeShape: 'out-and-back',
+      routeShapeNote: "There and back the same way from Pontesei on the SP251 up path 490 to the Rifugio Bosconero (1,457 m), as the board publishes it (6.7 km, 642 m up, 4 h there and back; about 1 h 45 up).",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Pontesei (825 m) on the SP251, just above the reservoir, where a seasonal bus stops, the board’s start.",
+        "sequence": "Take path 490 (signposted). At 925 m ignore path 485 on the right. Higher up a path joins from the left, and at Pian del Mugon (1,060 m) path 491 leaves on the left and another path on the right: keep on path 490. Cross the stony bed of the Val Bosconero and two small streams, pass the junction where path 485 joins from the right, and reach the Rifugio Bosconero (1,457 m), about 1 h 45 up. Come back the same way.",
+        "switches": "Path 490 all the way from Pontesei to the Rifugio Bosconero: ignore path 485 at 925 m, path 491 at Pian del Mugon and path 485 again below the hut; back the same way.",
+        "sources": [
+          {
+            "label": "Val di Zoldo tourist office, Al rifugio Bosconero (route description)",
+            "url": "https://www.valdizoldo.net/it/attivita/camminare/escursioni-medio-livello/al-rifugio-bosconero-zoldo",
+            "authority": "Val di Zoldo tourist office",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-09"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-09',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Pontesei dam, by the start (VENET01 on Wikimedia Commons, CC BY-SA 4.0), 25 September 2016, 198 m from the line.",
+        route: "Official 6.7 km there and back from Pontesei on the SP251, as Val di Zoldo tourist office publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 6.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Path 490 all the way: from Pontesei on the SP251, ignoring path 485 on the right at 925 m, past Pian del Mugon (1,060 m) where path 491 leaves on the left, across the bed of the Val Bosconero and two small streams, past the junction with path 485, to the Rifugio Bosconero (1,457 m); back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at km 0.6, km 1.1 (OSM nodes 12212624258, 1397033867).",
+        elevation: "Official 6.7 km and 642 m of climb, 4 h there and back (Val di Zoldo tourist office, valdizoldo.net); the page gives about 1 h 45 up to the hut."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val di Zoldo tourist office, Al rifugio Bosconero (valdizoldo.net)",
+          "Comune di Val di Zoldo, Regolamento comunale di igiene urbana veterinaria e per il benessere dei cani (DCC n. 25 of 28 May 2025), Art. 9(2): dogs always on a lead of at most 1.5 m in public places and places open to the public; Art. 9(3): a muzzle carried",
+          "Natura 2000: SAC IT3230031 Val Tovanella Bosconero and SPA IT3230089 Dolomiti del Cadore e del Comelico (almost all the line above Pontesei, EEA); Veneto’s measures (DGR 786/2016 Art. 99) apply the national rule. Outside the Dolomiti Bellunesi National Park (about 4 km away, OpenStreetMap)",
+          "OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-09'
+      },
+      shadeCoverage: 89,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["A steady, steep forest path of 640 m up","Stony stream bed to cross in the Val Bosconero, which can carry water after rain","The start is on the SP251 at Pontesei: keep your dog on a short lead by the road"],
+      terrainType: "Forest mountain path",
+      shadeDescription: "Shaded almost all the way by beech, spruce and larch forest; the area around the hut is more open.",
+      terrainDescription: "A steady climb on path 490 through deep forest from the Pontesei reservoir into the wild Val Bosconero, to a small hut under the Sasso di Toanella and Rocchetta Alta, with a view across to the Civetta.",
+      waterDescription: "Drinking water mapped at about km 0.6 and at a fountain at about km 1.1 (OSM); the Rifugio Bosconero serves food and drink when open in summer. Carry water for your dog.",
+      dogNotes: "Val di Zoldo’s dog regulation (2025) requires a lead of at most 1.5 m in public places and a muzzle carried. The walk is in a Natura 2000 site, where Veneto applies the national dog rule (lead of at most 1.5 m, muzzle carried).",
+      tips: "Start at Pontesei on the SP251: 6.7 km and 642 m up, about 4 hours there and back, as the board lists (about 1¾ hours up). A seasonal bus stops at Pontesei. Fit dogs only; carry water and a muzzle.",
+      sourceLinks: [
+        { label: "Val di Zoldo tourist office, Al rifugio Bosconero", url: "https://www.valdizoldo.net/it/attivita/camminare/escursioni-medio-livello/al-rifugio-bosconero-zoldo" },
+        { label: "Comune di Val di Zoldo, deliberations 2025 (DCC n. 25, dog regulation)", url: "https://servizi.comune.valdizoldo.bl.it/ServiziOnLine/Atti/ElencoAtti?anno=2025&numero=25&Documento=Delibere" },
+        { label: "Regione del Veneto, DGR 786/2016, Allegato A (Alpine Natura 2000 measures)", url: "https://bur.regione.veneto.it/BurvServices/pubblica/Download.aspx?name=AllegatoA_RegioneBiogeograficaAlpina_324054.pdf&type=9&storico=False" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.339327, lng: 12.224656, label: "Pontesei on the SP251, the board’s start" },
+      desc: "A steady forest climb from the Pontesei reservoir on path 490 into the wild Val Bosconero, to a small hut with a view to the Civetta, and back the same way. The board lists 6.7 km and 642 m up."
+    },
+    'zoldo-bosco-secolare': {
+      // Hand audit: 9 November 2026, verified on arrival (new-trail Dolomites batch 6).
+      // “Il bosco secolare”, published by Val di Zoldo tourist office, drawn on 12 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Val di Zoldo (2025 dog regulation, Art. 9: lead ≤1.5 m, muzzle carried). No park or Natura 2000 site. About 1.4 km on quiet residential lanes in Astragal and Villa; no main road.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Astragal – Villa, above Forno di Zoldo, Val di Zoldo",
+      distance: 4.5,
+      elevation: 176,
+      hours: '1.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: "There and back the same way from the little square of Astragal along the forest road to Villa (1,014 m), as the board’s own line runs it (4.5 km, 176 m up, 1 h 30). The board also suggests a 15-minute detour down to Dont and a steeper alternative way back; neither is part of the drawn walk.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the little square of Astragal (969 m), by the church of Santi Fabiano e Sebastiano, the board’s start.",
+        "sequence": "From the square walk to Col, at the far end of the village, and where the road bends right take the almost level dirt road west into the forest. Where it stops at the Gaf de Malvarè gorge, follow the short, wide path over a solid footbridge and pick up the road again on the far side. Drop steeply past Pratoran and the lone De Fanti house, with a fountain, then climb to the square of Villa (1,014 m, about 40 min). Come back the same way.",
+        "switches": "From Col, the dirt road west at the right-hand bend; the footbridge over the Gaf de Malvarè; down past Pratoran and up to Villa; back the same way.",
+        "steps": [
+          {
+            "text": "Astragal, the little square by the church",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Col, the end of the village; right-hand bend, dirt road west into the forest",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Gaf de Malvarè: short path and footbridge over the gorge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Pratoran and the De Fanti house (fountain)",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Villa, the square (1,014 m); back the same way",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val di Zoldo tourist office, Il bosco secolare (route description)",
+            "url": "https://www.valdizoldo.net/it/attivita/camminare/escursioni-facili/il-bosco-secolare-zoldo-dolomiti",
+            "authority": "Val di Zoldo tourist office",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-09"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-09',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Santa Caterina in Dont, a 15-minute detour from Villa (Marchetto da Trieste on Wikimedia Commons, CC BY-SA 4.0), 15 July 2025, 321 m from the line.",
+        route: "Official 4.5 km there and back from The little square of Astragal, as Val di Zoldo tourist office publishes it; the stored line is drawn on 12 OSM ways along the board’s published line, 4.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number on the board’s page: from the square of Astragal to Col at the end of the village, onto the level dirt road west into the forest at a right-hand bend; over the Gaf de Malvarè gorge on a short path and footbridge; down past Pratoran and the De Fanti house and up to the square of Villa (1,014 m); back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at the start (OSM nodes 7963543547).",
+        elevation: "Official 4.5 km and 176 m of climb, 1 h 30 (Val di Zoldo tourist office, valdizoldo.net), there and back from Astragal; the board’s own GPX runs Astragal–Villa–Astragal."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val di Zoldo tourist office, Il bosco secolare (valdizoldo.net)",
+          "Comune di Val di Zoldo, Regolamento comunale di igiene urbana veterinaria e per il benessere dei cani (DCC n. 25 of 28 May 2025), Art. 9(2): dogs always on a lead of at most 1.5 m in public places and places open to the public; Art. 9(3): a muzzle carried",
+          "No park or Natura 2000 site on the line: the Dolomiti Bellunesi National Park is about 3.6 km away (OpenStreetMap) and the EEA Natura 2000 map shows no site",
+          "OpenStreetMap ways along the board’s line (12 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-09'
+      },
+      shadeCoverage: 64,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["Quiet village lanes in Astragal and Villa at both ends: keep your dog on a short lead","A short, steep drop to Pratoran and the climb back up"],
+      terrainType: "Village lanes, a level forest road and a short woodland path",
+      shadeDescription: "Mostly shaded by conifer and broadleaf forest between the two villages; the village lanes are open.",
+      terrainDescription: "An easy, almost level walk on a forest road along the slopes of the Col de Salèra, between two old hamlets above Forno di Zoldo, with views to the Mezzodì, Tamer and Moiazza.",
+      waterDescription: "Drinking water at the start in Astragal (OSM) and a fountain at the De Fanti house in Pratoran, the board says; the old “brent grant” fountain stands by the square in Villa. Bring a bowl for your dog.",
+      dogNotes: "Val di Zoldo’s dog regulation (2025) requires a lead of at most 1.5 m in public places and a muzzle carried. Keep a short lead in the two villages.",
+      tips: "Start in the square of Astragal: 4.5 km and 176 m up, about 1½ hours there and back, as the board lists. An easy family walk; from Villa the board suggests a 15-minute detour down to Dont and its church. Carry a muzzle.",
+      sourceLinks: [
+        { label: "Val di Zoldo tourist office, Il bosco secolare", url: "https://www.valdizoldo.net/it/attivita/camminare/escursioni-facili/il-bosco-secolare-zoldo-dolomiti" },
+        { label: "Comune di Val di Zoldo, deliberations 2025 (DCC n. 25, dog regulation)", url: "https://servizi.comune.valdizoldo.bl.it/ServiziOnLine/Atti/ElencoAtti?anno=2025&numero=25&Documento=Delibere" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.351134, lng: 12.172787, label: "The little square of Astragal, the board’s start" },
+      desc: "An easy, almost level walk on a forest road between the old hamlets of Astragal and Villa above Forno di Zoldo, with views to the Mezzodì and Moiazza. The board lists 4.5 km and 176 m up, there and back."
     }
   };
 

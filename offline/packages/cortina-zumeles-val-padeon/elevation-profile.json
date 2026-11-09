@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cortina-zumeles-val-padeon",
+  "distanceKm": 9.5,
+  "ascentM": 499,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1684
+    },
+    {
+      "km": 0.7,
+      "elev": 1690
+    },
+    {
+      "km": 1.5,
+      "elev": 1724
+    },
+    {
+      "km": 2.2,
+      "elev": 1759
+    },
+    {
+      "km": 2.9,
+      "elev": 1714
+    },
+    {
+      "km": 3.6,
+      "elev": 1838
+    },
+    {
+      "km": 4.3,
+      "elev": 2039
+    },
+    {
+      "km": 5.1,
+      "elev": 1851
+    },
+    {
+      "km": 5.8,
+      "elev": 1801
+    },
+    {
+      "km": 6.5,
+      "elev": 1764
+    },
+    {
+      "km": 7.3,
+      "elev": 1693
+    },
+    {
+      "km": 8,
+      "elev": 1687
+    },
+    {
+      "km": 8.7,
+      "elev": 1595
+    },
+    {
+      "km": 9.4,
+      "elev": 1474
+    },
+    {
+      "km": 9.5,
+      "elev": 1509
+    }
+  ]
+}

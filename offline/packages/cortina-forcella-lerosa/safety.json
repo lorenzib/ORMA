@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cortina-forcella-lerosa",
+  "generatedAt": "2026-11-09T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 4.8,
+    "ascentM": 516,
+    "highestPointM": 2020,
+    "expectedDuration": "2 hours",
+    "difficulty": "Hard",
+    "shadePercent": 95
+  },
+  "trailhead": {
+    "lat": 46.616865,
+    "lng": 12.170193,
+    "label": "Passo Cimabanche, by the disused powder magazine, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6166662,
+      "lng": 12.161601,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6146485,
+      "lng": 12.1413892,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A steady climb of 500 m on a stony mule track.",
+    "The start is by the busy SS51 at Passo Cimabanche: keep your dog on a short lead in the car park.",
+    "Cows may graze on the Lerosa meadows in summer.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-09"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-09",
+      "licence": "ODbL"
+    }
+  ]
+}
