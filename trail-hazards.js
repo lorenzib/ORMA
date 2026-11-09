@@ -429,8 +429,32 @@
     const match = String(item && item.title || '').match(/warning\s+for\s+(.+)$/i);
     return match ? match[1].trim() : '';
   }
+  // An avalanche level is its own scale (1 to 5, "considerable" is 3), and
+  // the feeds' severity words would misread it: level 3 is not "moderate".
+  // Each level is a whole phrase, because the Italian words agree with it.
+  function isAvalanche(item){ return !!item && item.kind === 'avalanche' && [3, 4, 5].includes(Number(item.dangerLevel)); }
+  function avalancheLevel(item){
+    switch(Number(item.dangerLevel)){
+      case 3: return tx('Avalanche danger 3 of 5, considerable');
+      case 4: return tx('Avalanche danger 4 of 5, high');
+      default: return tx('Avalanche danger 5 of 5, very high');
+    }
+  }
+  function avalancheLead(item){
+    const area = warningArea(item);
+    return area ? `${avalancheLevel(item)} · ${area}` : avalancheLevel(item);
+  }
+  function avalancheAdvice(item){
+    const atHeight = {
+      3: tx("At this walk's height the avalanche bulletin gives considerable danger (3 of 5)."),
+      4: tx("At this walk's height the avalanche bulletin gives high danger (4 of 5)."),
+      5: tx("At this walk's height the avalanche bulletin gives very high danger (5 of 5)."),
+    }[Number(item.dangerLevel)];
+    return `${atHeight} ${tx('Keep to the cleared path, stay away from the foot of steep snowy slopes, and turn back where snow covers the way.')}`;
+  }
   function advisoryLead(hazards){
     const worst = hazards[0];
+    if(hazards.length === 1 && isAvalanche(worst)) return avalancheLead(worst);
     const severity = String(worst.severity || 'severe').toLowerCase();
     const level = severityWord(severity);
     const areas = [...new Set(hazards.map(warningArea).filter(Boolean))];
@@ -486,6 +510,12 @@
     }
     const detail = document.createElement('div');
     detail.className = 'orma-hazard__detail';
+    const avalanche = hazards.find(isAvalanche);
+    if(avalanche){
+      const advice = document.createElement('p');
+      advice.textContent = avalancheAdvice(avalanche);
+      detail.append(advice);
+    }
     const line = document.createElement('p');
     line.append(document.createTextNode(tx('Wider-area, not a trail closure')));
     const until = expiryLabel(latestExpiry(hazards));
@@ -597,6 +627,12 @@
     const response = await fetch(`${prefix}data/dynamic-hazards.json`, { cache:'no-store' });
     if(!response.ok) return;
     const data = await response.json();
+    // This script is injected, so it can run before i18n.js has finished
+    // writing in the Italian phrases; the warnings then came out in English on
+    // Italian pages. Wait for the page to finish loading them.
+    if(document.documentElement.lang === 'it' && !window.ORMA_PHRASES_IT && document.readyState !== 'complete'){
+      await new Promise(resolve => window.addEventListener('load', resolve, { once:true }));
+    }
     const now = Date.now();
     const hazards = (data.hazards || [])
       .filter(item => (item.trailIds || []).includes(identity.id) || (item.trailSlugs || []).includes(identity.slug))
