@@ -1711,7 +1711,10 @@ function initTrailMap(){
   const syncDrawLink = () => {
     if(!drawLink) return;
     const centre = trailMapInstance.getCenter();
-    drawLink.href = `route-planner.html?lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}`;
+    const view = `lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}`;
+    drawLink.href = `route-planner.html?${view}`;
+    // The app plans from the Record tab, which opens the planner here too.
+    try{ sessionStorage.setItem('orma-explore-map-view', view); }catch(error){}
   };
   trailMapInstance.on('load', syncDrawLink);
   trailMapInstance.on('moveend', syncDrawLink);
@@ -2976,6 +2979,74 @@ function renderLiToolbarContext(profile){
     : tx('Where are we going today?');
 }
 
+// The iPhone app asks three questions instead of five rows of choices: how
+// long, what ground, and what the walk must have (shade, water). Trail rating
+// and minimum match are left out because the verdict for your dog already
+// weighs both, and nothing else can set them, so they stay at Any. Tapping
+// the chosen length again goes back to any length.
+function renderLiAppFilterQuestions(){
+  const menu = document.getElementById('liFiltersMenu');
+  if(!menu) return;
+  const relabel = (el, text) => {
+    if(!el) return;
+    el.removeAttribute('data-i18n');
+    el.textContent = text;
+  };
+  relabel(menu.querySelector('.li-fhead > span'), tx('What kind of walk?'));
+  menu.querySelectorAll('.li-fsec').forEach(sec => {
+    const next = sec.nextElementSibling;
+    const id = next && next.id;
+    if(id === 'liDistSeg') relabel(sec, tx('How long?'));
+    else if(id === 'liTerrainSeg') relabel(sec, tx('Ground for paws'));
+    else if(next && next.classList.contains('li-quick-filters')) relabel(sec, tx('Must have'));
+    else if(id === 'liRiskSeg' || id === 'liMatchSeg') sec.hidden = true;
+  });
+  ['liRiskSeg', 'liMatchSeg'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el){ el.hidden = true; el.innerHTML = ''; }
+  });
+  // Must have comes last, just above Show trails.
+  const quick = menu.querySelector('.li-quick-filters');
+  const apply = document.getElementById('liFiltersApply');
+  if(quick && apply && quick.nextElementSibling !== apply){
+    menu.insertBefore(quick.previousElementSibling, apply);
+    menu.insertBefore(quick, apply);
+  }
+
+  const question = (elId, opts, cur, pick, clearTo) => {
+    const el = document.getElementById(elId);
+    if(!el) return;
+    el.innerHTML = '';
+    el.classList.add('li-seg--choices');
+    opts.forEach(o => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'li-segbtn' + (o.v === cur ? ' on' : '');
+      b.setAttribute('aria-pressed', String(o.v === cur));
+      const name = document.createElement('b');
+      name.textContent = o.label;
+      const note = document.createElement('small');
+      note.textContent = o.note;
+      b.append(name, note);
+      b.addEventListener('click', () => {
+        pick(o.v === cur && clearTo !== undefined ? clearTo : o.v);
+        renderReturningHomepage(currentProfileForAdjust);
+      });
+      el.appendChild(b);
+    });
+  };
+  question('liDistSeg', [
+    { label: tx('Short'), note: tx('under 5 km'), v: 'u5' },
+    { label: tx('Half day'), note: '5–10 km', v: '5to10' },
+    { label: tx('Long'), note: '10 km+', v: '10p' },
+  ], liFilters.dist, v => { liFilters.dist = v; }, 'any');
+  question('liTerrainSeg', [
+    { label: tx('Soft'), note: tx('gentle only'), v: 'soft' },
+    { label: tx('Mixed'), note: tx('some stones'), v: 'mixed' },
+    { label: tx('Any'), note: tx('rocky is ok'), v: 'any' },
+  ], liFilters.terrain, v => { liFilters.terrain = v; });
+}
+
 // Filter panel, segmented options + toggle rows. Rebuilt on every render
 // so the active states always mirror the real filter state.
 function renderLiControls(){
@@ -2993,18 +3064,22 @@ function renderLiControls(){
     });
   };
 
-  seg('liDistSeg', [
-    { label: tx('Any'), v: 'any' }, { label: tx('Under 5 km'), v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' },
-  ], liFilters.dist, v => { liFilters.dist = v; });
-  seg('liRiskSeg', [
-    { label: tx('Any'), v: 'any' }, { label: tx('Low risk'), v: 'low-risk' }, { label: tx('Moderate'), v: 'moderate' }, { label: tx('Caution'), v: 'caution' },
-  ], liFilters.risk, v => { liFilters.risk = v; });
-  seg('liTerrainSeg', [
-    { label: tx('Any'), v: 'any' }, { label: tx('Gentle only'), v: 'soft' }, { label: tx('Up to mixed'), v: 'mixed' }, { label: tx('Rocky is okay'), v: 'rocky' },
-  ], liFilters.terrain, v => { liFilters.terrain = v; });
-  seg('liMatchSeg', [
-    { label: tx('Any'), v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 },
-  ], liFilters.minMatch, v => { liFilters.minMatch = v; });
+  if(document.documentElement.classList.contains('orma-app')){
+    renderLiAppFilterQuestions();
+  } else {
+    seg('liDistSeg', [
+      { label: tx('Any'), v: 'any' }, { label: tx('Under 5 km'), v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' },
+    ], liFilters.dist, v => { liFilters.dist = v; });
+    seg('liRiskSeg', [
+      { label: tx('Any'), v: 'any' }, { label: tx('Low risk'), v: 'low-risk' }, { label: tx('Moderate'), v: 'moderate' }, { label: tx('Caution'), v: 'caution' },
+    ], liFilters.risk, v => { liFilters.risk = v; });
+    seg('liTerrainSeg', [
+      { label: tx('Any'), v: 'any' }, { label: tx('Gentle only'), v: 'soft' }, { label: tx('Up to mixed'), v: 'mixed' }, { label: tx('Rocky is okay'), v: 'rocky' },
+    ], liFilters.terrain, v => { liFilters.terrain = v; });
+    seg('liMatchSeg', [
+      { label: tx('Any'), v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 },
+    ], liFilters.minMatch, v => { liFilters.minMatch = v; });
+  }
 
   const n = liActiveFilterCount();
   const badge = document.getElementById('liFiltersBadge');

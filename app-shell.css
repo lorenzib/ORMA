@@ -226,3 +226,30 @@ html.orma-app body.app-you-hub .site-footer{display:none !important;}
 .app-you-linktext{flex:1;min-width:0;}
 .app-you-linkmeta{color:#59695D;font-weight:500;}
 .app-you-signin{color:#3E7A91;font-weight:700;}
+
+/* Explore. app-explore.js puts Layers and Terrain side by side at the top-left
+   of the map, where the trail list never covers them; Draw a route lives on
+   the Record tab. The filter panel asks three questions (script.js,
+   renderLiAppFilterQuestions), shown here as three big choices a row. */
+html.orma-app #homeMapDrawBtn{display:none !important;}
+html.orma-app #trailMap .app-map-tools{position:absolute;top:10px;left:10px;z-index:6;display:flex;align-items:center;gap:6px;}
+html.orma-app #trailMap .app-map-tools > .map-btn,
+html.orma-app #trailMap .app-map-tools > .td-layer-switch{position:static !important;margin:0;}
+html.orma-app .li-map.map-fs #trailMap .app-map-tools{top:calc(10px + env(safe-area-inset-top,0px));left:max(10px,env(safe-area-inset-left,0px));}
+html.orma-app .li-search-area{top:54px;}
+html.orma-app .li-map.map-layers-open .li-search-area{display:none;}
+html.orma-app #liFiltersMenu .li-fhead > span{font:700 19px 'Bricolage Grotesque',sans-serif;letter-spacing:0;text-transform:none;color:#2E4034;}
+html.orma-app #liFiltersMenu .li-fsec{margin-top:14px;font:700 16px 'Bricolage Grotesque',sans-serif;letter-spacing:0;text-transform:none;color:#2E4034;}
+html.orma-app #liFiltersMenu .li-seg--choices{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:54px;margin:0;padding:8px 4px;
+  border:1px solid #DEDDD0;border-radius:14px;background:#fff;color:#2E4034;text-align:center;}
+html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn b{font:700 14px 'Inter',sans-serif;}
+html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn small{font:400 11.5px 'Inter',sans-serif;color:#59695D;}
+html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn.on{background:#26352A;border-color:#26352A;color:#F5F2E8;}
+html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn.on small{color:#C9D3C6;}
+
+/* Record keeps its blue button while it is the tab you are on. */
+.app-tab--record[aria-current="page"] .app-tab-icon{background:#3E7A91;}
+
+/* Record: Plan a route sits beside Start walk until a walk begins. */
+html.orma-app .wr-plan:not([hidden]){display:flex;align-items:center;justify-content:center;text-decoration:none;}

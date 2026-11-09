@@ -40,6 +40,7 @@
   .wr-btn--finish{background:#C4652F;color:#fff;}
   .wr-btn--ghost{flex:0 0 auto;padding:0 18px;background:transparent;border:1.5px solid rgba(242,238,226,.35);color:#CBD6C8;}
   .wr-btn[hidden]{display:none;}
+  .wr-plan{display:none;}
   .wr-note{padding:0 16px 8px;font:500 12px 'Inter',sans-serif;color:#8FA391;text-align:center;}
   .wr-gate{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:24px;background:var(--ink);}
   .wr-gate[hidden]{display:none;}
@@ -72,6 +73,9 @@
   <div class="wr-controls">
     <button type="button" class="wr-btn wr-btn--ghost" id="wrDiscard" hidden data-i18n="hike.discard">Discard</button>
     <button type="button" class="wr-btn wr-btn--start" id="wrStart" data-i18n="page.walk.startWalk">Start walk</button>
+    <!-- The app's Record tab is also where a walk is planned (the app
+         shows this there); the website plans from the homepage map. -->
+    <a class="wr-btn wr-btn--ghost wr-plan" id="wrPlan" href="route-planner.html" data-i18n="page.walk.planRoute">Plan a route</a>
     <button type="button" class="wr-btn wr-btn--pause" id="wrPause" hidden data-i18n="hike.pause">Pause</button>
     <button type="button" class="wr-btn wr-btn--finish" id="wrFinish" hidden data-i18n="page.walk.finishSave">Finish &amp; save</button>
   </div>
@@ -95,5 +99,5 @@
 <script src="map-style.js?v=20261029-2"></script>
 <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
 <script src="regions-config.js?v=20261104-1"></script>
-<script src="walk-page.js?v=20260901-1"></script>
+<script src="walk-page.js?v=20261109-1"></script>
 </body></html>
