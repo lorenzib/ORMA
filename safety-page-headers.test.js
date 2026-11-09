@@ -12,6 +12,7 @@ const pages = [
   ['livestock-guard-dogs.html', 'livestock-guardian-dogs-v1.jpg'],
   ['dogs-at-rifugi.html', 'dogs-at-rifugi.jpg'],
   ['water-for-dogs-on-trail.html', 'dog-hydration-lake-unbranded-v1.jpg'],
+  ['winter-walks-with-your-dog.html', 'winter-walks-snowy-dog-v1.jpg'],
 ];
 
 const safetyArticles = [

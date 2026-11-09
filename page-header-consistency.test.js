@@ -26,6 +26,7 @@ const editorialPages = [
   'guides/livestock-guard-dogs.html',
   'guides/paw-protection.html',
   'guides/water-for-dogs-on-trail.html',
+  'guides/winter-walks-with-your-dog.html',
 ];
 
 describe('primary section page headers', () => {

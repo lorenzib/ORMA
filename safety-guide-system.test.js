@@ -13,6 +13,7 @@ const guideFiles = [
   'livestock-guard-dogs.html',
   'paw-protection.html',
   'water-for-dogs-on-trail.html',
+  'winter-walks-with-your-dog.html',
 ];
 
 const systemCss = fs.readFileSync(path.join(__dirname, 'guides', 'safety-guide-system.css'), 'utf8');
