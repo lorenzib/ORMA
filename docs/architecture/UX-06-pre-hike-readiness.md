@@ -15,6 +15,11 @@ button, the weather card, directions and the safety guide), so it now opens
 only on a phone with no geolocation at all, as a checklist with no Start
 button, because there is nothing to record with.
 
+On a phone the recording screen is the map, a calm panel (time, km walked,
+share of the route) and one pause button; pausing offers Resume or Finish
+walk (SOCIAL-04). The one-tap "We walked this" is gone: a walk counts only
+when it is recorded.
+
 A recording ends itself once the walk is proven (75% of the line covered, see
 `walk-proof.js`) and the walker is back at the finish: where the recording
 started for a loop or an out-and-back (an out-and-back must have reached the

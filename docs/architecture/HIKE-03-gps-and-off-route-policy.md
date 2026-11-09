@@ -72,6 +72,12 @@ current good/fair fix whose conservative lower bound is over 2 kilometres.
   route position”, plus accuracy and last-valid-fix time. Exact route distance
   is reserved for a confirmed warning or the far-from-route state so harmless
   GPS drift does not read like an alarm.
+- On a phone (SOCIAL-04, 2026-11-07) a calm recording panel shows time, km
+  walked and the share of the route, with one pause button. The detailed
+  panel above it is hidden while it would only repeat that ("routine": no
+  weak or stale GPS, not offline, no lead-on stretch, no turn ahead) and
+  shows whenever it has something to say. Pause opens Resume or Finish walk,
+  and warns when finishing would not count.
 - Weak and stale states explicitly say off-route warnings are paused.
 - Permission denied, unavailable, and timeout states keep their existing
   recovery instructions and pause the durable hike if a valid fix existed.

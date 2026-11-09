@@ -125,10 +125,10 @@ describe('one owner per vocabulary', () => {
     for(const page of ['script.js', 'trail.js']){
       expect(fs.readFileSync(page, 'utf8')).toMatch(reader);
     }
-    // hike-mode.js held its own English table, so the one badge a walker sees
-    // at the end of a hike stayed English on the Italian site.
+    // hike-mode.js held its own English table, so the one badge a walker saw
+    // at the end of a hike stayed English on the Italian site. (SOCIAL-04
+    // took the badge off the finish card; the table must not come back.)
     const hike = fs.readFileSync('hike-mode.js', 'utf8');
-    expect(hike).toContain('trailSafetyLabel(trail)');
     expect(hike).not.toMatch(/'low-risk':\s*'Low-risk'/);
   });
 });
