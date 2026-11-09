@@ -233,11 +233,23 @@ html.orma-app body.app-you-hub .site-footer{display:none !important;}
    renderLiAppFilterQuestions), shown here as three big choices a row. */
 html.orma-app #homeMapDrawBtn{display:none !important;}
 html.orma-app #trailMap .app-map-tools{position:absolute;top:10px;left:10px;z-index:6;display:flex;align-items:center;gap:6px;}
-html.orma-app #trailMap .app-map-tools > .map-btn,
-html.orma-app #trailMap .app-map-tools > .td-layer-switch{position:static !important;margin:0;}
+html.orma-app #trailMap .app-map-tools > .map-btn{position:static !important;margin:0;}
+html.orma-app #trailMap .app-map-tools > .map-btn.on{background:#26352A;color:#F5F2E8;}
 html.orma-app .li-map.map-fs #trailMap .app-map-tools{top:calc(10px + env(safe-area-inset-top,0px));left:max(10px,env(safe-area-inset-left,0px));}
-html.orma-app .li-search-area{top:54px;}
-html.orma-app .li-map.map-layers-open .li-search-area{display:none;}
+/* Opening Layers used to lift the whole map over the trail list. Here the map
+   stays behind the list and the panel is a short block of chips above it. */
+html.orma-app body.mhome-active .li-map.map-layers-open{z-index:1;}
+html.orma-app body.mhome-active #trailMap .map-panel{flex-direction:row;flex-wrap:wrap;width:calc(100% - 24px);max-width:380px;gap:6px;padding:8px;}
+html.orma-app body.mhome-active #trailMap .map-panel .map-chip{flex:0 0 auto;width:auto;margin:0;}
+/* Terrain opens Map, Satellite and 3D just under the buttons. */
+html.orma-app #trailMap .td-layer-switch.app-terrain-panel{top:52px !important;left:12px !important;right:auto !important;bottom:auto !important;
+  display:none;gap:6px;padding:8px;border-radius:12px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);z-index:7;}
+html.orma-app #trailMap .td-layer-switch.app-terrain-panel.is-open{display:flex;}
+html.orma-app #trailMap .td-layer-switch.app-terrain-panel button{height:36px;padding:0 14px;font-size:13px;box-shadow:none;border:1px solid #DEDDD0;}
+html.orma-app .li-map.map-fs #trailMap .td-layer-switch.app-terrain-panel{top:calc(52px + env(safe-area-inset-top,0px)) !important;}
+/* Moving the map already narrows the list to what is on screen; the button
+   that undid it ("Back to the Dolomites") is not needed in the app. */
+html.orma-app #liSearchThisArea{display:none !important;}
 html.orma-app #liFiltersMenu .li-fhead > span{font:700 19px 'Bricolage Grotesque',sans-serif;letter-spacing:0;text-transform:none;color:#2E4034;}
 html.orma-app #liFiltersMenu .li-fsec{margin-top:14px;font:700 16px 'Bricolage Grotesque',sans-serif;letter-spacing:0;text-transform:none;color:#2E4034;}
 html.orma-app #liFiltersMenu .li-seg--choices{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}

@@ -14,25 +14,57 @@ describe('the app Explore map', () => {
     new Function(source)();
   }
 
-  test('Layers and Terrain end up side by side, even when the map adds them late', async () => {
+  function mapWithControlsAddedLate(){
     document.body.innerHTML = '<div id="trailMap"></div>';
     run();
     const map = document.getElementById('trailMap');
     const layers = document.createElement('button');
     layers.className = 'map-btn';
-    layers.textContent = 'Layers';
+    layers.setAttribute('aria-expanded', 'false');
+    // script.js's own toggle, which flips aria-expanded.
+    layers.addEventListener('click', () => {
+      layers.setAttribute('aria-expanded', String(layers.getAttribute('aria-expanded') !== 'true'));
+    });
     const panel = document.createElement('div');
     panel.className = 'map-panel';
     map.append(layers, panel);
-    const terrain = document.createElement('div');
-    terrain.className = 'td-layer-switch td-layer-switch--home td-layer-switch--terrain-only';
-    map.appendChild(terrain);
+    const styles = document.createElement('div');
+    styles.className = 'td-layer-switch td-layer-switch--home';
+    styles.innerHTML = '<button data-maplayer="map">Map</button><button data-maplayer="satellite">Satellite</button><button data-map3d>3D</button>';
+    map.appendChild(styles);
+    return { map, layers, panel, styles };
+  }
+
+  test('Layers and a Terrain button sit side by side, even when the map adds its controls late', async () => {
+    const { map, layers, panel, styles } = mapWithControlsAddedLate();
     await Promise.resolve();
     const tools = map.querySelector(':scope > .app-map-tools');
     expect(tools).not.toBeNull();
-    expect([...tools.children]).toEqual([layers, terrain]);
-    // The Layers panel stays where script.js put it.
+    const [first, terrain] = tools.children;
+    expect(first).toBe(layers);
+    expect(terrain.textContent).toBe('Terrain');
+    // The Layers panel and the style switch stay where script.js put them.
     expect(panel.parentElement).toBe(map);
+    expect(styles.parentElement).toBe(map);
+    expect(styles.classList.contains('app-terrain-panel')).toBe(true);
+  });
+
+  test('Terrain opens Map, Satellite and 3D, and only one panel is open at a time', async () => {
+    const { map, layers, styles } = mapWithControlsAddedLate();
+    await Promise.resolve();
+    const terrain = map.querySelector('.app-terrain-btn');
+    terrain.click();
+    expect(styles.classList.contains('is-open')).toBe(true);
+    expect(terrain.getAttribute('aria-expanded')).toBe('true');
+    layers.click();
+    expect(layers.getAttribute('aria-expanded')).toBe('true');
+    expect(styles.classList.contains('is-open')).toBe(false);
+    terrain.click();
+    expect(layers.getAttribute('aria-expanded')).toBe('false');
+    expect(styles.classList.contains('is-open')).toBe(true);
+    // Choosing a style closes the panel.
+    styles.querySelector('[data-maplayer="satellite"]').click();
+    expect(styles.classList.contains('is-open')).toBe(false);
   });
 
   test('ships in the app on index.html only, and Draw a route leaves the map', () => {
@@ -43,7 +75,9 @@ describe('the app Explore map', () => {
     expect(read('index.html')).not.toContain('app-explore.js');
     const shell = read('app-shell.css');
     expect(shell).toContain('html.orma-app #homeMapDrawBtn{display:none !important;}');
-    expect(shell).toContain('html.orma-app .li-map.map-layers-open .li-search-area{display:none;}');
+    // Layers leaves the trail list in place, and "Back to <area>" is gone.
+    expect(shell).toContain('html.orma-app body.mhome-active .li-map.map-layers-open{z-index:1;}');
+    expect(shell).toContain('html.orma-app #liSearchThisArea{display:none !important;}');
   });
 });
 
@@ -62,6 +96,21 @@ describe('the app Explore filters ask three questions', () => {
     expect(body).toContain("liFilters.dist = v; }, 'any');");
   });
 
+  test('the filter badge counts only what you chose, not where the map is looking', () => {
+    expect(script).toContain("- (document.documentElement.classList.contains('orma-app') && liViewIsTheFilter() ? 1 : 0);");
+  });
+
+  test('the app gets Map, Satellite and 3D, not the phone browser\'s 3D only', () => {
+    expect(script).toContain("const terrainOnly = !document.documentElement.classList.contains('orma-app')");
+  });
+
+  test('Satellite does not wait for every tile, which on a busy map never happens', () => {
+    const satellite = script.slice(script.indexOf('function ensureSatelliteLayer'), script.indexOf('(function buildLayerSwitch'));
+    expect(satellite).not.toContain('map.isStyleLoaded(');
+    expect(satellite).toContain('} catch(err){ return false; }');
+    expect(script).toContain("map.once('styledata', () => { if(ensureSatelliteLayer()) showBase(base); });");
+  });
+
   test('trail rating and minimum match are hidden, never left switched on', () => {
     expect(body).toContain("['liRiskSeg', 'liMatchSeg'].forEach");
     expect(body).not.toMatch(/liFilters\.(risk|minMatch)\s*=/);
@@ -69,9 +118,9 @@ describe('the app Explore filters ask three questions', () => {
 });
 
 describe('Record is also where a route is planned', () => {
-  test('Plan a route sits beside Start walk in the app, only before a walk begins', () => {
+  test('Draw a route sits beside Start walk in the app, only before a walk begins', () => {
     const walk = read('walk.html');
-    expect(walk).toContain('<a class="wr-btn wr-btn--ghost wr-plan" id="wrPlan" href="route-planner.html"');
+    expect(walk).toContain('<a class="wr-btn wr-btn--ghost wr-plan" id="wrPlan" href="route-planner.html" data-i18n="page.walk.drawRoute">Draw a route</a>');
     expect(walk).toContain('.wr-plan{display:none;}');
     expect(read('app-shell.css')).toContain('html.orma-app .wr-plan:not([hidden]){display:flex;');
     expect(read('walk-page.js')).toContain("if(els.plan) els.plan.hidden = s !== 'idle';");

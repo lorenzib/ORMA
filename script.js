@@ -1482,30 +1482,39 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   }
   function ensureSatelliteLayer(){
     if(map.getLayer('satellite-layer')) return true;
-    if(!map.isStyleLoaded()) return false;
-    map.addSource('satellite', {
-      type: 'raster',
-      tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
-      tileSize: 256,
-      maxzoom: 19,
-      attribution: 'Imagery © Esri',
-    });
+    // Not isStyleLoaded(): that also waits for every tile and every data
+    // update, so on a busy map it can stay false and Satellite never shows.
+    // Adding a layer only needs the style itself, and throws until it is in.
+    try {
+      if(!map.getSource('satellite')) map.addSource('satellite', {
+        type: 'raster',
+        tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+        tileSize: 256,
+        maxzoom: 19,
+        attribution: 'Imagery © Esri',
+      });
+    } catch(err){ return false; }
     // Below our hiking routes: the first symbol layer is now their numbers,
     // which sit above the walk, so the photo would cover the walk itself.
     const belowRoutes = window.ORMAMapStyle.networkLayerId(map);
-    map.addLayer({
-      id: 'satellite-layer',
-      type: 'raster',
-      source: 'satellite',
-      layout: { visibility: 'none' },
-      paint: { 'raster-resampling': 'linear', 'raster-fade-duration': 100 },
-    }, belowRoutes);
+    try {
+      map.addLayer({
+        id: 'satellite-layer',
+        type: 'raster',
+        source: 'satellite',
+        layout: { visibility: 'none' },
+        paint: { 'raster-resampling': 'linear', 'raster-fade-duration': 100 },
+      }, belowRoutes);
+    } catch(err){ return false; }
     return true;
   }
   (function buildLayerSwitch(){
     const host = map.getContainer();
     if(!host || host.querySelector('.td-layer-switch')) return;
-    const terrainOnly = window.matchMedia && window.matchMedia('(max-width:700px)').matches;
+    // The app opens all three from its Terrain button (app-explore.js); a
+    // phone browser has room for 3D only.
+    const terrainOnly = !document.documentElement.classList.contains('orma-app')
+      && window.matchMedia && window.matchMedia('(max-width:700px)').matches;
     const wrap = document.createElement('div');
     wrap.className = 'td-layer-switch td-layer-switch--home' + (terrainOnly ? ' td-layer-switch--terrain-only' : '');
     wrap.setAttribute('role', 'group');
@@ -1526,7 +1535,15 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
         return;
       }
       const base = e.target.closest('[data-maplayer]');
-      if(!base || !ensureSatelliteLayer()) return;
+      if(!base) return;
+      // Before the style is in, switch once it arrives.
+      if(!ensureSatelliteLayer()){
+        map.once('styledata', () => { if(ensureSatelliteLayer()) showBase(base); });
+        return;
+      }
+      showBase(base);
+    });
+    function showBase(base){
       const sat = base.getAttribute('data-maplayer') === 'satellite';
       map.setLayoutProperty('satellite-layer', 'visibility', sat ? 'visible' : 'none');
       // The vector style's building fills sit above the raster and would
@@ -1542,7 +1559,7 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
         b.classList.toggle('on', on);
         b.setAttribute('aria-pressed', String(on));
       });
-    });
+    }
   })();
 
   // UI: dynamic legend, only describes what is actually visible on the
@@ -3081,7 +3098,10 @@ function renderLiControls(){
     ], liFilters.minMatch, v => { liFilters.minMatch = v; });
   }
 
-  const n = liActiveFilterCount();
+  // In the app the list follows the map as you move it; that is where you are
+  // looking, not a filter you chose, so the badge leaves it out.
+  const n = liActiveFilterCount()
+    - (document.documentElement.classList.contains('orma-app') && liViewIsTheFilter() ? 1 : 0);
   const badge = document.getElementById('liFiltersBadge');
   if(badge) badge.textContent = n > 0 ? `(${n})` : '';
   const filtBtn = document.getElementById('liFiltersBtn');
