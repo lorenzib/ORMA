@@ -1174,7 +1174,7 @@ ${reviewRecord}
       water: '../guides/water-for-dogs-on-trail.html',
       cableCars: '../guides/dogs-on-cable-cars.html',
       guardianDogs: '../guides/livestock-guard-dogs.html',
-    })}</p>
+    })}</p>${String(t.id).startsWith('winter-') ? `\n    <p class="sp-src">${L('A winter walk: read <a href="{winter}">winter walks with your dog</a> on cold, salt on paws and short days.', { winter: '../guides/winter-walks-with-your-dog.html' })}</p>` : ''}
     ${nearbyHtml}
   </div>
 </div>
