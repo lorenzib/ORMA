@@ -43,12 +43,14 @@
   .sp-month--good{background:#BFDDB8;color:#1D4523;}
   .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
   .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--lift{background:#F1DEC4;color:#6B4416;}
   .sp-month--now{border-color:#1F2A24;}
   .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
   .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-key--lift{background:#F1DEC4;}
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
@@ -154,8 +156,8 @@
   <h1>MIRABILA - Sentiero botanico del Bila Pec</h1>
   <p class="sp-gloss">the botanical loop from the Rifugio Gilberti to the Bila Pec saddle</p>
   <div class="sp-badges">
-    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111110000011" hidden><span>Out of season</span></span>
-    <span class="dp-badge sp-tag sp-tag--best"><span>Best time: June to October</span></span>
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111111001111" hidden><span>Out of season</span></span>
+    <span class="dp-badge sp-tag sp-tag--best"><span>Best time: July to August</span></span>
     <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Caution terrain</span></span>
     <span class="dp-badge dp-badge--neutral"><span>Reviewed by ORMA</span></span>
@@ -194,13 +196,15 @@
     </svg>
     <figcaption class="sp-src">Elevation profile: lowest 1828 m, highest 2007 m.</figcaption>
   </figure>
-    <section class="sp-season" id="season" data-season-notes="[&quot;In January snow is likely on this walk.&quot;,&quot;In February snow is likely on this walk.&quot;,&quot;In March snow is likely on this walk.&quot;,&quot;In April snow is likely on this walk.&quot;,&quot;In May snow is likely on this walk.&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;In November snow is likely on this walk.&quot;,&quot;In December snow is likely on this walk.&quot;]" data-season-warn="111110000011">
+    <section class="sp-season" id="season" data-season-notes="[&quot;In January snow is likely on this walk.&quot;,&quot;In February snow is likely on this walk.&quot;,&quot;In March snow is likely on this walk.&quot;,&quot;In April snow is likely on this walk.&quot;,&quot;In May snow is likely on this walk. In May the Canin cable car is not running, and the walk needs it.&quot;,&quot;In June the Canin cable car is not running, and the walk needs it.&quot;,&quot;&quot;,&quot;&quot;,&quot;In September the Canin cable car is not running, and the walk needs it.&quot;,&quot;In October the Canin cable car is not running, and the walk needs it.&quot;,&quot;In November snow is likely on this walk. In November the Canin cable car is not running, and the walk needs it.&quot;,&quot;In December snow is likely on this walk.&quot;]" data-season-warn="111111001111">
     <h2>When to go</h2>
     <p class="sp-season-now" hidden></p>
-    <ol class="sp-months" aria-label="Months of the year"><li class="sp-month sp-month--snow" data-month="1"><span aria-hidden="true">J</span><span class="sp-vh">January: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">February: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">March: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">April: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">May: Snow likely</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">J</span><span class="sp-vh">June: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">J</span><span class="sp-vh">July: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">August: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">September: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">October: Usually snow-free</span></li><li class="sp-month sp-month--snow" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">November: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">December: Snow likely</span></li></ol>
-    <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Usually snow-free <span class="sp-key sp-key--snow"></span>Snow likely</p>
+    <ol class="sp-months" aria-label="Months of the year"><li class="sp-month sp-month--snow" data-month="1"><span aria-hidden="true">J</span><span class="sp-vh">January: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">February: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">March: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">April: Snow likely</span></li><li class="sp-month sp-month--lift" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">May: Lift not running</span></li><li class="sp-month sp-month--lift" data-month="6"><span aria-hidden="true">J</span><span class="sp-vh">June: Lift not running</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">J</span><span class="sp-vh">July: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">August: Usually snow-free</span></li><li class="sp-month sp-month--lift" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">September: Lift not running</span></li><li class="sp-month sp-month--lift" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">October: Lift not running</span></li><li class="sp-month sp-month--lift" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">November: Lift not running</span></li><li class="sp-month sp-month--snow" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">December: Snow likely</span></li></ol>
+    <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Usually snow-free <span class="sp-key sp-key--snow"></span>Snow likely <span class="sp-key sp-key--lift"></span>Lift not running</p>
     <p>Snow is likely here from November to May.</p>
     <p class="sp-src">Estimated from the walk’s high point (2007 m). No tourist board publishes this walk’s season, and every winter is different.</p>
+    <p>The Canin cable car runs from 4 July to 6 September (2026 dates; winter dates not yet published). The walk needs it.</p>
+    <p class="sp-src">Source: <a href="https://www.turismofvg.it/mountain365/sella-summer-opening-schedule" rel="noopener">PromoTurismoFVG</a>, read on 9 November 2026.</p>
     
   </section>
   <script>

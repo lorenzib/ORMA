@@ -1,0 +1,474 @@
+{
+  "contractVersion": "lift-seasons-v1",
+  "note": "When the lifts that walks ride are running: the latest dates each operator or tourist board publishes, read on accessedAt. knownMonths, when present, are the months those dates speak for (summer dates only: May to November); other months are not known. A walk that needs a lift (data/lift-access.json dependency required) is out of season in the months its lift does not run. held lists lift walks without dates good enough to use, and why. Curated by hand; check the dates each spring and autumn.",
+  "lifts": {
+    "seiser-alm-bahn-seis": {
+      "name": "Seiser Alm cable car (Seis – Compatsch)",
+      "operator": "Seiser Alm Marketing",
+      "url": "https://www.seiseralm.it/liftssummer",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "05-22",
+          "to": "11-02"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "seiser-alm-bahn-ortisei": {
+      "name": "Seiser Alm cable car (Ortisei – Mont Sëuc)",
+      "operator": "Seiser Alm Marketing",
+      "url": "https://www.seiseralm.it/liftssummer",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "05-01",
+          "to": "11-02"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "puflatsch-telemix": {
+      "name": "Puflatsch–Bullaccia Telemix",
+      "operator": "Seiser Alm Marketing",
+      "url": "https://www.seiseralm.it/liftssummer",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "05-22",
+          "to": "10-18"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "col-raiser": {
+      "name": "Col Raiser gondola",
+      "operator": "Südtirol.com, summer 2026 lift times",
+      "url": "https://www.suedtirol.com/sommer/oeffnungszeiten-seilbahnen",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "05-22",
+          "to": "11-01"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "seceda": {
+      "name": "Seceda cable car",
+      "operator": "Südtirol.com, summer 2026 lift times",
+      "url": "https://www.suedtirol.com/sommer/oeffnungszeiten-seilbahnen",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "05-22",
+          "to": "11-02"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "resciesa": {
+      "name": "Resciesa funicular",
+      "operator": "Südtirol.com, summer 2026 lift times",
+      "url": "https://www.suedtirol.com/sommer/oeffnungszeiten-seilbahnen",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "05-16",
+          "to": "10-11"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "piz-sorega": {
+      "name": "Piz Sorega gondola",
+      "operator": "Südtirol.com, summer 2026 lift times",
+      "url": "https://www.suedtirol.com/sommer/oeffnungszeiten-seilbahnen",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "06-13",
+          "to": "10-04"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "helmjet": {
+      "name": "Helmjet gondola",
+      "operator": "Südtirol.com, summer 2026 lift times",
+      "url": "https://www.suedtirol.com/sommer/oeffnungszeiten-seilbahnen",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "05-23",
+          "to": "11-08"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "rotwand": {
+      "name": "Rotwand gondola",
+      "operator": "Südtirol.com, summer 2026 lift times",
+      "url": "https://www.suedtirol.com/sommer/oeffnungszeiten-seilbahnen",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "05-23",
+          "to": "11-01"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "verdins-tall": {
+      "name": "Verdins–Tall cable car",
+      "operator": "Seilbahn Verdins",
+      "url": "https://www.verdins.it/de/fahrplan-preise",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026/27",
+      "periods": [
+        {
+          "from": "03-28",
+          "to": "11-08"
+        },
+        {
+          "from": "12-26",
+          "to": "01-06"
+        }
+      ]
+    },
+    "texelbahn": {
+      "name": "Texelbahn",
+      "operator": "Texelbahn",
+      "url": "https://www.texelbahn.com/fahrplan",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026/27",
+      "periods": [
+        {
+          "from": "03-28",
+          "to": "11-08"
+        }
+      ]
+    },
+    "unterstell": {
+      "name": "Unterstell cable car",
+      "operator": "Seilbahn Unterstell",
+      "url": "https://www.unterstell.it",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026/27",
+      "periods": [
+        {
+          "from": "03-30",
+          "to": "10-25"
+        },
+        {
+          "from": "10-26",
+          "to": "03-28"
+        }
+      ],
+      "valleyM": 550,
+      "topM": 1300
+    },
+    "corvatsch-surlej-murtel": {
+      "name": "Corvatsch cable car (Surlej – Murtèl)",
+      "operator": "Corvatsch-Diavolezza",
+      "url": "https://www.corvatsch-diavolezza.ch/betriebszeiten-tarife/betriebszeiten",
+      "accessedAt": "2026-11-09",
+      "datesFor": "winter 2026/27 and summer 2027",
+      "periods": [
+        {
+          "from": "11-21",
+          "to": "04-25"
+        },
+        {
+          "from": "06-19",
+          "to": "10-22"
+        }
+      ]
+    },
+    "diavolezza": {
+      "name": "Diavolezza cable car",
+      "operator": "Corvatsch-Diavolezza",
+      "url": "https://www.corvatsch-diavolezza.ch/betriebszeiten-tarife/betriebszeiten",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026/27",
+      "periods": [
+        {
+          "from": "10-17",
+          "to": "11-15"
+        },
+        {
+          "from": "12-19",
+          "to": "05-02"
+        }
+      ],
+      "knownMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "canin": {
+      "name": "Canin cable car",
+      "operator": "PromoTurismoFVG",
+      "url": "https://www.turismofvg.it/mountain365/sella-summer-opening-schedule",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "07-04",
+          "to": "09-06"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "mont-d-arbois": {
+      "name": "Télécabine du Mont d'Arbois",
+      "operator": "Megève ski area",
+      "url": "https://forfait.megeve.com/ete/summer-pass/",
+      "accessedAt": "2026-11-09",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "06-20",
+          "to": "09-06"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  },
+  "trails": {
+    "alpe-siusi": {
+      "lifts": [
+        "seiser-alm-bahn-seis"
+      ]
+    },
+    "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": {
+      "lifts": [
+        "piz-sorega"
+      ]
+    },
+    "engadin-corvatsch-hahnensee-st-moritz": {
+      "lifts": [
+        "corvatsch-surlej-murtel"
+      ]
+    },
+    "engadin-corvatsch-murtel-fuorcla-surlej": {
+      "lifts": [
+        "corvatsch-surlej-murtel"
+      ]
+    },
+    "engadin-diavolezza-sass-queder": {
+      "lifts": [
+        "diavolezza"
+      ]
+    },
+    "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": {
+      "lifts": [
+        "corvatsch-surlej-murtel"
+      ]
+    },
+    "fvg-mirabila-sentiero-botanico-bila-pec": {
+      "lifts": [
+        "canin"
+      ]
+    },
+    "giro-del-bulacia": {
+      "lifts": [
+        "puflatsch-telemix"
+      ]
+    },
+    "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": {
+      "lifts": [
+        "verdins-tall"
+      ]
+    },
+    "meran-giro-dei-masi-sul-monte-sole": {
+      "lifts": [
+        "unterstell"
+      ]
+    },
+    "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell": {
+      "lifts": [
+        "texelbahn",
+        "unterstell"
+      ]
+    },
+    "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": {
+      "lifts": [
+        "texelbahn"
+      ]
+    },
+    "osm-18055492": {
+      "lifts": [
+        "mont-d-arbois"
+      ]
+    },
+    "seiseralm-compatsch-wiedner-eck": {
+      "lifts": [
+        "seiser-alm-bahn-seis"
+      ]
+    },
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "lifts": [
+        "seiser-alm-bahn-ortisei"
+      ]
+    },
+    "trecime-helmjet-waldruhe-sexten": {
+      "lifts": [
+        "helmjet"
+      ]
+    },
+    "trecime-rotwandwiesen-moos": {
+      "lifts": [
+        "rotwand"
+      ]
+    },
+    "valgardena-escursione-al-brogles": {
+      "lifts": [
+        "resciesa"
+      ]
+    },
+    "valgardena-escursione-al-resciesa": {
+      "lifts": [
+        "resciesa"
+      ]
+    },
+    "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
+      "lifts": [
+        "resciesa"
+      ]
+    },
+    "valgardena-seceda-da-col-raiser": {
+      "lifts": [
+        "col-raiser"
+      ]
+    },
+    "valgardena-seceda-da-cristauta-pic": {
+      "lifts": [
+        "seceda",
+        "col-raiser"
+      ]
+    },
+    "valgardena-seceda-dal-rifugio-firenze": {
+      "lifts": [
+        "seceda",
+        "col-raiser"
+      ]
+    },
+    "valgardena-uciei-de-freeines": {
+      "lifts": [
+        "col-raiser"
+      ]
+    }
+  },
+  "held": {
+    "campiglio-monte-spinale-rifugio-graffer": "Spinale gondola: only 2025 dates published.",
+    "cinque-torri-assisted": "5 Torri chairlift: no published dates found; it is being replaced (news, May 2026).",
+    "fassa-sentiero-della-foresta": "Catinaccio cable car: dates found had no year and conflicted (4 vs 11 Oct).",
+    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": "Taser cable car: summer days found without a year.",
+    "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": "Hirzer cable car: only 'April to November', no dates; operator site unreachable.",
+    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": "Aschbach cable car: runs all year by the tourist board, but no dated timetable.",
+    "osm-11855879": "Cherz I chairlift: no published dates found (Arabba lift pages blocked).",
+    "trecime-monte-elmo-versciaco": "Vierschach–Helm gondola: shut in summer 2026 for a rebuild; the new lift is only planned for winter 2026/27."
+  }
+}
