@@ -53,6 +53,8 @@
   .sp-key--lift{background:#F1DEC4;}
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
@@ -158,7 +160,9 @@
   <div class="sp-badges">
     <span class="dp-badge sp-tag sp-tag--out" data-season-out="111000000011" hidden><span>Out of season</span></span>
     <span class="dp-badge sp-tag sp-tag--best"><span>Best time: April to October</span></span>
-    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
+    <span class="dp-badge sp-tag sp-tag--dog" data-season-out="001100000000" hidden><span>Caterpillar season</span></span>
+    <span class="dp-badge sp-tag sp-tag--dog" data-season-out="001111000000" hidden><span>Tick season</span></span>
+    <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--low-risk"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Low-risk terrain</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verified by ORMA</span></span>
     
@@ -205,6 +209,11 @@
     <p class="sp-src">Source: <a href="https://www.outdooractive.com/it/r/806626824" rel="noopener">Outdooractive</a>, read on 6 November 2026.</p>
     
     
+    <h3 class="sp-season-dog">For your dog</h3>
+    <p>March to April: pine processionary caterpillars come down from the pines below about 1400 m, and they are a danger to dogs. Keep your dog away from pines and from the caterpillars.</p>
+    <p class="sp-src">Source: <a href="https://www.ufficiostampa.provincia.tn.it/content/view/pdf/167631" rel="noopener">Province of Trento, forestry service</a>, read on 9 November 2026.</p>
+    <p>March to June: ticks in the woods below about 1200 m, most of all from late May to mid-June. Check your dog after the walk.</p>
+    <p class="sp-src">Source: <a href="https://www.ufficiostampa.provincia.tn.it/content/view/pdf/186846" rel="noopener">Province of Trento and Fondazione Edmund Mach</a>, read on 9 November 2026.</p>
   </section>
   <script>
   (function(){
