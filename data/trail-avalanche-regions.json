@@ -1,0 +1,2720 @@
+{
+  "contractVersion": "trail-avalanche-regions-v1",
+  "note": "For each walk inside an area an avalanche bulletin covers: the bulletin micro-regions its line passes through, and its high point in metres. Outlines: EAWS micro-regions (CC0, https://regions.avalanches.org). Written by npm run build:avalanche-regions.",
+  "bulletinAreas": [
+    "IT-32-BZ",
+    "IT-32-TN",
+    "AT-07",
+    "IT-34",
+    "IT-36",
+    "IT-25",
+    "IT-21",
+    "IT-23"
+  ],
+  "trails": {
+    "ahrntal-escursione-rifugio-ponte-di-ghiaccio": {
+      "regions": [
+        "IT-32-BZ-05",
+        "IT-32-BZ-05-02"
+      ],
+      "highPoint": 2549
+    },
+    "ahrntal-sentiero-del-conte-cadipietra": {
+      "regions": [
+        "IT-32-BZ-11"
+      ],
+      "highPoint": 1082
+    },
+    "ahrntal-sentiero-panoramico-cadipietra": {
+      "regions": [
+        "IT-32-BZ-05",
+        "IT-32-BZ-05-02",
+        "IT-32-BZ-11"
+      ],
+      "highPoint": 1134
+    },
+    "alpe-siusi": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1950
+    },
+    "altabadia-colfosco-rifugio-puez": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2485
+    },
+    "altabadia-da-furnacia-a-la-crusc": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 2038
+    },
+    "altabadia-da-la-val-ai-prati-di-rit": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 2022
+    },
+    "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1559
+    },
+    "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2093
+    },
+    "altabadia-escursione-corvara-colfosco": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1645
+    },
+    "altabadia-escursione-corvara-la-villa": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1536
+    },
+    "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1478
+    },
+    "altabadia-passeggiata-borest-cascate-del-pisciadu": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1724
+    },
+    "altabadia-sentiero-degli-artisti-tru-di-artisc": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1626
+    },
+    "aosta-champoluc-cascata-mascognaz": {
+      "regions": [
+        "IT-23-AO-07"
+      ],
+      "highPoint": 1814
+    },
+    "aosta-periasc-antagnod": {
+      "regions": [
+        "IT-23-AO-07"
+      ],
+      "highPoint": 1699
+    },
+    "aosta-ru-courtaud": {
+      "regions": [
+        "IT-23-AO-07"
+      ],
+      "highPoint": 2008
+    },
+    "aosta-sentiero-della-regina": {
+      "regions": [
+        "IT-23-AO-08"
+      ],
+      "highPoint": 1472
+    },
+    "aosta-strada-lombarda": {
+      "regions": [
+        "IT-23-AO-08"
+      ],
+      "highPoint": 1438
+    },
+    "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": {
+      "regions": [
+        "IT-23-AO-08"
+      ],
+      "highPoint": 1901
+    },
+    "bormio-da-arnoga-al-rifugio-federico": {
+      "regions": [
+        "IT-25-SO-03"
+      ],
+      "highPoint": 2131
+    },
+    "brixen-alto-sentiero-di-lazfons": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-02"
+      ],
+      "highPoint": 2122
+    },
+    "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": {
+      "regions": [
+        "IT-32-BZ-09"
+      ],
+      "highPoint": 1384
+    },
+    "brixen-escursione-al-rifugio-bressanone": {
+      "regions": [
+        "IT-32-BZ-09"
+      ],
+      "highPoint": 2274
+    },
+    "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": {
+      "regions": [
+        "IT-32-BZ-09"
+      ],
+      "highPoint": 1852
+    },
+    "cadini": {
+      "regions": [
+        "IT-34-BL-03"
+      ],
+      "highPoint": 2600
+    },
+    "campiglio-carisolo-centro-storico": {
+      "regions": [
+        "IT-32-TN-01"
+      ],
+      "highPoint": 870
+    },
+    "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio": {
+      "regions": [
+        "IT-32-TN-04"
+      ],
+      "highPoint": 1737
+    },
+    "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa": {
+      "regions": [
+        "IT-32-TN-01"
+      ],
+      "highPoint": 2148
+    },
+    "campiglio-lago-ritorto-nel-blu-dipinto-di-blu": {
+      "regions": [
+        "IT-32-TN-04"
+      ],
+      "highPoint": 2060
+    },
+    "campiglio-madonna-di-campiglio-monte-spinale": {
+      "regions": [
+        "IT-32-TN-04"
+      ],
+      "highPoint": 2085
+    },
+    "campiglio-monte-spinale-rifugio-graffer": {
+      "regions": [
+        "IT-32-TN-04"
+      ],
+      "highPoint": 2226
+    },
+    "campiglio-trekking-al-lago-di-nambino": {
+      "regions": [
+        "IT-32-TN-04"
+      ],
+      "highPoint": 1768
+    },
+    "campiglio-trekking-al-rifugio-segantini": {
+      "regions": [
+        "IT-32-TN-01"
+      ],
+      "highPoint": 2371
+    },
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": {
+      "regions": [
+        "IT-32-TN-01"
+      ],
+      "highPoint": 2435
+    },
+    "cembra-castello-segonzano": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 665
+    },
+    "cembra-dos-paion": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1009
+    },
+    "cembra-erbe-della-salute": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1055
+    },
+    "cembra-giro-masi-grumes": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1114
+    },
+    "cembra-giro-monte-corona": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1028
+    },
+    "cembra-lago-lases-buse-giaz": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 777
+    },
+    "cembra-lago-santo": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1222
+    },
+    "cembra-monte-pat-malga-vernera": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1665
+    },
+    "cembra-paese-beghei": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 867
+    },
+    "cembra-pascoli-malga-vernera": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1859
+    },
+    "cembra-pietra-del-futuro": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 674
+    },
+    "cembra-piz-de-le-agole": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1076
+    },
+    "cembra-rifugio-potzmauer": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1376
+    },
+    "cembra-san-leonardo-lisignago": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 577
+    },
+    "cembra-vecchi-mestieri-grumes": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1034
+    },
+    "cinque-torri-assisted": {
+      "regions": [
+        "IT-34-BL-02"
+      ],
+      "highPoint": 2248
+    },
+    "cortina-castello-di-botestagno": {
+      "regions": [
+        "IT-34-BL-02"
+      ],
+      "highPoint": 1488
+    },
+    "cortina-malga-ra-stua": {
+      "regions": [
+        "IT-34-BL-02"
+      ],
+      "highPoint": 1696
+    },
+    "cortina-mortisa-e-le-grotte-di-volpera": {
+      "regions": [
+        "IT-34-BL-02"
+      ],
+      "highPoint": 1307
+    },
+    "cortina-passeggiata-gourmet": {
+      "regions": [
+        "IT-34-BL-02"
+      ],
+      "highPoint": 1697
+    },
+    "cortina-sotecordes": {
+      "regions": [
+        "IT-34-BL-02"
+      ],
+      "highPoint": 2404
+    },
+    "eggental-dal-passo-costalunga-al-lago-di-carezza": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18-02",
+        "IT-32-TN-09"
+      ],
+      "highPoint": 1762
+    },
+    "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1571
+    },
+    "eggental-frommer-ochsenhuette": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1830
+    },
+    "eggental-jolanda-baita-messnerjoch": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1897
+    },
+    "eggental-kaiserstein-baita-masare": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1922
+    },
+    "eggental-passo-nigra-baita-messnerjoch": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1892
+    },
+    "eggental-passo-nigra-malga-hagner": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1710
+    },
+    "eggental-pietralba-petersberger-leger": {
+      "regions": [
+        "IT-32-BZ-17"
+      ],
+      "highPoint": 1523
+    },
+    "fassa-alpe-di-fuciade": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1984
+    },
+    "fassa-antichi-bagnes": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1328
+    },
+    "fassa-borgo-dei-patins": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1425
+    },
+    "fassa-borgo-di-tamion": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1540
+    },
+    "fassa-cammino-dei-pitores": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1637
+    },
+    "fassa-ciajeole-malga-roncac": {
+      "regions": [
+        "IT-32-TN-09",
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1324
+    },
+    "fassa-da-alba-a-penia": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1559
+    },
+    "fassa-da-canazei-a-penia": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1490
+    },
+    "fassa-dipinti-del-giotto": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1486
+    },
+    "fassa-malga-aloch": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1378
+    },
+    "fassa-moena-soraga-acqua": {
+      "regions": [
+        "IT-32-TN-09",
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1271
+    },
+    "fassa-moena-soraga-someda": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1269
+    },
+    "fassa-molin-de-pezol": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1328
+    },
+    "fassa-passato-ritrovato": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1516
+    },
+    "fassa-pastori-erranti": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1540
+    },
+    "fassa-prato-di-sorte": {
+      "regions": [
+        "IT-32-TN-09",
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1207
+    },
+    "fassa-santuario-dei-pellegrini": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1547
+    },
+    "fassa-segreti-di-una-volta": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1453
+    },
+    "fassa-sentiero-della-foresta": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1985
+    },
+    "fassa-val-freida": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1876
+    },
+    "fiemme-cascatelle-di-ziano": {
+      "regions": [
+        "IT-32-TN-07"
+      ],
+      "highPoint": 1046
+    },
+    "fiemme-cavalese-passeggiata-panoramica": {
+      "regions": [
+        "IT-32-TN-09"
+      ],
+      "highPoint": 997
+    },
+    "fiemme-giro-cavalese-castello": {
+      "regions": [
+        "IT-32-TN-09"
+      ],
+      "highPoint": 1024
+    },
+    "fiemme-larici-verso-anterivo": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1249
+    },
+    "fiemme-masi-comunicanti": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1019
+    },
+    "fiemme-passeggiata-insolita": {
+      "regions": [
+        "IT-32-TN-09"
+      ],
+      "highPoint": 1036
+    },
+    "fiemme-passo-oclini": {
+      "regions": [
+        "IT-32-BZ-17"
+      ],
+      "highPoint": 2023
+    },
+    "fiemme-pradi-da-le-fior": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1999
+    },
+    "fiemme-scalata-alle-malghette": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-TN-09"
+      ],
+      "highPoint": 1583
+    },
+    "fiemme-sentiero-botanico": {
+      "regions": [
+        "IT-32-TN-15"
+      ],
+      "highPoint": 1308
+    },
+    "fiemme-varena-spianez": {
+      "regions": [
+        "IT-32-TN-09"
+      ],
+      "highPoint": 1200
+    },
+    "fvg-anello-casera-vas-monte-buoi": {
+      "regions": [
+        "IT-36-UD-02"
+      ],
+      "highPoint": 1724
+    },
+    "fvg-anello-lago-di-verzegnis": {
+      "regions": [
+        "IT-36-PN-02"
+      ],
+      "highPoint": 502
+    },
+    "fvg-anello-malga-confin-ungarina": {
+      "regions": [
+        "IT-36-UD-05"
+      ],
+      "highPoint": 1665
+    },
+    "fvg-borgo-stavoli-moggio": {
+      "regions": [
+        "IT-36-UD-02"
+      ],
+      "highPoint": 570
+    },
+    "fvg-col-dei-piais": {
+      "regions": [
+        "IT-36-PN-01"
+      ],
+      "highPoint": 834
+    },
+    "fvg-faggi-secolari-pustot-dordolla": {
+      "regions": [
+        "IT-36-UD-03"
+      ],
+      "highPoint": 938
+    },
+    "fvg-fontanon-di-goriuda": {
+      "regions": [
+        "IT-36-UD-04"
+      ],
+      "highPoint": 710
+    },
+    "fvg-laghi-di-fusine": {
+      "regions": [
+        "IT-36-UD-03"
+      ],
+      "highPoint": 974
+    },
+    "fvg-lago-di-sella-sompdogna": {
+      "regions": [
+        "IT-36-UD-03"
+      ],
+      "highPoint": 1481
+    },
+    "fvg-mirabila-sentiero-botanico-bila-pec": {
+      "regions": [
+        "IT-36-UD-04"
+      ],
+      "highPoint": 2007
+    },
+    "fvg-monte-rest-da-passo-rest": {
+      "regions": [
+        "IT-36-PN-02"
+      ],
+      "highPoint": 1709
+    },
+    "fvg-monte-talm-da-piani-di-vas": {
+      "regions": [
+        "IT-36-UD-01"
+      ],
+      "highPoint": 1695
+    },
+    "fvg-raunis-cascate-belepeit": {
+      "regions": [
+        "IT-36-UD-03"
+      ],
+      "highPoint": 716
+    },
+    "fvg-salita-casera-canin": {
+      "regions": [
+        "IT-36-UD-04",
+        "IT-36-UD-05"
+      ],
+      "highPoint": 1455
+    },
+    "fvg-sappada-rifugio-calvi": {
+      "regions": [
+        "IT-36-UD-01"
+      ],
+      "highPoint": 2147
+    },
+    "fvg-ta-lipa-pot-corto": {
+      "regions": [
+        "IT-36-UD-03"
+      ],
+      "highPoint": 599
+    },
+    "fvg-venzone-anello-delle-chiesette": {
+      "regions": [
+        "IT-36-UD-05"
+      ],
+      "highPoint": 316
+    },
+    "gailtal-almkaese-sonnenalpe": {
+      "regions": [
+        "IT-36-UD-03"
+      ],
+      "highPoint": 1713
+    },
+    "gailtal-auernig-hoehenweg": {
+      "regions": [
+        "IT-36-UD-03"
+      ],
+      "highPoint": 1910
+    },
+    "geotrail-bulla": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1599
+    },
+    "giro-del-bulacia": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2139
+    },
+    "giro-del-sasso-lungo": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02",
+        "IT-32-TN-16"
+      ],
+      "highPoint": 2326
+    },
+    "giudicarie-san-martino-bosco-scolpito": {
+      "regions": [
+        "IT-32-TN-02"
+      ],
+      "highPoint": 718
+    },
+    "giudicarie-san-vigilio-senter-dei-cavai": {
+      "regions": [
+        "IT-32-TN-02",
+        "IT-32-TN-05",
+        "IT-32-TN-18"
+      ],
+      "highPoint": 585
+    },
+    "giudicarie-senter-dei-popi-madonna-del-lares": {
+      "regions": [
+        "IT-32-TN-02"
+      ],
+      "highPoint": 855
+    },
+    "giudicarie-tione-bolbeno-madonna-del-lares": {
+      "regions": [
+        "IT-32-TN-02",
+        "IT-32-TN-18"
+      ],
+      "highPoint": 790
+    },
+    "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": {
+      "regions": [
+        "IT-32-BZ-12",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1052
+    },
+    "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 1610
+    },
+    "kronplatz-passeggiata-leggendaria-sul-kienberg": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 1089
+    },
+    "kronplatz-passeggiata-san-vigilio-le-dla-creda": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1286
+    },
+    "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1327
+    },
+    "kronplatz-passeggiata-valdaora-monguelfo": {
+      "regions": [
+        "IT-32-BZ-13",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1092
+    },
+    "kronplatz-san-lorenzo-maria-sares": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 964
+    },
+    "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": {
+      "regions": [
+        "IT-32-BZ-12"
+      ],
+      "highPoint": 953
+    },
+    "kronplatz-sentiero-tematico-tru-dles-liondes": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1245
+    },
+    "kronplatz-valdaora-di-sopra-goste": {
+      "regions": [
+        "IT-32-BZ-13",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1101
+    },
+    "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1322
+    },
+    "lago-braies": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1500
+    },
+    "lago-carezza": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1554
+    },
+    "lago-sorapis": {
+      "regions": [
+        "IT-34-BL-02"
+      ],
+      "highPoint": 1935
+    },
+    "lario-alla-ricerca-di-un-panorama-unico": {
+      "regions": [
+        "IT-25-CO-01",
+        "IT-25-LC-01"
+      ],
+      "highPoint": 1049
+    },
+    "lario-anello-ai-piedi-del-monte-oriolo": {
+      "regions": [
+        "IT-25-CO-01",
+        "IT-25-LC-01"
+      ],
+      "highPoint": 878
+    },
+    "lario-brunate-e-le-sue-chiese": {
+      "regions": [
+        "IT-25-LC-01"
+      ],
+      "highPoint": 940
+    },
+    "lario-caslino-sullacqua": {
+      "regions": [
+        "IT-25-LC-01"
+      ],
+      "highPoint": 523
+    },
+    "lario-dal-passo-del-giovo-al-rifugio-sommafiume": {
+      "regions": [
+        "IT-25-CO-01",
+        "IT-25-LC-01"
+      ],
+      "highPoint": 1834
+    },
+    "lario-eupilio-tra-segrino-e-cornizzolo": {
+      "regions": [
+        "IT-25-LC-01"
+      ],
+      "highPoint": 643
+    },
+    "lario-il-sentiero-del-viandante": {
+      "regions": [
+        "IT-25-LC-01"
+      ],
+      "highPoint": 405
+    },
+    "lario-nel-cuore-del-triangolo-lariano": {
+      "regions": [
+        "IT-25-CO-01",
+        "IT-25-LC-01"
+      ],
+      "highPoint": 892
+    },
+    "lario-pognana-lario-e-le-sculture-simposio": {
+      "regions": [
+        "IT-25-LC-01"
+      ],
+      "highPoint": 336
+    },
+    "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": {
+      "regions": [
+        "IT-25-LC-01"
+      ],
+      "highPoint": 657
+    },
+    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-01"
+      ],
+      "highPoint": 1561
+    },
+    "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-01"
+      ],
+      "highPoint": 1467
+    },
+    "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-01"
+      ],
+      "highPoint": 683
+    },
+    "meran-escursione-alla-forst": {
+      "regions": [
+        "IT-32-BZ-07",
+        "IT-32-BZ-07-02",
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 588
+    },
+    "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-01",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 1884
+    },
+    "meran-escursione-sentiero-del-sole-a-stulles": {
+      "regions": [
+        "IT-32-BZ-04",
+        "IT-32-BZ-04-02"
+      ],
+      "highPoint": 1588
+    },
+    "meran-facile-escursione-da-verano-ad-avelengo": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 1458
+    },
+    "meran-giro-dei-masi-sul-monte-sole": {
+      "regions": [
+        "IT-32-BZ-07",
+        "IT-32-BZ-07-02"
+      ],
+      "highPoint": 1517
+    },
+    "meran-giro-delle-malghe-monte-tramontana": {
+      "regions": [
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 1859
+    },
+    "meran-itinerario-raststeinweg": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-01"
+      ],
+      "highPoint": 896
+    },
+    "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-01"
+      ],
+      "highPoint": 2107
+    },
+    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": {
+      "regions": [
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 1786
+    },
+    "meran-sentiero-della-roggia-brandis-a-lana": {
+      "regions": [
+        "IT-32-BZ-15",
+        "IT-32-BZ-16"
+      ],
+      "highPoint": 391
+    },
+    "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell": {
+      "regions": [
+        "IT-32-BZ-07",
+        "IT-32-BZ-07-02"
+      ],
+      "highPoint": 1622
+    },
+    "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": {
+      "regions": [
+        "IT-32-BZ-07",
+        "IT-32-BZ-07-02"
+      ],
+      "highPoint": 1629
+    },
+    "nuvolau": {
+      "regions": [
+        "IT-34-BL-01",
+        "IT-34-BL-02"
+      ],
+      "highPoint": 2524
+    },
+    "osm-10220399": {
+      "regions": [
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 1455
+    },
+    "osm-1116675": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1969
+    },
+    "osm-1116680": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1450
+    },
+    "osm-11270309": {
+      "regions": [
+        "IT-32-BZ-17"
+      ],
+      "highPoint": 288
+    },
+    "osm-11764094": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 901
+    },
+    "osm-11768853": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-02"
+      ],
+      "highPoint": 1041
+    },
+    "osm-11774783": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 735
+    },
+    "osm-11775760": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-02"
+      ],
+      "highPoint": 806
+    },
+    "osm-11775923": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-02",
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 709
+    },
+    "osm-11780502": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1758
+    },
+    "osm-11790553": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 820
+    },
+    "osm-11791915": {
+      "regions": [
+        "IT-32-BZ-09"
+      ],
+      "highPoint": 832
+    },
+    "osm-11792795": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 889
+    },
+    "osm-11795103": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 1301
+    },
+    "osm-11795251": {
+      "regions": [
+        "IT-32-BZ-09",
+        "IT-32-BZ-10",
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 816
+    },
+    "osm-11814834": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1599
+    },
+    "osm-11814895": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1101
+    },
+    "osm-11815025": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1087
+    },
+    "osm-11816373": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 997
+    },
+    "osm-11828233": {
+      "regions": [
+        "IT-32-BZ-09"
+      ],
+      "highPoint": 1450
+    },
+    "osm-11832013": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-02"
+      ],
+      "highPoint": 1590
+    },
+    "osm-11833313": {
+      "regions": [
+        "IT-32-BZ-10",
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 845
+    },
+    "osm-11839597": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 1215
+    },
+    "osm-11855879": {
+      "regions": [
+        "IT-34-BL-01"
+      ],
+      "highPoint": 2096
+    },
+    "osm-11860429": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1611
+    },
+    "osm-11891581": {
+      "regions": [
+        "IT-34-BL-05",
+        "IT-34-BL-06",
+        "IT-36-PN-01"
+      ],
+      "highPoint": 1254
+    },
+    "osm-12018939": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18"
+      ],
+      "highPoint": 1335
+    },
+    "osm-12025052": {
+      "regions": [
+        "IT-32-BZ-17"
+      ],
+      "highPoint": 2039
+    },
+    "osm-12027153": {
+      "regions": [
+        "IT-32-BZ-17"
+      ],
+      "highPoint": 1747
+    },
+    "osm-12044077": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1267
+    },
+    "osm-12047303": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1215
+    },
+    "osm-12132169": {
+      "regions": [
+        "AT-07-27",
+        "IT-32-BZ-13"
+      ],
+      "highPoint": 2523
+    },
+    "osm-12142337": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2343
+    },
+    "osm-12150790": {
+      "regions": [
+        "IT-32-BZ-17"
+      ],
+      "highPoint": 411
+    },
+    "osm-12164395": {
+      "regions": [
+        "IT-32-BZ-09",
+        "IT-32-BZ-10"
+      ],
+      "highPoint": 894
+    },
+    "osm-12165590": {
+      "regions": [
+        "IT-32-BZ-10"
+      ],
+      "highPoint": 1115
+    },
+    "osm-12172440": {
+      "regions": [
+        "IT-32-BZ-10"
+      ],
+      "highPoint": 1472
+    },
+    "osm-12173549": {
+      "regions": [
+        "IT-32-BZ-10"
+      ],
+      "highPoint": 1435
+    },
+    "osm-12173965": {
+      "regions": [
+        "IT-32-BZ-13"
+      ],
+      "highPoint": 1141
+    },
+    "osm-12173984": {
+      "regions": [
+        "IT-32-BZ-13"
+      ],
+      "highPoint": 1194
+    },
+    "osm-12174210": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1026
+    },
+    "osm-12182516": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-02"
+      ],
+      "highPoint": 1096
+    },
+    "osm-12182895": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-02",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 1176
+    },
+    "osm-12182936": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-02",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 1001
+    },
+    "osm-12189165": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 1478
+    },
+    "osm-12190538": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 1522
+    },
+    "osm-12190657": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 1520
+    },
+    "osm-12302137": {
+      "regions": [
+        "IT-32-BZ-12"
+      ],
+      "highPoint": 1378
+    },
+    "osm-12302182": {
+      "regions": [
+        "IT-32-BZ-12",
+        "IT-32-BZ-13"
+      ],
+      "highPoint": 1174
+    },
+    "osm-12302191": {
+      "regions": [
+        "IT-32-BZ-12",
+        "IT-32-BZ-13"
+      ],
+      "highPoint": 1212
+    },
+    "osm-123162": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1397
+    },
+    "osm-12363235": {
+      "regions": [
+        "IT-32-BZ-16"
+      ],
+      "highPoint": 630
+    },
+    "osm-12371666": {
+      "regions": [
+        "IT-32-BZ-16"
+      ],
+      "highPoint": 390
+    },
+    "osm-12371689": {
+      "regions": [
+        "IT-32-BZ-16"
+      ],
+      "highPoint": 356
+    },
+    "osm-12731853": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 930
+    },
+    "osm-12736753": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-02",
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 887
+    },
+    "osm-12737724": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 928
+    },
+    "osm-12953352": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 844
+    },
+    "osm-13491868": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-02"
+      ],
+      "highPoint": 968
+    },
+    "osm-13528390": {
+      "regions": [
+        "IT-34-BL-05"
+      ],
+      "highPoint": 938
+    },
+    "osm-14058492": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 689
+    },
+    "osm-14058632": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 690
+    },
+    "osm-1506470": {
+      "regions": [
+        "IT-32-BZ-07",
+        "IT-32-BZ-07-02",
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 396
+    },
+    "osm-15791408": {
+      "regions": [
+        "IT-32-TN-15",
+        "IT-32-TN-21"
+      ],
+      "highPoint": 1143
+    },
+    "osm-1671736": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-01"
+      ],
+      "highPoint": 1090
+    },
+    "osm-1780768": {
+      "regions": [
+        "IT-32-BZ-13"
+      ],
+      "highPoint": 1576
+    },
+    "osm-19330972": {
+      "regions": [
+        "IT-32-BZ-17"
+      ],
+      "highPoint": 1317
+    },
+    "osm-19697977": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-01",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 2250
+    },
+    "osm-19703479": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 1341
+    },
+    "osm-19974724": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1612
+    },
+    "osm-19974725": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1639
+    },
+    "osm-20380913": {
+      "regions": [
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 844
+    },
+    "osm-2179746": {
+      "regions": [
+        "IT-32-BZ-17"
+      ],
+      "highPoint": 393
+    },
+    "osm-2376630": {
+      "regions": [
+        "IT-32-BZ-07",
+        "IT-32-BZ-07-02"
+      ],
+      "highPoint": 1457
+    },
+    "osm-3202880": {
+      "regions": [
+        "IT-32-BZ-16"
+      ],
+      "highPoint": 555
+    },
+    "osm-3707731": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 1158
+    },
+    "osm-3885162": {
+      "regions": [
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 1237
+    },
+    "osm-5512443": {
+      "regions": [
+        "IT-32-BZ-07",
+        "IT-32-BZ-07-02"
+      ],
+      "highPoint": 851
+    },
+    "osm-5597577": {
+      "regions": [
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 787
+    },
+    "osm-6244965": {
+      "regions": [
+        "IT-32-BZ-10"
+      ],
+      "highPoint": 1230
+    },
+    "osm-6401355": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 2266
+    },
+    "osm-6404258": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1299
+    },
+    "osm-6404633": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 1300
+    },
+    "osm-6404634": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 1526
+    },
+    "osm-6410700": {
+      "regions": [
+        "IT-32-BZ-13"
+      ],
+      "highPoint": 1513
+    },
+    "osm-6453504": {
+      "regions": [
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 1429
+    },
+    "osm-6529356": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 2144
+    },
+    "osm-6601608": {
+      "regions": [
+        "IT-32-BZ-10",
+        "IT-32-BZ-11",
+        "IT-32-BZ-12"
+      ],
+      "highPoint": 1023
+    },
+    "osm-6823031": {
+      "regions": [
+        "IT-32-BZ-12",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 941
+    },
+    "osm-7045225": {
+      "regions": [
+        "IT-32-TN-11"
+      ],
+      "highPoint": 1405
+    },
+    "osm-7086961": {
+      "regions": [
+        "IT-32-TN-07",
+        "IT-32-TN-08"
+      ],
+      "highPoint": 2511
+    },
+    "osm-7277805": {
+      "regions": [
+        "IT-32-BZ-04",
+        "IT-32-BZ-04-02",
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-01"
+      ],
+      "highPoint": 2710
+    },
+    "osm-7388748": {
+      "regions": [
+        "IT-34-BL-04"
+      ],
+      "highPoint": 1864
+    },
+    "osm-7424683": {
+      "regions": [
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 560
+    },
+    "osm-7426648": {
+      "regions": [
+        "IT-32-BZ-07",
+        "IT-32-BZ-07-02"
+      ],
+      "highPoint": 538
+    },
+    "osm-7426666": {
+      "regions": [
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-01",
+        "IT-32-BZ-08-03"
+      ],
+      "highPoint": 461
+    },
+    "osm-7446701": {
+      "regions": [
+        "IT-32-BZ-04",
+        "IT-32-BZ-04-02",
+        "IT-32-BZ-08",
+        "IT-32-BZ-08-01"
+      ],
+      "highPoint": 1533
+    },
+    "osm-7546708": {
+      "regions": [
+        "IT-34-BL-04"
+      ],
+      "highPoint": 1356
+    },
+    "osm-7547653": {
+      "regions": [
+        "IT-34-BL-04"
+      ],
+      "highPoint": 1849
+    },
+    "osm-7547983": {
+      "regions": [
+        "IT-34-BL-04"
+      ],
+      "highPoint": 1634
+    },
+    "osm-7548201": {
+      "regions": [
+        "IT-34-BL-03",
+        "IT-34-BL-04"
+      ],
+      "highPoint": 1534
+    },
+    "osm-7548344": {
+      "regions": [
+        "IT-34-BL-04"
+      ],
+      "highPoint": 1114
+    },
+    "osm-7548489": {
+      "regions": [
+        "IT-34-BL-04"
+      ],
+      "highPoint": 1604
+    },
+    "osm-7549783": {
+      "regions": [
+        "IT-34-BL-04"
+      ],
+      "highPoint": 1139
+    },
+    "osm-7567918": {
+      "regions": [
+        "IT-32-BZ-12",
+        "IT-32-BZ-13"
+      ],
+      "highPoint": 1716
+    },
+    "osm-7655311": {
+      "regions": [
+        "IT-32-BZ-07",
+        "IT-32-BZ-07-02"
+      ],
+      "highPoint": 748
+    },
+    "osm-8396539": {
+      "regions": [
+        "IT-32-BZ-07",
+        "IT-32-BZ-07-02",
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 643
+    },
+    "osm-8510456": {
+      "regions": [
+        "IT-32-BZ-10"
+      ],
+      "highPoint": 841
+    },
+    "osm-9450411": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1282
+    },
+    "osm-9487078": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1201
+    },
+    "osm-9492594": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1091
+    },
+    "osm-9493733": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1593
+    },
+    "osm-9511973": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1853
+    },
+    "osm-9511999": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1514
+    },
+    "osm-9648632": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1687
+    },
+    "osm-9651462": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 904
+    },
+    "osm-9675994": {
+      "regions": [
+        "IT-32-BZ-17"
+      ],
+      "highPoint": 1340
+    },
+    "osttirol-kinder-naturerlebnispfad-kals-ag": {
+      "regions": [
+        "AT-07-26",
+        "AT-07-26-01",
+        "AT-07-26-02"
+      ],
+      "highPoint": 1485
+    },
+    "osttirol-kulturweg-koednitz": {
+      "regions": [
+        "AT-07-26",
+        "AT-07-26-01",
+        "AT-07-26-02"
+      ],
+      "highPoint": 1360
+    },
+    "osttirol-naturkraftweg-umbalfaelle": {
+      "regions": [
+        "AT-07-24"
+      ],
+      "highPoint": 1661
+    },
+    "osttirol-rundwanderung-am-staller-sattel": {
+      "regions": [
+        "AT-07-25",
+        "AT-07-27"
+      ],
+      "highPoint": 2072
+    },
+    "osttirol-rundwanderung-schloss-weissenstein": {
+      "regions": [
+        "AT-07-26",
+        "AT-07-26-01"
+      ],
+      "highPoint": 1062
+    },
+    "osttirol-spazierweg-kreuzweg": {
+      "regions": [
+        "AT-07-26",
+        "AT-07-26-01",
+        "AT-07-26-02"
+      ],
+      "highPoint": 1110
+    },
+    "osttirol-spazierweg-nikolauskirche": {
+      "regions": [
+        "AT-07-24",
+        "AT-07-25",
+        "AT-07-26",
+        "AT-07-26-01",
+        "AT-07-26-02"
+      ],
+      "highPoint": 1032
+    },
+    "osttirol-themenweg-kreuzweg-virgen": {
+      "regions": [
+        "AT-07-24",
+        "AT-07-25"
+      ],
+      "highPoint": 1299
+    },
+    "osttirol-wassererlebnisweg-st-jakob-i-d": {
+      "regions": [
+        "AT-07-25",
+        "AT-07-27"
+      ],
+      "highPoint": 1424
+    },
+    "osttirol-weg-der-sinne-virgen": {
+      "regions": [
+        "AT-07-24",
+        "AT-07-25"
+      ],
+      "highPoint": 1197
+    },
+    "paganella-andalo-tana-ermellino": {
+      "regions": [
+        "IT-32-TN-05"
+      ],
+      "highPoint": 1065
+    },
+    "paganella-giro-del-lago-di-molveno": {
+      "regions": [
+        "IT-32-TN-05",
+        "IT-32-TN-11"
+      ],
+      "highPoint": 960
+    },
+    "paganella-giro-della-toresela": {
+      "regions": [
+        "IT-32-TN-11"
+      ],
+      "highPoint": 295
+    },
+    "paganella-passeggiata-del-ciclamino": {
+      "regions": [
+        "IT-32-TN-05"
+      ],
+      "highPoint": 960
+    },
+    "paganella-sette-passi-sette-ville": {
+      "regions": [
+        "IT-32-TN-05"
+      ],
+      "highPoint": 832
+    },
+    "piancavallo": {
+      "regions": [
+        "IT-36-PN-01"
+      ],
+      "highPoint": 1358
+    },
+    "prato-piazza": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 2298
+    },
+    "primiero-anello-di-valpiana": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 1236
+    },
+    "primiero-anello-molaren-via-nova-marine": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 820
+    },
+    "primiero-anello-poit-cordogne-san-giovanni": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 1280
+    },
+    "primiero-fiera-pieve": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 759
+    },
+    "primiero-la-guana-di-primiero": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 745
+    },
+    "primiero-laghi-di-colbricon": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 1949
+    },
+    "primiero-malga-ces": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 1672
+    },
+    "primiero-malga-crel": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 1611
+    },
+    "primiero-malga-valcigolera": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 1879
+    },
+    "primiero-monte-vederna": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 1560
+    },
+    "primiero-percorso-verde": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 744
+    },
+    "primiero-ponte-su-funi": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 928
+    },
+    "primiero-san-martino-di-castrozza-val-di-roda-prati-col": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 1628
+    },
+    "primiero-siror": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 801
+    },
+    "primiero-tonadico": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 764
+    },
+    "primiero-transacqua": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 739
+    },
+    "primiero-via-della-frutta-antica": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 1031
+    },
+    "rendena-ciclabile-javre-dare-vigo-pelugo": {
+      "regions": [
+        "IT-32-TN-01",
+        "IT-32-TN-02",
+        "IT-32-TN-05"
+      ],
+      "highPoint": 620
+    },
+    "rendena-giro-del-belvedere-giustino": {
+      "regions": [
+        "IT-32-TN-05"
+      ],
+      "highPoint": 797
+    },
+    "santa-maddalena": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1352
+    },
+    "sassolungo": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02",
+        "IT-32-TN-16"
+      ],
+      "highPoint": 2680
+    },
+    "seceda": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2426
+    },
+    "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1476
+    },
+    "seiseralm-compatsch-wiedner-eck": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1970
+    },
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1691
+    },
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1341
+    },
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2007
+    },
+    "seiseralm-fie-laghetto-di-fie-siusi": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1056
+    },
+    "seiseralm-miglio-geologico-siusi": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1025
+    },
+    "sentiero-del-trenino": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1535
+    },
+    "sentiero-hans-e-paula-steger": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1954
+    },
+    "tre-cime": {
+      "regions": [
+        "IT-32-BZ-20",
+        "IT-34-BL-03"
+      ],
+      "highPoint": 2454
+    },
+    "trecime-bagni-di-san-candido": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1328
+    },
+    "trecime-bellavista-montecosta": {
+      "regions": [
+        "IT-32-BZ-13",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1494
+    },
+    "trecime-carbonin-rifugio-vallandro": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 2021
+    },
+    "trecime-cimabanche-prato-piazza": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1986
+    },
+    "trecime-circolare-maistatt": {
+      "regions": [
+        "IT-32-BZ-13",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1273
+    },
+    "trecime-dobbiaco-lago-di-dobbiaco": {
+      "regions": [
+        "IT-32-BZ-13",
+        "IT-32-BZ-19",
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1299
+    },
+    "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1626
+    },
+    "trecime-giro-delle-baite-lago-di-braies": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1997
+    },
+    "trecime-haus-der-berge-rifugio-larice": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1833
+    },
+    "trecime-helmjet-waldruhe-sexten": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 2053
+    },
+    "trecime-innichen-waldkapelle-sexten": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1540
+    },
+    "trecime-lago-di-braies-malga-foresta": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1602
+    },
+    "trecime-lago-di-braies-malga-rossalm": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 2281
+    },
+    "trecime-monte-casella-di-fuori": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 2043
+    },
+    "trecime-monte-elmo-da-moso": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 2317
+    },
+    "trecime-monte-elmo-versciaco": {
+      "regions": [
+        "IT-32-BZ-13",
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 2045
+    },
+    "trecime-moso-monte-arnese": {
+      "regions": [
+        "AT-07-29",
+        "AT-07-29-01",
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 2532
+    },
+    "trecime-rotwandwiesen-moos": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1914
+    },
+    "trecime-san-candido-costa-dei-nosellari-dobbiaco": {
+      "regions": [
+        "IT-32-BZ-13"
+      ],
+      "highPoint": 1372
+    },
+    "trecime-sasso-di-sesto": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 2442
+    },
+    "trecime-sentiero-gustav-mahler": {
+      "regions": [
+        "IT-32-BZ-13",
+        "IT-32-BZ-19",
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1236
+    },
+    "trecime-sesto-alte-saege-val-campo-di-dentro": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1598
+    },
+    "trecime-sesto-cappella-del-bosco": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1554
+    },
+    "trecime-sesto-chiesa-gasthof-panorama": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1564
+    },
+    "trecime-sesto-san-candido": {
+      "regions": [
+        "IT-32-BZ-20"
+      ],
+      "highPoint": 1399
+    },
+    "trecime-villabassa-lanaweg": {
+      "regions": [
+        "IT-32-BZ-13",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1414
+    },
+    "trecime-villabassa-mooskirche": {
+      "regions": [
+        "IT-32-BZ-13",
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1162
+    },
+    "valchiavenna-ai-laghi-del-baldiscio": {
+      "regions": [
+        "IT-25-SO-01"
+      ],
+      "highPoint": 2316
+    },
+    "valdisole-bivacco-malga-baselga": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 1932
+    },
+    "valdisole-fazzon-lago-dei-caprioli": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 1320
+    },
+    "valdisole-lago-dei-caprioli-malga-alta-di-fazzon": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 1538
+    },
+    "valdisole-marilleva-1400-malga-alta-di-fazzon": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 1664
+    },
+    "valdisole-monclassico-presson-meridiane": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 791
+    },
+    "valdisole-ortise-malga-stabli": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 1833
+    },
+    "valdisole-passo-tonale-forte-mero": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 1998
+    },
+    "valdisole-passo-tonale-forte-mero-forte-zaccarana": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 2053
+    },
+    "valdisole-rifugio-stavel-denza": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 2209
+    },
+    "valgardena-arte-e-storia": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1743
+    },
+    "valgardena-cudan-dumat": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1372
+    },
+    "valgardena-escursione-al-brogles": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2185
+    },
+    "valgardena-escursione-al-resciesa": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2252
+    },
+    "valgardena-escursione-al-seeurasas": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2093
+    },
+    "valgardena-escursione-al-terrazzo-panoramico-seeurasas": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2157
+    },
+    "valgardena-escursione-da-s-cristina-al-passo-sella": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2178
+    },
+    "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2249
+    },
+    "valgardena-escursione-nella-vallunga": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1829
+    },
+    "valgardena-escursione-ortisei-passo-sella": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2263
+    },
+    "valgardena-giro-della-via-crucis": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1572
+    },
+    "valgardena-giro-storico-del-paese-di-ortisei": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1329
+    },
+    "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1578
+    },
+    "valgardena-passeggiata-da-ortisei-a-s-cristina": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1370
+    },
+    "valgardena-percorso-dei-masi-tradizionali": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1836
+    },
+    "valgardena-raida-dl-luech-giro-del-paese": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1466
+    },
+    "valgardena-seceda-da-col-raiser": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2460
+    },
+    "valgardena-seceda-da-cristauta-pic": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2477
+    },
+    "valgardena-seceda-dal-rifugio-firenze": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2460
+    },
+    "valgardena-tour-alla-volta-del-lech-sant": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2075
+    },
+    "valgardena-troi-unika": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1689
+    },
+    "valgardena-uciei-de-freeines": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2101
+    },
+    "valgardena-val-danna-percorso-kneipp": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1374
+    },
+    "valley-view": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 1426
+    },
+    "valsesia-campello-monti-alpe-fornale-di-sopra": {
+      "regions": [
+        "IT-21-VC-01"
+      ],
+      "highPoint": 1825
+    },
+    "valsesia-campello-monti-colle-dell-usciolo": {
+      "regions": [
+        "IT-21-VC-01"
+      ],
+      "highPoint": 2020
+    },
+    "valsesia-campello-monti-lago-del-capezzone": {
+      "regions": [
+        "IT-21-VC-01"
+      ],
+      "highPoint": 2103
+    },
+    "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": {
+      "regions": [
+        "IT-21-VC-01"
+      ],
+      "highPoint": 1805
+    },
+    "valsesia-cervatto-madonna-del-balmone": {
+      "regions": [
+        "IT-21-VC-01"
+      ],
+      "highPoint": 1401
+    },
+    "valsesia-gta-tappa-21-campello-monti-rimella": {
+      "regions": [
+        "IT-21-VC-01"
+      ],
+      "highPoint": 1919
+    },
+    "valtellina-passo-di-campagneda": {
+      "regions": [
+        "IT-25-SO-02"
+      ],
+      "highPoint": 2595
+    },
+    "valtellina-rifugi-porro-e-ventina": {
+      "regions": [
+        "IT-25-SO-02"
+      ],
+      "highPoint": 1958
+    },
+    "villnoess-da-russis-fino-al-passo-delle-erbe": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2099
+    },
+    "villnoess-dolorama-3a-tappa": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 2309
+    },
+    "villnoess-ranui-zannes": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1674
+    },
+    "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": {
+      "regions": [
+        "IT-32-BZ-01",
+        "IT-32-BZ-01-02",
+        "IT-32-BZ-02",
+        "IT-32-BZ-02-02"
+      ],
+      "highPoint": 2269
+    },
+    "vinschgau-escursione-al-lago-bergsee-da-burgusio": {
+      "regions": [
+        "IT-32-BZ-01",
+        "IT-32-BZ-01-02",
+        "IT-32-BZ-02",
+        "IT-32-BZ-02-02"
+      ],
+      "highPoint": 1362
+    },
+    "vinschgau-piani-di-annenberg": {
+      "regions": [
+        "IT-32-BZ-06",
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 1066
+    },
+    "vinschgau-sentiero-della-roggia-kastanienwaal": {
+      "regions": [
+        "IT-32-BZ-06"
+      ],
+      "highPoint": 826
+    },
+    "vinschgau-sentiero-della-roggia-latschanderwaal-4954": {
+      "regions": [
+        "IT-32-BZ-06",
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 739
+    },
+    "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal": {
+      "regions": [
+        "IT-32-BZ-02",
+        "IT-32-BZ-02-02",
+        "IT-32-BZ-06"
+      ],
+      "highPoint": 1252
+    },
+    "vinschgau-sentiero-della-roggia-schnalswaal": {
+      "regions": [
+        "IT-32-BZ-06"
+      ],
+      "highPoint": 862
+    },
+    "vinschgau-sentiero-della-roggia-stabnerwaal": {
+      "regions": [
+        "IT-32-BZ-06",
+        "IT-32-BZ-15"
+      ],
+      "highPoint": 772
+    },
+    "winter-pozza-canto-acqua": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1328
+    },
+    "winter-steinegg-osservatorio": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1320
+    },
+    "winter-voels-voelser-weiher": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1070
+    }
+  }
+}
