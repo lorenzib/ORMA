@@ -131,7 +131,7 @@ describe('paw protection question-led guide', () => {
     expect(recommendations).toHaveLength(2);
     expect(Array.from(recommendations).map(link => link.getAttribute('href'))).toEqual([
       'water-for-dogs-on-trail.html',
-      'alpine-plants-for-dogs.html'
+      'winter-walks-with-your-dog.html'
     ]);
     expect(document.querySelector('.safety-sources__heading span').textContent.trim()).toBe('Last reviewed 19 August 2026');
     expect(document.querySelector('.safety-continue__cta')).toBeNull();
