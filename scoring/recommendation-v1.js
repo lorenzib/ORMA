@@ -339,6 +339,10 @@
     const recommended = season.recommended && Array.isArray(season.recommended.months) ? season.recommended.months : null;
     const snow = season.snow && Array.isArray(season.snow.months) ? season.snow.months : null;
     if(!recommended && !snow && !winterUse) return null;
+    if(season.winterWalk){
+      const winter = (recommended || []).filter(m => [11, 12, 1, 2, 3, 4].includes(m));
+      return winter.length ? winter.slice().sort((a, b) => a - b) : [1, 2, 3, 4, 11, 12];
+    }
     let months = recommended ? recommended.slice() : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter(m => !(snow && snow.includes(m)));
     if(winterUse){
       const summer = months.filter(m => ![12, 1, 2, 3, 4].includes(m));
