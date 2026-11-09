@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-// Writes data/trail-seasons.json for the Dolomites walks: the months each
+// Writes data/trail-seasons.json for every published walk: the months each
 // walk's tourist board recommends, read off the board's page; failing that, a
 // snow estimate from the walk's high point; and how much of the line is mapped
 // as a ski run, sled run or cross-country track in OpenStreetMap.
@@ -24,7 +24,6 @@ const outPath = path.join(root, 'data', 'trail-seasons.json');
 // Outside the repository: the site's link checker reads every HTML file in it.
 const cacheDir = process.env.TRAIL_SEASONS_CACHE || path.join(os.homedir(), '.cache', 'orma', 'trail-seasons');
 const offline = process.argv.includes('--offline');
-const REGION = 'dolomites';
 const TILE = 0.2;
 const TOLERANCE_M = 20;
 const MIN_RUN_M = 100;
@@ -249,8 +248,33 @@ function boardLabel(url){
 
 const day = date => date.toISOString().slice(0, 10);
 
+// A walk with no elevation profile still has a high point: ask Open-Meteo's
+// elevation service (Copernicus DEM, 90 m) for points along the line. Cached
+// per walk, since the line rarely changes.
+async function highPointAlongLine(trail){
+  const file = cachePath('elevation', `${trail.id}.json`);
+  const points = trail.path.filter((_, i, all) => i % Math.max(1, Math.floor(all.length / 90)) === 0).slice(0, 100);
+  const key = crypto.createHash('sha1').update(JSON.stringify(points)).digest('hex');
+  if(fs.existsSync(file)){
+    const cached = JSON.parse(fs.readFileSync(file, 'utf8'));
+    if(cached.key === key) return cached.highPoint;
+  }
+  if(offline) return 0;
+  const lat = points.map(p => p[0].toFixed(5)).join(','), lng = points.map(p => p[1].toFixed(5)).join(',');
+  try{
+    const data = JSON.parse(await fetchText(`https://api.open-meteo.com/v1/elevation?latitude=${lat}&longitude=${lng}`, { headers: { 'User-Agent': USER_AGENT } }, 30000));
+    const highPoint = Math.max(0, ...(data.elevation || []).filter(Number.isFinite));
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, JSON.stringify({ key, highPoint }));
+    return highPoint;
+  }catch(error){
+    console.warn(`Elevation not read for ${trail.id} (${error.message})`);
+    return 0;
+  }
+}
+
 async function main(){
-  const trails = loadProductionTrails(root, undefined, { seasons: false }).filter(t => t.region === REGION && Array.isArray(t.path) && t.path.length > 1);
+  const trails = loadProductionTrails(root, undefined, { seasons: false }).filter(t => Array.isArray(t.path) && t.path.length > 1);
   const tileKeys = [...new Set(trails.flatMap(t => t.path.map(p => `${Math.floor(p[0] / TILE)},${Math.floor(p[1] / TILE)}`)))].sort();
   const tiles = [];
   for(const key of tileKeys) tiles.push(await loadTile(key.split(',').map(Number)));
@@ -260,7 +284,9 @@ async function main(){
   const out = {};
   let fromBoard = 0, estimated = 0, withWinterUse = 0;
   for(const trail of trails){
-    const season = {};
+    let highPoint = Math.max(0, ...(trail.elevationProfile || []).map(point => point.elev).filter(Number.isFinite));
+    if(!highPoint) highPoint = await highPointAlongLine(trail);
+    const season = highPoint ? { highPoint: Math.round(highPoint) } : {};
     const verified = !!(trail.graduation && trail.graduation.status === 'verified');
     // Only a verified walk's links are known to be its own board page.
     for(const url of verified ? boardUrls(trail) : []){
@@ -272,7 +298,6 @@ async function main(){
       }
     }
     if(!season.recommended){
-      const highPoint = Math.max(0, ...(trail.elevationProfile || []).map(point => point.elev).filter(Number.isFinite));
       const snow = snowEstimate(highPoint);
       if(snow) season.snow = snow;
     }
@@ -288,7 +313,7 @@ async function main(){
   const artifact = {
     contractVersion: 'trail-seasons-v1',
     generatedAt: new Date().toISOString(),
-    note: 'When in the year each Dolomites walk is a walk. recommended: the months the walk\'s tourist board marks as its season, read off the board\'s page. snow: where no board publishes months, the snowy months estimated from the walk\'s high point (2,000 m and over: November to May; 1,600 m and over: December to April; lower: snow possible December to February). winterUse: stretches of the line mapped as a ski run, sled run or cross-country track, 0.5 km or more of a kind. Written by npm run build:trail-seasons; nothing here is a verification.',
+    note: 'When in the year each walk is a walk. recommended: the months the walk\'s tourist board marks as its season, read off the board\'s page. snow: where no board publishes months, the snowy months estimated from the walk\'s high point (2,000 m and over: November to May; 1,600 m and over: December to April; lower: snow possible December to February). highPoint: the walk\'s highest point in metres. winterUse: stretches of the line mapped as a ski run, sled run or cross-country track, 0.5 km or more of a kind. Written by npm run build:trail-seasons; nothing here is a verification.',
     sources: {
       winterUse: {
         label: 'Read off the map (OpenStreetMap)',
