@@ -26,6 +26,26 @@
     return match ? `${Number(match[3])} ${monthName(Number(match[2]))} ${match[1]}` : String(iso || '');
   }
 
+  // "05-30" -> "30 May", in either language.
+  function dayMonth(md) {
+    const [month, day] = String(md || '').split('-').map(Number);
+    return month && day ? `${day} ${monthName(month)}` : String(md || '');
+  }
+
+  // The lifts the walk rides (trail.season.lifts, from data/lift-seasons.json):
+  // a lift the walk needs makes the months it is shut out of season.
+  const requiredLifts = season => ((season && season.lifts) || []).filter(lift => lift.required);
+  const liftShut = (lift, month) => (lift.shutMonths || []).includes(month);
+
+  // "The Col Raiser gondola runs from 30 May to 1 November and from 6 December
+  // to 6 April (2025/26 dates)."
+  function liftLine(lift) {
+    const runs = lift.periods.map(p => tx('from {from} to {to}', { from: dayMonth(p.from), to: dayMonth(p.to) })).join(tx(' and '));
+    return lift.summerOnly
+      ? tx('The {lift} runs {runs} ({year} dates; winter dates not yet published).', { lift: lift.name, runs, year: lift.datesFor })
+      : tx('The {lift} runs {runs} ({year} dates).', { lift: lift.name, runs, year: lift.datesFor });
+  }
+
   // [5,6,7,8,9,10] -> "from May to October"; a run that crosses New Year
   // ([12,1,2]) reads as one run, "from December to February".
   function monthRange(months) {
@@ -50,7 +70,7 @@
   function describe(season, formatNumber) {
     if (!season || typeof season !== 'object') return null;
     const fmt = typeof formatNumber === 'function' ? formatNumber : value => value;
-    const out = { kind: null, strip: [], line: '', source: null, winter: [], winterNote: '', winterSource: '' };
+    const out = { kind: null, strip: [], line: '', source: null, winter: [], winterNote: '', winterSource: '', lifts: [] };
     if (season.recommended) {
       const good = new Set(season.recommended.months);
       out.kind = 'recommended';
@@ -75,6 +95,30 @@
       };
       out.legend = [['good', tx('Usually snow-free')], ['snow', season.snow.likelihood === 'likely' ? tx('Snow likely') : tx('Snow possible')]];
     }
+    // Months a needed lift is shut are marked on the strip whatever the board
+    // or the snow says: without the lift the walk as described is not there.
+    const needed = requiredLifts(season);
+    if (needed.length && out.strip.length) {
+      let marked = false;
+      out.strip.forEach(m => {
+        if (needed.some(lift => liftShut(lift, m.month))) { m.state = 'lift'; marked = true; }
+      });
+      if (marked) out.legend.push(['lift', tx('Lift not running')]);
+    }
+    out.lifts = ((season.lifts) || []).map(lift => ({
+      line: [
+        liftLine(lift),
+        lift.required
+          ? (lift.climbM ? tx('The walk needs it; when it is shut, the {m} m it covers are on foot, if a path allows.', { m: fmt(lift.climbM) }) : tx('The walk needs it.'))
+          : tx('The walk does not need it.'),
+      ].join(' '),
+      source: {
+        before: tx('Source: '),
+        label: lift.operator || lift.name,
+        url: lift.url,
+        after: tx(', read on {date}.', { date: readOn(lift.accessedAt) }),
+      },
+    }));
     for (const use of season.winterUse || []) {
       const names = use.names && use.names.length ? ` (${use.names.join(', ')})` : '';
       out.winter.push(tx(KIND_SENTENCES[use.kind], { km: fmt(use.km), names }));
@@ -92,7 +136,10 @@
     if (!season || !month) return '';
     const name = monthName(month);
     const notes = [];
-    if (season.recommended) {
+    // A board month the walk's lift is shut is not "in season": the lift's
+    // sentence below says why, and the two would contradict each other.
+    const liftOut = requiredLifts(season).some(lift => liftShut(lift, month));
+    if (season.recommended && !(liftOut && season.recommended.months.includes(month))) {
       notes.push(season.recommended.months.includes(month)
         ? tx('{month} is in this walk’s season.', { month: name })
         : tx('{month} is outside the season the board publishes for this walk.', { month: name }));
@@ -100,6 +147,12 @@
       notes.push(season.snow.likelihood === 'likely'
         ? tx('In {month} snow is likely on this walk.', { month: name })
         : tx('In {month} snow is possible on this walk.', { month: name }));
+    }
+    for (const lift of (season.lifts || [])) {
+      if (!liftShut(lift, month)) continue;
+      notes.push(lift.required
+        ? tx('In {month} the {lift} is not running, and the walk needs it.', { month: name, lift: lift.name })
+        : tx('In {month} the {lift} is not running; the walk does not need it.', { month: name, lift: lift.name }));
     }
     if ((season.winterUse || []).length && WINTER_SPORT_MONTHS.includes(month)) {
       notes.push(tx('In {month}, parts of it are likely to be ski runs or tracks.', { month: name }));
@@ -109,7 +162,8 @@
 
   // The months that suit the walk: the board's months, else the months the
   // estimate keeps free of snow; with ski runs on the line, less the months
-  // those are usually open (unless that leaves nothing, as for a winter walk).
+  // those are usually open (unless that leaves nothing, as for a winter walk);
+  // and less the months a lift the walk needs is not running.
   // null when the walk has no season record.
   function bestMonths(season) {
     if (!season || typeof season !== 'object') return null;
@@ -120,6 +174,13 @@
     if ((season.winterUse || []).length) {
       const summer = months.filter(m => !WINTER_SPORT_MONTHS.includes(m));
       if (summer.length) months = summer;
+    }
+    // Less the months a needed lift is shut. If that left nothing the lift
+    // data would be wrong for this walk, so it is not applied.
+    const needed = requiredLifts(season);
+    if (needed.length) {
+      const running = months.filter(m => !needed.some(lift => liftShut(lift, m)));
+      if (running.length) months = running;
     }
     return months.length ? months.sort((a, b) => a - b) : null;
   }
@@ -164,7 +225,7 @@
     return tx('Best time: {range}', { range: runs.join(', ') });
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

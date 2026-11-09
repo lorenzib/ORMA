@@ -672,7 +672,7 @@ function seasonTagsHtml(t) {
 // marked by the script underneath, from notes written here for every month.
 function seasonHtml(t) {
   const words = seasonWords.describe(t.season, num);
-  if (!words || (!words.kind && !words.winter.length)) return '';
+  if (!words || (!words.kind && !words.winter.length && !words.lifts.length)) return '';
   const notes = seasonWords.MONTH_NAMES.map((_, i) => seasonWords.nowNote(t.season, i + 1));
   const warn = seasonWords.MONTH_NAMES.map((_, i) => (seasonWords.outOfSeason(t.season, i + 1) ? 1 : 0));
   const strip = words.strip.length
@@ -688,12 +688,15 @@ function seasonHtml(t) {
     ? `<p>${words.winter.map(escapeHtml).join(' ')} ${escapeHtml(words.winterNote)}</p>
     <p class="sp-src">${escapeHtml(words.winterSource)}</p>`
     : '';
+  const lifts = words.lifts.map((lift) => `<p>${escapeHtml(lift.line)}</p>
+    <p class="sp-src">${escapeHtml(lift.source.before)}<a href="${escapeHtml(lift.source.url)}" rel="noopener">${escapeHtml(lift.source.label)}</a>${escapeHtml(lift.source.after)}</p>`).join('\n    ');
   return `<section class="sp-season" id="season" data-season-notes="${escapeHtml(JSON.stringify(notes))}" data-season-warn="${warn.join('')}">
     <h2>${L('When to go')}</h2>
     <p class="sp-season-now" hidden></p>
     ${strip}
     ${words.line ? `<p>${escapeHtml(words.line)}</p>` : ''}
     ${source}
+    ${lifts}
     ${winter}
   </section>
   <script>
@@ -1033,12 +1036,14 @@ function renderTrailPage(t, slug, all) {
   .sp-month--good{background:#BFDDB8;color:#1D4523;}
   .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
   .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--lift{background:#F1DEC4;color:#6B4416;}
   .sp-month--now{border-color:#1F2A24;}
   .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
   .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-key--lift{background:#F1DEC4;}
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
