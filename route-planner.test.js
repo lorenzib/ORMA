@@ -31,7 +31,8 @@ describe('standalone draft route planner', () => {
     expect(homeHtml.indexOf('id="homeMapDrawBtn"')).toBeGreaterThan(homeHtml.indexOf('id="trailMapWrap"'));
     const homeSource = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
     expect(homeSource).toContain("trailMapInstance.on('moveend', syncDrawLink);");
-    expect(homeSource).toContain('route-planner.html?lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}');
+    expect(homeSource).toContain('const view = `lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}`;');
+    expect(homeSource).toContain('drawLink.href = `route-planner.html?${view}`;');
   });
 
   test('starts at the view it is given, and ignores one it cannot use', () => {
