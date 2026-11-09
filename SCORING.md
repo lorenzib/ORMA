@@ -14,7 +14,17 @@ and reviewed examples are documented in
 
 ## Current version
 
-Version `1.3.0` adds the evidence rule for reassurance. A positive statement
+Version `1.8.0` makes the score less harsh where it counted one fact twice
+or charged notes as hazards. A route's baseline heat risk and its shade are one
+danger, a dog overheating, so only the larger of the two is charged; both are
+still listed. Recorded route cautions cost 4 each, to 10 (6 each, to 15, for a
+fragile dog), down from 8 to 20: most are things to know, such as a lane shared
+with bikes or a gondola to check, and the usual two or three held nearly every
+Dolomites trail below a strong option. A fit adult dog was a strong option on
+6 of 355 Dolomites trails; it is now one on 189. Every reviewed fixture keeps
+its category; three scores rise by 4.
+
+Version `1.3.0` added the evidence rule for reassurance. A positive statement
 resting on a review category ORMA has not reviewed is no longer returned in
 `positiveReasons`: on an unreviewed route, "no exposed section is recorded"
 reads as a safety claim when it only means nobody looked. The matching

@@ -5587,7 +5587,7 @@ function breedInsights(name){
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
 
-  const VERSION = '1.7.0';
+  const VERSION = '1.8.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -6021,19 +6021,25 @@ function breedInsights(name){
 
     // On a cool walk day the route's heat and shade are not charged and not
     // praised: today's temperatures already appear as the reason they are fine.
+    //
+    // Heat risk and shade describe one danger, a dog overheating on the way,
+    // and a route's heat risk is largely its want of shade. Charging both took
+    // up to 22 points for that one fact, more than a route an hour too long.
+    // Both are still said; only the larger is charged (v1.8.0).
     const coolDay = isCoolDay(conditions);
+    const heatCharges = [];
     if(coolDay){
       // nothing: see isCoolDay
     }else if(suitability.heatRisk === 'high'){
-      penalise(dog.heatSensitive ? 25 : 12, item('trail.heat.high', dog.heatSensitive
+      heatCharges.push([dog.heatSensitive ? 25 : 12, item('trail.heat.high', dog.heatSensitive
         ? 'The route has high heat risk and this dog is heat-sensitive.'
         : 'The route has high baseline heat risk.', null,
-      dog.heatSensitive ? 'trail.heat.high.sensitive' : 'trail.heat.high'));
+      dog.heatSensitive ? 'trail.heat.high.sensitive' : 'trail.heat.high')]);
     }else if(suitability.heatRisk === 'moderate'){
-      penalise(dog.heatSensitive ? 10 : 4, item('trail.heat.moderate', dog.heatSensitive
+      heatCharges.push([dog.heatSensitive ? 10 : 4, item('trail.heat.moderate', dog.heatSensitive
         ? 'Moderate route heat risk matters more for this heat-sensitive dog.'
         : 'The route has moderate baseline heat risk.', null,
-      dog.heatSensitive ? 'trail.heat.moderate.sensitive' : 'trail.heat.moderate'));
+      dog.heatSensitive ? 'trail.heat.moderate.sensitive' : 'trail.heat.moderate')]);
     }else if(suitability.heatRisk === 'low'){
       positives.push(item('trail.heat.low', 'The route’s baseline heat risk is low.'));
     }else{
@@ -6046,11 +6052,17 @@ function breedInsights(name){
     }else if(shade === null){
       unknowns.push(item('trail.shade.unknown', 'Shade coverage is unknown.'));
     }else if(shade < 20){
-      penalise(10, item('trail.shade.very-low', 'The route has very little shade.'));
+      heatCharges.push([10, item('trail.shade.very-low', 'The route has very little shade.')]);
     }else if(shade < 40){
-      penalise(5, item('trail.shade.low', 'Shade is limited on this route.'));
+      heatCharges.push([5, item('trail.shade.low', 'Shade is limited on this route.')]);
     }else if(shade >= 60){
       positives.push(item('trail.shade.good', 'The route has substantial shade.'));
+    }
+    // The larger charge first; on a tie, heat risk, which was recorded first.
+    const heatCharge = heatCharges.reduce((top, entry) => entry[0] > top[0] ? entry : top, [0, null]);
+    for(const [points, entry] of heatCharges){
+      if(entry === heatCharge[1]) penalise(points, entry);
+      else cautions.push(entry);
     }
 
     const recordedHazards = Array.isArray(suitability.surfaceHazards)
@@ -6061,8 +6073,12 @@ function breedInsights(name){
     if(hazards === null){
       unknowns.push(item('trail.surface-hazards.unknown', 'Surface hazards are unknown.'));
     }else if(hazards.length){
+      // Most recorded cautions are things to know rather than things that
+      // stop a dog: a lane shared with bikes, a gondola to check, a farmed
+      // meadow. At 8 each, to 20, the usual two or three held nearly every
+      // trail below a strong option whatever the dog (v1.8.0).
       const multiplier = dog.fragile ? 1.5 : 1;
-      const hazardCost = Math.min(dog.fragile ? 30 : 20, Math.round(hazards.length * 8 * multiplier));
+      const hazardCost = Math.min(dog.fragile ? 15 : 10, Math.round(hazards.length * 4 * multiplier));
       const hazardList = hazards
         .map(hazard => String(hazard).trim().replace(/[.;]+$/, ''))
         .filter(Boolean);
