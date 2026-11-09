@@ -74,7 +74,7 @@
     if(els.plan) els.plan.hidden = s !== 'idle';
   }
 
-  // Plan a route opens the planner where Explore's map was last looking
+  // Draw a route opens the planner where Explore's map was last looking
   // (script.js keeps that view for the session).
   if(els.plan){
     try {
