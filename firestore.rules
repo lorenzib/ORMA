@@ -748,13 +748,14 @@ service cloud.firestore {
 
     // SOCIAL-01 anonymous "which dogs walked this" tally. One event per
     // proven walk: server time, the dog's coarse FCI group and the kind of
-    // proof (SOCIAL-02: 'gps' or 'checkin'; an unproven walk is not counted).
+    // proof (SOCIAL-02/04: only 'gps', a recorded hike that covered the route;
+    // an unproven walk is not counted).
     // No identity, no breed string, no location. Same shape guarantees as
     // hikeEvents.
     match /trailWalks/{trailId}/walks/{walkId} {
       allow create: if isTrailId(trailId)
         && request.resource.data.keys().hasOnly(['at', 'group', 'proof'])
-        && request.resource.data.proof in ['gps', 'checkin']
+        && request.resource.data.proof in ['gps']
         && request.resource.data.at == request.time
         && request.resource.data.group is string
         && request.resource.data.group.size() <= 12;

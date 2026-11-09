@@ -11233,12 +11233,10 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
 
   // SOCIAL-02 proven walks. A walk counts -- in the public tally now, in the
   // dog passport later -- only when the phone shows it happened, the way only
-  // a GPS activity earns a Strava segment. Two kinds of proof:
-  //
-  //   'gps'     a hike recorded in hike mode whose fixes covered most of the
-  //             trail's line, at a pace a person and a dog can walk;
-  //   'checkin' a tap on "We walked this" made on the trail, with the phone
-  //             placing the walker within reach of the line.
+  // a GPS activity earns a Strava segment. One kind of proof, 'gps': a hike
+  // recorded in hike mode whose fixes covered most of the trail's line, at a
+  // pace a person and a dog can walk. (SOCIAL-04 removed the one-tap
+  // check-in: proof comes from recording.)
   //
   // Anything else proves nothing and is not counted. The checks run on the
   // phone (the free Firebase plan has no server to run them), so they stop
@@ -11253,38 +11251,9 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
   const MIN_SHARE = 0.75;      // share of the line a proven walk covers
   const MAX_KMH = 7;           // faster than this over the covered line is not a walk
   const MAX_HOURS = 16;        // one walk, one day
-  const CHECKIN_M = 150;       // how close a check-in must be to the line
-  const MAX_ACCURACY_M = 100;  // a vaguer position proves nothing
   const FINISH_M = 75;         // this close to the finish ends a proven walk
   const FAR_END_SHARE = 0.9;   // an out-and-back has turned round past here
   const STORAGE_KEY = 'orma-walk-coverage-v1';
-
-  const M_PER_DEG = 111000;
-
-  // Metres on a local flat projection around the point: plenty for distances
-  // of a few hundred metres, which is all these checks ever compare.
-  function project(lat, lng, refLat){
-    return [lng * M_PER_DEG * Math.cos(refLat * Math.PI / 180), lat * M_PER_DEG];
-  }
-
-  function distanceToLine(lat, lng, path){
-    if(!Array.isArray(path) || path.length === 0) return Infinity;
-    const p = project(lat, lng, lat);
-    let best = Infinity;
-    for(let i = 0; i < path.length; i++){
-      const a = project(path[i][0], path[i][1], lat);
-      const b = i + 1 < path.length ? project(path[i + 1][0], path[i + 1][1], lat) : a;
-      const dx = b[0] - a[0];
-      const dy = b[1] - a[1];
-      const length2 = dx * dx + dy * dy;
-      const t = length2 > 0
-        ? Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / length2))
-        : 0;
-      const d = Math.hypot(p[0] - (a[0] + t * dx), p[1] - (a[1] + t * dy));
-      if(d < best) best = d;
-    }
-    return best;
-  }
 
   // ---- GPS coverage of the line --------------------------------------------
   // The line is cut into BIN_M stretches; a stretch is walked once a usable
@@ -11357,20 +11326,6 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     return Number(opts.toEndM) <= FINISH_M;
   }
 
-  // Judge a tap on "We walked this" against where the phone says it is.
-  // Returns { proof: 'checkin' | null, reason, distanceM }.
-  function assessCheckIn(position, path){
-    const coords = position && position.coords;
-    if(!coords) return { proof: null, reason: 'no-position', distanceM: null };
-    const accuracy = Number(coords.accuracy);
-    if(!Number.isFinite(accuracy) || accuracy > MAX_ACCURACY_M){
-      return { proof: null, reason: 'position-too-vague', distanceM: null };
-    }
-    const distanceM = distanceToLine(Number(coords.latitude), Number(coords.longitude), path);
-    if(!(distanceM <= CHECKIN_M)) return { proof: null, reason: 'not-on-the-trail', distanceM };
-    return { proof: 'checkin', reason: 'on-the-trail', distanceM };
-  }
-
   // ---- Keeping coverage across a restart -----------------------------------
 
   function safeStorage(storage){
@@ -11414,10 +11369,10 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
   }
 
   const api = {
-    BIN_M, NEAR_M, FILL_M, MIN_SHARE, MAX_KMH, MAX_HOURS, CHECKIN_M, MAX_ACCURACY_M, STORAGE_KEY,
+    BIN_M, NEAR_M, FILL_M, MIN_SHARE, MAX_KMH, MAX_HOURS, STORAGE_KEY,
     FINISH_M, FAR_END_SHARE,
-    PROOFS: ['gps', 'checkin'],
-    distanceToLine, createCoverage, markFix, share, assessHike, assessCheckIn, reachedFinish,
+    PROOFS: ['gps'],
+    createCoverage, markFix, share, assessHike, reachedFinish,
     saveCoverage, loadCoverage, clearCoverage,
   };
   root.DoloPawsWalkProof = api;
@@ -11429,21 +11384,11 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
 (function(root){
   'use strict';
 
-  // SOCIAL-01 one-tap "We walked this". A GPS hike finished in hike mode was
-  // the only way a walk reached the anonymous trailWalks tally, and in eight
-  // weeks none did (23 starts, 0 completions). A tap on the trail page writes
-  // the same anonymous event -- server time plus the dog's coarse FCI group --
-  // so the tally can fill without anyone recording a track.
-  //
-  // SOCIAL-02: a tap counts only with proof (walk-proof.js): 'checkin' when
-  // the phone places the walker on the trail, 'gps' for a recorded hike that
-  // covered the route. A tap at home proves nothing and writes nothing.
-  //
-  // One walk per trail per day per browser. This only stops a double tap or a
-  // tap after a recorded hike from counting twice.
-
-  const STORAGE_KEY = 'orma-walked-this-v1';
-  const KEEP_DAYS = 30;
+  // SOCIAL-01 anonymous walk tally: a recorded hike that GPS proves
+  // (walk-proof.js) writes one anonymous event -- server time plus the dog's
+  // coarse FCI group -- to trailWalks. SOCIAL-04 removed the one-tap "We
+  // walked this": proof comes from recording, so this keeps only the dog's
+  // group, which hike mode tags the event with.
 
   function safeStorage(storage){
     if(storage) return storage;
@@ -11454,51 +11399,8 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     }
   }
 
-  // The walker's own calendar day, not UTC: a walk at 00:30 in the Dolomites
-  // belongs to that morning.
-  function dayKey(now){
-    const date = new Date(now);
-    const pad = value => String(value).padStart(2, '0');
-    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
-  }
-
-  function read(storage){
-    const store = safeStorage(storage);
-    if(!store) return {};
-    try {
-      const value = JSON.parse(store.getItem(STORAGE_KEY) || '{}');
-      return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
-    } catch (error) {
-      return {};
-    }
-  }
-
-  function walkedToday(trailId, options){
-    const opts = options || {};
-    return read(opts.storage)[String(trailId)] === dayKey(opts.now == null ? Date.now() : opts.now);
-  }
-
-  function markWalked(trailId, options){
-    const opts = options || {};
-    const store = safeStorage(opts.storage);
-    if(!store) return false;
-    const now = opts.now == null ? Date.now() : opts.now;
-    const oldest = dayKey(now - KEEP_DAYS * 86400000);
-    const kept = {};
-    for(const [id, day] of Object.entries(read(store))){
-      if(typeof day === 'string' && day >= oldest) kept[id] = day;
-    }
-    kept[String(trailId)] = dayKey(now);
-    try {
-      store.setItem(STORAGE_KEY, JSON.stringify(kept));
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
-
   // The active dog's coarse FCI group, the only thing the tally keeps about a
-  // dog. Shared with hike mode so a tap and a recorded hike tag alike.
+  // dog.
   function activeDogGroup(storage){
     const store = safeStorage(storage);
     try {
@@ -11513,31 +11415,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     }
   }
 
-  const PROOFS = ['gps', 'checkin'];
-
-  // Resolves to 'recorded', 'already' (counted today), 'unproven' (no proof
-  // came with it, so nothing was written), 'unavailable' (the community
-  // service never loaded) or 'failed' (the write was refused or the walker is
-  // offline). Only 'recorded' marks the day, so a failed tap can be tried again.
-  async function record(trailId, group, options){
-    const opts = options || {};
-    if(!trailId) return 'failed';
-    if(walkedToday(trailId, opts)) return 'already';
-    if(!PROOFS.includes(opts.proof)) return 'unproven';
-    const community = opts.community;
-    if(!community || typeof community.recordTrailWalk !== 'function') return 'unavailable';
-    let ok = false;
-    try {
-      ok = await community.recordTrailWalk(trailId, group || 'unknown', opts.proof);
-    } catch (error) {
-      ok = false;
-    }
-    if(!ok) return 'failed';
-    markWalked(trailId, opts);
-    return 'recorded';
-  }
-
-  const api = { STORAGE_KEY, PROOFS, dayKey, walkedToday, markWalked, activeDogGroup, record };
+  const api = { activeDogGroup };
   root.DoloPawsWalkedThis = api;
   if(typeof module !== 'undefined' && module.exports){ module.exports = api; }
 })(typeof window !== 'undefined' ? window : globalThis);
@@ -11718,6 +11596,42 @@ function initHikeMode(map, trail, options){
   rejoinBtn.style.cssText = 'position:absolute;bottom:100px;left:50%;transform:translateX(-50%);z-index:8;padding:10px 16px;border-radius:14px;background:#1677ff;color:#fff;border:2px solid #fff;font-size:12.5px;font-weight:800;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.35);white-space:nowrap;';
   container.appendChild(rejoinBtn);
 
+  // SOCIAL-04: a phone records with a calm panel, as walking apps do: time,
+  // km walked and how much of the route is done, and one button that
+  // pauses. The detailed status above it shows only when it has something
+  // to say (weak GPS, offline, a lead-on stretch, a turn ahead).
+  const dock = document.createElement('div');
+  dock.id = 'mapHikeDock';
+  dock.setAttribute('role', 'group');
+  dock.setAttribute('aria-label', tx('Live hike details'));
+  dock.hidden = true;
+  dock.innerHTML = `
+    <div class="hk-dock-nums">
+      <div><b data-dock="time">0:00</b><span>${esc(window.t('hike.statTime'))}</span></div>
+      <div><b data-dock="km">0.0 km</b><span>${esc(window.t('hike.dockWalked'))}</span></div>
+      <div><b data-dock="share">0%</b><span>${esc(window.t('hike.dockOfRoute'))}</span></div>
+    </div>
+    <button type="button" class="hk-dock-pause" aria-label="${esc(hikeLabel('hike.pause', 'Pause'))}"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+    <p class="hk-dock-note">${esc(window.t('hike.autoFinishNote'))}</p>`;
+  container.appendChild(dock);
+
+  // Pause opens Resume or Finish walk over the map, as in Strava, instead of
+  // a separate End button beside Pause.
+  const pauseSheet = document.createElement('div');
+  pauseSheet.id = 'mapHikePauseSheet';
+  pauseSheet.setAttribute('role', 'dialog');
+  pauseSheet.setAttribute('aria-labelledby', 'mapHikePauseTitle');
+  pauseSheet.hidden = true;
+  pauseSheet.innerHTML = `
+    <div class="hk-pause-card">
+      <h2 id="mapHikePauseTitle">${esc(window.t('hike.pausedTitle'))}</h2>
+      <p class="hk-pause-sum" data-pause="summary"></p>
+      <button type="button" class="hk-pause-resume" data-pause="resume">${esc(window.t('hike.resumeAction'))}</button>
+      <button type="button" class="hk-pause-finish" data-pause="finish">${esc(window.t('hike.finishWalk'))}</button>
+      <p class="hk-pause-warn" data-pause="warn" hidden>${esc(window.t('hike.finishWontCount', { pct: 75 }))}</p>
+    </div>`;
+  container.appendChild(pauseSheet);
+
   // ---- State ---------------------------------------------------------------
   let active = false;
   let watchId = null;
@@ -11741,6 +11655,62 @@ function initHikeMode(map, trail, options){
   let manualRejoinActive = false;
   let durableSession = null;
   let completionRetry = null;
+  let dockTimer = null;
+
+  function routeShare(){
+    return walkProof && coverage ? walkProof.share(coverage) : 0;
+  }
+
+  function renderDock(){
+    const seconds = hikeStartedAt ? Math.max(0, Math.floor((Date.now() - hikeStartedAt) / 1000)) : 0;
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = String(seconds % 60).padStart(2, '0');
+    dock.querySelector('[data-dock="time"]').textContent = h ? `${h}:${String(m).padStart(2, '0')}:${s}` : `${m}:${s}`;
+    dock.querySelector('[data-dock="km"]').textContent = `${lastKnownKm.toFixed(1)} km`;
+    dock.querySelector('[data-dock="share"]').textContent = `${Math.round(routeShare() * 100)}%`;
+  }
+
+  // The live screen: the calm dock while recording, and the detailed status
+  // hidden on a phone while it only repeats the dock (routine).
+  function setLive(on){
+    dock.hidden = !on;
+    container.classList.toggle('hk-live', on);
+    if(!on) setRoutine(false);
+    if(dockTimer){ clearInterval(dockTimer); dockTimer = null; }
+    if(on){
+      renderDock();
+      dockTimer = setInterval(renderDock, 1000);
+    }
+  }
+  function setRoutine(on){
+    container.classList.toggle('hk-routine', on);
+  }
+
+  function showPauseSheet(){
+    const pct = Math.round(routeShare() * 100);
+    pauseSheet.querySelector('[data-pause="summary"]').textContent =
+      window.t('hike.pausedSummary', { km: lastKnownKm.toFixed(1), pct });
+    // Finishing short of the proof threshold ends the walk without counting
+    // it; say so before, not after.
+    pauseSheet.querySelector('[data-pause="warn"]').hidden =
+      !walkProof || routeShare() >= walkProof.MIN_SHARE;
+    pauseSheet.hidden = false;
+    const resume = pauseSheet.querySelector('[data-pause="resume"]');
+    if(resume) resume.focus();
+  }
+  function hidePauseSheet(){
+    pauseSheet.hidden = true;
+  }
+  pauseSheet.querySelector('[data-pause="resume"]').addEventListener('click', () => {
+    hidePauseSheet();
+    if(durableSession && !active) resumeHike();
+  });
+  pauseSheet.querySelector('[data-pause="finish"]').addEventListener('click', () => {
+    hidePauseSheet();
+    finishHike();
+  });
+  dock.querySelector('.hk-dock-pause').addEventListener('click', () => pauseHike());
   const rejoinRoute = trail.path.map(point => ({ lat: point[0], lng: point[1] }));
   let footpathGraph = null;
   // The footpath graph ships inside the trail's offline package, so every
@@ -12160,6 +12130,7 @@ function initHikeMode(map, trail, options){
 
     // Far from the trail entirely (driving there, wrong valley…)
     if(assessment.farFromRoute){
+      setRoutine(false);
       panel.innerHTML = window.t('hike.far', {
         d: (routeDistanceM / 1000).toFixed(1),
       }) + `<br><span style="font-weight:400;opacity:.85;">${
@@ -12242,6 +12213,9 @@ function initHikeMode(map, trail, options){
       : assessment.upperBoundM < onRouteThresholdM
         ? 'hike.gpsOnTrail'
         : 'hike.gpsNearTrail';
+    const offline = !navigator.onLine || (Date.now() - lastTileError < 30000);
+    setRoutine(!reliabilityNote && !offline && !lead && !(decision && decision.ahead < 0.5));
+    renderDock();
     panel.innerHTML = parts.join(' · ')
       + `<br><span style="font-weight:400;opacity:.85;">${window.t(gpsStatusKey, {
         accuracy: Number.isFinite(accuracy) ? Math.round(accuracy) : ', ',
@@ -12261,6 +12235,7 @@ function initHikeMode(map, trail, options){
   }
 
   function onError(err){
+    setRoutine(false);
     if(firstFix) clearDurableSession();
     else persistSessionState('paused');
     if (err.code === 1){ // PERMISSION_DENIED
@@ -12331,6 +12306,8 @@ function initHikeMode(map, trail, options){
     }));
     panel.style.display = 'block';
     container.classList.add('hike-status-visible');
+    hidePauseSheet();
+    setLive(true);
     // One short line while the GPS warms up: the walk ends itself, and the
     // waymarks still lead (the boundary the readiness sheet used to state).
     panel.innerHTML = `${window.t('hike.getting')}<span style="display:block;margin-top:4px;font-weight:500;opacity:.85;">${esc(window.t('hike.autoFinishNote'))}</span>`;
@@ -12357,9 +12334,12 @@ function initHikeMode(map, trail, options){
   }
 
 
-  function stopHike(keepPanel){
+  // A pause keeps the map full screen, under the Resume / Finish sheet.
+  function stopHike(keepPanel, stayFullscreen){
     active = false;
-    if (window.DoloPawsMapFS) window.DoloPawsMapFS.exit();
+    setLive(false);
+    if (!stayFullscreen) hidePauseSheet();
+    if (window.DoloPawsMapFS && !stayFullscreen) window.DoloPawsMapFS.exit();
     if (watchId !== null){ navigator.geolocation.clearWatch(watchId); watchId = null; }
     if (wakeLock){ try { wakeLock.release(); } catch (e) {} wakeLock = null; }
     hideLiveDot();
@@ -12419,6 +12399,8 @@ function initHikeMode(map, trail, options){
     pauseBtn.hidden = false;
     panel.style.display = 'block';
     container.classList.add('hike-status-visible');
+    hidePauseSheet();
+    setLive(true);
     panel.innerHTML = window.t('hike.getting');
     announceStatus(panel.textContent);
     showLiveDot();
@@ -12436,10 +12418,11 @@ function initHikeMode(map, trail, options){
   function pauseHike(){
     if(!active || !durableSession) return;
     persistSessionState('paused');
-    stopHike(true);
+    stopHike(true, true);
     setStartLabel('hike.resume', 'Resume hike');
     panel.textContent = window.t('hike.paused');
     announceStatus(panel.textContent);
+    showPauseSheet();
   }
 
   function persistCompletionAndShow(completedAt){
@@ -12468,8 +12451,6 @@ function initHikeMode(map, trail, options){
     if(proof && proof.proof === 'gps' &&
        window.DoloPawsCommunity && typeof window.DoloPawsCommunity.recordTrailWalk === 'function'){
       window.DoloPawsCommunity.recordTrailWalk(trail.id, activeDogGroup(), 'gps');
-      // A tap on "We walked this" after the hike must not count it again.
-      if(window.DoloPawsWalkedThis) window.DoloPawsWalkedThis.markWalked(trail.id);
     }
     completionRetry = null;
     clearDurableSession();
@@ -12533,26 +12514,13 @@ function initHikeMode(map, trail, options){
     const pace = paceSeconds
       ? `${Math.floor(paceSeconds / 60)}:${String(paceSeconds % 60).padStart(2, '0')}<small>/km</small>`
       : '–';
-    // The trail rating, in the words the rest of the product uses. This held
-    // its own English table -- "Low-risk", "Moderate", "Caution" -- so the one
-    // badge a walker sees at the end of a hike stayed English on the Italian
-    // site, and said something shorter than the same badge everywhere else.
-    const ratingLabel = typeof trailSafetyLabel === 'function'
-      ? trailSafetyLabel(trail)
-      : '';
-    const ratingClass = typeof safetyClass === 'function'
-      ? safetyClass(trail.safetyLevel)
-      : 'safety-moderate';
-    // The trail page already computed the personal match, reuse its figure.
-    const scoreEl = document.querySelector('.personal-score b');
-    const matchPct = scoreEl ? parseInt(scoreEl.textContent, 10) : NaN;
-
     const photos = [];       // { file, url }
     // As many as a journal walk keeps (JOURNAL-03).
     const maxPhotos = window.DoloPawsJournalPhotos ? window.DoloPawsJournalPhotos.MAX_PHOTOS : 4;
     let cond = 'Comfortable';
     let shareOn = true;
     let outcomeResponse = '';
+    let showMore = false;
 
     const overlay = document.createElement('div');
     overlay.className = 'hk-overlay';
@@ -12564,24 +12532,22 @@ function initHikeMode(map, trail, options){
         <div class="hk-avatar"${dog.photo ? ` style="background-image:url(${dog.photo});"` : ''}>${dog.photo ? '' : esc(dogName.charAt(0).toUpperCase() || '🐾')}</div>
         <h1 class="hk-title" id="hkTitle">${esc(window.t('hike.completedTitle', {name: dogName}))}</h1>
         <p class="hk-sub">${esc(trail.name)}</p>
+        ${proof ? `<p class="hk-proof ${proof.proof ? 'is-proven' : ''}">${esc(proof.proof
+          ? window.t('hike.proofGps')
+          : proof.reason === 'too-little-of-the-route'
+            ? window.t('hike.proofShort', { pct: Math.round(proof.share * 100) })
+            : window.t('hike.proofUnconfirmed'))}</p>` : ''}
         <div class="hk-stats">
           <div class="hk-stat"><b>${fmtClock(elapsedSeconds)}</b><span>${esc(window.t('hike.statTime'))}</span></div>
           <div class="hk-stat"><b>${km.toFixed(1)} km</b><span>${esc(window.t('hike.statDistance'))}</span></div>
           <div class="hk-stat"><b>${pace}</b><span>${esc(window.t('hike.statPace'))}</span></div>
         </div>
-        <div class="hk-matchline">
-          ${ratingLabel ? `<span class="safety-badge ${ratingClass}">${esc(ratingLabel)}</span>` : ''}
-          ${Number.isFinite(matchPct) ? `<span class="pct">${esc(window.t('hike.matchFor', {pct: matchPct, name: dogName}))}</span>` : ''}
-        </div>
-        ${proof ? `<p class="hk-proof" style="margin:-8px 0 18px;font:600 13px 'Inter',sans-serif;color:${proof.proof ? 'var(--success)' : 'var(--ink-soft)'};">${esc(proof.proof
-          ? window.t('hike.proofGps')
-          : proof.reason === 'too-little-of-the-route'
-            ? window.t('hike.proofShort', { pct: Math.round(proof.share * 100) })
-            : window.t('hike.proofUnconfirmed'))}</p>` : ''}
         <div class="hk-block hk-outcome-block">
-          <div class="hk-label">${esc(tx('Private trail feedback'))}</div>
-          <p class="hk-outcome-intro">${esc(tx('Did this trail suit {name}? This helps assess the recommendation and never becomes a public review.', { name: dogName }))}</p>
-          <div class="hk-outcome-options" id="hkOutcomeOptions" role="radiogroup" aria-label="${esc(tx('Did this trail suit your dog?'))}"></div>
+          <div class="hk-suit-q" id="hkSuitQ">${esc(dog.name
+            ? window.t('hike.suitQuestion', { name: dog.name })
+            : window.t('hike.suitQuestionYourDog'))}</div>
+          <p class="hk-outcome-intro">${esc(window.t('hike.suitPrivate'))}</p>
+          <div class="hk-outcome-options" id="hkOutcomeOptions" role="radiogroup" aria-labelledby="hkSuitQ"></div>
           <div class="hk-outcome-followups" id="hkOutcomeFollowups" hidden>
             <label for="hkWaterAccuracy">${esc(tx('Was the listed water information accurate?'))} <span>${esc(tx('Optional'))}</span></label>
             <select id="hkWaterAccuracy">
@@ -12642,14 +12608,15 @@ function initHikeMode(map, trail, options){
               </div>
             </fieldset>
           </div>
-          <button type="button" class="hk-outcome-save" id="hkOutcomeSave" disabled>${esc(tx('Save private feedback'))}</button>
+          <button type="button" class="hk-outcome-save" id="hkOutcomeSave" hidden>${esc(tx('Save private feedback'))}</button>
           <p class="hk-outcome-status" id="hkOutcomeStatus" role="status" aria-live="polite"></p>
+          <button type="button" class="hk-more-toggle" id="hkMoreToggle" aria-expanded="false">${esc(window.t('hike.tellMore'))}</button>
         </div>
-        <div class="hk-block">
+        <div class="hk-block hk-more" hidden>
           <div class="hk-label">${esc(window.t('hike.feel'))}</div>
           <div class="hk-seg" id="hkCondSeg" role="radiogroup" aria-label="${esc(window.t('hike.feel'))}"></div>
         </div>
-        <div class="hk-block">
+        <div class="hk-block hk-more" hidden>
           <div class="hk-label">${esc(window.t('hike.photos'))}</div>
           <div class="hk-photos" id="hkPhotos"></div>
           <div class="hk-share" id="hkShareRow" hidden>
@@ -12678,13 +12645,17 @@ function initHikeMode(map, trail, options){
     let releaseCompletionFocus = null;
 
     function renderOutcome(){
+      // SOCIAL-04: one question, three answers; the rest waits behind
+      // "Tell us more" (the two rarer answers, the detail questions, how it
+      // felt and photos).
       const labels = [
-        ['appropriate', tx('Yes, appropriate')],
-        ['appropriate_with_unexpected_cautions', tx('Yes, with unexpected cautions')],
-        ['not_appropriate', tx('No, not appropriate')],
+        ['appropriate', window.t('hike.suitYes')],
+        ['appropriate_with_unexpected_cautions', window.t('hike.suitCare')],
+        ['not_appropriate', window.t('hike.suitNo')],
+      ].concat(showMore ? [
         ['did_not_complete', tx('We turned back')],
         ['prefer_not_to_answer', tx('Prefer not to answer')],
-      ];
+      ] : []);
       const choices = q('#hkOutcomeOptions');
       choices.innerHTML = '';
       labels.forEach(([value, label]) => {
@@ -12711,9 +12682,17 @@ function initHikeMode(map, trail, options){
         });
       }
       q('#hkOutcomeFollowups').hidden =
-        !outcomeResponse || outcomeResponse === 'prefer_not_to_answer';
-      q('#hkOutcomeSave').disabled = !outcomeResponse;
+        !showMore || !outcomeResponse || outcomeResponse === 'prefer_not_to_answer';
+      q('#hkOutcomeSave').hidden = !outcomeResponse;
     }
+
+    q('#hkMoreToggle').addEventListener('click', () => {
+      showMore = true;
+      q('#hkMoreToggle').hidden = true;
+      q('#hkMoreToggle').setAttribute('aria-expanded', 'true');
+      overlay.querySelectorAll('.hk-more').forEach(block => { block.hidden = false; });
+      renderOutcome();
+    });
 
     q('#hkOutcomeSave').addEventListener('click', async () => {
       const saveButton = q('#hkOutcomeSave');
@@ -17038,66 +17017,6 @@ function renderTrail(t){
     const journalReturn = encodeURIComponent(`trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))}`);
     logWalkBtn.href = `journal.html?trail=${encodeURIComponent(t.id)}&from=${journalReturn}`;
   }
-  // One tap counts a walk in the anonymous tally, the same event a finished
-  // GPS hike writes. Firebase loads after the page is idle, so a tap before
-  // then waits for it briefly rather than failing.
-  const walkedThisBtn = document.getElementById('walkedThisBtn');
-  const walked = window.DoloPawsWalkedThis;
-  // The label is set here, not by data-i18n, so a later translation pass
-  // cannot put "We walked this" back on a walk already counted.
-  if(walkedThisBtn && walked && !walkedThisBtn.dataset.bound){
-    walkedThisBtn.dataset.bound = '1';
-    walkedThisBtn.textContent = window.t('page.trail.walkedThis');
-    const walkedStatus = document.getElementById('walkedThisStatus');
-    const showWalked = () => {
-      walkedThisBtn.textContent = window.t('trail.walkedToday');
-      walkedThisBtn.disabled = true;
-    };
-    const communityReady = () => window.DoloPawsCommunity ? Promise.resolve(window.DoloPawsCommunity)
-      : new Promise(resolve => {
-        const done = () => resolve(window.DoloPawsCommunity || null);
-        window.addEventListener('dolopaws-auth-ready', done, { once: true });
-        setTimeout(done, 6000);
-      });
-    if(walked.walkedToday(t.id)) showWalked();
-    // SOCIAL-02: a tap counts only as a check-in, made on the trail. The
-    // phone's position is asked for once, compared with the line here and
-    // never stored or sent.
-    const whereAmI = () => new Promise(resolve => {
-      if(!navigator.geolocation) return resolve(null);
-      navigator.geolocation.getCurrentPosition(resolve, () => resolve(null), {
-        enableHighAccuracy: true, timeout: 15000, maximumAge: 60000,
-      });
-    });
-    const notCounted = labelKey => {
-      walkedThisBtn.textContent = window.t(labelKey);
-      if(walkedStatus) walkedStatus.textContent = window.t('trail.walkedHowToCount');
-      walkedThisBtn.title = window.t('trail.walkedHowToCount');
-      walkedThisBtn.disabled = false;
-    };
-    walkedThisBtn.addEventListener('click', async () => {
-      walkedThisBtn.disabled = true;
-      if(walked.walkedToday(t.id)) return showWalked();
-      const proofCheck = window.DoloPawsWalkProof;
-      if(!proofCheck) return notCounted('trail.walkedRetry');
-      walkedThisBtn.textContent = window.t('trail.walkedLocating');
-      const position = await whereAmI();
-      if(!position) return notCounted('trail.walkedNoLocation');
-      const checkIn = proofCheck.assessCheckIn(position, t.path);
-      if(!checkIn.proof) return notCounted('trail.walkedNotHere');
-      const result = await walked.record(t.id, walked.activeDogGroup(), {
-        community: await communityReady(), proof: checkIn.proof,
-      });
-      if(result === 'recorded' || result === 'already'){
-        showWalked();
-        walkedThisBtn.removeAttribute('title');
-        if(walkedStatus && result === 'recorded') walkedStatus.textContent = window.t('trail.walkedThanks');
-        return;
-      }
-      walkedThisBtn.textContent = window.t('trail.walkedRetry');
-      walkedThisBtn.disabled = false;
-    });
-  }
   // Do not reserve an empty elevation panel for routes without profile data.
   const elevationCard = document.getElementById('tdElevationPanel');
   const hasElevationProfile = Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1;
@@ -19374,19 +19293,11 @@ if(document.querySelector('.td2')){
   const hikeHome = heroBtn && heroBtn.parentElement;
   const hikeNext = heroBtn && heroBtn.nextSibling;
 
-  const hikeSlot = document.getElementById('mobileMapHikeSlot');
-  const phone = window.matchMedia ? window.matchMedia('(max-width:700px)') : null;
-
-  // On a phone the map's own End button is hidden, and a recording hike
-  // fills the screen with the map, so the hero button moves onto the map as
-  // "End · 12:34". Without this, a phone had no way to end a hike by hand.
+  // SOCIAL-04: a phone ends a hike from the recording panel's pause button
+  // (Resume or Finish walk), so the hero button stays in the page.
   function placeHikeAction() {
     if (!heroBtn || !hikeHome) return;
-    const onMap = !!(hikeSlot && phone && phone.matches && recording() &&
-      mapBox.classList.contains('map-fs'));
-    if (onMap) {
-      if (heroBtn.parentElement !== hikeSlot) hikeSlot.appendChild(heroBtn);
-    } else if (heroBtn.parentElement !== hikeHome) {
+    if (heroBtn.parentElement !== hikeHome) {
       hikeHome.insertBefore(heroBtn, hikeNext);
     }
   }
@@ -19446,7 +19357,6 @@ if(document.querySelector('.td2')){
           : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> ' + tx('Start the hike');
       }
     }
-    placeHikeAction();
     if (liveBanner) liveBanner.hidden = !rec;
     if (!rec && elapsedTimer) { clearInterval(elapsedTimer); elapsedTimer = null; hikeStartedAt = null; }
   }
@@ -19462,7 +19372,6 @@ if(document.querySelector('.td2')){
       attributes: true, attributeFilter: ['class', 'hidden'], childList: true, subtree: true,
     });
   }
-  if (phone && phone.addEventListener) phone.addEventListener('change', syncHike);
   // Poll briefly until hike-mode has injected its button, then let the
   // observer take over.
   let tries = 0;

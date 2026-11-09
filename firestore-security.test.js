@@ -80,7 +80,7 @@ describe('SEC-01 Firestore configuration contract', () => {
     // Anonymous, fixed shape: only server time plus a short group string.
     expect(block).toContain("request.resource.data.keys().hasOnly(['at', 'group', 'proof'])");
     // SOCIAL-02: only a proven walk counts, and the proof is required.
-    expect(block).toContain("request.resource.data.proof in ['gps', 'checkin']");
+    expect(block).toContain("request.resource.data.proof in ['gps']");
     expect(block).toContain('request.resource.data.at == request.time');
     expect(block).toContain('request.resource.data.group is string');
     expect(block).toContain('request.resource.data.group.size() <= 12');

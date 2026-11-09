@@ -3,12 +3,10 @@
 
   // SOCIAL-02 proven walks. A walk counts -- in the public tally now, in the
   // dog passport later -- only when the phone shows it happened, the way only
-  // a GPS activity earns a Strava segment. Two kinds of proof:
-  //
-  //   'gps'     a hike recorded in hike mode whose fixes covered most of the
-  //             trail's line, at a pace a person and a dog can walk;
-  //   'checkin' a tap on "We walked this" made on the trail, with the phone
-  //             placing the walker within reach of the line.
+  // a GPS activity earns a Strava segment. One kind of proof, 'gps': a hike
+  // recorded in hike mode whose fixes covered most of the trail's line, at a
+  // pace a person and a dog can walk. (SOCIAL-04 removed the one-tap
+  // check-in: proof comes from recording.)
   //
   // Anything else proves nothing and is not counted. The checks run on the
   // phone (the free Firebase plan has no server to run them), so they stop
@@ -23,38 +21,9 @@
   const MIN_SHARE = 0.75;      // share of the line a proven walk covers
   const MAX_KMH = 7;           // faster than this over the covered line is not a walk
   const MAX_HOURS = 16;        // one walk, one day
-  const CHECKIN_M = 150;       // how close a check-in must be to the line
-  const MAX_ACCURACY_M = 100;  // a vaguer position proves nothing
   const FINISH_M = 75;         // this close to the finish ends a proven walk
   const FAR_END_SHARE = 0.9;   // an out-and-back has turned round past here
   const STORAGE_KEY = 'orma-walk-coverage-v1';
-
-  const M_PER_DEG = 111000;
-
-  // Metres on a local flat projection around the point: plenty for distances
-  // of a few hundred metres, which is all these checks ever compare.
-  function project(lat, lng, refLat){
-    return [lng * M_PER_DEG * Math.cos(refLat * Math.PI / 180), lat * M_PER_DEG];
-  }
-
-  function distanceToLine(lat, lng, path){
-    if(!Array.isArray(path) || path.length === 0) return Infinity;
-    const p = project(lat, lng, lat);
-    let best = Infinity;
-    for(let i = 0; i < path.length; i++){
-      const a = project(path[i][0], path[i][1], lat);
-      const b = i + 1 < path.length ? project(path[i + 1][0], path[i + 1][1], lat) : a;
-      const dx = b[0] - a[0];
-      const dy = b[1] - a[1];
-      const length2 = dx * dx + dy * dy;
-      const t = length2 > 0
-        ? Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / length2))
-        : 0;
-      const d = Math.hypot(p[0] - (a[0] + t * dx), p[1] - (a[1] + t * dy));
-      if(d < best) best = d;
-    }
-    return best;
-  }
 
   // ---- GPS coverage of the line --------------------------------------------
   // The line is cut into BIN_M stretches; a stretch is walked once a usable
@@ -127,20 +96,6 @@
     return Number(opts.toEndM) <= FINISH_M;
   }
 
-  // Judge a tap on "We walked this" against where the phone says it is.
-  // Returns { proof: 'checkin' | null, reason, distanceM }.
-  function assessCheckIn(position, path){
-    const coords = position && position.coords;
-    if(!coords) return { proof: null, reason: 'no-position', distanceM: null };
-    const accuracy = Number(coords.accuracy);
-    if(!Number.isFinite(accuracy) || accuracy > MAX_ACCURACY_M){
-      return { proof: null, reason: 'position-too-vague', distanceM: null };
-    }
-    const distanceM = distanceToLine(Number(coords.latitude), Number(coords.longitude), path);
-    if(!(distanceM <= CHECKIN_M)) return { proof: null, reason: 'not-on-the-trail', distanceM };
-    return { proof: 'checkin', reason: 'on-the-trail', distanceM };
-  }
-
   // ---- Keeping coverage across a restart -----------------------------------
 
   function safeStorage(storage){
@@ -184,10 +139,10 @@
   }
 
   const api = {
-    BIN_M, NEAR_M, FILL_M, MIN_SHARE, MAX_KMH, MAX_HOURS, CHECKIN_M, MAX_ACCURACY_M, STORAGE_KEY,
+    BIN_M, NEAR_M, FILL_M, MIN_SHARE, MAX_KMH, MAX_HOURS, STORAGE_KEY,
     FINISH_M, FAR_END_SHARE,
-    PROOFS: ['gps', 'checkin'],
-    distanceToLine, createCoverage, markFix, share, assessHike, assessCheckIn, reachedFinish,
+    PROOFS: ['gps'],
+    createCoverage, markFix, share, assessHike, reachedFinish,
     saveCoverage, loadCoverage, clearCoverage,
   };
   root.DoloPawsWalkProof = api;

@@ -121,36 +121,6 @@ describe('SOCIAL-02 proven walks', () => {
       expect(proof.reachedFinish({ coverage: proven(), shape: 'one-way', toStartM: 0, toEndM: 500 })).toBe(false);
     });
   });
-
-  describe('a tap on "We walked this"', () => {
-    const at = (lat, lng, accuracy = 15) => ({ coords: { latitude: lat, longitude: lng, accuracy } });
-
-    test('made on the trail is a check-in', () => {
-      const [lat, lng] = trail.path[Math.floor(trail.path.length / 2)];
-      expect(proof.assessCheckIn(at(lat, lng), trail.path)).toMatchObject({ proof: 'checkin' });
-    });
-
-    test('made between two points of the line still counts', () => {
-      const a = trail.path[10];
-      const b = trail.path[11];
-      const mid = at((a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
-      expect(proof.assessCheckIn(mid, trail.path).distanceM).toBeLessThan(5);
-    });
-
-    test('made from home proves nothing', () => {
-      // Bolzano station, about 20 km from the lake.
-      const verdict = proof.assessCheckIn(at(46.4964, 11.3580), trail.path);
-      expect(verdict.proof).toBeNull();
-      expect(verdict.reason).toBe('not-on-the-trail');
-      expect(verdict.distanceM).toBeGreaterThan(10000);
-    });
-
-    test('a vague or missing position proves nothing', () => {
-      const [lat, lng] = trail.path[0];
-      expect(proof.assessCheckIn(at(lat, lng, proof.MAX_ACCURACY_M + 1), trail.path).reason).toBe('position-too-vague');
-      expect(proof.assessCheckIn(null, trail.path).reason).toBe('no-position');
-    });
-  });
 });
 
 describe('SOCIAL-02 wiring', () => {
@@ -160,8 +130,8 @@ describe('SOCIAL-02 wiring', () => {
     const { PROOFS } = require('./walk-proof.js');
     const rules = read('firestore.rules');
     expect(rules).toContain(`request.resource.data.proof in [${PROOFS.map(p => `'${p}'`).join(', ')}]`);
-    expect(require('./walked-this.js').PROOFS).toEqual(PROOFS);
-    expect(read('firebase-init.js')).toContain('if (proof !== "gps" && proof !== "checkin") return false;');
+    expect(PROOFS).toEqual(['gps']);
+    expect(read('firebase-init.js')).toContain('if (proof !== "gps") return false;');
   });
 
   test('a finished hike is counted only when GPS proves it', () => {
@@ -178,13 +148,5 @@ describe('SOCIAL-02 wiring', () => {
     expect(onFix).toContain('walkProof.reachedFinish(');
     expect(onFix).toContain('finishHike()');
     expect(onFix.indexOf('markCoverage(')).toBeLessThan(onFix.indexOf('reachedFinish('));
-  });
-
-  test('the tap checks where the phone is before it records', () => {
-    const trailJs = read('trail.js');
-    const handler = trailJs.slice(trailJs.indexOf("walkedThisBtn.addEventListener('click'"));
-    expect(handler.indexOf('assessCheckIn')).toBeGreaterThan(-1);
-    expect(handler.indexOf('assessCheckIn')).toBeLessThan(handler.indexOf('walked.record('));
-    expect(handler).toContain('proof: checkIn.proof');
   });
 });
