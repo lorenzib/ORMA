@@ -6,6 +6,8 @@ function tx(text, vars){
   if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
   return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
 }
+// A number as the reader writes it (6,7 km in Italian); English is unchanged.
+function localNum(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
 
 function safetyLabel(level){
   if(level === 'low-risk') return t('safety.low');
@@ -73,7 +75,7 @@ function renderTeaser(){
         <div class="name">${t.name}</div>
         <div class="match">${scoreTrail(t, generic)}%<span class="match-note">${window.t('teaser.example')}</span></div>
       </div>
-      <div class="meta">${t.ref ? window.t('card.trailRef', {ref: t.ref}) + ' · ' : ''}${t.area} · ${t.distance} km</div>
+      <div class="meta">${t.ref ? window.t('card.trailRef', {ref: t.ref}) + ' · ' : ''}${t.area} · ${localNum(t.distance)} km</div>
     </div>
   `).join('');
 }
@@ -3709,7 +3711,7 @@ function renderLiSearchSuggestions(profile){
       option.setAttribute('role', 'option');
       option.setAttribute('aria-selected', String(index === 0));
       const tier = liMatchTier(trail.score);
-      option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(trail.name)}</strong><small>${liEscapeHtml([trail.valley, `${trail.distance} km`].filter(Boolean).join(' · '))}</small></span><span class="li-search-option-match" style="color:${tier.color}">${liEscapeHtml(tier.label)}</span>`;
+      option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(trail.name)}</strong><small>${liEscapeHtml([trail.valley, `${localNum(trail.distance)} km`].filter(Boolean).join(' · '))}</small></span><span class="li-search-option-match" style="color:${tier.color}">${liEscapeHtml(tier.label)}</span>`;
       option.addEventListener('click', () => {
         search.value = trail.name;
         hideLiSearchSuggestions();
@@ -3764,9 +3766,9 @@ function liRowMeta(t){
   const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
   const back = shown !== t;
   const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:shown.distance }) : ''; return v && v !== key ? v : fallback; };
-  const parts = [back ? tr('card.thereAndBack', `${shown.distance} km there and back`) : `${t.distance} km`];
+  const parts = [back ? tr('card.thereAndBack', `${localNum(shown.distance)} km there and back`) : `${localNum(t.distance)} km`];
   if(Number.isFinite(shown.elevation)) parts.push(tx('{m} m climb', { m:shown.elevation }));
-  if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? routeReturn.formatDuration(shown.hours) : `${shown.hours} h`}`);
+  if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? localNum(routeReturn.formatDuration(shown.hours)) : `${localNum(shown.hours)} h`}`);
   const exposure = liExposureLabel(t.exposure);
   if(exposure) parts.push(exposure);
   const shade = liShadeLabel(t.shadeCoverage);
@@ -5061,7 +5063,7 @@ function addWaterSourcesLayers(map) {
     let content = `<b>${waterType}</b>`;
     
     const pointLabel = props.name || props.label;
-    const pointDistance = props.km !== undefined ? `Km ${props.km}` : '';
+    const pointDistance = props.km !== undefined ? `Km ${localNum(props.km)}` : '';
     if (pointLabel && pointDistance) {
       content += `<br>${pointLabel} <small>(${pointDistance})</small>`;
     } else if (pointLabel) {

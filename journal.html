@@ -579,6 +579,8 @@ document.addEventListener('DOMContentLoaded', function(){
     if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return k in vars ? vars[k] : m; }) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ var i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
   function key(){ return 'dolopaws-journal-' + uid; }
   function load(){ try { return JSON.parse(localStorage.getItem(key())) || []; } catch(e){ return []; } }
   function persist(){
@@ -757,7 +759,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function fmtStats(e){
-    return [e.dist ? e.dist + ' km' : null, e.dur ? fmtDur(e.dur) : null].filter(Boolean).join(' · ') || window.t('journal.walkLogged');
+    return [e.dist ? num(e.dist) + ' km' : null, e.dur ? fmtDur(e.dur) : null].filter(Boolean).join(' · ') || window.t('journal.walkLogged');
   }
   function fmtDur(min){
     min = Number(min);
@@ -850,7 +852,7 @@ document.addEventListener('DOMContentLoaded', function(){
       : translate('journal.stats.minutesValue', '{m} min', { m: minutes });
     el.innerHTML =
       '<div class="jn-stat"><b>' + all.length + '</b><span>' + esc(window.t('journal.stats.walks')) + '</span></div>' +
-      '<div class="jn-stat"><b>' + (Math.round(totalKm * 10) / 10) + ' km</b><span>' + esc(window.t('journal.stats.distance')) + '</span></div>' +
+      '<div class="jn-stat"><b>' + num(Math.round(totalKm * 10) / 10) + ' km</b><span>' + esc(window.t('journal.stats.distance')) + '</span></div>' +
       '<div class="jn-stat"><b>' + esc(outdoors) + '</b><span>' + esc(translate('journal.stats.outdoors', 'Outdoors', {})) + '</span></div>' +
       '<div class="jn-stat"><b>' + trailsWalked + '</b><span>' + esc(translate('journal.stats.trails', 'Trails', {})) + '</span></div>';
   }
@@ -1425,7 +1427,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function allTrails(){ return typeof trails !== 'undefined' ? trails : []; }
   function trailById(id){ return allTrails().find(function(t){ return t.id === id; }) || null; }
-  function trailMeta(t){ return [t.valley || t.area || '', t.distance ? t.distance + ' km' : ''].filter(Boolean).join(' · '); }
+  function trailMeta(t){ return [t.valley || t.area || '', t.distance ? num(t.distance) + ' km' : ''].filter(Boolean).join(' · '); }
   function estimatedMinutes(t){
     var hours = parseFloat(String(t.hours || '').replace(',', '.'));
     return Number.isFinite(hours) ? String(Math.round(hours * 60)) : '';

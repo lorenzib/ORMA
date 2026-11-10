@@ -7,6 +7,8 @@
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
 
   const params = new URLSearchParams(root.location.search);
   const trailId = params.get('trail') || 'alpe-siusi';
@@ -58,7 +60,7 @@
       return;
     }
     const average = reviews.reduce((total, review) => total + Number(review.rating), 0) / reviews.length;
-    document.getElementById('reviewAverage').textContent = average.toFixed(1);
+    document.getElementById('reviewAverage').textContent = num(average.toFixed(1));
     document.getElementById('reviewCount').textContent = reviews.length === 1 ? tx('(1 review)') : tx('({count} reviews)', { count:reviews.length });
     summary.hidden = false;
     list.innerHTML = reviews.map(review => {

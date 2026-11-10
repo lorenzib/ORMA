@@ -31,6 +31,12 @@ function tx(text, vars){
   return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
 }
 
+// A number as the reader writes it (Italian: 4,5; km 2,3). English unchanged.
+function num(value){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+}
+
 function trEsc(s){
   return String(s).replace(/[&<>"']/g,
     c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -115,7 +121,7 @@ function initTrailReports(map, trail){
       } else {
         const average = visible.reduce((total, review) => total + Number(review.rating), 0) / visible.length;
         ratingEl.hidden = false;
-        ratingEl.innerHTML = `<span class="community-rating__stars" aria-label="${tx('{rating} out of 5 stars', { rating:average.toFixed(1) })}">${starSvgIcon(true, 13)}</span><strong>${average.toFixed(1)}</strong><span>${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
+        ratingEl.innerHTML = `<span class="community-rating__stars" aria-label="${tx('{rating} out of 5 stars', { rating:average.toFixed(1) })}">${starSvgIcon(true, 13)}</span><strong>${num(average.toFixed(1))}</strong><span>${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
       }
     }
     if (heroRatingEl){
@@ -129,7 +135,7 @@ function initTrailReports(map, trail){
       } else {
         const average = visible.reduce((total, review) => total + Number(review.rating), 0) / visible.length;
         heroRatingEl.classList.remove('is-empty');
-        heroRatingEl.innerHTML = `${starSvg} ${average.toFixed(1)} <span class="cnt">· ${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
+        heroRatingEl.innerHTML = `${starSvg} ${num(average.toFixed(1))} <span class="cnt">· ${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
       }
       // The rating is a shortcut to the reviews section either way.
       heroRatingEl.style.cursor = 'pointer';
@@ -383,7 +389,7 @@ function initTrailReports(map, trail){
         const d = flagDate(f);
         const dateStr = d ? d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : '';
         const kmChip = (typeof f.km === 'number')
-          ? `<span style="font-size:11px;font-weight:700;background:rgba(0,0,0,.07);padding:2px 8px;border-radius:10px;margin-left:8px;">km ${f.km}</span>` : '';
+          ? `<span style="font-size:11px;font-weight:700;background:rgba(0,0,0,.07);padding:2px 8px;border-radius:10px;margin-left:8px;">km ${num(f.km)}</span>` : '';
         const removeLink = (uid && f.uid === uid)
           ? ` · <a href="#" data-remove="${trEsc(f.id)}" style="color:#9C3A25;">${window.t('reports.remove')}</a>` : '';
         const reportLink = (uid && f.uid !== uid)
@@ -461,7 +467,7 @@ function initTrailReports(map, trail){
         const marker = new maplibregl.Marker({ element: el, offset: [0, 0] })
           .setLngLat([lng, lat])
           .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(
-            `<b>${window.t('flag.' + f.type)}</b><br>Km ${f.km}${f.text ? `<br>${trEsc(f.text)}` : ''}<br><small>${window.t('reports.community')}</small>`))
+            `<b>${window.t('flag.' + f.type)}</b><br>Km ${num(f.km)}${f.text ? `<br>${trEsc(f.text)}` : ''}<br><small>${window.t('reports.community')}</small>`))
           .addTo(map);
         flagMarkers.push(marker);
       });
@@ -763,7 +769,7 @@ function initTrailReports(map, trail){
     const kmInput = overlay.querySelector('[data-km]');
     const kmVal = overlay.querySelector('[data-kmval]');
     hasKm.addEventListener('change', () => { dirty = true; kmRow.hidden = !hasKm.checked; });
-    kmInput.addEventListener('input', () => { dirty = true; if (kmVal) kmVal.textContent = kmInput.value; });
+    kmInput.addEventListener('input', () => { dirty = true; if (kmVal) kmVal.textContent = num(kmInput.value); });
     overlay.querySelector('[data-text]').addEventListener('input', () => { dirty = true; });
 
     let cleanupKeyboard = () => {};
