@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cortina-zumeles-val-padeon",
+  "generatedAt": "2026-11-09T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "One way",
+    "distanceKm": 9.5,
+    "ascentM": 499,
+    "highestPointM": 2039,
+    "expectedDuration": "3.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 72
+  },
+  "trailhead": {
+    "lat": 46.551435,
+    "lng": 12.189126,
+    "label": "The Rio Gere car park, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5518189,
+      "lng": 12.1898063,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.5845134,
+      "lng": 12.1490762,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.602849,
+      "lng": 12.1422354,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A steep, eroded climb of over 300 m on path 204 to Forcella Zumeles, with loose scree just below the saddle: sure footing needed, for you and your dog.",
+    "About 200 m beside the SR48 at Rio Gere at the start: keep your dog on a short lead.",
+    "The walk ends on the SS51 at Ospitale: keep your dog close by the road.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-09"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-09",
+      "licence": "ODbL"
+    }
+  ]
+}

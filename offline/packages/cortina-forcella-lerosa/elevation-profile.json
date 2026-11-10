@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cortina-forcella-lerosa",
+  "distanceKm": 4.8,
+  "ascentM": 516,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1526
+    },
+    {
+      "km": 0.4,
+      "elev": 1554
+    },
+    {
+      "km": 0.8,
+      "elev": 1615
+    },
+    {
+      "km": 1.1,
+      "elev": 1631
+    },
+    {
+      "km": 1.5,
+      "elev": 1712
+    },
+    {
+      "km": 1.9,
+      "elev": 1760
+    },
+    {
+      "km": 2.2,
+      "elev": 1801
+    },
+    {
+      "km": 2.6,
+      "elev": 1834
+    },
+    {
+      "km": 2.9,
+      "elev": 1883
+    },
+    {
+      "km": 3.3,
+      "elev": 1926
+    },
+    {
+      "km": 3.7,
+      "elev": 1948
+    },
+    {
+      "km": 4.1,
+      "elev": 1984
+    },
+    {
+      "km": 4.4,
+      "elev": 2020
+    },
+    {
+      "km": 4.8,
+      "elev": 2012
+    }
+  ]
+}
