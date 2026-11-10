@@ -9227,6 +9227,113 @@
           "accessedAt": "2026-11-07"
         }
       }
+    },
+    "cortina-zumeles-val-padeon": {
+      "highPoint": 2039,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2039
+      }
+    },
+    "cortina-anello-dei-tre-rifugi": {
+      "highPoint": 2324,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2324
+      }
+    },
+    "cortina-forcella-lerosa": {
+      "highPoint": 2020,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2020
+      }
+    },
+    "valdisole-cogolo-chiesa-di-santa-lucia": {
+      "highPoint": 1309,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/58793370",
+          "accessedAt": "2026-11-09"
+        }
+      }
+    },
+    "valdisole-malga-strino": {
+      "highPoint": 1920,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/58070348",
+          "accessedAt": "2026-11-09"
+        }
+      }
+    },
+    "zoldo-rifugio-bosconero": {
+      "highPoint": 1366,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1366
+      }
+    },
+    "zoldo-bosco-secolare": {
+      "highPoint": 1116,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1116
+      }
     }
   }
 }

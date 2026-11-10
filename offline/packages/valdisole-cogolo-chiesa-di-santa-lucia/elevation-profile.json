@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-cogolo-chiesa-di-santa-lucia",
+  "distanceKm": 5.4,
+  "ascentM": 274,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1156
+    },
+    {
+      "km": 0.4,
+      "elev": 1223
+    },
+    {
+      "km": 0.8,
+      "elev": 1223
+    },
+    {
+      "km": 1.3,
+      "elev": 1212
+    },
+    {
+      "km": 1.7,
+      "elev": 1283
+    },
+    {
+      "km": 2.1,
+      "elev": 1309
+    },
+    {
+      "km": 2.5,
+      "elev": 1248
+    },
+    {
+      "km": 2.9,
+      "elev": 1224
+    },
+    {
+      "km": 3.3,
+      "elev": 1228
+    },
+    {
+      "km": 3.7,
+      "elev": 1236
+    },
+    {
+      "km": 4.2,
+      "elev": 1212
+    },
+    {
+      "km": 4.6,
+      "elev": 1248
+    },
+    {
+      "km": 5,
+      "elev": 1223
+    },
+    {
+      "km": 5.4,
+      "elev": 1165
+    }
+  ]
+}

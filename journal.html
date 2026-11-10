@@ -117,6 +117,62 @@
   .jn-private-chip{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:999px;background:#fff;border:1px solid var(--paper-line);color:var(--ink-soft);font:700 11.5px 'Inter',sans-serif;}
   .jn-private-chip:before{content:'';width:7px;height:7px;border-radius:50%;background:#4A7856;}
   .jn-stats{margin-top:6px;}
+  /* SOCIAL-05: the dog passport, stamped only by walks the GPS proved. */
+  .jp{margin-top:22px;padding:18px 18px 16px;background:var(--card);border:1px solid var(--paper-line);border-radius:18px;}
+  .jp[hidden]{display:none;}
+  .jp-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .jp-title{margin:0;font-size:21px;}
+  .jp-sum{margin:4px 0 14px;color:var(--ink-soft);font-size:13.5px;}
+  .jp-empty{margin:6px 0 14px;color:var(--ink-soft);font-size:14px;line-height:1.5;}
+  .jp-stamps{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:14px 8px;}
+  .jp-stamp{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;color:inherit;text-decoration:none;}
+  .jp-ring{display:grid;place-items:center;width:72px;height:72px;border-radius:50%;border:2px dashed #2F6B4F;color:#2F6B4F;transform:rotate(-6deg);background:#F1F5EE;font:400 24px/1 'Inter',sans-serif;}
+  .jp-stamp:nth-child(3n+2) .jp-ring{transform:rotate(5deg);}
+  .jp-stamp:nth-child(3n) .jp-ring{transform:rotate(-2deg);}
+  .jp-ring svg path{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+  .jp-ring svg circle{fill:currentColor;}
+  .jp-next .jp-ring{border-color:#B9C4B6;color:#8A978D;background:transparent;transform:none;}
+  .jp-name{font:700 12px/1.3 'Inter',sans-serif;}
+  .jp-when{font-size:11.5px;line-height:1.3;color:var(--ink-soft);}
+  .jp-h{margin:18px 0 8px;font-size:15px;}
+  .jp-id{display:flex;gap:14px;align-items:center;margin:12px 0 4px;padding:12px;border-radius:14px;background:#F6F2E8;border:1px solid #E6DECB;}
+  .jp-photo{flex:none;width:68px;height:82px;border-radius:10px;object-fit:cover;background:#EDE3CC;}
+  .jp-photo-empty{display:grid;place-items:center;color:#8A6A2E;font:700 28px/1 'Inter',sans-serif;}
+  .jp-idrows{margin:0;display:grid;gap:6px;min-width:0;}
+  .jp-idrows div{min-width:0;}
+  .jp-idrows dt{font:600 10.5px/1.2 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#8A7A5A;}
+  .jp-idrows dd{margin:1px 0 0;font:600 14.5px/1.3 'Inter',sans-serif;overflow-wrap:anywhere;}
+  .jp-hrow{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .jp-hint{font-size:12px;color:var(--ink-soft);}
+  .jp-visas{display:flex;flex-wrap:wrap;gap:10px 8px;}
+  .jp-visa{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:7px 10px;border:2px solid currentColor;border-radius:8px;background:transparent;cursor:pointer;font:inherit;text-align:left;transform:rotate(-3deg);}
+  .jp-visa:nth-child(2n){transform:rotate(2.5deg);border-radius:18px;}
+  .jp-visa:nth-child(3n){transform:rotate(-1deg);border-style:double;border-width:4px;}
+  .jp-visa.is-open{transform:none;background:#fff;outline:2px solid currentColor;outline-offset:2px;}
+  .jp-visa:focus-visible{outline:2px solid #1F4B36;outline-offset:3px;}
+  .jp-ink0{color:#2F6B4F;} .jp-ink1{color:#9A4B24;} .jp-ink2{color:#43508F;} .jp-ink3{color:#7A5A12;}
+  .jp-visa-name{font:800 12.5px/1.2 'Inter',sans-serif;letter-spacing:.05em;text-transform:uppercase;}
+  .jp-visa-date,.jp-visa-of{font:600 11px/1.3 'Inter',sans-serif;}
+  .jp-valley{margin-top:12px;padding:12px;border-radius:14px;background:#fff;border:1px solid #E3E8DF;}
+  .jp-vrow{display:flex;justify-content:space-between;gap:8px;margin-bottom:6px;font-size:14px;}
+  .jp-next-tip{margin:8px 0 10px;font-size:12.5px;color:var(--ink-soft);}
+  .jp-slots{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px;}
+  .jp-slot{display:grid;grid-template-columns:22px 1fr;column-gap:6px;align-items:start;height:100%;box-sizing:border-box;padding:8px;border-radius:10px;border:1.5px dashed #C9D1C5;color:inherit;text-decoration:none;}
+  .jp-slot.is-walked{border:1.5px solid #9CC3A8;background:#EEF6EF;}
+  .jp-slot-mark{grid-row:span 2;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1.5px dashed #C9D1C5;color:#2F6B4F;font:700 12px/1 'Inter',sans-serif;}
+  .jp-slot.is-walked .jp-slot-mark{border:0;background:#2F6B4F;color:#fff;}
+  .jp-slot-name{font:600 12.5px/1.3 'Inter',sans-serif;}
+  .jp-slot-sub{font-size:11.5px;color:var(--ink-soft);}
+  .jp-more{margin-top:8px;}
+  .jp-more summary{cursor:pointer;font:600 13px/1.4 'Inter',sans-serif;color:#2F6B4F;padding:4px 0;}
+  .jp-more .jp-slots{margin-top:8px;}
+  .jp-of{color:var(--ink-soft);white-space:nowrap;}
+  .jp-bar{display:block;height:6px;border-radius:3px;background:#E7ECE3;overflow:hidden;}
+  .jp-bar i{display:block;height:100%;background:#4A7856;border-radius:3px;}
+  .jp-miles{display:flex;flex-wrap:wrap;gap:6px;}
+  .jp-mile{padding:4px 11px;border-radius:999px;background:#F1EFE8;color:var(--ink-soft);font:600 12px/1.4 'Inter',sans-serif;}
+  .jp-mile.is-done{background:#E4EFDF;color:#2F5B3A;}
+  .jp-rule{margin:16px 0 0;font-size:12px;line-height:1.5;color:var(--ink-soft);}
   .jn-walk{display:grid;grid-template-columns:112px minmax(0,1fr);gap:16px;align-items:start;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:16px;}
   .jn-thumb{position:relative;display:grid;place-items:center;width:112px;height:88px;padding:0;overflow:hidden;border:1px dashed #B9C4B6;border-radius:12px;background:#EDF1E9;color:var(--accent);cursor:pointer;}
   .jn-thumb.has-photo{border-style:solid;border-color:var(--paper-line);}
@@ -186,6 +242,7 @@
 
 <div class="wrap section-page-wrap browse-canvas-wrap">
   <div class="jn-stats" id="jnStats"></div>
+  <section class="jp" id="jnPassport" aria-labelledby="jnPassportTitle" hidden></section>
 
   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:26px 0 14px;">
     <div class="jn-walks-head">
@@ -437,16 +494,17 @@
 </footer>
 
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261006-1"></script>
+<script src="i18n.js?v=20261110-1"></script>
 <script type="module" src="firebase-init.js?v=20261107-1"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20261030-1" defer></script>
 <script src="regions-runtime-manifest.js?v=20261007-1"></script>
 <script src="regional-trails-loader.js?v=20261104-1" data-default-region="all"></script>
 <script src="regions-config.js" defer></script>
-<script src="journal-store.js?v=20261026-1"></script>
+<script src="journal-store.js?v=20261110-1"></script>
 <script src="journal-photos.js?v=20261026-1"></script>
 <script src="walk-card.js?v=20260825-1"></script>
+<script src="dog-passport.js?v=20261110-2"></script>
 <script>
 // My Journal. Entries are private, per-account records stored only in this
 // browser. JOURNAL-01 deliberately avoids silently uploading walk history;
@@ -839,7 +897,40 @@ document.addEventListener('DOMContentLoaded', function(){
     hydratePhotos(box);
   }
 
-  function renderAll(){ renderStats(); renderTimeline(); }
+  // SOCIAL-05: the passport, worked out from the walks already on the page.
+  function renderPassport(){
+    var el = document.getElementById('jnPassport');
+    var passport = window.DoloPawsPassport;
+    if(!el || !passport) return;
+    el.innerHTML = passport.renderPassport(passport.buildPassport(state.entries, allTrails()), {
+      t: function(key, vars){ return window.t(key, vars); },
+      dogName: dogDisplayName,
+      dogBreed: dogBreed,
+      dogPhoto: dogPhotoData,
+      openValley: passportValley,
+      lang: document.documentElement.lang || undefined,
+    });
+    var title = el.querySelector('.jp-title');
+    if(title) title.id = 'jnPassportTitle';
+    el.hidden = false;
+  }
+
+  function renderAll(){ renderStats(); renderPassport(); renderTimeline(); }
+
+  // Tapping a valley visa opens that valley's trail list; tapping it again closes it.
+  var passportValley = '';
+  var dogBreed = '';
+  document.getElementById('jnPassport').addEventListener('click', function(ev){
+    var visa = ev.target.closest && ev.target.closest('.jp-visa');
+    if(!visa) return;
+    var name = visa.getAttribute('data-valley') || '';
+    passportValley = passportValley === name ? '' : name;
+    renderPassport();
+    var again = Array.prototype.find.call(document.querySelectorAll('#jnPassport .jp-visa'), function(b){
+      return b.getAttribute('data-valley') === name;
+    });
+    if(again) again.focus();
+  });
 
   // ---- Edit & share ---------------------------------------------------
   var dogDisplayName = '';
@@ -1631,6 +1722,7 @@ document.addEventListener('DOMContentLoaded', function(){
       document.getElementById('jnSub').textContent = window.t('journal.subtitle');
       document.getElementById('jnLogBtn').style.display = 'none';
       document.getElementById('jnStats').innerHTML = '';
+      document.getElementById('jnPassport').hidden = true;
       document.getElementById('jnTimeline').innerHTML = '';
       document.getElementById('jnEmpty').hidden = true;
       document.getElementById('jnStorageNote').hidden = true;
@@ -1680,6 +1772,8 @@ document.addEventListener('DOMContentLoaded', function(){
       if(p && p.name){
         dogDisplayName = p.name;
         dogPhotoData = p.photo || '';
+        dogBreed = p.breed || '';
+        renderPassport();
         document.getElementById('jnTitle').textContent = translate('journal.titleFor', '{name}’s walk journal', { name:p.name });
         document.getElementById('jnEmptyCopy').textContent = translate('journal.empty.copyFor', 'Once {name} has been out, log the walk here or track it live from Hike Mode, it’ll show up in this list.', { name:p.name });
       }
