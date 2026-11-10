@@ -2,8 +2,9 @@
   'use strict';
 
   // SOCIAL-05 — the dog passport. A stamp for every trail your dog has walked
-  // with a recording the GPS proved (hike mode writes `proof: 'gps'` on those
-  // walks, and nothing else does). Everything here is worked out from the
+  // with a recording the GPS proved: hike mode writes `proof: 'gps'`, and a
+  // GPX file that passed the same check is saved with `proof: 'gpx'`
+  // (gpx-walk.js). Nothing else writes either. Everything here is worked out from the
   // journal already on the page and the trail catalogue already loaded, so the
   // passport costs no database reads of its own.
   //
@@ -32,7 +33,7 @@
   // A walk on a trail the catalogue no longer has still stamps, by its name.
   function provenWalks(entries, trailById){
     return (Array.isArray(entries) ? entries : [])
-      .filter(function(e){ return e && e.proof === 'gps' && e.trailId; })
+      .filter(function(e){ return e && (e.proof === 'gps' || e.proof === 'gpx') && e.trailId; })
       .map(function(e){ return { entry: e, trail: trailById(e.trailId) }; })
       .sort(function(a, b){ return String(a.entry.date).localeCompare(String(b.entry.date)); });
   }

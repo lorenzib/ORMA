@@ -70,6 +70,7 @@
     "geo-filters.css",
     "google-play-badge.svg",
     "gpx-export.js",
+    "gpx-walk.js",
     "guest-context.js",
     "guest-session.js",
     "guide-navigation.js",
