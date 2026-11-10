@@ -17183,7 +17183,7 @@ function renderTrail(t){
   // says what it means for a reader who does not.
   const gloss = document.getElementById('trailNameGloss');
   if(gloss){
-    gloss.textContent = t.nameGloss || '';
+    gloss.textContent = trailWords(t.nameGloss) || '';
     gloss.hidden = !t.nameGloss;
   }
   document.getElementById('trailName').removeAttribute('aria-busy');

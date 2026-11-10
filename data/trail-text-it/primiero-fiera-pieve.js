@@ -1,5 +1,6 @@
 // primiero-fiera-pieve in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the old-town walk from Fiera to Pieve": "la passeggiata nel centro storico da Fiera a Pieve",
   "A short, level loop through the old mining town of Fiera di Primiero and the parish village of Pieve, past palaces, chapels and the church of Santa Maria Assunta. The APT lists 2.6 km and 22 m of ascent.": "Un breve anello pianeggiante attraverso l'antico borgo minerario di Fiera di Primiero e il paese di Pieve, sede della pieve, oltre palazzi, cappelle e la chiesa di Santa Maria Assunta. L'APT indica 2,6 km e 22 m di dislivello in salita.",
   "Start at the bus station: 2.6 km, level, about 40 minutes. Keep your dog on a short lead (1.5 m at most) in the streets and at the road crossings. Plenty of fountains and cafés; on a summer afternoon go early or late.": "Parti dall'autostazione: 2,6 km, in piano, circa 40 minuti. Tieni il cane al guinzaglio corto (al massimo 1,5 m) nelle strade e agli attraversamenti. Molte fontane e bar; nei pomeriggi estivi vai presto o tardi.",
   "Mostly tarmac and stone setts in the town, open to cars": "Per lo più asfalto e cubetti di pietra in paese, aperti alle auto",

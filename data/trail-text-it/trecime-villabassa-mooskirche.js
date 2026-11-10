@@ -1,5 +1,6 @@
 // trecime-villabassa-mooskirche in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the woodland walk to the Moos chapel": "la passeggiata nel bosco fino alla cappella di Moos",
   "A flat family loop from Niederdorf to the Gothic chapel of St. Magdalena in Moos and back between the fields. The board lists 2.5 km and 21 m of ascent.": "Un anello pianeggiante per famiglie da Niederdorf alla cappella gotica di St. Magdalena a Moos, con ritorno tra i campi. La scheda ufficiale indica 2,5 km e 21 m di dislivello in salita.",
   "Start at the Holy Trinity hospital church in Niederdorf: 2.5 km on the flat, about 40 minutes, and suitable for pushchairs. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Niederdorf requires, and keep off the fields.": "Parti dalla chiesa dell'ospedale della Santissima Trinità a Niederdorf: 2,5 km in piano, circa 40 minuti, adatto ai passeggini. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito, come prescrive Niederdorf, e stai fuori dai campi.",
   "The way back is a quiet paved road: watch for the odd car": "Il ritorno è su una tranquilla strada asfaltata: attenzione a qualche auto",

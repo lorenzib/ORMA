@@ -1,5 +1,6 @@
 // cortina-sotecordes in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the Tofana di Rozes loop from Rifugio Dibona": "l'anello della Tofana di Rozes dal Rifugio Dibona",
   "A mountain loop from Rifugio Dibona under the south face of the Tofana di Rozes to Forcella Col dei Bos and back. The board lists 7.6 km and 489 m of ascent.": "Un anello di montagna dal Rifugio Dibona sotto la parete sud della Tofana di Rozes fino a Forcella Col dei Bos e ritorno. La scheda ufficiale indica 7,6 km e 489 m di dislivello in salita.",
   "Start at Rifugio Dibona: 7.6 km, about 490 m of climbing, three and a half hours on mountain paths. Keep your dog on a lead, as Cortina and the park require. Bring water and something warm: the walk reaches 2,380 m and is open to sun and wind.": "Partenza dal Rifugio Dibona: 7,6 km, circa 490 m di salita, tre ore e mezza su sentieri di montagna. Tieni il cane al guinzaglio, come richiedono Cortina e il parco. Porta acqua e qualcosa di caldo: la camminata arriva a 2.380 m ed è esposta al sole e al vento.",
   "Mountain paths with scree at 2,000–2,400 m": "Sentieri di montagna con ghiaione tra 2.000 e 2.400 m",

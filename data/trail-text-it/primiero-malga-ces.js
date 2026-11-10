@@ -1,5 +1,6 @@
 // primiero-malga-ces in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the forest walk from San Martino to Malga Ces": "la passeggiata nel bosco da San Martino a Malga Ces",
   "A walk from the centre of San Martino di Castrozza through the forest to Malga Ces and back the same way, with views of the Pale di San Martino. The APT lists 7.8 km and 218 m of ascent.": "Una passeggiata dal centro di San Martino di Castrozza attraverso il bosco fino a Malga Ces, con ritorno per la stessa via e vista sulle Pale di San Martino. L'APT indica 7,8 km e 218 m di dislivello in salita.",
   "Start in the centre of San Martino: 7.8 km there and back, about 220 m of climbing, a little over two hours. Above the village you are in the nature park: keep your dog on a lead. A fountain near the start; Malga Ces serves food and drink.": "Parti dal centro di San Martino: 7,8 km andata e ritorno, circa 220 m di salita, poco più di due ore. Sopra il paese sei nel parco naturale: tieni il cane al guinzaglio. C'è una fontana vicino alla partenza; Malga Ces offre cibo e bevande.",
   "Village streets and road crossings in San Martino at the start and end": "Strade del paese e attraversamenti stradali a San Martino, all'inizio e alla fine",

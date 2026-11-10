@@ -1,5 +1,6 @@
 // paganella-andalo-tana-ermellino in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the level forest walk from Andalo towards Cavedago": "la passeggiata pianeggiante nel bosco da Andalo verso Cavedago",
   "A nearly level loop from Andalo past its little lake and through the woods to the Tana dell’Ermellino at Priori. The APT lists 3.8 km and 32 m of ascent.": "Un anello quasi pianeggiante da Andalo oltre il suo laghetto e attraverso i boschi fino alla Tana dell’Ermellino ai Priori. L'APT indica 3,8 km e 32 m di dislivello in salita.",
   "Start at the riding stables in the Andalo Life park: 3.8 km and almost level, about an hour. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Carry water: the only stop is the Tana dell’Ermellino at Priori.": "Parti dal maneggio nel parco Andalo Life: 3,8 km quasi in piano, circa un'ora. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito. Porta acqua: l'unico punto di sosta è la Tana dell’Ermellino ai Priori.",
   "Mostly tarmac and gravel road, shared with bikes and the odd car": "Per lo più strada asfaltata e sterrata, condivisa con bici e qualche auto",

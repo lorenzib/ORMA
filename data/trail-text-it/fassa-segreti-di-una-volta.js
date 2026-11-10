@@ -1,5 +1,6 @@
 // fassa-segreti-di-una-volta in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the old farmland walk above Pozza": "la passeggiata tra gli antichi campi sopra Pozza",
   "A gentle loop from Vigo along the meadows above Pozza to Pera, on the old Ladin farmland, facing the Costabella and the Vallaccia. The APT lists 7.9 km and 176 m of ascent.": "Un anello tranquillo da Vigo lungo i prati sopra Pozza fino a Pera, sulle antiche terre agricole ladine, di fronte alla Costabella e alla Vallaccia. L'APT indica 7,9 km e 176 m di dislivello in salita.",
   "Start in Strada de Piz in Vigo: 7.9 km, about 180 m of climbing, two hours and a quarter. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep out of the mown meadows. Fountains in Vigo, Pozza and Pera.": "Parti da Strada de Piz a Vigo: 7,9 km, circa 180 m di salita, due ore e un quarto. Tieni il cane al guinzaglio corto (al massimo 1,5 m), porta la museruola e non entrare nei prati falciati. Fontane a Vigo, Pozza e Pera.",
   "About 2.9 km on tarmac, partly village streets open to cars": "Circa 2,9 km su asfalto, in parte vie del paese aperte alle auto",
