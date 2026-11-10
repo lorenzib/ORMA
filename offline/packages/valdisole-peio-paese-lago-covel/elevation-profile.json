@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-peio-paese-lago-covel",
+  "distanceKm": 5,
+  "ascentM": 214,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1675
+    },
+    {
+      "km": 0.4,
+      "elev": 1749
+    },
+    {
+      "km": 0.8,
+      "elev": 1796
+    },
+    {
+      "km": 1.1,
+      "elev": 1803
+    },
+    {
+      "km": 1.5,
+      "elev": 1826
+    },
+    {
+      "km": 1.9,
+      "elev": 1853
+    },
+    {
+      "km": 2.3,
+      "elev": 1868
+    },
+    {
+      "km": 2.7,
+      "elev": 1880
+    },
+    {
+      "km": 3.1,
+      "elev": 1836
+    },
+    {
+      "km": 3.4,
+      "elev": 1826
+    },
+    {
+      "km": 3.8,
+      "elev": 1798
+    },
+    {
+      "km": 4.2,
+      "elev": 1818
+    },
+    {
+      "km": 4.6,
+      "elev": 1744
+    },
+    {
+      "km": 4.9,
+      "elev": 1670
+    },
+    {
+      "km": 5,
+      "elev": 1649
+    }
+  ]
+}

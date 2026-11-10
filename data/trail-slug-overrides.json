@@ -1918,6 +1918,26 @@
       "name": "Astragal to Villa through the old forest",
       "slug": "astragal-villa-bosco-secolare",
       "gloss": "a level forest road between two Zoldo hamlets"
+    },
+    "fiemme-cristo-pensante": {
+      "name": "Cristo Pensante on Monte Castellazzo",
+      "slug": "cristo-pensante-monte-castellazzo",
+      "gloss": "a summit loop from Passo Rolle under the Pale di San Martino"
+    },
+    "fiemme-lago-juribrutto": {
+      "name": "Lago di Juribrutto from Malga Vallazza",
+      "slug": "lago-juribrutto-malga-vallazza",
+      "gloss": "paths 631, 629 and 623 over a First World War saddle"
+    },
+    "valdisole-masi-verniana-bait-de-mezol-malga-saviana": {
+      "name": "Forte Strino to Malga Verniana and Malga Saviana",
+      "slug": "forte-strino-malga-verniana-saviana",
+      "gloss": "a long forest-and-pasture loop below Passo del Tonale"
+    },
+    "valdisole-peio-paese-lago-covel": {
+      "name": "Peio Paese to Lago Covel",
+      "slug": "peio-paese-lago-covel",
+      "gloss": "farmsteads, a goat malga and a mirror lake in the Stelvio park"
     }
   }
 }

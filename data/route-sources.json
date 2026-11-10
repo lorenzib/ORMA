@@ -3793,6 +3793,38 @@
       "quote": "Lunghezza 4.500 m · Tempo di percorrenza 1 h 30 min · Dislivello 176 m · Partenza Astragal 969 m · Arrivo Astragal 969 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-09T21:00:00.000Z"
+    },
+    "fiemme-cristo-pensante": {
+      "url": "https://www.outdooractive.com/it/r/14502851",
+      "publisher": "APT Val di Fiemme (Outdooractive)",
+      "name": "Cristo Pensante",
+      "quote": "Lunghezza 9,2 km · Durata 3 h 00 min · Salita 428 m · Discesa 428 m · Punto più alto 2.318 m · Punto più basso 1.958 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-10T21:00:00.000Z"
+    },
+    "fiemme-lago-juribrutto": {
+      "url": "https://www.outdooractive.com/it/r/800567738",
+      "publisher": "APT Val di Fiemme (Outdooractive)",
+      "name": "Lago Juribrutto",
+      "quote": "Lunghezza 6,8 km · Durata 3 h 30 min · Salita 470 m · Discesa 470 m · Punto più alto 2.337 m · Punto più basso 1.906 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-10T21:00:00.000Z"
+    },
+    "valdisole-masi-verniana-bait-de-mezol-malga-saviana": {
+      "url": "https://www.outdooractive.com/it/r/805919553",
+      "publisher": "APT Valli di Sole, Peio e Rabbi (Outdooractive)",
+      "name": "Masi Verniana - Bait de Mezol - Malga Saviana",
+      "quote": "Distanza 14,8 km · Durata 5:00 h · Salita 837 m · Discesa 831 m · Punto più alto 1.961 m · Punto più basso 1.375 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-10T21:00:00.000Z"
+    },
+    "valdisole-peio-paese-lago-covel": {
+      "url": "https://www.outdooractive.com/it/r/61178242",
+      "publisher": "APT Valli di Sole, Peio e Rabbi (Outdooractive)",
+      "name": "Peio Paese - Lago Covel",
+      "quote": "Distanza 5,2 km · Durata 2:00 h · Salita 214 m · Discesa 233 m · Punto più alto 1.884 m · Punto più basso 1.651 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-10T21:00:00.000Z"
     }
   }
 }

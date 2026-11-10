@@ -574,11 +574,23 @@
       ],
       "highPoint": 997
     },
+    "fiemme-cristo-pensante": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 2251
+    },
     "fiemme-giro-cavalese-castello": {
       "regions": [
         "IT-32-TN-09"
       ],
       "highPoint": 1024
+    },
+    "fiemme-lago-juribrutto": {
+      "regions": [
+        "IT-32-TN-13"
+      ],
+      "highPoint": 2336
     },
     "fiemme-larici-verso-anterivo": {
       "regions": [
@@ -2399,6 +2411,12 @@
       ],
       "highPoint": 1664
     },
+    "valdisole-masi-verniana-bait-de-mezol-malga-saviana": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 1951
+    },
     "valdisole-monclassico-presson-meridiane": {
       "regions": [
         "IT-32-TN-19"
@@ -2422,6 +2440,12 @@
         "IT-32-TN-19"
       ],
       "highPoint": 2053
+    },
+    "valdisole-peio-paese-lago-covel": {
+      "regions": [
+        "IT-32-TN-19"
+      ],
+      "highPoint": 1880
     },
     "valdisole-rifugio-stavel-denza": {
       "regions": [

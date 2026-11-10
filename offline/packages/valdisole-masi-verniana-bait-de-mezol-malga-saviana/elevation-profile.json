@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-masi-verniana-bait-de-mezol-malga-saviana",
+  "distanceKm": 14.7,
+  "ascentM": 837,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1570
+    },
+    {
+      "km": 1.1,
+      "elev": 1751
+    },
+    {
+      "km": 2.3,
+      "elev": 1801
+    },
+    {
+      "km": 3.4,
+      "elev": 1832
+    },
+    {
+      "km": 4.5,
+      "elev": 1882
+    },
+    {
+      "km": 5.7,
+      "elev": 1933
+    },
+    {
+      "km": 6.7,
+      "elev": 1836
+    },
+    {
+      "km": 7.8,
+      "elev": 1951
+    },
+    {
+      "km": 8.9,
+      "elev": 1866
+    },
+    {
+      "km": 10.1,
+      "elev": 1591
+    },
+    {
+      "km": 11.2,
+      "elev": 1443
+    },
+    {
+      "km": 12.3,
+      "elev": 1469
+    },
+    {
+      "km": 13.4,
+      "elev": 1587
+    },
+    {
+      "km": 14.5,
+      "elev": 1614
+    },
+    {
+      "km": 14.7,
+      "elev": 1570
+    }
+  ]
+}
