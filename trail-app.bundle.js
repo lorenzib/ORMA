@@ -5919,6 +5919,10 @@ function breedInsights(name){
     const recommended = season.recommended && Array.isArray(season.recommended.months) ? season.recommended.months : null;
     const snow = season.snow && Array.isArray(season.snow.months) ? season.snow.months : null;
     if(!recommended && !snow && !winterUse) return null;
+    if(season.winterWalk){
+      const winter = (recommended || []).filter(m => [11, 12, 1, 2, 3, 4].includes(m));
+      return winter.length ? winter.slice().sort((a, b) => a - b) : [1, 2, 3, 4, 11, 12];
+    }
     let months = recommended ? recommended.slice() : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter(m => !(snow && snow.includes(m)));
     if(winterUse){
       const summer = months.filter(m => ![12, 1, 2, 3, 4].includes(m));
@@ -15313,6 +15317,9 @@ function initTrailReports(map, trail){
   // Ski runs open with the snow; the boards publish no season for a piste, so
   // this is the usual Dolomites ski season and is said to be an estimate.
   const WINTER_SPORT_MONTHS = [12, 1, 2, 3, 4];
+  // A winter walk (season.winterWalk) is the board's winter tour of a path: it
+  // is offered only from November to April, whatever else its board lists.
+  const WINTER_WALK_MONTHS = [11, 12, 1, 2, 3, 4];
 
   const monthName = m => tx(MONTH_NAMES[m - 1]);
   // From the month's name in the reader's language: giugno and luglio are G and L.
@@ -15364,6 +15371,29 @@ function initTrailReports(map, trail){
     nordic: 'In winter, {km} km of this walk is a cross-country ski track{names}.',
   };
 
+  // Seasonal risks to dogs (trail.season.dogSeasons, from data/dog-seasons.json):
+  // a tag in the months they apply and a line under "When to go" with the source.
+  const DOG_SEASON_TAGS = { caterpillars: 'Caterpillar season', ticks: 'Tick season', cows: 'Cows on the pastures' };
+  const DOG_SEASON_SENTENCES = {
+    caterpillars: '{range}: pine processionary caterpillars come down from the pines below about {alt} m, and they are a danger to dogs. Keep your dog away from pines and from the caterpillars.',
+    ticks: '{range}: ticks in the woods below about {alt} m, most of all from late May to mid-June. Check your dog after the walk.',
+    cows: '{range} (an estimate): cows may be out on the pastures. Keep your dog close and give the herds a wide berth.',
+  };
+  const DOG_SEASON_ALT = { caterpillars: 1400, ticks: 1200 };
+  // [3,4,5,6] -> "March to June"; the risks' months are one run each.
+  function monthSpan(months) {
+    const sorted = months.slice().sort((a, b) => a - b);
+    return sorted.length === 1 ? monthName(sorted[0]) : tx('{from} to {to}', { from: monthName(sorted[0]), to: monthName(sorted[sorted.length - 1]) });
+  }
+  // "da marzo a giugno: …" opens a sentence: capital first letter.
+  const capitalise = text => text.charAt(0).toUpperCase() + text.slice(1);
+  // The risks that apply this month, as tags: [{ kind, label }].
+  function dogSeasonsNow(season, month) {
+    return ((season && season.dogSeasons) || [])
+      .filter(risk => DOG_SEASON_TAGS[risk.kind] && risk.months.includes(month))
+      .map(risk => ({ kind: risk.kind, label: tx(DOG_SEASON_TAGS[risk.kind]) }));
+  }
+
   function describe(season, formatNumber) {
     if (!season || typeof season !== 'object') return null;
     const fmt = typeof formatNumber === 'function' ? formatNumber : value => value;
@@ -15373,6 +15403,11 @@ function initTrailReports(map, trail){
       out.kind = 'recommended';
       out.strip = MONTH_NAMES.map((name, i) => ({ month: i + 1, initial: monthInitial(i + 1), name: monthName(i + 1), state: good.has(i + 1) ? 'good' : 'off' }));
       out.line = tx('Recommended {range}.', { range: monthRange(season.recommended.months) });
+      if (season.winterWalk) {
+        const winter = winterWalkMonths(season.recommended.months);
+        out.strip.forEach(m => { m.state = winter.includes(m.month) ? 'good' : 'off'; });
+        out.line = tx('A winter walk, recommended {range}.', { range: monthRange(winter) });
+      }
       out.source = {
         before: tx('Source: '),
         label: tx(season.recommended.source.label),
@@ -15424,6 +15459,15 @@ function initTrailReports(map, trail){
       out.winterNote = tx('Expect skiers there while the runs are open, usually from December to April (an estimate).');
       out.winterSource = tx('Read off the map (OpenStreetMap).');
     }
+    out.dogSeasons = ((season.dogSeasons) || []).map(risk => ({
+      kind: risk.kind,
+      line: capitalise(tx(DOG_SEASON_SENTENCES[risk.kind], { range: monthSpan(risk.months), alt: fmt(DOG_SEASON_ALT[risk.kind] || 0) })),
+      sources: risk.sources.map(source => ({
+        label: tx(source.label),
+        url: source.url,
+        after: tx(', read on {date}.', { date: readOn(source.accessedAt) }),
+      })),
+    }));
     return out;
   }
 
@@ -15436,7 +15480,9 @@ function initTrailReports(map, trail){
     // A board month the walk's lift is shut is not "in season": the lift's
     // sentence below says why, and the two would contradict each other.
     const liftOut = requiredLifts(season).some(lift => liftShut(lift, month));
-    if (season.recommended && !(liftOut && season.recommended.months.includes(month))) {
+    if (season.winterWalk && !WINTER_WALK_MONTHS.includes(month)) {
+      notes.push(tx('{month} is outside winter, and this is the winter walk.', { month: name }));
+    } else if (season.recommended && !(liftOut && season.recommended.months.includes(month))) {
       notes.push(season.recommended.months.includes(month)
         ? tx('{month} is in this walk’s season.', { month: name })
         : tx('{month} is outside the season the board publishes for this walk.', { month: name }));
@@ -15462,8 +15508,16 @@ function initTrailReports(map, trail){
   // those are usually open (unless that leaves nothing, as for a winter walk);
   // and less the months a lift the walk needs is not running.
   // null when the walk has no season record.
+  function winterWalkMonths(months) {
+    const winter = (months || []).filter(m => WINTER_WALK_MONTHS.includes(m));
+    return winter.length ? winter : WINTER_WALK_MONTHS.slice();
+  }
+
   function bestMonths(season) {
     if (!season || typeof season !== 'object') return null;
+    if (season.winterWalk) {
+      return winterWalkMonths(season.recommended ? season.recommended.months : null).sort((a, b) => a - b);
+    }
     if (!season.recommended && !season.snow && !(season.winterUse || []).length) return null;
     let months = season.recommended
       ? season.recommended.months.slice()
@@ -15495,12 +15549,13 @@ function initTrailReports(map, trail){
   // still opens from a saved walk or a link, and says it is out of season.
   // High means it runs along a ski or sled run, or climbs to 1,800 m or more.
   // Cross-country tracks don't count: they are beside the path, not on it.
+  // A winter walk sits out the rest of the year the same way.
   const HIGH_MOUNTAIN_M = 1800;
   function hiddenThisMonth(season, month) {
     if (!season) return false;
     const onPiste = (season.winterUse || []).some(use => use.kind === 'downhill' || use.kind === 'sled');
     const high = Number(season.highPoint) >= HIGH_MOUNTAIN_M;
-    return (onPiste || high) && outOfSeason(season, month);
+    return (onPiste || high || Boolean(season.winterWalk)) && outOfSeason(season, month);
   }
 
   // "Best time: June to October" on a trail page, "Best time: Jun–Oct" on a
@@ -15522,7 +15577,7 @@ function initTrailReports(map, trail){
     return tx('Best time: {range}', { range: runs.join(', ') });
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, DOG_SEASON_TAGS, dogSeasonsNow };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
@@ -18635,7 +18690,10 @@ if(document.querySelector('.td2')){
     if (best && tags && !tags.querySelector('.trail-season-tag')) {
       const out = seasonWords.outOfSeason(t.season, new Date().getMonth() + 1)
         ? `<span class="dp-badge trail-season-tag trail-season-tag--out"><span>${esc(tx('Out of season'))}</span></span>` : '';
-      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>`);
+      // Seasonal risks to dogs, only in the months they apply.
+      const dog = seasonWords.dogSeasonsNow(t.season, new Date().getMonth() + 1)
+        .map(risk => `<span class="dp-badge trail-season-tag trail-season-tag--dog"><span>${esc(risk.label)}</span></span>`).join('');
+      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>${dog}`);
     }
 
     // Elevation figures under the real chart; hide the block honestly
@@ -19003,6 +19061,16 @@ if(document.querySelector('.td2')){
       caution(tx('Season'), [seasonWords.nowNote(t.season, month), basis].filter(Boolean).join(' '), 'altitude');
     } else if (maxAlt >= 1800) {
       caution(tx('Season & altitude'), tx('Tops out around {alt} m. Snow lingers into early summer and weather turns quickly.', { alt: maxAlt }), 'altitude');
+    }
+    // Seasonal risks to dogs that apply this month (data/dog-seasons.json),
+    // each with the months and where they come from.
+    if (seasonWords && t.season && (t.season.dogSeasons || []).length) {
+      const now = seasonWords.dogSeasonsNow(t.season, month).map(risk => risk.kind);
+      for (const risk of seasonWords.describe(t.season, n => Number(n).toLocaleString()).dogSeasons) {
+        if (!now.includes(risk.kind)) continue;
+        const from = risk.sources.map(source => source.label).join(', ');
+        caution(tx(seasonWords.DOG_SEASON_TAGS[risk.kind]), `${risk.line} ${tx('Source: {source}.', { source: from })}`, risk.kind === 'cows' ? 'livestock' : null);
+      }
     }
 
     if (!rows.length) {
