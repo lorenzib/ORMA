@@ -18,6 +18,8 @@
     if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
   const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({
     '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;',
   }[ch]));
@@ -46,9 +48,9 @@
     const back = shown !== t;
     // One decimal: some trails carry 9.528.
     const km = value => Math.round(Number(value) * 10) / 10;
-    const parts = [back ? tx('{km} km there and back', { km:km(shown.distance) }) : `${km(t.distance)} km`];
+    const parts = [back ? tx('{km} km there and back', { km:km(shown.distance) }) : `${num(km(t.distance))} km`];
     if(Number.isFinite(shown.elevation)) parts.push(tx('{m} m climb', { m:shown.elevation }));
-    if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? routeReturn.formatDuration(shown.hours) : `${shown.hours} h`}`);
+    if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? num(routeReturn.formatDuration(shown.hours)) : `${num(shown.hours)} h`}`);
     return parts.join(' · ');
   }
 
@@ -131,7 +133,7 @@
     return html + drafts.map(record => {
       const distance = record.distanceM < 1000
         ? `${Math.round(record.distanceM / 10) * 10} m`
-        : `${(record.distanceM / 1000).toFixed(1)} km`;
+        : `${num((record.distanceM / 1000).toFixed(1))} km`;
       const date = new Date(record.updatedAt || record.createdAt);
       const when = Number.isNaN(date.getTime()) ? '' : tx('drawn {date}', { date:date.toLocaleDateString(undefined, { day:'numeric', month:'short' }) });
       return `<a class="app-saved-route" href="route-planner.html?route=${encodeURIComponent(record.id)}"><span class="app-saved-ri">${PEN}</span>` +

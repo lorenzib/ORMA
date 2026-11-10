@@ -1068,7 +1068,8 @@
         filter: ['>', ['get', 'level'], 0],
         layout: {
           'symbol-placement': 'line', 'text-size': 10.5, 'text-max-angle': 25,
-          'text-field': ['concat', ['number-format', ['get', 'ele'], {}], ' m'],
+          // Italian readers get 2.400 m whatever the browser's own locale.
+          'text-field': ['concat', ['number-format', ['get', 'ele'], (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'it') ? { locale: 'it-IT' } : {}], ' m'],
           'text-font': FONT_REGULAR,
         },
         paint: {
@@ -8248,6 +8249,12 @@ function tx(text, vars){
   return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
 }
 
+// A number as the reader writes it (Italian: 2.999,5 m). English unchanged.
+function num(value){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+}
+
 // subclass (raw OSM value) → label. Falls back to prettified text for
 // anything not listed, so unknown types still get a sensible popup.
 // Built on each popup so the labels follow the page language.
@@ -8356,7 +8363,7 @@ function makeBasemapPoisClickable(map){
     const lng = coords[0], lat = coords[1];
 
     let baseHtml = `<b>${escHtml(name)}</b><br>${poiLabel(p)}`;
-    if (p.ele) baseHtml += `<br>⛰️ ${escHtml(p.ele)} m`;
+    if (p.ele) baseHtml += `<br>⛰️ ${escHtml(num(p.ele))} m`;
 
     // No per-POI source link: an osm.org object page is a mappers' database
     // view, not visitor information, and the map corner already carries the
@@ -11506,6 +11513,11 @@ function initHikeMode(map, trail, options){
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (Italian: 2,4 km). English unchanged.
+  function num(value){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+  }
   // A trail's own words in the reader's language, from data/trail-text-it.
   function trailWords(text){
     const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
@@ -11642,7 +11654,7 @@ function initHikeMode(map, trail, options){
   dock.innerHTML = `
     <div class="hk-dock-nums">
       <div><b data-dock="time">0:00</b><span>${esc(window.t('hike.statTime'))}</span></div>
-      <div><b data-dock="km">0.0 km</b><span>${esc(window.t('hike.dockWalked'))}</span></div>
+      <div><b data-dock="km">${num('0.0')} km</b><span>${esc(window.t('hike.dockWalked'))}</span></div>
       <div><b data-dock="share">0%</b><span>${esc(window.t('hike.dockOfRoute'))}</span></div>
     </div>
     <button type="button" class="hk-dock-pause" aria-label="${esc(hikeLabel('hike.pause', 'Pause'))}"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
@@ -11701,7 +11713,7 @@ function initHikeMode(map, trail, options){
     const m = Math.floor((seconds % 3600) / 60);
     const s = String(seconds % 60).padStart(2, '0');
     dock.querySelector('[data-dock="time"]').textContent = h ? `${h}:${String(m).padStart(2, '0')}:${s}` : `${m}:${s}`;
-    dock.querySelector('[data-dock="km"]').textContent = `${lastKnownKm.toFixed(1)} km`;
+    dock.querySelector('[data-dock="km"]').textContent = `${num(lastKnownKm.toFixed(1))} km`;
     dock.querySelector('[data-dock="share"]').textContent = `${Math.round(routeShare() * 100)}%`;
   }
 
@@ -12573,7 +12585,7 @@ function initHikeMode(map, trail, options){
             : window.t('hike.proofUnconfirmed'))}</p>` : ''}
         <div class="hk-stats">
           <div class="hk-stat"><b>${fmtClock(elapsedSeconds)}</b><span>${esc(window.t('hike.statTime'))}</span></div>
-          <div class="hk-stat"><b>${km.toFixed(1)} km</b><span>${esc(window.t('hike.statDistance'))}</span></div>
+          <div class="hk-stat"><b>${num(km.toFixed(1))} km</b><span>${esc(window.t('hike.statDistance'))}</span></div>
           <div class="hk-stat"><b>${pace}</b><span>${esc(window.t('hike.statPace'))}</span></div>
         </div>
         <div class="hk-block hk-outcome-block">
@@ -13909,6 +13921,12 @@ function tx(text, vars){
   return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
 }
 
+// A number as the reader writes it (Italian: 4,5; km 2,3). English unchanged.
+function num(value){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+}
+
 function trEsc(s){
   return String(s).replace(/[&<>"']/g,
     c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -13993,7 +14011,7 @@ function initTrailReports(map, trail){
       } else {
         const average = visible.reduce((total, review) => total + Number(review.rating), 0) / visible.length;
         ratingEl.hidden = false;
-        ratingEl.innerHTML = `<span class="community-rating__stars" aria-label="${tx('{rating} out of 5 stars', { rating:average.toFixed(1) })}">${starSvgIcon(true, 13)}</span><strong>${average.toFixed(1)}</strong><span>${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
+        ratingEl.innerHTML = `<span class="community-rating__stars" aria-label="${tx('{rating} out of 5 stars', { rating:average.toFixed(1) })}">${starSvgIcon(true, 13)}</span><strong>${num(average.toFixed(1))}</strong><span>${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
       }
     }
     if (heroRatingEl){
@@ -14007,7 +14025,7 @@ function initTrailReports(map, trail){
       } else {
         const average = visible.reduce((total, review) => total + Number(review.rating), 0) / visible.length;
         heroRatingEl.classList.remove('is-empty');
-        heroRatingEl.innerHTML = `${starSvg} ${average.toFixed(1)} <span class="cnt">· ${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
+        heroRatingEl.innerHTML = `${starSvg} ${num(average.toFixed(1))} <span class="cnt">· ${visible.length === 1 ? tx('1 review') : tx('{count} reviews', { count:visible.length })}</span>`;
       }
       // The rating is a shortcut to the reviews section either way.
       heroRatingEl.style.cursor = 'pointer';
@@ -14261,7 +14279,7 @@ function initTrailReports(map, trail){
         const d = flagDate(f);
         const dateStr = d ? d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : '';
         const kmChip = (typeof f.km === 'number')
-          ? `<span style="font-size:11px;font-weight:700;background:rgba(0,0,0,.07);padding:2px 8px;border-radius:10px;margin-left:8px;">km ${f.km}</span>` : '';
+          ? `<span style="font-size:11px;font-weight:700;background:rgba(0,0,0,.07);padding:2px 8px;border-radius:10px;margin-left:8px;">km ${num(f.km)}</span>` : '';
         const removeLink = (uid && f.uid === uid)
           ? ` · <a href="#" data-remove="${trEsc(f.id)}" style="color:#9C3A25;">${window.t('reports.remove')}</a>` : '';
         const reportLink = (uid && f.uid !== uid)
@@ -14339,7 +14357,7 @@ function initTrailReports(map, trail){
         const marker = new maplibregl.Marker({ element: el, offset: [0, 0] })
           .setLngLat([lng, lat])
           .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(
-            `<b>${window.t('flag.' + f.type)}</b><br>Km ${f.km}${f.text ? `<br>${trEsc(f.text)}` : ''}<br><small>${window.t('reports.community')}</small>`))
+            `<b>${window.t('flag.' + f.type)}</b><br>Km ${num(f.km)}${f.text ? `<br>${trEsc(f.text)}` : ''}<br><small>${window.t('reports.community')}</small>`))
           .addTo(map);
         flagMarkers.push(marker);
       });
@@ -14641,7 +14659,7 @@ function initTrailReports(map, trail){
     const kmInput = overlay.querySelector('[data-km]');
     const kmVal = overlay.querySelector('[data-kmval]');
     hasKm.addEventListener('change', () => { dirty = true; kmRow.hidden = !hasKm.checked; });
-    kmInput.addEventListener('input', () => { dirty = true; if (kmVal) kmVal.textContent = kmInput.value; });
+    kmInput.addEventListener('input', () => { dirty = true; if (kmVal) kmVal.textContent = num(kmInput.value); });
     overlay.querySelector('[data-text]').addEventListener('input', () => { dirty = true; });
 
     let cleanupKeyboard = () => {};
@@ -15627,6 +15645,12 @@ function tx(text, vars){
   return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
 }
 
+// A number as the reader writes it (Italian: 6,7 km; 1.655 m). English unchanged.
+function num(value){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+}
+
 // A trail's own words (description, hazards, directions…) in the reader's
 // language, from data/trail-text-it. The record itself stays English.
 function trailWords(text){
@@ -15708,8 +15732,8 @@ function mapDistanceKm(a, b){
 
 function formatApproachDistance(distanceKm){
   if(!Number.isFinite(distanceKm)) return '';
-  if(distanceKm < 1) return `${Math.max(10, Math.round(distanceKm * 1000 / 10) * 10)} m`;
-  return `${distanceKm.toFixed(distanceKm < 10 ? 1 : 0)} km`;
+  if(distanceKm < 1) return `${num(Math.max(10, Math.round(distanceKm * 1000 / 10) * 10))} m`;
+  return `${num(distanceKm.toFixed(distanceKm < 10 ? 1 : 0))} km`;
 }
 
 function initLoopComposer(map, t){
@@ -16378,14 +16402,14 @@ function setupElevationProfile(map, t){
   const totalKm = t.distance;
   const elevs = profile.map(p => p.elev);
   const eMin = Math.min(...elevs), eMax = Math.max(...elevs);
-  if(rangeReadout) rangeReadout.textContent = `${Math.round(eMin)}–${Math.round(eMax)} m`;
+  if(rangeReadout) rangeReadout.textContent = `${num(Math.round(eMin))}–${num(Math.round(eMax))} m`;
   const startReadout = document.getElementById('tdElevStart');
   const highReadout = document.getElementById('tdElevHigh');
   const climbReadout = document.getElementById('tdElevClimb');
   const figures = document.getElementById('tdElevFigs');
-  if(startReadout) startReadout.textContent = `${Math.round(profile[0].elev)} m`;
-  if(highReadout) highReadout.textContent = `${Math.round(eMax)} m`;
-  if(climbReadout) climbReadout.textContent = `${Math.round(Number(t.elevation) || 0)} m`;
+  if(startReadout) startReadout.textContent = `${num(Math.round(profile[0].elev))} m`;
+  if(highReadout) highReadout.textContent = `${num(Math.round(eMax))} m`;
+  if(climbReadout) climbReadout.textContent = `${num(Math.round(Number(t.elevation) || 0))} m`;
   if(figures) figures.hidden = false;
   const VW = 1000, VH = 170, padL = 6, padR = 6, padT = 14, padB = 20;
   const x = km => padL + (km / totalKm) * (VW - padL - padR);
@@ -16407,7 +16431,7 @@ function setupElevationProfile(map, t){
   [eMin, (eMin+eMax)/2, eMax].forEach(v => {
     svg.appendChild(mk('line', { x1: padL, x2: VW-padR, y1: y(v), y2: y(v), stroke: 'var(--paper-line)', 'stroke-width': '1' }));
     const label = mk('text', { x: padL+4, y: y(v)-3, 'font-size': '10', fill: 'var(--ink-soft)' });
-    label.textContent = `${Math.round(v)} m`;
+    label.textContent = `${num(Math.round(v))} m`;
     svg.appendChild(label);
   });
 
@@ -16436,8 +16460,8 @@ function setupElevationProfile(map, t){
       }
     }
     cursorDot.setAttribute('cx', x(km)); cursorDot.setAttribute('cy', y(elev)); cursorDot.setAttribute('opacity', '1');
-    readout.textContent = `${km.toFixed(1)} km · ${Math.round(elev)} m`;
-    if(liveReadout) liveReadout.textContent = `${km.toFixed(1)} km · ~${Math.round(elev)} m route elevation`;
+    readout.textContent = `${num(km.toFixed(1))} km · ${num(Math.round(elev))} m`;
+    if(liveReadout) liveReadout.textContent = `${num(km.toFixed(1))} km · ~${num(Math.round(elev))} m route elevation`;
 
     const [lat, lng] = pointAtFraction(t.path, totalKm > 0 ? km / totalKm : 0);
     const src = map.getSource('elev-cursor');
@@ -16911,7 +16935,7 @@ function itinAdd(icon, sort, html){
 }
 
 function itinKmLabel(km){
-  return `<b style="font-weight:700;">Km ${km % 1 === 0 ? km : km.toFixed(1)}</b>`;
+  return `<b style="font-weight:700;">Km ${num(km % 1 === 0 ? km : km.toFixed(1))}</b>`;
 }
 
 function buildItinerary(t){
@@ -17287,7 +17311,7 @@ function renderTrail(t){
     }
   }
   document.getElementById('trailMeta').textContent =
-    `${t.area} · ${t.distance} km · ${tx('{m} m gain', { m: t.elevation })} · ${window.ORMARouteReturn ? window.ORMARouteReturn.formatDuration(t.hours) : `${t.hours} h`} · ${trailWords(t.terrainType)}`;
+    `${t.area} · ${num(t.distance)} km · ${tx('{m} m gain', { m: t.elevation })} · ${window.ORMARouteReturn ? window.ORMARouteReturn.formatDuration(t.hours) : `${num(t.hours)} h`} · ${trailWords(t.terrainType)}`;
   document.getElementById('trailBadges').innerHTML =
     trailProductBadge(t.safetyLevel, trailSafetyLabel(t)) +
     (t.paid ? trailProductBadge('neutral', window.t('card.paid')) : '');
@@ -17377,12 +17401,12 @@ function renderTrail(t){
     const shown = oneWay ? routeReturn.forView(t) : t;
     const back = shown !== t;
     const facts = [
-      [`${shown.distance} km`, window.t('trail.fact.distance')],
-      [`${shown.elevation} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
+      [`${num(shown.distance)} km`, window.t('trail.fact.distance')],
+      [`${num(shown.elevation)} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
       [shown.hours ? `${back ? '≈ ' : ''}${routeReturn.formatDuration(shown.hours)}` : null, window.t('trail.fact.duration')],
     ].filter(([val]) => !/null|undefined/.test(val)); // hide facts the data honestly lacks
     if(Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1){
-      facts.splice(2, 0, [`${Math.max(...t.elevationProfile.map(p => p.elev))} m`, window.t('trail.fact.high')]);
+      facts.splice(2, 0, [`${num(Math.max(...t.elevationProfile.map(p => p.elev)))} m`, window.t('trail.fact.high')]);
     }
     // Difficulty cell, mirrors the homepage's derivation from real fields so
     // the hero stat strip matches the design's five-cell layout.
@@ -17600,7 +17624,7 @@ function renderTrail(t){
         byKm.set(d.km, [...deduped, { text: instructionText }]);
       });
       const events = [...byKm.entries()].sort((a, b) => a[0] - b[0]);
-      events.forEach(([km, items]) => steps.push(`Km ${km}: ${items.map(i => i.text).join(window.t('trail.dirThen'))}.`));
+      events.forEach(([km, items]) => steps.push(`Km ${num(km)}: ${items.map(i => i.text).join(window.t('trail.dirThen'))}.`));
     }
 
     steps.push(window.t('trail.dirEnd', {n: totalKm}));
@@ -18162,7 +18186,7 @@ function renderTrail(t){
         (t.decisionPoints || []).forEach(d => {
           new maplibregl.Marker({ element: makeIconEl('switch', '#D6A038'), offset: [14, -14] })
             .setLngLat([d.lng, d.lat])
-            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>Km ${d.km}</b><br>${trailWords(d.instruction)}`))
+            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>Km ${num(d.km)}</b><br>${trailWords(d.instruction)}`))
             .addTo(map);
         });
 
@@ -18176,7 +18200,7 @@ function renderTrail(t){
             if(!waypoint || waypoint.osmId || typeof waypoint.lat !== 'number' || typeof waypoint.lng !== 'number') return;
             const mk = new maplibregl.Marker({ element: makeIconEl(icon), offset: [0, -6] })
               .setLngLat([waypoint.lng, waypoint.lat])
-              .setPopup(new maplibregl.Popup({ offset: 14 }).setHTML(`<b>${itinEsc(label)}</b>${typeof waypoint.km === 'number' ? `<br>Km ${waypoint.km}` : ''}`))
+              .setPopup(new maplibregl.Popup({ offset: 14 }).setHTML(`<b>${itinEsc(label)}</b>${typeof waypoint.km === 'number' ? `<br>Km ${num(waypoint.km)}` : ''}`))
               .addTo(map);
             amenityMarkers.push({ marker: mk, group: icon === 'hut' ? 'huts' : 'fountains' });
             mk.getElement().style.display = poiStates[icon === 'hut' ? 'huts' : 'fountains'] ? '' : 'none';
@@ -18428,6 +18452,21 @@ if(document.querySelector('.td2')){
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
 
+  // A number as the reader writes it (Italian: 6,7 km; 1.655 m). English unchanged.
+  function num(value) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+  }
+  // toLocaleString follows the browser, not the page: an Italian reader gets
+  // the Italian form whatever the browser says; English is unchanged.
+  function isItalian() {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return !!(i18n && i18n.lang === 'it' && typeof i18n.num === 'function');
+  }
+  function localeNum(n) {
+    return isItalian() ? num(Number(n)) : Number(n).toLocaleString();
+  }
+
   // A trail's own words (description, directions, terrain…) in the reader's
   // language, from data/trail-text-it. The record itself stays English.
   function trailWords(text) {
@@ -18558,7 +18597,7 @@ if(document.querySelector('.td2')){
       const baseRisk = safetyLabel(t.safetyLevel);
       factBits.push((trust ? trust.riskLabel(t, baseRisk) : baseRisk).toLowerCase());
     }
-    if (typeof t.distance === 'number') factBits.push(t.distance <= 6 ? tx('easy distance') : `${t.distance} km`);
+    if (typeof t.distance === 'number') factBits.push(t.distance <= 6 ? tx('easy distance') : `${num(t.distance)} km`);
     if (typeof t.shadeCoverage === 'number') factBits.push(t.shadeCoverage >= 40 ? tx('good shade') : tx('little shade'));
     const factLine = factBits.join(' · ');
 
@@ -18635,7 +18674,7 @@ if(document.querySelector('.td2')){
         <div class="ph"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="pct near-pct" hidden></span></div>
         <div class="bd">
           <div class="nm">${esc(o.name)}</div>
-          <div class="mt">${esc(o.valley || o.area || '')} · ${o.distance} km · ${esc(trust ? trust.riskLabel(o, safetyLabel(o.safetyLevel)) : safetyLabel(o.safetyLevel))}</div>
+          <div class="mt">${esc(o.valley || o.area || '')} · ${num(o.distance)} km · ${esc(trust ? trust.riskLabel(o, safetyLabel(o.safetyLevel)) : safetyLabel(o.safetyLevel))}</div>
         </div>
       </a>`).join('');
     wrapEl.hidden = false;
@@ -18738,9 +18777,9 @@ if(document.querySelector('.td2')){
     if (prof.length > 1) {
       const figs = $('tdElevFigs');
       if (figs) {
-        $('tdElevStart').textContent = prof[0].toLocaleString() + ' m';
-        $('tdElevHigh').textContent = Math.max(...prof).toLocaleString() + ' m';
-        $('tdElevClimb').textContent = '+' + (t.elevation != null ? t.elevation : Math.max(...prof) - Math.min(...prof)) + ' m';
+        $('tdElevStart').textContent = localeNum(prof[0]) + ' m';
+        $('tdElevHigh').textContent = localeNum(Math.max(...prof)) + ' m';
+        $('tdElevClimb').textContent = '+' + num(t.elevation != null ? t.elevation : Math.max(...prof) - Math.min(...prof)) + ' m';
         figs.hidden = false;
       }
     } else {
@@ -18784,7 +18823,7 @@ if(document.querySelector('.td2')){
     const climb = Number(t.elevation) || 0;
     const signalData = [
       ['paw', easyTerrain ? tx('Gentle paw surface') : tx('Mixed paw surface'), easyTerrain ? tx('Flat or packed underfoot based on route information') : (trailWords(t.terrainType) || tx('Check pads at breaks'))],
-      ['route', tx('Route effort'), `${t.distance} km${climb ? ` · +${climb} m` : ''}`],
+      ['route', tx('Route effort'), `${num(t.distance)} km${climb ? ` · +${num(climb)} m` : ''}`],
       ['loop', isLoop ? tx('Loop route') : tx('One-way route'), isLoop ? tx('Returns to the starting point') : tx('Plan the return journey')]
     ];
     if (signalEl) {
@@ -19102,7 +19141,7 @@ if(document.querySelector('.td2')){
     // each with the months and where they come from.
     if (seasonWords && t.season && (t.season.dogSeasons || []).length) {
       const now = seasonWords.dogSeasonsNow(t.season, month).map(risk => risk.kind);
-      for (const risk of seasonWords.describe(t.season, n => Number(n).toLocaleString()).dogSeasons) {
+      for (const risk of seasonWords.describe(t.season, n => (isItalian() ? Number(n) : Number(n).toLocaleString())).dogSeasons) {
         if (!now.includes(risk.kind)) continue;
         const from = risk.sources.map(source => source.label).join(', ');
         caution(tx(seasonWords.DOG_SEASON_TAGS[risk.kind]), `${risk.line} ${tx('Source: {source}.', { source: from })}`, risk.kind === 'cows' ? 'livestock' : null);
@@ -19457,6 +19496,11 @@ if(document.querySelector('.td2')){
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (Italian: 6,7 km). English unchanged.
+  function num(value) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+  }
   if (!document.querySelector('.td2')) return;
 
   // ---- 1. Hero Start-the-hike proxy + live banner -------------------------
@@ -19506,7 +19550,7 @@ if(document.querySelector('.td2')){
   window.addEventListener('dolopaws-hike-progress', function (e) {
     hikeStartedAt = (e.detail && e.detail.startedAt) || hikeStartedAt;
     const dist = document.getElementById('tdLiveDist');
-    if (dist && e.detail && typeof e.detail.km === 'number') dist.textContent = e.detail.km.toFixed(1) + ' km';
+    if (dist && e.detail && typeof e.detail.km === 'number') dist.textContent = num(e.detail.km.toFixed(1)) + ' km';
     if (!elapsedTimer) elapsedTimer = setInterval(tickElapsed, 1000);
     tickElapsed();
   });
@@ -19597,7 +19641,7 @@ if(document.querySelector('.td2')){
       }).filter(function (v) { return v != null; });
       if (rated.length) {
         const avg = rated.reduce(function (a, b) { return a + b; }, 0) / rated.length;
-        avgEl.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:none;"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 18l-5.9 3.1 1.3-6.6L2.5 9.4l6.6-.8z"/></svg> ' + avg.toFixed(1);
+        avgEl.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:none;"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 18l-5.9 3.1 1.3-6.6L2.5 9.4l6.6-.8z"/></svg> ' + num(avg.toFixed(1));
         avgEl.hidden = false;
       } else { avgEl.hidden = true; }
     }
@@ -19819,12 +19863,35 @@ if(document.querySelector('.td2')){
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
+  // A value filled into wording: a number, or text that is only a number or
+  // range, is written the reader's way (as i18n.js does for its own wording).
+  function fillNum(value){
+    if(typeof value === 'number') return num(value);
+    if(typeof value === 'string' && /^[\d.,\s–—+\-≈~]+$/.test(value) && /\d/.test(value)) return num(value);
+    return value;
+  }
 
   const CATEGORY = Object.freeze({
     'strong-option': { label:'Strong option', tone:'strong' },
     'possible-with-cautions': { label:'Good with care', tone:'caution' },
     'not-recommended': { label:'Low match', tone:'stop' },
   });
+
+  // A recorded caution quoted from the trail's own text, in the reader's
+  // language where the trail page has loaded its Italian (the engine strips
+  // the closing full stop, so both forms are tried).
+  function cautionWords(text){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(!(i18n && typeof i18n.trailText === 'function') || typeof text !== 'string') return text;
+    return text.split('; ').map(part => {
+      const shown = i18n.trailText(part);
+      if(shown !== part) return shown.replace(/[.;]+$/, '');
+      const stopped = i18n.trailText(`${part}.`);
+      return stopped !== `${part}.` ? stopped.replace(/[.;]+$/, '') : part;
+    }).join('; ');
+  }
 
   // `extra` carries what the engine does not know, such as the dog's name, so
   // a translation can say "fine for Teo" where the engine said "this dog".
@@ -19833,6 +19900,8 @@ if(document.querySelector('.td2')){
     if(typeof translate !== 'function') return item.message;
     const key = `recommendation.reason.${item.messageKey || item.code}`;
     const vars = extra || item.vars ? { ...(extra || {}), ...(item.vars || {}) } : undefined;
+    if(vars && typeof vars.hazards === 'string') vars.hazards = cautionWords(vars.hazards);
+    if(vars && typeof vars.first === 'string') vars.first = cautionWords(vars.first);
     const value = translate(key, vars);
     return value && value !== key ? value : item.message;
   }
@@ -20011,7 +20080,7 @@ if(document.querySelector('.td2')){
       }
       let output = fallback;
       for(const name of Object.keys(vars || {})){
-        output = output.split(`{${name}}`).join(vars[name]);
+        output = output.split(`{${name}}`).join(fillNum(vars[name]));
       }
       return output;
     };
@@ -20271,7 +20340,7 @@ if(document.querySelector('.td2')){
         if(value && value !== key) return value;
       }
       let output = fallback;
-      for(const name of Object.keys(vars || {})) output = output.split(`{${name}}`).join(vars[name]);
+      for(const name of Object.keys(vars || {})) output = output.split(`{${name}}`).join(fillNum(vars[name]));
       return output;
     };
 

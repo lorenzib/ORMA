@@ -1314,6 +1314,8 @@
       if(s === key){ s = fallback; if(vars) for(const k in vars) s = s.split('{' + k + '}').join(vars[k]); }
       return s;
     };
+    // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+    function num(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
     const COLLECTIONS = {
       'shady': { title: bt('browse.coll.shady.title', 'Shady routes'), blurb: bt('browse.coll.shady.blurb', 'Shade and a water point are listed'),
         filter: t => filterApi.matches(t, { heat:'shade-reviewed', water:true }) },
@@ -1895,7 +1897,7 @@
         const routeReturn = window.ORMARouteReturn;
         const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
         const back = shown !== t;
-        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : `${shown.distance} km`) : null, shown.elevation != null ? bt('card.climb', '{m} m climb', { m: shown.elevation }) : null, shown.hours ? `${back ? '≈ ' : ''}${shown.hours} h` : null, t.area]
+        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : `${num(shown.distance)} km`) : null, shown.elevation != null ? bt('card.climb', '{m} m climb', { m: shown.elevation }) : null, shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null, t.area]
           .filter(Boolean).join(' · ');
         const verdict = matchVerdict(t);
         const tier = verdict.label;
