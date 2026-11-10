@@ -1,0 +1,16 @@
+// eggental-passo-nigra-malga-hagner in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "a shady forest road below the Catinaccio": "una strada forestale ombreggiata sotto il Catinaccio",
+  "A long, easy, shady walk from the Passo Nigra through the forest below the Catinaccio to the Malga Hagner Alm and back. The board lists 11.8 km, 231 m up and three and a quarter hours.": "Una passeggiata lunga, facile e ombreggiata dal Passo Nigra attraverso il bosco sotto il Catinaccio fino alla Malga Hagner Alm, e ritorno. La scheda ufficiale indica 11,8 km, 231 m di salita e tre ore e un quarto.",
+  "Start at the Passo Nigra: 11.8 km out and back, 231 m of climbing, about three and a quarter hours, as the board lists. The forest road is shady and fine with a pushchair. Keep your dog on a lead of at most 1.5 m and carry a muzzle; bring water, as none is mapped on the way.": "Parti dal Passo Nigra: 11,8 km andata e ritorno, 231 m di dislivello, circa tre ore e un quarto, come indica la scheda ufficiale. La strada forestale è ombreggiata e adatta al passeggino. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola; porta acqua, perché lungo il percorso non ne risulta sulla mappa.",
+  "The Passo Nigra road is busy in summer: keep your dog on a short lead at the start": "D'estate la strada del Passo Nigra è trafficata: alla partenza tieni il cane al guinzaglio corto",
+  "Cattle may graze around the Malga Hagner Alm in summer: keep your dog close": "D'estate attorno alla Malga Hagner Alm possono pascolare i bovini: tieni il cane vicino",
+  "Mountain bikes share the forest road": "Le mountain bike usano la stessa strada forestale",
+  "Wide forest road and path, suitable for pushchairs": "Ampia strada forestale e sentiero, adatti al passeggino",
+  "The Passo Nigra (1,688 m), the board’s start": "Il Passo Nigra (1.688 m), la partenza della scheda ufficiale",
+  "A gravel forest road leaving a mountain road beside a wooden inn sign and a meadow, with spruce woods and a tall pale rock face behind": "Una strada forestale sterrata che lascia una strada di montagna accanto all'insegna di legno di una locanda e a un prato, con boschi di abeti rossi e un'alta parete di roccia chiara sullo sfondo",
+  "Almost all shaded: about nine tenths of the way runs through mapped forest below the Catinaccio.": "Quasi tutto all'ombra: circa nove decimi del percorso passano nel bosco cartografato sotto il Catinaccio.",
+  "Start at the Passo Nigra (1,688 m) on the road between Nova Levante and Tires, the board’s start.": "Parti dal Passo Nigra (1.688 m) sulla strada tra Nova Levante e Tires, la partenza della scheda ufficiale.",
+  "Follow the wide forest road 1 as far as the junction with path 4A, then take 4A straight to the Malga Hagner Alm in its meadow. Come back the same way to the pass.": "Segui l'ampia strada forestale 1 fino all'incrocio con il sentiero 4A, poi prendi il 4A dritto fino alla Malga Hagner Alm nel suo prato. Torna al passo per la stessa strada.",
+  "Forest road 1 from the pass; at the junction turn onto path 4A for the Malga Hagner Alm; return the same way.": "Strada forestale 1 dal passo; all'incrocio prendi il sentiero 4A per la Malga Hagner Alm; ritorno per la stessa strada."
+});

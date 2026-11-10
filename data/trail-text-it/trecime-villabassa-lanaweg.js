@@ -1,5 +1,6 @@
 // trecime-villabassa-lanaweg in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the sunny Lana path loop above Niederdorf": "l'anello soleggiato del sentiero Lana sopra Niederdorf",
   "An easy loop from Niederdorf up to the old Sinna Mihle and along the level Lanaweg, back across the Langwiesn meadows. The board lists 5.3 km and 232 m of ascent.": "Un facile anello da Niederdorf fino alla vecchia Sinna Mihle e lungo il pianeggiante Lanaweg, con ritorno attraverso i prati Langwiesn. La scheda ufficiale indica 5,3 km e 232 m di dislivello in salita.",
   "Start at the fire station in Niederdorf: 5.3 km and about 230 m of climbing, an hour and a half. Keep your dog on a lead of at most 1.5 m, carry a muzzle and keep off the meadows.": "Parti dalla caserma dei vigili del fuoco di Niederdorf: 5,3 km e circa 230 m di salita, un'ora e mezza. Tieni il cane al guinzaglio lungo al massimo 1,5 m, porta la museruola al seguito e stai fuori dai prati.",
   "Village streets and farm lanes at the start and end": "Strade di paese e strade poderali all'inizio e alla fine",

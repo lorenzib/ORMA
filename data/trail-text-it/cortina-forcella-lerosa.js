@@ -1,5 +1,6 @@
 // cortina-forcella-lerosa in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "up the Val di Gotres to the larch meadows of Lerosa": "su per la Val di Gotres fino ai lariceti di Lerosa",
   "A steady climb from Passo Cimabanche up the quiet Val di Gotres, past 500-year-old stone pines, to the grassy saddle of Forcella Lerosa. The board lists 4.8 km and 516 m up, one way.": "Una salita regolare da Passo Cimabanche lungo la tranquilla Val di Gotres, tra pini cembri di 500 anni, fino alla sella erbosa di Forcella Lerosa. Il sito ufficiale indica 4,8 km e 516 m di salita, solo andata.",
   "Start at Passo Cimabanche: 4.8 km and 516 m up to Forcella Lerosa, about 2 hours one way, as the board lists; come back the same way, so allow 9.6 km and 3½–4 hours in all. Carry water and a muzzle.": "Parti da Passo Cimabanche: 4,8 km e 516 m di salita fino a Forcella Lerosa, circa 2 ore solo andata, come indica il sito ufficiale; il ritorno è per la stessa via, quindi calcola 9,6 km e 3½–4 ore in tutto. Porta acqua e museruola.",
   "A steady climb of 500 m on a stony mule track": "Una salita regolare di 500 m su una mulattiera sassosa",

@@ -1,5 +1,6 @@
 // primiero-transacqua in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the village walk round Transacqua": "la passeggiata attorno al paese di Transacqua",
   "A short loop from Fiera di Primiero into the old village of Transacqua, past frescoed houses, wayside shrines and Piazza San Marco. The APT lists 2.3 km and 37 m of ascent.": "Un breve anello da Fiera di Primiero nell'antico paese di Transacqua, tra case affrescate, capitelli votivi e Piazza San Marco. L'APT indica 2,3 km e 37 m di dislivello in salita.",
   "Start at the bus station in Fiera: 2.3 km, gently up and down, just over half an hour. Keep your dog on a short lead (1.5 m at most) in the streets. Fountains in both villages; go early or late in summer.": "Parti dalla stazione delle autocorriere di Fiera: 2,3 km, con lievi saliscendi, poco più di mezz'ora. Tieni il cane al guinzaglio corto (al massimo 1,5 m) per le strade. Fontane in entrambi i paesi; d'estate vai presto o tardi.",
   "Mostly tarmac in the village streets, open to cars": "Per lo più asfalto nelle strade del paese, aperte al traffico",

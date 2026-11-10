@@ -1,0 +1,16 @@
+// unterengadin-s-charl-alp-sesvenna-return in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "up a quiet side valley to the alp": "su per una tranquilla valle laterale fino all'alpe",
+  "A gentle walk from the summer village of S-charl up a quiet side valley to Alp Sesvenna, and back the same way. The board lists 5.2 km, 288 m up and down, 1 h 45.": "Una passeggiata tranquilla dal villaggio estivo di S-charl su per una quieta valle laterale fino all'Alp Sesvenna, e ritorno per la stessa strada. La scheda ufficiale indica 5,2 km, 288 m di salita e di discesa, 1 h 45.",
+  "Take the PostAuto from Scuol to S-charl and walk 5.2 km there and back to Alp Sesvenna, 288 m up and down, about an hour and three quarters. Drinking water at the fountains in S-charl, at the start and end. Food in S-charl.": "Prendi l’AutoPostale da Scuol a S-charl e cammina per 5,2 km andata e ritorno fino all'Alp Sesvenna, 288 m di salita e di discesa, circa un'ora e tre quarti. Acqua potabile alle fontane di S-charl, alla partenza e all'arrivo. Da mangiare a S-charl.",
+  "Cows graze around Alp Sesvenna in summer: lead short and go round the herd": "D'estate le mucche pascolano attorno all'Alp Sesvenna: guinzaglio corto e aggira la mandria",
+  "At 1,800–2,100 m the weather turns fast: bring a layer for you and your dog": "A 1.800–2.100 m il tempo cambia in fretta: porta uno strato in più per te e per il cane",
+  "The alp road is used by farm vehicles and bikes: keep your dog close": "La strada d'alpe è percorsa da mezzi agricoli e biciclette: tieni il cane vicino",
+  "Alp road": "Strada d'alpe",
+  "The S-charl PostAuto stop, the board’s start": "La fermata AutoPostale di S-charl, punto di partenza della scheda ufficiale",
+  "A gravel alp road climbing a green valley between stone pines towards bare mountains": "Una strada d'alpe sterrata che sale in una valle verde tra i pini cembri verso montagne spoglie",
+  "Over half runs under the mapped stone-pine forest.": "Più di metà passa sotto il bosco mappato di pino cembro.",
+  "Take the PostAuto from Scuol to S-charl, about 25 minutes, and start at the S-charl stop, the board’s start.": "Prendi l’AutoPostale da Scuol a S-charl, circa 25 minuti, e parti dalla fermata di S-charl, punto di partenza della scheda ufficiale.",
+  "From the stop walk through the summer village of S-charl, past its fountains and the Chasa Sesvenna guest house. Follow the signs to Alp Sesvenna up the valley on the alp road, climbing gently through open meadows and stone-pine forest, to the alp buildings of Alp Sesvenna at about km 2.6. Turn round there and walk back the same way to S-charl.": "Dalla fermata attraversa il villaggio estivo di S-charl, passando dalle sue fontane e dalla pensione Chasa Sesvenna. Segui i cartelli per l'Alp Sesvenna su per la valle sulla strada d'alpe, salendo dolcemente tra prati aperti e bosco di pino cembro, fino agli edifici dell'Alp Sesvenna a circa km 2,6. Lì torna indietro per la stessa strada fino a S-charl.",
+  "Key turns: in S-charl follow the signs to Alp Sesvenna; at Alp Sesvenna turn round and come back the same way.": "Svolte principali: a S-charl segui i cartelli per l'Alp Sesvenna; all'Alp Sesvenna torna indietro per la stessa strada."
+});

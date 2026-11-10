@@ -1900,7 +1900,7 @@
         const routeReturn = window.ORMARouteReturn;
         const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
         const back = shown !== t;
-        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : `${shown.distance} km`) : null, shown.elevation != null ? `${shown.elevation} m climb` : null, shown.hours ? `${back ? '≈ ' : ''}${shown.hours} h` : null, t.area]
+        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : `${shown.distance} km`) : null, shown.elevation != null ? bt('card.climb', '{m} m climb', { m: shown.elevation }) : null, shown.hours ? `${back ? '≈ ' : ''}${shown.hours} h` : null, t.area]
           .filter(Boolean).join(' · ');
         const verdict = matchVerdict(t);
         const tier = verdict.label;

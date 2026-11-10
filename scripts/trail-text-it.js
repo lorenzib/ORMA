@@ -32,7 +32,7 @@ const OUT_DIR = path.join(ROOT, 'data', 'trail-text-it');
 // audit's route sentence, which a page shows as the walk's directions when it
 // has no trail numbers and no structured guidance (see shownAuditDirections).
 const FIELDS = [
-  'desc', 'tips', 'surfaceHazards[]', 'terrainType', 'startPoint.label', 'imageAlt',
+  'nameGloss', 'desc', 'tips', 'surfaceHazards[]', 'terrainType', 'startPoint.label', 'imageAlt',
   'licensedPhotos[].alt', 'liftAccess.notes', 'shadeDescription',
   'routeNumberGuidance.start', 'routeNumberGuidance.sequence', 'routeNumberGuidance.switches',
   'routeNumberGuidance.status', 'routeNumberGuidance.steps[].text', 'decisionPoints[].instruction',
