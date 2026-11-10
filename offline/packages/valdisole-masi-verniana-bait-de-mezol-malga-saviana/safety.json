@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-masi-verniana-bait-de-mezol-malga-saviana",
+  "generatedAt": "2026-11-10T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 14.8,
+    "ascentM": 837,
+    "highestPointM": 1951,
+    "expectedDuration": "5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 67
+  },
+  "trailhead": {
+    "lat": 46.279691,
+    "lng": 10.643932,
+    "label": "The car park by Forte Strino, beside the SS42, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.2909319,
+      "lng": 10.6532234,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2913631,
+      "lng": 10.6573594,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2969948,
+      "lng": 10.6816536,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.2869349,
+      "lng": 10.6632262,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The car park is beside the busy SS42: keep your dog on a short lead there.",
+    "A long day: 14.8 km and 837 m up, graded difficult by the board for its length.",
+    "Forest roads open to farm and forestry vehicles: keep your dog close if one comes.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-10"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-10",
+      "licence": "ODbL"
+    }
+  ]
+}
