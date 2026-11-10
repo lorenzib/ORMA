@@ -308,6 +308,42 @@ html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn.on small{color:#C9D3C6;
 /* Record: Plan a route sits beside Start walk until a walk begins. */
 html.orma-app .wr-plan:not([hidden]){display:flex;align-items:center;justify-content:center;text-decoration:none;}
 
+/* Walk finished (app-walk-done.js): one short card over the journal page,
+   for both the Record tab and a trail's hike mode. The journal's own photo
+   sheet waits hidden underneath until "Add a photo" uncovers it. */
+html.orma-app body.app-walk-done-open{overflow:hidden;}
+html.orma-app body.app-walk-done-open #jnAfterOverlay{display:none !important;}
+.app-walk-done{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;background:#F5F2E8;color:#2E4034;font-family:'Inter',-apple-system,sans-serif;}
+.app-walk-done-body{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(18px + env(safe-area-inset-top,0px)) 20px 12px;}
+.app-walk-done-kicker{margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#59695D;}
+.app-walk-done .app-walk-done-title{margin:0 0 4px;font:700 28px/1.15 'Bricolage Grotesque',sans-serif;color:#2E4034;}
+.app-walk-done .app-walk-done-title:focus,.app-walk-done .app-walk-done-title:focus-visible{outline:none !important;box-shadow:none !important;}
+.app-walk-done-sub{margin:0 0 14px;font-size:14.5px;line-height:1.4;color:#59695D;}
+.app-walk-done-map{height:170px;margin:0 0 14px;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,#DCE6D5,#C9D8C2 60%,#B9CBB0);}
+.app-walk-done-map svg{display:block;width:100%;height:100%;}
+.app-walk-done-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 18px;}
+.app-walk-done-stats div{padding:10px 6px;border:1px solid #DEDDD0;border-radius:14px;background:#FFFFFF;text-align:center;}
+.app-walk-done-stats b{display:block;font:700 19px 'Bricolage Grotesque',sans-serif;color:#2E4034;}
+.app-walk-done-stats span{font-size:12px;color:#59695D;}
+.app-walk-done-question{margin:0 0 10px;font-size:16px;font-weight:600;}
+.app-walk-done-answers{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px;}
+.app-walk-done-answer{flex:1 1 28%;min-height:44px;padding:8px 10px;border:1px solid #DEDDD0;border-radius:999px;background:#FFFFFF;color:#2E4034;font:600 14.5px 'Inter',-apple-system,sans-serif;}
+.app-walk-done-answer.is-on{border-color:#2E4034;background:#2E4034;color:#FFFFFF;}
+.app-walk-done-private{margin:0 0 16px;font-size:12.5px;color:#59695D;}
+.app-walk-done-details{margin:0 0 16px;}
+.app-walk-done-q{display:block;margin:12px 0 6px;font-size:14px;font-weight:600;}
+.app-walk-done-q span,.app-walk-done-hazards legend span{font-weight:400;color:#59695D;}
+.app-walk-done-select{display:block;width:100%;min-height:44px;padding:10px 12px;border:1px solid #DEDDD0;border-radius:12px;background:#FFFFFF;color:#2E4034;font:500 15px 'Inter',-apple-system,sans-serif;}
+.app-walk-done-check{display:flex;gap:8px;align-items:center;margin:14px 0 0;font-size:14px;}
+.app-walk-done-hazards{margin:14px 0 0;padding:0;border:0;}
+.app-walk-done-hazards legend{margin:0 0 6px;font-size:14px;font-weight:600;}
+.app-walk-done-hazards label{display:inline-flex;gap:6px;align-items:center;margin:0 14px 8px 0;font-size:14px;}
+.app-walk-done-photo{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:10px 12px;border:1.5px dashed #B8BBA8;border-radius:14px;background:transparent;color:#2E4034;font:600 15px 'Inter',-apple-system,sans-serif;text-align:left;}
+.app-walk-done-photo span{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:#E6E2D3;font-size:18px;}
+.app-walk-done-status{min-height:1em;margin:10px 0 0;font-size:13px;color:#A23B1E;}
+.app-walk-done-foot{flex:0 0 auto;display:flex;gap:10px;padding:12px 20px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid #DEDDD0;background:#F5F2E8;}
+.app-walk-done-btn{flex:1;min-height:50px;padding:12px;border:1px solid #DEDDD0;border-radius:14px;background:#FFFFFF;color:#2E4034;font:600 15px 'Inter',-apple-system,sans-serif;}
+.app-walk-done-btn.is-main{flex:1.6;border-color:#2E4034;background:#2E4034;color:#FFFFFF;font-weight:700;}
 /* The first launch (app-welcome.js): one dark screen over Explore and the
    tab bar, then a light "Tell us about your dog" screen. Shown once. */
 html.orma-app body.app-welcome-open{overflow:hidden;}
