@@ -10356,6 +10356,9 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     // Same for photos kept in Storage: only sent when there are some.
     var photoIds = photoIdsOf(entry, photo ? 1 : 0);
     if(photoIds.length) remote.photoIds = photoIds;
+    // SOCIAL-05: only a walk hike mode proved by GPS carries the mark that
+    // earns a passport stamp; any other walk leaves the key out.
+    if(entry.proof === 'gps') remote.proof = 'gps';
     return remote;
   }
 
@@ -10424,6 +10427,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
       tale: taleOf(remote),
       walkedWith: walkedWithOf(remote),
       photoIds: photoIdsOf(remote, typeof remote.photo === 'string' ? 1 : 0),
+      proof: remote.proof === 'gps' ? 'gps' : null,
       updatedAt: finite(remote.updatedAt) || 0,
     };
   }
@@ -12945,6 +12949,9 @@ function initHikeMode(map, trail, options){
         note: '',
         photos: photos.length,
         shareToTrail: photos.length > 0 && shareOn,
+        // SOCIAL-05: a walk the GPS proved earns a passport stamp. The mark
+        // is only ever written here, from the same check that counts it.
+        ...(proof && proof.proof === 'gps' ? { proof: 'gps' } : {}),
       };
     }
     function writeJournalEntry(user, entry){
