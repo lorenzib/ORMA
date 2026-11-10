@@ -94,7 +94,11 @@ function applyLiftSeasons(trails, artifact){
         id: liftId, name: lift.name, required,
         periods: lift.periods.map(({ from, to }) => ({ from, to })),
         shutMonths: shutMonths(lift),
-        ...(lift.knownMonths && lift.knownMonths.length < 12 ? { summerOnly: true } : {}),
+        // Only one season's dates are out: say which, so the page does not
+        // promise the other season's dates are merely late.
+        ...(lift.knownMonths && lift.knownMonths.length < 12
+          ? (lift.knownMonths.every(m => m >= 11 || m <= 4) ? { winterOnly: true } : { summerOnly: true })
+          : {}),
         datesFor: lift.datesFor, operator: lift.operator || '', url: lift.url, accessedAt: lift.accessedAt,
       };
       if(lift.valleyM && lift.topM && lift.topM > lift.valleyM) record.climbM = Math.round((lift.topM - lift.valleyM) / 10) * 10;

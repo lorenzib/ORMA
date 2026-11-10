@@ -1616,6 +1616,7 @@ window.ORMA_PHRASES_IT = {
   "The {lift} runs {runs} ({year} dates).": "{lift}: in funzione {runs} (date {year}).",
   "The walk needs it; when it is shut, the {m} m it covers are on foot, if a path allows.": "La passeggiata ne ha bisogno: quando è ferma, i {m} m di dislivello che copre vanno fatti a piedi, se c’è un sentiero.",
   "The {lift} runs {runs} ({year} dates; winter dates not yet published).": "{lift}: in funzione {runs} (date {year}; quelle invernali non ancora pubblicate).",
+  "The {lift} runs {runs} ({year} dates; summer dates not yet published).": "{lift}: in funzione {runs} (date {year}; quelle estive non ancora pubblicate).",
   "The walk needs it.": "La passeggiata ne ha bisogno.",
   "The walk does not need it.": "La passeggiata non ne ha bisogno.",
   "Lift not running": "Impianto fermo",
