@@ -16280,7 +16280,7 @@
       shadeDescription: 'Mostly open, on the sunny side of the valley through villages and meadows; short wooded stretches near Ortisei and St. Christina.',
       terrainDescription: 'The old railway grade, wide and gentle, climbing steadily from 1,141 m to 1,595 m; mostly asphalt and quiet streets, with a lit former railway tunnel at St. Christina (open 07:00–23:00).',
       waterDescription: 'Many municipal drinking fountains from Ortisei onwards (none in the first 2 km); several are summer-only. Dogs may not bathe in public fountains, so bring a bowl.',
-      dogNotes: 'A lead of at most 1.5 m on the whole walk and a muzzle carried: the rule in St. Ulrich, St. Christina and Wolkenstein, and the national rule in the Kastelruth stretch at the start. Keep dogs off hay meadows in the growing season and out of public fountains. On the bus back dogs need a lead, a muzzle and a ticket.',
+      dogNotes: 'A lead of at most 1.5 m on the whole walk and a muzzle carried: the rule in St. Ulrich, St. Christina and Wolkenstein, and the national rule in the Kastelruth stretch at the start. Keep dogs off the farmed meadows (all year in St. Ulrich, in the growing season in St. Christina and Wolkenstein) and out of public fountains. On the bus back dogs need a lead, a muzzle and a ticket.',
       tips: 'A one-way walk: start in Runggaditsch at the western edge of Ortisei and finish in Plan (Selva), then ride bus 350 or 352 back down the valley; your dog needs a lead, a muzzle and a ticket. Keep it on a lead of 1.5 m or less the whole way and off the meadows. The route is sunny and mostly paved, so start early in summer; the St. Christina tunnel is open 07:00–23:00.',
       sourceLinks: [
         { label: 'Val Gardena, Grödner Bahnweg – La Ferata de Gherdëina', url: 'https://www.valgardena.it/de/outdoor/base/outdoor/groedner-bahnweg-la-ferata-de-gherdeeina/810054758/' },
@@ -39599,8 +39599,10 @@
       // from Lajen to St. Ulrich in Gröden (the importer said St. Ulrich only).
       // Lajen's dog regulation (Gemeinderat 15/2010) requires a lead of at most
       // 1.5 m and a muzzle carried (Art. 4) and keeps dogs off farmed meadows in
-      // the growing season (Art. 8); St. Ulrich (from about km 9.4) publishes no
-      // dog rule, so the national dog ordinance applies there. No biotope,
+      // the growing season (Art. 8); St. Ulrich (from about km 9.4) has its own
+      // dog regulation (Gemeinderat 28/2019: a lead of at most 1.5 m and a muzzle
+      // carried, Art. 4; dogs kept off farmed land all year, Art. 6; corrected
+      // 9 Nov 2026 -- this record said St. Ulrich published none). No biotope,
       // Natura 2000 site or park on the line. The stored line is turned to run
       // the board's way (data/verified-trail-overrides.json).
       area: 'Lajen – St. Ulrich in Gröden / Laion – Ortisei',
@@ -39626,7 +39628,7 @@
         sources: [
           'Tourismusverein Lajen, Poststeig (Südtirol.info)',
           'Gemeinde Lajen, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 15/2010), Art. 4 and 8',
-          'Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (St. Ulrich publishes no dog rule)',
+          'Gemeinde St. Ulrich in Gröden, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat 28/2019), Art. 4 and 6',
           'Province landscape-plan layers: biotopes, Natura 2000 and parks (none on the line)',
           'OpenStreetMap relation 9450411, road, surface, woodland and farm data'
         ],
@@ -39640,7 +39642,7 @@
       shadeDescription: 'About half is wooded, mostly between Tanirz and St. Peter and above Pontives; the fields round Lajen and Tschöfas are open and sunny.',
       terrainDescription: 'A long, easy-going historic walk at 1,090–1,290 m on the sunny slope between the Eisack valley and Gröden, through meadows, farms and wood with views of the Langkofel, ending in St. Ulrich.',
       waterDescription: 'Plenty of fountains: in Lajen at the start, at Tschöfas, near St. Peter (km 5.0) and several in Außerwinkel and St. Ulrich (km 10.2–11.5); some are seasonal. Inns in Tschöfas, St. Peter and at the Pedrutsch inn.',
-      dogNotes: 'Lajen requires a lead of at most 1.5 m on all public land and a muzzle carried, and dogs must stay off farmed meadows and fields during the growing season; the path crosses many of them. St. Ulrich (the last 2.5 km) publishes no dog rule, so the Italian national rule applies there (lead of at most 1.5 m, muzzle carried). The route passes many working farms, so keep your dog close.',
+      dogNotes: 'Lajen requires a lead of at most 1.5 m on all public land and a muzzle carried, and dogs must stay off farmed meadows and fields during the growing season; the path crosses many of them. St. Ulrich (the last 2.5 km) has its own dog regulation: a lead of at most 1.5 m and a muzzle carried, and dogs kept off farmed land all year. The route passes many working farms, so keep your dog close.',
       tips: 'Start in Lajen and follow the “P” signs to St. Ulrich: 11.9 km, about 500 m up and 390 m down, three and a half hours one way; take the bus back. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep to the path through the meadows. Take care on the short road stretches near Felsonnes and on the steep, rocky slope above Pontives. Water is easy to find along the way.',
       sourceLinks: [
         { label: 'Südtirol.info, Poststeig (Tourismusverein Lajen)', url: 'https://www.suedtirol.info/de/de/erlebnisse-und-events/plp-erlebnisse/erlebnisse-suedtirol/pdp-erlebnisse.smgpoiaf8f3c9ca4a78473c6937adbab75770a.poststeig.albions' },
@@ -48799,7 +48801,7 @@
       shadeDescription: 'About a quarter runs through forest; the upper alp and the ridge to the cross are open.',
       terrainDescription: 'A steady climb at 1,720–2,140 m from Cristauta above Santa Cristina through larch forest to the Sëurasas alp, one of the best viewpoints in Val Gardena, on natural mountain paths.',
       waterDescription: 'One drinking fountain at km 0.3; none higher up, so bring water for your dog.',
-      dogNotes: 'Santa Cristina and Ortisei each require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows in the growing season, so stay on the path across the alp.',
+      dogNotes: 'Santa Cristina and Ortisei each require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows (Santa Cristina in the growing season, Ortisei all year), so stay on the path across the alp.',
       tips: 'Start at the Cristauta car park above Santa Cristina: 6.6 km and about 450 m of climbing there and back, three hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water only near the start: carry enough for the climb and the open ridge.',
       sourceLinks: [
         { label: 'Val Gardena, Escursione al terrazzo panoramico Sëurasas', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-terrazzo-panoramico-seeurasas/67905450/' },
@@ -52923,7 +52925,7 @@
       shadeDescription: 'About a third runs through forest below the Sëurasas; the upper pastures are open.',
       terrainDescription: 'A long climb at 1,750–2,500 m from Cristauta above Santa Cristina through forest to the Sëurasas, then over the open pastures by Monte Pic and the Passo Cuca to the Seceda.',
       waterDescription: 'One drinking fountain at about km 4.3; huts at the Sëurasas, at the Curona hut and on the Mastlé pastures.',
-      dogNotes: 'Santa Cristina and Ortisei each require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows in the growing season, so stay on the path across the pastures. Cattle graze the alp in summer; dogs ride the cable car and gondola down on a lead and muzzled.',
+      dogNotes: 'Santa Cristina and Ortisei each require a lead of at most 1.5 m and a muzzle carried, and keep dogs off farmed meadows (Santa Cristina in the growing season, Ortisei all year), so stay on the path across the pastures. Cattle graze the alp in summer; dogs ride the cable car and gondola down on a lead and muzzled.',
       tips: 'Start at the Cristauta car park above Santa Cristina: 6.3 km and about 860 m of climbing one way to the Seceda, about three hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Carry water for the climb, keep back from the edge at the top, and ride the closed Seceda cable car or Col Raiser gondola down (dogs muzzled).',
       sourceLinks: [
         { label: 'Val Gardena, Seceda - Ridge Line da S. Cristina per Cristauta - Sëurasas', url: 'https://www.valgardena.it/it/outdoor/base/outdoor/seceda-ridge-line-da-s-cristina-per-cristauta-seeurasas/810055443/' },

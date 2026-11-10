@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-10T10:52:27.414Z",
+  "generatedAt": "2026-11-10T17:57:48.816Z",
   "regions": {
     "dolomites": {
       "trailCount": 362,
-      "trails": "data/regions/dolomites-trails.js?v=a4d1d625db89",
+      "trails": "data/regions/dolomites-trails.js?v=8d5de62b2fb2",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=f18c9795d312",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -22,7 +22,7 @@
         "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=6b01664c4a7e",
         "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=8cb1a277a4c5",
         "sentiero-hans-e-paula-steger": "data/trail-details/sentiero-hans-e-paula-steger.js?v=95937c10f9c6",
-        "sentiero-del-trenino": "data/trail-details/sentiero-del-trenino.js?v=5bd7413e1b31",
+        "sentiero-del-trenino": "data/trail-details/sentiero-del-trenino.js?v=36703588a085",
         "giro-del-sasso-lungo": "data/trail-details/giro-del-sasso-lungo.js?v=6a4976287e06",
         "osm-123162": "data/trail-details/osm-123162.js?v=731dfaf38214",
         "osm-1116675": "data/trail-details/osm-1116675.js?v=fc363f24c95c",
@@ -134,7 +134,7 @@
         "osm-9648632": "data/trail-details/osm-9648632.js?v=c3c0c92bfbd2",
         "osm-11768853": "data/trail-details/osm-11768853.js?v=e757c9e6f858",
         "osm-7567918": "data/trail-details/osm-7567918.js?v=20f8f9a6ec2d",
-        "osm-9450411": "data/trail-details/osm-9450411.js?v=3fa8e4df561d",
+        "osm-9450411": "data/trail-details/osm-9450411.js?v=0b7cbaef320b",
         "osm-6601608": "data/trail-details/osm-6601608.js?v=b4b6a877725f",
         "osm-11791915": "data/trail-details/osm-11791915.js?v=7e6a1199fd9a",
         "osm-3707731": "data/trail-details/osm-3707731.js?v=4963eed99009",
@@ -239,7 +239,7 @@
         "rendena-ciclabile-javre-dare-vigo-pelugo": "data/trail-details/rendena-ciclabile-javre-dare-vigo-pelugo.js?v=cc77be56fb29",
         "giudicarie-san-vigilio-senter-dei-cavai": "data/trail-details/giudicarie-san-vigilio-senter-dei-cavai.js?v=4b2a73aea0ff",
         "valgardena-escursione-nella-vallunga": "data/trail-details/valgardena-escursione-nella-vallunga.js?v=8a915b9f0e34",
-        "valgardena-escursione-al-terrazzo-panoramico-seeurasas": "data/trail-details/valgardena-escursione-al-terrazzo-panoramico-seeurasas.js?v=f2010a976afb",
+        "valgardena-escursione-al-terrazzo-panoramico-seeurasas": "data/trail-details/valgardena-escursione-al-terrazzo-panoramico-seeurasas.js?v=425a5973c52f",
         "valgardena-percorso-dei-masi-tradizionali": "data/trail-details/valgardena-percorso-dei-masi-tradizionali.js?v=d283b1f1275e",
         "valgardena-raida-dl-luech-giro-del-paese": "data/trail-details/valgardena-raida-dl-luech-giro-del-paese.js?v=9dccf72cb1ed",
         "trecime-innichen-waldkapelle-sexten": "data/trail-details/trecime-innichen-waldkapelle-sexten.js?v=c56115c8225e",
@@ -273,7 +273,7 @@
         "valgardena-seceda-da-col-raiser": "data/trail-details/valgardena-seceda-da-col-raiser.js?v=e849fa5c3a27",
         "valgardena-seceda-dal-rifugio-firenze": "data/trail-details/valgardena-seceda-dal-rifugio-firenze.js?v=e4e1895b7082",
         "valgardena-escursione-ortisei-passo-sella": "data/trail-details/valgardena-escursione-ortisei-passo-sella.js?v=8932afd8900a",
-        "valgardena-seceda-da-cristauta-pic": "data/trail-details/valgardena-seceda-da-cristauta-pic.js?v=a06463edfbc4",
+        "valgardena-seceda-da-cristauta-pic": "data/trail-details/valgardena-seceda-da-cristauta-pic.js?v=d715bc7517b5",
         "trecime-monte-casella-di-fuori": "data/trail-details/trecime-monte-casella-di-fuori.js?v=5a4c5e79afba",
         "trecime-rotwandwiesen-moos": "data/trail-details/trecime-rotwandwiesen-moos.js?v=2249c92d4bc7",
         "trecime-helmjet-waldruhe-sexten": "data/trail-details/trecime-helmjet-waldruhe-sexten.js?v=11ea751ec8c7",

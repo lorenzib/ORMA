@@ -4,7 +4,7 @@
   "name": "Giro del Sasso Lungo",
   "version": "2026.11.06-beta.1",
   "generatedAt": "2026-11-06T15:20:07.901Z",
-  "scoringVersion": "1.7.0",
+  "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 845976,
   "packageBudgetBytes": 5242880,

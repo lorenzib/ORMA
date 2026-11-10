@@ -133,11 +133,14 @@ The calculation starts at 100 and never returns less than 5.
 | Baseline moderate heat | −10 heat-sensitive; −4 otherwise |
 | Shade below 20% | −10 |
 | Shade from 20% through 39% | −5 |
-| Surface hazards | −8 each, maximum −20; ×1.5 and maximum −30 for fragile dogs |
+| Surface hazards (recorded route cautions) | −4 each, maximum −10; ×1.5 and maximum −15 for fragile dogs |
 | Current high heat | −25 heat-sensitive; −10 otherwise |
 | Current moderate heat | −10 heat-sensitive; −4 otherwise |
 | Seasonal dog restrictions | score capped at 84 |
 | Critical unknown evidence | score capped at 80 |
+
+Baseline heat and shade are one danger, so only the larger of the two is
+charged; the other is still listed, at no cost (from version 1.8.0).
 
 Critical evidence is route, exposure, surface hazards, and dog access.
 
