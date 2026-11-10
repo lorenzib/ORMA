@@ -1,5 +1,6 @@
 // valdisole-lago-dei-caprioli-malga-alta-di-fazzon in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the climb from the lake to the high Fazzon pasture": "la salita dal lago all'alpeggio alto di Fazzon",
   "A short climb through the woods from the Lago dei Caprioli to the farm at Malga Alta di Fazzon and back, with a view over the upper Val di Peio. The APT lists 3.1 km and 237 m of ascent.": "Una breve salita nel bosco dal Lago dei Caprioli all'azienda agricola di Malga Alta di Fazzon e ritorno, con vista sull'alta Val di Peio. L'APT indica 3,1 km e 237 m di dislivello in salita.",
   "From the lake to Malga Alta and back: 3.1 km and about 240 m of climbing, an hour and a quarter. Park by Malga Bassa, beside the lake. Keep your dog on a lead all the way, and on a short one around the farm animals at the malga.": "Dal lago a Malga Alta e ritorno: 3,1 km e circa 240 m di salita, un'ora e un quarto. Parcheggia presso Malga Bassa, accanto al lago. Tieni il cane al guinzaglio per tutto il percorso, e al guinzaglio corto vicino agli animali della malga.",
   "Farm animals at Malga Alta di Fazzon: cows, goats, sheep and pigs in summer": "Animali alla Malga Alta di Fazzon: mucche, capre, pecore e maiali in estate",

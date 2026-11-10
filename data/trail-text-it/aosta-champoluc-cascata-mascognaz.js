@@ -1,5 +1,6 @@
 // aosta-champoluc-cascata-mascognaz in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the short climb from Champoluc to the Mascognaz waterfall": "la breve salita da Champoluc alla cascata di Mascognaz",
   "A short, steady climb at 1,560–1,810 m from the centre of Champoluc up a forest path to the Mascognaz waterfall. The regional path register lists 1.6 km and 255 m of ascent, one way.": "Una breve salita costante tra 1.560 e 1.810 m dal centro di Champoluc, per un sentiero nel bosco, fino alla cascata di Mascognaz. Il catasto regionale dei sentieri indica 1,6 km e 255 m di dislivello in salita, solo andata.",
   "Start in the centre of Champoluc: 1.6 km and about 250 m of climbing one way, under an hour to the waterfall, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle.": "Partenza dal centro di Champoluc: 1,6 km e circa 250 m di salita solo andata, meno di un'ora fino alla cascata, poi ritorno per la stessa via. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito.",
   "About 350 m on village streets in Champoluc, with traffic": "Circa 350 m sulle vie del paese a Champoluc, con traffico",

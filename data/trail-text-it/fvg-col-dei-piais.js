@@ -1,5 +1,6 @@
 // fvg-col-dei-piais in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the loop from Claut up the Col dei Piais": "l'anello da Claut sul Col dei Piais",
   "A short loop from Claut up the wooded Col dei Piais to the little chapel of San Gualberto, with views over the village and the Friulian Dolomites. PromoTurismoFVG lists 4.9 km and 285 m of ascent.": "Un breve anello da Claut su per il boscoso Col dei Piais fino alla chiesetta di San Gualberto, con vista sul paese e sulle Dolomiti Friulane. PromoTurismoFVG indica 4,9 km e 285 m di dislivello in salita.",
   "Start at the Conca Verde in Claut: 4.9 km and about 285 m of climbing, under two hours. Keep your dog on a lead of at most 1.5 m in the village and carry a muzzle. Bring water for the climb.": "Parti dalla Conca Verde a Claut: 4,9 km e circa 285 m di salita, meno di due ore. Tieni il cane al guinzaglio di al massimo 1,5 m in paese e porta la museruola. Porta acqua per la salita.",
   "Tarred village roads at the start and end": "Strade asfaltate del paese alla partenza e all'arrivo",

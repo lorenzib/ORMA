@@ -1,5 +1,6 @@
 // fassa-malga-aloch in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the farm walk to Malga Aloch": "la passeggiata agricola fino a Malga Aloch",
   "A short walk from Pozza to the Masc Aloch farm and Malga Aloch, with its sunny terrace facing the Rosengarten. The APT lists 2 km and 58 m of ascent.": "Una breve passeggiata da Pozza al maso Masc Aloch e a Malga Aloch, con la sua terrazza soleggiata affacciata sul Catinaccio. L'APT indica 2 km e 58 m di dislivello in salita.",
   "Start in Piaz de Comun in Pozza: 2 km, about 60 m of climbing, half an hour. Keep your dog on a short lead (1.5 m at most) past the farm animals and carry a muzzle. Fountains in Pozza; Malga Aloch serves food on its terrace.": "Parti da Piaz de Comun a Pozza: 2 km, circa 60 m di salita, mezz'ora. Tieni il cane al guinzaglio corto (al massimo 1,5 m) vicino agli animali della fattoria e porta la museruola. Fontane a Pozza; Malga Aloch serve da mangiare sulla sua terrazza.",
   "Gravel tracks shared with farm vehicles near Masc Aloch": "Strade sterrate condivise con i mezzi agricoli vicino a Masc Aloch",

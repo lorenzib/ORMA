@@ -24,6 +24,7 @@
 // The three figures an authority publishes for a walk, each as a number in a
 // stated unit. A figure ORMA measured from its own line, or a time it
 // estimated from that, is not one of them -- however close it may be.
+const {seasonalLimitHolds}=require('../../scripts/seasonal-seal');
 const OFFICIAL_FIGURES=Object.freeze({
   'official-distance':{unit:'km',label:'distance'},
   'official-ascent':{unit:'m',label:'climb'},
@@ -293,6 +294,15 @@ function researchMethodHolds(item,trail,options={}){
     if(!Number.isFinite(off)&&!place){
       hold('photo-place-unconfirmed','the photograph carries neither a geotag nor a place label to check against the walk');
     }
+  }
+
+  // 7. A hard seasonal limit is sourced (owner's decision of 10 November
+  // 2026): a walk that needs a lift has the lift's published running dates
+  // (scripts/seasonal-seal.js). A walk with no season record yet is not held
+  // here -- candidates get theirs when they reach the catalogue, where the
+  // validator checks it.
+  for(const limit of seasonalLimitHolds(trail).filter(limit=>limit.id==='lift-dates-unpublished')){
+    hold(limit.id,limit.sentence);
   }
 
   return {holds,detail};
