@@ -23,6 +23,11 @@ const WINTER_USE_KINDS = ['downhill', 'sled', 'nordic'];
 // Dolomites walks, those under half a kilometre almost all cut across a run.
 const WINTER_USE_MIN_KM = 0.5;
 
+// A board's winter tour gets its own record, id winter-<place>-<slug>, beside
+// the summer walk of the same place. The season record says so, and
+// trail-season-words.js offers it only in winter.
+const WINTER_WALK_PREFIX = 'winter-';
+
 // Snow by the walk's highest point. A rule of thumb for the Dolomites, not a
 // forecast, and the page says so: it is what the line's altitude suggests when
 // nobody has published the walk's season.
@@ -100,6 +105,7 @@ function applyTrailSeasons(trails, artifact){
     const season = entries[trail.id];
     if(!season) return trail;
     const record = {};
+    if(String(trail.id).startsWith(WINTER_WALK_PREFIX)) record.winterWalk = true;
     if(season.highPoint) record.highPoint = season.highPoint;
     if(season.recommended) record.recommended = season.recommended;
     if(season.snow) record.snow = season.snow;
@@ -115,6 +121,7 @@ module.exports = {
   MONTHS,
   WINTER_USE_KINDS,
   WINTER_USE_MIN_KM,
+  WINTER_WALK_PREFIX,
   SNOW_BANDS,
   snowEstimate,
   parseBoardMonths,

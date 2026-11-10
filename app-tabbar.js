@@ -26,7 +26,10 @@
 
   const SAVED = ['saved.html', 'my-trails.html'];
   const YOU = ['account.html', 'settings.html', 'notifications.html', 'journal.html', 'onboarding.html'];
-  const active = SAVED.includes(file) ? 'saved' : YOU.includes(file) ? 'you' : 'explore';
+  // Recording a walk and planning one on the map both live under Record.
+  const RECORD = ['walk.html', 'route-planner.html'];
+  const active = SAVED.includes(file) ? 'saved' : YOU.includes(file) ? 'you'
+    : RECORD.includes(file) ? 'record' : 'explore';
 
   const tabs = [
     { key:'explore', href:'/index.html', text:label('appTabs.explore', 'Explore'),

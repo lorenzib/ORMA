@@ -11,7 +11,7 @@ function run(fixture){
 
 describe('SCORE-01 canonical recommendation contract', () => {
   test('the fixture set and calculator use the same immutable version', () => {
-    expect(scoring.VERSION).toBe('1.7.0');
+    expect(scoring.VERSION).toBe('1.8.0');
     expect(fixtures.scoringVersion).toBe(scoring.VERSION);
   });
 
@@ -93,6 +93,38 @@ describe('SCORE-01 canonical recommendation contract', () => {
     const hotResult = run(hot);
     expect(coolResult.positiveReasons.map(entry => entry.code)).toContain('trail.heat.low');
     expect(hotResult.cautions.map(entry => entry.code)).toContain('conditions.heat.high');
+  });
+
+  // v1.8.0. Rundweg St. Magdalena, 3.2 km and 134 m, was "Good with care" at
+  // 66 for any dog: 4 for heat risk, 10 for shade, 20 for three route notes.
+  // Heat and shade are one danger; the notes are mostly things to know.
+  const flatWalk = {
+    metrics:{ distanceKm:3.2, ascentM:134 },
+    suitability:{ terrainRank:0, exposure:false, heatRisk:'moderate', shadePercent:10,
+      surfaceHazards:['Asphalt farm roads', 'Shared access roads', 'A short road crossing'],
+      dogAccess:{ status:'allowed' } },
+    verification:{ categories:Object.fromEntries(['route','water','heat','exposure','livestock','surfaceHazards','access'].map(key => [key, 'verified'])) },
+  };
+  const fitAdult = { fitness:'high', ageYears:4, weightKg:20 };
+
+  test('heat and shade are both said, but only the larger is charged', () => {
+    const result = scoring.calculateRecommendation({ trail:flatWalk, dog:fitAdult });
+    const heat = result.cautions.find(entry => entry.code === 'trail.heat.moderate');
+    const shade = result.cautions.find(entry => entry.code === 'trail.shade.very-low');
+    expect([heat.impact, shade.impact]).toEqual([0, -10]);
+    const sensitive = scoring.calculateRecommendation({ trail:flatWalk, dog:{ ...fitAdult, traits:{ heatSensitive:true } } });
+    expect(sensitive.cautions.find(entry => entry.code === 'trail.heat.moderate').impact).toBe(-10);
+    expect(sensitive.cautions.find(entry => entry.code === 'trail.shade.very-low').impact).toBe(0);
+  });
+
+  test('route cautions cost 4 each, to 10, and half again for a fragile dog', () => {
+    const cost = (hazards, dog) => scoring.calculateRecommendation({
+      trail:{ ...flatWalk, suitability:{ ...flatWalk.suitability, surfaceHazards:hazards } }, dog,
+    }).cautions.find(entry => entry.code === 'trail.surface-hazards.present').impact;
+    expect(cost(['Roots'], fitAdult)).toBe(-4);
+    expect(cost(['Roots', 'Scree', 'Road', 'Bikes'], fitAdult)).toBe(-10);
+    expect(cost(['Roots', 'Scree', 'Road', 'Bikes'], { ...fitAdult, ageYears:9 })).toBe(-15);
+    expect(scoring.calculateRecommendation({ trail:flatWalk, dog:fitAdult }).score).toBe(80);
   });
 
   test('dynamic explanations expose translation metadata without changing canonical messages', () => {

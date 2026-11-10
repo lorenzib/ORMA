@@ -53,8 +53,8 @@ describe('one vocabulary for one score', () => {
     };
     const bruna=engine.calculateRecommendation({trail,dog:{fitness:'moderate',ageYears:6,weightKg:30,traits:{heatSensitive:true}}});
     const luna=engine.calculateRecommendation({trail,dog:{fitness:'high',ageYears:3,weightKg:18}});
-    expect([bruna.score,bruna.category]).toEqual([71,'possible-with-cautions']);
-    expect([luna.score,luna.category]).toEqual([91,'strong-option']);
+    expect([bruna.score,bruna.category]).toEqual([76,'possible-with-cautions']);
+    expect([luna.score,luna.category]).toEqual([95,'strong-option']);
     expect(page.match(/<small>6 years, Labrador/g)).toHaveLength(1);
     expect(page.match(/<small>6 anni, labrador/g)).toHaveLength(1);
     // Each card, in both languages: its costs add up to its total, the total
