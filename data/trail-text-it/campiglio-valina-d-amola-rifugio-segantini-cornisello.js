@@ -1,5 +1,6 @@
 // campiglio-valina-d-amola-rifugio-segantini-cornisello in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the high loop from Valina d'Amola past the Segantini hut": "l'anello d'alta quota da Valina d'Amola passando per il rifugio Segantini",
   "A demanding high loop from Valina d’Amola up to the Rifugio Segantini and towards the Cornisello lakes, below the Presanella, in the Adamello Brenta Nature Park. The APT lists 9.4 km and 559 m of ascent.": "Un impegnativo anello in quota da Valina d’Amola fino al Rifugio Segantini e verso i laghi di Cornisello, sotto la Presanella, nel Parco Naturale Adamello Brenta. L'APT indica 9,4 km e 559 m di dislivello in salita.",
   "Start at the small car park at Valina d’Amola early, on a day of stable weather, as the APT advises: 9.4 km and about 560 m of climbing, five hours. Keep your dog on a lead, carry a muzzle and carry water.": "Parti presto dal piccolo parcheggio di Valina d’Amola, in una giornata di tempo stabile, come consiglia l'APT: 9,4 km e circa 560 m di salita, cinque ore. Tieni il cane al guinzaglio, porta la museruola al seguito e porta acqua.",
   "A steep, zigzagging ridge up to the Rifugio Segantini": "Una cresta ripida, a zig-zag, fino al Rifugio Segantini",

@@ -1,5 +1,6 @@
 // paganella-sette-passi-sette-ville in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the loop through the old hamlets of San Lorenzo in Banale": "l'anello tra le antiche frazioni di San Lorenzo in Banale",
   "A gentle loop through the old stone hamlets of San Lorenzo in Banale, past small churches and fountains below the Brenta Dolomites. The APT lists 3.8 km and 107 m of ascent.": "Un dolce anello tra le antiche frazioni in pietra di San Lorenzo in Banale, oltre chiesette e fontane sotto le Dolomiti di Brenta. L'APT indica 3,8 km e 107 m di dislivello in salita.",
   "Start in the upper part of San Lorenzo in Banale: 3.8 km and about 100 m of climbing, an hour and ten minutes. Keep your dog on a lead all the way. The old fountains in each hamlet are good for a drink.": "Parti dalla parte alta di San Lorenzo in Banale: 3,8 km e circa 100 m di dislivello in salita, un'ora e dieci minuti. Tieni il cane al guinzaglio per tutto il percorso. Le vecchie fontane di ogni frazione sono ottime per bere.",
   "Village lanes shared with cars": "Stradine di paese condivise con le auto",

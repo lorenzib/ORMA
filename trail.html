@@ -1307,7 +1307,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
         </div>
         <button id="addReportBtn" type="button" class="map-hazard-report-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3v18h2v-7h5l1 2h6V6h-5l-1-2H5z"/></svg>
-          Report a hazard
+          <span data-i18n="page.trailReport.reportAHazard">Report a hazard</span>
         </button>
         <span id="tdLivePill" class="td-live-pill" hidden data-i18n="page.trail.youAreHereLive"><span class="dot"></span>You are here · live</span>
         <div id="mapNearestDirectionsPanel" class="map-nearest-directions-panel" hidden>
@@ -1335,9 +1335,9 @@ body.trail-photo-viewer-open{overflow:hidden;}
         <div class="td2-elev-head"><span class="td2-kick" id="tdElevH" data-i18n="page.trail.elevation">Elevation</span><span class="td2-elev-status"><span class="td2-elev-live" id="tdElevLive" data-i18n="page.trail.awaitingPosition">Awaiting position</span><span class="r" id="tdElevRange"></span></span></div>
         <svg id="elevProf" viewBox="0 0 1000 170" preserveAspectRatio="none"></svg>
         <div class="td2-elev-figs" id="tdElevFigs" hidden>
-          <div><strong id="tdElevStart"></strong> start</div>
-          <div><strong id="tdElevHigh"></strong> high point</div>
-          <div><strong id="tdElevClimb"></strong> total climb</div>
+          <div><strong id="tdElevStart"></strong> <span data-i18n="page.trail.elevStart">start</span></div>
+          <div><strong id="tdElevHigh"></strong> <span data-i18n="page.trail.elevHigh">high point</span></div>
+          <div><strong id="tdElevClimb"></strong> <span data-i18n="page.trail.elevClimb">total climb</span></div>
         </div>
       </div>
     </div>
@@ -1563,6 +1563,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
     var pageTitle = document.getElementById('pageTitle');
     if(pageTitle) pageTitle.textContent = document.title;
     var facts = document.getElementById('trailFacts');
+    // A number as the reader writes it (Italian: 6,7 km). English unchanged.
+    function num(value){ var i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
     if(facts){
       var rows = [
         [trail.distance, ' km', window.t('trail.fact.distance')],
@@ -1574,7 +1576,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
         var item = document.createElement('span');
         item.className = 'f';
         var value = document.createElement('b');
-        value.textContent = row[0] + row[1];
+        value.textContent = num(row[0]) + row[1];
         var label = document.createElement('span');
         label.textContent = row[2];
         item.append(value, label);
@@ -1584,6 +1586,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20261110-2" defer></script>
+<script src="trail-app.bundle.js?v=20261110-4" defer></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 // paganella-giro-del-lago-di-molveno in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the walk round Molveno's lake": "il giro del lago di Molveno",
   "A loop round the Lago di Molveno below the Brenta Dolomites, past the Roman bridge and the Napoleonic forts, partly in the Adamello Brenta Nature Park. The APT lists 10.1 km and 232 m of ascent.": "Un anello intorno al Lago di Molveno sotto le Dolomiti di Brenta, oltre il ponte romano e i forti napoleonici, in parte nel Parco Naturale Adamello Brenta. L'APT indica 10,1 km e 232 m di dislivello in salita.",
   "Start at the Molveno campsite: 10.1 km and about 230 m of climbing, two and a quarter hours. Keep your dog on a lead all the way, cross the main road with care, and follow the signs at the beaches. The detour to the Napoleonic forts is short and worth it.": "Parti dal campeggio di Molveno: 10,1 km e circa 230 m di dislivello in salita, due ore e un quarto. Tieni il cane al guinzaglio per tutto il percorso, attraversa con attenzione la strada principale e rispetta i cartelli alle spiagge. La deviazione ai forti napoleonici è breve e ne vale la pena.",
   "One crossing of the main road on the east shore": "Un attraversamento della strada principale sulla sponda orientale",

@@ -1,5 +1,6 @@
 // trecime-carbonin-rifugio-vallandro in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the forest road from Schluderbach up to the Plätzwiese": "la strada forestale da Schluderbach fino alla Plätzwiese",
   "A climb from Schluderbach up the forest road on path 37 to the Dürrensteinhütte on the Plätzwiese. The board lists 6 km and 579 m of ascent, one way.": "Una salita da Schluderbach sulla strada forestale del sentiero 37 fino alla Dürrensteinhütte sulla Plätzwiese. La scheda ufficiale indica 6 km e 579 m di dislivello in salita, solo andata.",
   "Start at Schluderbach in the Höhlensteintal: 6 km and almost 600 m of climbing one way, two hours to the Dürrensteinhütte, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Stay on the forest road rather than the steeper shortcuts.": "Parti da Schluderbach nella Höhlensteintal: 6 km e quasi 600 m di salita solo andata, due ore fino alla Dürrensteinhütte, poi ritorno per la stessa via. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito. Resta sulla strada forestale invece di prendere le scorciatoie più ripide.",
   "A steady climb of almost 600 m on a forest road": "Una salita costante di quasi 600 m su strada forestale",

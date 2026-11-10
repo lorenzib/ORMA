@@ -62,6 +62,16 @@
   #jnSave:disabled{background:#C6D0CB;cursor:default;}
   .jn-live-link{display:block;width:100%;border:none;background:none;margin-top:14px;color:var(--ink-soft);font:600 13px 'Inter',sans-serif;cursor:pointer;text-decoration:underline;}
   .jn-live-link:hover{color:var(--ink);}
+  /* SOCIAL-06: a walk from a GPX file. */
+  .jn-gpx-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0 2px;padding:10px 12px;border-radius:12px;background:#F4F6F1;border:1px dashed #C9D1C5;}
+  .jn-gpx-btn{border:1px solid #2F6B4F;background:#fff;color:#2F6B4F;border-radius:999px;padding:7px 14px;font:700 13px/1.2 'Inter',sans-serif;cursor:pointer;}
+  .jn-gpx-btn:hover{background:#EEF6EF;}
+  .jn-gpx-sub{font-size:12.5px;color:var(--ink-soft);line-height:1.4;}
+  .jn-gpx-verdict{margin:14px 0 0;padding:12px 14px;border-radius:12px;font-size:14px;line-height:1.5;background:#F1EFE8;}
+  .jn-gpx-verdict.is-proven{background:#E4EFDF;color:#234A2E;}
+  .jn-gpx-verdict.is-error{background:#FBECE7;color:#7A2E15;}
+  .jn-gpx-meta{margin:10px 0 0;font-size:13px;color:var(--ink-soft);}
+  .jn-gpx-actions{display:flex;flex-direction:column;gap:8px;margin-top:18px;}
   .jn-photos{display:inline-flex;align-items:center;gap:4px;font:700 11px 'Inter',sans-serif;color:var(--ink-soft);}
   .jn-photos svg{display:block;}
   .jn-act{border:0;background:none;padding:0;font:700 12px 'Inter',sans-serif;color:var(--accent);cursor:pointer;}
@@ -282,6 +292,11 @@
       <button type="button" id="jnClose" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink-soft);" aria-label="Close" data-i18n-aria-label="journal.close">&times;</button>
     </div>
     <p class="jn-hint" data-i18n="journal.modal.hint">Add a walk you've already done. It joins the journal straight away.</p>
+    <div class="jn-gpx-row">
+      <button type="button" id="jnGpxBtn" class="jn-gpx-btn" data-i18n="journal.gpx.add">Add from a GPX file</button>
+      <span class="jn-gpx-sub" data-i18n="journal.gpx.sub">Recorded on your watch, Strava or Komoot? It can earn a passport stamp.</span>
+      <input type="file" id="jnGpxInput" accept=".gpx,application/gpx+xml,application/xml,text/xml" hidden>
+    </div>
     <label for="jnTrailSearch" data-i18n="journal.trail">Trail</label>
     <div class="jn-trail-picker" id="jnTrailPicker">
       <input type="hidden" id="jnTrail">
@@ -306,6 +321,22 @@
     <textarea id="jnNote" rows="3" placeholder="Anything worth remembering?" data-i18n-ph="journal.notesPlaceholder"></textarea>
     <button type="button" id="jnSave" class="auth-submit" style="width:100%;margin-top:18px;" disabled data-i18n="journal.save">Save to journal</button>
     <button type="button" id="jnTrackLive" class="jn-live-link" data-i18n="journal.trackNow">Walking right now? Track it live instead &rarr;</button>
+  </div>
+</div>
+
+<!-- SOCIAL-06: what a GPX file showed, before it joins the journal. -->
+<div class="jn-overlay" id="jnGpxOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="jnGpxTitle">
+  <div class="jn-modal">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
+      <h2 id="jnGpxTitle" style="margin:0;font-size:20px;" data-i18n="journal.gpx.title">Walk from your file</h2>
+      <button type="button" class="jn-x" id="jnGpxClose" aria-label="Close" data-i18n-aria-label="journal.close">&times;</button>
+    </div>
+    <p class="jn-gpx-verdict" id="jnGpxVerdict" role="status"></p>
+    <p class="jn-gpx-meta" id="jnGpxMeta"></p>
+    <div class="jn-gpx-actions">
+      <button type="button" id="jnGpxSave" class="auth-submit" style="width:100%;" hidden></button>
+      <button type="button" id="jnGpxAgain" class="fav-btn" style="width:100%;" data-i18n="journal.gpx.again">Choose another file</button>
+    </div>
   </div>
 </div>
 
@@ -501,10 +532,12 @@
 <script src="regions-runtime-manifest.js?v=20261007-1"></script>
 <script src="regional-trails-loader.js?v=20261104-1" data-default-region="all"></script>
 <script src="regions-config.js" defer></script>
-<script src="journal-store.js?v=20261110-1"></script>
+<script src="journal-store.js?v=20261110-2"></script>
 <script src="journal-photos.js?v=20261026-1"></script>
 <script src="walk-card.js?v=20260825-1"></script>
-<script src="dog-passport.js?v=20261110-2"></script>
+<script src="walk-proof.js?v=20261110-1"></script>
+<script src="gpx-walk.js?v=20261110-1"></script>
+<script src="dog-passport.js?v=20261110-3"></script>
 <script>
 // My Journal. Entries are private, per-account records stored only in this
 // browser. JOURNAL-01 deliberately avoids silently uploading walk history;
@@ -546,6 +579,8 @@ document.addEventListener('DOMContentLoaded', function(){
     if(i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return k in vars ? vars[k] : m; }) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ var i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
   function key(){ return 'dolopaws-journal-' + uid; }
   function load(){ try { return JSON.parse(localStorage.getItem(key())) || []; } catch(e){ return []; } }
   function persist(){
@@ -724,7 +759,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function fmtStats(e){
-    return [e.dist ? e.dist + ' km' : null, e.dur ? fmtDur(e.dur) : null].filter(Boolean).join(' · ') || window.t('journal.walkLogged');
+    return [e.dist ? num(e.dist) + ' km' : null, e.dur ? fmtDur(e.dur) : null].filter(Boolean).join(' · ') || window.t('journal.walkLogged');
   }
   function fmtDur(min){
     min = Number(min);
@@ -817,7 +852,7 @@ document.addEventListener('DOMContentLoaded', function(){
       : translate('journal.stats.minutesValue', '{m} min', { m: minutes });
     el.innerHTML =
       '<div class="jn-stat"><b>' + all.length + '</b><span>' + esc(window.t('journal.stats.walks')) + '</span></div>' +
-      '<div class="jn-stat"><b>' + (Math.round(totalKm * 10) / 10) + ' km</b><span>' + esc(window.t('journal.stats.distance')) + '</span></div>' +
+      '<div class="jn-stat"><b>' + num(Math.round(totalKm * 10) / 10) + ' km</b><span>' + esc(window.t('journal.stats.distance')) + '</span></div>' +
       '<div class="jn-stat"><b>' + esc(outdoors) + '</b><span>' + esc(translate('journal.stats.outdoors', 'Outdoors', {})) + '</span></div>' +
       '<div class="jn-stat"><b>' + trailsWalked + '</b><span>' + esc(translate('journal.stats.trails', 'Trails', {})) + '</span></div>';
   }
@@ -1392,7 +1427,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function allTrails(){ return typeof trails !== 'undefined' ? trails : []; }
   function trailById(id){ return allTrails().find(function(t){ return t.id === id; }) || null; }
-  function trailMeta(t){ return [t.valley || t.area || '', t.distance ? t.distance + ' km' : ''].filter(Boolean).join(' · '); }
+  function trailMeta(t){ return [t.valley || t.area || '', t.distance ? num(t.distance) + ' km' : ''].filter(Boolean).join(' · '); }
   function estimatedMinutes(t){
     var hours = parseFloat(String(t.hours || '').replace(',', '.'));
     return Number.isFinite(hours) ? String(Math.round(hours * 60)) : '';
@@ -1699,6 +1734,103 @@ document.addEventListener('DOMContentLoaded', function(){
     if(window.history && window.history.replaceState){
       window.history.replaceState({}, '', 'journal.html');
     }
+    renderAll();
+    pushUnsentEntries();
+    setTimeout(function(){ openAfter(entry, true); }, 160);
+  });
+
+  // ---- SOCIAL-06: a walk from a GPX file ------------------------------
+  // Read on the phone, matched to the trail it follows and judged by the
+  // same check as a recording (gpx-walk.js). Only a walk that passes earns
+  // a passport stamp; one that does not can still be kept, without one.
+  var gpxOverlay = document.getElementById('jnGpxOverlay');
+  var gpxInput = document.getElementById('jnGpxInput');
+  var gpxResult = null;
+  var gpxReturnFocus = null;
+  document.getElementById('jnGpxBtn').addEventListener('click', function(){
+    gpxReturnFocus = document.getElementById('jnLogBtn');
+    gpxInput.value = '';
+    gpxInput.click();
+  });
+  document.getElementById('jnGpxAgain').addEventListener('click', function(){
+    gpxInput.value = '';
+    gpxInput.click();
+  });
+  function closeGpx(){
+    gpxOverlay.hidden = true;
+    gpxResult = null;
+    if(gpxReturnFocus && document.contains(gpxReturnFocus)) gpxReturnFocus.focus();
+  }
+  document.getElementById('jnGpxClose').addEventListener('click', closeGpx);
+  gpxOverlay.addEventListener('click', function(e){ if(e.target === gpxOverlay) closeGpx(); });
+  gpxOverlay.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ e.preventDefault(); closeGpx(); } });
+
+  function gpxDuration(minutes){
+    var h = Math.floor(minutes / 60), m = minutes % 60;
+    return h ? (h + ' h ' + (m < 10 ? '0' : '') + m) : (m + ' min');
+  }
+  function showGpx(result, duplicate){
+    var verdict = document.getElementById('jnGpxVerdict');
+    var meta = document.getElementById('jnGpxMeta');
+    var save = document.getElementById('jnGpxSave');
+    var pct = result && result.share ? Math.round(result.share * 100) : 0;
+    var name = result && result.trail ? result.trail.name : '';
+    var text, kind = '', canSave = false, stamp = false;
+    if(duplicate){ text = window.t('journal.gpx.duplicate'); kind = 'is-error'; }
+    else if(result.ok && result.proven){ text = window.t('journal.gpx.proven', { trail: name, pct: pct }); kind = 'is-proven'; canSave = stamp = true; }
+    else if(result.ok && result.reason === 'too-little-of-the-route'){ text = window.t('journal.gpx.short', { trail: name, pct: pct }); canSave = true; }
+    else if(result.ok && result.reason === 'too-fast'){ text = window.t('journal.gpx.fast', { trail: name }); canSave = true; }
+    else if(result.ok){ text = window.t('journal.gpx.notOneWalk', { trail: name }); canSave = true; }
+    else if(result.reason === 'no-trail'){ text = window.t('journal.gpx.noTrail'); canSave = true; }
+    else if(result.reason === 'no-times'){ text = window.t('journal.gpx.noTimes'); kind = 'is-error'; }
+    else if(result.reason === 'in-the-future'){ text = window.t('journal.gpx.future'); kind = 'is-error'; }
+    else if(result.reason === 'too-few-points'){ text = window.t('journal.gpx.tooShort'); kind = 'is-error'; }
+    else { text = window.t('journal.gpx.notGpx'); kind = 'is-error'; }
+    verdict.className = 'jn-gpx-verdict' + (kind ? ' ' + kind : '');
+    verdict.textContent = (stamp ? '✓ ' : '') + text;
+    var lang = document.documentElement.lang || undefined;
+    meta.textContent = result && result.startedAt && !duplicate
+      ? [new Date(result.startedAt).toLocaleDateString(lang, { day:'numeric', month:'short', year:'numeric' }),
+         result.km.toLocaleString(lang) + ' km', gpxDuration(result.minutes)].join(' · ')
+      : '';
+    save.hidden = !canSave;
+    save.textContent = window.t(stamp ? 'journal.gpx.save' : 'journal.gpx.saveNoStamp');
+    gpxResult = canSave ? result : null;
+    overlay.hidden = true;
+    gpxOverlay.hidden = false;
+    setTimeout(function(){ (canSave ? save : document.getElementById('jnGpxAgain')).focus(); }, 0);
+  }
+  gpxInput.addEventListener('change', function(){
+    var file = gpxInput.files && gpxInput.files[0];
+    var gpx = window.DoloPawsGpxWalk;
+    if(!file || !gpx) return;
+    if(file.size > gpx.MAX_FILE_CHARS){ showGpx({ ok:false, reason:'not-gpx' }); return; }
+    file.text().then(function(text){
+      var result = gpx.assessGpx(text, allTrails(), { now: Date.now() });
+      showGpx(result, result.startedAt ? gpx.isDuplicate(result, state.entries) : false);
+    }).catch(function(){ showGpx({ ok:false, reason:'not-gpx' }); });
+  });
+  document.getElementById('jnGpxSave').addEventListener('click', function(){
+    var gpx = window.DoloPawsGpxWalk;
+    var result = gpxResult;
+    if(!gpx || !result) return;
+    var store = journalStore();
+    var now = Date.now();
+    var entry = gpx.buildEntry(result, {
+      id: store ? store.newId(now) : ('w' + now),
+      now: now,
+      defaultName: window.t('journal.defaultName'),
+    });
+    var previousEntries = state.entries.slice();
+    state.entries.unshift(entry);
+    state.entries.sort(function(a, b){ return new Date(b.date) - new Date(a.date); });
+    if(!persist()){
+      state.entries = previousEntries;
+      document.getElementById('jnGpxVerdict').textContent = window.t('journal.saveError');
+      return;
+    }
+    gpxOverlay.hidden = true;
+    gpxResult = null;
     renderAll();
     pushUnsentEntries();
     setTimeout(function(){ openAfter(entry, true); }, 160);

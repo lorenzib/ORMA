@@ -1,5 +1,6 @@
 // trecime-cimabanche-prato-piazza in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the forest path from Cimabanche up the Knappenfußtal to the Plätzwiese": "il sentiero nel bosco da Cimabanche su per il Knappenfußtal fino alla Plätzwiese",
   "A climb from the Cimabanche pass on path 18 up the Knappenfußtal past a small waterfall to the Plätzwiese. The board lists 4.4 km and 494 m of ascent, one way.": "Una salita dal passo di Cimabanche sul sentiero 18 lungo la Knappenfußtal, oltre una piccola cascata, fino alla Plätzwiese. La scheda ufficiale indica 4,4 km e 494 m di dislivello in salita, solo andata.",
   "Start at the Cimabanche pass on the road from Toblach to Cortina: 4.4 km and almost 500 m of climbing one way, two hours to the Plätzwiese, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and carry water.": "Parti dal passo di Cimabanche sulla strada da Toblach a Cortina: 4,4 km e quasi 500 m di salita solo andata, due ore fino alla Plätzwiese, poi ritorno per la stessa via. Tieni il cane al guinzaglio di al massimo 1,5 m, porta la museruola al seguito e porta acqua.",
   "A steady climb of almost 500 m, with zigzags in the upper part": "Una salita costante di quasi 500 m, con tornanti nella parte alta",

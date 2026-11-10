@@ -1,5 +1,6 @@
 // trecime-rotwandwiesen-moos in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the forest road down from the Rotwandwiesen to Moos": "la strada forestale che scende dai Rotwandwiesen a Moos",
   "A downhill walk from the Rotwandwiesen, reached by gondola, along the forest road to Signaue and down through the forest to Moos. The board lists 4.8 km and 570 m of descent.": "Una passeggiata in discesa dai Rotwandwiesen, raggiunti in cabinovia, lungo la strada forestale fino a Signaue e giù nel bosco fino a Moos. La scheda ufficiale indica 4,8 km e 570 m di discesa.",
   "Ride the Rotwand gondola up from Bad Moos (closed cabins), then walk down: 4.8 km and about 570 m of descent, two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Check that the gondola is running before you go.": "Sali da Bad Moos con la cabinovia Rotwand (cabine chiuse), poi scendi a piedi: 4,8 km e circa 570 m di discesa, due ore. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito. Prima di partire verifica che la cabinovia sia in funzione.",
   "A descent of about 570 m: take it slowly on the steeper path 17": "Una discesa di circa 570 m: prendila con calma sul più ripido sentiero 17",

@@ -1,5 +1,6 @@
 // vinschgau-sentiero-della-roggia-kastanienwaal in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "on the Sonnenpromenade to the Pulverturm": "sulla Sonnenpromenade fino al Pulverturm",
   "A short loop from Schlanders up to the Kastanienwaal, along the old Grübenmauer walls on the sunny Sonnenpromenade to the Pulverturm and back through the village. The board lists 2.2 km and 70 m up.": "Un breve anello da Schlanders su fino al Kastanienwaal, lungo le antiche mura Grübenmauer sulla soleggiata Sonnenpromenade fino al Pulverturm, e ritorno attraverso il paese. La scheda ufficiale indica 2,2 km e 70 m in salita.",
   "Start in Schlanders centre: a 2.2 km loop, about 70 m up, half an hour. Keep your dog on a lead and carry a muzzle. Drinking water at the start and at km 1.6. The slope is sunny: go early on hot days.": "Parti dal centro di Schlanders: un anello di 2,2 km, circa 70 m in salita, mezz'ora. Tieni il cane al guinzaglio e porta la museruola al seguito. Acqua potabile alla partenza e al km 1,6. Il pendio è soleggiato: nelle giornate calde parti presto.",
   "Most of the loop is on village lanes with occasional cars: lead on": "Gran parte dell'anello è su stradine di paese con qualche auto: guinzaglio",

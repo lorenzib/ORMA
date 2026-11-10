@@ -1,5 +1,6 @@
 // cortina-castello-di-botestagno in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the castle walk at Botestagno": "la passeggiata al castello di Botestagno",
   "A short history walk from Sant’Uberto, at the entrance to the Ampezzo Dolomites park, up to the ruins of the medieval castle of Botestagno over the Boite valley. The board lists 2.6 km and 80 m of ascent.": "Una breve camminata storica da Sant’Uberto, all'ingresso del parco delle Dolomiti d'Ampezzo, fino ai ruderi del castello medievale di Botestagno sopra la valle del Boite. La scheda ufficiale indica 2,6 km e 80 m di dislivello in salita.",
   "Start at Sant’Uberto: 2.6 km, about 80 m of climbing, three quarters of an hour. Keep your dog on a lead, as Cortina and the park require; large dogs also need a muzzle on public roads. Carry water: none is mapped on the way.": "Partenza da Sant’Uberto: 2,6 km, circa 80 m di salita, tre quarti d'ora. Tieni il cane al guinzaglio, come richiedono Cortina e il parco; i cani di grossa taglia devono avere anche la museruola sulle strade pubbliche. Porta acqua: lungo il percorso non ne è segnalata.",
   "Forest path with roots and loose stones up to the castle hill": "Sentiero nel bosco con radici e sassi instabili fino alla collina del castello",

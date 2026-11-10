@@ -1,5 +1,6 @@
 // cembra-pascoli-malga-vernera in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the pasture loop at Malga Vernera": "l'anello dei pascoli a Malga Vernera",
   "A short loop over the summer pastures of Malga Vernera above Sover, on marked paths and forest roads with wide views over the Val di Cembra. The APT lists 3.6 km and 185 m of ascent.": "Un breve anello sui pascoli estivi di Malga Vernera sopra Sover, su sentieri segnalati e strade forestali con ampia vista sulla Val di Cembra. L'APT indica 3,6 km e 185 m di dislivello in salita.",
   "Start at the Malga Vernera Bassa car park: 3.6 km, 185 m of climbing, about an hour and ten minutes. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Cows graze here in summer. Two drinking fountains are mapped on the loop.": "Partenza dal parcheggio di Malga Vernera Bassa: 3,6 km, 185 m di salita, circa un'ora e dieci minuti. Vale la norma italiana: guinzaglio di al massimo 1,5 m e museruola al seguito. D'estate qui pascolano le mucche. Sull'anello sono segnalate due fontane di acqua potabile.",
   "Cows graze these pastures in summer: keep your dog on the lead and give the herd room": "D'estate le mucche pascolano su questi pascoli: tieni il cane al guinzaglio e lascia spazio alla mandria",
