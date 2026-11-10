@@ -130,6 +130,9 @@
     // Same for photos kept in Storage: only sent when there are some.
     var photoIds = photoIdsOf(entry, photo ? 1 : 0);
     if(photoIds.length) remote.photoIds = photoIds;
+    // SOCIAL-05: only a walk hike mode proved by GPS carries the mark that
+    // earns a passport stamp; any other walk leaves the key out.
+    if(entry.proof === 'gps') remote.proof = 'gps';
     return remote;
   }
 
@@ -198,6 +201,7 @@
       tale: taleOf(remote),
       walkedWith: walkedWithOf(remote),
       photoIds: photoIdsOf(remote, typeof remote.photo === 'string' ? 1 : 0),
+      proof: remote.proof === 'gps' ? 'gps' : null,
       updatedAt: finite(remote.updatedAt) || 0,
     };
   }

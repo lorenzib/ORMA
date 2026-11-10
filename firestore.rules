@@ -594,7 +594,7 @@ service cloud.firestore {
           'schemaVersion', 'entryId', 'date', 'trail', 'trailId', 'region',
           'dist', 'dur', 'cond', 'rating', 'note', 'photo', 'photos',
           'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt',
-          'walkedWith', 'photoIds'
+          'walkedWith', 'photoIds', 'proof'
         ])
         && data.schemaVersion == 1
         && isShortString(data.entryId, 120)
@@ -630,6 +630,9 @@ service cloud.firestore {
             && journalPhotoIdAt(data.photoIds, 0) && journalPhotoIdAt(data.photoIds, 1)
             && journalPhotoIdAt(data.photoIds, 2) && journalPhotoIdAt(data.photoIds, 3)
             && journalPhotoIdAt(data.photoIds, 4) && journalPhotoIdAt(data.photoIds, 5)))
+        // SOCIAL-05: a walk hike mode proved by GPS says so, and earns a
+        // passport stamp. Optional; the only value is 'gps'.
+        && (!('proof' in data) || data.proof == 'gps')
         && data.updatedAt is number && data.updatedAt >= 0;
     }
 
