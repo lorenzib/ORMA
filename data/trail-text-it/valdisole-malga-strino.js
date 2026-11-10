@@ -1,5 +1,6 @@
 // valdisole-malga-strino in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "up the old military road in the Val Strino": "su per la vecchia strada militare della Val Strino",
   "An easy climb up an old First World War military road into the quiet Val Strino, from forest into pasture full of marmots, to Malga Strino and back. The board lists 6.7 km and 338 m up.": "Una salita facile su una vecchia strada militare della Prima guerra mondiale nella tranquilla Val Strino, dal bosco ai pascoli pieni di marmotte, fino a Malga Strino e ritorno. Il sito ufficiale indica 6,7 km e 338 m di salita.",
   "Start at the small car park on the SS42 at the mouth of the Val Strino: 6.7 km and 338 m up, about 2½ hours there and back, as the board lists. An easy family walk on a gravel road; carry water and a muzzle.": "Parti dal piccolo parcheggio sulla SS42 all’imbocco della Val Strino: 6,7 km e 338 m di salita, circa 2½ ore andata e ritorno, come indica il sito ufficiale. Una passeggiata facile per famiglie su strada sterrata; porta acqua e museruola.",
   "You cross the busy SS42 at the start: keep your dog on a short lead": "Alla partenza attraversi la trafficata SS42: tieni il cane al guinzaglio corto",
