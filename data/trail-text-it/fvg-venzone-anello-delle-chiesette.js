@@ -1,5 +1,6 @@
 // fvg-venzone-anello-delle-chiesette in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the short loop to the small churches above Venzone": "il breve anello fino alle chiesette sopra Venzone",
   "An easy short loop from the walled town of Venzone through hazel woods and meadows to the small churches of Santa Caterina and Saints James and Anna, rebuilt after the 1976 earthquake. PromoTurismoFVG lists 2.6 km and 99 m of ascent.": "Un breve e facile anello dalla cittadina murata di Venzone attraverso noccioleti e prati fino alle chiesette di Santa Caterina e dei Santi Giacomo e Anna, ricostruite dopo il terremoto del 1976. PromoTurismoFVG indica 2,6 km e 99 m di dislivello in salita.",
   "Start in the old centre of Venzone: 2.6 km and about 100 m of climbing, an hour. Keep your dog on a lead of at most 1.5 m in the town and carry a muzzle. Cafés and fountains are in the town at the start.": "Parti dal centro storico di Venzone: 2,6 km e circa 100 m di salita, un'ora. Tieni il cane al guinzaglio di al massimo 1,5 m in paese e porta la museruola. Bar e fontane in paese alla partenza.",
   "Short stretches on town streets and a tarred lane": "Brevi tratti su vie del paese e una stradina asfaltata",

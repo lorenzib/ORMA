@@ -342,6 +342,14 @@ describe('the walk journal belongs to its account', () => {
     await assertFails(setDoc(doc(owner, path), validJournalEntry({ walkedWith:'x'.repeat(401) })));
   });
 
+  test('a walk may carry a passport proof mark, gps or gpx, and nothing else', async () => {
+    const owner = ordinaryDb('owner-1');
+    await assertSucceeds(setDoc(doc(owner, path), validJournalEntry({ proof:'gps' })));
+    await assertSucceeds(setDoc(doc(owner, path), validJournalEntry({ proof:'gpx' })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ proof:'claimed' })));
+    await assertFails(setDoc(doc(owner, path), validJournalEntry({ proof:true })));
+  });
+
   test('a walk lists up to six stored photos by id, and nothing else', async () => {
     const owner = ordinaryDb('owner-1');
     const photos = require('./journal-photos.js');

@@ -46,6 +46,7 @@
     ['Agordo', 46.2820, 12.0330, 'Belluno – Agordino', 'dolomites', 'belluno'],
     ['Belluno', 46.1420, 12.2167, 'Belluno – Agordino', 'dolomites', 'belluno'],
     ['Pieve di Cadore', 46.4276, 12.3730, 'Belluno – Agordino', 'dolomites', 'belluno'],
+    ['Forno di Zoldo / Val di Zoldo', 46.3486, 12.1846, 'Val di Zoldo', 'dolomites', 'belluno'],
     // Bolzano sat in 'Val di Fiemme – Latemar' and Vipiteno in 'Val di Funes –
     // Odle'; neither city is in the valley it named. Because both are big
     // enough to be the nearest entry for a wide area, they handed that wrong

@@ -1,5 +1,6 @@
 // primiero-percorso-verde in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the step-free loop along the Canali": "l'anello senza gradini lungo i Canali",
   "A short, step-free loop from the Parco Clarofonte in Fiera di Primiero along Via Lungo Canali, with one of the best views of the Pale di San Martino from the valley. The APT lists 1.6 km and 23 m of ascent.": "Un breve anello senza gradini dal Parco Clarofonte a Fiera di Primiero lungo Via Lungo Canali, con una delle viste più belle sulle Pale di San Martino dal fondovalle. L'APT indica 1,6 km e 23 m di dislivello in salita.",
   "Start at the Parco Clarofonte: 1.6 km, level and step-free, half an hour. Keep your dog on a short lead (1.5 m at most) on the pavement beside the road. Fountains and cafés at the start.": "Parti dal Parco Clarofonte: 1,6 km, in piano e senza gradini, mezz'ora. Tieni il cane al guinzaglio corto (al massimo 1,5 m) sul marciapiede lungo la strada. Fontane e bar alla partenza.",
   "All tarmac and pavement, beside a road for part of it": "Tutto su asfalto e marciapiede, in parte lungo una strada",

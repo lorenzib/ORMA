@@ -1,5 +1,6 @@
 // paganella-passeggiata-del-ciclamino in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the short stream walk above Molveno": "la breve passeggiata lungo il torrente sopra Molveno",
   "A short walk from Molveno to the foot of the Croz dell’Altissimo and down beside the Rio Massò and its little waterfalls. The APT lists 2.8 km and 76 m of ascent.": "Una breve passeggiata da Molveno ai piedi del Croz dell’Altissimo e giù lungo il Rio Massò e le sue cascatelle. L'APT indica 2,8 km e 76 m di dislivello in salita.",
   "Start in the centre of Molveno: 2.8 km, mostly level and then downhill, about 50 minutes. Keep your dog on a lead and carry a muzzle. Stop at the little waterfalls at Molin dei Mori.": "Parti dal centro di Molveno: 2,8 km, per lo più in piano e poi in discesa, circa 50 minuti. Tieni il cane al guinzaglio e porta la museruola al seguito. Fermati alle cascatelle del Molin dei Mori.",
   "The path runs beside a fast stream: keep your dog out of the water after rain": "Il sentiero corre accanto a un torrente impetuoso: dopo la pioggia tieni il cane fuori dall'acqua",

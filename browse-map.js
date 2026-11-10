@@ -2,6 +2,8 @@
   'use strict';
 
   // Script-written wording goes through i18n.js; the English sentence is its own key.
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ const i18n = root && root.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
   function tx(text, vars){
     const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
@@ -155,8 +157,8 @@
       if(popup) popup.remove();
       const metadata = [
         trail.area || trail.valley || '',
-        trail.distance ? `${trail.distance} km` : '',
-        trail.hours ? (root.ORMARouteReturn ? root.ORMARouteReturn.formatDuration(trail.hours) : `${trail.hours} h`) : '',
+        trail.distance ? `${num(trail.distance)} km` : '',
+        trail.hours ? num(root.ORMARouteReturn ? root.ORMARouteReturn.formatDuration(trail.hours) : `${trail.hours} h`) : '',
       ].filter(Boolean).join(' · ');
       // The same verdict, for the same dog, as the trail's card in the list.
       const verdict = verdictFor(trail);

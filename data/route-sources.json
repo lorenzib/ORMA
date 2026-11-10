@@ -3737,6 +3737,62 @@
       "quote": "Escursione invernale · Distanza 4,9 km · Durata 1:16 h · Salita 57 m · Discesa 57 m · Punto più alto 1.318 m · Punto più basso 1.291 m · Percorso sgomberato · Andata e ritorno",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-07T21:00:00.000Z"
+    },
+    "cortina-zumeles-val-padeon": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/tra-forcella-zumeles-e-val-padeon/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org)",
+      "name": "Tra Forcella Zumeles e Val Padeon",
+      "quote": "Tempo 3 h 30' · Lunghezza 9,5 km · Dislivello positivo 499 m · Dislivello negativo 706 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-09T21:00:00.000Z"
+    },
+    "cortina-anello-dei-tre-rifugi": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/anello-dei-tre-rifugi/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org)",
+      "name": "Anello dei tre rifugi",
+      "quote": "Tempo 5 h · Lunghezza 14,5 km · Dislivello positivo 813 m · Dislivello negativo 813 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-09T21:00:00.000Z"
+    },
+    "cortina-forcella-lerosa": {
+      "url": "https://cortina.dolomiti.org/it/escursioni/verso-forcella-lerosa/",
+      "publisher": "Cortina Marketing (cortina.dolomiti.org)",
+      "name": "Verso Forcella Lerosa",
+      "quote": "Tempo 2h 05' · Lunghezza 4,8 km · Dislivello positivo 516 m · Dislivello negativo 8 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-09T21:00:00.000Z"
+    },
+    "valdisole-cogolo-chiesa-di-santa-lucia": {
+      "url": "https://www.outdooractive.com/it/r/58793370",
+      "publisher": "APT Valli di Sole, Peio e Rabbi (Outdooractive)",
+      "name": "Cogolo - Chiesa di Santa Lucia",
+      "quote": "Distanza 5,5 km · Durata 2:15 h · Salita 274 m · Discesa 275 m · Punto più alto 1.320 m · Punto più basso 1.154 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-09T21:00:00.000Z"
+    },
+    "valdisole-malga-strino": {
+      "url": "https://www.outdooractive.com/it/r/58070348",
+      "publisher": "APT Valli di Sole, Peio e Rabbi (Outdooractive)",
+      "name": "Malga Strino",
+      "quote": "Distanza 6,7 km · Durata 2:25 h · Salita 338 m · Discesa 368 m · Punto più alto 1.941 m · Punto più basso 1.590 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-09T21:00:00.000Z"
+    },
+    "zoldo-rifugio-bosconero": {
+      "url": "https://www.valdizoldo.net/it/attivita/camminare/escursioni-medio-livello/al-rifugio-bosconero-zoldo",
+      "publisher": "Val di Zoldo tourist office",
+      "name": "Al rifugio Bosconero",
+      "quote": "Lunghezza 6.7 km · Tempo di percorrenza 4 h · Dislivello 642 m · Partenza Località Pontesei (825 m) · Arrivo Rifugio Bosconero (1475 m)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-09T21:00:00.000Z"
+    },
+    "zoldo-bosco-secolare": {
+      "url": "https://www.valdizoldo.net/it/attivita/camminare/escursioni-facili/il-bosco-secolare-zoldo-dolomiti",
+      "publisher": "Val di Zoldo tourist office",
+      "name": "Il bosco secolare",
+      "quote": "Lunghezza 4.500 m · Tempo di percorrenza 1 h 30 min · Dislivello 176 m · Partenza Astragal 969 m · Arrivo Astragal 969 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-09T21:00:00.000Z"
     }
   }
 }

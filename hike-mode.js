@@ -48,6 +48,11 @@ function initHikeMode(map, trail, options){
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (Italian: 2,4 km). English unchanged.
+  function num(value){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+  }
   // A trail's own words in the reader's language, from data/trail-text-it.
   function trailWords(text){
     const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
@@ -184,7 +189,7 @@ function initHikeMode(map, trail, options){
   dock.innerHTML = `
     <div class="hk-dock-nums">
       <div><b data-dock="time">0:00</b><span>${esc(window.t('hike.statTime'))}</span></div>
-      <div><b data-dock="km">0.0 km</b><span>${esc(window.t('hike.dockWalked'))}</span></div>
+      <div><b data-dock="km">${num('0.0')} km</b><span>${esc(window.t('hike.dockWalked'))}</span></div>
       <div><b data-dock="share">0%</b><span>${esc(window.t('hike.dockOfRoute'))}</span></div>
     </div>
     <button type="button" class="hk-dock-pause" aria-label="${esc(hikeLabel('hike.pause', 'Pause'))}"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
@@ -243,7 +248,7 @@ function initHikeMode(map, trail, options){
     const m = Math.floor((seconds % 3600) / 60);
     const s = String(seconds % 60).padStart(2, '0');
     dock.querySelector('[data-dock="time"]').textContent = h ? `${h}:${String(m).padStart(2, '0')}:${s}` : `${m}:${s}`;
-    dock.querySelector('[data-dock="km"]').textContent = `${lastKnownKm.toFixed(1)} km`;
+    dock.querySelector('[data-dock="km"]').textContent = `${num(lastKnownKm.toFixed(1))} km`;
     dock.querySelector('[data-dock="share"]').textContent = `${Math.round(routeShare() * 100)}%`;
   }
 
@@ -1115,7 +1120,7 @@ function initHikeMode(map, trail, options){
             : window.t('hike.proofUnconfirmed'))}</p>` : ''}
         <div class="hk-stats">
           <div class="hk-stat"><b>${fmtClock(elapsedSeconds)}</b><span>${esc(window.t('hike.statTime'))}</span></div>
-          <div class="hk-stat"><b>${km.toFixed(1)} km</b><span>${esc(window.t('hike.statDistance'))}</span></div>
+          <div class="hk-stat"><b>${num(km.toFixed(1))} km</b><span>${esc(window.t('hike.statDistance'))}</span></div>
           <div class="hk-stat"><b>${pace}</b><span>${esc(window.t('hike.statPace'))}</span></div>
         </div>
         <div class="hk-block hk-outcome-block">

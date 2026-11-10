@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-malga-strino",
+  "distanceKm": 6.3,
+  "ascentM": 338,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1673
+    },
+    {
+      "km": 0.5,
+      "elev": 1698
+    },
+    {
+      "km": 1,
+      "elev": 1712
+    },
+    {
+      "km": 1.5,
+      "elev": 1753
+    },
+    {
+      "km": 1.9,
+      "elev": 1784
+    },
+    {
+      "km": 2.4,
+      "elev": 1846
+    },
+    {
+      "km": 2.9,
+      "elev": 1920
+    },
+    {
+      "km": 3.4,
+      "elev": 1917
+    },
+    {
+      "km": 3.9,
+      "elev": 1852
+    },
+    {
+      "km": 4.3,
+      "elev": 1823
+    },
+    {
+      "km": 4.8,
+      "elev": 1758
+    },
+    {
+      "km": 5.3,
+      "elev": 1721
+    },
+    {
+      "km": 5.8,
+      "elev": 1677
+    },
+    {
+      "km": 6.3,
+      "elev": 1673
+    }
+  ]
+}

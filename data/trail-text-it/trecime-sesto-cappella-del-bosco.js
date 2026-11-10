@@ -1,5 +1,6 @@
 // trecime-sesto-cappella-del-bosco in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the meditation path from Sexten church to the forest chapel": "il sentiero della meditazione dalla chiesa di Sexten alla cappella nel bosco",
   "A short climb on the meditation path from Sexten past old farms to the Waldkapelle in the forest, and back. The board lists 3.7 km and 209 m of ascent, there and back.": "Una breve salita sul sentiero di meditazione da Sexten, oltre antichi masi, fino alla Waldkapelle nel bosco, e ritorno. La scheda ufficiale indica 3,7 km e 209 m di dislivello in salita, andata e ritorno.",
   "Start at Sexten parish church: 3.7 km there and back with about 210 m of climbing, an hour and a quarter. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and keep off the meadows by the farms.": "Parti dalla chiesa parrocchiale di Sexten: 3,7 km andata e ritorno con circa 210 m di salita, un'ora e un quarto. Tieni il cane al guinzaglio lungo al massimo 1,5 m, porta la museruola al seguito e stai fuori dai prati vicino ai masi.",
   "Farm lanes past the Hösler and Ladstätter farms: watch for tractors": "Stradine tra i masi Hösler e Ladstätter: attenzione ai trattori",

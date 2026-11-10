@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-malga-strino",
+  "generatedAt": "2026-11-09T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.7,
+    "ascentM": 338,
+    "highestPointM": 1920,
+    "expectedDuration": "2.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 68
+  },
+  "trailhead": {
+    "lat": 46.276234,
+    "lng": 10.634871,
+    "label": "The car park beside the SS42 at the mouth of the Val Strino, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "You cross the busy SS42 at the start: keep your dog on a short lead.",
+    "The gravel military road is open to cars with a permit: keep your dog close if one comes.",
+    "Cows graze the Val Strino pastures in summer.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-09"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-09",
+      "licence": "ODbL"
+    }
+  ]
+}

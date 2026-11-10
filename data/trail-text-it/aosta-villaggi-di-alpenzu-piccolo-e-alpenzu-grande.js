@@ -1,5 +1,6 @@
 // aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the Walser path up to the hamlets of Alpenzù": "il sentiero walser fino alle frazioni di Alpenzù",
   "A steady climb at about 1,610–1,860 m on the Walser path up the east side of the valley to the stone hamlets of Alpenzù Piccolo and Alpenzù Grande. The regional path register lists 3.3 km and 311 m of ascent, one way.": "Una salita costante a circa 1.610–1.860 m sul sentiero walser, lungo il versante est della valle, fino ai borghi in pietra di Alpenzù Piccolo e Alpenzù Grande. Il catasto regionale dei sentieri indica 3,3 km e 311 m di dislivello in salita, solo andata.",
   "Start on the valley road below Gressoney-La-Trinité: 3.3 km and about 310 m of climbing one way, an hour and a half to Alpenzù Grande, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle.": "Partenza sulla strada della valle sotto Gressoney-La-Trinité: 3,3 km e circa 310 m di salita solo andata, un'ora e mezza fino ad Alpenzù Grande, poi ritorno per la stessa via. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito.",
   "A steady climb on a forest and meadow path": "Una salita costante su un sentiero tra boschi e prati",

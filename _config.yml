@@ -86,6 +86,7 @@ exclude:
   - app-shell.css
   - app-tabbar.js
   - app-explore.js
+  - app-saved.js
   - app-trail.js
   - app-you.js
   - app-welcome.js

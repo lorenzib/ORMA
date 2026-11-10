@@ -1,0 +1,21 @@
+// valdisole-cogolo-chiesa-di-santa-lucia in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "through the woods to the hilltop church above Comasine": "nel bosco fino alla chiesetta sul colle sopra Comasine",
+  "An easy loop from Cogolo up through the woods to the lonely hilltop church of Santa Lucia above Comasine, with a wide view over the Val di Peio. The board lists 5.5 km and 274 m up.": "Un anello facile da Cogolo, su nel bosco fino alla solitaria chiesetta di Santa Lucia sul colle sopra Comasine, con un’ampia vista sulla Val di Peio. Il sito ufficiale indica 5,5 km e 274 m di salita.",
+  "Start at the bus-stop car park in Cogolo: 5.5 km and 274 m up, about 2¼ hours, as the board lists. An easy family walk; carry water and a muzzle.": "Parti dal parcheggio della fermata dell’autobus a Cogolo: 5,5 km e 274 m di salita, circa 2¼ ore, come indica il sito ufficiale. Una passeggiata facile per famiglie; porta acqua e museruola.",
+  "About 50 m along the pavement of the SP87 in Cogolo at the start: keep your dog on a short lead": "Circa 50 m sul marciapiede della SP87 a Cogolo alla partenza: tieni il cane al guinzaglio corto",
+  "The Plaze lane is also a cycle path: watch for bikes": "La strada per le Plaze è anche ciclabile: attenzione alle bici",
+  "Cows may graze on the meadows below the church in summer": "In estate le mucche possono pascolare sui prati sotto la chiesa",
+  "Village lanes, a cycle and footpath, woodland paths and a country lane": "Stradine di paese, una ciclopedonale, sentieri nel bosco e una stradina di campagna",
+  "The bus-stop car park in Cogolo, the board’s start": "Il parcheggio della fermata dell’autobus a Cogolo, la partenza ufficiale",
+  "A small stone church with a pointed bell tower and shingle roof on a wooded hilltop, a meadow with picnic tables beside it and village houses in the valley below": "Una piccola chiesa in pietra con campanile a punta e tetto in scandole su un colle boscoso, un prato con tavoli da picnic accanto e le case del paese nella valle sotto",
+  "Mostly in woodland on the climb to the church; the meadows on the way back are open.": "Per lo più nel bosco nella salita alla chiesa; i prati del ritorno sono aperti.",
+  "Start at the large car park by the bus stop in Cogolo (1,160 m), the board’s start.": "Parti dal grande parcheggio della fermata dell’autobus a Cogolo (1.160 m), la partenza ufficiale.",
+  "Walk about 50 m along the pavement of the SP87 towards Celledizzo, then turn right on the lane to Le Plaze, a cycle and footpath. Turn right onto the path that climbs through the woods to the small church of Santa Lucia (1,300 m) on its hill outside Comasine. From the church take the clear path down to a wayside shrine, go left across the meadows, then left again on the country lane back to Le Plaze and the start.": "Cammina per circa 50 m sul marciapiede della SP87 verso Celledizzo, poi gira a destra sulla strada per le Plaze, una ciclopedonale. Prendi a destra il sentiero che sale nel bosco fino alla chiesetta di Santa Lucia (1.300 m), sul colle fuori da Comasine. Dalla chiesa prendi il sentiero ben visibile in discesa fino a un capitello, vai a sinistra attraverso i prati, poi ancora a sinistra sulla stradina di campagna che riporta alle Plaze e alla partenza.",
+  "Right off the SP87 to Le Plaze; right up the woodland path to Santa Lucia; down to the shrine, left over the meadows and left on the lane back to Le Plaze.": "A destra dalla SP87 verso le Plaze; a destra sul sentiero nel bosco fino a Santa Lucia; giù fino al capitello, a sinistra per i prati e a sinistra sulla stradina di ritorno alle Plaze.",
+  "Cogolo, bus-stop car park": "Cogolo, parcheggio della fermata dell’autobus",
+  "SP87 pavement towards Celledizzo for 50 m, then right to Le Plaze": "Marciapiede della SP87 verso Celledizzo per 50 m, poi a destra verso le Plaze",
+  "Right on the woodland path up to the Santa Lucia church (1,300 m)": "A destra sul sentiero nel bosco fino alla chiesa di Santa Lucia (1.300 m)",
+  "Down to the wayside shrine, left over the meadows": "Giù fino al capitello, a sinistra per i prati",
+  "Left on the country lane back to Le Plaze and Cogolo": "A sinistra sulla stradina di campagna di ritorno alle Plaze e a Cogolo"
+});

@@ -579,7 +579,23 @@
     'journal.passport.mile.walks': '10 walks',
     'journal.passport.mile.km': '100 km',
     'journal.passport.toGo': '{n} to go',
-    'journal.passport.rule': 'Only walks recorded with GPS earn a stamp. Walking a trail again adds to its stamp.',
+    'journal.passport.rule': 'Only walks recorded with GPS earn a stamp: in ORMA, or a GPX file from your watch or another app. Walking a trail again adds to its stamp.',
+    'journal.gpx.add': 'Add from a GPX file',
+    'journal.gpx.sub': 'Recorded on your watch, Strava or Komoot? It can earn a passport stamp.',
+    'journal.gpx.title': 'Walk from your file',
+    'journal.gpx.again': 'Choose another file',
+    'journal.gpx.save': 'Save and stamp the passport',
+    'journal.gpx.saveNoStamp': 'Save without a stamp',
+    'journal.gpx.proven': 'This is {trail}. {pct}% of the trail walked, so it earns a passport stamp.',
+    'journal.gpx.short': 'This looks like {trail}, but only {pct}% of the trail was walked. A stamp needs 75%.',
+    'journal.gpx.fast': 'This follows {trail}, but faster than walking pace, so it can’t earn a stamp.',
+    'journal.gpx.notOneWalk': 'This follows {trail}, but the file covers more than one day, so it can’t earn a stamp.',
+    'journal.gpx.noTrail': 'This walk doesn’t follow an ORMA trail, so it can’t earn a stamp. You can still keep it in your journal.',
+    'journal.gpx.noTimes': 'This file has no times on it, so it’s a planned route, not a walk. Export the recorded activity instead.',
+    'journal.gpx.future': 'This file’s times are in the future. Check the date on your device.',
+    'journal.gpx.tooShort': 'This recording is too short to be a walk.',
+    'journal.gpx.notGpx': 'This isn’t a GPX file we can read. Export the activity as GPX and try again.',
+    'journal.gpx.duplicate': 'This walk is already in your journal.',
     'journal.subtitle': 'Keep the route, the conditions and the moments worth remembering, all in one place.',
     'journal.log': '+ Log a walk',
     'journal.walks': 'Walks',
@@ -1118,6 +1134,7 @@
     'recommendation.routeView.back': 'Scored for walking there and back: {km} km, about {climb} m up and the same down. The time is an estimate.',
     'card.oneWay': 'One way',
     'card.thereAndBack': '{km} km there and back',
+    'card.climb': '{m} m climb',
     'trail.fact.difficulty': 'Difficulty',
     'trail.matchCellTeaser': 'Score it for your dog →',
     'trail.fact.terrain': 'terrain',
@@ -1858,6 +1875,9 @@
     'page.trail.satellite': 'Satellite',
     'page.trail.elevation': 'Elevation',
     'page.trail.awaitingPosition': 'Awaiting position',
+    'page.trail.elevStart': 'start',
+    'page.trail.elevHigh': 'high point',
+    'page.trail.elevClimb': 'total climb',
     'page.trail.directionsToTheRecommendedStart': 'Directions to the recommended start →',
     'page.trail.previousPhotos': 'Previous photos',
     'page.trail.noTrailPhotosYet': 'No trail photos yet',
@@ -2471,7 +2491,23 @@
     'journal.passport.mile.walks': '10 passeggiate',
     'journal.passport.mile.km': '100 km',
     'journal.passport.toGo': 'ne mancano {n}',
-    'journal.passport.rule': 'Solo le passeggiate registrate con il GPS ricevono un timbro. Ripetere un sentiero si aggiunge al suo timbro.',
+    'journal.passport.rule': 'Solo le passeggiate registrate con il GPS ricevono un timbro: in ORMA, o con un file GPX dal tuo orologio o da un’altra app. Ripetere un sentiero si aggiunge al suo timbro.',
+    'journal.gpx.add': 'Aggiungi da un file GPX',
+    'journal.gpx.sub': 'Registrata con l’orologio, Strava o Komoot? Può ricevere un timbro sul passaporto.',
+    'journal.gpx.title': 'Passeggiata dal tuo file',
+    'journal.gpx.again': 'Scegli un altro file',
+    'journal.gpx.save': 'Salva e timbra il passaporto',
+    'journal.gpx.saveNoStamp': 'Salva senza timbro',
+    'journal.gpx.proven': 'È {trail}. Hai percorso il {pct}% del sentiero, quindi riceve un timbro sul passaporto.',
+    'journal.gpx.short': 'Sembra {trail}, ma hai percorso solo il {pct}% del sentiero. Per il timbro serve il 75%.',
+    'journal.gpx.fast': 'Segue {trail}, ma più veloce del passo a piedi, quindi non può ricevere un timbro.',
+    'journal.gpx.notOneWalk': 'Segue {trail}, ma il file copre più di un giorno, quindi non può ricevere un timbro.',
+    'journal.gpx.noTrail': 'Questa passeggiata non segue un sentiero ORMA, quindi non riceve un timbro. Puoi comunque tenerla nel diario.',
+    'journal.gpx.noTimes': 'Questo file non ha orari: è un percorso pianificato, non una passeggiata. Esporta invece l’attività registrata.',
+    'journal.gpx.future': 'Gli orari di questo file sono nel futuro. Controlla la data del dispositivo.',
+    'journal.gpx.tooShort': 'Questa registrazione è troppo breve per essere una passeggiata.',
+    'journal.gpx.notGpx': 'Non riusciamo a leggere questo file GPX. Esporta l’attività come GPX e riprova.',
+    'journal.gpx.duplicate': 'Questa passeggiata è già nel tuo diario.',
     'journal.subtitle': 'Conserva il percorso, le condizioni e i momenti da ricordare, tutto in un unico posto.',
     'journal.log': '+ Registra una passeggiata',
     'journal.walks': 'Passeggiate',
@@ -3010,6 +3046,7 @@
     'recommendation.routeView.back': 'Punteggio per andata e ritorno: {km} km, circa {climb} m di salita e altrettanti di discesa. Il tempo è una stima.',
     'card.oneWay': 'Solo andata',
     'card.thereAndBack': '{km} km andata e ritorno',
+    'card.climb': '{m} m di salita',
     'trail.fact.difficulty': 'Difficoltà',
     'trail.matchCellTeaser': 'Calcolalo per il tuo cane →',
     'trail.fact.terrain': 'terreno',
@@ -3750,6 +3787,9 @@
     'page.trail.satellite': 'Satellite',
     'page.trail.elevation': 'Altimetria',
     'page.trail.awaitingPosition': 'In attesa della posizione',
+    'page.trail.elevStart': 'partenza',
+    'page.trail.elevHigh': 'punto più alto',
+    'page.trail.elevClimb': 'salita totale',
     'page.trail.directionsToTheRecommendedStart': 'Indicazioni per la partenza consigliata →',
     'page.trail.previousPhotos': 'Foto precedenti',
     'page.trail.noTrailPhotosYet': 'Ancora nessuna foto del sentiero',
@@ -3832,9 +3872,33 @@
   }
 
   // ---- Translation functions -------------------------------------------------
+  // A number as the reader writes it: Italian has a decimal comma and a
+  // thousands dot (6,7 km; 0,5–1 h; 12.345). Takes a number, or text holding
+  // English-style numbers ("6.7", "1,655 m", "0.5–1"); English is untouched.
+  function num(value){
+    if (lang !== 'it' || value == null) return value;
+    if (typeof value === 'number') {
+      return Number.isFinite(value) ? new Intl.NumberFormat('it-IT', { maximumFractionDigits: 2 }).format(value) : String(value);
+    }
+    if (typeof value !== 'string') return value;
+    return value.replace(/\d+(?:[.,]\d+)*/g, token => {
+      if (/^\d{1,3}(?:,\d{3})+(?:\.\d+)?$/.test(token)) return token.replace(/[.,]/g, c => (c === ',' ? '.' : ','));
+      if (/^\d+\.\d+$/.test(token)) return token.replace('.', ',');
+      return token;
+    });
+  }
+
+  // Values filled into wording: a number, or text that is only a number or
+  // range ("0.5–1"), is written the reader's way. Names and words are not.
+  function fillValue(value){
+    if (typeof value === 'number') return num(value);
+    if (typeof value === 'string' && /^[\d.,\s–—+\-≈~]+$/.test(value) && /\d/.test(value)) return num(value);
+    return value;
+  }
+
   function t(key, vars){
     let s = (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key;
-    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(fillValue(vars[k]));
     return s;
   }
 
@@ -3844,7 +3908,7 @@
   function phrase(text, vars){
     const table = lang === 'it' && window.ORMA_PHRASES_IT;
     let s = (table && Object.prototype.hasOwnProperty.call(table, text) && table[text]) || text;
-    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(fillValue(vars[k]));
     return s;
   }
 
@@ -4048,7 +4112,7 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 
-  window.DoloPawsI18n = { lang, t, phrase, trField, trailText, setLang };
+  window.DoloPawsI18n = { lang, t, phrase, num, trField, trailText, setLang };
   window.t = t;
   window.trField = trField;
   window.trailText = trailText;

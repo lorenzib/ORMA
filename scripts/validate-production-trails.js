@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const { loadProductionTrails, DEFAULT_FILES } = require('./load-production-trails');
 const { buildCanonicalCatalog, ADAPTER_VERSION } = require('./trail-adapter');
+const { seasonalSealReport } = require('./seasonal-seal');
 
 const root = path.resolve(__dirname, '..');
 const reportFlag = process.argv.indexOf('--report');
@@ -19,6 +20,9 @@ try{
 }
 
 const catalog = buildCanonicalCatalog(trails);
+// A hard seasonal limit is sourced before the seal (scripts/seasonal-seal.js):
+// a walk sealed under the rule without it fails; one sealed before is a gap.
+const seasonalSeal = seasonalSealReport(trails);
 const published = catalog.records.filter(record => record.lifecycle === 'published');
 const drafts = catalog.records.filter(record => record.lifecycle === 'draft');
 const byOrigin = Object.fromEntries(['curated', 'osm'].map(origin => [
@@ -43,6 +47,7 @@ const report = {
   byOrigin,
   excludedFromGeneration: catalog.excluded,
   errors: catalog.errors,
+  seasonalSeal,
 };
 
 if(reportTarget){
@@ -50,6 +55,18 @@ if(reportTarget){
   fs.mkdirSync(path.dirname(absolute), { recursive: true });
   fs.writeFileSync(absolute, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
   console.log(`Wrote ${path.relative(root, absolute)}.`);
+}
+
+const seasonalErrors = seasonalSeal.violations.map(entry =>
+  `${entry.id}: sealed on ${entry.sealedOn} without its seasonal limit sourced (${entry.detail.join('; ')})`);
+if(seasonalErrors.length){
+  console.error(`[error] ${seasonalErrors.length} seal(s) given without a sourced seasonal limit:`);
+  seasonalErrors.forEach(error => console.error(`  - ${error}`));
+  process.exitCode = 1;
+}
+if(seasonalSeal.gaps.length){
+  console.warn(`[gap] ${seasonalSeal.gaps.length} walk(s) sealed before ${seasonalSeal.ruleFrom} still need their seasonal limit sourced:`);
+  seasonalSeal.gaps.forEach(entry => console.warn(`  - ${entry.id}: ${entry.detail.join('; ')}`));
 }
 
 if(catalog.errors.length){

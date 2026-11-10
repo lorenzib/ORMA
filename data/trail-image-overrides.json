@@ -853,6 +853,23 @@
       }
     },
     {
+      "id": "cortina-anello-dei-tre-rifugi",
+      "approvedReviewId": "commons-cortina-anello-dei-tre-rifugi-on-route",
+      "approvedAt": "2026-11-09T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cortina-anello-dei-tre-rifugi-remeda-rosses.jpg",
+        "heroImage": "images/trails/cortina-anello-dei-tre-rifugi-remeda-rosses.jpg",
+        "imageAlt": "A small shallow lake in a green and stony high basin, under pale grey limestone slopes and cliffs, with a blue sky and white clouds",
+        "imageCredit": "Lago de ra Rémeda Rosses, on path 26",
+        "imageCreditText": "Lago de ra Rémeda Rosses, on path 26 by Marie-Lan Taÿ Pamart",
+        "imageCreator": "Marie-Lan Taÿ Pamart",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_de_Rémeda_Rósses.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cortina-castello-di-botestagno",
       "approvedReviewId": "commons-cortina-castello-di-botestagno-on-route",
       "approvedAt": "2026-10-26T20:00:00.000Z",
@@ -866,6 +883,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castello_di_Botestagno1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cortina-forcella-lerosa",
+      "approvedReviewId": "commons-cortina-forcella-lerosa-on-route",
+      "approvedAt": "2026-11-09T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cortina-forcella-lerosa-gotres.jpg",
+        "heroImage": "images/trails/cortina-forcella-lerosa-gotres.jpg",
+        "imageAlt": "A rounded grey rock dome with folded layers rising from a larch and dwarf-pine forest, under steep pale scree and cliffs with patches of snow",
+        "imageCredit": "Folded rock above the Val di Gotres",
+        "imageCreditText": "Folded rock above the Val di Gotres by Armin S Kowalski",
+        "imageCreator": "Armin S Kowalski",
+        "imageLicence": "CC BY-SA 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Alpenkarussell_(28054547707).jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -934,6 +968,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rifugio_Dibona.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cortina-zumeles-val-padeon",
+      "approvedReviewId": "commons-cortina-zumeles-val-padeon-on-route",
+      "approvedAt": "2026-11-09T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cortina-zumeles-val-padeon-ridge.jpg",
+        "heroImage": "images/trails/cortina-zumeles-val-padeon-ridge.jpg",
+        "imageAlt": "A narrow grassy path along a ridge with larches, Cortina d’Ampezzo in the valley below and the Tofane under cloud behind",
+        "imageCredit": "Path 204 above Cortina, on the way to Forcella Zumeles",
+        "imageCreditText": "Path 204 above Cortina, on the way to Forcella Zumeles by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cortina_and_trail.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -7370,6 +7421,23 @@
       }
     },
     {
+      "id": "valdisole-cogolo-chiesa-di-santa-lucia",
+      "approvedReviewId": "commons-valdisole-cogolo-chiesa-di-santa-lucia-on-route",
+      "approvedAt": "2026-11-09T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-cogolo-santa-lucia-church.jpg",
+        "heroImage": "images/trails/valdisole-cogolo-santa-lucia-church.jpg",
+        "imageAlt": "A small stone church with a pointed bell tower and shingle roof on a wooded hilltop, a meadow with picnic tables beside it and village houses in the valley below",
+        "imageCredit": "The church of Santa Lucia above Comasine, the walk’s goal",
+        "imageCreditText": "The church of Santa Lucia above Comasine, the walk’s goal by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Comasine,_chiesa_di_Santa_Lucia_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valdisole-fazzon-lago-dei-caprioli",
       "approvedReviewId": "commons-valdisole-fazzon-lago-dei-caprioli-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",
@@ -7400,6 +7468,23 @@
         "imageLicence": "CC BY 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Trentino_-_Val_di_Sole_-_Lago_dei_Caprioli,_panoramica_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-malga-strino",
+      "approvedReviewId": "commons-valdisole-malga-strino-on-route",
+      "approvedAt": "2026-11-09T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-malga-strino-forte.jpg",
+        "heroImage": "images/trails/valdisole-malga-strino-forte.jpg",
+        "imageAlt": "The stone ruins of an old fort with arched openings, flags flying in front, a gravel path and wooden railings, and a wooded slope behind",
+        "imageCredit": "Forte Strino, by the start in the Val Strino",
+        "imageCreditText": "Forte Strino, by the start in the Val Strino by Clanc72",
+        "imageCreator": "Clanc72",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:07_-_Forte_Strino_(4).jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -8505,6 +8590,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Passeggiata_con_i_fiocchi_di_neve.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "zoldo-bosco-secolare",
+      "approvedReviewId": "commons-zoldo-bosco-secolare-on-route",
+      "approvedAt": "2026-11-09T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/zoldo-bosco-secolare-dont-church.jpg",
+        "heroImage": "images/trails/zoldo-bosco-secolare-dont-church.jpg",
+        "imageAlt": "The cream-white apse of a small church with a dark metal roof and pointed bell tower, in front of a steep green wooded slope",
+        "imageCredit": "Santa Caterina in Dont, a 15-minute detour from Villa",
+        "imageCreditText": "Santa Caterina in Dont, a 15-minute detour from Villa by Marchetto da Trieste",
+        "imageCreator": "Marchetto da Trieste",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Chiesa_di_Santa_Caterina_(Dont,_Val_di_Zoldo)_03.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "zoldo-rifugio-bosconero",
+      "approvedReviewId": "commons-zoldo-rifugio-bosconero-on-route",
+      "approvedAt": "2026-11-09T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/zoldo-rifugio-bosconero-pontesei.jpg",
+        "heroImage": "images/trails/zoldo-rifugio-bosconero-pontesei.jpg",
+        "imageAlt": "A curved concrete dam holding a green-blue reservoir between steep forested slopes, with a tall concrete intake tower on the right",
+        "imageCredit": "The Pontesei dam, by the start",
+        "imageCreditText": "The Pontesei dam, by the start by VENET01",
+        "imageCreator": "VENET01",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Diga_pontesei.jpg",
         "imageSourceType": "licensed-source"
       }
     }

@@ -1,5 +1,6 @@
 // cembra-pietra-del-futuro in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the audio-guided walk from Lases to its lake": "la passeggiata con audioguida da Lases al suo lago",
   "A short walk from the porphyry village of Lases down to its lake and along the shore, with an audio guide recorded by the village schoolchildren. The APT lists 2.7 km and 61 m of ascent, one way.": "Una breve camminata dal paese del porfido di Lases giù fino al lago e lungo la riva, con un'audioguida registrata dagli alunni della scuola del paese. L'APT indica 2,7 km e 61 m di dislivello in salita, solo andata.",
   "Start in the centre of Lases: 2.7 km one way, about 60 m of climbing, under an hour. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried; the lake is a nature reserve, so never let your dog roam. A few steps on the lake path. Fountains in Lases.": "Partenza dal centro di Lases: 2,7 km solo andata, circa 60 m di salita, meno di un'ora. Vale la norma italiana: guinzaglio di al massimo 1,5 m e museruola al seguito; il lago è una riserva naturale, quindi non lasciare mai il cane libero. Qualche gradino sul sentiero del lago. Fontane a Lases.",
   "Village streets with cars at the start": "Vie del paese con auto alla partenza",

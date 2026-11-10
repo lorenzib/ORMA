@@ -1,0 +1,20 @@
+// cortina-forcella-lerosa in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "up the Val di Gotres to the larch meadows of Lerosa": "su per la Val di Gotres fino ai lariceti di Lerosa",
+  "A steady climb from Passo Cimabanche up the quiet Val di Gotres, past 500-year-old stone pines, to the grassy saddle of Forcella Lerosa. The board lists 4.8 km and 516 m up, one way.": "Una salita regolare da Passo Cimabanche lungo la tranquilla Val di Gotres, tra pini cembri di 500 anni, fino alla sella erbosa di Forcella Lerosa. Il sito ufficiale indica 4,8 km e 516 m di salita, solo andata.",
+  "Start at Passo Cimabanche: 4.8 km and 516 m up to Forcella Lerosa, about 2 hours one way, as the board lists; come back the same way, so allow 9.6 km and 3½–4 hours in all. Carry water and a muzzle.": "Parti da Passo Cimabanche: 4,8 km e 516 m di salita fino a Forcella Lerosa, circa 2 ore solo andata, come indica il sito ufficiale; il ritorno è per la stessa via, quindi calcola 9,6 km e 3½–4 ore in tutto. Porta acqua e museruola.",
+  "A steady climb of 500 m on a stony mule track": "Una salita regolare di 500 m su una mulattiera sassosa",
+  "The start is by the busy SS51 at Passo Cimabanche: keep your dog on a short lead in the car park": "La partenza è accanto alla trafficata SS51 a Passo Cimabanche: tieni il cane al guinzaglio corto nel parcheggio",
+  "Cows may graze on the Lerosa meadows in summer": "In estate le mucche possono pascolare sui prati di Lerosa",
+  "A gravel mule track through forest and meadow": "Una mulattiera sterrata tra bosco e prato",
+  "Passo Cimabanche, by the disused powder magazine, the board’s start": "Passo Cimabanche, accanto alla polveriera dismessa, la partenza ufficiale",
+  "A rounded grey rock dome with folded layers rising from a larch and dwarf-pine forest, under steep pale scree and cliffs with patches of snow": "Una cupola di roccia grigia con strati piegati che si alza da un bosco di larici e mughi, sotto ghiaioni chiari e ripidi e pareti con chiazze di neve",
+  "Shaded most of the way by spruce, larch and stone pine; the meadows near the top are open.": "All’ombra quasi tutto il tempo di abeti, larici e cembri; i prati vicino alla cima sono aperti.",
+  "Start at Passo Cimabanche, on the road from Cortina to Dobbiaco, where you leave the car by the old powder magazine.": "Parti da Passo Cimabanche, sulla strada da Cortina a Dobbiaco, dove lasci l’auto accanto alla vecchia polveriera.",
+  "Take the mule track up the Val di Gotres, past the disused powder magazine and along the Rio Gotres, through thick forest and then open meadows under the Croda Rossa d’Ampezzo. At the edge of the Lerosa meadows, among 500-year-old stone pines, keep on the track to the end of the valley at Forcella Lerosa (2,020 m), with the view to the Sennes plateau and the Tofane. Come back the same way.": "Prendi la mulattiera che risale la Val di Gotres, oltre la polveriera dismessa e lungo il Rio Gotres, prima in un bosco fitto e poi tra prati aperti sotto la Croda Rossa d’Ampezzo. Al margine dei prati di Lerosa, tra pini cembri di 500 anni, resta sulla mulattiera fino in fondo alla valle a Forcella Lerosa (2.020 m), con la vista sull’altopiano di Sennes e sulle Tofane. Torna per la stessa via.",
+  "The one mule track from Passo Cimabanche up the Val di Gotres to Forcella Lerosa; back the same way.": "L’unica mulattiera da Passo Cimabanche su per la Val di Gotres fino a Forcella Lerosa; ritorno per la stessa via.",
+  "Passo Cimabanche, by the disused powder magazine": "Passo Cimabanche, accanto alla polveriera dismessa",
+  "Val di Gotres mule track along the Rio Gotres": "Mulattiera della Val di Gotres lungo il Rio Gotres",
+  "Lerosa meadows and old stone pines": "Prati di Lerosa e vecchi pini cembri",
+  "Forcella Lerosa (2,020 m); back the same way": "Forcella Lerosa (2.020 m); ritorno per la stessa via"
+});
