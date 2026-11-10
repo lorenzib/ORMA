@@ -845,7 +845,8 @@
         filter: ['>', ['get', 'level'], 0],
         layout: {
           'symbol-placement': 'line', 'text-size': 10.5, 'text-max-angle': 25,
-          'text-field': ['concat', ['number-format', ['get', 'ele'], {}], ' m'],
+          // Italian readers get 2.400 m whatever the browser's own locale.
+          'text-field': ['concat', ['number-format', ['get', 'ele'], (typeof document !== 'undefined' && document.documentElement && document.documentElement.lang === 'it') ? { locale: 'it-IT' } : {}], ' m'],
           'text-font': FONT_REGULAR,
         },
         paint: {

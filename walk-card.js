@@ -7,6 +7,8 @@
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return k in vars ? vars[k] : m; }) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ var i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
 
   // Shareable Trail Tale cards. Journal data remains local: this module only
   // draws a user-selected entry and hands the resulting PNG to the device.
@@ -322,7 +324,7 @@
       ctx.fillStyle = INK; ctx.font = '800 ' + (compact ? 43 : 52) + 'px Inter, sans-serif'; ctx.fillText(value, x, statsY);
       ctx.fillStyle = SOFT; ctx.font = '700 21px Inter, sans-serif'; ctx.fillText(label.toUpperCase(), x, statsY + 34);
     }
-    stat(70, (entry.dist || '0') + ' km', tx('Distance')); stat(390, fmtDuration(entry.dur), tx('Time'));
+    stat(70, num(entry.dist || '0') + ' km', tx('Distance')); stat(390, fmtDuration(entry.dur), tx('Time'));
     if(options.dogName) stat(720, options.dogName, tx('Walked with'));
 
     var tale = entry.tale || {}, chips = [];

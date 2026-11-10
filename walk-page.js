@@ -7,6 +7,11 @@
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return k in vars ? vars[k] : m; }) : text;
   }
+  // A number as the reader writes it (Italian: 2,40 km). English unchanged.
+  function num(value){
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+  }
 
   // Record-anywhere walk page. The engine (walk-recorder.js) owns the
   // maths; this file owns geolocation, the map trace, the draft snapshot
@@ -61,7 +66,7 @@
 
   function paint(){
     els.time.textContent = fmtTime(recorder.elapsedMs(Date.now()));
-    els.dist.textContent = (recorder.distanceM / 1000).toFixed(2);
+    els.dist.textContent = num((recorder.distanceM / 1000).toFixed(2));
   }
 
   function setButtons(){

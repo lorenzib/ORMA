@@ -167,6 +167,8 @@ document.addEventListener('DOMContentLoaded', function(){
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, function(m, k){ return (k in vars ? vars[k] : m); }) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ var i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
   var listEl = document.getElementById('savedList');
   var emptyEl = document.getElementById('savedEmpty');
   var outEl = document.getElementById('savedLoggedOut');
@@ -189,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function(){
     routeList.innerHTML = records.map(function(record){
       var distance = record.distanceM < 1000
         ? Math.round(record.distanceM / 10) * 10 + ' m'
-        : (record.distanceM / 1000).toFixed(1) + ' km';
+        : num((record.distanceM / 1000).toFixed(1)) + ' km';
       var date = new Date(record.updatedAt || record.createdAt);
       var dateLabel = Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString();
       return '<article style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px;border:1px solid var(--paper-line);border-radius:14px;background:var(--card);">' +
@@ -319,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function(){
           '</div>' +
           '<a href="trail.html?id=' + encodeURIComponent(tr.id) + '&from=saved.html" class="name" style="margin-top:2px;display:block;text-decoration:none;color:inherit;">' + esc(tr.name) + '</a>' +
           '<div class="tc-reason"><span class="mark">&#10022;</span><span class="txt">' + esc(whyFits(tr.recommendation)) + '</span></div>' +
-          '<div class="tc-stats">' + esc(tr.area || '') + ' · ' + tr.distance + ' km · ' + tr.elevation + ' m' + (tr.hours ? ' · ' + esc(tr.hours) + ' h' : '') + '</div>' +
+          '<div class="tc-stats">' + esc(tr.area || '') + ' · ' + num(tr.distance) + ' km · ' + num(tr.elevation) + ' m' + (tr.hours ? ' · ' + esc(num(tr.hours)) + ' h' : '') + '</div>' +
           '<div class="tc-actions">' +
             '<a href="trail.html?id=' + encodeURIComponent(tr.id) + '&from=saved.html">' + esc(window.t('card.details')) + '</a>' +
             '<button type="button" class="save save-btn saved" data-remove="' + esc(tr.id) + '">' + esc(window.t('saved.card.remove')) + '</button>' +

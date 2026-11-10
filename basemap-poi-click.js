@@ -59,6 +59,12 @@ function tx(text, vars){
   return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
 }
 
+// A number as the reader writes it (Italian: 2.999,5 m). English unchanged.
+function num(value){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+}
+
 // subclass (raw OSM value) → label. Falls back to prettified text for
 // anything not listed, so unknown types still get a sensible popup.
 // Built on each popup so the labels follow the page language.
@@ -167,7 +173,7 @@ function makeBasemapPoisClickable(map){
     const lng = coords[0], lat = coords[1];
 
     let baseHtml = `<b>${escHtml(name)}</b><br>${poiLabel(p)}`;
-    if (p.ele) baseHtml += `<br>⛰️ ${escHtml(p.ele)} m`;
+    if (p.ele) baseHtml += `<br>⛰️ ${escHtml(num(p.ele))} m`;
 
     // No per-POI source link: an osm.org object page is a mappers' database
     // view, not visitor information, and the map corner already carries the

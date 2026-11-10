@@ -1563,6 +1563,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
     var pageTitle = document.getElementById('pageTitle');
     if(pageTitle) pageTitle.textContent = document.title;
     var facts = document.getElementById('trailFacts');
+    // A number as the reader writes it (Italian: 6,7 km). English unchanged.
+    function num(value){ var i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
     if(facts){
       var rows = [
         [trail.distance, ' km', window.t('trail.fact.distance')],
@@ -1574,7 +1576,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
         var item = document.createElement('span');
         item.className = 'f';
         var value = document.createElement('b');
-        value.textContent = row[0] + row[1];
+        value.textContent = num(row[0]) + row[1];
         var label = document.createElement('span');
         label.textContent = row[2];
         item.append(value, label);

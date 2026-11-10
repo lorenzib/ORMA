@@ -3840,9 +3840,33 @@
   }
 
   // ---- Translation functions -------------------------------------------------
+  // A number as the reader writes it: Italian has a decimal comma and a
+  // thousands dot (6,7 km; 0,5–1 h; 12.345). Takes a number, or text holding
+  // English-style numbers ("6.7", "1,655 m", "0.5–1"); English is untouched.
+  function num(value){
+    if (lang !== 'it' || value == null) return value;
+    if (typeof value === 'number') {
+      return Number.isFinite(value) ? new Intl.NumberFormat('it-IT', { maximumFractionDigits: 2 }).format(value) : String(value);
+    }
+    if (typeof value !== 'string') return value;
+    return value.replace(/\d+(?:[.,]\d+)*/g, token => {
+      if (/^\d{1,3}(?:,\d{3})+(?:\.\d+)?$/.test(token)) return token.replace(/[.,]/g, c => (c === ',' ? '.' : ','));
+      if (/^\d+\.\d+$/.test(token)) return token.replace('.', ',');
+      return token;
+    });
+  }
+
+  // Values filled into wording: a number, or text that is only a number or
+  // range ("0.5–1"), is written the reader's way. Names and words are not.
+  function fillValue(value){
+    if (typeof value === 'number') return num(value);
+    if (typeof value === 'string' && /^[\d.,\s–—+\-≈~]+$/.test(value) && /\d/.test(value)) return num(value);
+    return value;
+  }
+
   function t(key, vars){
     let s = (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key;
-    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(fillValue(vars[k]));
     return s;
   }
 
@@ -3852,7 +3876,7 @@
   function phrase(text, vars){
     const table = lang === 'it' && window.ORMA_PHRASES_IT;
     let s = (table && Object.prototype.hasOwnProperty.call(table, text) && table[text]) || text;
-    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(fillValue(vars[k]));
     return s;
   }
 
@@ -4056,7 +4080,7 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 
-  window.DoloPawsI18n = { lang, t, phrase, trField, trailText, setLang };
+  window.DoloPawsI18n = { lang, t, phrase, num, trField, trailText, setLang };
   window.t = t;
   window.trField = trField;
   window.trailText = trailText;
