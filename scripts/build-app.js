@@ -56,6 +56,7 @@ const RUNTIME_FILES = [
   'app-saved.js',
   'app-trail.js',
   'app-you.js',
+  'app-welcome.js',
 ];
 
 // Whole directories that ship as-is.
@@ -115,6 +116,8 @@ const APP_TRAIL_TAG = '<script src="/app-trail.js" defer></script>';
 const APP_EXPLORE_TAG = '<script src="/app-explore.js" defer></script>';
 const APP_YOU_TAG = '<script src="/app-you.js" defer></script>';
 const APP_SAVED_TAG = '<script src="/app-saved.js" defer></script>';
+// The first launch: what ORMA does, then add your dog or look around (app-welcome.js).
+const APP_WELCOME_TAG = '<script src="/app-welcome.js" defer></script>';
 // Marks the page as running inside the app before anything draws, so the
 // homepage can open on the map instead of the website's guest landing page.
 const APP_FLAG_TAG = '<script>document.documentElement.classList.add(\'orma-app\');</script>';
@@ -284,7 +287,7 @@ function rewriteRemoteRefs(){
       .replace(REMOTE_REF, `$1${SITE_ORIGIN}/$2`)
       .replace(MANIFEST_TAG, APP_MANIFEST_TAG);
     const page = /\.html$/.test(r)
-      ? after.replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_FLAG_TAG}\n${APP_SHELL_TAG}\n${APP_TABBAR_TAG}\n${r === 'trail.html' ? `${APP_TRAIL_TAG}\n` : ''}${r === 'index.html' ? `${APP_EXPLORE_TAG}\n` : ''}${r === 'account.html' ? `${APP_YOU_TAG}\n` : ''}${r === 'saved.html' ? `${APP_SAVED_TAG}\n` : ''}</head>`)
+      ? after.replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_FLAG_TAG}\n${APP_SHELL_TAG}\n${APP_TABBAR_TAG}\n${r === 'trail.html' ? `${APP_TRAIL_TAG}\n` : ''}${r === 'index.html' ? `${APP_EXPLORE_TAG}\n` : ''}${r === 'index.html' ? `${APP_WELCOME_TAG}\n` : ''}${r === 'account.html' ? `${APP_YOU_TAG}\n` : ''}${r === 'saved.html' ? `${APP_SAVED_TAG}\n` : ''}</head>`)
       : after;
     if(page !== before){ fs.writeFileSync(dest, page); rewritten += 1; }
   }
@@ -312,4 +315,4 @@ function build(){
 if(require.main === module) build();
 
 module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG,
-  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG, APP_TRAIL_TAG, APP_EXPLORE_TAG, APP_YOU_TAG, APP_SAVED_TAG, APP_FLAG_TAG };
+  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG, APP_TRAIL_TAG, APP_EXPLORE_TAG, APP_YOU_TAG, APP_SAVED_TAG, APP_WELCOME_TAG, APP_FLAG_TAG };
