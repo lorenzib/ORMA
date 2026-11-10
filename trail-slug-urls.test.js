@@ -173,7 +173,7 @@ describe('the static pages and the app agree on the slug', () => {
     const SLUG_AWARE = {
       'discovery-state': '20261007-1', 'regional-trails-loader': '20261104-1',
       'browse-map': '20261106-2', 'compare-page': '20261007-1',
-      'collections-page': '20261108-1', 'homepage-search': '20261007-1',
+      'collections-page': '20261108-1', 'homepage-search': '20261110-2',
       'mobile-nav': '20261030-1', 'notifications-feed': '20261023-1',
     };
     const stale = [];

@@ -1307,6 +1307,10 @@ function filterTrailsForReturningView(list){
     displayList = displayList.slice().sort((a, b) =>
       ((hr[a.heatRisk] ?? 1) - (hr[b.heatRisk] ?? 1)) || ((b.shadeCoverage || 0) - (a.shadeCoverage || 0)));
   }
+  // Whatever the order, the walks to go on now come first; those out of
+  // season this month follow in the same order (trail-season-words.js).
+  const seasonWords = window.DoloPawsTrailSeasonWords;
+  if(seasonWords) displayList = seasonWords.inSeasonFirst(displayList, x => x.season, new Date().getMonth() + 1);
 
   return displayList;
 }

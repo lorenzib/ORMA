@@ -336,7 +336,7 @@
     var filters = window.DoloPawsDiscoveryFilters;
     var fstate = discoveryState();
     var options = { chairliftSafe: chairliftSafe() };
-    return trails.filter(function (t) {
+    var ranked = trails.filter(function (t) {
       if (filters ? !filters.matches(t, fstate, options) : !legacyMatch(t, fstate)) return false;
       return true;
     }).map(function (t) {
@@ -344,6 +344,9 @@
     }).filter(function (e) {
       return state.minMatch === 0 || e.score >= state.minMatch;
     }).sort(function (a, b) { return b.score - a.score; });
+    // The walks to go on now first, those out of season this month after.
+    var words = window.DoloPawsTrailSeasonWords;
+    return words ? words.inSeasonFirst(ranked, function (e) { return e.t.season; }, new Date().getMonth() + 1) : ranked;
   }
 
   // ---- weekly featured collection (rotating editorial catalogue) ----
@@ -363,6 +366,32 @@
     return selected
       .map(function (t) { return { t: t, score: scoreOf(t) }; })
       .sort(function (a, b) { return b.score - a.score; }).slice(0, 3);
+  }
+
+  // ---- good walks this month (trail-season-words.js) ----
+  // Dolomites walks whose best months include this one (the launch region),
+  // offered on the homepage today (the discovery rules, chairlift included),
+  // best match first. A walk with no season record is left out: nothing says
+  // this is its month.
+  var GOOD_NOW_REGION = 'dolomites';
+  function goodNow(skipIds) {
+    var words = window.DoloPawsTrailSeasonWords;
+    var filters = window.DoloPawsDiscoveryFilters;
+    if (!words) return { list: [], count: 0 };
+    var month = new Date().getMonth() + 1;
+    var options = { chairliftSafe: chairliftSafe() };
+    var inSeason = trails.filter(function (t) {
+      if (t.region !== GOOD_NOW_REGION) return false;
+      var best = words.bestMonths(t.season);
+      if (!best || best.indexOf(month) === -1) return false;
+      return filters ? filters.matches(t, {}, options) : true;
+    });
+    var list = inSeason
+      .filter(function (t) { return skipIds.indexOf(t.id) === -1; })
+      .map(function (t) { return { t: t, score: scoreOf(t) }; })
+      .sort(function (a, b) { return b.score - a.score; })
+      .slice(0, 3);
+    return { list: list, count: inSeason.length, month: words.monthName(month) };
   }
 
   // ---- renderers ----
@@ -591,6 +620,20 @@
           ? tx('Browsing with {name}, with trails ranked for them.', { name: dogMeta().name })
           : tx('Previewing as {name}, with trails ranked for them.', { name: dogMeta().name }));
       var featProfileCta = state.dog === 'custom' ? tx('Save profile →') : tx('Create your dog\'s profile →');
+      var now = goodNow(feat.map(function (entry) { return entry.t.id; }));
+      var nowSection = now.list.length
+        ? '<section class="hp-featured hp-goodnow" aria-labelledby="hpGoodNowTitle">' +
+            '<div class="hp-coll-head"><div>' +
+              '<div class="hp-kick hp-kick-left">' + esc(tx('In season now')) + '</div>' +
+              '<h2 class="hp-feat-h2" id="hpGoodNowTitle">' + esc(tx('Good Dolomites walks for {month}', { month: now.month })) + '</h2>' +
+              '<p class="hp-coll-sub">' + esc(tx('Dolomites walks whose best months include {month}, ranked for the dog you are browsing with.', { month: now.month })) + '</p></div></div>' +
+            '<div class="hp-coll-grid">' + now.list.map(function (entry) {
+              var words = window.DoloPawsTrailSeasonWords;
+              return ccardHtml(entry, esc(entry.t.distance) + ' km · ' + esc(valleyOf(entry.t)) + ' · ' + esc(words.bestTime(entry.t.season, true)));
+            }).join('') + '</div>' +
+            '<a class="hp-how-link hp-featured-collection-cta" href="browse-trails.html?region=' + GOOD_NOW_REGION + '">' + esc(tx('See the {count} Dolomites walks in season →', { count: now.count })) + '</a>' +
+          '</section>'
+        : '';
       var how = HOW_CARDS.map(function (c) {
         var text = c.text || tx('We map and review each published trail for route shape, terrain, climb, shade, water, access and hazards.');
         return '<div class="hp-howcard">' +
@@ -612,6 +655,7 @@
           '<div class="hp-how-grid">' + how + '</div>' +
           '<a class="hp-how-link" href="how-scoring-works.html">' + esc(tx('See how ORMA assesses a trail →')) + '</a>' +
         '</section>' +
+        nowSection +
         '<section class="hp-featured" aria-labelledby="hpFeaturedTitle">' +
           '<div class="hp-coll-head"><div>' +
             '<div class="hp-kick hp-kick-left">' + esc(tx('Featured this week')) + '</div>' +
