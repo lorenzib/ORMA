@@ -131,6 +131,10 @@
   .jp{margin-top:22px;padding:18px 18px 16px;background:var(--card);border:1px solid var(--paper-line);border-radius:18px;}
   .jp[hidden]{display:none;}
   .jp-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .jp-head-actions{display:flex;align-items:center;gap:8px;}
+  .jp-share{border:1.5px solid #2F6B4F;background:#fff;color:#2F6B4F;border-radius:999px;padding:6px 14px;font:700 12.5px/1.2 'Inter',sans-serif;cursor:pointer;}
+  .jp-share:hover{background:#EEF6EF;}
+  .jp-share:focus-visible{outline:2px solid #1F4B36;outline-offset:2px;}
   .jp-title{margin:0;font-size:21px;}
   .jp-sum{margin:4px 0 14px;color:var(--ink-soft);font-size:13.5px;}
   .jp-empty{margin:6px 0 14px;color:var(--ink-soft);font-size:14px;line-height:1.5;}
@@ -461,6 +465,29 @@
   </div>
 </div>
 
+<!-- SOCIAL-07: the passport as a picture to share. -->
+<div class="jn-overlay" id="jnPassShareOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="jnPassShareTitle">
+  <div class="jn-modal jn-share-modal">
+    <div class="jn-modal-head">
+      <h2 id="jnPassShareTitle" style="margin:0;font-size:22px;" data-i18n="journal.passport.card.title">Share the passport</h2>
+      <button type="button" class="jn-x" id="jnPassShareClose" aria-label="Close" data-i18n-aria-label="journal.close">&times;</button>
+    </div>
+    <div class="jn-share-layout">
+      <div class="jn-share-preview-wrap"><img id="jnPassSharePreview" class="jn-share-preview" alt="The dog passport picture"></div>
+      <div class="jn-share-options">
+        <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.shareCard.format">Format</span><div class="jn-choice-row" id="jnPassShareFormats">
+          <button type="button" class="jn-choice on" data-format="story" data-i18n="page.journal.story916">Story 9:16</button><button type="button" class="jn-choice" data-format="post" data-i18n="page.journal.post45">Post 4:5</button>
+        </div></div>
+        <div class="jn-share-actions">
+          <button type="button" class="auth-submit" id="jnPassShareGo" data-i18n="journal.passport.card.share">Share</button>
+          <button type="button" class="jn-edit-photo-btn" id="jnPassShareDownload" data-i18n="journal.shareCard.download">Download image</button>
+        </div>
+        <p class="jn-share-helper" data-i18n="journal.passport.card.helper">The picture shows your dog, the valleys and the trail names. It never shows your own GPS track.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">
     <div>
@@ -525,7 +552,7 @@
 </footer>
 
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261110-1"></script>
+<script src="i18n.js?v=20261111-1"></script>
 <script type="module" src="firebase-init.js?v=20261107-1"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20261030-1" defer></script>
@@ -537,7 +564,8 @@
 <script src="walk-card.js?v=20260825-1"></script>
 <script src="walk-proof.js?v=20261110-1"></script>
 <script src="gpx-walk.js?v=20261110-1"></script>
-<script src="dog-passport.js?v=20261110-3"></script>
+<script src="dog-passport.js?v=20261111-1"></script>
+<script src="passport-card.js?v=20261111-1"></script>
 <script>
 // My Journal. Entries are private, per-account records stored only in this
 // browser. JOURNAL-01 deliberately avoids silently uploading walk history;
@@ -943,6 +971,7 @@ document.addEventListener('DOMContentLoaded', function(){
       dogBreed: dogBreed,
       dogPhoto: dogPhotoData,
       openValley: passportValley,
+      canShare: !!window.DoloPawsPassportCard,
       lang: document.documentElement.lang || undefined,
     });
     var title = el.querySelector('.jp-title');
@@ -956,6 +985,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var passportValley = '';
   var dogBreed = '';
   document.getElementById('jnPassport').addEventListener('click', function(ev){
+    if(ev.target.closest && ev.target.closest('.jp-share')){ openPassportShare(ev.target.closest('.jp-share')); return; }
     var visa = ev.target.closest && ev.target.closest('.jp-visa');
     if(!visa) return;
     var name = visa.getAttribute('data-valley') || '';
@@ -1738,6 +1768,69 @@ document.addEventListener('DOMContentLoaded', function(){
     pushUnsentEntries();
     setTimeout(function(){ openAfter(entry, true); }, 160);
   });
+
+  // ---- SOCIAL-07: share the passport as a picture ----------------------
+  var passShareOverlay = document.getElementById('jnPassShareOverlay');
+  var passShareFormat = 'story';
+  var passShareReturn = null;
+  var passShareToken = 0;
+  function passportCardOptions(){
+    return {
+      t: function(key, vars){ return window.t(key, vars); },
+      lang: document.documentElement.lang || undefined,
+      format: passShareFormat,
+      dogName: dogDisplayName,
+      dogBreed: dogBreed,
+      dogPhoto: dogPhotoData,
+    };
+  }
+  function currentPassport(){
+    return window.DoloPawsPassport.buildPassport(state.entries, allTrails());
+  }
+  function renderPassportSharePreview(){
+    var card = window.DoloPawsPassportCard;
+    if(!card) return;
+    var token = ++passShareToken;
+    card.createPassportCard(currentPassport(), passportCardOptions()).then(function(canvas){
+      if(token !== passShareToken) return;
+      document.getElementById('jnPassSharePreview').src = canvas.toDataURL('image/png');
+    }).catch(function(){ showStatus(window.t('journal.shareError')); });
+  }
+  function openPassportShare(trigger){
+    if(!window.DoloPawsPassportCard || !window.DoloPawsPassport) return;
+    passShareReturn = trigger || null;
+    passShareFormat = 'story';
+    document.querySelectorAll('#jnPassShareFormats [data-format]').forEach(function(b){ b.classList.toggle('on', b.dataset.format === passShareFormat); });
+    document.getElementById('jnPassSharePreview').alt = window.t('journal.passport.card.previewAlt');
+    passShareOverlay.hidden = false;
+    renderPassportSharePreview();
+    setTimeout(function(){ document.getElementById('jnPassShareGo').focus(); }, 0);
+  }
+  function closePassportShare(){
+    passShareOverlay.hidden = true;
+    passShareToken++;
+    if(passShareReturn && document.contains(passShareReturn)) passShareReturn.focus();
+    else { var again = document.querySelector('#jnPassport .jp-share'); if(again) again.focus(); }
+  }
+  document.getElementById('jnPassShareClose').addEventListener('click', closePassportShare);
+  passShareOverlay.addEventListener('click', function(e){ if(e.target === passShareOverlay) closePassportShare(); });
+  passShareOverlay.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ e.preventDefault(); closePassportShare(); } });
+  document.getElementById('jnPassShareFormats').addEventListener('click', function(e){
+    var b = e.target.closest('[data-format]');
+    if(!b) return;
+    passShareFormat = b.dataset.format;
+    this.querySelectorAll('[data-format]').forEach(function(x){ x.classList.toggle('on', x === b); });
+    renderPassportSharePreview();
+  });
+  function sharePassport(how){
+    var card = window.DoloPawsPassportCard;
+    if(!card) return;
+    card.sharePassportCard(currentPassport(), passportCardOptions(), how).then(function(result){
+      if(result === 'downloaded') showStatus(window.t('journal.passport.card.downloaded'));
+    }).catch(function(){ showStatus(window.t('journal.shareError')); });
+  }
+  document.getElementById('jnPassShareGo').addEventListener('click', function(){ sharePassport('share'); });
+  document.getElementById('jnPassShareDownload').addEventListener('click', function(){ sharePassport('download'); });
 
   // ---- SOCIAL-06: a walk from a GPX file ------------------------------
   // Read on the phone, matched to the trail it follows and judged by the
