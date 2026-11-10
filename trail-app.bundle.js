@@ -15621,7 +15621,37 @@ function initTrailReports(map, trail){
     return tx('Best time: {range}', { range: runs.join(', ') });
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, DOG_SEASON_TAGS, dogSeasonsNow };
+  // The month an out-of-season walk comes back into season: the next of its
+  // best months after this one. null when it is in season or has no record.
+  function backInSeason(season, month) {
+    const best = bestMonths(season);
+    if (!best || !month || best.includes(month)) return null;
+    for (let step = 1; step <= 12; step += 1) {
+      const next = ((month - 1 + step) % 12) + 1;
+      if (best.includes(next)) return next;
+    }
+    return null;
+  }
+
+  // The "Out of season" tag with the month it comes back: "Out of season ·
+  // back in June" ("back in Jun" on a card). '' when the walk is in season.
+  function outOfSeasonTag(season, month, short) {
+    const back = backInSeason(season, month);
+    if (!back) return '';
+    const name = short ? monthName(back).slice(0, 3) : monthName(back);
+    return tx('Out of season · back in {month}', { month: name });
+  }
+
+  // A list in the order it came, with the walks out of season this month moved
+  // to the end: the walks to go on now come first.
+  function inSeasonFirst(items, seasonOf, month) {
+    const now = [];
+    const later = [];
+    for (const item of items || []) (outOfSeason(seasonOf(item), month) ? later : now).push(item);
+    return now.concat(later);
+  }
+
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
@@ -18753,8 +18783,9 @@ if(document.querySelector('.td2')){
     const seasonWords = window.DoloPawsTrailSeasonWords;
     const best = seasonWords ? seasonWords.bestTime(t.season) : '';
     if (best && tags && !tags.querySelector('.trail-season-tag')) {
-      const out = seasonWords.outOfSeason(t.season, new Date().getMonth() + 1)
-        ? `<span class="dp-badge trail-season-tag trail-season-tag--out"><span>${esc(tx('Out of season'))}</span></span>` : '';
+      const outLabel = seasonWords.outOfSeasonTag(t.season, new Date().getMonth() + 1);
+      const out = outLabel
+        ? `<span class="dp-badge trail-season-tag trail-season-tag--out"><span>${esc(outLabel)}</span></span>` : '';
       // Seasonal risks to dogs, only in the months they apply.
       const dog = seasonWords.dogSeasonsNow(t.season, new Date().getMonth() + 1)
         .map(risk => `<span class="dp-badge trail-season-tag trail-season-tag--dog"><span>${esc(risk.label)}</span></span>`).join('');

@@ -660,13 +660,19 @@ function highestPoint(t) {
 function seasonTagsHtml(t) {
   const best = seasonWords.bestTime(t.season);
   if (!best) return '';
-  const out = seasonWords.MONTH_NAMES.map((_, i) => (seasonWords.outOfSeason(t.season, i + 1) ? 1 : 0)).join('');
+  // "Out of season · back in June": one tag per month the walk comes back in,
+  // each marked for the months it answers.
+  const backs = seasonWords.MONTH_NAMES.map((_, i) => seasonWords.backInSeason(t.season, i + 1));
+  const out = [...new Set(backs.filter(Boolean))].map((back) => {
+    const months = backs.map((b) => (b === back ? 1 : 0)).join('');
+    return `<span class="dp-badge sp-tag sp-tag--out" data-season-out="${months}" hidden><span>${escapeHtml(L('Out of season · back in {month}', { month: seasonWords.monthName(back) }))}</span></span>`;
+  }).join('\n    ');
   // Seasonal risks to dogs, each shown only in its months, the same way.
   const dog = ((t.season && t.season.dogSeasons) || []).map((risk) => {
     const months = seasonWords.MONTH_NAMES.map((_, i) => (risk.months.includes(i + 1) ? 1 : 0)).join('');
     return `<span class="dp-badge sp-tag sp-tag--dog" data-season-out="${months}" hidden><span>${escapeHtml(L(seasonWords.DOG_SEASON_TAGS[risk.kind]))}</span></span>`;
   }).join('\n    ');
-  return `<span class="dp-badge sp-tag sp-tag--out" data-season-out="${out}" hidden><span>${L('Out of season')}</span></span>
+  return `${out}
     <span class="dp-badge sp-tag sp-tag--best"><span>${escapeHtml(best)}</span></span>
     ${dog}
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>`;
