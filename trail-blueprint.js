@@ -316,8 +316,9 @@
     const seasonWords = window.DoloPawsTrailSeasonWords;
     const best = seasonWords ? seasonWords.bestTime(t.season) : '';
     if (best && tags && !tags.querySelector('.trail-season-tag')) {
-      const out = seasonWords.outOfSeason(t.season, new Date().getMonth() + 1)
-        ? `<span class="dp-badge trail-season-tag trail-season-tag--out"><span>${esc(tx('Out of season'))}</span></span>` : '';
+      const outLabel = seasonWords.outOfSeasonTag(t.season, new Date().getMonth() + 1);
+      const out = outLabel
+        ? `<span class="dp-badge trail-season-tag trail-season-tag--out"><span>${esc(outLabel)}</span></span>` : '';
       // Seasonal risks to dogs, only in the months they apply.
       const dog = seasonWords.dogSeasonsNow(t.season, new Date().getMonth() + 1)
         .map(risk => `<span class="dp-badge trail-season-tag trail-season-tag--dog"><span>${esc(risk.label)}</span></span>`).join('');
