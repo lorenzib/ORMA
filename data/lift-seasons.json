@@ -334,6 +334,84 @@
         10,
         11
       ]
+    },
+    "hirzer": {
+      "name": "Hirzer cable car (Saltaus – Klammeben)",
+      "operator": "Hirzer Seilbahn, 2026 timetable",
+      "url": "https://hirzerseilbahn.it/wp-content/uploads/2026/03/Scan_20260327.pdf",
+      "accessedAt": "2026-11-10",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "03-28",
+          "to": "11-08"
+        }
+      ]
+    },
+    "cinque-torri": {
+      "name": "5 Torri chairlift",
+      "operator": "Impianti Averau (5torri.it), summer 2026",
+      "url": "https://5torri.it/IT/p38-Impianti-di-risalita-Estate",
+      "accessedAt": "2026-11-10",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "06-06",
+          "to": "10-11"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "catinaccio": {
+      "name": "Catinaccio cable car (Vigo – Ciampedie)",
+      "operator": "Catinaccio Buffaure, summer 2026",
+      "url": "https://catinacciobuffaure.it/catinaccio/informazioni/",
+      "accessedAt": "2026-11-10",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "05-30",
+          "to": "10-04"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "helmissimo": {
+      "name": "Helmissimo gondola (Vierschach – Helm)",
+      "operator": "3 Zinnen Dolomites, winter 2026/27 lift times",
+      "url": "https://www.dreizinnen.com/en/skiing/info-service/operating-times-cable-cars",
+      "accessedAt": "2026-11-10",
+      "datesFor": "2026/27",
+      "periods": [
+        {
+          "from": "11-28",
+          "to": "04-04"
+        }
+      ],
+      "knownMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ]
     }
   },
   "trails": {
@@ -459,16 +537,32 @@
       "lifts": [
         "col-raiser"
       ]
+    },
+    "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": {
+      "lifts": [
+        "hirzer"
+      ]
+    },
+    "cinque-torri-assisted": {
+      "lifts": [
+        "cinque-torri"
+      ]
+    },
+    "fassa-sentiero-della-foresta": {
+      "lifts": [
+        "catinaccio"
+      ]
+    },
+    "trecime-monte-elmo-versciaco": {
+      "lifts": [
+        "helmissimo"
+      ]
     }
   },
   "held": {
-    "campiglio-monte-spinale-rifugio-graffer": "Spinale gondola: only 2025 dates published.",
-    "cinque-torri-assisted": "5 Torri chairlift: no published dates found; it is being replaced (news, May 2026).",
-    "fassa-sentiero-della-foresta": "Catinaccio cable car: dates found had no year and conflicted (4 vs 11 Oct).",
-    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": "Taser cable car: summer days found without a year.",
-    "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": "Hirzer cable car: only 'April to November', no dates; operator site unreachable.",
-    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": "Aschbach cable car: runs all year by the tourist board, but no dated timetable.",
-    "osm-11855879": "Cherz I chairlift: no published dates found (Arabba lift pages blocked).",
-    "trecime-monte-elmo-versciaco": "Vierschach–Helm gondola: shut in summer 2026 for a rebuild; the new lift is only planned for winter 2026/27."
+    "campiglio-monte-spinale-rifugio-graffer": "Spinale gondola: no 2026 summer dates published (only 2025); winter 2026/27 dates are for the Madonna di Campiglio area as a whole (27 Nov 2026 – 11 Apr 2027), not this lift (checked 10 Nov 2026).",
+    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": "Taser cable car: no operator site (taser.it is for sale); only tourist-board event pages for Nov 2026 – Jan 2027, partly conflicting, and no dated summer 2026 season (checked 10 Nov 2026).",
+    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": "Aschbach cable car (run by the commune of Algund): 'in service all year' with no year, plus dated maintenance closures only (17 and 21 Nov 2026); no dated running period (checked 10 Nov 2026).",
+    "osm-11855879": "Cherz I chairlift: no published dates found (Arabba lift pages blocked)."
   }
 }

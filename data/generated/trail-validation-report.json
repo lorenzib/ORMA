@@ -44,5 +44,71 @@
       ]
     }
   ],
-  "errors": []
+  "errors": [],
+  "seasonalSeal": {
+    "ruleFrom": "2026-11-10",
+    "violations": [],
+    "gaps": [
+      {
+        "id": "fassa-sentiero-della-foresta",
+        "sealedOn": "2026-10-24",
+        "holds": [
+          "lift-dates-unpublished"
+        ],
+        "detail": [
+          "the walk needs Catinaccio cable car (Vigo – Ciampedie) and no published running dates for it are held"
+        ]
+      },
+      {
+        "id": "trecime-monte-elmo-versciaco",
+        "sealedOn": "2026-10-28",
+        "holds": [
+          "lift-dates-unpublished"
+        ],
+        "detail": [
+          "the walk needs Vierschach – Helm gondola (Versciaco – Monte Elmo) and no published running dates for it are held"
+        ]
+      },
+      {
+        "id": "campiglio-monte-spinale-rifugio-graffer",
+        "sealedOn": "2026-10-28",
+        "holds": [
+          "lift-dates-unpublished"
+        ],
+        "detail": [
+          "the walk needs Spinale gondola (Madonna di Campiglio) and no published running dates for it are held"
+        ]
+      },
+      {
+        "id": "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer",
+        "sealedOn": "2026-11-03",
+        "holds": [
+          "lift-dates-unpublished"
+        ],
+        "detail": [
+          "the walk needs Hirzer cable car (Saltaus–Klammeben) and no published running dates for it are held"
+        ]
+      },
+      {
+        "id": "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof",
+        "sealedOn": "2026-11-03",
+        "holds": [
+          "lift-dates-unpublished"
+        ],
+        "detail": [
+          "the walk needs Taser cable car up and Verdins–Tall cable car down (Schenna) and no published running dates for it are held"
+        ]
+      },
+      {
+        "id": "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo",
+        "sealedOn": "2026-11-03",
+        "holds": [
+          "lift-dates-unpublished"
+        ],
+        "detail": [
+          "the walk needs Aschbach cable car (Rabland–Aschbach) and no published running dates for it are held"
+        ]
+      }
+    ]
+  }
 }
