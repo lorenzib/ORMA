@@ -1,5 +1,6 @@
 // cembra-erbe-della-salute in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the short herb walk round Grauno": "il breve giro delle erbe attorno a Grauno",
   "A short loop round the village of Grauno, past its church and through the woods where healing herbs grow. The APT lists 2.1 km and 100 m of ascent.": "Un breve anello intorno al paese di Grauno, oltre la chiesa e attraverso i boschi dove crescono le erbe officinali. L'APT indica 2,1 km e 100 m di dislivello in salita.",
   "Start at the Castelet services centre at the top of Grauno: 2.1 km, 100 m of climbing, about an hour. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Fountains in the village at the start.": "Partenza dal centro servizi Castelet in cima a Grauno: 2,1 km, 100 m di salita, circa un'ora. Vale la norma italiana: guinzaglio di al massimo 1,5 m e museruola al seguito. Fontane in paese alla partenza.",
   "Village streets and a cobbled lane, slippery when wet": "Vie del paese e una stradina acciottolata, scivolosa col bagnato",

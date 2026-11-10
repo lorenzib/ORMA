@@ -1,5 +1,6 @@
 // zoldo-rifugio-bosconero in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "path 490 through the forest under the Bosconero peaks": "il sentiero 490 nel bosco sotto le cime del Bosconero",
   "A steady forest climb from the Pontesei reservoir on path 490 into the wild Val Bosconero, to a small hut with a view to the Civetta, and back the same way. The board lists 6.7 km and 642 m up.": "Una salita regolare nel bosco dal lago di Pontesei sul sentiero 490 nella selvaggia Val Bosconero, fino a un piccolo rifugio con vista sul Civetta, e ritorno per la stessa via. Il sito ufficiale indica 6,7 km e 642 m di salita.",
   "Start at Pontesei on the SP251: 6.7 km and 642 m up, about 4 hours there and back, as the board lists (about 1¾ hours up). A seasonal bus stops at Pontesei. Fit dogs only; carry water and a muzzle.": "Parti da Pontesei sulla SP251: 6,7 km e 642 m di salita, circa 4 ore andata e ritorno, come indica il sito ufficiale (circa 1¾ ore di salita). A Pontesei ferma una corriera stagionale. Solo per cani allenati; porta acqua e museruola.",
   "A steady, steep forest path of 640 m up": "Un sentiero nel bosco regolare e ripido, 640 m di salita",

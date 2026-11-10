@@ -1,5 +1,6 @@
 // valdisole-cogolo-chiesa-di-santa-lucia in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "through the woods to the hilltop church above Comasine": "nel bosco fino alla chiesetta sul colle sopra Comasine",
   "An easy loop from Cogolo up through the woods to the lonely hilltop church of Santa Lucia above Comasine, with a wide view over the Val di Peio. The board lists 5.5 km and 274 m up.": "Un anello facile da Cogolo, su nel bosco fino alla solitaria chiesetta di Santa Lucia sul colle sopra Comasine, con un’ampia vista sulla Val di Peio. Il sito ufficiale indica 5,5 km e 274 m di salita.",
   "Start at the bus-stop car park in Cogolo: 5.5 km and 274 m up, about 2¼ hours, as the board lists. An easy family walk; carry water and a muzzle.": "Parti dal parcheggio della fermata dell’autobus a Cogolo: 5,5 km e 274 m di salita, circa 2¼ ore, come indica il sito ufficiale. Una passeggiata facile per famiglie; porta acqua e museruola.",
   "About 50 m along the pavement of the SP87 in Cogolo at the start: keep your dog on a short lead": "Circa 50 m sul marciapiede della SP87 a Cogolo alla partenza: tieni il cane al guinzaglio corto",
