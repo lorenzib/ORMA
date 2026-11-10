@@ -1,5 +1,6 @@
 // rendena-giro-del-belvedere-giustino in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the short village loop above Giustino": "il breve anello in paese sopra Giustino",
   "A short loop through the lanes of Giustino and along a grassy path above the village, with views up the Val Rendena. The APT lists 1.8 km and 53 m of ascent.": "Un breve anello tra le stradine di Giustino e lungo un sentiero erboso sopra il paese, con vista sulla Val Rendena. L'APT indica 1,8 km e 53 m di dislivello in salita.",
   "Start at Giustino town hall, opposite the church of Santa Lucia: 1.8 km and about 50 m of climbing, an hour. Keep your dog on a lead of at most 1.5 m, carry a muzzle, and take the steps down to Via Palazzin slowly.": "Parti dal municipio di Giustino, di fronte alla chiesa di Santa Lucia: 1,8 km e circa 50 m di salita, un'ora. Tieni il cane al guinzaglio di al massimo 1,5 m, porta la museruola al seguito e scendi con calma i gradini verso Via Palazzin.",
   "Village lanes and a short stretch of pavement beside the main road": "Stradine del paese e un breve tratto di marciapiede lungo la strada principale",

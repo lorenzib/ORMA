@@ -1,5 +1,6 @@
 // winter-pozza-canto-acqua in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "a flat cleared winter walk by the river and the mill stream": "una passeggiata invernale pianeggiante e sgomberata lungo il fiume e la roggia del mulino",
   "A flat winter walk from Pozza along the Avisio and the Re Laurino path to Piciocaa, and back by Meida and the old mill stream. The APT clears and prepares the way and lists 3.7 km.": "Una passeggiata invernale pianeggiante da Pozza lungo l’Avisio e il sentiero Re Laurino fino a Piciocaa, con ritorno per Meida e la vecchia roggia dei mulini. L’APT sgombera e prepara il percorso e indica 3,7 km.",
   "Start in Piaza de Comun in Pozza: 3.7 km and 29 m up, about an hour, as the APT lists. Flat and pushchair friendly. Keep off the cross-country loop at Meida, and rinse your dog’s paws after salted streets.": "Partenza da Piaza de Comun a Pozza: 3,7 km e 29 m di salita, circa un’ora, come indica l’APT. Pianeggiante e adatto ai passeggini. Stai lontano dall’anello di fondo a Meida e sciacqua le zampe del cane dopo le strade salate.",
   "The APT warns of icy and slippery stretches, above all after snowfall": "L’APT avverte di tratti ghiacciati e scivolosi, soprattutto dopo le nevicate",

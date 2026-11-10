@@ -1,5 +1,6 @@
 // trecime-sesto-alte-saege-val-campo-di-dentro in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the larch-wood road from Sexten into the Innerfeldtal and back": "la strada nel lariceto da Sexten nell'Innerfeldtal, andata e ritorno",
   "A long, gentle walk from Sexten past the Alte Säge up the Innerfeldtal to the head of the valley, and back. The board lists 19.7 km and 457 m of ascent, there and back.": "Una lunga camminata tranquilla da Sexten, oltre l'Alte Säge, su per l'Innerfeldtal fino alla testata della valle, e ritorno. La scheda ufficiale indica 19,7 km e 457 m di dislivello in salita, andata e ritorno.",
   "Start at the Haus der Berge in Sexten: 19.7 km there and back with about 460 m of climbing, five hours and twenty minutes. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The Dreischusterhütte at the head of the valley makes a good halfway stop.": "Parti dalla Haus der Berge a Sexten: 19,7 km andata e ritorno con circa 460 m di salita, cinque ore e venti minuti. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito. La Dreischusterhütte alla testata della valle è una buona sosta a metà strada.",
   "A long day: almost 20 km there and back": "Una giornata lunga: quasi 20 km andata e ritorno",

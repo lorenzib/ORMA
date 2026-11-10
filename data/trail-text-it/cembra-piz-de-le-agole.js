@@ -1,5 +1,6 @@
 // cembra-piz-de-le-agole in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the loop from Lisignago to the Piz de le Agole": "l'anello da Lisignago al Piz de le Agole",
   "A loop from Lisignago up through the woods to Maderlina and the Piz de le Agole, a balcony over the Val di Cembra, and back down a steep SAT path. The APT lists 10.2 km and 600 m of ascent.": "Un anello da Lisignago su attraverso i boschi fino a Maderlina e al Piz de le Agole, un balcone sulla Val di Cembra, con ritorno per un ripido sentiero SAT. L'APT indica 10,2 km e 600 m di dislivello in salita.",
   "Start at the church of San Biagio in Lisignago: 10.2 km, 600 m of climbing, about three and a half hours. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried. Mostly shaded; one fountain on the way up, so carry water for your dog. The descent on path 416 is steep.": "Partenza dalla chiesa di San Biagio a Lisignago: 10,2 km, 600 m di salita, circa tre ore e mezza. Vale la norma italiana: guinzaglio di al massimo 1,5 m e museruola al seguito. Per lo più all'ombra; una sola fontana in salita, quindi porta acqua per il cane. La discesa sul sentiero 416 è ripida.",
   "A long climb of 600 m on forest roads": "Una lunga salita di 600 m su strade forestali",

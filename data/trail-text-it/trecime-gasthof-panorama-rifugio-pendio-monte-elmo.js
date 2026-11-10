@@ -1,5 +1,6 @@
 // trecime-gasthof-panorama-rifugio-pendio-monte-elmo in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the level forest road from the Mitterberg fort to the Helmhanghütte": "la strada forestale pianeggiante dal forte del Mitterberg alla Helmhanghütte",
   "A short, level walk from the Mitterberg fort past the Gasthof Panorama to the Helmhanghütte, and back. The board lists 2 km and 60 m of ascent, there and back.": "Una breve passeggiata pianeggiante dal forte Mitterberg oltre il Gasthof Panorama fino alla Helmhanghütte, con ritorno. La scheda ufficiale indica 2 km e 60 m di dislivello in salita, andata e ritorno.",
   "Start at the Mitterberg fort car park above Sexten, also reached by the shuttle bus 440.1: 2 km there and back on the level, 40 minutes, and fine with a pushchair. Keep your dog on a lead of at most 1.5 m and carry a muzzle.": "Parti dal parcheggio del forte Mitterberg sopra Sexten, raggiungibile anche con il bus navetta 440.1: 2 km andata e ritorno in piano, 40 minuti, adatto anche al passeggino. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito.",
   "The first stretch past the Panorama is a paved road: watch for cars": "Il primo tratto oltre il Panorama è su strada asfaltata: attenzione alle auto",

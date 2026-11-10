@@ -1,5 +1,6 @@
 // trecime-sesto-chiesa-gasthof-panorama in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the lane up the Mitterberg from Sexten church to the Panorama": "la stradina su per il Mitterberg dalla chiesa di Sexten al Panorama",
   "A short climb from Sexten up the Mitterberg road to the Gasthof Panorama, and back. The board lists 6 km and 248 m of ascent, there and back.": "Una breve salita da Sexten sulla strada del Mitterberg fino al Gasthof Panorama, e ritorno. La scheda ufficiale indica 6 km e 248 m di dislivello in salita, andata e ritorno.",
   "Start at Sexten parish church: 6 km there and back with about 250 m of climbing, two hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The whole walk is on a paved road: keep your dog close to the edge.": "Parti dalla chiesa parrocchiale di Sexten: 6 km andata e ritorno con circa 250 m di salita, due ore. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito. Tutta la camminata è su strada asfaltata: tieni il cane vicino al bordo.",
   "All on a paved road: watch for cars and the Mitterberg shuttle bus": "Tutto su strada asfaltata: attenzione alle auto e alla navetta del Mitterberg",

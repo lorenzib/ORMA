@@ -1,5 +1,6 @@
 // cembra-lago-santo in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the loop round the Lago Santo above Cembra": "l'anello attorno al Lago Santo sopra Cembra",
   "A short, flat loop round the Lago Santo, a small lake in the woods above Cembra, with a dog-bathing area of its own. The APT lists 1.1 km and 10 m of ascent.": "Un breve anello pianeggiante intorno al Lago Santo, un laghetto nel bosco sopra Cembra, con una propria area di balneazione per cani. L'APT indica 1,1 km e 10 m di dislivello in salita.",
   "Start at the Lago Santo car park above Cembra: 1.1 km, flat, about 20 minutes. Keep your dog on the lead round the lake; it can swim only in the signed dog-bathing area north of the outlet. Two restaurants at the car park.": "Partenza dal parcheggio del Lago Santo sopra Cembra: 1,1 km, in piano, circa 20 minuti. Tieni il cane al guinzaglio intorno al lago; può nuotare solo nell'area di balneazione per cani segnalata a nord dell'emissario. Due ristoranti al parcheggio.",
   "Grassy and compacted lakeside paths, a little muddy after rain": "Sentieri lungo il lago erbosi e battuti, un po' fangosi dopo la pioggia",

@@ -1,5 +1,6 @@
 // valgardena-percorso-dei-masi-tradizionali in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the loop past the old farms above Santa Cristina": "l'anello tra i vecchi masi sopra Santa Cristina",
   "A loop from Santa Cristina past the old mountain farms above the village, with boards telling each farm’s story in old photographs. The board lists 7.4 km and 450 m of ascent.": "Un anello da Santa Cristina oltre gli antichi masi di montagna sopra il paese, con pannelli che raccontano la storia di ogni maso attraverso vecchie fotografie. La scheda ufficiale indica 7,4 km e 450 m di dislivello in salita.",
   "Start at the parish square of Santa Cristina: 7.4 km and about 450 m of climbing, two and a half hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and stay on the path past the farms and meadows. Fountains in the village at the start.": "Parti dalla piazza della chiesa di Santa Cristina: 7,4 km e circa 450 m di salita, due ore e mezza. Tieni il cane al guinzaglio lungo al massimo 1,5 m, porta la museruola al seguito e resta sul sentiero accanto a masi e prati. Fontane in paese alla partenza.",
   "Working farms and hay meadows: keep your dog on the path": "Masi in attività e prati da fieno: tieni il cane sul sentiero",

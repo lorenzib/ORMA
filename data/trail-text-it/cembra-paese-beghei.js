@@ -1,5 +1,6 @@
 // cembra-paese-beghei in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the village and woodland loop from Sevignano": "l'anello tra paese e bosco da Sevignano",
   "A loop from the village of Sevignano, with its wooden owls and artworks, through larch and beech woods to the meadows of Fontane, the great beech of Fo Gross and the fields of Prada. The APT lists 4 km and 200 m of ascent.": "Un anello dal paese di Sevignano, con i suoi gufi di legno e le opere d'arte, attraverso boschi di larici e faggi fino ai prati di Fontane, al grande faggio di Fo Gross e ai campi di Prada. L'APT indica 4 km e 200 m di dislivello in salita.",
   "Start at the car park by the war memorial on the SP 71 in Sevignano: 4 km, 200 m of climbing, about two hours. Segonzano requires a lead or a muzzle in public places. A fountain at the start and a bar in the village; half shaded.": "Partenza dal parcheggio vicino al monumento ai caduti sulla SP 71 a Sevignano: 4 km, 200 m di salita, circa due ore. Segonzano richiede guinzaglio o museruola nei luoghi pubblici. Una fontana alla partenza e un bar in paese; ombra per metà.",
   "A cobbled lane and village streets at the start": "Una stradina acciottolata e vie del paese alla partenza",

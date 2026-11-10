@@ -1,5 +1,6 @@
 // primiero-tonadico in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the village walk round Tonadico": "la passeggiata attorno al paese di Tonadico",
   "A gentle loop round the village of Tonadico, below the Pale di San Martino, past Palazzo Scopoli, painted houses and the church of San Vittore. The APT lists 4 km and 57 m of ascent.": "Un anello tranquillo intorno al paese di Tonadico, sotto le Pale di San Martino, tra Palazzo Scopoli, case dipinte e la chiesa di San Vittore. L'APT indica 4 km e 57 m di dislivello in salita.",
   "Start at the car parks by the Vallombrosa park: 4 km, gentle, about an hour. Keep your dog on a short lead (1.5 m at most) in the streets. Fountains in the village; go early or late in summer.": "Parti dai parcheggi vicino al parco Vallombrosa: 4 km, facile, circa un'ora. Tieni il cane al guinzaglio corto (al massimo 1,5 m) per le strade. Fontane in paese; d'estate vai presto o tardi.",
   "About three quarters on tarmac, village streets open to cars": "Circa tre quarti su asfalto, strade del paese aperte al traffico",

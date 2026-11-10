@@ -1,5 +1,6 @@
 // trecime-monte-elmo-da-moso in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the Heimatsteig ridge from Moos to the Helm summit": "la cresta dell'Heimatsteig da Moos alla cima dell'Helm",
   "A steep climb from Moos past the Helmhanghütte and up the Heimatsteig ridge to the Helm summit, and back. The board lists 10.2 km and 1,063 m of ascent, there and back.": "Una salita ripida da Moos oltre la Helmhanghütte e su per la cresta dell'Heimatsteig fino alla cima dell'Helm, con ritorno. La scheda ufficiale indica 10,2 km e 1.063 m di dislivello in salita, andata e ritorno.",
   "Start at the Schäfer shop in Moos: 10.2 km there and back with over 1,000 m of climbing, five hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Carry plenty of water and go early: the ridge is open to the sun.": "Parti dal negozio Schäfer a Moos: 10,2 km andata e ritorno con oltre 1.000 m di salita, cinque ore. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito. Porta molta acqua e parti presto: la cresta è esposta al sole.",
   "A steep climb of over 1,000 m: plan rests and water for your dog": "Una salita ripida di oltre 1.000 m: prevedi soste e acqua per il tuo cane",

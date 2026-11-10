@@ -1,5 +1,6 @@
 // vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "past the Ganglegg and the Churburg": "oltre il Ganglegg e la Churburg",
   "A loop from Schluderns up to the Ganglegg hilltop settlement, along the Leitenwaal into a wooded gorge and back down the Berkwaal past the Churburg. The board lists 6.6 km, 290 m up and 290 m down.": "Un anello da Schluderns su fino all'insediamento d'altura del Ganglegg, lungo il Leitenwaal in una gola boscosa e ritorno in discesa lungo il Berkwaal oltre la Churburg. La scheda ufficiale indica 6,6 km, 290 m in salita e 290 m in discesa.",
   "Start at the Vuseum in Schluderns: a 6.6 km loop, about 290 m up, three hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle; keep it short on the gorge walkways.": "Parti dal Vuseum di Schluderns: un anello di 6,6 km, circa 290 m in salita, tre ore. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito; sulle passerelle della gola tienilo corto.",
   "Narrow wooden walkways with railings in the gorge: keep your dog close on a short lead": "Strette passerelle di legno con parapetti nella gola: tieni il cane vicino al guinzaglio corto",

@@ -1,5 +1,6 @@
 // fassa-pastori-erranti in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the shepherds’ walk to Vallonga and Tamion": "la passeggiata dei pastori fino a Vallonga e Tamion",
   "A loop from Vigo di Fassa on the old shepherds’ tracks to the hamlets of Vallonga and Tamion, with their 18th-century church and restored barns. The APT lists 7.2 km and 245 m of ascent.": "Un anello da Vigo di Fassa sulle antiche vie dei pastori fino alle frazioni di Vallonga e Tamion, con la loro chiesa settecentesca e i fienili restaurati. L'APT indica 7,2 km e 245 m di dislivello in salita.",
   "Start in Strada Rezia in Vigo: 7.2 km, about 250 m of climbing, two hours and a quarter. Keep your dog on a short lead (1.5 m at most) past the farms and carry a muzzle. Fountains in Vigo and in the hamlets.": "Parti da Strada Rezia a Vigo: 7,2 km, circa 250 m di salita, due ore e un quarto. Tieni il cane al guinzaglio corto (al massimo 1,5 m) vicino ai masi e porta la museruola. Fontane a Vigo e nelle frazioni.",
   "About 1 km on tarmac, mostly quiet lanes in the hamlets, open to cars": "Circa 1 km su asfalto, per lo più tranquille stradine nelle frazioni, aperte alle auto",

@@ -1,5 +1,6 @@
 // fassa-ciajeole-malga-roncac in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the climb from Moena to Malga Roncac": "la salita da Moena a Malga Roncac",
   "A short climb from Moena through Ciajeole, its oldest quarter, to Malga Roncac at the edge of the larch wood, with the whole of Moena below and the Catinaccio across the valley. The APT lists 3 km and 137 m of ascent.": "Una breve salita da Moena attraverso Ciajeole, il suo rione più antico, fino a Malga Roncac al margine del lariceto, con tutta Moena sotto di te e il Catinaccio di fronte. L'APT indica 3 km e 137 m di dislivello in salita.",
   "Start in Piaz de Sotegrava in Moena: 3 km, about 140 m of climbing, an hour. Keep your dog on a lead, carry bags, a bottle of water and a muzzle as Moena asks. Fill up at the fountains in Moena.": "Parti da Piaz de Sotegrava a Moena: 3 km, circa 140 m di salita, un'ora. Tieni il cane al guinzaglio, porta sacchetti, una bottiglia d'acqua e la museruola, come chiede Moena. Fai rifornimento alle fontane di Moena.",
   "Almost all on tarmac: steep village streets in Moena open to cars, then the lane to Malga Roncac": "Quasi tutto su asfalto: ripide vie del paese a Moena aperte alle auto, poi la stradina per Malga Roncac",

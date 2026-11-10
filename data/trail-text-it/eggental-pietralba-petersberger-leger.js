@@ -1,0 +1,15 @@
+// eggental-pietralba-petersberger-leger in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "a shady forest path from the sanctuary": "un sentiero ombreggiato nel bosco dal santuario",
+  "An easy, shady family walk from the Pietralba sanctuary along forest path 2 to the Petersberger Leger alpine hut and back. The board lists 4.6 km, 139 m up and an hour and twenty minutes.": "Una facile passeggiata per famiglie, all'ombra, dal santuario di Pietralba lungo il sentiero nel bosco 2 fino alla malga Petersberger Leger, e ritorno. La scheda ufficiale indica 4,6 km, 139 m di salita e un'ora e venti minuti.",
+  "Start at the Maria Weißenstein car park by the Pietralba sanctuary: 4.6 km out and back, 139 m of climbing, about an hour and twenty minutes, as the board lists. Keep your dog on a lead of at most 1.5 m and carry a muzzle.": "Parti dal parcheggio Maria Weißenstein vicino al santuario di Pietralba: 4,6 km andata e ritorno, 139 m di dislivello, circa un'ora e venti minuti, come indica la scheda ufficiale. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola.",
+  "Busy around the Pietralba sanctuary at weekends: keep your dog on a short lead at the start": "Nei fine settimana c'è molta gente attorno al santuario di Pietralba: alla partenza tieni il cane al guinzaglio corto",
+  "Meadows along the way are farmed: Deutschnofen keeps dogs off them, so stay on the path": "I prati lungo il percorso sono coltivati: Deutschnofen vieta l'accesso ai cani, quindi resta sul sentiero",
+  "Forest path and track": "Sentiero nel bosco e sterrata",
+  "The Maria Weißenstein car park at the Pietralba sanctuary (1,520 m), the board’s start": "Il parcheggio Maria Weißenstein al santuario di Pietralba (1.520 m), la partenza della scheda ufficiale",
+  "A wide gravel track curving past a small stone outbuilding with a tiled roof, between meadows and leafy trees under a grey sky": "Un'ampia sterrata che curva accanto a un piccolo edificio in pietra con tetto di tegole, tra prati e alberi frondosi sotto un cielo grigio",
+  "Mostly shaded: about four fifths runs through mapped forest.": "Per lo più all'ombra: circa quattro quinti del percorso passano nel bosco cartografato.",
+  "Start at the Maria Weißenstein car park by the Pietralba sanctuary (1,520 m), the board’s start.": "Parti dal parcheggio Maria Weißenstein vicino al santuario di Pietralba (1.520 m), la partenza della scheda ufficiale.",
+  "Follow the forest path marked 2 through woods and clearings to the Malga Monte San Pietro (Petersberger Leger). Come back the same way.": "Segui il sentiero nel bosco segnato 2 tra boschi e radure fino alla Malga Monte San Pietro (Petersberger Leger). Torna per la stessa strada.",
+  "Path 2 the whole way from the Pietralba car park to the Petersberger Leger; return the same way.": "Sentiero 2 per tutto il tratto dal parcheggio di Pietralba alla Petersberger Leger; ritorno per la stessa strada."
+});
