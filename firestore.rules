@@ -632,7 +632,7 @@ service cloud.firestore {
             && journalPhotoIdAt(data.photoIds, 4) && journalPhotoIdAt(data.photoIds, 5)))
         // SOCIAL-05: a walk hike mode proved by GPS says so, and earns a
         // passport stamp. Optional; the only value is 'gps'.
-        && (!('proof' in data) || data.proof == 'gps')
+        && (!('proof' in data) || data.proof in ['gps', 'gpx'])
         && data.updatedAt is number && data.updatedAt >= 0;
     }
 
