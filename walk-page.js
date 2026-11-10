@@ -37,6 +37,7 @@
     pause: document.getElementById('wrPause'),
     finish: document.getElementById('wrFinish'),
     discard: document.getElementById('wrDiscard'),
+    plan: document.getElementById('wrPlan'),
     gate: document.getElementById('wrGate'),
   };
 
@@ -70,6 +71,16 @@
     els.pause.hidden = s !== 'recording';
     els.finish.hidden = s === 'idle';
     els.discard.hidden = s === 'idle';
+    if(els.plan) els.plan.hidden = s !== 'idle';
+  }
+
+  // Draw a route opens the planner where Explore's map was last looking
+  // (script.js keeps that view for the session).
+  if(els.plan){
+    try {
+      var view = sessionStorage.getItem('orma-explore-map-view');
+      if(view && /^lat=-?[\d.]+&lng=-?[\d.]+&z=[\d.]+$/.test(view)) els.plan.href = 'route-planner.html?' + view;
+    } catch(e){ /* the planner opens on its own default view */ }
   }
 
   // ---- Map trace -----------------------------------------------------
