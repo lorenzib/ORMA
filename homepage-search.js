@@ -363,9 +363,11 @@
   }
 
   // ---- good walks this month (trail-season-words.js) ----
-  // Walks whose best months include this one, offered on the homepage today
-  // (the discovery rules, chairlift included), best match first. A walk with
-  // no season record is left out: nothing says this is its month.
+  // Dolomites walks whose best months include this one (the launch region),
+  // offered on the homepage today (the discovery rules, chairlift included),
+  // best match first. A walk with no season record is left out: nothing says
+  // this is its month.
+  var GOOD_NOW_REGION = 'dolomites';
   function goodNow(skipIds) {
     var words = window.DoloPawsTrailSeasonWords;
     var filters = window.DoloPawsDiscoveryFilters;
@@ -373,6 +375,7 @@
     var month = new Date().getMonth() + 1;
     var options = { chairliftSafe: chairliftSafe() };
     var inSeason = trails.filter(function (t) {
+      if (t.region !== GOOD_NOW_REGION) return false;
       var best = words.bestMonths(t.season);
       if (!best || best.indexOf(month) === -1) return false;
       return filters ? filters.matches(t, {}, options) : true;
@@ -616,13 +619,13 @@
         ? '<section class="hp-featured hp-goodnow" aria-labelledby="hpGoodNowTitle">' +
             '<div class="hp-coll-head"><div>' +
               '<div class="hp-kick hp-kick-left">' + esc(tx('In season now')) + '</div>' +
-              '<h2 class="hp-feat-h2" id="hpGoodNowTitle">' + esc(tx('Good walks for {month}', { month: now.month })) + '</h2>' +
-              '<p class="hp-coll-sub">' + esc(tx('Walks whose best months include {month}, ranked for the dog you are browsing with.', { month: now.month })) + '</p></div></div>' +
+              '<h2 class="hp-feat-h2" id="hpGoodNowTitle">' + esc(tx('Good Dolomites walks for {month}', { month: now.month })) + '</h2>' +
+              '<p class="hp-coll-sub">' + esc(tx('Dolomites walks whose best months include {month}, ranked for the dog you are browsing with.', { month: now.month })) + '</p></div></div>' +
             '<div class="hp-coll-grid">' + now.list.map(function (entry) {
               var words = window.DoloPawsTrailSeasonWords;
               return ccardHtml(entry, esc(entry.t.distance) + ' km · ' + esc(valleyOf(entry.t)) + ' · ' + esc(words.bestTime(entry.t.season, true)));
             }).join('') + '</div>' +
-            '<a class="hp-how-link hp-featured-collection-cta" href="browse-trails.html">' + esc(tx('See all {count} walks in season →', { count: now.count })) + '</a>' +
+            '<a class="hp-how-link hp-featured-collection-cta" href="browse-trails.html?region=' + GOOD_NOW_REGION + '">' + esc(tx('See the {count} Dolomites walks in season →', { count: now.count })) + '</a>' +
           '</section>'
         : '';
       var how = HOW_CARDS.map(function (c) {

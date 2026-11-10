@@ -49,7 +49,9 @@ describe('where it is used', () => {
 
   test('the guest homepage has a good-walks-this-month row', () => {
     const src = read('homepage-search.js');
-    expect(src).toContain("tx('Good walks for {month}'");
+    expect(src).toContain("tx('Good Dolomites walks for {month}'");
+    expect(src).toContain("var GOOD_NOW_REGION = 'dolomites';");
+    expect(src).toMatch(/t\.region !== GOOD_NOW_REGION/);
     expect(src).toMatch(/function goodNow\(/);
   });
 
