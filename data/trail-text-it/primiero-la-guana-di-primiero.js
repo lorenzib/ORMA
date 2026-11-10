@@ -1,5 +1,6 @@
 // primiero-la-guana-di-primiero in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the walk to the Guana at Navoi": "la passeggiata fino alla Guana a Navoi",
   "An easy loop from Fiera di Primiero to Navoi to see the Guana, a giant wooden lizard by Marco Martalar built from trees felled by storm Vaia, and back through Transacqua. The APT lists 3 km and 47 m of ascent.": "Un facile anello da Fiera di Primiero a Navoi per vedere la Guana, una lucertola gigante in legno di Marco Martalar costruita con alberi abbattuti dalla tempesta Vaia, e ritorno per Transacqua. L'APT indica 3 km e 47 m di dislivello in salita.",
   "Start at the car park by the bus station in Fiera: 3 km, easy, about 45 minutes. Keep your dog on a short lead (1.5 m at most) on the shared cycle path and in the streets. Fountains at the start and in Transacqua; go early or late in summer.": "Parti dal parcheggio vicino all'autostazione di Fiera: 3 km, facile, circa 45 minuti. Tieni il cane al guinzaglio corto (al massimo 1,5 m) sulla pista ciclopedonale e nelle strade. Fontane alla partenza e a Transacqua; d'estate vai presto o tardi.",
   "About 2 km on tarmac, partly a cycle and foot path shared with bikes": "Circa 2 km su asfalto, in parte una pista ciclopedonale condivisa con le bici",

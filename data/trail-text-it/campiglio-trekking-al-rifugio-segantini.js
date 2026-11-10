@@ -1,5 +1,6 @@
 // campiglio-trekking-al-rifugio-segantini in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the loop under the Presanella to the Segantini hut": "l'anello sotto la Presanella fino al rifugio Segantini",
   "A high loop at the head of the Val Nambrone up a panoramic ridge to the Rifugio Segantini, below the walls of the Presanella. The APT lists 4.9 km and 397 m of ascent.": "Un anello in quota in testa alla Val Nambrone, su per una cresta panoramica fino al Rifugio Segantini, sotto le pareti della Presanella. L'APT indica 4,9 km e 397 m di dislivello in salita.",
   "Start at the Val d’Amola car park: 4.9 km and about 400 m of climbing, two hours. Keep your dog on a lead and carry a muzzle. The APT recommends it for children from about ten: the path is rocky but not difficult.": "Partenza dal parcheggio della Val d’Amola: 4,9 km e circa 400 m di salita, due ore. Tieni il cane al guinzaglio e porta la museruola al seguito. L'APT lo consiglia ai bambini dai dieci anni circa: il sentiero è roccioso ma non difficile.",
   "Rocky mountain path and granite slabs above 2,000 m": "Sentiero di montagna roccioso e placche di granito oltre i 2.000 m",

@@ -1,5 +1,6 @@
 // primiero-siror in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the village walk to Siror": "la passeggiata in paese fino a Siror",
   "A gentle loop up to the old village of Siror, past octagonal fountains, painted houses and haylofts to the church of Sant’Andrea. The APT lists 3.9 km and 69 m of ascent.": "Un anello tranquillo fino all'antico paese di Siror, tra fontane ottagonali, case dipinte e fienili, fino alla chiesa di Sant'Andrea. L'APT indica 3,9 km e 69 m di dislivello in salita.",
   "Start at the car parks by the Vallombrosa park: 3.9 km, gentle, about an hour. Keep your dog on a short lead (1.5 m at most) in the streets. Octagonal fountains in Siror; go early or late in summer.": "Parti dai parcheggi vicino al parco Vallombrosa: 3,9 km, facile, circa un'ora. Tieni il cane al guinzaglio corto (al massimo 1,5 m) per le strade. Fontane ottagonali a Siror; d'estate vai presto o tardi.",
   "Mostly tarmac and stone setts, village streets open to cars": "Per lo più asfalto e lastricato in pietra, strade del paese aperte al traffico",

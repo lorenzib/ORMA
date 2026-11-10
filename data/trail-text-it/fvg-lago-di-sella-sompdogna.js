@@ -1,5 +1,6 @@
 // fvg-lago-di-sella-sompdogna in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the short loop to the lake of Sella Sompdogna": "il breve anello fino al lago di Sella Sompdogna",
   "A short loop on the Sella Sompdogna saddle through larch and fir woods to a small mountain lake below the Jôf di Montasio, past the Grego hut. PromoTurismoFVG lists 2.2 km and 123 m of ascent.": "Un breve anello sulla Sella Sompdogna attraverso boschi di larici e abeti fino a un laghetto di montagna sotto lo Jôf di Montasio, oltre il rifugio Grego. PromoTurismoFVG indica 2,2 km e 123 m di dislivello in salita.",
   "Drive up from Dogna to the end of the road at Sella Sompdogna (no public transport): 2.2 km and about 120 m of climbing, under an hour. Keep your dog on a lead at the hut and carry a muzzle. The Grego hut serves food in summer.": "Sali in auto da Dogna fino alla fine della strada a Sella Sompdogna (nessun mezzo pubblico): 2,2 km e circa 120 m di salita, meno di un'ora. Tieni il cane al guinzaglio al rifugio e porta la museruola. D'estate il rifugio Grego serve da mangiare.",
   "A short stretch of tarred road at the start": "Un breve tratto di strada asfaltata alla partenza",

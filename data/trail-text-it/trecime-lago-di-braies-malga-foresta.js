@@ -1,5 +1,6 @@
 // trecime-lago-di-braies-malga-foresta in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the lake shore and the climb to the Grünwaldalm": "la riva del lago e la salita alla Grünwaldalm",
   "A short walk from the Pragser Wildsee along its west shore and up path 19 to the Grünwaldalm. The board lists 2.1 km and 118 m of ascent, one way.": "Una breve passeggiata dal Pragser Wildsee lungo la sponda ovest e su per il sentiero 19 fino alla Grünwaldalm. La scheda ufficiale indica 2,1 km e 118 m di dislivello in salita, solo andata.",
   "Start at the Pragser Wildsee car park: 2.1 km and about 120 m of climbing one way, an hour to the Grünwaldalm, then the same way back. Keep your dog on a lead of at most 1.5 m and carry a muzzle. The lake shore is very busy in summer: go early.": "Parti dal parcheggio del Pragser Wildsee: 2,1 km e circa 120 m di salita solo andata, un'ora fino alla Grünwaldalm, poi ritorno per la stessa via. Tieni il cane al guinzaglio di al massimo 1,5 m e porta la museruola al seguito. D'estate la riva del lago è molto frequentata: parti presto.",
   "The lake shore is very crowded in summer: keep your dog close": "D'estate la riva del lago è molto affollata: tieni il cane vicino",

@@ -1,5 +1,6 @@
 // fassa-santuario-dei-pellegrini in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the pilgrims’ walk to Santa Giuliana": "la passeggiata dei pellegrini fino a Santa Giuliana",
   "A short climb from Vigo di Fassa to the medieval church of Santa Giuliana, the valley’s patron saint, and back through the larch wood. The APT lists 2.7 km and 132 m of ascent.": "Una breve salita da Vigo di Fassa alla chiesa medievale di Santa Giuliana, patrona della valle, e ritorno attraverso il lariceto. L'APT indica 2,7 km e 132 m di dislivello in salita.",
   "Start in Strada Rezia in Vigo: 2.7 km, about 130 m of climbing, an hour and a quarter. Keep your dog on a short lead (1.5 m at most) and carry a muzzle; dogs wait outside the church. Fountains in Vigo and on the way up.": "Parti da Strada Rezia a Vigo: 2,7 km, circa 130 m di salita, un'ora e un quarto. Tieni il cane al guinzaglio corto (al massimo 1,5 m) e porta la museruola; i cani aspettano fuori dalla chiesa. Fontane a Vigo e lungo la salita.",
   "A steady climb of about 130 m; the APT suggests walking poles": "Una salita costante di circa 130 m; l'APT consiglia i bastoncini",

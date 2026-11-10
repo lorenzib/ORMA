@@ -1,5 +1,6 @@
 // valdisole-monclassico-presson-meridiane in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the village loop past the painted sundials": "l'anello in paese tra le meridiane dipinte",
   "A short, level loop through Monclassico and Presson, two Val di Sole villages whose houses carry more than fifty painted sundials. The APT lists 1.7 km and 39 m of ascent.": "Un breve anello pianeggiante tra Monclassico e Presson, due paesi della Val di Sole le cui case ospitano più di cinquanta meridiane dipinte. L'APT indica 1,7 km e 39 m di dislivello in salita.",
   "Start at the church of San Lorenzo in Dimaro: an hour round Monclassico and Presson, 1.7 km and almost level. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Pick up the sundial leaflet at the Dimaro tourist office.": "Parti dalla chiesa di San Lorenzo a Dimaro: un'ora intorno a Monclassico e Presson, 1,7 km quasi in piano. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola al seguito. Ritira il pieghevole delle meridiane all'ufficio turistico di Dimaro.",
   "Village lanes shared with cars": "Stradine di paese condivise con le auto",
