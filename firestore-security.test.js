@@ -241,7 +241,8 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain('data.photo.size() <= 700000');
     expect(rules).toContain("data.note is string && data.note.size() <= 2000");
     // Who came along: optional (not in hasAll), and bounded when present.
-    expect(rules).toContain("'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt',\n          'walkedWith', 'photoIds'\n        ])");
+    expect(rules).toContain("'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt',\n          'walkedWith', 'photoIds', 'proof'\n        ])");
+    expect(rules).toContain("&& (!('proof' in data) || data.proof == 'gps')");
     expect(rules).toContain("|| (data.walkedWith is string && data.walkedWith.size() <= 400))");
     // Photos in Storage: optional, a list of at most six ids, each checked.
     expect(rules).toContain("|| (data.photoIds is list && data.photoIds.size() <= 6");

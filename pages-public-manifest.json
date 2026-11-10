@@ -57,6 +57,7 @@
     "discovery-state.js",
     "dog-friendly-routes-savoy.geojson",
     "dog-friendly-routes.geojson",
+    "dog-passport.js",
     "dog-routes-layer.js",
     "dog-wizard.js",
     "dolomites-trails.js",
