@@ -15,6 +15,8 @@
     const value = text && text !== key ? text : fallback;
     return vars ? value.replace(/\{(\w+)\}/g, (match, name) => vars[name] != null ? vars[name] : match) : value;
   };
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
 
   const SVG = 'http://www.w3.org/2000/svg';
   function icon(paths, size){
@@ -150,7 +152,7 @@
     const distance = mine.reduce((sum, entry) => sum + km(entry), 0);
     [
       [label('appYou.walks', 'Walks'), String(mine.length)],
-      [label('appYou.distance', 'Distance'), `${distance ? distance.toFixed(1) : '0'} km`],
+      [label('appYou.distance', 'Distance'), `${distance ? num(distance.toFixed(1)) : '0'} km`],
       [label('appYou.time', 'Time'), duration(mine.reduce((sum, entry) => sum + minutes(entry), 0))],
     ].forEach(([name, value]) => {
       const tile = el('div', 'app-you-tile');
@@ -190,7 +192,7 @@
       const words = el('div', 'app-you-walktext');
       words.appendChild(el('div', 'app-you-walkname', entry.trail || label('appYou.walk', 'Walk')));
       const facts = [dayLabel(entry.date)];
-      if(km(entry)) facts.push(`${km(entry).toFixed(1)} km`);
+      if(km(entry)) facts.push(`${num(km(entry).toFixed(1))} km`);
       if(minutes(entry)) facts.push(duration(minutes(entry)));
       words.appendChild(el('div', 'app-you-walkline', facts.join(' · ')));
       row.appendChild(words);

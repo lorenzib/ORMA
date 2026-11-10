@@ -13,6 +13,12 @@
   'use strict';
 
   // Script-written wording goes through i18n.js; the English sentence is its own key.
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value) {
+    var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+  }
+
   function tx(text, vars) {
     var i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
@@ -471,7 +477,7 @@
           '<span class="hp-sug-thumb">' + thumb(t) + '</span>' +
           '<span class="hp-sug-main"><span class="hp-sug-name">' + esc(t.name) + '</span>' +
           '<span class="hp-sug-meta"><span class="hp-badge-dot" style="background:' + df.dot + '"></span>' + df.label +
-          '<span class="hp-sug-sep">·</span>' + esc(t.distance) + ' km · ' + esc(valleyOf(t)) + '</span></span>' +
+          '<span class="hp-sug-sep">·</span>' + esc(num(t.distance)) + ' km · ' + esc(valleyOf(t)) + '</span></span>' +
           '<span class="hp-sug-match"><span class="verdict" style="color:' + ti.color + '">' + esc(ti.label) + '</span><span class="lab">' + forDog + '</span></span>' +
         '</button>';
       }).join('') +
@@ -494,7 +500,7 @@
       '<span class="hp-trailrow-thumb">' + thumb(t) + '</span>' +
       '<span class="hp-trailrow-main">' +
         '<span class="hp-trailrow-name">' + esc(t.name) + '</span>' +
-        '<span class="hp-trailrow-meta">' + esc(t.distance) + ' km · +' + esc(t.elevation || 0) + ' m · ' + esc(valleyOf(t)) + '</span>' +
+        '<span class="hp-trailrow-meta">' + esc(num(t.distance)) + ' km · +' + esc(t.elevation || 0) + ' m · ' + esc(valleyOf(t)) + '</span>' +
         '<span class="hp-badges">' + badges + '</span>' +
       '</span>' +
       '<span class="hp-trailrow-match">' +
@@ -613,7 +619,7 @@
             '<p class="hp-coll-sub">' + esc(featSub) + '</p>' +
             '<p class="hp-coll-rank-row"><strong>' + esc(featRankLine) + '</strong> <button type="button" class="hp-coll-profile-cta hp-dog-profile-cta" data-action="create-dog-profile">' + esc(featProfileCta) + '</button></p></div></div>' +
           '<div class="hp-coll-grid">' + feat.map(function (entry) {
-            return ccardHtml(entry, esc(entry.t.distance) + ' km · ' + esc(valleyOf(entry.t)));
+            return ccardHtml(entry, esc(num(entry.t.distance)) + ' km · ' + esc(valleyOf(entry.t)));
           }).join('') + '</div>' +
           '<a class="hp-how-link hp-featured-collection-cta" href="' + featCollectionHref + '">' + esc(featCollectionCta) + '</a>' +
         '</section>';
@@ -736,7 +742,7 @@
         '<div class="hp-wiz-matches">' + matches.slice(0, 3).map(function (entry) {
           var t = entry.t, ti = tier(entry.score);
           return '<a class="hp-wiz-match" href="' + esc(trailHref(t)) + '">' +
-            '<span><b>' + esc(t.name) + '</b><small>' + esc(t.distance) + ' km · ' + esc(valleyOf(t)) + '</small></span>' +
+            '<span><b>' + esc(t.name) + '</b><small>' + esc(num(t.distance)) + ' km · ' + esc(valleyOf(t)) + '</small></span>' +
             '<strong style="color:' + ti.color + '">' + entry.score + '%</strong></a>';
         }).join('') + '</div>' +
         '<div class="hp-wiz-payoff-actions">' +

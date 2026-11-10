@@ -11,6 +11,8 @@
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
 
   // The verdict's words come from match-verdict.js, which owns them. This file
   // kept its own copy, so the wording could be changed in one place and stay
@@ -161,11 +163,11 @@
               : null)
           : unknown(tx('recommendation reasons')),
         distance: formatNumber(metrics.distanceKm, ' km')
-          ? cell(formatNumber(metrics.distanceKm, ' km')) : unknown(tx('distance')),
+          ? cell(num(formatNumber(metrics.distanceKm, ' km'))) : unknown(tx('distance')),
         elevation: ascent
           ? cell(tx('{m} m ascent', { m:ascent })) : unknown(tx('elevation')),
         duration: formatDuration(trail.hours)
-          ? cell(formatDuration(trail.hours)) : unknown(tx('duration')),
+          ? cell(num(formatDuration(trail.hours))) : unknown(tx('duration')),
         terrain: terrainKnown
           ? cell(TERRAIN[suitability.terrainRank] || tx('Terrain level {n}', { n:suitability.terrainRank }),
             categoryVerified(parts, 'surfaceHazards') ? 'known' : 'mapped',
