@@ -9,9 +9,9 @@ const TRAILS = [
   { id: 'carezza', name: 'Lago di Carezza Loop', valley: 'Val di Fassa', elevation: 120, rifugi: [],
     path: [[46.41, 11.57], [46.412, 11.575], [46.409, 11.578], [46.41, 11.57]] },
   { id: 'fuciade', name: 'Rifugio Fuciade', valley: 'Val di Fassa', elevation: 300, rifugi: [{ name: 'Fuciade' }],
-    path: [[46.4, 11.8], [46.41, 11.82]] },
+    path: [[46.4, 11.8], [46.41, 11.82]], distance: 7.5 },
   { id: 'seceda', name: 'Seceda ridge', valley: 'Val Gardena', elevation: 500, rifugi: [], path: [] },
-  { id: 'other', name: 'Somewhere', valley: 'Val di Fassa', elevation: 10, rifugi: [] },
+  { id: 'other', name: 'Somewhere', valley: 'Val di Fassa', elevation: 10, rifugi: [], distance: 3.2 },
 ];
 
 function walk(id, trailId, date, extra){
@@ -42,12 +42,22 @@ describe('SOCIAL-05 dog passport', () => {
     expect(p.totals.climb).toBe(540);
   });
 
-  test('valleys count against the whole catalogue', () => {
-    const p = passport.buildPassport([walk('a', 'carezza', '2026-10-12'), walk('b', 'seceda', '2026-10-13')], TRAILS);
-    expect(p.valleys).toEqual([
-      { name: 'Val Gardena', done: 1, total: 1 },
-      { name: 'Val di Fassa', done: 1, total: 3 },
+  test('valley visas count against the whole catalogue, in the order the dog entered them', () => {
+    const p = passport.buildPassport([walk('b', 'seceda', '2026-10-13'), walk('a', 'carezza', '2026-10-12')], TRAILS);
+    expect(p.valleys.map(v => [v.name, v.done, v.total, v.firstDate])).toEqual([
+      ['Val di Fassa', 1, 3, '2026-10-12'],
+      ['Val Gardena', 1, 1, '2026-10-13'],
     ]);
+    expect(p.since).toBe('2026-10-12');
+  });
+
+  test('a valley lists what is walked first, then the rest shortest first', () => {
+    const p = passport.buildPassport([walk('a', 'carezza', '2026-10-12')], TRAILS);
+    const fassa = p.valleys.find(v => v.name === 'Val di Fassa');
+    expect(fassa.trails.map(tr => [tr.id, tr.walked])).toEqual([
+      ['carezza', true], ['other', false], ['fuciade', false],
+    ]);
+    expect(fassa.trails[0].lastDate).toBe('2026-10-12');
   });
 
   test('milestones: first walk, a lake, a hut, 10 walks, 100 km', () => {
@@ -100,6 +110,54 @@ describe('SOCIAL-05 dog passport', () => {
     ], TRAILS), { t });
     expect(order.indexOf('Lago di Carezza')).toBeLessThan(order.indexOf('Rifugio Fuciade'));
     expect(order).toContain('journal.passport.toGo{&quot;n&quot;:&quot;88&quot;}');
+  });
+});
+
+describe('SOCIAL-05 passport front page and valley list', () => {
+  const t = (key, vars) => key + (vars ? JSON.stringify(vars) : '');
+  const many = Array.from({ length: 14 }, (_, i) => ({
+    id: 'g' + i, name: 'Gardena walk ' + i, valley: 'Val Gardena', distance: 14 - i, path: [],
+  }));
+
+  test('the ID page shows the dog, its breed and its first stamp, and only a real image as the photo', () => {
+    const p = passport.buildPassport([walk('a', 'carezza', '2026-10-12')], TRAILS);
+    const html = passport.renderPassport(p, { t, dogName: 'Luna', dogBreed: 'Border collie', dogPhoto: 'data:image/jpeg;base64,AAAA' });
+    expect(html).toContain('class="jp-id"');
+    expect(html).toContain('<img class="jp-photo" src="data:image/jpeg;base64,AAAA"');
+    expect(html).toContain('<dd>Border collie</dd>');
+    expect(html).toContain('journal.passport.idSince');
+    const evil = passport.renderPassport(p, { t, dogName: 'Luna', dogPhoto: 'javascript:alert(1)' });
+    expect(evil).not.toContain('<img');
+    expect(evil).toContain('jp-photo-empty');
+    expect(evil).not.toContain('journal.passport.idBreed');
+  });
+
+  test('visas are buttons, closed until one is opened', () => {
+    const p = passport.buildPassport([walk('a', 'carezza', '2026-10-12')], TRAILS);
+    const closed = passport.renderPassport(p, { t });
+    expect(closed).toContain('data-valley="Val di Fassa" aria-expanded="false"');
+    expect(closed).not.toContain('jp-valley"');
+    const open = passport.renderPassport(p, { t, openValley: 'Val di Fassa' });
+    expect(open).toContain('aria-expanded="true"');
+    expect(open).toContain('class="jp-slot is-walked"');
+    expect(open.match(/class="jp-slot"/g)).toHaveLength(2);
+  });
+
+  test('a big valley shows eight blanks and folds the rest away', () => {
+    const p = passport.buildPassport([walk('a', 'g0', '2026-10-12')], many);
+    const html = passport.renderPassport(p, { t, openValley: 'Val Gardena' });
+    expect(html).toContain('journal.passport.showRest{&quot;n&quot;:&quot;5&quot;}');
+    expect(html.match(/class="jp-slot"/g)).toHaveLength(13);
+    expect(html.indexOf('Gardena walk 13')).toBeLessThan(html.indexOf('Gardena walk 1<'));
+    const done = passport.buildPassport(many.map((tr, i) => walk('w' + i, tr.id, '2026-10-' + String(10 + i))), many);
+    expect(passport.renderPassport(done, { t, openValley: 'Val Gardena' })).toContain('journal.passport.allDone');
+  });
+
+  test('the journal opens a valley when its visa is tapped', () => {
+    const page = read('journal.html');
+    expect(page).toContain("ev.target.closest('.jp-visa')");
+    expect(page).toContain('openValley: passportValley,');
+    expect(page).toContain('dogBreed = p.breed');
   });
 });
 

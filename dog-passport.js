@@ -69,18 +69,48 @@
       stamp.dates.push(e.date);
     });
 
-    // How many catalogue trails each valley has, so "2 of 16" is honest.
-    var valleyTotals = new Map();
+    // Every catalogue trail per valley, so "2 of 16" is honest and the
+    // valley page can show the ones still to walk.
+    var valleyTrails = new Map();
     list.forEach(function(t){
-      if(t && t.valley) valleyTotals.set(t.valley, (valleyTotals.get(t.valley) || 0) + 1);
+      if(!t || !t.valley || !t.id) return;
+      if(!valleyTrails.has(t.valley)) valleyTrails.set(t.valley, []);
+      valleyTrails.get(t.valley).push(t);
     });
-    var valleyDone = new Map();
+    var valleyFirst = new Map();
     stamps.forEach(function(s){
-      if(s.valley && valleyTotals.has(s.valley)) valleyDone.set(s.valley, (valleyDone.get(s.valley) || 0) + 1);
+      if(!s.valley || !valleyTrails.has(s.valley)) return;
+      var first = s.dates[0];
+      if(!valleyFirst.has(s.valley) || String(first) < String(valleyFirst.get(s.valley))) valleyFirst.set(s.valley, first);
     });
-    var valleys = Array.from(valleyDone.keys()).map(function(name){
-      return { name: name, done: valleyDone.get(name), total: valleyTotals.get(name) };
-    }).sort(function(a, b){ return (b.done / b.total) - (a.done / a.total) || a.name.localeCompare(b.name); });
+    // Visas in the order the dog first entered each valley.
+    var valleys = Array.from(valleyFirst.keys()).map(function(name){
+      var trailsHere = valleyTrails.get(name).map(function(t){
+        var stamp = stampById.get(t.id);
+        return {
+          id: t.id,
+          name: t.name || t.id,
+          distance: number(t.distance),
+          walked: !!stamp,
+          lastDate: stamp ? stamp.dates[stamp.dates.length - 1] : null,
+        };
+      }).sort(function(a, b){
+        // Walked first (most recent first), then the rest shortest first:
+        // the easiest next walk sits right after what is done.
+        if(a.walked !== b.walked) return a.walked ? -1 : 1;
+        if(a.walked) return String(b.lastDate).localeCompare(String(a.lastDate));
+        return (a.distance || Infinity) - (b.distance || Infinity) || a.name.localeCompare(b.name);
+      });
+      return {
+        name: name,
+        done: trailsHere.filter(function(t){ return t.walked; }).length,
+        total: trailsHere.length,
+        firstDate: valleyFirst.get(name),
+        trails: trailsHere,
+      };
+    }).sort(function(a, b){
+      return String(a.firstDate).localeCompare(String(b.firstDate)) || a.name.localeCompare(b.name);
+    });
 
     var lakes = stamps.filter(function(s){ return s.lake; }).length;
     var huts = stamps.filter(function(s){ return s.hut; }).length;
@@ -92,7 +122,10 @@
       { id: 'km', have: Math.round(km * 10) / 10, target: MILESTONE_KM },
     ].map(function(m){ m.done = m.have >= m.target; return m; });
 
+    var since = walks.length ? walks[0].entry.date : null;
+
     return {
+      since: since,
       stamps: stamps,
       valleys: valleys,
       milestones: milestones,
@@ -139,16 +172,101 @@
     });
   }
 
-  // options: { t(key, vars), dogName, lang }
+  var INKS = 4;          // visa ink colours, cycled so neighbours differ
+  var SLOTS_SHOWN = 8;   // trails still to walk shown before "show the rest"
+
+  function shortDate(value, lang, withYear){
+    var d = new Date(value);
+    if(isNaN(d)) return '';
+    var opts = { day: 'numeric', month: 'short' };
+    if(withYear) opts.year = 'numeric';
+    return d.toLocaleDateString(lang, opts);
+  }
+
+  function trailHref(id){
+    var regional = global.DoloPawsRegionalData;
+    var slug = regional && regional.slugFor ? regional.slugFor(id) : id;
+    return 'trail.html?id=' + encodeURIComponent(slug) + '&amp;from=journal.html';
+  }
+
+  // The front page: the dog's own ID, like the pet passport owners carry.
+  function renderIdPage(passport, options, t, fmt, lang){
+    var name = options.dogName || '';
+    var photo = typeof options.dogPhoto === 'string' && /^data:image\/(png|jpe?g|webp|gif);/i.test(options.dogPhoto)
+      ? options.dogPhoto : '';
+    var face = photo
+      ? '<img class="jp-photo" src="' + esc(photo) + '" alt="">'
+      : '<span class="jp-photo jp-photo-empty" aria-hidden="true">' + esc((name || '?').charAt(0).toUpperCase()) + '</span>';
+    var rows = [];
+    if(name) rows.push([t('journal.passport.idName'), name]);
+    if(options.dogBreed) rows.push([t('journal.passport.idBreed'), options.dogBreed]);
+    if(passport.since) rows.push([t('journal.passport.idSince'), shortDate(passport.since, lang, true)]);
+    var title = name ? t('journal.passport.titleFor', { name: name }) : t('journal.passport.title');
+    return '<div class="jp-head"><h2 class="jp-title">' + esc(title) + '</h2>' +
+        '<span class="jn-private-chip">' + esc(t('journal.passport.private')) + '</span></div>' +
+      '<div class="jp-id">' + face + '<dl class="jp-idrows">' +
+        rows.map(function(r){ return '<div><dt>' + esc(r[0]) + '</dt><dd>' + esc(r[1]) + '</dd></div>'; }).join('') +
+      '</dl></div>';
+  }
+
+  function renderVisas(passport, options, t, fmt, lang){
+    if(!passport.valleys.length) return '';
+    var open = options.openValley || '';
+    var visas = passport.valleys.map(function(v, i){
+      var isOpen = v.name === open;
+      return '<button type="button" class="jp-visa jp-ink' + (i % INKS) + (isOpen ? ' is-open' : '') + '"' +
+        ' data-valley="' + esc(v.name) + '" aria-expanded="' + isOpen + '">' +
+        '<span class="jp-visa-name">' + esc(v.name) + '</span>' +
+        '<span class="jp-visa-date">' + esc(t('journal.passport.entered', { date: shortDate(v.firstDate, lang) })) + '</span>' +
+        '<span class="jp-visa-of">' + esc(t('journal.passport.of', { done: fmt(v.done), total: fmt(v.total) })) + '</span>' +
+      '</button>';
+    }).join('');
+    var openValley = passport.valleys.filter(function(v){ return v.name === open; })[0];
+    return '<div class="jp-hrow"><h3 class="jp-h">' + esc(t('journal.passport.visas')) + '</h3>' +
+        '<span class="jp-hint">' + esc(t('journal.passport.visasHint')) + '</span></div>' +
+      '<div class="jp-visas">' + visas + '</div>' +
+      (openValley ? renderValley(openValley, t, fmt, lang) : '');
+  }
+
+  // One valley's whole list: what is walked, then the blanks still to fill.
+  function renderValley(v, t, fmt, lang){
+    var pct = Math.max(3, Math.round(v.done / v.total * 100));
+    var slot = function(tr){
+      var sub = tr.walked
+        ? shortDate(tr.lastDate, lang)
+        : (tr.distance ? fmt(Math.round(tr.distance * 10) / 10) + ' km' : '');
+      return '<li><a class="jp-slot' + (tr.walked ? ' is-walked' : '') + '" href="' + trailHref(tr.id) + '">' +
+        '<span class="jp-slot-mark" aria-hidden="true">' + (tr.walked ? '✓' : '') + '</span>' +
+        '<span class="jp-slot-name">' + esc(tr.name) + '</span>' +
+        '<span class="jp-slot-sub">' + esc(sub) + '</span>' +
+        (tr.walked ? '' : '<span class="sr-only"> ' + esc(t('journal.passport.notYet')) + '</span>') +
+      '</a></li>';
+    };
+    var walked = v.trails.filter(function(tr){ return tr.walked; });
+    var left = v.trails.filter(function(tr){ return !tr.walked; });
+    var shown = left.slice(0, SLOTS_SHOWN), rest = left.slice(SLOTS_SHOWN);
+    return '<div class="jp-valley" id="jpValley">' +
+      '<div class="jp-vrow"><strong>' + esc(v.name) + '</strong><span class="jp-of">' +
+        esc(t('journal.passport.of', { done: fmt(v.done), total: fmt(v.total) })) + '</span></div>' +
+      '<span class="jp-bar"><i style="width:' + pct + '%"></i></span>' +
+      (left.length
+        ? '<p class="jp-next-tip">' + esc(t('journal.passport.leftTip', { n: fmt(left.length) })) + '</p>'
+        : '<p class="jp-next-tip">' + esc(t('journal.passport.allDone')) + '</p>') +
+      '<ul class="jp-slots">' + walked.concat(shown).map(slot).join('') + '</ul>' +
+      (rest.length
+        ? '<details class="jp-more"><summary>' + esc(t('journal.passport.showRest', { n: fmt(rest.length) })) + '</summary>' +
+          '<ul class="jp-slots">' + rest.map(slot).join('') + '</ul></details>'
+        : '') +
+    '</div>';
+  }
+
+  // options: { t(key, vars), dogName, dogBreed, dogPhoto, openValley, lang }
   function renderPassport(passport, options){
     options = options || {};
     var t = options.t || function(key){ return key; };
     var lang = options.lang || undefined;
     var totals = passport.totals;
     var fmt = function(n){ return Number(n).toLocaleString(lang); };
-    var title = options.dogName
-      ? t('journal.passport.titleFor', { name: options.dogName })
-      : t('journal.passport.title');
     var summary = [
       t(totals.stamps === 1 ? 'journal.passport.stampOne' : 'journal.passport.stamps', { n: fmt(totals.stamps) }),
       t(totals.valleys === 1 ? 'journal.passport.valleyOne' : 'journal.passport.valleysCount', { n: fmt(totals.valleys) }),
@@ -161,13 +279,10 @@
     var stamps = passport.stamps.slice().sort(function(a, b){
       return lastDate(b).localeCompare(lastDate(a));
     }).map(function(s){
-      var last = new Date(s.dates[s.dates.length - 1]);
-      var when = isNaN(last) ? '' : last.toLocaleDateString(lang, { day: 'numeric', month: 'short' });
+      var when = shortDate(s.dates[s.dates.length - 1], lang);
       var d = outlinePath(s.path, 44);
       var times = s.dates.length > 1 ? ' · ' + t('journal.passport.times', { n: s.dates.length }) : '';
-      var regional = global.DoloPawsRegionalData;
-      var slug = regional && regional.slugFor ? regional.slugFor(s.trailId) : s.trailId;
-      return '<a class="jp-stamp" href="trail.html?id=' + encodeURIComponent(slug) + '&amp;from=journal.html">' +
+      return '<a class="jp-stamp" href="' + trailHref(s.trailId) + '">' +
         '<span class="jp-ring" aria-hidden="true">' +
           (d ? '<svg width="44" height="44" viewBox="0 0 44 44"><path d="' + d + '"/></svg>'
              : '<svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="6"/></svg>') +
@@ -180,16 +295,6 @@
       '<span class="jp-ring" aria-hidden="true">+</span>' +
       '<span class="jp-when">' + esc(t('journal.passport.next')) + '</span></a>';
 
-    var valleys = passport.valleys.length
-      ? '<h3 class="jp-h">' + esc(t('journal.passport.valleys')) + '</h3><ul class="jp-valleys">' +
-        passport.valleys.map(function(v){
-          var pct = Math.max(3, Math.round(v.done / v.total * 100));
-          return '<li><span class="jp-vrow"><span>' + esc(v.name) + '</span><span class="jp-of">' +
-            esc(t('journal.passport.of', { done: v.done, total: v.total })) + '</span></span>' +
-            '<span class="jp-bar"><i style="width:' + pct + '%"></i></span></li>';
-        }).join('') + '</ul>'
-      : '';
-
     var milestones = '<h3 class="jp-h">' + esc(t('journal.passport.milestones')) + '</h3><div class="jp-miles">' +
       passport.milestones.map(function(m){
         var label;
@@ -201,13 +306,14 @@
         return '<span class="jp-mile' + (m.done ? ' is-done' : '') + '">' + (m.done ? '✓ ' : '') + esc(label) + '</span>';
       }).join('') + '</div>';
 
-    return '<div class="jp-head"><h2 class="jp-title">' + esc(title) + '</h2>' +
-        '<span class="jn-private-chip">' + esc(t('journal.passport.private')) + '</span></div>' +
+    return renderIdPage(passport, options, t, fmt, lang) +
       (totals.stamps
         ? '<p class="jp-sum">' + esc(summary) + '</p>'
         : '<p class="jp-empty">' + esc(t('journal.passport.empty')) + '</p>') +
+      renderVisas(passport, options, t, fmt, lang) +
+      '<h3 class="jp-h">' + esc(t('journal.passport.stampsTitle')) + '</h3>' +
       '<div class="jp-stamps">' + stamps + '</div>' +
-      valleys + milestones +
+      milestones +
       '<p class="jp-rule">' + esc(t('journal.passport.rule')) + '</p>';
   }
 
