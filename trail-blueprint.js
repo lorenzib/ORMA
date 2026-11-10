@@ -713,7 +713,7 @@
       for (const risk of seasonWords.describe(t.season, n => (isItalian() ? Number(n) : Number(n).toLocaleString())).dogSeasons) {
         if (!now.includes(risk.kind)) continue;
         const from = risk.sources.map(source => source.label).join(', ');
-        caution(tx(seasonWords.DOG_SEASON_TAGS[risk.kind]), `${risk.line} ${tx('Source: {source}.', { source: from })}`, risk.kind === 'cows' ? 'livestock' : null);
+        caution(tx(seasonWords.DOG_SEASON_TAGS[risk.kind]), `${risk.line} ${tx('Source: {source}.', { source: from })}`, ({ cows: 'livestock', heat: 'heat', salt: 'paws' })[risk.kind] || null);
       }
     }
 

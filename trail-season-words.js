@@ -73,17 +73,25 @@
 
   // Seasonal risks to dogs (trail.season.dogSeasons, from data/dog-seasons.json):
   // a tag in the months they apply and a line under "When to go" with the source.
-  const DOG_SEASON_TAGS = { caterpillars: 'Caterpillar season', ticks: 'Tick season', cows: 'Cows on the pastures' };
+  const DOG_SEASON_TAGS = { caterpillars: 'Caterpillar season', ticks: 'Tick season', cows: 'Cows on the pastures', heat: 'Hot months', salt: 'Salted roads' };
   const DOG_SEASON_SENTENCES = {
     caterpillars: '{range}: pine processionary caterpillars come down from the pines below about {alt} m, and they are a danger to dogs. Keep your dog away from pines and from the caterpillars.',
     ticks: '{range}: ticks in the woods below about {alt} m, most of all from late May to mid-June. Check your dog after the walk.',
     cows: '{range} (an estimate): cows may be out on the pastures. Keep your dog close and give the herds a wide berth.',
+    heat: '{range}: the valleys are hot, with average daily highs of about 30 °C in Bozen. Dogs bear heat badly: walk early in the morning or in the evening, and carry water.',
+    salt: '{range} (an estimate): the roads and lanes on this walk may be salted when they ice over. Salt hurts dogs’ paws: check them after the walk and rinse them with warm water.',
   };
   const DOG_SEASON_ALT = { caterpillars: 1400, ticks: 1200 };
-  // [3,4,5,6] -> "March to June"; the risks' months are one run each.
+  // [3,4,5,6] -> "March to June"; the risks' months are one run each, and a
+  // run across New Year ([12,1,2]) reads "December to February".
   function monthSpan(months) {
-    const sorted = months.slice().sort((a, b) => a - b);
-    return sorted.length === 1 ? monthName(sorted[0]) : tx('{from} to {to}', { from: monthName(sorted[0]), to: monthName(sorted[sorted.length - 1]) });
+    const set = new Set(months);
+    const prev = m => (m === 1 ? 12 : m - 1);
+    const next = m => (m === 12 ? 1 : m + 1);
+    const start = months.find(m => !set.has(prev(m))) || Math.min(...months);
+    let end = start;
+    while (set.has(next(end)) && next(end) !== start) end = next(end);
+    return start === end ? monthName(start) : tx('{from} to {to}', { from: monthName(start), to: monthName(end) });
   }
   // "da marzo a giugno: …" opens a sentence: capital first letter.
   const capitalise = text => text.charAt(0).toUpperCase() + text.slice(1);
