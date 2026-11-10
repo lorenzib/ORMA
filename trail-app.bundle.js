@@ -15368,6 +15368,7 @@ function initTrailReports(map, trail){
   // to 6 April (2025/26 dates)."
   function liftLine(lift) {
     const runs = lift.periods.map(p => tx('from {from} to {to}', { from: dayMonth(p.from), to: dayMonth(p.to) })).join(tx(' and '));
+    if (lift.winterOnly) return tx('The {lift} runs {runs} ({year} dates; summer dates not yet published).', { lift: lift.name, runs, year: lift.datesFor });
     return lift.summerOnly
       ? tx('The {lift} runs {runs} ({year} dates; winter dates not yet published).', { lift: lift.name, runs, year: lift.datesFor })
       : tx('The {lift} runs {runs} ({year} dates).', { lift: lift.name, runs, year: lift.datesFor });
