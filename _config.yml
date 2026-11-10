@@ -89,3 +89,4 @@ exclude:
   - app-saved.js
   - app-trail.js
   - app-you.js
+  - app-welcome.js
