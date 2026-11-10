@@ -1501,6 +1501,9 @@ function initHikeMode(map, trail, options){
         note: '',
         photos: photos.length,
         shareToTrail: photos.length > 0 && shareOn,
+        // SOCIAL-05: a walk the GPS proved earns a passport stamp. The mark
+        // is only ever written here, from the same check that counts it.
+        ...(proof && proof.proof === 'gps' ? { proof: 'gps' } : {}),
       };
     }
     function writeJournalEntry(user, entry){
