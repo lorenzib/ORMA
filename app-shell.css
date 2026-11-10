@@ -265,3 +265,38 @@ html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn.on small{color:#C9D3C6;
 
 /* Record: Plan a route sits beside Start walk until a walk begins. */
 html.orma-app .wr-plan:not([hidden]){display:flex;align-items:center;justify-content:center;text-decoration:none;}
+
+/* The first launch (app-welcome.js): one dark screen over Explore and the
+   tab bar, then a light "Tell us about your dog" screen. Shown once. */
+html.orma-app body.app-welcome-open{overflow:hidden;}
+.app-welcome{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;background:#26352A;color:#FFFFFF;font-family:'Inter',-apple-system,sans-serif;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.app-welcome-photo{flex:1 1 auto;min-height:220px;position:relative;background:#26352A center/cover no-repeat;}
+.app-welcome-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(38,53,42,.15) 0%,rgba(38,53,42,.2) 45%,#26352A 100%);}
+.app-welcome-brand{position:absolute;z-index:1;top:calc(16px + env(safe-area-inset-top,0px));left:20px;display:flex;align-items:center;gap:8px;font:700 18px 'Bricolage Grotesque',sans-serif;color:#FFFFFF;text-shadow:0 1px 6px rgba(0,0,0,.35);}
+.app-welcome-brand img{width:28px;height:28px;}
+.app-welcome-body{flex:0 0 auto;padding:4px 24px calc(20px + env(safe-area-inset-bottom,0px));text-align:center;}
+.app-welcome .app-welcome-title{margin:0 0 14px;font:700 28px/1.15 'Bricolage Grotesque',sans-serif;color:inherit;}
+/* Focus moves to the heading so a screen reader starts there; it needs no ring. */
+.app-welcome .app-welcome-title:focus,.app-welcome .app-welcome-title:focus-visible{outline:none !important;box-shadow:none !important;}
+.app-welcome-ticks{list-style:none;margin:0 auto 20px;padding:0;max-width:320px;text-align:left;}
+.app-welcome-ticks li{display:flex;gap:10px;margin:0 0 9px;font-size:15px;line-height:1.35;color:#E6EEE7;}
+.app-welcome-ticks li::before{content:"✓";flex:0 0 auto;font-weight:700;color:#7FB3C8;}
+.app-welcome-btn{display:block;width:100%;min-height:50px;margin:10px 0 0;padding:13px 16px;border:1px solid rgba(255,255,255,.4);border-radius:14px;background:transparent;color:#FFFFFF;font:600 16px 'Inter',-apple-system,sans-serif;cursor:pointer;}
+.app-welcome-btn.is-main{border-color:#7FB3C8;background:#7FB3C8;color:#173039;font-weight:700;}
+.app-welcome-btn:disabled{opacity:.45;cursor:default;}
+.app-welcome-small{margin:14px 0 0;font-size:13.5px;line-height:1.4;color:#C9D4CB;}
+.app-welcome-link{padding:4px 2px;border:0;background:none;color:#FFFFFF;font:700 13.5px 'Inter',-apple-system,sans-serif;text-decoration:underline;cursor:pointer;}
+.app-welcome.is-light{background:#F5F2E8;color:#2E4034;}
+.app-welcome-form{flex:1 0 auto;padding:calc(12px + env(safe-area-inset-top,0px)) 24px 16px;}
+.app-welcome-back{margin:0 0 18px -6px;padding:8px 6px;border:0;background:none;color:#2E4034;font:600 15px 'Inter',-apple-system,sans-serif;cursor:pointer;}
+.app-welcome.is-light .app-welcome-title{margin:0 0 6px;font-size:27px;}
+.app-welcome-lead{margin:0 0 24px;font-size:15px;line-height:1.45;color:#59695D;}
+.app-welcome-q{display:block;margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#59695D;}
+.app-welcome-input{display:block;width:100%;box-sizing:border-box;margin:0 0 22px;padding:14px;border:1px solid #DEDDD0;border-radius:12px;background:#FFFFFF;color:#2E4034;font:500 17px 'Inter',-apple-system,sans-serif;}
+.app-welcome-input:focus{outline:2px solid #7FB3C8;outline-offset:1px;}
+.app-welcome-chips{display:flex;gap:8px;}
+.app-welcome-chip{flex:1;min-height:46px;border:1px solid #DEDDD0;border-radius:999px;background:#FFFFFF;color:#2E4034;font:600 15px 'Inter',-apple-system,sans-serif;cursor:pointer;}
+.app-welcome-chip.is-on{border-color:#2E4034;background:#2E4034;color:#FFFFFF;}
+.app-welcome-foot{flex:0 0 auto;padding:12px 24px calc(20px + env(safe-area-inset-bottom,0px));text-align:center;}
+.app-welcome.is-light .app-welcome-btn.is-main{border-color:#2E4034;background:#2E4034;color:#FFFFFF;}
+.app-welcome.is-light .app-welcome-small{color:#59695D;}

@@ -88,3 +88,4 @@ exclude:
   - app-explore.js
   - app-trail.js
   - app-you.js
+  - app-welcome.js
