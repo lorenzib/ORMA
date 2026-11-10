@@ -77,6 +77,17 @@ describe('a lift with only summer dates published', () => {
   });
 });
 
+describe('a lift with only winter dates published', () => {
+  const winterOnly = { ...GONDOLA, periods: [{ from: '11-28', to: '04-04' }], knownMonths: [11, 12, 1, 2, 3, 4] };
+  const trail = applyLiftSeasons([walk('required')], { lifts: { g: winterOnly }, trails: { w: { lifts: ['g'] } } })[0];
+
+  test('says the summer dates are not out yet', () => {
+    expect(trail.season.lifts[0].winterOnly).toBe(true);
+    expect(trail.season.lifts[0].summerOnly).toBeUndefined();
+    expect(words.describe(trail.season).lifts[0].line).toMatch(/summer dates not yet published/);
+  });
+});
+
 describe('a walk that only offers the lift as a shortcut', () => {
   const trail = apply('optional');
 
