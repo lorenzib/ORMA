@@ -1738,4 +1738,12 @@ window.ORMA_PHRASES_IT = {
   "1 trail": "1 sentiero",
   "Ranked for {name} today": "Ordinati per {name}, oggi",
   "Could not remove it. Check your connection and try again.": "Non è stato possibile toglierlo. Controlla la connessione e riprova.",
+  "Walk saved": "Passeggiata salvata",
+  "Nice walk, {name}!": "Ottima passeggiata, {name}!",
+  "Nice walk!": "Ottima passeggiata!",
+  "GPS confirms the route": "Il GPS conferma il percorso",
+  "Per km": "Al km",
+  "Add a photo": "Aggiungi una foto",
+  "More about the walk": "Altro sulla passeggiata",
+  "Fewer questions": "Meno domande",
 };

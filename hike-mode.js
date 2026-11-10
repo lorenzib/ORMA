@@ -1549,6 +1549,16 @@ function initHikeMode(map, trail, options){
       }
     }
 
+    // The iPhone app ends every walk on one short "Walk finished" screen,
+    // drawn on the journal page by app-walk-done.js, which asks this screen's
+    // question and keeps its detail questions behind "More about the walk".
+    // The walk is already saved; the completion id lets that screen record
+    // the private answer against this hike.
+    if(savedEntryId && document.documentElement.classList.contains('orma-app')){
+      closeOverlay();
+      window.location.href = `journal.html?saved=${encodeURIComponent(savedEntryId)}&completion=${encodeURIComponent(completion.completionId)}`;
+      return;
+    }
     renderCond();
     renderPhotos();
     renderOutcome();
