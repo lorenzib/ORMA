@@ -1,9 +1,12 @@
 {
   "contractVersion": "dog-seasons-v1",
-  "note": "Seasonal risks to dogs on Dolomites walks, with the months each source gives. scripts/dog-seasons.js decides which walks each risk applies to from the rule here (province or valley, the walk's lowest point, words in the walk's own text) and puts { kind, months } in trail.season.dogSeasons. A walk without a risk is a walk the rule does not reach, not a walk shown to be free of it. Curated by hand; read the sources again each spring.",
+  "note": "Seasonal risks to dogs on Dolomites walks, with the months each source gives. scripts/dog-seasons.js decides which walks each risk applies to from the rule here (province or valley, the walk's lowest point, words in the walk's own text, the walk's heat rating, words in its surface description) and puts { kind, months } in trail.season.dogSeasons. A walk without a risk is a walk the rule does not reach, not a walk shown to be free of it. Curated by hand; read the sources again each spring.",
   "risks": {
     "caterpillars": {
-      "months": [3, 4],
+      "months": [
+        3,
+        4
+      ],
       "rule": {
         "regions": [
           "dolomites"
@@ -12,11 +15,11 @@
           "trentino"
         ],
         "valleys": [
-          "Val Venosta – Vinschgau"
+          "Val Venosta \u2013 Vinschgau"
         ],
         "lowPointAtMostM": 1400
       },
-      "basis": "Pine processionary caterpillars come down from pines from early March to the end of April, from the valley floor to about 1,400 m, and are a danger to people and pets (Province of Trento forestry service). South Tyrol’s forestry service names Vinschgau as the main area and asks for dogs on a lead near pines and cedars in late winter; it gives no altitude, so Trento’s 1,400 m is used.",
+      "basis": "Pine processionary caterpillars come down from pines from early March to the end of April, from the valley floor to about 1,400 m, and are a danger to people and pets (Province of Trento forestry service). South Tyrol\u2019s forestry service names Vinschgau as the main area and asks for dogs on a lead near pines and cedars in late winter; it gives no altitude, so Trento\u2019s 1,400 m is used.",
       "sources": [
         {
           "label": "Province of Trento, forestry service",
@@ -36,21 +39,26 @@
           "accessedAt": "2026-11-09",
           "appliesTo": {
             "valleys": [
-              "Val Venosta – Vinschgau"
+              "Val Venosta \u2013 Vinschgau"
             ]
           }
         }
       ]
     },
     "ticks": {
-      "months": [3, 4, 5, 6],
+      "months": [
+        3,
+        4,
+        5,
+        6
+      ],
       "rule": {
         "regions": [
           "dolomites"
         ],
         "lowPointAtMostM": 1200
       },
-      "basis": "Ticks are found in woods from March, most of all from late May to mid-June, from the valley floor to about 1,200 m (Province of Trento with the Fondazione Edmund Mach). No source gives an end month, so the tag runs to June; ticks can be met later in the year too. The figures are Trentino’s and are used for the whole Dolomites.",
+      "basis": "Ticks are found in woods from March, most of all from late May to mid-June, from the valley floor to about 1,200 m (Province of Trento with the Fondazione Edmund Mach). No source gives an end month, so the tag runs to June; ticks can be met later in the year too. The figures are Trentino\u2019s and are used for the whole Dolomites.",
       "sources": [
         {
           "label": "Province of Trento and Fondazione Edmund Mach",
@@ -61,7 +69,12 @@
       ]
     },
     "cows": {
-      "months": [6, 7, 8, 9],
+      "months": [
+        6,
+        7,
+        8,
+        9
+      ],
       "estimate": true,
       "rule": {
         "regions": [
@@ -75,6 +88,66 @@
           "label": "South Tyrol tourist board",
           "url": "https://www.suedtirol.info/de/das-ist-suedtirol/menschen/tradition/almwirtschaft-und-transhumanz",
           "accessedAt": "2026-11-09"
+        }
+      ]
+    },
+    "heat": {
+      "months": [
+        6,
+        7,
+        8
+      ],
+      "rule": {
+        "regions": [
+          "dolomites"
+        ],
+        "lowPointAtMostM": 1000,
+        "heatRisk": [
+          "high"
+        ]
+      },
+      "basis": "In Bozen (246 m) the average daily high is 28.4 \u00b0C in June, 30.5 \u00b0C in July and 30.0 \u00b0C in August, against about 24.5 \u00b0C in May and September (Province of Bolzano weather service, station 83200MS, 1991\u20132020 means worked out from its yearly table). Air cools by roughly 0.65 \u00b0C for every 100 m of height, so July highs stay around 25 \u00b0C or more up to about 1,000 m. The rule reaches walks rated high for heat (little shade, open ground) that go down to 1,000 m or lower. Switzerland's federal veterinary office says dogs bear heat badly, and asks for walks at the cool times of day and in shady places such as forest. Bozen's figures are used for the whole Dolomites.",
+      "sources": [
+        {
+          "label": "Province of Bolzano weather service, Bozen station temperatures",
+          "url": "https://www.provinz.bz.it/wetter/download/83200MS-Bozen-Bolzano-multiannual-LT-monthly-temperature.pdf",
+          "published": "2025-01-03",
+          "accessedAt": "2026-11-10"
+        },
+        {
+          "label": "Swiss Federal Food Safety and Veterinary Office (BLV)",
+          "url": "https://www.blv.admin.ch/dam/de/sd-web/Auw8tPNGoRam/merkblatt-hunde-hitzestress-de.pdf",
+          "published": "2017-06-21",
+          "accessedAt": "2026-11-10"
+        }
+      ]
+    },
+    "salt": {
+      "months": [
+        12,
+        1,
+        2
+      ],
+      "estimate": true,
+      "rule": {
+        "regions": [
+          "dolomites"
+        ],
+        "surfaceMentions": "\\b(asphalt|tarmac|tarred|pavements?|streets?|setts|cobbled|village (lanes?|roads?)|town|main roads?|provincial road|quiet roads?)\\b|\\bpaved(?! \\((0|1)%\\))"
+      },
+      "basis": "Roads are salted when they ice over. No authority publishes the months, so the tag runs over the months whose average night-time low is below freezing in Bozen: December (\u22122.6 \u00b0C), January (\u22123.2 \u00b0C) and February (\u22121.2 \u00b0C) (Province of Bolzano weather service, station 83200MS, 1991\u20132020 means). Higher up, frost lasts longer. The rule reaches walks whose surface description names tarmac, streets, village lanes or other paved ground (a gravel forest road does not count). The German Federal Chamber of Veterinarians says road salt attacks sensitive paws, most of all light ones that are already cracked, and advises checking the paws after the walk and rinsing them with warm water.",
+      "sources": [
+        {
+          "label": "Province of Bolzano weather service, Bozen station temperatures",
+          "url": "https://www.provinz.bz.it/wetter/download/83200MS-Bozen-Bolzano-multiannual-LT-monthly-temperature.pdf",
+          "published": "2025-01-03",
+          "accessedAt": "2026-11-10"
+        },
+        {
+          "label": "German Federal Chamber of Veterinarians",
+          "url": "https://www.bundestieraerztekammer.de/presse/archiv/2014/PM_2_14_Wintertipps.pdf",
+          "published": "2014-01-28",
+          "accessedAt": "2026-11-10"
         }
       ]
     }
