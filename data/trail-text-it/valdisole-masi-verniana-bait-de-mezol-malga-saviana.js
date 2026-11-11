@@ -1,5 +1,6 @@
 // valdisole-masi-verniana-bait-de-mezol-malga-saviana in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "a long forest-and-pasture loop below Passo del Tonale": "un lungo anello tra boschi e pascoli sotto il Passo del Tonale",
   "A long loop from Forte Strino on forest roads and paths to the Bait de Mezòl, Malga Verniana and Malga Saviana, high above the upper Val di Sole. The board lists 14.8 km and 837 m up.": "Un lungo anello da Forte Strino su strade forestali e sentieri fino al Bait de Mezòl, a Malga Verniana e a Malga Saviana, alti sopra l’alta Val di Sole. Il sito ufficiale indica 14,8 km e 837 m di salita.",
   "Start at the car park by Forte Strino on the SS42: 14.8 km and 837 m up, about 5 hours, as the board lists. For fit dogs only; there is water on the way, but carry some for the first climb.": "Parti dal parcheggio di Forte Strino sulla SS42: 14,8 km e 837 m di salita, circa 5 ore, come indica il sito ufficiale. Solo per cani allenati; lungo il percorso c’è acqua, ma portane per la prima salita.",
   "The car park is beside the busy SS42: keep your dog on a short lead there": "Il parcheggio è accanto alla trafficata SS42: lì tieni il cane al guinzaglio corto",
