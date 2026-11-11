@@ -197,8 +197,8 @@ describe('Lago di Carezza offline package', () => {
     expect(app).toContain('DoloPawsHikeDistance.update');
     expect(shell).toContain('id="offlineRejoinBtn"');
     expect(app).toContain('last valid fix');
-    expect(app).toContain("? 'On trail'");
-    expect(app).toContain("? 'Checking route position'");
+    expect(app).toContain("? t('On trail')");
+    expect(app).toContain("? t('Checking route position')");
     expect(app).toContain('DoloPawsRouteRejoin.guidance');
     expect(app).toContain('DoloPawsFootpathRouter.routeToTrail');
     expect(app).toContain('follow the blue mapped path');

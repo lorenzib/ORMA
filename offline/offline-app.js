@@ -1,6 +1,296 @@
 (function(){
   'use strict';
 
+  // ---- Language -------------------------------------------------------------
+  // The offline page cannot fetch i18n.js (it is not in the package), so it
+  // carries its own Italian. Same choice as the site: the saved language, else
+  // the phone's. The English sentence is the key, as in i18n-phrases-it.js.
+  const LANG = (() => {
+    let saved = null;
+    try{ saved = window.localStorage.getItem('dolopaws-lang'); }catch(error){ saved = null; }
+    if(saved === 'en' || saved === 'it') return saved;
+    return String(navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
+  })();
+  const LOCALE = LANG === 'it' ? 'it-IT' : undefined;
+
+  const IT = {
+    // The page itself (offline/trail.html).
+    'Offline trail · ORMA': 'Sentiero offline · ORMA',
+    'ORMA home': 'Home di ORMA',
+    'Checking connection…': 'Verifica della connessione…',
+    '← Downloaded trails': '← Sentieri scaricati',
+    'Ready on this device': 'Pronto su questo dispositivo',
+    'Loading downloaded trail…': 'Caricamento del sentiero scaricato…',
+    'Available offline': 'Disponibile offline',
+    'Verifying package resources…': 'Verifica dei file del pacchetto…',
+    'Downloaded route': 'Percorso scaricato',
+    'Offline trail map': 'Mappa offline del sentiero',
+    'Route, paths and useful points saved on this device.': 'Percorso, sentieri e punti utili salvati su questo dispositivo.',
+    'Show my position': 'Mostra la mia posizione',
+    'Route summary': 'Riepilogo del percorso',
+    'Distance': 'Distanza',
+    'Time': 'Tempo',
+    'Climb': 'Salita',
+    'Shade': 'Ombra',
+    'Offline route map': 'Mappa offline del percorso',
+    'Saved map': 'Mappa salvata',
+    'Stored route points': 'Punti del percorso salvati',
+    'Closest point on trail': 'Punto più vicino del sentiero',
+    'Current GPS position': 'Posizione GPS attuale',
+    'Map key': 'Legenda',
+    'ORMA route': 'Percorso ORMA',
+    'Start / finish': 'Partenza / arrivo',
+    'Stored water point': 'Punto acqua salvato',
+    'Mapped path': 'Sentiero mappato',
+    'Road': 'Strada',
+    'Water': 'Acqua',
+    'Stored route profile': 'Profilo del percorso salvato',
+    'Elevation': 'Altimetria',
+    'Waiting for GPS': 'In attesa del GPS',
+    'Stored route elevation profile': 'Profilo altimetrico del percorso salvato',
+    'Start': 'Partenza',
+    'High point': 'Punto più alto',
+    'Route elevation is stored offline. The cursor shows the nearest position along the route, not exact GPS altitude. The offline basemap remains flat.':
+      'L’altimetria del percorso è salvata offline. Il cursore mostra la posizione più vicina lungo il percorso, non l’altitudine GPS esatta. La mappa di base offline resta piatta.',
+    'GPS is off. The route and safety information remain available.': 'Il GPS è spento. Il percorso e le informazioni di sicurezza restano disponibili.',
+    'Find closest trail point': 'Trova il punto più vicino del sentiero',
+    'Unfinished hike found': 'Trovata un’escursione non conclusa',
+    'Resume hike': 'Riprendi l’escursione',
+    'Pause': 'Pausa',
+    'Finish hike': 'Termina l’escursione',
+    'Discard hike': 'Elimina l’escursione',
+    'Private trail feedback': 'Riscontro privato sul sentiero',
+    'Did this trail suit your dog?': 'Questo sentiero era adatto al tuo cane?',
+    'This structured check-in helps ORMA improve trail guidance. It never becomes a public review.':
+      'Questo breve questionario aiuta ORMA a migliorare le indicazioni sui sentieri. Non diventa mai una recensione pubblica.',
+    'Choose one response': 'Scegli una risposta',
+    'Yes, it was appropriate': 'Sì, era adatto',
+    'Yes, with unexpected cautions': 'Sì, ma con rischi imprevisti',
+    'No, it was not appropriate': 'No, non era adatto',
+    'We did not complete it': 'Non l’abbiamo completato',
+    'Prefer not to answer': 'Preferisco non rispondere',
+    'Water information': 'Informazioni sull’acqua',
+    '(optional)': '(facoltativo)',
+    'Not answered': 'Nessuna risposta',
+    'Accurate': 'Corrette',
+    'Less water than listed': 'Meno acqua di quanto indicato',
+    'More water than listed': 'Più acqua di quanto indicato',
+    'I did not check': 'Non ho controllato',
+    'Unexpected cautions': 'Rischi imprevisti',
+    'Surface': 'Fondo',
+    'Exposure': 'Esposizione',
+    'Livestock': 'Bestiame',
+    'Heat': 'Caldo',
+    'Access': 'Accesso',
+    'Save private feedback': 'Salva il riscontro privato',
+    'Use with local signs.': 'Da usare con la segnaletica locale.',
+    'This downloaded map works without connectivity, but it is not an emergency-navigation service.':
+      'Questa mappa scaricata funziona senza connessione, ma non è un servizio di navigazione per le emergenze.',
+    'Trail facts': 'Dati del sentiero',
+    'Safety and cautions': 'Sicurezza e precauzioni',
+    'Emergency:': 'Emergenza:',
+    'This trail is not ready offline': 'Questo sentiero non è pronto offline',
+    'A required package resource is unavailable.': 'Manca un file necessario del pacchetto.',
+    'Return to the trail page when online': 'Torna alla pagina del sentiero quando sei online',
+
+    // Written by this script.
+    'Not yet verified by ORMA': 'Non ancora verificato da ORMA',
+    'Browser reports online': 'Il browser risulta online',
+    'Browser reports offline': 'Il browser risulta offline',
+    'Package verification failed.': 'Verifica del pacchetto non riuscita.',
+    'Package verification is unavailable.': 'La verifica del pacchetto non è disponibile.',
+    '{label} is missing.': 'Manca: {label}.',
+    '{label} has changed size.': '{label}: la dimensione è cambiata.',
+    '{label} failed verification.': '{label}: verifica non riuscita.',
+    'Not recorded': 'Non registrato',
+    '{start} · water': '{start} · acqua',
+    'Water point': 'Punto acqua',
+    'Waiting for reliable GPS': 'In attesa di un GPS affidabile',
+    '{km} km · ~{m} m route elevation': '{km} km · ~{m} m di quota sul percorso',
+    'Rejoin trail: follow the blue mapped path for about {m} m. Check local signs and closures.':
+      'Per tornare sul sentiero: segui il sentiero mappato in blu per circa {m} m. Controlla segnaletica e chiusure locali.',
+    'No connected mapped footpath was found. Return to the last marked path or follow local signs.':
+      'Nessun sentiero mappato collegato trovato. Torna all’ultimo sentiero segnato o segui la segnaletica locale.',
+    'GPS is not supported in this browser.': 'Il GPS non è supportato da questo browser.',
+    'GPS stopped.': 'GPS fermato.',
+    'Waiting for a GPS fix…': 'In attesa del segnale GPS…',
+    'Stop GPS': 'Ferma il GPS',
+    'You are about {km} km from this route. Rejoin guidance is unavailable this far away; use an official navigation source.':
+      'Sei a circa {km} km da questo percorso. A questa distanza non ci sono indicazioni per rientrare: usa una fonte di navigazione ufficiale.',
+    'You appear to be off route · about {m} m away.': 'Sembri fuori percorso · a circa {m} m.',
+    'Route distance unavailable.': 'Distanza dal percorso non disponibile.',
+    'GPS fix is stale; waiting for a newer position.': 'Il segnale GPS è vecchio; in attesa di una posizione più recente.',
+    'GPS is weak; off-route warnings are paused.': 'Il GPS è debole; gli avvisi di fuori percorso sono sospesi.',
+    'none yet': 'ancora nessuno',
+    '{km} km from this route': '{km} km da questo percorso',
+    'About {m} m from the trail': 'Circa {m} m dal sentiero',
+    'Checking route position': 'Verifica della posizione sul percorso',
+    'On trail': 'Sul sentiero',
+    'Position near trail': 'Posizione vicina al sentiero',
+    'Walked {km} km · ': 'Percorsi {km} km · ',
+    '{summary} · GPS ±{accuracy} m · last valid fix {time}': '{summary} · GPS ±{accuracy} m · ultimo segnale valido {time}',
+    'GPS position found; route distance unavailable.': 'Posizione GPS trovata; distanza dal percorso non disponibile.',
+    'Your GPS position is outside this downloaded map.': 'La tua posizione GPS è fuori da questa mappa scaricata.',
+    'Try GPS again': 'Riprova il GPS',
+    'Hike paused': 'Escursione in pausa',
+    'Location permission was denied. Enable it for ORMA in browser settings.':
+      'L’accesso alla posizione è stato negato. Abilitalo per ORMA nelle impostazioni del browser.',
+    'A GPS fix is currently unavailable. The stored route remains visible.':
+      'Il segnale GPS al momento non è disponibile. Il percorso salvato resta visibile.',
+    'Started {time} · last saved progress {progress}.': 'Iniziata alle {time} · ultimo avanzamento salvato: {progress}.',
+    'at the trailhead': 'alla partenza',
+    'Hike resumed': 'Escursione ripresa',
+    'GPS tracking is active. Your latest valid progress stays saved on this device.':
+      'Il tracciamento GPS è attivo. Il tuo ultimo avanzamento valido resta salvato su questo dispositivo.',
+    'Hike paused. Your progress is saved on this device.': 'Escursione in pausa. Il tuo avanzamento è salvato su questo dispositivo.',
+    'Your progress is saved on this device.': 'Il tuo avanzamento è salvato su questo dispositivo.',
+    'Choose one response. It will be stored privately on this device.': 'Scegli una risposta. Verrà salvata in privato su questo dispositivo.',
+    'This completion has no account owner, so private feedback cannot be saved.':
+      'Questa escursione completata non è legata a un account, quindi il riscontro privato non può essere salvato.',
+    'Feedback could not be stored. Free some device storage and try again.':
+      'Impossibile salvare il riscontro. Libera spazio sul dispositivo e riprova.',
+    'Private feedback saved': 'Riscontro privato salvato',
+    'Saved privately · pending sync until you reconnect.': 'Salvato in privato · in attesa di sincronizzazione finché non torni online.',
+    'Saved privately · synced.': 'Salvato in privato · sincronizzato.',
+    'The completed hike could not be saved. Your active hike is still preserved.':
+      'Impossibile salvare l’escursione completata. La tua escursione in corso resta conservata.',
+    'Completion not saved': 'Completamento non salvato',
+    'Free some device storage and tap Finish hike again.': 'Libera spazio sul dispositivo e tocca di nuovo Termina l’escursione.',
+    'Hike completed and saved on this device.': 'Escursione completata e salvata su questo dispositivo.',
+    'Hike completed': 'Escursione completata',
+    'Your completion is stored offline and ready for a later journal or synchronization step.':
+      'Il completamento è salvato offline, pronto per il diario o per la sincronizzazione.',
+    'Old unfinished hike': 'Vecchia escursione non conclusa',
+    'This saved hike is more than 36 hours old. Discard it before starting another hike.':
+      'Questa escursione salvata ha più di 36 ore. Eliminala prima di iniziarne un’altra.',
+    'Hike cannot be restored': 'Impossibile ripristinare l’escursione',
+    'The saved record is damaged or from an unsupported version. Discard it safely.':
+      'Il dato salvato è danneggiato o di una versione non supportata. Eliminalo in sicurezza.',
+    'Hike finished': 'Escursione terminata',
+    'Save the completion on this device before opening a later journal step.':
+      'Salva il completamento su questo dispositivo prima di aprire il diario.',
+    'No downloaded package is configured for this trail.': 'Per questo sentiero non è configurato nessun pacchetto scaricato.',
+    'The package manifest is unavailable.': 'L’elenco dei file del pacchetto non è disponibile.',
+    'The package manifest is invalid.': 'L’elenco dei file del pacchetto non è valido.',
+    'Required map, route, safety, elevation, or footpath routing data is missing.':
+      'Mancano dati necessari: mappa, percorso, sicurezza, altimetria o rete dei sentieri.',
+    'The stored elevation profile is invalid.': 'Il profilo altimetrico salvato non è valido.',
+    'The stored footpath routing graph is invalid.': 'La rete dei sentieri salvata non è valida.',
+    'Offline route map for {name}': 'Mappa offline del percorso: {name}',
+    'Ready offline · {size} · {count} stored files verified': 'Pronto offline · {size} · {count} file salvati verificati',
+    'Route': 'Percorso',
+    'Ascent': 'Dislivello in salita',
+    'Highest point': 'Punto più alto',
+    'Expected time': 'Tempo previsto',
+    'Difficulty': 'Difficoltà',
+
+    // The fixed wording every package's safety.json is built from
+    // (scripts/build-offline-packages.js safetyFor). Wording a walk wrote itself
+    // travels in that walk's safety.json as textIt.
+    'Loop': 'Anello',
+    'One way': 'Solo andata',
+    'Easy': 'Facile',
+    'Moderate': 'Moderato',
+    'Hard': 'Impegnativo',
+    'Start of the route': 'Inizio del percorso',
+    'Water point mapped in OpenStreetMap': 'Punto acqua mappato in OpenStreetMap',
+    'Seasonal; not field-verified': 'Stagionale; non verificato sul posto',
+    'Not field-verified': 'Non verificato sul posto',
+    'Seasonal availability not field-verified': 'Disponibilità stagionale non verificata sul posto',
+    'Heat risk is high on this walk: start early and carry extra water.':
+      'Il rischio di caldo è alto su questa passeggiata: parti presto e porta acqua in più.',
+    'Parts of this walk are exposed; keep your dog close and on a short lead.':
+      'Alcuni tratti di questa passeggiata sono esposti: tieni il cane vicino e al guinzaglio corto.',
+    'Carry water even though water points are listed.': 'Porta comunque acqua, anche se sono indicati punti acqua.',
+    'No water point is listed on this walk: carry enough for you and your dog.':
+      'Su questa passeggiata non è indicato nessun punto acqua: portane abbastanza per te e per il cane.',
+    'Follow local signs, lead rules and temporary closures.':
+      'Rispetta la segnaletica locale, le regole sul guinzaglio e le chiusure temporanee.',
+    'Call the European emergency number when urgent help is required. Connectivity is not guaranteed.':
+      'Chiama il numero di emergenza europeo quando serve un aiuto urgente. La copertura di rete non è garantita.',
+  };
+
+  // The shared files a package stores, named by role so a failure reads in
+  // the reader's language whatever label the manifest was built with.
+  const ROLE_IT = {
+    shell:'Pagina offline del sentiero',
+    style:'Stili della pagina offline',
+    app:'Applicazione offline del sentiero',
+    'gps-policy':'Regole di sicurezza del GPS',
+    'route-rejoin':'Indicazioni per tornare sul percorso',
+    'hike-distance':'Distanza percorsa',
+    'footpath-router':'Rete dei sentieri offline',
+    'elevation-engine':'Altimetria offline',
+    session:'Escursione salvata',
+    completion:'Completamento salvato',
+    outcome:'Riscontro privato',
+    map:'Mappa offline',
+    route:'Percorso',
+    'footpath-network':'Rete dei sentieri del percorso',
+    'elevation-profile':'Profilo altimetrico',
+    safety:'Informazioni di sicurezza',
+  };
+
+  function has(table, key){
+    return Object.prototype.hasOwnProperty.call(table, key);
+  }
+
+  // A number as the reader writes it: 6,7 km in Italian, 6.7 km in English.
+  function num(value){
+    const text = String(value);
+    return LANG === 'it' ? text.replace(/(\d)\.(\d)/g, '$1,$2') : text;
+  }
+
+  // English sentence in, the reader's sentence out, with {name} slots filled.
+  function t(english, values){
+    const template = LANG === 'it' && has(IT, english) ? IT[english] : english;
+    return template.replace(/\{(\w+)\}/g, (whole, key) =>
+      values && has(values, key) ? String(values[key]) : whole);
+  }
+
+  function resourceLabel(resource){
+    return (LANG === 'it' && ROLE_IT[resource.role]) || resource.label || resource.url;
+  }
+
+  // Wording from the package's safety.json: the walk's own Italian (textIt)
+  // first, then the fixed wording above. Durations are "2.5 hours" or
+  // "30 minutes"; anything else unknown stays as the package wrote it.
+  let packageTextIt = {};
+  function packageText(english){
+    if(LANG !== 'it' || english === null || english === undefined) return english;
+    const text = String(english);
+    if(has(packageTextIt, text)) return packageTextIt[text];
+    if(has(IT, text)) return IT[text];
+    const duration = text.match(/^(\d+(?:\.\d+)?(?:\s*[–-]\s*\d+(?:\.\d+)?)?)\s+(hours?|minutes?)$/);
+    if(duration){
+      const one = duration[1] === '1';
+      const unit = /^hour/.test(duration[2]) ? (one ? 'ora' : 'ore') : (one ? 'minuto' : 'minuti');
+      return `${num(duration[1])} ${unit}`;
+    }
+    return text;
+  }
+
+  // The page's fixed wording is English in trail.html; an Italian reader gets
+  // it swapped in place, text and labels alike, before anything shows.
+  function translateShell(){
+    document.documentElement.lang = LANG;
+    if(LANG !== 'it') return;
+    document.title = t(document.title);
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const trimmed = node.nodeValue.trim();
+      if(trimmed && has(IT, trimmed)) node.nodeValue = node.nodeValue.replace(trimmed, IT[trimmed]);
+    });
+    document.querySelectorAll('[aria-label], [alt]').forEach(element => {
+      ['aria-label', 'alt'].forEach(name => {
+        const value = element.getAttribute(name);
+        if(value && has(IT, value)) element.setAttribute(name, IT[value]);
+      });
+    });
+  }
+
   // Every package sits at packages/<trail id>/. Which trails have one is the
   // download controller's list; the reader only needs a well-formed id.
   function packageManifestUrl(trailId){
@@ -79,44 +369,44 @@
   }
 
   async function sha256(buffer){
-    if(!(window.crypto && window.crypto.subtle)) throw new Error('Package verification is unavailable.');
+    if(!(window.crypto && window.crypto.subtle)) throw new Error(t('Package verification is unavailable.'));
     return bytesToHex(await window.crypto.subtle.digest('SHA-256', buffer));
   }
 
   async function verifiedResource(resource){
     const response = await fetch(new URL(resource.url, new URL(manifestUrl, window.location.href)));
-    if(!response.ok) throw new Error(`${resource.label || resource.url} is missing.`);
+    if(!response.ok) throw new Error(t('{label} is missing.', { label:resourceLabel(resource) }));
     const buffer = await response.arrayBuffer();
-    if(buffer.byteLength !== resource.bytes) throw new Error(`${resource.label || resource.url} has changed size.`);
-    if(await sha256(buffer) !== resource.sha256) throw new Error(`${resource.label || resource.url} failed verification.`);
+    if(buffer.byteLength !== resource.bytes) throw new Error(t('{label} has changed size.', { label:resourceLabel(resource) }));
+    if(await sha256(buffer) !== resource.sha256) throw new Error(t('{label} failed verification.', { label:resourceLabel(resource) }));
     return new Response(buffer, { headers: { 'Content-Type': response.headers.get('Content-Type') || 'application/octet-stream' } });
   }
 
   function formatBytes(bytes){
     return bytes < 1024 * 1024
       ? `${Math.ceil(bytes / 1024)} KB`
-      : `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+      : `${num((bytes / (1024 * 1024)).toFixed(1))} MB`;
   }
 
   // A route ORMA has not verified says so under the title (OFF-08). A
   // Verified one shows nothing there: the header was crowded, and the trail
   // page already carries the seal.
   function routeStatusLabel(status){
-    if(status === 'not-verified') return 'Not yet verified by ORMA';
+    if(status === 'not-verified') return t('Not yet verified by ORMA');
     return '';
   }
 
   function setNetworkState(){
     elements.networkState.textContent = navigator.onLine
-      ? 'Browser reports online'
-      : 'Browser reports offline';
+      ? t('Browser reports online')
+      : t('Browser reports offline');
   }
 
   function showFailure(message){
     elements.mapSection.hidden = true;
     elements.factsSection.hidden = true;
     elements.failure.hidden = false;
-    elements.packageState.textContent = 'Package verification failed.';
+    elements.packageState.textContent = t('Package verification failed.');
     elements.failureMessage.textContent = message;
   }
 
@@ -126,7 +416,7 @@
     if(value === null || value === undefined || /\bnull\b|\bundefined\b/.test(String(value))) return;
     const term = document.createElement('dt');
     const detail = document.createElement('dd');
-    term.textContent = label;
+    term.textContent = t(label);
     detail.textContent = value;
     elements.facts.append(term, detail);
   }
@@ -147,10 +437,10 @@
 
   function renderMapDetails(safety, bounds){
     const facts = safety.facts || {};
-    elements.mapDistance.textContent = Number.isFinite(facts.distanceKm) ? `${facts.distanceKm} km` : 'Not recorded';
-    elements.mapDuration.textContent = facts.expectedDuration || 'Not recorded';
-    elements.mapAscent.textContent = Number.isFinite(facts.ascentM) ? `${facts.ascentM} m` : 'Not recorded';
-    elements.mapShade.textContent = Number.isFinite(facts.shadePercent) ? `${facts.shadePercent}%` : 'Not recorded';
+    elements.mapDistance.textContent = Number.isFinite(facts.distanceKm) ? `${num(facts.distanceKm)} km` : t('Not recorded');
+    elements.mapDuration.textContent = packageText(facts.expectedDuration) || t('Not recorded');
+    elements.mapAscent.textContent = Number.isFinite(facts.ascentM) ? `${facts.ascentM} m` : t('Not recorded');
+    elements.mapShade.textContent = Number.isFinite(facts.shadePercent) ? `${facts.shadePercent}%` : t('Not recorded');
     elements.mapAnnotations.replaceChildren();
     const waypoints = safety.waypoints || [];
     const trailheadWater = safety.trailhead && waypoints.find(waypoint =>
@@ -160,21 +450,23 @@
     );
     if(safety.trailhead){
       addMapAnnotation(
-        `${routeIsLoop ? 'Start / finish' : 'Start'}${trailheadWater ? ' · water' : ''}`,
+        trailheadWater
+          ? t('{start} · water', { start:t(routeIsLoop ? 'Start / finish' : 'Start') })
+          : t(routeIsLoop ? 'Start / finish' : 'Start'),
         'start',
         safety.trailhead.lat,
         safety.trailhead.lng,
         bounds,
-        safety.trailhead.label
+        packageText(safety.trailhead.label)
       );
     }
     waypoints.filter(waypoint => waypoint !== trailheadWater).forEach(waypoint => addMapAnnotation(
-      waypoint.type === 'water' ? 'Water point' : waypoint.label,
+      waypoint.type === 'water' ? t('Water point') : packageText(waypoint.label),
       waypoint.type === 'water' ? 'water' : 'point',
       waypoint.lat,
       waypoint.lng,
       bounds,
-      waypoint.reliability || waypoint.label
+      packageText(waypoint.reliability || waypoint.label)
     ));
   }
 
@@ -249,7 +541,7 @@
   function updateElevationCursor(progress){
     if(!elevationProfile || !progress){
       elements.elevationCursor.hidden = true;
-      if(elevationProfile) elements.elevationLive.textContent = 'Waiting for reliable GPS';
+      if(elevationProfile) elements.elevationLive.textContent = t('Waiting for reliable GPS');
       return;
     }
     const km = Math.max(0, Math.min(progress.km, elevationProfile.distanceKm));
@@ -260,7 +552,7 @@
     elements.elevationCursor.setAttribute('x1', x.toFixed(1));
     elements.elevationCursor.setAttribute('x2', x.toFixed(1));
     elements.elevationCursor.hidden = false;
-    elements.elevationLive.textContent = `${km.toFixed(1)} km · ~${Math.round(elevation)} m route elevation`;
+    elements.elevationLive.textContent = t('{km} km · ~{m} m route elevation', { km:num(km.toFixed(1)), m:Math.round(elevation) });
   }
 
   function hideRejoinGuidance(){
@@ -284,8 +576,8 @@
   function renderManualRejoin(){
     const guidance = mappedRejoinGuidance();
     elements.routeWarning.textContent = guidance
-      ? `Rejoin trail: follow the blue mapped path for about ${Math.round(guidance.distanceM)} m. Check local signs and closures.`
-      : 'No connected mapped footpath was found. Return to the last marked path or follow local signs.';
+      ? t('Rejoin trail: follow the blue mapped path for about {m} m. Check local signs and closures.', { m:Math.round(guidance.distanceM) })
+      : t('No connected mapped footpath was found. Return to the last marked path or follow local signs.');
     elements.routeWarning.hidden = false;
     if(guidance && activeBounds) showRejoinGuidance(guidance, activeBounds);
     else hideRejoinGuidance();
@@ -318,7 +610,7 @@
       watchId = null;
     }
     elements.positionDot.hidden = true;
-    elements.locationButton.textContent = 'Show my position';
+    elements.locationButton.textContent = t('Show my position');
     elements.locationButton.disabled = false;
     elements.routeWarning.hidden = true;
     elements.rejoinButton.hidden = true;
@@ -333,20 +625,20 @@
 
   function startLocation(bounds){
     if(!('geolocation' in navigator)){
-      elements.locationState.textContent = 'GPS is not supported in this browser.';
+      elements.locationState.textContent = t('GPS is not supported in this browser.');
       return;
     }
     if(watchId !== null){
       if(activeSession && activeSession.state === 'active') pauseRecoveredHike();
-      else stopLocation('GPS stopped.');
+      else stopLocation(t('GPS stopped.'));
       return;
     }
     elements.locationButton.disabled = true;
     activeBounds = bounds;
-    elements.locationState.textContent = 'Waiting for a GPS fix…';
+    elements.locationState.textContent = t('Waiting for a GPS fix…');
     watchId = navigator.geolocation.watchPosition(position => {
       elements.locationButton.disabled = false;
-      elements.locationButton.textContent = 'Stop GPS';
+      elements.locationButton.textContent = t('Stop GPS');
       const point = positionPercent(position.coords.latitude, position.coords.longitude, bounds);
       const onMap = point.x >= 0 && point.x <= 100 && point.y >= 0 && point.y <= 100;
       elements.positionDot.hidden = !onMap;
@@ -406,8 +698,8 @@
       }
       if(assessment && assessment.farFromRoute){
         elements.routeWarning.textContent =
-          `You are about ${(progress.nearestM / 1000).toFixed(1)} km from this route. ` +
-          'Rejoin guidance is unavailable this far away; use an official navigation source.';
+          t('You are about {km} km from this route. Rejoin guidance is unavailable this far away; use an official navigation source.',
+            { km:num((progress.nearestM / 1000).toFixed(1)) });
         elements.routeWarning.hidden = false;
         elements.rejoinButton.hidden = true;
         manualRejoinActive = false;
@@ -422,7 +714,7 @@
           renderManualRejoin();
         }else if(assessment && assessment.offRouteState === 'confirmed'){
           elements.routeWarning.textContent =
-            `You appear to be off route · about ${Math.round(progress.nearestM)} m away.`;
+            t('You appear to be off route · about {m} m away.', { m:Math.round(progress.nearestM) });
           elements.routeWarning.hidden = false;
           hideRejoinGuidance();
         }else{
@@ -431,35 +723,37 @@
         }
       }
       const reliability = !assessment
-        ? 'Route distance unavailable.'
+        ? t('Route distance unavailable.')
         : assessment.freshness === 'stale'
-          ? 'GPS fix is stale; waiting for a newer position.'
+          ? t('GPS fix is stale; waiting for a newer position.')
           : !assessment.reliableForWarning
-            ? 'GPS is weak; off-route warnings are paused.'
+            ? t('GPS is weak; off-route warnings are paused.')
             : '';
       const lastFixText = lastValidFixAt
-        ? new Date(lastValidFixAt).toLocaleTimeString()
-        : 'none yet';
+        ? new Date(lastValidFixAt).toLocaleTimeString(LOCALE)
+        : t('none yet');
       const positionSummary = assessment
         ? assessment.farFromRoute
-          ? `${(progress.nearestM / 1000).toFixed(1)} km from this route`
+          ? t('{km} km from this route', { km:num((progress.nearestM / 1000).toFixed(1)) })
           : assessment.offRouteState === 'confirmed'
-            ? `About ${Math.round(progress.nearestM)} m from the trail`
+            ? t('About {m} m from the trail', { m:Math.round(progress.nearestM) })
             : assessment.offRouteState === 'possible'
-              ? 'Checking route position'
+              ? t('Checking route position')
               : assessment.upperBoundM < window.DoloPawsGpsPolicy.THRESHOLDS.onRouteM
-                ? 'On trail'
-                : 'Position near trail'
+                ? t('On trail')
+                : t('Position near trail')
         : '';
       elements.locationState.textContent = assessment
-        ? `${activeSession && activeSession.lastProgress ? `Walked ${activeSession.lastProgress.km.toFixed(1)} km · ` : ''}${positionSummary} · GPS ±${Math.round(position.coords.accuracy)} m · ` +
-          `last valid fix ${lastFixText}${reliability ? ` · ${reliability}` : ''}`
+        ? `${activeSession && activeSession.lastProgress ? t('Walked {km} km · ', { km:num(activeSession.lastProgress.km.toFixed(1)) }) : ''}` +
+          t('{summary} · GPS ±{accuracy} m · last valid fix {time}', {
+            summary:positionSummary, accuracy:Math.round(position.coords.accuracy), time:lastFixText,
+          }) + (reliability ? ` · ${reliability}` : '')
         : onMap
-          ? 'GPS position found; route distance unavailable.'
-          : 'Your GPS position is outside this downloaded map.';
+          ? t('GPS position found; route distance unavailable.')
+          : t('Your GPS position is outside this downloaded map.');
     }, error => {
       elements.locationButton.disabled = false;
-      elements.locationButton.textContent = 'Try GPS again';
+      elements.locationButton.textContent = t('Try GPS again');
       watchId = null;
       hideRejoinGuidance();
       elements.rejoinButton.hidden = true;
@@ -470,13 +764,13 @@
           'paused',
           Date.now()
         ));
-        elements.hikeRecoveryTitle.textContent = 'Hike paused';
+        elements.hikeRecoveryTitle.textContent = t('Hike paused');
         elements.hikeResumeButton.hidden = false;
         elements.hikePauseButton.hidden = true;
       }
       elements.locationState.textContent = error.code === 1
-        ? 'Location permission was denied. Enable it for ORMA in browser settings.'
-        : 'A GPS fix is currently unavailable. The stored route remains visible.';
+        ? t('Location permission was denied. Enable it for ORMA in browser settings.')
+        : t('A GPS fix is currently unavailable. The stored route remains visible.');
     }, {
       enableHighAccuracy: true,
       maximumAge: 2000,
@@ -486,13 +780,14 @@
 
   function recoveryMessage(session){
     const progress = session.lastProgress;
-    const time = new Date(session.startedAt).toLocaleTimeString([], {
+    const time = new Date(session.startedAt).toLocaleTimeString(LOCALE ? [LOCALE] : [], {
       hour: '2-digit',
       minute: '2-digit',
     });
-    return `Started ${time} · last saved progress ${
-      progress ? `${progress.km.toFixed(1)} km` : 'at the trailhead'
-    }.`;
+    return t('Started {time} · last saved progress {progress}.', {
+      time,
+      progress:progress ? `${num(progress.km.toFixed(1))} km` : t('at the trailhead'),
+    });
   }
 
   function showRecoveryIssue(title, message){
@@ -512,9 +807,9 @@
       'active',
       Date.now()
     ));
-    elements.hikeRecoveryTitle.textContent = 'Hike resumed';
+    elements.hikeRecoveryTitle.textContent = t('Hike resumed');
     elements.hikeRecoveryMessage.textContent =
-      'GPS tracking is active. Your latest valid progress stays saved on this device.';
+      t('GPS tracking is active. Your latest valid progress stays saved on this device.');
     elements.hikeResumeButton.hidden = true;
     elements.hikePauseButton.hidden = false;
     elements.hikeFinishButton.hidden = false;
@@ -529,11 +824,11 @@
         Date.now()
       ));
     }
-    stopLocation('Hike paused. Your progress is saved on this device.');
-    elements.hikeRecoveryTitle.textContent = 'Hike paused';
+    stopLocation(t('Hike paused. Your progress is saved on this device.'));
+    elements.hikeRecoveryTitle.textContent = t('Hike paused');
     elements.hikeRecoveryMessage.textContent = activeSession
       ? recoveryMessage(activeSession)
-      : 'Your progress is saved on this device.';
+      : t('Your progress is saved on this device.');
     elements.hikeResumeButton.hidden = false;
     elements.hikePauseButton.hidden = true;
     elements.hikeFinishButton.hidden = false;
@@ -543,8 +838,8 @@
     completedRecord = completion;
     elements.offlineOutcome.hidden = false;
     elements.offlineOutcomeStatus.textContent = completion.ownerId
-      ? 'Choose one response. It will be stored privately on this device.'
-      : 'This completion has no account owner, so private feedback cannot be saved.';
+      ? t('Choose one response. It will be stored privately on this device.')
+      : t('This completion has no account owner, so private feedback cannot be saved.');
     elements.offlineOutcomeSave.disabled = true;
   }
 
@@ -576,18 +871,18 @@
     );
     if(!result.ok){
       elements.offlineOutcomeStatus.textContent =
-        'Feedback could not be stored. Free some device storage and try again.';
+        t('Feedback could not be stored. Free some device storage and try again.');
       return;
     }
     elements.offlineOutcome.querySelectorAll('input, select, button')
       .forEach(control => { control.disabled = true; });
-    elements.offlineOutcomeSave.textContent = 'Private feedback saved';
+    elements.offlineOutcomeSave.textContent = t('Private feedback saved');
     elements.offlineOutcomeStatus.textContent =
-      'Saved privately · pending sync until you reconnect.';
+      t('Saved privately · pending sync until you reconnect.');
     if(navigator.onLine){
       const sync = await window.DoloPawsPostHikeOutcomes.syncBrowser();
       if(sync.ok && sync.pending === 0){
-        elements.offlineOutcomeStatus.textContent = 'Saved privately · synced.';
+        elements.offlineOutcomeStatus.textContent = t('Saved privately · synced.');
       }
     }
   }
@@ -607,10 +902,10 @@
       distanceKm: activeSession.lastProgress && activeSession.lastProgress.km || 0,
     });
     if(!result.ok){
-      stopLocation('The completed hike could not be saved. Your active hike is still preserved.');
-      elements.hikeRecoveryTitle.textContent = 'Completion not saved';
+      stopLocation(t('The completed hike could not be saved. Your active hike is still preserved.'));
+      elements.hikeRecoveryTitle.textContent = t('Completion not saved');
       elements.hikeRecoveryMessage.textContent =
-        'Free some device storage and tap Finish hike again.';
+        t('Free some device storage and tap Finish hike again.');
       elements.hikeResumeButton.hidden = true;
       elements.hikePauseButton.hidden = true;
       elements.hikeFinishButton.hidden = false;
@@ -618,10 +913,10 @@
     }
     window.DoloPawsHikeSession.clear();
     activeSession = null;
-    stopLocation('Hike completed and saved on this device.');
-    elements.hikeRecoveryTitle.textContent = 'Hike completed';
+    stopLocation(t('Hike completed and saved on this device.'));
+    elements.hikeRecoveryTitle.textContent = t('Hike completed');
     elements.hikeRecoveryMessage.textContent =
-      'Your completion is stored offline and ready for a later journal or synchronization step.';
+      t('Your completion is stored offline and ready for a later journal or synchronization step.');
     elements.hikeResumeButton.hidden = true;
     elements.hikePauseButton.hidden = true;
     elements.hikeFinishButton.hidden = true;
@@ -630,7 +925,7 @@
   }
 
   function discardRecoveredHike(){
-    stopLocation('GPS is off. The route and safety information remain available.');
+    stopLocation(t('GPS is off. The route and safety information remain available.'));
     window.DoloPawsHikeSession.clear();
     activeSession = null;
     elements.hikeRecovery.hidden = true;
@@ -660,15 +955,15 @@
     }
     if(recovery.status === 'expired'){
       showRecoveryIssue(
-        'Old unfinished hike',
-        'This saved hike is more than 36 hours old. Discard it before starting another hike.'
+        t('Old unfinished hike'),
+        t('This saved hike is more than 36 hours old. Discard it before starting another hike.')
       );
       return;
     }
     if(recovery.status === 'corrupt' || recovery.status === 'incompatible'){
       showRecoveryIssue(
-        'Hike cannot be restored',
-        'The saved record is damaged or from an unsupported version. Discard it safely.'
+        t('Hike cannot be restored'),
+        t('The saved record is damaged or from an unsupported version. Discard it safely.')
       );
       return;
     }
@@ -679,15 +974,15 @@
     elements.hikeRecovery.hidden = false;
     elements.hikeDiscardButton.hidden = false;
     if(activeSession.state === 'completion-pending'){
-      elements.hikeRecoveryTitle.textContent = 'Hike finished';
+      elements.hikeRecoveryTitle.textContent = t('Hike finished');
       elements.hikeRecoveryMessage.textContent =
-        'Save the completion on this device before opening a later journal step.';
+        t('Save the completion on this device before opening a later journal step.');
       elements.hikeResumeButton.hidden = true;
       elements.hikePauseButton.hidden = true;
       elements.hikeFinishButton.hidden = false;
       return;
     }
-    elements.hikeRecoveryTitle.textContent = 'Unfinished hike found';
+    elements.hikeRecoveryTitle.textContent = t('Unfinished hike found');
     elements.hikeRecoveryMessage.textContent = recoveryMessage(activeSession);
     elements.hikeResumeButton.hidden = false;
     elements.hikePauseButton.hidden = true;
@@ -695,6 +990,7 @@
   }
 
   async function init(){
+    translateShell();
     setNetworkState();
     window.addEventListener('online', setNetworkState);
     window.addEventListener('offline', setNetworkState);
@@ -702,15 +998,15 @@
     const trailId = new URLSearchParams(window.location.search).get('id');
     manifestUrl = packageManifestUrl(trailId);
     if(!manifestUrl){
-      showFailure('No downloaded package is configured for this trail.');
+      showFailure(t('No downloaded package is configured for this trail.'));
       return;
     }
 
     try{
       const manifestResponse = await fetch(manifestUrl);
-      if(!manifestResponse.ok) throw new Error('The package manifest is unavailable.');
+      if(!manifestResponse.ok) throw new Error(t('The package manifest is unavailable.'));
       const manifest = await manifestResponse.json();
-      if(manifest.trailId !== trailId || manifest.schemaVersion !== 1) throw new Error('The package manifest is invalid.');
+      if(manifest.trailId !== trailId || manifest.schemaVersion !== 1) throw new Error(t('The package manifest is invalid.'));
 
       const resources = {};
       for(const resource of manifest.resources){
@@ -723,19 +1019,20 @@
       }
       if(!resources.map || !resources.route || !resources.safety ||
          !resources['footpath-network'] || !resources['elevation-profile']){
-        throw new Error('Required map, route, safety, elevation, or footpath routing data is missing.');
+        throw new Error(t('Required map, route, safety, elevation, or footpath routing data is missing.'));
       }
 
       const safety = await resources.safety.json();
+      packageTextIt = safety.textIt && typeof safety.textIt === 'object' ? safety.textIt : {};
       const route = await resources.route.json();
       elevationProfile = await resources['elevation-profile'].json();
       if(!validElevationProfile(elevationProfile, trailId)){
-        throw new Error('The stored elevation profile is invalid.');
+        throw new Error(t('The stored elevation profile is invalid.'));
       }
       footpathGraph = await resources['footpath-network'].json();
       if(!window.DoloPawsFootpathRouter ||
          !window.DoloPawsFootpathRouter.validateGraph(footpathGraph)){
-        throw new Error('The stored footpath routing graph is invalid.');
+        throw new Error(t('The stored footpath routing graph is invalid.'));
       }
       routeCoordinates = route.features && route.features[0] &&
         route.features[0].geometry && route.features[0].geometry.coordinates || [];
@@ -749,12 +1046,15 @@
         routeCoordinates[routeCoordinates.length - 1][1],
         routeCoordinates[routeCoordinates.length - 1][0]
       ) <= 75;
-      elements.trailName.textContent = manifest.name;
-      elements.offlineMap.alt = `Offline route map for ${manifest.name}`;
+      const trailName = packageText(manifest.name);
+      elements.trailName.textContent = trailName;
+      elements.offlineMap.alt = t('Offline route map for {name}', { name:trailName });
       const failureLink = document.getElementById('failureTrailLink');
       if(failureLink) failureLink.href = `../trail.html?id=${encodeURIComponent(trailId)}`;
       const requiredCount = manifest.resources.filter(resource => resource.required !== false).length;
-      elements.packageState.textContent = `Ready offline · ${formatBytes(manifest.packageBytes)} · ${requiredCount} stored files verified`;
+      elements.packageState.textContent = t('Ready offline · {size} · {count} stored files verified', {
+        size:formatBytes(manifest.packageBytes), count:requiredCount,
+      });
       elements.offlineMap.src = URL.createObjectURL(await resources.map.blob());
       if(manifest.image && manifest.image.width && manifest.image.height){
         elements.mapFrame.style.aspectRatio = `${manifest.image.width} / ${manifest.image.height}`;
@@ -762,19 +1062,19 @@
       renderElevationProfile(elevationProfile);
       renderMapDetails(safety, manifest.bounds);
 
-      addFact('Route', safety.facts.routeType);
-      addFact('Distance', `${safety.facts.distanceKm} km`);
+      addFact('Route', packageText(safety.facts.routeType));
+      addFact('Distance', `${num(safety.facts.distanceKm)} km`);
       addFact('Ascent', `${safety.facts.ascentM} m`);
       addFact('Highest point', `${safety.facts.highestPointM} m`);
-      addFact('Expected time', safety.facts.expectedDuration);
-      addFact('Difficulty', safety.facts.difficulty);
+      addFact('Expected time', packageText(safety.facts.expectedDuration));
+      addFact('Difficulty', packageText(safety.facts.difficulty));
       addFact('Shade', `${safety.facts.shadePercent}%`);
       safety.cautions.forEach(caution => {
         const item = document.createElement('li');
-        item.textContent = caution;
+        item.textContent = packageText(caution);
         elements.cautions.appendChild(item);
       });
-      elements.emergency.textContent = `${safety.emergency.number}. ${safety.emergency.note}`;
+      elements.emergency.textContent = `${safety.emergency.number}. ${packageText(safety.emergency.note)}`;
       const routeStatus = document.getElementById('routeStatus');
       if(routeStatus && routeStatusLabel(manifest.verificationStatus)){
         routeStatus.textContent = routeStatusLabel(manifest.verificationStatus);
@@ -791,7 +1091,7 @@
       elements.mapSection.hidden = false;
       elements.factsSection.hidden = false;
     }catch(error){
-      showFailure(error.message || 'A required package resource is unavailable.');
+      showFailure(error.message || t('A required package resource is unavailable.'));
     }
   }
 
