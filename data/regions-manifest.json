@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-11T17:16:34.245Z",
+  "generatedAt": "2026-11-11T17:34:54.157Z",
   "regions": {
     "dolomites": {
-      "trailCount": 369,
-      "trails": "data/regions/dolomites-trails.js?v=15aa3332a5c5",
+      "trailCount": 368,
+      "trails": "data/regions/dolomites-trails.js?v=d7e4d2466b04",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=aba145c5d16a",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
         "santa-maddalena": "data/trail-details/santa-maddalena.js?v=7b0b5a07444a",
-        "tre-cime": "data/trail-details/tre-cime.js?v=089ce174dbf4",
-        "cadini": "data/trail-details/cadini.js?v=cf47d2d816e5",
+        "tre-cime": "data/trail-details/tre-cime.js?v=e3fcb8cb73fc",
+        "cadini": "data/trail-details/cadini.js?v=90a402fe2e3a",
         "prato-piazza": "data/trail-details/prato-piazza.js?v=851bbd93ca4f",
         "nuvolau": "data/trail-details/nuvolau.js?v=e2115678b59a",
         "sassolungo": "data/trail-details/sassolungo.js?v=7c0deca045ba",
@@ -296,7 +296,7 @@
         "kronplatz-sentiero-tematico-tru-dles-liondes": "data/trail-details/kronplatz-sentiero-tematico-tru-dles-liondes.js?v=07ba73aba3d6",
         "kronplatz-passeggiata-san-vigilio-le-dla-creda": "data/trail-details/kronplatz-passeggiata-san-vigilio-le-dla-creda.js?v=88eec029b62f",
         "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": "data/trail-details/kronplatz-attraverso-il-sentiero-panoramico-a-brunico.js?v=98f4ff9659e2",
-        "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina": "data/trail-details/kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina.js?v=577adc3bce68",
+        "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina": "data/trail-details/kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina.js?v=964b8cbe49a8",
         "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe": "data/trail-details/kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe.js?v=ad8e287fef5f",
         "kronplatz-valdaora-di-sopra-goste": "data/trail-details/kronplatz-valdaora-di-sopra-goste.js?v=ff01f61bc4d6",
         "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": "data/trail-details/kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi.js?v=cd3b2a62a081",
@@ -310,7 +310,7 @@
         "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": "data/trail-details/seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff.js?v=4b9480013064",
         "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": "data/trail-details/seiseralm-alla-volta-della-trappola-d-orso-a-s-michele.js?v=02124a985f8e",
         "villnoess-ranui-zannes": "data/trail-details/villnoess-ranui-zannes.js?v=fa68fc5dac9a",
-        "villnoess-da-russis-fino-al-passo-delle-erbe": "data/trail-details/villnoess-da-russis-fino-al-passo-delle-erbe.js?v=a37fbb3a151b",
+        "villnoess-da-russis-fino-al-passo-delle-erbe": "data/trail-details/villnoess-da-russis-fino-al-passo-delle-erbe.js?v=d124a584a58e",
         "villnoess-dolorama-3a-tappa": "data/trail-details/villnoess-dolorama-3a-tappa.js?v=e963199e4bcc",
         "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": "data/trail-details/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles.js?v=011a1eeb51f8",
         "vinschgau-sentiero-della-roggia-latschanderwaal-4954": "data/trail-details/vinschgau-sentiero-della-roggia-latschanderwaal-4954.js?v=b7ac765fcc34",
@@ -373,7 +373,6 @@
         "valdisole-peio-paese-lago-covel": "data/trail-details/valdisole-peio-paese-lago-covel.js?v=dfa00af59c65",
         "valdisole-percorso-geologico-in-val-di-rabbi": "data/trail-details/valdisole-percorso-geologico-in-val-di-rabbi.js?v=26b090e83ab7",
         "valdisole-percorso-della-fauna-in-val-di-peio": "data/trail-details/valdisole-percorso-della-fauna-in-val-di-peio.js?v=755f75b53e6a",
-        "colle-passeggiata-intorno-al-colle": "data/trail-details/colle-passeggiata-intorno-al-colle.js?v=b2fbfdc45c59",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=24e2aaa3dfc9"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -983,7 +982,6 @@
     "valdisole-peio-paese-lago-covel": "dolomites",
     "valdisole-percorso-geologico-in-val-di-rabbi": "dolomites",
     "valdisole-percorso-della-fauna-in-val-di-peio": "dolomites",
-    "colle-passeggiata-intorno-al-colle": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1660,7 +1658,6 @@
     "valdisole-peio-paese-lago-covel": "peio-paese-lago-covel",
     "valdisole-percorso-geologico-in-val-di-rabbi": "percorso-geologico-val-di-rabbi",
     "valdisole-percorso-della-fauna-in-val-di-peio": "percorso-della-fauna-val-di-peio",
-    "colle-passeggiata-intorno-al-colle": "passeggiata-intorno-al-colle-santa-lucia",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2184,7 +2181,6 @@
     "peio-paese-lago-covel": "valdisole-peio-paese-lago-covel",
     "percorso-geologico-val-di-rabbi": "valdisole-percorso-geologico-in-val-di-rabbi",
     "percorso-della-fauna-val-di-peio": "valdisole-percorso-della-fauna-in-val-di-peio",
-    "passeggiata-intorno-al-colle-santa-lucia": "colle-passeggiata-intorno-al-colle",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
