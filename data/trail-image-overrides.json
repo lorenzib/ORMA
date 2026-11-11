@@ -7642,6 +7642,40 @@
       }
     },
     {
+      "id": "valdisole-percorso-della-fauna-in-val-di-peio",
+      "approvedReviewId": "commons-valdisole-percorso-della-fauna-in-val-di-peio-on-route",
+      "approvedAt": "2026-11-11T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-peio-lago-pian-palu.jpg",
+        "heroImage": "images/trails/valdisole-peio-lago-pian-palu.jpg",
+        "imageAlt": "A blue-green mountain lake seen through larch branches, with forested slopes and a high green valley behind",
+        "imageCredit": "Lago di Pian Palù",
+        "imageCreditText": "Lago di Pian Palù by gian luca bucci",
+        "imageCreator": "gian luca bucci",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pejo_-_Lago_di_Pian_Palù_-_panoramio_(1).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valdisole-percorso-geologico-in-val-di-rabbi",
+      "approvedReviewId": "commons-valdisole-percorso-geologico-in-val-di-rabbi-on-route",
+      "approvedAt": "2026-11-11T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valdisole-rabbi-cascate-saent.jpg",
+        "heroImage": "images/trails/valdisole-rabbi-cascate-saent.jpg",
+        "imageAlt": "A tall, narrow waterfall dropping down a dark rock face in a gorge of conifers and green shrubs",
+        "imageCredit": "Cascata Val di Rabbi",
+        "imageCreditText": "Cascata Val di Rabbi by Francesco Zanardini",
+        "imageCreator": "Francesco Zanardini",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cascata_Val_di_Rabbi_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valdisole-rifugio-stavel-denza",
       "approvedReviewId": "commons-valdisole-rifugio-stavel-denza-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",

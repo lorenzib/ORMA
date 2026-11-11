@@ -65966,6 +65966,227 @@
       ],
       startPoint: { lat: 46.362389, lng: 10.668892, label: "San Rocco in Peio Paese, by the military cemetery, the board’s start" },
       desc: "An easy loop in the Stelvio National Park from Peio Paese past old farmsteads to Malga Covel, its goat cheese and the mirror-like Lago Covel, then to the Rio Vioz waterfall and back. The board lists 5.2 km and 214 m up."
+    },
+    'valdisole-percorso-geologico-in-val-di-rabbi': {
+      // Hand audit: 11 November 2026, verified on arrival (new-trail Dolomites batch 8).
+      // “Percorso geologico in Val di Rabbi”, published by APT Valli di Sole, Peio e Rabbi, drawn on 26 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Rabbi (no dog rule found: national rule). Stelvio National Park, zones C (67%) and B (33%) (Art. 34: lead, roads and paths); not in zone A. Natura 2000 IT3120001 and IT3120157. No main road: about 160 m of farm track. Summer daytime car limit on the upper valley: arrive early or take the Stelviobus.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Còler – Malga Stablasolo – Cascate di Saènt, Val di Rabbi",
+      distance: 6.4,
+      elevation: 430,
+      hours: '2.5',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop from the Còler car park: the lane along the Rabbiés to the Stablasolo footbridge is walked out and back, and the loop above it climbs SAT 106 to Stablét and comes down past the Saènt waterfalls, as the board publishes it (6.4 km, 430 m up, 2:25 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Ramoni car park at Còler, in the upper Val di Rabbi, the board’s start.",
+        "sequence": "Follow the lane along the left bank of the Rabbiés torrent and cross the footbridge by the great heap of boulders left by the Rio Campisòl landslide of 20 September 1999. Carry on to Malga Stablasolo and take path SAT 106 up to the Stablét visitor point and the viewing terrace of Plan de le Scalace, with a small rest area. There leave the 106 and go down the path of the Saènt waterfalls, then follow the path beside the torrent to the Stablasolo footbridge and back to the car park.",
+        "switches": "Lane along the Rabbiés over the landslide footbridge to Malga Stablasolo; SAT 106 up to Stablét and Plan de le Scalace; leave the 106 for the Saènt waterfalls path down; path beside the torrent to the Stablasolo footbridge; lane back to Còler.",
+        "steps": [
+          {
+            "text": "Ramoni car park at Còler",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Lane along the Rabbiés and the footbridge by the 1999 landslide boulders",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Malga Stablasolo, then path SAT 106 up to Stablét",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Plan de le Scalace viewing terrace",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down the Saènt waterfalls path",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path beside the torrent to the Stablasolo footbridge and back to Còler",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "APT Valli di Sole, Peio e Rabbi, Percorso geologico in Val di Rabbi (route description)",
+            "url": "https://www.visitvaldisole.it/it/activity/geologicalrouteinvaldirabbi-19375",
+            "authority": "APT Valli di Sole, Peio e Rabbi",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-11"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-11',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Cascata Val di Rabbi (Francesco Zanardini on Wikimedia Commons, CC BY-SA 3.0), 19 August 2007, 4 m from the line.",
+        route: "Official loop of 6.4 km from Ramoni car park at Còler, upper Val di Rabbi, as APT Valli di Sole, Peio e Rabbi publishes it; the stored line is drawn on 26 OSM ways along the board’s published line, 6.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "The lane from Còler along the Rabbiés to Malga Stablasolo; path SAT 106 up to Stablét and Plan de le Scalace; the Saènt waterfalls path down; the path beside the torrent to the Stablasolo footbridge and the lane back to Còler.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 0.4, km 1.1, km 2 (OSM nodes 4356470354, 11142320340, 5807140043, 12878490974).",
+        elevation: "Official 6.4 km, 430 m up and 430 m down, 2:25 h, highest point 1,757 m, lowest 1,376 m, graded difficult (APT Valli di Sole, Peio e Rabbi, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "APT Valli di Sole, Peio e Rabbi, Percorso geologico in Val di Rabbi (its Outdooractive tour)",
+          "Parco Nazionale dello Stelvio, Regolamento (adopted by delibera G.P. 1202 of 7 July 2023), Art. 34: dogs allowed only in zones B, C and D, on a lead and on roads and paths; the line is in zones B and C on the park’s zoning map (“GA – Zonizzazione”, November 2022), nowhere in zone A",
+          "No dog rule found on the Comune di Rabbi’s site, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Natura 2000: ZSC IT3120001 Alta Val di Rabbi along the whole line and ZPS IT3120157 Stelvio on part of it (EEA); the park’s rule above applies",
+          "Summer access: from 27 June to 6 September 2026, 10:00–18:00, the upper Val di Rabbi is open only on foot, by bike or by the Stelviobus; Còler can be reached by car outside those hours (APT Valli di Sole, Peio e Rabbi)",
+          "OpenStreetMap ways along the board’s line (26 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-11'
+      },
+      shadeCoverage: 25,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The waterfalls path is steep, with spray and wet, slippery steps: the board grades the walk difficult","In summer the upper Val di Rabbi is closed to cars from 10:00 to 18:00 (27 June to 6 September in 2026): arrive before 10:00 or take the Stelviobus from Rabbi Fonti","Cows may graze around Malga Stablasolo in summer","Deer, chamois and marmots in the park: keep the lead short"],
+      terrainType: "Lane and mountain path",
+      shadeDescription: "About a quarter in woods, mostly on the waterfalls path; the lane along the torrent and the meadows by Malga Stablasolo are open.",
+      terrainDescription: "A short loop in the Stelvio National Park from Còler up the Val di Rabbi to Malga Stablasolo and the Plan de le Scalace terrace, then down past the Saènt waterfalls, the park’s finest, with boards on the valley’s rocks along the way.",
+      waterDescription: "Drinking water is mapped at the start and at about km 0.4, 1.1 and 2 (OSM), and the torrent runs alongside much of the way.",
+      dogNotes: "The walk is in the Stelvio National Park, where dogs are allowed only on a lead and on roads and paths. Rabbi has no dog rule of its own online, so the national rule applies too: a lead of at most 1.5 m and a muzzle carried. Keep a short lead on the wet steps by the waterfalls and near cows at Malga Stablasolo.",
+      tips: "Start at the Ramoni car park at Còler: 6.4 km and 430 m up, about 2½ hours, as the board lists. In summer the road up the valley is closed to cars by day, so arrive before 10:00 or take the Stelviobus from Rabbi Fonti. Wear boots with grip for the wet waterfall steps.",
+      sourceLinks: [
+        { label: "APT Valli di Sole, Peio e Rabbi, Percorso geologico in Val di Rabbi", url: "https://www.visitvaldisole.it/it/activity/geologicalrouteinvaldirabbi-19375" },
+        { label: "Outdooractive, Percorso geologico in Val di Rabbi (APT Valli di Sole, Peio e Rabbi)", url: "https://www.outdooractive.com/it/r/57760467" },
+        { label: "Provincia autonoma di Trento, Piano e Regolamento del Parco Nazionale dello Stelvio", url: "https://www.provincia.tn.it/News/Approfondimenti/Piano-e-Regolamento-del-Parco-Nazionale-dello-Stelvio" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "APT Valli di Sole, Peio e Rabbi, Stelviobus Rabbi (summer access to the upper Val di Rabbi)", url: "https://www.visitvaldisole.it/it/stelviobus-rabbi" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.417139, lng: 10.777513, label: "Ramoni car park at Còler, upper Val di Rabbi, the board’s start" },
+      desc: "A loop in the Stelvio National Park from Còler along the Rabbiés torrent to Malga Stablasolo, up to the Plan de le Scalace terrace and down past the Saènt waterfalls, the most spectacular in the park. The board lists 6.4 km and 430 m up."
+    },
+    'valdisole-percorso-della-fauna-in-val-di-peio': {
+      // Hand audit: 11 November 2026, verified on arrival (new-trail Dolomites batch 8).
+      // “Percorso della fauna in Val di Peio”, published by APT Valli di Sole, Peio e Rabbi, drawn on 19 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Peio (dog regulation 2002/2004, Art. 3). Stelvio National Park, zones B (57%), C (26%) and D (3%), the start outside the park (Art. 34: lead, roads and paths); not in zone A. Natura 2000 IT3120157 and IT3120003. No main road: about 60 m of minor road. The road to the Fontanino has had a summer daytime car limit: arrive early.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Fontanino di Celentino – Malga Paludèi – Val Piana, Val di Peio",
+      distance: 12.9,
+      elevation: 799,
+      hours: '5',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop from the Fontanino di Celentino car park: the forest road and path 124 towards Malga Paludèi are walked out and back, and the loop above climbs 110 and 141 into the Val Piana and comes down past Lagostèl, as the board publishes it (12.9 km, 799 m up, 5:05 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the park’s car park at the Fontanino di Celentino, in the Val del Monte above Peio Fonti, the board’s start.",
+        "sequence": "Take the forest road to Malga Giumella, then path CAI-SAT 124 up to Malga Paludèi (2,106 m). Carry on along path 110, then turn onto path 141, which climbs part of the Val Piana and comes back down to Lagostèl. Pass near the old charcoal pits and take path 124 again to return to the Fontanino.",
+        "switches": "Forest road from the Fontanino to Malga Giumella; SAT 124 up to Malga Paludèi; path 110; turn onto 141 up the Val Piana and down to Lagostèl; past the charcoal pits; 124 back to the Fontanino.",
+        "steps": [
+          {
+            "text": "Park car park at the Fontanino di Celentino",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Forest road to Malga Giumella",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path SAT 124 up to Malga Paludèi (2,106 m)",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 110, then path 141 up the Val Piana",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down to Lagostèl and past the charcoal pits",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 124 back to the Fontanino",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "APT Valli di Sole, Peio e Rabbi, Percorso della fauna in Val di Peio (route description)",
+            "url": "https://www.visitvaldisole.it/it/activity/wildliferouteinvaldipeio-19373",
+            "authority": "APT Valli di Sole, Peio e Rabbi",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-11"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-11',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Lago di Pian Palù (gian luca bucci on Wikimedia Commons, CC BY 3.0), 11 June 2009, 184 m from the line.",
+        route: "Official loop of 12.9 km from Park car park at the Fontanino di Celentino, Val del Monte, as APT Valli di Sole, Peio e Rabbi publishes it; the stored line is drawn on 19 OSM ways along the board’s published line, 13.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Forest road from the Fontanino di Celentino to Malga Giumella; path CAI-SAT 124 to Malga Paludèi; path 110, then path 141 up the Val Piana and down to Lagostèl; path 124 back past the charcoal pits to the Fontanino.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 1.3, km 2.1, km 3.5 (OSM nodes 3700666728, 3700666523, 9980010419, 13073836494).",
+        elevation: "Official 12.9 km, 799 m up and 799 m down, 5:05 h, highest point 2,456 m, lowest 1,687 m (APT Valli di Sole, Peio e Rabbi, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "APT Valli di Sole, Peio e Rabbi, Percorso della fauna in Val di Peio (its Outdooractive tour)",
+          "Parco Nazionale dello Stelvio, Regolamento (adopted by delibera G.P. 1202 of 7 July 2023), Art. 34: dogs allowed only in zones B, C and D, on a lead and on roads and paths; the line is in zones B, C and D on the park’s zoning map (“GA – Zonizzazione”, November 2022), nowhere in zone A",
+          "Comune di Peio, Regolamento per la detenzione dei cani (delibera C.C. n. 63 of 24 September 2002, amended by n. 46 of 27 October 2004), Art. 3: a dog off the lead must wear a muzzle in streets and public places; large or aggressive dogs need both lead and muzzle",
+          "Natura 2000: ZPS IT3120157 Stelvio and ZSC IT3120003 Alta Val del Monte (EEA); the park’s rule above applies",
+          "OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-11'
+      },
+      shadeCoverage: 53,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["A long day: 12.9 km and 799 m up, reaching 2,456 m in the open Val Piana with no shelter: turn back if storms build","The park has limited daytime car traffic on the road to the Fontanino in past summers: check before you go and arrive early","Cows graze around Malga Giumella and Malga Paludèi in summer","Red deer and chamois are easy to see in the Val Piana: keep the lead short and your dog quiet"],
+      terrainType: "Forest road and mountain path",
+      shadeDescription: "About half in larch and spruce woods, mostly low down; the pastures by Malga Paludèi and the Val Piana are open.",
+      terrainDescription: "A long loop in the Stelvio National Park from the Fontanino di Celentino up past two malghe into the Val Piana, a high amphitheatre where red deer and chamois are often seen in summer, and back by Lagostèl and the old charcoal pits.",
+      waterDescription: "Drinking water is mapped at the start and at about km 1.3, 2.1 and 3.5 (OSM); none is mapped on the higher part, so carry enough for your dog.",
+      dogNotes: "The walk is in the Stelvio National Park, where dogs are allowed only on a lead and on roads and paths. Peio’s dog regulation also asks for a muzzle on any dog off the lead in public places, and both lead and muzzle for large dogs; the national rule (lead of at most 1.5 m, muzzle carried) applies too. This is a wildlife-watching trail: keep your dog close and quiet so deer and chamois are not disturbed.",
+      tips: "Start at the Fontanino di Celentino car park above Peio Fonti: 12.9 km and 799 m up, about 5 hours, as the board lists. Arrive early, carry water for the open upper part, and keep your dog on a short lead in the park.",
+      sourceLinks: [
+        { label: "APT Valli di Sole, Peio e Rabbi, Percorso della fauna in Val di Peio", url: "https://www.visitvaldisole.it/it/activity/wildliferouteinvaldipeio-19373" },
+        { label: "Outdooractive, Percorso della fauna in Val di Peio (APT Valli di Sole, Peio e Rabbi)", url: "https://www.outdooractive.com/it/r/57870954" },
+        { label: "Provincia autonoma di Trento, Piano e Regolamento del Parco Nazionale dello Stelvio", url: "https://www.provincia.tn.it/News/Approfondimenti/Piano-e-Regolamento-del-Parco-Nazionale-dello-Stelvio" },
+        { label: "Comune di Peio, Regolamento per la detenzione dei cani nel territorio comunale", url: "https://www.comune.peio.tn.it/Amministrazione/Documenti-e-dati/Documenti-funzionamento-interno/Regolamento-per-la-detenzione-dei-cani-nel-territorio-comunale" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.339498, lng: 10.618123, label: "Park car park at the Fontanino di Celentino, Val del Monte, the board’s start" },
+      desc: "A long loop in the Stelvio National Park from the Fontanino di Celentino past Malga Giumella and Malga Paludèi into the Val Piana, where red deer and chamois are easy to spot in summer, and back past Lagostèl and old charcoal pits. The board lists 12.9 km and 799 m up."
     }
   };
 
