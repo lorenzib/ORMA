@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-lago-juribrutto",
+  "distanceKm": 6.3,
+  "ascentM": 470,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1949
+    },
+    {
+      "km": 0.5,
+      "elev": 2067
+    },
+    {
+      "km": 1,
+      "elev": 2154
+    },
+    {
+      "km": 1.4,
+      "elev": 2248
+    },
+    {
+      "km": 1.9,
+      "elev": 2336
+    },
+    {
+      "km": 2.4,
+      "elev": 2257
+    },
+    {
+      "km": 2.9,
+      "elev": 2228
+    },
+    {
+      "km": 3.4,
+      "elev": 2111
+    },
+    {
+      "km": 3.9,
+      "elev": 2061
+    },
+    {
+      "km": 4.3,
+      "elev": 1992
+    },
+    {
+      "km": 4.8,
+      "elev": 1918
+    },
+    {
+      "km": 5.3,
+      "elev": 1982
+    },
+    {
+      "km": 5.8,
+      "elev": 1987
+    },
+    {
+      "km": 6.3,
+      "elev": 1961
+    }
+  ]
+}

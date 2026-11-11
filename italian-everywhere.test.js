@@ -16,6 +16,7 @@ describe('wording scripts write on the page', () => {
   test('i18n.js fetches the Italian table only for Italian readers', () => {
     expect(read('i18n.js')).toMatch(/if \(lang === 'it' && !window\.ORMA_PHRASES_IT && document\.readyState === 'loading'\)/);
   });
+
 });
 
 describe("each trail's own words", () => {
@@ -23,6 +24,24 @@ describe("each trail's own words", () => {
 
   test('a trail page fetches its Italian file for Italian readers', () => {
     expect(read('regional-trails-loader.js')).toMatch(/data\/trail-text-it\//);
+  });
+
+  // A new or reworded walk arrives with its Italian. To fill the gap:
+  //   node scripts/trail-text-it.js --missing missing.json
+  //   (translate each sentence into a {"English": "Italiano"} file)
+  //   node scripts/trail-text-it.js --apply translated.json
+  // then regenerate the trail pages (node scripts/generate-trail-pages.js).
+  test('every sentence a trail says has its Italian', () => {
+    const missing = [];
+    trails.forEach(trail => {
+      const table = trailText.readTable(trail.id);
+      trailText.sentencesOf(trail).forEach(sentence => {
+        if(!Object.prototype.hasOwnProperty.call(table, sentence) || !String(table[sentence]).trim()) {
+          missing.push(`${trail.id}: ${sentence.slice(0, 60)}`);
+        }
+      });
+    });
+    expect(missing).toEqual([]);
   });
 
   test('every Italian entry is a sentence its trail still says', () => {
@@ -66,6 +85,16 @@ describe('guides and legal pages', () => {
       expect(html).toContain(`<link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/${page}">`);
       expect(html).toContain(`<link rel="alternate" hreflang="en" href="https://www.app-orma.com/${page}">`);
     }
+  });
+
+  // A search result or shared link can bring an Italian reader to the English
+  // copy; a line in its head sends them on before it draws. Same rule as i18n.js:
+  // their saved choice, else the browser language. The Italian copies lack it.
+  test.each(documents)('%s sends an Italian reader to the Italian copy before it draws', page => {
+    const head = read(page).split('<title>')[0];
+    expect(head).toContain("localStorage.getItem('dolopaws-lang')");
+    expect(head).toContain("location.replace('/it'+location.pathname+location.search+location.hash)");
+    expect(read(`it/${page}`)).not.toContain("location.replace('/it'");
   });
 
   test('the legal copies say the English version prevails', () => {

@@ -238,8 +238,11 @@ describe('the existing-site verification boundary',()=>{
     // Zumeles, the three-hut loop from Ra Stua, Forcella Lerosa), two in the
     // Val di Sole (Santa Lucia above Cogolo, Malga Strino) and the first two in
     // the Val di Zoldo (Rifugio Bosconero, the old forest above Forno).
-    expect(catalogue).toHaveLength(515);
-    expect(currentSiteTrails(catalogue)).toHaveLength(513);
+    // Then 519 and 517 with Dolomites batch 7: Cristo Pensante and Lago di
+    // Juribrutto in the Paneveggio park, Forte Strino to Malga Verniana, and
+    // Peio Paese to Lago Covel in the Stelvio park.
+    expect(catalogue).toHaveLength(519);
+    expect(currentSiteTrails(catalogue)).toHaveLength(517);
   });
 
   test('requires the artwork the public trail page needs',()=>{

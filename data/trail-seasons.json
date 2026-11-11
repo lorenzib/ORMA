@@ -9334,6 +9334,84 @@
         "likelihood": "possible",
         "highPoint": 1116
       }
+    },
+    "fiemme-cristo-pensante": {
+      "highPoint": 2251,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/14502851",
+          "accessedAt": "2026-11-10"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1,
+          "names": [
+            "Castellazzo 3"
+          ]
+        }
+      ]
+    },
+    "fiemme-lago-juribrutto": {
+      "highPoint": 2336,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/800567738",
+          "accessedAt": "2026-11-10"
+        }
+      }
+    },
+    "valdisole-masi-verniana-bait-de-mezol-malga-saviana": {
+      "highPoint": 1951,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805919553",
+          "accessedAt": "2026-11-10"
+        }
+      }
+    },
+    "valdisole-peio-paese-lago-covel": {
+      "highPoint": 1880,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/61178242",
+          "accessedAt": "2026-11-10"
+        }
+      }
     }
   }
 }

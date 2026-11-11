@@ -65258,7 +65258,7 @@
       // Hand audit: 9 November 2026, verified on arrival (new-trail Dolomites batch 6).
       // “Cogolo - Chiesa di Santa Lucia”, published by APT Valli di Sole, Peio e Rabbi, drawn on 10 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s own page.
-      // Commune: Peio (no dog rule published: national rule). The line runs just outside the Stelvio National Park (OSM boundary ~20 m away); no Natura 2000 site. About 50 m on the SP87 pavement at the start; the rest on lanes and paths.
+      // Commune: Peio (dog regulation 2002/2004, Art. 3, plus the national rule). The line runs just outside the Stelvio National Park (OSM boundary ~20 m away); no Natura 2000 site. About 50 m on the SP87 pavement at the start; the rest on lanes and paths.
       // The stored line follows the board’s own line, 100% each way.
       area: "Cogolo – Chiesa di Santa Lucia – Comasine, Val di Peio",
       distance: 5.5,
@@ -65329,7 +65329,7 @@
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           "APT Valli di Sole, Peio e Rabbi, Cogolo - Chiesa di Santa Lucia (its Outdooractive tour)",
-          "The Comune di Peio publishes no dog regulation of its own (searched 9 November 2026), so the italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Comune di Peio, Regolamento per la detenzione dei cani (delibera C.C. n. 63 of 24 September 2002, amended by n. 46 of 27 October 2004), Art. 3: a dog off the lead must wear a muzzle in streets and public places; large or aggressive dogs need both lead and muzzle. The Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026) also applies: dogs on a lead of at most 1.5 m in public places and a muzzle carried",
           "Parco Nazionale dello Stelvio: the line stays just outside the park (OpenStreetMap boundary, nearest point about 20 m); inside it the park allows dogs only on a lead, on roads and paths (regolamento Art. 34). No Natura 2000 site on the line (EEA)",
           "OpenStreetMap ways along the board’s line (10 ways), road, surface, woodland and water data"
         ],
@@ -65343,11 +65343,12 @@
       shadeDescription: "Mostly in woodland on the climb to the church; the meadows on the way back are open.",
       terrainDescription: "An easy short loop in the Val di Peio, from Cogolo up through the woods to a lonely hilltop church above the old miners’ village of Comasine, with a wide view down the valley, and back over the meadows.",
       waterDescription: "Drinking water at the start in Cogolo and at about km 2.8 (OSM). Bring water for your dog on the climb.",
-      dogNotes: "Peio publishes no dog rule of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m in public places and carry a muzzle. The board asks you to keep your dog on a lead if you meet wildlife. The walk skirts the Stelvio National Park; if you stray into it, dogs must stay on a lead and on paths.",
+      dogNotes: "Peio’s dog regulation asks for a muzzle on any dog off the lead in public places, and both lead and muzzle for large dogs; the national rule also applies: keep your dog on a lead of at most 1.5 m in public places and carry a muzzle. The board asks you to keep your dog on a lead if you meet wildlife. The walk skirts the Stelvio National Park; if you stray into it, dogs must stay on a lead and on paths.",
       tips: "Start at the bus-stop car park in Cogolo: 5.5 km and 274 m up, about 2¼ hours, as the board lists. An easy family walk; carry water and a muzzle.",
       sourceLinks: [
         { label: "APT Valli di Sole, Peio e Rabbi, Cogolo - Chiesa di Santa Lucia", url: "https://www.visitvaldisole.it/it/activity/cogolo_churchofsantalucia-27724" },
         { label: "Outdooractive, Cogolo - Chiesa di Santa Lucia (APT Valli di Sole, Peio e Rabbi)", url: "https://www.outdooractive.com/it/r/58793370" },
+        { label: "Comune di Peio, Regolamento per la detenzione dei cani nel territorio comunale", url: "https://www.comune.peio.tn.it/Amministrazione/Documenti-e-dati/Documenti-funzionamento-interno/Regolamento-per-la-detenzione-dei-cani-nel-territorio-comunale" },
         { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
         { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
         { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
@@ -65618,6 +65619,353 @@
       ],
       startPoint: { lat: 46.351134, lng: 12.172787, label: "The little square of Astragal, the board’s start" },
       desc: "An easy, almost level walk on a forest road between the old hamlets of Astragal and Villa above Forno di Zoldo, with views to the Mezzodì and Moiazza. The board lists 4.5 km and 176 m up, there and back."
+    },
+    'fiemme-cristo-pensante': {
+      // Hand audit: 10 November 2026, verified on arrival (new-trail Dolomites batch 7).
+      // “Cristo Pensante”, published by APT Val di Fiemme, drawn on 21 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Primiero San Martino di Castrozza. Paneveggio – Pale di San Martino park (lead) on the whole line; Natura 2000 IT3120178 and IT3120160. Only main road: about 40 m of the SS50 at the Passo Rolle car park. Open summit path, no cables.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Passo Rolle – Monte Castellazzo, San Martino di Castrozza",
+      distance: 9.2,
+      elevation: 428,
+      hours: '3',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop from the Passo Rolle car park over Monte Castellazzo, with the first and last stretch on the same dirt road to the Capanna Cervino, as the board publishes it (9.2 km, 428 m up, 3 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park on the hairpin just past Passo Rolle, on the SS50, the board’s start.",
+        "sequence": "Take the dirt road that climbs through the pastures to the Capanna Cervino and on to the Baita Segantini. Carry on towards the Val Venegia, and after about 100 m take the path on the left signed “Trekking del Cristo pensante”. It runs level and then gently down to the foot of Monte Castellazzo, where a mule track and then a path climb to the summit and the Cristo Pensante statue. Go down the other side on a zigzag path to the Capanna Cervino, and back along the dirt road to the start.",
+        "switches": "Dirt road up past the Capanna Cervino to the Baita Segantini; 100 m towards the Val Venegia, left onto the “Trekking del Cristo pensante” path; mule track and path up Monte Castellazzo; zigzag path down to the Capanna Cervino; dirt road back to the car park.",
+        "steps": [
+          {
+            "text": "Car park on the hairpin past Passo Rolle",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Dirt road past the Capanna Cervino to the Baita Segantini",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Left after 100 m onto the “Trekking del Cristo pensante” path",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Mule track and path to the summit of Monte Castellazzo and the Cristo Pensante",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Zigzag path down to the Capanna Cervino; dirt road back",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "APT Val di Fiemme, Cristo Pensante (route description)",
+            "url": "https://www.visitfiemme.it/it/activity/cristo-pensante_10472",
+            "authority": "APT Val di Fiemme",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-10"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-10',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Pale di San Martino from the path on Monte Castellazzo (Ximonic (Simo Räsänen) on Wikimedia Commons, CC BY-SA 4.0), 1 October 2025, 3 m from the line.",
+        route: "Official loop of 9.2 km from The car park on the hairpin just past Passo Rolle, as APT Val di Fiemme publishes it; the stored line is drawn on 21 OSM ways along the board’s published line, 9.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number on the board’s page: from the car park past Passo Rolle up the dirt road past the Capanna Cervino to the Baita Segantini, left after 100 m onto the signed “Trekking del Cristo pensante” path, up a mule track and path to the summit of Monte Castellazzo, then down a zigzag path on the other side to the Capanna Cervino and back on the dirt road.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 9.2 km, 428 m up and 428 m down, 3 h, highest point 2,318 m (Monte Castellazzo), lowest 1,958 m (APT Val di Fiemme, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "APT Val di Fiemme, Cristo Pensante (its Outdooractive tour)",
+          "Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco, Norme di Attuazione (2016), Art. 54 c. 2: dogs always on a lead in the park",
+          "Paneveggio – Pale di San Martino nature park (dogs on a lead) on the whole line; Natura 2000 ZSC IT3120178 Pale di San Martino and ZPS IT3120160 Lagorai (EEA), whose conservation measures (the park’s measures and Del. G.P. 632/2013) set no rule on dogs",
+          "OpenStreetMap ways along the board’s line (21 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-10'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The car park is on the SS50 hairpin at Passo Rolle: keep your dog on a short lead by the road","Stony path on the open summit of Monte Castellazzo, with loose rock: watch your dog’s paws","No shade and no shelter on the top: turn back if storms build","Cows graze the Passo Rolle pastures in summer, and the dirt road to the Baita Segantini is busy with walkers and bikes"],
+      terrainType: "Dirt road and open mountain path",
+      shadeDescription: "No shade at all: open pasture and rock above the tree line the whole way.",
+      terrainDescription: "A loop above Passo Rolle on a dirt road through high pastures, then a path over Monte Castellazzo to the Cristo Pensante statue, face to face with the walls of the Pale di San Martino, with a wide view over the Lagorai and the Val di Fiemme.",
+      waterDescription: "No drinking water is mapped on the way (OSM); the Capanna Cervino and the Baita Segantini serve food and drink when open in summer. Bring plenty of water for your dog: there is no shade.",
+      dogNotes: "The walk is in the Paneveggio – Pale di San Martino nature park, where dogs must always be on a lead. Primiero San Martino di Castrozza’s rules also ask for a lead of at most 1.5 m in public places and bags to pick up after your dog. Cows graze the pastures in summer: keep a short lead and give them room.",
+      tips: "Start at the car park on the hairpin just past Passo Rolle: 9.2 km and 428 m up, about 3 hours, as the board lists. No shade at all, so go early on a hot day and carry plenty of water. Avoid the open summit if storms are forecast.",
+      sourceLinks: [
+        { label: "APT Val di Fiemme, Cristo Pensante", url: "https://www.visitfiemme.it/it/activity/cristo-pensante_10472" },
+        { label: "Outdooractive, Cristo Pensante (APT Val di Fiemme)", url: "https://www.outdooractive.com/it/r/14502851" },
+        { label: "Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco (Norme di Attuazione, Art. 54)", url: "https://parcopan.org/ente-parco/il-piano-del-parco/" },
+        { label: "Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)", url: "https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf" },
+        { label: "Provincia autonoma di Trento, Natura 2000 conservation measures (Del. G.P. 632/2013)", url: "https://www.provincia.tn.it/Amministrazione/Documenti/Deliberazione-della-Giunta-Provinciale-n.-632-del-12-04-2013" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.297971, lng: 11.789255, label: "The car park on the hairpin just past Passo Rolle, the board’s start" },
+      desc: "A high loop from Passo Rolle through open pastures to the Baita Segantini, then over Monte Castellazzo to the Cristo Pensante statue, right under the walls of the Pale di San Martino. The board lists 9.2 km and 428 m up."
+    },
+    'fiemme-lago-juribrutto': {
+      // Hand audit: 10 November 2026, verified on arrival (new-trail Dolomites batch 7).
+      // “Lago Juribrutto”, published by APT Val di Fiemme, drawn on 14 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Primiero San Martino di Castrozza. Paneveggio – Pale di San Martino park (lead) on the whole line; Natura 2000 IT3120168 and IT3120160. Only main road: the SP81 at Malga Vallazza, about 80 m at the start and end. Open saddle at about 2,300 m, no cables.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Malga Vallazza – Lago di Juribrutto, Passo Valles",
+      distance: 6.8,
+      elevation: 470,
+      hours: '3.5',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from Malga Vallazza on the Passo Valles road, up path 631 to the Lastè di Juribrutto and the lake, down path 629 and back on path 623, as the board publishes it (6.8 km, 470 m up, 3 h 30).",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start beside Malga Vallazza on the Passo Valles road (SP81), the board’s start.",
+        "sequence": "Take path 631, which climbs through mixed forest into a pasture crossed by the Rio Vallazza, then up an old military mule track to the saddle of the Lastè di Juribrutto. Carry on gently down across wide pastures past two small tarns, with First World War trenches on their left, and stay on path 631 to Lago di Juribrutto. From the lake take path 629 down beside the Rio Juribrutto to Malga Juribrutto (not staffed), then path 623, which runs through the forest, gently uphill, back to Malga Vallazza.",
+        "switches": "Path 631 from Malga Vallazza up to the Lastè di Juribrutto and on to the lake; path 629 down to Malga Juribrutto; path 623 back to Malga Vallazza.",
+        "sources": [
+          {
+            "label": "APT Val di Fiemme, Lago Juribrutto (route description)",
+            "url": "https://www.visitfiemme.it/it/activity/lago-juribrutto_10460",
+            "authority": "APT Val di Fiemme",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-10"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-10',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Malga Juribrutto, on the way down (Tn4196 on Wikimedia Commons, CC BY-SA 4.0), 20 September 2012, 4 m from the line.",
+        route: "Official loop of 6.8 km from Beside Malga Vallazza on the Passo Valles road, as APT Val di Fiemme publishes it; the stored line is drawn on 14 OSM ways along the board’s published line, 6.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Path 631 from Malga Vallazza on the Passo Valles road, through the forest and up the old military mule track to the Lastè di Juribrutto saddle, past two tarns to Lago di Juribrutto; then path 629 down beside the Rio Juribrutto to Malga Juribrutto, and path 623 through the forest back to Malga Vallazza.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 6.8 km, 470 m up and 470 m down, 3 h 30, highest point 2,337 m, lowest 1,906 m (APT Val di Fiemme, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "APT Val di Fiemme, Lago Juribrutto (its Outdooractive tour)",
+          "Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco, Norme di Attuazione (2016), Art. 54 c. 2: dogs always on a lead in the park",
+          "Paneveggio – Pale di San Martino nature park (dogs on a lead) on the whole line; Natura 2000 ZSC IT3120168 Lagorai Orientale – Cima Bocche and ZPS IT3120160 Lagorai (EEA), whose conservation measures (the park’s measures and Del. G.P. 632/2013) set no rule on dogs",
+          "OpenStreetMap ways along the board’s line (14 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-10'
+      },
+      shadeCoverage: 20,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The start is on the Passo Valles road (SP81): keep your dog on a short lead by the road","Open saddle at about 2,300 m with no shelter: turn back if storms build","Old First World War trenches beside the tarns: keep your dog out of them","Cows may graze the pastures in summer"],
+      terrainType: "Forest and open mountain paths",
+      shadeDescription: "Forest shade at the start and on the way back (path 623); the saddle, the tarns and the lake are open pasture.",
+      terrainDescription: "A loop on paths 631, 629 and 623 from Malga Vallazza up an old military mule track to a high saddle, past small tarns and First World War trenches to Lago di Juribrutto in its hollow, with views to the Civetta, the Pale di San Martino and the Lagorai, and down through the forest.",
+      waterDescription: "No drinking water is mapped on the way (OSM); there are streams and the lake on the way, but Malga Juribrutto is not staffed. Bring water for your dog.",
+      dogNotes: "The walk is in the Paneveggio – Pale di San Martino nature park, where dogs must always be on a lead. Primiero San Martino di Castrozza’s rules also ask for a lead of at most 1.5 m in public places and bags to pick up after your dog. Cows may graze the pastures in summer: keep a short lead.",
+      tips: "Start beside Malga Vallazza on the Passo Valles road: 6.8 km and 470 m up, about 3½ hours, as the board lists. The saddle and the lake are open: avoid them in a storm. Carry water.",
+      sourceLinks: [
+        { label: "APT Val di Fiemme, Lago Juribrutto", url: "https://www.visitfiemme.it/it/activity/lago-juribrutto_10460" },
+        { label: "Outdooractive, Lago Juribrutto (APT Val di Fiemme)", url: "https://www.outdooractive.com/it/r/800567738" },
+        { label: "Parco Naturale Paneveggio – Pale di San Martino, Piano del Parco (Norme di Attuazione, Art. 54)", url: "https://parcopan.org/ente-parco/il-piano-del-parco/" },
+        { label: "Comune di Primiero San Martino di Castrozza, Regolamento di Polizia Urbana (dogs: Art. 28)", url: "https://www.comune.primierosanmartinodicastrozza.tn.it/content/download/933/17676/5/Regolamento%2Bapprovato%2Bmaggio%2B2018.pdf" },
+        { label: "Provincia autonoma di Trento, Natura 2000 conservation measures (Del. G.P. 632/2013)", url: "https://www.provincia.tn.it/Amministrazione/Documenti/Deliberazione-della-Giunta-Provinciale-n.-632-del-12-04-2013" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.341091, lng: 11.790441, label: "Beside Malga Vallazza on the Passo Valles road, the board’s start" },
+      desc: "A loop from Malga Vallazza up an old military mule track to a high saddle, past tarns and First World War trenches, to the quiet Lago di Juribrutto, and back through the forest. The board lists 6.8 km and 470 m up."
+    },
+    'valdisole-masi-verniana-bait-de-mezol-malga-saviana': {
+      // Hand audit: 10 November 2026, verified on arrival (new-trail Dolomites batch 7).
+      // “Masi Verniana - Bait de Mezol - Malga Saviana”, published by APT Valli di Sole, Peio e Rabbi, drawn on 32 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Vermiglio (no dog rule published: national rule). No park or Natura 2000 site. Same Forte Strino start as valdisole-malga-strino, but only 3% of the line is shared. Main road: about 100 m beside the SS42 at the start and end; the rest is forest roads and paths.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Forte Strino – Malga Verniana – Malga Saviana, Vermiglio",
+      distance: 14.8,
+      elevation: 837,
+      hours: '5',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the car park by Forte Strino through the Masi di Strino, the Bait de Mezòl, Malga Verniana and Malga Saviana and back, as the board publishes it (14.8 km, 837 m up, 5 h).",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park by Forte Strino (1,500 m), beside the SS42 below Passo del Tonale, the board’s start.",
+        "sequence": "Follow SAT path 137 towards Malga Strino. Near the bridge over the Rio Strino, turn right onto the forest road signed “Masi di Strino” and “Bait de Mezòl”, and climb to the Bait de Mezòl (1,880 m), a hut used by shepherds and hunters. Carry on along the forest road through thick forest, then on a path, to Malga Verniana (1,838 m). From the malga follow a path and then a forest road towards Malga Saviana (1,917 m). There take SAT path 126/B down; just above the SS42, turn onto the forest road that climbs gently back to Forte Strino.",
+        "switches": "SAT 137 from Forte Strino towards Malga Strino; right at the Rio Strino bridge onto the forest road to the Bait de Mezòl; forest road and path to Malga Verniana; path and forest road to Malga Saviana; SAT 126/B down; forest road above the SS42 back to Forte Strino.",
+        "sources": [
+          {
+            "label": "APT Valli di Sole, Peio e Rabbi, Masi Verniana - Bait de Mezol - Malga Saviana (route description)",
+            "url": "https://www.visitvaldisole.it/it/activity/masivernianabaitdemezol-38347",
+            "authority": "APT Valli di Sole, Peio e Rabbi",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-10"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-10',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Bait del Vedeler, a hut beside the route (Denis Faustinelli on Wikimedia Commons, CC BY 3.0), uploaded 16 February 2013, 37 m from the line.",
+        route: "Official loop of 14.8 km from The car park by Forte Strino, beside the SS42, as APT Valli di Sole, Peio e Rabbi publishes it; the stored line is drawn on 32 OSM ways along the board’s published line, 14.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "SAT 137 from the Forte Strino car park towards Malga Strino; right near the Rio Strino bridge onto the forest road signed Masi di Strino and Bait de Mezòl, up to the Bait de Mezòl (1,880 m); forest road and path to Malga Verniana (1,838 m); path and forest road to Malga Saviana (1,917 m); SAT 126/B down, then the forest road above the SS42 back to Forte Strino.",
+        mapPoints: "Start at the board’s start; drinking water at km 5, km 5.6, km 10.7, km 12.4 (OSM nodes 7828668633, 7826718553, 7826721241, 12114328916).",
+        elevation: "Official 14.8 km, 837 m up and 831 m down, 5 h, highest point 1,961 m, lowest 1,375 m (APT Valli di Sole, Peio e Rabbi, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "APT Valli di Sole, Peio e Rabbi, Masi Verniana - Bait de Mezol - Malga Saviana (its Outdooractive tour)",
+          "The Comune di Vermiglio publishes no dog regulation of its own (searched 9 November 2026), so the italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park or Natura 2000 site on the line: the Stelvio National Park boundary is about 3 km away (OpenStreetMap) and the EEA Natura 2000 map shows no site",
+          "OpenStreetMap ways along the board’s line (32 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-10'
+      },
+      shadeCoverage: 67,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The car park is beside the busy SS42: keep your dog on a short lead there","A long day: 14.8 km and 837 m up, graded difficult by the board for its length","Forest roads open to farm and forestry vehicles: keep your dog close if one comes","Cows graze around the malghe in summer"],
+      terrainType: "Forest roads and mountain paths",
+      shadeDescription: "Forest shade for about two thirds of the way; the pastures around the malghe are open.",
+      terrainDescription: "A long loop below Passo del Tonale on forest roads and paths, from Forte Strino past old farmsteads to the Bait de Mezòl, then through thick forest to Malga Verniana and Malga Saviana and down again, with views over the upper Val di Sole.",
+      waterDescription: "Drinking water is mapped at about km 5, 5.6, 10.7 and 12.4 (OSM). Carry water for your dog for the long first climb.",
+      dogNotes: "Vermiglio publishes no dog rule of its own, so the national rule applies: keep your dog on a lead of at most 1.5 m in public places and carry a muzzle. Cows graze around the malghe: keep a short lead and give them room. The board asks you to keep your dog on a lead if you meet wildlife.",
+      tips: "Start at the car park by Forte Strino on the SS42: 14.8 km and 837 m up, about 5 hours, as the board lists. For fit dogs only; there is water on the way, but carry some for the first climb.",
+      sourceLinks: [
+        { label: "APT Valli di Sole, Peio e Rabbi, Masi Verniana - Bait de Mezol - Malga Saviana", url: "https://www.visitvaldisole.it/it/activity/masivernianabaitdemezol-38347" },
+        { label: "Outdooractive, Masi Verniana - Bait de Mezol - Malga Saviana (APT Valli di Sole, Peio e Rabbi)", url: "https://www.outdooractive.com/it/r/805919553" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.279691, lng: 10.643932, label: "The car park by Forte Strino, beside the SS42, the board’s start" },
+      desc: "A long loop from Forte Strino on forest roads and paths to the Bait de Mezòl, Malga Verniana and Malga Saviana, high above the upper Val di Sole. The board lists 14.8 km and 837 m up."
+    },
+    'valdisole-peio-paese-lago-covel': {
+      // Hand audit: 10 November 2026, verified on arrival (new-trail Dolomites batch 7).
+      // “Peio Paese - Lago Covel”, published by APT Valli di Sole, Peio e Rabbi, drawn on 17 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Peio (dog regulation 2002/2004, Art. 3). Stelvio National Park, zones C and D (Art. 34: lead, roads and paths); not in zone A. Natura 2000 IT3120003 and IT3120157. No main road: about 240 m of minor village road at the start and end. The Peio Fonti cable car is only an alternative start.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Peio Paese – Malga Covel – Lago Covel, Val di Peio",
+      distance: 5.2,
+      elevation: 214,
+      hours: '2',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop from San Rocco in Peio Paese up the forest road to Malga Covel and Lago Covel, past the Rio Vioz waterfall, and back on a path to Peio Paese, as the board publishes it (5.2 km, 214 m up, 2 h). The board also suggests starting from the Peio Fonti cable car via SAT 127; that is not part of the drawn walk.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at San Rocco in Peio Paese, by the small Austro-Hungarian military cemetery, the board’s start.",
+        "sequence": "Walk up the forest road (fine for pushchairs) past old mountain farmsteads, then through larch woods and pasture to Malga Covel, a little under an hour. Carry on through the pastures to Lago Covel, and a few minutes further to the Rio Vioz waterfall and its small footbridge. Keep going until you join the path that leads back down to Peio Paese.",
+        "switches": "Forest road from San Rocco past the farmsteads to Malga Covel; on through the pastures to Lago Covel and the Rio Vioz waterfall; over the footbridge and onto the path back down to Peio Paese.",
+        "steps": [
+          {
+            "text": "San Rocco in Peio Paese, by the military cemetery",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Forest road past the farmsteads and through the larches to Malga Covel",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Through the pastures to Lago Covel",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Rio Vioz waterfall and its footbridge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path back down to Peio Paese",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "APT Valli di Sole, Peio e Rabbi, Peio Paese - Lago Covel (route description)",
+            "url": "https://www.visitvaldisole.it/it/activity/malgacovelandlakecovel-14250",
+            "authority": "APT Valli di Sole, Peio e Rabbi",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-10"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-10',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Lago Covel (Dominicus Johannes Bergsma on Wikimedia Commons, CC BY-SA 4.0), 19 September 2016, 28 m from the line.",
+        route: "Official loop of 5.2 km from San Rocco in Peio Paese, by the military cemetery, as APT Valli di Sole, Peio e Rabbi publishes it; the stored line is drawn on 17 OSM ways along the board’s published line, 5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number on the board’s page: from San Rocco in Peio Paese up the forest road past the farmsteads and through larch woods to Malga Covel, on through the pastures to Lago Covel and the Rio Vioz waterfall, over the footbridge, then on the path back down to Peio Paese.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 0.2, km 1.4, km 2 (OSM nodes 10927617705, 898164865, 9895424572, 2412878289).",
+        elevation: "Official 5.2 km, 214 m up and 233 m down, 2 h, highest point 1,884 m, lowest 1,651 m (APT Valli di Sole, Peio e Rabbi, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "APT Valli di Sole, Peio e Rabbi, Peio Paese - Lago Covel (its Outdooractive tour)",
+          "Parco Nazionale dello Stelvio, Regolamento (adopted by delibera G.P. 1202 of 7 July 2023), Art. 34: dogs allowed only in zones B, C and D, on a lead and on roads and paths; the line is in zones C and D on the park’s zoning map (“GA – Zonizzazione”, November 2022), nowhere in zone A",
+          "Comune di Peio, Regolamento per la detenzione dei cani (delibera C.C. n. 63 of 24 September 2002, amended by n. 46 of 27 October 2004), Art. 3: a dog off the lead must wear a muzzle in streets and public places; large or aggressive dogs need both lead and muzzle",
+          "Natura 2000: ZSC IT3120003 Alta Val del Monte and ZPS IT3120157 Stelvio around the lake (EEA); the park’s rule above applies",
+          "OpenStreetMap ways along the board’s line (17 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-10'
+      },
+      shadeCoverage: 58,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["Minor village road at the start and end in Peio Paese: keep your dog on a short lead","The forest road to the Covel meadows is open to cars for about 1 km: keep your dog close if one comes","Goats and sheep graze at Malga Covel in summer","Marmots and other wildlife in the park: keep the lead short"],
+      terrainType: "Forest road and mountain path",
+      shadeDescription: "Larch woods for over half the way; the meadows around Malga Covel and the lake are open.",
+      terrainDescription: "An easy loop in the Stelvio National Park from Peio Paese past old farmsteads and through larch woods to a goat malga, the small glacial Lago Covel and the Rio Vioz waterfall, and back down on a path.",
+      waterDescription: "Drinking water is mapped at the start and at about km 0.2, 1.4 and 2 (OSM); Malga Covel sells its own cheese in summer.",
+      dogNotes: "The walk is in the Stelvio National Park, where dogs are allowed only on a lead and on roads and paths. Peio’s dog regulation also asks for a muzzle on any dog off the lead in public places, and both lead and muzzle for large dogs; the national rule (lead of at most 1.5 m, muzzle carried) applies too. Goats and sheep graze at Malga Covel: keep a short lead and give them room.",
+      tips: "Start at San Rocco in Peio Paese: 5.2 km and 214 m up, about 2 hours, as the board lists. An easy family walk; carry a muzzle and keep your dog on a lead in the park.",
+      sourceLinks: [
+        { label: "APT Valli di Sole, Peio e Rabbi, Peio Paese - Lago Covel", url: "https://www.visitvaldisole.it/it/activity/malgacovelandlakecovel-14250" },
+        { label: "Outdooractive, Peio Paese - Lago Covel (APT Valli di Sole, Peio e Rabbi)", url: "https://www.outdooractive.com/it/r/61178242" },
+        { label: "Provincia autonoma di Trento, Piano e Regolamento del Parco Nazionale dello Stelvio", url: "https://www.provincia.tn.it/News/Approfondimenti/Piano-e-Regolamento-del-Parco-Nazionale-dello-Stelvio" },
+        { label: "Comune di Peio, Regolamento per la detenzione dei cani nel territorio comunale", url: "https://www.comune.peio.tn.it/Amministrazione/Documenti-e-dati/Documenti-funzionamento-interno/Regolamento-per-la-detenzione-dei-cani-nel-territorio-comunale" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.362389, lng: 10.668892, label: "San Rocco in Peio Paese, by the military cemetery, the board’s start" },
+      desc: "An easy loop in the Stelvio National Park from Peio Paese past old farmsteads to Malga Covel, its goat cheese and the mirror-like Lago Covel, then to the Rio Vioz waterfall and back. The board lists 5.2 km and 214 m up."
     }
   };
 
