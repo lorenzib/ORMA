@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "trailId": "fiemme-cristo-pensante",
+  "generatedAt": "2026-11-10T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 9.2,
+    "ascentM": 428,
+    "highestPointM": 2251,
+    "expectedDuration": "3 hours",
+    "difficulty": "Hard",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.297971,
+    "lng": 11.789255,
+    "label": "The car park on the hairpin just past Passo Rolle, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The car park is on the SS50 hairpin at Passo Rolle: keep your dog on a short lead by the road.",
+    "Stony path on the open summit of Monte Castellazzo, with loose rock: watch your dog’s paws.",
+    "No shade and no shelter on the top: turn back if storms build.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-10"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-10",
+      "licence": "ODbL"
+    }
+  ]
+}
