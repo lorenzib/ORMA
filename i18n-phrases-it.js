@@ -1628,6 +1628,7 @@ window.ORMA_PHRASES_IT = {
   "late {month}": "fine {month}",
   "The walk starts at the end of it; while it is shut, there is no drive to the start.": "La passeggiata parte dove finisce la strada: quando è chiusa, non si arriva in auto alla partenza.",
   "Road closed": "Strada chiusa",
+  "The {lift} runs all year ({year}), apart from closures the operator announces.": "{lift}: in funzione tutto l’anno ({year}), salvo le chiusure annunciate dal gestore.",
   "In {month} the {road} is closed, and the walk starts at the end of it.": "A {month} la {road} è chiusa, e la passeggiata parte dove finisce.",
   "Tre Cime toll road (Misurina – Rifugio Auronzo)": "strada a pedaggio delle Tre Cime (Misurina – Rifugio Auronzo)",
   "from {from} to {to}": "tra {from} e {to}",

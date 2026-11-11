@@ -15418,6 +15418,7 @@ function initTrailReports(map, trail){
   // "The Col Raiser gondola runs from 30 May to 1 November and from 6 December
   // to 6 April (2025/26 dates)."
   function liftLine(lift) {
+    if (lift.allYear) return tx('The {lift} runs all year ({year}), apart from closures the operator announces.', { lift: lift.name, year: lift.datesFor });
     const runs = lift.periods.map(p => tx('from {from} to {to}', { from: dayMonth(p.from), to: dayMonth(p.to) })).join(tx(' and '));
     if (lift.winterOnly) return tx('The {lift} runs {runs} ({year} dates; summer dates not yet published).', { lift: lift.name, runs, year: lift.datesFor });
     return lift.summerOnly
