@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-2376630",
   "name": "Rundweg Katharinaberg",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:31:54.028Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T16:15:35.672Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 425104,
+  "packageBytes": 405988,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.66777,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52542,
-      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Katharinaberg safety information",
       "url": "safety.json",
-      "bytes": 2071,
-      "sha256": "a91e8f78623981f937458c1c5d7b29018a36372b7b24c34c03d365e60bbf6989"
+      "bytes": 1371,
+      "sha256": "1f5e2a0f6c93556a7a0c83ddfcdf343aef7c1520cb5fb227d2c450ac64657f9f"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9937537",
   "name": "Le Mont Jovet",
-  "version": "2026.11.11-beta.6",
-  "generatedAt": "2026-11-11T18:31:54.118Z",
+  "version": "2026.10.30-beta.5",
+  "generatedAt": "2026-10-30T16:15:36.145Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 480066,
+  "packageBytes": 461244,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.48919,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52542,
-      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Le Mont Jovet safety information",
       "url": "safety.json",
-      "bytes": 1800,
-      "sha256": "4aa0856862685cee06b6cd2a75f586c6e38223982ac29512297eb4ae9c0f1620"
+      "bytes": 1394,
+      "sha256": "6b75f8a5e6ac93eb3de21e8c403455c198e858a2c6b0363b1c386ba9f6ef0a0d"
     }
   ]
 }

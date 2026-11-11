@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-19703479",
   "name": "Rundweg Beimsteinkogel",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:31:54.018Z",
+  "version": "2026.11.03-beta.1",
+  "generatedAt": "2026-11-03T10:21:11.555Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 646136,
+  "packageBytes": 627008,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.60034,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52542,
-      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Beimsteinkogel safety information",
       "url": "safety.json",
-      "bytes": 2264,
-      "sha256": "180fc710cfeb5d71d631d1b12556510a666eccadae6e63e85f57ae2e64cddbf4"
+      "bytes": 1552,
+      "sha256": "9f4624b2ef99146a0910517ee63ce969f67afec6754cbeb5734ec77c0c848f4e"
     }
   ]
 }

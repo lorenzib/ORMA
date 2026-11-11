@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12172440",
   "name": "Natur- und Kulturweg",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:31:53.925Z",
+  "version": "2026.10.30-beta.2",
+  "generatedAt": "2026-10-30T16:15:34.767Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 764441,
+  "packageBytes": 745442,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.82544,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52542,
-      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Natur- und Kulturweg safety information",
       "url": "safety.json",
-      "bytes": 2258,
-      "sha256": "156354c81df5e93ee301068a60da11b7690ca1d73701798499e53a6b77985ede"
+      "bytes": 1675,
+      "sha256": "cf3e314e6444a26d6bf8e71d8b9286404af343c3e77fee3fdf4ca95aded49f54"
     }
   ]
 }

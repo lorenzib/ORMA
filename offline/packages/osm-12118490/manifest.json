@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12118490",
   "name": "Le Balcon des Plagnes",
-  "version": "2026.11.11-beta.6",
-  "generatedAt": "2026-11-11T18:31:53.909Z",
+  "version": "2026.10.30-beta.5",
+  "generatedAt": "2026-10-30T16:15:34.687Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 440721,
+  "packageBytes": 421965,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.30187,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52542,
-      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Le Balcon des Plagnes safety information",
       "url": "safety.json",
-      "bytes": 1733,
-      "sha256": "4a9f4c39d6d9602176bd037ec4a3de7a6af620ed0c8e44f6eaf8b592ff535b8d"
+      "bytes": 1393,
+      "sha256": "dad1c3c2367605b845afc1990015d5a1310a6634a0025b3fcd62dc64d1a84b84"
     }
   ]
 }

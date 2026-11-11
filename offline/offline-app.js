@@ -242,7 +242,7 @@
   }
 
   // English sentence in, the reader's sentence out, with {name} slots filled.
-  function t(english, values){
+  function say(english, values){
     const template = LANG === 'it' && has(IT, english) ? IT[english] : english;
     return template.replace(/\{(\w+)\}/g, (whole, key) =>
       values && has(values, key) ? String(values[key]) : whole);
@@ -275,7 +275,7 @@
   function translateShell(){
     document.documentElement.lang = LANG;
     if(LANG !== 'it') return;
-    document.title = t(document.title);
+    document.title = say(document.title);
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     const nodes = [];
     while(walker.nextNode()) nodes.push(walker.currentNode);
@@ -369,16 +369,16 @@
   }
 
   async function sha256(buffer){
-    if(!(window.crypto && window.crypto.subtle)) throw new Error(t('Package verification is unavailable.'));
+    if(!(window.crypto && window.crypto.subtle)) throw new Error(say('Package verification is unavailable.'));
     return bytesToHex(await window.crypto.subtle.digest('SHA-256', buffer));
   }
 
   async function verifiedResource(resource){
     const response = await fetch(new URL(resource.url, new URL(manifestUrl, window.location.href)));
-    if(!response.ok) throw new Error(t('{label} is missing.', { label:resourceLabel(resource) }));
+    if(!response.ok) throw new Error(say('{label} is missing.', { label:resourceLabel(resource) }));
     const buffer = await response.arrayBuffer();
-    if(buffer.byteLength !== resource.bytes) throw new Error(t('{label} has changed size.', { label:resourceLabel(resource) }));
-    if(await sha256(buffer) !== resource.sha256) throw new Error(t('{label} failed verification.', { label:resourceLabel(resource) }));
+    if(buffer.byteLength !== resource.bytes) throw new Error(say('{label} has changed size.', { label:resourceLabel(resource) }));
+    if(await sha256(buffer) !== resource.sha256) throw new Error(say('{label} failed verification.', { label:resourceLabel(resource) }));
     return new Response(buffer, { headers: { 'Content-Type': response.headers.get('Content-Type') || 'application/octet-stream' } });
   }
 
@@ -392,21 +392,21 @@
   // Verified one shows nothing there: the header was crowded, and the trail
   // page already carries the seal.
   function routeStatusLabel(status){
-    if(status === 'not-verified') return t('Not yet verified by ORMA');
+    if(status === 'not-verified') return say('Not yet verified by ORMA');
     return '';
   }
 
   function setNetworkState(){
     elements.networkState.textContent = navigator.onLine
-      ? t('Browser reports online')
-      : t('Browser reports offline');
+      ? say('Browser reports online')
+      : say('Browser reports offline');
   }
 
   function showFailure(message){
     elements.mapSection.hidden = true;
     elements.factsSection.hidden = true;
     elements.failure.hidden = false;
-    elements.packageState.textContent = t('Package verification failed.');
+    elements.packageState.textContent = say('Package verification failed.');
     elements.failureMessage.textContent = message;
   }
 
@@ -416,7 +416,7 @@
     if(value === null || value === undefined || /\bnull\b|\bundefined\b/.test(String(value))) return;
     const term = document.createElement('dt');
     const detail = document.createElement('dd');
-    term.textContent = t(label);
+    term.textContent = say(label);
     detail.textContent = value;
     elements.facts.append(term, detail);
   }
@@ -437,10 +437,10 @@
 
   function renderMapDetails(safety, bounds){
     const facts = safety.facts || {};
-    elements.mapDistance.textContent = Number.isFinite(facts.distanceKm) ? `${num(facts.distanceKm)} km` : t('Not recorded');
-    elements.mapDuration.textContent = packageText(facts.expectedDuration) || t('Not recorded');
-    elements.mapAscent.textContent = Number.isFinite(facts.ascentM) ? `${facts.ascentM} m` : t('Not recorded');
-    elements.mapShade.textContent = Number.isFinite(facts.shadePercent) ? `${facts.shadePercent}%` : t('Not recorded');
+    elements.mapDistance.textContent = Number.isFinite(facts.distanceKm) ? `${num(facts.distanceKm)} km` : say('Not recorded');
+    elements.mapDuration.textContent = packageText(facts.expectedDuration) || say('Not recorded');
+    elements.mapAscent.textContent = Number.isFinite(facts.ascentM) ? `${facts.ascentM} m` : say('Not recorded');
+    elements.mapShade.textContent = Number.isFinite(facts.shadePercent) ? `${facts.shadePercent}%` : say('Not recorded');
     elements.mapAnnotations.replaceChildren();
     const waypoints = safety.waypoints || [];
     const trailheadWater = safety.trailhead && waypoints.find(waypoint =>
@@ -451,8 +451,8 @@
     if(safety.trailhead){
       addMapAnnotation(
         trailheadWater
-          ? t('{start} · water', { start:t(routeIsLoop ? 'Start / finish' : 'Start') })
-          : t(routeIsLoop ? 'Start / finish' : 'Start'),
+          ? say('{start} · water', { start:say(routeIsLoop ? 'Start / finish' : 'Start') })
+          : say(routeIsLoop ? 'Start / finish' : 'Start'),
         'start',
         safety.trailhead.lat,
         safety.trailhead.lng,
@@ -461,7 +461,7 @@
       );
     }
     waypoints.filter(waypoint => waypoint !== trailheadWater).forEach(waypoint => addMapAnnotation(
-      waypoint.type === 'water' ? t('Water point') : packageText(waypoint.label),
+      waypoint.type === 'water' ? say('Water point') : packageText(waypoint.label),
       waypoint.type === 'water' ? 'water' : 'point',
       waypoint.lat,
       waypoint.lng,
@@ -541,7 +541,7 @@
   function updateElevationCursor(progress){
     if(!elevationProfile || !progress){
       elements.elevationCursor.hidden = true;
-      if(elevationProfile) elements.elevationLive.textContent = t('Waiting for reliable GPS');
+      if(elevationProfile) elements.elevationLive.textContent = say('Waiting for reliable GPS');
       return;
     }
     const km = Math.max(0, Math.min(progress.km, elevationProfile.distanceKm));
@@ -552,7 +552,7 @@
     elements.elevationCursor.setAttribute('x1', x.toFixed(1));
     elements.elevationCursor.setAttribute('x2', x.toFixed(1));
     elements.elevationCursor.hidden = false;
-    elements.elevationLive.textContent = t('{km} km · ~{m} m route elevation', { km:num(km.toFixed(1)), m:Math.round(elevation) });
+    elements.elevationLive.textContent = say('{km} km · ~{m} m route elevation', { km:num(km.toFixed(1)), m:Math.round(elevation) });
   }
 
   function hideRejoinGuidance(){
@@ -576,8 +576,8 @@
   function renderManualRejoin(){
     const guidance = mappedRejoinGuidance();
     elements.routeWarning.textContent = guidance
-      ? t('Rejoin trail: follow the blue mapped path for about {m} m. Check local signs and closures.', { m:Math.round(guidance.distanceM) })
-      : t('No connected mapped footpath was found. Return to the last marked path or follow local signs.');
+      ? say('Rejoin trail: follow the blue mapped path for about {m} m. Check local signs and closures.', { m:Math.round(guidance.distanceM) })
+      : say('No connected mapped footpath was found. Return to the last marked path or follow local signs.');
     elements.routeWarning.hidden = false;
     if(guidance && activeBounds) showRejoinGuidance(guidance, activeBounds);
     else hideRejoinGuidance();
@@ -610,7 +610,7 @@
       watchId = null;
     }
     elements.positionDot.hidden = true;
-    elements.locationButton.textContent = t('Show my position');
+    elements.locationButton.textContent = say('Show my position');
     elements.locationButton.disabled = false;
     elements.routeWarning.hidden = true;
     elements.rejoinButton.hidden = true;
@@ -625,20 +625,20 @@
 
   function startLocation(bounds){
     if(!('geolocation' in navigator)){
-      elements.locationState.textContent = t('GPS is not supported in this browser.');
+      elements.locationState.textContent = say('GPS is not supported in this browser.');
       return;
     }
     if(watchId !== null){
       if(activeSession && activeSession.state === 'active') pauseRecoveredHike();
-      else stopLocation(t('GPS stopped.'));
+      else stopLocation(say('GPS stopped.'));
       return;
     }
     elements.locationButton.disabled = true;
     activeBounds = bounds;
-    elements.locationState.textContent = t('Waiting for a GPS fix…');
+    elements.locationState.textContent = say('Waiting for a GPS fix…');
     watchId = navigator.geolocation.watchPosition(position => {
       elements.locationButton.disabled = false;
-      elements.locationButton.textContent = t('Stop GPS');
+      elements.locationButton.textContent = say('Stop GPS');
       const point = positionPercent(position.coords.latitude, position.coords.longitude, bounds);
       const onMap = point.x >= 0 && point.x <= 100 && point.y >= 0 && point.y <= 100;
       elements.positionDot.hidden = !onMap;
@@ -698,7 +698,7 @@
       }
       if(assessment && assessment.farFromRoute){
         elements.routeWarning.textContent =
-          t('You are about {km} km from this route. Rejoin guidance is unavailable this far away; use an official navigation source.',
+          say('You are about {km} km from this route. Rejoin guidance is unavailable this far away; use an official navigation source.',
             { km:num((progress.nearestM / 1000).toFixed(1)) });
         elements.routeWarning.hidden = false;
         elements.rejoinButton.hidden = true;
@@ -714,7 +714,7 @@
           renderManualRejoin();
         }else if(assessment && assessment.offRouteState === 'confirmed'){
           elements.routeWarning.textContent =
-            t('You appear to be off route · about {m} m away.', { m:Math.round(progress.nearestM) });
+            say('You appear to be off route · about {m} m away.', { m:Math.round(progress.nearestM) });
           elements.routeWarning.hidden = false;
           hideRejoinGuidance();
         }else{
@@ -723,37 +723,37 @@
         }
       }
       const reliability = !assessment
-        ? t('Route distance unavailable.')
+        ? say('Route distance unavailable.')
         : assessment.freshness === 'stale'
-          ? t('GPS fix is stale; waiting for a newer position.')
+          ? say('GPS fix is stale; waiting for a newer position.')
           : !assessment.reliableForWarning
-            ? t('GPS is weak; off-route warnings are paused.')
+            ? say('GPS is weak; off-route warnings are paused.')
             : '';
       const lastFixText = lastValidFixAt
         ? new Date(lastValidFixAt).toLocaleTimeString(LOCALE)
-        : t('none yet');
+        : say('none yet');
       const positionSummary = assessment
         ? assessment.farFromRoute
-          ? t('{km} km from this route', { km:num((progress.nearestM / 1000).toFixed(1)) })
+          ? say('{km} km from this route', { km:num((progress.nearestM / 1000).toFixed(1)) })
           : assessment.offRouteState === 'confirmed'
-            ? t('About {m} m from the trail', { m:Math.round(progress.nearestM) })
+            ? say('About {m} m from the trail', { m:Math.round(progress.nearestM) })
             : assessment.offRouteState === 'possible'
-              ? t('Checking route position')
+              ? say('Checking route position')
               : assessment.upperBoundM < window.DoloPawsGpsPolicy.THRESHOLDS.onRouteM
-                ? t('On trail')
-                : t('Position near trail')
+                ? say('On trail')
+                : say('Position near trail')
         : '';
       elements.locationState.textContent = assessment
-        ? `${activeSession && activeSession.lastProgress ? t('Walked {km} km · ', { km:num(activeSession.lastProgress.km.toFixed(1)) }) : ''}` +
-          t('{summary} · GPS ±{accuracy} m · last valid fix {time}', {
+        ? `${activeSession && activeSession.lastProgress ? say('Walked {km} km · ', { km:num(activeSession.lastProgress.km.toFixed(1)) }) : ''}` +
+          say('{summary} · GPS ±{accuracy} m · last valid fix {time}', {
             summary:positionSummary, accuracy:Math.round(position.coords.accuracy), time:lastFixText,
           }) + (reliability ? ` · ${reliability}` : '')
         : onMap
-          ? t('GPS position found; route distance unavailable.')
-          : t('Your GPS position is outside this downloaded map.');
+          ? say('GPS position found; route distance unavailable.')
+          : say('Your GPS position is outside this downloaded map.');
     }, error => {
       elements.locationButton.disabled = false;
-      elements.locationButton.textContent = t('Try GPS again');
+      elements.locationButton.textContent = say('Try GPS again');
       watchId = null;
       hideRejoinGuidance();
       elements.rejoinButton.hidden = true;
@@ -764,13 +764,13 @@
           'paused',
           Date.now()
         ));
-        elements.hikeRecoveryTitle.textContent = t('Hike paused');
+        elements.hikeRecoveryTitle.textContent = say('Hike paused');
         elements.hikeResumeButton.hidden = false;
         elements.hikePauseButton.hidden = true;
       }
       elements.locationState.textContent = error.code === 1
-        ? t('Location permission was denied. Enable it for ORMA in browser settings.')
-        : t('A GPS fix is currently unavailable. The stored route remains visible.');
+        ? say('Location permission was denied. Enable it for ORMA in browser settings.')
+        : say('A GPS fix is currently unavailable. The stored route remains visible.');
     }, {
       enableHighAccuracy: true,
       maximumAge: 2000,
@@ -784,9 +784,9 @@
       hour: '2-digit',
       minute: '2-digit',
     });
-    return t('Started {time} · last saved progress {progress}.', {
+    return say('Started {time} · last saved progress {progress}.', {
       time,
-      progress:progress ? `${num(progress.km.toFixed(1))} km` : t('at the trailhead'),
+      progress:progress ? `${num(progress.km.toFixed(1))} km` : say('at the trailhead'),
     });
   }
 
@@ -807,9 +807,9 @@
       'active',
       Date.now()
     ));
-    elements.hikeRecoveryTitle.textContent = t('Hike resumed');
+    elements.hikeRecoveryTitle.textContent = say('Hike resumed');
     elements.hikeRecoveryMessage.textContent =
-      t('GPS tracking is active. Your latest valid progress stays saved on this device.');
+      say('GPS tracking is active. Your latest valid progress stays saved on this device.');
     elements.hikeResumeButton.hidden = true;
     elements.hikePauseButton.hidden = false;
     elements.hikeFinishButton.hidden = false;
@@ -824,11 +824,11 @@
         Date.now()
       ));
     }
-    stopLocation(t('Hike paused. Your progress is saved on this device.'));
-    elements.hikeRecoveryTitle.textContent = t('Hike paused');
+    stopLocation(say('Hike paused. Your progress is saved on this device.'));
+    elements.hikeRecoveryTitle.textContent = say('Hike paused');
     elements.hikeRecoveryMessage.textContent = activeSession
       ? recoveryMessage(activeSession)
-      : t('Your progress is saved on this device.');
+      : say('Your progress is saved on this device.');
     elements.hikeResumeButton.hidden = false;
     elements.hikePauseButton.hidden = true;
     elements.hikeFinishButton.hidden = false;
@@ -838,8 +838,8 @@
     completedRecord = completion;
     elements.offlineOutcome.hidden = false;
     elements.offlineOutcomeStatus.textContent = completion.ownerId
-      ? t('Choose one response. It will be stored privately on this device.')
-      : t('This completion has no account owner, so private feedback cannot be saved.');
+      ? say('Choose one response. It will be stored privately on this device.')
+      : say('This completion has no account owner, so private feedback cannot be saved.');
     elements.offlineOutcomeSave.disabled = true;
   }
 
@@ -871,18 +871,18 @@
     );
     if(!result.ok){
       elements.offlineOutcomeStatus.textContent =
-        t('Feedback could not be stored. Free some device storage and try again.');
+        say('Feedback could not be stored. Free some device storage and try again.');
       return;
     }
     elements.offlineOutcome.querySelectorAll('input, select, button')
       .forEach(control => { control.disabled = true; });
-    elements.offlineOutcomeSave.textContent = t('Private feedback saved');
+    elements.offlineOutcomeSave.textContent = say('Private feedback saved');
     elements.offlineOutcomeStatus.textContent =
-      t('Saved privately · pending sync until you reconnect.');
+      say('Saved privately · pending sync until you reconnect.');
     if(navigator.onLine){
       const sync = await window.DoloPawsPostHikeOutcomes.syncBrowser();
       if(sync.ok && sync.pending === 0){
-        elements.offlineOutcomeStatus.textContent = t('Saved privately · synced.');
+        elements.offlineOutcomeStatus.textContent = say('Saved privately · synced.');
       }
     }
   }
@@ -902,10 +902,10 @@
       distanceKm: activeSession.lastProgress && activeSession.lastProgress.km || 0,
     });
     if(!result.ok){
-      stopLocation(t('The completed hike could not be saved. Your active hike is still preserved.'));
-      elements.hikeRecoveryTitle.textContent = t('Completion not saved');
+      stopLocation(say('The completed hike could not be saved. Your active hike is still preserved.'));
+      elements.hikeRecoveryTitle.textContent = say('Completion not saved');
       elements.hikeRecoveryMessage.textContent =
-        t('Free some device storage and tap Finish hike again.');
+        say('Free some device storage and tap Finish hike again.');
       elements.hikeResumeButton.hidden = true;
       elements.hikePauseButton.hidden = true;
       elements.hikeFinishButton.hidden = false;
@@ -913,10 +913,10 @@
     }
     window.DoloPawsHikeSession.clear();
     activeSession = null;
-    stopLocation(t('Hike completed and saved on this device.'));
-    elements.hikeRecoveryTitle.textContent = t('Hike completed');
+    stopLocation(say('Hike completed and saved on this device.'));
+    elements.hikeRecoveryTitle.textContent = say('Hike completed');
     elements.hikeRecoveryMessage.textContent =
-      t('Your completion is stored offline and ready for a later journal or synchronization step.');
+      say('Your completion is stored offline and ready for a later journal or synchronization step.');
     elements.hikeResumeButton.hidden = true;
     elements.hikePauseButton.hidden = true;
     elements.hikeFinishButton.hidden = true;
@@ -925,7 +925,7 @@
   }
 
   function discardRecoveredHike(){
-    stopLocation(t('GPS is off. The route and safety information remain available.'));
+    stopLocation(say('GPS is off. The route and safety information remain available.'));
     window.DoloPawsHikeSession.clear();
     activeSession = null;
     elements.hikeRecovery.hidden = true;
@@ -955,15 +955,15 @@
     }
     if(recovery.status === 'expired'){
       showRecoveryIssue(
-        t('Old unfinished hike'),
-        t('This saved hike is more than 36 hours old. Discard it before starting another hike.')
+        say('Old unfinished hike'),
+        say('This saved hike is more than 36 hours old. Discard it before starting another hike.')
       );
       return;
     }
     if(recovery.status === 'corrupt' || recovery.status === 'incompatible'){
       showRecoveryIssue(
-        t('Hike cannot be restored'),
-        t('The saved record is damaged or from an unsupported version. Discard it safely.')
+        say('Hike cannot be restored'),
+        say('The saved record is damaged or from an unsupported version. Discard it safely.')
       );
       return;
     }
@@ -974,15 +974,15 @@
     elements.hikeRecovery.hidden = false;
     elements.hikeDiscardButton.hidden = false;
     if(activeSession.state === 'completion-pending'){
-      elements.hikeRecoveryTitle.textContent = t('Hike finished');
+      elements.hikeRecoveryTitle.textContent = say('Hike finished');
       elements.hikeRecoveryMessage.textContent =
-        t('Save the completion on this device before opening a later journal step.');
+        say('Save the completion on this device before opening a later journal step.');
       elements.hikeResumeButton.hidden = true;
       elements.hikePauseButton.hidden = true;
       elements.hikeFinishButton.hidden = false;
       return;
     }
-    elements.hikeRecoveryTitle.textContent = t('Unfinished hike found');
+    elements.hikeRecoveryTitle.textContent = say('Unfinished hike found');
     elements.hikeRecoveryMessage.textContent = recoveryMessage(activeSession);
     elements.hikeResumeButton.hidden = false;
     elements.hikePauseButton.hidden = true;
@@ -998,15 +998,15 @@
     const trailId = new URLSearchParams(window.location.search).get('id');
     manifestUrl = packageManifestUrl(trailId);
     if(!manifestUrl){
-      showFailure(t('No downloaded package is configured for this trail.'));
+      showFailure(say('No downloaded package is configured for this trail.'));
       return;
     }
 
     try{
       const manifestResponse = await fetch(manifestUrl);
-      if(!manifestResponse.ok) throw new Error(t('The package manifest is unavailable.'));
+      if(!manifestResponse.ok) throw new Error(say('The package manifest is unavailable.'));
       const manifest = await manifestResponse.json();
-      if(manifest.trailId !== trailId || manifest.schemaVersion !== 1) throw new Error(t('The package manifest is invalid.'));
+      if(manifest.trailId !== trailId || manifest.schemaVersion !== 1) throw new Error(say('The package manifest is invalid.'));
 
       const resources = {};
       for(const resource of manifest.resources){
@@ -1019,7 +1019,7 @@
       }
       if(!resources.map || !resources.route || !resources.safety ||
          !resources['footpath-network'] || !resources['elevation-profile']){
-        throw new Error(t('Required map, route, safety, elevation, or footpath routing data is missing.'));
+        throw new Error(say('Required map, route, safety, elevation, or footpath routing data is missing.'));
       }
 
       const safety = await resources.safety.json();
@@ -1027,12 +1027,12 @@
       const route = await resources.route.json();
       elevationProfile = await resources['elevation-profile'].json();
       if(!validElevationProfile(elevationProfile, trailId)){
-        throw new Error(t('The stored elevation profile is invalid.'));
+        throw new Error(say('The stored elevation profile is invalid.'));
       }
       footpathGraph = await resources['footpath-network'].json();
       if(!window.DoloPawsFootpathRouter ||
          !window.DoloPawsFootpathRouter.validateGraph(footpathGraph)){
-        throw new Error(t('The stored footpath routing graph is invalid.'));
+        throw new Error(say('The stored footpath routing graph is invalid.'));
       }
       routeCoordinates = route.features && route.features[0] &&
         route.features[0].geometry && route.features[0].geometry.coordinates || [];
@@ -1048,11 +1048,11 @@
       ) <= 75;
       const trailName = packageText(manifest.name);
       elements.trailName.textContent = trailName;
-      elements.offlineMap.alt = t('Offline route map for {name}', { name:trailName });
+      elements.offlineMap.alt = say('Offline route map for {name}', { name:trailName });
       const failureLink = document.getElementById('failureTrailLink');
       if(failureLink) failureLink.href = `../trail.html?id=${encodeURIComponent(trailId)}`;
       const requiredCount = manifest.resources.filter(resource => resource.required !== false).length;
-      elements.packageState.textContent = t('Ready offline · {size} · {count} stored files verified', {
+      elements.packageState.textContent = say('Ready offline · {size} · {count} stored files verified', {
         size:formatBytes(manifest.packageBytes), count:requiredCount,
       });
       elements.offlineMap.src = URL.createObjectURL(await resources.map.blob());
@@ -1091,7 +1091,7 @@
       elements.mapSection.hidden = false;
       elements.factsSection.hidden = false;
     }catch(error){
-      showFailure(error.message || t('A required package resource is unavailable.'));
+      showFailure(error.message || say('A required package resource is unavailable.'));
     }
   }
 

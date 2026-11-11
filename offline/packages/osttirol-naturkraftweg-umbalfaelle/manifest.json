@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osttirol-naturkraftweg-umbalfaelle",
   "name": "Umbal Falls nature walk",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:31:54.122Z",
+  "version": "2026.11.02-beta.1",
+  "generatedAt": "2026-11-02T13:56:16.106Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 297307,
+  "packageBytes": 278055,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 47.00473,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52542,
-      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Umbal Falls nature walk safety information",
       "url": "safety.json",
-      "bytes": 2334,
-      "sha256": "d83bb1c177f6aee90cdec068dc0d4cfff4be6568c04c0a0b4c7b44865fe4dbf3"
+      "bytes": 1498,
+      "sha256": "195886cdef3cd45610391be80dca2f26efc77969e18d56bd6a2b031bacfb6278"
     }
   ]
 }

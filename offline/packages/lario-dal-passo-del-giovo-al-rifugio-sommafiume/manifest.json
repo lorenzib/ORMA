@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-dal-passo-del-giovo-al-rifugio-sommafiume",
   "name": "Passo del Giovo to the Rifugio Sommafiume",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:31:53.814Z",
+  "version": "2026.11.04-beta.1",
+  "generatedAt": "2026-11-04T01:14:11.123Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 390645,
+  "packageBytes": 371336,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.13638,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52542,
-      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passo del Giovo to the Rifugio Sommafiume safety information",
       "url": "safety.json",
-      "bytes": 2359,
-      "sha256": "5125a107807cc71236545fcc2bf38a8136c8523af7c316883740135d2c44ba4d"
+      "bytes": 1466,
+      "sha256": "0a246f1dc01ef26ea8c8b046db151e6dad6986fe0507d150ffbcf9fdc69e00a0"
     }
   ]
 }

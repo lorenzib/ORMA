@@ -45,7 +45,7 @@ describe('the offline page in Italian', () => {
   });
 
   test('every sentence the script writes has Italian', () => {
-    const missing = [...app.matchAll(/\bt\('((?:[^'\\]|\\.)+)'/g)]
+    const missing = [...app.matchAll(/\bsay\('((?:[^'\\]|\\.)+)'/g)]
       .map(match => match[1].replace(/\\'/g, "'"))
       .filter(text => !IT[text]);
     expect([...new Set(missing)]).toEqual([]);

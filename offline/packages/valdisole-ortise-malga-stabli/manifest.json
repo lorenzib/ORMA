@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-ortise-malga-stabli",
   "name": "Ortisè – Malga Stabli",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:31:54.317Z",
+  "version": "2026.11.02-beta.1",
+  "generatedAt": "2026-11-02T13:26:51.502Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 297176,
+  "packageBytes": 278380,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.32233,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52542,
-      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Ortisè – Malga Stabli safety information",
       "url": "safety.json",
-      "bytes": 2085,
-      "sha256": "5ea0ce87cdfb78d43a5d5c0d5110c08e3406587588b01968b93e5d01d8f8bf80"
+      "bytes": 1705,
+      "sha256": "125fcacc4a0fda389a43c0d75b28f841d185f6f42ad3c01db46f2d535242f3a1"
     }
   ]
 }

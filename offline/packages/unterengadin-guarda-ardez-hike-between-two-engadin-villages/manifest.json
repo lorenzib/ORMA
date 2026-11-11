@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "unterengadin-guarda-ardez-hike-between-two-engadin-villages",
   "name": "Guarda to Ardez",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:31:54.294Z",
+  "version": "2026.11.04-beta.1",
+  "generatedAt": "2026-11-04T20:37:27.881Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 780979,
+  "packageBytes": 761937,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.76454,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52542,
-      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Guarda to Ardez safety information",
       "url": "safety.json",
-      "bytes": 1987,
-      "sha256": "15768778e870bebfe1fb39d967bf06ff28be9f8538831b6a91a7731866d04fcb"
+      "bytes": 1361,
+      "sha256": "7a1c5417503a53fa235d7b8d2509972e5912793bfddd78a1e72bac787082e2b4"
     }
   ]
 }

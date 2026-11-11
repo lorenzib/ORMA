@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "aosta-ru-courtaud",
   "name": "Rû Courtaud",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:31:53.558Z",
+  "version": "2026.11.02-beta.1",
+  "generatedAt": "2026-11-02T13:04:22.003Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 985149,
+  "packageBytes": 966097,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.80436,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52542,
-      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
+      "bytes": 34126,
+      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rû Courtaud safety information",
       "url": "safety.json",
-      "bytes": 2616,
-      "sha256": "8ccf6e9f0ab073fa9d402424e0e2fad01d841173b90ae63329cd02609a1c9d69"
+      "bytes": 1980,
+      "sha256": "53fa41f1eb35724eb5163292eaa12f792031f88f0d4856eb130aa0333c8a1b76"
     }
   ]
 }
