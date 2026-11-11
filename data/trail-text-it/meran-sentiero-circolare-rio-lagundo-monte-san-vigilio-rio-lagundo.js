@@ -13,5 +13,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mostly shaded: the board describes the route as about 60% woodland; the meadows around St. Vigil and Seespitz are open.": "Per lo più all'ombra: la scheda ufficiale descrive il percorso come bosco per circa il 60%; i prati attorno a St. Vigil e Seespitz sono aperti.",
   "Ride the cable car up from Rabland to Aschbach and start at its top station, the board’s start.": "Sali con la funivia da Rabland ad Aschbach e parti dalla stazione a monte, punto di partenza della scheda ufficiale.",
   "From the top station follow path 28, climbing steadily through the woods, to St. Vigil and its church. Carry on north on path 9 to the Seespitz inn. Return on path 9 and then path 27 to the top station in Aschbach.": "Dalla stazione a monte segui il sentiero 28, che sale costante nel bosco, fino a St. Vigil e alla sua chiesa. Prosegui verso nord sul sentiero 9 fino alla locanda Seespitz. Torna sul sentiero 9 e poi sul sentiero 27 fino alla stazione a monte di Aschbach.",
-  "Three changes: at St. Vigil onto path 9; at the Seespitz inn back along path 9; then onto path 27 down to Aschbach.": "Tre cambi: a St. Vigil sul sentiero 9; alla locanda Seespitz di nuovo lungo il sentiero 9; poi sul sentiero 27 giù fino ad Aschbach."
+  "Three changes: at St. Vigil onto path 9; at the Seespitz inn back along path 9; then onto path 27 down to Aschbach.": "Tre cambi: a St. Vigil sul sentiero 9; alla locanda Seespitz di nuovo lungo il sentiero 9; poi sul sentiero 27 giù fino ad Aschbach.",
+  "Drinking water": "Acqua potabile",
+  "The forest path up towards St. Vigil": "Il sentiero nel bosco verso St. Vigil"
 });

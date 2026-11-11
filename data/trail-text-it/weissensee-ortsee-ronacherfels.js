@@ -11,5 +11,10 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Neusach on the north shore, where the board’s line begins": "Neusach sulla riva nord, dove inizia la traccia della scheda ufficiale",
   "Green meadows and spruce forest rising from the deep blue Weissensee on its north shore": "Prati verdi e bosco di abeti rossi che salgono dal Weissensee blu intenso sulla sua riva nord",
   "About two thirds in woodland along the shore; Neusach and the east shore are open.": "Circa due terzi nel bosco lungo la riva; Neusach e la riva est sono aperte.",
-  "From Neusach along the village lane, then east on the lakeside path past the Ronacherfels and the Kleine Steinwand to the east shore, ending by the boat landing; return the same way.": "Da Neusach lungo la stradina del paese, poi verso est sul sentiero lungo il lago oltre il Ronacherfels e la Kleine Steinwand fino alla sponda orientale, con arrivo presso l'imbarcadero; ritorno per la stessa strada."
+  "From Neusach along the village lane, then east on the lakeside path past the Ronacherfels and the Kleine Steinwand to the east shore, ending by the boat landing; return the same way.": "Da Neusach lungo la stradina del paese, poi verso est sul sentiero lungo il lago oltre il Ronacherfels e la Kleine Steinwand fino alla sponda orientale, con arrivo presso l'imbarcadero; ritorno per la stessa strada.",
+  "Drinking water in Neusach": "Acqua potabile a Neusach",
+  "Drinking water at the Ronacherfels": "Acqua potabile al Ronacherfels",
+  "Drinking-water fountain (Brunnen)": "Fontanella di acqua potabile (Brunnen)",
+  "Drinking water on the east shore": "Acqua potabile sulla riva est",
+  "The north shore of the Weissensee": "La riva nord del Weissensee"
 });

@@ -12,5 +12,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "The calm east end of the Weissensee between wooded slopes": "La tranquilla estremità est del Weissensee tra pendii boscosi",
   "The Ronacherfels inn beside the turquoise Weissensee": "La locanda Ronacherfels accanto al Weissensee turchese",
   "About two thirds in woodland along the shore; the ends at the Ronacherfels and the east shore are open.": "Circa due terzi nel bosco lungo la riva; le estremità al Ronacherfels e sulla riva est sono aperte.",
-  "From the Ronacherfels east along the lakeside path past the Kleine Steinwand to the east shore, ending by the boat landing; return the same way.": "Dal Ronacherfels verso est lungo il sentiero sul lago oltre la Kleine Steinwand fino alla riva est, con arrivo presso l'imbarcadero; ritorno per la stessa strada."
+  "From the Ronacherfels east along the lakeside path past the Kleine Steinwand to the east shore, ending by the boat landing; return the same way.": "Dal Ronacherfels verso est lungo il sentiero sul lago oltre la Kleine Steinwand fino alla riva est, con arrivo presso l'imbarcadero; ritorno per la stessa strada.",
+  "Drinking water at the Ronacherfels": "Acqua potabile al Ronacherfels",
+  "Drinking-water fountain (Brunnen)": "Fontanella di acqua potabile (Brunnen)",
+  "Drinking water on the east shore": "Acqua potabile sulla riva est",
+  "The Kleine Steinwand on the Weissensee": "La Kleine Steinwand sul Weissensee"
 });

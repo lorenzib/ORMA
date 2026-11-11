@@ -4,5 +4,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Sparsely mapped: gravel (76%), paved (24%), from OSM surface data": "Mappato in modo scarso: ghiaia (76%), asfaltato (24%), dai dati OSM sul fondo",
   "Start here — Bus stop Onach - Onies, 157 m from the route (OSM-verified access point)": "Parti da qui — Fermata dell'autobus Onach - Onies, a 157 m dal percorso (punto di accesso verificato su OSM)",
-  "ORMA illustration of Anton Schwingshackl Weg: its climb drawn as contour bands and its route shape, not a photograph": "Illustrazione ORMA dell'Anton Schwingshackl Weg: la salita disegnata come fasce di curve di livello e la forma del percorso, non una fotografia"
+  "ORMA illustration of Anton Schwingshackl Weg: its climb drawn as contour bands and its route shape, not a photograph": "Illustrazione ORMA dell'Anton Schwingshackl Weg: la salita disegnata come fasce di curve di livello e la forma del percorso, non una fotografia",
+  "Brunnen 1994": "Brunnen 1994",
+  "Drinking water": "Acqua potabile",
+  "ORMA illustration of this walk, drawn from its route and climb, not a photograph": "Illustrazione ORMA di questa passeggiata, disegnata dal suo percorso e dalla salita, non una fotografia"
 });

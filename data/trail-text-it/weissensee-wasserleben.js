@@ -10,5 +10,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "the boat landing and large car park at the roundabout on the east shore, the board’s start": "l'approdo dei battelli e il grande parcheggio presso la rotonda sulla riva est, partenza indicata dalla scheda ufficiale",
   "Turquoise water of the Weissensee seen between pine trunks on the east shore, with wooded slopes beyond, in summer": "L'acqua turchese del Weissensee vista tra i tronchi dei pini sulla riva est, con pendii boscosi più in là, in estate",
   "About a third in woodland; the lakeside footways are open.": "Circa un terzo nel bosco; i marciapiedi lungolago sono aperti.",
-  "From the boat landing at the east-shore roundabout along the lakeside footways and boardwalk, round through the woods on paths and a track, and back along the shore and the Stockenboier Straße (L32) to the start.": "Dall'approdo dei battelli alla rotonda sulla sponda est lungo i percorsi pedonali e la passerella in legno sul lago, giro nel bosco su sentieri e una carrareccia, e ritorno lungo la riva e la Stockenboier Straße (L32) fino alla partenza."
+  "From the boat landing at the east-shore roundabout along the lakeside footways and boardwalk, round through the woods on paths and a track, and back along the shore and the Stockenboier Straße (L32) to the start.": "Dall'approdo dei battelli alla rotonda sulla sponda est lungo i percorsi pedonali e la passerella in legno sul lago, giro nel bosco su sentieri e una carrareccia, e ritorno lungo la riva e la Stockenboier Straße (L32) fino alla partenza.",
+  "Drinking water on the east shore": "Acqua potabile sulla riva est",
+  "The Weissensee from the east shore": "Il Weissensee dalla riva est"
 });

@@ -16,5 +16,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From Piaz de Sotegrava, walk up Strada Salejada. At the fork, in front of the “del Dante” fountain, turn right into Strada de Moene and then left into Strada Saslonch.": "Da Piaz de Sotegrava sali per Strada Salejada. Al bivio, davanti alla fontana “del Dante”, svolta a destra in Strada de Moene e poi a sinistra in Strada Saslonch.",
   "Past the last houses of Col dei Soldai, carry on beyond the El Mas farm onto a tarred farm lane that crosses the meadows above the Soraga lake, facing the Catinaccio and the Sassolungo.": "Dopo le ultime case di Col dei Soldai, prosegui oltre il maso El Mas su una stradina agricola asfaltata che attraversa i prati sopra il lago di Soraga, di fronte al Catinaccio e al Sassolungo.",
   "At Palua, go down into the centre of Soraga along the street of the same name, past the Decrestina wooden-toy workshop.": "A Palua scendi nel centro di Soraga lungo la via omonima, oltre il laboratorio di giocattoli in legno Decrestina.",
-  "Carry on past the Hotel Miravalle towards “Vischia de Sach” and cross the covered footbridge into the riverside park, home to cormorants, herons and ducks. Come back the same way.": "Prosegui oltre l'Hotel Miravalle verso “Vischia de Sach” e attraversa la passerella coperta fino al parco sul fiume, dove vivono cormorani, aironi e anatre. Ritorna per la stessa via."
+  "Carry on past the Hotel Miravalle towards “Vischia de Sach” and cross the covered footbridge into the riverside park, home to cormorants, herons and ducks. Come back the same way.": "Prosegui oltre l'Hotel Miravalle verso “Vischia de Sach” e attraversa la passerella coperta fino al parco sul fiume, dove vivono cormorani, aironi e anatre. Ritorna per la stessa via.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "Drinking fountain in Soraga": "Fontanella a Soraga",
+  "Soraga and the Catinaccio": "Soraga e il Catinaccio"
 });

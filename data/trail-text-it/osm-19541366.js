@@ -6,5 +6,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Tracks shared with ski-area service vehicles": "Sterrate condivise con i mezzi di servizio del comprensorio sciistico",
   "Sparsely mapped: dirt (92%), paved (8%), from OSM surface data": "Mappatura scarsa: terra (92%), asfalto (8%), da dati OSM sul fondo",
   "Rue de Gébroulaz, Val Thorens (official start; free street parking in summer)": "Rue de Gébroulaz, Val Thorens (partenza ufficiale; d'estate parcheggio gratuito in strada)",
-  "The turquoise water of the Lac Blanc above Val Thorens, clear to the stones, with summer snow patches on the peak above.": "L'acqua turchese del Lac Blanc sopra Val Thorens, trasparente fino ai sassi, con chiazze di neve estiva sulla cima soprastante."
+  "The turquoise water of the Lac Blanc above Val Thorens, clear to the stones, with summer snow patches on the peak above.": "L'acqua turchese del Lac Blanc sopra Val Thorens, trasparente fino ai sassi, con chiazze di neve estiva sulla cima soprastante.",
+  "Lac Blanc Les Belleville": "Lac Blanc Les Belleville"
 });

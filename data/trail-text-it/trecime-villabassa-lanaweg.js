@@ -14,5 +14,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Path 46 to the Sinna Mihle, then right onto the Lanaweg. Back across the Langwiesn meadows.": "Sentiero 46 fino alla Sinna Mihle, poi a destra sul Lanaweg. Ritorno attraverso i prati Langwiesn.",
   "From the fire station in the centre of Niederdorf, follow the signed path 46 through meadows and woods to the Sinna Mihle, an old mill.": "Dalla caserma dei vigili del fuoco nel centro di Niederdorf, segui il sentiero segnalato 46 tra prati e boschi fino alla Sinna Mihle, un vecchio mulino.",
   "Turn right onto the Lanaweg and follow it on the level for about 1.5 km towards Toblach.": "Gira a destra sul Lanaweg e seguilo in piano per circa 1,5 km verso Toblach.",
-  "Come back across the Langwiesn meadows to Niederdorf and the fire station.": "Torna attraverso i prati Langwiesn fino a Niederdorf e alla caserma dei vigili del fuoco."
+  "Come back across the Langwiesn meadows to Niederdorf and the fire station.": "Torna attraverso i prati Langwiesn fino a Niederdorf e alla caserma dei vigili del fuoco.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The parish church of St. Stephen in Niederdorf, by the start, in July": "La chiesa parrocchiale di St. Stephen a Niederdorf, presso la partenza, a luglio"
 });

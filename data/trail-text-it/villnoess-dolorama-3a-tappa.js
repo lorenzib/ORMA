@@ -12,5 +12,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mostly open: about a quarter runs through mapped forest under the Odle; the Brogles and Resciesa meadows are in full sun.": "Per lo più aperto: circa un quarto corre nel bosco segnato sulla mappa sotto le Odle; i prati di Brogles e del Resciesa sono in pieno sole.",
   "Start at the Rifugio Genova (Schlüterhütte), the end of Dolorama stage 2 and the board’s start of stage 3.": "Parti dal Rifugio Genova (Schlüterhütte), arrivo della tappa 2 del Dolorama e partenza della tappa 3 indicata dalla scheda ufficiale.",
   "Follow path 33 through pine forest under the 3,000 m Odle peaks to the Brogles hut. From there take path 35 south-west, gently downhill through the meadows and pastures of the Resciesa, to the Rifugio Resciesa.": "Segui il sentiero 33 attraverso il bosco di pini sotto le cime delle Odle di 3.000 m fino alla baita Brogles. Da lì prendi il sentiero 35 verso sud-ovest, in leggera discesa tra i prati e i pascoli del Resciesa, fino al Rifugio Resciesa.",
-  "One change: at the end of path 33 continue on path 35 towards the Rifugio Resciesa.": "Un solo cambio: alla fine del sentiero 33 prosegui sul sentiero 35 verso il Rifugio Resciesa."
+  "One change: at the end of path 33 continue on path 35 towards the Rifugio Resciesa.": "Un solo cambio: alla fine del sentiero 33 prosegui sul sentiero 35 verso il Rifugio Resciesa.",
+  "Drinking water": "Acqua potabile",
+  "Weißbrunn - Fontana Bianca": "Weißbrunn - Fontana Bianca",
+  "The Odle above the Dolorama trail": "Le Odle sopra il sentiero Dolorama"
 });

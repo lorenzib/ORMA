@@ -15,5 +15,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the information office, walk towards the railway underpass.": "Dall'ufficio informazioni cammina verso il sottopasso ferroviario.",
   "After it, turn left onto path 1A, which runs beside the cycle path, towards Bruneck-Waldheim.": "Subito dopo gira a sinistra sul sentiero 1A, che corre accanto alla ciclabile, verso Brunico-Waldheim.",
   "At the underpass of the main road, turn right.": "Al sottopasso della statale gira a destra.",
-  "Follow the footpath beside the Stefansdorfer Straße back to the start. Ten painted panels along the way tell the village’s old legends.": "Segui il marciapiede accanto a Via Stefansdorf fino alla partenza. Lungo il percorso dieci pannelli dipinti raccontano le antiche leggende del paese."
+  "Follow the footpath beside the Stefansdorfer Straße back to the start. Ten painted panels along the way tell the village’s old legends.": "Segui il marciapiede accanto a Via Stefansdorf fino alla partenza. Lungo il percorso dieci pannelli dipinti raccontano le antiche leggende del paese.",
+  "Drinking water in St. Lorenzen": "Acqua potabile a St. Lorenzen",
+  "Drinking fountain in St. Lorenzen": "Fontanella a St. Lorenzen",
+  "Heiligkreuz in Fronwies near St. Lorenzen": "Heiligkreuz a Fronwies presso St. Lorenzen"
 });

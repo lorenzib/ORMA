@@ -32,12 +32,21 @@
   const ILLUSTRATION_TYPES=['ai-illustration','orma-illustration'];
   function isIllustration(trail){return ILLUSTRATION_TYPES.includes(String(trail?.imageSourceType||''));}
 
-  function heroCredit(trail){
+  // ORMA's own caption for the picture is the trail's words, so an Italian
+  // reader gets it in Italian (data/trail-text-it); a source's own credit
+  // ("Title, author, licence") stays as written. The static page generator
+  // passes its own translator, since it runs without i18n.js.
+  const CAPTIONED=['licensed-source','moderator-upload','orma-illustration'];
+  function heroCredit(trail,words=trailWords){
+    const own=CAPTIONED.includes(String(trail?.imageSourceType||''));
+    const say=text=>own&&typeof text==='string'?words(text.trim()):text;
     if(isIllustration(trail)){
-      const credit=normalizeCredit({text:typeof trail.imageCredit==='string'?trail.imageCredit:trail?.imageCredit?.text,bare:true});
+      const credit=normalizeCredit({text:say(typeof trail.imageCredit==='string'?trail.imageCredit:trail?.imageCredit?.text),bare:true});
       return credit?{...credit,url:'',isIllustration:true}:null;
     }
-    return normalizeCredit(trail?.imageCredit,trail?.imageSourcePage);
+    const raw=trail?.imageCredit;
+    const credit=typeof raw==='string'?say(raw):(raw&&typeof raw==='object'?{...raw,text:say(raw.text)}:raw);
+    return normalizeCredit(credit,trail?.imageSourcePage);
   }
 
   // The app loads trail photos from the website (scripts/build-app.js), so a

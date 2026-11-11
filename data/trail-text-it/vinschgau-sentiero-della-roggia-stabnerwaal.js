@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Partly shaded: about a third runs through mapped woodland; the open steppe slopes of the Sonnenberg are in full sun.": "In parte all'ombra: circa un terzo corre nel bosco segnato sulla mappa; i pendii steppici aperti del Sonnenberg sono in pieno sole.",
   "Start at Staben railway station, the board’s start.": "Parti dalla stazione ferroviaria di Staben, la partenza indicata dalla scheda ufficiale.",
   "Cross the bridge over the Adige and walk on to the church, then take path 1 up to the waal. Follow the Stabnerwaal path towards the Himmelreich restaurant, continue to the centre of Tschars, and walk a short way down to Tschars station.": "Attraversa il ponte sull'Adige e prosegui fino alla chiesa, poi prendi il sentiero 1 in salita fino alla roggia. Segui il sentiero dello Stabnerwaal verso il ristorante Himmelreich, prosegui fino al centro di Tschars e scendi per un breve tratto fino alla stazione di Tschars.",
-  "Two changes: at the church take path 1 up to the waal, and in Tschars leave the waal path to walk down to the station.": "Due cambi: alla chiesa prendi il sentiero 1 in salita fino alla roggia, e a Tschars lascia il sentiero della roggia per scendere alla stazione."
+  "Two changes: at the church take path 1 up to the waal, and in Tschars leave the waal path to walk down to the station.": "Due cambi: alla chiesa prendi il sentiero 1 in salita fino alla roggia, e a Tschars lascia il sentiero della roggia per scendere alla stazione.",
+  "Drinking water": "Acqua potabile",
+  "Staben from the Stabnerwaal": "Staben dallo Stabnerwaal"
 });

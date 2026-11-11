@@ -15,5 +15,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Go on to the Col de Pavis (1,944 m).": "Prosegui fino al Col de Pavis (1.944 m).",
   "Then on to the Lac de Darbon (1,813 m), a good place for a picnic.": "Poi prosegui fino al Lac de Darbon (1.813 m), un buon posto per un picnic.",
   "Climb to your last col, the Col de Floray (1,940 m).": "Sali all'ultimo colle, il Col de Floray (1.940 m).",
-  "A steep descent brings you back to the Chalets de Bise.": "Una ripida discesa ti riporta ai Chalets de Bise."
+  "A steep descent brings you back to the Chalets de Bise.": "Una ripida discesa ti riporta ai Chalets de Bise.",
+  "Drinking water": "Acqua potabile",
+  "View from the Col de Bise towards the Valais Alps": "Vista dal Col de Bise verso le Alpi del Vallese"
 });

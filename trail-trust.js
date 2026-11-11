@@ -175,17 +175,20 @@
   // not reviewed printed "Suggested start, Start here: parking du lac" on seven
   // pages. The cleanup also runs on the reviewed-but-unresearched branch now;
   // before, "(OSM-verified access point)" reached the page whole.
+  // The label is translated first (trailWords), so the Italian forms of the
+  // importer's prefix and tag are trimmed too.
   const plainStartLabel = label => String(label || 'route start')
     .replace(/^Start here\s*[,.:;—–-]*\s*/i, '')
-    .replace(/^Route start per OpenStreetMap\s*[,.:;—–-]*\s*/i, '')
-    .replace(/\s*\(OSM-verified access point\)/gi, '')
+    .replace(/^(?:Parti da qui|Partenza qui)\s*[,.:;—–-]*\s*/i, '')
+    .replace(/^(?:Route start per OpenStreetMap|Partenza del percorso secondo OpenStreetMap)\s*[,.:;—–-]*\s*/i, '')
+    .replace(/\s*\((?:OSM-verified access point|punto di accesso verificato su OSM)\)/gi, '')
     .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
 
   // A reviewed point keeps its own name but loses the importer's tag. "(OSM-
   // verified location)" printed on 46 live pages, eight of them trails without
   // the seal, and a reader takes "verified" next to ORMA's name as ORMA's.
   const withoutOsmTag = label => String(label || '')
-    .replace(/\s*\(OSM-verified[^)]*\)/gi, '')
+    .replace(/\s*\((?:OSM-verified|punto di accesso verificato su OSM)[^)]*\)/gi, '')
     .replace(/OSM-verified/gi, 'mapped in OpenStreetMap')
     .trim();
 
@@ -193,8 +196,10 @@
     const base = String(label || tx('Water point'))
       .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
       .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
-    if (!categoryVerified(trail, 'water')) return tx('{label}, availability can change', { label: base });
-    return imported(trail) ? base : withoutOsmTag(label);
+    // A fixed name is the phrase table's; any other is the trail's own words.
+    const shown = /^Water point(?: mapped in OpenStreetMap)?$/.test(base) ? tx(base) : trailWords(base);
+    if (!categoryVerified(trail, 'water')) return tx('{label}, availability can change', { label: shown });
+    return imported(trail) ? shown : trailWords(withoutOsmTag(label));
   }
 
   // Several real fountains in one village square are separate OSM nodes, but

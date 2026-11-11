@@ -17,5 +17,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Leave the park by the little bridge to Viale Sartori and carry straight on along Via Monte Grappa to the Parco Vallombrosa.": "Esci dal parco dal ponticello verso Viale Sartori e prosegui dritto lungo Via Monte Grappa fino al Parco Vallombrosa.",
   "Carry on left along Via San Francesco and Via Giuseppe Terrabugio to the main road (SS50). Climb the Rivetta Enrico Koch and go on to the right of the church, across Piazza Val d’Aosta to Via San Rocco.": "Prosegui a sinistra lungo Via San Francesco e Via Giuseppe Terrabugio fino alla strada principale (SS50). Sali la Rivetta Enrico Koch e prosegui a destra della chiesa, attraverso Piazza Val d’Aosta fino a Via San Rocco.",
   "Stay on Via San Rocco for 300 m, then turn left into Via degli Orti.": "Resta su Via San Rocco per 300 m, poi gira a sinistra in Via degli Orti.",
-  "Go back down the Rivetta Enrico Koch and follow the main road past the Bar Sport back to the bus station.": "Ridiscendi la Rivetta Enrico Koch e segui la strada principale oltre il Bar Sport fino all'autostazione."
+  "Go back down the Rivetta Enrico Koch and follow the main road past the Bar Sport back to the bus station.": "Ridiscendi la Rivetta Enrico Koch e segui la strada principale oltre il Bar Sport fino all'autostazione.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The centre of Fiera di Primiero": "Il centro di Fiera di Primiero"
 });

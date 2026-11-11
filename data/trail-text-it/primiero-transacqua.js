@@ -17,5 +17,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Turn right up a narrow lane to the Hotel Belvedere. Carry on along Via Venezia for 100 m, then turn right towards the Hotel Castelpietra.": "Gira a destra su per un vicolo stretto fino all'Hotel Belvedere. Prosegui lungo Via Venezia per 100 m, poi gira a destra verso l'Hotel Castelpietra.",
   "Follow the alley to the fork, turn right and carry on along the tarred path that passes below the church of San Marco.": "Segui il vicolo fino al bivio, gira a destra e prosegui sul sentiero asfaltato che passa sotto la chiesa di San Marco.",
   "Go gently down Via Scalette to the roundabout in Piazza San Marco, turn left and stay on Via Fossi for 400 m.": "Scendi dolcemente per Via Scalette fino alla rotatoria di Piazza San Marco, gira a sinistra e resta su Via Fossi per 400 m.",
-  "At Via delle Fonti turn right to the wooden bridge, and back to the bus station.": "In Via delle Fonti gira a destra fino al ponte di legno e torna alla stazione delle autocorriere."
+  "At Via delle Fonti turn right to the wooden bridge, and back to the bus station.": "In Via delle Fonti gira a destra fino al ponte di legno e torna alla stazione delle autocorriere.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The avenue in Fiera di Primiero": "Il viale di Fiera di Primiero"
 });

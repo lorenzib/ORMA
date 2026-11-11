@@ -16,5 +16,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the heating plant in Sexten, follow the forest path 12B, climbing steadily through the Gsell valley. It is steep in places but easy to walk, through shaded forest, up to the top of the Außergsell.": "Dalla centrale di teleriscaldamento di Sexten segui il sentiero nel bosco 12B, in salita costante attraverso la valle del Gsell. È ripido in alcuni tratti ma facile da percorrere, nel bosco ombreggiato, fino in cima all'Außergsell.",
   "Carry on along a gentler ridge on path 12 to the Innergsell meadows.": "Prosegui lungo una cresta più dolce sul sentiero 12 fino ai prati dell'Innergsell.",
   "Go down on path 12 into the Fischleintal.": "Scendi sul sentiero 12 nella Fischleintal.",
-  "There, take the Sexten circular path, path 1, back to the heating plant. There are no staffed huts on the way.": "Lì prendi il sentiero circolare di Sexten, sentiero 1, fino alla centrale di teleriscaldamento. Lungo il percorso non ci sono rifugi gestiti."
+  "There, take the Sexten circular path, path 1, back to the heating plant. There are no staffed huts on the way.": "Lì prendi il sentiero circolare di Sexten, sentiero 1, fino alla centrale di teleriscaldamento. Lungo il percorso non ci sono rifugi gestiti.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The Schmieden meadows below the Gsell slopes, in September": "I prati di Schmieden sotto i pendii di Gsell, a settembre"
 });

@@ -7,5 +7,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Electric fence at the summer pasture": "Recinzione elettrica al pascolo estivo",
   "Wide forest tracks (about three quarters) and paths, two short road stretches": "Ampie strade forestali (circa tre quarti) e sentieri, due brevi tratti su strada",
   "Les Karellis resort, by the Vinouve chairlift": "Stazione di Les Karellis, presso la seggiovia di Vinouve",
-  "A quiet forest lane bending through larches on the Crêt de la Parenche loop, with flowering verges under a clear sky": "Una tranquilla stradina forestale che curva tra i larici sull'anello del Crêt de la Parenche, con bordi fioriti sotto un cielo limpido"
+  "A quiet forest lane bending through larches on the Crêt de la Parenche loop, with flowering verges under a clear sky": "Una tranquilla stradina forestale che curva tra i larici sull'anello del Crêt de la Parenche, con bordi fioriti sotto un cielo limpido",
+  "Drinking water": "Acqua potabile",
+  "Forest lane on the Crêt de la Parenche loop": "Stradina nel bosco sull'anello del Crêt de la Parenche"
 });

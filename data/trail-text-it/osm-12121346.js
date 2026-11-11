@@ -8,5 +8,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Three small fords on seasonal streams; a rock edge beside the path by the Grenis chapel": "Tre piccoli guadi su ruscelli stagionali; un bordo roccioso accanto al sentiero vicino alla cappella di Grenis",
   "Partially mapped: unpaved (62%), paved (38%), from OSM surface data": "Mappatura parziale: non asfaltato (62%), asfalto (38%), dai dati sul fondo di OSM",
   "Montandré village, by the chapel and the old school (official start; park at the chapel)": "Paese di Montandré, vicino alla cappella e alla vecchia scuola (partenza ufficiale; parcheggia alla cappella)",
-  "A quiet lane and a gravel track fork beside yellow walking signposts among trees and meadows above Hermillon": "Una stradina tranquilla e una strada sterrata che si dividono accanto a cartelli escursionistici gialli tra alberi e prati sopra Hermillon"
+  "A quiet lane and a gravel track fork beside yellow walking signposts among trees and meadows above Hermillon": "Una stradina tranquilla e una strada sterrata che si dividono accanto a cartelli escursionistici gialli tra alberi e prati sopra Hermillon",
+  "Drinking water": "Acqua potabile",
+  "The waymarked fork near Grenis": "Il bivio segnalato vicino a Grenis"
 });

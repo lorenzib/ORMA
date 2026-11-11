@@ -19,5 +19,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Malga Stablasolo, then path SAT 106 up to Stablét": "Malga Stablasolo, poi il sentiero SAT 106 fino a Stablét",
   "Plan de le Scalace viewing terrace": "Il terrazzo panoramico del Plan de le Scalace",
   "Down the Saènt waterfalls path": "Giù lungo il sentiero delle Cascate di Saènt",
-  "Path beside the torrent to the Stablasolo footbridge and back to Còler": "Sentiero lungo il torrente fino alla passerella Stablasolo e ritorno al Còler"
+  "Path beside the torrent to the Stablasolo footbridge and back to Còler": "Sentiero lungo il torrente fino alla passerella Stablasolo e ritorno al Còler",
+  "Drinking water": "Acqua potabile",
+  "Cascata Val di Rabbi": "Cascata Val di Rabbi"
 });

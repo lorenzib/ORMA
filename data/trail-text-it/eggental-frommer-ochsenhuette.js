@@ -11,5 +11,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Partly shaded: about half runs through mapped forest; the meadows by the Malga Frommer Alm are open.": "In parte all'ombra: circa metà del percorso passa nel bosco cartografato; i prati vicino alla Malga Frommer Alm sono scoperti.",
   "Start at the Malga Frommer Alm by the top station of the Nova Levante (König Laurin) gondola, the board’s start; it is also reached by car on the Via Nigra.": "Parti dalla Malga Frommer Alm vicino alla stazione a monte della cabinovia di Nova Levante (König Laurin), la partenza della scheda ufficiale; ci si arriva anche in auto lungo la Via Nigra.",
   "Follow path 1A, which runs above the Via Nigra and leads gently to the Baita Ochsenhütte. Come back the same way.": "Segui il sentiero 1A, che corre sopra la Via Nigra e porta dolcemente alla Baita Ochsenhütte. Torna per la stessa strada.",
-  "Path 1A the whole way from the Malga Frommer Alm to the Baita Ochsenhütte; return the same way.": "Sentiero 1A per tutto il tratto dalla Malga Frommer Alm alla Baita Ochsenhütte; ritorno per la stessa strada."
+  "Path 1A the whole way from the Malga Frommer Alm to the Baita Ochsenhütte; return the same way.": "Sentiero 1A per tutto il tratto dalla Malga Frommer Alm alla Baita Ochsenhütte; ritorno per la stessa strada.",
+  "Drinking water": "Acqua potabile",
+  "The Malga Frommer Alm at the start": "La Malga Frommer Alm alla partenza"
 });

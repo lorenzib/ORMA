@@ -15,5 +15,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "At the level meadow, the marked path on the right.": "Sul prato pianeggiante, il sentiero segnato a destra.",
   "From the Rifugio Vederna, take the forest road signed “Croce degli Alpini”. It climbs gently to the meadows near Cima Vederna, on the left of the clearing.": "Dal Rifugio Vederna prendi la strada forestale segnalata “Croce degli Alpini”. Sale dolcemente fino ai prati vicino a Cima Vederna, sul lato sinistro della radura.",
   "On the level meadow, follow the easy marked path on the right to the huge metal cross above the Primiero valley: the Croce degli Alpini.": "Sul prato pianeggiante segui il facile sentiero segnato a destra fino alla grande croce di metallo sopra la valle del Primiero: la Croce degli Alpini.",
-  "Come back the same way.": "Ritorna per la stessa via."
+  "Come back the same way.": "Ritorna per la stessa via.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "The huts of Vederna": "Le baite di Vederna"
 });

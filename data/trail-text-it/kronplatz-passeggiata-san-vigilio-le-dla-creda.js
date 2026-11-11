@@ -16,5 +16,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the main square of San Vigilio, towards Valiares, follow the “Tres La Val” path to the small Ciamaor beach.": "Dalla piazza principale di San Vigilio, verso Valiares, segui il sentiero “Tres La Val” fino alla piccola spiaggia di Ciamaor.",
   "After the Ciamaor beach keep following the “Tres La Val” signs along the right-hand side of the Rü de Rudo stream to the small bridge.": "Dopo la spiaggia di Ciamaor continua a seguire i cartelli “Tres La Val” lungo il lato destro del torrente Rü de Rudo fino al ponticello.",
   "From the bridge it is about 10 minutes on foot to the lake, Lé dla Creda.": "Dal ponte sono circa 10 minuti a piedi fino al lago, Lé dla Creda.",
-  "The board’s way back to San Vigilio is partly on the tarred road and partly on the path to the right.": "Il ritorno a San Vigilio indicato dalla scheda ufficiale è in parte sulla strada asfaltata e in parte sul sentiero a destra."
+  "The board’s way back to San Vigilio is partly on the tarred road and partly on the path to the right.": "Il ritorno a San Vigilio indicato dalla scheda ufficiale è in parte sulla strada asfaltata e in parte sul sentiero a destra.",
+  "Drinking fountain": "Fontanella",
+  "Springs (40 Quellen – Les Fontanes)": "Sorgenti (40 Quellen – Les Fontanes)",
+  "The path up the Rudo valley": "Il sentiero lungo la valle di Rudo"
 });

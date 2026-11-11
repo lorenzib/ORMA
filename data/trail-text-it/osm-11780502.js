@@ -9,5 +9,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Zans car park (paid) by Treffpunkt Zans, bus stop Zanser Alm": "Parcheggio di Zans (a pagamento) presso il Treffpunkt Zans, fermata dell'autobus Zanser Alm",
   "The wooden Zanser Alm hut by the start of the trail, with spruce forest and the jagged Geisler peaks behind, in early summer.": "La baita in legno della Zanser Alm all'inizio del sentiero, con il bosco di abeti rossi e le cime frastagliate delle Geisler sullo sfondo, a inizio estate.",
   "About half the loop is in spruce forest; the Piuswiese meadows and the car-park end are open.": "Circa metà dell'anello è nel bosco di abeti rossi; i prati della Piuswiese e il tratto verso il parcheggio sono aperti.",
-  "From the car park follow path 6 towards the Zanser Schwaige, then the “Naturerlebnisweg Zans / Sentiero natura Zannes” signs all the way round; the loop has no number of its own.": "Dal parcheggio segui il sentiero 6 verso la Zanser Schwaige, poi i cartelli “Naturerlebnisweg Zans / Sentiero natura Zannes” per tutto il giro; l'anello non ha un numero proprio."
+  "From the car park follow path 6 towards the Zanser Schwaige, then the “Naturerlebnisweg Zans / Sentiero natura Zannes” signs all the way round; the loop has no number of its own.": "Dal parcheggio segui il sentiero 6 verso la Zanser Schwaige, poi i cartelli “Naturerlebnisweg Zans / Sentiero natura Zannes” per tutto il giro; l'anello non ha un numero proprio.",
+  "Fountain near the picnic area": "Fontana vicino all'area picnic",
+  "Nature-park fountain on the trail": "Fontana del parco naturale lungo il sentiero",
+  "AVS hut fountain": "Fontana del rifugio AVS",
+  "Hütte Zanseralm, Geislerspitzen": "Baita Zanseralm, Geislerspitzen"
 });

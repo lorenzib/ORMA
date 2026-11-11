@@ -15,5 +15,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "This path goes round the lake on its balcony, above the water, past a viewpoint.": "Questo sentiero gira intorno al lago in balconata, sopra l'acqua, passando da un punto panoramico.",
   "Carry on down to the lake restaurant, below you, about 1.8 km from the start. There is a water tap beside the lake information board.": "Continua in discesa fino al ristorante sul lago, sotto di te, a circa 1,8 km dalla partenza. C'è un rubinetto d'acqua accanto al pannello informativo del lago.",
   "The ORMA line also takes the lakeside path round the water's edge, partly on boardwalks, and comes back to the restaurant. Dogs may not go into the lake.": "Il tracciato ORMA segue anche il sentiero lungo la riva, in parte su passerelle, e torna al ristorante. I cani non possono entrare nel lago.",
-  "To go back, walk up the road to where you crossed it, then take the path you came down by, back to the start.": "Per tornare, risali la strada fino al punto in cui l'hai attraversata, poi prendi il sentiero da cui sei sceso e torna alla partenza."
+  "To go back, walk up the road to where you crossed it, then take the path you came down by, back to the start.": "Per tornare, risali la strada fino al punto in cui l'hai attraversata, poi prendi il sentiero da cui sei sceso e torna alla partenza.",
+  "Drinking water": "Acqua potabile",
+  "Aire naturelle de camping de Passy Plaine-Joux": "Aire naturelle de camping de Passy Plaine-Joux",
+  "Mangatome, CC BY-SA 3.0, via Wikimedia Commons (edited)": "Mangatome, CC BY-SA 3.0, via Wikimedia Commons (edited)"
 });

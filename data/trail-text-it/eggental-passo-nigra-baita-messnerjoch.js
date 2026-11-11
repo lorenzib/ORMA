@@ -11,5 +11,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mostly shaded: about seven tenths runs through mapped forest; the meadow at the hut is open.": "Per lo più all'ombra: circa sette decimi del percorso passano nel bosco cartografato; il prato della baita è scoperto.",
   "Start at the Passo Nigra (1,688 m) on the road between Nova Levante and Tires, the board’s start.": "Parti dal Passo Nigra (1.688 m) sulla strada tra Nova Levante e Tires, la partenza della scheda ufficiale.",
   "Follow forest road 1, which climbs steadily through the forest straight to the Baita Messnerjoch at 1,930 m. Come back down the same way.": "Segui la strada forestale 1, che sale costante nel bosco dritta fino alla Baita Messnerjoch a 1.930 m. Scendi per la stessa strada.",
-  "Forest road 1 the whole way from the Passo Nigra to the Baita Messnerjoch; return the same way.": "Strada forestale 1 per tutto il tratto dal Passo Nigra alla Baita Messnerjoch; ritorno per la stessa strada."
+  "Forest road 1 the whole way from the Passo Nigra to the Baita Messnerjoch; return the same way.": "Strada forestale 1 per tutto il tratto dal Passo Nigra alla Baita Messnerjoch; ritorno per la stessa strada.",
+  "The Catinaccio from the Passo Nigra": "Il Catinaccio dal Passo Nigra"
 });

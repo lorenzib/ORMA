@@ -11,5 +11,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mostly open: about an eighth runs through mapped woodland; the slope up to the lake is in full sun.": "Per lo più aperto: circa un ottavo corre nel bosco segnato sulla mappa; il pendio fino al lago è in pieno sole.",
   "Start at the tourist office in Burgeis, the board’s start.": "Parti dall'ufficio turistico di Burgeis, la partenza indicata dalla scheda ufficiale.",
   "Follow sign 3 up to the small lake above the village, with a view over the whole valley. From the other side of the lake, path 4 leads back down to the village and the start.": "Segui il cartello 3 in salita fino al laghetto sopra il paese, con vista su tutta la valle. Dall'altro lato del lago, il sentiero 4 riporta giù al paese e alla partenza.",
-  "One change: at the lake leave path 3 for path 4 on the far side.": "Un solo cambio: al lago lascia il sentiero 3 per il sentiero 4 sul lato opposto."
+  "One change: at the lake leave path 3 for path 4 on the far side.": "Un solo cambio: al lago lascia il sentiero 3 per il sentiero 4 sul lato opposto.",
+  "Drinking water": "Acqua potabile",
+  "Burgeis and Marienberg Abbey": "Burgeis e l'abbazia di Marienberg"
 });

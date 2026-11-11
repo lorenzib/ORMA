@@ -16,5 +16,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the centre of San Martino di Castrozza, head for Scacciapensieri, past the sports hall (Palazzetto dello Sport) and the Plank pond.": "Dal centro di San Martino di Castrozza dirigiti verso Scacciapensieri, oltre il palazzetto dello sport (Palazzetto dello Sport) e lo stagno di Plank.",
   "From Scacciapensieri, follow the signs for Malga Valcigolera along the forest road that climbs through the woods of the valley.": "Da Scacciapensieri segui i cartelli per Malga Valcigolera lungo la strada forestale che sale nei boschi della valle.",
   "After the first stretch you can stay on the forest road to the malga, or turn off onto the path, which is a little steeper and saves about 10 minutes. At the malga there is a view of the Pale di San Martino.": "Dopo il primo tratto puoi restare sulla strada forestale fino alla malga oppure prendere il sentiero, un po' più ripido, che fa risparmiare circa 10 minuti. Dalla malga c'è vista sulle Pale di San Martino.",
-  "Come back the same way.": "Ritorna per la stessa via."
+  "Come back the same way.": "Ritorna per la stessa via.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "San Martino di Castrozza and the Pale": "San Martino di Castrozza e le Pale"
 });

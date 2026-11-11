@@ -13,5 +13,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "A dirt path runs along the lake and meets the road after a few minutes.": "Un sentiero in terra costeggia il lago e dopo qualche minuto raggiunge la strada.",
   "Turn left and follow the road for 100 m, then keep left at the junction. You walk along the lake for about 10 minutes on a tarred lane.": "Gira a sinistra e segui la strada per 100 m, poi tieni la sinistra al bivio. Cammini lungo il lago per circa 10 minuti su una stradina asfaltata.",
   "Pass the lake inn on your right, then the town hall, and head into the village.": "Passa accanto alla locanda del lago, alla tua destra, poi al municipio, e prosegui verso il paese.",
-  "Turn left past the cemetery. A few more minutes on the road bring you back to the start. Watch for cars on this stretch.": "Gira a sinistra passando accanto al cimitero. Ancora qualche minuto sulla strada e torni alla partenza. In questo tratto fai attenzione alle auto."
+  "Turn left past the cemetery. A few more minutes on the road bring you back to the start. Watch for cars on this stretch.": "Gira a sinistra passando accanto al cimitero. Ancora qualche minuto sulla strada e torni alla partenza. In questo tratto fai attenzione alle auto.",
+  "Drinking water": "Acqua potabile",
+  "Lac de la Thuile and the village": "Il Lac de la Thuile e il villaggio"
 });

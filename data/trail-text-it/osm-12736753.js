@@ -11,5 +11,12 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Albeins, Kindergarten bus stop (parking and overview board in the village)": "Albeins, fermata dell'autobus Kindergarten (parcheggio e pannello informativo in paese)",
   "The parish church of Albeins with its pointed spire against a blue autumn sky, at the start of the loop.": "La parrocchiale di Albeins con il suo campanile a punta contro un cielo azzurro d'autunno, alla partenza dell'anello.",
   "The climb from Albeins to Klerant runs through mixed and pine forest, and the return along the Eisack dam is largely tree-lined; Klerant’s meadows and Milland’s streets are open.": "La salita da Albeins a Klerant attraversa boschi misti e di pini, e il ritorno lungo l'argine dell'Eisack è in gran parte alberato; i prati di Klerant e le strade di Milland sono aperti.",
-  "From Albeins follow path 12 up through the Pfeffersberg woods to Prasod and Klerant, then 8 north, joining 7 down into Milland; cross Milland on village streets (Kirchsteig, Vintlerweg, Sarnser Straße, Wolkensteinstraße) to the Eisack, then follow 9 south along the left Eisack dam back to Albeins.": "Da Albeins segui il sentiero 12 su attraverso i boschi del Pfeffersberg fino a Prasod e Klerant, poi l'8 verso nord, immettendoti nel 7 giù fino a Milland; attraversa Milland per le strade del paese (Kirchsteig, Vintlerweg, Sarnser Straße, Wolkensteinstraße) fino all'Eisack, poi segui il 9 verso sud lungo l'argine sinistro dell'Eisack per tornare ad Albeins."
+  "From Albeins follow path 12 up through the Pfeffersberg woods to Prasod and Klerant, then 8 north, joining 7 down into Milland; cross Milland on village streets (Kirchsteig, Vintlerweg, Sarnser Straße, Wolkensteinstraße) to the Eisack, then follow 9 south along the left Eisack dam back to Albeins.": "Da Albeins segui il sentiero 12 su attraverso i boschi del Pfeffersberg fino a Prasod e Klerant, poi l'8 verso nord, immettendoti nel 7 giù fino a Milland; attraversa Milland per le strade del paese (Kirchsteig, Vintlerweg, Sarnser Straße, Wolkensteinstraße) fino all'Eisack, poi segui il 9 verso sud lungo l'argine sinistro dell'Eisack per tornare ad Albeins.",
+  "Albeins fountain (Refill Südtirol)": "Fontana di Albeins (Refill Südtirol)",
+  "Albeins drinking water": "Acqua potabile di Albeins",
+  "Klerant village fountain": "Fontana del paese di Klerant",
+  "Milland parish fountain": "Fontana della parrocchia di Milland",
+  "Wolkensteinstraße playground fountain": "Fontana del parco giochi della Wolkensteinstraße",
+  "Stadtwerke Brixen water tap by the Eisack dam": "Rubinetto dell'acqua delle Stadtwerke Brixen vicino alla diga dell'Eisack",
+  "Pfarrkirche Albeins": "La chiesa parrocchiale di Albeins"
 });

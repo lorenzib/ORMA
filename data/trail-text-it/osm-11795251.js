@@ -9,5 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "No official start is published; ORMA suggests starting at the mapped route start near Obervintl (46.81674, 11.72302). Check parking locally.": "Non è indicata una partenza ufficiale; ORMA suggerisce di partire dall'inizio del percorso mappato vicino a Obervintl (46.81674, 11.72302). Verifica il parcheggio sul posto.",
   "Follow route 1 all the way round through Niedervintl, Obervintl, Dörfl and Priel.": "Segui il percorso 1 per tutto il giro attraverso Niedervintl, Obervintl, Dörfl e Priel.",
   "None: other routes share sections, but route 1 is followed throughout.": "Nessuno: altri percorsi condividono alcuni tratti, ma si segue sempre il percorso 1.",
-  "Signed as route 1, Dörferrundweg, in the province of Bolzano hiking-trail register.": "Segnalato come percorso 1, Dörferrundweg, nel catasto dei sentieri della provincia di Bolzano."
+  "Signed as route 1, Dörferrundweg, in the province of Bolzano hiking-trail register.": "Segnalato come percorso 1, Dörferrundweg, nel catasto dei sentieri della provincia di Bolzano.",
+  "Drinking water": "Acqua potabile",
+  "The Obervintl waterfall": "La cascata di Obervintl"
 });

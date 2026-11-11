@@ -10,5 +10,11 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Natz village centre, bus stop Natz Kirche (official start)": "Centro di Natz, fermata dell'autobus Natz Kirche (partenza ufficiale)",
   "The Laugen pond near Natz in autumn, reeds and golden trees on the far bank and the Plose reflected in still water.": "Lo stagno del Laugen vicino a Natz in autunno, canneti e alberi dorati sulla riva opposta e la Plose riflessa nell'acqua immobile.",
   "About a third is woodland, between Viums and Schabs and between Raas and Flötsch; the rest is open orchards and meadows on the plateau at 810–900 m.": "Circa un terzo è nel bosco, tra Viums e Schabs e tra Raas e Flötsch; il resto sono frutteti e prati aperti sull'altopiano a 810–900 m.",
-  "No number: follow the “Dörferrunde” signs from Natz via the Waldertor viewpoint and Viums to Schabs, past the Flötscher Weiher and Raas, and back by the Laugen sports ground.": "Senza numero: segui i cartelli “Dörferrunde” da Natz passando per il belvedere Waldertor e Viums fino a Schabs, oltre il Flötscher Weiher e Raas, e ritorno passando dal campo sportivo di Laugen."
+  "No number: follow the “Dörferrunde” signs from Natz via the Waldertor viewpoint and Viums to Schabs, past the Flötscher Weiher and Raas, and back by the Laugen sports ground.": "Senza numero: segui i cartelli “Dörferrunde” da Natz passando per il belvedere Waldertor e Viums fino a Schabs, oltre il Flötscher Weiher e Raas, e ritorno passando dal campo sportivo di Laugen.",
+  "Drinking-water tap by Natz church": "Rubinetto di acqua potabile vicino alla chiesa di Natz",
+  "Village fountain in Natz": "Fontana del paese di Natz",
+  "Drinking water near Viums": "Acqua potabile vicino a Viums",
+  "Drinking water near Plattnerhof, Viums": "Acqua potabile vicino al Plattnerhof, Viums",
+  "Drinking water in Schabs, 120 m off the route": "Acqua potabile a Schabs, a 120 m dal percorso",
+  "Laugen Natz-Schabs": "Laugen Natz-Schabs"
 });

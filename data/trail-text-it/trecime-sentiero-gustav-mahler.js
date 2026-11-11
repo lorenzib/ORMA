@@ -14,5 +14,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Path 27 out, path 27A (the paved cycle path) back.": "Andata sul sentiero 27, ritorno sul sentiero 27A (la pista ciclabile asfaltata).",
   "From the former Grand Hotel in Neu-Toblach, follow path 27 to the Rienz area.": "Dall'ex Grand Hotel di Neu-Toblach, segui il sentiero 27 fino alla zona della Rienz.",
   "Path 27 climbs beside the first part of the ski lift, then runs level through the forest to Altschluderbach, where Mahler’s summer house and composing hut stand (seen from outside only).": "Il sentiero 27 sale accanto al primo tratto dello skilift, poi prosegue in piano attraverso il bosco fino ad Altschluderbach, dove si trovano la casa estiva di Mahler e la casetta dove componeva (visibili solo dall'esterno).",
-  "Come back on path 27A, which is also the paved cycle path, to the start.": "Torna sul sentiero 27A, che è anche la pista ciclabile asfaltata, fino alla partenza."
+  "Come back on path 27A, which is also the paved cycle path, to the start.": "Torna sul sentiero 27A, che è anche la pista ciclabile asfaltata, fino alla partenza.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The former Grand Hotel at Neu-Toblach, where the loop starts, in July": "L'ex Grand Hotel a Neu-Toblach, dove inizia l'anello, a luglio"
 });

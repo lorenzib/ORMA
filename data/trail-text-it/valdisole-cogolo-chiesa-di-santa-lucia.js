@@ -17,5 +17,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "SP87 pavement towards Celledizzo for 50 m, then right to Le Plaze": "Marciapiede della SP87 verso Celledizzo per 50 m, poi a destra verso le Plaze",
   "Right on the woodland path up to the Santa Lucia church (1,300 m)": "A destra sul sentiero nel bosco fino alla chiesa di Santa Lucia (1.300 m)",
   "Down to the wayside shrine, left over the meadows": "Giù fino al capitello, a sinistra per i prati",
-  "Left on the country lane back to Le Plaze and Cogolo": "A sinistra sulla stradina di campagna di ritorno alle Plaze e a Cogolo"
+  "Left on the country lane back to Le Plaze and Cogolo": "A sinistra sulla stradina di campagna di ritorno alle Plaze e a Cogolo",
+  "Drinking water": "Acqua potabile",
+  "The church of Santa Lucia above Comasine, the walk’s goal": "La chiesa di Santa Lucia sopra Comasine, la meta della passeggiata"
 });

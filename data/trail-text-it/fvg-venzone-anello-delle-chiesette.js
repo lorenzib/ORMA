@@ -9,5 +9,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Town streets, a stony path and meadow tracks": "Vie del paese, un sentiero sassoso e carrarecce nei prati",
   "Historic centre of Venzone, the board’s start": "Centro storico di Venzone, partenza indicata dalla scheda ufficiale",
   "A long low stone church with an arched porch and a square bell tower on green grass, wooded mountains under grey clouds behind": "Una lunga e bassa chiesa in pietra con un portico ad arco e un campanile quadrato sull'erba verde, montagne boscose sotto nuvole grigie sullo sfondo",
-  "About half shaded: the path along the slope runs under hazels and broadleaf trees; the meadows round the churches and the town are open.": "Circa metà all'ombra: il sentiero a mezza costa passa sotto noccioli e latifoglie; i prati intorno alle chiese e il paese sono aperti."
+  "About half shaded: the path along the slope runs under hazels and broadleaf trees; the meadows round the churches and the town are open.": "Circa metà all'ombra: il sentiero a mezza costa passa sotto noccioli e latifoglie; i prati intorno alle chiese e il paese sono aperti.",
+  "A small church in the meadows outside Venzone": "Una chiesetta nei prati fuori Venzone"
 });

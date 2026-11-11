@@ -7,5 +7,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "About 1.9 km on minor roads and farm lanes with cars": "Circa 1,9 km su strade secondarie e stradine di campagna con auto",
   "Meadow paths, forest tracks and roads: about 3.1 km of path, 2.3 km of track and 2.4 km of asphalt": "Sentieri tra i prati, strade forestali e strade: circa 3,1 km di sentiero, 2,3 km di strada sterrata e 2,4 km di asfalto",
   "Gasthof Alpenrose and the Walten bus stop, Innerwalten (official start)": "Gasthof Alpenrose e fermata dell'autobus Walten, Innerwalten (partenza ufficiale)",
-  "Spruce forest and steep meadows with farmsteads above Walten, looking down the Passeier valley to snow-capped peaks": "Bosco di abeti rossi e prati ripidi con masi sopra Walten, con vista lungo la Val Passiria verso cime innevate"
+  "Spruce forest and steep meadows with farmsteads above Walten, looking down the Passeier valley to snow-capped peaks": "Bosco di abeti rossi e prati ripidi con masi sopra Walten, con vista lungo la Val Passiria verso cime innevate",
+  "Drinking water": "Acqua potabile",
+  "Walten, looking down the Passeier valley": "Walten, guardando giù lungo la Val Passiria"
 });

@@ -17,5 +17,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "The road runs above Pozza, then loses height across the meadows near the first houses of Pera (Strada de la Taboca).": "La strada corre sopra Pozza, poi perde quota attraverso i prati vicino alle prime case di Pera (Strada de la Taboca).",
   "Once at the main road, walk towards the centre of Pozza along the pavement, or on the walk across the Ciancoal meadows. From the Media roundabout, follow Strada di Bagnes, past the QC Terme spa.": "Arrivato alla strada principale, cammina verso il centro di Pozza lungo il marciapiede, oppure sulla passeggiata attraverso i prati di Ciancoal. Dalla rotatoria di Media segui Strada di Bagnes, oltre le terme QC Terme.",
   "Past the water treatment works, cross the footbridge over the Avisio and walk up Strada de Pala Verda.": "Oltre il depuratore, attraversa la passerella sull'Avisio e sali per Strada de Pala Verda.",
-  "Cross the main road and follow the lane along the wall of the parish church of San Giovanni, then Strada Antersief, Strada Roma and Strada Rezia back to the centre.": "Attraversa la strada principale e segui la stradina lungo il muro della chiesa parrocchiale di San Giovanni, poi Strada Antersief, Strada Roma e Strada Rezia fino al centro."
+  "Cross the main road and follow the lane along the wall of the parish church of San Giovanni, then Strada Antersief, Strada Roma and Strada Rezia back to the centre.": "Attraversa la strada principale e segui la stradina lungo il muro della chiesa parrocchiale di San Giovanni, poi Strada Antersief, Strada Roma e Strada Rezia fino al centro.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "Pozza and its meadows": "Pozza e i suoi prati"
 });

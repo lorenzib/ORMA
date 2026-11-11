@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start in the hamlet of Brach, the board’s start.": "Parti dalla frazione di Brach, la partenza indicata dalla scheda ufficiale.",
   "From Brach along the quiet tarred road to the village of Pieve di Marebbe.": "Da Brach lungo la strada asfaltata tranquilla fino al paese di Pieve di Marebbe.",
   "None: the walk stays on the one road.": "Nessuno: la passeggiata resta sempre sulla stessa strada.",
-  "From the small hamlet of Brach follow the quiet tarred road to the village of Pieve di Marebbe (La Pli de Mareo).": "Dalla piccola frazione di Brach segui la strada asfaltata tranquilla fino al paese di Pieve di Marebbe (La Pli de Mareo)."
+  "From the small hamlet of Brach follow the quiet tarred road to the village of Pieve di Marebbe (La Pli de Mareo).": "Dalla piccola frazione di Brach segui la strada asfaltata tranquilla fino al paese di Pieve di Marebbe (La Pli de Mareo).",
+  "Drinking water": "Acqua potabile",
+  "The Moregg house in Pieve di Marebbe": "La casa Moregg a Pieve di Marebbe"
 });

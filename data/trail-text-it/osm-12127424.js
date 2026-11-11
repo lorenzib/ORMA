@@ -5,5 +5,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "natural ground (85%), pebblestone (15%), from OSM surface data": "terreno naturale (85%), ciottoli (15%), dai dati sul fondo di OSM",
   "La Combe 1 car park, Saint-Jean-de-Maurienne": "Parcheggio La Combe 1, Saint-Jean-de-Maurienne",
-  "The Arvan valley in summer seen from the Croix-de-Fer road, with a tarn on alpine pasture and the Aiguilles d Arves on the skyline.": "La valle dell'Arvan d'estate vista dalla strada della Croix-de-Fer, con un laghetto sul pascolo alpino e le Aiguilles d Arves all'orizzonte."
+  "The Arvan valley in summer seen from the Croix-de-Fer road, with a tarn on alpine pasture and the Aiguilles d Arves on the skyline.": "La valle dell'Arvan d'estate vista dalla strada della Croix-de-Fer, con un laghetto sul pascolo alpino e le Aiguilles d Arves all'orizzonte.",
+  "Vallee de l Arvan": "Vallee de l Arvan"
 });

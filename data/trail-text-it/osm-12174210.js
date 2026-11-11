@@ -4,5 +4,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Sparsely mapped: paved (54%), fine gravel (23%), other surfaces (15%), from OSM surface data": "Mappatura scarsa: asfalto (54%), ghiaia fine (23%), altri fondi (15%), dai dati sul fondo di OSM",
   "Start here — Bus stop Stefansdorfer Straße, Sportzone - Via Santo Stefano, zona sportiva, 9 m from the route (OSM-verified access point)": "Parti da qui — Fermata dell'autobus Stefansdorfer Straße, Sportzone - Via Santo Stefano, zona sportiva, a 9 m dal percorso (punto di accesso verificato su OSM)",
-  "Mown meadow and a wooden hay barn on the Reischach terrace, with the Pustertal receding between wooded ridges": "Prato falciato e un fienile di legno sul terrazzo di Reischach, con la Pustertal che si allontana tra creste boscose"
+  "Mown meadow and a wooden hay barn on the Reischach terrace, with the Pustertal receding between wooded ridges": "Prato falciato e un fienile di legno sul terrazzo di Reischach, con la Pustertal che si allontana tra creste boscose",
+  "Drinking water": "Acqua potabile",
+  "Farmland above Reischach in the Pustertal": "Campi coltivati sopra Reischach in Pustertal"
 });

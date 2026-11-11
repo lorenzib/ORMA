@@ -16,5 +16,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the Rifugio Fonteghi, take the road that leaves on the right. After about ten minutes, turn right onto the forest road called “Valpiana Aie”, which climbs in hairpins to Malga Valpiana.": "Dal Rifugio Fonteghi prendi la strada che parte sulla destra. Dopo circa dieci minuti gira a destra sulla strada forestale chiamata “Valpiana Aie”, che sale a tornanti fino a Malga Valpiana.",
   "At the malga, take the gravel road down to the right and carry on to the Casina Forestale di Valpiana.": "Alla malga prendi la strada sterrata che scende a destra e prosegui fino alla Casina Forestale di Valpiana.",
   "There, turn right again onto the gravel road past the Casina. It runs level along the side of Monte Piadochìn, with the meadows of Valpiana di Sotto below.": "Lì gira di nuovo a destra sulla strada sterrata che passa accanto alla Casina. Corre in piano lungo il fianco del Monte Piadochìn, con i prati di Valpiana di Sotto più in basso.",
-  "The road winds through the meadows and huts of Valpiana di Sopra. Beyond them it becomes a path that goes down back to the Rifugio Fonteghi.": "La strada si snoda tra i prati e le baite di Valpiana di Sopra. Oltre diventa un sentiero che scende di nuovo al Rifugio Fonteghi."
+  "The road winds through the meadows and huts of Valpiana di Sopra. Beyond them it becomes a path that goes down back to the Rifugio Fonteghi.": "La strada si snoda tra i prati e le baite di Valpiana di Sopra. Oltre diventa un sentiero che scende di nuovo al Rifugio Fonteghi.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The signpost at the Rifugio Fonteghi": "Il cartello al Rifugio Fonteghi"
 });

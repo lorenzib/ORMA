@@ -6,5 +6,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "About 230 m of lane at the car park": "Circa 230 m di stradina al parcheggio",
   "Grassy alpage tracks and forest paths, a short lane at the start": "Sterrate erbose d'alpeggio e sentieri nel bosco, una breve stradina alla partenza",
   "Très-le-Mont car park at the end of the road, Lullin (official summer start)": "Parcheggio di Très-le-Mont alla fine della strada, Lullin (partenza ufficiale estiva)",
-  "A grass track crossing the green alpage of Très-le-Mont above Lullin, a wooded knoll on the right and the valley opening on the left": "Una traccia erbosa che attraversa il verde alpeggio di Très-le-Mont sopra Lullin, con un poggio boscoso a destra e la valle che si apre a sinistra"
+  "A grass track crossing the green alpage of Très-le-Mont above Lullin, a wooded knoll on the right and the valley opening on the left": "Una traccia erbosa che attraversa il verde alpeggio di Très-le-Mont sopra Lullin, con un poggio boscoso a destra e la valle che si apre a sinistra",
+  "Grass track across the Très-le-Mont alpage": "Sentiero erboso attraverso l'alpeggio di Très-le-Mont"
 });

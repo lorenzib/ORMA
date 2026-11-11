@@ -16,5 +16,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest road 17A to the Signaue gondola, then left onto path 17.": "Strada forestale 17A fino alla cabinovia Signaue, poi a sinistra sul sentiero 17.",
   "From Bad Moos, take the gondola up to the Rotwandwiesen (1,925 m).": "Da Bad Moos sali con la cabinovia fino ai Rotwandwiesen (1.925 m).",
   "Follow forest road 17A to the Signaue gondola.": "Segui la strada forestale 17A fino alla cabinovia Signaue.",
-  "Turn left onto path 17, into the forest, and walk down to the car park at the Rotwand valley station.": "Gira a sinistra sul sentiero 17, nel bosco, e scendi fino al parcheggio alla stazione a valle della Rotwand."
+  "Turn left onto path 17, into the forest, and walk down to the car park at the Rotwand valley station.": "Gira a sinistra sul sentiero 17, nel bosco, e scendi fino al parcheggio alla stazione a valle della Rotwand.",
+  "Drinking fountain": "Fontanella",
+  "An alpine hut on the Rotwandwiesen, near the start, in July": "Una baita alpina sulle Rotwandwiesen, vicino alla partenza, a luglio"
 });

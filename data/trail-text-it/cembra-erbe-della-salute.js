@@ -15,5 +15,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the car park by the Castelet services centre, walk towards the church and go up the cobbled lane.": "Dal parcheggio vicino al centro servizi Castelet, cammina verso la chiesa e sali per la stradina acciottolata.",
   "Following the signs for Capriana, take the first level track into the woods.": "Seguendo le indicazioni per Capriana, prendi la prima strada pianeggiante nel bosco.",
   "Carry on until you meet a path that goes down through the woods back towards Grauno.": "Prosegui finché incontri un sentiero che scende nel bosco di nuovo verso Grauno.",
-  "Continue along Via Orti to the roundabout at the bottom of the village, near the cemetery, and from there walk back up to the start.": "Continua lungo Via Orti fino alla rotatoria in fondo al paese, vicino al cimitero, e da lì risali fino alla partenza."
+  "Continue along Via Orti to the roundabout at the bottom of the village, near the cemetery, and from there walk back up to the start.": "Continua lungo Via Orti fino alla rotatoria in fondo al paese, vicino al cimitero, e da lì risali fino alla partenza.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "San Martino, Grauno": "San Martino, Grauno"
 });

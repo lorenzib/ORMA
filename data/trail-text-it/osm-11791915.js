@@ -10,5 +10,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Church of St. Nikolaus in Aicha (official start)": "Chiesa di St. Nikolaus ad Aicha (partenza ufficiale)",
   "The tall pointed spire and stone nave of St. Nikolaus church in Aicha beside the village road, wooded slopes behind": "L'alto campanile a punta e la navata in pietra della chiesa di St. Nikolaus ad Aicha accanto alla strada del paese, pendii boscosi sullo sfondo",
   "Over a third is wooded; the lanes through the village and the orchards are open and sunny.": "Più di un terzo è nel bosco; le stradine del paese e i frutteti sono aperti e soleggiati.",
-  "Start at the church of St. Nikolaus in Aicha and follow the Dorfrundweg symbol round the village, past orchards and old farms, and back to the church.": "Parti dalla chiesa di St. Nikolaus ad Aicha e segui il simbolo del Dorfrundweg intorno al paese, tra frutteti e vecchi masi, fino a tornare alla chiesa."
+  "Start at the church of St. Nikolaus in Aicha and follow the Dorfrundweg symbol round the village, past orchards and old farms, and back to the church.": "Parti dalla chiesa di St. Nikolaus ad Aicha e segui il simbolo del Dorfrundweg intorno al paese, tra frutteti e vecchi masi, fino a tornare alla chiesa.",
+  "Drinking fountain by the church": "Fontanella vicino alla chiesa",
+  "St. Nikolaus in Aicha": "St. Nikolaus ad Aicha"
 });

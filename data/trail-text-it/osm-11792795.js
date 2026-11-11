@@ -5,5 +5,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Surface not yet field-verified": "Fondo non ancora verificato sul campo",
   "Start here — Parking, 108 m from the route (OSM-verified access point)": "Parti da qui — Parcheggio, a 108 m dal percorso (punto di accesso verificato su OSM)",
-  "The villages of Natz and Raas among orchards and meadows on their plateau, with wooded slopes and the Luesen valley beyond.": "I paesi di Natz e Raas tra frutteti e prati sul loro altopiano, con pendii boscosi e la valle di Luson sullo sfondo."
+  "The villages of Natz and Raas among orchards and meadows on their plateau, with wooded slopes and the Luesen valley beyond.": "I paesi di Natz e Raas tra frutteti e prati sul loro altopiano, con pendii boscosi e la valle di Luson sullo sfondo.",
+  "Drinking water": "Acqua potabile",
+  "Natz and Raas seen from Spiluck": "Natz e Raas viste da Spiluck"
 });

@@ -18,5 +18,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Dirt road past the Capanna Cervino to the Baita Segantini": "Strada sterrata oltre la Capanna Cervino fino alla Baita Segantini",
   "Left after 100 m onto the “Trekking del Cristo pensante” path": "A sinistra dopo 100 m sul sentiero “Trekking del Cristo pensante”",
   "Mule track and path to the summit of Monte Castellazzo and the Cristo Pensante": "Mulattiera e sentiero fino in cima al Monte Castellazzo e al Cristo Pensante",
-  "Zigzag path down to the Capanna Cervino; dirt road back": "Sentiero a zig zag fino alla Capanna Cervino; ritorno sulla sterrata"
+  "Zigzag path down to the Capanna Cervino; dirt road back": "Sentiero a zig zag fino alla Capanna Cervino; ritorno sulla sterrata",
+  "The Pale di San Martino from the path on Monte Castellazzo": "Le Pale di San Martino dal sentiero sul Monte Castellazzo"
 });

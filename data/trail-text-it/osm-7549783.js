@@ -7,5 +7,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Small stream crossings": "Piccoli attraversamenti di ruscelli",
   "Surface not yet field-verified": "Fondo non ancora verificato sul campo",
   "Pianizole, first hairpin of the Strada del Genio, at the Tita Poa botanical trail board (official start)": "Pianizole, primo tornante della Strada del Genio, al pannello del sentiero botanico Tita Poa (partenza ufficiale)",
-  "The white Loreto chapel with its shingled roof beside a gravel path in the spruce forest above Lozzo di Cadore, with Dolomite peaks behind": "La bianca cappella di Loreto con il tetto in scandole accanto a un sentiero sterrato nel bosco di abeti rossi sopra Lozzo di Cadore, con cime dolomitiche alle spalle"
+  "The white Loreto chapel with its shingled roof beside a gravel path in the spruce forest above Lozzo di Cadore, with Dolomite peaks behind": "La bianca cappella di Loreto con il tetto in scandole accanto a un sentiero sterrato nel bosco di abeti rossi sopra Lozzo di Cadore, con cime dolomitiche alle spalle",
+  "Drinking water": "Acqua potabile",
+  "The Loreto chapel above Lozzo di Cadore": "La cappella di Loreto sopra Lozzo di Cadore"
 });

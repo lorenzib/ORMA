@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the gym car park, follow the circuit’s plates: a trail-shoe print, with an arrow for the direction.": "Dal parcheggio della palestra segui le targhette del circuito: l'impronta di una scarpa da trail, con una freccia che indica la direzione.",
   "Climb quickly into the forest above the town to a viewpoint over Mont Blanc, the Beaufortain, the Grand Arc, the Lauzière, Belledonne and the Chartreuse.": "Sali rapidamente nel bosco sopra il paese fino a un punto panoramico sul Monte Bianco, il Beaufortain, il Grand Arc, la Lauzière, il Belledonne e la Chartreuse.",
   "Go on to the Mont Benoît area.": "Prosegui fino alla zona del Mont Benoît.",
-  "Come back down by the Col du Taccon and the hamlet of La Noiriat.": "Ridiscendi per il Col du Taccon e la frazione di La Noiriat."
+  "Come back down by the Col du Taccon and the hamlet of La Noiriat.": "Ridiscendi per il Col du Taccon e la frazione di La Noiriat.",
+  "Drinking water": "Acqua potabile",
+  "The Combe de Savoie from above Saint-Pierre-d'Albigny": "La Combe de Savoie da sopra Saint-Pierre-d'Albigny"
 });

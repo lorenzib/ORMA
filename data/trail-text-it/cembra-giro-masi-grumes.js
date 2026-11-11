@@ -16,5 +16,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the village square, walk up beside the church to the SS 612 main road, near the Green Grill.": "Dalla piazza del paese, sali accanto alla chiesa fino alla strada statale SS 612, vicino al Green Grill.",
   "Cross the road and start climbing towards the Masi di Grumes, past the old chestnut grove.": "Attraversa la strada e inizia a salire verso i Masi di Grumes, oltre il vecchio castagneto.",
   "Carry on up to the Masi Alti, the upper farms.": "Prosegui in salita fino ai Masi Alti, i masi più in alto.",
-  "After Maso Giovanni, go down towards the Masi Bassi, the lower farms, and back to the start. The board says the walk is on quiet tarred roads.": "Dopo Maso Giovanni, scendi verso i Masi Bassi, i masi più in basso, e torna alla partenza. La scheda ufficiale dice che la camminata si svolge su tranquille strade asfaltate."
+  "After Maso Giovanni, go down towards the Masi Bassi, the lower farms, and back to the start. The board says the walk is on quiet tarred roads.": "Dopo Maso Giovanni, scendi verso i Masi Bassi, i masi più in basso, e torna alla partenza. La scheda ufficiale dice che la camminata si svolge su tranquille strade asfaltate.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The Masi di Grumes": "I Masi di Grumes"
 });

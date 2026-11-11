@@ -9,5 +9,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mont d'Arbois gondola base, Megève (official start)": "Stazione a valle della cabinovia del Mont d'Arbois, Megève (partenza ufficiale)",
   "The limestone summit of Pointe Percée above a green meadow slope with spruce and autumn-yellow trees on the Mont d'Arbois": "La cima calcarea della Pointe Percée sopra un verde pendio di prato con abeti rossi e alberi dal giallo autunnale sul Mont d'Arbois",
   "A closed cabin can lift you to the top station in summer; the route also climbs on foot.": "D'estate una cabinovia chiusa può portarti alla stazione a monte; il percorso sale anche a piedi.",
-  "Mont Joux summit (1,958 m): orientation table and the full panorama over Mont Blanc, the Aravis, the Val d'Arly and the Arve valley": "Cima del Mont Joux (1.958 m): tavola d'orientamento e panorama completo sul Monte Bianco, gli Aravis, la Val d'Arly e la valle dell'Arve"
+  "Mont Joux summit (1,958 m): orientation table and the full panorama over Mont Blanc, the Aravis, the Val d'Arly and the Arve valley": "Cima del Mont Joux (1.958 m): tavola d'orientamento e panorama completo sul Monte Bianco, gli Aravis, la Val d'Arly e la valle dell'Arve",
+  "Pointe Percée from the Mont d'Arbois": "La Pointe Percée dal Mont d'Arbois"
 });

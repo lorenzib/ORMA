@@ -5,5 +5,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "About 1.2 km on roads, including some 650 m of the resort access road": "Circa 1,2 km su strade, compresi circa 650 m della strada d'accesso alla stazione",
   "Sparsely mapped: paved (50%), grass (50%), compacted gravel (0%), from OSM surface data": "Mappatura scarsa: asfalto (50%), erba (50%), ghiaia compatta (0%), da dati OSM sul fondo",
   "Les Karellis resort, by the Vinouve chairlift (official start)": "Stazione di Les Karellis, presso la seggiovia di Vinouve (partenza ufficiale)",
-  "Two walkers on the mountain lane below the Croix de Pralognan, a flowery meadow bank on the right and larch and spruce above": "Due escursionisti sulla stradina di montagna sotto la Croix de Pralognan, con un pendio di prato fiorito a destra e larici e abeti rossi più in alto"
+  "Two walkers on the mountain lane below the Croix de Pralognan, a flowery meadow bank on the right and larch and spruce above": "Due escursionisti sulla stradina di montagna sotto la Croix de Pralognan, con un pendio di prato fiorito a destra e larici e abeti rossi più in alto",
+  "Drinking water": "Acqua potabile",
+  "Walkers on the lane below the Croix de Pralognan": "Escursionisti sulla stradina sotto la Croix de Pralognan"
 });

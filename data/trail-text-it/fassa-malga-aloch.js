@@ -16,5 +16,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From Piaza de Comun, walk up the road on the pavement towards the ski lifts.": "Da Piaza de Comun, sali lungo la strada sul marciapiede verso gli impianti di risalita.",
   "Where Strada de Meida meets Strada de Freina, by the Florart florist, turn right and walk through the Freina quarter, among houses and old hay barns. The road soon turns to gravel.": "Dove Strada de Meida incrocia Strada de Freina, vicino al fiorista Florart, svolta a destra e attraversa il rione di Freina, tra case e vecchi fienili. La strada diventa presto sterrata.",
   "A little further on, at the fork, carry on gently uphill to a second junction. Go straight on along the easy forest road to the Masc Aloch farm, which sells its own produce, and then the Malga Aloch restaurant.": "Poco più avanti, al bivio, prosegui in leggera salita fino a un secondo bivio. Vai dritto lungo la comoda strada forestale fino al maso Masc Aloch, che vende i propri prodotti, e poi al ristorante Malga Aloch.",
-  "Come back the same way.": "Ritorna per la stessa via."
+  "Come back the same way.": "Ritorna per la stessa via.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Pozza and the Aloch slope": "Pozza e il versante di Aloch"
 });

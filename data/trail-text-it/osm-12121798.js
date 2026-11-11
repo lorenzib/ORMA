@@ -11,5 +11,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start at the Les Féards car park by the pétanque ground, Le Claret (778 m), as the official route sheet gives.": "Parti dal parcheggio Les Féards vicino al campo da bocce, Le Claret (778 m), come indica la scheda ufficiale del percorso.",
   "From Les Féards follow the road to Le Crozat and the lanes through Serpolière, take the track down to the Chapelle Sainte-Anne, turn right through the Babylone vineyard, and at Babylone turn right to climb back to the Les Féards car park.": "Da Les Féards segui la strada per Le Crozat e le stradine attraverso Serpolière, prendi la strada sterrata in discesa fino alla Chapelle Sainte-Anne, gira a destra attraverso il vigneto Babylone e a Babylone gira a destra per risalire al parcheggio Les Féards.",
   "None: EN02 is followed all the way round. Trail S15 to Saint-Martin-de-la-Porte is an optional extension.": "Nessuno: si segue l'EN02 per tutto il giro. Il sentiero S15 verso Saint-Martin-de-la-Porte è un'estensione facoltativa.",
-  "Signposted as trail EN02 on the Cœur de Maurienne Arvan walking network.": "Segnalato come sentiero EN02 sulla rete escursionistica Cœur de Maurienne Arvan."
+  "Signposted as trail EN02 on the Cœur de Maurienne Arvan walking network.": "Segnalato come sentiero EN02 sulla rete escursionistica Cœur de Maurienne Arvan.",
+  "Drinking water": "Acqua potabile",
+  "The track at Serpolière above the Maurienne": "La strada a Serpolière sopra la Maurienne"
 });

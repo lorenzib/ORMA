@@ -14,5 +14,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "None: forest road, path 13, all the way.": "Nessuna: strada forestale, sentiero 13, per tutto il percorso.",
   "From the public car park at the Mitterberg fort, walk past the Gasthof Panorama (1,576 m).": "Dal parcheggio pubblico del forte Mitterberg passa davanti al Gasthof Panorama (1.576 m).",
   "Follow the forest road, path 13, to the Helmhanghütte (1,605 m).": "Segui la strada forestale, sentiero 13, fino alla Helmhanghütte (1.605 m).",
-  "The board’s times are for there and back: return the same way.": "I tempi della scheda ufficiale sono per andata e ritorno: torna per la stessa via."
+  "The board’s times are for there and back: return the same way.": "I tempi della scheda ufficiale sono per andata e ritorno: torna per la stessa via.",
+  "The Mitterberg fort where the walk starts, in October": "Il forte Mitterberg dove inizia la passeggiata, a ottobre"
 });

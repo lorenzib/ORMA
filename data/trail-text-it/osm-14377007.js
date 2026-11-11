@@ -4,5 +4,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "compacted gravel (76%), paved (18%), grass (5%), from OSM surface data": "ghiaia compatta (76%), asfalto (18%), erba (5%), da dati OSM sul fondo",
   "Vinouve chairlift lower station, Les Karellis": "Stazione a valle della seggiovia di Vinouve, Les Karellis",
-  "Lac de Pramol in June, its stone-edged shore below a rail fence and a log shelter among larches, with a wooded slope behind": "Il Lac de Pramol a giugno, con la riva bordata di pietre sotto una staccionata e un riparo in tronchi tra i larici, e un pendio boscoso alle spalle"
+  "Lac de Pramol in June, its stone-edged shore below a rail fence and a log shelter among larches, with a wooded slope behind": "Il Lac de Pramol a giugno, con la riva bordata di pietre sotto una staccionata e un riparo in tronchi tra i larici, e un pendio boscoso alle spalle",
+  "Drinking water": "Acqua potabile",
+  "Lac de Pramol in June": "Il Lac de Pramol a giugno"
 });

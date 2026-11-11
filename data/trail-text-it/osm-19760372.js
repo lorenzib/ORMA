@@ -4,5 +4,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Surface not yet field-verified": "Fondo non ancora verificato sul campo",
   "Start here — Bus stop La Croix de Fer, 4 m from the route (OSM-verified access point)": "Parti da qui — Fermata dell'autobus La Croix de Fer, a 4 m dal percorso (punto di accesso verificato su OSM)",
-  "ORMA illustration of Boucle du Moulin de Cornet: its climb drawn as contour bands and its route shape, not a photograph": "Illustrazione ORMA di Boucle du Moulin de Cornet: la salita disegnata come fasce di curve di livello e la forma del percorso, non una fotografia"
+  "ORMA illustration of Boucle du Moulin de Cornet: its climb drawn as contour bands and its route shape, not a photograph": "Illustrazione ORMA di Boucle du Moulin de Cornet: la salita disegnata come fasce di curve di livello e la forma del percorso, non una fotografia",
+  "Drinking water": "Acqua potabile",
+  "Fontaine du Fey-Dessous": "Fontaine du Fey-Dessous",
+  "ORMA illustration of this walk, drawn from its route and climb, not a photograph": "Illustrazione ORMA di questa passeggiata, disegnata dal suo percorso e dalla salita, non una fotografia"
 });
