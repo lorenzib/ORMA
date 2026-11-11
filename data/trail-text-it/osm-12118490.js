@@ -7,5 +7,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Small stream crossings without bridges": "Piccoli guadi di ruscelli senza ponte",
   "Forest paths and tracks, about 500 m on village lanes": "Sentieri e strade forestali nel bosco, circa 500 m su stradine di paese",
   "Car park in front of the mairie, Le Châtel (official start)": "Parcheggio davanti alla mairie, Le Châtel (partenza ufficiale)",
-  "The village of Montvernier on its wooded shelf above the Maurienne, hay meadows below it and mixed woodland running up the slope behind.": "Il paese di Montvernier sul suo terrazzo boscoso sopra la Maurienne, con prati da fieno sotto e bosco misto che sale sul pendio alle spalle."
+  "The village of Montvernier on its wooded shelf above the Maurienne, hay meadows below it and mixed woodland running up the slope behind.": "Il paese di Montvernier sul suo terrazzo boscoso sopra la Maurienne, con prati da fieno sotto e bosco misto che sale sul pendio alle spalle.",
+  "Village fountain by the start (not marked as drinking water)": "Fontana del paese vicino alla partenza (non indicata come acqua potabile)",
+  "Montvernier, panoramique": "Montvernier, panoramique"
 });

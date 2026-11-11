@@ -14,5 +14,14 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Ortisei from above, with its church and green slopes": "Ortisei dall'alto, con la chiesa e i pendii verdi",
   "Trail signposts beside the old railway path at Roncadizza": "Cartelli segnaletici lungo il sentiero della vecchia ferrovia a Roncadizza",
   "Mostly open, on the sunny side of the valley through villages and meadows; short wooded stretches near Ortisei and St. Christina.": "Per lo più aperto, sul versante soleggiato della valle tra paesi e prati; brevi tratti nel bosco vicino a Ortisei e St. Christina.",
-  "No path number: follow the old railway line (La Ferata / Grödner Bahnweg), marked by history boards, from Runggaditsch through Ortisei and St. Christina to Plan in Selva.": "Senza numero di sentiero: segui la vecchia linea ferroviaria (La Ferata / Grödner Bahnweg), segnalata da pannelli storici, da Runggaditsch attraverso Ortisei e St. Christina fino a Plan in Selva."
+  "No path number: follow the old railway line (La Ferata / Grödner Bahnweg), marked by history boards, from Runggaditsch through Ortisei and St. Christina to Plan in Selva.": "Senza numero di sentiero: segui la vecchia linea ferroviaria (La Ferata / Grödner Bahnweg), segnalata da pannelli storici, da Runggaditsch attraverso Ortisei e St. Christina fino a Plan in Selva.",
+  "Ortisei, Purger fountain": "Ortisei, fontana Purger",
+  "Ortisei drinking water": "Acqua potabile di Ortisei",
+  "Ortisei drinking fountain": "Fontanella di Ortisei",
+  "St. Christina drinking fountain": "Fontanella di St. Christina",
+  "La Poza, Selva": "La Poza, Selva",
+  "Selva promenade": "Passeggiata di Selva",
+  "Col da Lech, Selva": "Col da Lech, Selva",
+  "Selva drinking fountain": "Fontanella di Selva",
+  "Portale ex galleria ferroviaria Santa Cristina Valgardena": "Portale ex galleria ferroviaria Santa Cristina Valgardena"
 });

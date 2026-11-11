@@ -8,5 +8,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest and mountain paths, a stony summit crest and about 2.2 km of rough track": "Sentieri nel bosco e di montagna, una cresta sommitale sassosa e circa 2,2 km di sterrata accidentata",
   "Roadside car park on the D206, 2 km before the Col des Prés coming from Chambéry (official start)": "Parcheggio a bordo strada sulla D206, 2 km prima del Col des Prés arrivando da Chambéry (partenza ufficiale)",
   "The stony summit crest of La Galoppaz with a grassy path beside a wire fence, spruce trees and a sea of cloud below": "La cresta sommitale sassosa de La Galoppaz con un sentiero erboso accanto a una recinzione di filo, abeti rossi e un mare di nuvole sotto",
-  "Pointe de la Galoppaz (1,681 m), reached by a short out-and-back from the shoulder: full panorama over the Chambéry valley and the high Bauges, Colombier, Trélod and Arcalod": "Pointe de la Galoppaz (1.681 m), raggiunta con una breve andata e ritorno dalla spalla: panorama completo sulla valle di Chambéry e sugli alti Bauges, Colombier, Trélod e Arcalod"
+  "Pointe de la Galoppaz (1,681 m), reached by a short out-and-back from the shoulder: full panorama over the Chambéry valley and the high Bauges, Colombier, Trélod and Arcalod": "Pointe de la Galoppaz (1.681 m), raggiunta con una breve andata e ritorno dalla spalla: panorama completo sulla valle di Chambéry e sugli alti Bauges, Colombier, Trélod e Arcalod",
+  "Drinking water": "Acqua potabile",
+  "Fontaine Aleure": "Fontaine Aleure",
+  "Source du Dard": "Source du Dard",
+  "The summit crest of La Galoppaz": "La cresta sommitale della Galoppaz"
 });

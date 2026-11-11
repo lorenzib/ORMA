@@ -9,5 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Periasc, the register’s start": "Periasc, la partenza indicata dal catasto",
   "The cream-coloured front of the church of San Martino in Antagnod with an arched porch, a sundial and flower boxes on a stone-paved square": "La facciata color crema della chiesa di San Martino ad Antagnod con un portico ad arco, una meridiana e fioriere su una piazza lastricata in pietra",
   "Little shade: about a quarter runs through trees.": "Poca ombra: circa un quarto passa tra gli alberi.",
-  "Path 1: from Périasc across the main road and up the dirt track to the old mule track, which climbs to the road into Antagnod and the start of the farm road by the village. Back the same way.": "Sentiero 1: da Périasc attraversa la strada principale e sali per la sterrata fino alla vecchia mulattiera, che sale alla strada per Antagnod e all'inizio della strada poderale vicino al paese. Ritorno per la stessa strada."
+  "Path 1: from Périasc across the main road and up the dirt track to the old mule track, which climbs to the road into Antagnod and the start of the farm road by the village. Back the same way.": "Sentiero 1: da Périasc attraversa la strada principale e sali per la sterrata fino alla vecchia mulattiera, che sale alla strada per Antagnod e all'inizio della strada poderale vicino al paese. Ritorno per la stessa strada.",
+  "Drinking water at the start": "Acqua potabile alla partenza",
+  "Drinking water": "Acqua potabile",
+  "The church of San Martino in Antagnod": "La chiesa di San Martino ad Antagnod"
 });

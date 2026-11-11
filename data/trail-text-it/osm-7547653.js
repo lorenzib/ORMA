@@ -9,5 +9,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mountain path and old military tracks": "Sentiero di montagna e vecchie strade militari",
   "Just above the Forte Basso di Col Vidal, Pian dei Buoi (official start)": "Poco sopra il Forte Basso di Col Vidal, Pian dei Buoi (partenza ufficiale)",
   "The roofless stone shell of the Forte Basso di Col Vidal on a meadow before a dark spruce forest": "Il guscio in pietra senza tetto del Forte Basso di Col Vidal su un prato davanti a un cupo bosco di abeti rossi",
-  "Shaded almost all the way: the loop runs through larch and spruce on the Pian dei Buoi plateau.": "All'ombra quasi per tutto il percorso: l'anello si snoda tra larici e abeti rossi sull'altopiano di Pian dei Buoi."
+  "Shaded almost all the way: the loop runs through larch and spruce on the Pian dei Buoi plateau.": "All'ombra quasi per tutto il percorso: l'anello si snoda tra larici e abeti rossi sull'altopiano di Pian dei Buoi.",
+  "The Forte Basso di Col Vidal": "Il Forte Basso di Col Vidal"
 });

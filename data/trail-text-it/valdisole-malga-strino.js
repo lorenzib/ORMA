@@ -16,5 +16,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Car park on the SS42 at the mouth of the Val Strino": "Parcheggio sulla SS42 all’imbocco della Val Strino",
   "Cross the SS42; old military road up through the forest": "Attraversa la SS42; vecchia strada militare su nel bosco",
   "Pastures along the stream": "Pascoli lungo il torrente",
-  "Malga Strino (1,941 m); back the same way": "Malga Strino (1.941 m); ritorno per la stessa via"
+  "Malga Strino (1,941 m); back the same way": "Malga Strino (1.941 m); ritorno per la stessa via",
+  "Forte Strino, by the start in the Val Strino": "Il Forte Strino, vicino alla partenza in Val Strino"
 });

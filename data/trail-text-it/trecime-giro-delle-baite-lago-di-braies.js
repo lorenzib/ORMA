@@ -17,5 +17,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Path 20, then path 61 up to the Kaseralm. Path 22A down to the Grünwaldalm. Path 19 back along the lake.": "Sentiero 20, poi sentiero 61 fino alla Kaseralm. Sentiero 22A in discesa fino alla Grünwaldalm. Sentiero 19 per tornare lungo il lago.",
   "From the Pragser Wildsee, to the right of the Hotel Pragser Wildsee, take path 20 and then path 61 up to the Kaseralm.": "Dal Pragser Wildsee, a destra dell'Hotel Pragser Wildsee, prendi il sentiero 20 e poi il sentiero 61 fino alla Kaseralm.",
   "From the Kaseralm, path 22A leads down to the Grünwaldalm.": "Dalla Kaseralm il sentiero 22A scende alla Grünwaldalm.",
-  "Take path 19 back to the start along the shore of the lake.": "Prendi il sentiero 19 per tornare alla partenza lungo la riva del lago."
+  "Take path 19 back to the start along the shore of the lake.": "Prendi il sentiero 19 per tornare alla partenza lungo la riva del lago.",
+  "Drinking fountain": "Fontanella",
+  "Cattle on the pasture by the Grünwaldalm, in July": "Bovini al pascolo presso la Grünwaldalm, a luglio"
 });

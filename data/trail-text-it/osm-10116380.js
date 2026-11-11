@@ -6,5 +6,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "A short stretch on the Route des Glières at the car park": "Un breve tratto sulla Route des Glières al parcheggio",
   "Meadow paths, a gravel farm track, a short boardwalk and a few concrete steps": "Sentieri nei prati, una strada agricola sterrata, una breve passerella e alcuni gradini in cemento",
   "Col des Glières car park, Route des Glières (official start)": "Parcheggio del col des Glières, Route des Glières (partenza ufficiale)",
-  "Sunrise over the Plateau des Glières with mist on the meadows, a lone chalet and forested slopes and peaks behind": "Alba sul Plateau des Glières con la nebbia sui prati, uno chalet isolato e pendii boscosi e cime sullo sfondo"
+  "Sunrise over the Plateau des Glières with mist on the meadows, a lone chalet and forested slopes and peaks behind": "Alba sul Plateau des Glières con la nebbia sui prati, uno chalet isolato e pendii boscosi e cime sullo sfondo",
+  "Sunrise on the Plateau des Glières": "Alba sul Plateau des Glières"
 });

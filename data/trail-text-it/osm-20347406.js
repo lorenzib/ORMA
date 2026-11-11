@@ -6,5 +6,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Sustained 700 m descent (or climb) between the plateau and the valley": "Discesa (o salita) continua di 700 m tra l'altopiano e la valle",
   "Mountain path and forest tracks, sparsely mapped surfaces; expect rough ground": "Sentiero di montagna e sterrate forestali, fondo mappato in minima parte; aspettati terreno accidentato",
   "Start here: col des Glières parking, by the Maison du Plateau (route descends to Glières-Val-de-Borne)": "Parti da qui: parcheggio del col des Glières, presso la Maison du Plateau (il percorso scende a Glières-Val-de-Borne)",
-  "A rutted track forking across the open pastures of the Plateau des Glieres, with farm buildings, spruce and late snow on the ridges under heavy cloud": "Una sterrata solcata che si biforca tra i pascoli aperti del Plateau des Glieres, con edifici rurali, abeti rossi e neve tardiva sulle creste sotto nuvole fitte"
+  "A rutted track forking across the open pastures of the Plateau des Glieres, with farm buildings, spruce and late snow on the ridges under heavy cloud": "Una sterrata solcata che si biforca tra i pascoli aperti del Plateau des Glieres, con edifici rurali, abeti rossi e neve tardiva sulle creste sotto nuvole fitte",
+  "Drinking water": "Acqua potabile",
+  "Guilhem Vellut, CC BY 2.0, via Wikimedia Commons (edited)": "Guilhem Vellut, CC BY 2.0, via Wikimedia Commons (edited)"
 });

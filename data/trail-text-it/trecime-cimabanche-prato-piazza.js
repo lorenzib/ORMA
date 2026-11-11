@@ -16,5 +16,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Path 18: from the Cimabanche pass in the Höhlensteintal through forest and dwarf pine to the end of the Knappenfußtal, where a small waterfall comes into view; then right up the zigzag path to the Plätzwiese, a high plateau at about 2,000 m. Back the same way.": "Sentiero 18: dal passo di Cimabanche nella Höhlensteintal tra bosco e pino mugo fino in fondo alla Knappenfußtal, dove compare una piccola cascata; poi a destra su per il sentiero a tornanti fino alla Plätzwiese, un altopiano a circa 2.000 m. Ritorno per la stessa via.",
   "Path 18 throughout; right up the zigzags at the end of the Knappenfußtal.": "Sentiero 18 per tutto il percorso; a destra su per i tornanti in fondo alla Knappenfußtal.",
   "From the Cimabanche pass, path 18 leads through forest and dwarf pine to the end of the Knappenfußtal, where a small waterfall comes into view.": "Dal passo di Cimabanche il sentiero 18 attraversa bosco e pino mugo fino in fondo alla Knappenfußtal, dove compare una piccola cascata.",
-  "To the right, the zigzag path climbs up to the Plätzwiese.": "A destra, il sentiero a tornanti sale fino alla Plätzwiese."
+  "To the right, the zigzag path climbs up to the Plätzwiese.": "A destra, il sentiero a tornanti sale fino alla Plätzwiese.",
+  "The Plätzwiese meadows at the top of the walk, in July": "I prati della Plätzwiese in cima alla passeggiata, a luglio"
 });

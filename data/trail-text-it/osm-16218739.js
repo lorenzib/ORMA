@@ -13,5 +13,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the church, follow the GR5 signs to the start of the circuit, then the “Circuit de Ragairon” signs.": "Dalla chiesa segui i cartelli del GR5 fino all'inizio del circuito, poi i cartelli “Circuit de Ragairon”.",
   "The old mule track climbs through several hamlets, among them Le Martorey with its listed house with a column.": "La vecchia mulattiera sale attraverso diverse frazioni, tra cui Le Martorey con la sua casa vincolata con colonna.",
   "Past the Charbonnet stream you reach Ragairon, with its single alpine chalet and barn.": "Oltre il torrente Charbonnet arrivi a Ragairon, con il suo unico chalet d'alpeggio e il fienile.",
-  "Before the way back, the circuit passes the hamlet of Les Charmettes, where cows often graze.": "Prima del ritorno, il circuito passa per la frazione di Les Charmettes, dove pascolano spesso le mucche."
+  "Before the way back, the circuit passes the hamlet of Les Charmettes, where cows often graze.": "Prima del ritorno, il circuito passa per la frazione di Les Charmettes, dove pascolano spesso le mucche.",
+  "Drinking water": "Acqua potabile",
+  "The Tarentaise from above Vallandry": "La Tarentaise da sopra Vallandry"
 });

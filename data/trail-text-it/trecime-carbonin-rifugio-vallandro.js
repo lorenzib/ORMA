@@ -14,5 +14,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Path 37: from Schluderbach the forest road climbs gently through the forest to the Dürrensteinhütte (Rifugio Vallandro) on the Plätzwiese. Shortcuts cut the bends but are steeper. The walk can be joined to a walk on the Plätzwiese.": "Sentiero 37: da Schluderbach la strada forestale sale dolcemente nel bosco fino alla Dürrensteinhütte (Rifugio Vallandro) sulla Plätzwiese. Alcune scorciatoie tagliano i tornanti ma sono più ripide. La passeggiata si può unire a un giro sulla Plätzwiese.",
   "None: stay on forest road 37. The shortcuts across the bends are steeper.": "Nessuna: resta sulla strada forestale 37. Le scorciatoie che tagliano i tornanti sono più ripide.",
   "From Schluderbach, forest road 37 climbs gently through the forest to the Dürrensteinhütte (Rifugio Vallandro).": "Da Schluderbach la strada forestale 37 sale dolcemente nel bosco fino alla Dürrensteinhütte (Rifugio Vallandro).",
-  "Shortcuts cut across the bends; they are a little steeper.": "Alcune scorciatoie tagliano i tornanti; sono un po' più ripide."
+  "Shortcuts cut across the bends; they are a little steeper.": "Alcune scorciatoie tagliano i tornanti; sono un po' più ripide.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The Dürrensteinhütte on the Plätzwiese, where the walk ends, in September": "La Dürrensteinhütte sulla Plätzwiese, dove finisce la passeggiata, a settembre"
 });

@@ -15,5 +15,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Walk past the former Sancellemoz sanatorium, on the Promenade Marie Curie.": "Passa accanto all'ex sanatorio di Sancellemoz, sulla Promenade Marie Curie.",
   "Then take the old Lac Vert road, which leads straight to the lake. It crosses the Nant Bordon on a suspension footbridge.": "Poi prendi la vecchia strada del Lac Vert, che porta dritta al lago. Attraversa il Nant Bordon su una passerella sospesa.",
   "You can walk round the lake to see it from a little higher up. Dogs may not go into the water.": "Puoi fare il giro del lago per vederlo da un po' più in alto. I cani non possono entrare in acqua.",
-  "Come back to the start the same way.": "Torna alla partenza per la stessa via."
+  "Come back to the start the same way.": "Torna alla partenza per la stessa via.",
+  "Drinking water": "Acqua potabile",
+  "Lac vert de passy (2)": "Lac vert de passy (2)"
 });

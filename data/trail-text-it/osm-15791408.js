@@ -5,5 +5,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "A short stretch on the Strada di Bedolpian at the start": "Un breve tratto sulla Strada di Bedolpian alla partenza",
   "Gravel forest roads almost throughout": "Strade forestali sterrate quasi ovunque",
   "Bedolpian car park by La Capannina, Baselga di Piné (official start)": "Parcheggio di Bedolpian presso La Capannina, Baselga di Piné (partenza ufficiale)",
-  "The view from the Bellavista of Bedolpian over the terraced vineyards and villages of the Cembra valley to the mountains beyond": "La vista dalla Bellavista di Bedolpian sui vigneti terrazzati e sui paesi della valle di Cembra, fino alle montagne oltre"
+  "The view from the Bellavista of Bedolpian over the terraced vineyards and villages of the Cembra valley to the mountains beyond": "La vista dalla Bellavista di Bedolpian sui vigneti terrazzati e sui paesi della valle di Cembra, fino alle montagne oltre",
+  "Drinking water": "Acqua potabile",
+  "The Cembra valley from the Bellavista of Bedolpian": "La Val di Cembra dalla Bellavista di Bedolpian"
 });

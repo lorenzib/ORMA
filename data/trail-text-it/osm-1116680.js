@@ -9,5 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start at the Kiniger farms (1,375 m) above Sexten, as the tourist office gives; bus stop Sexten Helm.": "Parti dai masi Kiniger (1.375 m) sopra Sexten, come indica l'ufficio turistico; fermata dell'autobus Sexten Helm.",
   "From the Kiniger farms follow route 1 along the meadow edge towards Moos to Palmstatt, past the top of the Brugger lift, round by the Rotwand gondola valley station and back through the village to the Kiniger farms.": "Dai masi Kiniger segui il percorso 1 lungo il margine dei prati verso Moos fino a Palmstatt, oltre la stazione a monte dell'impianto Brugger, girando attorno alla stazione a valle della cabinovia Rotwand e ritorno attraverso il paese fino ai masi Kiniger.",
   "None: route 1 is followed round. The forest path between stations 3 and 4 is currently closed; the tourist office gives a detour via Palmstatt.": "Nessuno: si segue il percorso 1 per tutto il giro. Il sentiero nel bosco tra le stazioni 3 e 4 è attualmente chiuso; l'ufficio turistico indica una deviazione per Palmstatt.",
-  "Signposted as trail 1, the Sextner Rundweg.": "Segnalato come sentiero 1, lo Sextner Rundweg."
+  "Signposted as trail 1, the Sextner Rundweg.": "Segnalato come sentiero 1, lo Sextner Rundweg.",
+  "Drinking water": "Acqua potabile",
+  "Meadows below the Kiniger farms, Sexten": "Prati sotto i masi Kiniger, Sexten"
 });

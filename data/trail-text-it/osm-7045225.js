@@ -8,5 +8,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Bear area: SAT signs warn of bears": "Zona orsi: i cartelli SAT avvertono della presenza di orsi",
   "unpaved (99%), paved (1%), from OSM surface data": "non asfaltato (99%), asfaltato (1%), dai dati OSM sul fondo",
   "Santèl, on the SP 64 above Fai della Paganella (official start of SAT path 603); the walk ends at Fai Le Coste": "Santèl, sulla SP 64 sopra Fai della Paganella (partenza ufficiale del sentiero SAT 603); il percorso termina a Fai Le Coste",
-  "The red-and-white SAT signpost for path 603 at Bocca delle Scalace, 1260 m, with a no-bikes sign and a bear-area warning beside log steps in the forest": "Il cartello segnaletico SAT bianco e rosso del sentiero 603 a Bocca delle Scalace, 1260 m, con un divieto per le bici e un avviso di zona orsi accanto a gradini di tronchi nel bosco"
+  "The red-and-white SAT signpost for path 603 at Bocca delle Scalace, 1260 m, with a no-bikes sign and a bear-area warning beside log steps in the forest": "Il cartello segnaletico SAT bianco e rosso del sentiero 603 a Bocca delle Scalace, 1260 m, con un divieto per le bici e un avviso di zona orsi accanto a gradini di tronchi nel bosco",
+  "Drinking water": "Acqua potabile",
+  "Fontana bianca": "Fontana bianca",
+  "SAT path 603 at Bocca delle Scalace": "Il sentiero SAT 603 alla Bocca delle Scalace"
 });

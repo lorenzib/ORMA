@@ -8,5 +8,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "The Seceda ridgeline with the Odle peaks above Val Gardena": "Il crinale del Seceda con le Odle sopra la Val Gardena",
   "A wooden hut on a green meadow below Seceda, with forest and peaks behind": "Una baita di legno su un prato verde sotto il Seceda, con bosco e cime alle spalle",
   "The Seceda ridge and the Dolomites under a pink dusk sky": "Il crinale del Seceda e le Dolomiti sotto un cielo rosa al crepuscolo",
-  "Fork on the ridge path: continue north-east along the rim; the right-hand branch dropping toward Baita Troier is your return route": "Bivio sul sentiero di cresta: prosegui verso nord-est lungo il bordo; il ramo di destra che scende verso la Baita Troier è il percorso di ritorno"
+  "Fork on the ridge path: continue north-east along the rim; the right-hand branch dropping toward Baita Troier is your return route": "Bivio sul sentiero di cresta: prosegui verso nord-est lungo il bordo; il ramo di destra che scende verso la Baita Troier è il percorso di ritorno",
+  "Gondola station fountain": "Fontana della stazione della cabinovia",
+  "Dal Seceda vista sulle Odle": "Dal Seceda vista sulle Odle"
 });

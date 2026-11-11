@@ -55,6 +55,7 @@ window.ORMA_TRAIL_NAMES_IT = {
   "cembra-san-leonardo-lisignago": "San Leonardo e le campagne di Lisignago",
   "cembra-vecchi-mestieri-grumes": "Il Sentiero dei vecchi mestieri – da Grumes",
   "cinque-torri-assisted": "Giro dei tre rifugi alle Cinque Torri, con la seggiovia",
+  "colle-passeggiata-intorno-al-colle": "Passeggiata intorno al Colle di Santa Lucia",
   "cortina-anello-dei-tre-rifugi": "Anello dei tre rifugi da Malga Ra Stua",
   "cortina-castello-di-botestagno": "Castello di Botestagno",
   "cortina-forcella-lerosa": "Da Passo Cimabanche a Forcella Lerosa",

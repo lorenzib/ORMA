@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "No shade: the loop crosses open meadows above the village.": "Nessuna ombra: l'anello attraversa prati aperti sopra il paese.",
   "Start at the Klausberg car park in Steinhaus (Cadipietra), the board’s start.": "Parti dal parcheggio del Klausberg a Steinhaus (Cadipietra), la partenza indicata dalla scheda ufficiale.",
   "Walk up the lane towards Enz and Schachen. Above the Enzhof farm, take the first path on the left to the Unterberg hamlet. Then go down and turn left along the river, which leads you back to the car park.": "Sali per la stradina verso Enz e Schachen. Sopra il maso Enzhof prendi il primo sentiero a sinistra fino al borgo di Unterberg. Poi scendi e svolta a sinistra lungo il fiume, che ti riporta al parcheggio.",
-  "Two turns: the first path on the left above the Enzhof, and left again along the river at the bottom.": "Due svolte: il primo sentiero a sinistra sopra l'Enzhof, e di nuovo a sinistra lungo il fiume in basso."
+  "Two turns: the first path on the left above the Enzhof, and left again along the river at the bottom.": "Due svolte: il primo sentiero a sinistra sopra l'Enzhof, e di nuovo a sinistra lungo il fiume in basso.",
+  "Drinking water": "Acqua potabile",
+  "Fields and meadows above Steinhaus": "Campi e prati sopra Steinhaus"
 });

@@ -69,8 +69,29 @@ function shownAuditDirections(trail){
   return written.written && !routeRefs.forTrail(trail).length ? [written.text] : [];
 }
 
+// Water point names as the page lists them, without the importer's
+// "(OSM-verified ...)" tag (trail-trust.js withoutOsmTag). The bare mapped
+// point is fixed wording in the phrase table, not the trail's own.
+const GENERIC_WATER = /^(?:Water point|Drinking water\s*\(OSM-verified location\))$/i;
+function waterLabels(trail){
+  return (Array.isArray(trail.waterSources) ? trail.waterSources : [])
+    .map(point => point && String(point.label || point.name || '').replace(/\s*\(OSM-verified[^)]*\)/gi, '').trim())
+    .filter(label => label && /[A-Za-z]/.test(label) && !GENERIC_WATER.test(label));
+}
+
+// The hero picture's caption: ORMA's own line for a licensed photo, an
+// upload or an illustration. A Wikimedia-style credit ("Title, author,
+// licence") is the source's own and stays as it is.
+const CAPTIONED = ['licensed-source', 'moderator-upload', 'orma-illustration'];
+function photoCaption(trail){
+  const credit = trail.imageCredit;
+  const text = typeof credit === 'string' ? credit : (credit && typeof credit.text === 'string' ? credit.text : '');
+  return trail.imageIcon && CAPTIONED.includes(trail.imageSourceType) && /[A-Za-z]/.test(text) ? [text.trim()] : [];
+}
+
 function sentencesOf(trail){
-  return [...new Set([...FIELDS.flatMap(field => valuesAt(trail, field)), ...shownAuditDirections(trail)])];
+  return [...new Set([...FIELDS.flatMap(field => valuesAt(trail, field)), ...shownAuditDirections(trail),
+    ...waterLabels(trail), ...photoCaption(trail)])];
 }
 
 function fileFor(id){
@@ -141,4 +162,4 @@ function main(argv){
 
 if(require.main === module) main(process.argv.slice(2));
 
-module.exports = { FIELDS, loadTrails, sentencesOf, readTable, audit, apply };
+module.exports = { FIELDS, loadTrails, sentencesOf, waterLabels, photoCaption, readTable, audit, apply };

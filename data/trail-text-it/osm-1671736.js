@@ -10,5 +10,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Verdins, behind the parish church, bus stop Verdins (official start)": "Verdins, dietro la chiesa parrocchiale, fermata dell'autobus Verdins (partenza ufficiale)",
   "St. Georgen church in Schenna, its tall spire and round chapel above a vineyard under a cloudy sky, at the end of the Höfeweg": "La chiesa di St. Georgen a Schenna, con l'alto campanile e la cappella rotonda sopra un vigneto sotto un cielo nuvoloso, alla fine dell'Höfeweg",
   "Just under half is wooded; the farm meadows and the roads round the hill farms are open and sunny.": "Poco meno della metà è nel bosco; i prati dei masi e le strade attorno ai masi di montagna sono aperti e soleggiati.",
-  "From Verdins church take the Wiesersteig (path 16) to the farm road, turn right and climb past the Gasthof Hasenegg to the Hoferhof, up the meadow to Vallplatz and the Holznerhof, then follow the Höfeweg past the Zmailerhof, Rastlhof and Salfgut down to St. Georgen.": "Dalla chiesa di Verdins prendi il Wiesersteig (sentiero 16) fino alla strada poderale, svolta a destra e sali oltre il Gasthof Hasenegg fino all'Hoferhof, su per il prato fino a Vallplatz e all'Holznerhof, poi segui l'Höfeweg oltre lo Zmailerhof, il Rastlhof e il Salfgut giù fino a St. Georgen."
+  "From Verdins church take the Wiesersteig (path 16) to the farm road, turn right and climb past the Gasthof Hasenegg to the Hoferhof, up the meadow to Vallplatz and the Holznerhof, then follow the Höfeweg past the Zmailerhof, Rastlhof and Salfgut down to St. Georgen.": "Dalla chiesa di Verdins prendi il Wiesersteig (sentiero 16) fino alla strada poderale, svolta a destra e sali oltre il Gasthof Hasenegg fino all'Hoferhof, su per il prato fino a Vallplatz e all'Holznerhof, poi segui l'Höfeweg oltre lo Zmailerhof, il Rastlhof e il Salfgut giù fino a St. Georgen.",
+  "Drinking fountain on the Verdins village square": "Fontanella sulla piazza del paese di Verdins",
+  "Kleebrunnen": "Kleebrunnen",
+  "Drinking fountain in St. Georgen": "Fontanella a St. Georgen",
+  "St. Georgen church in Schenna": "La chiesa di St. Georgen a Schenna"
 });

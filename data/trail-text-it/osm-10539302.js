@@ -7,5 +7,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Two short flights of wooden steps": "Due brevi rampe di gradini in legno",
   "natural ground (62%), paved (24%), grass (15%), from OSM surface data": "terreno naturale (62%), asfalto (24%), erba (15%), dai dati di superficie OSM",
   "Start here — Bus stop La Borgé, 11 m from the route (OSM-verified access point)": "Partenza qui — Fermata dell'autobus La Borgé, a 11 m dal percorso (punto di accesso verificato su OSM)",
-  "Autumn woodland on both sides of the Valloirette valley below Poingt-Ravier, with pasture, hamlets and the Maurienne mountains beyond.": "Bosco autunnale su entrambi i versanti della valle della Valloirette sotto Poingt-Ravier, con pascoli, frazioni e le montagne della Maurienne sullo sfondo."
+  "Autumn woodland on both sides of the Valloirette valley below Poingt-Ravier, with pasture, hamlets and the Maurienne mountains beyond.": "Bosco autunnale su entrambi i versanti della valle della Valloirette sotto Poingt-Ravier, con pascoli, frazioni e le montagne della Maurienne sullo sfondo.",
+  "Drinking water": "Acqua potabile",
+  "Basse vallée de la Valloirette, automne 2015": "Bassa valle della Valloirette, autunno 2015"
 });

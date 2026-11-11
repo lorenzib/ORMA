@@ -18,5 +18,10 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "In front of the little church, turn right and straight away right again, under an archway. Past the arch, turn left and go straight on for about 150 m.": "Davanti alla chiesetta, svolta a destra e subito di nuovo a destra, sotto un arco. Passato l'arco, svolta a sinistra e prosegui dritto per circa 150 m.",
   "Climb Strada de Parlaut past the Arnica Mountain Hotel, and at the top of the rise turn right. The way runs along the steep red sandstone cliffs, with the gorge below; the climb is hard, but the middle part is well shaded.": "Sali per Strada de Parlaut oltre l'Arnica Mountain Hotel, e in cima alla salita svolta a destra. Il percorso corre lungo le ripide pareti di arenaria rossa, con la forra sotto; la salita è dura, ma la parte centrale è ben ombreggiata.",
   "Come out into small meadows that grow wider until you reach the level ground. A small rise on the left is a good viewpoint, over Soraga and Moena to the south and Tamion to the north. The lane winds up through the meadows.": "Esci in piccoli prati che si allargano fino a raggiungere il pianoro. Un piccolo rilievo a sinistra è un buon punto panoramico, su Soraga e Moena a sud e su Tamion a nord. La stradina sale serpeggiando tra i prati.",
-  "By an old hay barn you enter Tamion. Walk up to the centre of the hamlet and its little church. Come back the same way.": "Accanto a un vecchio fienile entri a Tamion. Sali fino al centro della frazione e alla sua chiesetta. Ritorna per la stessa via."
+  "By an old hay barn you enter Tamion. Walk up to the centre of the hamlet and its little church. Come back the same way.": "Accanto a un vecchio fienile entri a Tamion. Sali fino al centro della frazione e alla sua chiesetta. Ritorna per la stessa via.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "Fontana - Comune di Soraga": "Fontana - Comune di Soraga",
+  "Drinking fountain, the last before the climb": "Fontanella, l'ultima prima della salita",
+  "The meadow by Soraga church": "Il prato vicino alla chiesa di Soraga"
 });

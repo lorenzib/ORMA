@@ -11,5 +11,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mostly shaded: about four fifths runs through mapped forest.": "Per lo più all'ombra: circa quattro quinti del percorso passano nel bosco cartografato.",
   "Start at the Maria Weißenstein car park by the Pietralba sanctuary (1,520 m), the board’s start.": "Parti dal parcheggio Maria Weißenstein vicino al santuario di Pietralba (1.520 m), la partenza della scheda ufficiale.",
   "Follow the forest path marked 2 through woods and clearings to the Malga Monte San Pietro (Petersberger Leger). Come back the same way.": "Segui il sentiero nel bosco segnato 2 tra boschi e radure fino alla Malga Monte San Pietro (Petersberger Leger). Torna per la stessa strada.",
-  "Path 2 the whole way from the Pietralba car park to the Petersberger Leger; return the same way.": "Sentiero 2 per tutto il tratto dal parcheggio di Pietralba alla Petersberger Leger; ritorno per la stessa strada."
+  "Path 2 the whole way from the Pietralba car park to the Petersberger Leger; return the same way.": "Sentiero 2 per tutto il tratto dal parcheggio di Pietralba alla Petersberger Leger; ritorno per la stessa strada.",
+  "Drinking water": "Acqua potabile",
+  "Path 2 near Pietralba": "Il sentiero 2 presso Pietralba"
 });

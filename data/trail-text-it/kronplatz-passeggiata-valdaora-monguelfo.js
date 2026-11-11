@@ -13,5 +13,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start in Valdaora (Olang) on the Pustertal cycle path, the board’s start.": "Parti da Valdaora (Olang) sulla pista ciclabile della Pustertal, la partenza indicata dalla scheda ufficiale.",
   "Along the cycle path beside the Valdaora reservoir to Monguelfo (Welsberg).": "Lungo la pista ciclabile accanto al lago artificiale di Valdaora fino a Monguelfo (Welsberg).",
   "None: the walk stays on the cycle path.": "Nessuno: la passeggiata resta sempre sulla pista ciclabile.",
-  "From Valdaora follow the cycle path along the Valdaora reservoir (Olanger Stausee) to Monguelfo (Welsberg), about an hour and a half. Walkers and cyclists share it.": "Da Valdaora segui la pista ciclabile lungo il lago artificiale di Valdaora (Olanger Stausee) fino a Monguelfo (Welsberg), circa un'ora e mezza. È condivisa da pedoni e ciclisti."
+  "From Valdaora follow the cycle path along the Valdaora reservoir (Olanger Stausee) to Monguelfo (Welsberg), about an hour and a half. Walkers and cyclists share it.": "Da Valdaora segui la pista ciclabile lungo il lago artificiale di Valdaora (Olanger Stausee) fino a Monguelfo (Welsberg), circa un'ora e mezza. È condivisa da pedoni e ciclisti.",
+  "Drinking fountain": "Fontanella",
+  "The path beside the Olang reservoir": "Il sentiero lungo il bacino di Olang"
 });

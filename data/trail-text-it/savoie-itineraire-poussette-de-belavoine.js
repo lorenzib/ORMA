@@ -11,5 +11,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "No shade: the road runs through open meadows and hamlets.": "Niente ombra: la strada attraversa prati aperti e frazioni.",
   "Start at the Place du Cernix in Cohennoz, where there is parking and a drinking fountain; the board also allows starting from Paravy at the other end.": "Parti da Place du Cernix a Cohennoz, dove ci sono un parcheggio e una fontana di acqua potabile; la scheda ufficiale permette anche di partire da Paravy, all'altro capo.",
   "Follow the communal road of Bel’Avoine towards Paravy, past the Cernix pond and the Ainoz mill, between the hamlets of Cohennoz and Crest-Voland and through hay meadows with views of the Aravis. At the hamlet of Paravy turn round and come back the same way to the Cernix.": "Segui la strada comunale di Bel'Avoine verso Paravy, oltre lo stagno del Cernix e il mulino di Ainoz, tra le frazioni di Cohennoz e Crest-Voland e tra prati da fieno con vista sugli Aravis. Alla frazione di Paravy torna indietro per la stessa via fino al Cernix.",
-  "No turnings: the walk stays on the one communal road; turn round at Paravy.": "Nessuna deviazione: la passeggiata resta sempre sulla stessa strada comunale; torna indietro a Paravy."
+  "No turnings: the walk stays on the one communal road; turn round at Paravy.": "Nessuna deviazione: la passeggiata resta sempre sulla stessa strada comunale; torna indietro a Paravy.",
+  "Drinking water": "Acqua potabile",
+  "The Bel’Avoine road facing the Aravis": "La strada di Bel’Avoine di fronte agli Aravis"
 });

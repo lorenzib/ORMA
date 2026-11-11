@@ -10,5 +10,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Parish square of Santa Cristina, the board’s start": "Piazza della chiesa di Santa Cristina, partenza indicata dalla scheda ufficiale",
   "A traditional farmhouse on a green meadow slope above Santa Cristina, larches and spruces framing the view down the forested Iender valley to farms and the Odle peaks under a blue sky": "Un maso tradizionale su un pendio prativo verde sopra Santa Cristina, larici e abeti rossi che incorniciano la vista giù per la boscosa valle di Iender verso i masi e le cime delle Odle sotto un cielo azzurro",
   "Just under half runs through forest; the farm meadows are open.": "Poco meno della metà corre nel bosco; i prati dei masi sono aperti.",
-  "Signed “Percorso dei masi tradizionali”: from the parish square of Santa Cristina follow the farms-path signs past the mountain farms above the village, with boards showing old photographs of each farm, and back to the square.": "Segnalato come “Percorso dei masi tradizionali”: dalla piazza parrocchiale di Santa Cristina segui i cartelli del sentiero dei masi oltre i masi di montagna sopra il paese, con pannelli che mostrano vecchie fotografie di ciascun maso, e torna alla piazza."
+  "Signed “Percorso dei masi tradizionali”: from the parish square of Santa Cristina follow the farms-path signs past the mountain farms above the village, with boards showing old photographs of each farm, and back to the square.": "Segnalato come “Percorso dei masi tradizionali”: dalla piazza parrocchiale di Santa Cristina segui i cartelli del sentiero dei masi oltre i masi di montagna sopra il paese, con pannelli che mostrano vecchie fotografie di ciascun maso, e torna alla piazza.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "A farm above the Iender valley from Praulëta": "Un maso sopra la valle di Iender da Praulëta"
 });

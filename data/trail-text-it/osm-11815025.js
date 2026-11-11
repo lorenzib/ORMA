@@ -15,5 +15,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the village square in Lajen, follow path 5 for a short way out of the village.": "Dalla piazza di Laion segui il sentiero 5 per un breve tratto fuori dal paese.",
   "Then follow the signs for Wasserbühl, the wooded knoll west of the village where traces of a prehistoric settlement were found.": "Poi segui le indicazioni per il Wasserbühl, il colle boscoso a ovest del paese dove sono state trovate tracce di un insediamento preistorico.",
   "Follow the signs on to the Wetterkreuz, the weather cross, where there is a place for a picnic. The last short stretch up to it is steep: the board says a pushchair has to be carried there.": "Prosegui seguendo le indicazioni fino alla Wetterkreuz, la croce del tempo, dove c'è un posto per il picnic. L'ultimo breve tratto è ripido: l'ente turistico dice che lì il passeggino va portato in braccio.",
-  "Come back to Lajen and the village square.": "Torna a Laion e alla piazza del paese."
+  "Come back to Lajen and the village square.": "Torna a Laion e alla piazza del paese.",
+  "Village fountain on the square in Lajen (seasonal)": "Fontana del paese in piazza a Lajen (stagionale)",
+  "Lajen über das Eisacktal": "Lajen sopra l'Eisacktal"
 });

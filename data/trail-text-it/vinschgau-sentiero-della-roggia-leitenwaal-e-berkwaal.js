@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mostly shaded: about three quarters runs through mapped woodland along the two waals.": "Per lo più all'ombra: circa tre quarti corrono nel bosco segnato sulla mappa lungo le due rogge.",
   "Start at the Vuseum, the Vinschgau museum in Schluderns, the board’s start.": "Parti dal Vuseum, il museo della Val Venosta a Schluderns, la partenza indicata dalla scheda ufficiale.",
   "Climb path 18 to the Ganglegg, the Bronze and Iron Age hilltop settlement. Take path 17, the Leitenwaal, along the irrigation channel into the gorge. Cross to the other side and walk down the Berkwaal path to the Churburg castle, then on into Schluderns.": "Sali sul sentiero 18 fino al Ganglegg, l'insediamento d'altura dell'età del Bronzo e del Ferro. Prendi il sentiero 17, il Leitenwaal, lungo la roggia irrigua fino alla gola. Passa sull'altro lato e scendi sul sentiero del Berkwaal fino al castello Churburg, poi prosegui fino a Schluderns.",
-  "Two changes: at the Ganglegg leave path 18 for path 17 (Leitenwaal), and across the gorge follow the Berkwaal path down to the Churburg.": "Due cambi: al Ganglegg lascia il sentiero 18 per il sentiero 17 (Leitenwaal), e oltre la gola segui il sentiero del Berkwaal in discesa fino alla Churburg."
+  "Two changes: at the Ganglegg leave path 18 for path 17 (Leitenwaal), and across the gorge follow the Berkwaal path down to the Churburg.": "Due cambi: al Ganglegg lascia il sentiero 18 per il sentiero 17 (Leitenwaal), e oltre la gola segui il sentiero del Berkwaal in discesa fino alla Churburg.",
+  "Drinking water": "Acqua potabile",
+  "The waal path above Schluderns": "Il sentiero della roggia sopra Schluderns"
 });

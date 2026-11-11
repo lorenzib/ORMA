@@ -244,8 +244,10 @@ describe('the existing-site verification boundary',()=>{
     // Then 521 and 519 with Dolomites batch 8: the geology trail to the Saènt
     // waterfalls in the Val di Rabbi and the wildlife trail in the Val di Peio,
     // both in the Stelvio park.
-    expect(catalogue).toHaveLength(521);
-    expect(currentSiteTrails(catalogue)).toHaveLength(519);
+    // Then 522 and 520 with Dolomites batch 9: the short loop round the
+    // Colle di Santa Lucia.
+    expect(catalogue).toHaveLength(522);
+    expect(currentSiteTrails(catalogue)).toHaveLength(520);
   });
 
   test('requires the artwork the public trail page needs',()=>{

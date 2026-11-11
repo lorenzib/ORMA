@@ -12,5 +12,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Partly shaded: just under half runs through the Riedwald and other woods; the farm lanes and the descent into Bruneck are open.": "In parte all'ombra: poco meno della metà attraversa il Riedwald e altri boschi; le stradine agricole e la discesa verso Bruneck sono aperte.",
   "Start at the parish church of Valdaora di Sotto (Niederolang), the board’s start.": "Parti dalla chiesa parrocchiale di Valdaora di Sotto (Niederolang), la partenza indicata dalla scheda ufficiale.",
   "Follow path 15 towards the Riedler farms and on through the Riedwald forest to Lamprechtsburg castle. From the castle carry on along path 14 to Brunico (Bruneck). The board suggests public transport for the way back to Valdaora.": "Segui il sentiero 15 verso i masi Riedler e poi attraverso il bosco del Riedwald fino al castello di Lamprechtsburg. Dal castello prosegui sul sentiero 14 fino a Brunico (Bruneck). La scheda ufficiale consiglia i mezzi pubblici per il ritorno a Valdaora.",
-  "One change: at Lamprechtsburg castle leave path 15 for path 14 into Brunico.": "Un solo cambio: al castello di Lamprechtsburg lascia il sentiero 15 per il sentiero 14 verso Brunico."
+  "One change: at Lamprechtsburg castle leave path 15 for path 14 into Brunico.": "Un solo cambio: al castello di Lamprechtsburg lascia il sentiero 15 per il sentiero 14 verso Brunico.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "A lane on the panoramic path": "Una stradina sul sentiero panoramico"
 });

@@ -334,6 +334,12 @@
       ],
       "highPoint": 2248
     },
+    "colle-passeggiata-intorno-al-colle": {
+      "regions": [
+        "IT-34-BL-01"
+      ],
+      "highPoint": 1460
+    },
     "cortina-anello-dei-tre-rifugi": {
       "regions": [
         "IT-32-BZ-19",

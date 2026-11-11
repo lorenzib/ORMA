@@ -11,5 +11,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mostly shaded: about half runs through mapped forest and much of the rest through open woodland.": "Per lo più all'ombra: circa metà corre nel bosco segnato sulla mappa e gran parte del resto in bosco rado.",
   "Start at the Ranui car park, next to the Waldschenke restaurant, the board’s start.": "Parti dal parcheggio di Ranui, accanto al ristorante Waldschenke, la partenza indicata dalla scheda ufficiale.",
   "Follow forest path 33 through the woods, climbing gently all the way to Zannes.": "Segui il sentiero forestale 33 attraverso il bosco, in leggera salita fino a Zannes.",
-  "None: stay on path 33 from the car park to Zannes.": "Nessuno: resta sul sentiero 33 dal parcheggio fino a Zannes."
+  "None: stay on path 33 from the car park to Zannes.": "Nessuno: resta sul sentiero 33 dal parcheggio fino a Zannes.",
+  "Drinking water": "Acqua potabile",
+  "Path 33 near Zannes": "Il sentiero 33 vicino a Zannes"
 });

@@ -16,5 +16,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the Haus der Berge, take the signed path to the left of the Helmjet valley station to the Kiniger farms.": "Dalla Haus der Berge prendi il sentiero segnalato a sinistra della stazione a valle dell'Helmjet fino ai masi Kiniger.",
   "Follow the signs on to the Gasthof Panorama.": "Segui i cartelli fino al Gasthof Panorama.",
   "From there, go left on a paved road. It becomes a forest road and climbs gently and steadily through the forest to the Lärchenhütte (Rifugio Larice).": "Da lì vai a sinistra su una strada asfaltata. Diventa strada forestale e sale dolce e costante nel bosco fino alla Lärchenhütte (Rifugio Larice).",
-  "The board’s times are for there and back: return the same way.": "I tempi della scheda ufficiale sono per andata e ritorno: torna per la stessa via."
+  "The board’s times are for there and back: return the same way.": "I tempi della scheda ufficiale sono per andata e ritorno: torna per la stessa via.",
+  "The Mitterberg fort beside the walk, in July": "Il forte Mitterberg accanto alla passeggiata, a luglio"
 });

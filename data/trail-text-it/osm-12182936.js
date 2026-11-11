@@ -6,5 +6,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "About 1.3 km on village streets and minor roads with cars": "Circa 1,3 km su strade di paese e strade secondarie con auto",
   "Mixed: riverside footpath (about 1.3 km), village streets, farm tracks and minor roads": "Misto: sentiero lungo il fiume (circa 1,3 km), strade di paese, strade poderali e strade secondarie",
   "Steg, at the junction below Bad Schörgau (start of route 24 in the province register); the loop can also be joined in Sarnthein village": "Steg, al bivio sotto Bad Schörgau (inizio del percorso 24 nel catasto provinciale); all'anello ci si può unire anche nel paese di Sarnthein",
-  "The Talfer running milky under a covered wooden bridge at Sarnthein, geraniums on the rail and the wooded valley side beyond.": "La Talfer, color latte, che scorre sotto un ponte coperto di legno a Sarnthein, gerani sulla ringhiera e il versante boscoso della valle oltre."
+  "The Talfer running milky under a covered wooden bridge at Sarnthein, geraniums on the rail and the wooded valley side beyond.": "La Talfer, color latte, che scorre sotto un ponte coperto di legno a Sarnthein, gerani sulla ringhiera e il versante boscoso della valle oltre.",
+  "Talfer bei Sarnthein": "La Talfer presso Sarnthein"
 });

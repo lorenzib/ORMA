@@ -57138,7 +57138,7 @@
       // Seal restored 30 October 2026: the board's directions now sit in this record (routeNumberGuidance), so the page shows them.
       // Hand audit: 28 October 2026, verified on arrival (new-trail Kronplatz batch 1).
       // San Vigilio Dolomites tourist board’s walk “Escursione da Antermoia attraverso Colac - Val a Rina”, drawn on 16 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule); San Martin de Tor (no dog regulation found, national rule).
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Enneberg (no dog regulation found, national rule); San Martin de Tor (Verordnung 01/2005: lead and muzzle in public places; corrected 11 November 2026).
       // No Natura 2000 site or park; 4% in landscape protection zones, which limit building, not dogs.
       // The stored line follows the board’s own Outdooractive tour.
       area: 'Antermoia – Colac – Val – Rina, Marebbe',
@@ -57178,7 +57178,7 @@
         sources: [
           'San Vigilio Dolomites tourist board, Escursione da Antermoia attraverso Colac - Val a Rina (its Outdooractive tour, also listed on suedtirol.info)',
           'Gemeinde Enneberg: no dog regulation found on its website (the commune’s document search does not list one). Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
-          'Gemeinde San Martin de Tor: no dog regulation found on its website (the commune’s document search does not list one). Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde St. Martin in Thurn / San Martin de Tor, Verordnung 01/2005 “Überwachung der Hunde” (17 January 2005): a dog in a public place or a place open to the public must be on a lead and wear a muzzle (Italian and Ladin text; the German text says lead or muzzle), and on a lead and muzzled in public buildings and on public transport; the national rule also applies (lead of at most 1.5 m)',
           'Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about 4% is in landscape protection zones, whose rules cover building and changes to the land and set no rule on dogs',
           'OpenStreetMap ways along the board’s line (16 ways), road, surface, woodland and water data'
         ],
@@ -57192,10 +57192,11 @@
       shadeDescription: 'Partly shaded: just under half runs through forest on path 20A; the climb to Colac is open and sunny.',
       terrainDescription: 'A walk at 1,425–1,585 m across the sunny slopes between Antermoia and Rina in the side valleys of Marebbe, past old farms with views of the Puez-Odle peaks.',
       waterDescription: 'Drinking water at the start; places to eat on the way.',
-      dogNotes: 'Enneberg and San Martin de Tor have no dog regulation we could find, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep off the hay meadows too, as the neighbouring communes require.',
+      dogNotes: 'San Martin de Tor’s dog ordinance asks for a lead and a muzzle in public places, so where the walk is in that commune keep your dog on a lead and muzzled. Enneberg has no dog regulation we could find, so the national rule applies there: a lead of at most 1.5 m and a muzzle carried. Keep off the hay meadows too, as the neighbouring communes require.',
       tips: 'Start at the sports ground in Antermoia: 5.5 km one way, about 145 m up and 220 m down, an hour and a half; come back the same way. Keep your dog on a lead of at most 1.5 m and carry a muzzle, and keep off the hay meadows round the farms. Water at the start; a bar in Rina at the end.',
       sourceLinks: [
         { label: 'Outdooractive, Escursione da Antermoia attraverso Colac - Val a Rina (San Vigilio Dolomites tourist board)', url: 'https://www.outdooractive.com/it/r/810055911' },
+        { label: 'Gemeinde St. Martin in Thurn / San Martin de Tor, Verordnung 01/2005 (dogs)', url: 'https://www.gemeinde.stmartininthurn.bz.it/system/web/GetDocument.ashx?cts=1536582111&fileId=1022828' },
         { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/copyright' }
@@ -58157,7 +58158,7 @@
     'villnoess-da-russis-fino-al-passo-delle-erbe': {
       // Hand audit: 29 October 2026, verified on arrival (new-trail Villnöss batch 1).
       // “Da Russis fino al Passo delle Erbe”, published by the Villnöss tourist board (Tourismusverein Villnöss), drawn on 12 OSM ways along the line it publishes
-      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Villnöss (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows) and San Martin de Tor (no dog regulation found, national rule); about 88% in the Puez-Odle nature park, dogs on a lead.
+      // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: Villnöss (its 2010 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows) and San Martin de Tor (Verordnung 01/2005: lead and muzzle in public places; corrected 11 November 2026); about 88% in the Puez-Odle nature park, dogs on a lead.
       // About 88% is in the Puez-Odle nature park (Natura 2000 IT3110026), where dogs stay on a lead; no reserve zone on the line.
       // The stored line follows the board’s own Outdooractive tour, 100% each way, with no spur or doubling back.
       area: 'Ponte Russis – Günther-Messner path – Passo delle Erbe, Villnöss',
@@ -58197,7 +58198,7 @@
         sources: [
           'Villnöss tourist board (Tourismusverein Villnöss), Da Russis fino al Passo delle Erbe (its Outdooractive tour, also listed on suedtirol.info)',
           'Gemeinde Villnöss / Comune di Funes, Verordnung über die Haltung und Führung von Hunden (Gemeinderat 16/2010), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries or on farmed meadows and fields; no bathing in the village fountains',
-          'Comun de San Martin de Tor: no dog regulation found on its website. Neighbouring communes use the same 2010 provincial template, so one probably exists; until it is found the national rule applies (Ministry of Health ordinance of 6 August 2013, extended to September 2027): a lead of at most 1.5 m and a muzzle carried',
+          'Gemeinde St. Martin in Thurn / San Martin de Tor, Verordnung 01/2005 “Überwachung der Hunde” (17 January 2005): a dog in a public place or a place open to the public must be on a lead and wear a muzzle (Italian and Ladin text; the German text says lead or muzzle), and on a lead and muzzled in public buildings and on public transport; the national rule also applies (lead of at most 1.5 m)',
           'Naturpark Puez-Geisler / Parco naturale Puez-Odle (Natura 2000 IT3110026), decree D.P.G.P. 31 October 1977, n. 29/V/LS, and the Province of Bolzano code of conduct for the nature parks: dogs on a lead; about 88% of the line is in the park. The site’s objectives and conservation measures (Giunta provinciale, 19 December 2025) and the Province’s ZPS measures (DGP 229/2008) set no rule on dogs or on walking the paths',
           'OpenStreetMap ways along the board’s line (12 ways), road, surface, woodland and water data'
         ],
@@ -58211,10 +58212,11 @@
       shadeDescription: 'Mostly open: about a sixth runs through mapped woodland; the meadows and scree below the peaks are in full sun.',
       terrainDescription: 'A walk at 1,735–2,135 m from Ponte Russis on the lower Günther-Messner path under the Aferer Geisler and up to Passo delle Erbe, with the Sas de Pütia ahead.',
       waterDescription: 'Drinking water at km 1.7, km 6.1 and km 6.8; places to eat on the way.',
-      dogNotes: 'Most of the walk is in the Puez-Odle nature park, where dogs stay on a lead at all times. Villnöss requires a lead of at most 1.5 m and a muzzle carried and keeps dogs off farmed meadows; near Passo delle Erbe the walk is in San Martin de Tor, where no dog regulation was found, so the national rule applies: the same lead and muzzle.',
+      dogNotes: 'Most of the walk is in the Puez-Odle nature park, where dogs stay on a lead at all times. Villnöss requires a lead of at most 1.5 m and a muzzle carried and keeps dogs off farmed meadows; near Passo delle Erbe the walk is in San Martin de Tor, whose dog ordinance asks for a lead and a muzzle in public places.',
       tips: 'Start at Ponte Russis: 8 km one way, about 550 m up and 300 m down, two and a half hours; take the bus back from Passo delle Erbe. Keep your dog on a lead of at most 1.5 m and carry a muzzle; the park asks for a lead throughout. Drinking water around km 1.7 and km 6.',
       sourceLinks: [
         { label: 'Outdooractive, Da Russis fino al Passo delle Erbe (Villnöss tourist board (Tourismusverein Villnöss))', url: 'https://www.outdooractive.com/it/r/65390947' },
+        { label: 'Gemeinde St. Martin in Thurn / San Martin de Tor, Verordnung 01/2005 (dogs)', url: 'https://www.gemeinde.stmartininthurn.bz.it/system/web/GetDocument.ashx?cts=1536582111&fileId=1022828' },
         { label: 'Gemeinde Villnöss, dog regulation', url: 'https://www.gemeinde.villnoess.bz.it/system/web/GetDocument.ashx?cts=1789663369&fileId=1048678' },
         { label: 'Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)', url: 'https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315' },
         { label: 'Province of Bolzano geoservices, landscape plan layers (WFS)', url: 'https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities' },
@@ -66187,6 +66189,106 @@
       ],
       startPoint: { lat: 46.339498, lng: 10.618123, label: "Park car park at the Fontanino di Celentino, Val del Monte, the board’s start" },
       desc: "A long loop in the Stelvio National Park from the Fontanino di Celentino past Malga Giumella and Malga Paludèi into the Val Piana, where red deer and chamois are easy to spot in summer, and back past Lagostèl and old charcoal pits. The board lists 12.9 km and 799 m up."
+    },
+    'colle-passeggiata-intorno-al-colle': {
+      // Hand audit: 11 November 2026, verified on arrival (new-trail Dolomites batch 9).
+      // “Passeggiata intorno al colle”, published by Associazione Turistica Colle Santa Lucia, drawn on 5 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Colle Santa Lucia (no dog rule found: national rule). No park or Natura 2000 site. No main road: about 120 m of village street at the start and end.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Colle Santa Lucia, Val Fiorentina",
+      distance: 1.1,
+      elevation: 59,
+      hours: '0.5',
+      routeShape: 'loop',
+      routeShapeNote: "A short loop from the piazza of Colle Santa Lucia down the Rovei road, round the knoll on the forest road through the meadows and back through the old village, as the tourist association publishes it (1.1 km, 59 m up, 25 min).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the piazza of Colle Santa Lucia, by the church, the association’s start.",
+        "sequence": "Facing the church, take the steep road down on the right-hand side of the piazza, between the Cesa de le Angele guesthouse and an old barn, signed “Rovei – Caprile”. After about 200 m turn left onto the wide forest road into the meadows and follow it all the way round the knoll. Back among the houses of the old village, carry straight on to the piazza. The stations of the Via Crucis line the way, the last ones on the climb to the church.",
+        "switches": "Road down from the piazza signed “Rovei – Caprile”; after about 200 m left onto the forest road through the meadows; round the knoll and back through the old village; straight on to the piazza.",
+        "steps": [
+          {
+            "text": "The piazza of Colle Santa Lucia",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Road down signed “Rovei – Caprile”, between the guesthouse and the old barn",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Left after about 200 m onto the forest road through the meadows",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Round the knoll past the Via Crucis stations",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back through the old village to the piazza",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Associazione Turistica Colle Santa Lucia, Passeggiata intorno al colle (route description)",
+            "url": "https://www.outdooractive.com/it/r/211507344",
+            "authority": "Associazione Turistica Colle Santa Lucia",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-11"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-11',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Colle Santa Lucia (Ximonic (Simo Räsänen) on Wikimedia Commons, CC BY-SA 4.0), 30 September 2025, 73 m from the line.",
+        route: "Official loop of 1.1 km from The piazza of Colle Santa Lucia, by the church, the association’s start, as Associazione Turistica Colle Santa Lucia publishes it; the stored line is drawn on 5 OSM ways along the board’s published line, 1.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number on the association’s page: from the piazza down the road signed “Rovei – Caprile”, left after about 200 m onto the forest road round the knoll through the meadows, then back through the old village to the piazza.",
+        mapPoints: "Start at the board’s start; drinking water at the start (OSM nodes 6831475663).",
+        elevation: "Official 1.1 km, 59 m up and 59 m down, 25 min, highest point 1,434 m, lowest 1,376 m (Associazione Turistica Colle Santa Lucia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Associazione Turistica Colle Santa Lucia, Passeggiata intorno al colle (its Outdooractive tour)",
+          "No dog rule found on the Comune di Colle Santa Lucia’s site, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park or Natura 2000 site on the line (EEA)",
+          "OpenStreetMap ways along the board’s line (5 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-11'
+      },
+      shadeCoverage: 6,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["Village street at the start and end, with some cars: keep your dog on a short lead","Steep road down from the piazza at the start","The walk crosses hay meadows: keep your dog on the track"],
+      terrainType: "Village street and forest road",
+      shadeDescription: "Almost no shade: open meadows round the knoll.",
+      terrainDescription: "A short, easy loop round the knoll of Colle Santa Lucia, through hay meadows with views of the church on its hill and the Pelmo and Civetta, past the stations of a Via Crucis.",
+      waterDescription: "Drinking water is mapped at the start in the village (OSM); bars and a pizzeria are on the piazza.",
+      dogNotes: "Colle Santa Lucia has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog on the track through the hay meadows.",
+      tips: "Start in the piazza by the church: 1.1 km and 59 m up, about 25 minutes, as the association lists. A gentle stroll for a short leg-stretch or an older dog; carry water on warm days, as there is almost no shade.",
+      sourceLinks: [
+        { label: "Associazione Turistica Colle Santa Lucia, Passeggiata intorno al colle", url: "https://www.outdooractive.com/it/r/211507344" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.446903, lng: 12.014045, label: "The piazza of Colle Santa Lucia, by the church, the association’s start" },
+      desc: "A short, easy loop round the knoll of Colle Santa Lucia, through hay meadows and past the Via Crucis stations, with views of the village church and the Pelmo. The association lists 1.1 km and 59 m up."
     }
   };
 

@@ -16,5 +16,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the church in Grauno go up the cobbled lane. After about 100 m, take the level track on the right, following the signs for Capriana.": "Dalla chiesa di Grauno sali per la stradina acciottolata. Dopo circa 100 m prendi a destra la carrareccia in piano, seguendo i cartelli per Capriana.",
   "Stay on the same signed path all the way to Capriana.": "Resta sullo stesso sentiero segnalato fino a Capriana.",
   "To come back, follow the signs for Cao de Villa and carry on along paths and forest roads up to the Rifugio Fontana d’Ao.": "Per il ritorno segui i cartelli per Cao de Villa e prosegui su sentieri e strade forestali fino al Rifugio Fontana d'Ao.",
-  "Then go down the cobbled road to Grauno.": "Poi scendi per la strada acciottolata fino a Grauno."
+  "Then go down the cobbled road to Grauno.": "Poi scendi per la strada acciottolata fino a Grauno.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "San Martino, Grauno": "San Martino, Grauno"
 });

@@ -18,5 +18,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Follow the ridge east over the Hochhorn and the Gaishörndl to the Pfannhorn, at 2,662 m the highest point; the Bonnerhütte sits just below it.": "Segui la cresta verso est sopra l’Hochhorn e il Gaishörndl fino al Pfannhorn, a 2.662 m il punto più alto; la Bonnerhütte è appena sotto.",
   "Carry on along the border with Austria past the Blankenstein to the Marchkinkele and its summit cross, with the Marchhütte just below.": "Prosegui lungo il confine con l’Austria oltre il Blankenstein fino al Marchkinkele e alla sua croce di vetta, con la Marchhütte appena sotto.",
   "Go down path 1 through the Blankental past the Steinbergalm, then take the forest road down the Silvestertal past the Silvesteralm.": "Scendi per il sentiero 1 attraverso la Blankental oltre la Steinbergalm, poi prendi la strada forestale giù per la Silvestertal oltre la Silvesteralm.",
-  "The last kilometre back to the start is on asphalt, or on the forest path that branches off to the left.": "L’ultimo chilometro fino alla partenza è su asfalto, oppure sul sentiero nel bosco che si stacca a sinistra."
+  "The last kilometre back to the start is on asphalt, or on the forest path that branches off to the left.": "L’ultimo chilometro fino alla partenza è su asfalto, oppure sul sentiero nel bosco che si stacca a sinistra.",
+  "Drinking water near Toblach": "Acqua potabile vicino a Toblach",
+  "Drinking water at the Silvesteralm": "Acqua potabile alla Silvesteralm",
+  "Drinking water on the way down above Wahlen": "Acqua potabile in discesa sopra Wahlen",
+  "The summit cross on the Marchkinkele": "La croce di vetta sul Marchkinkele"
 });

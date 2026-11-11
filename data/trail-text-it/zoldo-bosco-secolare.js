@@ -16,5 +16,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Col, the end of the village; right-hand bend, dirt road west into the forest": "Col, in fondo al paese; curva a destra, strada sterrata verso ovest nel bosco",
   "Gaf de Malvarè: short path and footbridge over the gorge": "Gaf de Malvarè: breve sentiero e ponticello sulla forra",
   "Pratoran and the De Fanti house (fountain)": "Pratoran e la casa De Fanti (fontana)",
-  "Villa, the square (1,014 m); back the same way": "Villa, la piazzetta (1.014 m); ritorno per la stessa via"
+  "Villa, the square (1,014 m); back the same way": "Villa, la piazzetta (1.014 m); ritorno per la stessa via",
+  "Drinking water": "Acqua potabile",
+  "Santa Caterina in Dont, a 15-minute detour from Villa": "Santa Caterina a Dont, una deviazione di 15 minuti da Villa"
 });

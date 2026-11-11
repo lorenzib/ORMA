@@ -16,5 +16,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the car park on the SP 71, walk to the lake and follow the path along the shore to the left.": "Dal parcheggio sulla SP 71, cammina fino al lago e segui il sentiero lungo la riva verso sinistra.",
   "Soon after, follow the signs to leave the lakeside path and go into the woods to the Val Fredda.": "Poco dopo, segui le indicazioni per lasciare il sentiero lungo il lago ed entrare nel bosco verso la Val Fredda.",
   "After seeing this part of the protected area, go back to the lakeside path and follow it to the south end of the lake.": "Dopo aver visto questa parte dell'area protetta, torna al sentiero lungo il lago e seguilo fino all'estremità sud del lago.",
-  "Cross the small bridge between the lake and the Palù degli Sfrondoni wetland, and walk back to the start along the opposite shore.": "Attraversa il ponticello tra il lago e la zona umida del Palù degli Sfrondoni, e torna alla partenza lungo la sponda opposta."
+  "Cross the small bridge between the lake and the Palù degli Sfrondoni wetland, and walk back to the start along the opposite shore.": "Attraversa il ponticello tra il lago e la zona umida del Palù degli Sfrondoni, e torna alla partenza lungo la sponda opposta.",
+  "Drinking fountain": "Fontanella",
+  "Lago di Lases": "Lago di Lases"
 });

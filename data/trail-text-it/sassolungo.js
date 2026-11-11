@@ -8,5 +8,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start here, Passo Sella": "Parti da qui, Passo Sella",
   "The Sassopiatto in the Dolomites at evening": "Il Sassopiatto nelle Dolomiti al tramonto",
   "Sassolungo above the green meadows of Passo Sella": "Il Sassolungo sopra i prati verdi di Passo Sella",
-  "The Plattkofel hut terrace, with the Sassopiatto rock face behind": "La terrazza del rifugio Plattkofel, con la parete rocciosa del Sassopiatto alle spalle"
+  "The Plattkofel hut terrace, with the Sassopiatto rock face behind": "La terrazza del rifugio Plattkofel, con la parete rocciosa del Sassopiatto alle spalle",
+  "Waterfall stream": "Torrente della cascata",
+  "Plattkofel Abends": "Plattkofel di sera"
 });

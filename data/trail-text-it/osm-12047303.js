@@ -4,5 +4,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Partially mapped: paved (100%), stone setts (0%), dirt (0%), from OSM surface data": "Mappatura parziale: asfalto (100%), cubetti di pietra (0%), terra battuta (0%), dai dati sul fondo di OSM",
   "Start here — Parking, 14 m from the route (OSM-verified access point)": "Parti da qui — Parcheggio, a 14 m dal percorso (punto di accesso verificato su OSM)",
-  "Orchids in a wet meadow along the green water of the Toblach lake, with walkers on the shore path and Dolomite towers above the forest.": "Orchidee in un prato umido lungo l'acqua verde del lago di Toblach, con escursionisti sul sentiero della riva e torri dolomitiche sopra il bosco."
+  "Orchids in a wet meadow along the green water of the Toblach lake, with walkers on the shore path and Dolomite towers above the forest.": "Orchidee in un prato umido lungo l'acqua verde del lago di Toblach, con escursionisti sul sentiero della riva e torri dolomitiche sopra il bosco.",
+  "Drinking water": "Acqua potabile",
+  "Santer": "Santer",
+  "Schneider": "Schneider",
+  "Lago di Dobbiaco": "Lago di Dobbiaco"
 });

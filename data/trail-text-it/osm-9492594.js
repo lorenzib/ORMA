@@ -12,5 +12,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Lajen Dorfplatz, on the loop (parking at the sports ground, 270 m east)": "Dorfplatz di Lajen, sull'anello (parcheggio al campo sportivo, 270 m a est)",
   "The village of Lajen on its terrace above green meadows crossed by field paths, with snow on the far range.": "Il paese di Lajen sul suo terrazzo sopra prati verdi attraversati da sentieri campestri, con la neve sulla catena lontana.",
   "Mostly open meadows on a sunny slope between 750 and 1,100 m, with only short stretches beside woodland and hedges.": "Per lo più prati aperti su un pendio soleggiato tra 750 e 1.100 m, con solo brevi tratti accanto a boschi e siepi.",
-  "From Lajen follow waymark 35 (also signed Vogelweider Rundweg) down to Ried and the Vogelweiderhof, take the Eselsteig signed Vogelweider Rundweg to Albions, then at the church turn right uphill on path 5 back to Lajen.": "Da Lajen segui il segnavia 35 (segnalato anche come Vogelweider Rundweg) in discesa fino a Ried e al Vogelweiderhof, prendi l'Eselsteig segnalato Vogelweider Rundweg fino ad Albions, poi alla chiesa svolta a destra in salita sul sentiero 5 per tornare a Lajen."
+  "From Lajen follow waymark 35 (also signed Vogelweider Rundweg) down to Ried and the Vogelweiderhof, take the Eselsteig signed Vogelweider Rundweg to Albions, then at the church turn right uphill on path 5 back to Lajen.": "Da Lajen segui il segnavia 35 (segnalato anche come Vogelweider Rundweg) in discesa fino a Ried e al Vogelweiderhof, prendi l'Eselsteig segnalato Vogelweider Rundweg fino ad Albions, poi alla chiesa svolta a destra in salita sul sentiero 5 per tornare a Lajen.",
+  "Dorfbrunnen Lajen (Refill Südtirol)": "Dorfbrunnen Lajen (Refill Südtirol)",
+  "Drinking water, Ried": "Acqua potabile, Ried",
+  "Drinking water, Albions": "Acqua potabile, Albions",
+  "Lajen seen from Tagusens": "Lajen vista da Tagusens"
 });

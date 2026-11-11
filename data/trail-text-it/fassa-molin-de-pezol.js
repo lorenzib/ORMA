@@ -17,5 +17,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "After a short ramp the way levels out and enters a copse dotted with wooden carvings of animals and gnomes. Come out onto the Ciancoal meadows and carry on to Piciocaa, with a votive chapel and a children’s play area.": "Dopo una breve rampa la via torna in piano ed entra in un boschetto disseminato di sculture in legno di animali e gnomi. Esci sui prati di Ciancoal e prosegui fino a Piciocaa, con un capitello votivo e un'area giochi per bambini.",
   "Turn back and, just past the “Fraine” snow park, take the leftmost path towards the north of Pozza, beside the cross-country ski loop.": "Torna indietro e, subito dopo lo snow park “Fraine”, prendi il sentiero più a sinistra verso il nord di Pozza, accanto all'anello di sci di fondo.",
   "Enter Strada de Ciancoal and at the fork turn right into Strada del Piz. Past the fountain on the left you reach a bridge.": "Entra in Strada de Ciancoal e al bivio svolta a destra in Strada del Piz. Oltre la fontana a sinistra raggiungi un ponte.",
-  "Cross it and turn straight away right into Strada Sas da le Undesc, which runs downhill beside the Ruf de Sèn Nicolò back to Strada Promenada enlogia Ruf and the start.": "Attraversalo e svolta subito a destra in Strada Sas da le Undesc, che scende accanto al Ruf de Sèn Nicolò fino a Strada Promenada enlogia Ruf e alla partenza."
+  "Cross it and turn straight away right into Strada Sas da le Undesc, which runs downhill beside the Ruf de Sèn Nicolò back to Strada Promenada enlogia Ruf and the start.": "Attraversalo e svolta subito a destra in Strada Sas da le Undesc, che scende accanto al Ruf de Sèn Nicolò fino a Strada Promenada enlogia Ruf e alla partenza.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The peaks above Pozza": "Le cime sopra Pozza"
 });

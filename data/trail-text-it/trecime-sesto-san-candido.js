@@ -18,5 +18,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Cross the road and go up the narrow lane to the church. Walk past the church and after a few hundred metres turn left into the Lanerweg.": "Attraversa la strada e sali per la stradina stretta fino alla chiesa. Supera la chiesa e dopo qualche centinaio di metri gira a sinistra nel Lanerweg.",
   "Below the Laner farms, path 5 to Innichen begins. Follow it across flower meadows, past farms and through the forest above the Sexten reservoir.": "Sotto i masi Laner inizia il sentiero 5 per Innichen. Seguilo tra prati fioriti, oltre alcuni masi e attraverso il bosco sopra il bacino di Sexten.",
   "Beyond the reservoir, stay on path 5 until it joins path 4, and follow that into the centre of Innichen.": "Oltre il bacino, resta sul sentiero 5 finché si immette nel sentiero 4, e segui quest'ultimo fino al centro di Innichen.",
-  "The board’s times are for there and back: return the same way.": "I tempi della scheda ufficiale sono per andata e ritorno: torna per la stessa via."
+  "The board’s times are for there and back: return the same way.": "I tempi della scheda ufficiale sono per andata e ritorno: torna per la stessa via.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The Schmieden meadows above Sexten, beside path 5, in September": "I prati di Schmieden sopra Sexten, accanto al sentiero 5, a settembre"
 });

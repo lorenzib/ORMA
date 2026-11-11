@@ -17,5 +17,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "After 150 m, cross the cycle path on your right and carry on along a path for about 300 m towards Bosin, until you see the first houses of the hamlet.": "Dopo 150 m attraversa la ciclabile alla tua destra e prosegui lungo un sentiero per circa 300 m verso Bosin, finché vedi le prime case della frazione.",
   "Turn sharp left. The path climbs towards the Cercenai road until it reaches the Rio Sadole stream.": "Svolta secco a sinistra. Il sentiero sale verso la strada di Cercenai fino a raggiungere il rio Sadole.",
   "Here take the dirt track going down, past the Mas del Marino, to the Fiemme cycle path.": "Qui prendi la strada in terra battuta in discesa, oltre il Mas del Marino, fino alla ciclabile della Val di Fiemme.",
-  "Turn left to reach Roda and the start.": "Svolta a sinistra per raggiungere Roda e la partenza."
+  "Turn left to reach Roda and the start.": "Svolta a sinistra per raggiungere Roda e la partenza.",
+  "A shrine near Roda": "Un capitello vicino a Roda"
 });

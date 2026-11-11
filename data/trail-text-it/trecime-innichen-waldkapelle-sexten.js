@@ -16,5 +16,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From Innichen, go briefly up the Burg hill to the soldiers’ cemetery.": "Da Innichen sali brevemente sul colle Burg fino al cimitero militare.",
   "Join the Schlossweg forest road and follow path 4.": "Prendi la strada forestale Schlossweg e segui il sentiero 4.",
   "Where the meditation path turns off to the right, take it; after about 100 m you reach the Waldkapelle, a First World War chapel hidden in the forest.": "Dove il sentiero della meditazione si stacca a destra, prendilo; dopo circa 100 m raggiungi la Waldkapelle, una cappella della Prima guerra mondiale nascosta nel bosco.",
-  "From the chapel, path 4D runs gently down past the stations of the Way of the Cross and the Hösler and Ladstätter farms to Sexten.": "Dalla cappella il sentiero 4D scende dolcemente oltre le stazioni della Via Crucis e i masi Hösler e Ladstätter fino a Sexten."
+  "From the chapel, path 4D runs gently down past the stations of the Way of the Cross and the Hösler and Ladstätter farms to Sexten.": "Dalla cappella il sentiero 4D scende dolcemente oltre le stazioni della Via Crucis e i masi Hösler e Ladstätter fino a Sexten.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The Waldkapelle in the forest above Sexten in June": "La Waldkapelle nel bosco sopra Sexten a giugno"
 });

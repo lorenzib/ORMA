@@ -15,5 +15,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Right onto path 1 at the south-east end of the lake. Onto path 4 at the next junction, after about 2.2 km.": "A destra sul sentiero 1 all'estremità sud-est del lago. Sul sentiero 4 al bivio successivo, dopo circa 2,2 km.",
   "Walk along the west shore of the Pragser Wildsee to the south-east end of the lake.": "Cammina lungo la sponda ovest del Pragser Wildsee fino all'estremità sud-est del lago.",
   "There, turn right at the junction onto path 1 and follow it for about 2.2 km to the next junction.": "Lì, al bivio, gira a destra sul sentiero 1 e seguilo per circa 2,2 km fino al bivio successivo.",
-  "From there, follow path 4 for about 3 km to the Rossalm.": "Da lì segui il sentiero 4 per circa 3 km fino alla Rossalm."
+  "From there, follow path 4 for about 3 km to the Rossalm.": "Da lì segui il sentiero 4 per circa 3 km fino alla Rossalm.",
+  "Drinking fountain": "Fontanella",
+  "The Rossalm, where the walk ends, in September": "La Rossalm, dove finisce la passeggiata, a settembre"
 });

@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mountain bikes may cross the path in the forest (official)": "Nel bosco le mountain bike possono attraversare il sentiero (indicazione ufficiale)",
   "Partially mapped: unpaved (67%), natural ground (31%), grass (2%), from OSM surface data": "Mappatura parziale: sterrato (67%), terreno naturale (31%), erba (2%), da dati OSM sul fondo",
   "Tennis du Mottet, Valmorel (official start; parking P4, P5 or P6)": "Tennis du Mottet, Valmorel (partenza ufficiale; parcheggio P4, P5 o P6)",
-  "The clear Morel torrent running over white boulders beneath spruce trees in summer above Valmorel": "Il limpido torrente Morel che scorre su massi bianchi sotto gli abeti rossi d'estate sopra Valmorel"
+  "The clear Morel torrent running over white boulders beneath spruce trees in summer above Valmorel": "Il limpido torrente Morel che scorre su massi bianchi sotto gli abeti rossi d'estate sopra Valmorel",
+  "The Morel torrent at Valmorel": "Il torrente Morel a Valmorel"
 });

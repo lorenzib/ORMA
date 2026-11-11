@@ -4,5 +4,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Partially mapped: paved (76%), unpaved (12%), grass (6%), from OSM surface data": "Mappatura parziale: asfalto (76%), non asfaltato (12%), erba (6%), dai dati sul fondo di OSM",
   "Start here — Parking, 6 m from the route (OSM-verified access point)": "Parti da qui — Parcheggio, a 6 m dal percorso (punto di accesso verificato su OSM)",
-  "Dawn over the Isarco valley": "Alba sulla valle dell'Isarco"
+  "Dawn over the Isarco valley": "Alba sulla valle dell'Isarco",
+  "Wunderbrunnen - Pozzo delle meraviglie": "Wunderbrunnen - Pozzo delle meraviglie",
+  "Drinking water": "Acqua potabile",
+  "Alba sulla valle Isarco": "Alba sulla valle Isarco"
 });

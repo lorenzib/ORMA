@@ -7,5 +7,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Boulder and stream bed on the gorge floor": "Massi e letto del torrente sul fondo della gola",
   "Partially mapped: gravel (51%), natural ground (16%), rock (16%), from OSM surface data": "Mappatura parziale: ghiaia (51%), terreno naturale (16%), roccia (16%), dai dati sul fondo di OSM",
   "Bletterbach visitor centre, Lerch 40, Aldein (official start)": "Centro visitatori Bletterbach, Lerch 40, Aldein (partenza ufficiale)",
-  "The banded red and grey rock walls at the head of the Bletterbach gorge, with a boulder bed on the gorge floor": "Le pareti di roccia a strisce rosse e grigie in testa alla gola del Bletterbach, con un letto di massi sul fondo della gola"
+  "The banded red and grey rock walls at the head of the Bletterbach gorge, with a boulder bed on the gorge floor": "Le pareti di roccia a strisce rosse e grigie in testa alla gola del Bletterbach, con un letto di massi sul fondo della gola",
+  "Floscherbrindl": "Floscherbrindl",
+  "The head of the Bletterbach gorge": "La testata della gola del Bletterbach"
 });

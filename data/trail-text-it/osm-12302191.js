@@ -11,5 +11,11 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Niederrasen village centre: Dorfrundweg guidepost, near the town hall bus stop (line 431)": "Centro del paese di Niederrasen: cartello del Dorfrundweg, vicino alla fermata dell'autobus del municipio (linea 431)",
   "The Anterselva valley with Rasun di Sotto in the foreground": "La Valle di Anterselva con Rasun di Sotto in primo piano",
   "About 45% woodland: shaded forest paths on the west side alternate with open forest-edge and meadow stretches; at 1,000–1,190 m it can be warm at midday in summer.": "Circa il 45% nel bosco: sentieri ombreggiati sul lato ovest si alternano a tratti aperti al margine del bosco e tra i prati; tra 1.000 e 1.190 m d'estate può fare caldo a mezzogiorno.",
-  "No number: follow the blue-and-white “Dorfrundweg Rasen” waymark. From Oberrasen the route runs on the forest road along the Antholzer Bach towards Antholz, turns left under the main road to the Oberrasen barbecue site, follows the forest edge back to Niederrasen and returns over the Linde lane.": "Senza numero: segui il segnavia bianco e blu “Dorfrundweg Rasen”. Da Oberrasen il percorso segue la strada forestale lungo l'Antholzer Bach verso Antholz, svolta a sinistra sotto la strada principale fino all'area barbecue di Oberrasen, segue il margine del bosco fino a Niederrasen e ritorna per la stradina Linde."
+  "No number: follow the blue-and-white “Dorfrundweg Rasen” waymark. From Oberrasen the route runs on the forest road along the Antholzer Bach towards Antholz, turns left under the main road to the Oberrasen barbecue site, follows the forest edge back to Niederrasen and returns over the Linde lane.": "Senza numero: segui il segnavia bianco e blu “Dorfrundweg Rasen”. Da Oberrasen il percorso segue la strada forestale lungo l'Antholzer Bach verso Antholz, svolta a sinistra sotto la strada principale fino all'area barbecue di Oberrasen, segue il margine del bosco fino a Niederrasen e ritorna per la stradina Linde.",
+  "Spring at the Oberrasen barbecue site": "Sorgente all'area barbecue di Oberrasen",
+  "Fountain in Oberrasen": "Fontana a Oberrasen",
+  "Fountain in Oberrasen, 90 m off the route": "Fontana a Oberrasen, a 90 m dal percorso",
+  "Fountain in Niederrasen, 80 m off the route": "Fontana a Niederrasen, a 80 m dal percorso",
+  "Fountain at the Antholzertal tourist office, 130 m off the route": "Fontana all'ufficio turistico dell'Antholzertal, a 130 m dal percorso",
+  "Panorama della valle di anterselva": "Panorama della valle di anterselva"
 });

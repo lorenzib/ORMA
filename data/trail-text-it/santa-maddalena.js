@@ -13,5 +13,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "St. Magdalena in autumn, with farms and coloured trees below the Odle peaks": "St. Magdalena in autunno, con masi e alberi colorati sotto le Odle",
   "The church of St. Magdalena in green meadows below the Odle peaks": "La chiesa di St. Magdalena tra prati verdi sotto le Odle",
   "Almost entirely open meadow and village road at 1,230–1,350 m, with only a few trees near the church.": "Quasi interamente tra prati aperti e strade del paese a 1.230–1.350 m, con solo pochi alberi vicino alla chiesa.",
-  "No number: follow the “Rundweg St. Magdalena” signs from Bergerplatz via Fallerhof and Kaserotthof to the church, take the road to Bühlerhof, then turn left onto the Sunnseitenweg across the meadows.": "Senza numero: segui i cartelli “Rundweg St. Magdalena” da Bergerplatz passando per il Fallerhof e il Kaserotthof fino alla chiesa, prendi la strada per il Bühlerhof, poi svolta a sinistra sul Sunnseitenweg attraverso i prati."
+  "No number: follow the “Rundweg St. Magdalena” signs from Bergerplatz via Fallerhof and Kaserotthof to the church, take the road to Bühlerhof, then turn left onto the Sunnseitenweg across the meadows.": "Senza numero: segui i cartelli “Rundweg St. Magdalena” da Bergerplatz passando per il Fallerhof e il Kaserotthof fino alla chiesa, prendi la strada per il Bühlerhof, poi svolta a sinistra sul Sunnseitenweg attraverso i prati.",
+  "Municipal drinking fountain on Bergerplatz": "Fontanella comunale sulla Bergerplatz",
+  "Drinking-water tap at the Naturparkhaus, 116 m off the route": "Rubinetto di acqua potabile al Naturparkhaus, a 116 m dal percorso",
+  "St. Magdalena from the Zanser Strasse": "St. Magdalena dalla Zanser Strasse"
 });
