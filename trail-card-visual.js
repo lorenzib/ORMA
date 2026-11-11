@@ -1,3 +1,5 @@
+// A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 (function(global){
   // Script-written wording goes through i18n.js; the English sentence is its own key.
   function tx(text, vars){
@@ -112,7 +114,7 @@
   function render(trail, options){
     options = options || {};
     trail = trail || {};
-    var name = String(trail.name || tx('Trail'));
+    var name = String(trailDisplayName(trail) || tx('Trail'));
     var className = safeClassName(options.className || '');
     var classes = ['trail-visual'];
     if(className) classes.push(className);

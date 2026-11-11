@@ -157,6 +157,8 @@
 <script src="regions-config.js" defer></script>
 <script src="route-drafts.js?v=20260928-1"></script>
 <script>
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 // Saved trails screen. Same card language as the browse list; Remove
 // writes straight back to the account's favorites. Card explanations come
 // from the same canonical recommendation used on the homepage and detail page.
@@ -308,18 +310,18 @@ document.addEventListener('DOMContentLoaded', function(){
       var thumb = window.DoloPawsTrailVisual
         ? window.DoloPawsTrailVisual.render(tr, {
           className:'photo tc-thumb',
-          routeLabel:translate('saved.visual.route', '{name}: route preview', { name:tr.name }),
-          placeholderAria:translate('saved.visual.photoAria', '{name}: photo coming soon', { name:tr.name }),
+          routeLabel:translate('saved.visual.route', '{name}: route preview', { name:trailDisplayName(tr) }),
+          placeholderAria:translate('saved.visual.photoAria', '{name}: photo coming soon', { name:trailDisplayName(tr) }),
           placeholderLabel:window.t('saved.visual.photo'),
         })
-        : '<div class="trail-visual trail-visual--placeholder photo tc-thumb" role="img" aria-label="' + esc(translate('saved.visual.photoAria', '{name}: photo coming soon', { name:tr.name })) + '"><span class="trail-visual-placeholder-label">' + esc(window.t('saved.visual.photo')) + '</span></div>';
+        : '<div class="trail-visual trail-visual--placeholder photo tc-thumb" role="img" aria-label="' + esc(translate('saved.visual.photoAria', '{name}: photo coming soon', { name:trailDisplayName(tr) })) + '"><span class="trail-visual-placeholder-label">' + esc(window.t('saved.visual.photo')) + '</span></div>';
       return '<div class="trail-card" data-id="' + esc(tr.id) + '">' +
         thumb +
         '<div class="body">' +
           '<div class="tc-meta-row">' +
             provenanceBadge + riskBadge + heatBadge +
           '</div>' +
-          '<a href="trail.html?id=' + encodeURIComponent(tr.id) + '&from=saved.html" class="name" style="margin-top:2px;display:block;text-decoration:none;color:inherit;">' + esc(tr.name) + '</a>' +
+          '<a href="trail.html?id=' + encodeURIComponent(tr.id) + '&from=saved.html" class="name" style="margin-top:2px;display:block;text-decoration:none;color:inherit;">' + esc(trailDisplayName(tr)) + '</a>' +
           '<div class="tc-reason"><span class="mark">&#10022;</span><span class="txt">' + esc(whyFits(tr.recommendation)) + '</span></div>' +
           '<div class="tc-stats">' + esc(tr.area || '') + ' · ' + num(tr.distance) + ' km · ' + num(tr.elevation) + ' m' + (tr.hours ? ' · ' + esc(num(tr.hours)) + ' h' : '') + '</div>' +
           '<div class="tc-actions">' +

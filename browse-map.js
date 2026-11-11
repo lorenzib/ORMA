@@ -1,5 +1,7 @@
 (function(root){
   'use strict';
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // Script-written wording goes through i18n.js; the English sentence is its own key.
   // A number as the reader writes it (6,7 km in Italian); English is unchanged.
@@ -49,7 +51,7 @@
       geometry:{ type:'Point', coordinates:coordinate },
       properties:{
         id:String(trail.id || ''),
-        name:String(trail.name || 'Trail'),
+        name:String(trailDisplayName(trail) || 'Trail'),
         area:String(trail.area || trail.valley || ''),
         distance:Number(trail.distance) || 0,
         hours:Number(trail.hours) || 0,
@@ -168,7 +170,7 @@
         : '';
       popup = new root.maplibregl.Popup({ offset:18, closeButton:true, maxWidth:'250px' })
         .setLngLat(coordinate)
-        .setHTML(`<div class="browse-map-popup"><strong>${escapeHtml(trail.name || tx('Trail'))}</strong>${metadata ? `<span>${escapeHtml(metadata)}</span>` : ''}${verdictLine}<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}">${tx('Open trail →')}</a></div>`)
+        .setHTML(`<div class="browse-map-popup"><strong>${escapeHtml(trailDisplayName(trail) || tx('Trail'))}</strong>${metadata ? `<span>${escapeHtml(metadata)}</span>` : ''}${verdictLine}<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}">${tx('Open trail →')}</a></div>`)
         .addTo(map);
     }
 

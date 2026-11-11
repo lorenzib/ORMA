@@ -30,7 +30,9 @@ make the proposed standards change explicit to the user.
 - A new or reworded walk ships with its Italian: `node scripts/trail-text-it.js
   --missing missing.json`, translate each sentence into an
   `{"English": "Italiano"}` file, `--apply` it, then regenerate the trail pages.
-  The quality gate fails while any trail sentence has no Italian.
+  A new walk also adds its Italian name to `i18n-trail-names-it.js` (the same
+  name where it has no English in it). The quality gate fails while any trail
+  sentence or name has no Italian.
 - Commit generated outputs only when their source changed, and regenerate them
   with the repository scripts. Before committing, confirm that the branch has
   no unrelated tracked or untracked files.

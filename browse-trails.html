@@ -1128,6 +1128,8 @@
 <script src="map-style.js?v=20261029-2"></script>
 <script src="browse-map.js?v=20261106-2"></script>
 <script>
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
   window.addEventListener('DOMContentLoaded', () => {
     // Guest bar mirrors the homepage: members never see it.
     const guestBar = document.getElementById('browseGuestBar');
@@ -1435,7 +1437,7 @@
       tray.innerHTML =
         '<div class="compare-tray__copy">' +
           `<strong>${esc(bt('browse.compare.count', '{n} of 3 selected', { n: selected.length }))}</strong>` +
-          `<span class="compare-tray__names">${esc(selected.map(trail => trail.name).join(' · '))}</span>` +
+          `<span class="compare-tray__names">${esc(selected.map(trail => trailDisplayName(trail)).join(' · '))}</span>` +
         '</div>' +
         '<div class="compare-tray__actions">' +
           `<button type="button" class="compare-tray__clear">${esc(bt('browse.compare.clear', 'Clear'))}</button>` +
@@ -1893,7 +1895,7 @@
       list.innerHTML = pageTrails.length ? pageTrails.map(t => {
         const thumb = window.DoloPawsTrailVisual
           ? window.DoloPawsTrailVisual.render(t, { className:'photo' })
-          : `<div class="trail-visual trail-visual--placeholder photo" role="img" aria-label="${esc(bt('browse.card.photoSoonAria', '{name}: photo coming soon', { name: t.name }))}"><span class="trail-visual-placeholder-label">${esc(bt('browse.card.photoSoon', 'Photo coming soon'))}</span></div>`;
+          : `<div class="trail-visual trail-visual--placeholder photo" role="img" aria-label="${esc(bt('browse.card.photoSoonAria', '{name}: photo coming soon', { name: trailDisplayName(t) }))}"><span class="trail-visual-placeholder-label">${esc(bt('browse.card.photoSoon', 'Photo coming soon'))}</span></div>`;
         const s = SAFETY[t.safetyLevel] || SAFETY['moderate'];
         const icons = window.DoloPawsIcons;
         const trust = window.DoloPawsTrailTrust;
@@ -1924,7 +1926,7 @@
         <article class="simple-card${String(t.id) === selectedTrailId ? ' is-map-selected' : ''}" data-trail-id="${esc(t.id)}">
           ${thumb}
           <a class="simple-card__main" href="${openHref}">
-            <div class="name">${t.name}</div>
+            <div class="name">${trailDisplayName(t)}</div>
             <div class="simple-card__meta">${meta}</div>
           </a>
           <div class="simple-card__facts">
