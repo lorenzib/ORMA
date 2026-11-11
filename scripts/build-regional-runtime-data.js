@@ -11,6 +11,7 @@ const { applyTrailGalleryPhotos } = require('./trail-gallery-photos');
 const { applyLiftAccess } = require('./lift-access');
 const { applyTrailSeasons } = require('./trail-seasons');
 const { applyLiftSeasons } = require('./lift-seasons');
+const { applyRoadSeasons } = require('./road-seasons');
 const { applyDogSeasons } = require('./dog-seasons');
 const { normaliseRouteRef, applyRouteNumberEvidence } = require('./route-number-evidence');
 // The same slug the static page generator names its files after, from the same
@@ -33,7 +34,7 @@ const sourceFiles = [
   'trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'board-trails-data.js', 'trail-audits.js',
   'dog-friendly-routes.geojson', 'dog-friendly-routes-savoy.geojson',
   'regions-config.js', 'water-sources-all-regions.geojson', 'huts-bars-all-regions.geojson',
-  'data/verified-trail-overrides.json', 'data/trail-seasons.json', 'data/lift-seasons.json', 'data/dog-seasons.json',
+  'data/verified-trail-overrides.json', 'data/trail-seasons.json', 'data/lift-seasons.json', 'data/road-seasons.json', 'data/dog-seasons.json',
 ];
 fs.mkdirSync(outDir, { recursive: true });
 fs.mkdirSync(detailDir, { recursive: true });
@@ -101,8 +102,9 @@ function loadTrails() {
   const liftAccess = JSON.parse(fs.readFileSync(path.join(root, 'data', 'lift-access.json'), 'utf8'));
   const seasons = JSON.parse(fs.readFileSync(path.join(root, 'data', 'trail-seasons.json'), 'utf8'));
   const liftSeasons = JSON.parse(fs.readFileSync(path.join(root, 'data', 'lift-seasons.json'), 'utf8'));
+  const roadSeasons = JSON.parse(fs.readFileSync(path.join(root, 'data', 'road-seasons.json'), 'utf8'));
   const dogSeasons = JSON.parse(fs.readFileSync(path.join(root, 'data', 'dog-seasons.json'), 'utf8'));
-  const withOverrides = applyDogSeasons(applyLiftSeasons(applyTrailSeasons(applyLiftAccess(applyTrailGalleryPhotos(applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), images), gallery), liftAccess), seasons), liftSeasons), dogSeasons);
+  const withOverrides = applyDogSeasons(applyRoadSeasons(applyLiftSeasons(applyTrailSeasons(applyLiftAccess(applyTrailGalleryPhotos(applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), images), gallery), liftAccess), seasons), liftSeasons), roadSeasons), dogSeasons);
   // Last, as load-production-trails does: the regional and detail files fed the
   // dynamic page and the cards the importer's name ("Itinerario \"Raststeinweg\"")
   // while the static page printed the published one.

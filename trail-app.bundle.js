@@ -15417,6 +15417,17 @@ function initTrailReports(map, trail){
   // a lift the walk needs makes the months it is shut out of season.
   const requiredLifts = season => ((season && season.lifts) || []).filter(lift => lift.required);
   const liftShut = (lift, month) => (lift.shutMonths || []).includes(month);
+  // Roads shut in winter that are the only drive to the start
+  // (trail.season.roads, from data/road-seasons.json): like a needed lift, the
+  // months a road is shut are out of season.
+  const roadsOf = season => (season && season.roads) || [];
+  const roadShut = (season, month) => roadsOf(season).some(road => (road.shutMonths || []).includes(month));
+  const PART_WORDS = { early: 'early {month}', mid: 'mid-{month}', late: 'late {month}' };
+  const partMonth = point => tx(PART_WORDS[point.part], { month: monthName(point.month) });
+  // "The Tre Cime toll road is usually open from late May to late October."
+  function roadLine(road) {
+    return tx('The {road} is usually open from {from} to {to}.', { road: tx(road.name), from: partMonth(road.usually.from), to: partMonth(road.usually.to) });
+  }
 
   // "The Col Raiser gondola runs from 30 May to 1 November and from 6 December
   // to 6 April (2025/26 dates)."
@@ -15523,6 +15534,15 @@ function initTrailReports(map, trail){
       });
       if (marked) out.legend.push(['lift', tx('Lift not running')]);
     }
+    if (roadsOf(season).length && out.strip.length) {
+      let marked = false;
+      out.strip.forEach(m => {
+        if (m.state !== 'lift' && roadShut(season, m.month)) { m.state = 'road'; marked = true; }
+      });
+      if (marked) out.legend.push(['road', tx('Road closed')]);
+    }
+    // A key for a state no month shows any more (snow months the road covers) goes.
+    if (out.legend) out.legend = out.legend.filter(([state]) => out.strip.some(m => m.state === state));
     out.lifts = ((season.lifts) || []).map(lift => ({
       line: [
         liftLine(lift),
@@ -15537,6 +15557,15 @@ function initTrailReports(map, trail){
         after: tx(', read on {date}.', { date: readOn(lift.accessedAt) }),
       },
     }));
+    out.lifts = out.lifts.concat(roadsOf(season).map(road => ({
+      line: [roadLine(road), tx('The walk starts at the end of it; while it is shut, there is no drive to the start.')].join(' '),
+      source: {
+        before: tx('Source: '),
+        label: road.operator || road.name,
+        url: road.url,
+        after: tx(', read on {date}.', { date: readOn(road.accessedAt) }),
+      },
+    })));
     for (const use of season.winterUse || []) {
       const names = use.names && use.names.length ? ` (${use.names.join(', ')})` : '';
       out.winter.push(tx(KIND_SENTENCES[use.kind], { km: fmt(use.km), names }));
@@ -15565,7 +15594,7 @@ function initTrailReports(map, trail){
     const notes = [];
     // A board month the walk's lift is shut is not "in season": the lift's
     // sentence below says why, and the two would contradict each other.
-    const liftOut = requiredLifts(season).some(lift => liftShut(lift, month));
+    const liftOut = requiredLifts(season).some(lift => liftShut(lift, month)) || roadShut(season, month);
     if (season.winterWalk && !WINTER_WALK_MONTHS.includes(month)) {
       notes.push(tx('{month} is outside winter, and this is the winter walk.', { month: name }));
     } else if (season.recommended && !(liftOut && season.recommended.months.includes(month))) {
@@ -15583,6 +15612,9 @@ function initTrailReports(map, trail){
         ? tx('In {month} the {lift} is not running, and the walk needs it.', { month: name, lift: lift.name })
         : tx('In {month} the {lift} is not running; the walk does not need it.', { month: name, lift: lift.name }));
     }
+    for (const road of roadsOf(season)) {
+      if ((road.shutMonths || []).includes(month)) notes.push(tx('In {month} the {road} is closed, and the walk starts at the end of it.', { month: name, road: tx(road.name) }));
+    }
     if ((season.winterUse || []).length && WINTER_SPORT_MONTHS.includes(month)) {
       notes.push(tx('In {month}, parts of it are likely to be ski runs or tracks.', { month: name }));
     }
@@ -15592,7 +15624,7 @@ function initTrailReports(map, trail){
   // The months that suit the walk: the board's months, else the months the
   // estimate keeps free of snow; with ski runs on the line, less the months
   // those are usually open (unless that leaves nothing, as for a winter walk);
-  // and less the months a lift the walk needs is not running.
+  // and less the months a lift or road the walk needs is shut.
   // null when the walk has no season record.
   function winterWalkMonths(months) {
     const winter = (months || []).filter(m => WINTER_WALK_MONTHS.includes(m));
@@ -15612,11 +15644,11 @@ function initTrailReports(map, trail){
       const summer = months.filter(m => !WINTER_SPORT_MONTHS.includes(m));
       if (summer.length) months = summer;
     }
-    // Less the months a needed lift is shut. If that left nothing the lift
-    // data would be wrong for this walk, so it is not applied.
+    // Less the months a needed lift or road is shut. If that left nothing
+    // the data would be wrong for this walk, so it is not applied.
     const needed = requiredLifts(season);
-    if (needed.length) {
-      const running = months.filter(m => !needed.some(lift => liftShut(lift, m)));
+    if (needed.length || roadsOf(season).length) {
+      const running = months.filter(m => !needed.some(lift => liftShut(lift, m)) && !roadShut(season, m));
       if (running.length) months = running;
     }
     return months.length ? months.sort((a, b) => a - b) : null;
@@ -15693,7 +15725,7 @@ function initTrailReports(map, trail){
     return now.concat(later);
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

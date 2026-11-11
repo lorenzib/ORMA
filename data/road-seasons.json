@@ -1,0 +1,22 @@
+{
+  "contractVersion": "road-seasons-v1",
+  "note": "Roads that close for the winter and are the only drive to a walk's start. openMonths are the months the road is open for most of the month, read from the road's operator or town on accessedAt; usually says, in the source's own terms, when it opens and shuts (part: early, mid or late). A walk listed under trails is out of season in the months its road is shut. Curated by hand; check each spring and autumn. Roads checked and left out, because they stay open in winter or the walk can be reached another way, are in checked.",
+  "roads": {
+    "tre-cime-toll-road": {
+      "name": "Tre Cime toll road (Misurina – Rifugio Auronzo)",
+      "operator": "Comune di Auronzo di Cadore",
+      "url": "https://auronzo.info/parcheggio-tre-cime-di-lavaredo/",
+      "accessedAt": "2026-11-11",
+      "usually": { "from": { "part": "late", "month": 5 }, "to": { "part": "late", "month": 10 } },
+      "openMonths": [6, 7, 8, 9, 10]
+    }
+  },
+  "trails": {
+    "tre-cime": { "roads": ["tre-cime-toll-road"] },
+    "cadini": { "roads": ["tre-cime-toll-road"] }
+  },
+  "checked": [
+    { "road": "Würzjoch (Passo delle Erbe)", "trails": ["osm-12142337"], "why": "Shut in winter only between Afers and the pass; the road from St. Martin in Thurn stays open.", "url": "https://www.quaeldich.de/paesse/wuerzjoch/", "accessedAt": "2026-11-11" },
+    { "road": "Passo Valles (SP 81)", "trails": ["fiemme-lago-juribrutto"], "why": "No dated winter closure found; the walk's own season (June to October) already sits inside any likely opening.", "url": "https://www.ufficiostampa.provincia.tn.it/content/view/pdf/7315", "accessedAt": "2026-11-11" }
+  ]
+}
