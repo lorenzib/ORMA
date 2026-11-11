@@ -563,7 +563,7 @@
 <script src="journal-photos.js?v=20261026-1"></script>
 <script src="walk-card.js?v=20260825-1"></script>
 <script src="walk-proof.js?v=20261110-1"></script>
-<script src="gpx-walk.js?v=20261111-1"></script>
+<script src="gpx-walk.js?v=20261111-2"></script>
 <script src="dog-passport.js?v=20261111-1"></script>
 <script src="passport-card.js?v=20261111-1"></script>
 <script>
@@ -1847,7 +1847,11 @@ document.addEventListener('DOMContentLoaded', function(){
     gpxInput.value = '';
     gpxInput.click();
   });
+  // "Choose another": another file, or for a walk from Apple Health
+  // (app-health.js, iPhone app only) back to that list of walks.
+  var gpxAgain = null;
   document.getElementById('jnGpxAgain').addEventListener('click', function(){
+    if(gpxAgain){ gpxAgain(); return; }
     gpxInput.value = '';
     gpxInput.click();
   });
@@ -1864,7 +1868,11 @@ document.addEventListener('DOMContentLoaded', function(){
     var h = Math.floor(minutes / 60), m = minutes % 60;
     return h ? (h + ' h ' + (m < 10 ? '0' : '') + m) : (m + ' min');
   }
-  function showGpx(result, duplicate){
+  function showGpx(result, duplicate, source){
+    var from = source || {};
+    gpxAgain = from.onAgain || null;
+    document.getElementById('jnGpxTitle').textContent = from.title || window.t('journal.gpx.title');
+    document.getElementById('jnGpxAgain').textContent = from.againLabel || window.t('journal.gpx.again');
     var verdict = document.getElementById('jnGpxVerdict');
     var meta = document.getElementById('jnGpxMeta');
     var save = document.getElementById('jnGpxSave');
@@ -1935,6 +1943,18 @@ document.addEventListener('DOMContentLoaded', function(){
     pushUnsentEntries();
     setTimeout(function(){ openAfter(entry, true); }, 160);
   });
+
+  // The iPhone app's "Add from Apple Health" (app-health.js) reads a walk's
+  // route on the phone and shows it here, judged and saved exactly like a file.
+  window.DoloPawsJournalImport = {
+    trails: allTrails,
+    entries: function(){ return state.entries.slice(); },
+    show: function(result, source){
+      var gpx = window.DoloPawsGpxWalk;
+      gpxReturnFocus = document.getElementById('jnLogBtn');
+      showGpx(result, gpx && result.startedAt ? gpx.isDuplicate(result, state.entries) : false, source);
+    },
+  };
 
   document.getElementById('jnTabs').addEventListener('click', function(e){
     var btn = e.target.closest('[data-f]');
