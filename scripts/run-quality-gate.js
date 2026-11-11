@@ -9,6 +9,7 @@ const steps = [
   ['Route operational facts', ['run', 'validate:operational-facts']],
   ['Production trail catalog', ['run', 'validate:production-trails:check']],
   ['Trail evidence contract', ['run', 'audit:trail-trust']],
+  ['Seasonal limits for the Verified seal', ['run', 'check:seal-seasons']],
   ['Application and contract tests', ['test', '--', '--runInBand']],
   ['Firestore emulator authorization', ['run', 'test:firestore-rules']],
   ['Storage emulator authorization', ['run', 'test:storage-rules']],

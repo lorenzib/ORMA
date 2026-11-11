@@ -91,3 +91,4 @@ exclude:
   - app-you.js
   - app-walk-done.js
   - app-welcome.js
+  - app-health.js
