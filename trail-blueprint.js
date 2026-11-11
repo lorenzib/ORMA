@@ -753,7 +753,9 @@
       // and leaving it printed "Head to , Lift station Vinouve". trail-trust
       // strips the same prefix with `/^Start here\s*[,—-]\s*/i`; this copy of
       // the rule did not list the comma at all.
-      .replace(/^Start here\s*[,.:;—–-]*\s*/i, '');
+      .replace(/^Start here\s*[,.:;—–-]*\s*/i, '')
+      // The label may already be Italian (trailWords above).
+      .replace(/^(?:Parti da qui|Partenza qui)\s*[,.:;—–-]*\s*/i, '');
     const routeSequence = routeRefs.join(' → ');
     const hasSectionOnlyRefs = Array.isArray(t.routeRefSegments) && t.routeRefSegments.length > 0;
     const routeSwitches = window.DoloPawsTrailRouteRefs
