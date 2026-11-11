@@ -129,7 +129,15 @@ function fillVars(text, vars) {
 /** Fixed wording in the page's language. The English sentence is the key. */
 function L(text, vars) {
   const table = LANG === 'it' ? phrasesIt() : null;
-  return fillVars(hasOwn(table, text) && table[text] ? table[text] : text, vars);
+  const filled = fillVars(hasOwn(table, text) && table[text] ? table[text] : text, vars);
+  return LANG === 'it' ? italianEuphony(filled) : filled;
+}
+
+/** "a" before a month that starts with a: "da marzo ad aprile". The month
+ *  comes in through a {placeholder}; only before the same vowel ("a ottobre").
+ *  i18n.js does the same in the app. */
+function italianEuphony(text) {
+  return String(text).replace(/(^|[^\p{L}])([Aa]) ([Aa](?:prile|gosto|pr|go))\b/gu, '$1$2d $3');
 }
 
 /** A trail's own text in the page's language, English when not translated. */
