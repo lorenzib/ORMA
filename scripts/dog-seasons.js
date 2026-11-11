@@ -1,17 +1,17 @@
 'use strict';
 
 // Seasonal risks to dogs (pine processionary caterpillars, ticks, cows on the
-// pastures), from data/dog-seasons.json. Each risk carries the months its
+// pastures, heat in the valleys, salt on the roads), from data/dog-seasons.json. Each risk carries the months its
 // sources give and a rule saying which walks it reaches: the region, the
-// province or valley, the walk's lowest point, or words in the walk's own
-// text. A walk the rule reaches gets the risk in trail.season.dogSeasons:
+// province or valley, the walk's lowest point, words in the walk's own
+// text, its heat rating, or words in its surface description. A walk the rule reaches gets the risk in trail.season.dogSeasons:
 //
 //   { kind, months, estimate?, sources: [{ label, url, accessedAt }] }
 //
 // A walk without a risk is one the rule does not reach, not one shown to be
 // free of it, which is why the pages only ever say when a risk applies.
 
-const KINDS = ['caterpillars', 'ticks', 'cows'];
+const KINDS = ['caterpillars', 'ticks', 'cows', 'heat', 'salt'];
 
 function validateRisk(kind, risk){
   if(!KINDS.includes(kind)) throw new Error(`Dog season ${kind} is not one the pages know how to word`);
@@ -46,6 +46,11 @@ function reaches(rule, trail){
     if(low === null || low > rule.lowPointAtMostM) return false;
   }
   if(rule.textMentions && !new RegExp(rule.textMentions, 'i').test(ownText(trail))) return false;
+  // The walk's own heat rating (trail.heatRisk: low, moderate, high).
+  if(rule.heatRisk && !rule.heatRisk.includes(trail.heatRisk)) return false;
+  // Words in the surface description alone (trail.terrainType), so a road
+  // named in the walk's story does not count as one underfoot.
+  if(rule.surfaceMentions && !new RegExp(rule.surfaceMentions, 'i').test(String(trail.terrainType || ''))) return false;
   return true;
 }
 
