@@ -3943,7 +3943,15 @@
     const table = lang === 'it' && window.ORMA_PHRASES_IT;
     let s = (table && Object.prototype.hasOwnProperty.call(table, text) && table[text]) || text;
     if (vars) for (const k in vars) s = s.split('{' + k + '}').join(fillValue(vars[k]));
-    return s;
+    return lang === 'it' ? italianEuphony(s) : s;
+  }
+
+  // "a" before a month that starts with a: "da marzo ad aprile", "torna ad
+  // agosto". The month comes in through a {placeholder}, so the phrase cannot
+  // say it. Only before the same vowel, as Italian usage advises: "a ottobre".
+  // scripts/generate-trail-pages.js does the same for the static pages.
+  function italianEuphony(text){
+    return String(text).replace(/(^|[^\p{L}])([Aa]) ([Aa](?:prile|gosto|pr|go))\b/gu, '$1$2d $3');
   }
 
   // A trail's own text (description, tips, directions, hazards…) in Italian,

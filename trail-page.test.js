@@ -307,7 +307,7 @@ describe('trail page map controls', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20261006-1');
+    expect(html).toContain('i18n.js?v=20261111-3');
     expect(html).toContain('trail-app.bundle.js?v=20261110-5');
     expect(html).toContain('trail-mobile.css?v=20260904-3');
     [
