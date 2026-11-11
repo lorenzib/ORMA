@@ -20,6 +20,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const { ITALIAN_COPY_BANNER } = require('./italian-copy-banner');
 const evidenceContract = require('../trust/evidence-v1.js');
 const recommendationContract = require('../scoring/recommendation-v1.js');
 const photoProvenance = require('../trail-photo-provenance.js');
@@ -1022,7 +1023,7 @@ function renderTrailPage(t, slug, all) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHtml(title)}</title>
+${it ? '' : ITALIAN_COPY_BANNER + '\n'}<title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(desc)}">
 <link rel="canonical" href="${canonical}">
 <link rel="alternate" hreflang="en" href="${englishUrl}">
