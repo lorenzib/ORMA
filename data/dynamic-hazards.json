@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-11T11:14:22.355Z",
+  "generatedAt": "2026-11-11T14:16:33.320Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:veneto",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-12T12:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T11:14:22.355Z",
+      "lastSeenAt": "2026-11-11T14:16:33.320Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -82,7 +82,7 @@
       "effectiveAt": "2026-11-11T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T11:14:22.355Z",
+      "lastSeenAt": "2026-11-11T14:16:33.320Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -125,7 +125,7 @@
       "effectiveAt": "2026-11-11T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T11:14:22.355Z",
+      "lastSeenAt": "2026-11-11T14:16:33.320Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -190,7 +190,7 @@
       "effectiveAt": "2026-11-12T06:00:00+00:00",
       "expiresAt": "2026-11-12T17:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T11:14:22.355Z",
+      "lastSeenAt": "2026-11-11T14:16:33.320Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -225,7 +225,7 @@
       "effectiveAt": "2026-11-12T06:00:00+00:00",
       "expiresAt": "2026-11-12T17:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T11:14:22.355Z",
+      "lastSeenAt": "2026-11-11T14:16:33.320Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -570,7 +570,9 @@
         "fiemme-cristo-pensante",
         "fiemme-lago-juribrutto",
         "valdisole-masi-verniana-bait-de-mezol-malga-saviana",
-        "valdisole-peio-paese-lago-covel"
+        "valdisole-peio-paese-lago-covel",
+        "valdisole-percorso-geologico-in-val-di-rabbi",
+        "valdisole-percorso-della-fauna-in-val-di-peio"
       ],
       "trailNames": [
         "Alpe di Siusi Meadow Loop",
@@ -915,7 +917,9 @@
         "Cristo Pensante on Monte Castellazzo",
         "Lago di Juribrutto from Malga Vallazza",
         "Forte Strino to Malga Verniana and Malga Saviana",
-        "Peio Paese to Lago Covel"
+        "Peio Paese to Lago Covel",
+        "Geology trail in the Val di Rabbi",
+        "Wildlife trail in the Val di Peio"
       ],
       "sourceStatus": "available"
     },
@@ -934,7 +938,7 @@
       "effectiveAt": "2026-11-12T12:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T11:14:22.355Z",
+      "lastSeenAt": "2026-11-11T14:16:33.320Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
