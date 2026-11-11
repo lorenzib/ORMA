@@ -134,9 +134,9 @@ describe('SOCIAL-06 the gpx mark reaches the account and the passport', () => {
 
   test('the journal offers the file and loads what it needs', () => {
     const page = read('journal.html');
-    expect(page).toContain('id="jnGpxInput" accept=".gpx');
+    expect(page).toContain('id="jnGpxInput" accept=".gpx,.fit,.tcx');
     expect(page.indexOf('walk-proof.js')).toBeLessThan(page.indexOf('gpx-walk.js'));
-    expect(page).toContain('gpx.assessGpx(text, allTrails(), { now: Date.now() })');
+    expect(page).toContain('gpx.assessFile(bytes, allTrails(), { now: Date.now() })');
     expect(page).toContain('gpx.isDuplicate(result, state.entries)');
   });
 
