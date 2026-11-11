@@ -17,5 +17,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Road down signed “Rovei – Caprile”, between the guesthouse and the old barn": "Strada in discesa con il cartello “Rovei – Caprile”, tra il garnì e l’antico fienile",
   "Left after about 200 m onto the forest road through the meadows": "A sinistra dopo circa 200 m sulla strada forestale tra i prati",
   "Round the knoll past the Via Crucis stations": "Giro del colle lungo le stazioni della Via Crucis",
-  "Back through the old village to the piazza": "Ritorno attraverso il centro storico fino alla piazza"
+  "Back through the old village to the piazza": "Ritorno attraverso il centro storico fino alla piazza",
+  "Drinking water": "Acqua potabile",
+  "Colle Santa Lucia": "Colle Santa Lucia"
 });
