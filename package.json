@@ -41,6 +41,7 @@
     "promote:trails": "node scripts/promote-osm-trails.js && node scripts/promote-osm-trails.js --region savoy && node scripts/promote-osm-trails.js --region board",
     "generate:artifacts": "npm run promote:trails && npm run validate:production-trails && node scripts/generate-trail-pages.js && npm run build:regional-data && npm run build:trail-routing",
     "check:generated": "node scripts/check-generated-artifacts.js",
+    "check:seal-seasons": "node scripts/check-seal-seasons.js",
     "quality:gate": "node scripts/run-quality-gate.js",
     "build:dolomites-trails": "npm run fetch:dolomites-trails && npm run validate:dolomites-trails",
     "test:backoffice": "jest --runInBand backoffice/backoffice.test.js",

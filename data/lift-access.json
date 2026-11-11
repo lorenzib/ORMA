@@ -352,6 +352,39 @@
           "notes": "Closed cabins from Seis to Compatsch spare the Alm road, which is closed to private cars by day in summer; the loop itself needs no lift. Dogs ride on a lead and muzzled."
         }
       }
+    },
+    {
+      "id": "osm-1116675",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Rotwand gondola",
+          "notes": "The loop starts and ends at the Rotwand gondola top station above Bad Moos. If the gondola is not running, path 17 climbs about 570 m from the valley station."
+        }
+      }
+    },
+    {
+      "id": "osm-6401355",
+      "fields": {
+        "liftAccess": {
+          "type": "gondola",
+          "dependency": "required",
+          "name": "Kronplatz gondolas",
+          "notes": "The loop goes round the Kronplatz summit, reached by gondola from Reischach, Olang or the Furkelpass. The cabins are closed."
+        }
+      }
+    },
+    {
+      "id": "osm-14376573",
+      "fields": {
+        "liftAccess": {
+          "type": "chairlift",
+          "dependency": "required",
+          "name": "Vinouve chairlift",
+          "notes": "The loop starts at the top of the Vinouve chairlift above Les Karellis, an open chairlift that runs only on some summer days."
+        }
+      }
     }
   ]
 }

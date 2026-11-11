@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-1116675",
   "name": "Familienrundweg",
-  "version": "2026.11.06-beta.1",
-  "generatedAt": "2026-11-06T23:02:39.083Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T17:01:15.275Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 198655,
@@ -217,7 +217,7 @@
       "label": "Familienrundweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 30934,
-      "sha256": "a017c3dd3bbd7cdb1419d1943e550d41124a6adb66d26e7af1c17415490eff46"
+      "sha256": "851a7f482b54c0e83e2bad3a4506b5cb75030a8e3b7eabe124f877ebc5e9accf"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Familienrundweg safety information",
       "url": "safety.json",
       "bytes": 1267,
-      "sha256": "9f6eb85d41da40a16f9f8102996ef8d531c0a9329963cf034961a63a3f0e8ea0"
+      "sha256": "99e4e26cb4f4c07d27797cbae1acb21d87d79f593720df22b8ea9e5b642523b0"
     }
   ]
 }
