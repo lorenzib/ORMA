@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-11T17:51:22.275Z",
+  "generatedAt": "2026-11-11T18:31:28.182Z",
   "regions": {
     "dolomites": {
-      "trailCount": 369,
-      "trails": "data/regions/dolomites-trails.js?v=c45ccea863c0",
+      "trailCount": 368,
+      "trails": "data/regions/dolomites-trails.js?v=82112fb6a5eb",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=aba145c5d16a",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -13,7 +13,6 @@
         "cadini": "data/trail-details/cadini.js?v=90a402fe2e3a",
         "prato-piazza": "data/trail-details/prato-piazza.js?v=851bbd93ca4f",
         "nuvolau": "data/trail-details/nuvolau.js?v=e2115678b59a",
-        "sassolungo": "data/trail-details/sassolungo.js?v=7c0deca045ba",
         "lago-braies": "data/trail-details/lago-braies.js?v=bb7500f25357",
         "lago-carezza": "data/trail-details/lago-carezza.js?v=b84e4d0d4281",
         "lago-sorapis": "data/trail-details/lago-sorapis.js?v=55d88f6ccf17",
@@ -23,7 +22,7 @@
         "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=662379f3a50c",
         "sentiero-hans-e-paula-steger": "data/trail-details/sentiero-hans-e-paula-steger.js?v=95937c10f9c6",
         "sentiero-del-trenino": "data/trail-details/sentiero-del-trenino.js?v=68aebd4206f5",
-        "giro-del-sasso-lungo": "data/trail-details/giro-del-sasso-lungo.js?v=6a4976287e06",
+        "giro-del-sasso-lungo": "data/trail-details/giro-del-sasso-lungo.js?v=9b5f1b690df9",
         "osm-123162": "data/trail-details/osm-123162.js?v=ba108eb4a6ef",
         "osm-1116675": "data/trail-details/osm-1116675.js?v=e9946cf6600f",
         "osm-1116680": "data/trail-details/osm-1116680.js?v=fe718720f535",
@@ -623,7 +622,6 @@
     "cadini": "dolomites",
     "prato-piazza": "dolomites",
     "nuvolau": "dolomites",
-    "sassolungo": "dolomites",
     "lago-braies": "dolomites",
     "lago-carezza": "dolomites",
     "lago-sorapis": "dolomites",
@@ -1147,7 +1145,6 @@
     "cadini": "cadini-di-misurina-viewpoint",
     "prato-piazza": "prato-piazza-platzwiese",
     "nuvolau": "passo-giau-to-rifugio-nuvolau",
-    "sassolungo": "sassolungo-sassopiatto-loop",
     "lago-braies": "lago-di-braies-seeweg-circuit",
     "lago-carezza": "lago-di-carezza-loop",
     "lago-sorapis": "lago-di-sorapis-trail",
@@ -1671,7 +1668,6 @@
     "cadini-di-misurina-viewpoint": "cadini",
     "prato-piazza-platzwiese": "prato-piazza",
     "passo-giau-to-rifugio-nuvolau": "nuvolau",
-    "sassolungo-sassopiatto-loop": "sassolungo",
     "lago-di-braies-seeweg-circuit": "lago-braies",
     "lago-di-carezza-loop": "lago-carezza",
     "lago-di-sorapis-trail": "lago-sorapis",
@@ -2198,6 +2194,8 @@
     "panoramaweg-osm-19697977": "osm-19697977",
     "seeweg": "osm-3885162",
     "gro-e-schlossrunde": "osm-12173984",
+    "sassolungo-sassopiatto-loop": "giro-del-sasso-lungo",
+    "sassolungo": "giro-del-sasso-lungo",
     "archeo": "osm-12953352"
   }
 }
