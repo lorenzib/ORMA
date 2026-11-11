@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-percorso-geologico-in-val-di-rabbi",
+  "generatedAt": "2026-11-11T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.4,
+    "ascentM": 430,
+    "highestPointM": 1745,
+    "expectedDuration": "2.5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 25
+  },
+  "trailhead": {
+    "lat": 46.417139,
+    "lng": 10.777513,
+    "label": "Ramoni car park at Còler, upper Val di Rabbi, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.4172111,
+      "lng": 10.7770951,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.417941,
+      "lng": 10.7756976,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4201066,
+      "lng": 10.7735644,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4256091,
+      "lng": 10.7711063,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.43397,
+      "lng": 10.769182,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4332996,
+      "lng": 10.767403,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4370683,
+      "lng": 10.7699738,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4371507,
+      "lng": 10.7698387,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4374346,
+      "lng": 10.7667019,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4359833,
+      "lng": 10.7657953,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.430169,
+      "lng": 10.7689815,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The waterfalls path is steep, with spray and wet, slippery steps: the board grades the walk difficult.",
+    "In summer the upper Val di Rabbi is closed to cars from 10:00 to 18:00 (27 June to 6 September in 2026): arrive before 10:00 or take the Stelviobus from Rabbi Fonti.",
+    "Cows may graze around Malga Stablasolo in summer.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-11"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-11",
+      "licence": "ODbL"
+    }
+  ]
+}

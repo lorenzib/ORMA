@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valdisole-percorso-della-fauna-in-val-di-peio",
+  "generatedAt": "2026-11-11T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 12.9,
+    "ascentM": 799,
+    "highestPointM": 2456,
+    "expectedDuration": "5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 53
+  },
+  "trailhead": {
+    "lat": 46.339498,
+    "lng": 10.618123,
+    "label": "Park car park at the Fontanino di Celentino, Val del Monte, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.3396532,
+      "lng": 10.6181549,
+      "label": "Fontanino di Pejo",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3390665,
+      "lng": 10.6177886,
+      "label": "Fontanino di Celentino",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3361102,
+      "lng": 10.6098029,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3412751,
+      "lng": 10.6134117,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3365946,
+      "lng": 10.5972006,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A long day: 12.9 km and 799 m up, reaching 2,456 m in the open Val Piana with no shelter: turn back if storms build.",
+    "The park has limited daytime car traffic on the road to the Fontanino in past summers: check before you go and arrive early.",
+    "Cows graze around Malga Giumella and Malga Paludèi in summer.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-11"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-11",
+      "licence": "ODbL"
+    }
+  ]
+}

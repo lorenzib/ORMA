@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-11T12:08:54.422Z",
+  "generatedAt": "2026-11-11T12:22:07.717Z",
   "regions": {
     "dolomites": {
-      "trailCount": 366,
-      "trails": "data/regions/dolomites-trails.js?v=6781c345902a",
+      "trailCount": 368,
+      "trails": "data/regions/dolomites-trails.js?v=11eaec3d3670",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=aba145c5d16a",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -371,6 +371,8 @@
         "fiemme-lago-juribrutto": "data/trail-details/fiemme-lago-juribrutto.js?v=a2264acfd1b7",
         "valdisole-masi-verniana-bait-de-mezol-malga-saviana": "data/trail-details/valdisole-masi-verniana-bait-de-mezol-malga-saviana.js?v=36d447a068ec",
         "valdisole-peio-paese-lago-covel": "data/trail-details/valdisole-peio-paese-lago-covel.js?v=dfa00af59c65",
+        "valdisole-percorso-geologico-in-val-di-rabbi": "data/trail-details/valdisole-percorso-geologico-in-val-di-rabbi.js?v=26b090e83ab7",
+        "valdisole-percorso-della-fauna-in-val-di-peio": "data/trail-details/valdisole-percorso-della-fauna-in-val-di-peio.js?v=755f75b53e6a",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=24e2aaa3dfc9"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -978,6 +980,8 @@
     "fiemme-lago-juribrutto": "dolomites",
     "valdisole-masi-verniana-bait-de-mezol-malga-saviana": "dolomites",
     "valdisole-peio-paese-lago-covel": "dolomites",
+    "valdisole-percorso-geologico-in-val-di-rabbi": "dolomites",
+    "valdisole-percorso-della-fauna-in-val-di-peio": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1652,6 +1656,8 @@
     "fiemme-lago-juribrutto": "lago-juribrutto-malga-vallazza",
     "valdisole-masi-verniana-bait-de-mezol-malga-saviana": "forte-strino-malga-verniana-saviana",
     "valdisole-peio-paese-lago-covel": "peio-paese-lago-covel",
+    "valdisole-percorso-geologico-in-val-di-rabbi": "percorso-geologico-val-di-rabbi",
+    "valdisole-percorso-della-fauna-in-val-di-peio": "percorso-della-fauna-val-di-peio",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2173,6 +2179,8 @@
     "lago-juribrutto-malga-vallazza": "fiemme-lago-juribrutto",
     "forte-strino-malga-verniana-saviana": "valdisole-masi-verniana-bait-de-mezol-malga-saviana",
     "peio-paese-lago-covel": "valdisole-peio-paese-lago-covel",
+    "percorso-geologico-val-di-rabbi": "valdisole-percorso-geologico-in-val-di-rabbi",
+    "percorso-della-fauna-val-di-peio": "valdisole-percorso-della-fauna-in-val-di-peio",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

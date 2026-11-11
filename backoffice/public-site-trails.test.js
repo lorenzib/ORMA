@@ -241,8 +241,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 519 and 517 with Dolomites batch 7: Cristo Pensante and Lago di
     // Juribrutto in the Paneveggio park, Forte Strino to Malga Verniana, and
     // Peio Paese to Lago Covel in the Stelvio park.
-    expect(catalogue).toHaveLength(519);
-    expect(currentSiteTrails(catalogue)).toHaveLength(517);
+    // Then 521 and 519 with Dolomites batch 8: the geology trail to the Saènt
+    // waterfalls in the Val di Rabbi and the wildlife trail in the Val di Peio,
+    // both in the Stelvio park.
+    expect(catalogue).toHaveLength(521);
+    expect(currentSiteTrails(catalogue)).toHaveLength(519);
   });
 
   test('requires the artwork the public trail page needs',()=>{
