@@ -378,3 +378,16 @@ html.orma-app body.app-welcome-open{overflow:hidden;}
 .app-welcome-foot{flex:0 0 auto;padding:12px 24px calc(20px + env(safe-area-inset-bottom,0px));text-align:center;}
 .app-welcome.is-light .app-welcome-btn.is-main{border-color:#2E4034;background:#2E4034;color:#FFFFFF;}
 .app-welcome.is-light .app-welcome-small{color:#59695D;}
+
+/* Add from Apple Health on the journal (app-health.js). */
+.app-health-btn{border-color:#2E4034;background:#2E4034;color:#FFFFFF;}
+.app-health-btn:hover{background:#3B5243;}
+.app-health h2{margin:0;font-size:20px;}
+.app-health-sub{margin:6px 0 14px;font-size:14px;line-height:1.45;color:#59695D;}
+.app-health-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+.app-health-walk{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%;min-height:58px;padding:11px 14px;border:1px solid #DEDDD0;border-radius:12px;background:#FFFFFF;color:#2E4034;text-align:left;font:400 14px/1.35 'Inter',-apple-system,sans-serif;cursor:pointer;}
+.app-health-walk:active{background:#F1EFE8;}
+.app-health-when{font-weight:700;font-size:15px;}
+.app-health-facts{color:#59695D;}
+.app-health-saved{margin-top:2px;padding:2px 8px;border-radius:999px;background:#E4EFDF;color:#234A2E;font-size:12px;font-weight:600;}
+.app-health-empty,.app-health-wait{margin:8px 0 0;padding:12px 14px;border-radius:12px;background:#F1EFE8;font-size:14px;line-height:1.5;}

@@ -67,6 +67,8 @@ const RUNTIME_FILES = [
   'hike-completions.js',
   'post-hike-outcomes.js',
   'app-welcome.js',
+  // Add from Apple Health on the app's journal.html (app-health.js).
+  'app-health.js',
 ];
 
 // Whole directories that ship as-is.
@@ -128,6 +130,9 @@ const APP_YOU_TAG = '<script src="/app-you.js" defer></script>';
 const APP_SAVED_TAG = '<script src="/app-saved.js" defer></script>';
 // One short Walk finished screen for both ways a walk ends (app-walk-done.js).
 const APP_WALK_DONE_TAG = '<script src="/hike-completions.js" defer></script>\n<script src="/post-hike-outcomes.js" defer></script>\n<script src="/app-walk-done.js" defer></script>';
+// Add from Apple Health: the journal reads a walk from the iPhone's Health app
+// through the app's own read-only plugin (app-health.js, HealthWalksPlugin.swift).
+const APP_HEALTH_TAG = '<script src="/app-health.js" defer></script>';
 // The first launch: what ORMA does, then add your dog or look around (app-welcome.js).
 const APP_WELCOME_TAG = '<script src="/app-welcome.js" defer></script>';
 // Marks the page as running inside the app before anything draws, so the
@@ -300,7 +305,7 @@ function rewriteRemoteRefs(){
       .replace(MANIFEST_TAG, APP_MANIFEST_TAG);
     // The app carries no /it/ copies, so its pages keep their own language.
     const page = /\.html$/.test(r)
-      ? after.split(`${ITALIAN_COPY_BANNER}\n`).join('').replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_FLAG_TAG}\n${APP_SHELL_TAG}\n${APP_TABBAR_TAG}\n${r === 'trail.html' ? `${APP_TRAIL_TAG}\n` : ''}${r === 'index.html' ? `${APP_EXPLORE_TAG}\n` : ''}${r === 'index.html' ? `${APP_WELCOME_TAG}\n` : ''}${r === 'account.html' ? `${APP_YOU_TAG}\n` : ''}${r === 'saved.html' ? `${APP_SAVED_TAG}\n` : ''}${r === 'journal.html' ? `${APP_WALK_DONE_TAG}\n` : ''}</head>`)
+      ? after.split(`${ITALIAN_COPY_BANNER}\n`).join('').replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_FLAG_TAG}\n${APP_SHELL_TAG}\n${APP_TABBAR_TAG}\n${r === 'trail.html' ? `${APP_TRAIL_TAG}\n` : ''}${r === 'index.html' ? `${APP_EXPLORE_TAG}\n` : ''}${r === 'index.html' ? `${APP_WELCOME_TAG}\n` : ''}${r === 'account.html' ? `${APP_YOU_TAG}\n` : ''}${r === 'saved.html' ? `${APP_SAVED_TAG}\n` : ''}${r === 'journal.html' ? `${APP_WALK_DONE_TAG}\n` : ''}${r === 'journal.html' ? `${APP_HEALTH_TAG}\n` : ''}</head>`)
       : after;
     if(page !== before){ fs.writeFileSync(dest, page); rewritten += 1; }
   }
@@ -328,4 +333,4 @@ function build(){
 if(require.main === module) build();
 
 module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG,
-  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG, APP_TRAIL_TAG, APP_EXPLORE_TAG, APP_YOU_TAG, APP_SAVED_TAG, APP_WELCOME_TAG, APP_WALK_DONE_TAG, APP_FLAG_TAG };
+  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG, APP_TRAIL_TAG, APP_EXPLORE_TAG, APP_YOU_TAG, APP_SAVED_TAG, APP_WELCOME_TAG, APP_WALK_DONE_TAG, APP_HEALTH_TAG, APP_FLAG_TAG };
