@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-11T12:52:20.478Z",
+  "generatedAt": "2026-11-11T16:57:47.915Z",
   "regions": {
     "dolomites": {
       "trailCount": 368,
-      "trails": "data/regions/dolomites-trails.js?v=11eaec3d3670",
+      "trails": "data/regions/dolomites-trails.js?v=c8971236234b",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=aba145c5d16a",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
         "santa-maddalena": "data/trail-details/santa-maddalena.js?v=7b0b5a07444a",
-        "tre-cime": "data/trail-details/tre-cime.js?v=089ce174dbf4",
-        "cadini": "data/trail-details/cadini.js?v=cf47d2d816e5",
+        "tre-cime": "data/trail-details/tre-cime.js?v=e3fcb8cb73fc",
+        "cadini": "data/trail-details/cadini.js?v=90a402fe2e3a",
         "prato-piazza": "data/trail-details/prato-piazza.js?v=851bbd93ca4f",
         "nuvolau": "data/trail-details/nuvolau.js?v=e2115678b59a",
         "sassolungo": "data/trail-details/sassolungo.js?v=7c0deca045ba",
