@@ -48,7 +48,7 @@ describe('shared map quality profile', () => {
     expect(homepage).toContain('<a class="map-callout-thumb" id="mapCalloutThumb" href="#"></a>');
     expect(script).toContain('showMapCallout(t)');
     expect(script).toContain('thumb.href = trailUrl');
-    expect(script).toContain("thumb.setAttribute('aria-label', tx('Open {name} trail details', { name:t.name }))");
+    expect(script).toContain("thumb.setAttribute('aria-label', tx('Open {name} trail details', { name:trailDisplayName(t) }))");
     expect(script).not.toContain('showTrailMapPopup');
     expect(script).not.toContain("className: 'trail-map-popup'");
   });

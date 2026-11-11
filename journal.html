@@ -567,6 +567,8 @@
 <script src="dog-passport.js?v=20261111-1"></script>
 <script src="passport-card.js?v=20261111-1"></script>
 <script>
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 // My Journal. Entries are private, per-account records stored only in this
 // browser. JOURNAL-01 deliberately avoids silently uploading walk history;
 // see docs/architecture/JOURNAL-01-private-local-journal.md.
@@ -1472,11 +1474,11 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   function savedTrails(){
     return allTrails().filter(function(t){ return !!state.favorites[t.id]; })
-      .sort(function(a, b){ return a.name.localeCompare(b.name); }).slice(0, 6);
+      .sort(function(a, b){ return trailDisplayName(a).localeCompare(trailDisplayName(b)); }).slice(0, 6);
   }
   function optionMarkup(t){
     return '<button type="button" class="jn-trail-option" role="option" data-trail-id="' + esc(t.id) + '" aria-selected="' + (trailInput.value === t.id ? 'true' : 'false') + '">' +
-      esc(t.name) + (trailMeta(t) ? '<small>' + esc(trailMeta(t)) + '</small>' : '') + '</button>';
+      esc(trailDisplayName(t)) + (trailMeta(t) ? '<small>' + esc(trailMeta(t)) + '</small>' : '') + '</button>';
   }
   function groupMarkup(label, items){
     if(!items.length) return '';
@@ -1487,8 +1489,8 @@ document.addEventListener('DOMContentLoaded', function(){
     var html = '<button type="button" class="jn-trail-option" role="option" data-trail-id="" aria-selected="' + (trailChoiceMade && !trailInput.value ? 'true' : 'false') + '">' + esc(window.t('journal.picker.elsewhere')) + '<small>' + esc(window.t('journal.picker.elsewhereHelp')) + '</small></button>';
     if(query){
       var matches = allTrails().filter(function(t){
-        return [t.name, t.valley, t.area].filter(Boolean).join(' ').toLowerCase().indexOf(query) !== -1;
-      }).sort(function(a, b){ return a.name.localeCompare(b.name); }).slice(0, 12);
+        return [t.name, trailDisplayName(t), t.valley, t.area].filter(Boolean).join(' ').toLowerCase().indexOf(query) !== -1;
+      }).sort(function(a, b){ return trailDisplayName(a).localeCompare(trailDisplayName(b)); }).slice(0, 12);
       html += matches.length ? groupMarkup(window.t('journal.picker.results'), matches) : '<p class="jn-trail-empty">' + esc(window.t('journal.picker.noResults')) + '</p>';
     } else {
       var recent = recentTrails();
@@ -1497,7 +1499,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var saved = savedTrails().filter(function(t){ return !recentIds[t.id]; });
       html += groupMarkup(window.t('journal.picker.recent'), recent);
       html += groupMarkup(window.t('journal.picker.saved'), saved);
-      if(!recent.length && !saved.length) html += groupMarkup(window.t('journal.picker.suggested'), allTrails().slice().sort(function(a, b){ return a.name.localeCompare(b.name); }).slice(0, 6));
+      if(!recent.length && !saved.length) html += groupMarkup(window.t('journal.picker.suggested'), allTrails().slice().sort(function(a, b){ return trailDisplayName(a).localeCompare(trailDisplayName(b)); }).slice(0, 6));
     }
     trailResults.innerHTML = html;
   }
@@ -1875,7 +1877,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var meta = document.getElementById('jnGpxMeta');
     var save = document.getElementById('jnGpxSave');
     var pct = result && result.share ? Math.round(result.share * 100) : 0;
-    var name = result && result.trail ? result.trail.name : '';
+    var name = result && result.trail ? trailDisplayName(result.trail) : '';
     var text, kind = '', canSave = false, stamp = false;
     if(duplicate){ text = window.t('journal.gpx.duplicate'); kind = 'is-error'; }
     else if(result.ok && result.proven){ text = window.t('journal.gpx.proven', { trail: name, pct: pct }); kind = 'is-proven'; canSave = stamp = true; }

@@ -45,6 +45,27 @@ describe("each trail's own words", () => {
     expect(missing).toEqual([]);
   });
 
+  // A walk's name has its own table, by id: a name with no English in it is
+  // listed as it is, so a new walk cannot slip through untranslated.
+  test('every walk has its Italian name, and no name is left for a walk that is gone', () => {
+    const context = { window: {} };
+    require('vm').runInNewContext(read('i18n-trail-names-it.js'), context);
+    const names = context.window.ORMA_TRAIL_NAMES_IT;
+    const ids = new Set(trails.map(trail => trail.id));
+    expect(trails.filter(trail => !String(names[trail.id] || '').trim()).map(trail => trail.id)).toEqual([]);
+    expect(Object.keys(names).filter(id => !ids.has(id))).toEqual([]);
+    expect(names['valdisole-peio-paese-lago-covel']).toBe('Da Peio Paese al Lago Covel');
+    // The Italian page copy carries it; the English page keeps the English.
+    expect(read('it/trails/peio-paese-lago-covel.html')).toContain('<h1>Da Peio Paese al Lago Covel</h1>');
+    expect(read('trails/peio-paese-lago-covel.html')).toContain('<h1>Peio Paese to Lago Covel</h1>');
+  });
+
+  test('an Italian trail page, one folder deeper, still finds the hazard scripts', () => {
+    // mobile-nav.js loads them; a "../" path from /it/trails/ landed in /it/.
+    expect(read('mobile-nav.js')).toContain("new URL(file,navigationScript.src)");
+    expect(read('mobile-nav.js')).toContain("beside('hazard-location.js?v=");
+  });
+
   test('every Italian entry is a sentence its trail still says', () => {
     const stale = [];
     trails.forEach(trail => {

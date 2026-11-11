@@ -1,5 +1,7 @@
 (function(global){
   'use strict';
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // Script-written wording goes through i18n.js; the English sentence is its own key.
   function tx(text, vars){
@@ -89,7 +91,7 @@
     var HAZARD_LABEL = hazardLabels();
     var nameOf = function(trailId){
       var t = trails.find(function(x){ return x && x.id === trailId; });
-      return t ? t.name : trailId;
+      return t ? trailDisplayName(t) : trailId;
     };
 
     // Live community hazard reports on this account's saved trails, the
@@ -151,7 +153,7 @@
         items.push({
           id: 'audit-' + t.id + '-' + entry.date,
           icon: 'verified', alert: false, group: 'earlier', timeLabel: shortDate(entry.date),
-          title: t.name,
+          title: trailDisplayName(t),
           body: auditLine(t),
           href: 'trail.html?id=' + encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))
         });

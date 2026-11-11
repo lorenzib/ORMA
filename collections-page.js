@@ -1,5 +1,7 @@
 (function(){
   'use strict';
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // Script-written wording goes through i18n.js; the English sentence is its own key.
   function tx(text, vars){
@@ -280,7 +282,7 @@
     ].filter(Boolean).join(' · ');
     return `<a class="collection-map-trail-card" href="${trailHref(trail)}">
       <span class="collection-map-trail-card__index" data-difficulty="${difficulty}">${index + 1}</span>
-      <span class="collection-map-trail-card__copy"><strong>${esc(trail.name)}</strong><small>${esc(meta)}</small></span>
+      <span class="collection-map-trail-card__copy"><strong>${esc(trailDisplayName(trail))}</strong><small>${esc(meta)}</small></span>
       <span class="collection-map-trail-card__arrow" aria-hidden="true">→</span>
     </a>`;
   }
@@ -311,7 +313,7 @@
         }
         const features = collectionTrails.filter(usablePath).map(trail => ({
           type:'Feature',
-          properties:{ id:trail.id, name:trail.name, colour:matchColour(trail) },
+          properties:{ id:trail.id, name:trailDisplayName(trail), colour:matchColour(trail) },
           geometry:{ type:'LineString', coordinates:trail.path.map(([lat,lng]) => [Number(lng),Number(lat)]) },
         }));
         // Same cartography as every other ORMA map: the marked hiking network
@@ -384,7 +386,7 @@
           marker.style.setProperty('--route-colour', matchColour(trail));
           mapMarkerElements.push({ element:marker, trail });
           marker.textContent = index + 1;
-          marker.setAttribute('aria-label', `${trail.name}, ${difficultyLabel(trail.safetyLevel)}`);
+          marker.setAttribute('aria-label', `${trailDisplayName(trail)}, ${difficultyLabel(trail.safetyLevel)}`);
           marker.addEventListener('click', () => focusMapTrail(map, trail.id));
           new maplibregl.Marker({ element:marker })
             .setLngLat(start)
@@ -412,7 +414,7 @@
     return `<a class="collection-inline-trail" href="${trailHref(trail)}" data-inline-map-trail="${esc(trail.id)}">
       <span class="collection-inline-trail__index" data-difficulty="${difficulty}" aria-label="${tx('Trail {n}: {difficulty}', { n:index + 1, difficulty:esc(difficultyLabel(trail.safetyLevel)) })}">${index + 1}</span>
       <span class="collection-inline-trail__copy">
-        <strong>${esc(trail.name)}</strong>
+        <strong>${esc(trailDisplayName(trail))}</strong>
         ${meta ? `<small>${esc(meta)}</small>` : ''}
       </span>
       <span class="collection-inline-trail__arrow" aria-hidden="true">→</span>

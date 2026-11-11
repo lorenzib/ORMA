@@ -4,6 +4,8 @@
   if(root) root.DoloPawsDiscoveryFilters = api;
 })(typeof window !== 'undefined' ? window : globalThis, function(root){
   'use strict';
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // Every ORMA region in Italy; "Italy" means all of them, not the Dolomites.
   const ITALIAN_REGIONS = ['dolomites', 'lombardy', 'friuli', 'aosta', 'piedmont'];
@@ -119,7 +121,7 @@
     const suitability = parts.suitability || {};
     const metrics = parts.metrics || {};
     const q = String(state.search || '').trim().toLocaleLowerCase();
-    const searchable = [trail.name, trail.area, trail.valley, trail.region]
+    const searchable = [trail.name, trailDisplayName(trail), trail.area, trail.valley, trail.region]
       .filter(Boolean).join(' ').toLocaleLowerCase();
 
     if(q && !searchable.includes(q)) return false;

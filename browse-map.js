@@ -1,5 +1,7 @@
 (function(root){
   'use strict';
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // Script-written wording goes through i18n.js; the English sentence is its own key.
   // A number as the reader writes it (6,7 km in Italian); English is unchanged.
@@ -39,6 +41,10 @@
     return withinLng && lat >= bounds.south && lat <= bounds.north;
   }
 
+  // How strongly a pin out of season this month shows: still findable, but
+  // quieter than the walks to go on now.
+  const OUT_OF_SEASON_OPACITY = 0.35;
+
   function trailFeature(trail, presentation){
     const coordinate = coordinateFor(trail);
     if(!coordinate) return null;
@@ -49,7 +55,7 @@
       geometry:{ type:'Point', coordinates:coordinate },
       properties:{
         id:String(trail.id || ''),
-        name:String(trail.name || 'Trail'),
+        name:String(trailDisplayName(trail) || 'Trail'),
         area:String(trail.area || trail.valley || ''),
         distance:Number(trail.distance) || 0,
         hours:Number(trail.hours) || 0,
@@ -61,8 +67,16 @@
         // The verdict's tier, so a pin is the colour of the words on its card.
         fit:String(view.fit || ''),
         saved:view.saved ? 1 : 0,
+        // Out of season this month (trail-season-words.js): the pin fades and
+        // sits under the walks to go on now, the order the list is in.
+        out:outOfSeasonNow(trail) ? 1 : 0,
       },
     };
+  }
+
+  function outOfSeasonNow(trail){
+    const words = root && root.DoloPawsTrailSeasonWords;
+    return Boolean(words && trail && trail.season && words.outOfSeason(trail.season, new Date().getMonth() + 1));
   }
 
   function create(options){
@@ -168,7 +182,7 @@
         : '';
       popup = new root.maplibregl.Popup({ offset:18, closeButton:true, maxWidth:'250px' })
         .setLngLat(coordinate)
-        .setHTML(`<div class="browse-map-popup"><strong>${escapeHtml(trail.name || tx('Trail'))}</strong>${metadata ? `<span>${escapeHtml(metadata)}</span>` : ''}${verdictLine}<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}">${tx('Open trail →')}</a></div>`)
+        .setHTML(`<div class="browse-map-popup"><strong>${escapeHtml(trailDisplayName(trail) || tx('Trail'))}</strong>${metadata ? `<span>${escapeHtml(metadata)}</span>` : ''}${verdictLine}<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(trail.id) : (trail.id)))}">${tx('Open trail →')}</a></div>`)
         .addTo(map);
     }
 
@@ -247,9 +261,13 @@
         : '#3e7a91';
       map.addLayer({
         id:'browse-trails-individual', type:'circle', source:'browse-trails',
+        // Walks in season draw on top of those out of season this month.
+        layout:{ 'circle-sort-key':['-', 1, ['coalesce', ['get', 'out'], 0]] },
         paint:{
           'circle-color':fitColour,
           'circle-radius':7,
+          'circle-opacity':['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1],
+          'circle-stroke-opacity':['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1],
           'circle-stroke-width':2.5,
           'circle-stroke-color':[
             'case', ['==', ['coalesce', ['get', 'saved'], 0], 1], '#9C3A25', '#fff',

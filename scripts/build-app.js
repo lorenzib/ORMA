@@ -40,6 +40,9 @@ const ENTRY_PAGES = [
 // Sources: detail-pois.js, script.js, hike-mode.js, alpine-plants-guide.js,
 // and mobile-nav.js, which injects the two hazard scripts on every page.
 const RUNTIME_FILES = [
+  // i18n.js writes these in for Italian readers, so no page links them.
+  'i18n-phrases-it.js',
+  'i18n-trail-names-it.js',
   'data/regions-manifest.json',
   'hazard-location.js',
   'trail-hazards.js',

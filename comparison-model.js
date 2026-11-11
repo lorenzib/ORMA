@@ -4,6 +4,8 @@
   if(root) root.DoloPawsComparisonModel = api;
 })(typeof window !== 'undefined' ? window : globalThis, function(root){
   'use strict';
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // Script-written wording goes through i18n.js; the English sentence is its own key.
   function tx(text, vars){
@@ -139,7 +141,7 @@
 
     return {
       id:trail.id,
-      name:trail.name,
+      name:trailDisplayName(trail),
       area:trail.area || trail.valley || '',
       cells:{
         match: recommendation

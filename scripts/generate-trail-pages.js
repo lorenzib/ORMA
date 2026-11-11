@@ -105,6 +105,14 @@ function phrasesIt() {
   return PHRASES_IT;
 }
 
+// Each walk's name for Italian readers, by trail id (i18n-trail-names-it.js).
+let NAMES_IT = null;
+function nm(t) {
+  if (LANG !== 'it' || !t) return t && t.name;
+  if (!NAMES_IT) NAMES_IT = runForWindowTable(path.join(ROOT, 'i18n-trail-names-it.js'), 'ORMA_TRAIL_NAMES_IT');
+  return NAMES_IT[t.id] || t.name;
+}
+
 function trailTextIt(id) {
   if (!TRAIL_TEXT_CACHE.has(id)) {
     TRAIL_TEXT_CACHE.set(id, runForWindowTable(path.join(ROOT, 'data', 'trail-text-it', `${id}.js`), 'ORMA_TRAIL_TEXT_IT'));
@@ -559,7 +567,7 @@ function routeSvg(t) {
     `${(pad + (lng - minLng) * s + (W - pad * 2 - spanLng * s) / 2).toFixed(1)},${(pad + (maxLat - lat) * s + (H - pad * 2 - spanLat * s) / 2).toFixed(1)}`
   ).join(' ');
   const [sx, sy] = pts.split(' ')[0].split(',');
-  return `<svg class="sp-route" viewBox="0 0 ${W} ${H}" role="img" aria-label="${escapeHtml(L('Route shape of {name}', { name: t.name }))}" xmlns="http://www.w3.org/2000/svg">
+  return `<svg class="sp-route" viewBox="0 0 ${W} ${H}" role="img" aria-label="${escapeHtml(L('Route shape of {name}', { name: nm(t) }))}" xmlns="http://www.w3.org/2000/svg">
     <rect width="${W}" height="${H}" rx="12" fill="#E7ECE3"/>
     <polyline points="${pts}" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="${sx}" cy="${sy}" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
@@ -593,7 +601,7 @@ function publicAssetUrl(value) {
 function photoHtml(t) {
   if(!t.imageIcon) return '';
   const responsive = RESPONSIVE_PHOTOS[t.imageIcon];
-  const alt = tr(t.imageAlt) || t.name;
+  const alt = tr(t.imageAlt) || nm(t);
   if(!responsive) return `<img class="sp-img" src="${escapeHtml(trailPageAssetUrl(t.imageIcon))}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">`;
   const stem = t.imageIcon.replace(/\.webp$/, '');
   const srcset = responsive.widths.map((width, index) => {
@@ -794,7 +802,7 @@ function nearbySection(t, slug, all) {
   if (!picks.length) return '';
   const items = picks.map((o) =>
     `<a class="sp-near" href="${rootPrefix()}trail.html?id=${encodeURIComponent(o.slug || o.id)}">
-        <span class="sp-near-name">${escapeHtml(o.name)}</span>
+        <span class="sp-near-name">${escapeHtml(nm(o))}</span>
         <span class="sp-near-meta"><span class="dp-badge dp-badge--${o.safetyLevel}"><span data-dp-icon="${o.safetyLevel === 'low-risk' ? 'verified' : 'warning'}" data-dp-icon-size="13" aria-hidden="true"></span><span>${displaySafetyLabel(o)}</span></span> ${L('{km} km', { km: num(o.distance) })}</span>
       </a>`
   ).join('\n      ');
@@ -887,9 +895,9 @@ function renderTrailPage(t, slug, all) {
   const it = LANG === 'it';
   const up = rootPrefix();
   const pageDesc = importedDescText(t);
-  const title = L('{name}, dog-friendly trail, ORMA', { name: t.name });
+  const title = L('{name}, dog-friendly trail, ORMA', { name: nm(t) });
   const desc = truncate(
-    pageDesc || L('{name}: a {km} km dog-friendly trail near {area}.', { name: t.name, km: num(t.distance), area: t.area }),
+    pageDesc || L('{name}: a {km} km dog-friendly trail near {area}.', { name: nm(t), km: num(t.distance), area: t.area }),
     155
   );
   const englishUrl = `${BASE_URL}/trails/${slug}.html`;
@@ -992,7 +1000,7 @@ function renderTrailPage(t, slug, all) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'TouristAttraction',
-    name: t.name,
+    name: nm(t),
     description: desc,
     ...(it ? { inLanguage: 'it' } : {}),
     url: canonical,
@@ -1007,7 +1015,7 @@ function renderTrailPage(t, slug, all) {
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: L('All trails'), item: browseUrl },
       { '@type': 'ListItem', position: 2, name: regionLabel, item: browseUrl },
-      { '@type': 'ListItem', position: 3, name: t.name, item: canonical },
+      { '@type': 'ListItem', position: 3, name: nm(t), item: canonical },
     ],
   };
 
@@ -1136,7 +1144,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
 
 <div class="wrap sp-hero">
   <div class="sp-breadcrumb"><a href="${sitePageHref('browse-trails.html')}">${L('All trails')}</a> › ${escapeHtml(regionLabel)} › ${escapeHtml(t.valley || t.area)}</div>
-  <h1>${escapeHtml(t.name)}</h1>
+  <h1>${escapeHtml(nm(t))}</h1>
   ${t.nameGloss ? `<p class="sp-gloss">${escapeHtml(tr(t.nameGloss))}</p>` : ''}
   <div class="sp-badges">
     ${seasonTagsHtml(t)}
