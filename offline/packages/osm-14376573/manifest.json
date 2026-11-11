@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14376573",
   "name": "Crêt de Talière",
-  "version": "2026.10.30-beta.6",
-  "generatedAt": "2026-10-30T16:15:35.363Z",
+  "version": "2026.11.11-beta.7",
+  "generatedAt": "2026-11-11T17:01:15.355Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 260567,
+  "packageBytes": 261955,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.19973,
@@ -28,8 +28,8 @@
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 1243,
-    "edgeCount": 1250,
+    "nodeCount": 1257,
+    "edgeCount": 1264,
     "trailNodeCount": 374,
     "maxRejoinRouteM": 1500
   },
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Crêt de Talière OSM offline map",
       "url": "map.svg",
-      "bytes": 92493,
-      "sha256": "1a4bc14cf3d2663dba050fd94ec84aaeb0ac33f5467ab6b5cad182b9a8049290"
+      "bytes": 93226,
+      "sha256": "d8ebb3b9f8b9aa9c549d7ba0ce80ad7d9c8e7919d4851e81dd687dd289a722a9"
     },
     {
       "role": "route",
@@ -216,8 +216,8 @@
       "required": true,
       "label": "Crêt de Talière routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 57236,
-      "sha256": "552a15c196890751389d83bdadaefa2622465ebce0d2ec99e0fc642577e97898"
+      "bytes": 57891,
+      "sha256": "3445424d7042c0696934e2f5f095a23dd8936ca1e547d3ae50a6ce4dabb4c883"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Crêt de Talière safety information",
       "url": "safety.json",
       "bytes": 1153,
-      "sha256": "eaad6c477cb6663ce2205a578d944db1a0860ab4c45fd7d179cc04ab24494093"
+      "sha256": "fd55b6e82088c353e874f989d5cbf88bd8b6a4d5ff379e42a1dd33a4830e0f8b"
     }
   ]
 }

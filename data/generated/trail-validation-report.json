@@ -50,6 +50,16 @@
     "violations": [],
     "gaps": [
       {
+        "id": "osm-14376573",
+        "sealedOn": "2026-10-22",
+        "holds": [
+          "lift-dates-unpublished"
+        ],
+        "detail": [
+          "the walk needs Vinouve chairlift and no published running dates for it are held"
+        ]
+      },
+      {
         "id": "campiglio-monte-spinale-rifugio-graffer",
         "sealedOn": "2026-10-28",
         "holds": [
