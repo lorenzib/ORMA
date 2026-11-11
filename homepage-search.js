@@ -629,7 +629,7 @@
               '<p class="hp-coll-sub">' + esc(tx('Dolomites walks whose best months include {month}, ranked for the dog you are browsing with.', { month: now.month })) + '</p></div></div>' +
             '<div class="hp-coll-grid">' + now.list.map(function (entry) {
               var words = window.DoloPawsTrailSeasonWords;
-              return ccardHtml(entry, esc(entry.t.distance) + ' km · ' + esc(valleyOf(entry.t)) + ' · ' + esc(words.bestTime(entry.t.season, true)));
+              return ccardHtml(entry, esc(num(entry.t.distance)) + ' km · ' + esc(valleyOf(entry.t)) + ' · ' + esc(words.bestTime(entry.t.season, true)));
             }).join('') + '</div>' +
             '<a class="hp-how-link hp-featured-collection-cta" href="browse-trails.html?region=' + GOOD_NOW_REGION + '">' + esc(tx('See the {count} Dolomites walks in season →', { count: now.count })) + '</a>' +
           '</section>'
