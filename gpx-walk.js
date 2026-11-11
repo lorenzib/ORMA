@@ -13,7 +13,8 @@
   // watches write. A gzipped one (Strava's bulk export) is unzipped first.
   // Every kind becomes the same list of timed points and gets the same check,
   // and a passing walk is marked `proof: 'gpx'` whichever kind it came from:
-  // the mark means "proven from a file", and the database accepts only
+  // the mark means "proven from a recording made elsewhere" (a file, or in
+  // the iPhone app a walk from Apple Health), and the database accepts only
   // 'gps' and 'gpx'.
   //
   // A file needs a time on its points. A route planned on a map has none, and
@@ -330,6 +331,18 @@
     return assessParsed(readWalkFile(input), trails, options);
   }
 
+  // Points already read by someone else: the iPhone app's walks from Apple
+  // Health (app-health.js), as [{lat, lng, t}] with t in milliseconds.
+  function assessPoints(points, trails, options){
+    var clean = (Array.isArray(points) ? points : []).filter(function(p){
+      return p && Number.isFinite(p.lat) && Number.isFinite(p.lng) && Number.isFinite(p.t) &&
+        Math.abs(p.lat) <= 90 && Math.abs(p.lng) <= 180;
+    }).map(function(p){ return { lat: p.lat, lng: p.lng, t: p.t }; });
+    clean.sort(function(a, b){ return a.t - b.t; });
+    var name = options && options.name ? String(options.name).slice(0, 120) : '';
+    return assessParsed({ points: clean, timed: clean.length > 0, untimed: 0, noPosition: clean.length ? 0 : 1, name: name, error: null }, trails, options);
+  }
+
   function assessParsed(parsed, trails, options){
     var opts = options || {};
     var now = Number(opts.now) || 0;
@@ -420,7 +433,7 @@
   var api = {
     MAX_FILE_CHARS: MAX_FILE_CHARS, MIN_SHOWN_SHARE: MIN_SHOWN_SHARE,
     parseGpx: parseGpx, parseTcx: parseTcx, parseFit: parseFit, readWalkFile: readWalkFile, gunzip: gunzip,
-    assessGpx: assessGpx, assessFile: assessFile, isDuplicate: isDuplicate, buildEntry: buildEntry,
+    assessGpx: assessGpx, assessFile: assessFile, assessPoints: assessPoints, isDuplicate: isDuplicate, buildEntry: buildEntry,
     project: project, prepareLine: prepareLine,
   };
   root.DoloPawsGpxWalk = api;
