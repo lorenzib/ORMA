@@ -16,5 +16,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the Haus der Berge, take the path to the Alte Säge (1,259 m).": "Dalla Haus der Berge, prendi il sentiero per l'Alte Säge (1.259 m).",
   "From there, follow the paved path 105 through larch woods to the Antoniusstein (1,509 m) in the Innerfeldtal.": "Da lì, segui il sentiero asfaltato 105 attraverso boschi di larici fino all'Antoniusstein (1.509 m) nell'Innerfeldtal.",
   "Turn right onto a narrow forest path to the head of the valley.": "Gira a destra su uno stretto sentiero nel bosco fino alla testata della valle.",
-  "Return the same way.": "Ritorno per la stessa via."
+  "Return the same way.": "Ritorno per la stessa via.",
+  "Drinking fountain": "Fontanella",
+  "The Sextner Bach beside the path, in August": "Il Sextner Bach accanto al sentiero, ad agosto"
 });

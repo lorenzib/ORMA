@@ -18,5 +18,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest road past the farmsteads and through the larches to Malga Covel": "Strada forestale tra i masi e i larici fino a Malga Covel",
   "Through the pastures to Lago Covel": "Tra i pascoli fino al Lago Covel",
   "The Rio Vioz waterfall and its footbridge": "La cascata del Rio Vioz e il suo ponticello",
-  "Path back down to Peio Paese": "Sentiero di ritorno a Peio Paese"
+  "Path back down to Peio Paese": "Sentiero di ritorno a Peio Paese",
+  "Drinking water": "Acqua potabile",
+  "Lago Covel": "Lago Covel"
 });

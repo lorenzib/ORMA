@@ -15,5 +15,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Right off the cycle path where it is signed “Wildbad Innichen”.": "A destra lasciando la pista ciclabile dove è segnalato “Wildbad Innichen”.",
   "From the Haunold lift valley station in Innichen, take the cycle path towards Sexten.": "Dalla stazione a valle dell'impianto Haunold a Innichen prendi la pista ciclabile verso Sexten.",
   "Turn right where it is signed “Wildbad Innichen” (Bagni di San Candido) and follow the way through woods and meadows to the old spa.": "Gira a destra dove è segnalato “Wildbad Innichen” (Bagni di San Candido) e segui il percorso tra boschi e prati fino al vecchio stabilimento termale.",
-  "The board’s optional extension along the forest road to the Haunold hut is not part of this walk.": "L'estensione facoltativa proposta dalla scheda ufficiale lungo la strada forestale fino alla baita Haunold non fa parte di questa passeggiata."
+  "The board’s optional extension along the forest road to the Haunold hut is not part of this walk.": "L'estensione facoltativa proposta dalla scheda ufficiale lungo la strada forestale fino alla baita Haunold non fa parte di questa passeggiata.",
+  "Drinking fountain": "Fontanella",
+  "The old spa at Wildbad Innichen in July": "Le vecchie terme di Wildbad Innichen a luglio"
 });

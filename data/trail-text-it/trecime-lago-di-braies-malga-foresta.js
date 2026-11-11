@@ -16,5 +16,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Path 19: from the Pragser Wildsee car park along the west shore of the lake to a wide green clearing, then right on path 19 up the valley to the Grünwaldalm (Malga Foresta). Back the same way. The board says it suits families and is passable with a pushchair.": "Sentiero 19: dal parcheggio del Pragser Wildsee lungo la sponda ovest del lago fino a un'ampia radura verde, poi a destra sul sentiero 19 su per la valle fino alla Grünwaldalm (Malga Foresta). Ritorno per la stessa via. La scheda ufficiale dice che è adatto alle famiglie e percorribile con il passeggino.",
   "Right on path 19 at the wide green clearing.": "A destra sul sentiero 19 all'ampia radura verde.",
   "From the Pragser Wildsee car park, take the west shore of the lake to a wide green clearing.": "Dal parcheggio del Pragser Wildsee prendi la sponda ovest del lago fino a un'ampia radura verde.",
-  "From there, go right on path 19 to the Grünwaldalm (Malga Foresta).": "Da lì vai a destra sul sentiero 19 fino alla Grünwaldalm (Malga Foresta)."
+  "From there, go right on path 19 to the Grünwaldalm (Malga Foresta).": "Da lì vai a destra sul sentiero 19 fino alla Grünwaldalm (Malga Foresta).",
+  "Drinking fountain": "Fontanella",
+  "The Grünwaldalm above the Pragser Wildsee in July": "La Grünwaldalm sopra il Pragser Wildsee a luglio"
 });

@@ -10,5 +10,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Berggasthof Plätzwiese, above the Plätzwiese car park": "Berggasthof Plätzwiese, sopra il parcheggio di Plätzwiese",
   "Prato Piazza (Plätzwiese) trail": "Sentiero di Prato Piazza (Plätzwiese)",
   "Almost no shade: open high pasture and dwarf pine between 2,000 and 2,300 m.": "Quasi nessuna ombra: pascoli d'alta quota aperti e mughi tra 2.000 e 2.300 m.",
-  "At the saddle by the war memorial, leave the track and turn right for the summit of the Strudelkopf": "Alla sella presso il monumento ai caduti, lascia la strada sterrata e gira a destra per la cima dello Strudelkopf"
+  "At the saddle by the war memorial, leave the track and turn right for the summit of the Strudelkopf": "Alla sella presso il monumento ai caduti, lascia la strada sterrata e gira a destra per la cima dello Strudelkopf",
+  "Berggasthof Plätzwiese (restaurant)": "Berggasthof Plätzwiese (ristorante)",
+  "Drinking-water point, about 70 m off the path": "Punto di acqua potabile, a circa 70 m dal sentiero",
+  "Spring beside the path": "Sorgente accanto al sentiero",
+  "ORMA original": "Foto originale ORMA"
 });

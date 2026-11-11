@@ -10,5 +10,10 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Kurhaus on the Passer promenade, Meran (official start)": "Kurhaus sulla passeggiata del Passer, Meran (partenza ufficiale)",
   "Two walkers crossing the stone Steinerner Steg bridge in Meran, with yellow villas, cedars and the Pulverturm above": "Due escursionisti attraversano il ponte in pietra Steinerner Steg a Meran, con ville gialle, cedri e la Pulverturm più in alto",
   "Mostly open. Only about a tenth of the line runs under mapped trees, along the promenades; the Winterpromenade faces the sun and the Obermais lanes are open.": "Per lo più al sole. Solo circa un decimo del percorso passa sotto alberi segnati sulla mappa, lungo le passeggiate; la Winterpromenade è esposta al sole e le stradine di Obermais sono aperte.",
-  "No route number: from the Kurhaus follow the “Sissiweg / Sentiero di Sissi” signs along the Winterpromenade, over the Steinerner Steg and up through Obermais to the Trauttmansdorff gardens.": "Nessun numero di sentiero: dal Kurhaus segui i cartelli “Sissiweg / Sentiero di Sissi” lungo la Winterpromenade, sullo Steinerner Steg e su attraverso Obermais fino ai giardini di Trauttmansdorff."
+  "No route number: from the Kurhaus follow the “Sissiweg / Sentiero di Sissi” signs along the Winterpromenade, over the Steinerner Steg and up through Obermais to the Trauttmansdorff gardens.": "Nessun numero di sentiero: dal Kurhaus segui i cartelli “Sissiweg / Sentiero di Sissi” lungo la Winterpromenade, sullo Steinerner Steg e su attraverso Obermais fino ai giardini di Trauttmansdorff.",
+  "Fountain on the Kurpromenade": "Fontana sulla Kurpromenade",
+  "Fountain at the Wandelhalle": "Fontana alla Wandelhalle",
+  "Moritzbrunnen": "Moritzbrunnen",
+  "Fountain near Trauttmansdorff": "Fontana vicino a Trauttmansdorff",
+  "The Steinerner Steg in Meran": "Lo Steinerner Steg a Meran"
 });

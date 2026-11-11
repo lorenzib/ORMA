@@ -16,5 +16,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Path 4 down, then right onto path 4B.": "Sentiero 4 in discesa, poi a destra sul sentiero 4B.",
   "From Vierschach, take the gondola up to the Helm restaurant.": "Da Vierschach sali con la cabinovia fino al ristorante Helm.",
   "Take path 4 downhill, the fairy-tale path, past the Jägerhütte.": "Prendi in discesa il sentiero 4, il sentiero delle fiabe, oltre la Jägerhütte.",
-  "Turn right onto path 4B and follow it down to Vierschach.": "Gira a destra sul sentiero 4B e seguilo in discesa fino a Vierschach."
+  "Turn right onto path 4B and follow it down to Vierschach.": "Gira a destra sul sentiero 4B e seguilo in discesa fino a Vierschach.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The Sexten Dolomites from the Helm, where the walk starts, in October": "Le Dolomiti di Sesto dall'Helm, dove inizia la passeggiata, a ottobre"
 });

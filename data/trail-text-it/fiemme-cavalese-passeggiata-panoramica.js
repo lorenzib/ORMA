@@ -18,5 +18,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Walk up Via Cavazal. At the ice stadium turn left along the pavement as far as the little hut.": "Sali per Via Cavazal. Allo stadio del ghiaccio svolta a sinistra lungo il marciapiede fino alla casetta.",
   "There, take the steps on the right up to the park’s viewpoint, then follow the paved path to the tennis courts.": "Lì prendi i gradini a destra fino al belvedere del parco, poi segui il vialetto lastricato fino ai campi da tennis.",
   "Turn left, towards the bar, and follow the panoramic walk to the parish church of Santa Maria Assunta and the shrine of the Madonna Addolorata.": "Svolta a sinistra, verso il bar, e segui la passeggiata panoramica fino alla chiesa parrocchiale di Santa Maria Assunta e al capitello della Madonna Addolorata.",
-  "From there, take the avenue lined with very old lime trees back to the start.": "Da lì prendi il viale fiancheggiato da tigli antichissimi per tornare alla partenza."
+  "From there, take the avenue lined with very old lime trees back to the start.": "Da lì prendi il viale fiancheggiato da tigli antichissimi per tornare alla partenza.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The valley from the Parco della Pieve": "La valle dal Parco della Pieve"
 });

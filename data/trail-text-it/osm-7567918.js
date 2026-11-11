@@ -12,5 +12,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Lake Anterselva below steep wooded slopes": "Il lago di Anterselva sotto ripidi pendii boscosi",
   "Peaks above the forest at the end of Lake Anterselva": "Cime sopra il bosco in fondo al lago di Anterselva",
   "Almost all in the spruce forest round the lake; only the shore by the Seerestaurant is open.": "Quasi tutto nel bosco di abeti rossi intorno al lago; solo la riva vicino al Seerestaurant è aperta.",
-  "Signed as the Seerundweg: from the biathlon centre car park or the bus stop Antholzer See about 200 m to the lake, then once round the lake on the barrier-free path with information boards, and back to the start.": "Segnalato come Seerundweg: dal parcheggio del centro di biathlon o dalla fermata dell'autobus Antholzer See circa 200 m fino al lago, poi un giro completo del lago sul sentiero senza barriere con pannelli informativi, e ritorno alla partenza."
+  "Signed as the Seerundweg: from the biathlon centre car park or the bus stop Antholzer See about 200 m to the lake, then once round the lake on the barrier-free path with information boards, and back to the start.": "Segnalato come Seerundweg: dal parcheggio del centro di biathlon o dalla fermata dell'autobus Antholzer See circa 200 m fino al lago, poi un giro completo del lago sul sentiero senza barriere con pannelli informativi, e ritorno alla partenza.",
+  "The Antholzer See": "L'Antholzer See"
 });

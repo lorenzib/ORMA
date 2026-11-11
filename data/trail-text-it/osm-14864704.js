@@ -9,5 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Parking de l'église, Duingt (paid in July and August); free car park on route des Prés Bernard": "Parking de l'église, Duingt (a pagamento a luglio e agosto); parcheggio gratuito in route des Prés Bernard",
   "Lac d'Annecy seen from the wooded slope of the Taillefer above Duingt, the turquoise water running north between the Bauges and the Dents de Lanfon": "Il Lac d'Annecy visto dal pendio boscoso del Taillefer sopra Duingt, con l'acqua turchese che si allunga verso nord tra i Bauges e le Dents de Lanfon",
   "Taillefer high point (766 m): benches and the double panorama over the Grand and Petit lac d'Annecy": "Punto più alto del Taillefer (766 m): panchine e il doppio panorama sul Grand e sul Petit lac d'Annecy",
-  "No number: waymarked with yellow arrows and signposts; switches are the short loop to Mont Gerbet at the plateau and the optional detour to Dhéré, as the commune page describes.": "Senza numero: segnalato con frecce gialle e cartelli; le varianti sono il breve anello verso Mont Gerbet sull'altopiano e la deviazione facoltativa verso Dhéré, come descrive la pagina del comune."
+  "No number: waymarked with yellow arrows and signposts; switches are the short loop to Mont Gerbet at the plateau and the optional detour to Dhéré, as the commune page describes.": "Senza numero: segnalato con frecce gialle e cartelli; le varianti sono il breve anello verso Mont Gerbet sull'altopiano e la deviazione facoltativa verso Dhéré, come descrive la pagina del comune.",
+  "Drinking water": "Acqua potabile",
+  "Lac d'Annecy from the Taillefer de Duingt": "Il Lac d'Annecy dal Taillefer de Duingt"
 });

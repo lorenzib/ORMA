@@ -16,5 +16,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Passo Cimabanche, by the disused powder magazine": "Passo Cimabanche, accanto alla polveriera dismessa",
   "Val di Gotres mule track along the Rio Gotres": "Mulattiera della Val di Gotres lungo il Rio Gotres",
   "Lerosa meadows and old stone pines": "Prati di Lerosa e vecchi pini cembri",
-  "Forcella Lerosa (2,020 m); back the same way": "Forcella Lerosa (2.020 m); ritorno per la stessa via"
+  "Forcella Lerosa (2,020 m); back the same way": "Forcella Lerosa (2.020 m); ritorno per la stessa via",
+  "Drinking water": "Acqua potabile",
+  "Folded rock above the Val di Gotres": "Roccia piegata sopra la Val di Gotres"
 });

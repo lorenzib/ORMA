@@ -13,5 +13,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "The board names no path numbers: from the Holy Trinity hospital church in the centre of Niederdorf along the edge of the forest towards the Gothic chapel of St. Magdalena in Moos, with views of the village and the Prags Dolomites; benches by the chapel. Back on a quiet paved road between wide fields to the start.": "La scheda ufficiale non indica numeri di sentiero: dalla chiesa dell'ospedale della Santissima Trinità nel centro di Niederdorf lungo il margine del bosco verso la cappella gotica di St. Magdalena a Moos, con vista sul paese e sulle Dolomiti di Prags; panchine presso la cappella. Ritorno su una tranquilla strada asfaltata tra ampi campi fino alla partenza.",
   "Out along the forest edge, back on the paved road between the fields.": "Andata lungo il margine del bosco, ritorno sulla strada asfaltata tra i campi.",
   "From the hospital church in the centre of Niederdorf, follow the path along the edge of the forest towards the chapel of St. Magdalena in Moos, with views over the village and the Prags Dolomites.": "Dalla chiesa dell'ospedale nel centro di Niederdorf, segui il sentiero lungo il margine del bosco verso la cappella di St. Magdalena a Moos, con vista sul paese e sulle Dolomiti di Prags.",
-  "From the chapel, come back on a quiet paved road between wide fields to the start.": "Dalla cappella, torna su una tranquilla strada asfaltata tra ampi campi fino alla partenza."
+  "From the chapel, come back on a quiet paved road between wide fields to the start.": "Dalla cappella, torna su una tranquilla strada asfaltata tra ampi campi fino alla partenza.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "St. Magdalena in Moos above Niederdorf in July": "St. Magdalena a Moos sopra Niederdorf a luglio"
 });

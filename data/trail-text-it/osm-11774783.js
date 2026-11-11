@@ -5,5 +5,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Surface not yet field-verified": "Fondo non ancora verificato sul campo",
   "Start here — Bus stop Gufidaun - Gudon, 12 m from the route (OSM-verified access point)": "Partenza qui — Fermata dell'autobus Gufidaun - Gudon, a 12 m dal percorso (punto di accesso verificato su OSM)",
-  "Santa Maddalena in Val di Funes below the Odle peaks": "Santa Maddalena in Val di Funes sotto le Odle"
+  "Santa Maddalena in Val di Funes below the Odle peaks": "Santa Maddalena in Val di Funes sotto le Odle",
+  "Drinking water": "Acqua potabile",
+  "Trattermandl": "Trattermandl",
+  "Villnoess St Magdalena 1": "Villnoess St Magdalena 1"
 });

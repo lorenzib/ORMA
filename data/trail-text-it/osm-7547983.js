@@ -7,5 +7,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start on the Val Longiarìn road": "Partenza sulla strada della Val Longiarìn",
   "Sparsely mapped: natural ground (100%), from OSM surface data": "Mappatura scarsa: terreno naturale (100%), dai dati sul fondo di OSM",
   "Val Longiarìn road at the mouth of the Valzalina, just before the Vialona footbridge over the Rio Rin (official start)": "Strada della Val Longiarìn all'imbocco della Valzalina, poco prima della passerella di Vialona sul Rio Rin (partenza ufficiale)",
-  "Spruce forest in silhouette above Auronzo with the Montanel and the Spalti di Toro catching low sunlight behind.": "Bosco di abeti rossi in controluce sopra Auronzo, con il Montanel e gli Spalti di Toro illuminati dal sole basso alle spalle."
+  "Spruce forest in silhouette above Auronzo with the Montanel and the Spalti di Toro catching low sunlight behind.": "Bosco di abeti rossi in controluce sopra Auronzo, con il Montanel e gli Spalti di Toro illuminati dal sole basso alle spalle.",
+  "Il Montanel e gli spalti di Toro": "Il Montanel e gli spalti di Toro"
 });

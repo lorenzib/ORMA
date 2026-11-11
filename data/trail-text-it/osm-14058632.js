@@ -4,5 +4,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Sparsely mapped: natural ground (100%), from OSM surface data": "Mappatura scarsa: terreno naturale (100%), dai dati sul fondo di OSM",
   "Start here — Bus stop, 133 m from the route (OSM-verified access point)": "Parti da qui — Fermata dell'autobus, a 133 m dal percorso (punto di accesso verificato su OSM)",
-  "A gravel track running up through vineyards to Neustift Abbey with the Isarco valley hills behind": "Una strada sterrata che sale tra i vigneti verso l'abbazia di Neustift, con le colline della valle dell'Isarco sullo sfondo"
+  "A gravel track running up through vineyards to Neustift Abbey with the Isarco valley hills behind": "Una strada sterrata che sale tra i vigneti verso l'abbazia di Neustift, con le colline della valle dell'Isarco sullo sfondo",
+  "Kloster Neustift from the vineyards": "L'abbazia di Neustift dai vigneti"
 });

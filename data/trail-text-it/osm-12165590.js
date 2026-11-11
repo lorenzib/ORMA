@@ -4,5 +4,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Sparsely mapped: paved (82%), unpaved (18%), stone setts (0%), from OSM surface data": "Mappatura scarsa: asfalto (82%), non asfaltato (18%), cubetti di pietra (0%), dai dati sul fondo di OSM",
   "Start here — Bus stop Vintl, Dorf - Vintl,Paese, 5 m from the route (OSM-verified access point)": "Parti da qui — Fermata dell'autobus Vintl, Dorf - Vintl,Paese, a 5 m dal percorso (punto di accesso verificato su OSM)",
-  "Open pasture and spruce on the Luesner Alm, looking across forested slopes to snow on the far range.": "Pascolo aperto e abeti rossi sulla Luesner Alm, con vista sui versanti boscosi fino alla neve sulla catena lontana."
+  "Open pasture and spruce on the Luesner Alm, looking across forested slopes to snow on the far range.": "Pascolo aperto e abeti rossi sulla Luesner Alm, con vista sui versanti boscosi fino alla neve sulla catena lontana.",
+  "Drinking water": "Acqua potabile",
+  "Luesner Alm and Rodenecker Alm": "Luesner Alm e Rodenecker Alm"
 });

@@ -5,5 +5,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "natural ground (53%), dirt (47%), from OSM surface data": "terreno naturale (53%), terra battuta (47%), dai dati sul fondo di OSM",
   "Start here — Bus stop Altenburg - Castelvecchio, 316 m from the route (OSM-verified access point)": "Parti da qui — Fermata dell'autobus Altenburg - Castelvecchio, a 316 m dal percorso (punto di accesso verificato su OSM)",
-  "Panoramaweg trail": "Sentiero Panoramaweg"
+  "Panoramaweg trail": "Sentiero Panoramaweg",
+  "ORMA original": "Foto originale ORMA"
 });

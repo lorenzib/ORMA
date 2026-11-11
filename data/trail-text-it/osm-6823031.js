@@ -5,5 +5,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Partially mapped: gravel (73%), fine gravel (13%), compacted gravel (13%), from OSM surface data": "Mappato in parte: ghiaia (73%), ghiaia fine (13%), ghiaia compatta (13%), dai dati OSM sul fondo",
   "Start here — Parking, 47 m from the route (OSM-verified access point)": "Parti da qui — Parcheggio, a 47 m dal percorso (punto di accesso verificato su OSM)",
-  "The green water of the Rienz running between wooded banks below houses at Kiens.": "L'acqua verde della Rienz che scorre tra rive boscose sotto le case di Kiens."
+  "The green water of the Rienz running between wooded banks below houses at Kiens.": "L'acqua verde della Rienz che scorre tra rive boscose sotto le case di Kiens.",
+  "Drinking water": "Acqua potabile",
+  "Rienz bei Kiens": "La Rienz presso Kiens"
 });

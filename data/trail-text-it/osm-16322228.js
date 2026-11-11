@@ -6,5 +6,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Paved and gravel paths, flat": "Sentieri asfaltati e sterrati, pianeggianti",
   "Parking du plan d'eau, avenue de Chambéry, Challes-les-Eaux; bus 2 and 3 stop Plan d'Eau": "Parking du plan d'eau, avenue de Chambéry, Challes-les-Eaux; autobus 2 e 3, fermata Plan d'Eau",
   "Low autumn sun through the slender trees of the Marais des Chassettes, over dense ivy and reeds on the marsh floor": "Il sole basso d'autunno tra gli alberi sottili del Marais des Chassettes, sopra l'edera fitta e i canneti sul fondo della palude",
-  "No number: the official sheet describes the loop by landmark from the plan d'eau car park, with no switch to another route.": "Senza numero: la scheda ufficiale descrive l'anello tramite punti di riferimento a partire dal parcheggio del plan d'eau, senza passaggi su un altro percorso."
+  "No number: the official sheet describes the loop by landmark from the plan d'eau car park, with no switch to another route.": "Senza numero: la scheda ufficiale descrive l'anello tramite punti di riferimento a partire dal parcheggio del plan d'eau, senza passaggi su un altro percorso.",
+  "Anthony Levrot, CC BY-SA 4.0, via Wikimedia Commons (edited)": "Anthony Levrot, CC BY-SA 4.0, via Wikimedia Commons (edited)"
 });

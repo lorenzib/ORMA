@@ -15,5 +15,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Left onto the tarred road at the bridge over the ski run, about 200 m below the pass.": "A sinistra sulla strada asfaltata al ponte sopra la pista da sci, circa 200 m sotto il passo.",
   "From Passo San Pellegrino, go down the far side for about 200 m. At a bridge over a ski run, turn left onto the tarred road, which soon reaches the car park by the Hotel Miralago.": "Dal Passo San Pellegrino, scendi sul versante opposto per circa 200 m. A un ponte sopra una pista da sci, svolta a sinistra sulla strada asfaltata, che presto raggiunge il parcheggio vicino all'Hotel Miralago.",
   "From there an easy, mostly level road leads to the Fuciade basin, a limestone amphitheatre under l’Om, Jigolé and the Sas de Valfreida, dotted with hay barns (“tabià”), most of them rebuilt after the First World War.": "Da lì una strada facile e per lo più pianeggiante porta alla conca di Fuciade, un anfiteatro calcareo sotto l'Om, lo Jigolé e il Sas de Valfreida, punteggiato di fienili (“tabià”), quasi tutti ricostruiti dopo la Prima guerra mondiale.",
-  "The walk ends at the Rifugio Fuchiade restaurant. Come back the same way, on foot or in the horse-drawn carriage.": "La camminata termina al ristorante del Rifugio Fuchiade. Torna per la stessa via, a piedi o con la carrozza trainata da cavalli."
+  "The walk ends at the Rifugio Fuchiade restaurant. Come back the same way, on foot or in the horse-drawn carriage.": "La camminata termina al ristorante del Rifugio Fuchiade. Torna per la stessa via, a piedi o con la carrozza trainata da cavalli.",
+  "Drinking fountain": "Fontanella",
+  "The track to Fuciade": "La strada verso Fuciade"
 });

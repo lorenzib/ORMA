@@ -17,5 +17,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "There, follow the sign for path 1 to the left, cross the ski slope and walk along the fence to the Kristler farms and the Helmhanghütte.": "Lì segui a sinistra il cartello del sentiero 1, attraversa la pista da sci e cammina lungo la recinzione fino ai masi Kristler e alla Helmhanghütte.",
   "Past the hut, carry on briefly towards Egge, then turn left at the last hut in the open larch wood onto summer path 3A, the Heimatsteig.": "Superata la baita, prosegui brevemente verso Egge, poi gira a sinistra all'ultima baita nel lariceto rado sul sentiero estivo 3A, l'Heimatsteig.",
   "The narrow path climbs steadily along the ridge. Above the treeline, follow the marked ridge up to the Helm summit (2,434 m).": "Lo stretto sentiero sale costante lungo la cresta. Sopra il limite del bosco segui la cresta segnata fino alla cima dell'Helm (2.434 m).",
-  "Return the same way to Moos. The board also offers the Helmjet gondola down from its top station.": "Torna a Moos per la stessa via. La scheda ufficiale propone anche la discesa con la cabinovia Helmjet dalla stazione a monte."
+  "Return the same way to Moos. The board also offers the Helmjet gondola down from its top station.": "Torna a Moos per la stessa via. La scheda ufficiale propone anche la discesa con la cabinovia Helmjet dalla stazione a monte.",
+  "The Sexten Dolomites from the Helm summit, in June": "Le Dolomiti di Sesto dalla vetta dell'Helm, a giugno"
 });

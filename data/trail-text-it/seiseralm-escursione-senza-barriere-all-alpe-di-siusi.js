@@ -13,5 +13,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mostly open: about a fifth runs past mapped woodland; the meadows are in full sun.": "Per lo più aperto: circa un quinto del percorso costeggia boschi segnati sulla mappa; i prati sono in pieno sole.",
   "Start at the top station of the Mont Sëuc cable car from Ortisei (2,005 m), the board’s start.": "Parti dalla stazione a monte della funivia del Mont Sëuc da Ortisei (2.005 m), la partenza indicata dalla scheda ufficiale.",
   "Take well-signed path 9 to the left, first to the Schgaguler hut, then on across the flowering alpine meadows to the Sporthotel Sonne. Come back the same way to the cable car.": "Prendi a sinistra il sentiero 9, ben segnalato, prima fino alla baita Schgaguler, poi attraverso i prati alpini fioriti fino allo Sporthotel Sonne. Torna alla funivia per la stessa via.",
-  "One turn: leaving the station, take path 9 to the left, and stay on it to the Sporthotel Sonne.": "Una sola svolta: uscendo dalla stazione prendi il sentiero 9 a sinistra e restaci fino allo Sporthotel Sonne."
+  "One turn: leaving the station, take path 9 to the left, and stay on it to the Sporthotel Sonne.": "Una sola svolta: uscendo dalla stazione prendi il sentiero 9 a sinistra e restaci fino allo Sporthotel Sonne.",
+  "Path 9 on the Alpe di Siusi": "Il sentiero 9 sull'Alpe di Siusi"
 });

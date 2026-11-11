@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Partly shaded: just under half runs through forest on path 20A; the climb to Colac is open and sunny.": "In parte all'ombra: poco meno della metà attraversa il bosco sul sentiero 20A; la salita verso Colac è aperta e soleggiata.",
   "Start beside the sports ground in Antermoia, where path 20 begins.": "Parti accanto al campo sportivo di Antermoia, dove inizia il sentiero 20.",
   "Path 20 climbs, sunny and with wide views, to the Colac farms. Follow the road down, keeping left, to the Val farms. Then path 20A, the Michael Plattner path, crosses the wood and a wooden bridge; from there go left on the road to Rina.": "Il sentiero 20 sale, soleggiato e panoramico, fino ai masi di Colac. Segui la strada in discesa, tenendo la sinistra, fino ai masi di Val. Poi il sentiero 20A, il sentiero Michael Plattner, attraversa il bosco e un ponte di legno; da lì vai a sinistra sulla strada per Rina.",
-  "At the Colac farms take the road down, keeping left. At the Val farms take path 20A. After the wooden bridge turn left onto the road to Rina.": "Ai masi di Colac prendi la strada in discesa, tenendo la sinistra. Ai masi di Val prendi il sentiero 20A. Dopo il ponte di legno svolta a sinistra sulla strada per Rina."
+  "At the Colac farms take the road down, keeping left. At the Val farms take path 20A. After the wooden bridge turn left onto the road to Rina.": "Ai masi di Colac prendi la strada in discesa, tenendo la sinistra. Ai masi di Val prendi il sentiero 20A. Dopo il ponte di legno svolta a sinistra sulla strada per Rina.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Antermoia and its church": "Antermoia e la sua chiesa"
 });

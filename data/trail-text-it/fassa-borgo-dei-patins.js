@@ -16,5 +16,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the tourist office, walk along Strada Rezia to the main road that leads to the Passo Costalunga (Carezza). Cross it and take Strada de Val to the Val quarter, on the right bank of the Ruf de Val.": "Dall'ufficio turistico, cammina lungo Strada Rezia fino alla strada principale che porta al Passo Costalunga (Carezza). Attraversala e prendi Strada de Val fino al rione Val, sulla riva destra del Ruf de Val.",
   "At the fork, go right and climb the steep Strada de Somcosta.": "Al bivio, vai a destra e sali per la ripida Strada de Somcosta.",
   "Just past the Hotel Belvedere, go down to the left on Strada de Larcioné, towards the south side of the village, and join the country lane that comes from Soraga.": "Subito dopo l'Hotel Belvedere, scendi a sinistra per Strada de Larcioné, verso il lato sud del paese, e prendi la stradina di campagna che arriva da Soraga.",
-  "Turn right into Strada dal Dos and follow the path, in places beside the main road, back to the centre.": "Svolta a destra in Strada dal Dos e segui il sentiero, a tratti accanto alla strada principale, fino al centro."
+  "Turn right into Strada dal Dos and follow the path, in places beside the main road, back to the centre.": "Svolta a destra in Strada dal Dos e segui il sentiero, a tratti accanto alla strada principale, fino al centro.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "Vigo di Fassa in July": "Vigo di Fassa a luglio"
 });

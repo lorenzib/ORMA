@@ -16,5 +16,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the centre of San Martino, walk to the bottom station of the Colverde lifts.": "Dal centro di San Martino raggiungi la stazione a valle degli impianti del Colverde.",
   "Take the Val di Roda forest road.": "Prendi la strada forestale della Val di Roda.",
   "Leave it for the path that goes down to the Prati Col.": "Lasciala per il sentiero che scende ai Prati Col.",
-  "From there, go down the tarred road and follow it back to the centre of San Martino di Castrozza.": "Da lì scendi lungo la strada asfaltata e seguila fino al centro di San Martino di Castrozza."
+  "From there, go down the tarred road and follow it back to the centre of San Martino di Castrozza.": "Da lì scendi lungo la strada asfaltata e seguila fino al centro di San Martino di Castrozza.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "San Martino di Castrozza and the Pale": "San Martino di Castrozza e le Pale"
 });

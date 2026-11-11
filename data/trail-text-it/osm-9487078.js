@@ -4,5 +4,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Sparsely mapped: gravel (63%), dirt (25%), natural ground (13%), from OSM surface data": "Mappato in modo scarso: ghiaia (63%), terra (25%), terreno naturale (13%), dai dati OSM sul fondo",
   "Seiser Alm cable-car valley station, Seis (official start)": "Stazione a valle della cabinovia dell'Alpe di Siusi (Seiser Alm), Seis (partenza ufficiale)",
-  "The walls of the Hauenstein castle ruin in the forest above Seis am Schlern, seen from above, which the walk passes": "Le mura dei ruderi del castello di Hauenstein nel bosco sopra Seis am Schlern, viste dall'alto, accanto a cui passa il percorso"
+  "The walls of the Hauenstein castle ruin in the forest above Seis am Schlern, seen from above, which the walk passes": "Le mura dei ruderi del castello di Hauenstein nel bosco sopra Seis am Schlern, viste dall'alto, accanto a cui passa il percorso",
+  "The Hauenstein castle ruin above Seis": "Il rudere del castello di Hauenstein sopra Siusi"
 });

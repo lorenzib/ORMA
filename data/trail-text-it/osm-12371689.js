@@ -4,5 +4,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "stone setts (73%), natural ground (18%), paved (9%), from OSM surface data": "cubetti di pietra (73%), terreno naturale (18%), asfalto (9%), dai dati sul fondo di OSM",
   "Start here — Bus stop Tramin, Sankt Jakob - Termeno, San Giacomo, 5 m from the route (OSM-verified access point)": "Parti da qui — Fermata dell'autobus Tramin, Sankt Jakob - Termeno, San Giacomo, a 5 m dal percorso (punto di accesso verificato su OSM)",
-  "Inside a pergola vineyard at Tramin, old vine trunks and green grapes overhead, grass between the rows.": "Dentro un vigneto a pergola a Tramin, vecchi ceppi di vite e uva verde sopra la testa, erba tra i filari."
+  "Inside a pergola vineyard at Tramin, old vine trunks and green grapes overhead, grass between the rows.": "Dentro un vigneto a pergola a Tramin, vecchi ceppi di vite e uva verde sopra la testa, erba tra i filari.",
+  "Drinking water": "Acqua potabile",
+  "Wein": "Vino"
 });

@@ -7,5 +7,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "About 450 m of village streets and service roads with cars": "Circa 450 m di vie del paese e strade di servizio con auto",
   "Forest tracks and paths along the Isère, with about 450 m of village streets and service roads": "Strade forestali e sentieri lungo l'Isère, con circa 450 m di vie del paese e strade di servizio",
   "Séez tourist information office, or the Parking des Pénitents (official start)": "Ufficio informazioni turistiche di Séez, oppure il Parking des Pénitents (partenza ufficiale)",
-  "The Isère running white over rocks through riverside woodland at Séez, alder and ash closing in on both banks.": "L'Isère che scorre spumeggiante tra le rocce nel bosco ripariale di Séez, con ontani e frassini fitti su entrambe le sponde."
+  "The Isère running white over rocks through riverside woodland at Séez, alder and ash closing in on both banks.": "L'Isère che scorre spumeggiante tra le rocce nel bosco ripariale di Séez, con ontani e frassini fitti su entrambe le sponde.",
+  "Bachal": "Bachal",
+  "Drinking water": "Acqua potabile",
+  "Isère à Séez": "Isère à Séez"
 });

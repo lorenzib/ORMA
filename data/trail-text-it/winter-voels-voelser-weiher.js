@@ -12,5 +12,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Woods around the Völser Weiher and on the way down to St. Konstantin; open meadows and village lanes elsewhere.": "Bosco intorno al Laghetto di Fiè e lungo la discesa verso San Costantino; altrove prati aperti e stradine del paese.",
   "Start at the roundabout in Völs am Schlern, the board’s start. Bus 170 stops there.": "Partenza dalla rotonda di Fiè allo Sciliar, la partenza indicata dall’ente turistico. L’autobus 170 ferma lì.",
   "Walk up towards Völser Aicha and Umes. At the Hotel Heubad turn left onto path 1 and follow it past the Zimmerlehen manor and a few farms to the Völser Weiher, about 45 minutes. From the lake take path 13 down past old summer houses to the little church of St. Konstantin, about 30 minutes. From there the path goes back over the meadows and through the woods to Völs.": "Sali verso Aica di Fiè e Umes. All’Hotel Heubad gira a sinistra sul sentiero 1 e seguilo oltre la residenza Zimmerlehen e alcuni masi fino al Laghetto di Fiè, circa 45 minuti. Dal lago prendi il sentiero 13 in discesa oltre vecchie case di villeggiatura fino alla chiesetta di San Costantino, circa 30 minuti. Da lì il sentiero torna a Fiè attraverso i prati e il bosco.",
-  "Road from the roundabout up to the Hotel Heubad; path 1 to the Völser Weiher; path 13 down to St. Konstantin; meadow and forest path back to Völs.": "Strada dalla rotonda fino all’Hotel Heubad; sentiero 1 fino al Laghetto di Fiè; sentiero 13 in discesa fino a San Costantino; sentiero tra prati e bosco fino a Fiè."
+  "Road from the roundabout up to the Hotel Heubad; path 1 to the Völser Weiher; path 13 down to St. Konstantin; meadow and forest path back to Völs.": "Strada dalla rotonda fino all’Hotel Heubad; sentiero 1 fino al Laghetto di Fiè; sentiero 13 in discesa fino a San Costantino; sentiero tra prati e bosco fino a Fiè.",
+  "Drinking water": "Acqua potabile",
+  "Max-Brunnen": "Max-Brunnen",
+  "Bachtrögl": "Bachtrögl",
+  "A snowy path by the Völser Weiher, in March": "Un sentiero innevato presso il Völser Weiher, a marzo"
 });

@@ -17,5 +17,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Cross it and go straight on, gently uphill, along Via Sass Maor for 250 m, then turn left into Via San Giacomo. At the junction turn right, staying on the same street.": "Attraversala e vai dritto, in leggera salita, lungo Via Sass Maor per 250 m, poi gira a sinistra in Via San Giacomo. All'incrocio gira a destra, restando sulla stessa via.",
   "Where it meets Via Sass Maor, turn left and then left again into Via Rioni. Then turn right into Via Siror.": "Dove incontra Via Sass Maor gira a sinistra e poi di nuovo a sinistra in Via Rioni. Poi gira a destra in Via Siror.",
   "Past Palazzo Scopoli, carry on through the old centre by Via San Giacomo, Piazza Piubago and Via Scopoli. Near the church, turn right and go down towards the Canali river.": "Superato Palazzo Scopoli, prosegui nel centro storico per Via San Giacomo, Piazza Piubago e Via Scopoli. Vicino alla chiesa gira a destra e scendi verso il torrente Canali.",
-  "Cross the wooden footbridge by the Lanterna Verde pizzeria and follow the river along Via Lungo Canali, then cross the Parco Clarofonte back to the car park by the Parco Vallombrosa.": "Attraversa la passerella di legno vicino alla pizzeria Lanterna Verde e segui il torrente lungo Via Lungo Canali, poi attraversa il Parco Clarofonte fino al parcheggio vicino al Parco Vallombrosa."
+  "Cross the wooden footbridge by the Lanterna Verde pizzeria and follow the river along Via Lungo Canali, then cross the Parco Clarofonte back to the car park by the Parco Vallombrosa.": "Attraversa la passerella di legno vicino alla pizzeria Lanterna Verde e segui il torrente lungo Via Lungo Canali, poi attraversa il Parco Clarofonte fino al parcheggio vicino al Parco Vallombrosa.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "A street in Tonadico": "Una via di Tonadico"
 });

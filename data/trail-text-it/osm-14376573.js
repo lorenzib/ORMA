@@ -5,5 +5,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Rock and loose stones underfoot": "Roccia e pietre smosse sotto i piedi",
   "Stony tracks and paths on open alpine ground, 2,130 to 2,420 m": "Sterrate sassose e sentieri su terreno alpino aperto, da 2.130 a 2.420 m",
   "Top of the Vinouve chairlift, Les Karellis (official start)": "Arrivo della seggiovia di Vinouve, Les Karellis (partenza ufficiale)",
-  "A stony alpine track on the Crêt de Talière loop above Les Karellis, a scree slope on the right, a chairlift pylon and snow-capped peaks across the valley": "Una sterrata alpina sassosa sull'anello del Crêt de Talière sopra Les Karellis, con un ghiaione a destra, un pilone della seggiovia e cime innevate oltre la valle"
+  "A stony alpine track on the Crêt de Talière loop above Les Karellis, a scree slope on the right, a chairlift pylon and snow-capped peaks across the valley": "Una sterrata alpina sassosa sull'anello del Crêt de Talière sopra Les Karellis, con un ghiaione a destra, un pilone della seggiovia e cime innevate oltre la valle",
+  "Stony track on the Crêt de Talière loop": "Sentiero sassoso sull'anello del Crêt de Talière"
 });

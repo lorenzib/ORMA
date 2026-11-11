@@ -15,5 +15,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From Sexten parish church, follow the biblical meditation path, marked as paths 5 and 4B, past the stations of the Way of the Cross to the Hösler farms.": "Dalla chiesa parrocchiale di Sexten, segui il sentiero di meditazione biblica, segnato come sentieri 5 e 4B, oltre le stazioni della Via Crucis fino ai masi Hösler.",
   "Carry on along the farm path 4B to the Ladstätter farm.": "Prosegui lungo la strada poderale 4B fino al maso Ladstätter.",
   "From there, cross forest and meadows to the Waldkapelle (1,552 m).": "Da lì, attraversa bosco e prati fino alla Waldkapelle (1.552 m).",
-  "The board’s times are for there and back: return the same way.": "I tempi della scheda ufficiale sono per andata e ritorno: torna per la stessa via."
+  "The board’s times are for there and back: return the same way.": "I tempi della scheda ufficiale sono per andata e ritorno: torna per la stessa via.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The Waldkapelle where the walk ends, in July": "La Waldkapelle, dove finisce la passeggiata, a luglio"
 });

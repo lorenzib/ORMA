@@ -5,5 +5,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Partially mapped: natural ground (75%), paved (13%), grass (10%), from OSM surface data": "Mappatura parziale: terreno naturale (75%), asfalto (13%), erba (10%), dai dati sul fondo di OSM",
   "Start here — Bus stop Montbrunal, 8 m from the route (OSM-verified access point)": "Parti da qui — Fermata dell'autobus Montbrunal, a 8 m dal percorso (punto di accesso verificato su OSM)",
-  "Autumn pasture and turning larch above Montpascal, with the Lauzière massif across the valley under a clear sky.": "Pascolo autunnale e larici che cambiano colore sopra Montpascal, con il massiccio della Lauzière oltre la valle sotto un cielo sereno."
+  "Autumn pasture and turning larch above Montpascal, with the Lauzière massif across the valley under a clear sky.": "Pascolo autunnale e larici che cambiano colore sopra Montpascal, con il massiccio della Lauzière oltre la valle sotto un cielo sereno.",
+  "Drinking water": "Acqua potabile",
+  "Massif de la Lauzière": "Massif de la Lauzière"
 });

@@ -13,5 +13,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "The board names no path number: from Sexten parish church up the paved road across the Mitterberg, with views of the Sexten Sundial peaks, to the Gasthof Panorama (1,576 m). Back the same way. From the Panorama, paths continue to the Helmhanghütte and the Sexten alms, or up to the Lärchenhütte and the Helm.": "La scheda ufficiale non indica il numero del sentiero: dalla chiesa parrocchiale di Sexten su per la strada asfaltata attraverso il Mitterberg, con vista sulle cime della Meridiana di Sexten, fino al Gasthof Panorama (1.576 m). Ritorno per la stessa via. Dal Panorama i sentieri proseguono verso la Helmhanghütte e le malghe di Sexten, oppure salgono alla Lärchenhütte e all'Helm.",
   "None: stay on the paved road up to the Gasthof Panorama.": "Nessuno: resta sulla strada asfaltata fino al Gasthof Panorama.",
   "From Sexten parish church, walk up the paved road, with views of the Sexten Sundial peaks, to the Gasthof Panorama (1,576 m).": "Dalla chiesa parrocchiale di Sexten, sali sulla strada asfaltata, con vista sulle cime della Meridiana di Sexten, fino al Gasthof Panorama (1.576 m).",
-  "The board’s times are for there and back: return the same way.": "I tempi della scheda ufficiale sono per andata e ritorno: torna per la stessa via."
+  "The board’s times are for there and back: return the same way.": "I tempi della scheda ufficiale sono per andata e ritorno: torna per la stessa via.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "The Sexten Dolomites from the walk above Sexten, in September": "Le Dolomiti di Sesto dalla passeggiata sopra Sexten, a settembre"
 });

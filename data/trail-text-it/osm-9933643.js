@@ -8,5 +8,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "A very steep path for about ten minutes on the direct route down to the lake (official)": "Un sentiero molto ripido per circa dieci minuti sul percorso diretto che scende al lago (scheda ufficiale)",
   "Resort paths and tracks, roughly half paved, half natural ground": "Sentieri e strade sterrate della località, circa metà asfaltati e metà su terreno naturale",
   "Start here: war memorial (WW2 parachute drop) in Plagne Centre, by the shuttle stop and parking": "Parti da qui: monumento ai caduti (lancio di paracadutisti della Seconda guerra mondiale) a Plagne Centre, vicino alla fermata della navetta e al parcheggio",
-  "The green Lac Vert among larches above Plagne Centre, with its information board asking visitors not to swim": "Il verde Lac Vert tra i larici sopra Plagne Centre, con il pannello informativo che chiede ai visitatori di non fare il bagno"
+  "The green Lac Vert among larches above Plagne Centre, with its information board asking visitors not to swim": "Il verde Lac Vert tra i larici sopra Plagne Centre, con il pannello informativo che chiede ai visitatori di non fare il bagno",
+  "The Lac Vert and its information board": "Il Lac Vert e il suo pannello informativo"
 });
