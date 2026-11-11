@@ -1,5 +1,6 @@
 // valdisole-peio-paese-lago-covel in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "farmsteads, a goat malga and a mirror lake in the Stelvio park": "masi, una malga di capre e un lago a specchio nel parco dello Stelvio",
   "An easy loop in the Stelvio National Park from Peio Paese past old farmsteads to Malga Covel, its goat cheese and the mirror-like Lago Covel, then to the Rio Vioz waterfall and back. The board lists 5.2 km and 214 m up.": "Un anello facile nel Parco Nazionale dello Stelvio da Peio Paese oltre antichi masi fino a Malga Covel, al suo formaggio di capra e al Lago Covel che fa da specchio, poi alla cascata del Rio Vioz e ritorno. Il sito ufficiale indica 5,2 km e 214 m di salita.",
   "Start at San Rocco in Peio Paese: 5.2 km and 214 m up, about 2 hours, as the board lists. An easy family walk; carry a muzzle and keep your dog on a lead in the park.": "Parti da San Rocco a Peio Paese: 5,2 km e 214 m di salita, circa 2 ore, come indica il sito ufficiale. Una passeggiata facile per famiglie; porta la museruola e tieni il cane al guinzaglio nel parco.",
   "Minor village road at the start and end in Peio Paese: keep your dog on a short lead": "Strada di paese all’inizio e alla fine a Peio Paese: tieni il cane al guinzaglio corto",
