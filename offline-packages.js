@@ -55,6 +55,7 @@
     'cembra-rifugio-potzmauer': "Al Rifugio Potzmauer",
     'cembra-san-leonardo-lisignago': "San Leonardo e le campagne di Lisignago",
     'cembra-vecchi-mestieri-grumes': "Il Sentiero dei vecchi mestieri – da Grumes",
+    'colle-passeggiata-intorno-al-colle': "Walk round the Colle di Santa Lucia",
     'cortina-anello-dei-tre-rifugi': "Three-hut loop from Malga Ra Stua",
     'cortina-castello-di-botestagno': "Castello di Botestagno",
     'cortina-forcella-lerosa': "Passo Cimabanche to Forcella Lerosa",

@@ -1948,6 +1948,11 @@
       "name": "Wildlife trail in the Val di Peio",
       "slug": "percorso-della-fauna-val-di-peio",
       "gloss": "a park loop from the Fontanino to Malga Paludèi and the Val Piana"
+    },
+    "colle-passeggiata-intorno-al-colle": {
+      "name": "Walk round the Colle di Santa Lucia",
+      "slug": "passeggiata-intorno-al-colle-santa-lucia",
+      "gloss": "a short meadow loop round the village knoll"
     }
   }
 }

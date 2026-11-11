@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "colle-passeggiata-intorno-al-colle",
+  "generatedAt": "2026-11-11T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 1.1,
+    "ascentM": 59,
+    "highestPointM": 1460,
+    "expectedDuration": "0.5 hours",
+    "difficulty": "Moderate",
+    "shadePercent": 6
+  },
+  "trailhead": {
+    "lat": 46.446903,
+    "lng": 12.014045,
+    "label": "The piazza of Colle Santa Lucia, by the church, the association’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.4467738,
+      "lng": 12.0149712,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.446427,
+      "lng": 12.0160822,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Village street at the start and end, with some cars: keep your dog on a short lead.",
+    "Steep road down from the piazza at the start.",
+    "The walk crosses hay meadows: keep your dog on the track.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-11"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-11",
+      "licence": "ODbL"
+    }
+  ]
+}
