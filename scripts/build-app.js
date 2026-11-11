@@ -18,6 +18,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { ITALIAN_COPY_BANNER } = require('./italian-copy-banner');
 
 const root = path.resolve(__dirname, '..');
 const outDir = path.join(root, 'dist', 'app');
@@ -294,8 +295,9 @@ function rewriteRemoteRefs(){
       .replace(HIKING_ORIGIN_LINE, `const HIKING_ORIGIN = '${SITE_ORIGIN}';`)
       .replace(REMOTE_REF, `$1${SITE_ORIGIN}/$2`)
       .replace(MANIFEST_TAG, APP_MANIFEST_TAG);
+    // The app carries no /it/ copies, so its pages keep their own language.
     const page = /\.html$/.test(r)
-      ? after.replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_FLAG_TAG}\n${APP_SHELL_TAG}\n${APP_TABBAR_TAG}\n${r === 'trail.html' ? `${APP_TRAIL_TAG}\n` : ''}${r === 'index.html' ? `${APP_EXPLORE_TAG}\n` : ''}${r === 'index.html' ? `${APP_WELCOME_TAG}\n` : ''}${r === 'account.html' ? `${APP_YOU_TAG}\n` : ''}${r === 'saved.html' ? `${APP_SAVED_TAG}\n` : ''}${r === 'journal.html' ? `${APP_WALK_DONE_TAG}\n` : ''}</head>`)
+      ? after.split(`${ITALIAN_COPY_BANNER}\n`).join('').replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_FLAG_TAG}\n${APP_SHELL_TAG}\n${APP_TABBAR_TAG}\n${r === 'trail.html' ? `${APP_TRAIL_TAG}\n` : ''}${r === 'index.html' ? `${APP_EXPLORE_TAG}\n` : ''}${r === 'index.html' ? `${APP_WELCOME_TAG}\n` : ''}${r === 'account.html' ? `${APP_YOU_TAG}\n` : ''}${r === 'saved.html' ? `${APP_SAVED_TAG}\n` : ''}${r === 'journal.html' ? `${APP_WALK_DONE_TAG}\n` : ''}</head>`)
       : after;
     if(page !== before){ fs.writeFileSync(dest, page); rewritten += 1; }
   }

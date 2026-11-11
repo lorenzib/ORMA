@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const phrases = require('./scripts/check-i18n-phrases');
 const trailText = require('./scripts/trail-text-it');
+const { ITALIAN_COPY_BANNER } = require('./scripts/italian-copy-banner');
 
 // Italian reaches what scripts write, every trail's own words, and the guides
 // and legal pages. English stays the source; these keep the Italian complete.
@@ -88,13 +89,23 @@ describe('guides and legal pages', () => {
   });
 
   // A search result or shared link can bring an Italian reader to the English
-  // copy; a line in its head sends them on before it draws. Same rule as i18n.js:
-  // their saved choice, else the browser language. The Italian copies lack it.
-  test.each(documents)('%s sends an Italian reader to the Italian copy before it draws', page => {
-    const head = read(page).split('<title>')[0];
-    expect(head).toContain("localStorage.getItem('dolopaws-lang')");
-    expect(head).toContain("location.replace('/it'+location.pathname+location.search+location.hash)");
-    expect(read(`it/${page}`)).not.toContain("location.replace('/it'");
+  // copy; a line in its head offers the Italian copy under the top bar. A link,
+  // never a redirect, so the English page stays the page search engines index.
+  test.each(documents)('%s offers an Italian reader its Italian copy', page => {
+    const english = read(page);
+    expect(english.split('<title>')[0]).toContain(ITALIAN_COPY_BANNER);
+    expect(english).not.toMatch(/http-equiv="refresh"|location\.replace\s*\(/i);
+    expect(read(`it/${page}`)).not.toContain(ITALIAN_COPY_BANNER);
+  });
+
+  test('trail pages do the same, and the phone app, which carries no Italian copies, drops the line', () => {
+    const english = fs.readdirSync(path.join(__dirname, 'trails')).filter(file => file.endsWith('.html') && file !== 'index.html')
+      .filter(file => !/http-equiv="refresh"/.test(read(`trails/${file}`)));
+    const without = english.filter(file => !read(`trails/${file}`).split('<title>')[0].includes(ITALIAN_COPY_BANNER));
+    expect(english.length).toBeGreaterThan(400);
+    expect(without).toEqual([]);
+    expect(read(`it/trails/${english[0]}`)).not.toContain(ITALIAN_COPY_BANNER);
+    expect(read('scripts/build-app.js')).toContain("after.split(`${ITALIAN_COPY_BANNER}\\n`).join('')");
   });
 
   test('the legal copies say the English version prevails', () => {
