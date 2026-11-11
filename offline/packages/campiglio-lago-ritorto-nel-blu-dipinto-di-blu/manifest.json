@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "campiglio-lago-ritorto-nel-blu-dipinto-di-blu",
   "name": "Lago Ritorto",
-  "version": "2026.11.05-beta.1",
-  "generatedAt": "2026-11-05T16:15:41.288Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.894Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 389673,
+  "packageBytes": 389674,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.20918,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lago Ritorto safety information",
       "url": "safety.json",
-      "bytes": 1324,
-      "sha256": "53ab6fdf5f962162d15b74e8a855b15bf4a6179227db227026bfc37080ad6763"
+      "bytes": 1325,
+      "sha256": "ddcc2f3d91d117c47ea88fbd4a59cde2c1cc6a0fb512cb120efe8e8bc83ba2fe"
     }
   ]
 }

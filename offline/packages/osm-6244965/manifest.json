@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6244965",
   "name": "Steine erzählen",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.776Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.404Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1367299,
+  "packageBytes": 1367295,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.8005,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Steine erzählen safety information",
       "url": "safety.json",
-      "bytes": 2051,
-      "sha256": "de162f76d64b327440b809698f562bb32645827ff78758444fe0128e3cb3ebd8"
+      "bytes": 2047,
+      "sha256": "fb5c6119c2cd39e470d70d090b3ed876374dd010a8f2e9a1642edb54ffcd91ec"
     }
   ]
 }

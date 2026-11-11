@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "engadin-morteratsch-glacier-route",
   "name": "Morteratsch glacier path",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T20:46:02.041Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.979Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 301515,
+  "packageBytes": 301511,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42296,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Morteratsch glacier path safety information",
       "url": "safety.json",
-      "bytes": 1398,
-      "sha256": "fd40680c9853f621b9c19f59fbce0e13b4a78ec0dbc637191104d353ca10a93a"
+      "bytes": 1394,
+      "sha256": "5fcc4b158b5b4603610981badbf14a47b5142bc271e9c9bbb61843b5337b3e33"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11780502",
   "name": "Naturerlebnispfad Zans",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.564Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.232Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 281742,
+  "packageBytes": 281739,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.63004,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Naturerlebnispfad Zans safety information",
       "url": "safety.json",
-      "bytes": 1769,
-      "sha256": "19ea8827c42cca4a22fd210de3f6a0f0cce022a9cbba225e9cc5e3f9f3979345"
+      "bytes": 1766,
+      "sha256": "ec955d8a7966455a4c89d8d19c222f1e5d88d90b66766cd656c859471efe1623"
     }
   ]
 }

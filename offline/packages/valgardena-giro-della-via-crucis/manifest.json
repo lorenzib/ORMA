@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-giro-della-via-crucis",
   "name": "Via Crucis, Santa Cristina",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:20:00.658Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.745Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 556513,
+  "packageBytes": 556510,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55496,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Via Crucis, Santa Cristina safety information",
       "url": "safety.json",
-      "bytes": 1993,
-      "sha256": "c85b272e2bce87b280f70887ad7e828df29937742ac107c9ed4c7b5c3ec754d8"
+      "bytes": 1990,
+      "sha256": "8d6b704637389bcf96e17c13788baebb5044c6fc7d7ee98ef2a4e0a94d4d88b0"
     }
   ]
 }

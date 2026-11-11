@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9648632",
   "name": "Pana Raida",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:36.128Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.479Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 241793,
+  "packageBytes": 241789,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.54267,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Pana Raida safety information",
       "url": "safety.json",
-      "bytes": 1313,
-      "sha256": "fc14e03c2f1d4430c9ab9e5405b769b6074393ea82458d88377ad6fbf8d13f22"
+      "bytes": 1309,
+      "sha256": "dab80d7545a2645e9761840cc0a8b7920927d3f65ab1862c9db6719a6a447aec"
     }
   ]
 }

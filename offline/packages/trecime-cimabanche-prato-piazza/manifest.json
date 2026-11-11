@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-cimabanche-prato-piazza",
   "name": "Cimabanche – Plätzwiese",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:52:15.802Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.616Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 373849,
+  "packageBytes": 373845,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61987,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Cimabanche – Plätzwiese safety information",
       "url": "safety.json",
-      "bytes": 1325,
-      "sha256": "19015b875df07453c34b25682f69fc451d3d54537cb3d080d43ea7f2622135a1"
+      "bytes": 1321,
+      "sha256": "3db6b757ea1d4fe1b1bcdb4bc60a644674884bb430ae6763f33a084e65ba29b0"
     }
   ]
 }

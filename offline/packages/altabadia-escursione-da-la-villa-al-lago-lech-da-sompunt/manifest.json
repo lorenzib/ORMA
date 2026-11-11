@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt",
   "name": "La Villa – Lech da Sompunt",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:15:50.269Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.850Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 999026,
+  "packageBytes": 999027,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.57901,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "La Villa – Lech da Sompunt safety information",
       "url": "safety.json",
-      "bytes": 2030,
-      "sha256": "e8a9fb835c6ccaa5e3c9cd7978d78f932d78e33ffa757fcbda6319874c888e54"
+      "bytes": 2031,
+      "sha256": "e751f403738fa624813a25e693ba40d6abcd7fcf1b0ffe1e116a5cd303e7866d"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-3885162",
   "name": "Seeweg, Val d'Ultimo",
-  "version": "2026.11.06-beta.1",
-  "generatedAt": "2026-11-06T20:42:07.511Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.389Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 584532,
+  "packageBytes": 584528,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.52065,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Seeweg, Val d'Ultimo safety information",
       "url": "safety.json",
-      "bytes": 1850,
-      "sha256": "ea64da5fad6401ff9d6ab88b82027326a3213eb2fa4e3fbdc1d5b002b03a18b1"
+      "bytes": 1846,
+      "sha256": "c118d7c0a407453ada57b0e6fa1be8f50042cf9adf4eeb03cf04daac6047bca6"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-lago-dei-caprioli-malga-alta-di-fazzon",
   "name": "Lago dei Caprioli – Malga Alta di Fazzon",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:43:28.204Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.696Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 177111,
+  "packageBytes": 177112,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.28809,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lago dei Caprioli – Malga Alta di Fazzon safety information",
       "url": "safety.json",
-      "bytes": 1802,
-      "sha256": "7c5158cee72e9c6a6567f6729f6822055fb7b199a5aee7139958c80a88bb9829"
+      "bytes": 1803,
+      "sha256": "383e6d9a5918662115944afdb2e80b476c3d0c6b96089798599582c7ea3a247e"
     }
   ]
 }

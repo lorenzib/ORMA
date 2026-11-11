@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fvg-sappada-rifugio-calvi",
   "name": "Rifugio Calvi",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:11:33.199Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.066Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 251576,
@@ -233,7 +233,7 @@
       "label": "Rifugio Calvi safety information",
       "url": "safety.json",
       "bytes": 1405,
-      "sha256": "1557c0f1ee59d84cb92d474f6507e6f59dae2b13af39bc6157fcb03724e28832"
+      "sha256": "4e05903ca99ce20f616448b09d41ea1fcc7d8d86efecd2b5ddeb87b83a700957"
     }
   ]
 }

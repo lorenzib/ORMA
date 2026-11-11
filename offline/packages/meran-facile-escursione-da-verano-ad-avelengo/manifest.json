@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "meran-facile-escursione-da-verano-ad-avelengo",
   "name": "Vöran to Hafling past the Bruggen pond",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T12:23:09.703Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.189Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1015921,
@@ -233,7 +233,7 @@
       "label": "Vöran to Hafling past the Bruggen pond safety information",
       "url": "safety.json",
       "bytes": 1557,
-      "sha256": "80d595c2dc13682c7522bd7bac78b621ef74339e11467a5b85a015cd1ebc1272"
+      "sha256": "0f72891f529d65f235647dff99257a38497bdc4bb2e6b9950009b5b7fcd5976f"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-cudan-dumat",
   "name": "Cudan to Dumat above Ortisei",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T19:37:48.593Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.720Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 648492,
+  "packageBytes": 648489,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5713,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Cudan to Dumat above Ortisei safety information",
       "url": "safety.json",
-      "bytes": 2768,
-      "sha256": "d6fcd24a4c15a4e1475008b5ff29d01cd1d4c1ff8ef72a885364d66b9f8d0a18"
+      "bytes": 2765,
+      "sha256": "dae2f326c099d6dc3c237bdf15cf3fe22f9d07d4c86fd98aeecf12b963e36a06"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14864704",
   "name": "Boucle du Taillefer",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:35.448Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.335Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 660465,
+  "packageBytes": 660461,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.80241,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Boucle du Taillefer safety information",
       "url": "safety.json",
-      "bytes": 1287,
-      "sha256": "03d79df0d7d6dda733c3a7802a440eab84da15c5621b55b184ceed0c080b3681"
+      "bytes": 1283,
+      "sha256": "660d61f2796dbcd139d50a269568e1925305bd687583972c412b6634bc3ae0fa"
     }
   ]
 }

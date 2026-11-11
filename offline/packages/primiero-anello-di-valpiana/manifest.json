@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-anello-di-valpiana",
   "name": "Anello di Valpiana",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:36.164Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.516Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 371897,
+  "packageBytes": 371898,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.12724,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Anello di Valpiana safety information",
       "url": "safety.json",
-      "bytes": 1597,
-      "sha256": "969f43fdff723a71316f2cbb4b4ec4224c68ab7c36ee10cc85d5cd2e1c66eea2"
+      "bytes": 1598,
+      "sha256": "9410de641abddfe5575097917ec68016e9f31f0b59c05fc2757decfe6a288654"
     }
   ]
 }

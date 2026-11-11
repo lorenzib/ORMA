@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "aosta-strada-lombarda",
   "name": "Strada Lombarda",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:07:34.301Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.870Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 698539,
+  "packageBytes": 698540,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.76165,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Strada Lombarda safety information",
       "url": "safety.json",
-      "bytes": 2043,
-      "sha256": "84d095be50230aeb06ebda71d4652f99c47eafa043802cda543518854ab11f38"
+      "bytes": 2044,
+      "sha256": "2dbf29639f5330fbb746e35e721784719851c95cc68ba15dbe1369f4d7201af8"
     }
   ]
 }

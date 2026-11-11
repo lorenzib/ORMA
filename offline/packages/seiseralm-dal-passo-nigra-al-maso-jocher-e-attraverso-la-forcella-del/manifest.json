@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del",
   "name": "Passo Nigra to Tiers by the Jocher farm",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:36.334Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.583Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1156265,
+  "packageBytes": 1156261,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.43766,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passo Nigra to Tiers by the Jocher farm safety information",
       "url": "safety.json",
-      "bytes": 1977,
-      "sha256": "39c9a88efe198b5bc4221bc59846a14f18ad5b5ea315cd020d47afc1f06ad0a9"
+      "bytes": 1973,
+      "sha256": "11a52e6e75ce55f09a7da0b10d53fb233c8bfe63337af1bb7e9375d36961d1a7"
     }
   ]
 }

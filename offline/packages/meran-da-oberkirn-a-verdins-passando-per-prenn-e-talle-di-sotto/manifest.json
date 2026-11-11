@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto",
   "name": "Oberkirn to Verdins via Prenn and Untertall",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T12:22:26.337Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.173Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 771484,
@@ -233,7 +233,7 @@
       "label": "Oberkirn to Verdins via Prenn and Untertall safety information",
       "url": "safety.json",
       "bytes": 1608,
-      "sha256": "6d1187174ec6206b1acb72d5bf9d5c871e5609f9390905d16b8072edc8a876aa"
+      "sha256": "ffb177201a1960f74715917f75b4959b5e15b68db014e470e94da2dade614606"
     }
   ]
 }

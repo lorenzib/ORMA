@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12302137",
   "name": "Dorfrundweg Mittertal",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.851Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.292Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 402652,
+  "packageBytes": 402653,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.84673,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dorfrundweg Mittertal safety information",
       "url": "safety.json",
-      "bytes": 1802,
-      "sha256": "0a180e94f18b354708d7246204ac2619687ca64432fa4a165e5594529152c5c4"
+      "bytes": 1803,
+      "sha256": "007fa70e4b05549e7399582739b71019f7742526bb5e690b2db55b33fbbc13ae"
     }
   ]
 }

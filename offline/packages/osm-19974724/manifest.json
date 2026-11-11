@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-19974724",
   "name": "Mittlerer Rundweg am Karer See",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T10:21:46.524Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.377Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 372671,
+  "packageBytes": 372667,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.40326,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Mittlerer Rundweg am Karer See safety information",
       "url": "safety.json",
-      "bytes": 1433,
-      "sha256": "e95d83a6c87830af2fa4a68d7bd6a7a7d6c1b5f80964378be7d20a0e9e4d7ebc"
+      "bytes": 1429,
+      "sha256": "d616c4d427ac28a5501db06209c6608cab6dc3953fbbc467e5dc5567d8de5b0d"
     }
   ]
 }
