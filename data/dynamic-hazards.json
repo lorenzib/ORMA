@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-10T23:12:38.670Z",
+  "generatedAt": "2026-11-11T02:18:45.125Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:piemonte",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-12T00:00:00+00:00",
       "expiresAt": "2026-11-12T11:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-10T23:12:38.670Z",
+      "lastSeenAt": "2026-11-11T02:18:45.125Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -34,7 +34,8 @@
         "Campello Monti to the Alpe Fornale di Sopra",
         "Campello Monti to the Colle dell’Usciolo",
         "Campello Monti to the Lago del Capezzone"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:rain:veneto",
@@ -51,7 +52,7 @@
       "effectiveAt": "2026-11-12T12:00:00+00:00",
       "expiresAt": "2026-11-12T22:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-10T23:12:38.670Z",
+      "lastSeenAt": "2026-11-11T02:18:45.125Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -67,13 +68,11 @@
         "osm-11855879",
         "osm-11891581",
         "osm-13528390",
-        "fassa-alpe-di-fuciade",
         "cortina-castello-di-botestagno",
         "cortina-malga-ra-stua",
         "cortina-passeggiata-gourmet",
         "cortina-mortisa-e-le-grotte-di-volpera",
         "cortina-sotecordes",
-        "fassa-val-freida",
         "cortina-zumeles-val-padeon",
         "zoldo-rifugio-bosconero",
         "zoldo-bosco-secolare"
@@ -92,17 +91,16 @@
         "Roda de Cherz",
         "Sentiero Alpago Natura",
         "Sentiero del Sabadalt",
-        "Alpe di Fuciade",
         "Castello di Botestagno",
         "Malga Ra Stua",
         "Passeggiata gourmet",
         "Mortisa e le Grotte di Volpera",
         "Escursione di Sotecordes",
-        "Sulle tracce dei pastori all'imbocco della Val Freida",
         "Forcella Zumeles and Val Padeon",
         "Pontesei to the Rifugio Bosconero",
         "Astragal to Villa through the old forest"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
@@ -119,7 +117,7 @@
       "effectiveAt": "2026-11-12T12:00:00+00:00",
       "expiresAt": "2026-11-12T22:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-10T23:12:38.670Z",
+      "lastSeenAt": "2026-11-11T02:18:45.125Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -144,7 +142,8 @@
         "Anello Casera Vas - Casera Monte Buoi",
         "Dal Passo Rest al Monte Rest",
         "MIRABILA - Sentiero botanico del Bila Pec"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:thunderstorm:piemonte",
@@ -161,7 +160,7 @@
       "effectiveAt": "2026-11-12T00:00:00+00:00",
       "expiresAt": "2026-11-12T11:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-10T23:12:38.670Z",
+      "lastSeenAt": "2026-11-11T02:18:45.125Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -178,7 +177,8 @@
         "Campello Monti to the Alpe Fornale di Sopra",
         "Campello Monti to the Colle dell’Usciolo",
         "Campello Monti to the Lago del Capezzone"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:thunderstorm:veneto",
@@ -195,7 +195,7 @@
       "effectiveAt": "2026-11-12T12:00:00+00:00",
       "expiresAt": "2026-11-12T22:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-10T23:12:38.670Z",
+      "lastSeenAt": "2026-11-11T02:18:45.125Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -211,13 +211,11 @@
         "osm-11855879",
         "osm-11891581",
         "osm-13528390",
-        "fassa-alpe-di-fuciade",
         "cortina-castello-di-botestagno",
         "cortina-malga-ra-stua",
         "cortina-passeggiata-gourmet",
         "cortina-mortisa-e-le-grotte-di-volpera",
         "cortina-sotecordes",
-        "fassa-val-freida",
         "cortina-zumeles-val-padeon",
         "zoldo-rifugio-bosconero",
         "zoldo-bosco-secolare"
@@ -236,17 +234,16 @@
         "Roda de Cherz",
         "Sentiero Alpago Natura",
         "Sentiero del Sabadalt",
-        "Alpe di Fuciade",
         "Castello di Botestagno",
         "Malga Ra Stua",
         "Passeggiata gourmet",
         "Mortisa e le Grotte di Volpera",
         "Escursione di Sotecordes",
-        "Sulle tracce dei pastori all'imbocco della Val Freida",
         "Forcella Zumeles and Val Padeon",
         "Pontesei to the Rifugio Bosconero",
         "Astragal to Villa through the old forest"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:thunderstorm:trentino-alto-adige",
@@ -263,7 +260,7 @@
       "effectiveAt": "2026-11-12T06:00:00+00:00",
       "expiresAt": "2026-11-12T22:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-10T23:12:38.670Z",
+      "lastSeenAt": "2026-11-11T02:18:45.125Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -398,6 +395,7 @@
         "fassa-molin-de-pezol",
         "fassa-pastori-erranti",
         "fassa-segreti-di-una-volta",
+        "fassa-alpe-di-fuciade",
         "primiero-fiera-pieve",
         "primiero-transacqua",
         "primiero-tonadico",
@@ -464,6 +462,7 @@
         "trecime-lago-di-braies-malga-foresta",
         "fassa-borgo-di-tamion",
         "fassa-da-alba-a-penia",
+        "fassa-val-freida",
         "fassa-moena-soraga-acqua",
         "fassa-dipinti-del-giotto",
         "fassa-ciajeole-malga-roncac",
@@ -602,7 +601,11 @@
         "cortina-anello-dei-tre-rifugi",
         "cortina-forcella-lerosa",
         "valdisole-cogolo-chiesa-di-santa-lucia",
-        "valdisole-malga-strino"
+        "valdisole-malga-strino",
+        "fiemme-cristo-pensante",
+        "fiemme-lago-juribrutto",
+        "valdisole-masi-verniana-bait-de-mezol-malga-saviana",
+        "valdisole-peio-paese-lago-covel"
       ],
       "trailNames": [
         "Alpe di Siusi Meadow Loop",
@@ -737,6 +740,7 @@
         "Molin de Pèzol",
         "Sulla via degli antichi pastori erranti",
         "I segreti di una volta",
+        "Alpe di Fuciade",
         "Fiera-Pieve",
         "Transacqua",
         "Tonadico",
@@ -803,6 +807,7 @@
         "Lago di Braies – Grünwaldalm",
         "Alla scoperta del borgo ladino di Tamion",
         "Da Alba a Penìa",
+        "Sulle tracce dei pastori all'imbocco della Val Freida",
         "Da Moena a Soraga, dove l'acqua ha segnato la storia",
         "Sulle tracce dei dipinti del Giotto della Val di Fassa",
         "Passi nella storia: da Ciajeole a Malga Roncac",
@@ -941,8 +946,13 @@
         "Three-hut loop from Malga Ra Stua",
         "Passo Cimabanche to Forcella Lerosa",
         "Cogolo to the Santa Lucia church",
-        "Malga Strino"
-      ]
+        "Malga Strino",
+        "Cristo Pensante on Monte Castellazzo",
+        "Lago di Juribrutto from Malga Vallazza",
+        "Forte Strino to Malga Verniana and Malga Saviana",
+        "Peio Paese to Lago Covel"
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -959,7 +969,7 @@
       "effectiveAt": "2026-11-12T12:00:00+00:00",
       "expiresAt": "2026-11-12T22:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-10T23:12:38.670Z",
+      "lastSeenAt": "2026-11-11T02:18:45.125Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -984,7 +994,8 @@
         "Anello Casera Vas - Casera Monte Buoi",
         "Dal Passo Rest al Monte Rest",
         "MIRABILA - Sentiero botanico del Bila Pec"
-      ]
+      ],
+      "sourceStatus": "available"
     }
   ]
 }
