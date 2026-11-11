@@ -853,6 +853,23 @@
       }
     },
     {
+      "id": "colle-passeggiata-intorno-al-colle",
+      "approvedReviewId": "commons-colle-passeggiata-intorno-al-colle-on-route",
+      "approvedAt": "2026-11-11T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/colle-santa-lucia-village.jpg",
+        "heroImage": "images/trails/colle-santa-lucia-village.jpg",
+        "imageAlt": "A mountain village of old houses below a white church with a bell tower on a green knoll, forested slopes around and a snow-dusted rocky peak behind",
+        "imageCredit": "Colle Santa Lucia",
+        "imageCreditText": "Colle Santa Lucia by Ximonic (Simo Räsänen)",
+        "imageCreator": "Ximonic (Simo Räsänen)",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Colle_Santa_Lucia_in_Belluno,_Veneto,_Italy,_2025_September.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cortina-anello-dei-tre-rifugi",
       "approvedReviewId": "commons-cortina-anello-dei-tre-rifugi-on-route",
       "approvedAt": "2026-11-09T21:00:00.000Z",
