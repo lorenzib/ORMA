@@ -60,16 +60,6 @@
         ]
       },
       {
-        "id": "campiglio-monte-spinale-rifugio-graffer",
-        "sealedOn": "2026-10-28",
-        "holds": [
-          "lift-dates-unpublished"
-        ],
-        "detail": [
-          "the walk needs Spinale gondola (Madonna di Campiglio) and no published running dates for it are held"
-        ]
-      },
-      {
         "id": "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof",
         "sealedOn": "2026-11-03",
         "holds": [
@@ -77,16 +67,6 @@
         ],
         "detail": [
           "the walk needs Taser cable car up and Verdins–Tall cable car down (Schenna) and no published running dates for it are held"
-        ]
-      },
-      {
-        "id": "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo",
-        "sealedOn": "2026-11-03",
-        "holds": [
-          "lift-dates-unpublished"
-        ],
-        "detail": [
-          "the walk needs Aschbach cable car (Rabland–Aschbach) and no published running dates for it are held"
         ]
       }
     ]
