@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-11T17:15:13.589Z",
+  "generatedAt": "2026-11-11T20:15:57.737Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:veneto",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-12T12:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T17:15:13.589Z",
+      "lastSeenAt": "2026-11-11T20:15:57.737Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -40,7 +40,8 @@
         "cortina-sotecordes",
         "cortina-zumeles-val-padeon",
         "zoldo-rifugio-bosconero",
-        "zoldo-bosco-secolare"
+        "zoldo-bosco-secolare",
+        "colle-passeggiata-intorno-al-colle"
       ],
       "trailNames": [
         "Passo Giau to Rifugio Nuvolau",
@@ -63,7 +64,8 @@
         "Escursione di Sotecordes",
         "Forcella Zumeles and Val Padeon",
         "Pontesei to the Rifugio Bosconero",
-        "Astragal to Villa through the old forest"
+        "Astragal to Villa through the old forest",
+        "Walk round the Colle di Santa Lucia"
       ],
       "sourceStatus": "available"
     },
@@ -82,7 +84,7 @@
       "effectiveAt": "2026-11-11T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T17:15:13.589Z",
+      "lastSeenAt": "2026-11-11T20:15:57.737Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -125,7 +127,7 @@
       "effectiveAt": "2026-11-11T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T17:15:13.589Z",
+      "lastSeenAt": "2026-11-11T20:15:57.737Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -148,7 +150,8 @@
         "cortina-sotecordes",
         "cortina-zumeles-val-padeon",
         "zoldo-rifugio-bosconero",
-        "zoldo-bosco-secolare"
+        "zoldo-bosco-secolare",
+        "colle-passeggiata-intorno-al-colle"
       ],
       "trailNames": [
         "Passo Giau to Rifugio Nuvolau",
@@ -171,7 +174,8 @@
         "Escursione di Sotecordes",
         "Forcella Zumeles and Val Padeon",
         "Pontesei to the Rifugio Bosconero",
-        "Astragal to Villa through the old forest"
+        "Astragal to Villa through the old forest",
+        "Walk round the Colle di Santa Lucia"
       ],
       "sourceStatus": "available"
     },
@@ -190,7 +194,7 @@
       "effectiveAt": "2026-11-11T15:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-11T17:15:13.589Z",
+      "lastSeenAt": "2026-11-11T20:15:57.737Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -209,7 +213,8 @@
         "Couzon loop from Saint-Pierre-de-Chartreuse",
         "Molière plateau loop above Autrans",
         "Fort du Murier loop above Gières"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-france:rain-flood:haute-savoie",
@@ -226,7 +231,7 @@
       "effectiveAt": "2026-11-11T23:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-11T17:15:13.589Z",
+      "lastSeenAt": "2026-11-11T20:15:57.737Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -259,7 +264,8 @@
         "Balade du Plateau d'Assy au Lac Vert",
         "Ombres sur l'Alpage",
         "Sentier pédestre des Graniteurs"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-france:rain-flood:is-re",
@@ -276,7 +282,7 @@
       "effectiveAt": "2026-11-11T23:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-11T17:15:13.589Z",
+      "lastSeenAt": "2026-11-11T20:15:57.737Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -295,7 +301,8 @@
         "Couzon loop from Saint-Pierre-de-Chartreuse",
         "Molière plateau loop above Autrans",
         "Fort du Murier loop above Gières"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-france:rain-flood:savoie",
@@ -312,7 +319,7 @@
       "effectiveAt": "2026-11-11T23:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-11T17:15:13.589Z",
+      "lastSeenAt": "2026-11-11T20:15:57.737Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -407,7 +414,8 @@
         "Fornet waterfall loop from Le Fornet",
         "Val Pelouse crest path and Perrière refuge",
         "Saint-Pierre-d’Entremont to Corbel loop"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:thunderstorm:piemonte",
@@ -424,7 +432,7 @@
       "effectiveAt": "2026-11-12T06:00:00+00:00",
       "expiresAt": "2026-11-12T17:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T17:15:13.589Z",
+      "lastSeenAt": "2026-11-11T20:15:57.737Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -459,7 +467,7 @@
       "effectiveAt": "2026-11-12T06:00:00+00:00",
       "expiresAt": "2026-11-12T17:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T17:15:13.589Z",
+      "lastSeenAt": "2026-11-11T20:15:57.737Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -1172,7 +1180,7 @@
       "effectiveAt": "2026-11-12T12:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-11T17:15:13.589Z",
+      "lastSeenAt": "2026-11-11T20:15:57.737Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
