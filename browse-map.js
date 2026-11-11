@@ -39,6 +39,10 @@
     return withinLng && lat >= bounds.south && lat <= bounds.north;
   }
 
+  // How strongly a pin out of season this month shows: still findable, but
+  // quieter than the walks to go on now.
+  const OUT_OF_SEASON_OPACITY = 0.35;
+
   function trailFeature(trail, presentation){
     const coordinate = coordinateFor(trail);
     if(!coordinate) return null;
@@ -61,8 +65,16 @@
         // The verdict's tier, so a pin is the colour of the words on its card.
         fit:String(view.fit || ''),
         saved:view.saved ? 1 : 0,
+        // Out of season this month (trail-season-words.js): the pin fades and
+        // sits under the walks to go on now, the order the list is in.
+        out:outOfSeasonNow(trail) ? 1 : 0,
       },
     };
+  }
+
+  function outOfSeasonNow(trail){
+    const words = root && root.DoloPawsTrailSeasonWords;
+    return Boolean(words && trail && trail.season && words.outOfSeason(trail.season, new Date().getMonth() + 1));
   }
 
   function create(options){
@@ -247,9 +259,13 @@
         : '#3e7a91';
       map.addLayer({
         id:'browse-trails-individual', type:'circle', source:'browse-trails',
+        // Walks in season draw on top of those out of season this month.
+        layout:{ 'circle-sort-key':['-', 1, ['coalesce', ['get', 'out'], 0]] },
         paint:{
           'circle-color':fitColour,
           'circle-radius':7,
+          'circle-opacity':['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1],
+          'circle-stroke-opacity':['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1],
           'circle-stroke-width':2.5,
           'circle-stroke-color':[
             'case', ['==', ['coalesce', ['get', 'saved'], 0], 1], '#9C3A25', '#fff',

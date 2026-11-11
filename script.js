@@ -1986,6 +1986,8 @@ function initTrailMap(){
       id: 'trail-unclustered',
       type: 'circle',
       source: 'trail-points',
+      // Walks in season draw on top of those out of season this month.
+      layout: { 'circle-sort-key': ['-', 1, ['coalesce', ['get', 'out'], 0]] },
       paint: {
         'circle-color': [
           'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES],
@@ -1995,8 +1997,11 @@ function initTrailMap(){
           'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 11, 4,
         ],
         'circle-opacity': [
-          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 1, 0.42,
+          'case',
+          ['==', ['coalesce', ['get', 'out'], 0], 1], 0.3,
+          ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 1, 0.42,
         ],
+        'circle-stroke-opacity': ['case', ['==', ['coalesce', ['get', 'out'], 0], 1], 0.3, 1],
         'circle-stroke-width': [
           'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 2.5, 1,
         ],
@@ -2021,6 +2026,7 @@ function initTrailMap(){
         'text-color': '#FFFFFF',
         'text-halo-color': 'rgba(46,64,52,.45)',
         'text-halo-width': 0.7,
+        'text-opacity': ['case', ['==', ['coalesce', ['get', 'out'], 0], 1], 0.3, 1],
       },
     });
     trailMapInstance.addLayer({
@@ -2402,6 +2408,11 @@ function updatePathLayer(list){
   // replaced its data with per-trail points was wiping out all the fountain markers.
 }
 
+function liOutOfSeasonNow(trail){
+  const words = window.DoloPawsTrailSeasonWords;
+  return Boolean(words && trail && trail.season && words.outOfSeason(trail.season, new Date().getMonth() + 1));
+}
+
 function updateMapMarkers(list){
   // Recommendations can render before the deferred map is constructed. Keep
   // their geographic scope so the first map paint opens on the same area as
@@ -2434,6 +2445,9 @@ function updateMapMarkers(list){
         score: typeof t.score === 'number' ? t.score : 0,
         rank: index + 1,
         saved: currentFavorites[t.id] ? 1 : 0,
+        // Out of season this month (trail-season-words.js): faded, and drawn
+        // under the walks to go on now.
+        out: liOutOfSeasonNow(t) ? 1 : 0,
       },
       geometry: { type: 'Point', coordinates: [markerLng, markerLat] },
     };
