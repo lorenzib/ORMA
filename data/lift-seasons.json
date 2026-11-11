@@ -412,6 +412,28 @@
         3,
         4
       ]
+    },
+    "kronplatz-reischach": {
+      "name": "Kronplatz 2000 gondola (Reischach)",
+      "operator": "Südtirol.com, summer 2026 lift times",
+      "url": "https://www.suedtirol.com/sommer/oeffnungszeiten-seilbahnen",
+      "accessedAt": "2026-11-10",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "05-16",
+          "to": "11-08"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
     }
   },
   "trails": {
@@ -557,12 +579,23 @@
       "lifts": [
         "helmissimo"
       ]
+    },
+    "osm-1116675": {
+      "lifts": [
+        "rotwand"
+      ]
+    },
+    "osm-6401355": {
+      "lifts": [
+        "kronplatz-reischach"
+      ]
     }
   },
   "held": {
     "campiglio-monte-spinale-rifugio-graffer": "Spinale gondola: no 2026 summer dates published (only 2025); winter 2026/27 dates are for the Madonna di Campiglio area as a whole (27 Nov 2026 – 11 Apr 2027), not this lift (checked 10 Nov 2026).",
     "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": "Taser cable car: no operator site (taser.it is for sale); only tourist-board event pages for Nov 2026 – Jan 2027, partly conflicting, and no dated summer 2026 season (checked 10 Nov 2026).",
     "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": "Aschbach cable car (run by the commune of Algund): 'in service all year' with no year, plus dated maintenance closures only (17 and 21 Nov 2026); no dated running period (checked 10 Nov 2026).",
-    "osm-11855879": "Cherz I chairlift: no published dates found (Arabba lift pages blocked)."
+    "osm-11855879": "Cherz I chairlift: no published dates found (Arabba lift pages blocked).",
+    "osm-14376573": "Vinouve chairlift: the tourist office gives early July to late August, four days a week, with no dated timetable (checked 10 Nov 2026)."
   }
 }
