@@ -8,6 +8,8 @@
 //                read off the board's page (sourced);
 //   snow         where no board publishes months, an estimate of the snowy
 //                months from the walk's high point, said to be an estimate;
+//   highPoint    the walk's highest point in metres, from its elevation
+//                profile or, failing that, read along the line;
 //   winterUse    the stretches of the line that are mapped as a ski run, a sled
 //                run or a cross-country track, read off the map (OpenStreetMap).
 //
@@ -20,6 +22,11 @@ const WINTER_USE_KINDS = ['downhill', 'sled', 'nordic'];
 // A stretch shorter than this is a crossing, not a walk along a piste: of the
 // Dolomites walks, those under half a kilometre almost all cut across a run.
 const WINTER_USE_MIN_KM = 0.5;
+
+// A board's winter tour gets its own record, id winter-<place>-<slug>, beside
+// the summer walk of the same place. The season record says so, and
+// trail-season-words.js offers it only in winter.
+const WINTER_WALK_PREFIX = 'winter-';
 
 // Snow by the walk's highest point. A rule of thumb for the Dolomites, not a
 // forecast, and the page says so: it is what the line's altitude suggests when
@@ -76,6 +83,9 @@ function validateSeason(id, season){
     if(!['likely', 'possible'].includes(season.snow.likelihood)) throw new Error(`Season for ${id} has an unknown snow likelihood`);
     if(!Number.isFinite(season.snow.highPoint)) throw new Error(`Season for ${id} has a snow estimate without a high point`);
   }
+  if(season.highPoint !== undefined && !(Number.isFinite(season.highPoint) && season.highPoint > 0)){
+    throw new Error(`Season for ${id} has an invalid high point`);
+  }
   for(const use of season.winterUse || []){
     if(!WINTER_USE_KINDS.includes(use.kind)) throw new Error(`Season for ${id} has an unknown winter use: ${use.kind}`);
     if(!Number.isFinite(use.km) || use.km < WINTER_USE_MIN_KM) throw new Error(`Season for ${id} has a winter use under ${WINTER_USE_MIN_KM} km`);
@@ -95,6 +105,8 @@ function applyTrailSeasons(trails, artifact){
     const season = entries[trail.id];
     if(!season) return trail;
     const record = {};
+    if(String(trail.id).startsWith(WINTER_WALK_PREFIX)) record.winterWalk = true;
+    if(season.highPoint) record.highPoint = season.highPoint;
     if(season.recommended) record.recommended = season.recommended;
     if(season.snow) record.snow = season.snow;
     if(season.winterUse && season.winterUse.length){
@@ -109,6 +121,7 @@ module.exports = {
   MONTHS,
   WINTER_USE_KINDS,
   WINTER_USE_MIN_KM,
+  WINTER_WALK_PREFIX,
   SNOW_BANDS,
   snowEstimate,
   parseBoardMonths,

@@ -16,6 +16,7 @@
     ['Ortisei / Val Gardena', 46.5747, 11.6717, 'Val Gardena', 'dolomites', 'alto-adige'],
     ['Selva di Val Gardena', 46.5551, 11.7605, 'Val Gardena', 'dolomites', 'alto-adige'],
     ['Canazei / Val di Fassa', 46.4770, 11.7714, 'Val di Fassa', 'dolomites', 'trentino'],
+    ['Passo San Pellegrino', 46.3790, 11.7870, 'Val di Fassa', 'dolomites', 'trentino'],
     ['Corvara / Alta Badia', 46.5504, 11.8746, 'Val Badia', 'dolomites', 'alto-adige'],
     ['San Cassiano / Alta Badia', 46.5687, 11.9312, 'Val Badia', 'dolomites', 'alto-adige'],
     ['Dobbiaco / Toblach', 46.7357, 12.2210, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
@@ -39,6 +40,7 @@
     ['Valfloriana', 46.2500, 11.3430, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
     ['Anterivo / Altrei', 46.2780, 11.3670, 'Oltradige – Bassa Atesina', 'dolomites', 'alto-adige'],
     ['San Martino di Castrozza', 46.2612, 11.8022, 'Primiero – Pale', 'dolomites', 'trentino'],
+    ['Passo Valles', 46.3390, 11.7990, 'Primiero – Pale', 'dolomites', 'trentino'],
     ['Fiera di Primiero', 46.1770, 11.8290, 'Primiero – Pale', 'dolomites', 'trentino'],
     ['Falcade / Val Biois', 46.3576, 11.8712, 'Belluno – Agordino', 'dolomites', 'belluno'],
     ['Arabba', 46.4977, 11.8747, 'Val Badia', 'dolomites', 'belluno'],
@@ -46,6 +48,7 @@
     ['Agordo', 46.2820, 12.0330, 'Belluno – Agordino', 'dolomites', 'belluno'],
     ['Belluno', 46.1420, 12.2167, 'Belluno – Agordino', 'dolomites', 'belluno'],
     ['Pieve di Cadore', 46.4276, 12.3730, 'Belluno – Agordino', 'dolomites', 'belluno'],
+    ['Forno di Zoldo / Val di Zoldo', 46.3486, 12.1846, 'Val di Zoldo', 'dolomites', 'belluno'],
     // Bolzano sat in 'Val di Fiemme – Latemar' and Vipiteno in 'Val di Funes –
     // Odle'; neither city is in the valley it named. Because both are big
     // enough to be the nearest entry for a wide area, they handed that wrong

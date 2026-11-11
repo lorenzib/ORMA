@@ -4,7 +4,7 @@
   "name": "Helm – Waldruhe – Sexten",
   "version": "2026.11.02-beta.1",
   "generatedAt": "2026-11-02T13:44:38.126Z",
-  "scoringVersion": "1.7.0",
+  "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 486907,
   "packageBudgetBytes": 5242880,

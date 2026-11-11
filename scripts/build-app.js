@@ -51,8 +51,18 @@ const RUNTIME_FILES = [
   // Linked into every app page, below.
   'app-shell.css',
   'app-tabbar.js',
-  // Linked into the app's trail page only, below.
+  // Linked into the app's Explore, Saved, trail and account pages only, below.
+  'app-explore.js',
+  'app-saved.js',
   'app-trail.js',
+  'app-you.js',
+  // The app's Walk finished screen on journal.html, and the two stores it
+  // records a trail walk's private answer through (the trail page has them
+  // in its bundle; the journal does not).
+  'app-walk-done.js',
+  'hike-completions.js',
+  'post-hike-outcomes.js',
+  'app-welcome.js',
 ];
 
 // Whole directories that ship as-is.
@@ -108,6 +118,14 @@ const APP_SHELL_TAG = '<link rel="stylesheet" href="/app-shell.css">';
 const APP_TABBAR_TAG = '<script src="/app-tabbar.js" defer></script>';
 // The trail page opens on a big map with a Photo/Map switch (app-trail.js).
 const APP_TRAIL_TAG = '<script src="/app-trail.js" defer></script>';
+// Explore keeps Layers and Terrain together at the top of the map (app-explore.js).
+const APP_EXPLORE_TAG = '<script src="/app-explore.js" defer></script>';
+const APP_YOU_TAG = '<script src="/app-you.js" defer></script>';
+const APP_SAVED_TAG = '<script src="/app-saved.js" defer></script>';
+// One short Walk finished screen for both ways a walk ends (app-walk-done.js).
+const APP_WALK_DONE_TAG = '<script src="/hike-completions.js" defer></script>\n<script src="/post-hike-outcomes.js" defer></script>\n<script src="/app-walk-done.js" defer></script>';
+// The first launch: what ORMA does, then add your dog or look around (app-welcome.js).
+const APP_WELCOME_TAG = '<script src="/app-welcome.js" defer></script>';
 // Marks the page as running inside the app before anything draws, so the
 // homepage can open on the map instead of the website's guest landing page.
 const APP_FLAG_TAG = '<script>document.documentElement.classList.add(\'orma-app\');</script>';
@@ -277,7 +295,7 @@ function rewriteRemoteRefs(){
       .replace(REMOTE_REF, `$1${SITE_ORIGIN}/$2`)
       .replace(MANIFEST_TAG, APP_MANIFEST_TAG);
     const page = /\.html$/.test(r)
-      ? after.replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_FLAG_TAG}\n${APP_SHELL_TAG}\n${APP_TABBAR_TAG}\n${r === 'trail.html' ? `${APP_TRAIL_TAG}\n` : ''}</head>`)
+      ? after.replace(VIEWPORT_TAG, APP_VIEWPORT_TAG).replace('</head>', `${APP_FLAG_TAG}\n${APP_SHELL_TAG}\n${APP_TABBAR_TAG}\n${r === 'trail.html' ? `${APP_TRAIL_TAG}\n` : ''}${r === 'index.html' ? `${APP_EXPLORE_TAG}\n` : ''}${r === 'index.html' ? `${APP_WELCOME_TAG}\n` : ''}${r === 'account.html' ? `${APP_YOU_TAG}\n` : ''}${r === 'saved.html' ? `${APP_SAVED_TAG}\n` : ''}${r === 'journal.html' ? `${APP_WALK_DONE_TAG}\n` : ''}</head>`)
       : after;
     if(page !== before){ fs.writeFileSync(dest, page); rewritten += 1; }
   }
@@ -305,4 +323,4 @@ function build(){
 if(require.main === module) build();
 
 module.exports = { collectAppFiles, ENTRY_PAGES, RUNTIME_DIRS, HIKING_ORIGIN_LINE, SITE_ORIGIN, REMOTE_REF, MANIFEST_TAG, APP_MANIFEST_TAG,
-  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG, APP_TRAIL_TAG, APP_FLAG_TAG };
+  VIEWPORT_TAG, APP_VIEWPORT_TAG, APP_SHELL_TAG, APP_TABBAR_TAG, APP_TRAIL_TAG, APP_EXPLORE_TAG, APP_YOU_TAG, APP_SAVED_TAG, APP_WELCOME_TAG, APP_WALK_DONE_TAG, APP_FLAG_TAG };

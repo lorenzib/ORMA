@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "zoldo-rifugio-bosconero",
+  "generatedAt": "2026-11-09T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.7,
+    "ascentM": 642,
+    "highestPointM": 1366,
+    "expectedDuration": "4 hours",
+    "difficulty": "Hard",
+    "shadePercent": 89
+  },
+  "trailhead": {
+    "lat": 46.339327,
+    "lng": 12.224656,
+    "label": "Pontesei on the SP251, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.3424299,
+      "lng": 12.2317329,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3413293,
+      "lng": 12.2367794,
+      "label": "Fontana dell'Eterna Giovinezza",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A steady, steep forest path of 640 m up.",
+    "Stony stream bed to cross in the Val Bosconero, which can carry water after rain.",
+    "The start is on the SP251 at Pontesei: keep your dog on a short lead by the road.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-09"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-09",
+      "licence": "ODbL"
+    }
+  ]
+}

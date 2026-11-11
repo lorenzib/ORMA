@@ -1883,6 +1883,61 @@
       "name": "Steinegg to the Gummer observatory in winter",
       "slug": "steinegg-osservatorio-winter",
       "gloss": "a cleared winter walk on a quiet road to the observatory"
+    },
+    "cortina-zumeles-val-padeon": {
+      "name": "Forcella Zumeles and Val Padeon",
+      "slug": "forcella-zumeles-val-padeon",
+      "gloss": "from Rio Gere over the saddle and down to Ospitale"
+    },
+    "cortina-anello-dei-tre-rifugi": {
+      "name": "Three-hut loop from Malga Ra Stua",
+      "slug": "anello-tre-rifugi-ra-stua",
+      "gloss": "Sennes, Biella and three small lakes"
+    },
+    "cortina-forcella-lerosa": {
+      "name": "Passo Cimabanche to Forcella Lerosa",
+      "slug": "cimabanche-forcella-lerosa",
+      "gloss": "up the Val di Gotres to the larch meadows of Lerosa"
+    },
+    "valdisole-cogolo-chiesa-di-santa-lucia": {
+      "name": "Cogolo to the Santa Lucia church",
+      "slug": "cogolo-santa-lucia",
+      "gloss": "through the woods to the hilltop church above Comasine"
+    },
+    "valdisole-malga-strino": {
+      "name": "Malga Strino",
+      "slug": "malga-strino",
+      "gloss": "up the old military road in the Val Strino"
+    },
+    "zoldo-rifugio-bosconero": {
+      "name": "Pontesei to the Rifugio Bosconero",
+      "slug": "pontesei-rifugio-bosconero",
+      "gloss": "path 490 through the forest under the Bosconero peaks"
+    },
+    "zoldo-bosco-secolare": {
+      "name": "Astragal to Villa through the old forest",
+      "slug": "astragal-villa-bosco-secolare",
+      "gloss": "a level forest road between two Zoldo hamlets"
+    },
+    "fiemme-cristo-pensante": {
+      "name": "Cristo Pensante on Monte Castellazzo",
+      "slug": "cristo-pensante-monte-castellazzo",
+      "gloss": "a summit loop from Passo Rolle under the Pale di San Martino"
+    },
+    "fiemme-lago-juribrutto": {
+      "name": "Lago di Juribrutto from Malga Vallazza",
+      "slug": "lago-juribrutto-malga-vallazza",
+      "gloss": "paths 631, 629 and 623 over a First World War saddle"
+    },
+    "valdisole-masi-verniana-bait-de-mezol-malga-saviana": {
+      "name": "Forte Strino to Malga Verniana and Malga Saviana",
+      "slug": "forte-strino-malga-verniana-saviana",
+      "gloss": "a long forest-and-pasture loop below Passo del Tonale"
+    },
+    "valdisole-peio-paese-lago-covel": {
+      "name": "Peio Paese to Lago Covel",
+      "slug": "peio-paese-lago-covel",
+      "gloss": "farmsteads, a goat malga and a mirror lake in the Stelvio park"
     }
   }
 }

@@ -31,6 +31,7 @@
     "build:trail-page-bundle": "node scripts/build-trail-page-bundle.js",
     "build:trail-routing": "node scripts/build-trail-routing-coverage.js",
     "build:trail-seasons": "node scripts/build-trail-seasons.js",
+    "build:avalanche-regions": "node scripts/build-avalanche-regions.js",
     "build:offline-packages": "node scripts/build-offline-packages.js",
     "fetch:trail-routing:funes": "node scripts/build-mapped-trail-routing.js --funes",
     "fetch:trail-routing:all": "node scripts/build-mapped-trail-routing.js --all --resume",

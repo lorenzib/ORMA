@@ -44,14 +44,18 @@
   .sp-month--good{background:#BFDDB8;color:#1D4523;}
   .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
   .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--lift{background:#F1DEC4;color:#6B4416;}
   .sp-month--now{border-color:#1F2A24;}
   .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
   .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-key--lift{background:#F1DEC4;}
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
@@ -138,7 +142,7 @@
 }
 </script>
 </head>
-<body data-scoring-version="1.7.0">
+<body data-scoring-version="1.8.0">
 
 <div class="topnav">
   <a class="brand" href="/"><img src="../../logo.svg?v=3" alt="Logo ORMA">ORMA</a>
@@ -156,9 +160,10 @@
   <h1>Roda de Armentara</h1>
   
   <div class="sp-badges">
-    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111100000011" hidden><span>Fuori stagione</span></span>
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111100000011" hidden><span>Fuori stagione · torna a maggio</span></span>
     <span class="dp-badge sp-tag sp-tag--best"><span>Periodo migliore: da maggio a ottobre</span></span>
-    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
+    <span class="dp-badge sp-tag sp-tag--dog" data-season-out="000001111000" hidden><span>Mucche al pascolo</span></span>
+    <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Terreno impegnativo</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verificato da ORMA</span></span>
     
@@ -203,8 +208,12 @@
     <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Consigliato <span class="sp-key sp-key--off"></span>Fuori stagione</p>
     <p>Consigliato tra maggio e ottobre.</p>
     <p class="sp-src">Fonte: <a href="https://www.altabadia.org/en/tour/detail/oa/from-badia-through-the-armentara-meadows" rel="noopener">ente turistico dell’Alta Badia</a>, consultata il 6 novembre 2026.</p>
+    
     <p>In inverno, 1,3 km di questo percorso sono una pista da sci di fondo. Aspettati sciatori finché le piste sono aperte, di solito da dicembre ad aprile (una stima).</p>
     <p class="sp-src">Letto sulla mappa (OpenStreetMap).</p>
+    <h3 class="sp-season-dog">Per il tuo cane</h3>
+    <p>Da giugno a settembre (una stima): le mucche possono essere al pascolo. Tieni il cane vicino e stai alla larga dalle mandrie.</p>
+    <p class="sp-src">Fonte: <a href="https://www.suedtirol.info/de/das-ist-suedtirol/menschen/tradition/almwirtschaft-und-transhumanz" rel="noopener">IDM Alto Adige</a>, consultata il 9 novembre 2026.</p>
   </section>
   <script>
   (function(){

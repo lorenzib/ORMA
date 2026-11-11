@@ -1,5 +1,6 @@
 // winter-voels-voelser-weiher in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "a cleared winter loop to the lake and St. Konstantin": "un anello invernale sgomberato fino al lago e a St. Konstantin",
   "A winter loop from Völs am Schlern up to the Völser Weiher and down past the church of St. Konstantin, on a way the board keeps clear. The board lists 7.1 km and 247 m up.": "Un anello invernale da Fiè allo Sciliar al Laghetto di Fiè e giù oltre la chiesa di San Costantino, su un percorso che l’ente turistico tiene sgomberato. L’ente indica 7,1 km e 247 m di salita.",
   "Start at the roundabout in Völs (bus 170): 7.1 km and 247 m up and down, about 2 hours, as the board lists. Walk in daylight, take spikes for icy patches, and rinse your dog’s paws after salted lanes.": "Partenza dalla rotonda di Fiè (autobus 170): 7,1 km e 247 m di salita e discesa, circa 2 ore, come indica l’ente turistico. Cammina con la luce del giorno, porta i ramponcini per i tratti ghiacciati e sciacqua le zampe del cane dopo le stradine salate.",
   "Icy patches on lanes and forest paths after a frost": "Tratti ghiacciati su stradine e sentieri nel bosco dopo una gelata",

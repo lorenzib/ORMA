@@ -20,6 +20,21 @@
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
 
+  // A number as the reader writes it (Italian: 6,7 km; 1.655 m). English unchanged.
+  function num(value) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+  }
+  // toLocaleString follows the browser, not the page: an Italian reader gets
+  // the Italian form whatever the browser says; English is unchanged.
+  function isItalian() {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return !!(i18n && i18n.lang === 'it' && typeof i18n.num === 'function');
+  }
+  function localeNum(n) {
+    return isItalian() ? num(Number(n)) : Number(n).toLocaleString();
+  }
+
   // A trail's own words (description, directions, terrain…) in the reader's
   // language, from data/trail-text-it. The record itself stays English.
   function trailWords(text) {
@@ -150,7 +165,7 @@
       const baseRisk = safetyLabel(t.safetyLevel);
       factBits.push((trust ? trust.riskLabel(t, baseRisk) : baseRisk).toLowerCase());
     }
-    if (typeof t.distance === 'number') factBits.push(t.distance <= 6 ? tx('easy distance') : `${t.distance} km`);
+    if (typeof t.distance === 'number') factBits.push(t.distance <= 6 ? tx('easy distance') : `${num(t.distance)} km`);
     if (typeof t.shadeCoverage === 'number') factBits.push(t.shadeCoverage >= 40 ? tx('good shade') : tx('little shade'));
     const factLine = factBits.join(' · ');
 
@@ -227,7 +242,7 @@
         <div class="ph"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="pct near-pct" hidden></span></div>
         <div class="bd">
           <div class="nm">${esc(o.name)}</div>
-          <div class="mt">${esc(o.valley || o.area || '')} · ${o.distance} km · ${esc(trust ? trust.riskLabel(o, safetyLabel(o.safetyLevel)) : safetyLabel(o.safetyLevel))}</div>
+          <div class="mt">${esc(o.valley || o.area || '')} · ${num(o.distance)} km · ${esc(trust ? trust.riskLabel(o, safetyLabel(o.safetyLevel)) : safetyLabel(o.safetyLevel))}</div>
         </div>
       </a>`).join('');
     wrapEl.hidden = false;
@@ -316,9 +331,13 @@
     const seasonWords = window.DoloPawsTrailSeasonWords;
     const best = seasonWords ? seasonWords.bestTime(t.season) : '';
     if (best && tags && !tags.querySelector('.trail-season-tag')) {
-      const out = seasonWords.outOfSeason(t.season, new Date().getMonth() + 1)
-        ? `<span class="dp-badge trail-season-tag trail-season-tag--out"><span>${esc(tx('Out of season'))}</span></span>` : '';
-      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>`);
+      const outLabel = seasonWords.outOfSeasonTag(t.season, new Date().getMonth() + 1);
+      const out = outLabel
+        ? `<span class="dp-badge trail-season-tag trail-season-tag--out"><span>${esc(outLabel)}</span></span>` : '';
+      // Seasonal risks to dogs, only in the months they apply.
+      const dog = seasonWords.dogSeasonsNow(t.season, new Date().getMonth() + 1)
+        .map(risk => `<span class="dp-badge trail-season-tag trail-season-tag--dog"><span>${esc(risk.label)}</span></span>`).join('');
+      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>${dog}`);
     }
 
     // Elevation figures under the real chart; hide the block honestly
@@ -327,9 +346,9 @@
     if (prof.length > 1) {
       const figs = $('tdElevFigs');
       if (figs) {
-        $('tdElevStart').textContent = prof[0].toLocaleString() + ' m';
-        $('tdElevHigh').textContent = Math.max(...prof).toLocaleString() + ' m';
-        $('tdElevClimb').textContent = '+' + (t.elevation != null ? t.elevation : Math.max(...prof) - Math.min(...prof)) + ' m';
+        $('tdElevStart').textContent = localeNum(prof[0]) + ' m';
+        $('tdElevHigh').textContent = localeNum(Math.max(...prof)) + ' m';
+        $('tdElevClimb').textContent = '+' + num(t.elevation != null ? t.elevation : Math.max(...prof) - Math.min(...prof)) + ' m';
         figs.hidden = false;
       }
     } else {
@@ -373,7 +392,7 @@
     const climb = Number(t.elevation) || 0;
     const signalData = [
       ['paw', easyTerrain ? tx('Gentle paw surface') : tx('Mixed paw surface'), easyTerrain ? tx('Flat or packed underfoot based on route information') : (trailWords(t.terrainType) || tx('Check pads at breaks'))],
-      ['route', tx('Route effort'), `${t.distance} km${climb ? ` · +${climb} m` : ''}`],
+      ['route', tx('Route effort'), `${num(t.distance)} km${climb ? ` · +${num(climb)} m` : ''}`],
       ['loop', isLoop ? tx('Loop route') : tx('One-way route'), isLoop ? tx('Returns to the starting point') : tx('Plan the return journey')]
     ];
     if (signalEl) {
@@ -686,6 +705,16 @@
       caution(tx('Season'), [seasonWords.nowNote(t.season, month), basis].filter(Boolean).join(' '), 'altitude');
     } else if (maxAlt >= 1800) {
       caution(tx('Season & altitude'), tx('Tops out around {alt} m. Snow lingers into early summer and weather turns quickly.', { alt: maxAlt }), 'altitude');
+    }
+    // Seasonal risks to dogs that apply this month (data/dog-seasons.json),
+    // each with the months and where they come from.
+    if (seasonWords && t.season && (t.season.dogSeasons || []).length) {
+      const now = seasonWords.dogSeasonsNow(t.season, month).map(risk => risk.kind);
+      for (const risk of seasonWords.describe(t.season, n => (isItalian() ? Number(n) : Number(n).toLocaleString())).dogSeasons) {
+        if (!now.includes(risk.kind)) continue;
+        const from = risk.sources.map(source => source.label).join(', ');
+        caution(tx(seasonWords.DOG_SEASON_TAGS[risk.kind]), `${risk.line} ${tx('Source: {source}.', { source: from })}`, risk.kind === 'cows' ? 'livestock' : null);
+      }
     }
 
     if (!rows.length) {

@@ -11,12 +11,35 @@
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
+  // A value filled into wording: a number, or text that is only a number or
+  // range, is written the reader's way (as i18n.js does for its own wording).
+  function fillNum(value){
+    if(typeof value === 'number') return num(value);
+    if(typeof value === 'string' && /^[\d.,\s–—+\-≈~]+$/.test(value) && /\d/.test(value)) return num(value);
+    return value;
+  }
 
   const CATEGORY = Object.freeze({
     'strong-option': { label:'Strong option', tone:'strong' },
     'possible-with-cautions': { label:'Good with care', tone:'caution' },
     'not-recommended': { label:'Low match', tone:'stop' },
   });
+
+  // A recorded caution quoted from the trail's own text, in the reader's
+  // language where the trail page has loaded its Italian (the engine strips
+  // the closing full stop, so both forms are tried).
+  function cautionWords(text){
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(!(i18n && typeof i18n.trailText === 'function') || typeof text !== 'string') return text;
+    return text.split('; ').map(part => {
+      const shown = i18n.trailText(part);
+      if(shown !== part) return shown.replace(/[.;]+$/, '');
+      const stopped = i18n.trailText(`${part}.`);
+      return stopped !== `${part}.` ? stopped.replace(/[.;]+$/, '') : part;
+    }).join('; ');
+  }
 
   // `extra` carries what the engine does not know, such as the dog's name, so
   // a translation can say "fine for Teo" where the engine said "this dog".
@@ -25,6 +48,8 @@
     if(typeof translate !== 'function') return item.message;
     const key = `recommendation.reason.${item.messageKey || item.code}`;
     const vars = extra || item.vars ? { ...(extra || {}), ...(item.vars || {}) } : undefined;
+    if(vars && typeof vars.hazards === 'string') vars.hazards = cautionWords(vars.hazards);
+    if(vars && typeof vars.first === 'string') vars.first = cautionWords(vars.first);
     const value = translate(key, vars);
     return value && value !== key ? value : item.message;
   }
@@ -203,7 +228,7 @@
       }
       let output = fallback;
       for(const name of Object.keys(vars || {})){
-        output = output.split(`{${name}}`).join(vars[name]);
+        output = output.split(`{${name}}`).join(fillNum(vars[name]));
       }
       return output;
     };
@@ -463,7 +488,7 @@
         if(value && value !== key) return value;
       }
       let output = fallback;
-      for(const name of Object.keys(vars || {})) output = output.split(`{${name}}`).join(vars[name]);
+      for(const name of Object.keys(vars || {})) output = output.split(`{${name}}`).join(fillNum(vars[name]));
       return output;
     };
 

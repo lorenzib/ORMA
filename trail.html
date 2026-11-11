@@ -600,28 +600,51 @@ body{background:#EFECE2;}
   .td2 .trail-map-box.map-fs .map-btn{top:max(12px,env(safe-area-inset-top));}
   .td2 .trail-map-box.map-fs .map-panel{top:calc(max(12px,env(safe-area-inset-top)) + 44px);}
   .td2 .trail-map-box.map-fs .mobile-map-hike-slot{right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));}
-  /* While a hike records, the bottom of the phone screen is one stack, so
-     nothing covers the live status: elevation at the foot, End and the
-     hazard report on a row above it, the status card across the full width
-     above that, and "Route me to the trail" (shown only off the trail) on
-     top. End takes the map-style row (Layers stays at the top); directions
-     to the trail have no use once you are walking it. */
-  .td2 .trail-map-box.map-fs:has(.hike-status-visible){--hk-base:max(12px,env(safe-area-inset-bottom));}
-  .td2 .trail-map-box.map-fs:has(.hike-status-visible):has(.td2-elev:not([hidden])){--hk-base:calc(max(10px,env(safe-area-inset-bottom)) + 152px);}
-  .td2 .trail-map-box.map-fs:has(.hike-status-visible):has(.td2-elev.is-mobile-collapsed:not([hidden])){--hk-base:calc(max(10px,env(safe-area-inset-bottom)) + 58px);}
-  .td2 .trail-map-box.map-fs:has(.hike-status-visible) .map-nearest-directions,
-  .td2 .trail-map-box.map-fs:has(.hike-status-visible) .map-nearest-directions-panel{display:none!important;}
-  .td2 .trail-map-box.map-fs:has(.hike-status-visible) .td-layer-switch{bottom:var(--hk-base)!important;}
-  .td2 .trail-map-box.map-fs:has(.mobile-map-hike-slot #heroStartHike) .td-layer-switch{display:none!important;}
-  .td2 .trail-map-box.map-fs:has(.hike-status-visible) .mobile-map-hike-slot{left:max(12px,env(safe-area-inset-left));right:auto;bottom:var(--hk-base);}
-  .td2 .trail-map-box.map-fs:has(.hike-status-visible) .map-hazard-report-btn{bottom:var(--hk-base)!important;}
-  .td2 .trail-map-box.map-fs:has(.hike-status-visible) #mapHikeStatus{bottom:calc(var(--hk-base) + 46px)!important;left:12px!important;right:12px!important;transform:none!important;max-width:none!important;}
-  .td2 .trail-map-box.map-fs:has(.hike-status-visible) #mapHikeRejoinBtn{bottom:calc(var(--hk-base) + 140px)!important;}
+  /* SOCIAL-04: while a hike records, a phone shows the map, the calm
+     recording panel (time, km, share of the route, one pause button) and a
+     small hazard button. Everything else waits until the walk is paused or
+     over; the detailed status shows above the panel only when it has
+     something to say (.hk-routine means it would only repeat the panel). */
+  .td2 .trail-map-box.map-fs:has(.hk-live){--hk-dock:calc(168px + env(safe-area-inset-bottom));}
+  .td2 .trail-map-box.map-fs:has(.hk-live) :is(#detailLayersBtn,.map-panel,.maplibregl-ctrl-top-right,#mapExpandBtn,.td2-elev,.td-layer-switch,.map-nearest-directions,.map-nearest-directions-panel,.mobile-map-hike-slot,#mapPauseHikeBtn,#mapStartHikeBtn,.td-live-pill){display:none!important;}
+  .td2 .trail-map-box.map-fs:has(.hk-live) .map-hazard-report-btn{top:max(12px,env(safe-area-inset-top))!important;right:12px!important;bottom:auto!important;}
+  .td2 .trail-map-box.map-fs:has(.hk-live) #mapHikeDock:not([hidden]){display:block;}
+  .td2 .trail-map-box.map-fs:has(.hk-live.hk-routine) #mapHikeStatus{display:none!important;}
+  .td2 .trail-map-box.map-fs:has(.hk-live) #mapHikeStatus{bottom:calc(var(--hk-dock) + 10px)!important;left:12px!important;right:12px!important;transform:none!important;max-width:none!important;}
+  .td2 .trail-map-box.map-fs:has(.hk-live) #mapHikeRejoinBtn{bottom:calc(var(--hk-dock) + 80px)!important;}
+  .td2 .trail-map-box.map-fs:has(.hk-live.hk-routine) #mapHikeRejoinBtn{bottom:calc(var(--hk-dock) + 12px)!important;}
+  .td2 .trail-map-box:has(#mapHikePauseSheet:not([hidden])) #mapHikeStatus{display:none!important;}
 }
+/* SOCIAL-04 recording panel (phones only; see the max-width:700px block)
+   and the pause sheet (every width). */
+#mapHikeDock{display:none;position:absolute;left:0;right:0;bottom:0;z-index:9;padding:14px 16px max(14px,env(safe-area-inset-bottom));border-radius:18px 18px 0 0;background:#fff;box-shadow:0 -4px 18px rgba(23,42,28,.18);text-align:center;font-family:'Inter',sans-serif;color:var(--ink);}
+.hk-dock-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.hk-dock-nums b{display:block;font:800 22px/1.15 'Inter',sans-serif;font-variant-numeric:tabular-nums;}
+.hk-dock-nums span{display:block;margin-top:2px;font-size:11px;color:var(--ink-soft);}
+.hk-dock-pause{width:58px;height:58px;margin:12px auto 0;border:0;border-radius:50%;background:#9C3A25;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(156,58,37,.35);}
+.hk-dock-note{margin:8px 0 0;font-size:11.5px;color:var(--ink-soft);}
+#mapHikePauseSheet{position:absolute;inset:0;z-index:12;display:flex;align-items:flex-end;background:rgba(23,32,26,.38);}
+#mapHikePauseSheet[hidden]{display:none;}
+.hk-pause-card{width:100%;padding:18px 16px max(18px,env(safe-area-inset-bottom));border-radius:18px 18px 0 0;background:#fff;text-align:center;font-family:'Inter',sans-serif;color:var(--ink);}
+.hk-pause-card h2{margin:0;font:800 17px 'Inter',sans-serif;}
+.hk-pause-sum{margin:4px 0 14px;font-size:12.5px;color:var(--ink-soft);}
+.hk-pause-card button{display:block;width:100%;min-height:46px;margin-top:8px;border-radius:12px;font:800 14px 'Inter',sans-serif;cursor:pointer;}
+.hk-pause-resume{border:0;background:#3E7A91;color:#fff;}
+.hk-pause-finish{border:1.5px solid #9C3A25;background:#fff;color:#9C3A25;}
+.hk-pause-warn{margin:10px 0 0;font-size:12px;color:var(--ink-soft);}
+@media(min-width:701px){.hk-pause-card{max-width:380px;margin:0 auto 16px;border-radius:18px;}}
 /* Completion card: the pace unit is small and the figures shrink a little on
    a narrow phone, so "18:54/km" or "1:42:07" fits its third of the card. */
 .hk-stat b{font-size:clamp(17px,5.2vw,22px)!important;}
 .hk-stat b small{font-size:12px;font-weight:700;margin-left:1px;}
+/* SOCIAL-04 finish card: the result as a pill under the name, then one
+   question; the rest waits behind "Tell us more". */
+.hk-proof{display:inline-block;margin:10px 0 0;padding:6px 12px;border-radius:999px;background:var(--bg);color:var(--ink-soft);font:700 12.5px/1.4 'Inter',sans-serif;}
+.hk-proof.is-proven{background:#eaf3ec;color:#2f6b45;}
+.hk-suit-q{margin:0 0 3px;color:var(--ink);font:800 15px/1.3 'Inter',sans-serif;}
+.hk-outcome-options button{text-align:center;font-size:13px;}
+.hk-outcome-save[hidden],.hk-more[hidden],.hk-more-toggle[hidden],.hk-outcome-status:empty{display:none;}
+.hk-more-toggle{display:block;margin:12px auto 0;padding:4px 8px;border:0;background:none;color:#3E7A91;font:700 12.5px 'Inter',sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
 
 /* ---- Consistency pass: one visual language across the page ---- */
 /* Review stars: the same gold everywhere (hero, average, review rows). */
@@ -710,6 +733,7 @@ body{background:#EFECE2;}
 .recommendation-confidence--medium{background:#F5EFDC;color:#8A6A1F;}
 .recommendation-gaps{margin:2px 0 0;}
 .trail-season-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+.trail-season-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
 .trail-season-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
 .recommendation-gaps a{color:#3E7A91;font:700 12.5px 'Inter',sans-serif;text-decoration:none;}
 .recommendation-gaps a:hover{text-decoration:underline;}
@@ -1011,7 +1035,6 @@ body{background:#EFECE2;}
   .td2-actrow>#offlinePackagePanel:not([hidden]),.td2-actrow>#offlinePackagePanel:not([hidden]) .offline-package-row{display:contents;}
   .td2-actrow>#offlinePackagePanel #offlineDownloadBtn,.td2-actrow>#offlinePackagePanel #offlineOpenBtn,.td2-actrow>#offlinePackagePanel #offlineRemoveBtn{order:7;grid-column:auto;white-space:normal;}
   .td2-actrow>#detailSaveBtn{order:2;}
-  .td2-actrow>#walkedThisBtn{order:3;}
   .td2-actrow>#logWalkBtn{order:3;}
   .td2-actrow>#getDirectionsBtn{order:4;}
   .td2-actrow>#exportGpxBtn{order:5;}
@@ -1199,12 +1222,10 @@ body.trail-photo-viewer-open{overflow:hidden;}
              stay unchanged so the existing account, map and export handlers
              continue to own behavior. -->
         <div class="td-actions td2-hero-actions">
-          <span id="walkedThisStatus" class="sr-only" aria-live="polite"></span>
           <div class="td2-actrow">
             <button id="heroStartHike" class="td2-btn-p" type="button" hidden><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start hike</button>
             <button id="detailSaveBtn" class="td2-btn-g" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.4S4.2 14.5 4.2 9.2A4.3 4.3 0 0 1 12 6.6a4.3 4.3 0 0 1 7.8 2.6c0 5.3-7.8 11.2-7.8 11.2z"/></svg> Save</button>
             <a id="getDirectionsBtn" class="td2-textlink" href="#"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg><span data-i18n="page.trail.directionsLink">Directions</span></a>
-            <button id="walkedThisBtn" class="td2-textlink" type="button" aria-describedby="walkedThisStatus">We walked this</button>
             <a id="logWalkBtn" class="td2-textlink" href="journal.html" data-i18n="page.trail.logWalk">Log walk</a>
             <button id="exportGpxBtn" class="td2-textlink" type="button" data-i18n="page.trail.exportGpx">Export GPX</button>
             <button id="detailShareBtn" class="td2-textlink" type="button" aria-haspopup="true" aria-expanded="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2"></path><path d="M12 3v12"></path><path d="M8 7l4-4 4 4"></path></svg><span data-i18n="page.trail.shareLink">Share</span></button>
@@ -1286,7 +1307,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
         </div>
         <button id="addReportBtn" type="button" class="map-hazard-report-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3v18h2v-7h5l1 2h6V6h-5l-1-2H5z"/></svg>
-          Report a hazard
+          <span data-i18n="page.trailReport.reportAHazard">Report a hazard</span>
         </button>
         <span id="tdLivePill" class="td-live-pill" hidden data-i18n="page.trail.youAreHereLive"><span class="dot"></span>You are here · live</span>
         <div id="mapNearestDirectionsPanel" class="map-nearest-directions-panel" hidden>
@@ -1314,9 +1335,9 @@ body.trail-photo-viewer-open{overflow:hidden;}
         <div class="td2-elev-head"><span class="td2-kick" id="tdElevH" data-i18n="page.trail.elevation">Elevation</span><span class="td2-elev-status"><span class="td2-elev-live" id="tdElevLive" data-i18n="page.trail.awaitingPosition">Awaiting position</span><span class="r" id="tdElevRange"></span></span></div>
         <svg id="elevProf" viewBox="0 0 1000 170" preserveAspectRatio="none"></svg>
         <div class="td2-elev-figs" id="tdElevFigs" hidden>
-          <div><strong id="tdElevStart"></strong> start</div>
-          <div><strong id="tdElevHigh"></strong> high point</div>
-          <div><strong id="tdElevClimb"></strong> total climb</div>
+          <div><strong id="tdElevStart"></strong> <span data-i18n="page.trail.elevStart">start</span></div>
+          <div><strong id="tdElevHigh"></strong> <span data-i18n="page.trail.elevHigh">high point</span></div>
+          <div><strong id="tdElevClimb"></strong> <span data-i18n="page.trail.elevClimb">total climb</span></div>
         </div>
       </div>
     </div>
@@ -1494,7 +1515,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
       var firebase = document.createElement('script');
       firebase.type = 'module';
       firebase.async = true;
-      firebase.src = 'firebase-init.js?v=20261106-1';
+      firebase.src = 'firebase-init.js?v=20261107-1';
       document.head.appendChild(firebase);
     }
     function scheduleTrailFirebase(){
@@ -1542,6 +1563,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
     var pageTitle = document.getElementById('pageTitle');
     if(pageTitle) pageTitle.textContent = document.title;
     var facts = document.getElementById('trailFacts');
+    // A number as the reader writes it (Italian: 6,7 km). English unchanged.
+    function num(value){ var i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
     if(facts){
       var rows = [
         [trail.distance, ' km', window.t('trail.fact.distance')],
@@ -1553,7 +1576,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
         var item = document.createElement('span');
         item.className = 'f';
         var value = document.createElement('b');
-        value.textContent = row[0] + row[1];
+        value.textContent = num(row[0]) + row[1];
         var label = document.createElement('span');
         label.textContent = row[2];
         item.append(value, label);
@@ -1563,6 +1586,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20261107-1" defer></script>
+<script src="trail-app.bundle.js?v=20261110-4" defer></script>
 </body>
 </html>

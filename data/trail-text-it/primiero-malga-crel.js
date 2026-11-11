@@ -1,5 +1,6 @@
 // primiero-malga-crel in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the forest walk from San Martino to Malga Crel": "la passeggiata nel bosco da San Martino a Malga Crel",
   "A walk from San Martino di Castrozza past the Prà delle Nasse bog and through the forest to Malga Crel and back, with views of the Pale di San Martino. The APT lists 9.2 km and 260 m of ascent.": "Una passeggiata da San Martino di Castrozza oltre la torbiera di Prà delle Nasse e attraverso il bosco fino a Malga Crel, con ritorno e vista sulle Pale di San Martino. L'APT indica 9,2 km e 260 m di dislivello in salita.",
   "Start at the Prà delle Nasse car park in San Martino: 9.2 km there and back, about 260 m of climbing, two and a half hours. Keep your dog on a lead in the park and on the path past the bog. Fountains at the start; Malga Fratazza and Malga Crel are on the way.": "Parti dal parcheggio di Prà delle Nasse a San Martino: 9,2 km andata e ritorno, circa 260 m di salita, due ore e mezza. Tieni il cane al guinzaglio nel parco e sul sentiero lungo la torbiera. Fontane alla partenza; lungo il percorso trovi Malga Fratazza e Malga Crel.",
   "About 1.8 km on tarmac, with road crossings in San Martino": "Circa 1,8 km su asfalto, con attraversamenti stradali a San Martino",

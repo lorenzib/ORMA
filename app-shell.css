@@ -181,3 +181,200 @@ html.orma-app .li-rating-kick{display:none;}
   html.orma-app body .td2.app-trail-photo>.td2-mapcard{display:none;}
   html.orma-app body .td2.app-trail-photo .td2-hero-in{padding-top:calc(60px + env(safe-area-inset-top,0px));}
 }
+
+/* The You tab: app-you.js draws .app-you at the top of account.html opened
+   plainly, and body.app-you-hub hides the long account page under it. Edit,
+   Settings and every deep link open the account page itself, unchanged. */
+html.orma-app body.app-you-hub{background:#F5F2E8;}
+html.orma-app body.app-you-hub .topnav,
+html.orma-app body.app-you-hub .dog-profile-banner,
+html.orma-app body.app-you-hub .acct-wrap,
+html.orma-app body.app-you-hub .ep-mfooter,
+html.orma-app body.app-you-hub .site-footer{display:none !important;}
+.app-you{font-family:'Inter',-apple-system,sans-serif;color:#2E4034;}
+.app-you-head{display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top,0px)) 16px 14px;background:#26352A;}
+.app-you-title{flex:1;min-width:0;margin:0;font:700 22px 'Bricolage Grotesque',sans-serif;color:#F5F2E8;}
+.app-you-gear{flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;box-sizing:border-box;border-radius:12px;
+  background:rgba(38,53,42,.55);border:1px solid rgba(245,242,232,.35);color:#F5F2E8;}
+.app-you-body{display:flex;flex-direction:column;gap:18px;max-width:560px;margin:0 auto;padding:16px 16px 24px;box-sizing:border-box;}
+.app-you-dog{display:flex;align-items:center;gap:14px;padding:14px;border:1px solid #DEDDD0;border-radius:16px;background:#fff;}
+.app-you-avatar{flex:none;display:flex;align-items:center;justify-content:center;width:60px;height:60px;overflow:hidden;border-radius:14px;background:#E5EFE7;color:#1D9E75;}
+.app-you-avatar img{width:100%;height:100%;object-fit:cover;}
+.app-you-dogtext{flex:1;min-width:0;}
+.app-you-dogname{font:700 21px 'Bricolage Grotesque',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.app-you-dogline{font:400 13.5px/1.35 'Inter',sans-serif;color:#59695D;}
+.app-you-edit{flex:none;height:34px;padding:0 14px;box-sizing:border-box;border:1px solid #DEDDD0;border-radius:10px;background:#F5F2E8;
+  color:#2E4034;text-decoration:none;font:600 13px/32px 'Inter',sans-serif;}
+.app-you-section{display:flex;flex-direction:column;gap:10px;}
+.app-you-hrow{display:flex;align-items:baseline;justify-content:space-between;}
+.app-you-h{margin:0;font:700 19px 'Bricolage Grotesque',sans-serif;color:#2E4034;}
+.app-you-all{font:600 14px 'Inter',sans-serif;color:#3E7A91;text-decoration:none;}
+.app-you-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
+.app-you-tile{padding:9px 10px;border-radius:10px;background:#EFECE2;white-space:nowrap;}
+.app-you-tile-k{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#59695D;}
+.app-you-tile-v{margin-top:3px;font:700 16px 'Inter',sans-serif;color:#2E4034;}
+.app-you-empty{margin:0;padding:14px;border:1px dashed #D3D1C3;border-radius:16px;font:400 14px/1.4 'Inter',sans-serif;color:#59695D;}
+.app-you-walk{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid #DEDDD0;border-radius:16px;background:#fff;color:inherit;text-decoration:none;}
+.app-you-walkicon{flex:none;display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:10px;background:#E5EFE7;color:#2C5C34;}
+.app-you-walktext{flex:1;min-width:0;}
+.app-you-walkname{font:700 15px 'Bricolage Grotesque',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.app-you-walkline{font:400 13px 'Inter',sans-serif;color:#59695D;}
+.app-you-links{padding:0 14px;border:1px solid #DEDDD0;border-radius:16px;background:#fff;}
+.app-you-link{display:flex;align-items:center;gap:10px;min-height:50px;color:#2E4034;text-decoration:none;font:600 15px 'Inter',sans-serif;}
+.app-you-link + .app-you-link{border-top:1px solid #E6E3D8;}
+.app-you-link > svg:last-child{color:#59695D;}
+.app-you-linktext{flex:1;min-width:0;}
+.app-you-linkmeta{color:#59695D;font-weight:500;}
+.app-you-signin{color:#3E7A91;font-weight:700;}
+
+/* The Saved tab: app-saved.js draws .app-saved at the top of saved.html
+   opened plainly, and body.app-saved-hub hides the website page under it.
+   Good today first, then Not today with the reason, then your drawn routes. */
+html.orma-app body.app-saved-hub{background:#F5F2E8;}
+html.orma-app body.app-saved-hub .topnav,
+html.orma-app body.app-saved-hub .dog-profile-banner,
+html.orma-app body.app-saved-hub .wrap,
+html.orma-app body.app-saved-hub .ep-mfooter,
+html.orma-app body.app-saved-hub .site-footer{display:none !important;}
+.app-saved{font-family:'Inter',-apple-system,sans-serif;color:#2E4034;}
+.app-saved-head{display:flex;align-items:baseline;gap:10px;padding:calc(14px + env(safe-area-inset-top,0px)) 16px 14px;background:#26352A;}
+.app-saved-title{margin:0;font:700 22px 'Bricolage Grotesque',sans-serif;color:#F5F2E8;}
+.app-saved-count{font:500 13.5px 'Inter',sans-serif;color:rgba(245,242,232,.75);}
+.app-saved-body{max-width:560px;margin:0 auto;padding:6px 16px 24px;box-sizing:border-box;}
+.app-saved-sub{margin:10px 2px 0;font:400 13.5px 'Inter',sans-serif;color:#59695D;}
+.app-saved-label{margin:18px 2px 9px;font:700 11.5px 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#59695D;}
+.app-saved-card{display:flex;align-items:center;gap:8px;margin-bottom:9px;padding:9px;border:1px solid #DEDDD0;border-radius:14px;background:#fff;}
+.app-saved-card.is-dim{background:#FAF8F2;}
+.app-saved-card.is-dim .app-saved-ph{opacity:.6;}
+.app-saved-link{display:flex;align-items:center;gap:11px;flex:1;min-width:0;color:inherit;text-decoration:none;}
+.app-saved .app-saved-ph{flex:none;width:62px;height:62px;border-radius:10px;overflow:hidden;}
+.app-saved .app-saved-ph img{width:100%;height:100%;object-fit:cover;display:block;}
+.app-saved .app-saved-ph .trail-visual-placeholder-label{display:none;}
+.app-saved-text{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;}
+.app-saved-name{font:700 15px 'Inter',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.app-saved-meta{font:400 12.5px 'Inter',sans-serif;color:#59695D;}
+.app-saved-verdict{font:700 12.5px 'Inter',sans-serif;}
+.app-saved-why{font:500 12.5px/1.35 'Inter',sans-serif;color:#7A4A1E;}
+.app-saved-heart{flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:1px solid #DEDDD0;
+  border-radius:50%;background:#fff;color:#B8432F;}
+.app-saved-heart:disabled{opacity:.45;}
+.app-saved-route{display:flex;align-items:center;gap:11px;margin-bottom:9px;padding:11px;border:1px solid #DEDDD0;border-radius:14px;
+  background:#fff;color:inherit;text-decoration:none;}
+.app-saved-route.is-empty{border-style:dashed;background:transparent;}
+.app-saved-ri{flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:#E5EFE7;color:#3E7A91;}
+.app-saved-status{margin:14px 2px;font:400 13px/1.45 'Inter',sans-serif;color:#59695D;}
+.app-saved-empty{margin-top:18px;padding:22px 18px;border:1px solid #DEDDD0;border-radius:16px;background:#fff;text-align:center;}
+.app-saved-empty-title{margin:0;font:700 18px 'Bricolage Grotesque',sans-serif;}
+.app-saved-empty-copy{margin:6px 0 14px;font:400 14px/1.45 'Inter',sans-serif;color:#59695D;}
+.app-saved-btn{display:inline-block;padding:11px 22px;border:0;border-radius:12px;background:#2E4034;color:#F5F2E8;
+  font:700 14.5px 'Inter',sans-serif;text-decoration:none;}
+
+/* Explore. app-explore.js puts Layers and Terrain side by side at the top-left
+   of the map, where the trail list never covers them; Draw a route lives on
+   the Record tab. The filter panel asks three questions (script.js,
+   renderLiAppFilterQuestions), shown here as three big choices a row. */
+html.orma-app #homeMapDrawBtn{display:none !important;}
+html.orma-app #trailMap .app-map-tools{position:absolute;top:10px;left:10px;z-index:6;display:flex;align-items:center;gap:6px;}
+html.orma-app #trailMap .app-map-tools > .map-btn{position:static !important;margin:0;}
+html.orma-app #trailMap .app-map-tools > .map-btn.on{background:#26352A;color:#F5F2E8;}
+html.orma-app .li-map.map-fs #trailMap .app-map-tools{top:calc(10px + env(safe-area-inset-top,0px));left:max(10px,env(safe-area-inset-left,0px));}
+/* Opening Layers used to lift the whole map over the trail list. Here the map
+   stays behind the list and the panel is a short block of chips above it. */
+html.orma-app body.mhome-active .li-map.map-layers-open{z-index:1;}
+html.orma-app body.mhome-active #trailMap .map-panel{flex-direction:row;flex-wrap:wrap;width:calc(100% - 24px);max-width:380px;gap:6px;padding:8px;}
+html.orma-app body.mhome-active #trailMap .map-panel .map-chip{flex:0 0 auto;width:auto;margin:0;}
+/* Terrain opens Map, Satellite and 3D just under the buttons. */
+html.orma-app #trailMap .td-layer-switch.app-terrain-panel{top:52px !important;left:12px !important;right:auto !important;bottom:auto !important;
+  display:none;gap:6px;padding:8px;border-radius:12px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);z-index:7;}
+html.orma-app #trailMap .td-layer-switch.app-terrain-panel.is-open{display:flex;}
+html.orma-app #trailMap .td-layer-switch.app-terrain-panel button{height:36px;padding:0 14px;font-size:13px;box-shadow:none;border:1px solid #DEDDD0;}
+html.orma-app .li-map.map-fs #trailMap .td-layer-switch.app-terrain-panel{top:calc(52px + env(safe-area-inset-top,0px)) !important;}
+/* Moving the map already narrows the list to what is on screen; the button
+   that undid it ("Back to the Dolomites") is not needed in the app. */
+html.orma-app #liSearchThisArea{display:none !important;}
+html.orma-app #liFiltersMenu .li-fhead > span{font:700 19px 'Bricolage Grotesque',sans-serif;letter-spacing:0;text-transform:none;color:#2E4034;}
+html.orma-app #liFiltersMenu .li-fsec{margin-top:14px;font:700 16px 'Bricolage Grotesque',sans-serif;letter-spacing:0;text-transform:none;color:#2E4034;}
+html.orma-app #liFiltersMenu .li-seg--choices{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:54px;margin:0;padding:8px 4px;
+  border:1px solid #DEDDD0;border-radius:14px;background:#fff;color:#2E4034;text-align:center;}
+html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn b{font:700 14px 'Inter',sans-serif;}
+html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn small{font:400 11.5px 'Inter',sans-serif;color:#59695D;}
+html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn.on{background:#26352A;border-color:#26352A;color:#F5F2E8;}
+html.orma-app #liFiltersMenu .li-seg--choices .li-segbtn.on small{color:#C9D3C6;}
+
+/* Record keeps its blue button while it is the tab you are on. */
+.app-tab--record[aria-current="page"] .app-tab-icon{background:#3E7A91;}
+
+/* Record: Plan a route sits beside Start walk until a walk begins. */
+html.orma-app .wr-plan:not([hidden]){display:flex;align-items:center;justify-content:center;text-decoration:none;}
+
+/* Walk finished (app-walk-done.js): one short card over the journal page,
+   for both the Record tab and a trail's hike mode. The journal's own photo
+   sheet waits hidden underneath until "Add a photo" uncovers it. */
+html.orma-app body.app-walk-done-open{overflow:hidden;}
+html.orma-app body.app-walk-done-open #jnAfterOverlay{display:none !important;}
+.app-walk-done{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;background:#F5F2E8;color:#2E4034;font-family:'Inter',-apple-system,sans-serif;}
+.app-walk-done-body{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(18px + env(safe-area-inset-top,0px)) 20px 12px;}
+.app-walk-done-kicker{margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#59695D;}
+.app-walk-done .app-walk-done-title{margin:0 0 4px;font:700 28px/1.15 'Bricolage Grotesque',sans-serif;color:#2E4034;}
+.app-walk-done .app-walk-done-title:focus,.app-walk-done .app-walk-done-title:focus-visible{outline:none !important;box-shadow:none !important;}
+.app-walk-done-sub{margin:0 0 14px;font-size:14.5px;line-height:1.4;color:#59695D;}
+.app-walk-done-map{height:170px;margin:0 0 14px;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,#DCE6D5,#C9D8C2 60%,#B9CBB0);}
+.app-walk-done-map svg{display:block;width:100%;height:100%;}
+.app-walk-done-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 18px;}
+.app-walk-done-stats div{padding:10px 6px;border:1px solid #DEDDD0;border-radius:14px;background:#FFFFFF;text-align:center;}
+.app-walk-done-stats b{display:block;font:700 19px 'Bricolage Grotesque',sans-serif;color:#2E4034;}
+.app-walk-done-stats span{font-size:12px;color:#59695D;}
+.app-walk-done-question{margin:0 0 10px;font-size:16px;font-weight:600;}
+.app-walk-done-answers{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px;}
+.app-walk-done-answer{flex:1 1 28%;min-height:44px;padding:8px 10px;border:1px solid #DEDDD0;border-radius:999px;background:#FFFFFF;color:#2E4034;font:600 14.5px 'Inter',-apple-system,sans-serif;}
+.app-walk-done-answer.is-on{border-color:#2E4034;background:#2E4034;color:#FFFFFF;}
+.app-walk-done-private{margin:0 0 16px;font-size:12.5px;color:#59695D;}
+.app-walk-done-details{margin:0 0 16px;}
+.app-walk-done-q{display:block;margin:12px 0 6px;font-size:14px;font-weight:600;}
+.app-walk-done-q span,.app-walk-done-hazards legend span{font-weight:400;color:#59695D;}
+.app-walk-done-select{display:block;width:100%;min-height:44px;padding:10px 12px;border:1px solid #DEDDD0;border-radius:12px;background:#FFFFFF;color:#2E4034;font:500 15px 'Inter',-apple-system,sans-serif;}
+.app-walk-done-check{display:flex;gap:8px;align-items:center;margin:14px 0 0;font-size:14px;}
+.app-walk-done-hazards{margin:14px 0 0;padding:0;border:0;}
+.app-walk-done-hazards legend{margin:0 0 6px;font-size:14px;font-weight:600;}
+.app-walk-done-hazards label{display:inline-flex;gap:6px;align-items:center;margin:0 14px 8px 0;font-size:14px;}
+.app-walk-done-photo{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:10px 12px;border:1.5px dashed #B8BBA8;border-radius:14px;background:transparent;color:#2E4034;font:600 15px 'Inter',-apple-system,sans-serif;text-align:left;}
+.app-walk-done-photo span{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:#E6E2D3;font-size:18px;}
+.app-walk-done-status{min-height:1em;margin:10px 0 0;font-size:13px;color:#A23B1E;}
+.app-walk-done-foot{flex:0 0 auto;display:flex;gap:10px;padding:12px 20px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid #DEDDD0;background:#F5F2E8;}
+.app-walk-done-btn{flex:1;min-height:50px;padding:12px;border:1px solid #DEDDD0;border-radius:14px;background:#FFFFFF;color:#2E4034;font:600 15px 'Inter',-apple-system,sans-serif;}
+.app-walk-done-btn.is-main{flex:1.6;border-color:#2E4034;background:#2E4034;color:#FFFFFF;font-weight:700;}
+/* The first launch (app-welcome.js): one dark screen over Explore and the
+   tab bar, then a light "Tell us about your dog" screen. Shown once. */
+html.orma-app body.app-welcome-open{overflow:hidden;}
+.app-welcome{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;background:#26352A;color:#FFFFFF;font-family:'Inter',-apple-system,sans-serif;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.app-welcome-photo{flex:1 1 auto;min-height:220px;position:relative;background:#26352A center/cover no-repeat;}
+.app-welcome-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(38,53,42,.15) 0%,rgba(38,53,42,.2) 45%,#26352A 100%);}
+.app-welcome-brand{position:absolute;z-index:1;top:calc(16px + env(safe-area-inset-top,0px));left:20px;display:flex;align-items:center;gap:8px;font:700 18px 'Bricolage Grotesque',sans-serif;color:#FFFFFF;text-shadow:0 1px 6px rgba(0,0,0,.35);}
+.app-welcome-brand img{width:28px;height:28px;}
+.app-welcome-body{flex:0 0 auto;padding:4px 24px calc(20px + env(safe-area-inset-bottom,0px));text-align:center;}
+.app-welcome .app-welcome-title{margin:0 0 14px;font:700 28px/1.15 'Bricolage Grotesque',sans-serif;color:inherit;}
+/* Focus moves to the heading so a screen reader starts there; it needs no ring. */
+.app-welcome .app-welcome-title:focus,.app-welcome .app-welcome-title:focus-visible{outline:none !important;box-shadow:none !important;}
+.app-welcome-ticks{list-style:none;margin:0 auto 20px;padding:0;max-width:320px;text-align:left;}
+.app-welcome-ticks li{display:flex;gap:10px;margin:0 0 9px;font-size:15px;line-height:1.35;color:#E6EEE7;}
+.app-welcome-ticks li::before{content:"✓";flex:0 0 auto;font-weight:700;color:#7FB3C8;}
+.app-welcome-btn{display:block;width:100%;min-height:50px;margin:10px 0 0;padding:13px 16px;border:1px solid rgba(255,255,255,.4);border-radius:14px;background:transparent;color:#FFFFFF;font:600 16px 'Inter',-apple-system,sans-serif;cursor:pointer;}
+.app-welcome-btn.is-main{border-color:#7FB3C8;background:#7FB3C8;color:#173039;font-weight:700;}
+.app-welcome-btn:disabled{opacity:.45;cursor:default;}
+.app-welcome-small{margin:14px 0 0;font-size:13.5px;line-height:1.4;color:#C9D4CB;}
+.app-welcome-link{padding:4px 2px;border:0;background:none;color:#FFFFFF;font:700 13.5px 'Inter',-apple-system,sans-serif;text-decoration:underline;cursor:pointer;}
+.app-welcome.is-light{background:#F5F2E8;color:#2E4034;}
+.app-welcome-form{flex:1 0 auto;padding:calc(12px + env(safe-area-inset-top,0px)) 24px 16px;}
+.app-welcome-back{margin:0 0 18px -6px;padding:8px 6px;border:0;background:none;color:#2E4034;font:600 15px 'Inter',-apple-system,sans-serif;cursor:pointer;}
+.app-welcome.is-light .app-welcome-title{margin:0 0 6px;font-size:27px;}
+.app-welcome-lead{margin:0 0 24px;font-size:15px;line-height:1.45;color:#59695D;}
+.app-welcome-q{display:block;margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#59695D;}
+.app-welcome-input{display:block;width:100%;box-sizing:border-box;margin:0 0 22px;padding:14px;border:1px solid #DEDDD0;border-radius:12px;background:#FFFFFF;color:#2E4034;font:500 17px 'Inter',-apple-system,sans-serif;}
+.app-welcome-input:focus{outline:2px solid #7FB3C8;outline-offset:1px;}
+.app-welcome-chips{display:flex;gap:8px;}
+.app-welcome-chip{flex:1;min-height:46px;border:1px solid #DEDDD0;border-radius:999px;background:#FFFFFF;color:#2E4034;font:600 15px 'Inter',-apple-system,sans-serif;cursor:pointer;}
+.app-welcome-chip.is-on{border-color:#2E4034;background:#2E4034;color:#FFFFFF;}
+.app-welcome-foot{flex:0 0 auto;padding:12px 24px calc(20px + env(safe-area-inset-bottom,0px));text-align:center;}
+.app-welcome.is-light .app-welcome-btn.is-main{border-color:#2E4034;background:#2E4034;color:#FFFFFF;}
+.app-welcome.is-light .app-welcome-small{color:#59695D;}

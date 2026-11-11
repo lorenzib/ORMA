@@ -80,7 +80,7 @@ describe('SEC-01 Firestore configuration contract', () => {
     // Anonymous, fixed shape: only server time plus a short group string.
     expect(block).toContain("request.resource.data.keys().hasOnly(['at', 'group', 'proof'])");
     // SOCIAL-02: only a proven walk counts, and the proof is required.
-    expect(block).toContain("request.resource.data.proof in ['gps', 'checkin']");
+    expect(block).toContain("request.resource.data.proof in ['gps']");
     expect(block).toContain('request.resource.data.at == request.time');
     expect(block).toContain('request.resource.data.group is string');
     expect(block).toContain('request.resource.data.group.size() <= 12');
@@ -241,7 +241,8 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain('data.photo.size() <= 700000');
     expect(rules).toContain("data.note is string && data.note.size() <= 2000");
     // Who came along: optional (not in hasAll), and bounded when present.
-    expect(rules).toContain("'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt',\n          'walkedWith', 'photoIds'\n        ])");
+    expect(rules).toContain("'shareToTrail', 'recorded', 'track', 'gaps', 'tale', 'updatedAt',\n          'walkedWith', 'photoIds', 'proof'\n        ])");
+    expect(rules).toContain("&& (!('proof' in data) || data.proof in ['gps', 'gpx'])");
     expect(rules).toContain("|| (data.walkedWith is string && data.walkedWith.size() <= 400))");
     // Photos in Storage: optional, a list of at most six ids, each checked.
     expect(rules).toContain("|| (data.photoIds is list && data.photoIds.size() <= 6");

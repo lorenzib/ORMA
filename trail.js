@@ -5,6 +5,12 @@ function tx(text, vars){
   return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
 }
 
+// A number as the reader writes it (Italian: 6,7 km; 1.655 m). English unchanged.
+function num(value){
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+}
+
 // A trail's own words (description, hazards, directions…) in the reader's
 // language, from data/trail-text-it. The record itself stays English.
 function trailWords(text){
@@ -86,8 +92,8 @@ function mapDistanceKm(a, b){
 
 function formatApproachDistance(distanceKm){
   if(!Number.isFinite(distanceKm)) return '';
-  if(distanceKm < 1) return `${Math.max(10, Math.round(distanceKm * 1000 / 10) * 10)} m`;
-  return `${distanceKm.toFixed(distanceKm < 10 ? 1 : 0)} km`;
+  if(distanceKm < 1) return `${num(Math.max(10, Math.round(distanceKm * 1000 / 10) * 10))} m`;
+  return `${num(distanceKm.toFixed(distanceKm < 10 ? 1 : 0))} km`;
 }
 
 function initLoopComposer(map, t){
@@ -756,14 +762,14 @@ function setupElevationProfile(map, t){
   const totalKm = t.distance;
   const elevs = profile.map(p => p.elev);
   const eMin = Math.min(...elevs), eMax = Math.max(...elevs);
-  if(rangeReadout) rangeReadout.textContent = `${Math.round(eMin)}–${Math.round(eMax)} m`;
+  if(rangeReadout) rangeReadout.textContent = `${num(Math.round(eMin))}–${num(Math.round(eMax))} m`;
   const startReadout = document.getElementById('tdElevStart');
   const highReadout = document.getElementById('tdElevHigh');
   const climbReadout = document.getElementById('tdElevClimb');
   const figures = document.getElementById('tdElevFigs');
-  if(startReadout) startReadout.textContent = `${Math.round(profile[0].elev)} m`;
-  if(highReadout) highReadout.textContent = `${Math.round(eMax)} m`;
-  if(climbReadout) climbReadout.textContent = `${Math.round(Number(t.elevation) || 0)} m`;
+  if(startReadout) startReadout.textContent = `${num(Math.round(profile[0].elev))} m`;
+  if(highReadout) highReadout.textContent = `${num(Math.round(eMax))} m`;
+  if(climbReadout) climbReadout.textContent = `${num(Math.round(Number(t.elevation) || 0))} m`;
   if(figures) figures.hidden = false;
   const VW = 1000, VH = 170, padL = 6, padR = 6, padT = 14, padB = 20;
   const x = km => padL + (km / totalKm) * (VW - padL - padR);
@@ -785,7 +791,7 @@ function setupElevationProfile(map, t){
   [eMin, (eMin+eMax)/2, eMax].forEach(v => {
     svg.appendChild(mk('line', { x1: padL, x2: VW-padR, y1: y(v), y2: y(v), stroke: 'var(--paper-line)', 'stroke-width': '1' }));
     const label = mk('text', { x: padL+4, y: y(v)-3, 'font-size': '10', fill: 'var(--ink-soft)' });
-    label.textContent = `${Math.round(v)} m`;
+    label.textContent = `${num(Math.round(v))} m`;
     svg.appendChild(label);
   });
 
@@ -814,8 +820,8 @@ function setupElevationProfile(map, t){
       }
     }
     cursorDot.setAttribute('cx', x(km)); cursorDot.setAttribute('cy', y(elev)); cursorDot.setAttribute('opacity', '1');
-    readout.textContent = `${km.toFixed(1)} km · ${Math.round(elev)} m`;
-    if(liveReadout) liveReadout.textContent = `${km.toFixed(1)} km · ~${Math.round(elev)} m route elevation`;
+    readout.textContent = `${num(km.toFixed(1))} km · ${num(Math.round(elev))} m`;
+    if(liveReadout) liveReadout.textContent = `${num(km.toFixed(1))} km · ~${num(Math.round(elev))} m route elevation`;
 
     const [lat, lng] = pointAtFraction(t.path, totalKm > 0 ? km / totalKm : 0);
     const src = map.getSource('elev-cursor');
@@ -1289,7 +1295,7 @@ function itinAdd(icon, sort, html){
 }
 
 function itinKmLabel(km){
-  return `<b style="font-weight:700;">Km ${km % 1 === 0 ? km : km.toFixed(1)}</b>`;
+  return `<b style="font-weight:700;">Km ${num(km % 1 === 0 ? km : km.toFixed(1))}</b>`;
 }
 
 function buildItinerary(t){
@@ -1555,66 +1561,6 @@ function renderTrail(t){
     const journalReturn = encodeURIComponent(`trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))}`);
     logWalkBtn.href = `journal.html?trail=${encodeURIComponent(t.id)}&from=${journalReturn}`;
   }
-  // One tap counts a walk in the anonymous tally, the same event a finished
-  // GPS hike writes. Firebase loads after the page is idle, so a tap before
-  // then waits for it briefly rather than failing.
-  const walkedThisBtn = document.getElementById('walkedThisBtn');
-  const walked = window.DoloPawsWalkedThis;
-  // The label is set here, not by data-i18n, so a later translation pass
-  // cannot put "We walked this" back on a walk already counted.
-  if(walkedThisBtn && walked && !walkedThisBtn.dataset.bound){
-    walkedThisBtn.dataset.bound = '1';
-    walkedThisBtn.textContent = window.t('page.trail.walkedThis');
-    const walkedStatus = document.getElementById('walkedThisStatus');
-    const showWalked = () => {
-      walkedThisBtn.textContent = window.t('trail.walkedToday');
-      walkedThisBtn.disabled = true;
-    };
-    const communityReady = () => window.DoloPawsCommunity ? Promise.resolve(window.DoloPawsCommunity)
-      : new Promise(resolve => {
-        const done = () => resolve(window.DoloPawsCommunity || null);
-        window.addEventListener('dolopaws-auth-ready', done, { once: true });
-        setTimeout(done, 6000);
-      });
-    if(walked.walkedToday(t.id)) showWalked();
-    // SOCIAL-02: a tap counts only as a check-in, made on the trail. The
-    // phone's position is asked for once, compared with the line here and
-    // never stored or sent.
-    const whereAmI = () => new Promise(resolve => {
-      if(!navigator.geolocation) return resolve(null);
-      navigator.geolocation.getCurrentPosition(resolve, () => resolve(null), {
-        enableHighAccuracy: true, timeout: 15000, maximumAge: 60000,
-      });
-    });
-    const notCounted = labelKey => {
-      walkedThisBtn.textContent = window.t(labelKey);
-      if(walkedStatus) walkedStatus.textContent = window.t('trail.walkedHowToCount');
-      walkedThisBtn.title = window.t('trail.walkedHowToCount');
-      walkedThisBtn.disabled = false;
-    };
-    walkedThisBtn.addEventListener('click', async () => {
-      walkedThisBtn.disabled = true;
-      if(walked.walkedToday(t.id)) return showWalked();
-      const proofCheck = window.DoloPawsWalkProof;
-      if(!proofCheck) return notCounted('trail.walkedRetry');
-      walkedThisBtn.textContent = window.t('trail.walkedLocating');
-      const position = await whereAmI();
-      if(!position) return notCounted('trail.walkedNoLocation');
-      const checkIn = proofCheck.assessCheckIn(position, t.path);
-      if(!checkIn.proof) return notCounted('trail.walkedNotHere');
-      const result = await walked.record(t.id, walked.activeDogGroup(), {
-        community: await communityReady(), proof: checkIn.proof,
-      });
-      if(result === 'recorded' || result === 'already'){
-        showWalked();
-        walkedThisBtn.removeAttribute('title');
-        if(walkedStatus && result === 'recorded') walkedStatus.textContent = window.t('trail.walkedThanks');
-        return;
-      }
-      walkedThisBtn.textContent = window.t('trail.walkedRetry');
-      walkedThisBtn.disabled = false;
-    });
-  }
   // Do not reserve an empty elevation panel for routes without profile data.
   const elevationCard = document.getElementById('tdElevationPanel');
   const hasElevationProfile = Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1;
@@ -1631,7 +1577,7 @@ function renderTrail(t){
   // says what it means for a reader who does not.
   const gloss = document.getElementById('trailNameGloss');
   if(gloss){
-    gloss.textContent = t.nameGloss || '';
+    gloss.textContent = trailWords(t.nameGloss) || '';
     gloss.hidden = !t.nameGloss;
   }
   document.getElementById('trailName').removeAttribute('aria-busy');
@@ -1725,7 +1671,7 @@ function renderTrail(t){
     }
   }
   document.getElementById('trailMeta').textContent =
-    `${t.area} · ${t.distance} km · ${tx('{m} m gain', { m: t.elevation })} · ${window.ORMARouteReturn ? window.ORMARouteReturn.formatDuration(t.hours) : `${t.hours} h`} · ${trailWords(t.terrainType)}`;
+    `${t.area} · ${num(t.distance)} km · ${tx('{m} m gain', { m: t.elevation })} · ${window.ORMARouteReturn ? window.ORMARouteReturn.formatDuration(t.hours) : `${num(t.hours)} h`} · ${trailWords(t.terrainType)}`;
   document.getElementById('trailBadges').innerHTML =
     trailProductBadge(t.safetyLevel, trailSafetyLabel(t)) +
     (t.paid ? trailProductBadge('neutral', window.t('card.paid')) : '');
@@ -1815,12 +1761,12 @@ function renderTrail(t){
     const shown = oneWay ? routeReturn.forView(t) : t;
     const back = shown !== t;
     const facts = [
-      [`${shown.distance} km`, window.t('trail.fact.distance')],
-      [`${shown.elevation} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
+      [`${num(shown.distance)} km`, window.t('trail.fact.distance')],
+      [`${num(shown.elevation)} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
       [shown.hours ? `${back ? '≈ ' : ''}${routeReturn.formatDuration(shown.hours)}` : null, window.t('trail.fact.duration')],
     ].filter(([val]) => !/null|undefined/.test(val)); // hide facts the data honestly lacks
     if(Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1){
-      facts.splice(2, 0, [`${Math.max(...t.elevationProfile.map(p => p.elev))} m`, window.t('trail.fact.high')]);
+      facts.splice(2, 0, [`${num(Math.max(...t.elevationProfile.map(p => p.elev)))} m`, window.t('trail.fact.high')]);
     }
     // Difficulty cell, mirrors the homepage's derivation from real fields so
     // the hero stat strip matches the design's five-cell layout.
@@ -2038,7 +1984,7 @@ function renderTrail(t){
         byKm.set(d.km, [...deduped, { text: instructionText }]);
       });
       const events = [...byKm.entries()].sort((a, b) => a[0] - b[0]);
-      events.forEach(([km, items]) => steps.push(`Km ${km}: ${items.map(i => i.text).join(window.t('trail.dirThen'))}.`));
+      events.forEach(([km, items]) => steps.push(`Km ${num(km)}: ${items.map(i => i.text).join(window.t('trail.dirThen'))}.`));
     }
 
     steps.push(window.t('trail.dirEnd', {n: totalKm}));
@@ -2600,7 +2546,7 @@ function renderTrail(t){
         (t.decisionPoints || []).forEach(d => {
           new maplibregl.Marker({ element: makeIconEl('switch', '#D6A038'), offset: [14, -14] })
             .setLngLat([d.lng, d.lat])
-            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>Km ${d.km}</b><br>${trailWords(d.instruction)}`))
+            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>Km ${num(d.km)}</b><br>${trailWords(d.instruction)}`))
             .addTo(map);
         });
 
@@ -2614,7 +2560,7 @@ function renderTrail(t){
             if(!waypoint || waypoint.osmId || typeof waypoint.lat !== 'number' || typeof waypoint.lng !== 'number') return;
             const mk = new maplibregl.Marker({ element: makeIconEl(icon), offset: [0, -6] })
               .setLngLat([waypoint.lng, waypoint.lat])
-              .setPopup(new maplibregl.Popup({ offset: 14 }).setHTML(`<b>${itinEsc(label)}</b>${typeof waypoint.km === 'number' ? `<br>Km ${waypoint.km}` : ''}`))
+              .setPopup(new maplibregl.Popup({ offset: 14 }).setHTML(`<b>${itinEsc(label)}</b>${typeof waypoint.km === 'number' ? `<br>Km ${num(waypoint.km)}` : ''}`))
               .addTo(map);
             amenityMarkers.push({ marker: mk, group: icon === 'hut' ? 'huts' : 'fountains' });
             mk.getElement().style.display = poiStates[icon === 'hut' ? 'huts' : 'fountains'] ? '' : 'none';

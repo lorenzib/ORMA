@@ -1,0 +1,21 @@
+// valdisole-peio-paese-lago-covel in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "An easy loop in the Stelvio National Park from Peio Paese past old farmsteads to Malga Covel, its goat cheese and the mirror-like Lago Covel, then to the Rio Vioz waterfall and back. The board lists 5.2 km and 214 m up.": "Un anello facile nel Parco Nazionale dello Stelvio da Peio Paese oltre antichi masi fino a Malga Covel, al suo formaggio di capra e al Lago Covel che fa da specchio, poi alla cascata del Rio Vioz e ritorno. Il sito ufficiale indica 5,2 km e 214 m di salita.",
+  "Start at San Rocco in Peio Paese: 5.2 km and 214 m up, about 2 hours, as the board lists. An easy family walk; carry a muzzle and keep your dog on a lead in the park.": "Parti da San Rocco a Peio Paese: 5,2 km e 214 m di salita, circa 2 ore, come indica il sito ufficiale. Una passeggiata facile per famiglie; porta la museruola e tieni il cane al guinzaglio nel parco.",
+  "Minor village road at the start and end in Peio Paese: keep your dog on a short lead": "Strada di paese all’inizio e alla fine a Peio Paese: tieni il cane al guinzaglio corto",
+  "The forest road to the Covel meadows is open to cars for about 1 km: keep your dog close if one comes": "La strada forestale verso i prati di Covel è aperta alle auto per circa 1 km: tieni il cane vicino se ne arriva una",
+  "Goats and sheep graze at Malga Covel in summer": "In estate a Malga Covel pascolano capre e pecore",
+  "Marmots and other wildlife in the park: keep the lead short": "Marmotte e altri animali selvatici nel parco: tieni il guinzaglio corto",
+  "Forest road and mountain path": "Strada forestale e sentiero di montagna",
+  "San Rocco in Peio Paese, by the military cemetery, the board’s start": "San Rocco a Peio Paese, accanto al cimitero militare, la partenza ufficiale",
+  "A small, still mountain lake reflecting white clouds, blue sky and a forested slope, with a meadow along its far shore and wooded mountains behind": "Un piccolo lago di montagna immobile che riflette nuvole bianche, cielo azzurro e un versante boscoso, con un prato lungo la riva opposta e montagne boscose sullo sfondo",
+  "Larch woods for over half the way; the meadows around Malga Covel and the lake are open.": "Lariceti per oltre metà del percorso; i prati attorno a Malga Covel e al lago sono aperti.",
+  "Start at San Rocco in Peio Paese, by the small Austro-Hungarian military cemetery, the board’s start.": "Parti da San Rocco a Peio Paese, accanto al piccolo cimitero militare austro-ungarico, la partenza ufficiale.",
+  "Walk up the forest road (fine for pushchairs) past old mountain farmsteads, then through larch woods and pasture to Malga Covel, a little under an hour. Carry on through the pastures to Lago Covel, and a few minutes further to the Rio Vioz waterfall and its small footbridge. Keep going until you join the path that leads back down to Peio Paese.": "Sali sulla strada forestale (percorribile anche con i passeggini) tra antichi masi di montagna, poi tra lariceti e pascoli fino a Malga Covel, in meno di un’ora. Prosegui tra i pascoli fino al Lago Covel e, pochi minuti più avanti, fino alla cascata del Rio Vioz con il suo ponticello. Continua finché ti colleghi al sentiero che riporta giù a Peio Paese.",
+  "Forest road from San Rocco past the farmsteads to Malga Covel; on through the pastures to Lago Covel and the Rio Vioz waterfall; over the footbridge and onto the path back down to Peio Paese.": "Strada forestale da San Rocco tra i masi fino a Malga Covel; avanti tra i pascoli fino al Lago Covel e alla cascata del Rio Vioz; oltre il ponticello e sul sentiero di ritorno a Peio Paese.",
+  "San Rocco in Peio Paese, by the military cemetery": "San Rocco a Peio Paese, accanto al cimitero militare",
+  "Forest road past the farmsteads and through the larches to Malga Covel": "Strada forestale tra i masi e i larici fino a Malga Covel",
+  "Through the pastures to Lago Covel": "Tra i pascoli fino al Lago Covel",
+  "The Rio Vioz waterfall and its footbridge": "La cascata del Rio Vioz e il suo ponticello",
+  "Path back down to Peio Paese": "Sentiero di ritorno a Peio Paese"
+});

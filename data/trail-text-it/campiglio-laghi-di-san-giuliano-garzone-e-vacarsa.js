@@ -1,5 +1,6 @@
 // campiglio-laghi-di-san-giuliano-garzone-e-vacarsa in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the high lakes loop above Caderzone": "l'anello dei laghi d'alta quota sopra Caderzone",
   "A long mountain loop above Caderzone past the San Giuliano, Garzonè and Vacarsa lakes and over a 2,175 m pass, in the Adamello Brenta Nature Park. The APT lists 11 km and 665 m of ascent.": "Un lungo anello di montagna sopra Caderzone, oltre i laghi di San Giuliano, Garzonè e Vacarsa e attraverso un passo a 2.175 m, nel Parco Naturale Adamello Brenta. L'APT indica 11 km e 665 m di dislivello in salita.",
   "Drive from Caderzone Terme to the car park at Pöc dali Fafc: 11 km and about 670 m of climbing, six hours. Keep your dog on a lead all the way and stay on the paths. The Rifugio San Giuliano halfway serves food.": "Sali in auto da Caderzone Terme al parcheggio di Pöc dali Fafc: 11 km e circa 670 m di salita, sei ore. Tieni il cane al guinzaglio per tutto il percorso e resta sui sentieri. Il Rifugio San Giuliano a metà strada serve da mangiare.",
   "Mountain paths with a climb to a 2,175 m pass": "Sentieri di montagna con salita a un passo a 2.175 m",

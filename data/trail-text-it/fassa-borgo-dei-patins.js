@@ -1,5 +1,6 @@
 // fassa-borgo-dei-patins in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the Vigo hamlets walk": "la passeggiata delle frazioni di Vigo",
   "A sunny loop through the scattered hamlets of Vigo di Fassa, among them Costa and Larcioné, facing the Rosengarten. The APT lists 3.1 km and 82 m of ascent.": "Un anello soleggiato tra le frazioni sparse di Vigo di Fassa, tra cui Costa e Larcioné, di fronte al Catinaccio. L'APT indica 3,1 km e 82 m di dislivello in salita.",
   "Start in Strada Rezia in Vigo: 3.1 km, about 80 m of climbing, an hour. Keep your dog on a short lead (1.5 m at most) on the lanes and carry a muzzle. There is no shade, so avoid midday in summer; fountains in Vigo and in the hamlets.": "Partenza da Strada Rezia a Vigo: 3,1 km, circa 80 m di salita, un'ora. Tieni il cane con il guinzaglio corto (al massimo 1,5 m) sulle stradine e porta la museruola al seguito. Non c'è ombra, quindi d'estate evita le ore centrali; fontane a Vigo e nelle frazioni.",
   "Village lanes open to cars for most of the way": "Stradine di paese aperte alle auto per gran parte del percorso",

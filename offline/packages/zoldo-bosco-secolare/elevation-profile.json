@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "zoldo-bosco-secolare",
+  "distanceKm": 4.6,
+  "ascentM": 176,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 982
+    },
+    {
+      "km": 0.4,
+      "elev": 1043
+    },
+    {
+      "km": 0.7,
+      "elev": 1072
+    },
+    {
+      "km": 1.1,
+      "elev": 1116
+    },
+    {
+      "km": 1.4,
+      "elev": 1093
+    },
+    {
+      "km": 1.8,
+      "elev": 1024
+    },
+    {
+      "km": 2.1,
+      "elev": 1003
+    },
+    {
+      "km": 2.4,
+      "elev": 1001
+    },
+    {
+      "km": 2.8,
+      "elev": 1009
+    },
+    {
+      "km": 3.1,
+      "elev": 1093
+    },
+    {
+      "km": 3.5,
+      "elev": 1116
+    },
+    {
+      "km": 3.8,
+      "elev": 1065
+    },
+    {
+      "km": 4.2,
+      "elev": 1044
+    },
+    {
+      "km": 4.5,
+      "elev": 985
+    },
+    {
+      "km": 4.6,
+      "elev": 982
+    }
+  ]
+}

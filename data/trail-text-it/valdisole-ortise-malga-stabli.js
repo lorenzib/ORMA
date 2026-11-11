@@ -1,5 +1,6 @@
 // valdisole-ortise-malga-stabli in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the climb from Ortisè to the Stabli pastures": "la salita da Ortisè ai pascoli di Stabli",
   "An easy hillside road from the mountain village of Ortisè to the restored Malga Stabli, a terrace over the Val di Sole with views of the Brenta Dolomites and the Presanella. The APT lists 7.2 km and 342 m of ascent.": "Una facile strada a mezza costa dal paese di montagna di Ortisè alla restaurata Malga Stabli, una terrazza sulla Val di Sole con vista sulle Dolomiti di Brenta e sulla Presanella. L'APT indica 7,2 km e 342 m di dislivello in salita.",
   "Park by the church in Ortisè: 7.2 km out and back and about 340 m of climbing, two and a half hours. Keep your dog on a lead, especially near the cattle at Malga Stabli and when cars pass.": "Parcheggia vicino alla chiesa di Ortisè: 7,2 km andata e ritorno e circa 340 m di salita, due ore e mezza. Tieni il cane al guinzaglio, soprattutto vicino alle mucche di Malga Stabli e al passaggio delle auto.",
   "The gravel road is open to cars as far as Malga Stabli": "La strada sterrata è aperta alle auto fino a Malga Stabli",

@@ -7,6 +7,8 @@
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
 
   const coverage = window.DoloPawsTrailRoutingCoverage || { trails:{} };
   const localRouter = window.DoloPawsFootpathRouter;
@@ -639,10 +641,10 @@
 
   function render(){
     const config = shapeConfig();
-    distance.textContent = preview ? formatDistance(preview.distanceM) : ', ';
+    distance.textContent = preview ? num(formatDistance(preview.distanceM)) : ', ';
     if(ascent){
       ascent.textContent = preview && Number.isFinite(preview.ascentM)
-        ? `${Math.round(preview.ascentM)} m` : ', ';
+        ? `${num(Math.round(preview.ascentM))} m` : ', ';
     }
     pointCount.textContent = `${points.length} / ${MAX_POINTS}`;
     shapeButtons.forEach(button => {

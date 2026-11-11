@@ -547,6 +547,70 @@
     'saved.visual.photo': 'Photo coming soon',
     'journal.title': 'My walk journal',
     'journal.titleFor': '{name}’s walk journal',
+    'journal.passport.title': 'Your dog’s passport',
+    'journal.passport.titleFor': '{name}’s passport',
+    'journal.passport.private': 'Private',
+    'journal.passport.stamps': '{n} stamps',
+    'journal.passport.stampOne': '1 stamp',
+    'journal.passport.valleysCount': '{n} valleys',
+    'journal.passport.valleyOne': '1 valley',
+    'journal.passport.climbed': '{n} m climbed',
+    'journal.passport.times': '{n} times',
+    'journal.passport.next': 'Record a walk to stamp it',
+    'journal.passport.empty': 'Start the hike on a trail page and walk it. When the GPS proves the walk, the trail is stamped here.',
+    'journal.passport.idName': 'Name',
+    'journal.passport.idBreed': 'Breed',
+    'journal.passport.idSince': 'First stamp',
+    'journal.passport.visas': 'Valley visas',
+    'journal.passport.visasHint': 'Tap one to see its trails',
+    'journal.passport.entered': 'Entered {date}',
+    'journal.passport.leftTip': '{n} trails still to walk here. The shortest come first.',
+    'journal.passport.allDone': 'Every trail in this valley is stamped.',
+    'journal.passport.showRest': 'Show the other {n}',
+    'journal.passport.notYet': '(not walked yet)',
+    'journal.passport.stampsTitle': 'Stamps',
+    'journal.passport.share': 'Share',
+    'journal.passport.card.title': 'Share the passport',
+    'journal.passport.card.share': 'Share',
+    'journal.passport.card.helper': 'The picture shows your dog, the valleys and the trail names. It never shows your own GPS track.',
+    'journal.passport.card.previewAlt': 'The dog passport picture',
+    'journal.passport.card.downloaded': 'Passport picture saved to your downloads.',
+    'journal.passport.card.kicker': 'Dog passport',
+    'journal.passport.card.stamp': 'trail stamp',
+    'journal.passport.card.stampsLabel': 'trail stamps',
+    'journal.passport.card.valley': 'valley',
+    'journal.passport.card.valleysLabel': 'valleys',
+    'journal.passport.card.more': '+{n} more',
+    'journal.passport.card.footer': 'Made for dogs who take the scenic route · app-orma.com',
+    'journal.passport.card.yourDog': 'My dog',
+    'journal.passport.card.caption': '{name}’s ORMA passport: {stamps} trails stamped in {valleys} valleys, {km} km on foot 🐾 app-orma.com',
+    'journal.passport.of': '{done} of {total}',
+    'journal.passport.milestones': 'Milestones',
+    'journal.passport.mile.first': 'First walk',
+    'journal.passport.lakeOne': 'A lake walk',
+    'journal.passport.lakes': '{n} lakes',
+    'journal.passport.hutOne': 'A hut walk',
+    'journal.passport.huts': '{n} hut walks',
+    'journal.passport.mile.walks': '10 walks',
+    'journal.passport.mile.km': '100 km',
+    'journal.passport.toGo': '{n} to go',
+    'journal.passport.rule': 'Only walks recorded with GPS earn a stamp: in ORMA, or a GPX file from your watch or another app. Walking a trail again adds to its stamp.',
+    'journal.gpx.add': 'Add from a GPX file',
+    'journal.gpx.sub': 'Recorded on your watch, Strava or Komoot? It can earn a passport stamp.',
+    'journal.gpx.title': 'Walk from your file',
+    'journal.gpx.again': 'Choose another file',
+    'journal.gpx.save': 'Save and stamp the passport',
+    'journal.gpx.saveNoStamp': 'Save without a stamp',
+    'journal.gpx.proven': 'This is {trail}. {pct}% of the trail walked, so it earns a passport stamp.',
+    'journal.gpx.short': 'This looks like {trail}, but only {pct}% of the trail was walked. A stamp needs 75%.',
+    'journal.gpx.fast': 'This follows {trail}, but faster than walking pace, so it can’t earn a stamp.',
+    'journal.gpx.notOneWalk': 'This follows {trail}, but the file covers more than one day, so it can’t earn a stamp.',
+    'journal.gpx.noTrail': 'This walk doesn’t follow an ORMA trail, so it can’t earn a stamp. You can still keep it in your journal.',
+    'journal.gpx.noTimes': 'This file has no times on it, so it’s a planned route, not a walk. Export the recorded activity instead.',
+    'journal.gpx.future': 'This file’s times are in the future. Check the date on your device.',
+    'journal.gpx.tooShort': 'This recording is too short to be a walk.',
+    'journal.gpx.notGpx': 'This isn’t a GPX file we can read. Export the activity as GPX and try again.',
+    'journal.gpx.duplicate': 'This walk is already in your journal.',
     'journal.subtitle': 'Keep the route, the conditions and the moments worth remembering, all in one place.',
     'journal.log': '+ Log a walk',
     'journal.walks': 'Walks',
@@ -1001,7 +1065,20 @@
     'hike.statTime': 'Time',
     'hike.statDistance': 'Distance',
     'hike.statPace': 'Pace',
-    'hike.matchFor': '{pct}% match for {name}',
+    'hike.dockWalked': 'Walked',
+    'hike.dockOfRoute': 'Of route',
+    'hike.pausedTitle': 'Paused',
+    'hike.pausedSummary': '{km} km · {pct}% of the route',
+    'hike.resumeAction': 'Resume',
+    'hike.finishWalk': 'Finish walk',
+    'hike.finishWontCount': 'Finishing now won’t count. A walk counts from {pct}% of the route.',
+    'hike.suitQuestion': 'Did it suit {name}?',
+    'hike.suitQuestionYourDog': 'Did it suit your dog?',
+    'hike.suitPrivate': 'Private. It never becomes a public review.',
+    'hike.suitYes': 'Yes',
+    'hike.suitCare': 'With care',
+    'hike.suitNo': 'No',
+    'hike.tellMore': 'Tell us more',
     'hike.proofGps': 'Proven by GPS ✓ This walk counts for the trail.',
     'hike.proofShort': 'GPS recorded {pct}% of the route, so this walk is not counted. A walk counts from 75%.',
     'hike.proofUnconfirmed': 'GPS could not confirm this walk, so it is not counted.',
@@ -1072,6 +1149,7 @@
     'recommendation.routeView.back': 'Scored for walking there and back: {km} km, about {climb} m up and the same down. The time is an estimate.',
     'card.oneWay': 'One way',
     'card.thereAndBack': '{km} km there and back',
+    'card.climb': '{m} m climb',
     'trail.fact.difficulty': 'Difficulty',
     'trail.matchCellTeaser': 'Score it for your dog →',
     'trail.fact.terrain': 'terrain',
@@ -1788,14 +1866,6 @@
     'page.trail.6dayOutlook': '6-day outlook',
     'page.trail.view': 'View',
     'page.trail.logWalk': 'Log walk',
-    'page.trail.walkedThis': 'We walked this',
-    'trail.walkedToday': 'Walked today ✓',
-    'trail.walkedRetry': 'Not saved, try again',
-    'trail.walkedThanks': 'Thanks, your walk is counted.',
-    'trail.walkedLocating': 'Checking where you are…',
-    'trail.walkedNotHere': 'Counts only on the trail',
-    'trail.walkedNoLocation': 'Turn on location to count',
-    'trail.walkedHowToCount': 'A walk counts when you tap here while on the trail, or when you record it with GPS.',
     'page.trail.exportGpx': 'Export GPX',
     'page.trail.copyLink': 'Copy link',
     'page.trail.messageAWalkingBuddy': 'Message a walking buddy',
@@ -1820,6 +1890,9 @@
     'page.trail.satellite': 'Satellite',
     'page.trail.elevation': 'Elevation',
     'page.trail.awaitingPosition': 'Awaiting position',
+    'page.trail.elevStart': 'start',
+    'page.trail.elevHigh': 'high point',
+    'page.trail.elevClimb': 'total climb',
     'page.trail.directionsToTheRecommendedStart': 'Directions to the recommended start →',
     'page.trail.previousPhotos': 'Previous photos',
     'page.trail.noTrailPhotosYet': 'No trail photos yet',
@@ -1839,6 +1912,7 @@
     'page.walk.waitingForGps': 'Waiting for GPS…',
     'page.walk.keepTheScreenOnWhile': 'Keep the screen on while recording, background tracking needs the page open.',
     'page.walk.startWalk': 'Start walk',
+    'page.walk.drawRoute': 'Draw a route',
     'page.walk.finishSave': 'Finish &amp; save',
     'page.walk.recordAWalk': 'Record a walk',
     'page.walk.walksAreSavedToYour': 'Walks are saved to your journal, so recording needs your account. Sign in and press start, any walk, anywhere, not just catalogued trails.',
@@ -2400,6 +2474,70 @@
     'saved.visual.photo': 'Foto in arrivo',
     'journal.title': 'Il mio diario delle passeggiate',
     'journal.titleFor': 'Il diario delle passeggiate di {name}',
+    'journal.passport.title': 'Il passaporto del tuo cane',
+    'journal.passport.titleFor': 'Il passaporto di {name}',
+    'journal.passport.private': 'Privato',
+    'journal.passport.stamps': '{n} timbri',
+    'journal.passport.stampOne': '1 timbro',
+    'journal.passport.valleysCount': '{n} valli',
+    'journal.passport.valleyOne': '1 valle',
+    'journal.passport.climbed': '{n} m di salita',
+    'journal.passport.times': '{n} volte',
+    'journal.passport.next': 'Registra una passeggiata per timbrarla',
+    'journal.passport.empty': 'Avvia l’escursione dalla pagina di un sentiero e percorrila. Quando il GPS conferma la passeggiata, il sentiero viene timbrato qui.',
+    'journal.passport.idName': 'Nome',
+    'journal.passport.idBreed': 'Razza',
+    'journal.passport.idSince': 'Primo timbro',
+    'journal.passport.visas': 'Visti delle valli',
+    'journal.passport.visasHint': 'Toccane uno per vedere i sentieri',
+    'journal.passport.entered': 'Entrata il {date}',
+    'journal.passport.leftTip': 'Ancora {n} sentieri da percorrere qui. Prima i più corti.',
+    'journal.passport.allDone': 'Tutti i sentieri di questa valle sono timbrati.',
+    'journal.passport.showRest': 'Mostra gli altri {n}',
+    'journal.passport.notYet': '(non ancora percorso)',
+    'journal.passport.stampsTitle': 'Timbri',
+    'journal.passport.share': 'Condividi',
+    'journal.passport.card.title': 'Condividi il passaporto',
+    'journal.passport.card.share': 'Condividi',
+    'journal.passport.card.helper': 'L’immagine mostra il tuo cane, le valli e i nomi dei sentieri. Non mostra mai la tua traccia GPS.',
+    'journal.passport.card.previewAlt': 'L’immagine del passaporto del cane',
+    'journal.passport.card.downloaded': 'Immagine del passaporto salvata nei download.',
+    'journal.passport.card.kicker': 'Passaporto del cane',
+    'journal.passport.card.stamp': 'timbro',
+    'journal.passport.card.stampsLabel': 'timbri',
+    'journal.passport.card.valley': 'valle',
+    'journal.passport.card.valleysLabel': 'valli',
+    'journal.passport.card.more': 'altri {n}',
+    'journal.passport.card.footer': 'Fatto per i cani che scelgono la strada panoramica · app-orma.com',
+    'journal.passport.card.yourDog': 'Il mio cane',
+    'journal.passport.card.caption': 'Il passaporto ORMA di {name}: {stamps} sentieri timbrati in {valleys} valli, {km} km a piedi 🐾 app-orma.com',
+    'journal.passport.of': '{done} su {total}',
+    'journal.passport.milestones': 'Traguardi',
+    'journal.passport.mile.first': 'Prima passeggiata',
+    'journal.passport.lakeOne': 'Un giro al lago',
+    'journal.passport.lakes': '{n} laghi',
+    'journal.passport.hutOne': 'Un giro al rifugio',
+    'journal.passport.huts': '{n} giri ai rifugi',
+    'journal.passport.mile.walks': '10 passeggiate',
+    'journal.passport.mile.km': '100 km',
+    'journal.passport.toGo': 'ne mancano {n}',
+    'journal.passport.rule': 'Solo le passeggiate registrate con il GPS ricevono un timbro: in ORMA, o con un file GPX dal tuo orologio o da un’altra app. Ripetere un sentiero si aggiunge al suo timbro.',
+    'journal.gpx.add': 'Aggiungi da un file GPX',
+    'journal.gpx.sub': 'Registrata con l’orologio, Strava o Komoot? Può ricevere un timbro sul passaporto.',
+    'journal.gpx.title': 'Passeggiata dal tuo file',
+    'journal.gpx.again': 'Scegli un altro file',
+    'journal.gpx.save': 'Salva e timbra il passaporto',
+    'journal.gpx.saveNoStamp': 'Salva senza timbro',
+    'journal.gpx.proven': 'È {trail}. Hai percorso il {pct}% del sentiero, quindi riceve un timbro sul passaporto.',
+    'journal.gpx.short': 'Sembra {trail}, ma hai percorso solo il {pct}% del sentiero. Per il timbro serve il 75%.',
+    'journal.gpx.fast': 'Segue {trail}, ma più veloce del passo a piedi, quindi non può ricevere un timbro.',
+    'journal.gpx.notOneWalk': 'Segue {trail}, ma il file copre più di un giorno, quindi non può ricevere un timbro.',
+    'journal.gpx.noTrail': 'Questa passeggiata non segue un sentiero ORMA, quindi non riceve un timbro. Puoi comunque tenerla nel diario.',
+    'journal.gpx.noTimes': 'Questo file non ha orari: è un percorso pianificato, non una passeggiata. Esporta invece l’attività registrata.',
+    'journal.gpx.future': 'Gli orari di questo file sono nel futuro. Controlla la data del dispositivo.',
+    'journal.gpx.tooShort': 'Questa registrazione è troppo breve per essere una passeggiata.',
+    'journal.gpx.notGpx': 'Non riusciamo a leggere questo file GPX. Esporta l’attività come GPX e riprova.',
+    'journal.gpx.duplicate': 'Questa passeggiata è già nel tuo diario.',
     'journal.subtitle': 'Conserva il percorso, le condizioni e i momenti da ricordare, tutto in un unico posto.',
     'journal.log': '+ Registra una passeggiata',
     'journal.walks': 'Passeggiate',
@@ -2854,7 +2992,20 @@
     'hike.statTime': 'Tempo',
     'hike.statDistance': 'Distanza',
     'hike.statPace': 'Ritmo',
-    'hike.matchFor': '{pct}% di match per {name}',
+    'hike.dockWalked': 'Percorsi',
+    'hike.dockOfRoute': 'Del percorso',
+    'hike.pausedTitle': 'In pausa',
+    'hike.pausedSummary': '{km} km · {pct}% del percorso',
+    'hike.resumeAction': 'Riprendi',
+    'hike.finishWalk': 'Termina la passeggiata',
+    'hike.finishWontCount': 'Se termini ora non conta. Una passeggiata conta dal {pct}% del percorso.',
+    'hike.suitQuestion': 'È andato bene per {name}?',
+    'hike.suitQuestionYourDog': 'È andato bene per il tuo cane?',
+    'hike.suitPrivate': 'Privato. Non diventa mai una recensione pubblica.',
+    'hike.suitYes': 'Sì',
+    'hike.suitCare': 'Con attenzione',
+    'hike.suitNo': 'No',
+    'hike.tellMore': 'Raccontaci di più',
     'hike.proofGps': 'Confermata dal GPS ✓ Questa passeggiata conta per il sentiero.',
     'hike.proofShort': 'Il GPS ha registrato il {pct}% del percorso, quindi questa passeggiata non viene contata. Conta dal 75%.',
     'hike.proofUnconfirmed': 'Il GPS non ha potuto confermare questa passeggiata, quindi non viene contata.',
@@ -2925,6 +3076,7 @@
     'recommendation.routeView.back': 'Punteggio per andata e ritorno: {km} km, circa {climb} m di salita e altrettanti di discesa. Il tempo è una stima.',
     'card.oneWay': 'Solo andata',
     'card.thereAndBack': '{km} km andata e ritorno',
+    'card.climb': '{m} m di salita',
     'trail.fact.difficulty': 'Difficoltà',
     'trail.matchCellTeaser': 'Calcolalo per il tuo cane →',
     'trail.fact.terrain': 'terreno',
@@ -3641,14 +3793,6 @@
     'page.trail.6dayOutlook': 'Previsioni a 6 giorni',
     'page.trail.view': 'Vedi',
     'page.trail.logWalk': 'Registra passeggiata',
-    'page.trail.walkedThis': "L'abbiamo fatta",
-    'trail.walkedToday': 'Fatta oggi ✓',
-    'trail.walkedRetry': 'Non salvata, riprova',
-    'trail.walkedThanks': 'Grazie, la vostra passeggiata è stata contata.',
-    'trail.walkedLocating': 'Controllo dove sei…',
-    'trail.walkedNotHere': 'Conta solo sul sentiero',
-    'trail.walkedNoLocation': 'Attiva la posizione per contare',
-    'trail.walkedHowToCount': 'Una passeggiata conta se tocchi qui mentre sei sul sentiero, o se la registri con il GPS.',
     'page.trail.exportGpx': 'Esporta GPX',
     'page.trail.copyLink': 'Copia link',
     'page.trail.messageAWalkingBuddy': 'Invia a un compagno di passeggiate',
@@ -3673,6 +3817,9 @@
     'page.trail.satellite': 'Satellite',
     'page.trail.elevation': 'Altimetria',
     'page.trail.awaitingPosition': 'In attesa della posizione',
+    'page.trail.elevStart': 'partenza',
+    'page.trail.elevHigh': 'punto più alto',
+    'page.trail.elevClimb': 'salita totale',
     'page.trail.directionsToTheRecommendedStart': 'Indicazioni per la partenza consigliata →',
     'page.trail.previousPhotos': 'Foto precedenti',
     'page.trail.noTrailPhotosYet': 'Ancora nessuna foto del sentiero',
@@ -3692,6 +3839,7 @@
     'page.walk.waitingForGps': 'In attesa del GPS…',
     'page.walk.keepTheScreenOnWhile': 'Tieni lo schermo acceso durante la registrazione: il tracciamento in background richiede la pagina aperta.',
     'page.walk.startWalk': 'Inizia la passeggiata',
+    'page.walk.drawRoute': 'Disegna un percorso',
     'page.walk.finishSave': 'Termina e salva',
     'page.walk.recordAWalk': 'Registra una passeggiata',
     'page.walk.walksAreSavedToYour': 'Le passeggiate vengono salvate nel tuo diario, quindi per registrarle serve un account. Accedi e premi avvio: qualsiasi passeggiata, ovunque, non solo i sentieri in catalogo.',
@@ -3754,9 +3902,33 @@
   }
 
   // ---- Translation functions -------------------------------------------------
+  // A number as the reader writes it: Italian has a decimal comma and a
+  // thousands dot (6,7 km; 0,5–1 h; 12.345). Takes a number, or text holding
+  // English-style numbers ("6.7", "1,655 m", "0.5–1"); English is untouched.
+  function num(value){
+    if (lang !== 'it' || value == null) return value;
+    if (typeof value === 'number') {
+      return Number.isFinite(value) ? new Intl.NumberFormat('it-IT', { maximumFractionDigits: 2 }).format(value) : String(value);
+    }
+    if (typeof value !== 'string') return value;
+    return value.replace(/\d+(?:[.,]\d+)*/g, token => {
+      if (/^\d{1,3}(?:,\d{3})+(?:\.\d+)?$/.test(token)) return token.replace(/[.,]/g, c => (c === ',' ? '.' : ','));
+      if (/^\d+\.\d+$/.test(token)) return token.replace('.', ',');
+      return token;
+    });
+  }
+
+  // Values filled into wording: a number, or text that is only a number or
+  // range ("0.5–1"), is written the reader's way. Names and words are not.
+  function fillValue(value){
+    if (typeof value === 'number') return num(value);
+    if (typeof value === 'string' && /^[\d.,\s–—+\-≈~]+$/.test(value) && /\d/.test(value)) return num(value);
+    return value;
+  }
+
   function t(key, vars){
     let s = (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key;
-    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(fillValue(vars[k]));
     return s;
   }
 
@@ -3766,7 +3938,7 @@
   function phrase(text, vars){
     const table = lang === 'it' && window.ORMA_PHRASES_IT;
     let s = (table && Object.prototype.hasOwnProperty.call(table, text) && table[text]) || text;
-    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(fillValue(vars[k]));
     return s;
   }
 
@@ -3970,7 +4142,7 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 
-  window.DoloPawsI18n = { lang, t, phrase, trField, trailText, setLang };
+  window.DoloPawsI18n = { lang, t, phrase, num, trField, trailText, setLang };
   window.t = t;
   window.trField = trField;
   window.trailText = trailText;

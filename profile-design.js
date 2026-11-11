@@ -7,6 +7,8 @@
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
   const t=(key,fallback,vars)=>{
     if(!window.t)return fallback;
     const value=window.t(key,vars);
@@ -127,7 +129,7 @@
   function updateImpact(){
     const joint=!!root.querySelector('input[value="Joint or hip issues"]:checked'),heat=!!root.querySelector('input[value="Heat sensitivity"]:checked');
     const base=fitness==='low'?5:fitness==='moderate'?10:null;
-    document.getElementById('profileDistanceCap').textContent=base==null?t('account.impact.noCap','no cap'):((joint?base*.75:base)+' km');
+    document.getElementById('profileDistanceCap').textContent=base==null?t('account.impact.noCap','no cap'):(num(joint?base*.75:base)+' km');
     const fitnessLabel=t('account.fitness.'+fitness,fitness.charAt(0).toUpperCase()+fitness.slice(1));
     document.getElementById('profileDistanceReason').textContent=joint
       ? t('account.impact.distanceJoint','{fitness} fitness{distance} × joint issues (0.75).',{fitness:fitnessLabel,distance:base?' ('+base+' km)':''})

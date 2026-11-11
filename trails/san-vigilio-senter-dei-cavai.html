@@ -43,14 +43,18 @@
   .sp-month--good{background:#BFDDB8;color:#1D4523;}
   .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
   .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--lift{background:#F1DEC4;color:#6B4416;}
   .sp-month--now{border-color:#1F2A24;}
   .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
   .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-key--lift{background:#F1DEC4;}
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
@@ -136,7 +140,7 @@
 }
 </script>
 </head>
-<body data-scoring-version="1.7.0">
+<body data-scoring-version="1.8.0">
 
 <div class="topnav">
   <a class="brand" href="/"><img src="../logo.svg?v=3" alt="ORMA logo">ORMA</a>
@@ -154,9 +158,11 @@
   <h1>San Vigilio and the Senter dei Cavai</h1>
   <p class="sp-gloss">the riverside loop from Tione</p>
   <div class="sp-badges">
-    <span class="dp-badge sp-tag sp-tag--out" data-season-out="110000000001" hidden><span>Out of season</span></span>
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="110000000001" hidden><span>Out of season · back in March</span></span>
     <span class="dp-badge sp-tag sp-tag--best"><span>Best time: March to November</span></span>
-    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
+    <span class="dp-badge sp-tag sp-tag--dog" data-season-out="001100000000" hidden><span>Caterpillar season</span></span>
+    <span class="dp-badge sp-tag sp-tag--dog" data-season-out="001111000000" hidden><span>Tick season</span></span>
+    <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Caution terrain</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verified by ORMA</span></span>
     
@@ -202,6 +208,12 @@
     <p>Recommended from March to November.</p>
     <p class="sp-src">Source: <a href="https://www.outdooractive.com/it/r/805485056" rel="noopener">Outdooractive</a>, read on 6 November 2026.</p>
     
+    
+    <h3 class="sp-season-dog">For your dog</h3>
+    <p>March to April: pine processionary caterpillars come down from the pines below about 1400 m, and they are a danger to dogs. Keep your dog away from pines and from the caterpillars.</p>
+    <p class="sp-src">Source: <a href="https://www.ufficiostampa.provincia.tn.it/content/view/pdf/167631" rel="noopener">Province of Trento, forestry service</a>, read on 9 November 2026.</p>
+    <p>March to June: ticks in the woods below about 1200 m, most of all from late May to mid-June. Check your dog after the walk.</p>
+    <p class="sp-src">Source: <a href="https://www.ufficiostampa.provincia.tn.it/content/view/pdf/186846" rel="noopener">Province of Trento and Fondazione Edmund Mach</a>, read on 9 November 2026.</p>
   </section>
   <script>
   (function(){

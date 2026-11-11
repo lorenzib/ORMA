@@ -1,5 +1,6 @@
 // fassa-antichi-bagnes in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the old baths walk in Pozza": "la passeggiata delle antiche terme a Pozza",
   "A short loop from Pozza through the wood to the Aloch sulphur spring, where the prince-bishop of Brixen ran baths from 1493, and back along the Avisio. The APT lists 3 km and 48 m of ascent.": "Un breve anello da Pozza attraverso il bosco fino alla sorgente sulfurea di Aloch, dove dal 1493 il principe-vescovo di Bressanone gestiva i bagni, e ritorno lungo l'Avisio. L'APT indica 3 km e 48 m di dislivello in salita.",
   "Start in Piaz de Comun in Pozza: 3 km, about 50 m of climbing, three quarters of an hour. Keep your dog on a short lead (1.5 m at most) on the shared cycle path and carry a muzzle. Fountains in Pozza at the start and on the way round.": "Partenza da Piaz de Comun a Pozza: 3 km, circa 50 m di salita, tre quarti d'ora. Tieni il cane con il guinzaglio corto (al massimo 1,5 m) sulla pista ciclabile condivisa e porta la museruola al seguito. Fontane a Pozza alla partenza e lungo il giro.",
   "About 1.2 km on tarmac, partly the valley cycle and foot path shared with bikes": "Circa 1,2 km su asfalto, in parte sulla ciclopedonale della valle condivisa con le bici",

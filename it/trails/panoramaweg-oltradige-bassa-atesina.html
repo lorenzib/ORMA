@@ -44,14 +44,18 @@
   .sp-month--good{background:#BFDDB8;color:#1D4523;}
   .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
   .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--lift{background:#F1DEC4;color:#6B4416;}
   .sp-month--now{border-color:#1F2A24;}
   .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
   .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-key--lift{background:#F1DEC4;}
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
@@ -138,7 +142,7 @@
 }
 </script>
 </head>
-<body data-scoring-version="1.7.0">
+<body data-scoring-version="1.8.0">
 
 <div class="topnav">
   <a class="brand" href="/"><img src="../../logo.svg?v=3" alt="Logo ORMA">ORMA</a>
@@ -154,11 +158,13 @@
 <div class="wrap sp-hero">
   <div class="sp-breadcrumb"><a href="../../browse-trails.html">Tutti i sentieri</a> › Dolomiti, Italia › Oltradige – Bassa Atesina</div>
   <h1>Panoramaweg, Oltradige – Bassa Atesina</h1>
-  <p class="sp-gloss">the panorama path</p>
+  <p class="sp-gloss">il sentiero panoramico</p>
   <div class="sp-badges">
-    <span class="dp-badge sp-tag sp-tag--out" data-season-out="110000000001" hidden><span>Fuori stagione</span></span>
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="110000000001" hidden><span>Fuori stagione · torna a marzo</span></span>
     <span class="dp-badge sp-tag sp-tag--best"><span>Periodo migliore: da marzo a novembre</span></span>
-    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
+    <span class="dp-badge sp-tag sp-tag--dog" data-season-out="001111000000" hidden><span>Stagione delle zecche</span></span>
+    <span class="dp-badge sp-tag sp-tag--dog" data-season-out="000001111000" hidden><span>Mucche al pascolo</span></span>
+    <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Terreno moderato</span></span>
     <span class="dp-badge dp-badge--imported"><span data-dp-icon="imported" data-dp-icon-size="13" aria-hidden="true"></span><span>Sentiero importato</span></span>
     
@@ -205,6 +211,12 @@
     <p>Qui la neve è possibile tra dicembre e febbraio.</p>
     <p class="sp-src">Stima basata sul punto più alto del percorso (630 m). Nessun ente turistico pubblica la stagione di questo percorso, e ogni inverno è diverso.</p>
     
+    
+    <h3 class="sp-season-dog">Per il tuo cane</h3>
+    <p>Da marzo a giugno: zecche nei boschi sotto i 1200 m circa, soprattutto da fine maggio a metà giugno. Controlla il cane dopo la camminata.</p>
+    <p class="sp-src">Fonte: <a href="https://www.ufficiostampa.provincia.tn.it/content/view/pdf/186846" rel="noopener">Provincia di Trento e Fondazione Edmund Mach</a>, consultata il 9 novembre 2026.</p>
+    <p>Da giugno a settembre (una stima): le mucche possono essere al pascolo. Tieni il cane vicino e stai alla larga dalle mandrie.</p>
+    <p class="sp-src">Fonte: <a href="https://www.suedtirol.info/de/das-ist-suedtirol/menschen/tradition/almwirtschaft-und-transhumanz" rel="noopener">IDM Alto Adige</a>, consultata il 9 novembre 2026.</p>
   </section>
   <script>
   (function(){

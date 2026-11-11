@@ -1,7 +1,7 @@
 {
   "contractVersion": "trail-seasons-v1",
-  "generatedAt": "2026-11-06T20:07:52.356Z",
-  "note": "When in the year each Dolomites walk is a walk. recommended: the months the walk's tourist board marks as its season, read off the board's page. snow: where no board publishes months, the snowy months estimated from the walk's high point (2,000 m and over: November to May; 1,600 m and over: December to April; lower: snow possible December to February). winterUse: stretches of the line mapped as a ski run, sled run or cross-country track, 0.5 km or more of a kind. Written by npm run build:trail-seasons; nothing here is a verification.",
+  "generatedAt": "2026-11-08T17:41:25.245Z",
+  "note": "When in the year each walk is a walk. recommended: the months the walk's tourist board marks as its season, read off the board's page. snow: where no board publishes months, the snowy months estimated from the walk's high point (2,000 m and over: November to May; 1,600 m and over: December to April; lower: snow possible December to February). highPoint: the walk's highest point in metres. winterUse: stretches of the line mapped as a ski run, sled run or cross-country track, 0.5 km or more of a kind. Written by npm run build:trail-seasons; nothing here is a verification.",
   "sources": {
     "winterUse": {
       "label": "Read off the map (OpenStreetMap)",
@@ -11,6 +11,7 @@
   },
   "trails": {
     "ahrntal-escursione-rifugio-ponte-di-ghiaccio": {
+      "highPoint": 2549,
       "recommended": {
         "months": [
           6,
@@ -27,6 +28,7 @@
       }
     },
     "ahrntal-sentiero-del-conte-cadipietra": {
+      "highPoint": 1082,
       "recommended": {
         "months": [
           4,
@@ -45,6 +47,7 @@
       }
     },
     "ahrntal-sentiero-panoramico-cadipietra": {
+      "highPoint": 1134,
       "recommended": {
         "months": [
           4,
@@ -63,6 +66,7 @@
       }
     },
     "alpe-siusi": {
+      "highPoint": 1950,
       "snow": {
         "months": [
           1,
@@ -76,6 +80,7 @@
       }
     },
     "altabadia-colfosco-rifugio-puez": {
+      "highPoint": 2485,
       "recommended": {
         "months": [
           6,
@@ -102,6 +107,7 @@
       ]
     },
     "altabadia-da-furnacia-a-la-crusc": {
+      "highPoint": 2038,
       "recommended": {
         "months": [
           5,
@@ -126,6 +132,7 @@
       ]
     },
     "altabadia-da-la-val-ai-prati-di-rit": {
+      "highPoint": 2022,
       "recommended": {
         "months": [
           5,
@@ -153,6 +160,7 @@
       ]
     },
     "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa": {
+      "highPoint": 1559,
       "recommended": {
         "months": [
           4,
@@ -171,6 +179,7 @@
       }
     },
     "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": {
+      "highPoint": 2093,
       "recommended": {
         "months": [
           6,
@@ -197,6 +206,7 @@
       ]
     },
     "altabadia-escursione-corvara-colfosco": {
+      "highPoint": 1645,
       "recommended": {
         "months": [
           5,
@@ -215,6 +225,7 @@
       }
     },
     "altabadia-escursione-corvara-la-villa": {
+      "highPoint": 1536,
       "recommended": {
         "months": [
           6,
@@ -238,6 +249,7 @@
       ]
     },
     "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": {
+      "highPoint": 1478,
       "recommended": {
         "months": [
           5,
@@ -257,6 +269,7 @@
       }
     },
     "altabadia-passeggiata-borest-cascate-del-pisciadu": {
+      "highPoint": 1724,
       "recommended": {
         "months": [
           6,
@@ -273,6 +286,7 @@
       }
     },
     "altabadia-sentiero-degli-artisti-tru-di-artisc": {
+      "highPoint": 1626,
       "recommended": {
         "months": [
           5,
@@ -289,7 +303,106 @@
         }
       }
     },
+    "aosta-champoluc-cascata-mascognaz": {
+      "highPoint": 1814,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1814
+      }
+    },
+    "aosta-periasc-antagnod": {
+      "highPoint": 1699,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1699
+      }
+    },
+    "aosta-ru-courtaud": {
+      "highPoint": 2008,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2008
+      }
+    },
+    "aosta-sentiero-della-regina": {
+      "highPoint": 1472,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1472
+      }
+    },
+    "aosta-strada-lombarda": {
+      "highPoint": 1438,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1438
+      }
+    },
+    "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": {
+      "highPoint": 1901,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1901
+      }
+    },
+    "bormio-da-arnoga-al-rifugio-federico": {
+      "highPoint": 2131,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2131
+      }
+    },
     "brixen-alto-sentiero-di-lazfons": {
+      "highPoint": 2122,
       "recommended": {
         "months": [
           5,
@@ -307,6 +420,7 @@
       }
     },
     "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": {
+      "highPoint": 1384,
       "recommended": {
         "months": [
           1,
@@ -330,6 +444,7 @@
       }
     },
     "brixen-escursione-al-rifugio-bressanone": {
+      "highPoint": 2274,
       "recommended": {
         "months": [
           6,
@@ -346,6 +461,7 @@
       }
     },
     "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": {
+      "highPoint": 1852,
       "recommended": {
         "months": [
           4,
@@ -365,6 +481,7 @@
       }
     },
     "cadini": {
+      "highPoint": 2600,
       "snow": {
         "months": [
           1,
@@ -380,6 +497,7 @@
       }
     },
     "campiglio-carisolo-centro-storico": {
+      "highPoint": 870,
       "recommended": {
         "months": [
           3,
@@ -400,6 +518,7 @@
       }
     },
     "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio": {
+      "highPoint": 1737,
       "recommended": {
         "months": [
           6,
@@ -415,6 +534,7 @@
       }
     },
     "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa": {
+      "highPoint": 2148,
       "recommended": {
         "months": [
           5,
@@ -431,6 +551,7 @@
       }
     },
     "campiglio-lago-ritorto-nel-blu-dipinto-di-blu": {
+      "highPoint": 2060,
       "recommended": {
         "months": [
           4,
@@ -449,6 +570,7 @@
       }
     },
     "campiglio-madonna-di-campiglio-monte-spinale": {
+      "highPoint": 2085,
       "recommended": {
         "months": [
           7,
@@ -462,6 +584,7 @@
       }
     },
     "campiglio-monte-spinale-rifugio-graffer": {
+      "highPoint": 2226,
       "recommended": {
         "months": [
           6,
@@ -487,6 +610,7 @@
       ]
     },
     "campiglio-trekking-al-lago-di-nambino": {
+      "highPoint": 1768,
       "recommended": {
         "months": [
           6,
@@ -502,6 +626,7 @@
       }
     },
     "campiglio-trekking-al-rifugio-segantini": {
+      "highPoint": 2371,
       "recommended": {
         "months": [
           6,
@@ -518,6 +643,7 @@
       }
     },
     "campiglio-valina-d-amola-rifugio-segantini-cornisello": {
+      "highPoint": 2435,
       "recommended": {
         "months": [
           6,
@@ -533,6 +659,7 @@
       }
     },
     "cembra-castello-segonzano": {
+      "highPoint": 665,
       "recommended": {
         "months": [
           1,
@@ -556,6 +683,7 @@
       }
     },
     "cembra-dos-paion": {
+      "highPoint": 1009,
       "recommended": {
         "months": [
           1,
@@ -579,6 +707,7 @@
       }
     },
     "cembra-erbe-della-salute": {
+      "highPoint": 1055,
       "recommended": {
         "months": [
           4,
@@ -598,6 +727,7 @@
       }
     },
     "cembra-giro-masi-grumes": {
+      "highPoint": 1114,
       "recommended": {
         "months": [
           1,
@@ -621,6 +751,7 @@
       }
     },
     "cembra-giro-monte-corona": {
+      "highPoint": 1028,
       "recommended": {
         "months": [
           3,
@@ -641,6 +772,7 @@
       }
     },
     "cembra-lago-lases-buse-giaz": {
+      "highPoint": 777,
       "recommended": {
         "months": [
           1,
@@ -664,6 +796,7 @@
       }
     },
     "cembra-lago-santo": {
+      "highPoint": 1222,
       "recommended": {
         "months": [
           3,
@@ -685,6 +818,7 @@
       }
     },
     "cembra-monte-pat-malga-vernera": {
+      "highPoint": 1665,
       "recommended": {
         "months": [
           5,
@@ -701,6 +835,7 @@
       }
     },
     "cembra-paese-beghei": {
+      "highPoint": 867,
       "recommended": {
         "months": [
           3,
@@ -722,6 +857,7 @@
       }
     },
     "cembra-pascoli-malga-vernera": {
+      "highPoint": 1859,
       "recommended": {
         "months": [
           4,
@@ -740,6 +876,7 @@
       }
     },
     "cembra-pietra-del-futuro": {
+      "highPoint": 674,
       "recommended": {
         "months": [
           3,
@@ -761,6 +898,7 @@
       }
     },
     "cembra-piz-de-le-agole": {
+      "highPoint": 1076,
       "snow": {
         "months": [
           1,
@@ -772,6 +910,7 @@
       }
     },
     "cembra-rifugio-potzmauer": {
+      "highPoint": 1376,
       "recommended": {
         "months": [
           4,
@@ -791,6 +930,7 @@
       }
     },
     "cembra-san-leonardo-lisignago": {
+      "highPoint": 577,
       "recommended": {
         "months": [
           3,
@@ -811,6 +951,7 @@
       }
     },
     "cembra-vecchi-mestieri-grumes": {
+      "highPoint": 1034,
       "recommended": {
         "months": [
           3,
@@ -829,7 +970,24 @@
         }
       }
     },
+    "cinque-torri-assisted": {
+      "highPoint": 2248,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2248
+      }
+    },
     "cortina-castello-di-botestagno": {
+      "highPoint": 1488,
       "recommended": {
         "months": [
           1,
@@ -853,6 +1011,7 @@
       }
     },
     "cortina-malga-ra-stua": {
+      "highPoint": 1696,
       "recommended": {
         "months": [
           5,
@@ -870,6 +1029,7 @@
       }
     },
     "cortina-mortisa-e-le-grotte-di-volpera": {
+      "highPoint": 1307,
       "recommended": {
         "months": [
           5,
@@ -887,6 +1047,7 @@
       }
     },
     "cortina-passeggiata-gourmet": {
+      "highPoint": 1697,
       "recommended": {
         "months": [
           5,
@@ -914,6 +1075,7 @@
       ]
     },
     "cortina-sotecordes": {
+      "highPoint": 2404,
       "snow": {
         "months": [
           1,
@@ -929,6 +1091,7 @@
       }
     },
     "eggental-dal-passo-costalunga-al-lago-di-carezza": {
+      "highPoint": 1762,
       "recommended": {
         "months": [
           5,
@@ -946,6 +1109,7 @@
       }
     },
     "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": {
+      "highPoint": 1571,
       "recommended": {
         "months": [
           1,
@@ -969,6 +1133,7 @@
       }
     },
     "eggental-frommer-ochsenhuette": {
+      "highPoint": 1830,
       "recommended": {
         "months": [
           4,
@@ -988,6 +1153,7 @@
       }
     },
     "eggental-jolanda-baita-messnerjoch": {
+      "highPoint": 1897,
       "recommended": {
         "months": [
           5,
@@ -1005,6 +1171,7 @@
       }
     },
     "eggental-kaiserstein-baita-masare": {
+      "highPoint": 1922,
       "recommended": {
         "months": [
           6,
@@ -1021,6 +1188,7 @@
       }
     },
     "eggental-passo-nigra-baita-messnerjoch": {
+      "highPoint": 1892,
       "recommended": {
         "months": [
           4,
@@ -1040,6 +1208,7 @@
       }
     },
     "eggental-passo-nigra-malga-hagner": {
+      "highPoint": 1710,
       "recommended": {
         "months": [
           5,
@@ -1057,6 +1226,7 @@
       }
     },
     "eggental-pietralba-petersberger-leger": {
+      "highPoint": 1523,
       "recommended": {
         "months": [
           4,
@@ -1074,7 +1244,263 @@
         }
       }
     },
+    "engadin-around-lake-st-moritz": {
+      "highPoint": 1802,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/40793603",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "engadin-chapella-val-susauna": {
+      "highPoint": 1872,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/56676943",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "engadin-corvatsch-hahnensee-st-moritz": {
+      "highPoint": 2695,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/23436434",
+          "accessedAt": "2026-11-07"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.8,
+          "names": []
+        }
+      ]
+    },
+    "engadin-corvatsch-murtel-fuorcla-surlej": {
+      "highPoint": 2737,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/59235211",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "engadin-diavolezza-sass-queder": {
+      "highPoint": 3033,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/23436083",
+          "accessedAt": "2026-11-07"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.1,
+          "names": [
+            "Firn"
+          ]
+        }
+      ]
+    },
+    "engadin-eulalia-and-gian-plaiv": {
+      "highPoint": 1926,
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/812019339",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": {
+      "highPoint": 2691,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/59235526",
+          "accessedAt": "2026-11-07"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.8,
+          "names": [
+            "Chastelets",
+            "Surlej",
+            "Chastelets unten"
+          ]
+        }
+      ]
+    },
+    "engadin-morteratsch-glacier-route": {
+      "highPoint": 2030,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/23436574",
+          "accessedAt": "2026-11-07"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 2.9,
+          "names": [
+            "Via Morteratsch"
+          ]
+        }
+      ]
+    },
+    "engadin-nature-trail-la-senda-samedan-smartrail": {
+      "highPoint": 1983,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/23436569",
+          "accessedAt": "2026-11-07"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.8,
+          "names": [
+            "Talabfahrt Christolais-Samedan",
+            "Survih Ost"
+          ]
+        }
+      ]
+    },
+    "engadin-sils-chaste-peninsula-sils": {
+      "highPoint": 1829,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/37804893",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "engadin-surlej-waterfall-lake-silvaplana-surlej": {
+      "highPoint": 1922,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/56233674",
+          "accessedAt": "2026-11-07"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 1.5,
+          "names": [
+            "Via da las Palüds",
+            "Via dal Crap Alv"
+          ]
+        }
+      ]
+    },
     "fassa-alpe-di-fuciade": {
+      "highPoint": 1984,
       "recommended": {
         "months": [
           4,
@@ -1094,6 +1520,7 @@
       }
     },
     "fassa-antichi-bagnes": {
+      "highPoint": 1328,
       "recommended": {
         "months": [
           5,
@@ -1111,6 +1538,7 @@
       }
     },
     "fassa-borgo-dei-patins": {
+      "highPoint": 1425,
       "recommended": {
         "months": [
           5,
@@ -1128,6 +1556,7 @@
       }
     },
     "fassa-borgo-di-tamion": {
+      "highPoint": 1540,
       "recommended": {
         "months": [
           1,
@@ -1145,6 +1574,7 @@
       }
     },
     "fassa-cammino-dei-pitores": {
+      "highPoint": 1637,
       "recommended": {
         "months": [
           5,
@@ -1162,6 +1592,7 @@
       }
     },
     "fassa-ciajeole-malga-roncac": {
+      "highPoint": 1324,
       "recommended": {
         "months": [
           1,
@@ -1185,6 +1616,7 @@
       }
     },
     "fassa-da-alba-a-penia": {
+      "highPoint": 1559,
       "recommended": {
         "months": [
           1,
@@ -1203,17 +1635,25 @@
       }
     },
     "fassa-da-canazei-a-penia": {
-      "snow": {
+      "highPoint": 1490,
+      "recommended": {
         "months": [
-          1,
-          2,
-          12
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
-        "likelihood": "possible",
-        "highPoint": 1491
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/38079215",
+          "accessedAt": "2026-11-07"
+        }
       }
     },
     "fassa-dipinti-del-giotto": {
+      "highPoint": 1486,
       "recommended": {
         "months": [
           4,
@@ -1232,6 +1672,7 @@
       }
     },
     "fassa-malga-aloch": {
+      "highPoint": 1378,
       "recommended": {
         "months": [
           4,
@@ -1250,6 +1691,7 @@
       }
     },
     "fassa-moena-soraga-acqua": {
+      "highPoint": 1271,
       "recommended": {
         "months": [
           1,
@@ -1267,6 +1709,7 @@
       }
     },
     "fassa-moena-soraga-someda": {
+      "highPoint": 1269,
       "recommended": {
         "months": [
           1,
@@ -1284,6 +1727,7 @@
       }
     },
     "fassa-molin-de-pezol": {
+      "highPoint": 1328,
       "recommended": {
         "months": [
           4,
@@ -1302,6 +1746,7 @@
       }
     },
     "fassa-passato-ritrovato": {
+      "highPoint": 1516,
       "recommended": {
         "months": [
           5,
@@ -1319,6 +1764,7 @@
       }
     },
     "fassa-pastori-erranti": {
+      "highPoint": 1540,
       "recommended": {
         "months": [
           4,
@@ -1337,6 +1783,7 @@
       }
     },
     "fassa-prato-di-sorte": {
+      "highPoint": 1207,
       "recommended": {
         "months": [
           4,
@@ -1356,6 +1803,7 @@
       }
     },
     "fassa-santuario-dei-pellegrini": {
+      "highPoint": 1547,
       "recommended": {
         "months": [
           4,
@@ -1374,6 +1822,7 @@
       }
     },
     "fassa-segreti-di-una-volta": {
+      "highPoint": 1453,
       "recommended": {
         "months": [
           4,
@@ -1392,6 +1841,7 @@
       }
     },
     "fassa-sentiero-della-foresta": {
+      "highPoint": 1985,
       "recommended": {
         "months": [
           6,
@@ -1408,6 +1858,7 @@
       }
     },
     "fassa-val-freida": {
+      "highPoint": 1876,
       "recommended": {
         "months": [
           1,
@@ -1425,6 +1876,7 @@
       }
     },
     "fiemme-cascatelle-di-ziano": {
+      "highPoint": 1046,
       "recommended": {
         "months": [
           1,
@@ -1448,6 +1900,7 @@
       }
     },
     "fiemme-cavalese-passeggiata-panoramica": {
+      "highPoint": 997,
       "recommended": {
         "months": [
           1,
@@ -1471,6 +1924,7 @@
       }
     },
     "fiemme-giro-cavalese-castello": {
+      "highPoint": 1024,
       "recommended": {
         "months": [
           4,
@@ -1489,6 +1943,7 @@
       }
     },
     "fiemme-larici-verso-anterivo": {
+      "highPoint": 1249,
       "recommended": {
         "months": [
           3,
@@ -1509,6 +1964,7 @@
       }
     },
     "fiemme-masi-comunicanti": {
+      "highPoint": 1019,
       "recommended": {
         "months": [
           3,
@@ -1528,6 +1984,7 @@
       }
     },
     "fiemme-passeggiata-insolita": {
+      "highPoint": 1036,
       "recommended": {
         "months": [
           3,
@@ -1547,6 +2004,7 @@
       }
     },
     "fiemme-passo-oclini": {
+      "highPoint": 2023,
       "recommended": {
         "months": [
           6,
@@ -1563,6 +2021,7 @@
       }
     },
     "fiemme-pradi-da-le-fior": {
+      "highPoint": 1999,
       "recommended": {
         "months": [
           5,
@@ -1580,6 +2039,7 @@
       }
     },
     "fiemme-scalata-alle-malghette": {
+      "highPoint": 1583,
       "recommended": {
         "months": [
           5,
@@ -1597,6 +2057,7 @@
       }
     },
     "fiemme-sentiero-botanico": {
+      "highPoint": 1308,
       "recommended": {
         "months": [
           1,
@@ -1620,6 +2081,7 @@
       }
     },
     "fiemme-varena-spianez": {
+      "highPoint": 1200,
       "recommended": {
         "months": [
           3,
@@ -1639,7 +2101,344 @@
         }
       }
     },
+    "fvg-anello-casera-vas-monte-buoi": {
+      "highPoint": 1724,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1724
+      }
+    },
+    "fvg-anello-lago-di-verzegnis": {
+      "highPoint": 502,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/route/escursione/verzegnis/anello-del-lago-di-verzegnis/808413751/",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "fvg-anello-malga-confin-ungarina": {
+      "highPoint": 1665,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1665
+      }
+    },
+    "fvg-borgo-stavoli-moggio": {
+      "highPoint": 570,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/route/escursione/friuli-venezia-giulia/il-borgo-isolato-di-stavoli-di-moggio/810696096/",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "fvg-col-dei-piais": {
+      "highPoint": 834,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 834
+      }
+    },
+    "fvg-faggi-secolari-pustot-dordolla": {
+      "highPoint": 938,
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/route/escursione/moggio-udinese/i-faggi-secolari-di-pustot-a-dordolla/811755887/",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "fvg-fontanon-di-goriuda": {
+      "highPoint": 710,
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/fontanon-di-goriuda/805382080/",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "fvg-laghi-di-fusine": {
+      "highPoint": 974,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/laghi-di-fusine/801482658/",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "fvg-lago-di-sella-sompdogna": {
+      "highPoint": 1481,
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/route/escursione/tarvisio/il-laghetto-di-sella-sompdogna/806020923/",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "fvg-mirabila-sentiero-botanico-bila-pec": {
+      "highPoint": 2007,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2007
+      }
+    },
+    "fvg-monte-rest-da-passo-rest": {
+      "highPoint": 1709,
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/route/escursione/tramonti-di-sopra/dal-passo-rest-al-monte-rest-itinerario-panoramico/805023851/",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "fvg-monte-talm-da-piani-di-vas": {
+      "highPoint": 1695,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1695
+      }
+    },
+    "fvg-raunis-cascate-belepeit": {
+      "highPoint": 716,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 716
+      }
+    },
+    "fvg-salita-casera-canin": {
+      "highPoint": 1455,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1455
+      }
+    },
+    "fvg-sappada-rifugio-calvi": {
+      "highPoint": 2147,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/route/escursione/sappada/24-rifugio-calvi-sappada/13988147/",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "fvg-ta-lipa-pot-corto": {
+      "highPoint": 599,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 599
+      }
+    },
+    "fvg-venzone-anello-delle-chiesette": {
+      "highPoint": 316,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 316
+      }
+    },
+    "gailtal-almkaese-sonnenalpe": {
+      "highPoint": 1713,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1713
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.9,
+          "names": [
+            "Dreierliftabfahrt",
+            "Tröglabfahrt",
+            "Millennium-Abfahrt"
+          ]
+        }
+      ]
+    },
+    "gailtal-auernig-hoehenweg": {
+      "highPoint": 1910,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1910
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.7,
+          "names": [
+            "Watschiger-Alm-Abfahrt",
+            "Familien-Abfahrt"
+          ]
+        }
+      ]
+    },
     "geotrail-bulla": {
+      "highPoint": 1599,
       "snow": {
         "months": [
           1,
@@ -1660,6 +2459,7 @@
       ]
     },
     "giro-del-bulacia": {
+      "highPoint": 2139,
       "snow": {
         "months": [
           1,
@@ -1675,6 +2475,7 @@
       }
     },
     "giro-del-sasso-lungo": {
+      "highPoint": 2326,
       "snow": {
         "months": [
           1,
@@ -1701,6 +2502,7 @@
       ]
     },
     "giudicarie-san-martino-bosco-scolpito": {
+      "highPoint": 718,
       "recommended": {
         "months": [
           1,
@@ -1724,6 +2526,7 @@
       }
     },
     "giudicarie-san-vigilio-senter-dei-cavai": {
+      "highPoint": 585,
       "recommended": {
         "months": [
           3,
@@ -1744,6 +2547,7 @@
       }
     },
     "giudicarie-senter-dei-popi-madonna-del-lares": {
+      "highPoint": 855,
       "recommended": {
         "months": [
           4,
@@ -1762,6 +2566,7 @@
       }
     },
     "giudicarie-tione-bolbeno-madonna-del-lares": {
+      "highPoint": 790,
       "recommended": {
         "months": [
           3,
@@ -1780,7 +2585,110 @@
         }
       }
     },
+    "isere-boucle-du-couzon": {
+      "highPoint": 1137,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1137
+      }
+    },
+    "isere-circuit-pedestre-alpage-des-cloutons": {
+      "highPoint": 2013,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2013
+      }
+    },
+    "isere-de-st-pierre-dentremont-a-corbel": {
+      "highPoint": 962,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 962
+      }
+    },
+    "isere-la-vallee-de-la-gresse": {
+      "highPoint": 752,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 752
+      }
+    },
+    "isere-le-canal-de-clelles": {
+      "highPoint": 892,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 892
+      }
+    },
+    "isere-le-fort-du-murier": {
+      "highPoint": 577,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 577
+      }
+    },
+    "isere-le-plateau-de-la-moliere": {
+      "highPoint": 1703,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1703
+      }
+    },
+    "isere-tour-de-chichilianne": {
+      "highPoint": 1042,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1042
+      }
+    },
     "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": {
+      "highPoint": 1052,
       "recommended": {
         "months": [
           1,
@@ -1804,6 +2712,7 @@
       }
     },
     "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina": {
+      "highPoint": 1610,
       "recommended": {
         "months": [
           3,
@@ -1823,6 +2732,7 @@
       }
     },
     "kronplatz-passeggiata-leggendaria-sul-kienberg": {
+      "highPoint": 1089,
       "recommended": {
         "months": [
           1,
@@ -1846,6 +2756,7 @@
       }
     },
     "kronplatz-passeggiata-san-vigilio-le-dla-creda": {
+      "highPoint": 1286,
       "recommended": {
         "months": [
           5,
@@ -1863,6 +2774,7 @@
       }
     },
     "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe": {
+      "highPoint": 1327,
       "recommended": {
         "months": [
           1,
@@ -1886,6 +2798,7 @@
       }
     },
     "kronplatz-passeggiata-valdaora-monguelfo": {
+      "highPoint": 1092,
       "recommended": {
         "months": [
           5,
@@ -1903,6 +2816,7 @@
       }
     },
     "kronplatz-san-lorenzo-maria-sares": {
+      "highPoint": 964,
       "recommended": {
         "months": [
           4,
@@ -1921,6 +2835,7 @@
       }
     },
     "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": {
+      "highPoint": 953,
       "recommended": {
         "months": [
           3,
@@ -1940,6 +2855,7 @@
       }
     },
     "kronplatz-sentiero-tematico-tru-dles-liondes": {
+      "highPoint": 1245,
       "snow": {
         "months": [
           1,
@@ -1951,6 +2867,7 @@
       }
     },
     "kronplatz-valdaora-di-sopra-goste": {
+      "highPoint": 1101,
       "recommended": {
         "months": [
           1,
@@ -1974,6 +2891,7 @@
       }
     },
     "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": {
+      "highPoint": 1322,
       "recommended": {
         "months": [
           1,
@@ -1997,6 +2915,7 @@
       }
     },
     "lago-braies": {
+      "highPoint": 1500,
       "recommended": {
         "months": [
           5,
@@ -2014,6 +2933,7 @@
       }
     },
     "lago-carezza": {
+      "highPoint": 1554,
       "recommended": {
         "months": [
           1,
@@ -2037,6 +2957,7 @@
       }
     },
     "lago-sorapis": {
+      "highPoint": 1935,
       "snow": {
         "months": [
           1,
@@ -2049,7 +2970,154 @@
         "highPoint": 1935
       }
     },
+    "lario-alla-ricerca-di-un-panorama-unico": {
+      "highPoint": 1049,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1049
+      }
+    },
+    "lario-anello-ai-piedi-del-monte-oriolo": {
+      "highPoint": 878,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 878
+      }
+    },
+    "lario-brunate-e-le-sue-chiese": {
+      "highPoint": 940,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 940
+      }
+    },
+    "lario-caslino-sullacqua": {
+      "highPoint": 523,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 523
+      }
+    },
+    "lario-dal-passo-del-giovo-al-rifugio-sommafiume": {
+      "highPoint": 1834,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1834
+      }
+    },
+    "lario-eupilio-tra-segrino-e-cornizzolo": {
+      "highPoint": 643,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 643
+      }
+    },
+    "lario-il-sentiero-del-viandante": {
+      "highPoint": 405,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 405
+      }
+    },
+    "lario-nel-cuore-del-triangolo-lariano": {
+      "highPoint": 892,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 892
+      }
+    },
+    "lario-pognana-lario-e-le-sculture-simposio": {
+      "highPoint": 336,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 336
+      }
+    },
+    "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": {
+      "highPoint": 657,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 657
+      }
+    },
+    "lesachtal-spazierweg-maria-luggau-gailweg": {
+      "highPoint": 1180,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1180
+      }
+    },
+    "lesachtal-tuffbad": {
+      "highPoint": 1409,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1409
+      }
+    },
     "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
+      "highPoint": 1561,
       "recommended": {
         "months": [
           4,
@@ -2068,6 +3136,7 @@
       }
     },
     "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": {
+      "highPoint": 1467,
       "recommended": {
         "months": [
           5,
@@ -2085,6 +3154,7 @@
       }
     },
     "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": {
+      "highPoint": 683,
       "recommended": {
         "months": [
           1,
@@ -2108,6 +3178,7 @@
       }
     },
     "meran-escursione-alla-forst": {
+      "highPoint": 588,
       "recommended": {
         "months": [
           1,
@@ -2131,6 +3202,7 @@
       }
     },
     "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": {
+      "highPoint": 1884,
       "recommended": {
         "months": [
           5,
@@ -2158,6 +3230,7 @@
       ]
     },
     "meran-escursione-sentiero-del-sole-a-stulles": {
+      "highPoint": 1588,
       "recommended": {
         "months": [
           1,
@@ -2181,6 +3254,7 @@
       }
     },
     "meran-facile-escursione-da-verano-ad-avelengo": {
+      "highPoint": 1458,
       "recommended": {
         "months": [
           1,
@@ -2204,6 +3278,7 @@
       }
     },
     "meran-giro-dei-masi-sul-monte-sole": {
+      "highPoint": 1517,
       "recommended": {
         "months": [
           1,
@@ -2227,6 +3302,7 @@
       }
     },
     "meran-giro-delle-malghe-monte-tramontana": {
+      "highPoint": 1859,
       "recommended": {
         "months": [
           5,
@@ -2244,6 +3320,7 @@
       }
     },
     "meran-itinerario-raststeinweg": {
+      "highPoint": 896,
       "recommended": {
         "months": [
           1,
@@ -2267,6 +3344,7 @@
       }
     },
     "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": {
+      "highPoint": 2107,
       "recommended": {
         "months": [
           5,
@@ -2284,6 +3362,7 @@
       }
     },
     "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": {
+      "highPoint": 1786,
       "recommended": {
         "months": [
           1,
@@ -2307,6 +3386,7 @@
       }
     },
     "meran-sentiero-della-roggia-brandis-a-lana": {
+      "highPoint": 391,
       "recommended": {
         "months": [
           1,
@@ -2330,6 +3410,7 @@
       }
     },
     "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell": {
+      "highPoint": 1622,
       "recommended": {
         "months": [
           3,
@@ -2349,6 +3430,7 @@
       }
     },
     "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": {
+      "highPoint": 1629,
       "recommended": {
         "months": [
           3,
@@ -2369,6 +3451,7 @@
       }
     },
     "nuvolau": {
+      "highPoint": 2524,
       "snow": {
         "months": [
           1,
@@ -2383,7 +3466,43 @@
         "highPoint": 2524
       }
     },
+    "osm-10116283": {
+      "highPoint": 1457,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1457
+      }
+    },
+    "osm-10116380": {
+      "highPoint": 1457,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1457
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 1,
+          "names": [
+            "Les Frêtes",
+            "Les Rennes",
+            "Liaison Frêtes / Les Rennes"
+          ]
+        }
+      ]
+    },
     "osm-10220399": {
+      "highPoint": 1455,
       "snow": {
         "months": [
           1,
@@ -2394,7 +3513,8 @@
         "highPoint": 1455
       }
     },
-    "osm-1116675": {
+    "osm-10539302": {
+      "highPoint": 1649,
       "snow": {
         "months": [
           1,
@@ -2404,7 +3524,21 @@
           12
         ],
         "likelihood": "likely",
-        "highPoint": 1975
+        "highPoint": 1649
+      }
+    },
+    "osm-1116675": {
+      "highPoint": 1969,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1969
       },
       "winterUse": [
         {
@@ -2419,6 +3553,7 @@
       ]
     },
     "osm-1116680": {
+      "highPoint": 1450,
       "snow": {
         "months": [
           1,
@@ -2441,6 +3576,7 @@
       ]
     },
     "osm-11270309": {
+      "highPoint": 288,
       "snow": {
         "months": [
           1,
@@ -2451,7 +3587,33 @@
         "highPoint": 288
       }
     },
+    "osm-11517208": {
+      "highPoint": 1747,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1747
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 3.2,
+          "names": [
+            "Roitelets",
+            "La Croix",
+            "Dames"
+          ]
+        }
+      ]
+    },
     "osm-11764094": {
+      "highPoint": 901,
       "snow": {
         "months": [
           1,
@@ -2463,6 +3625,7 @@
       }
     },
     "osm-11768853": {
+      "highPoint": 1041,
       "snow": {
         "months": [
           1,
@@ -2474,6 +3637,7 @@
       }
     },
     "osm-11774783": {
+      "highPoint": 735,
       "snow": {
         "months": [
           1,
@@ -2485,6 +3649,7 @@
       }
     },
     "osm-11775760": {
+      "highPoint": 806,
       "snow": {
         "months": [
           1,
@@ -2496,6 +3661,7 @@
       }
     },
     "osm-11775923": {
+      "highPoint": 709,
       "snow": {
         "months": [
           1,
@@ -2507,6 +3673,7 @@
       }
     },
     "osm-11780502": {
+      "highPoint": 1758,
       "recommended": {
         "months": [
           1,
@@ -2530,6 +3697,7 @@
       }
     },
     "osm-11790553": {
+      "highPoint": 820,
       "snow": {
         "months": [
           1,
@@ -2541,6 +3709,7 @@
       }
     },
     "osm-11791915": {
+      "highPoint": 832,
       "snow": {
         "months": [
           1,
@@ -2552,6 +3721,7 @@
       }
     },
     "osm-11792795": {
+      "highPoint": 889,
       "snow": {
         "months": [
           1,
@@ -2563,6 +3733,7 @@
       }
     },
     "osm-11795103": {
+      "highPoint": 1301,
       "snow": {
         "months": [
           1,
@@ -2574,6 +3745,7 @@
       }
     },
     "osm-11795251": {
+      "highPoint": 816,
       "snow": {
         "months": [
           1,
@@ -2585,6 +3757,7 @@
       }
     },
     "osm-11814834": {
+      "highPoint": 1599,
       "snow": {
         "months": [
           1,
@@ -2605,6 +3778,7 @@
       ]
     },
     "osm-11814895": {
+      "highPoint": 1101,
       "snow": {
         "months": [
           1,
@@ -2616,6 +3790,7 @@
       }
     },
     "osm-11815025": {
+      "highPoint": 1087,
       "recommended": {
         "months": [
           4,
@@ -2634,6 +3809,7 @@
       }
     },
     "osm-11816373": {
+      "highPoint": 997,
       "snow": {
         "months": [
           1,
@@ -2645,6 +3821,7 @@
       }
     },
     "osm-11828233": {
+      "highPoint": 1450,
       "snow": {
         "months": [
           1,
@@ -2656,6 +3833,7 @@
       }
     },
     "osm-11832013": {
+      "highPoint": 1590,
       "snow": {
         "months": [
           1,
@@ -2667,6 +3845,7 @@
       }
     },
     "osm-11833313": {
+      "highPoint": 845,
       "snow": {
         "months": [
           1,
@@ -2678,6 +3857,7 @@
       }
     },
     "osm-11839597": {
+      "highPoint": 1215,
       "snow": {
         "months": [
           1,
@@ -2689,6 +3869,7 @@
       }
     },
     "osm-11855879": {
+      "highPoint": 2096,
       "snow": {
         "months": [
           1,
@@ -2700,10 +3881,11 @@
           12
         ],
         "likelihood": "likely",
-        "highPoint": 2100
+        "highPoint": 2096
       }
     },
     "osm-11860429": {
+      "highPoint": 1611,
       "recommended": {
         "months": [
           5,
@@ -2721,6 +3903,7 @@
       }
     },
     "osm-11891581": {
+      "highPoint": 1254,
       "snow": {
         "months": [
           1,
@@ -2732,6 +3915,7 @@
       }
     },
     "osm-12018939": {
+      "highPoint": 1335,
       "snow": {
         "months": [
           1,
@@ -2743,6 +3927,7 @@
       }
     },
     "osm-12025052": {
+      "highPoint": 2039,
       "snow": {
         "months": [
           1,
@@ -2758,6 +3943,7 @@
       }
     },
     "osm-12027153": {
+      "highPoint": 1747,
       "snow": {
         "months": [
           1,
@@ -2771,6 +3957,7 @@
       }
     },
     "osm-12044077": {
+      "highPoint": 1267,
       "snow": {
         "months": [
           1,
@@ -2782,6 +3969,7 @@
       }
     },
     "osm-12047303": {
+      "highPoint": 1215,
       "snow": {
         "months": [
           1,
@@ -2792,22 +3980,88 @@
         "highPoint": 1215
       }
     },
-    "osm-12132169": {
+    "osm-12118490": {
+      "highPoint": 1020,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1020
+      }
+    },
+    "osm-12121346": {
+      "highPoint": 1269,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1269
+      }
+    },
+    "osm-12121548": {
+      "highPoint": 1788,
       "snow": {
         "months": [
           1,
           2,
           3,
           4,
-          5,
-          11,
           12
         ],
         "likelihood": "likely",
-        "highPoint": 2540
+        "highPoint": 1788
+      }
+    },
+    "osm-12121798": {
+      "highPoint": 781,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 781
+      }
+    },
+    "osm-12127424": {
+      "highPoint": 623,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 623
+      }
+    },
+    "osm-12132169": {
+      "highPoint": 2523,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/de/activity/toblacher-h-henweg-_543",
+          "accessedAt": "2026-11-07"
+        }
       }
     },
     "osm-12142337": {
+      "highPoint": 2343,
       "recommended": {
         "months": [
           5,
@@ -2834,17 +4088,31 @@
       ]
     },
     "osm-12150790": {
-      "snow": {
+      "highPoint": 411,
+      "recommended": {
         "months": [
           1,
           2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
           12
         ],
-        "likelihood": "possible",
-        "highPoint": 411
+        "source": {
+          "label": "castelfeder.info",
+          "url": "https://www.castelfeder.info/de/castelfeder/touren/rid-64923703-.html",
+          "accessedAt": "2026-11-07"
+        }
       }
     },
     "osm-12164395": {
+      "highPoint": 894,
       "snow": {
         "months": [
           1,
@@ -2856,6 +4124,7 @@
       }
     },
     "osm-12165590": {
+      "highPoint": 1115,
       "snow": {
         "months": [
           1,
@@ -2867,6 +4136,7 @@
       }
     },
     "osm-12172440": {
+      "highPoint": 1472,
       "snow": {
         "months": [
           1,
@@ -2878,6 +4148,7 @@
       }
     },
     "osm-12173549": {
+      "highPoint": 1435,
       "snow": {
         "months": [
           1,
@@ -2889,6 +4160,7 @@
       }
     },
     "osm-12173965": {
+      "highPoint": 1141,
       "snow": {
         "months": [
           1,
@@ -2907,6 +4179,7 @@
       ]
     },
     "osm-12173984": {
+      "highPoint": 1194,
       "snow": {
         "months": [
           1,
@@ -2925,6 +4198,7 @@
       ]
     },
     "osm-12174210": {
+      "highPoint": 1026,
       "snow": {
         "months": [
           1,
@@ -2936,6 +4210,7 @@
       }
     },
     "osm-12182516": {
+      "highPoint": 1096,
       "snow": {
         "months": [
           1,
@@ -2947,6 +4222,7 @@
       }
     },
     "osm-12182895": {
+      "highPoint": 1176,
       "snow": {
         "months": [
           1,
@@ -2958,6 +4234,7 @@
       }
     },
     "osm-12182936": {
+      "highPoint": 1001,
       "snow": {
         "months": [
           1,
@@ -2969,6 +4246,7 @@
       }
     },
     "osm-12189165": {
+      "highPoint": 1478,
       "snow": {
         "months": [
           1,
@@ -2980,6 +4258,7 @@
       }
     },
     "osm-12190538": {
+      "highPoint": 1522,
       "snow": {
         "months": [
           1,
@@ -2987,10 +4266,11 @@
           12
         ],
         "likelihood": "possible",
-        "highPoint": 1529
+        "highPoint": 1522
       }
     },
     "osm-12190657": {
+      "highPoint": 1520,
       "snow": {
         "months": [
           1,
@@ -3002,6 +4282,7 @@
       }
     },
     "osm-12302137": {
+      "highPoint": 1378,
       "snow": {
         "months": [
           1,
@@ -3013,6 +4294,7 @@
       }
     },
     "osm-12302182": {
+      "highPoint": 1174,
       "snow": {
         "months": [
           1,
@@ -3024,6 +4306,7 @@
       }
     },
     "osm-12302191": {
+      "highPoint": 1212,
       "snow": {
         "months": [
           1,
@@ -3035,6 +4318,7 @@
       }
     },
     "osm-123162": {
+      "highPoint": 1397,
       "snow": {
         "months": [
           1,
@@ -3046,6 +4330,7 @@
       }
     },
     "osm-12363235": {
+      "highPoint": 630,
       "snow": {
         "months": [
           1,
@@ -3057,6 +4342,7 @@
       }
     },
     "osm-12371666": {
+      "highPoint": 390,
       "snow": {
         "months": [
           1,
@@ -3064,10 +4350,11 @@
           12
         ],
         "likelihood": "possible",
-        "highPoint": 411
+        "highPoint": 390
       }
     },
     "osm-12371689": {
+      "highPoint": 356,
       "snow": {
         "months": [
           1,
@@ -3079,6 +4366,7 @@
       }
     },
     "osm-12731853": {
+      "highPoint": 930,
       "snow": {
         "months": [
           1,
@@ -3090,6 +4378,7 @@
       }
     },
     "osm-12736753": {
+      "highPoint": 887,
       "snow": {
         "months": [
           1,
@@ -3101,6 +4390,7 @@
       }
     },
     "osm-12737724": {
+      "highPoint": 928,
       "snow": {
         "months": [
           1,
@@ -3111,7 +4401,31 @@
         "highPoint": 928
       }
     },
+    "osm-12745924": {
+      "highPoint": 1521,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1521
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.9,
+          "names": [
+            "Forêt",
+            "Sainte-Anne",
+            "Fontaine aux Oisseaux"
+          ]
+        }
+      ]
+    },
     "osm-12953352": {
+      "highPoint": 844,
       "snow": {
         "months": [
           1,
@@ -3122,7 +4436,36 @@
         "highPoint": 844
       }
     },
+    "osm-13337921": {
+      "highPoint": 1924,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1924
+      }
+    },
+    "osm-13338113": {
+      "highPoint": 1923,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1923
+      }
+    },
     "osm-13491868": {
+      "highPoint": 968,
       "recommended": {
         "months": [
           3,
@@ -3143,6 +4486,7 @@
       }
     },
     "osm-13528390": {
+      "highPoint": 938,
       "snow": {
         "months": [
           1,
@@ -3154,6 +4498,7 @@
       }
     },
     "osm-14058492": {
+      "highPoint": 689,
       "snow": {
         "months": [
           1,
@@ -3165,6 +4510,7 @@
       }
     },
     "osm-14058632": {
+      "highPoint": 690,
       "snow": {
         "months": [
           1,
@@ -3175,7 +4521,276 @@
         "highPoint": 690
       }
     },
+    "osm-14095296": {
+      "highPoint": 365,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 365
+      }
+    },
+    "osm-14375158": {
+      "highPoint": 1696,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1696
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.5,
+          "names": [
+            "Lac",
+            "Route du Lac"
+          ]
+        }
+      ]
+    },
+    "osm-14376573": {
+      "highPoint": 2425,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2425
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.7,
+          "names": [
+            "Vinouve"
+          ]
+        }
+      ]
+    },
+    "osm-14377007": {
+      "highPoint": 1741,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1741
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 3.5,
+          "names": [
+            "Lac",
+            "Route du Lac"
+          ]
+        }
+      ]
+    },
+    "osm-14378946": {
+      "highPoint": 1770,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1770
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.6,
+          "names": [
+            "Lac",
+            "Route du Lac"
+          ]
+        }
+      ]
+    },
+    "osm-14379010": {
+      "highPoint": 1703,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1703
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.5,
+          "names": [
+            "Lac"
+          ]
+        }
+      ]
+    },
+    "osm-14379937": {
+      "highPoint": 1660,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1660
+      }
+    },
+    "osm-14381570": {
+      "highPoint": 1778,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1778
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1,
+          "names": [
+            "Lac"
+          ]
+        }
+      ]
+    },
+    "osm-14381584": {
+      "highPoint": 1637,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1637
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.5,
+          "names": [
+            "Lac"
+          ]
+        }
+      ]
+    },
+    "osm-14381788": {
+      "highPoint": 2128,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2128
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.2,
+          "names": [
+            "Copies",
+            "Crêtes",
+            "Vinouve"
+          ]
+        }
+      ]
+    },
+    "osm-14381930": {
+      "highPoint": 1984,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1984
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 3.3,
+          "names": [
+            "Lac",
+            "Ponsonnière",
+            "Combe de la Rama"
+          ]
+        }
+      ]
+    },
+    "osm-14864704": {
+      "highPoint": 736,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 736
+      }
+    },
+    "osm-14987412": {
+      "highPoint": 923,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 923
+      }
+    },
     "osm-1506470": {
+      "highPoint": 396,
       "snow": {
         "months": [
           1,
@@ -3186,7 +4801,58 @@
         "highPoint": 396
       }
     },
+    "osm-15321049": {
+      "highPoint": 1024,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1024
+      }
+    },
+    "osm-15321786": {
+      "highPoint": 1332,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1332
+      }
+    },
+    "osm-15535697": {
+      "highPoint": 1820,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1820
+      }
+    },
+    "osm-15591346": {
+      "highPoint": 1028,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1028
+      }
+    },
     "osm-15791408": {
+      "highPoint": 1143,
       "recommended": {
         "months": [
           1,
@@ -3208,7 +4874,98 @@
         }
       }
     },
+    "osm-16180587": {
+      "highPoint": 1288,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1288
+      }
+    },
+    "osm-16218739": {
+      "highPoint": 1560,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1560
+      }
+    },
+    "osm-16322228": {
+      "highPoint": 313,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 313
+      }
+    },
+    "osm-16363583": {
+      "highPoint": 317,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 317
+      }
+    },
+    "osm-16365005": {
+      "highPoint": 1646,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1646
+      }
+    },
+    "osm-16395076": {
+      "highPoint": 894,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 894
+      }
+    },
+    "osm-16490407": {
+      "highPoint": 2541,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2541
+      }
+    },
     "osm-1671736": {
+      "highPoint": 1090,
       "snow": {
         "months": [
           1,
@@ -3220,6 +4977,7 @@
       }
     },
     "osm-1780768": {
+      "highPoint": 1576,
       "snow": {
         "months": [
           1,
@@ -3242,7 +5000,66 @@
         }
       ]
     },
+    "osm-18055492": {
+      "highPoint": 1948,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1948
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 4,
+          "names": [
+            "Mandarines",
+            "Belle d'Arbois",
+            "Sanglier"
+          ]
+        }
+      ]
+    },
+    "osm-19064561": {
+      "highPoint": 1500,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1500
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 4.2,
+          "names": [
+            "Route de Très le Mont"
+          ]
+        }
+      ]
+    },
+    "osm-19153189": {
+      "highPoint": 678,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 678
+      }
+    },
     "osm-19330972": {
+      "highPoint": 1317,
       "recommended": {
         "months": [
           1,
@@ -3265,7 +5082,59 @@
         }
       }
     },
+    "osm-19531872": {
+      "highPoint": 1174,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1174
+      }
+    },
+    "osm-19541366": {
+      "highPoint": 2753,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2753
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 2.6,
+          "names": [
+            "2 Combes",
+            "Cascades",
+            "Bleuets"
+          ]
+        }
+      ]
+    },
+    "osm-19661726": {
+      "highPoint": 910,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 910
+      }
+    },
     "osm-19697977": {
+      "highPoint": 2250,
       "snow": {
         "months": [
           1,
@@ -3291,6 +5160,7 @@
       ]
     },
     "osm-19703479": {
+      "highPoint": 1341,
       "snow": {
         "months": [
           1,
@@ -3301,7 +5171,44 @@
         "highPoint": 1341
       }
     },
+    "osm-19760372": {
+      "highPoint": 1058,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1058
+      }
+    },
+    "osm-19855818": {
+      "highPoint": 1918,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1918
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.5,
+          "names": [
+            "Combe de Prariond",
+            "Plan du Favre"
+          ]
+        }
+      ]
+    },
     "osm-19974724": {
+      "highPoint": 1612,
       "recommended": {
         "months": [
           1,
@@ -3325,6 +5232,7 @@
       }
     },
     "osm-19974725": {
+      "highPoint": 1639,
       "recommended": {
         "months": [
           1,
@@ -3347,7 +5255,31 @@
         }
       }
     },
+    "osm-20347406": {
+      "highPoint": 1457,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1457
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 1.1,
+          "names": [
+            "Les Frêtes",
+            "Les Rennes",
+            "Liaison Boarder Cross"
+          ]
+        }
+      ]
+    },
     "osm-20380913": {
+      "highPoint": 844,
       "snow": {
         "months": [
           1,
@@ -3358,18 +5290,59 @@
         "highPoint": 844
       }
     },
-    "osm-2179746": {
+    "osm-21021130": {
+      "highPoint": 2452,
       "snow": {
         "months": [
           1,
           2,
+          3,
+          4,
+          5,
+          11,
           12
         ],
-        "likelihood": "possible",
-        "highPoint": 400
+        "likelihood": "likely",
+        "highPoint": 2452
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.8,
+          "names": [
+            "Golf",
+            "Lac",
+            "Lys"
+          ]
+        }
+      ]
+    },
+    "osm-2179746": {
+      "highPoint": 393,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "castelfeder.info",
+          "url": "https://castelfeder.info/de/castelfeder/touren/rid-17277264-.html",
+          "accessedAt": "2026-11-08"
+        }
       }
     },
     "osm-2376630": {
+      "highPoint": 1457,
       "snow": {
         "months": [
           1,
@@ -3381,6 +5354,7 @@
       }
     },
     "osm-3202880": {
+      "highPoint": 555,
       "snow": {
         "months": [
           1,
@@ -3392,6 +5366,7 @@
       }
     },
     "osm-3707731": {
+      "highPoint": 1158,
       "snow": {
         "months": [
           1,
@@ -3402,7 +5377,44 @@
         "highPoint": 1158
       }
     },
+    "osm-3885162": {
+      "highPoint": 1237,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1237
+      }
+    },
+    "osm-3982382": {
+      "highPoint": 527,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 527
+      }
+    },
+    "osm-5479112": {
+      "highPoint": 1341,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1341
+      }
+    },
     "osm-5512443": {
+      "highPoint": 851,
       "snow": {
         "months": [
           1,
@@ -3414,6 +5426,7 @@
       }
     },
     "osm-5597577": {
+      "highPoint": 787,
       "snow": {
         "months": [
           1,
@@ -3425,6 +5438,7 @@
       }
     },
     "osm-6244965": {
+      "highPoint": 1230,
       "recommended": {
         "months": [
           1,
@@ -3447,7 +5461,20 @@
         }
       }
     },
+    "osm-6250300": {
+      "highPoint": 1353,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1353
+      }
+    },
     "osm-6401355": {
+      "highPoint": 2266,
       "snow": {
         "months": [
           1,
@@ -3463,6 +5490,7 @@
       }
     },
     "osm-6404258": {
+      "highPoint": 1299,
       "recommended": {
         "months": [
           1,
@@ -3486,6 +5514,7 @@
       }
     },
     "osm-6404633": {
+      "highPoint": 1300,
       "snow": {
         "months": [
           1,
@@ -3497,6 +5526,7 @@
       }
     },
     "osm-6404634": {
+      "highPoint": 1526,
       "snow": {
         "months": [
           1,
@@ -3508,6 +5538,7 @@
       }
     },
     "osm-6410700": {
+      "highPoint": 1513,
       "recommended": {
         "months": [
           4,
@@ -3527,6 +5558,7 @@
       }
     },
     "osm-6453504": {
+      "highPoint": 1429,
       "snow": {
         "months": [
           1,
@@ -3538,6 +5570,7 @@
       }
     },
     "osm-6529356": {
+      "highPoint": 2144,
       "snow": {
         "months": [
           1,
@@ -3553,6 +5586,7 @@
       }
     },
     "osm-6601608": {
+      "highPoint": 1023,
       "snow": {
         "months": [
           1,
@@ -3564,6 +5598,7 @@
       }
     },
     "osm-6823031": {
+      "highPoint": 941,
       "snow": {
         "months": [
           1,
@@ -3575,6 +5610,7 @@
       }
     },
     "osm-7045225": {
+      "highPoint": 1405,
       "snow": {
         "months": [
           1,
@@ -3586,6 +5622,7 @@
       }
     },
     "osm-7086961": {
+      "highPoint": 2511,
       "snow": {
         "months": [
           1,
@@ -3601,6 +5638,7 @@
       }
     },
     "osm-7277805": {
+      "highPoint": 2710,
       "snow": {
         "months": [
           1,
@@ -3616,6 +5654,7 @@
       }
     },
     "osm-7388748": {
+      "highPoint": 1864,
       "snow": {
         "months": [
           1,
@@ -3629,6 +5668,7 @@
       }
     },
     "osm-7424683": {
+      "highPoint": 560,
       "snow": {
         "months": [
           1,
@@ -3640,6 +5680,7 @@
       }
     },
     "osm-7426648": {
+      "highPoint": 538,
       "snow": {
         "months": [
           1,
@@ -3651,6 +5692,7 @@
       }
     },
     "osm-7426666": {
+      "highPoint": 461,
       "snow": {
         "months": [
           1,
@@ -3662,6 +5704,7 @@
       }
     },
     "osm-7446701": {
+      "highPoint": 1533,
       "snow": {
         "months": [
           1,
@@ -3673,6 +5716,7 @@
       }
     },
     "osm-7546708": {
+      "highPoint": 1356,
       "snow": {
         "months": [
           1,
@@ -3684,6 +5728,7 @@
       }
     },
     "osm-7547653": {
+      "highPoint": 1849,
       "snow": {
         "months": [
           1,
@@ -3697,6 +5742,7 @@
       }
     },
     "osm-7547983": {
+      "highPoint": 1634,
       "snow": {
         "months": [
           1,
@@ -3710,6 +5756,7 @@
       }
     },
     "osm-7548201": {
+      "highPoint": 1534,
       "snow": {
         "months": [
           1,
@@ -3721,6 +5768,7 @@
       }
     },
     "osm-7548344": {
+      "highPoint": 1114,
       "snow": {
         "months": [
           1,
@@ -3732,6 +5780,7 @@
       }
     },
     "osm-7548489": {
+      "highPoint": 1604,
       "snow": {
         "months": [
           1,
@@ -3745,6 +5794,7 @@
       }
     },
     "osm-7549783": {
+      "highPoint": 1139,
       "snow": {
         "months": [
           1,
@@ -3756,6 +5806,7 @@
       }
     },
     "osm-7567918": {
+      "highPoint": 1716,
       "snow": {
         "months": [
           1,
@@ -3778,6 +5829,7 @@
       ]
     },
     "osm-7655311": {
+      "highPoint": 748,
       "snow": {
         "months": [
           1,
@@ -3789,6 +5841,7 @@
       }
     },
     "osm-8396539": {
+      "highPoint": 643,
       "snow": {
         "months": [
           1,
@@ -3800,6 +5853,7 @@
       }
     },
     "osm-8510456": {
+      "highPoint": 841,
       "snow": {
         "months": [
           1,
@@ -3811,6 +5865,7 @@
       }
     },
     "osm-9450411": {
+      "highPoint": 1282,
       "snow": {
         "months": [
           1,
@@ -3822,6 +5877,7 @@
       }
     },
     "osm-9487078": {
+      "highPoint": 1201,
       "snow": {
         "months": [
           1,
@@ -3833,6 +5889,7 @@
       }
     },
     "osm-9492594": {
+      "highPoint": 1091,
       "snow": {
         "months": [
           1,
@@ -3844,6 +5901,7 @@
       }
     },
     "osm-9493733": {
+      "highPoint": 1593,
       "recommended": {
         "months": [
           5,
@@ -3862,6 +5920,7 @@
       }
     },
     "osm-9511973": {
+      "highPoint": 1853,
       "recommended": {
         "months": [
           5,
@@ -3886,6 +5945,7 @@
       ]
     },
     "osm-9511999": {
+      "highPoint": 1514,
       "recommended": {
         "months": [
           5,
@@ -3905,6 +5965,7 @@
       }
     },
     "osm-9648632": {
+      "highPoint": 1687,
       "snow": {
         "months": [
           1,
@@ -3925,6 +5986,7 @@
       ]
     },
     "osm-9651462": {
+      "highPoint": 904,
       "recommended": {
         "months": [
           1,
@@ -3948,6 +6010,7 @@
       }
     },
     "osm-9675994": {
+      "highPoint": 1340,
       "snow": {
         "months": [
           1,
@@ -3958,7 +6021,211 @@
         "highPoint": 1340
       }
     },
+    "osm-9933643": {
+      "highPoint": 2066,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2066
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.9,
+          "names": [
+            "Jean-Marie",
+            "Lovatière",
+            "Pavane"
+          ]
+        }
+      ]
+    },
+    "osm-9937537": {
+      "highPoint": 2460,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2460
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.8,
+          "names": [
+            "Palsembleu",
+            "Les Coqs",
+            "Gavotte"
+          ]
+        }
+      ]
+    },
+    "osttirol-kinder-naturerlebnispfad-kals-ag": {
+      "highPoint": 1485,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1485
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.9,
+          "names": []
+        }
+      ]
+    },
+    "osttirol-kulturweg-koednitz": {
+      "highPoint": 1360,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1360
+      }
+    },
+    "osttirol-naturkraftweg-umbalfaelle": {
+      "highPoint": 1661,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1661
+      }
+    },
+    "osttirol-rundwanderung-am-staller-sattel": {
+      "highPoint": 2072,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2072
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 1.3,
+          "names": [
+            "Obersee-Loipe"
+          ]
+        }
+      ]
+    },
+    "osttirol-rundwanderung-schloss-weissenstein": {
+      "highPoint": 1062,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1062
+      }
+    },
+    "osttirol-spazierweg-kreuzweg": {
+      "highPoint": 1110,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1110
+      }
+    },
+    "osttirol-spazierweg-nikolauskirche": {
+      "highPoint": 1032,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1032
+      }
+    },
+    "osttirol-themenweg-kreuzweg-virgen": {
+      "highPoint": 1299,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1299
+      }
+    },
+    "osttirol-wassererlebnisweg-st-jakob-i-d": {
+      "highPoint": 1424,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1424
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 6.5,
+          "names": []
+        }
+      ]
+    },
+    "osttirol-weg-der-sinne-virgen": {
+      "highPoint": 1197,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1197
+      }
+    },
     "paganella-andalo-tana-ermellino": {
+      "highPoint": 1065,
       "recommended": {
         "months": [
           1,
@@ -3982,6 +6249,7 @@
       }
     },
     "paganella-giro-del-lago-di-molveno": {
+      "highPoint": 960,
       "recommended": {
         "months": [
           1,
@@ -4005,6 +6273,7 @@
       }
     },
     "paganella-giro-della-toresela": {
+      "highPoint": 295,
       "recommended": {
         "months": [
           1,
@@ -4028,6 +6297,7 @@
       }
     },
     "paganella-passeggiata-del-ciclamino": {
+      "highPoint": 960,
       "recommended": {
         "months": [
           1,
@@ -4051,6 +6321,7 @@
       }
     },
     "paganella-sette-passi-sette-ville": {
+      "highPoint": 832,
       "snow": {
         "months": [
           1,
@@ -4062,6 +6333,7 @@
       }
     },
     "piancavallo": {
+      "highPoint": 1358,
       "snow": {
         "months": [
           1,
@@ -4073,6 +6345,7 @@
       }
     },
     "prato-piazza": {
+      "highPoint": 2298,
       "recommended": {
         "months": [
           5,
@@ -4090,6 +6363,7 @@
       }
     },
     "primiero-anello-di-valpiana": {
+      "highPoint": 1236,
       "recommended": {
         "months": [
           3,
@@ -4109,6 +6383,7 @@
       }
     },
     "primiero-anello-molaren-via-nova-marine": {
+      "highPoint": 820,
       "recommended": {
         "months": [
           3,
@@ -4129,6 +6404,7 @@
       }
     },
     "primiero-anello-poit-cordogne-san-giovanni": {
+      "highPoint": 1280,
       "recommended": {
         "months": [
           5,
@@ -4146,6 +6422,7 @@
       }
     },
     "primiero-fiera-pieve": {
+      "highPoint": 759,
       "recommended": {
         "months": [
           1,
@@ -4169,6 +6446,7 @@
       }
     },
     "primiero-la-guana-di-primiero": {
+      "highPoint": 745,
       "recommended": {
         "months": [
           1,
@@ -4192,6 +6470,7 @@
       }
     },
     "primiero-laghi-di-colbricon": {
+      "highPoint": 1949,
       "recommended": {
         "months": [
           6,
@@ -4208,6 +6487,7 @@
       }
     },
     "primiero-malga-ces": {
+      "highPoint": 1672,
       "recommended": {
         "months": [
           4,
@@ -4227,6 +6507,7 @@
       }
     },
     "primiero-malga-crel": {
+      "highPoint": 1611,
       "snow": {
         "months": [
           1,
@@ -4240,6 +6521,7 @@
       }
     },
     "primiero-malga-valcigolera": {
+      "highPoint": 1879,
       "recommended": {
         "months": [
           1,
@@ -4263,6 +6545,7 @@
       }
     },
     "primiero-monte-vederna": {
+      "highPoint": 1560,
       "snow": {
         "months": [
           1,
@@ -4274,6 +6557,7 @@
       }
     },
     "primiero-percorso-verde": {
+      "highPoint": 744,
       "recommended": {
         "months": [
           1,
@@ -4297,6 +6581,7 @@
       }
     },
     "primiero-ponte-su-funi": {
+      "highPoint": 928,
       "recommended": {
         "months": [
           2,
@@ -4318,6 +6603,7 @@
       }
     },
     "primiero-san-martino-di-castrozza-val-di-roda-prati-col": {
+      "highPoint": 1628,
       "recommended": {
         "months": [
           1,
@@ -4341,6 +6627,7 @@
       }
     },
     "primiero-siror": {
+      "highPoint": 801,
       "recommended": {
         "months": [
           1,
@@ -4364,6 +6651,7 @@
       }
     },
     "primiero-tonadico": {
+      "highPoint": 764,
       "recommended": {
         "months": [
           1,
@@ -4387,6 +6675,7 @@
       }
     },
     "primiero-transacqua": {
+      "highPoint": 739,
       "recommended": {
         "months": [
           1,
@@ -4410,6 +6699,7 @@
       }
     },
     "primiero-via-della-frutta-antica": {
+      "highPoint": 1031,
       "recommended": {
         "months": [
           3,
@@ -4430,6 +6720,7 @@
       }
     },
     "rendena-ciclabile-javre-dare-vigo-pelugo": {
+      "highPoint": 620,
       "recommended": {
         "months": [
           1,
@@ -4453,6 +6744,7 @@
       }
     },
     "rendena-giro-del-belvedere-giustino": {
+      "highPoint": 797,
       "recommended": {
         "months": [
           4,
@@ -4471,6 +6763,7 @@
       }
     },
     "santa-maddalena": {
+      "highPoint": 1352,
       "snow": {
         "months": [
           1,
@@ -4482,6 +6775,7 @@
       }
     },
     "sassolungo": {
+      "highPoint": 2680,
       "snow": {
         "months": [
           1,
@@ -4507,7 +6801,119 @@
         }
       ]
     },
+    "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": {
+      "highPoint": 2214,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2214
+      }
+    },
+    "savoie-areches-beaufort-la-grande-berge": {
+      "highPoint": 2066,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2066
+      }
+    },
+    "savoie-boucle-du-fornet-par-la-cascade-du-fornet": {
+      "highPoint": 2109,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2109
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 0.7,
+          "names": [
+            "Forêt",
+            "Mangard",
+            "Cognon"
+          ]
+        }
+      ]
+    },
+    "savoie-itineraire-poussette-de-belavoine": {
+      "highPoint": 1277,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1277
+      }
+    },
+    "savoie-itineraire-poussette-des-chalets-brules": {
+      "highPoint": 1517,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1517
+      }
+    },
+    "savoie-promenade-confort-lac-et-barrage-de-saint-guerin": {
+      "highPoint": 1585,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1585
+      }
+    },
+    "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": {
+      "highPoint": 2002,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2002
+      }
+    },
     "seceda": {
+      "highPoint": 2426,
       "snow": {
         "months": [
           1,
@@ -4534,6 +6940,7 @@
       ]
     },
     "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": {
+      "highPoint": 1476,
       "recommended": {
         "months": [
           3,
@@ -4563,6 +6970,7 @@
       ]
     },
     "seiseralm-compatsch-wiedner-eck": {
+      "highPoint": 1970,
       "recommended": {
         "months": [
           3,
@@ -4589,6 +6997,7 @@
       ]
     },
     "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": {
+      "highPoint": 1691,
       "recommended": {
         "months": [
           1,
@@ -4612,6 +7021,7 @@
       }
     },
     "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": {
+      "highPoint": 1341,
       "recommended": {
         "months": [
           6,
@@ -4628,6 +7038,7 @@
       }
     },
     "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "highPoint": 2007,
       "recommended": {
         "months": [
           5,
@@ -4645,6 +7056,7 @@
       }
     },
     "seiseralm-fie-laghetto-di-fie-siusi": {
+      "highPoint": 1056,
       "recommended": {
         "months": [
           3,
@@ -4664,6 +7076,7 @@
       }
     },
     "seiseralm-miglio-geologico-siusi": {
+      "highPoint": 1025,
       "recommended": {
         "months": [
           1,
@@ -4687,6 +7100,7 @@
       }
     },
     "sentiero-del-trenino": {
+      "highPoint": 1535,
       "recommended": {
         "months": [
           1,
@@ -4718,7 +7132,22 @@
         }
       ]
     },
+    "sentiero-hans-e-paula-steger": {
+      "highPoint": 1954,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1954
+      }
+    },
     "tre-cime": {
+      "highPoint": 2454,
       "snow": {
         "months": [
           1,
@@ -4734,6 +7163,7 @@
       }
     },
     "trecime-bagni-di-san-candido": {
+      "highPoint": 1328,
       "recommended": {
         "months": [
           1,
@@ -4764,6 +7194,7 @@
       ]
     },
     "trecime-bellavista-montecosta": {
+      "highPoint": 1494,
       "recommended": {
         "months": [
           5,
@@ -4782,6 +7213,7 @@
       }
     },
     "trecime-carbonin-rifugio-vallandro": {
+      "highPoint": 2021,
       "recommended": {
         "months": [
           5,
@@ -4800,6 +7232,7 @@
       }
     },
     "trecime-cimabanche-prato-piazza": {
+      "highPoint": 1986,
       "recommended": {
         "months": [
           5,
@@ -4818,17 +7251,31 @@
       }
     },
     "trecime-circolare-maistatt": {
-      "snow": {
+      "highPoint": 1273,
+      "recommended": {
         "months": [
           1,
           2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
           12
         ],
-        "likelihood": "possible",
-        "highPoint": 1273
+        "source": {
+          "label": "Dolomites 3 Zinnen tourist board",
+          "url": "https://www.dreizinnen.com/it/activity/escursione-circolare-maistatt-_50004",
+          "accessedAt": "2026-11-07"
+        }
       }
     },
     "trecime-dobbiaco-lago-di-dobbiaco": {
+      "highPoint": 1299,
       "recommended": {
         "months": [
           1,
@@ -4861,6 +7308,7 @@
       ]
     },
     "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": {
+      "highPoint": 1626,
       "recommended": {
         "months": [
           1,
@@ -4884,6 +7332,7 @@
       }
     },
     "trecime-giro-delle-baite-lago-di-braies": {
+      "highPoint": 1997,
       "recommended": {
         "months": [
           1,
@@ -4907,6 +7356,7 @@
       }
     },
     "trecime-haus-der-berge-rifugio-larice": {
+      "highPoint": 1833,
       "recommended": {
         "months": [
           5,
@@ -4935,6 +7385,7 @@
       ]
     },
     "trecime-helmjet-waldruhe-sexten": {
+      "highPoint": 2053,
       "recommended": {
         "months": [
           5,
@@ -4962,6 +7413,7 @@
       ]
     },
     "trecime-innichen-waldkapelle-sexten": {
+      "highPoint": 1540,
       "recommended": {
         "months": [
           3,
@@ -4982,6 +7434,7 @@
       }
     },
     "trecime-lago-di-braies-malga-foresta": {
+      "highPoint": 1602,
       "recommended": {
         "months": [
           5,
@@ -4999,6 +7452,7 @@
       }
     },
     "trecime-lago-di-braies-malga-rossalm": {
+      "highPoint": 2281,
       "recommended": {
         "months": [
           5,
@@ -5016,6 +7470,7 @@
       }
     },
     "trecime-monte-casella-di-fuori": {
+      "highPoint": 2043,
       "recommended": {
         "months": [
           5,
@@ -5033,6 +7488,7 @@
       }
     },
     "trecime-monte-elmo-da-moso": {
+      "highPoint": 2317,
       "recommended": {
         "months": [
           5,
@@ -5051,6 +7507,7 @@
       }
     },
     "trecime-monte-elmo-versciaco": {
+      "highPoint": 2045,
       "recommended": {
         "months": [
           5,
@@ -5077,6 +7534,7 @@
       ]
     },
     "trecime-moso-monte-arnese": {
+      "highPoint": 2532,
       "recommended": {
         "months": [
           5,
@@ -5094,6 +7552,7 @@
       }
     },
     "trecime-rotwandwiesen-moos": {
+      "highPoint": 1914,
       "recommended": {
         "months": [
           5,
@@ -5126,6 +7585,7 @@
       ]
     },
     "trecime-san-candido-costa-dei-nosellari-dobbiaco": {
+      "highPoint": 1372,
       "recommended": {
         "months": [
           3,
@@ -5145,6 +7605,7 @@
       }
     },
     "trecime-sasso-di-sesto": {
+      "highPoint": 2442,
       "recommended": {
         "months": [
           5,
@@ -5169,6 +7630,7 @@
       ]
     },
     "trecime-sentiero-gustav-mahler": {
+      "highPoint": 1236,
       "recommended": {
         "months": [
           4,
@@ -5188,6 +7650,7 @@
       }
     },
     "trecime-sesto-alte-saege-val-campo-di-dentro": {
+      "highPoint": 1598,
       "recommended": {
         "months": [
           5,
@@ -5212,6 +7675,7 @@
       ]
     },
     "trecime-sesto-cappella-del-bosco": {
+      "highPoint": 1554,
       "recommended": {
         "months": [
           5,
@@ -5229,6 +7693,7 @@
       }
     },
     "trecime-sesto-chiesa-gasthof-panorama": {
+      "highPoint": 1564,
       "recommended": {
         "months": [
           5,
@@ -5246,6 +7711,7 @@
       }
     },
     "trecime-sesto-san-candido": {
+      "highPoint": 1399,
       "recommended": {
         "months": [
           5,
@@ -5270,6 +7736,7 @@
       ]
     },
     "trecime-villabassa-lanaweg": {
+      "highPoint": 1414,
       "recommended": {
         "months": [
           5,
@@ -5288,6 +7755,7 @@
       }
     },
     "trecime-villabassa-mooskirche": {
+      "highPoint": 1162,
       "recommended": {
         "months": [
           5,
@@ -5305,7 +7773,132 @@
         }
       }
     },
+    "unterengadin-guarda-ardez-hike-between-two-engadin-villages": {
+      "highPoint": 1705,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/17695297",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "unterengadin-s-charl-alp-sesvenna-return": {
+      "highPoint": 2075,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/15845656",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "unterengadin-scuol-ftan": {
+      "highPoint": 1649,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/15670033",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "unterengadin-vna-ramosch-via-veglia": {
+      "highPoint": 1643,
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/32029554",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "unterengadin-vna-sinestra": {
+      "highPoint": 1658,
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/en/r/32233851",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "unterengadin-zernez-brail": {
+      "highPoint": 1729,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1729
+      }
+    },
+    "valchiavenna-ai-laghi-del-baldiscio": {
+      "highPoint": 2316,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/812014696",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
     "valdisole-bivacco-malga-baselga": {
+      "highPoint": 1932,
       "recommended": {
         "months": [
           5,
@@ -5323,6 +7916,7 @@
       }
     },
     "valdisole-fazzon-lago-dei-caprioli": {
+      "highPoint": 1320,
       "recommended": {
         "months": [
           5,
@@ -5341,6 +7935,7 @@
       }
     },
     "valdisole-lago-dei-caprioli-malga-alta-di-fazzon": {
+      "highPoint": 1538,
       "recommended": {
         "months": [
           5,
@@ -5358,6 +7953,7 @@
       }
     },
     "valdisole-marilleva-1400-malga-alta-di-fazzon": {
+      "highPoint": 1664,
       "recommended": {
         "months": [
           1,
@@ -5381,6 +7977,7 @@
       }
     },
     "valdisole-monclassico-presson-meridiane": {
+      "highPoint": 791,
       "recommended": {
         "months": [
           1,
@@ -5404,6 +8001,7 @@
       }
     },
     "valdisole-ortise-malga-stabli": {
+      "highPoint": 1833,
       "recommended": {
         "months": [
           4,
@@ -5422,6 +8020,7 @@
       }
     },
     "valdisole-passo-tonale-forte-mero": {
+      "highPoint": 1998,
       "recommended": {
         "months": [
           6,
@@ -5438,6 +8037,7 @@
       }
     },
     "valdisole-passo-tonale-forte-mero-forte-zaccarana": {
+      "highPoint": 2053,
       "recommended": {
         "months": [
           6,
@@ -5454,6 +8054,7 @@
       }
     },
     "valdisole-rifugio-stavel-denza": {
+      "highPoint": 2209,
       "recommended": {
         "months": [
           6,
@@ -5470,6 +8071,7 @@
       }
     },
     "valgardena-arte-e-storia": {
+      "highPoint": 1743,
       "recommended": {
         "months": [
           1,
@@ -5493,6 +8095,7 @@
       }
     },
     "valgardena-cudan-dumat": {
+      "highPoint": 1372,
       "recommended": {
         "months": [
           1,
@@ -5516,6 +8119,7 @@
       }
     },
     "valgardena-escursione-al-brogles": {
+      "highPoint": 2185,
       "recommended": {
         "months": [
           5,
@@ -5534,6 +8138,7 @@
       }
     },
     "valgardena-escursione-al-resciesa": {
+      "highPoint": 2252,
       "recommended": {
         "months": [
           1,
@@ -5555,6 +8160,7 @@
       }
     },
     "valgardena-escursione-al-seeurasas": {
+      "highPoint": 2093,
       "recommended": {
         "months": [
           5,
@@ -5572,6 +8178,7 @@
       }
     },
     "valgardena-escursione-al-terrazzo-panoramico-seeurasas": {
+      "highPoint": 2157,
       "recommended": {
         "months": [
           5,
@@ -5589,6 +8196,7 @@
       }
     },
     "valgardena-escursione-da-s-cristina-al-passo-sella": {
+      "highPoint": 2178,
       "recommended": {
         "months": [
           6,
@@ -5616,6 +8224,7 @@
       ]
     },
     "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
+      "highPoint": 2249,
       "recommended": {
         "months": [
           5,
@@ -5633,6 +8242,7 @@
       }
     },
     "valgardena-escursione-nella-vallunga": {
+      "highPoint": 1829,
       "recommended": {
         "months": [
           1,
@@ -5663,6 +8273,7 @@
       ]
     },
     "valgardena-escursione-ortisei-passo-sella": {
+      "highPoint": 2263,
       "recommended": {
         "months": [
           6,
@@ -5690,6 +8301,7 @@
       ]
     },
     "valgardena-giro-della-via-crucis": {
+      "highPoint": 1572,
       "recommended": {
         "months": [
           1,
@@ -5713,6 +8325,7 @@
       }
     },
     "valgardena-giro-storico-del-paese-di-ortisei": {
+      "highPoint": 1329,
       "snow": {
         "months": [
           1,
@@ -5724,6 +8337,7 @@
       }
     },
     "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": {
+      "highPoint": 1578,
       "recommended": {
         "months": [
           1,
@@ -5747,6 +8361,7 @@
       }
     },
     "valgardena-passeggiata-da-ortisei-a-s-cristina": {
+      "highPoint": 1370,
       "recommended": {
         "months": [
           1,
@@ -5770,6 +8385,7 @@
       }
     },
     "valgardena-percorso-dei-masi-tradizionali": {
+      "highPoint": 1836,
       "recommended": {
         "months": [
           5,
@@ -5787,6 +8403,7 @@
       }
     },
     "valgardena-raida-dl-luech-giro-del-paese": {
+      "highPoint": 1466,
       "recommended": {
         "months": [
           4,
@@ -5805,6 +8422,7 @@
       }
     },
     "valgardena-seceda-da-col-raiser": {
+      "highPoint": 2460,
       "recommended": {
         "months": [
           6,
@@ -5832,6 +8450,7 @@
       ]
     },
     "valgardena-seceda-da-cristauta-pic": {
+      "highPoint": 2477,
       "recommended": {
         "months": [
           6,
@@ -5859,6 +8478,7 @@
       ]
     },
     "valgardena-seceda-dal-rifugio-firenze": {
+      "highPoint": 2460,
       "recommended": {
         "months": [
           6,
@@ -5886,6 +8506,7 @@
       ]
     },
     "valgardena-tour-alla-volta-del-lech-sant": {
+      "highPoint": 2075,
       "recommended": {
         "months": [
           6,
@@ -5909,6 +8530,7 @@
       ]
     },
     "valgardena-troi-unika": {
+      "highPoint": 1689,
       "recommended": {
         "months": [
           5,
@@ -5926,6 +8548,7 @@
       }
     },
     "valgardena-uciei-de-freeines": {
+      "highPoint": 2101,
       "recommended": {
         "months": [
           1,
@@ -5949,6 +8572,7 @@
       }
     },
     "valgardena-val-danna-percorso-kneipp": {
+      "highPoint": 1374,
       "recommended": {
         "months": [
           7,
@@ -5964,6 +8588,7 @@
       }
     },
     "valley-view": {
+      "highPoint": 1426,
       "snow": {
         "months": [
           1,
@@ -5974,7 +8599,187 @@
         "highPoint": 1426
       }
     },
+    "valposchiavo-alp-grum-cavaglia-via-palu": {
+      "highPoint": 2092,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2092
+      }
+    },
+    "valposchiavo-alp-grum-cavaglia-via-stablini": {
+      "highPoint": 2092,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2092
+      }
+    },
+    "valposchiavo-lago-bianco": {
+      "highPoint": 2279,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2279
+      }
+    },
+    "valposchiavo-lake-tour": {
+      "highPoint": 994,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 994
+      }
+    },
+    "valsesia-campello-monti-alpe-fornale-di-sopra": {
+      "highPoint": 1825,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1825
+      }
+    },
+    "valsesia-campello-monti-colle-dell-usciolo": {
+      "highPoint": 2020,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2020
+      }
+    },
+    "valsesia-campello-monti-lago-del-capezzone": {
+      "highPoint": 2103,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2103
+      }
+    },
+    "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": {
+      "highPoint": 1805,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1805
+      }
+    },
+    "valsesia-cervatto-madonna-del-balmone": {
+      "highPoint": 1401,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1401
+      }
+    },
+    "valsesia-gta-tappa-21-campello-monti-rimella": {
+      "highPoint": 1919,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1919
+      }
+    },
+    "valtellina-passo-di-campagneda": {
+      "highPoint": 2595,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804595894",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "valtellina-rifugi-porro-e-ventina": {
+      "highPoint": 1958,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804596740",
+          "accessedAt": "2026-11-07"
+        }
+      }
+    },
     "villnoess-da-russis-fino-al-passo-delle-erbe": {
+      "highPoint": 2099,
       "recommended": {
         "months": [
           7,
@@ -5998,6 +8803,7 @@
       ]
     },
     "villnoess-dolorama-3a-tappa": {
+      "highPoint": 2309,
       "recommended": {
         "months": [
           5,
@@ -6015,6 +8821,7 @@
       }
     },
     "villnoess-ranui-zannes": {
+      "highPoint": 1674,
       "recommended": {
         "months": [
           1,
@@ -6045,6 +8852,7 @@
       ]
     },
     "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": {
+      "highPoint": 2269,
       "recommended": {
         "months": [
           7,
@@ -6059,6 +8867,7 @@
       }
     },
     "vinschgau-escursione-al-lago-bergsee-da-burgusio": {
+      "highPoint": 1362,
       "recommended": {
         "months": [
           3,
@@ -6079,6 +8888,7 @@
       }
     },
     "vinschgau-piani-di-annenberg": {
+      "highPoint": 1066,
       "recommended": {
         "months": [
           1,
@@ -6102,6 +8912,7 @@
       }
     },
     "vinschgau-sentiero-della-roggia-kastanienwaal": {
+      "highPoint": 826,
       "recommended": {
         "months": [
           1,
@@ -6125,6 +8936,7 @@
       }
     },
     "vinschgau-sentiero-della-roggia-latschanderwaal-4954": {
+      "highPoint": 739,
       "recommended": {
         "months": [
           1,
@@ -6148,6 +8960,7 @@
       }
     },
     "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal": {
+      "highPoint": 1252,
       "recommended": {
         "months": [
           4,
@@ -6166,6 +8979,7 @@
       }
     },
     "vinschgau-sentiero-della-roggia-schnalswaal": {
+      "highPoint": 862,
       "recommended": {
         "months": [
           1,
@@ -6189,6 +9003,7 @@
       }
     },
     "vinschgau-sentiero-della-roggia-stabnerwaal": {
+      "highPoint": 772,
       "recommended": {
         "months": [
           1,
@@ -6211,7 +9026,152 @@
         }
       }
     },
+    "weissensee-nordic-2-urschitz": {
+      "highPoint": 1067,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1067
+      }
+    },
+    "weissensee-nordic-5-genoesns-bruendl": {
+      "highPoint": 1017,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1017
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 0.6,
+          "names": []
+        }
+      ]
+    },
+    "weissensee-nordic-6-rothns-bichl": {
+      "highPoint": 1025,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1025
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 2.5,
+          "names": []
+        }
+      ]
+    },
+    "weissensee-nordic-7-franz-josephs-hoehe": {
+      "highPoint": 1033,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1033
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 3.9,
+          "names": []
+        }
+      ]
+    },
+    "weissensee-nordic-8-naggler-alm": {
+      "highPoint": 1346,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1346
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1.3,
+          "names": [
+            "Familienabfahrt",
+            "Steilhang"
+          ]
+        },
+        {
+          "kind": "sled",
+          "km": 0.5,
+          "names": []
+        }
+      ]
+    },
+    "weissensee-ortsee-ronacherfels": {
+      "highPoint": 1052,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1052
+      }
+    },
+    "weissensee-slow-trail": {
+      "highPoint": 1066,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1066
+      }
+    },
+    "weissensee-techendorf-tschabitscher-kreuzwirt": {
+      "highPoint": 1124,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1124
+      }
+    },
+    "weissensee-wasserleben": {
+      "highPoint": 1018,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1018
+      }
+    },
     "winter-pozza-canto-acqua": {
+      "highPoint": 1328,
       "recommended": {
         "months": [
           1,
@@ -6229,6 +9189,7 @@
       }
     },
     "winter-steinegg-osservatorio": {
+      "highPoint": 1320,
       "recommended": {
         "months": [
           1,
@@ -6244,6 +9205,7 @@
       }
     },
     "winter-voels-voelser-weiher": {
+      "highPoint": 1070,
       "recommended": {
         "months": [
           1,
@@ -6263,6 +9225,191 @@
           "label": "Outdooractive",
           "url": "https://www.outdooractive.com/it/r/55209890",
           "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "cortina-zumeles-val-padeon": {
+      "highPoint": 2039,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2039
+      }
+    },
+    "cortina-anello-dei-tre-rifugi": {
+      "highPoint": 2324,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2324
+      }
+    },
+    "cortina-forcella-lerosa": {
+      "highPoint": 2020,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 2020
+      }
+    },
+    "valdisole-cogolo-chiesa-di-santa-lucia": {
+      "highPoint": 1309,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/58793370",
+          "accessedAt": "2026-11-09"
+        }
+      }
+    },
+    "valdisole-malga-strino": {
+      "highPoint": 1920,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/58070348",
+          "accessedAt": "2026-11-09"
+        }
+      }
+    },
+    "zoldo-rifugio-bosconero": {
+      "highPoint": 1366,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1366
+      }
+    },
+    "zoldo-bosco-secolare": {
+      "highPoint": 1116,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1116
+      }
+    },
+    "fiemme-cristo-pensante": {
+      "highPoint": 2251,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/14502851",
+          "accessedAt": "2026-11-10"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 1,
+          "names": [
+            "Castellazzo 3"
+          ]
+        }
+      ]
+    },
+    "fiemme-lago-juribrutto": {
+      "highPoint": 2336,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/800567738",
+          "accessedAt": "2026-11-10"
+        }
+      }
+    },
+    "valdisole-masi-verniana-bait-de-mezol-malga-saviana": {
+      "highPoint": 1951,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/805919553",
+          "accessedAt": "2026-11-10"
+        }
+      }
+    },
+    "valdisole-peio-paese-lago-covel": {
+      "highPoint": 1880,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/61178242",
+          "accessedAt": "2026-11-10"
         }
       }
     }

@@ -6,6 +6,8 @@ function tx(text, vars){
   if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
   return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
 }
+// A number as the reader writes it (6,7 km in Italian); English is unchanged.
+function localNum(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
 
 function safetyLabel(level){
   if(level === 'low-risk') return t('safety.low');
@@ -73,7 +75,7 @@ function renderTeaser(){
         <div class="name">${t.name}</div>
         <div class="match">${scoreTrail(t, generic)}%<span class="match-note">${window.t('teaser.example')}</span></div>
       </div>
-      <div class="meta">${t.ref ? window.t('card.trailRef', {ref: t.ref}) + ' · ' : ''}${t.area} · ${t.distance} km</div>
+      <div class="meta">${t.ref ? window.t('card.trailRef', {ref: t.ref}) + ' · ' : ''}${t.area} · ${localNum(t.distance)} km</div>
     </div>
   `).join('');
 }
@@ -1305,6 +1307,10 @@ function filterTrailsForReturningView(list){
     displayList = displayList.slice().sort((a, b) =>
       ((hr[a.heatRisk] ?? 1) - (hr[b.heatRisk] ?? 1)) || ((b.shadeCoverage || 0) - (a.shadeCoverage || 0)));
   }
+  // Whatever the order, the walks to go on now come first; those out of
+  // season this month follow in the same order (trail-season-words.js).
+  const seasonWords = window.DoloPawsTrailSeasonWords;
+  if(seasonWords) displayList = seasonWords.inSeasonFirst(displayList, x => x.season, new Date().getMonth() + 1);
 
   return displayList;
 }
@@ -1482,30 +1488,39 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   }
   function ensureSatelliteLayer(){
     if(map.getLayer('satellite-layer')) return true;
-    if(!map.isStyleLoaded()) return false;
-    map.addSource('satellite', {
-      type: 'raster',
-      tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
-      tileSize: 256,
-      maxzoom: 19,
-      attribution: 'Imagery © Esri',
-    });
+    // Not isStyleLoaded(): that also waits for every tile and every data
+    // update, so on a busy map it can stay false and Satellite never shows.
+    // Adding a layer only needs the style itself, and throws until it is in.
+    try {
+      if(!map.getSource('satellite')) map.addSource('satellite', {
+        type: 'raster',
+        tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+        tileSize: 256,
+        maxzoom: 19,
+        attribution: 'Imagery © Esri',
+      });
+    } catch(err){ return false; }
     // Below our hiking routes: the first symbol layer is now their numbers,
     // which sit above the walk, so the photo would cover the walk itself.
     const belowRoutes = window.ORMAMapStyle.networkLayerId(map);
-    map.addLayer({
-      id: 'satellite-layer',
-      type: 'raster',
-      source: 'satellite',
-      layout: { visibility: 'none' },
-      paint: { 'raster-resampling': 'linear', 'raster-fade-duration': 100 },
-    }, belowRoutes);
+    try {
+      map.addLayer({
+        id: 'satellite-layer',
+        type: 'raster',
+        source: 'satellite',
+        layout: { visibility: 'none' },
+        paint: { 'raster-resampling': 'linear', 'raster-fade-duration': 100 },
+      }, belowRoutes);
+    } catch(err){ return false; }
     return true;
   }
   (function buildLayerSwitch(){
     const host = map.getContainer();
     if(!host || host.querySelector('.td-layer-switch')) return;
-    const terrainOnly = window.matchMedia && window.matchMedia('(max-width:700px)').matches;
+    // The app opens all three from its Terrain button (app-explore.js); a
+    // phone browser has room for 3D only.
+    const terrainOnly = !document.documentElement.classList.contains('orma-app')
+      && window.matchMedia && window.matchMedia('(max-width:700px)').matches;
     const wrap = document.createElement('div');
     wrap.className = 'td-layer-switch td-layer-switch--home' + (terrainOnly ? ' td-layer-switch--terrain-only' : '');
     wrap.setAttribute('role', 'group');
@@ -1526,7 +1541,15 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
         return;
       }
       const base = e.target.closest('[data-maplayer]');
-      if(!base || !ensureSatelliteLayer()) return;
+      if(!base) return;
+      // Before the style is in, switch once it arrives.
+      if(!ensureSatelliteLayer()){
+        map.once('styledata', () => { if(ensureSatelliteLayer()) showBase(base); });
+        return;
+      }
+      showBase(base);
+    });
+    function showBase(base){
       const sat = base.getAttribute('data-maplayer') === 'satellite';
       map.setLayoutProperty('satellite-layer', 'visibility', sat ? 'visible' : 'none');
       // The vector style's building fills sit above the raster and would
@@ -1542,7 +1565,7 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
         b.classList.toggle('on', on);
         b.setAttribute('aria-pressed', String(on));
       });
-    });
+    }
   })();
 
   // UI: dynamic legend, only describes what is actually visible on the
@@ -1711,7 +1734,10 @@ function initTrailMap(){
   const syncDrawLink = () => {
     if(!drawLink) return;
     const centre = trailMapInstance.getCenter();
-    drawLink.href = `route-planner.html?lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}`;
+    const view = `lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}`;
+    drawLink.href = `route-planner.html?${view}`;
+    // The app plans from the Record tab, which opens the planner here too.
+    try{ sessionStorage.setItem('orma-explore-map-view', view); }catch(error){}
   };
   trailMapInstance.on('load', syncDrawLink);
   trailMapInstance.on('moveend', syncDrawLink);
@@ -2976,6 +3002,74 @@ function renderLiToolbarContext(profile){
     : tx('Where are we going today?');
 }
 
+// The iPhone app asks three questions instead of five rows of choices: how
+// long, what ground, and what the walk must have (shade, water). Trail rating
+// and minimum match are left out because the verdict for your dog already
+// weighs both, and nothing else can set them, so they stay at Any. Tapping
+// the chosen length again goes back to any length.
+function renderLiAppFilterQuestions(){
+  const menu = document.getElementById('liFiltersMenu');
+  if(!menu) return;
+  const relabel = (el, text) => {
+    if(!el) return;
+    el.removeAttribute('data-i18n');
+    el.textContent = text;
+  };
+  relabel(menu.querySelector('.li-fhead > span'), tx('What kind of walk?'));
+  menu.querySelectorAll('.li-fsec').forEach(sec => {
+    const next = sec.nextElementSibling;
+    const id = next && next.id;
+    if(id === 'liDistSeg') relabel(sec, tx('How long?'));
+    else if(id === 'liTerrainSeg') relabel(sec, tx('Ground for paws'));
+    else if(next && next.classList.contains('li-quick-filters')) relabel(sec, tx('Must have'));
+    else if(id === 'liRiskSeg' || id === 'liMatchSeg') sec.hidden = true;
+  });
+  ['liRiskSeg', 'liMatchSeg'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el){ el.hidden = true; el.innerHTML = ''; }
+  });
+  // Must have comes last, just above Show trails.
+  const quick = menu.querySelector('.li-quick-filters');
+  const apply = document.getElementById('liFiltersApply');
+  if(quick && apply && quick.nextElementSibling !== apply){
+    menu.insertBefore(quick.previousElementSibling, apply);
+    menu.insertBefore(quick, apply);
+  }
+
+  const question = (elId, opts, cur, pick, clearTo) => {
+    const el = document.getElementById(elId);
+    if(!el) return;
+    el.innerHTML = '';
+    el.classList.add('li-seg--choices');
+    opts.forEach(o => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'li-segbtn' + (o.v === cur ? ' on' : '');
+      b.setAttribute('aria-pressed', String(o.v === cur));
+      const name = document.createElement('b');
+      name.textContent = o.label;
+      const note = document.createElement('small');
+      note.textContent = o.note;
+      b.append(name, note);
+      b.addEventListener('click', () => {
+        pick(o.v === cur && clearTo !== undefined ? clearTo : o.v);
+        renderReturningHomepage(currentProfileForAdjust);
+      });
+      el.appendChild(b);
+    });
+  };
+  question('liDistSeg', [
+    { label: tx('Short'), note: tx('under 5 km'), v: 'u5' },
+    { label: tx('Half day'), note: '5–10 km', v: '5to10' },
+    { label: tx('Long'), note: '10 km+', v: '10p' },
+  ], liFilters.dist, v => { liFilters.dist = v; }, 'any');
+  question('liTerrainSeg', [
+    { label: tx('Soft'), note: tx('gentle only'), v: 'soft' },
+    { label: tx('Mixed'), note: tx('some stones'), v: 'mixed' },
+    { label: tx('Any'), note: tx('rocky is ok'), v: 'any' },
+  ], liFilters.terrain, v => { liFilters.terrain = v; });
+}
+
 // Filter panel, segmented options + toggle rows. Rebuilt on every render
 // so the active states always mirror the real filter state.
 function renderLiControls(){
@@ -2993,20 +3087,27 @@ function renderLiControls(){
     });
   };
 
-  seg('liDistSeg', [
-    { label: tx('Any'), v: 'any' }, { label: tx('Under 5 km'), v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' },
-  ], liFilters.dist, v => { liFilters.dist = v; });
-  seg('liRiskSeg', [
-    { label: tx('Any'), v: 'any' }, { label: tx('Low risk'), v: 'low-risk' }, { label: tx('Moderate'), v: 'moderate' }, { label: tx('Caution'), v: 'caution' },
-  ], liFilters.risk, v => { liFilters.risk = v; });
-  seg('liTerrainSeg', [
-    { label: tx('Any'), v: 'any' }, { label: tx('Gentle only'), v: 'soft' }, { label: tx('Up to mixed'), v: 'mixed' }, { label: tx('Rocky is okay'), v: 'rocky' },
-  ], liFilters.terrain, v => { liFilters.terrain = v; });
-  seg('liMatchSeg', [
-    { label: tx('Any'), v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 },
-  ], liFilters.minMatch, v => { liFilters.minMatch = v; });
+  if(document.documentElement.classList.contains('orma-app')){
+    renderLiAppFilterQuestions();
+  } else {
+    seg('liDistSeg', [
+      { label: tx('Any'), v: 'any' }, { label: tx('Under 5 km'), v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' },
+    ], liFilters.dist, v => { liFilters.dist = v; });
+    seg('liRiskSeg', [
+      { label: tx('Any'), v: 'any' }, { label: tx('Low risk'), v: 'low-risk' }, { label: tx('Moderate'), v: 'moderate' }, { label: tx('Caution'), v: 'caution' },
+    ], liFilters.risk, v => { liFilters.risk = v; });
+    seg('liTerrainSeg', [
+      { label: tx('Any'), v: 'any' }, { label: tx('Gentle only'), v: 'soft' }, { label: tx('Up to mixed'), v: 'mixed' }, { label: tx('Rocky is okay'), v: 'rocky' },
+    ], liFilters.terrain, v => { liFilters.terrain = v; });
+    seg('liMatchSeg', [
+      { label: tx('Any'), v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 },
+    ], liFilters.minMatch, v => { liFilters.minMatch = v; });
+  }
 
-  const n = liActiveFilterCount();
+  // In the app the list follows the map as you move it; that is where you are
+  // looking, not a filter you chose, so the badge leaves it out.
+  const n = liActiveFilterCount()
+    - (document.documentElement.classList.contains('orma-app') && liViewIsTheFilter() ? 1 : 0);
   const badge = document.getElementById('liFiltersBadge');
   if(badge) badge.textContent = n > 0 ? `(${n})` : '';
   const filtBtn = document.getElementById('liFiltersBtn');
@@ -3610,7 +3711,7 @@ function renderLiSearchSuggestions(profile){
       option.setAttribute('role', 'option');
       option.setAttribute('aria-selected', String(index === 0));
       const tier = liMatchTier(trail.score);
-      option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(trail.name)}</strong><small>${liEscapeHtml([trail.valley, `${trail.distance} km`].filter(Boolean).join(' · '))}</small></span><span class="li-search-option-match" style="color:${tier.color}">${liEscapeHtml(tier.label)}</span>`;
+      option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(trail.name)}</strong><small>${liEscapeHtml([trail.valley, `${localNum(trail.distance)} km`].filter(Boolean).join(' · '))}</small></span><span class="li-search-option-match" style="color:${tier.color}">${liEscapeHtml(tier.label)}</span>`;
       option.addEventListener('click', () => {
         search.value = trail.name;
         hideLiSearchSuggestions();
@@ -3665,9 +3766,9 @@ function liRowMeta(t){
   const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
   const back = shown !== t;
   const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:shown.distance }) : ''; return v && v !== key ? v : fallback; };
-  const parts = [back ? tr('card.thereAndBack', `${shown.distance} km there and back`) : `${t.distance} km`];
+  const parts = [back ? tr('card.thereAndBack', `${localNum(shown.distance)} km there and back`) : `${localNum(t.distance)} km`];
   if(Number.isFinite(shown.elevation)) parts.push(tx('{m} m climb', { m:shown.elevation }));
-  if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? routeReturn.formatDuration(shown.hours) : `${shown.hours} h`}`);
+  if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? localNum(routeReturn.formatDuration(shown.hours)) : `${localNum(shown.hours)} h`}`);
   const exposure = liExposureLabel(t.exposure);
   if(exposure) parts.push(exposure);
   const shade = liShadeLabel(t.shadeCoverage);
@@ -4962,7 +5063,7 @@ function addWaterSourcesLayers(map) {
     let content = `<b>${waterType}</b>`;
     
     const pointLabel = props.name || props.label;
-    const pointDistance = props.km !== undefined ? `Km ${props.km}` : '';
+    const pointDistance = props.km !== undefined ? `Km ${localNum(props.km)}` : '';
     if (pointLabel && pointDistance) {
       content += `<br>${pointLabel} <small>(${pointDistance})</small>`;
     } else if (pointLabel) {

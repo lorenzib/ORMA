@@ -7,6 +7,8 @@
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+  function num(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
 
   // Zoom at which the marked hiking network stops being clutter and starts
   // being wayfinding. Shared with the trail detail map.
@@ -134,7 +136,12 @@
     summer: collection => /hot-day|warmer|shade|water|woodland/i.test(`${collection.id} ${collection.title} ${collection.subtitle} ${collection.chips.join(' ')}`),
     scenic: collection => /lake|lakeside|woodland|scenery|high-level/i.test(`${collection.id} ${collection.title} ${collection.subtitle} ${collection.chips.join(' ')}`),
   };
-  const trailsFor = collection => api.trailsFor(collection, trails);
+  // A walk along a ski or sled run sits out its off-season, as on the trail
+  // list (trail-season-words.js hiddenThisMonth).
+  const seasonWords = window.DoloPawsTrailSeasonWords;
+  const month = new Date().getMonth() + 1;
+  const offeredNow = trail => !(seasonWords && trail.season && seasonWords.hiddenThisMonth(trail.season, month));
+  const trailsFor = collection => api.trailsFor(collection, trails).filter(offeredNow);
   const regionCountry = region => (REGIONS.find(item => item.value === region) || { countryCode:'IT' }).countryCode;
   const trailInArea = trail => (country === 'all' || regionCountry(trail.region) === country)
     && (region === 'all' || trail.region === region);
@@ -268,7 +275,7 @@
     const difficulty = ['low-risk','moderate','caution'].includes(trail.safetyLevel) ? trail.safetyLevel : 'unknown';
     const meta = [
       difficultyLabel(trail.safetyLevel),
-      Number.isFinite(trail.distance) ? `${trail.distance} km` : null,
+      Number.isFinite(trail.distance) ? `${num(trail.distance)} km` : null,
       trail.valley || trail.area || null,
     ].filter(Boolean).join(' · ');
     return `<a class="collection-map-trail-card" href="${trailHref(trail)}">
@@ -399,7 +406,7 @@
     const difficulty = ['low-risk','moderate','caution'].includes(trail.safetyLevel) ? trail.safetyLevel : 'unknown';
     const meta = [
       difficultyLabel(trail.safetyLevel),
-      Number.isFinite(trail.distance) ? `${trail.distance} km` : null,
+      Number.isFinite(trail.distance) ? `${num(trail.distance)} km` : null,
       trail.valley || trail.area || null,
     ].filter(Boolean).join(' · ');
     return `<a class="collection-inline-trail" href="${trailHref(trail)}" data-inline-map-trail="${esc(trail.id)}">

@@ -1,5 +1,6 @@
 // fassa-dipinti-del-giotto in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the walk from Mazzin over Ronch to Pera": "la passeggiata da Mazzin per Ronch fino a Pera",
   "A gentle loop from Mazzin past roofed village fountains to the hamlet of Ronch, down the old Via Crucis to Pera and its church of San Lorenzo, and back along the Avisio. The APT lists 4.7 km and 152 m of ascent.": "Un anello tranquillo da Mazzin, oltre le fontane coperte del paese, fino alla frazione di Ronch, giù per l'antica Via Crucis fino a Pera e alla sua chiesa di San Lorenzo, e ritorno lungo l'Avisio. L'APT indica 4,7 km e 152 m di dislivello in salita.",
   "Start in Mazzin: 4.7 km, about 150 m of climbing, an hour and a half. Keep your dog on a short lead (1.5 m at most), carry a muzzle and keep out of the hay meadows. Fountains in Mazzin and Pera.": "Parti da Mazzin: 4,7 km, circa 150 m di salita, un'ora e mezza. Tieni il cane al guinzaglio corto (al massimo 1,5 m), porta la museruola e non entrare nei prati da fieno. Fontane a Mazzin e a Pera.",
   "A crossing of the main valley road (SS48) in Pera": "Un attraversamento della strada principale di fondovalle (SS48) a Pera",

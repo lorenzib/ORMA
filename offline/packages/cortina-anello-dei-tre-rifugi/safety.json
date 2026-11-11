@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "trailId": "cortina-anello-dei-tre-rifugi",
+  "generatedAt": "2026-11-09T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 14.5,
+    "ascentM": 813,
+    "highestPointM": 2324,
+    "expectedDuration": "5 hours",
+    "difficulty": "Hard",
+    "shadePercent": 13
+  },
+  "trailhead": {
+    "lat": 46.625339,
+    "lng": 12.098844,
+    "label": "Malga Ra Stua, where the shuttle bus from Fiames stops"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6299223,
+      "lng": 12.0954859,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6363095,
+      "lng": 12.0933273,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6365703,
+      "lng": 12.092452,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6535568,
+      "lng": 12.0595002,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6564213,
+      "lng": 12.0580929,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6663479,
+      "lng": 12.0812219,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "High, open karst plateau at 2,100–2,330 m with almost no shade: storms build quickly on summer afternoons.",
+    "Stony, rocky path on the descent past the lakes.",
+    "Cows graze around Malga Ra Stua and Cianpo de Crósc in summer.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-09"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-09",
+      "licence": "ODbL"
+    }
+  ]
+}

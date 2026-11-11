@@ -16,6 +16,9 @@
   // Ski runs open with the snow; the boards publish no season for a piste, so
   // this is the usual Dolomites ski season and is said to be an estimate.
   const WINTER_SPORT_MONTHS = [12, 1, 2, 3, 4];
+  // A winter walk (season.winterWalk) is the board's winter tour of a path: it
+  // is offered only from November to April, whatever else its board lists.
+  const WINTER_WALK_MONTHS = [11, 12, 1, 2, 3, 4];
 
   const monthName = m => tx(MONTH_NAMES[m - 1]);
   // From the month's name in the reader's language: giugno and luglio are G and L.
@@ -24,6 +27,27 @@
   function readOn(iso) {
     const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || ''));
     return match ? `${Number(match[3])} ${monthName(Number(match[2]))} ${match[1]}` : String(iso || '');
+  }
+
+  // "05-30" -> "30 May", in either language.
+  function dayMonth(md) {
+    const [month, day] = String(md || '').split('-').map(Number);
+    return month && day ? `${day} ${monthName(month)}` : String(md || '');
+  }
+
+  // The lifts the walk rides (trail.season.lifts, from data/lift-seasons.json):
+  // a lift the walk needs makes the months it is shut out of season.
+  const requiredLifts = season => ((season && season.lifts) || []).filter(lift => lift.required);
+  const liftShut = (lift, month) => (lift.shutMonths || []).includes(month);
+
+  // "The Col Raiser gondola runs from 30 May to 1 November and from 6 December
+  // to 6 April (2025/26 dates)."
+  function liftLine(lift) {
+    const runs = lift.periods.map(p => tx('from {from} to {to}', { from: dayMonth(p.from), to: dayMonth(p.to) })).join(tx(' and '));
+    if (lift.winterOnly) return tx('The {lift} runs {runs} ({year} dates; summer dates not yet published).', { lift: lift.name, runs, year: lift.datesFor });
+    return lift.summerOnly
+      ? tx('The {lift} runs {runs} ({year} dates; winter dates not yet published).', { lift: lift.name, runs, year: lift.datesFor })
+      : tx('The {lift} runs {runs} ({year} dates).', { lift: lift.name, runs, year: lift.datesFor });
   }
 
   // [5,6,7,8,9,10] -> "from May to October"; a run that crosses New Year
@@ -47,15 +71,43 @@
     nordic: 'In winter, {km} km of this walk is a cross-country ski track{names}.',
   };
 
+  // Seasonal risks to dogs (trail.season.dogSeasons, from data/dog-seasons.json):
+  // a tag in the months they apply and a line under "When to go" with the source.
+  const DOG_SEASON_TAGS = { caterpillars: 'Caterpillar season', ticks: 'Tick season', cows: 'Cows on the pastures' };
+  const DOG_SEASON_SENTENCES = {
+    caterpillars: '{range}: pine processionary caterpillars come down from the pines below about {alt} m, and they are a danger to dogs. Keep your dog away from pines and from the caterpillars.',
+    ticks: '{range}: ticks in the woods below about {alt} m, most of all from late May to mid-June. Check your dog after the walk.',
+    cows: '{range} (an estimate): cows may be out on the pastures. Keep your dog close and give the herds a wide berth.',
+  };
+  const DOG_SEASON_ALT = { caterpillars: 1400, ticks: 1200 };
+  // [3,4,5,6] -> "March to June"; the risks' months are one run each.
+  function monthSpan(months) {
+    const sorted = months.slice().sort((a, b) => a - b);
+    return sorted.length === 1 ? monthName(sorted[0]) : tx('{from} to {to}', { from: monthName(sorted[0]), to: monthName(sorted[sorted.length - 1]) });
+  }
+  // "da marzo a giugno: …" opens a sentence: capital first letter.
+  const capitalise = text => text.charAt(0).toUpperCase() + text.slice(1);
+  // The risks that apply this month, as tags: [{ kind, label }].
+  function dogSeasonsNow(season, month) {
+    return ((season && season.dogSeasons) || [])
+      .filter(risk => DOG_SEASON_TAGS[risk.kind] && risk.months.includes(month))
+      .map(risk => ({ kind: risk.kind, label: tx(DOG_SEASON_TAGS[risk.kind]) }));
+  }
+
   function describe(season, formatNumber) {
     if (!season || typeof season !== 'object') return null;
     const fmt = typeof formatNumber === 'function' ? formatNumber : value => value;
-    const out = { kind: null, strip: [], line: '', source: null, winter: [], winterNote: '', winterSource: '' };
+    const out = { kind: null, strip: [], line: '', source: null, winter: [], winterNote: '', winterSource: '', lifts: [] };
     if (season.recommended) {
       const good = new Set(season.recommended.months);
       out.kind = 'recommended';
       out.strip = MONTH_NAMES.map((name, i) => ({ month: i + 1, initial: monthInitial(i + 1), name: monthName(i + 1), state: good.has(i + 1) ? 'good' : 'off' }));
       out.line = tx('Recommended {range}.', { range: monthRange(season.recommended.months) });
+      if (season.winterWalk) {
+        const winter = winterWalkMonths(season.recommended.months);
+        out.strip.forEach(m => { m.state = winter.includes(m.month) ? 'good' : 'off'; });
+        out.line = tx('A winter walk, recommended {range}.', { range: monthRange(winter) });
+      }
       out.source = {
         before: tx('Source: '),
         label: tx(season.recommended.source.label),
@@ -75,6 +127,30 @@
       };
       out.legend = [['good', tx('Usually snow-free')], ['snow', season.snow.likelihood === 'likely' ? tx('Snow likely') : tx('Snow possible')]];
     }
+    // Months a needed lift is shut are marked on the strip whatever the board
+    // or the snow says: without the lift the walk as described is not there.
+    const needed = requiredLifts(season);
+    if (needed.length && out.strip.length) {
+      let marked = false;
+      out.strip.forEach(m => {
+        if (needed.some(lift => liftShut(lift, m.month))) { m.state = 'lift'; marked = true; }
+      });
+      if (marked) out.legend.push(['lift', tx('Lift not running')]);
+    }
+    out.lifts = ((season.lifts) || []).map(lift => ({
+      line: [
+        liftLine(lift),
+        lift.required
+          ? (lift.climbM ? tx('The walk needs it; when it is shut, the {m} m it covers are on foot, if a path allows.', { m: fmt(lift.climbM) }) : tx('The walk needs it.'))
+          : tx('The walk does not need it.'),
+      ].join(' '),
+      source: {
+        before: tx('Source: '),
+        label: lift.operator || lift.name,
+        url: lift.url,
+        after: tx(', read on {date}.', { date: readOn(lift.accessedAt) }),
+      },
+    }));
     for (const use of season.winterUse || []) {
       const names = use.names && use.names.length ? ` (${use.names.join(', ')})` : '';
       out.winter.push(tx(KIND_SENTENCES[use.kind], { km: fmt(use.km), names }));
@@ -83,6 +159,15 @@
       out.winterNote = tx('Expect skiers there while the runs are open, usually from December to April (an estimate).');
       out.winterSource = tx('Read off the map (OpenStreetMap).');
     }
+    out.dogSeasons = ((season.dogSeasons) || []).map(risk => ({
+      kind: risk.kind,
+      line: capitalise(tx(DOG_SEASON_SENTENCES[risk.kind], { range: monthSpan(risk.months), alt: fmt(DOG_SEASON_ALT[risk.kind] || 0) })),
+      sources: risk.sources.map(source => ({
+        label: tx(source.label),
+        url: source.url,
+        after: tx(', read on {date}.', { date: readOn(source.accessedAt) }),
+      })),
+    }));
     return out;
   }
 
@@ -92,7 +177,12 @@
     if (!season || !month) return '';
     const name = monthName(month);
     const notes = [];
-    if (season.recommended) {
+    // A board month the walk's lift is shut is not "in season": the lift's
+    // sentence below says why, and the two would contradict each other.
+    const liftOut = requiredLifts(season).some(lift => liftShut(lift, month));
+    if (season.winterWalk && !WINTER_WALK_MONTHS.includes(month)) {
+      notes.push(tx('{month} is outside winter, and this is the winter walk.', { month: name }));
+    } else if (season.recommended && !(liftOut && season.recommended.months.includes(month))) {
       notes.push(season.recommended.months.includes(month)
         ? tx('{month} is in this walk’s season.', { month: name })
         : tx('{month} is outside the season the board publishes for this walk.', { month: name }));
@@ -100,6 +190,12 @@
       notes.push(season.snow.likelihood === 'likely'
         ? tx('In {month} snow is likely on this walk.', { month: name })
         : tx('In {month} snow is possible on this walk.', { month: name }));
+    }
+    for (const lift of (season.lifts || [])) {
+      if (!liftShut(lift, month)) continue;
+      notes.push(lift.required
+        ? tx('In {month} the {lift} is not running, and the walk needs it.', { month: name, lift: lift.name })
+        : tx('In {month} the {lift} is not running; the walk does not need it.', { month: name, lift: lift.name }));
     }
     if ((season.winterUse || []).length && WINTER_SPORT_MONTHS.includes(month)) {
       notes.push(tx('In {month}, parts of it are likely to be ski runs or tracks.', { month: name }));
@@ -109,10 +205,19 @@
 
   // The months that suit the walk: the board's months, else the months the
   // estimate keeps free of snow; with ski runs on the line, less the months
-  // those are usually open (unless that leaves nothing, as for a winter walk).
+  // those are usually open (unless that leaves nothing, as for a winter walk);
+  // and less the months a lift the walk needs is not running.
   // null when the walk has no season record.
+  function winterWalkMonths(months) {
+    const winter = (months || []).filter(m => WINTER_WALK_MONTHS.includes(m));
+    return winter.length ? winter : WINTER_WALK_MONTHS.slice();
+  }
+
   function bestMonths(season) {
     if (!season || typeof season !== 'object') return null;
+    if (season.winterWalk) {
+      return winterWalkMonths(season.recommended ? season.recommended.months : null).sort((a, b) => a - b);
+    }
     if (!season.recommended && !season.snow && !(season.winterUse || []).length) return null;
     let months = season.recommended
       ? season.recommended.months.slice()
@@ -120,6 +225,13 @@
     if ((season.winterUse || []).length) {
       const summer = months.filter(m => !WINTER_SPORT_MONTHS.includes(m));
       if (summer.length) months = summer;
+    }
+    // Less the months a needed lift is shut. If that left nothing the lift
+    // data would be wrong for this walk, so it is not applied.
+    const needed = requiredLifts(season);
+    if (needed.length) {
+      const running = months.filter(m => !needed.some(lift => liftShut(lift, m)));
+      if (running.length) months = running;
     }
     return months.length ? months.sort((a, b) => a - b) : null;
   }
@@ -130,6 +242,20 @@
   function outOfSeason(season, month) {
     const best = bestMonths(season);
     return Boolean(best && month && !best.includes(month));
+  }
+
+  // A high-mountain walk is not offered while it is out of season: it stays off
+  // the trail list, the map, the homepage and the collections. Its own page
+  // still opens from a saved walk or a link, and says it is out of season.
+  // High means it runs along a ski or sled run, or climbs to 1,800 m or more.
+  // Cross-country tracks don't count: they are beside the path, not on it.
+  // A winter walk sits out the rest of the year the same way.
+  const HIGH_MOUNTAIN_M = 1800;
+  function hiddenThisMonth(season, month) {
+    if (!season) return false;
+    const onPiste = (season.winterUse || []).some(use => use.kind === 'downhill' || use.kind === 'sled');
+    const high = Number(season.highPoint) >= HIGH_MOUNTAIN_M;
+    return (onPiste || high || Boolean(season.winterWalk)) && outOfSeason(season, month);
   }
 
   // "Best time: June to October" on a trail page, "Best time: Jun–Oct" on a
@@ -151,7 +277,37 @@
     return tx('Best time: {range}', { range: runs.join(', ') });
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, monthName, monthRange, describe, nowNote, bestMonths, outOfSeason, bestTime };
+  // The month an out-of-season walk comes back into season: the next of its
+  // best months after this one. null when it is in season or has no record.
+  function backInSeason(season, month) {
+    const best = bestMonths(season);
+    if (!best || !month || best.includes(month)) return null;
+    for (let step = 1; step <= 12; step += 1) {
+      const next = ((month - 1 + step) % 12) + 1;
+      if (best.includes(next)) return next;
+    }
+    return null;
+  }
+
+  // The "Out of season" tag with the month it comes back: "Out of season ·
+  // back in June" ("back in Jun" on a card). '' when the walk is in season.
+  function outOfSeasonTag(season, month, short) {
+    const back = backInSeason(season, month);
+    if (!back) return '';
+    const name = short ? monthName(back).slice(0, 3) : monthName(back);
+    return tx('Out of season · back in {month}', { month: name });
+  }
+
+  // A list in the order it came, with the walks out of season this month moved
+  // to the end: the walks to go on now come first.
+  function inSeasonFirst(items, seasonOf, month) {
+    const now = [];
+    const later = [];
+    for (const item of items || []) (outOfSeason(seasonOf(item), month) ? later : now).push(item);
+    return now.concat(later);
+  }
+
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

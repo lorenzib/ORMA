@@ -1,5 +1,5 @@
 {
-  "scoringVersion": "1.7.0",
+  "scoringVersion": "1.8.0",
   "trailFixtures": {
     "easy-reviewed": {
       "metrics": {
@@ -380,7 +380,7 @@
         "heatRisk": "low"
       },
       "expected": {
-        "score": 75,
+        "score": 79,
         "category": "possible-with-cautions",
         "confidence": "high"
       }
@@ -401,7 +401,7 @@
         "heatRisk": "low"
       },
       "expected": {
-        "score": 42,
+        "score": 46,
         "category": "not-recommended",
         "confidence": "high"
       }
@@ -422,7 +422,7 @@
         "heatRisk": "low"
       },
       "expected": {
-        "score": 88,
+        "score": 92,
         "category": "strong-option",
         "confidence": "high"
       }

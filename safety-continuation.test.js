@@ -13,6 +13,7 @@ const safetyPages = [
   'livestock-guard-dogs.html',
   'paw-protection.html',
   'water-for-dogs-on-trail.html',
+  'winter-walks-with-your-dog.html',
 ];
 
 function readPage(name) {

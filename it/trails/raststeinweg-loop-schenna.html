@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Raststeinweg loop, Schenna, sentiero adatto ai cani, ORMA</title>
-<meta name="description" content="A loop above Schenna up to the Bergweg and the Ratscheidweg, past the Rastlhof and the Salfgut, and back down the shaded Raststeinweg. The board lists…">
+<meta name="description" content="Un anello sopra Schenna che sale al Bergweg e al Ratscheidweg, passa dal Rastlhof e dal Salfgut e ridiscende lungo l'ombreggiato Raststeinweg. La scheda…">
 <link rel="canonical" href="https://www.app-orma.com/it/trails/raststeinweg-loop-schenna.html">
 <link rel="alternate" hreflang="en" href="https://www.app-orma.com/trails/raststeinweg-loop-schenna.html">
 <link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/trails/raststeinweg-loop-schenna.html">
@@ -13,7 +13,7 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="it_IT">
 <meta property="og:title" content="Raststeinweg loop, Schenna, sentiero adatto ai cani, ORMA">
-<meta property="og:description" content="A loop above Schenna up to the Bergweg and the Ratscheidweg, past the Rastlhof and the Salfgut, and back down the shaded Raststeinweg. The board lists…">
+<meta property="og:description" content="Un anello sopra Schenna che sale al Bergweg e al Ratscheidweg, passa dal Rastlhof e dal Salfgut e ridiscende lungo l'ombreggiato Raststeinweg. La scheda…">
 <meta property="og:url" content="https://www.app-orma.com/it/trails/raststeinweg-loop-schenna.html">
 <meta property="og:image" content="https://www.app-orma.com/images/trails/meran-itinerario-raststeinweg-bergweg-view.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -44,14 +44,18 @@
   .sp-month--good{background:#BFDDB8;color:#1D4523;}
   .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
   .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--lift{background:#F1DEC4;color:#6B4416;}
   .sp-month--now{border-color:#1F2A24;}
   .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
   .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-key--lift{background:#F1DEC4;}
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
@@ -96,7 +100,7 @@
  "@context": "https://schema.org",
  "@type": "TouristAttraction",
  "name": "Raststeinweg loop, Schenna",
- "description": "A loop above Schenna up to the Bergweg and the Ratscheidweg, past the Rastlhof and the Salfgut, and back down the shaded Raststeinweg. The board lists…",
+ "description": "Un anello sopra Schenna che sale al Bergweg e al Ratscheidweg, passa dal Rastlhof e dal Salfgut e ridiscende lungo l'ombreggiato Raststeinweg. La scheda…",
  "inLanguage": "it",
  "url": "https://www.app-orma.com/it/trails/raststeinweg-loop-schenna.html",
  "geo": {
@@ -138,7 +142,7 @@
 }
 </script>
 </head>
-<body data-scoring-version="1.7.0">
+<body data-scoring-version="1.8.0">
 
 <div class="topnav">
   <a class="brand" href="/"><img src="../../logo.svg?v=3" alt="Logo ORMA">ORMA</a>
@@ -154,30 +158,31 @@
 <div class="wrap sp-hero">
   <div class="sp-breadcrumb"><a href="../../browse-trails.html">Tutti i sentieri</a> › Dolomiti, Italia › Burgraviato – Merano</div>
   <h1>Raststeinweg loop, Schenna</h1>
-  <p class="sp-gloss">farms and a shady path above Schenna</p>
+  <p class="sp-gloss">masi e un sentiero ombreggiato sopra Scena</p>
   <div class="sp-badges">
-    <span class="dp-badge sp-tag sp-tag--out" data-season-out="000000000000" hidden><span>Fuori stagione</span></span>
+    
     <span class="dp-badge sp-tag sp-tag--best"><span>Adatto tutto l’anno</span></span>
-    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
+    <span class="dp-badge sp-tag sp-tag--dog" data-season-out="001111000000" hidden><span>Stagione delle zecche</span></span>
+    <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Terreno impegnativo</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verificato da ORMA</span></span>
     
     
   </div>
   
-  <figure class="sp-photo"><img class="sp-img" src="../../images/trails/meran-itinerario-raststeinweg-bergweg-view.jpg" alt="Vine leaves along a wire trellis in the foreground, spruce and larch trees behind, and cloud-capped mountains above the Meran basin" loading="lazy" decoding="async"><details class="sp-photo-credit">
+  <figure class="sp-photo"><img class="sp-img" src="../../images/trails/meran-itinerario-raststeinweg-bergweg-view.jpg" alt="Foglie di vite lungo un filare in primo piano, abeti rossi e larici dietro e montagne coperte di nuvole sopra la conca di Meran" loading="lazy" decoding="async"><details class="sp-photo-credit">
       <summary aria-label="Mostra i crediti della foto" title="Crediti foto">C</summary>
       <div class="sp-photo-credit__body"><a href="https://commons.wikimedia.org/wiki/File:Schenner_Waalweg,_Blick_von_nördlich_des_Bergenwegs_nach_Nordwesten.jpg" rel="noopener nofollow">Vines and mountains above the Bergweg in Schenna</a> di Stephan van Helden <span aria-hidden="true">·</span> <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noopener">CC BY-SA 4.0</a> <span aria-hidden="true">·</span> Ritagliata per la visualizzazione.</div>
     </details></figure>
   
-  <p>A loop above Schenna up to the Bergweg and the Ratscheidweg, past the Rastlhof and the Salfgut, and back down the shaded Raststeinweg. The board lists 6.5 km, 311 m up and 311 m down, 2 h 12.</p>
+  <p>Un anello sopra Schenna che sale al Bergweg e al Ratscheidweg, passa dal Rastlhof e dal Salfgut e ridiscende lungo l'ombreggiato Raststeinweg. La scheda ufficiale indica 6,5 km, 311 m di salita e 311 m di discesa, 2 h 12.</p>
 
   <div class="sp-facts">
       <div class="sp-fact"><div class="sp-fact-k">Distanza</div><div class="sp-fact-v">6,5 km</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Dislivello in salita</div><div class="sp-fact-v">311 m</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Punto più alto</div><div class="sp-fact-v">896 m</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Durata</div><div class="sp-fact-v">2 h 15 min</div></div>
-      <div class="sp-fact"><div class="sp-fact-k">Terreno</div><div class="sp-fact-v">Village lanes, farm access roads and a woodland path</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Terreno</div><div class="sp-fact-v">Stradine di paese, strade d'accesso ai masi e un sentiero nel bosco</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Valutazione del sentiero</div><div class="sp-fact-v">Terreno impegnativo</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Zona</div><div class="sp-fact-v">Schenna – Bergweg – Ratscheidweg – Rastlhof – Salfgut – Raststeinweg – Schenna (Burggrafenamt) · Dolomiti, Italia</div></div>
   </div>
@@ -204,6 +209,10 @@
     <p>Consigliato tutto l’anno.</p>
     <p class="sp-src">Fonte: <a href="https://www.outdooractive.com/it/r/810055880" rel="noopener">Outdooractive</a>, consultata il 6 novembre 2026.</p>
     
+    
+    <h3 class="sp-season-dog">Per il tuo cane</h3>
+    <p>Da marzo a giugno: zecche nei boschi sotto i 1200 m circa, soprattutto da fine maggio a metà giugno. Controlla il cane dopo la camminata.</p>
+    <p class="sp-src">Fonte: <a href="https://www.ufficiostampa.provincia.tn.it/content/view/pdf/186846" rel="noopener">Provincia di Trento e Fondazione Edmund Mach</a>, consultata il 9 novembre 2026.</p>
   </section>
   <script>
   (function(){
@@ -222,18 +231,18 @@
   })();
   </script>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> Da dove partire</h2>
-    <p>The mini-golf in Schenna, the board’s start</p>
+    <p>Il minigolf di Schenna, punto di partenza della scheda ufficiale</p>
     <h2>Come seguire questo percorso</h2>
     
-    <p><b>Start</b> at the mini-golf in Schenna, the board’s start.</p>
-    <p><b>Percorso:</b> Walk up Pichlerstraße to the Bergweg, path 18A, and turn right. Pass the Roathhöfe and Fungganell farms and follow the Ratscheidweg to the Rastlhof farm. Carry on along its access road to the Salfnerhof and the Salfgut, then go a little downhill to the Raststeinweg. This pleasant, shaded path joins the Gsteirer Weg, which leads back down St.-Georgener-Straße to Schenna.</p>
-    <p><b>Svolte principali:</b> Key turns: right onto the Bergweg (18A) at the top of Pichlerstraße; at the Rastlhof along the access road to the Salfgut; after the Salfgut down onto the Raststeinweg; at the end onto the Gsteirer Weg back to Schenna.</p>
+    <p><b>Partenza:</b> Parti dal minigolf di Schenna, punto di partenza della scheda ufficiale.</p>
+    <p><b>Percorso:</b> Sali per la Pichlerstraße fino al Bergweg, sentiero 18A, e gira a destra. Passa davanti ai masi Roathhöfe e Fungganell e segui il Ratscheidweg fino al maso Rastlhof. Prosegui lungo la sua strada d'accesso fino al Salfnerhof e al Salfgut, poi scendi un po' fino al Raststeinweg. Questo piacevole sentiero ombreggiato si unisce al Gsteirer Weg, che riporta giù per la St.-Georgener-Straße fino a Schenna.</p>
+    <p><b>Svolte principali:</b> Svolte principali: a destra sul Bergweg (18A) in cima alla Pichlerstraße; al Rastlhof lungo la strada d'accesso fino al Salfgut; dopo il Salfgut giù sul Raststeinweg; alla fine sul Gsteirer Weg per tornare a Schenna.</p>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> Acqua sul sentiero</h2>
     <ul><li>km 0 · Drinking water</li><li>km 0,5 · Drinking water</li><li>km 1,1 · Kneippanlage</li><li>km 1,3 · Drinking water (2 punti)</li><li>km 6,1 · Drinking water</li></ul>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M4 11l8-7 8 7" fill="none" stroke="#8A5A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 10v9h12v-9" fill="#D6A038" stroke="#8A5A16" stroke-width="1.6" stroke-linejoin="round"></path><path d="M10 19v-5h4v5" fill="#8A5A16"></path></svg> Rifugi e ristoro</h2>
     <ul><li>km 0 · Pizzeria Bar Restaurant Adi</li><li>km 0 · Tannerhof</li><li>km 0 · Restaurant - Café Monika</li><li>km 0 · Bistro Emmi</li><li>km 0 · Mair Stub'm</li><li>km 0,2 · Schennerhof</li><li>km 1 · Jausenstation Cafe Am Waal</li><li>km 2,3 · Gasthof Rastlhof</li><li>km 2,8 · Buschenschank Salfgut</li></ul>
     <h2>Da sapere</h2>
-    <p>Start at the mini-golf in Schenna: a 6.5 km loop, 311 m up and down, about two and a quarter hours. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Drinking water at the start and in the first 1.3 km; farm inns at the Rastlhof and the Salfgut.</p>
+    <p>Parti dal minigolf di Schenna: un anello di 6,5 km, 311 m di salita e di discesa, circa due ore e un quarto. Tieni il cane al guinzaglio lungo al massimo 1,5 m e porta la museruola. Acqua potabile alla partenza e nel primo 1,3 km; locande contadine al Rastlhof e al Salfgut.</p>
     
 <p class="sp-review-meta">Verificato da ORMA il 3 novembre 2026. Verifica le condizioni attuali prima di partire.</p>
     <div id="dogFit">

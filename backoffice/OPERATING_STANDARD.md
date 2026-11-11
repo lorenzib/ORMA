@@ -2555,6 +2555,42 @@ commune's dog rule and the six safety checks still need somebody to read an
 authority's page, so the badge is still given by hand while paid research is
 off.
 
+## A seasonal limit is sourced before the seal
+
+> Decided by the owner on 10 November 2026. Built in
+> `scripts/seasonal-seal.js`; checked by `scripts/validate-production-trails.js`
+> (and so by the quality gate) and by the backoffice seal
+> (`backoffice/workflows/research-methods.js`, method 7).
+
+Some walks are only walks for part of the year, because something they depend
+on opens and shuts. A walk is not ORMA Verified unless that limit comes from a
+source the page can show:
+
+- **The walk has months.** A board's published months, or the altitude
+  estimate that says it is one (`data/trail-seasons.json`). None at all holds
+  the seal (`season-unrecorded`).
+- **A lift the walk needs has published running dates.** A walk whose lift is
+  required (`data/lift-access.json`) needs a dated running period for it in
+  `data/lift-seasons.json`; a lift listed only under `held` there does not
+  count (`lift-dates-unpublished`).
+- **Ski and sled runs on the line** are read off the map and said to be
+  (`trail.season.winterUse`), which is how the standard sources a fact the map
+  holds; they need nothing more.
+
+**The best months stay outside the seal.** They guide a reader; they do not
+verify a walk.
+
+**No seal is withdrawn by this rule.** It holds seals given from 10 November
+2026 on: a walk sealed since then without its limit sourced fails validation.
+Walks sealed before keep their seal and are listed as gaps (the `[gap]` lines
+of the validator and `seasonalSeal.gaps` in
+`data/generated/trail-validation-report.json`), to be fixed by finding the
+dates.
+
+Pass roads that shut in winter and huts that a walk depends on are seasonal
+limits too, but ORMA holds no dates for them yet; they join this rule when it
+does.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:

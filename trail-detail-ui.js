@@ -18,6 +18,11 @@
     if (i18n && typeof i18n.phrase === 'function') return i18n.phrase(text, vars);
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
+  // A number as the reader writes it (Italian: 6,7 km). English unchanged.
+  function num(value) {
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    return i18n && typeof i18n.num === 'function' ? i18n.num(value) : value;
+  }
   if (!document.querySelector('.td2')) return;
 
   // ---- 1. Hero Start-the-hike proxy + live banner -------------------------
@@ -27,19 +32,11 @@
   const hikeHome = heroBtn && heroBtn.parentElement;
   const hikeNext = heroBtn && heroBtn.nextSibling;
 
-  const hikeSlot = document.getElementById('mobileMapHikeSlot');
-  const phone = window.matchMedia ? window.matchMedia('(max-width:700px)') : null;
-
-  // On a phone the map's own End button is hidden, and a recording hike
-  // fills the screen with the map, so the hero button moves onto the map as
-  // "End · 12:34". Without this, a phone had no way to end a hike by hand.
+  // SOCIAL-04: a phone ends a hike from the recording panel's pause button
+  // (Resume or Finish walk), so the hero button stays in the page.
   function placeHikeAction() {
     if (!heroBtn || !hikeHome) return;
-    const onMap = !!(hikeSlot && phone && phone.matches && recording() &&
-      mapBox.classList.contains('map-fs'));
-    if (onMap) {
-      if (heroBtn.parentElement !== hikeSlot) hikeSlot.appendChild(heroBtn);
-    } else if (heroBtn.parentElement !== hikeHome) {
+    if (heroBtn.parentElement !== hikeHome) {
       hikeHome.insertBefore(heroBtn, hikeNext);
     }
   }
@@ -75,7 +72,7 @@
   window.addEventListener('dolopaws-hike-progress', function (e) {
     hikeStartedAt = (e.detail && e.detail.startedAt) || hikeStartedAt;
     const dist = document.getElementById('tdLiveDist');
-    if (dist && e.detail && typeof e.detail.km === 'number') dist.textContent = e.detail.km.toFixed(1) + ' km';
+    if (dist && e.detail && typeof e.detail.km === 'number') dist.textContent = num(e.detail.km.toFixed(1)) + ' km';
     if (!elapsedTimer) elapsedTimer = setInterval(tickElapsed, 1000);
     tickElapsed();
   });
@@ -99,7 +96,6 @@
           : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> ' + tx('Start the hike');
       }
     }
-    placeHikeAction();
     if (liveBanner) liveBanner.hidden = !rec;
     if (!rec && elapsedTimer) { clearInterval(elapsedTimer); elapsedTimer = null; hikeStartedAt = null; }
   }
@@ -115,7 +111,6 @@
       attributes: true, attributeFilter: ['class', 'hidden'], childList: true, subtree: true,
     });
   }
-  if (phone && phone.addEventListener) phone.addEventListener('change', syncHike);
   // Poll briefly until hike-mode has injected its button, then let the
   // observer take over.
   let tries = 0;
@@ -168,7 +163,7 @@
       }).filter(function (v) { return v != null; });
       if (rated.length) {
         const avg = rated.reduce(function (a, b) { return a + b; }, 0) / rated.length;
-        avgEl.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:none;"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 18l-5.9 3.1 1.3-6.6L2.5 9.4l6.6-.8z"/></svg> ' + avg.toFixed(1);
+        avgEl.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:none;"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 18l-5.9 3.1 1.3-6.6L2.5 9.4l6.6-.8z"/></svg> ' + num(avg.toFixed(1));
         avgEl.hidden = false;
       } else { avgEl.hidden = true; }
     }

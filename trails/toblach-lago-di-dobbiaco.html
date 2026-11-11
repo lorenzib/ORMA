@@ -43,14 +43,18 @@
   .sp-month--good{background:#BFDDB8;color:#1D4523;}
   .sp-month--off{background:rgba(0,0,0,.05);color:#777;}
   .sp-month--snow{background:#C9DAF0;color:#24456E;}
+  .sp-month--lift{background:#F1DEC4;color:#6B4416;}
   .sp-month--now{border-color:#1F2A24;}
   .sp-month-key{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;font-size:.78rem;color:var(--ink-soft,#666);margin:0 0 10px;}
   .sp-key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;}
   .sp-key--good{background:#BFDDB8;}
   .sp-key--off{background:rgba(0,0,0,.08);}
   .sp-key--snow{background:#C9DAF0;}
+  .sp-key--lift{background:#F1DEC4;}
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
+  .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
@@ -136,7 +140,7 @@
 }
 </script>
 </head>
-<body data-scoring-version="1.7.0">
+<body data-scoring-version="1.8.0">
 
 <div class="topnav">
   <a class="brand" href="/"><img src="../logo.svg?v=3" alt="ORMA logo">ORMA</a>
@@ -154,9 +158,10 @@
   <h1>Toblach – Lago di Dobbiaco</h1>
   <p class="sp-gloss">the nature trail on the west shore of the Toblacher See</p>
   <div class="sp-badges">
-    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111100000001" hidden><span>Out of season</span></span>
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111100000001" hidden><span>Out of season · back in May</span></span>
     <span class="dp-badge sp-tag sp-tag--best"><span>Best time: May to November</span></span>
-    <script>(function(){var tag=document.querySelector('.sp-tag--out');if(tag&&tag.getAttribute('data-season-out').charAt(new Date().getMonth())==='1')tag.hidden=false;})();</script>
+    
+    <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--low-risk"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Low-risk terrain</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verified by ORMA</span></span>
     
@@ -201,8 +206,10 @@
     <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Recommended <span class="sp-key sp-key--off"></span>Outside the season</p>
     <p>Recommended all year.</p>
     <p class="sp-src">Source: <a href="https://www.dreizinnen.com/it/activity/sentiero-tematico-dobbiaco-lago-di-dobbiaco-percorso-naturalistico-attorno-al-lago-dobbiaco_553" rel="noopener">Dolomites 3 Zinnen tourist board</a>, read on 6 November 2026.</p>
+    
     <p>In winter, 3.6 km of this walk is a cross-country ski track (Toblacher See - Lago di Dobbiaco). Expect skiers there while the runs are open, usually from December to April (an estimate).</p>
     <p class="sp-src">Read off the map (OpenStreetMap).</p>
+    
   </section>
   <script>
   (function(){

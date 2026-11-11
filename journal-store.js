@@ -8,6 +8,7 @@
   // No Firebase, no DOM, no clock of its own, so it is testable on its own.
 
   var MAX_ENTRIES = 500;          // per account, newest kept
+  var PROOFS = ['gps', 'gpx'];     // how a walk earned its passport stamp
   var MAX_TRACK_CHARS = 60000;    // ~3,000 points, far past a day's walking
   var MAX_PHOTO_CHARS = 700000;   // same bound dog photos already use
   var MAX_NOTE_CHARS = 2000;
@@ -130,6 +131,10 @@
     // Same for photos kept in Storage: only sent when there are some.
     var photoIds = photoIdsOf(entry, photo ? 1 : 0);
     if(photoIds.length) remote.photoIds = photoIds;
+    // SOCIAL-05: only a walk hike mode proved by GPS ('gps'), or a GPX file
+    // that passed the same check ('gpx', SOCIAL-06), carries the mark that
+    // earns a passport stamp; any other walk leaves the key out.
+    if(PROOFS.indexOf(entry.proof) !== -1) remote.proof = entry.proof;
     return remote;
   }
 
@@ -198,6 +203,7 @@
       tale: taleOf(remote),
       walkedWith: walkedWithOf(remote),
       photoIds: photoIdsOf(remote, typeof remote.photo === 'string' ? 1 : 0),
+      proof: PROOFS.indexOf(remote.proof) !== -1 ? remote.proof : null,
       updatedAt: finite(remote.updatedAt) || 0,
     };
   }

@@ -1,5 +1,6 @@
 // primiero-anello-di-valpiana in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "the forest loop to Malga Valpiana": "l'anello nel bosco fino a Malga Valpiana",
   "A shaded forest loop in the Val Noana from the Rifugio Fonteghi to Malga Valpiana and the meadows of Valpiana, among great firs and beeches. The APT lists 5.2 km and 184 m of ascent.": "Un anello ombreggiato nel bosco in Val Noana dal Rifugio Fonteghi a Malga Valpiana e ai prati di Valpiana, tra grandi abeti e faggi. L'APT indica 5,2 km e 184 m di dislivello in salita.",
   "Start at the Rifugio Fonteghi in the Val Noana: 5.2 km, about 180 m of climbing, an hour and a half. Keep your dog on a lead near the malga and any grazing cattle. Water at the rifugio and near the end.": "Parti dal Rifugio Fonteghi in Val Noana: 5,2 km, circa 180 m di dislivello in salita, un'ora e mezza. Tieni il cane al guinzaglio vicino alla malga e al bestiame al pascolo. Acqua al rifugio e vicino all'arrivo.",
   "Gravel forest roads, shared with forestry vehicles": "Strade forestali sterrate, condivise con i mezzi forestali",
