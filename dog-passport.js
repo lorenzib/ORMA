@@ -204,7 +204,11 @@
     if(passport.since) rows.push([t('journal.passport.idSince'), shortDate(passport.since, lang, true)]);
     var title = name ? t('journal.passport.titleFor', { name: name }) : t('journal.passport.title');
     return '<div class="jp-head"><h2 class="jp-title">' + esc(title) + '</h2>' +
-        '<span class="jn-private-chip">' + esc(t('journal.passport.private')) + '</span></div>' +
+        '<span class="jp-head-actions">' +
+          (passport.stamps.length && options.canShare
+            ? '<button type="button" class="jp-share">' + esc(t('journal.passport.share')) + '</button>' : '') +
+          '<span class="jn-private-chip">' + esc(t('journal.passport.private')) + '</span>' +
+        '</span></div>' +
       '<div class="jp-id">' + face + '<dl class="jp-idrows">' +
         rows.map(function(r){ return '<div><dt>' + esc(r[0]) + '</dt><dd>' + esc(r[1]) + '</dd></div>'; }).join('') +
       '</dl></div>';
