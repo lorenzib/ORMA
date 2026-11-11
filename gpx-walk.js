@@ -1,12 +1,20 @@
 (function(root){
   'use strict';
 
-  // SOCIAL-06 — add a walk from a GPX file. For the walk recorded on a watch,
+  // SOCIAL-06 — add a walk from a file. For the walk recorded on a watch,
   // Strava or Komoot because nobody pressed Start in ORMA. The file is read on
   // the phone, matched to the ORMA trail it follows, and judged by the same
   // check hike mode uses (walk-proof.js): most of the trail's line walked, in
   // one go, at a walking pace. A walk that passes is marked `proof: 'gpx'`,
   // which earns a passport stamp just like a recording made in ORMA.
+  //
+  // Three kinds of file are read: GPX (most apps), TCX (Garmin and older
+  // Strava exports) and FIT, the binary file Garmin, Wahoo, Coros and Suunto
+  // watches write. A gzipped one (Strava's bulk export) is unzipped first.
+  // Every kind becomes the same list of timed points and gets the same check,
+  // and a passing walk is marked `proof: 'gpx'` whichever kind it came from:
+  // the mark means "proven from a file", and the database accepts only
+  // 'gps' and 'gpx'.
   //
   // A file needs a time on its points. A route planned on a map has none, and
   // a plan is not a walk. Like hike mode, these checks run on the phone, so
@@ -55,6 +63,155 @@
     }
     points.sort(function(a, b){ return a.t - b.t; });
     return { points: points, timed: points.length > 0, untimed: untimed, name: name, error: null };
+  }
+
+  // TCX: <Trackpoint> with <Time> and <Position>. A <Courses> file with no
+  // <Activities> is a route planned for the watch to follow, not a walk.
+  function parseTcx(text){
+    var source = typeof text === 'string' ? text : '';
+    var empty = { points: [], timed: false, name: '', error: 'not-gpx' };
+    if(!source || source.length > MAX_FILE_CHARS || !/<TrainingCenterDatabase[\s>]/i.test(source)) return empty;
+    var plan = /<Courses[\s>]/i.test(source) && !/<Activities[\s>]/i.test(source);
+    var points = [];
+    var untimed = 0, noPosition = 0;
+    var re = /<Trackpoint\b[^>]*>([\s\S]*?)<\/Trackpoint>/gi;
+    var m;
+    var tag = function(body, name){
+      var x = new RegExp('<' + name + '>\\s*([^<\\s]+)\\s*</' + name + '>', 'i').exec(body);
+      return x ? x[1] : '';
+    };
+    while((m = re.exec(source))){
+      var lat = Number(tag(m[1], 'LatitudeDegrees'));
+      var lng = Number(tag(m[1], 'LongitudeDegrees'));
+      if(!tag(m[1], 'LatitudeDegrees') || !Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180){
+        noPosition++;
+        continue;
+      }
+      var t = Date.parse(tag(m[1], 'Time'));
+      if(!Number.isFinite(t)){ untimed++; continue; }
+      points.push({ lat: lat, lng: lng, t: t });
+    }
+    points.sort(function(a, b){ return a.t - b.t; });
+    return { points: points, timed: points.length > 0, untimed: untimed, noPosition: noPosition, plan: plan, name: '', error: null };
+  }
+
+  // FIT: the binary file watches write. Only what the walk needs is read:
+  // `record` messages (global number 20) with a position and a time, and the
+  // file's type (`file_id`, number 0), where 6 means a course, a plan.
+  // Positions are "semicircles"; times are seconds since 31 Dec 1989 UTC.
+  var FIT_EPOCH_S = 631065600;
+  var SEMICIRCLE = 180 / 2147483648;
+  function isFit(bytes){
+    return bytes && bytes.length >= 12 && bytes[0] >= 12 &&
+      bytes[8] === 0x2E && bytes[9] === 0x46 && bytes[10] === 0x49 && bytes[11] === 0x54; // ".FIT"
+  }
+  function parseFit(input){
+    var bytes = toBytes(input);
+    var empty = { points: [], timed: false, name: '', error: 'not-gpx' };
+    if(!isFit(bytes) || bytes.length > MAX_FILE_CHARS) return empty;
+    var view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+    var points = [];
+    var untimed = 0, noPosition = 0, plan = false, broken = false;
+    var offset = 0;
+    // A FIT file can be several files one after another ("chained").
+    while(!broken && offset + 12 <= bytes.length && isFit(bytes.subarray(offset))){
+      var pos = offset + bytes[offset];
+      var end = Math.min(bytes.length, pos + view.getUint32(offset + 4, true));
+      var defs = {};
+      var lastTs = null;
+      while(pos < end){
+        var head = bytes[pos++];
+        var local, compressedTs = null;
+        if(head & 0x80){
+          // Compressed timestamp header: a 5-bit offset from the last full time.
+          local = (head >> 5) & 0x03;
+          if(lastTs !== null){
+            var off = head & 0x1F;
+            compressedTs = lastTs + ((off - (lastTs & 0x1F)) & 0x1F);
+            lastTs = compressedTs;
+          }
+        } else if(head & 0x40){
+          local = head & 0x0F;
+          if(pos + 5 > end){ broken = true; break; }
+          var little = bytes[pos + 1] === 0;
+          var def = { global: view.getUint16(pos + 2, little), little: little, fields: [], size: 0, devSize: 0 };
+          var count = bytes[pos + 4];
+          pos += 5;
+          if(pos + count * 3 > end){ broken = true; break; }
+          for(var f = 0; f < count; f++, pos += 3){
+            def.fields.push({ num: bytes[pos], size: bytes[pos + 1], at: def.size });
+            def.size += bytes[pos + 1];
+          }
+          if(head & 0x20){ // developer fields: skipped, but their bytes counted
+            var devCount = bytes[pos++];
+            if(pos + devCount * 3 > end){ broken = true; break; }
+            for(var d = 0; d < devCount; d++, pos += 3) def.devSize += bytes[pos + 1];
+          }
+          defs[local] = def;
+          continue;
+        } else {
+          local = head & 0x0F;
+        }
+        var msg = defs[local];
+        if(!msg || pos + msg.size + msg.devSize > end){ broken = true; break; }
+        var ts = compressedTs, lat = null, lng = null, type = null;
+        msg.fields.forEach(function(field){
+          var at = pos + field.at;
+          if(field.num === 253 && field.size === 4){
+            var v = view.getUint32(at, msg.little);
+            if(v !== 0xFFFFFFFF){ ts = v; lastTs = v; }
+          } else if(msg.global === 20 && field.size === 4 && (field.num === 0 || field.num === 1)){
+            var s = view.getInt32(at, msg.little);
+            if(s !== 0x7FFFFFFF){ if(field.num === 0) lat = s * SEMICIRCLE; else lng = s * SEMICIRCLE; }
+          } else if(msg.global === 0 && field.num === 0 && field.size === 1){
+            type = bytes[at];
+          }
+        });
+        pos += msg.size + msg.devSize;
+        if(msg.global === 0 && type === 6) plan = true;
+        if(msg.global !== 20) continue;
+        if(lat === null || lng === null || Math.abs(lat) > 90 || Math.abs(lng) > 180){ noPosition++; continue; }
+        if(ts === null){ untimed++; continue; }
+        points.push({ lat: lat, lng: lng, t: (ts + FIT_EPOCH_S) * 1000 });
+      }
+      offset = end + 2; // the file's CRC
+    }
+    if(!points.length && broken) return empty;
+    points.sort(function(a, b){ return a.t - b.t; });
+    return { points: points, timed: points.length > 0, untimed: untimed, noPosition: noPosition, plan: plan, name: '', error: null };
+  }
+
+  function toBytes(input){
+    // Tag checks rather than instanceof, so bytes from another frame or realm still count.
+    var tag = Object.prototype.toString.call(input);
+    if(tag === '[object Uint8Array]') return input;
+    if(tag === '[object ArrayBuffer]') return new Uint8Array(input);
+    if(input && ArrayBuffer.isView(input)) return new Uint8Array(input.buffer, input.byteOffset, input.byteLength);
+    return new Uint8Array(0);
+  }
+
+  // Any of the three, from the file's own bytes (or text), not its name.
+  function readWalkFile(input){
+    if(typeof input === 'string'){
+      return /<TrainingCenterDatabase[\s>]/i.test(input) ? parseTcx(input) : parseGpx(input);
+    }
+    var bytes = toBytes(input);
+    if(isFit(bytes)) return parseFit(bytes);
+    if(bytes.length > MAX_FILE_CHARS) return { points: [], timed: false, name: '', error: 'not-gpx' };
+    var text = typeof TextDecoder === 'function' ? new TextDecoder('utf-8').decode(bytes) : '';
+    return readWalkFile(text);
+  }
+
+  // Strava's bulk export gzips each file (.gpx.gz, .fit.gz). Unzip on the
+  // phone when the browser can; otherwise hand back the bytes unchanged.
+  function gunzip(input){
+    var bytes = toBytes(input);
+    var zipped = bytes.length > 2 && bytes[0] === 0x1F && bytes[1] === 0x8B;
+    if(!zipped || typeof DecompressionStream !== 'function' || typeof Response !== 'function' || typeof Blob !== 'function'){
+      return Promise.resolve(bytes);
+    }
+    var stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+    return new Response(stream).arrayBuffer().then(function(buffer){ return new Uint8Array(buffer); });
   }
 
   // ---- Geometry --------------------------------------------------------------
@@ -161,15 +318,25 @@
 
   // Read the file and find the ORMA trail it walked.
   // Returns { ok, reason, trail, share, proven, km, minutes, startedAt, completedAt, track }.
-  //   reason: 'not-gpx' | 'no-times' | 'too-few-points' | 'in-the-future'
+  //   reason: 'not-gpx' (no file we can read) | 'a-plan' | 'no-gps' | 'no-times'
+  //           | 'too-few-points' | 'in-the-future'
   //           | 'no-trail' | 'too-little-of-the-route' | 'not-one-walk' | 'too-fast' | 'proven'
   function assessGpx(text, trails, options){
+    return assessParsed(parseGpx(text), trails, options);
+  }
+
+  // A GPX, TCX or FIT file, as text or bytes (already unzipped: see gunzip).
+  function assessFile(input, trails, options){
+    return assessParsed(readWalkFile(input), trails, options);
+  }
+
+  function assessParsed(parsed, trails, options){
     var opts = options || {};
     var now = Number(opts.now) || 0;
-    var parsed = parseGpx(text);
     var fail = function(reason, extra){ return Object.assign({ ok: false, reason: reason, proven: false }, extra || {}); };
     if(parsed.error) return fail(parsed.error);
-    if(!parsed.timed) return fail(parsed.untimed ? 'no-times' : 'not-gpx');
+    if(parsed.plan) return fail('a-plan');
+    if(!parsed.timed) return fail(parsed.untimed ? 'no-times' : parsed.noPosition ? 'no-gps' : 'not-gpx');
     var points = thin(parsed.points);
     if(points.length < MIN_POINTS) return fail('too-few-points');
     var startedAt = points[0].t, completedAt = points[points.length - 1].t;
@@ -252,7 +419,8 @@
 
   var api = {
     MAX_FILE_CHARS: MAX_FILE_CHARS, MIN_SHOWN_SHARE: MIN_SHOWN_SHARE,
-    parseGpx: parseGpx, assessGpx: assessGpx, isDuplicate: isDuplicate, buildEntry: buildEntry,
+    parseGpx: parseGpx, parseTcx: parseTcx, parseFit: parseFit, readWalkFile: readWalkFile, gunzip: gunzip,
+    assessGpx: assessGpx, assessFile: assessFile, isDuplicate: isDuplicate, buildEntry: buildEntry,
     project: project, prepareLine: prepareLine,
   };
   root.DoloPawsGpxWalk = api;
