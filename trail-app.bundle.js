@@ -11471,6 +11471,8 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
 ;
 
 // ---- hike-mode.js ----
+// A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 /**
  * hike-mode.js, "Start hike" companion for the trail detail page.
  *
@@ -12585,7 +12587,7 @@ function initHikeMode(map, trail, options){
       <div class="hk-card">
         <div class="hk-avatar"${dog.photo ? ` style="background-image:url(${dog.photo});"` : ''}>${dog.photo ? '' : esc(dogName.charAt(0).toUpperCase() || '🐾')}</div>
         <h1 class="hk-title" id="hkTitle">${esc(window.t('hike.completedTitle', {name: dogName}))}</h1>
-        <p class="hk-sub">${esc(trail.name)}</p>
+        <p class="hk-sub">${esc(trailDisplayName(trail))}</p>
         ${proof ? `<p class="hk-proof ${proof.proof ? 'is-proven' : ''}">${esc(proof.proof
           ? window.t('hike.proofGps')
           : proof.reason === 'too-little-of-the-route'
@@ -15684,6 +15686,8 @@ function initTrailReports(map, trail){
 ;
 
 // ---- trail.js ----
+// A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 // Script-written wording goes through i18n.js; the English sentence is its own key.
 function tx(text, vars){
   const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
@@ -17255,9 +17259,9 @@ function renderTrail(t){
     const experienceGrid = elevationCard.closest('.trail-experience-grid');
     if(experienceGrid) experienceGrid.classList.toggle('trail-experience-grid--itinerary-only', !hasElevationProfile);
   }
-  document.title = `${t.name} | ORMA`;
-  document.getElementById('pageTitle').textContent = `${t.name} | ORMA`;
-  document.getElementById('trailName').textContent = t.name;
+  document.title = `${trailDisplayName(t)} | ORMA`;
+  document.getElementById('pageTitle').textContent = `${trailDisplayName(t)} | ORMA`;
+  document.getElementById('trailName').textContent = trailDisplayName(t);
   // What the name means, under the name. 109 of the 162 trails are signed in
   // German, French or Italian; the name stays as the signpost has it, and this
   // says what it means for a reader who does not.
@@ -17314,7 +17318,7 @@ function renderTrail(t){
       }
       heroPhoto.decoding = 'async';
       heroPhoto.fetchPriority = 'high';
-      heroPhoto.alt = trailWords(t.imageAlt) || tx('{name} trail photograph', { name: t.name });
+      heroPhoto.alt = trailWords(t.imageAlt) || tx('{name} trail photograph', { name: trailDisplayName(t) });
       heroPhoto.hidden = false;
       heroVeil.hidden = false;
       const creditEl = document.getElementById('tdHeroCredit');
@@ -18014,7 +18018,7 @@ function renderTrail(t){
               type: 'FeatureCollection',
               features: otherTrails.map(x => ({
                 type: 'Feature',
-                properties: { id: x.id, name: x.name, safetyLevel: x.safetyLevel, distance: x.distance },
+                properties: { id: x.id, name: trailDisplayName(x), safetyLevel: x.safetyLevel, distance: x.distance },
                 geometry: { type: 'LineString', coordinates: x.path.map(([lat, lng]) => [lng, lat]) },
               })),
             },
@@ -18049,7 +18053,7 @@ function renderTrail(t){
                 type: 'Feature',
                 properties: {
                   id: item.trail.id,
-                  name: item.trail.name,
+                  name: trailDisplayName(item.trail),
                   safetyLevel: item.trail.safetyLevel,
                   distance: item.trail.distance,
                   awayKm: Math.round(item.distanceKm * 10) / 10,
@@ -18490,6 +18494,8 @@ if(document.querySelector('.td2')){
  */
 (function () {
   'use strict';
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // Script-written wording goes through i18n.js; the English sentence is its own key.
   function tx(text, vars) {
@@ -18922,7 +18928,7 @@ if(document.querySelector('.td2')){
         const shareUrl = url.href;
         return {
           url: shareUrl,
-          text: tx('{name} on ORMA: {url}', { name: t.name, url: shareUrl })
+          text: tx('{name} on ORMA: {url}', { name: trailDisplayName(t), url: shareUrl })
         };
       };
       const closeShare = () => {
@@ -18932,7 +18938,7 @@ if(document.querySelector('.td2')){
       const updateShareLinks = () => {
         const details = shareDetails();
         if (smsLink) smsLink.href = 'sms:?body=' + encodeURIComponent(details.text);
-        if (mailLink) mailLink.href = 'mailto:?subject=' + encodeURIComponent(t.name + ' | ORMA') + '&body=' + encodeURIComponent(details.text);
+        if (mailLink) mailLink.href = 'mailto:?subject=' + encodeURIComponent(trailDisplayName(t) + ' | ORMA') + '&body=' + encodeURIComponent(details.text);
       };
       shareBtn.addEventListener('click', () => {
         sharePop.hidden = !sharePop.hidden;

@@ -1,5 +1,7 @@
 (function(global){
   'use strict';
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // SOCIAL-05 — the dog passport. A stamp for every trail your dog has walked
   // with a recording the GPS proved: hike mode writes `proof: 'gps'`, and a
@@ -57,7 +59,7 @@
       if(!stamp){
         stamp = {
           trailId: e.trailId,
-          name: (t && t.name) || e.trail || '',
+          name: (t && trailDisplayName(t)) || e.trail || '',
           valley: (t && t.valley) || e.region || '',
           path: t && Array.isArray(t.path) ? t.path : [],
           lake: isLake(t || { name: e.trail }),
@@ -90,7 +92,7 @@
         var stamp = stampById.get(t.id);
         return {
           id: t.id,
-          name: t.name || t.id,
+          name: trailDisplayName(t) || t.id,
           distance: number(t.distance),
           walked: !!stamp,
           lastDate: stamp ? stamp.dates[stamp.dates.length - 1] : null,

@@ -12,6 +12,8 @@
  */
 (function () {
   'use strict';
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // Script-written wording goes through i18n.js; the English sentence is its own key.
   function tx(text, vars) {
@@ -444,7 +446,7 @@
         const shareUrl = url.href;
         return {
           url: shareUrl,
-          text: tx('{name} on ORMA: {url}', { name: t.name, url: shareUrl })
+          text: tx('{name} on ORMA: {url}', { name: trailDisplayName(t), url: shareUrl })
         };
       };
       const closeShare = () => {
@@ -454,7 +456,7 @@
       const updateShareLinks = () => {
         const details = shareDetails();
         if (smsLink) smsLink.href = 'sms:?body=' + encodeURIComponent(details.text);
-        if (mailLink) mailLink.href = 'mailto:?subject=' + encodeURIComponent(t.name + ' | ORMA') + '&body=' + encodeURIComponent(details.text);
+        if (mailLink) mailLink.href = 'mailto:?subject=' + encodeURIComponent(trailDisplayName(t) + ' | ORMA') + '&body=' + encodeURIComponent(details.text);
       };
       shareBtn.addEventListener('click', () => {
         sharePop.hidden = !sharePop.hidden;

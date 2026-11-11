@@ -1,3 +1,5 @@
+// A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
 
 // Script-written wording goes through i18n.js; the English sentence is its own key.
@@ -34,7 +36,7 @@ function trailCardVisual(trail, options = {}){
   if(window.DoloPawsTrailVisual) return window.DoloPawsTrailVisual.render(trail, options);
   const className = options.className || 'photo';
   const data = options.dataTrailId ? ` data-trail-id="${options.dataTrailId}"` : '';
-  const fallback = trail.imageIcon ? `<img src="${trail.imageIcon}" alt="${trail.name}" loading="lazy">` : (pathThumbnailSvg(trail.path) || '');
+  const fallback = trail.imageIcon ? `<img src="${trail.imageIcon}" alt="${trailDisplayName(trail)}" loading="lazy">` : (pathThumbnailSvg(trail.path) || '');
   return `<div class="${className}"${data}>${fallback}</div>`;
 }
 
@@ -72,7 +74,7 @@ function renderTeaser(){
     <div class="teaser-card">
       ${trailCardVisual(t, { className:'photo' })}
       <div class="row">
-        <div class="name">${t.name}</div>
+        <div class="name">${trailDisplayName(t)}</div>
         <div class="match">${scoreTrail(t, generic)}%<span class="match-note">${window.t('teaser.example')}</span></div>
       </div>
       <div class="meta">${t.ref ? window.t('card.trailRef', {ref: t.ref}) + ' · ' : ''}${t.area} · ${localNum(t.distance)} km</div>
@@ -994,7 +996,7 @@ function liRenderRecentTrails(){
     copy.className = 'li-recent-copy';
     const name = document.createElement('span');
     name.className = 'li-recent-name';
-    name.textContent = item.name;
+    name.textContent = trailDisplayName(item);
     copy.append(name);
     if(item.area){
       const where = document.createElement('small');
@@ -1002,7 +1004,7 @@ function liRenderRecentTrails(){
       where.textContent = item.area;
       copy.append(where);
     }
-    link.title = item.area ? `${item.name}, ${item.area}` : item.name;
+    link.title = item.area ? `${trailDisplayName(item)}, ${item.area}` : trailDisplayName(item);
     link.append(thumb, copy);
     host.append(link);
   });
@@ -1321,7 +1323,7 @@ function filterTrailsForReturningView(list){
 function liTrailSearchText(trail){
   const configs = liRegionConfigs();
   const region = configs[trail.region];
-  return [trail.name, trail.area, trail.valley, region && region.label, region && region.country]
+  return [trail.name, trailDisplayName(trail), trail.area, trail.valley, region && region.label, region && region.country]
     .map(value => String(value || '').toLowerCase())
     .join(' ');
 }
@@ -2395,7 +2397,7 @@ function updatePathLayer(list){
     .map((t, index) => ({
       type: 'Feature',
       properties: {
-        id: t.id, name: t.name, safetyLevel: t.safetyLevel,
+        id: t.id, name: trailDisplayName(t), safetyLevel: t.safetyLevel,
         score: typeof t.score === 'number' ? t.score : 0,
         rank: index + 1,
       },
@@ -2441,7 +2443,7 @@ function updateMapMarkers(list){
     return {
       type: 'Feature',
       properties: {
-        id: t.id, name: t.name, safetyLevel: t.safetyLevel,
+        id: t.id, name: trailDisplayName(t), safetyLevel: t.safetyLevel,
         score: typeof t.score === 'number' ? t.score : 0,
         rank: index + 1,
         saved: currentFavorites[t.id] ? 1 : 0,
@@ -3725,9 +3727,9 @@ function renderLiSearchSuggestions(profile){
       option.setAttribute('role', 'option');
       option.setAttribute('aria-selected', String(index === 0));
       const tier = liMatchTier(trail.score);
-      option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(trail.name)}</strong><small>${liEscapeHtml([trail.valley, `${localNum(trail.distance)} km`].filter(Boolean).join(' · '))}</small></span><span class="li-search-option-match" style="color:${tier.color}">${liEscapeHtml(tier.label)}</span>`;
+      option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(trailDisplayName(trail))}</strong><small>${liEscapeHtml([trail.valley, `${localNum(trail.distance)} km`].filter(Boolean).join(' · '))}</small></span><span class="li-search-option-match" style="color:${tier.color}">${liEscapeHtml(tier.label)}</span>`;
       option.addEventListener('click', () => {
-        search.value = trail.name;
+        search.value = trailDisplayName(trail);
         hideLiSearchSuggestions();
         warmTrailDetail(trail);
         // A search result is a destination, not just a map-focus control.
@@ -4254,14 +4256,14 @@ async function renderReturningHomepage(profile, options = {}){
       <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
       ${thumb}
       <div class="li-row-body">
-        <a href="${liTrailHref(t.id)}" class="li-row-name">${t.name}</a>
+        <a href="${liTrailHref(t.id)}" class="li-row-name">${trailDisplayName(t)}</a>
         <div class="li-row-meta">${liRowMeta(t)}</div>
         ${newBadge ? `<div class="li-row-badges">${newBadge}</div>` : ''}
         ${liProvenanceHtml(t, profile)}
         <div class="li-rating-row"><span class="li-rating-kick">${tx('Trail rating')}</span><span class="safety-badge ${safetyClass(t.safetyLevel)}">${trailSafetyLabel(t)}</span></div>
       </div>
       ${liMatchColHtml(t, profile, overrides)}
-      <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? tx('Remove {name} from saved trails', { name:t.name }) : tx('Save {name}', { name:t.name })}">${isFav ? '♥' : '♡'}</button>
+      <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? tx('Remove {name} from saved trails', { name:trailDisplayName(t) }) : tx('Save {name}', { name:trailDisplayName(t) })}">${isFav ? '♥' : '♡'}</button>
       <div class="li-row-bar">
         ${explanation ? liWhyToggleHtml(t, profile, startsOpen) : ''}
         <button type="button" class="li-bar-act locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>${tx('See on map')}</button>
@@ -4589,12 +4591,12 @@ function showMapCallout(t){
   if(thumb){
     thumb.innerHTML = trailCardVisual(t, { className:'li-thumb photo' });
     thumb.href = trailUrl;
-    thumb.setAttribute('aria-label', tx('Open {name} trail details', { name:t.name }));
+    thumb.setAttribute('aria-label', tx('Open {name} trail details', { name:trailDisplayName(t) }));
   }
   const kickEl = document.getElementById('mapCalloutKick');
   if(kickEl) kickEl.textContent = [t.valley, t.area].filter(Boolean).join(' · ');
   const nameEl = document.getElementById('mapCalloutName');
-  nameEl.textContent = t.name;
+  nameEl.textContent = trailDisplayName(t);
   nameEl.href = trailUrl;
   const metaEl = document.getElementById('mapCalloutMeta');
   if(metaEl) metaEl.textContent = liRowMeta(t);

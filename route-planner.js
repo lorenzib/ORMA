@@ -1,5 +1,7 @@
 (function(){
   'use strict';
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // Script-written wording goes through i18n.js; the English sentence is its own key.
   function tx(text, vars){
@@ -412,7 +414,7 @@
     const trails = Array.isArray(window.trails) ? window.trails : [];
     const features = trails.filter(trail => Array.isArray(trail.path) && trail.path.length > 1).map(trail => ({
       type:'Feature',
-      properties:{ id:trail.id, name:trail.name },
+      properties:{ id:trail.id, name:trailDisplayName(trail) },
       geometry:{ type:'LineString', coordinates:trail.path.map(point => [Number(point[1]), Number(point[0])]) },
     }));
     if(!features.length || map.getSource('planner-orma-trails')) return;

@@ -11,6 +11,8 @@
  */
 (function () {
   'use strict';
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // Script-written wording goes through i18n.js; the English sentence is its own key.
   // A number as the reader writes it (6,7 km in Italian); English is unchanged.
@@ -302,7 +304,7 @@
   function legacyMatch(t, fstate) {
     var q = String(fstate.search || '').trim().toLowerCase();
     if (q) {
-      var hay = (t.name + ' ' + (t.area || '') + ' ' + (t.valley || '') + ' ' + (t.region || '')).toLowerCase();
+      var hay = (t.name + ' ' + trailDisplayName(t) + ' ' + (t.area || '') + ' ' + (t.valley || '') + ' ' + (t.region || '')).toLowerCase();
       if (hay.indexOf(q) === -1) return false;
     }
     if (fstate.duration === 'day' && Number(t.distance) > 25) return false;
@@ -504,7 +506,7 @@
         var t = entry.t, s = entry.score, ti = tier(s), df = difficulty(t);
         return '<button type="button" class="hp-sug-item" id="hpSuggestion' + index + '" role="option" aria-selected="' + (state.activeSuggest === index ? 'true' : 'false') + '" data-href="' + esc(trailHref(t)) + '">' +
           '<span class="hp-sug-thumb">' + thumb(t) + '</span>' +
-          '<span class="hp-sug-main"><span class="hp-sug-name">' + esc(t.name) + '</span>' +
+          '<span class="hp-sug-main"><span class="hp-sug-name">' + esc(trailDisplayName(t)) + '</span>' +
           '<span class="hp-sug-meta"><span class="hp-badge-dot" style="background:' + df.dot + '"></span>' + df.label +
           '<span class="hp-sug-sep">·</span>' + esc(num(t.distance)) + ' km · ' + esc(valleyOf(t)) + '</span></span>' +
           '<span class="hp-sug-match"><span class="verdict" style="color:' + ti.color + '">' + esc(ti.label) + '</span><span class="lab">' + forDog + '</span></span>' +
@@ -528,7 +530,7 @@
     return '<button type="button" class="hp-trailrow" data-href="' + esc(trailHref(t)) + '">' +
       '<span class="hp-trailrow-thumb">' + thumb(t) + '</span>' +
       '<span class="hp-trailrow-main">' +
-        '<span class="hp-trailrow-name">' + esc(t.name) + '</span>' +
+        '<span class="hp-trailrow-name">' + esc(trailDisplayName(t)) + '</span>' +
         '<span class="hp-trailrow-meta">' + esc(num(t.distance)) + ' km · +' + esc(t.elevation || 0) + ' m · ' + esc(valleyOf(t)) + '</span>' +
         '<span class="hp-badges">' + badges + '</span>' +
       '</span>' +
@@ -547,7 +549,7 @@
     return '<button type="button" class="hp-ccard" data-href="' + esc(trailHref(t)) + '">' +
       '<span class="hp-ccard-img">' + thumb(t) + '</span>' +
       '<span class="hp-ccard-body">' +
-        '<span class="hp-ccard-name">' + esc(t.name) + '</span>' +
+        '<span class="hp-ccard-name">' + esc(trailDisplayName(t)) + '</span>' +
         '<span class="hp-ccard-meta">' + tags + '</span>' +
         '<span class="hp-ccard-footer"><span class="hp-ccard-rating">' + riskBadge + '</span>' +
           '<span class="hp-ccard-match hp-ccard-match--' + ti.kind + '">' +
@@ -786,7 +788,7 @@
         '<div class="hp-wiz-matches">' + matches.slice(0, 3).map(function (entry) {
           var t = entry.t, ti = tier(entry.score);
           return '<a class="hp-wiz-match" href="' + esc(trailHref(t)) + '">' +
-            '<span><b>' + esc(t.name) + '</b><small>' + esc(num(t.distance)) + ' km · ' + esc(valleyOf(t)) + '</small></span>' +
+            '<span><b>' + esc(trailDisplayName(t)) + '</b><small>' + esc(num(t.distance)) + ' km · ' + esc(valleyOf(t)) + '</small></span>' +
             '<strong style="color:' + ti.color + '">' + entry.score + '%</strong></a>';
         }).join('') + '</div>' +
         '<div class="hp-wiz-payoff-actions">' +

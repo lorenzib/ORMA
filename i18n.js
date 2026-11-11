@@ -3903,6 +3903,7 @@
     const here = document.currentScript && document.currentScript.src;
     const base = here ? here.replace(/[^/]*$/, '') : '';
     document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261106-2"><\/script>');
+    document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261111-1"><\/script>');
   }
 
   // ---- Translation functions -------------------------------------------------
@@ -3961,6 +3962,16 @@
     if (lang !== 'it' || typeof text !== 'string') return text;
     const table = window.ORMA_TRAIL_TEXT_IT;
     return (table && Object.prototype.hasOwnProperty.call(table, text) && table[text]) || text;
+  }
+
+  // A walk's name as the reader sees it, from i18n-trail-names-it.js by id.
+  // Only for showing: search also matches the English name, and anything saved
+  // (the journal, recent walks) keeps the English one.
+  function trailName(trail){
+    const name = (trail && trail.name) || '';
+    if (lang !== 'it' || !trail || !trail.id) return name;
+    const table = window.ORMA_TRAIL_NAMES_IT;
+    return (table && Object.prototype.hasOwnProperty.call(table, trail.id) && table[trail.id]) || name;
   }
 
   // Curated trail content: prefer the Italian field when present.
@@ -4154,7 +4165,7 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 
-  window.DoloPawsI18n = { lang, t, phrase, num, trField, trailText, setLang };
+  window.DoloPawsI18n = { lang, t, phrase, num, trField, trailText, trailName, setLang };
   window.t = t;
   window.trField = trField;
   window.trailText = trailText;

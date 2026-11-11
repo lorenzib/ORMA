@@ -1,3 +1,5 @@
+// A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 // The iPhone app's Saved tab: the trails you saved, split into the ones that
 // are good today and the ones that are not, with the reason (out of season, a
 // low match for your dog), and the routes you drew underneath.
@@ -116,9 +118,9 @@
       : `<span class="app-saved-verdict" style="color:${esc(row.color)}">${esc(row.line)}</span>`;
     return `<article class="app-saved-card${dim ? ' is-dim' : ''}">` +
       `<a class="app-saved-link" href="${esc(href)}">${thumb}` +
-        `<span class="app-saved-text"><span class="app-saved-name">${esc(trail.name)}</span>` +
+        `<span class="app-saved-text"><span class="app-saved-name">${esc(trailDisplayName(trail))}</span>` +
         `<span class="app-saved-meta">${esc(meta(trail))}</span>${line}</span></a>` +
-      `<button type="button" class="app-saved-heart" data-remove="${esc(trail.id)}" aria-label="${esc(tx('Remove {name} from saved', { name:trail.name }))}">${HEART}</button>` +
+      `<button type="button" class="app-saved-heart" data-remove="${esc(trail.id)}" aria-label="${esc(tx('Remove {name} from saved', { name:trailDisplayName(trail) }))}">${HEART}</button>` +
     '</article>';
   }
 

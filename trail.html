@@ -1545,6 +1545,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
 </script>
 <script src="regional-trails-loader.js?v=20261104-1" data-default-region="trail"></script>
 <script>
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
   // Paint the identifying trail content as soon as the tiny detail payload is
   // available. The full application can continue booting below without
   // leaving mobile visitors staring at a skeleton meanwhile.
@@ -1556,10 +1558,10 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(!trail) return;
     var name = document.getElementById('trailName');
     if(name){
-      name.textContent = trail.name;
+      name.textContent = trailDisplayName(trail);
       name.removeAttribute('aria-busy');
     }
-    document.title = trail.name + ' | ORMA';
+    document.title = trailDisplayName(trail) + ' | ORMA';
     var pageTitle = document.getElementById('pageTitle');
     if(pageTitle) pageTitle.textContent = document.title;
     var facts = document.getElementById('trailFacts');

@@ -1,3 +1,5 @@
+// A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 /**
  * hike-mode.js, "Start hike" companion for the trail detail page.
  *
@@ -1112,7 +1114,7 @@ function initHikeMode(map, trail, options){
       <div class="hk-card">
         <div class="hk-avatar"${dog.photo ? ` style="background-image:url(${dog.photo});"` : ''}>${dog.photo ? '' : esc(dogName.charAt(0).toUpperCase() || '🐾')}</div>
         <h1 class="hk-title" id="hkTitle">${esc(window.t('hike.completedTitle', {name: dogName}))}</h1>
-        <p class="hk-sub">${esc(trail.name)}</p>
+        <p class="hk-sub">${esc(trailDisplayName(trail))}</p>
         ${proof ? `<p class="hk-proof ${proof.proof ? 'is-proven' : ''}">${esc(proof.proof
           ? window.t('hike.proofGps')
           : proof.reason === 'too-little-of-the-route'
