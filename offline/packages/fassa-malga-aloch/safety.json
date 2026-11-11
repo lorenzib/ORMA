@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pozza di Fassa (Piaza de Comun), the APT’s start": "Pozza di Fassa (Piaza de Comun), la partenza indicata dall'APT",
+    "Gravel tracks shared with farm vehicles near Masc Aloch.": "Strade sterrate condivise con i mezzi agricoli vicino a Masc Aloch.",
+    "Working farm with animals at Masc Aloch.": "Maso in attività con animali a Masc Aloch.",
+    "In winter the Aloch slope is a ski area; this is a summer walk.": "D'inverno il pendio dell'Aloch è un'area sciistica; questa è una passeggiata estiva."
+  }
 }

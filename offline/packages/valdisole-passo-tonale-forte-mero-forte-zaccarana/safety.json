@@ -55,5 +55,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Passo Tonale – Forte Mero and Forte Zaccarana": "Passo Tonale – Forte Mero e Forte Zaccarana",
+    "Valbiolo car park, Passo del Tonale, the APT’s start": "Parcheggio Valbiolo, Passo del Tonale, partenza indicata dall'APT",
+    "The return is a mountain path the APT grades T3.": "Il ritorno è su un sentiero di montagna che l'APT classifica T3.",
+    "Gravel roads on the plateau are used by farm and service vehicles.": "Le strade sterrate dell'altopiano sono percorse da mezzi agricoli e di servizio.",
+    "Ruined fortifications: keep your dog away from walls and openings.": "Fortificazioni in rovina: tieni il cane lontano da muri e aperture."
+  }
 }

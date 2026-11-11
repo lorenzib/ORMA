@@ -89,5 +89,11 @@
       "downloadedAt": "2026-11-06",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Carisolo old village": "Il borgo antico di Carisolo",
+    "Carisolo town hall, the APT’s start": "Municipio di Carisolo, la partenza indicata dall'APT",
+    "Village streets and the road into the Val Genova, shared with cars.": "Vie del paese e la strada per la Val Genova, condivise con le auto.",
+    "A cobbled Way of the Cross, slippery when wet.": "Una Via Crucis acciottolata, scivolosa col bagnato."
+  }
 }

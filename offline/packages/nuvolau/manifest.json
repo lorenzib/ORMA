@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "nuvolau",
   "name": "Passo Giau to Rifugio Nuvolau",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T10:17:24.971Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:31:53.869Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 474215,
+  "packageBytes": 493133,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.48148,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52542,
+      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passo Giau to Rifugio Nuvolau safety information",
       "url": "safety.json",
-      "bytes": 1382,
-      "sha256": "cea193d2bb5cec4060f797a68297e9512202351629a7c12940b58a242e4a4d69"
+      "bytes": 1884,
+      "sha256": "650ee2736bbb59a12c84719ddcc04a76eef4d19e1d71ddc29aabb8c17ba7048f"
     }
   ]
 }

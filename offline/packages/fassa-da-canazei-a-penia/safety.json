@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-26",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Canazei (Piaz G. Marconi), the APT’s start": "Canazei (Piaz G. Marconi), partenza indicata dall'APT",
+    "About 3.8 km on tarmac: village lanes and the valley cycle and foot path, shared with bikes.": "Circa 3,8 km su asfalto: stradine del paese e la ciclopedonale di fondovalle, condivisa con le bici.",
+    "Wooden bridges over the Avisio.": "Ponti in legno sull'Avisio.",
+    "Busy round the playgrounds and the river beach at Alba in summer.": "Affollato d'estate intorno ai parchi giochi e alla spiaggia sul fiume ad Alba."
+  }
 }

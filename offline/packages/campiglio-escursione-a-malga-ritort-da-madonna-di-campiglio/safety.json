@@ -39,5 +39,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pappagallo restaurant, Madonna di Campiglio, the APT’s start": "Ristorante Pappagallo, Madonna di Campiglio, la partenza indicata dall'APT",
+    "Cattle graze on the pastures round Malga Ritort in summer.": "D'estate il bestiame pascola sui pascoli intorno a Malga Ritort.",
+    "Village streets in Madonna di Campiglio at the start.": "Vie del paese a Madonna di Campiglio alla partenza."
+  }
 }

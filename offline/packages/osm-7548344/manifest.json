@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7548344",
   "name": "Anello del Sole",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:35.972Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:31:54.085Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 464423,
+  "packageBytes": 483017,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.47477,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52542,
+      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Anello del Sole safety information",
       "url": "safety.json",
-      "bytes": 1125,
-      "sha256": "008ac256374890a8898351d8e06d795bd9b10dbcbf74a6e54d4f1cd16c6ad144"
+      "bytes": 1303,
+      "sha256": "67ffe103fba3aa36ab565cbcb10ad0e51e1c0d6e8c98d27f37c21c6da17a13dc"
     }
   ]
 }

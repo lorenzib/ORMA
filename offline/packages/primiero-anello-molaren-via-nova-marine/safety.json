@@ -70,5 +70,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Mezzano (Info Point), the APT’s start": "Mezzano (Info Point), la partenza indicata dall'APT",
+    "About 1.4 km on tarmac, partly the cycle and foot path shared with bikes.": "Circa 1,4 km su asfalto, in parte sulla pista ciclopedonale condivisa con le bici.",
+    "Gravel tracks and paths on the Via Nova; the APT notes it is ridden by mountain bikes too.": "Strade sterrate e sentieri sulla Via Nova; l'APT segnala che è percorsa anche dalle mountain bike.",
+    "Road crossings in Mezzano and Pieve.": "Attraversamenti stradali a Mezzano e a Pieve."
+  }
 }

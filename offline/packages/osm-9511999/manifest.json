@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9511999",
   "name": "Tru dles Viles",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:36.118Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:31:54.113Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1124479,
+  "packageBytes": 1143437,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.57931,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52542,
+      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Tru dles Viles safety information",
       "url": "safety.json",
-      "bytes": 1849,
-      "sha256": "e9a827454c46f72dc55439d1d6f9222dc6893827181f10aa2116b4cd4e73b76c"
+      "bytes": 2391,
+      "sha256": "760ffb73770fa2ab968a082a2b416f4b34a9272d842cdf07f3ebebda6cfa184f"
     }
   ]
 }

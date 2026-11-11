@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-moso-monte-arnese",
   "name": "Moos to Monte Arnese (Hornischeck)",
-  "version": "2026.11.06-beta.1",
-  "generatedAt": "2026-11-06T11:53:35.167Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:31:54.266Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 698272,
+  "packageBytes": 717491,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67896,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52542,
+      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Moos to Monte Arnese (Hornischeck) safety information",
       "url": "safety.json",
-      "bytes": 1922,
-      "sha256": "e7d2a62dda6cfe642f4a39c524a1156315df7eb63b5e79fccc68561531bdaca3"
+      "bytes": 2725,
+      "sha256": "31300c625a6a3a287ded2733f4503bd0c81c7c762f841a0f9b14826bf144e363"
     }
   ]
 }

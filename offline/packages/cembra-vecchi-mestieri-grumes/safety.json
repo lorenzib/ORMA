@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Grumes (Piazza Municipio), the APT’s start": "Grumes (Piazza Municipio), la partenza indicata dall'APT",
+    "One crossing of the busy SS 612: lead short.": "Un attraversamento della trafficata SS 612: guinzaglio corto.",
+    "A path down the stream with footbridges and several crossings of the Rio dei Molini: slippery when wet, keep your dog out of the water after rain.": "Un sentiero lungo il torrente con passerelle e diversi attraversamenti del Rio dei Molini: scivoloso col bagnato, dopo la pioggia tieni il cane fuori dall'acqua.",
+    "About 1 km back up a quiet tarred road open to cars.": "Circa 1 km di risalita su una tranquilla strada asfaltata aperta alle auto."
+  }
 }

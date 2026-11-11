@@ -62,5 +62,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Church of Santa Maria Antica, Madonna di Campiglio, the APT’s start": "Chiesa di Santa Maria Antica, Madonna di Campiglio, la partenza indicata dall'APT",
+    "A steep path up to Piazzetta Imperatrice.": "Un sentiero ripido fino a Piazzetta Imperatrice.",
+    "Cattle on the Spinale pastures in summer.": "D'estate bestiame sui pascoli dello Spinale.",
+    "Ski-area tracks and lift stations at the top.": "Piste del comprensorio sciistico e stazioni degli impianti in cima."
+  }
 }

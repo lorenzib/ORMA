@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "unterengadin-scuol-ftan",
   "name": "Scuol to Ftan",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T20:36:39.802Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:31:54.298Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 996296,
+  "packageBytes": 1015352,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.78495,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52542,
+      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Scuol to Ftan safety information",
       "url": "safety.json",
-      "bytes": 1322,
-      "sha256": "4fb4ed49d8ec1c6cd1436789390e9695b418b442680ef5b0dafebf082cae884a"
+      "bytes": 1962,
+      "sha256": "e9872e8c5933859ebf9137de08e83251e1b80dd4becc89d7887bfc7528d978e4"
     }
   ]
 }

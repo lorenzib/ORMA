@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "La Val church, by the tourist office and bus stop": "Chiesa di La Val, vicino all'ufficio turistico e alla fermata dell'autobus",
+    "Asphalt village road with traffic at the start and finish.": "Strada di paese asfaltata con traffico alla partenza e all'arrivo.",
+    "About 400 m of narrow Cians access road shared with cars, each way.": "Circa 400 m sulla stretta strada d'accesso a Cians, condivisa con le auto, sia all'andata sia al ritorno.",
+    "Residential lanes through the hamlets.": "Stradine residenziali attraverso le frazioni."
+  }
 }

@@ -61,5 +61,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Giustino town hall, the APT’s start": "Il municipio di Giustino, la partenza indicata dall'APT",
+    "Village lanes and a short stretch of pavement beside the main road.": "Stradine del paese e un breve tratto di marciapiede lungo la strada principale.",
+    "A long flight of steps down to Via Palazzin.": "Una lunga scalinata in discesa verso Via Palazzin."
+  }
 }

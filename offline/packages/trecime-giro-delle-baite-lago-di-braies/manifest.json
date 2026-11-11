@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-giro-delle-baite-lago-di-braies",
   "name": "Pragser Wildsee huts circuit",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:32:56.114Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:31:54.247Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 439130,
+  "packageBytes": 458213,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.68601,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52542,
+      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Pragser Wildsee huts circuit safety information",
       "url": "safety.json",
-      "bytes": 1484,
-      "sha256": "9eba36e58043c3f3cbcbe9fb364f5e7ddfd7fa1422b97a0c4acbf681fae285fb"
+      "bytes": 2151,
+      "sha256": "d2d56640c157ff19beb506caf40ff67b586626005bc402b8574d627337a023ee"
     }
   ]
 }

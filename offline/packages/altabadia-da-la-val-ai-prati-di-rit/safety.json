@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "La Val centre, the board’s start": "Centro di La Val, la partenza indicata dalla scheda ufficiale",
+    "A long climb of over 700 m: plan rests and water for your dog.": "Una lunga salita di oltre 700 m: prevedi soste e acqua per il cane.",
+    "Forest roads and farm tracks: watch for tractors near the farms.": "Strade forestali e strade poderali: attenzione ai trattori vicino ai masi.",
+    "The Rit lake is a protected natural monument: keep your dog out of the water.": "Il lago di Rit è un monumento naturale protetto: tieni il cane fuori dall'acqua."
+  }
 }

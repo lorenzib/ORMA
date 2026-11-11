@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12302137",
   "name": "Dorfrundweg Mittertal",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.851Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:31:53.946Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 402652,
+  "packageBytes": 421594,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.84673,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52542,
+      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dorfrundweg Mittertal safety information",
       "url": "safety.json",
-      "bytes": 1802,
-      "sha256": "0a180e94f18b354708d7246204ac2619687ca64432fa4a165e5594529152c5c4"
+      "bytes": 2328,
+      "sha256": "d435b1406c762c18a46c8dabd51233b7486b2eff4a74938b1c34d55047221535"
     }
   ]
 }

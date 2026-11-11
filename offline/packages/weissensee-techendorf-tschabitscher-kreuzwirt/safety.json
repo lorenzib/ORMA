@@ -48,5 +48,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Techendorf to the Kreuzwirt, Weissensee": "Da Techendorf al Kreuzwirt, Weissensee",
+    "the bridge in Techendorf, the board’s start": "il ponte di Techendorf, partenza indicata dalla scheda ufficiale",
+    "About 150 m on the Weißensee road (B87) and 150 m on the Techendorfer Straße (L7) at the Kreuzwirt end, and about 200 m on the L7 (50 km/h) near Techendorf: keep your dog close on a short lead.": "Circa 150 m sulla strada del Weißensee (B87) e 150 m sulla Techendorfer Straße (L7) all'estremità del Kreuzwirt, e circa 200 m sulla L7 (50 km/h) vicino a Techendorf: tieni il cane vicino al guinzaglio corto.",
+    "About 1 km of steeper, rougher track and path that OpenStreetMap grades as demanding mountain hiking (T3): sure-footed walking, no exposure.": "Circa 1 km di strada e sentiero più ripidi e accidentati che OpenStreetMap classifica come escursionismo di montagna impegnativo (T3): serve passo sicuro, nessun tratto esposto.",
+    "Farm animals around the Tschabitscher farm: short lead.": "Animali intorno al maso Tschabitscher: guinzaglio corto."
+  }
 }

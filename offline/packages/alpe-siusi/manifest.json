@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "alpe-siusi",
   "name": "Alpe di Siusi Meadow Loop",
-  "version": "2026.10.30-beta.12",
-  "generatedAt": "2026-10-30T16:15:33.877Z",
+  "version": "2026.11.11-beta.13",
+  "generatedAt": "2026-11-11T18:31:53.526Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "not-verified",
-  "packageBytes": 296469,
+  "packageBytes": 315806,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5305,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52542,
+      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Alpe di Siusi Meadow Loop safety information",
       "url": "safety.json",
-      "bytes": 1428,
-      "sha256": "bd9b50f9340fde9674180d5e7a7043cc28e02d4d8e277c7600b463db28c97e1b"
+      "bytes": 2349,
+      "sha256": "af7539ea392c254d081e9a61ba72aa5b500bf06ecac9162c8c60f91e41560a9b"
     }
   ]
 }

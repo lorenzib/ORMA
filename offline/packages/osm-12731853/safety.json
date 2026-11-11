@@ -52,5 +52,8 @@
       "downloadedAt": "2026-11-06",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Elvas route start beside the mapped bus stop": "Partenza del percorso a Elvas, accanto alla fermata dell'autobus segnata sulla mappa"
+  }
 }

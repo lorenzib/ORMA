@@ -69,5 +69,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Vigo di Fassa (Strada de Piz), the APT’s start": "Vigo di Fassa (Strada de Piz), partenza indicata dall'APT",
+    "About 2.9 km on tarmac, partly village streets open to cars.": "Circa 2,9 km su asfalto, in parte vie del paese aperte alle auto.",
+    "Meadow paths along the edge of the wood; the APT suggests walking poles.": "Sentieri nei prati lungo il margine del bosco; l'APT consiglia i bastoncini.",
+    "Mown hay meadows: keep to the path.": "Prati da fieno falciati: resta sul sentiero."
+  }
 }

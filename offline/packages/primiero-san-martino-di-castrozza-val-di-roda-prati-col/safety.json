@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "San Martino di Castrozza, the APT’s start": "San Martino di Castrozza, la partenza indicata dall'APT",
+    "About 4 km on a gravel forest road, shared with forestry vehicles.": "Circa 4 km su strada forestale sterrata, percorsa anche da mezzi forestali.",
+    "A short path down to Prati Col, icy in spring and autumn, as the APT warns.": "Un breve sentiero in discesa verso Prati Col, ghiacciato in primavera e in autunno, come avverte l'APT.",
+    "About 900 m on tarmac in the village.": "Circa 900 m su asfalto in paese."
+  }
 }

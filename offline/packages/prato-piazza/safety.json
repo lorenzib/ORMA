@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Berggasthof Plätzwiese, above the Plätzwiese car park": "Berggasthof Plätzwiese, sopra il parcheggio di Plätzwiese",
+    "Loose gravel on the summit path.": "Ghiaia smossa sul sentiero di vetta.",
+    "Rough gravel tracks.": "Strade sterrate accidentate.",
+    "Mountain bikes on the tracks.": "Mountain bike sulle strade sterrate."
+  }
 }

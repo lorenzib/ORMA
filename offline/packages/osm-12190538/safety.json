@@ -38,5 +38,9 @@
       "downloadedAt": "2026-11-06",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Start here — Parking, 10 m from the route": "Parti da qui — Parcheggio, a 10 m dal percorso",
+    "About 1.2 km on quiet public roads (Kampidellerweg, Lanzenweg) and 300 m of service road, where cars pass.": "Circa 1,2 km su tranquille strade pubbliche (Kampidellerweg, Lanzenweg) e 300 m di strada di servizio, dove passano le auto."
+  }
 }

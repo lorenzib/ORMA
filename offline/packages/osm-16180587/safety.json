@@ -47,5 +47,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Place Tobé, Plateau d'Assy (official start)": "Place Tobé, Plateau d'Assy (partenza ufficiale)",
+    "The Nant Bordon suspension footbridge (metal grating).": "La passerella sospesa sul Nant Bordon (grata metallica).",
+    "About 500 m on lanes open to cars near the start.": "Circa 500 m su stradine aperte alle auto vicino alla partenza."
+  }
 }

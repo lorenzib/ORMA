@@ -39,5 +39,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Rue de Gébroulaz, Val Thorens (official start; free street parking in summer)": "Rue de Gébroulaz, Val Thorens (partenza ufficiale; d'estate parcheggio gratuito in strada)",
+    "Stony ground at up to 2,750 m.": "Terreno sassoso fino a 2.750 m.",
+    "Tracks shared with ski-area service vehicles.": "Sterrate condivise con i mezzi di servizio del comprensorio sciistico."
+  }
 }

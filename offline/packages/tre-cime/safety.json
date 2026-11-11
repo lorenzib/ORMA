@@ -39,5 +39,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Tre Cime di Lavaredo classic circuit": "Il giro classico delle Tre Cime di Lavaredo",
+    "Parcheggio Rifugio Auronzo (P1), approved parking pin": "Parcheggio Rifugio Auronzo (P1), punto di parcheggio approvato",
+    "Loose gravel patches near the rifugi.": "Tratti di ghiaia smossa vicino ai rifugi."
+  }
 }

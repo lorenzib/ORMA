@@ -69,5 +69,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Boé gondola car park, Corvara, the board’s start": "Parcheggio della cabinovia Boé, Corvara, la partenza indicata dalla scheda ufficiale",
+    "The path runs beside the stream.": "Il sentiero corre accanto al torrente.",
+    "Paths shared with cyclists.": "Sentieri condivisi con i ciclisti.",
+    "Crossing the main road in Corvara: keep your dog close.": "Attraversamento della strada principale a Corvara: tieni il cane vicino."
+  }
 }

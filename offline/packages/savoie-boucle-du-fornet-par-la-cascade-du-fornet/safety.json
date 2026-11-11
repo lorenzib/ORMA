@@ -55,5 +55,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Fornet waterfall loop from Le Fornet": "Anello della cascata del Fornet da Le Fornet",
+    "Fountain in the hamlet of Le Fornet, the board’s start": "La fontana nella frazione di Le Fornet, punto di partenza della scheda ufficiale",
+    "The farm track runs beside the young Isère: keep your dog out of the fast, cold water.": "La strada agricola corre accanto alla giovane Isère: tieni il cane fuori dall'acqua fredda e veloce.",
+    "Cows may graze along the track in summer: keep your dog on a lead near the herds.": "D'estate le mucche possono pascolare lungo la strada: vicino alle mandrie tieni il cane al guinzaglio.",
+    "High ground at about 1,925–2,110 m: quick weather changes and strong sun.": "Terreno alto, a circa 1.925–2.110 m: il tempo cambia in fretta e il sole è forte."
+  }
 }

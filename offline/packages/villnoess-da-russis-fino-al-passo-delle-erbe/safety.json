@@ -62,5 +62,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Ponte Russis to Passo delle Erbe": "Da Ponte Russis al Passo delle Erbe",
+    "Ponte Russis (Russisbrücke), the board’s start": "Ponte Russis (Russisbrücke), partenza indicata dalla scheda ufficiale",
+    "High, open terrain at 1,735–2,135 m: little shade and quick weather changes.": "Terreno alto e aperto tra 1.735 e 2.135 m: poca ombra e rapidi cambi di tempo.",
+    "Cows graze the alpine pastures in summer: keep your dog close.": "In estate le mucche pascolano sui pascoli alpini: tieni il cane vicino.",
+    "Scree and rocky stretches below the Aferer Geisler: watch your dog’s paws.": "Ghiaioni e tratti rocciosi sotto le Aferer Geisler: attenzione alle zampe del tuo cane."
+  }
 }

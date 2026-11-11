@@ -48,5 +48,11 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Karersee car park, Welschnofen (official start)": "Parcheggio del Karersee, Welschnofen (partenza ufficiale)",
+    "The main road at the Hotel Lake & River.": "La strada principale all'Hotel Lake & River.",
+    "About 350 m on a paved service road.": "Circa 350 m su una strada di servizio asfaltata.",
+    "Suspension bridge with a metal grid floor.": "Ponte sospeso con fondo in grata metallica."
+  }
 }

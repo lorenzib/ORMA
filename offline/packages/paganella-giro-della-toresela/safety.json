@@ -57,5 +57,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Via San Pietro, behind the parish church in Mezzolombardo, the APT’s start": "Via San Pietro, dietro la chiesa parrocchiale di Mezzolombardo, la partenza indicata dall'APT",
+    "The suspension bridge at km 0.8: about 100 m long, with a metal deck.": "Il ponte sospeso al km 0,8: lungo circa 100 m, con piano di calpestio in metallo.",
+    "Town streets in Mezzolombardo, shared with cars.": "Strade cittadine a Mezzolombardo, condivise con le auto.",
+    "Low and sunny: the Piana Rotaliana gets very hot in summer.": "In basso e soleggiato: d'estate la Piana Rotaliana diventa molto calda."
+  }
 }

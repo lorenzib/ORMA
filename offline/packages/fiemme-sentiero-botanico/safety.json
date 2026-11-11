@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Grauno (the church of San Martino), the APT’s start": "Grauno (la chiesa di San Martino), partenza indicata dall'APT",
+    "Mostly forest tracks and paths, with about 560 m of village streets in Capriana.": "Per lo più strade forestali e sentieri, con circa 560 m di vie del paese a Capriana.",
+    "A long cobbled descent back to Grauno, slippery when wet.": "Una lunga discesa acciottolata fino a Grauno, scivolosa quando è bagnata.",
+    "Few fountains on the long wooded stretches: carry water for your dog.": "Poche fontane nei lunghi tratti nel bosco: porta acqua per il tuo cane."
+  }
 }

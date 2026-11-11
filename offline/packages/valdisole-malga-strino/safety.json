@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-09",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "The car park beside the SS42 at the mouth of the Val Strino, the board’s start": "Il parcheggio accanto alla SS42 all’imbocco della Val Strino, la partenza ufficiale",
+    "You cross the busy SS42 at the start: keep your dog on a short lead.": "Alla partenza attraversi la trafficata SS42: tieni il cane al guinzaglio corto.",
+    "The gravel military road is open to cars with a permit: keep your dog close if one comes.": "La strada militare sterrata è aperta alle auto con permesso: tieni il cane vicino se ne arriva una.",
+    "Cows graze the Val Strino pastures in summer.": "In estate le mucche pascolano nella Val Strino."
+  }
 }

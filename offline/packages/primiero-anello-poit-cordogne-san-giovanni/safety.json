@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Poit, the APT’s start": "Poit, la partenza indicata dall'APT",
+    "A narrow wooded crest path with some short climbs and descents.": "Uno stretto sentiero di cresta nel bosco con alcune brevi salite e discese.",
+    "About 1 km on quiet tarmac roads.": "Circa 1 km su tranquille strade asfaltate.",
+    "Hay meadows at San Giovanni: keep to the path.": "Prati da fieno a San Giovanni: resta sul sentiero."
+  }
 }

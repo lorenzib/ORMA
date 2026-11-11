@@ -38,5 +38,9 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Start here — Bus stop Schermoos, 49 m from the route": "Parti da qui — Fermata dell'autobus Schermoos, a 49 m dal percorso",
+    "About 650 m on an asphalt lane used by cars.": "Circa 650 m su una stradina asfaltata percorsa dalle auto."
+  }
 }

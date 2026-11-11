@@ -42,5 +42,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Plagne Aime 2000 (official start)": "Plagne Aime 2000 (partenza ufficiale)",
+    "Steep, exposed passage at the Pas des Brebis (official).": "Passaggio ripido ed esposto al Pas des Brebis (scheda ufficiale).",
+    "Stony ground on the summit ridge.": "Terreno sassoso sulla cresta sommitale.",
+    "Small stream crossings without bridges.": "Piccoli guadi di ruscelli senza ponte."
+  }
 }

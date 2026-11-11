@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-monte-casella-di-fuori",
   "name": "Außergsell – Innergsell loop",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:43:15.867Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:31:54.260Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 587927,
+  "packageBytes": 607041,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67143,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52542,
+      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Außergsell – Innergsell loop safety information",
       "url": "safety.json",
-      "bytes": 2625,
-      "sha256": "24e2b94e065acca3691e0e75b4b5691a9d60acad43f76cce5dd29f906a0c1b83"
+      "bytes": 3323,
+      "sha256": "f33ee2995bc295fca2fe20262c779f1b254342d1437a811ac7afed325326ec0c"
     }
   ]
 }

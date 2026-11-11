@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Campo Moro to the Passo di Campagneda": "Da Campo Moro al Passo di Campagneda",
+    "The car park at Campo Moro, the board’s start": "Il parcheggio di Campo Moro, partenza indicata dalla scheda ufficiale",
+    "Rocky stretches between boulders and slabs, rougher towards the pass: take it slowly with your dog.": "Tratti rocciosi tra massi e placche di roccia, più accidentati verso il passo: procedi con calma con il tuo cane.",
+    "Cattle graze the Alpe Campagneda in summer: keep your distance and your dog close.": "In estate le mucche pascolano all'Alpe Campagneda: mantieni le distanze e tieni il cane vicino.",
+    "Open ground above 2,000 m with no shade; storms build fast on summer afternoons.": "Terreno aperto sopra i 2.000 m senza ombra; nei pomeriggi estivi i temporali si formano in fretta."
+  }
 }

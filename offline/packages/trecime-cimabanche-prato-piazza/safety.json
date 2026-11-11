@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Cimabanche pass, Höhlensteintal, the board’s start": "Passo di Cimabanche, Höhlensteintal, la partenza indicata dalla scheda ufficiale",
+    "A steady climb of almost 500 m, with zigzags in the upper part.": "Una salita costante di quasi 500 m, con tornanti nella parte alta.",
+    "No drinking water is mapped before the Plätzwiese: carry water for your dog.": "Prima della Plätzwiese non è segnata acqua potabile: porta acqua per il tuo cane.",
+    "Cows graze on the Plätzwiese.": "Sulla Plätzwiese pascolano le mucche."
+  }
 }

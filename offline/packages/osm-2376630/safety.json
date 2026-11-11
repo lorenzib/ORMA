@@ -40,5 +40,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Katharinaberg village centre, free car park, bus 261 stop Katharinaberg (official start)": "Centro di Katharinaberg, parcheggio gratuito, fermata dell'autobus 261 Katharinaberg (partenza ufficiale)",
+    "About 3.8 km on the narrow Sonnenberg mountain road (route 10A), open to cars.": "Circa 3,8 km sulla stretta strada di montagna del Sonnenberg (itinerario 10A), aperta alle auto.",
+    "Two short steep, narrow path stretches (about 0.5 m wide) at km 1.6–2.0 and 6.1–6.3.": "Due brevi tratti di sentiero ripidi e stretti (larghi circa 0,5 m) tra il km 1,6 e il 2,0 e tra il km 6,1 e il 6,3.",
+    "A wooden footbridge at km 6.1.": "Una passerella di legno al km 6,1."
+  }
 }

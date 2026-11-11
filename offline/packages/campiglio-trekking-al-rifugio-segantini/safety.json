@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Rifugio Segantini loop": "Anello del Rifugio Segantini",
+    "Val d’Amola car park, the APT’s start": "Parcheggio della Val d’Amola, la partenza indicata dall'APT",
+    "Rocky mountain path and granite slabs above 2,000 m.": "Sentiero di montagna roccioso e placche di granito oltre i 2.000 m.",
+    "Wooden bridge over the fast Sarca d’Amola.": "Ponte di legno sull'impetuoso Sarca d’Amola.",
+    "No shelter from bad weather on the ridge.": "Nessun riparo dal maltempo sulla cresta."
+  }
 }

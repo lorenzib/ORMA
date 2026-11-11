@@ -48,5 +48,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lake Carezza to the Stadlalm": "Dal Lago di Carezza alla Stadlalm",
+    "Lago di Carezza (Karersee) car park, the board’s start": "Parcheggio del Lago di Carezza (Karersee), la partenza indicata dalla scheda ufficiale",
+    "Busy around the lake in summer: keep your dog close and outside the lake fence.": "D'estate c'è molta gente intorno al lago: tieni il cane vicino e fuori dalla recinzione del lago.",
+    "About 12% on tarred lanes near the lake and the hut: watch for local traffic.": "Circa il 12% su stradine asfaltate vicino al lago e alla baita: attenzione al traffico locale.",
+    "The Stadlalm has a playground and farm animals: dogs may not enter the playground, and keep your dog away from the animals.": "La Stadlalm ha un parco giochi e animali della fattoria: i cani non possono entrare nel parco giochi, e tieni il cane lontano dagli animali."
+  }
 }

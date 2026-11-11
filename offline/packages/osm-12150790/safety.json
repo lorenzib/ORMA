@@ -70,5 +70,11 @@
       "downloadedAt": "2026-11-06",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Salurn village centre, near the town hall car park (official start area)": "Centro del paese di Salurn, vicino al parcheggio del municipio (zona di partenza ufficiale)",
+    "Slippery near the waterfall after rain (official).": "Scivoloso vicino alla cascata dopo la pioggia (dato ufficiale).",
+    "A short stretch close to a drop above the gorge.": "Un breve tratto vicino a un salto sopra la gola.",
+    "Paved lanes and a short stretch of the Pochi road (SP129).": "Stradine asfaltate e un breve tratto della strada per Pochi (SP129)."
+  }
 }

@@ -48,5 +48,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Antermoia to Rina": "Da Antermoia a Rina",
+    "The sports ground in Antermoia, the board’s start": "Il campo sportivo di Antermoia, la partenza indicata dalla scheda ufficiale",
+    "Farm roads past working farms: watch for tractors and farm dogs.": "Strade agricole accanto a masi in attività: attenzione a trattori e cani da cortile.",
+    "Sunny, open climb to Colac.": "Salita soleggiata e aperta verso Colac.",
+    "Stretches on quiet roads at the Val farms and into Rina.": "Tratti su strade tranquille ai masi di Val e verso Rina."
+  }
 }

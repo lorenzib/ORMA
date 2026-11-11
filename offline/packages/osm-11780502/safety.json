@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Zans car park (paid) by Treffpunkt Zans, bus stop Zanser Alm": "Parcheggio di Zans (a pagamento) presso il Treffpunkt Zans, fermata dell'autobus Zanser Alm",
+    "Crossing of the Zanser Straße (SP27).": "Attraversamento della Zanser Straße (SP27).",
+    "The last 65 m on the SP27 over a wooden bridge into the car park.": "Gli ultimi 65 m sulla SP27, su un ponte di legno, fino al parcheggio.",
+    "Ice on the paths in winter.": "Ghiaccio sui sentieri in inverno."
+  }
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa",
   "name": "Pederoa – Picedac – Costa",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:16:47.953Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:31:53.534Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1102399,
+  "packageBytes": 1121417,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61897,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52542,
+      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Pederoa – Picedac – Costa safety information",
       "url": "safety.json",
-      "bytes": 1375,
-      "sha256": "599f99875923550029e7a36c1b3d4b10344e9f29d71c6dd396d1d61c05bbd893"
+      "bytes": 1977,
+      "sha256": "b15768e364f11ad395d8a3ca317f81c4502818617b42dce97cc75bfdfd15e41d"
     }
   ]
 }

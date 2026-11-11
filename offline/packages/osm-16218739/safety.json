@@ -47,5 +47,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Free car park by the Saint-Michel church, Landry (official start)": "Parcheggio gratuito presso la chiesa di Saint-Michel, Landry (partenza ufficiale)",
+    "Gravel tracks that may carry farm and ski-service vehicles.": "Strade sterrate su cui possono transitare mezzi agricoli e di servizio degli impianti.",
+    "A paragliding take-off on the route at Les Charmettes.": "Un decollo di parapendio sul percorso a Les Charmettes."
+  }
 }

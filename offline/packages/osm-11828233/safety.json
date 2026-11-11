@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Free car park at the Jochtal cable-car valley station, Vals": "Parcheggio gratuito alla stazione a valle della cabinovia Jochtal, Vals",
+    "Village lanes without a pavement.": "Stradine di paese senza marciapiede.",
+    "Crossing the Valser road (SP100) at the Masl chapel.": "Attraversamento della strada di Vals (SP100) alla cappella Masl.",
+    "Roundabout by the valley station.": "Rotatoria vicino alla stazione a valle."
+  }
 }

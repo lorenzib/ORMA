@@ -52,5 +52,8 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Raiffeisenplatz, Niedervintl (route 4 signpost)": "Raiffeisenplatz, Niedervintl (cartello del percorso 4)"
+  }
 }

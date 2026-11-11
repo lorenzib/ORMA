@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Sass Queder from Diavolezza": "Sass Queder dalla Diavolezza",
+    "Diavolezza top station, the board’s start": "La stazione a monte della Diavolezza, la partenza della scheda ufficiale",
+    "High alpine at 3,000 m: the air is thin, the weather turns fast and snow can fall in any month.": "Alta montagna a 3.000 m: l'aria è rarefatta, il tempo cambia in fretta e la neve può cadere in qualsiasi mese.",
+    "Rocky path; OSM grades about 200 m near the summit as demanding mountain path (T3): keep your dog close and on a short lead.": "Sentiero roccioso; OSM classifica circa 200 m vicino alla vetta come sentiero di montagna impegnativo (T3): tieni il cane vicino e al guinzaglio corto.",
+    "Glaciers below the ridge: never leave the marked path.": "Ghiacciai sotto la cresta: non lasciare mai il sentiero segnalato."
+  }
 }

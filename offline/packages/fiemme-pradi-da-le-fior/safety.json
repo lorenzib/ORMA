@@ -47,5 +47,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Malga Sass car park, Valfloriana, the APT’s start": "Parcheggio di Malga Sass, Valfloriana, partenza indicata dall'APT",
+    "A gravel forest road and a grassy path; the road may see the odd forestry vehicle.": "Una strada forestale sterrata e un sentiero erboso; sulla strada può passare qualche mezzo forestale.",
+    "Mountain meadows where cattle may graze in summer: keep your dog on the lead and close.": "Prati di montagna dove d'estate può pascolare il bestiame: tieni il cane al guinzaglio e vicino a te."
+  }
 }

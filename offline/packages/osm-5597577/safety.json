@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Tschirland village centre by the Tschirlander Hof, Citybus 264 stop Tschirlander Hof (official start)": "Centro di Tschirland presso il Tschirlander Hof, fermata del Citybus 264 Tschirlander Hof (partenza ufficiale)",
+    "About 1 km on the farm road out of Tschirland, open to cars.": "Circa 1 km sulla strada poderale in uscita da Tschirland, aperta alle auto.",
+    "A gate into the wooded pasture of the Tschirlander Hoad (km 2.9), where animals may graze.": "Un cancello d'ingresso al pascolo alberato della Tschirlander Hoad (km 2,9), dove possono pascolare animali.",
+    "A steeper woodland path between km 2 and 2.7.": "Un sentiero nel bosco più ripido tra il km 2 e il 2,7."
+  }
 }

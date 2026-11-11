@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Passo Rest, the board’s start": "Passo Rest, partenza indicata dalla scheda ufficiale",
+    "A climb of about 740 m, with a steeper last stretch to the summit.": "Una salita di circa 740 m, con un ultimo tratto più ripido verso la cima.",
+    "Open ridge: avoid the hot middle of summer days and storms.": "Cresta aperta: evita le ore centrali delle giornate estive e i temporali.",
+    "Passo Rest is reached only from April to November (SR 552 closed in winter).": "Il Passo Rest è raggiungibile solo da aprile a novembre (SR 552 chiusa d'inverno)."
+  }
 }

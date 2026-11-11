@@ -70,5 +70,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Parcheggi in prossimità del parco Vallombrosa, the APT’s start": "Parcheggi in prossimità del parco Vallombrosa, la partenza indicata dall'APT",
+    "About three quarters on tarmac, village streets open to cars.": "Circa tre quarti su asfalto, strade del paese aperte al traffico.",
+    "Crossings of busy roads, as the APT warns.": "Attraversamenti di strade trafficate, come avverte l'APT.",
+    "About 700 m on a natural path.": "Circa 700 m su sentiero naturale."
+  }
 }

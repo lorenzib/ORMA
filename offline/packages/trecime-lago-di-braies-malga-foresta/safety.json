@@ -48,5 +48,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pragser Wildsee car park, the board’s start": "Parcheggio del Pragser Wildsee, la partenza indicata dalla scheda ufficiale",
+    "The lake shore is very crowded in summer: keep your dog close.": "D'estate la riva del lago è molto affollata: tieni il cane vicino.",
+    "Cows graze around the Grünwaldalm.": "Intorno alla Grünwaldalm pascolano le mucche.",
+    "Keep your dog out of the lake.": "Tieni il cane fuori dal lago."
+  }
 }

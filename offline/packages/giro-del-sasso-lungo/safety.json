@@ -55,5 +55,11 @@
       "downloadedAt": "2026-11-06",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Start here, Passo Sella, paid parking lot behind Hotel Passo Sella": "Partenza qui, Passo Sella, parcheggio a pagamento dietro l'Hotel Passo Sella",
+    "The SS242 road at Passo Sella, with traffic and buses, at the start and finish.": "La strada SS242 al Passo Sella, con traffico e autobus, alla partenza e all'arrivo.",
+    "Scree crossings under the north face of the Sassolungo and below the Rifugio Vicenza.": "Attraversamenti di ghiaioni sotto la parete nord del Sassolungo e sotto il Rifugio Vicenza.",
+    "The edge of the Città dei Sassi boulder field.": "Il margine della frana della Città dei Sassi."
+  }
 }

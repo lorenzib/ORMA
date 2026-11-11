@@ -63,5 +63,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Vigo di Fassa (Strada Rezia), the APT’s start": "Vigo di Fassa (Strada Rezia), la partenza indicata dall'APT",
+    "Village lanes open to cars for most of the way.": "Stradine di paese aperte alle auto per gran parte del percorso.",
+    "Stone setts and pebbled lanes in the old hamlets.": "Selciato e stradine acciottolate nelle vecchie frazioni.",
+    "No refreshment point on the way round, only at the start.": "Nessun punto di ristoro lungo il giro, solo alla partenza."
+  }
 }

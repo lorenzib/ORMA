@@ -40,5 +40,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Car park at the top of Monte Pana (official start)": "Parcheggio in cima al Monte Pana (partenza ufficiale)",
+    "Short stretches on the Monte Pana road at the start and end, open to cars.": "Brevi tratti sulla strada del Monte Pana alla partenza e all'arrivo, aperta alle auto.",
+    "Small grass-covered footbridges that can be hard to see (km 1.5–1.7).": "Piccole passerelle coperte d'erba che possono essere difficili da vedere (km 1,5–1,7).",
+    "Play and activity stations along the path.": "Postazioni di gioco e attività lungo il sentiero."
+  }
 }

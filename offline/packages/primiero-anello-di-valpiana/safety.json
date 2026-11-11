@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Rifugio Fonteghi, the APT’s start": "Rifugio Fonteghi, la partenza indicata dall'APT",
+    "Gravel forest roads, shared with forestry vehicles.": "Strade forestali sterrate, condivise con i mezzi forestali.",
+    "A path down to the Rifugio Fonteghi at the end.": "Un sentiero che scende al Rifugio Fonteghi alla fine.",
+    "Cattle may graze at Malga Valpiana in summer.": "D'estate a Malga Valpiana può esserci bestiame al pascolo."
+  }
 }

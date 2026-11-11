@@ -41,5 +41,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Schäfer shop, Moos, the board’s start": "Negozio Schäfer, Moos, la partenza indicata dalla scheda ufficiale",
+    "A steep climb of over 1,000 m: plan rests and water for your dog.": "Una salita ripida di oltre 1.000 m: prevedi soste e acqua per il tuo cane.",
+    "The Heimatsteig is a narrow ridge path: keep your dog close on a short lead.": "L'Heimatsteig è un sentiero di cresta stretto: tieni il cane vicino al guinzaglio corto.",
+    "No drinking water is mapped on the line; the Helmhanghütte at km 1.3 serves food.": "Sul tracciato non è segnata acqua potabile; la Helmhanghütte al km 1,3 offre cibo."
+  }
 }

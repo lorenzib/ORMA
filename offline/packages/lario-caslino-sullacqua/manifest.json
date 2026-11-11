@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-caslino-sullacqua",
   "name": "Caslino d’Erba and the Lambro",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:30:50.546Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:31:53.812Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 805106,
+  "packageBytes": 824162,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.82335,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52542,
+      "sha256": "05a4ab00af31bbcd2f0ac1f44631568056def06b2138849cacb3657f6b648fe4"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Caslino d’Erba and the Lambro safety information",
       "url": "safety.json",
-      "bytes": 1474,
-      "sha256": "3fa82077654276301c257c819ebf2957f5954abe7f977e68c2c75c41f8a1f3ed"
+      "bytes": 2114,
+      "sha256": "d560240e2d1009509a1541b92fc01cdd7aa7ff8c00530a3817830379a1431db9"
     }
   ]
 }

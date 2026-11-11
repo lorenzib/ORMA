@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Zernez to Brail": "Da Zernez a Brail",
+    "Zernez station, the board’s start": "Stazione di Zernez, la partenza della scheda ufficiale",
+    "Almost no shade on the sunny path: carry water on hot days.": "Quasi nessuna ombra sul sentiero soleggiato: nelle giornate calde porta acqua.",
+    "No drinking water mapped after the start: bring enough for your dog.": "Nessuna acqua potabile segnata dopo la partenza: portane abbastanza per il cane.",
+    "Cows may graze the meadows: lead short and go round the herd.": "Nei prati possono pascolare mucche: guinzaglio corto e aggira la mandria."
+  }
 }
