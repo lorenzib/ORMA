@@ -16,5 +16,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the car park, walk along the Cismon for 1 km to the bridge that leads to Via Rivetta. Follow Via Rivetta across the main road (SS50).": "Dal parcheggio cammina lungo il Cismon per 1 km fino al ponte che porta in Via Rivetta. Segui Via Rivetta attraversando la strada principale (SS50).",
   "At the fork keep left, then turn right into Via Calleselle and right again towards Via Larga. After 100 m turn left, gently uphill, into Via Civerton and carry on to the fork.": "Al bivio tieni la sinistra, poi gira a destra in Via Calleselle e di nuovo a destra verso Via Larga. Dopo 100 m gira a sinistra, in leggera salita, in Via Civerton e prosegui fino al bivio.",
   "Take Via Caspeda on the left to a bend that leads into Via Corradini. Carry on to Via Sant’Andrea, on the right, which takes you to the main road.": "Prendi Via Caspeda a sinistra fino a una curva che porta in Via Corradini. Prosegui fino a Via Sant'Andrea, a destra, che ti porta alla strada principale.",
-  "Follow the main road to the start of Via Schoenberg, and walk it back to the bridge you crossed earlier. Return along the Cismon to the car park.": "Segui la strada principale fino all'inizio di Via Schoenberg e percorrila fino al ponte che hai attraversato prima. Torna lungo il Cismon fino al parcheggio."
+  "Follow the main road to the start of Via Schoenberg, and walk it back to the bridge you crossed earlier. Return along the Cismon to the car park.": "Segui la strada principale fino all'inizio di Via Schoenberg e percorrila fino al ponte che hai attraversato prima. Torna lungo il Cismon fino al parcheggio.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "A street in Siror": "Una via di Siror"
 });

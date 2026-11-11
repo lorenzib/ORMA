@@ -6,5 +6,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Sparsely mapped: natural ground (90%), unpaved (10%), from OSM surface data": "Mappato in modo scarso: terreno naturale (90%), non asfaltato (10%), dai dati OSM sul fondo",
   "Mapped route start at Niante Aze; verify current parking locally": "Partenza del percorso mappato a Niante Aze; verifica sul posto il parcheggio attuale",
   "Auronzo di Cadore in the Cadore valley": "Auronzo di Cadore nella valle del Cadore",
-  "The official description records pine, juniper, larch and spruce along the first climb, followed by a more open view beyond Lago d’Aosto.": "La descrizione ufficiale riporta pini, ginepri, larici e abeti rossi lungo la prima salita, seguiti da una vista più aperta oltre il Lago d’Aosto."
+  "The official description records pine, juniper, larch and spruce along the first climb, followed by a more open view beyond Lago d’Aosto.": "La descrizione ufficiale riporta pini, ginepri, larici e abeti rossi lungo la prima salita, seguiti da una vista più aperta oltre il Lago d’Aosto.",
+  "2019 Auronzo di Cadore": "2019 Auronzo di Cadore"
 });

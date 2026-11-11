@@ -9,5 +9,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Quiet tarmac road, footpath and forest roads": "Strada asfaltata tranquilla, sentiero e strade forestali",
   "Brunngasse, Teis village centre (official start)": "Brunngasse, centro di Teis (partenza ufficiale)",
   "Teis village with its church on a green slope seen from the air, the Eisack valley and distant snowy peaks beyond under a blue sky": "Il paese di Teis con la sua chiesa su un pendio verde visto dall'alto, con la valle dell'Eisack e lontane cime innevate sotto un cielo azzurro",
-  "More than half is in the wood above Teis; the first stretch on the road through the meadows is open.": "Più della metà si svolge nel bosco sopra Teis; il primo tratto su strada tra i prati è aperto."
+  "More than half is in the wood above Teis; the first stretch on the road through the meadows is open.": "Più della metà si svolge nel bosco sopra Teis; il primo tratto su strada tra i prati è aperto.",
+  "Refill drinking fountain in Teis": "Fontanella Refill a Teis",
+  "Drinking fountain in Teis": "Fontanella a Teis",
+  "Refill drinking fountain by the Vereinshaus": "Fontanella Refill vicino al Vereinshaus",
+  "Teis from the air": "Teis vista dall'alto"
 });

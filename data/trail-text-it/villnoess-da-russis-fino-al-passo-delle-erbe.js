@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mostly open: about a sixth runs through mapped woodland; the meadows and scree below the peaks are in full sun.": "Per lo più aperto: circa un sesto corre nel bosco segnato sulla mappa; i prati e i ghiaioni sotto le cime sono in pieno sole.",
   "Start at Ponte Russis (Russisbrücke), the board’s start; the board suggests travelling by bus, since the walk ends elsewhere.": "Parti da Ponte Russis (Russisbrücke), la partenza indicata dalla scheda ufficiale; la scheda ufficiale consiglia di arrivare in autobus, perché la camminata finisce in un altro punto.",
   "Follow the lower part of the Günther-Messner path past the Rodelwiesen meadows to where the path to the Forcella de Pütia begins, then take path 8A to Passo delle Erbe.": "Segui la parte bassa del sentiero Günther Messner oltre i prati Rodelwiesen fino al punto dove inizia il sentiero per la Forcella de Pütia, poi prendi il sentiero 8A fino al Passo delle Erbe.",
-  "One turn: at the start of the Forcella de Pütia path leave the Günther-Messner path for path 8A to Passo delle Erbe.": "Una sola svolta: all'inizio del sentiero per la Forcella de Pütia lascia il sentiero Günther Messner per il sentiero 8A fino al Passo delle Erbe."
+  "One turn: at the start of the Forcella de Pütia path leave the Günther-Messner path for path 8A to Passo delle Erbe.": "Una sola svolta: all'inizio del sentiero per la Forcella de Pütia lascia il sentiero Günther Messner per il sentiero 8A fino al Passo delle Erbe.",
+  "Drinking water": "Acqua potabile",
+  "The Aferer Geisler from the Günther-Messner path": "Gli Aferer Geisler dal sentiero Günther-Messner"
 });

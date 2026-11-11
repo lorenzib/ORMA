@@ -9,5 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Aschbach cable car top station (official start and end)": "Stazione a monte della funivia di Aschbach (partenza e arrivo ufficiali)",
   "The hamlet of Aschbach above Algund, farmhouses and a small church on green meadows below a forested ridge": "La frazione di Aschbach sopra Algund, masi e una chiesetta su prati verdi sotto una cresta boscosa",
   "About two thirds is in open woodland; the rest crosses clearings with views over Partschins and the Texelgruppe.": "Circa due terzi si svolgono in un bosco rado; il resto attraversa radure con vista su Partschins e sul Texelgruppe.",
-  "From the cable car top station follow path 27A towards the Eggerhöfe for about five minutes, then the “Walderlebnispfad Aschbach” signs round the loop and back to the station.": "Dalla stazione a monte della funivia segui il sentiero 27A verso gli Eggerhöfe per circa cinque minuti, poi i cartelli “Walderlebnispfad Aschbach” lungo l'anello e torna alla stazione."
+  "From the cable car top station follow path 27A towards the Eggerhöfe for about five minutes, then the “Walderlebnispfad Aschbach” signs round the loop and back to the station.": "Dalla stazione a monte della funivia segui il sentiero 27A verso gli Eggerhöfe per circa cinque minuti, poi i cartelli “Walderlebnispfad Aschbach” lungo l'anello e torna alla stazione.",
+  "Drinking fountain by the cable car station": "Fontanella vicino alla stazione della funivia",
+  "Drinking fountain in Aschbach": "Fontanella ad Aschbach",
+  "Aschbach in Algund": "Aschbach ad Algund"
 });

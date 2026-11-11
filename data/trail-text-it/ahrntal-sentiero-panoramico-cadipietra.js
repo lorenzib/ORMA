@@ -12,5 +12,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "No shade: the loop runs across open meadows and past farms.": "Nessuna ombra: l'anello attraversa prati aperti e passa accanto ai masi.",
   "Start at the Klausberg lift car park in Steinhaus (Cadipietra), the board’s start.": "Parti dal parcheggio degli impianti del Klausberg a Steinhaus (Cadipietra), la partenza indicata dalla scheda ufficiale.",
   "Follow valley path 11 towards Mühlegg and In der Baurschaft. Cross the road and climb path 8A to the Koasa farm, then turn right onto path 8B and follow it along the slope to Linder Antratt. The car park is just across the road.": "Segui il sentiero di fondovalle 11 verso Mühlegg e In der Baurschaft. Attraversa la strada e sali per il sentiero 8A fino al maso Koasa, poi svolta a destra sul sentiero 8B e seguilo lungo il pendio fino a Linder Antratt. Il parcheggio è subito dall'altra parte della strada.",
-  "Two changes: after crossing the road take path 8A uphill, and at the Koasa farm turn right onto path 8B.": "Due cambi: dopo aver attraversato la strada prendi il sentiero 8A in salita, e al maso Koasa svolta a destra sul sentiero 8B."
+  "Two changes: after crossing the road take path 8A uphill, and at the Koasa farm turn right onto path 8B.": "Due cambi: dopo aver attraversato la strada prendi il sentiero 8A in salita, e al maso Koasa svolta a destra sul sentiero 8B.",
+  "The Ahrntal from the slope above Steinhaus": "L'Ahrntal dal pendio sopra Steinhaus"
 });

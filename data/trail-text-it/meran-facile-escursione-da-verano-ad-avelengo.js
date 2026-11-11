@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Almost entirely shaded: nearly all of it runs through mapped larch and pine woods.": "Quasi tutto all'ombra: quasi l'intero percorso attraversa boschi di larici e pini segnati sulla mappa.",
   "Start at the Sportplatz Vöran bus stop, the board’s start.": "Parti dalla fermata dell'autobus Sportplatz Vöran, la partenza indicata dalla scheda ufficiale.",
   "Follow path 16 gently uphill through the woods to the Bruggen pond, with the Leadner Alm and the Waldbichl inn nearby. Below the pond path 16 forks: take the branch down to the village of Hafling, where the walk ends at the bus.": "Segui il sentiero 16 in leggera salita nel bosco fino allo stagno di Bruggen, con la Leadner Alm e la locanda Waldbichl nei dintorni. Sotto lo stagno il sentiero 16 si biforca: prendi il ramo che scende al paese di Hafling, dove la passeggiata finisce all'autobus.",
-  "One choice: below the Bruggen pond keep to the branch of path 16 signed down to Hafling.": "Una sola scelta: sotto lo stagno di Bruggen resta sul ramo del sentiero 16 segnalato in discesa verso Hafling."
+  "One choice: below the Bruggen pond keep to the branch of path 16 signed down to Hafling.": "Una sola scelta: sotto lo stagno di Bruggen resta sul ramo del sentiero 16 segnalato in discesa verso Hafling.",
+  "Drinking water": "Acqua potabile",
+  "Path 16 by the Bruggen pond": "Il sentiero 16 presso lo stagno di Bruggen"
 });

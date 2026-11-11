@@ -15,5 +15,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From Scacciapensieri, follow the signs for Malga Ces. Off the forest road onto the path up the left side of the valley.": "Da Scacciapensieri segui i cartelli per Malga Ces. Lascia la strada forestale per il sentiero che risale il lato sinistro della valle.",
   "From the centre of San Martino di Castrozza, head for the Plank pond and carry on along the forest road at Scacciapensieri.": "Dal centro di San Martino di Castrozza dirigiti verso lo stagno di Plank e prosegui sulla strada forestale a Scacciapensieri.",
   "From there, follow the signs for Malga Ces: first on the forest road through the woods, then on an easy path up the left side of the valley (looking up it). About 30 more minutes bring you to Malga Ces.": "Da lì segui i cartelli per Malga Ces: prima sulla strada forestale nel bosco, poi su un sentiero facile che risale il lato sinistro della valle (guardando verso monte). In circa altri 30 minuti arrivi a Malga Ces.",
-  "Come back the same way.": "Ritorna per la stessa via."
+  "Come back the same way.": "Ritorna per la stessa via.",
+  "Drinking fountain": "Fontanella",
+  "The centre of San Martino di Castrozza": "Il centro di San Martino di Castrozza"
 });

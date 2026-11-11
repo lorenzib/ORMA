@@ -19,5 +19,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Path SAT 124 up to Malga Paludèi (2,106 m)": "Sentiero SAT 124 fino a Malga Paludèi (2.106 m)",
   "Path 110, then path 141 up the Val Piana": "Sentiero 110, poi il sentiero 141 su per la Val Piana",
   "Down to Lagostèl and past the charcoal pits": "Giù fino al Lagostèl e oltre le carbonaie",
-  "Path 124 back to the Fontanino": "Sentiero 124 di ritorno al Fontanino"
+  "Path 124 back to the Fontanino": "Sentiero 124 di ritorno al Fontanino",
+  "Fontanino di Pejo": "Fontanino di Pejo",
+  "Fontanino di Celentino": "Fontanino di Celentino",
+  "Drinking water": "Acqua potabile",
+  "Lago di Pian Palù": "Lago di Pian Palù"
 });

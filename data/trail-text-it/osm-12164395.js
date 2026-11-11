@@ -8,5 +8,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start at Raiffeisenplatz in Niedervintl, at the route 4 signpost, the register's point for the route.": "Parti da Raiffeisenplatz a Niedervintl, al cartello del percorso 4, il punto indicato dal catasto per il percorso.",
   "Follow route 4 out of Niedervintl past the Troyenbach track junction, up through Vorderdrittel and Außerdrittel to the Stollweg bridge near Weitental, and back along the valley floor through Priel to the start.": "Segui il percorso 4 fuori da Niedervintl oltre il bivio della strada per Troyenbach, su attraverso Vorderdrittel e Außerdrittel fino al ponte dello Stollweg vicino a Weitental, e ritorno lungo il fondovalle attraverso Priel fino alla partenza.",
   "None: routes 16 and 11, the Talweg and the Traumpfad share stretches, but route 4 is followed throughout.": "Nessuno: i percorsi 16 e 11, il Talweg e il Traumpfad condividono alcuni tratti, ma si segue sempre il percorso 4.",
-  "Signed as route 4, Dörferrundweg, in the province of Bolzano hiking-trail register.": "Segnalato come percorso 4, Dörferrundweg, nel catasto dei sentieri della provincia di Bolzano."
+  "Signed as route 4, Dörferrundweg, in the province of Bolzano hiking-trail register.": "Segnalato come percorso 4, Dörferrundweg, nel catasto dei sentieri della provincia di Bolzano.",
+  "Drinking water": "Acqua potabile",
+  "Ansitz Troyenbach in Niedervintl": "Ansitz Troyenbach a Niedervintl"
 });

@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Shaded in the first part, where the forest road runs through spruce woods; the upper valley is open pasture.": "All'ombra nella prima parte, dove la strada forestale passa tra gli abeti rossi; l'alta valle è pascolo aperto.",
   "Start at the paid car park at the entrance to the Altfasstal (Val di Altafossa), the board’s start.": "Parti dal parcheggio a pagamento all'ingresso della Altfasstal (Val di Altafossa), la partenza indicata dalla scheda ufficiale.",
   "Follow the shaded, almost level forest road to the Kneipp pools and on to the Großberg alp. Out of the woods, take the signed path 15 along the small stream to the head of the valley, where the Wieserhütte and the Pranter Stadl stand at about 1,850 m.": "Segui la strada forestale ombreggiata e quasi pianeggiante fino alle vasche Kneipp e prosegui fino alla malga Großberg. Usciti dal bosco, prendi il sentiero segnalato 15 lungo il torrentello fino in testa alla valle, dove a circa 1.850 m si trovano la Wieserhütte e il Pranter Stadl.",
-  "One change: after the Großberg alp leave the forest road for path 15.": "Un cambio: dopo la malga Großberg lascia la strada forestale per il sentiero 15."
+  "One change: after the Großberg alp leave the forest road for path 15.": "Un cambio: dopo la malga Großberg lascia la strada forestale per il sentiero 15.",
+  "Drinking water": "Acqua potabile",
+  "The forest road in the Altfasstal": "La strada forestale nell'Altfasstal"
 });

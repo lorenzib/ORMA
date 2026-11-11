@@ -11,5 +11,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Almost all shaded: about nine tenths of the path runs through mapped forest.": "Quasi tutto all'ombra: circa nove decimi del sentiero passano nel bosco cartografato.",
   "Start at the Kaiserstein car park on the road below the Costalunga pass, by the bus stop, the board’s start.": "Parti dal parcheggio Kaiserstein sulla strada sotto il passo di Costalunga, vicino alla fermata dell'autobus, la partenza della scheda ufficiale.",
   "Take path 6C, which climbs steadily through the forest from the car park straight up to the Baita Masarè below the Catinaccio. Come back down the same way.": "Prendi il sentiero 6C, che sale costante nel bosco dal parcheggio dritto fino alla Baita Masarè sotto il Catinaccio. Scendi per la stessa strada.",
-  "Path 6C the whole way up from the Kaiserstein car park to the Baita Masarè.": "Sentiero 6C per tutta la salita dal parcheggio Kaiserstein alla Baita Masarè."
+  "Path 6C the whole way up from the Kaiserstein car park to the Baita Masarè.": "Sentiero 6C per tutta la salita dal parcheggio Kaiserstein alla Baita Masarè.",
+  "The trailhead at the Kaiserstein car park": "L'inizio del sentiero al parcheggio Kaiserstein"
 });

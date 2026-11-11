@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Almost no shade: only about 6% runs through mapped woodland; the lanes climb an open, sunny slope.": "Quasi senza ombra: solo circa il 6% passa in zone boscose mappate; le stradine salgono su un pendio aperto e soleggiato.",
   "Start in the village of Mühlbach (Rio di Pusteria), the board’s start.": "Parti dal paese di Mühlbach (Rio di Pusteria), la partenza indicata dalla scheda ufficiale.",
   "Follow the signed walking path up the slope to the neighbouring village of Spinges, with views over the valley on the way, and on to the Spinges bunker, the end of the walk.": "Segui il sentiero segnalato su per il pendio fino al vicino paese di Spinges, con vista sulla valle lungo il percorso, e prosegui fino al bunker di Spinges, la fine della camminata.",
-  "None: follow the signs for Spinges all the way up.": "Nessuno: segui le indicazioni per Spinges fino in cima."
+  "None: follow the signs for Spinges all the way up.": "Nessuno: segui le indicazioni per Spinges fino in cima.",
+  "Drinking water": "Acqua potabile",
+  "The lane above Mühlbach": "La stradina sopra Mühlbach"
 });

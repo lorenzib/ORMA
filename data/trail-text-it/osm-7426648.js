@@ -10,5 +10,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Waalweg entrance at Oberplars by the Kneipp station, bus stop Abzweigung Oberplars (official start)": "Ingresso del Waalweg a Oberplars vicino alla stazione Kneipp, fermata dell'autobus Abzweigung Oberplars (partenza ufficiale)",
   "Two walkers on the Algunder Waalweg, a narrow path beside a concrete irrigation channel under green vine pergolas heavy with grapes": "Due escursionisti sull'Algunder Waalweg, uno stretto sentiero lungo una roggia in cemento sotto verdi pergole cariche d'uva",
   "About half is under trees, in patches of woodland and chestnut along the channel and under the vine pergolas; the rest crosses open orchards and vineyards on a sunny south-facing slope.": "Circa metà è sotto gli alberi, in tratti di bosco e castagni lungo la roggia e sotto le pergole; il resto attraversa frutteti e vigneti aperti su un pendio soleggiato esposto a sud.",
-  "No route number: from the Kneipp station at Oberplars follow the “Algunder Waalweg” signs (AW) along the channel through Mitterplars and Algund-Dorf to Gratsch.": "Senza numero di percorso: dalla stazione Kneipp di Oberplars segui i cartelli “Algunder Waalweg” (AW) lungo la roggia attraverso Mitterplars e Algund-Dorf fino a Gratsch."
+  "No route number: from the Kneipp station at Oberplars follow the “Algunder Waalweg” signs (AW) along the channel through Mitterplars and Algund-Dorf to Gratsch.": "Senza numero di percorso: dalla stazione Kneipp di Oberplars segui i cartelli “Algunder Waalweg” (AW) lungo la roggia attraverso Mitterplars e Algund-Dorf fino a Gratsch.",
+  "Drinking fountain at the Kneipp station": "Fontanella alla stazione Kneipp",
+  "Drinking fountain near Gratsch": "Fontanella vicino a Gratsch",
+  "The Algunder Waalweg under the vine pergolas": "L'Algunder Waalweg sotto le pergole di vite"
 });

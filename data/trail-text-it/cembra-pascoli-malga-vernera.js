@@ -15,5 +15,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Just after Malga Vernera Bassa, take path SAT E469A. Where it meets the forest road “Bosco dalle Piane”, follow the road.": "Subito dopo Malga Vernera Bassa, prendi il sentiero SAT E469A. Dove incontra la strada forestale “Bosco dalle Piane”, segui la strada.",
   "A short way from Malga Vernera Bassa, take path SAT E469A, which keeps to the edge of the pasture.": "Poco dopo Malga Vernera Bassa, prendi il sentiero SAT E469A, che resta al margine del pascolo.",
   "It passes Malga Vernera Alta, which is no longer used and whose barn has collapsed, and carries on until it reaches the forest road “Bosco dalle Piane”.": "Passa accanto a Malga Vernera Alta, non più utilizzata e con il fienile crollato, e prosegue fino a raggiungere la strada forestale “Bosco dalle Piane”.",
-  "Follow that road to the little alpine chapel, and you are soon back at the start. The board says you can also walk the loop the other way round.": "Segui quella strada fino alla piccola cappella alpina, e presto sei di nuovo alla partenza. La scheda ufficiale dice che puoi percorrere l'anello anche nel senso opposto."
+  "Follow that road to the little alpine chapel, and you are soon back at the start. The board says you can also walk the loop the other way round.": "Segui quella strada fino alla piccola cappella alpina, e presto sei di nuovo alla partenza. La scheda ufficiale dice che puoi percorrere l'anello anche nel senso opposto.",
+  "Drinking fountain": "Fontanella",
+  "Vernera pastures": "I pascoli di Vernera"
 });

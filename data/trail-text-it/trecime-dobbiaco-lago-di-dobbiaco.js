@@ -17,5 +17,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Follow the paved road straight to the Nordic Arena, keep it on your right, and carry on to the Säge, where a gravel road begins.": "Segui la strada asfaltata dritto fino alla Nordic Arena, tienila alla tua destra e prosegui fino alla Säge, dove inizia una strada sterrata.",
   "Take the gravel road straight to the Toblacher See.": "Prendi la strada sterrata dritto fino al Toblacher See.",
   "On the west side of the lake, follow the nature trail along the shore.": "Sul lato ovest del lago segui il sentiero naturalistico lungo la riva.",
-  "Come back to the tourist office the way you came.": "Torna all'ufficio turistico per la stessa via."
+  "Come back to the tourist office the way you came.": "Torna all'ufficio turistico per la stessa via.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The west shore of the Toblacher See in June": "La riva ovest del Toblacher See a giugno"
 });

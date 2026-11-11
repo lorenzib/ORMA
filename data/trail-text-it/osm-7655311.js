@@ -10,5 +10,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Partschins village centre, by the church square (official start)": "Centro del paese di Partschins, vicino alla piazza della chiesa (partenza ufficiale)",
   "Terraced green meadows and a white farmhouse on the Sonnenberg above the Vinschgau valley, with vines in the foreground": "Prati verdi terrazzati e un maso bianco sul Sonnenberg sopra la Val Venosta, con viti in primo piano",
   "Almost entirely open: the board gives the route as 90% open ground on a south-facing slope, rated thermally strong. Very hot in summer.": "Quasi completamente aperto: la scheda ufficiale indica il percorso al 90% su terreno aperto, su un pendio esposto a sud, con forte carico termico. Molto caldo d'estate.",
-  "Signed as route 91 in the province hiking-trail register and as terrain-cure path no. 5: from Partschins follow 91 and the yellow-white “SP” Sonnenberger Panoramaweg waymark all the way to St. Prokulus and Naturns.": "Segnalato come percorso 91 nel catasto provinciale dei sentieri e come sentiero Terrainkur n. 5: da Partschins segui il 91 e il segnavia giallo-bianco “SP” del Sonnenberger Panoramaweg fino a St. Prokulus e Naturns."
+  "Signed as route 91 in the province hiking-trail register and as terrain-cure path no. 5: from Partschins follow 91 and the yellow-white “SP” Sonnenberger Panoramaweg waymark all the way to St. Prokulus and Naturns.": "Segnalato come percorso 91 nel catasto provinciale dei sentieri e come sentiero Terrainkur n. 5: da Partschins segui il 91 e il segnavia giallo-bianco “SP” del Sonnenberger Panoramaweg fino a St. Prokulus e Naturns.",
+  "Fountain in Partschins village": "Fontana nel paese di Partschins",
+  "Fountain at St. Prokulus, Naturns": "Fontana a St. Prokulus, Naturns",
+  "Sonnenberger Panoramaweg between Naturns and Rabland": "Il Sonnenberger Panoramaweg tra Naturns e Rabland"
 });

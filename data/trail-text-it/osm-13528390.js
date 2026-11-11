@@ -4,5 +4,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "paved (62%), gravel (38%), unpaved (0%), from OSM surface data": "asfalto (62%), ghiaia (38%), non asfaltato (0%), dai dati sul fondo di OSM",
   "Piazza 11 gennaio 1945, Pianon (official start)": "Piazza 11 gennaio 1945, Pianon (partenza ufficiale)",
-  "Tambre on its shelf in the Alpago with pasture and forest above it, Monte Guslon behind still carrying snow in the gullies.": "Tambre sul suo terrazzo nell'Alpago, con pascoli e bosco sopra, e alle spalle il Monte Guslon con la neve ancora nei canaloni."
+  "Tambre on its shelf in the Alpago with pasture and forest above it, Monte Guslon behind still carrying snow in the gullies.": "Tambre sul suo terrazzo nell'Alpago, con pascoli e bosco sopra, e alle spalle il Monte Guslon con la neve ancora nei canaloni.",
+  "Drinking water": "Acqua potabile",
+  "Tambre e il Monte Guslon": "Tambre e il Monte Guslon"
 });

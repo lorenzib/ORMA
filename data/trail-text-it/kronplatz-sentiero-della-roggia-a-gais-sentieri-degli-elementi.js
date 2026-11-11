@@ -17,5 +17,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the parish church of Gais head towards Via Talfrieden and cross the bridge over the Ahr.": "Dalla chiesa parrocchiale di Gais dirigiti verso Via Talfrieden e attraversa il ponte sull'Ahr.",
   "Carry on between the houses, north-east, to the forest, where the channel path begins: about 20 minutes from the bridge.": "Prosegui tra le case, verso nord-est, fino al bosco, dove inizia il sentiero del canale: circa 20 minuti dal ponte.",
   "The channel path runs level south across the steep wooded slopes and ends north of the Bärentalhof farm, where it meets a broad gravel track.": "Il sentiero del canale corre in piano verso sud attraverso i ripidi pendii boscosi e termina a nord del maso Bärentalhof, dove incontra un'ampia strada sterrata.",
-  "Turn right and take the path that drops gently between meadows and fields back to the start.": "Svolta a destra e prendi il sentiero che scende dolcemente tra prati e campi fino alla partenza."
+  "Turn right and take the path that drops gently between meadows and fields back to the start.": "Svolta a destra e prendi il sentiero che scende dolcemente tra prati e campi fino alla partenza.",
+  "Drinking water": "Acqua potabile",
+  "The parish church of Gais": "La chiesa parrocchiale di Gais"
 });

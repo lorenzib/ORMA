@@ -16,5 +16,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the hospital church in Niederdorf, walk past the parish church and up the Montecosta road to the bend by the Brandhäusl (path 45).": "Dalla chiesa dell'ospedale a Niederdorf passa davanti alla parrocchiale e sali per la strada del Montecosta fino alla curva del Brandhäusl (sentiero 45).",
   "Turn left there and follow the quiet, shaded path to the Thaler farm.": "Lì gira a sinistra e segui il sentiero tranquillo e ombreggiato fino al maso Thaler.",
   "Carry on almost level, westwards, to the hamlet of Kleinsinner.": "Prosegui quasi in piano, verso ovest, fino alla frazione di Kleinsinner.",
-  "From Kleinsinner, follow the road to the Bellavista viewpoint (1,460 m).": "Da Kleinsinner segui la strada fino al punto panoramico Bellavista (1.460 m)."
+  "From Kleinsinner, follow the road to the Bellavista viewpoint (1,460 m).": "Da Kleinsinner segui la strada fino al punto panoramico Bellavista (1.460 m).",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The road out of Niederdorf towards the Montecosta in August": "La strada fuori da Niederdorf verso la Montecosta ad agosto"
 });

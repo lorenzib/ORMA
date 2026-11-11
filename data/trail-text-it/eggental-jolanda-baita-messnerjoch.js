@@ -11,5 +11,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mostly shaded: about three quarters runs through mapped forest; the hut stands in an open meadow.": "Per lo più all'ombra: circa tre quarti del percorso passano nel bosco cartografato; la baita si trova in un prato aperto.",
   "Start at the car park on the Via Nigra below the Gasthaus Jolanda, the board’s start; forest road 1A begins opposite the car park.": "Parti dal parcheggio sulla Via Nigra sotto il Gasthaus Jolanda, la partenza della scheda ufficiale; la strada forestale 1A inizia di fronte al parcheggio.",
   "Follow forest road 1A up through the forest, and at a fork turn onto path 1B, which leads straight to the Baita Messnerjoch. Come back the same way.": "Segui la strada forestale 1A che sale nel bosco e, a un bivio, prendi il sentiero 1B, che porta dritto alla Baita Messnerjoch. Torna per la stessa strada.",
-  "Forest road 1A from the car park; at the fork onto path 1B for the Baita Messnerjoch; return the same way.": "Strada forestale 1A dal parcheggio; al bivio sul sentiero 1B per la Baita Messnerjoch; ritorno per la stessa strada."
+  "Forest road 1A from the car park; at the fork onto path 1B for the Baita Messnerjoch; return the same way.": "Strada forestale 1A dal parcheggio; al bivio sul sentiero 1B per la Baita Messnerjoch; ritorno per la stessa strada.",
+  "The start of forest road 1A on the Via Nigra": "L'inizio della strada forestale 1A sulla Via Nigra"
 });

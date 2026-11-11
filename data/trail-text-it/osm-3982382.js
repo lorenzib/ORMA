@@ -5,5 +5,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Packed forest gravel & quiet village lanes": "Ghiaia forestale battuta e tranquille stradine di paese",
   "Place de la Corderie car park (Rivièr'Alp / Maison du Guiers), Les Échelles": "Parcheggio di Place de la Corderie (Rivièr'Alp / Maison du Guiers), Les Échelles",
   "The Guiers from the bridge at Les Échelles, clear water running over pale limestone slabs between wooded banks, with a forested summit behind": "Il Guiers visto dal ponte di Les Échelles, con l'acqua limpida che scorre su placche di calcare chiaro tra sponde boscose e una cima boscosa sullo sfondo",
-  "No number: GR9 (white-red) from the Croix des Carriers past the Chapelle de la Madeleine, then the yellow-waymarked path back, as the official text describes.": "Senza numero: il GR9 (bianco-rosso) dalla Croix des Carriers oltre la Chapelle de la Madeleine, poi il sentiero con segnavia giallo per il ritorno, come descrive il testo ufficiale."
+  "No number: GR9 (white-red) from the Croix des Carriers past the Chapelle de la Madeleine, then the yellow-waymarked path back, as the official text describes.": "Senza numero: il GR9 (bianco-rosso) dalla Croix des Carriers oltre la Chapelle de la Madeleine, poi il sentiero con segnavia giallo per il ritorno, come descrive il testo ufficiale.",
+  "Guiers Vif riverside at the trailhead": "Riva del Guiers Vif all'inizio del sentiero",
+  "The Guiers from the bridge at Les Échelles": "Il Guiers dal ponte di Les Échelles"
 });

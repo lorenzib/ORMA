@@ -7,5 +7,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "The descent on the Valsorda forest road is shared with mountain bikes": "La discesa sulla strada forestale di Valsorda è condivisa con le mountain bike",
   "Forest tracks (about 4.5 km) and paths (about 3.2 km); no public roads": "Strade forestali (circa 4,5 km) e sentieri (circa 3,2 km); nessuna strada pubblica",
   "Pian de la Siega (Segheria de Valzanca), Ponte Stèl above Caoria (official start)": "Pian de la Siega (Segheria de Valzanca), Ponte Stèl sopra Caoria (partenza ufficiale)",
-  "ORMA illustration of Anello del Bosco: its climb drawn as contour bands and its route shape, not a photograph": "Illustrazione ORMA dell'Anello del Bosco: la salita disegnata come fasce di curve di livello e la forma del percorso, non una fotografia"
+  "ORMA illustration of Anello del Bosco: its climb drawn as contour bands and its route shape, not a photograph": "Illustrazione ORMA dell'Anello del Bosco: la salita disegnata come fasce di curve di livello e la forma del percorso, non una fotografia",
+  "Drinking water": "Acqua potabile",
+  "ORMA illustration of this walk, drawn from its route and climb, not a photograph": "Illustrazione ORMA di questa passeggiata, disegnata dal suo percorso e dalla salita, non una fotografia"
 });

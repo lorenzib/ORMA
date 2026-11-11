@@ -10,5 +10,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Free car park at the Jochtal cable-car valley station, Vals": "Parcheggio gratuito alla stazione a valle della cabinovia Jochtal, Vals",
   "Vals village and its green meadows on the valley floor in summer, wooded slopes and peaks of the Valser Tal behind.": "Il paese di Vals e i suoi prati verdi sul fondovalle d'estate, con pendii boscosi e le cime della Valser Tal sullo sfondo.",
   "About a third in forest, mostly the stream track and the forest-edge lane; open meadows and village otherwise.": "Circa un terzo nel bosco, soprattutto la strada lungo il torrente e la stradina al margine del bosco; per il resto prati aperti e paese.",
-  "No route number: follow the “Valser Rundweg” signs from the valley station up the lane along the forest edge, through the village, down to the Masl chapel, then back along the Valler Bach.": "Percorso senza numero: segui i cartelli “Valser Rundweg” dalla stazione a valle salendo per la stradina lungo il margine del bosco, attraverso il paese, giù fino alla cappella Masl, poi torna lungo il Valler Bach."
+  "No route number: follow the “Valser Rundweg” signs from the valley station up the lane along the forest edge, through the village, down to the Masl chapel, then back along the Valler Bach.": "Percorso senza numero: segui i cartelli “Valser Rundweg” dalla stazione a valle salendo per la stradina lungo il margine del bosco, attraverso il paese, giù fino alla cappella Masl, poi torna lungo il Valler Bach.",
+  "Drinking-water tap in Vals village, about 120 m off the loop": "Rubinetto di acqua potabile nel paese di Vals, a circa 120 m dall'anello",
+  "Water tap by the trail noticeboard, about 130 m off the loop": "Rubinetto dell'acqua vicino alla bacheca del sentiero, a circa 130 m dall'anello",
+  "Vals Sommer 2011": "Vals nell'estate 2011"
 });

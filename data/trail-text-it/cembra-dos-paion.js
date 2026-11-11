@@ -17,5 +17,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "There, take the road towards Monte Corona, past the last apple orchards.": "Lì prendi la strada verso il Monte Corona, oltre gli ultimi meleti.",
   "Soon a forest road turns off on the left: follow it.": "Poco dopo una strada forestale si stacca sulla sinistra: seguila.",
   "The route goes round the mountain into thick woods of beech, pine and fir, until it reaches the fork where the path to the Dos Paion viewpoint starts.": "Il percorso gira intorno al monte entrando in fitti boschi di faggi, pini e abeti, fino al bivio da cui parte il sentiero per il punto panoramico del Dos Paion.",
-  "At the top there are tables, benches and a big metal cross, with the view over the lower Val di Cembra. The board lists this as a there-and-back walk: come back the same way.": "In cima ci sono tavoli, panchine e una grande croce di metallo, con la vista sulla bassa Val di Cembra. La scheda ufficiale la indica come camminata di andata e ritorno: torna per la stessa via."
+  "At the top there are tables, benches and a big metal cross, with the view over the lower Val di Cembra. The board lists this as a there-and-back walk: come back the same way.": "In cima ci sono tavoli, panchine e una grande croce di metallo, con la vista sulla bassa Val di Cembra. La scheda ufficiale la indica come camminata di andata e ritorno: torna per la stessa via.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "View from Monte Corona": "Vista dal Monte Corona"
 });

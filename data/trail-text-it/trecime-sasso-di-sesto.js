@@ -16,5 +16,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "From the car park by the Fischleinbodenhütte, walk south on the wide, level valley path to the Talschlusshütte.": "Dal parcheggio presso la Fischleinbodenhütte, cammina verso sud sull'ampio sentiero pianeggiante del fondovalle fino alla Talschlusshütte.",
   "After the hut, turn right into the Altensteintal on path 102 and climb west to the Bödenalm.": "Dopo il rifugio, gira a destra nell'Altensteintal sul sentiero 102 e sali verso ovest fino alla Bödenalm.",
   "Carry on below the Toblinger Knoten to the final climb up to the Sextner Stein, facing the north walls of the Drei Zinnen.": "Prosegui sotto il Toblinger Knoten fino alla salita finale al Sextner Stein, di fronte alle pareti nord delle Drei Zinnen.",
-  "Return the same way.": "Ritorno per la stessa via."
+  "Return the same way.": "Ritorno per la stessa via.",
+  "Drinking fountain": "Fontanella",
+  "The Bödenseen beside path 102, in June": "I Bödenseen accanto al sentiero 102, a giugno"
 });

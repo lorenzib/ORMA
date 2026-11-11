@@ -12,5 +12,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Almost all shaded: about nine tenths of the way runs through mapped forest below the Catinaccio.": "Quasi tutto all'ombra: circa nove decimi del percorso passano nel bosco cartografato sotto il Catinaccio.",
   "Start at the Passo Nigra (1,688 m) on the road between Nova Levante and Tires, the board’s start.": "Parti dal Passo Nigra (1.688 m) sulla strada tra Nova Levante e Tires, la partenza della scheda ufficiale.",
   "Follow the wide forest road 1 as far as the junction with path 4A, then take 4A straight to the Malga Hagner Alm in its meadow. Come back the same way to the pass.": "Segui l'ampia strada forestale 1 fino all'incrocio con il sentiero 4A, poi prendi il 4A dritto fino alla Malga Hagner Alm nel suo prato. Torna al passo per la stessa strada.",
-  "Forest road 1 from the pass; at the junction turn onto path 4A for the Malga Hagner Alm; return the same way.": "Strada forestale 1 dal passo; all'incrocio prendi il sentiero 4A per la Malga Hagner Alm; ritorno per la stessa strada."
+  "Forest road 1 from the pass; at the junction turn onto path 4A for the Malga Hagner Alm; return the same way.": "Strada forestale 1 dal passo; all'incrocio prendi il sentiero 4A per la Malga Hagner Alm; ritorno per la stessa strada.",
+  "The start of forest road 1 at the Passo Nigra": "L'inizio della strada forestale 1 al Passo Nigra"
 });

@@ -6,5 +6,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "A few hundred metres beside or across the main valley road": "Qualche centinaio di metri accanto o attraverso la strada principale di valle",
   "Sparsely mapped: natural ground (46%), paved (45%), gravel (5%), from OSM surface data": "Mappatura scarsa: terreno naturale (46%), asfalto (45%), ghiaia (5%), dai dati sul fondo di OSM",
   "Bad Schörgau bus stop, on the loop; the loop can equally be started at the church square in Sarnthein": "Fermata dell'autobus Bad Schörgau, sull'anello; si può partire anche dalla piazza della chiesa a Sarnthein",
-  "Mown hay meadow rising to Schloss Reinegg on its wooded spur above the Sarn valley": "Prato da fieno falciato che sale verso Schloss Reinegg sul suo sperone boscoso sopra la valle della Sarn"
+  "Mown hay meadow rising to Schloss Reinegg on its wooded spur above the Sarn valley": "Prato da fieno falciato che sale verso Schloss Reinegg sul suo sperone boscoso sopra la valle della Sarn",
+  "Drinking water": "Acqua potabile",
+  "Schloss Reinegg above the Sarn valley": "Schloss Reinegg sopra la valle di Sarn"
 });

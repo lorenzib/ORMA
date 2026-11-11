@@ -9,5 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Tschemonal, the register’s start": "Tschemonal, la partenza indicata dal catasto",
   "Lago Gover at dawn with chalets and a timber-framed villa among larches and spruces on its shore, the glaciers of Monte Rosa lit pink behind": "Il Lago Gover all'alba con chalet e una villa a graticcio tra larici e abeti rossi sulla riva, i ghiacciai del Monte Rosa illuminati di rosa dietro",
   "Mostly shaded: nearly three quarters runs through larch and spruce.": "Per lo più all'ombra: quasi tre quarti passano tra larici e abeti rossi.",
-  "Path 15: from Tschemonal on the mule track along the valley side, across the Campo bridge to the Lago Gover junction, on the mule track and the forest path past the junction with path 4, to the castle road at Castel Savoia. Back the same way.": "Sentiero 15: da Tschemonal sulla mulattiera lungo il versante della valle, attraverso il ponte di Campo fino al bivio per il Lago Gover, sulla mulattiera e sul sentiero nel bosco oltre il bivio con il sentiero 4, fino alla strada del castello a Castel Savoia. Ritorno per la stessa strada."
+  "Path 15: from Tschemonal on the mule track along the valley side, across the Campo bridge to the Lago Gover junction, on the mule track and the forest path past the junction with path 4, to the castle road at Castel Savoia. Back the same way.": "Sentiero 15: da Tschemonal sulla mulattiera lungo il versante della valle, attraverso il ponte di Campo fino al bivio per il Lago Gover, sulla mulattiera e sul sentiero nel bosco oltre il bivio con il sentiero 4, fino alla strada del castello a Castel Savoia. Ritorno per la stessa strada.",
+  "Drinking water at the start": "Acqua potabile alla partenza",
+  "Drinking water": "Acqua potabile",
+  "Lago Gover under Monte Rosa at dawn": "Il Lago Gover sotto il Monte Rosa all'alba"
 });

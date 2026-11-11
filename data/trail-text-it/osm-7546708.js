@@ -5,5 +5,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Sparsely mapped: paved (75%), natural ground (25%), gravel (0%), from OSM surface data": "Mappato in modo scarso: asfaltato (75%), terreno naturale (25%), ghiaia (0%), dai dati OSM sul fondo",
   "Start here — Parking, 132 m from the route (OSM-verified access point)": "Parti da qui — Parcheggio, a 132 m dal percorso (punto di accesso verificato su OSM)",
-  "ORMA illustration of Anello di Soracrode: its climb drawn as contour bands and its route shape, not a photograph": "Illustrazione ORMA dell'Anello di Soracrode: la salita disegnata come fasce di curve di livello e la forma del percorso, non una fotografia"
+  "ORMA illustration of Anello di Soracrode: its climb drawn as contour bands and its route shape, not a photograph": "Illustrazione ORMA dell'Anello di Soracrode: la salita disegnata come fasce di curve di livello e la forma del percorso, non una fotografia",
+  "Pozaraco de Fontana": "Pozaraco de Fontana",
+  "Drinking water": "Acqua potabile",
+  "ORMA illustration of this walk, drawn from its route and climb, not a photograph": "Illustrazione ORMA di questa passeggiata, disegnata dal suo percorso e dalla salita, non una fotografia"
 });

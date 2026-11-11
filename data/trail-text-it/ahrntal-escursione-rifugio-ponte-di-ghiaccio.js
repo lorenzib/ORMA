@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Almost no shade: about 8% runs through mapped woodland; the rest is open alpine ground.": "Quasi senza ombra: circa l'8% passa in zone boscose mappate; il resto è terreno alpino aperto.",
   "Start at Lake Neves (Neves-Stausee) above Lappach, which you can reach by car, the board’s start.": "Parti dal lago di Neves (Neves-Stausee) sopra Lappach, raggiungibile in auto, la partenza indicata dalla scheda ufficiale.",
   "Cross the dam and follow path 26 along the lake and up the valley. The path climbs steadily to the Ponte di Ghiaccio hut (Edelrauthütte) on the pass at about 2,540 m, around two and a half hours from the lake.": "Attraversa la diga e segui il sentiero 26 lungo il lago e su per la valle. Il sentiero sale con costanza fino al rifugio Ponte di Ghiaccio (Edelrauthütte) sul passo, a circa 2.540 m, a circa due ore e mezza dal lago.",
-  "None: after the dam stay on path 26 all the way to the hut.": "Nessuno: dopo la diga resta sul sentiero 26 fino al rifugio."
+  "None: after the dam stay on path 26 all the way to the hut.": "Nessuno: dopo la diga resta sul sentiero 26 fino al rifugio.",
+  "Drinking water": "Acqua potabile",
+  "The path above Lake Neves": "Il sentiero sopra il Lago di Neves"
 });

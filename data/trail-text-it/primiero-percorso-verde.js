@@ -15,5 +15,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Keep right after the Cismon bridge. Right at the Hotel Tre Ponti junction, over the Canali, then right again down Via Lungo Canali.": "Tieni la destra dopo il ponte sul Cismon. A destra all'incrocio dell'Hotel Tre Ponti, oltre il Canali, poi di nuovo a destra giù per Via Lungo Canali.",
   "From the Parco Clarofonte, head for the bridge over the Cismon and carry on, keeping right, to the junction by the Brunet Hotels.": "Dal Parco Clarofonte dirigiti verso il ponte sul Cismon e prosegui, tenendo la destra, fino all'incrocio vicino ai Brunet Hotels.",
   "From there go towards the Tonadico sports field, staying on the pavement, as far as the junction by the Hotel Tre Ponti.": "Da lì vai verso il campo sportivo di Tonadico, restando sul marciapiede, fino all'incrocio vicino all'Hotel Tre Ponti.",
-  "Turn right over the bridge on the Canali, then right again, down Via Lungo Canali, back to the Parco Clarofonte.": "Gira a destra sul ponte sul Canali, poi di nuovo a destra, giù per Via Lungo Canali, fino al Parco Clarofonte."
+  "Turn right over the bridge on the Canali, then right again, down Via Lungo Canali, back to the Parco Clarofonte.": "Gira a destra sul ponte sul Canali, poi di nuovo a destra, giù per Via Lungo Canali, fino al Parco Clarofonte.",
+  "Drinking fountain at the start": "Fontanella alla partenza",
+  "Drinking fountain": "Fontanella",
+  "The Percorso Verde in Tonadico": "Il Percorso Verde a Tonadico"
 });

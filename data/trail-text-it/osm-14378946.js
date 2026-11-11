@@ -6,5 +6,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "About 400 m on tarmac, including the lake road open to cars": "Circa 400 m su asfalto, compresa la strada del lago aperta alle auto",
   "Partially mapped: grass (50%), compacted gravel (30%), paved (20%), from OSM surface data": "Mappatura parziale: erba (50%), ghiaia compatta (30%), asfalto (20%), da dati OSM sul fondo",
   "Les Karellis resort, by the Vinouve chairlift (official start)": "Stazione di Les Karellis, presso la seggiovia di Vinouve (partenza ufficiale)",
-  "The Lac de Pramol in August, dark green under a wooded slope, with the shore path and a walker on the far bank.": "Il Lac de Pramol ad agosto, verde scuro sotto un pendio boscoso, con il sentiero lungo la riva e un escursionista sulla sponda opposta."
+  "The Lac de Pramol in August, dark green under a wooded slope, with the shore path and a walker on the far bank.": "Il Lac de Pramol ad agosto, verde scuro sotto un pendio boscoso, con il sentiero lungo la riva e un escursionista sulla sponda opposta.",
+  "Drinking water": "Acqua potabile",
+  "Lac de Pramol": "Lac de Pramol"
 });

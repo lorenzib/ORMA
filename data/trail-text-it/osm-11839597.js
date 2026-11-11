@@ -8,5 +8,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start at the Dorf bus stop and village car park in Klobenstein (1,150 m), the start the official route description gives.": "Parti dalla fermata dell'autobus Dorf e dal parcheggio del paese a Klobenstein (1.150 m), la partenza indicata dalla descrizione ufficiale del percorso.",
   "From the Festplatz keep right on 20 up to the viewing platform, through the mixed and beech woodland past the lookout towards the earth pyramids, down to the Amtmann pond at Lengmoos, then left along the broad promenade path back to Klobenstein.": "Dal Festplatz tieni la destra sul 20 fino alla piattaforma panoramica, attraverso il bosco misto e di faggi passando accanto al punto di osservazione verso le piramidi di terra, giù fino allo stagno dell'Amtmann a Lengmoos, poi a sinistra lungo l'ampia passeggiata fino a Klobenstein.",
   "None on the loop: 20 is followed all the way round.": "Nessuno sull'anello: si segue il 20 per tutto il giro.",
-  "Signposted as trail 20 on the loop. The walk in from the Rittner Bahn station follows trail 24.": "Segnalato come sentiero 20 sull'anello. L'avvicinamento dalla stazione della Rittner Bahn segue il sentiero 24."
+  "Signposted as trail 20 on the loop. The walk in from the Rittner Bahn station follows trail 24.": "Segnalato come sentiero 20 sull'anello. L'avvicinamento dalla stazione della Rittner Bahn segue il sentiero 24.",
+  "The Amtmann pond at Lengmoos": "Lo stagno Amtmann a Lengmoos"
 });

@@ -8,5 +8,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Sparsely mapped: unpaved (50%), compacted gravel (50%), from OSM surface data": "Mappato in modo scarso: non asfaltato (50%), ghiaia compatta (50%), dai dati OSM sul fondo",
   "Bivio dei Pellegrini, beside the small Pellegrini car park (Pian dei Buoi)": "Bivio dei Pellegrini, accanto al piccolo parcheggio Pellegrini (Pian dei Buoi)",
   "The Pian dei Buoi plateau in autumn, tracks crossing golden pasture between larch and spruce, the Marmarole wall standing behind under a clear sky.": "L'altopiano di Pian dei Buoi in autunno, con strade che attraversano il pascolo dorato tra larici e abeti rossi e la parete delle Marmarole alle spalle sotto un cielo limpido.",
-  "A high, mostly open plateau at 1,760–1,865 m with scrub and pasture; only short stretches pass through woodland, such as the Ciadìn wood below Col Vidal.": "Un altopiano alto e per lo più aperto a 1.760–1.865 m, con arbusti e pascoli; solo brevi tratti passano nel bosco, come il bosco del Ciadìn sotto il Col Vidal."
+  "A high, mostly open plateau at 1,760–1,865 m with scrub and pasture; only short stretches pass through woodland, such as the Ciadìn wood below Col Vidal.": "Un altopiano alto e per lo più aperto a 1.760–1.865 m, con arbusti e pascoli; solo brevi tratti passano nel bosco, come il bosco del Ciadìn sotto il Col Vidal.",
+  "Drinking-water point at Bivio dei Pellegrini": "Punto di acqua potabile al Bivio dei Pellegrini",
+  "Pian dei Buoi panorama": "Panorama del Pian dei Buoi"
 });

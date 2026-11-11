@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mostly open: about a fifth runs through mapped woodland; the Sonnenberg slopes are in full sun.": "Per lo più aperto: circa un quinto corre nel bosco segnato sulla mappa; i pendii del Sonnenberg sono in pieno sole.",
   "Start on the square in Kastelbell, the board’s start.": "Parti dalla piazza di Kastelbell, la partenza indicata dalla scheda ufficiale.",
   "Walk to the Köfelgut winery, then follow path 3 along the Schnalswaal, level through chestnut and mixed woods, to Castel Juval, part of the Messner Mountain Museum. From there take path 1 down to Staben.": "Cammina fino alla cantina Köfelgut, poi segui il sentiero 3 lungo lo Schnalswaal, in piano tra boschi di castagni e misti, fino a Castel Juval, parte del Messner Mountain Museum. Da lì prendi il sentiero 1 in discesa fino a Staben.",
-  "One change: at Castel Juval leave waal path 3 for path 1 down to Staben.": "Un solo cambio: a Castel Juval lascia il sentiero della roggia 3 per il sentiero 1 in discesa fino a Staben."
+  "One change: at Castel Juval leave waal path 3 for path 1 down to Staben.": "Un solo cambio: a Castel Juval lascia il sentiero della roggia 3 per il sentiero 1 in discesa fino a Staben.",
+  "Drinking water": "Acqua potabile",
+  "A wayside shrine above Staben": "Un capitello sopra Staben"
 });

@@ -293,16 +293,19 @@ function displaySafetyLabel(t) {
 // in the catalogue, because this is a second copy and second copies drift.
 const trailImported = t => !!t && t.curated === false;
 
+// The label is translated first (data/trail-text-it), so the Italian forms of
+// the importer's prefix and tag are trimmed too.
 const plainStartLabel = label => String(label || 'route start')
   .replace(/^Start here\s*[,.:;—–-]*\s*/i, '')
-  .replace(/^Route start per OpenStreetMap\s*[,.:;—–-]*\s*/i, '')
-  .replace(/\s*\(OSM-verified access point\)/gi, '')
+  .replace(/^(?:Parti da qui|Partenza qui)\s*[,.:;—–-]*\s*/i, '')
+  .replace(/^(?:Route start per OpenStreetMap|Partenza del percorso secondo OpenStreetMap)\s*[,.:;—–-]*\s*/i, '')
+  .replace(/\s*\((?:OSM-verified access point|punto di accesso verificato su OSM)\)/gi, '')
   .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
 
 // trail-trust.js `withoutOsmTag`: a reviewed point keeps its name, not the
 // importer's "(OSM-verified ...)" tag.
 const withoutOsmTag = label => String(label || '')
-  .replace(/\s*\(OSM-verified[^)]*\)/gi, '')
+  .replace(/\s*\((?:OSM-verified|punto di accesso verificato su OSM)[^)]*\)/gi, '')
   .replace(/OSM-verified/gi, 'mapped in OpenStreetMap')
   .trim();
 
@@ -335,10 +338,10 @@ function displayWaterLabel(t, label) {
 
 function displayStartLabel(t, label) {
   if (!categoryVerified(t, 'access') && !trailImported(t)) {
-    return L('Suggested start, {label}. Check current access before travelling.', { label: tr(plainStartLabel(label)) });
+    return L('Suggested start, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
   }
-  if (!trailImported(t)) return tr(withoutOsmTag(label));
-  return L('Mapped start suggestion, {label}. Check current access before travelling.', { label: tr(plainStartLabel(label)) });
+  if (!trailImported(t)) return tr(withoutOsmTag(tr(label)));
+  return L('Mapped start suggestion, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
 }
 
 const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', frenchalps: 'French Alps, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', aosta: 'Valle d\'Aosta, Italy', piedmont: 'Piedmont, Italy', tyrol: 'Tyrol & Carinthia, Austria', switzerland: 'Switzerland' };
@@ -616,11 +619,11 @@ function photoHtml(t) {
 
 function photoCreditHtml(t){
   if(!t.imageIcon)return '';
-  const credit=photoProvenance.heroCredit(t);if(!credit)return '';
+  const credit=photoProvenance.heroCredit(t,tr);if(!credit)return '';
   const label=escapeHtml(credit.label);
   let content=credit.url?`<a href="${escapeHtml(credit.url)}" rel="noopener nofollow">${label}</a>`:label;
   if(credit.url&&t.imageCreator&&t.imageLicence){
-    const title=String(typeof t.imageCredit==='string'?t.imageCredit:t.name).split(/\s+[—·]\s+|,\s+/)[0].trim();
+    const title=String(typeof t.imageCredit==='string'?tr(t.imageCredit):nm(t)).split(/\s+[—·]\s+|,\s+/)[0].trim();
     const licence=t.imageLicenceUrl
       ?`<a href="${escapeHtml(t.imageLicenceUrl)}" rel="license noopener">${escapeHtml(t.imageLicence)}</a>`
       :escapeHtml(t.imageLicence);

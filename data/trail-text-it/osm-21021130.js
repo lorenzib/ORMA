@@ -7,5 +7,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start here — Parking, 19 m from the route (OSM-verified access point)": "Parti da qui — Parcheggio, a 19 m dal percorso (punto di accesso verificato su OSM)",
   "The green water of the north Chardonnet lake at Tignes in July, wildflowers in the grass on the near shore and scree slopes behind.": "L'acqua verde del lago nord di Chardonnet a Tignes a luglio, con fiori di campo nell'erba sulla riva in primo piano e pendii di ghiaione sullo sfondo.",
   "The lakeside walkway at Tignes, with benches and green slopes": "La passeggiata lungo il lago a Tignes, con panchine e pendii verdi",
-  "The lake at Val Claret with the mountains behind": "Il lago di Val Claret con le montagne sullo sfondo"
+  "The lake at Val Claret with the mountains behind": "Il lago di Val Claret con le montagne sullo sfondo",
+  "Drinking water": "Acqua potabile",
+  "Lac nord du Chardonnet à Tignes en été": "Il lago nord del Chardonnet a Tignes in estate"
 });

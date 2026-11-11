@@ -6,5 +6,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "About 270 m on the Saint-Germain road, with cars": "Circa 270 m sulla strada di Saint-Germain, con auto",
   "natural ground (55%), fine gravel (26%), dirt (19%), from OSM surface data": "terreno naturale (55%), ghiaia fine (26%), terra (19%), da dati OSM sul fondo",
   "Parking du Pont du Reclus at the entrance to Séez, opposite the campsite (official start)": "Parking du Pont du Reclus all'ingresso di Séez, di fronte al campeggio (partenza ufficiale)",
-  "Autumn larches above the lane at Saint-Germain, looking across the Tarentaise valley to wooded slopes and a snow-dusted summit": "Larici autunnali sopra la stradina di Saint-Germain, con vista oltre la valle della Tarentaise su pendii boscosi e una cima spolverata di neve"
+  "Autumn larches above the lane at Saint-Germain, looking across the Tarentaise valley to wooded slopes and a snow-dusted summit": "Larici autunnali sopra la stradina di Saint-Germain, con vista oltre la valle della Tarentaise su pendii boscosi e una cima spolverata di neve",
+  "Drinking water": "Acqua potabile",
+  "The Tarentaise from the lane at Saint-Germain": "La Tarentaise dalla stradina di Saint-Germain"
 });

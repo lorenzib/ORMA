@@ -10,5 +10,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Path 443 trailhead above the Passo Giau car park": "Inizio del sentiero 443 sopra il parcheggio del Passo Giau",
   "Passo Giau with the Gusela and Monte Nuvolau behind": "Il Passo Giau con la Gusela e il Monte Nuvolau sullo sfondo",
   "A path climbing grassy slopes towards the Ra Gusela peak at Passo Giau": "Un sentiero che sale su pendii erbosi verso la cima del Ra Gusela al Passo Giau",
-  "The Cinque Torri rising above a meadow, with mountains in the distance": "Le Cinque Torri che si alzano sopra un prato, con montagne in lontananza"
+  "The Cinque Torri rising above a meadow, with mountains in the distance": "Le Cinque Torri che si alzano sopra un prato, con montagne in lontananza",
+  "Passo di Giau": "Passo di Giau"
 });

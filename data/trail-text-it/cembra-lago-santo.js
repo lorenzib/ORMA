@@ -14,5 +14,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Down to the bathing area, then round the lake anticlockwise on the lakeside road and back to the car park.": "Scendi all'area di balneazione, poi fai il giro del lago in senso antiorario sulla strada lungo il lago e torna al parcheggio.",
   "At the bathing area, take the road round the lake and keep the water on your left: the board describes the loop anticlockwise.": "All'area di balneazione, prendi la strada che gira intorno al lago e tieni l'acqua alla tua sinistra: la scheda ufficiale descrive l'anello in senso antiorario.",
   "From the car park, go down to the bathing area and take the road that runs round the lake.": "Dal parcheggio, scendi all'area di balneazione e prendi la strada che gira intorno al lago.",
-  "Walk round the lake anticlockwise and back to the car park. The climb is very small, so the board says you can also go the other way round.": "Fai il giro del lago in senso antiorario e torna al parcheggio. La salita è minima, quindi la scheda ufficiale dice che puoi percorrerlo anche nel senso opposto."
+  "Walk round the lake anticlockwise and back to the car park. The climb is very small, so the board says you can also go the other way round.": "Fai il giro del lago in senso antiorario e torna al parcheggio. La salita è minima, quindi la scheda ufficiale dice che puoi percorrerlo anche nel senso opposto.",
+  "Lago Santo": "Lago Santo"
 });

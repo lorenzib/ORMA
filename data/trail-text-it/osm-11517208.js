@@ -7,5 +7,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Stony ski-area tracks almost throughout, with a short grass slope at the Alpage de Beauregard": "Piste sassose del comprensorio sciistico quasi ovunque, con un breve pendio erboso all'Alpage de Beauregard",
   "Parking de Cuchet, route de La Cry-Cuchet, Combloux (official start)": "Parking de Cuchet, route de La Cry-Cuchet, Combloux (partenza ufficiale)",
   "A gravel alpage track curving through a green ski-slope meadow with a snow cannon, spruce forest above and mountains on the horizon": "Una pista sterrata d'alpeggio che curva in un prato verde di pista da sci con un cannone da neve, bosco di abeti rossi sopra e montagne all'orizzonte",
-  "Short spur on the left to the Croix des Salles itself (1,695 m): the 360 degree Mont Blanc viewpoint the loop is named after, then back to the main track": "Breve deviazione a sinistra fino alla Croix des Salles (1.695 m): il punto panoramico a 360 gradi sul Monte Bianco che dà il nome all'anello, poi ritorno alla pista principale"
+  "Short spur on the left to the Croix des Salles itself (1,695 m): the 360 degree Mont Blanc viewpoint the loop is named after, then back to the main track": "Breve deviazione a sinistra fino alla Croix des Salles (1.695 m): il punto panoramico a 360 gradi sul Monte Bianco che dà il nome all'anello, poi ritorno alla pista principale",
+  "Drinking water": "Acqua potabile",
+  "The alpage track above Combloux": "La strada d'alpeggio sopra Combloux"
 });

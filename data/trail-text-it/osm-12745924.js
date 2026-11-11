@@ -5,5 +5,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Paths shared with mountain bikers": "Sentieri condivisi con i ciclisti in mountain bike",
   "Earth paths and forest tracks, a short lane at the start": "Sentieri in terra e strade forestali, una breve stradina alla partenza",
   "Base de loisirs des Avenières, chemin des Tufs, La Norma (official start)": "Base de loisirs des Avenières, chemin des Tufs, La Norma (partenza ufficiale)",
-  "The turquoise snow-making pond of the Avenières leisure base at La Norma, ringed by spruce and larch, where the Escaliers loop starts and ends": "Il laghetto turchese per l'innevamento artificiale della base de loisirs des Avenières a La Norma, circondato da abeti rossi e larici, dove inizia e finisce l'anello degli Escaliers"
+  "The turquoise snow-making pond of the Avenières leisure base at La Norma, ringed by spruce and larch, where the Escaliers loop starts and ends": "Il laghetto turchese per l'innevamento artificiale della base de loisirs des Avenières a La Norma, circondato da abeti rossi e larici, dove inizia e finisce l'anello degli Escaliers",
+  "Drinking water": "Acqua potabile",
+  "The Avenières pond at La Norma": "Lo stagno delle Avenières a La Norma"
 });

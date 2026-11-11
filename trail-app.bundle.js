@@ -7424,17 +7424,20 @@ function effectiveOverrides(profile, adjustOverride){
   // not reviewed printed "Suggested start, Start here: parking du lac" on seven
   // pages. The cleanup also runs on the reviewed-but-unresearched branch now;
   // before, "(OSM-verified access point)" reached the page whole.
+  // The label is translated first (trailWords), so the Italian forms of the
+  // importer's prefix and tag are trimmed too.
   const plainStartLabel = label => String(label || 'route start')
     .replace(/^Start here\s*[,.:;—–-]*\s*/i, '')
-    .replace(/^Route start per OpenStreetMap\s*[,.:;—–-]*\s*/i, '')
-    .replace(/\s*\(OSM-verified access point\)/gi, '')
+    .replace(/^(?:Parti da qui|Partenza qui)\s*[,.:;—–-]*\s*/i, '')
+    .replace(/^(?:Route start per OpenStreetMap|Partenza del percorso secondo OpenStreetMap)\s*[,.:;—–-]*\s*/i, '')
+    .replace(/\s*\((?:OSM-verified access point|punto di accesso verificato su OSM)\)/gi, '')
     .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
 
   // A reviewed point keeps its own name but loses the importer's tag. "(OSM-
   // verified location)" printed on 46 live pages, eight of them trails without
   // the seal, and a reader takes "verified" next to ORMA's name as ORMA's.
   const withoutOsmTag = label => String(label || '')
-    .replace(/\s*\(OSM-verified[^)]*\)/gi, '')
+    .replace(/\s*\((?:OSM-verified|punto di accesso verificato su OSM)[^)]*\)/gi, '')
     .replace(/OSM-verified/gi, 'mapped in OpenStreetMap')
     .trim();
 
@@ -7442,8 +7445,10 @@ function effectiveOverrides(profile, adjustOverride){
     const base = String(label || tx('Water point'))
       .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
       .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
-    if (!categoryVerified(trail, 'water')) return tx('{label}, availability can change', { label: base });
-    return imported(trail) ? base : withoutOsmTag(label);
+    // A fixed name is the phrase table's; any other is the trail's own words.
+    const shown = /^Water point(?: mapped in OpenStreetMap)?$/.test(base) ? tx(base) : trailWords(base);
+    if (!categoryVerified(trail, 'water')) return tx('{label}, availability can change', { label: shown });
+    return imported(trail) ? shown : trailWords(withoutOsmTag(label));
   }
 
   // Several real fountains in one village square are separate OSM nodes, but
@@ -13499,12 +13504,21 @@ function initDetailPois(map, trail){
   const ILLUSTRATION_TYPES=['ai-illustration','orma-illustration'];
   function isIllustration(trail){return ILLUSTRATION_TYPES.includes(String(trail?.imageSourceType||''));}
 
-  function heroCredit(trail){
+  // ORMA's own caption for the picture is the trail's words, so an Italian
+  // reader gets it in Italian (data/trail-text-it); a source's own credit
+  // ("Title, author, licence") stays as written. The static page generator
+  // passes its own translator, since it runs without i18n.js.
+  const CAPTIONED=['licensed-source','moderator-upload','orma-illustration'];
+  function heroCredit(trail,words=trailWords){
+    const own=CAPTIONED.includes(String(trail?.imageSourceType||''));
+    const say=text=>own&&typeof text==='string'?words(text.trim()):text;
     if(isIllustration(trail)){
-      const credit=normalizeCredit({text:typeof trail.imageCredit==='string'?trail.imageCredit:trail?.imageCredit?.text,bare:true});
+      const credit=normalizeCredit({text:say(typeof trail.imageCredit==='string'?trail.imageCredit:trail?.imageCredit?.text),bare:true});
       return credit?{...credit,url:'',isIllustration:true}:null;
     }
-    return normalizeCredit(trail?.imageCredit,trail?.imageSourcePage);
+    const raw=trail?.imageCredit;
+    const credit=typeof raw==='string'?say(raw):(raw&&typeof raw==='object'?{...raw,text:say(raw.text)}:raw);
+    return normalizeCredit(credit,trail?.imageSourcePage);
   }
 
   // The app loads trail photos from the website (scripts/build-app.js), so a
@@ -19267,7 +19281,9 @@ if(document.querySelector('.td2')){
       // and leaving it printed "Head to , Lift station Vinouve". trail-trust
       // strips the same prefix with `/^Start here\s*[,—-]\s*/i`; this copy of
       // the rule did not list the comma at all.
-      .replace(/^Start here\s*[,.:;—–-]*\s*/i, '');
+      .replace(/^Start here\s*[,.:;—–-]*\s*/i, '')
+      // The label may already be Italian (trailWords above).
+      .replace(/^(?:Parti da qui|Partenza qui)\s*[,.:;—–-]*\s*/i, '');
     const routeSequence = routeRefs.join(' → ');
     const hasSectionOnlyRefs = Array.isArray(t.routeRefSegments) && t.routeRefSegments.length > 0;
     const routeSwitches = window.DoloPawsTrailRouteRefs

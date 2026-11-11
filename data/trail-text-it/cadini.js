@@ -8,5 +8,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start here, Rifugio Auronzo": "Parti da qui, Rifugio Auronzo",
   "Lake Misurina with the Cadini peaks behind": "Il lago di Misurina con le cime dei Cadini dietro",
   "The Tre Cime from the south, above scree and the path": "Le Tre Cime da sud, sopra il ghiaione e il sentiero",
-  "Rifugio Auronzo with the Cadini di Misurina beyond, under a clear sky": "Il Rifugio Auronzo con i Cadini di Misurina sullo sfondo, sotto un cielo limpido"
+  "Rifugio Auronzo with the Cadini di Misurina beyond, under a clear sky": "Il Rifugio Auronzo con i Cadini di Misurina sullo sfondo, sotto un cielo limpido",
+  "Lagomisurinacadini": "Lagomisurinacadini"
 });

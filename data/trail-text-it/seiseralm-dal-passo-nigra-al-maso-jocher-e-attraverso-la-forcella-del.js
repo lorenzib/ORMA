@@ -15,5 +15,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Right at the Jocher farm onto the marked path. Over the Forcella del Lupo towards Tiers.": "A destra al maso Jocher sul sentiero segnato. Attraverso la Forcella del Lupo verso Tiers.",
   "From Passo Nigra walk down the Val Nigra through the forest to the Jocher farm, which serves South Tyrolean dishes and cakes on a sunny terrace.": "Da Passo Nigra scendi lungo la Val Nigra nel bosco fino al maso Jocher, che serve piatti sudtirolesi e dolci su una terrazza soleggiata.",
   "At the Jocher farm take the marked path that branches off to the right. It winds down in many bends on forest paths to the Schiller farm, in a fine panoramic position.": "Al maso Jocher prendi il sentiero segnato che si stacca a destra. Scende con molti tornanti su sentieri nel bosco fino al maso Schiller, in bella posizione panoramica.",
-  "From the Schiller farm the route crosses the Forcella del Lupo and comes down to Tiers and San Cipriano, where the walk ends.": "Dal maso Schiller il percorso attraversa la Forcella del Lupo e scende a Tiers e San Cipriano, dove finisce la passeggiata."
+  "From the Schiller farm the route crosses the Forcella del Lupo and comes down to Tiers and San Cipriano, where the walk ends.": "Dal maso Schiller il percorso attraversa la Forcella del Lupo e scende a Tiers e San Cipriano, dove finisce la passeggiata.",
+  "Drinking water": "Acqua potabile",
+  "The Catinaccio from Passo Nigra": "Il Catinaccio dal Passo Nigra"
 });

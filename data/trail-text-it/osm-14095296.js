@@ -18,5 +18,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Come back the same way and turn right at the “Braille” sign. Walk through the village of Braille.": "Torna per la stessa via e gira a destra al cartello “Braille”. Attraversa il paese di Braille.",
   "Carry straight on after the wash-house, cross the railway and follow the “dépôt pétrolier” sign.": "Dopo il lavatoio prosegui dritto, attraversa la ferrovia e segui il cartello “dépôt pétrolier”.",
   "Pass the depot on your left. The road becomes a stony track: stay on it.": "Passa accanto al deposito, che resta alla tua sinistra. La strada diventa una sterrata sassosa: restaci sopra.",
-  "Enter the Deysse forest again and turn right.": "Rientra nella foresta della Deysse e gira a destra."
+  "Enter the Deysse forest again and turn right.": "Rientra nella foresta della Deysse e gira a destra.",
+  "Étang de Crosagny at Albens": "L'Étang de Crosagny ad Albens"
 });

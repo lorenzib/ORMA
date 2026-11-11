@@ -4,5 +4,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
   "Partially mapped: gravel (43%), natural ground (42%), rock (9%), from OSM surface data": "Mappatura parziale: ghiaia (43%), terreno naturale (42%), roccia (9%), dai dati sul fondo di OSM",
   "Start here — Parking, 26 m from the route (OSM-verified access point)": "Parti da qui — Parcheggio, a 26 m dal percorso (punto di accesso verificato su OSM)",
-  "ORMA illustration of Au pied du Roc d'Enfer: its climb drawn as contour bands and its route shape, not a photograph": "Illustrazione ORMA di Au pied du Roc d'Enfer: la salita disegnata come fasce di quota e la forma del percorso, non una fotografia"
+  "ORMA illustration of Au pied du Roc d'Enfer: its climb drawn as contour bands and its route shape, not a photograph": "Illustrazione ORMA di Au pied du Roc d'Enfer: la salita disegnata come fasce di quota e la forma del percorso, non una fotografia",
+  "Drinking water": "Acqua potabile",
+  "ORMA illustration of this walk, drawn from its route and climb, not a photograph": "Illustrazione ORMA di questa passeggiata, disegnata dal suo percorso e dalla salita, non una fotografia"
 });

@@ -12,5 +12,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "No shade: the whole walk runs through open alpine pasture above the tree line.": "Nessuna ombra: tutta la camminata attraversa pascoli alpini aperti sopra il limite del bosco.",
   "Start at Fane Alm, the alp hamlet at the head of the Valser Tal, the board’s start.": "Parti da Fane Alm, il borgo di malghe in testa alla Valser Tal, la partenza indicata dalla scheda ufficiale.",
   "Walk the gravel track through the hamlet past its huts, stables and small church. Then follow path 17 along the Valser Bach to the waterfalls and climb steadily on to the Brixner Hütte (Rifugio Bressanone) at 2,282 m.": "Percorri la strada sterrata attraverso il borgo, passando accanto alle baite, alle stalle e alla chiesetta. Poi segui il sentiero 17 lungo il Valser Bach fino alle cascate e sali con costanza fino alla Brixner Hütte (Rifugio Bressanone) a 2.282 m.",
-  "None: stay on path 17 from Fane Alm to the hut.": "Nessuno: resta sul sentiero 17 da Fane Alm fino al rifugio."
+  "None: stay on path 17 from Fane Alm to the hut.": "Nessuno: resta sul sentiero 17 da Fane Alm fino al rifugio.",
+  "Drinking water": "Acqua potabile",
+  "The path 17 signpost below the Brixner Hütte": "Il cartello del sentiero 17 sotto la Brixner Hütte"
 });

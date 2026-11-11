@@ -6,5 +6,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "One crossing of the forest road": "Un attraversamento della strada forestale",
   "Sparsely mapped: paved (50%), grass (50%), compacted gravel (0%), from OSM surface data": "Mappatura scarsa: asfalto (50%), erba (50%), ghiaia compatta (0%), da dati OSM sul fondo",
   "Les Karellis tourist office (official start)": "Ufficio turistico di Les Karellis (partenza ufficiale)",
-  "A narrow cracked-asphalt lane curving away between banks of cow parsley and meadow grass under larch woodland above Albanne": "Una stretta stradina di asfalto screpolato che curva tra cespugli di cerfoglio selvatico ed erba di prato, sotto un bosco di larici sopra Albanne"
+  "A narrow cracked-asphalt lane curving away between banks of cow parsley and meadow grass under larch woodland above Albanne": "Una stretta stradina di asfalto screpolato che curva tra cespugli di cerfoglio selvatico ed erba di prato, sotto un bosco di larici sopra Albanne",
+  "Drinking water": "Acqua potabile",
+  "The lane above Albanne in late June": "La stradina sopra Albanne a fine giugno"
 });

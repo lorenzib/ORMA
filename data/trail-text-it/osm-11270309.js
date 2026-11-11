@@ -9,5 +9,9 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start of the Quellenpromenade by the car park at the edge of Salurn village centre (official start)": "Inizio della Quellenpromenade vicino al parcheggio al margine del centro di Salurn (partenza ufficiale)",
   "St. Andreas church in Salurn, its tall brick bell tower and pale façade on the village square, a dolphin fountain in the foreground": "La chiesa di Sant'Andrea a Salurn, con l'alto campanile in mattoni e la facciata chiara sulla piazza del paese, una fontana con delfino in primo piano",
   "About seven tenths runs through woodland beside the Titschenbach; only the stretch by the village is open.": "Circa sette decimi si snodano nel bosco accanto al Titschenbach; solo il tratto vicino al paese è aperto.",
-  "No route number: follow the “Quellenpromenade / Passeggiata delle Sorgenti” signs from the village centre up beside the Titschenbach to the waterfall, briefly on paths 409B and 1B, and back down the Kapellenweg.": "Percorso senza numero: segui i cartelli “Quellenpromenade / Passeggiata delle Sorgenti” dal centro del paese salendo lungo il Titschenbach fino alla cascata, brevemente sui sentieri 409B e 1B, e torna giù per il Kapellenweg."
+  "No route number: follow the “Quellenpromenade / Passeggiata delle Sorgenti” signs from the village centre up beside the Titschenbach to the waterfall, briefly on paths 409B and 1B, and back down the Kapellenweg.": "Percorso senza numero: segui i cartelli “Quellenpromenade / Passeggiata delle Sorgenti” dal centro del paese salendo lungo il Titschenbach fino alla cascata, brevemente sui sentieri 409B e 1B, e torna giù per il Kapellenweg.",
+  "Drinking fountain on the promenade": "Fontanella sulla passeggiata",
+  "Drinking fountain by the Titschenbach": "Fontanella vicino al Titschenbach",
+  "Drinking fountain near the end": "Fontanella vicino alla fine",
+  "St. Andreas church in Salurn": "La chiesa di St. Andreas a Salurn"
 });

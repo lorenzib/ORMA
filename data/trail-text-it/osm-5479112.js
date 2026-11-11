@@ -14,5 +14,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Go on to the hamlet of Le Nant, then take the small road on the left to Le Morzay.": "Prosegui fino alla frazione di Le Nant, poi prendi la stradina a sinistra per Le Morzay.",
   "Follow it towards Le Plan-Droit to the hamlet of Le Crot, just before Le Sizeray, and go to the Sizeray church with its distinctive avalanche wall.": "Seguila verso Le Plan-Droit fino alla frazione di Le Crot, poco prima di Le Sizeray, e raggiungi la chiesa di Sizeray con il suo caratteristico muro paravalanghe.",
   "Carry on to the hamlet of Le Mollard, then to Barberine, whose museum opens in July and August.": "Prosegui fino alla frazione di Le Mollard, poi fino a Barberine, il cui museo è aperto a luglio e agosto.",
-  "Come back the same way, or by train: the Swiss station is 10 minutes away (a border: carry identity papers).": "Torna per la stessa via, oppure in treno: la stazione svizzera è a 10 minuti (c'è un confine: porta i documenti d'identità)."
+  "Come back the same way, or by train: the Swiss station is 10 minutes away (a border: carry identity papers).": "Torna per la stessa via, oppure in treno: la stazione svizzera è a 10 minuti (c'è un confine: porta i documenti d'identità).",
+  "Drinking water": "Acqua potabile",
+  "Lane between the chalets of Les Montets": "Stradina tra i chalet di Les Montets"
 });
