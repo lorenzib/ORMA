@@ -297,9 +297,9 @@
     </div>
     <p class="jn-hint" data-i18n="journal.modal.hint">Add a walk you've already done. It joins the journal straight away.</p>
     <div class="jn-gpx-row">
-      <button type="button" id="jnGpxBtn" class="jn-gpx-btn" data-i18n="journal.gpx.add">Add from a GPX file</button>
-      <span class="jn-gpx-sub" data-i18n="journal.gpx.sub">Recorded on your watch, Strava or Komoot? It can earn a passport stamp.</span>
-      <input type="file" id="jnGpxInput" accept=".gpx,application/gpx+xml,application/xml,text/xml" hidden>
+      <button type="button" id="jnGpxBtn" class="jn-gpx-btn" data-i18n="journal.gpx.add">Add from a file</button>
+      <span class="jn-gpx-sub" data-i18n="journal.gpx.sub">A GPX, FIT or TCX file from your watch, Strava or Komoot. It can earn a passport stamp.</span>
+      <input type="file" id="jnGpxInput" accept=".gpx,.fit,.tcx,.gz,application/gpx+xml,application/vnd.ant.fit,application/xml,text/xml,application/gzip" hidden>
     </div>
     <label for="jnTrailSearch" data-i18n="journal.trail">Trail</label>
     <div class="jn-trail-picker" id="jnTrailPicker">
@@ -563,7 +563,7 @@
 <script src="journal-photos.js?v=20261026-1"></script>
 <script src="walk-card.js?v=20260825-1"></script>
 <script src="walk-proof.js?v=20261110-1"></script>
-<script src="gpx-walk.js?v=20261110-1"></script>
+<script src="gpx-walk.js?v=20261111-1"></script>
 <script src="dog-passport.js?v=20261111-1"></script>
 <script src="passport-card.js?v=20261111-1"></script>
 <script>
@@ -1875,6 +1875,8 @@ document.addEventListener('DOMContentLoaded', function(){
     else if(result.ok && result.reason === 'too-fast'){ text = window.t('journal.gpx.fast', { trail: name }); canSave = true; }
     else if(result.ok){ text = window.t('journal.gpx.notOneWalk', { trail: name }); canSave = true; }
     else if(result.reason === 'no-trail'){ text = window.t('journal.gpx.noTrail'); canSave = true; }
+    else if(result.reason === 'a-plan'){ text = window.t('journal.gpx.plan'); kind = 'is-error'; }
+    else if(result.reason === 'no-gps'){ text = window.t('journal.gpx.noGps'); kind = 'is-error'; }
     else if(result.reason === 'no-times'){ text = window.t('journal.gpx.noTimes'); kind = 'is-error'; }
     else if(result.reason === 'in-the-future'){ text = window.t('journal.gpx.future'); kind = 'is-error'; }
     else if(result.reason === 'too-few-points'){ text = window.t('journal.gpx.tooShort'); kind = 'is-error'; }
@@ -1898,8 +1900,11 @@ document.addEventListener('DOMContentLoaded', function(){
     var gpx = window.DoloPawsGpxWalk;
     if(!file || !gpx) return;
     if(file.size > gpx.MAX_FILE_CHARS){ showGpx({ ok:false, reason:'not-gpx' }); return; }
-    file.text().then(function(text){
-      var result = gpx.assessGpx(text, allTrails(), { now: Date.now() });
+    // GPX, TCX or FIT, gzipped or not: told apart by what is in the file.
+    file.arrayBuffer().then(function(buffer){
+      return gpx.gunzip(new Uint8Array(buffer));
+    }).then(function(bytes){
+      var result = gpx.assessFile(bytes, allTrails(), { now: Date.now() });
       showGpx(result, result.startedAt ? gpx.isDuplicate(result, state.entries) : false);
     }).catch(function(){ showGpx({ ok:false, reason:'not-gpx' }); });
   });
