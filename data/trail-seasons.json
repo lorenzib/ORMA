@@ -9412,6 +9412,44 @@
           "accessedAt": "2026-11-10"
         }
       }
+    },
+    "valdisole-percorso-geologico-in-val-di-rabbi": {
+      "highPoint": 1745,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/57760467",
+          "accessedAt": "2026-11-11"
+        }
+      }
+    },
+    "valdisole-percorso-della-fauna-in-val-di-peio": {
+      "highPoint": 2456,
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/57870954",
+          "accessedAt": "2026-11-11"
+        }
+      }
     }
   }
 }

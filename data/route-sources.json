@@ -3825,6 +3825,22 @@
       "quote": "Distanza 5,2 km · Durata 2:00 h · Salita 214 m · Discesa 233 m · Punto più alto 1.884 m · Punto più basso 1.651 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-10T21:00:00.000Z"
+    },
+    "valdisole-percorso-geologico-in-val-di-rabbi": {
+      "url": "https://www.outdooractive.com/it/r/57760467",
+      "publisher": "APT Valli di Sole, Peio e Rabbi (Outdooractive)",
+      "name": "Percorso geologico in Val di Rabbi",
+      "quote": "Difficile · Lunghezza 6.4 km · Durata 2:25 h. · Salita 430 m · Discesa 430 m · Punto più alto 1757 m · Punto più basso 1376 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-11T21:00:00.000Z"
+    },
+    "valdisole-percorso-della-fauna-in-val-di-peio": {
+      "url": "https://www.outdooractive.com/it/r/57870954",
+      "publisher": "APT Valli di Sole, Peio e Rabbi (Outdooractive)",
+      "name": "Percorso della fauna in Val di Peio",
+      "quote": "Medio · Lunghezza 12.9 km · Durata 5:05 h. · Salita 799 m · Discesa 799 m · Punto più alto 2456 m · Punto più basso 1687 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-11T21:00:00.000Z"
     }
   }
 }

@@ -374,6 +374,8 @@
     'valdisole-passo-tonale-forte-mero': "Passo Tonale – Forte Mero",
     'valdisole-passo-tonale-forte-mero-forte-zaccarana': "Passo Tonale – Forte Mero and Forte Zaccarana",
     'valdisole-peio-paese-lago-covel': "Peio Paese to Lago Covel",
+    'valdisole-percorso-della-fauna-in-val-di-peio': "Wildlife trail in the Val di Peio",
+    'valdisole-percorso-geologico-in-val-di-rabbi': "Geology trail in the Val di Rabbi",
     'valdisole-rifugio-stavel-denza': "Rifugio Stavel – Francesco Denza",
     'valgardena-arte-e-storia': "Selva Way of the Cross",
     'valgardena-cudan-dumat': "Cudan to Dumat above Ortisei",
