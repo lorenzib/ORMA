@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "campiglio-trekking-al-lago-di-nambino",
   "name": "Lago di Nambino",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:57:39.677Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.410Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 207102,
+  "packageBytes": 226056,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.23402,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lago di Nambino safety information",
       "url": "safety.json",
-      "bytes": 1248,
-      "sha256": "d564f352662666288472d48f3cd71d17329b282683a1d8286e7296adfb199838"
+      "bytes": 1620,
+      "sha256": "af14f5b06feffa0b55dc8ae9285d4c3173669fa25c2184c79b039eb713212fd0"
     }
   ]
 }

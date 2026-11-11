@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-2179746",
   "name": "Ruine Castelfeder - Rovine Castelfeder",
-  "version": "2026.11.07-beta.1",
-  "generatedAt": "2026-11-07T21:24:33.809Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.723Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 280824,
+  "packageBytes": 299842,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.33186,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Ruine Castelfeder - Rovine Castelfeder safety information",
       "url": "safety.json",
-      "bytes": 1658,
-      "sha256": "a2337b8b892b77923a841ac1715ec803753115f3c7915b2c29a2b4f83b46dcdc"
+      "bytes": 2094,
+      "sha256": "298cf720143f1baa6bfb0cf22b3139985cc7e8ed4543718fc453d06b5355d8da"
     }
   ]
 }

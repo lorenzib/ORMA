@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-compatsch-wiedner-eck",
   "name": "Compatsch – Wiedner Eck loop",
-  "version": "2026.11.05-beta.1",
-  "generatedAt": "2026-11-05T11:38:25.730Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.895Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 672264,
+  "packageBytes": 691770,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.52769,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Compatsch – Wiedner Eck loop safety information",
       "url": "safety.json",
-      "bytes": 1982,
-      "sha256": "8cd971efd46da8014e1ee18448dfa1d2567207dcabdc399ab6bb5109ba6ac5b1"
+      "bytes": 2906,
+      "sha256": "348ee5c31c4ea3d15ae33b09f2bbd8c9bdca66de05a20164b9beea2a1fff079d"
     }
   ]
 }

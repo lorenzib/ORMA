@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-5479112",
   "name": "Chemin des Diligences",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.744Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:38:14.736Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1229397,
+  "packageBytes": 1248310,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.01551,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Chemin des Diligences safety information",
       "url": "safety.json",
-      "bytes": 3711,
-      "sha256": "1c6b27ad0b12fb1b1c5ab88583685886ea8e9da2547eb147dfc11e64ebb13609"
+      "bytes": 4042,
+      "sha256": "6199ba183883504541e1f7627e4b0233faddc2f6395410851d7a88514f8121cb"
     }
   ]
 }

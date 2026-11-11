@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-arte-e-storia",
   "name": "Selva Way of the Cross",
-  "version": "2026.11.06-beta.1",
-  "generatedAt": "2026-11-06T10:36:34.087Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:15.015Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 299285,
+  "packageBytes": 318487,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5572,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Selva Way of the Cross safety information",
       "url": "safety.json",
-      "bytes": 1640,
-      "sha256": "95268ed127dc221244b02517701da42b064677fc809b1de2614429660275b21c"
+      "bytes": 2260,
+      "sha256": "a516621bd3510348ce851fbf8890f9e95e4f88ac2cf213bedfee4d2039b91f21"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-vecchi-mestieri-grumes",
   "name": "Il Sentiero dei vecchi mestieri – da Grumes",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:55:27.943Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.429Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 870598,
+  "packageBytes": 889885,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.215,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Il Sentiero dei vecchi mestieri – da Grumes safety information",
       "url": "safety.json",
-      "bytes": 1534,
-      "sha256": "d2489027f3d0ad1c6981660a886a974dfcbc3dc554b3f0d33f0784752f396600"
+      "bytes": 2239,
+      "sha256": "71b40102344e33cd3facb2637397e693c0867a642c174b9dd5d9a01a7592ad43"
     }
   ]
 }

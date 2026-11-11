@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11832013",
   "name": "Seerundweg",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.611Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:38:14.631Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 246764,
+  "packageBytes": 265715,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.7355,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Seerundweg safety information",
       "url": "safety.json",
-      "bytes": 1567,
-      "sha256": "903b189e8f95d3d11b1243eace20a1be3ea54353e26ab44bc136e9da85a6db88"
+      "bytes": 1936,
+      "sha256": "96d9bb4b5dd6077dda1e8f6f487c5c215f9ecbb97d36ff3d8ff9cf2d14bdc3d6"
     }
   ]
 }

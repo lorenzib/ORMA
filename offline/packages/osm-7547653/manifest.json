@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7547653",
   "name": "Anello dei Forti",
-  "version": "2026.10.30-beta.4",
-  "generatedAt": "2026-10-30T16:15:35.950Z",
+  "version": "2026.11.11-beta.5",
+  "generatedAt": "2026-11-11T18:38:14.784Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 291825,
+  "packageBytes": 311271,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.50917,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Anello dei Forti safety information",
       "url": "safety.json",
-      "bytes": 1465,
-      "sha256": "833c04caa8257ffa9b7f7d0c659516d619524e520d3dd2d708522e5a82779da2"
+      "bytes": 2329,
+      "sha256": "750d5aceefba302a39702bfb3ccbee57506a678f1aa646d5a55f77eb3e7d642f"
     }
   ]
 }

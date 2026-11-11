@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-passo-tonale-forte-mero",
   "name": "Passo Tonale – Forte Mero",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:25:10.842Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:15.007Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 355524,
+  "packageBytes": 374551,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.26216,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passo Tonale – Forte Mero safety information",
       "url": "safety.json",
-      "bytes": 1281,
-      "sha256": "ced299c1784928610b1c00e29c66384ec4fd21a4ded5b5bf93288670943548b7"
+      "bytes": 1726,
+      "sha256": "6c13fd6755c81a0cc1fb4ecc9b7e9c5829ccb890493ebaeb372d83543fbc7ed1"
     }
   ]
 }

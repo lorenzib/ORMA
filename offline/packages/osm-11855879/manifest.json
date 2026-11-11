@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11855879",
   "name": "Roda de Cherz",
-  "version": "2026.11.06-beta.2",
-  "generatedAt": "2026-11-06T23:28:00.581Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:38:14.634Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 218160,
+  "packageBytes": 237540,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.50295,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Roda de Cherz safety information",
       "url": "safety.json",
-      "bytes": 1473,
-      "sha256": "add1dc2e180c87d5d0dd07faac8103c2615a186c127c29c0877e0aecb92914ad"
+      "bytes": 2271,
+      "sha256": "5cb8ac35bbc7f06675b9c4331af804af7aa59b2fed1f7b43e29e1e460863e017"
     }
   ]
 }

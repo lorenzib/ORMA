@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "weissensee-slow-trail",
   "name": "Slow Trail Weissensee",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:22:00.882Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:15.129Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 906665,
+  "packageBytes": 925896,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.68758,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Slow Trail Weissensee safety information",
       "url": "safety.json",
-      "bytes": 1882,
-      "sha256": "b60eab5ad74496521c97448823824aa9a05933f5e32ffaf1a741b6091b662f4a"
+      "bytes": 2531,
+      "sha256": "7795e34a423e6d49c475c598c18dc51bcd928a78e96065e17d6573839d7b71d6"
     }
   ]
 }

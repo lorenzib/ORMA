@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-san-martino-di-castrozza-val-di-roda-prati-col",
   "name": "San Martino di Castrozza - Val di Roda - Prati Col",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:36.246Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:38:14.864Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 640170,
+  "packageBytes": 659304,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.24584,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "San Martino di Castrozza - Val di Roda - Prati Col safety information",
       "url": "safety.json",
-      "bytes": 1665,
-      "sha256": "369abe48268bb3f0e3b3e5cef05ade18bc0ce00236d51b1a463ec3c107ec0176"
+      "bytes": 2217,
+      "sha256": "8c1a4a507480cd695b3ab737687354a80a899ed9bc36533e6a6a09ade059e68b"
     }
   ]
 }

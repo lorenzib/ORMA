@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-escursione-sentiero-del-sole-a-stulles",
   "name": "Sonnenrundweg loop at Stuls",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T17:26:58.124Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.590Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 526973,
+  "packageBytes": 546541,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.82299,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sonnenrundweg loop at Stuls safety information",
       "url": "safety.json",
-      "bytes": 1497,
-      "sha256": "3d49d356d153ed55dbded1a2de4882c043b24b71a2d974ef88557f8d8cd135d0"
+      "bytes": 2483,
+      "sha256": "698ef03ea426d028ea88b27505b296638f3342090ef077635f7e068edfd9d72f"
     }
   ]
 }

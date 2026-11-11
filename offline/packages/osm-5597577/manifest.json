@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-5597577",
   "name": "Rundweg Gsindboden",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.757Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:38:14.741Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 339211,
+  "packageBytes": 358503,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62561,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Gsindboden safety information",
       "url": "safety.json",
-      "bytes": 1532,
-      "sha256": "63766f9ba9d682117b9c6dbfce6b3c95a44088202d872f54a0bed7afdf886557"
+      "bytes": 2242,
+      "sha256": "6f048531e8b97a4767bb0e34c8fb5868eef763040f0bd291950fc80421691f5b"
     }
   ]
 }

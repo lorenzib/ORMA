@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-bagni-di-san-candido",
   "name": "Wildbad Innichen",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:33:52.037Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.923Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 536188,
+  "packageBytes": 555346,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.71342,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Wildbad Innichen safety information",
       "url": "safety.json",
-      "bytes": 2605,
-      "sha256": "481a02e109bdeb010f4cce37eede2e07c9a345fe335d16689142fa134e833767"
+      "bytes": 3181,
+      "sha256": "800b16abd884cfaf737b1a125d75dc3e12a3fe3587e12d4890c9cc0039830793"
     }
   ]
 }

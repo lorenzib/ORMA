@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-prato-di-sorte",
   "name": "Prato di Sorte",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:34.170Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:38:14.487Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 597494,
+  "packageBytes": 616592,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.35471,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Prato di Sorte safety information",
       "url": "safety.json",
-      "bytes": 1787,
-      "sha256": "1b5930e79fd879e84301cb1d734e1bce1e8c3e3550cf289a95386d000c740a73"
+      "bytes": 2303,
+      "sha256": "c61ce4705977338771fb791d81de80f45edc1ec69d19721513ad131aeb1af7e0"
     }
   ]
 }

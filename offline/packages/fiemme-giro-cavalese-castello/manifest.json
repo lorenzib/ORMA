@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-giro-cavalese-castello",
   "name": "Giro ad anello Cavalese - Castello di Fiemme",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:13:02.002Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.497Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 803656,
+  "packageBytes": 822920,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.27795,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Giro ad anello Cavalese - Castello di Fiemme safety information",
       "url": "safety.json",
-      "bytes": 1764,
-      "sha256": "7fc7e27fa230eaa5c7780f87b7557b3330fe25798e867bad9666c035ff0cc53b"
+      "bytes": 2446,
+      "sha256": "8a2a929c0edb96ebcb37c779495ce86698958a8793e3f1488893117a05cf67af"
     }
   ]
 }

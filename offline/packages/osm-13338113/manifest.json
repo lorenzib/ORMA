@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-13338113",
   "name": "Lac de Darbon",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.933Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:38:14.673Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 499489,
+  "packageBytes": 518590,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.32693,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lac de Darbon safety information",
       "url": "safety.json",
-      "bytes": 1784,
-      "sha256": "586919d62c343b2228230b6c394d5f97c9c25d66968c398e1533f7c5b46e8325"
+      "bytes": 2303,
+      "sha256": "482abeac06af09640fd0a098ecbb03240e373fafebf652231d77933dd4e84866"
     }
   ]
 }

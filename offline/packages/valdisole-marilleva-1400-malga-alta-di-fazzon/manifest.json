@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-marilleva-1400-malga-alta-di-fazzon",
   "name": "Marilleva 1400 – Malga Alta di Fazzon",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:44:28.740Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:15.001Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 333918,
+  "packageBytes": 353083,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.28501,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Marilleva 1400 – Malga Alta di Fazzon safety information",
       "url": "safety.json",
-      "bytes": 2011,
-      "sha256": "bb3ac50592bece825fa080ca9230756117a1aa9d2d8c13420d8e4f49b6fe78c1"
+      "bytes": 2594,
+      "sha256": "1b7333e3f9bf07add4f47ef151d3296da96fbc870e0bb298c30fe74c757b2807"
     }
   ]
 }

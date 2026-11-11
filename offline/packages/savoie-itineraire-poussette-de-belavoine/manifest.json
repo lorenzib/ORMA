@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "savoie-itineraire-poussette-de-belavoine",
   "name": "Bel’Avoine road, Le Cernix to Paravy",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T17:51:50.694Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.887Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 586001,
+  "packageBytes": 605244,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.77985,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Bel’Avoine road, Le Cernix to Paravy safety information",
       "url": "safety.json",
-      "bytes": 1489,
-      "sha256": "02ea2bf77c8f438ff268b9cb8d881192ea52d0b2680502d48af497a9156aa60b"
+      "bytes": 2150,
+      "sha256": "4beff5a5793416491571ef30f830a33e23b6c3606daeb9e19f804ac2e406bade"
     }
   ]
 }

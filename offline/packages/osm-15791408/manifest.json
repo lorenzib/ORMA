@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-15791408",
   "name": "Giro di Bedolpian",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:35.499Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:38:14.692Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 494019,
+  "packageBytes": 512906,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.13917,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Giro di Bedolpian safety information",
       "url": "safety.json",
-      "bytes": 1346,
-      "sha256": "16b9058b31d0499b2588730c12d19908d6d40692de31057ebe13f12ce8edb760"
+      "bytes": 1651,
+      "sha256": "ccae63a3608aab3cb3f91bbd097a5e73a8f7857eb4da637d5050cf6b27af648e"
     }
   ]
 }

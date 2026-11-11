@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-nel-cuore-del-triangolo-lariano",
   "name": "Campoè to Cassina Enco",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T01:13:29.128Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.574Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 472522,
+  "packageBytes": 491932,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.85534,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Campoè to Cassina Enco safety information",
       "url": "safety.json",
-      "bytes": 1432,
-      "sha256": "579e74c2de8358629ddce49556b002046c8fbf21a6127c3bc4ef0a7d7ce27eed"
+      "bytes": 2260,
+      "sha256": "d15ca859827c286b1b8a360d447353e357525b6e848e9a7faa142d6382e7c470"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "unterengadin-s-charl-alp-sesvenna-return",
   "name": "S-charl to Alp Sesvenna and back",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T20:40:01.673Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.983Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 190381,
+  "packageBytes": 209728,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.71186,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "S-charl to Alp Sesvenna and back safety information",
       "url": "safety.json",
-      "bytes": 1379,
-      "sha256": "3ce27815adbe2a7d20a41698956305137a33f36e13d9c4bd36af731919fd188b"
+      "bytes": 2144,
+      "sha256": "40dd9cd0811b82df3021aa8dd54558afe501a2e7ec0e2cfd006c59be93720496"
     }
   ]
 }

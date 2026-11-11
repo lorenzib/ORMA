@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-sentiero-degli-artisti-tru-di-artisc",
   "name": "Tru di artisć",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:11:37.171Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.381Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 832046,
+  "packageBytes": 851081,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55735,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Tru di artisć safety information",
       "url": "safety.json",
-      "bytes": 1766,
-      "sha256": "7d6ac41ba8dd02048af8f62e750b14f9ce1a1b19dd076c8eeb6b77db98e268e7"
+      "bytes": 2219,
+      "sha256": "db28c5f145ccec83726250056baa0a8e0901884e2a3f0833a2f927c6164e394b"
     }
   ]
 }

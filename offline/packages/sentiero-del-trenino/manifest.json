@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "sentiero-del-trenino",
   "name": "Sentiero del Trenino",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:36.366Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:38:14.916Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 3201550,
+  "packageBytes": 3220626,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.53309,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sentiero del Trenino safety information",
       "url": "safety.json",
-      "bytes": 3014,
-      "sha256": "918c6f95c6d0c6ae5f7ecf1c440f8e2cf8db06af35234301781257be23e6555d"
+      "bytes": 3508,
+      "sha256": "0be38036057b2406aece6f91641eeab0eb304620193478c3b5cd24a41a8f4190"
     }
   ]
 }

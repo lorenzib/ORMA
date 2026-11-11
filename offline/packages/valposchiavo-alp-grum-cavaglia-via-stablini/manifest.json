@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valposchiavo-alp-grum-cavaglia-via-stablini",
   "name": "Alp Grüm to Cavaglia via Stablini",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T17:23:48.902Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:15.065Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 295559,
+  "packageBytes": 314872,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.36054,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Alp Grüm to Cavaglia via Stablini safety information",
       "url": "safety.json",
-      "bytes": 1373,
-      "sha256": "a5dd924503373f7ca5d75ebab7ac052e60e8f3d11d0fdde4e59a2afc7a9823e4"
+      "bytes": 2104,
+      "sha256": "74a9286dbd3cdf5767417be2923010079bccfd0148902ce8378898161231d803"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "paganella-andalo-tana-ermellino",
   "name": "Andalo – Tana dell’Ermellino",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:46:48.975Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:38:14.834Z",
+  "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 486123,
+  "packageBytes": 505173,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16851,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Andalo – Tana dell’Ermellino safety information",
       "url": "safety.json",
-      "bytes": 1287,
-      "sha256": "8e85c16f72c594087de3efc5f6eeeaa1ef578037b1f35478acd400b32d876855"
+      "bytes": 1755,
+      "sha256": "fb72c1ce790114329d782d33ae242abed3131ab0ee5abebffde88c045b29410c"
     }
   ]
 }

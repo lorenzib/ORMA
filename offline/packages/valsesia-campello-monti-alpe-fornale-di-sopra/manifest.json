@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsesia-campello-monti-alpe-fornale-di-sopra",
   "name": "Campello Monti to the Alpe Fornale di Sopra",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T17:27:45.577Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:15.071Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 273907,
+  "packageBytes": 293145,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.93212,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Campello Monti to the Alpe Fornale di Sopra safety information",
       "url": "safety.json",
-      "bytes": 1350,
-      "sha256": "1380c14269e251752d8ecadca4e9a5b9e6a59337582ff7216a0abf57f47b3e88"
+      "bytes": 2006,
+      "sha256": "5cd58669febe64629ef9126a771a28c1f9e5dc88a2de5dff68dd53ea9b95e9f3"
     }
   ]
 }

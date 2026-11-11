@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-forcella-lerosa",
   "name": "Passo Cimabanche to Forcella Lerosa",
-  "version": "2026.11.09-beta.1",
-  "generatedAt": "2026-11-09T21:55:05.361Z",
-  "scoringVersion": "1.7.0",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:38:14.433Z",
+  "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 269858,
+  "packageBytes": 289148,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.60389,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52708,
+      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passo Cimabanche to Forcella Lerosa safety information",
       "url": "safety.json",
-      "bytes": 1693,
-      "sha256": "acbf427ab66facad74a33bb0b7f6a260bad61403eaa265ba23cb0a899d6b6e50"
+      "bytes": 2401,
+      "sha256": "b567776a9b41e2934bd3c03c92e64f516b846f94527a541e72ced794936e5080"
     }
   ]
 }
