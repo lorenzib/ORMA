@@ -1938,6 +1938,16 @@
       "name": "Peio Paese to Lago Covel",
       "slug": "peio-paese-lago-covel",
       "gloss": "farmsteads, a goat malga and a mirror lake in the Stelvio park"
+    },
+    "valdisole-percorso-geologico-in-val-di-rabbi": {
+      "name": "Geology trail in the Val di Rabbi",
+      "slug": "percorso-geologico-val-di-rabbi",
+      "gloss": "a park loop from Còler to the Saènt waterfalls"
+    },
+    "valdisole-percorso-della-fauna-in-val-di-peio": {
+      "name": "Wildlife trail in the Val di Peio",
+      "slug": "percorso-della-fauna-val-di-peio",
+      "gloss": "a park loop from the Fontanino to Malga Paludèi and the Val Piana"
     }
   }
 }

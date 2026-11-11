@@ -30,6 +30,22 @@ describe('which walks a dog season reaches', () => {
     expect(kinds(walk({}))).not.toContain('cows');
   });
 
+  test('heat: a walk rated high for heat that goes down to 1,000 m or lower', () => {
+    const low = [{ km: 0, elev: 400 }, { km: 3, elev: 700 }];
+    expect(kinds(walk({ heatRisk: 'high', elevationProfile: low }))).toContain('heat');
+    expect(kinds(walk({ heatRisk: 'moderate', elevationProfile: low }))).not.toContain('heat');
+    expect(kinds(walk({ heatRisk: 'high', elevationProfile: [{ km: 0, elev: 1100 }] }))).not.toContain('heat');
+  });
+
+  test('salt: a walk whose surface is tarmac, streets or village lanes, not a gravel forest road', () => {
+    expect(kinds(walk({ terrainType: 'Village lanes, farm tracks and field paths' }))).toContain('salt');
+    expect(kinds(walk({ terrainType: 'Asphalt lanes with a short earth path' }))).toContain('salt');
+    expect(kinds(walk({ terrainType: 'Sparsely mapped: paved (82%), unpaved (18%), from OSM surface data' }))).toContain('salt');
+    expect(kinds(walk({ terrainType: 'Gravel forest roads and forest paths' }))).not.toContain('salt');
+    expect(kinds(walk({ terrainType: 'unpaved (99%), paved (1%), from OSM surface data' }))).not.toContain('salt');
+    expect(kinds(walk({ terrainType: 'Forest paths', desc: 'Starts from the village streets.' }))).not.toContain('salt');
+  });
+
   test('carries the months and the sources, and keeps the rest of the season', () => {
     const [trail] = applyDogSeasons([walk({ province: 'trentino', season: { highPoint: 1300 } })], config);
     expect(trail.season.highPoint).toBe(1300);
@@ -58,6 +74,20 @@ describe('the words', () => {
     expect(lines.map((risk) => risk.line)[1]).toBe('March to June: ticks in the woods below about 1200 m, most of all from late May to mid-June. Check your dog after the walk.');
     expect(lines[2].line).toMatch(/^June to September \(an estimate\)/);
     expect(lines[0].sources.map((source) => source.label)).toEqual(['Province of Trento, forestry service']);
+  });
+});
+
+describe('heat and salt words', () => {
+  test('salt runs across New Year, as one span', () => {
+    const line = words.describe({ dogSeasons: [{ kind: 'salt', months: [12, 1, 2], sources: [] }] }).dogSeasons[0].line;
+    expect(line).toMatch(/^December to February \(an estimate\): the roads and lanes/);
+  });
+
+  test('tags only in their months', () => {
+    const season = { dogSeasons: [{ kind: 'heat', months: [6, 7, 8] }, { kind: 'salt', months: [12, 1, 2] }] };
+    expect(words.dogSeasonsNow(season, 7).map((tag) => tag.label)).toEqual(['Hot months']);
+    expect(words.dogSeasonsNow(season, 1).map((tag) => tag.label)).toEqual(['Salted roads']);
+    expect(words.dogSeasonsNow(season, 4)).toEqual([]);
   });
 });
 
