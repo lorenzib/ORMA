@@ -653,21 +653,6 @@
       "officialDistanceKm": 7.4,
       "distanceDeltaPercent": 1.4
     },
-    "osm-7086961": {
-      "pathContainmentPercent": 100,
-      "externalRelationId": "relation/7086961",
-      "checkedAt": "2026-09-06T09:25:26.417Z",
-      "reviewState": "blocked",
-      "blockers": [
-        "not-closed-loop"
-      ],
-      "closedLoop": false,
-      "relationName": "Giro del Zimon",
-      "componentCount": 1,
-      "reconstructedDistanceKm": 3.06,
-      "officialDistanceKm": 3,
-      "distanceDeltaPercent": 2
-    },
     "osm-7277805": {
       "pathContainmentPercent": 100,
       "externalRelationId": "relation/7277805",
@@ -1217,22 +1202,6 @@
       "reconstructedDistanceKm": 12.43,
       "officialDistanceKm": 13.2,
       "distanceDeltaPercent": -5.8
-    },
-    "osm-12027153": {
-      "pathContainmentPercent": 100,
-      "externalRelationId": "relation/12027153",
-      "checkedAt": "2026-09-06T09:26:19.348Z",
-      "reviewState": "blocked",
-      "blockers": [
-        "not-closed-loop",
-        "disconnected-components"
-      ],
-      "closedLoop": false,
-      "relationName": "GEOWeg - Sentiero GEOlogico",
-      "componentCount": 2,
-      "reconstructedDistanceKm": 6.57,
-      "officialDistanceKm": 7.3,
-      "distanceDeltaPercent": -10
     },
     "osm-12044077": {
       "pathContainmentPercent": 100,

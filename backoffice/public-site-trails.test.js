@@ -248,8 +248,10 @@ describe('the existing-site verification boundary',()=>{
     // Colle di Santa Lucia.
     // Then 521 and 519: the Sassolungo–Sassopiatto Loop retired, the same
     // circuit as the Giro del Sasso Lungo, whose page its addresses now open.
-    expect(catalogue).toHaveLength(521);
-    expect(currentSiteTrails(catalogue)).toHaveLength(519);
+    // Then 519 and 517: GEOWeg and Giro del Zimon removed on 12 November, not
+    // walks for dogs (iron stairs and a helmet; an EE path).
+    expect(catalogue).toHaveLength(519);
+    expect(currentSiteTrails(catalogue)).toHaveLength(517);
   });
 
   test('requires the artwork the public trail page needs',()=>{

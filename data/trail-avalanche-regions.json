@@ -1273,12 +1273,6 @@
       ],
       "highPoint": 2039
     },
-    "osm-12027153": {
-      "regions": [
-        "IT-32-BZ-17"
-      ],
-      "highPoint": 1747
-    },
     "osm-12044077": {
       "regions": [
         "IT-32-BZ-19"
@@ -1688,13 +1682,6 @@
         "IT-32-TN-11"
       ],
       "highPoint": 1405
-    },
-    "osm-7086961": {
-      "regions": [
-        "IT-32-TN-07",
-        "IT-32-TN-08"
-      ],
-      "highPoint": 2511
     },
     "osm-7277805": {
       "regions": [

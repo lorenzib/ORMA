@@ -3223,58 +3223,6 @@
         "status": "no-photo"
       }
     },
-    "osm-12027153": {
-      "checkedAt": "2026-11-09T04:32:49.936Z",
-      "communes": {
-        "status": "checked",
-        "communes": [
-          {
-            "name": "Aldein - Aldino",
-            "names": {
-              "it": "Aldino",
-              "de": "Aldein"
-            },
-            "osmArea": 3600047122
-          }
-        ],
-        "samples": 9,
-        "source": {
-          "label": "OpenStreetMap administrative boundaries (admin level 8)",
-          "url": "https://overpass-api.de/api/interpreter",
-          "authority": "OpenStreetMap contributors",
-          "licence": "ODbL-1.0"
-        }
-      },
-      "protectedAreas": {
-        "status": "checked",
-        "sites": [],
-        "control": {
-          "code": "IT3110049",
-          "name": "Parco Naturale Fanes - Senes - Braies",
-          "found": true
-        },
-        "source": {
-          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
-          "url": "https://natura2000.eea.europa.eu/",
-          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
-          "authority": "European Environment Agency"
-        }
-      },
-      "line": {
-        "status": "no-published-distance",
-        "lineKm": 6.55
-      },
-      "photo": {
-        "status": "located",
-        "geotag": {
-          "lat": 46.358744,
-          "lng": 11.433378
-        },
-        "from": "wikimedia-commons",
-        "metresFromLine": 9,
-        "onTheWalk": true
-      }
-    },
     "osm-12044077": {
       "checkedAt": "2026-11-09T04:32:49.936Z",
       "communes": {
@@ -8942,61 +8890,6 @@
         "from": "wikimedia-commons",
         "metresFromLine": 4,
         "onTheWalk": true
-      }
-    },
-    "osm-7086961": {
-      "checkedAt": "2026-11-02T04:32:56.306Z",
-      "communes": {
-        "status": "checked",
-        "communes": [
-          {
-            "name": "Castello Tesino",
-            "osmArea": 3600046727
-          },
-          {
-            "name": "Pieve Tesino",
-            "osmArea": 3600046811
-          }
-        ],
-        "samples": 4,
-        "source": {
-          "label": "OpenStreetMap administrative boundaries (admin level 8)",
-          "url": "https://overpass-api.de/api/interpreter",
-          "authority": "OpenStreetMap contributors",
-          "licence": "ODbL-1.0"
-        }
-      },
-      "protectedAreas": {
-        "status": "checked",
-        "sites": [
-          {
-            "code": "IT3120143",
-            "name": "Valle del Vanoi"
-          },
-          {
-            "code": "IT3120160",
-            "name": "Lagorai"
-          }
-        ],
-        "control": {
-          "code": "IT3110049",
-          "name": "Parco Naturale Fanes - Senes - Braies",
-          "found": true
-        },
-        "source": {
-          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
-          "url": "https://natura2000.eea.europa.eu/",
-          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
-          "authority": "European Environment Agency"
-        }
-      },
-      "line": {
-        "status": "no-published-distance",
-        "lineKm": 3.01
-      },
-      "photo": {
-        "status": "no-location",
-        "from": "wikimedia-commons"
       }
     },
     "osm-7277805": {

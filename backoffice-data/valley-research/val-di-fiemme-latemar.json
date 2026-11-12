@@ -94,18 +94,6 @@
       ]
     },
     {
-      "id": "osm-7086961",
-      "name": "Giro del Zimon",
-      "needs": [
-        "water",
-        "heat",
-        "exposure",
-        "livestock",
-        "surfaceHazards",
-        "access"
-      ]
-    },
-    {
       "id": "osm-9675994",
       "name": "St. Agatha Rundweg",
       "needs": [
@@ -120,18 +108,6 @@
     {
       "id": "osm-12018939",
       "name": "Steinegger Höhenweg",
-      "needs": [
-        "water",
-        "heat",
-        "exposure",
-        "livestock",
-        "surfaceHazards",
-        "access"
-      ]
-    },
-    {
-      "id": "osm-12027153",
-      "name": "GEOWeg - Sentiero GEOlogico",
       "needs": [
         "water",
         "heat",
