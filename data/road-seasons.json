@@ -1,6 +1,6 @@
 {
   "contractVersion": "road-seasons-v1",
-  "note": "Roads that close for the winter and are the only drive to a walk's start. openMonths are the months the road is open for most of the month, read from the road's operator or town on accessedAt; usually says, in the source's own terms, when it opens and shuts (part: early, mid or late). A walk listed under trails is out of season in the months its road is shut. Curated by hand; check each spring and autumn. Roads checked and left out, because they stay open in winter or the walk can be reached another way, are in checked. access holds roads that stay open but limit cars for part of the year (a summer booking, a winter toll with time windows): information only, never a change to a walk's months; months are the months its monthly note shows.",
+  "note": "Roads that close for the winter and are the only drive to a walk's start. openMonths are the months the road is open for most of the month, read from the road's operator or town on accessedAt; usually says, in the source's own terms, when it opens and shuts (part: early, mid or late). A walk listed under trails is out of season in the months its road is shut. Curated by hand; check each spring and autumn. Roads checked and left out, because they stay open in winter or the walk can be reached another way, are in checked. access holds roads that stay open but limit cars for part of the year (a summer booking, a winter toll with time windows): information only, never a change to a walk's months; months are the months its monthly note shows. Seasonal buses are access rules too (ids start bus-): a bus to the start that runs for part of the year only, read from the South Tyrol timetable feed (STA open data, stops within 400 m of the start; checked for every walk start in South Tyrol). Trentino and Cortina are not covered yet: the Trentino feed holds the winter timetable only and Dolomiti Bus publishes none.",
   "roads": {
     "tre-cime-toll-road": {
       "name": "Tre Cime toll road (Misurina – Rifugio Auronzo)",
@@ -61,12 +61,151 @@
       ],
       "line": "In 2025, from 28 June to 31 August, the road from Sant’Uberto to Malga Ra Stua was closed to cars, and a shuttle bus ran from Fiames (park information point) instead. These are the latest dates found.",
       "monthNote": "In {month} the road to Malga Ra Stua may be closed to cars: take the shuttle bus from Fiames (in 2025 it ran from 28 June to 31 August)."
+    },
+    "bus-altafossa": {
+      "operator": "South Tyrol bus timetable (STA open data)",
+      "url": "https://gtfs.api.opendatahub.com/v1/dataset/sta-time-tables/raw",
+      "accessedAt": "2026-11-12",
+      "months": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "line": "No bus in the South Tyrol timetable stops near the start outside winter: the only one, a ski bus to the Gitschberg cable car, ran from 20 December 2025 to 29 March 2026.",
+      "monthNote": "In {month} no bus in the South Tyrol timetable stops near the start."
+    },
+    "bus-armentara": {
+      "operator": "South Tyrol bus timetable (STA open data)",
+      "url": "https://gtfs.api.opendatahub.com/v1/dataset/sta-time-tables/raw",
+      "accessedAt": "2026-11-12",
+      "months": [
+        5,
+        6,
+        9,
+        10
+      ],
+      "line": "Bus 475 to the Armentara car park runs only in summer: in 2026 from 15 June to 20 September.",
+      "monthNote": "In {month} bus 475 to the Armentara car park may not run (in 2026 it ran from 15 June to 20 September)."
+    },
+    "bus-monte-pana": {
+      "operator": "South Tyrol bus timetable (STA open data)",
+      "url": "https://gtfs.api.opendatahub.com/v1/dataset/sta-time-tables/raw",
+      "accessedAt": "2026-11-12",
+      "months": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "line": "No bus in the South Tyrol timetable stops at Monte Pana outside winter: the only one, ski bus 12, ran from 14 December 2025 to 7 April 2026.",
+      "monthNote": "In {month} no bus in the South Tyrol timetable stops at Monte Pana."
+    },
+    "bus-passo-campolongo": {
+      "operator": "South Tyrol bus timetable (STA open data)",
+      "url": "https://gtfs.api.opendatahub.com/v1/dataset/sta-time-tables/raw",
+      "accessedAt": "2026-11-12",
+      "months": [
+        6,
+        10
+      ],
+      "line": "Bus 472 to Passo Campolongo runs only in summer: in 2026 from 7 June to 11 October.",
+      "monthNote": "In {month} bus 472 to Passo Campolongo may not run (in 2026 it ran from 7 June to 11 October)."
+    },
+    "bus-passo-sella": {
+      "operator": "South Tyrol bus timetable (STA open data)",
+      "url": "https://gtfs.api.opendatahub.com/v1/dataset/sta-time-tables/raw",
+      "accessedAt": "2026-11-12",
+      "months": [
+        6,
+        10
+      ],
+      "line": "Buses 471 and 472 to Passo Sella run only in summer: in 2026 from 7 June to 11 October.",
+      "monthNote": "In {month} buses 471 and 472 to Passo Sella may not run (in 2026 they ran from 7 June to 11 October)."
+    },
+    "bus-rifugio-auronzo": {
+      "operator": "stol.it, May 2026",
+      "url": "https://www.stol.it/artikel/chronik/mobilitaet-verkehrsregelung-im-sommer-im-gebiet-drei-zinnen",
+      "accessedAt": "2026-11-12",
+      "months": [
+        10
+      ],
+      "line": "Bus 444 from Dobbiaco to Rifugio Auronzo runs only in summer: in 2026 from 31 May to 11 October, with an online booking for both ways.",
+      "monthNote": "In {month} bus 444 to Rifugio Auronzo may not run (in 2026 it ran to 11 October)."
+    },
+    "bus-prato-piazza": {
+      "operator": "South Tyrol bus timetable (STA open data)",
+      "url": "https://gtfs.api.opendatahub.com/v1/dataset/sta-time-tables/raw",
+      "accessedAt": "2026-11-12",
+      "months": [
+        5,
+        6
+      ],
+      "line": "Bus 443 to Prato Piazza ran from 6 June to 8 November in 2026. In winter a paid shuttle from Brückele goes up instead.",
+      "monthNote": "In {month} bus 443 to Prato Piazza may not run (in 2026 it started on 6 June)."
+    },
+    "bus-maso-egger": {
+      "operator": "South Tyrol bus timetable (STA open data)",
+      "url": "https://gtfs.api.opendatahub.com/v1/dataset/sta-time-tables/raw",
+      "accessedAt": "2026-11-12",
+      "months": [
+        3,
+        4,
+        10,
+        11
+      ],
+      "line": "Bus 268 to Maso Egger runs from spring to autumn: in 2026 from 25 April to 18 October.",
+      "monthNote": "In {month} bus 268 to Maso Egger may not run (in 2026 it ran from 25 April to 18 October)."
+    },
+    "bus-passo-erbe": {
+      "operator": "South Tyrol bus timetable (STA open data)",
+      "url": "https://gtfs.api.opendatahub.com/v1/dataset/sta-time-tables/raw",
+      "accessedAt": "2026-11-12",
+      "months": [
+        5
+      ],
+      "line": "Buses to Passo delle Erbe run from spring to autumn: in 2026 from 9 May to 8 November.",
+      "monthNote": "In {month} buses to Passo delle Erbe may not run (in 2026 they started on 9 May)."
+    },
+    "bus-186-nigra": {
+      "operator": "South Tyrol bus timetable (STA open data)",
+      "url": "https://gtfs.api.opendatahub.com/v1/dataset/sta-time-tables/raw",
+      "accessedAt": "2026-11-12",
+      "months": [
+        4,
+        5,
+        11
+      ],
+      "line": "Bus 186 over Passo Nigra runs most of the year, but in 2026 it did not run from 7 April to 15 May or from 2 November into December.",
+      "monthNote": "In {month} bus 186 over Passo Nigra may not run (in 2026 it stopped from 7 April to 15 May and from 2 November into December)."
+    },
+    "bus-zans": {
+      "operator": "South Tyrol bus timetable (STA open data)",
+      "url": "https://gtfs.api.opendatahub.com/v1/dataset/sta-time-tables/raw",
+      "accessedAt": "2026-11-12",
+      "months": [
+        4,
+        11,
+        12
+      ],
+      "line": "Bus 330 to Zans runs most of the year, but in 2026 it did not run from 30 March to 25 April or from 9 November into December.",
+      "monthNote": "In {month} bus 330 to Zans may not run (in 2026 it stopped from 30 March to 25 April and from 9 November into December)."
     }
   },
   "trails": {
     "tre-cime": {
       "roads": [
         "tre-cime-toll-road"
+      ],
+      "access": [
+        "bus-rifugio-auronzo"
       ]
     },
     "cadini": {
@@ -96,12 +235,88 @@
     },
     "prato-piazza": {
       "access": [
-        "plaetzwiese-road"
+        "plaetzwiese-road",
+        "bus-prato-piazza"
       ]
     },
     "cortina-anello-dei-tre-rifugi": {
       "access": [
         "ra-stua-road"
+      ]
+    },
+    "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": {
+      "access": [
+        "bus-altafossa"
+      ]
+    },
+    "altabadia-da-furnacia-a-la-crusc": {
+      "access": [
+        "bus-armentara"
+      ]
+    },
+    "osm-9648632": {
+      "access": [
+        "bus-monte-pana"
+      ]
+    },
+    "valgardena-troi-unika": {
+      "access": [
+        "bus-monte-pana"
+      ]
+    },
+    "osm-11855879": {
+      "access": [
+        "bus-passo-campolongo"
+      ]
+    },
+    "giro-del-sasso-lungo": {
+      "access": [
+        "bus-passo-sella"
+      ]
+    },
+    "osm-10220399": {
+      "access": [
+        "bus-maso-egger"
+      ]
+    },
+    "osm-12142337": {
+      "access": [
+        "bus-passo-erbe"
+      ]
+    },
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": {
+      "access": [
+        "bus-186-nigra"
+      ]
+    },
+    "eggental-passo-nigra-malga-hagner": {
+      "access": [
+        "bus-186-nigra"
+      ]
+    },
+    "eggental-kaiserstein-baita-masare": {
+      "access": [
+        "bus-186-nigra"
+      ]
+    },
+    "eggental-jolanda-baita-messnerjoch": {
+      "access": [
+        "bus-186-nigra"
+      ]
+    },
+    "eggental-frommer-ochsenhuette": {
+      "access": [
+        "bus-186-nigra"
+      ]
+    },
+    "eggental-passo-nigra-baita-messnerjoch": {
+      "access": [
+        "bus-186-nigra"
+      ]
+    },
+    "osm-11780502": {
+      "access": [
+        "bus-zans"
       ]
     }
   },
