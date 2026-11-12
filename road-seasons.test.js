@@ -62,4 +62,17 @@ describe('road seasons', () => {
       expect((trail.season.roads || []).length + (trail.season.access || []).length).toBeGreaterThan(0);
     }
   });
+
+  test('a seasonal bus is a dated access rule on a walk it serves', () => {
+    const artifact = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'road-seasons.json'), 'utf8'));
+    const buses = Object.keys(artifact.access).filter(id => id.startsWith('bus-'));
+    expect(buses.length).toBeGreaterThan(0);
+    const used = new Set(Object.values(artifact.trails).flatMap(use => use.access || []));
+    for (const id of buses) {
+      const rule = artifact.access[id];
+      expect(used.has(id)).toBe(true);
+      expect(rule.line).toMatch(/\b(bus|buses)\b/i);
+      expect(rule.line).toMatch(/\b20\d\d\b/);
+    }
+  });
 });
