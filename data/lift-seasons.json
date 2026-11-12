@@ -434,6 +434,44 @@
         10,
         11
       ]
+    },
+    "spinale-campiglio": {
+      "name": "Spinale gondola (Madonna di Campiglio)",
+      "operator": "Garda Trentino tourist board",
+      "url": "https://www.gardatrentino.it/en/info/cable-cars-in-campiglio_38712",
+      "accessedAt": "2026-11-11",
+      "datesFor": "2026",
+      "periods": [
+        {
+          "from": "06-25",
+          "to": "09-20"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "aschbach-rabland": {
+      "name": "Aschbach cable car (Rabland – Aschbach)",
+      "operator": "Gemeinde Algund",
+      "url": "https://www.gemeinde.algund.bz.it/de/Neuigkeiten/Bekanntmachungen/Schliessung_der_Seilbahn_Saring-Aschbach_am_17_11_2026_und_am_28_11_2026",
+      "accessedAt": "2026-11-11",
+      "datesFor": "2026",
+      "allYear": true,
+      "periods": [
+        {
+          "from": "01-01",
+          "to": "12-31"
+        }
+      ],
+      "valleyM": 522,
+      "topM": 1349
     }
   },
   "trails": {
@@ -589,13 +627,21 @@
       "lifts": [
         "kronplatz-reischach"
       ]
+    },
+    "campiglio-monte-spinale-rifugio-graffer": {
+      "lifts": [
+        "spinale-campiglio"
+      ]
+    },
+    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": {
+      "lifts": [
+        "aschbach-rabland"
+      ]
     }
   },
   "held": {
-    "campiglio-monte-spinale-rifugio-graffer": "Spinale gondola: no 2026 summer dates published (only 2025); winter 2026/27 dates are for the Madonna di Campiglio area as a whole (27 Nov 2026 – 11 Apr 2027), not this lift (checked 10 Nov 2026).",
-    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": "Taser cable car: no operator site (taser.it is for sale); only tourist-board event pages for Nov 2026 – Jan 2027, partly conflicting, and no dated summer 2026 season (checked 10 Nov 2026).",
-    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": "Aschbach cable car (run by the commune of Algund): 'in service all year' with no year, plus dated maintenance closures only (17 and 21 Nov 2026); no dated running period (checked 10 Nov 2026).",
+    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": "Taser cable car: no operator site (taser.it is for sale); only tourist-board event pages for Nov 2026 – Jan 2027, partly conflicting, and no dated summer 2026 season (checked 10 Nov 2026). Rechecked 11 Nov 2026: the Schenna tourist page gives periods with no year (summer 9 June – 1 September) and taseralm.com none; the Verdins–Tall cable car down also has no dates.",
     "osm-11855879": "Cherz I chairlift: no published dates found (Arabba lift pages blocked).",
-    "osm-14376573": "Vinouve chairlift: the tourist office gives early July to late August, four days a week, with no dated timetable (checked 10 Nov 2026)."
+    "osm-14376573": "Vinouve chairlift: karellis.com gives only 2025 dates (5 July – 23 August 2025, Mon, Tue, Wed and Fri); no 2026 dates on the operator's site (checked 11 Nov 2026)."
   }
 }
