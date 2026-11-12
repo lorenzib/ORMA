@@ -5603,7 +5603,7 @@ function breedInsights(name){
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
 
-  const VERSION = '1.9.0';
+  const VERSION = '1.10.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -5883,6 +5883,12 @@ function breedInsights(name){
     const steepnessMatters = puppy || senior || orthopedic || traits.shortLegged === true || giant
       || conditions.has('cardiac') || conditions.has('overweight') || base === FITNESS.low;
     if(!steepnessMatters) terrain = Math.max(terrain, FITNESS.high.terrain);
+    // One limit (age, joints, a heart or weight condition) softens steepness
+    // rather than ruling it out: such a dog still manages a moderately steep
+    // path. Only low fitness, or two limits together, leaves no tolerance (v1.10.0).
+    const limits = [puppy, senior, orthopedic, conditions.has('cardiac'), conditions.has('overweight')]
+      .filter(Boolean).length;
+    if(base !== FITNESS.low && limits <= 1) terrain = Math.max(terrain, FITNESS.moderate.terrain);
 
     return {
       terrain: Math.max(0, terrain),
@@ -6780,13 +6786,36 @@ function breedInsights(name){
     return Math.round(Math.max(0, ascent - (last - first)));
   }
 
+  // A trail's terrainRank is its steepest grade anywhere, so one short steep
+  // step marks a whole walk steep. Read from the height profile, a pitch only
+  // counts when it holds over a stretch of 300 m or more. The stored rank is
+  // kept when it is lower, or when there is no usable profile (v1.10.0).
+  const SUSTAINED_STRETCH_KM = 0.3;
+  function sustainedTerrainRank(trail){
+    const rank = Number.isFinite(trail.terrainRank) ? trail.terrainRank : null;
+    const profile = Array.isArray(trail.elevationProfile) ? trail.elevationProfile : [];
+    if(rank === null || profile.length < 2) return rank;
+    let steepest = 0;
+    let measured = false;
+    for(let i = 1; i < profile.length; i++){
+      const km = Number(profile[i].km) - Number(profile[i - 1].km);
+      const rise = Number(profile[i].elev) - Number(profile[i - 1].elev);
+      if(!Number.isFinite(km) || !Number.isFinite(rise) || km < SUSTAINED_STRETCH_KM) continue;
+      measured = true;
+      steepest = Math.max(steepest, Math.abs(rise) / (km * 1000));
+    }
+    if(!measured) return rank;
+    const sustained = steepest < 0.10 ? 0 : steepest < 0.18 ? 1 : 2;
+    return Math.min(rank, sustained);
+  }
+
   function normalizeTrail(trail){
     if(trail && trail.metrics && trail.suitability && trail.verification) return trail;
     trail = trail || {};
     const suitability = {
       safetyLevel: ['low-risk', 'moderate', 'caution'].includes(trail.safetyLevel)
         ? trail.safetyLevel : 'unknown',
-      terrainRank: Number.isFinite(trail.terrainRank) ? trail.terrainRank : null,
+      terrainRank: sustainedTerrainRank(trail),
       shadePercent: Number.isFinite(trail.shadeCoverage) ? trail.shadeCoverage : null,
       heatRisk: ['low', 'moderate', 'high'].includes(trail.heatRisk)
         ? trail.heatRisk : 'unknown',
@@ -6889,6 +6918,7 @@ function breedInsights(name){
     conditions,
     behaviour,
     normalizeDog,
+    sustainedTerrainRank,
     normalizeTrail,
     effectiveLimits,
     recommendLegacyTrail,
@@ -20141,13 +20171,14 @@ if(document.querySelector('.td2')){
 
   /**
    * "What to know today" on the homepage card, in the same plain voice as
-   * FIT_SENTENCES beside it.
+   * FIT_SENTENCES beside it, and the rows of the trail page's "Why 44% for
+   * Teo" breakdown.
    *
    * The engine's sentences are written to be checked against the score, so
    * they carry its working: "The terrain is harder than Teo is up to (grade 2,
-   * tolerance 1)." On a card that is jargon. These say the same thing the way
+   * tolerance 1)." To a reader that is jargon. These say the same thing the way
    * the safety guides now talk (#1304): short, everyday words, "we" and "you".
-   * The trail page keeps the engine's sentences, beside the points they cost.
+   * The points beside each breakdown row already say how much it cost.
    *
    * Keyed by messageKey, else code. A caution with no card sentence keeps the
    * engine's, so nothing is dropped; the hard stops (chairlift, dogs banned)
@@ -20177,6 +20208,7 @@ if(document.querySelector('.td2')){
     'trail.heat.unknown': () => tx('We don’t know yet how warm this route gets.'),
     'trail.shade.unknown': () => tx('We don’t know how much shade there is.'),
     'trail.surface-hazards.unknown': () => tx('We don’t know what the path is like underfoot.'),
+    'score.floor': () => tx('This walk asks too much of {name}, so the score stays at its lowest.'),
   });
 
   // A list of route cautions becomes the first one, as the board wrote it, and
@@ -20205,10 +20237,21 @@ if(document.querySelector('.td2')){
     return `${lead} ${tail}`;
   }
 
-  function cardMessage(item, translate, tr, extra){
+  // The trail page lists every caution, so it keeps the whole list and only
+  // loses the "Recorded route cautions:" heading. One caution is just itself.
+  function hazardBreakdownSentence(item, tr, extra){
+    const vars = item.vars || {};
+    const hazards = cautionWords(String(vars.hazards || '').trim());
+    if(!hazards) return translatedMessage(item, null, extra);
+    if(Number(vars.count) === 1) return `${hazards.replace(/[.;:]+$/, '')}.`;
+    return tr('recommendation.breakdown.surface-hazards.many', tx('Watch out for: {hazards}.'), { ...extra, hazards });
+  }
+
+  // forPage 'card' (the homepage card) or 'trail' (the trail page breakdown).
+  function cardMessage(item, translate, tr, extra, forPage = 'card'){
     const key = item && (item.messageKey || item.code);
     if(key === 'trail.surface-hazards.present.one' || key === 'trail.surface-hazards.present.many'){
-      return hazardCardSentence(item, tr, extra);
+      return forPage === 'trail' ? hazardBreakdownSentence(item, tr, extra) : hazardCardSentence(item, tr, extra);
     }
     const sentence = CARD_SENTENCES[key];
     if(!sentence) return translatedMessage(item, translate, extra);
@@ -20301,7 +20344,8 @@ if(document.querySelector('.td2')){
       .filter(entry => entry !== floorEntry)
       .map(entry => ({
         impact:Number.isFinite(entry.impact) ? entry.impact : 0,
-        message:translatedMessage(entry, translate, extra),
+        // The engine's own sentence stays on `factors`; the reader gets the plain one.
+        message:cardMessage(entry, translate, tr, extra, 'trail'),
         code:entry.code,
         kind:kindOf(entry),
       }));
@@ -20464,7 +20508,7 @@ if(document.querySelector('.td2')){
       // The floor is not a factor the reader can act on, and rendering its
       // positive impact alongside the costs reads as a bonus. It closes the
       // list as a note instead, explaining why the total stops where it does.
-      breakdownNote:floorEntry ? translatedMessage(floorEntry, translate, extra) : null,
+      breakdownNote:floorEntry ? cardMessage(floorEntry, translate, tr, extra, 'trail') : null,
       unknowns:unknowns.slice(0, 5),
       trailUnknowns:trailUnknowns.slice(0, 5),
       // For the homepage card's "What to know today" (see CARD_SENTENCES).

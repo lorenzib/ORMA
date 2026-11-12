@@ -11,7 +11,7 @@ function run(fixture){
 
 describe('SCORE-01 canonical recommendation contract', () => {
   test('the fixture set and calculator use the same immutable version', () => {
-    expect(scoring.VERSION).toBe('1.9.0');
+    expect(scoring.VERSION).toBe('1.10.0');
     expect(fixtures.scoringVersion).toBe(scoring.VERSION);
   });
 
@@ -143,12 +143,32 @@ describe('SCORE-01 canonical recommendation contract', () => {
       .find(entry => entry.code === 'trail.terrain.above-tolerance') || { impact:0 }).impact;
     const moderate = { ...fitAdult, fitness:'moderate' };
     expect(cost({ ...fitAdult, fitness:'low' })).toBe(-20);
-    expect(cost({ ...moderate, ageYears:9 })).toBe(-20);
-    expect(cost({ ...moderate, ageYears:0.6 })).toBe(-20);
-    expect(cost({ ...moderate, conditions:['joints'] })).toBe(-20);
+    // v1.10.0: one limit softens steepness; low fitness or two limits together still rule it out.
+    expect(cost({ ...moderate, ageYears:9 })).toBe(-10);
+    expect(cost({ ...moderate, ageYears:0.6 })).toBe(-10);
+    expect(cost({ ...moderate, conditions:['joints'] })).toBe(-10);
+    expect(cost({ ...moderate, ageYears:10, conditions:['joints'] })).toBe(-20);
+    expect(cost({ ...fitAdult, ageYears:9 })).toBe(-10);
     expect(cost({ ...moderate, traits:{ shortLegged:true } })).toBe(-10);
     expect(cost({ ...fitAdult, weightKg:50 })).toBe(-10);
     expect(cost({ ...moderate, conditions:['overweight'] })).toBe(-10);
+  });
+
+  // v1.10.0. terrainRank is the steepest grade anywhere on the route, so one
+  // short steep step marks a whole walk steep. Read from the height profile,
+  // a pitch counts only when it holds over 300 m or more.
+  test('a short steep step does not make a whole walk steep', () => {
+    const adapters = require('./scoring/recommendation-adapters-v1.js');
+    const rank = trail => adapters.sustainedTerrainRank(trail);
+    const gentle = [{ km:0, elev:1500 }, { km:2, elev:1600 }, { km:4, elev:1650 }];
+    expect(rank({ terrainRank:2, elevationProfile:gentle })).toBe(0);
+    expect(rank({ terrainRank:2, elevationProfile:[{ km:0, elev:1500 }, { km:1, elev:1640 }] })).toBe(1);
+    expect(rank({ terrainRank:2, elevationProfile:[{ km:0, elev:1500 }, { km:1, elev:1700 }] })).toBe(2);
+    // Never steeper than the stored rank, and the stored rank stands without a usable profile.
+    expect(rank({ terrainRank:1, elevationProfile:[{ km:0, elev:1500 }, { km:1, elev:1700 }] })).toBe(1);
+    expect(rank({ terrainRank:2, elevationProfile:[] })).toBe(2);
+    expect(rank({ terrainRank:2, elevationProfile:[{ km:0, elev:1500 }, { km:0.1, elev:1530 }] })).toBe(2);
+    expect(rank({ elevationProfile:gentle })).toBe(null);
   });
 
   test('dynamic explanations expose translation metadata without changing canonical messages', () => {
