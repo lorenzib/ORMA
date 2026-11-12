@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-ponte-su-funi",
   "name": "Ponte su Funi Rio San Piero da Mezzano",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.538Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.536Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 973974,
+  "packageBytes": 993310,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.14805,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Ponte su Funi Rio San Piero da Mezzano safety information",
       "url": "safety.json",
-      "bytes": 2173,
-      "sha256": "060b72b864b34222cd5ae9e6de7526be27d757db20dd631b4a2a0e6492966cec"
+      "bytes": 2836,
+      "sha256": "80b448a4112c0c420a41ee957525d04aed0f6e5872bdc7d7dd6006eddb2c0159"
     }
   ]
 }

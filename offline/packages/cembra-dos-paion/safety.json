@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Ville di Giovo (Piazza della Crosara), the APT’s start": "Ville di Giovo (Piazza della Crosara), la partenza indicata dall'APT",
+    "Forest tracks and a short footpath; the tarred lane at the start is open to cars.": "Strade forestali e un breve sentiero; la stradina asfaltata alla partenza è aperta alle auto.",
+    "The viewpoint is at the edge of a cliff: keep your dog on a short lead there.": "Il punto panoramico è sul bordo di una parete rocciosa: lì tieni il cane con il guinzaglio corto.",
+    "A steady climb of about 300 m.": "Una salita costante di circa 300 m."
+  }
 }

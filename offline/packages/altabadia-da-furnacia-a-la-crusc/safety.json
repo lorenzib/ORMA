@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Furnacia car park, above La Val, the board’s start": "Parcheggio di Furnacia, sopra La Val, la partenza indicata dalla scheda ufficiale",
+    "The Armentara meadows are protected hay meadows: stay on the path and keep your dog off the grass.": "I prati dell'Armentara sono prati da fieno protetti: resta sul sentiero e tieni il cane fuori dall'erba.",
+    "Cattle may graze near the huts in summer.": "D'estate il bestiame può pascolare vicino alle baite.",
+    "Paths shared with mountain bikes.": "Sentieri condivisi con le mountain bike."
+  }
 }

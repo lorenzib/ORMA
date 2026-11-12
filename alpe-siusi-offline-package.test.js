@@ -57,6 +57,6 @@ describe('Alpe di Siusi offline package', () => {
     const app = fs.readFileSync(path.join(root, 'offline', 'offline-app.js'), 'utf8');
     expect(packages).toContain(`'alpe-siusi': "Alpe di Siusi Meadow Loop",`);
     expect(app).toContain('`packages/${trailId}/manifest.json`');
-    expect(app).toContain('elements.offlineMap.alt = `Offline route map for ${manifest.name}`');
+    expect(app).toContain("elements.offlineMap.alt = say('Offline route map for {name}', { name:trailName })");
   });
 });

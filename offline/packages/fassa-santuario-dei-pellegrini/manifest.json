@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-santuario-dei-pellegrini",
   "name": "Al santuario di Santa Giuliana",
-  "version": "2026.11.11-beta.4",
-  "generatedAt": "2026-11-11T18:25:20.022Z",
+  "version": "2026.11.12-beta.5",
+  "generatedAt": "2026-11-12T12:31:13.962Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 419449,
+  "packageBytes": 438580,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.41478,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Al santuario di Santa Giuliana safety information",
       "url": "safety.json",
-      "bytes": 1767,
-      "sha256": "8c90e1317fa26f81be39203564299997f2de36815b404bf11623ad1766443a5d"
+      "bytes": 2225,
+      "sha256": "cdb1334f9ff8998b3b4786ce590ec4df5f93aa4bd9767306f649ac4775b55d4c"
     }
   ]
 }

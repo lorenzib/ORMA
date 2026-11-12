@@ -69,5 +69,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Boé gondola car park, Corvara, the board’s start": "Parcheggio della cabinovia Boé, Corvara, la partenza indicata dalla scheda ufficiale",
+    "Quiet roads with some traffic through Percosta and Colfosco: keep your dog close.": "Strade tranquille con un po' di traffico attraverso Percosta e Colfosco: tieni il cane vicino.",
+    "Cattle may graze on the valley pastures in summer.": "D'estate il bestiame può pascolare sui pascoli di fondovalle.",
+    "Paths shared with cyclists.": "Sentieri condivisi con i ciclisti."
+  }
 }

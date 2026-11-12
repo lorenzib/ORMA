@@ -55,5 +55,12 @@
       "downloadedAt": "2026-11-11",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Walk round the Colle di Santa Lucia": "Passeggiata intorno al Colle di Santa Lucia",
+    "The piazza of Colle Santa Lucia, by the church, the association’s start": "La piazza di Colle Santa Lucia, accanto alla chiesa, la partenza ufficiale",
+    "Village street at the start and end, with some cars: keep your dog on a short lead.": "Strada del paese alla partenza e all’arrivo, con qualche auto: tieni il cane al guinzaglio corto.",
+    "Steep road down from the piazza at the start.": "Strada ripida in discesa dalla piazza alla partenza.",
+    "The walk crosses hay meadows: keep your dog on the track.": "Il giro attraversa prati da sfalcio: tieni il cane sulla strada."
+  }
 }

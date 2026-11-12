@@ -41,5 +41,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Car park by the bridge over the Lago di Verzegnis, via Ambiesta below Chiaicis, the board’s start": "Parcheggio vicino al ponte sul Lago di Verzegnis, via Ambiesta sotto Chiaicis, partenza indicata dalla scheda ufficiale",
+    "Several suspension bridges without side rails on the way back: carry or closely hold your dog, or take the road via Chiaicis instead.": "Diversi ponti sospesi senza parapetti laterali al ritorno: porta in braccio il cane o tienilo ben stretto, oppure prendi invece la strada passando da Chiaicis.",
+    "Slippery, exposed stretches: not in uncertain weather, snow or ice.": "Tratti scivolosi ed esposti: non con tempo incerto, neve o ghiaccio.",
+    "The dam crest and a short stretch of tarred road.": "Il coronamento della diga e un breve tratto di strada asfaltata."
+  }
 }

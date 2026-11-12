@@ -37,5 +37,9 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Fenn Promenade": "Passeggiata del Fenn",
+    "Dorf bus stop and village car park, Klobenstein (official start)": "Fermata dell'autobus Dorf e parcheggio del paese, Klobenstein (partenza ufficiale)"
+  }
 }

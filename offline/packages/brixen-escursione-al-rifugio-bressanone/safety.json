@@ -55,5 +55,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Fane Alm to the Brixner Hütte": "Dalla Fane Alm alla Brixner Hütte",
+    "Fane Alm, the board’s start": "Fane Alm, la partenza indicata dalla scheda ufficiale",
+    "Cows graze around Fane Alm and in the upper valley in summer: keep your dog on a lead.": "D'estate le mucche pascolano intorno a Fane Alm e nell'alta valle: tieni il cane al guinzaglio.",
+    "Stony, steeper path by the waterfalls.": "Sentiero sassoso e più ripido vicino alle cascate.",
+    "Open high ground up to 2,280 m: turn back if storms build.": "Terreno d'alta quota aperto fino a 2.280 m: torna indietro se si formano temporali."
+  }
 }

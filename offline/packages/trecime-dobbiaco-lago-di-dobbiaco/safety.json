@@ -76,5 +76,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Toblach tourist office, the board’s start": "Ufficio turistico di Toblach, la partenza indicata dalla scheda ufficiale",
+    "Paved road and cycle path from Toblach to the lake: share it with bikes.": "Strada asfaltata e pista ciclabile da Toblach al lago: condividile con le bici.",
+    "Keep your dog out of the lake, a protected natural monument.": "Tieni il cane fuori dal lago, un monumento naturale protetto.",
+    "A level crossing at the start.": "Un passaggio a livello alla partenza."
+  }
 }

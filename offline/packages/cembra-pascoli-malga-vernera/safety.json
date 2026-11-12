@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Malga Vernera Bassa car park, the APT’s start": "Parcheggio di Malga Vernera Bassa, la partenza indicata dall'APT",
+    "Cows graze these pastures in summer: keep your dog on the lead and give the herd room.": "D'estate le mucche pascolano su questi pascoli: tieni il cane al guinzaglio e lascia spazio alla mandria.",
+    "Grassy paths and gravel forest roads, stony in places.": "Sentieri erbosi e strade forestali sterrate, sassose in alcuni punti.",
+    "Open ground: little shelter in a storm.": "Terreno aperto: pochi ripari in caso di temporale."
+  }
 }

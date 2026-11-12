@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Vigo di Fassa (Strada Rezia), the APT’s start": "Vigo di Fassa (Strada Rezia), la partenza indicata dall'APT",
+    "A steady climb of about 130 m; the APT suggests walking poles.": "Una salita costante di circa 130 m; l'APT consiglia i bastoncini.",
+    "Steep cobbled avenue up to the church.": "Ripido viale acciottolato fino alla chiesa.",
+    "Village lanes in Vigo open to cars.": "Stradine del paese a Vigo aperte alle auto."
+  }
 }

@@ -54,5 +54,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Parcheggio di Crignes, the board’s start": "Parcheggio di Crignes, la partenza indicata dalla scheda ufficiale",
+    "About the first kilometre on lanes through Crignes and Mortisa, open to cars.": "Circa il primo chilometro su stradine attraverso Crignes e Mortisa, aperte alle auto.",
+    "The Volpera boulders are a climbing area: keep your dog close to the path.": "I massi di Volpera sono una zona di arrampicata: tieni il cane vicino al sentiero."
+  }
 }

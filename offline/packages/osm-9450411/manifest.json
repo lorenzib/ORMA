@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9450411",
   "name": "Poststeig",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:25:20.466Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.465Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 2301519,
+  "packageBytes": 2320904,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56675,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Poststeig safety information",
       "url": "safety.json",
-      "bytes": 2783,
-      "sha256": "0dc7bacbcd2b36f5e054e4ea63f14b961e95c4c8a77390b8471ffb25040ea40b"
+      "bytes": 3495,
+      "sha256": "5d26f1531c1df83d1083bb1e49f35da3ff05cbf823a809dc7f490f3757e5d992"
     }
   ]
 }

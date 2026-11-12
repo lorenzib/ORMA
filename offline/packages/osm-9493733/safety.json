@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pedraces bus stop (Pidrô), Strada Pedraces": "Fermata dell'autobus di Pedraces (Pidrô), Strada Pedraces",
+    "60 m along the SS244 main road at the start, with a zebra crossing.": "60 m lungo la strada principale SS244 alla partenza, con un passaggio pedonale.",
+    "About 2.5 km on village roads with cars, partly asphalt.": "Circa 2,5 km su strade di paese con auto, in parte asfaltate.",
+    "Roots and ruts on the forest tracks.": "Radici e solchi sulle strade forestali."
+  }
 }

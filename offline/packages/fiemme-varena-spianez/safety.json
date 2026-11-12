@@ -56,5 +56,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Varena (the village square), the APT’s start": "Varena (la piazza del paese), partenza indicata dall'APT",
+    "Quiet village lanes at the start and end, open to cars, and a few metres on the Lavazè pass road (SS620) in the village: keep your dog close.": "Tranquille stradine del paese alla partenza e all'arrivo, aperte alle auto, e pochi metri sulla strada del passo di Lavazè (SS620) in paese: tieni il cane vicino.",
+    "Loose small stones on the last stretch, which the APT warns can stop small pram wheels.": "Sassolini smossi nell'ultimo tratto, che secondo l'APT possono bloccare le ruote piccole dei passeggini.",
+    "Open meadows: in summer stay on the track and keep your dog off the hay.": "Prati aperti: d'estate resta sulla carrareccia e tieni il cane fuori dal fieno."
+  }
 }

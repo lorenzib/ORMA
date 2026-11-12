@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12371666",
   "name": "Kastelaz Promenade",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:25:20.300Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.259Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 505704,
+  "packageBytes": 524840,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.33901,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Kastelaz Promenade safety information",
       "url": "safety.json",
-      "bytes": 1826,
-      "sha256": "f76d18d9e85478b05722c8be06a9eb7633fb3cf7cf90f8972be3f88bb779a153"
+      "bytes": 2289,
+      "sha256": "fed345d890680cd3216f81b74a1e3a0abaae5e9581aabdc5297e61fa3d9f8c74"
     }
   ]
 }

@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Sevignano (car park by the war memorial on the SP 71), the APT’s start": "Sevignano (parcheggio vicino al monumento ai caduti sulla SP 71), la partenza indicata dall'APT",
+    "A cobbled lane and village streets at the start.": "Una stradina acciottolata e vie del paese alla partenza.",
+    "Forest roads and woodland paths, some steep.": "Strade forestali e sentieri nel bosco, alcuni ripidi.",
+    "About 1 km back on a quiet tarred lane open to cars.": "Circa 1 km di ritorno su una tranquilla stradina asfaltata aperta alle auto."
+  }
 }

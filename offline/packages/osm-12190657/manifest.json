@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12190657",
   "name": "Rundweg Langfenn",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:25:20.290Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.247Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 494625,
+  "packageBytes": 513564,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.57259,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Langfenn safety information",
       "url": "safety.json",
-      "bytes": 1175,
-      "sha256": "e7902c30e0d5c3dbef0a9732db6d1a897879cd10c6378f08085362e1c619d85a"
+      "bytes": 1441,
+      "sha256": "6695416fa8504ca9ee05331abf76eeb38b1d0f1f857d5e24dcc3c0ac531c7997"
     }
   ]
 }

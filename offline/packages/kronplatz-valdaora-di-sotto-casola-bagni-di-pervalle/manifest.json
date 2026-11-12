@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle",
   "name": "Valdaora di Sotto to Bad Bergfall",
-  "version": "2026.11.11-beta.4",
-  "generatedAt": "2026-11-11T18:25:20.137Z",
+  "version": "2026.11.12-beta.5",
+  "generatedAt": "2026-11-12T12:31:14.077Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 945718,
+  "packageBytes": 965277,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.72851,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Valdaora di Sotto to Bad Bergfall safety information",
       "url": "safety.json",
-      "bytes": 1976,
-      "sha256": "6a220e79872ce496a12c74af1e0060cf50a36b162ecb0f2ccf30b4b9c8a99f70"
+      "bytes": 2862,
+      "sha256": "8aa3ce571964641c1312248608b368dc8fc0a3504b47a2e65f5c42dc613338a2"
     }
   ]
 }

@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "San Martino di Castrozza, the APT’s start": "San Martino di Castrozza, la partenza indicata dall'APT",
+    "Village streets and road crossings in San Martino at the start and end.": "Strade del paese e attraversamenti stradali a San Martino, all'inizio e alla fine.",
+    "Gravel forest road, shared with forestry vehicles.": "Strada forestale sterrata, percorsa anche da mezzi forestali.",
+    "A forest path up the side of the valley.": "Un sentiero nel bosco che risale il fianco della valle."
+  }
 }

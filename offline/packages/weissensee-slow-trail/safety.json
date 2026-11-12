@@ -62,5 +62,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "the Ronacherfels on the north shore, the board’s start": "il Ronacherfels sulla riva nord, partenza indicata dalla scheda ufficiale",
+    "A narrow lakeside path with roots and short steps that runs right above the water in places: keep your dog close.": "Uno stretto sentiero lungolago con radici e brevi gradini che in alcuni punti corre proprio sopra l'acqua: tieni il cane vicino.",
+    "The boardwalk at the east end is shared with cyclists.": "La passerella di legno all'estremità est è condivisa con i ciclisti.",
+    "Swimmers and boats near the shore in summer.": "In estate bagnanti e barche vicino alla riva."
+  }
 }

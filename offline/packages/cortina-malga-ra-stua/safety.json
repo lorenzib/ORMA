@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Parcheggio Sant Hubertus, the board’s start": "Parcheggio Sant Hubertus, la partenza indicata dalla scheda ufficiale",
+    "Bridges and wet rock beside the waterfalls in the Souto de Ra Stua gorge.": "Ponti e roccia bagnata accanto alle cascate nella forra del Souto de Ra Stua.",
+    "Cows and horses graze round Malga Ra Stua in summer: keep your distance.": "D'estate mucche e cavalli pascolano intorno a Malga Ra Stua: mantieni le distanze.",
+    "The road to Ra Stua carries a shuttle bus in summer.": "D'estate sulla strada per Ra Stua circola una navetta."
+  }
 }

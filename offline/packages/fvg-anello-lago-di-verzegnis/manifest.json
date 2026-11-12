@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fvg-anello-lago-di-verzegnis",
   "name": "Anello del Lago di Verzegnis",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.055Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:13.997Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 349733,
+  "packageBytes": 369230,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.37391,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Anello del Lago di Verzegnis safety information",
       "url": "safety.json",
-      "bytes": 1525,
-      "sha256": "ee8ad0f387d1b3c49e2f33dd0c6b9fae4b5ed4f8d9b9d1f588331672b2b17730"
+      "bytes": 2349,
+      "sha256": "0555a9837ba87008a4c4af0a3fe73f49d2ce188484f7a6ddfe5882d1c73cecd1"
     }
   ]
 }

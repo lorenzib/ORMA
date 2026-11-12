@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7549783",
   "name": "Anello del Troi de le Ciaure",
-  "version": "2026.11.11-beta.6",
-  "generatedAt": "2026-11-11T18:25:20.450Z",
+  "version": "2026.11.12-beta.7",
+  "generatedAt": "2026-11-12T12:31:14.447Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 515553,
+  "packageBytes": 534704,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.48829,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Anello del Troi de le Ciaure safety information",
       "url": "safety.json",
-      "bytes": 1610,
-      "sha256": "123d9aa17879b67997a19eada2e948b553e68e66f23a43a0ceb33e2924c5f563"
+      "bytes": 2088,
+      "sha256": "d6e48710f263eb8b3afe6c1426017e93fc1d0d0c93dd0fe9e8baac6c595112b2"
     }
   ]
 }

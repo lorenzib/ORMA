@@ -47,5 +47,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Malga Boer (Passo San Pellegrino), the APT’s start": "Malga Boer (Passo San Pellegrino), partenza indicata dall'APT",
+    "All on a narrow tarmac lane shared with the refuges’ vehicles.": "Tutto su una stretta stradina asfaltata condivisa con i mezzi dei rifugi.",
+    "Alpine pastures with cattle in summer: keep your distance.": "Pascoli alpini con bestiame d'estate: tieniti a distanza."
+  }
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-16218739",
   "name": "Circuit du Ragairon",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:25:20.349Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.308Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 565982,
+  "packageBytes": 585109,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.55579,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Circuit du Ragairon safety information",
       "url": "safety.json",
-      "bytes": 1412,
-      "sha256": "d8855983a99b57d1d36948dfab5a31a72f57fdd6273e0b69a92db528915f607e"
+      "bytes": 1866,
+      "sha256": "94ad87eda38130a6fc3aed38c321a2bb9f4d3a8e91e4081ad8d99327ed6ff157"
     }
   ]
 }

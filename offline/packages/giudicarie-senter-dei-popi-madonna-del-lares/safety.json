@@ -77,5 +77,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Località Fiana, Bondo, the APT’s start": "Località Fiana, Bondo, la partenza indicata dall'APT",
+    "A suspension bridge over the gorge of the Arnò and a walkway between the rock and the riverbed in the first kilometre.": "Un ponte sospeso sulla forra dell'Arnò e una passerella tra la roccia e il letto del fiume nel primo chilometro.",
+    "The path by the streams is damp and slippery, and can stay icy in spring.": "Il sentiero lungo i torrenti è umido e scivoloso, e in primavera può restare ghiacciato.",
+    "About half on quiet tarmac lanes through Breguzzo, open to cars.": "Circa metà su stradine asfaltate tranquille attraverso Breguzzo, aperte alle auto."
+  }
 }

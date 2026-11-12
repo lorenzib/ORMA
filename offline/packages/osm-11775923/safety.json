@@ -77,5 +77,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Neustift abbey car park, bus stop Neustift Kloster (official start)": "Parcheggio dell'abbazia di Neustift, fermata dell'autobus Neustift Kloster (partenza ufficiale)",
+    "About 550 m on the Stiftstraße and a crossing of the old Pustertaler Straße (SS49).": "Circa 550 m sulla Stiftstraße e un attraversamento della vecchia Pustertaler Straße (SS49).",
+    "A steep lane (15%) near km 4.4.": "Una stradina ripida (15%) verso il km 4,4.",
+    "A stretch on the Eisack cycle path, shared with bikes.": "Un tratto sulla ciclabile dell'Eisack, condiviso con le bici."
+  }
 }

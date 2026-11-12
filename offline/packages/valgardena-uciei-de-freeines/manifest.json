@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-uciei-de-freeines",
   "name": "Uciei de Frëines",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.772Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.766Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 533222,
+  "packageBytes": 552495,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56118,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Uciei de Frëines safety information",
       "url": "safety.json",
-      "bytes": 1331,
-      "sha256": "d720451dd87026ee39d2410811f1afb2664a8ef9d3df3d6528f54e4c883b37d7"
+      "bytes": 1931,
+      "sha256": "2dc9cce1811ac1abf2a88746e4125a9eab5e3e5f1d6babb5e610637b3fbb6679"
     }
   ]
 }

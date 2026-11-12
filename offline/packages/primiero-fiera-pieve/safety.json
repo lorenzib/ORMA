@@ -70,5 +70,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Autostazione delle Corriere, the APT’s start": "Autostazione delle Corriere, la partenza indicata dall'APT",
+    "Mostly tarmac and stone setts in the town, open to cars.": "Per lo più asfalto e cubetti di pietra in paese, aperti alle auto.",
+    "Several crossings of the busy main road through Fiera, as the APT warns.": "Diversi attraversamenti della trafficata strada principale che attraversa Fiera, come avverte l'APT.",
+    "Playgrounds on the way, where dogs may not go.": "Parchi giochi lungo la via, dove i cani non possono entrare."
+  }
 }

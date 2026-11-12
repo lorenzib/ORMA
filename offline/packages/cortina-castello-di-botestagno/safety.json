@@ -39,5 +39,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Ingresso del Parco Naturale delle Dolomiti d'Ampezzo, the board’s start": "Ingresso del Parco Naturale delle Dolomiti d'Ampezzo, la partenza indicata dalla scheda ufficiale",
+    "Forest path with roots and loose stones up to the castle hill.": "Sentiero nel bosco con radici e sassi instabili fino alla collina del castello.",
+    "The start is by the busy road from Cortina to Cimabanche.": "La partenza è vicino alla trafficata strada da Cortina a Cimabanche."
+  }
 }

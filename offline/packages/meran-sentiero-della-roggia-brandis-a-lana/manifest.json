@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-sentiero-della-roggia-brandis-a-lana",
   "name": "Brandis-Waalweg, Lana to the Brandis waterfall",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.202Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.156Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 717790,
+  "packageBytes": 737446,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59035,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Brandis-Waalweg, Lana to the Brandis waterfall safety information",
       "url": "safety.json",
-      "bytes": 1555,
-      "sha256": "cc39c75b7f7221c05dfda4a43626b81e73692cbafbc672f11e8205ee51a72c8e"
+      "bytes": 2538,
+      "sha256": "43fb9b5762e534f8a1af199427322cfd85c7be6e112d0e6dbde2442107bc8ca3"
     }
   ]
 }

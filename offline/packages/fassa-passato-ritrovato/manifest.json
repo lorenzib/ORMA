@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-passato-ritrovato",
   "name": "Il passato ritrovato",
-  "version": "2026.11.11-beta.4",
-  "generatedAt": "2026-11-11T18:25:20.015Z",
+  "version": "2026.11.12-beta.5",
+  "generatedAt": "2026-11-12T12:31:13.956Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 549362,
+  "packageBytes": 568539,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.46963,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Il passato ritrovato safety information",
       "url": "safety.json",
-      "bytes": 1938,
-      "sha256": "1cb484e666d294c6c1cd989921075f0f2ffc33ba2d2e9fe23b3de36b0ce39a63"
+      "bytes": 2442,
+      "sha256": "a7830f70d2f6dd0fefceed2a70cd3ad3a6c1eb9d37e594063931970b6c5f650e"
     }
   ]
 }

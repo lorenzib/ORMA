@@ -77,5 +77,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Roadside car park on the D206, 2 km before the Col des Prés coming from Chambéry (official start)": "Parcheggio a bordo strada sulla D206, 2 km prima del Col des Prés arrivando da Chambéry (partenza ufficiale)",
+    "Rock bands close to the path on the summit crest and the steep grassy descent.": "Fasce rocciose vicino al sentiero sulla cresta sommitale e sulla ripida discesa erbosa.",
+    "A fairly steep climb through the forest and a faint path in places (official).": "Una salita piuttosto ripida nel bosco e un sentiero poco evidente in alcuni punti (indicazione ufficiale).",
+    "Cattle behind fences in the pastures.": "Mucche dietro le recinzioni nei pascoli."
+  }
 }

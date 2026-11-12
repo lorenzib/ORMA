@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "giudicarie-senter-dei-popi-madonna-del-lares",
   "name": "Senter dei Popi – Madonna del Lares",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.081Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.022Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1390641,
+  "packageBytes": 1410016,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.99585,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Senter dei Popi – Madonna del Lares safety information",
       "url": "safety.json",
-      "bytes": 2293,
-      "sha256": "22b59ae3b867293c986072a971a215c8e07f4d4c3c5e512bfde3bb843b0b8726"
+      "bytes": 2995,
+      "sha256": "b355758e3385bcd6217f4d45b5cc366bde61fab1a01f05a0532a61d412452d9e"
     }
   ]
 }

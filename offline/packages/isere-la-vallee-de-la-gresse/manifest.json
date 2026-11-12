@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "isere-la-vallee-de-la-gresse",
   "name": "Gresse valley loop from Miribel-Lanchâtre",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.092Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.035Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 411075,
+  "packageBytes": 430487,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 44.96145,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Gresse valley loop from Miribel-Lanchâtre safety information",
       "url": "safety.json",
-      "bytes": 1345,
-      "sha256": "6903e7d1854d4d60ee9f8bddf8883ff5b92b6711b9b8d1a276e661157106507d"
+      "bytes": 2084,
+      "sha256": "d502f3b48a0467b2169bd70a8e645c8eb6c617fffc58dd4c5b96b9657e061af9"
     }
   ]
 }

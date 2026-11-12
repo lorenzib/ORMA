@@ -69,5 +69,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Innichen, the board’s start": "Innichen, la partenza indicata dalla scheda ufficiale",
+    "Summer 2026: the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built: keep your dog close on the forest road.": "Estate 2026: la scheda ufficiale segnala un forte traffico di cantiere sul sentiero 4 per la costruzione della nuova cabinovia Helmissimo: tieni il cane vicino sulla strada forestale.",
+    "Forest roads shared with forestry vehicles.": "Strade forestali percorse anche da mezzi forestali.",
+    "Farm lanes past the Hösler and Ladstätter farms: watch for tractors.": "Stradine tra i masi Hösler e Ladstätter: attenzione ai trattori."
+  }
 }

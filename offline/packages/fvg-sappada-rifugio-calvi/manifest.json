@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fvg-sappada-rifugio-calvi",
   "name": "Rifugio Calvi",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.066Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.007Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 251576,
+  "packageBytes": 270844,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61649,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rifugio Calvi safety information",
       "url": "safety.json",
-      "bytes": 1405,
-      "sha256": "4e05903ca99ce20f616448b09d41ea1fcc7d8d86efecd2b5ddeb87b83a700957"
+      "bytes": 2000,
+      "sha256": "8722fb4014a1218490ac14bea0356c41ca8bc1620b1b4bd0b43fd75e5c41f40d"
     }
   ]
 }

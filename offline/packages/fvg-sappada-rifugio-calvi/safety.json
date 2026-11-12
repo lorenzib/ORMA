@@ -41,5 +41,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Car park at the junction for the Piave springs above Cima Sappada, the board’s start": "Parcheggio al bivio per le sorgenti del Piave sopra Cima Sappada, partenza indicata dalla scheda ufficiale",
+    "High and open above 1,800 m: storms build fast on summer afternoons.": "In quota e aperto sopra i 1.800 m: nei pomeriggi estivi i temporali si formano in fretta.",
+    "Loose gravel on the steeper bends.": "Ghiaia smossa sui tornanti più ripidi.",
+    "Grazing animals may be about: keep your dog close.": "Possono esserci animali al pascolo: tieni il cane vicino."
+  }
 }

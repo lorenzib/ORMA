@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "eggental-passo-nigra-baita-messnerjoch",
   "name": "Passo Nigra to the Baita Messnerjoch",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:19.958Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:13.896Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 452631,
+  "packageBytes": 471848,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.44353,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passo Nigra to the Baita Messnerjoch safety information",
       "url": "safety.json",
-      "bytes": 1284,
-      "sha256": "cc61bb72082e0818f944bdb225e617d40367b5f7e01ec9d1b33576a5a3f7fe75"
+      "bytes": 1828,
+      "sha256": "dcae44c8b0b8cb1ed8393db4bbe34a012f34f6f43835c45679ce7e0687a6a1a1"
     }
   ]
 }

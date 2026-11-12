@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valtellina-passo-di-campagneda",
   "name": "Campo Moro to the Passo di Campagneda",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.796Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.791Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 339865,
+  "packageBytes": 359373,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.28765,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Campo Moro to the Passo di Campagneda safety information",
       "url": "safety.json",
-      "bytes": 1408,
-      "sha256": "ee041f085b89371aed09d8db7e280019d9a36bfd2775b069c5ed22f441388ad7"
+      "bytes": 2243,
+      "sha256": "633c34ce6ffd2b2599c88b0484c463cfb18bf29076144d596f7f897addf0395e"
     }
   ]
 }

@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Baita Monte Pat car park above Montesover, the APT’s start": "Parcheggio della Baita Monte Pat sopra Montesover, la partenza indicata dall'APT",
+    "A forest road open to farm and forestry vehicles.": "Una strada forestale aperta ai mezzi agricoli e forestali.",
+    "Cows graze the pastures round Malga Vernera in summer: keep your dog on the lead and give the herd room.": "D'estate le mucche pascolano intorno a Malga Vernera: tieni il cane al guinzaglio e lascia spazio alla mandria.",
+    "A steady climb of about 180 m.": "Una salita costante di circa 180 m."
+  }
 }

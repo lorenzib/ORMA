@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "weissensee-techendorf-tschabitscher-kreuzwirt",
   "name": "Techendorf to the Kreuzwirt, Weissensee",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.851Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.848Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 951710,
+  "packageBytes": 971482,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.71228,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Techendorf to the Kreuzwirt, Weissensee safety information",
       "url": "safety.json",
-      "bytes": 1708,
-      "sha256": "2b8c2abdd538a7e4966a28282cdc30288aa0b4703d7045e29bff9727625ed90c"
+      "bytes": 2807,
+      "sha256": "0de310eb0b6b48b90f2cc2192c7d4aba2776d1736ed79e280e90f3b9f8709645"
     }
   ]
 }

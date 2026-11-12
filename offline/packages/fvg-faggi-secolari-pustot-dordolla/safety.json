@@ -40,5 +40,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Dordolla village, Val Aupa, the board’s start": "Borgo di Dordolla, Val Aupa, partenza indicata dalla scheda ufficiale",
+    "Steep climbs and descents on old mule tracks: slippery after rain.": "Salite e discese ripide su antiche mulattiere: scivolose dopo la pioggia.",
+    "Not advised after heavy rain.": "Sconsigliato dopo piogge abbondanti.",
+    "Ticks are common in the region: check your dog after the walk.": "Le zecche sono comuni nella zona: controlla il tuo cane dopo la passeggiata."
+  }
 }

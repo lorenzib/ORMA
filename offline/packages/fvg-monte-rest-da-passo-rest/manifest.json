@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fvg-monte-rest-da-passo-rest",
   "name": "Dal Passo Rest al Monte Rest",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.065Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.006Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 345396,
+  "packageBytes": 364649,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.34353,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dal Passo Rest al Monte Rest safety information",
       "url": "safety.json",
-      "bytes": 1330,
-      "sha256": "48095737cfc83bed00c88fc7a2aa1b6cd6e10c579325dda483f404b99028f74f"
+      "bytes": 1910,
+      "sha256": "9dda9d0e0d0d0b696da399c42e7410e3dec57d2ece72a5ee763b5ec0067cdb41"
     }
   ]
 }

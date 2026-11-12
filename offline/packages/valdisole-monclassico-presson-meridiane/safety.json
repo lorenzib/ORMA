@@ -103,5 +103,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Monclassico and Presson, the sundial villages": "Monclassico e Presson, i paesi delle meridiane",
+    "Church of San Lorenzo, Dimaro, the APT’s start": "Chiesa di San Lorenzo, Dimaro, partenza indicata dall'APT",
+    "Village lanes shared with cars.": "Stradine di paese condivise con le auto.",
+    "A short flight of steps.": "Una breve rampa di gradini."
+  }
 }

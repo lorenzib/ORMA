@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14381570",
   "name": "Albanne",
-  "version": "2026.11.11-beta.6",
-  "generatedAt": "2026-11-11T18:25:20.330Z",
+  "version": "2026.11.12-beta.7",
+  "generatedAt": "2026-11-12T12:31:14.290Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 579383,
+  "packageBytes": 598266,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.20183,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Albanne safety information",
       "url": "safety.json",
-      "bytes": 2220,
-      "sha256": "5a4580c58bb9b8950dda028b713fc7bbbbf022e8e004bfad26f01c6ba7851ef2"
+      "bytes": 2430,
+      "sha256": "2403703c4e7ffc2f34840a21c3c9520f886d1710d0bc2e5903b83a0e3a41f6da"
     }
   ]
 }

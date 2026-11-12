@@ -63,5 +63,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Autostazione delle Corriere, the APT’s start": "Autostazione delle Corriere, la partenza indicata dall'APT",
+    "Mostly tarmac in the village streets, open to cars.": "Per lo più asfalto nelle strade del paese, aperte al traffico.",
+    "Crossings of busy roads, as the APT warns.": "Attraversamenti di strade trafficate, come avverte l'APT.",
+    "A short climb into the upper village.": "Una breve salita verso la parte alta del paese."
+  }
 }

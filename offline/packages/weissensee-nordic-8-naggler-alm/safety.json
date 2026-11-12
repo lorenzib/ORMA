@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Climb to the Naggler Alm, Weissensee": "Salita alla Naggler Alm, Weissensee",
+    "car park P 7 on the south shore at Techendorf, the board’s start (Nordic Walking centre “Süd”)": "parcheggio P 7 sulla riva sud a Techendorf, partenza indicata dalla scheda ufficiale (centro di nordic walking “Süd”)",
+    "Steep: 385 m of climbing in 3.1 km, with about 500 m of steep, rough track that OpenStreetMap grades as demanding mountain hiking (T3): sure-footed walking, no exposure.": "Ripido: 385 m di salita in 3,1 km, con circa 500 m di strada ripida e accidentata che OpenStreetMap classifica come escursionismo di montagna impegnativo (T3): serve passo sicuro, nessun tratto esposto.",
+    "Cattle may graze the Naggler Alm pastures in summer: short lead, give the herd room.": "In estate sui pascoli della Naggler Alm possono pascolare le mucche: guinzaglio corto, lascia spazio alla mandria.",
+    "Forest tracks open to forestry vehicles.": "Strade forestali aperte ai mezzi forestali."
+  }
 }

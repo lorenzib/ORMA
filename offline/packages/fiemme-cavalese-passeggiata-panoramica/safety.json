@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Cavalese (Piazza Verdi), the APT’s start": "Cavalese (Piazza Verdi), partenza indicata dall'APT",
+    "Town streets and pavements at the start and end, open to cars.": "Vie e marciapiedi del paese alla partenza e all'arrivo, aperti alle auto.",
+    "An unlit former railway tunnel under the park.": "Una ex galleria ferroviaria non illuminata sotto il parco.",
+    "Steps up to the park belvedere.": "Gradini fino al belvedere del parco."
+  }
 }
