@@ -100,6 +100,8 @@ function applyLiftSeasons(trails, artifact){
           ? (lift.knownMonths.every(m => m >= 11 || m <= 4) ? { winterOnly: true } : { summerOnly: true })
           : {}),
         datesFor: lift.datesFor, operator: lift.operator || '', url: lift.url, accessedAt: lift.accessedAt,
+        // A lift that runs all year, closing only on days the operator posts.
+        ...(lift.allYear ? { allYear: true } : {}),
       };
       if(lift.valleyM && lift.topM && lift.topM > lift.valleyM) record.climbM = Math.round((lift.topM - lift.valleyM) / 10) * 10;
       return record;

@@ -127,4 +127,12 @@ describe('the curated file', () => {
       expect(words.bestMonths(trail.season) || []).not.toEqual([]);
     }
   });
+
+  test('a lift that runs all year says so, and shuts no month', () => {
+    const { applyLiftSeasons } = require('./scripts/lift-seasons');
+    const lift = { name: 'Example cable car', operator: 'Example commune', url: 'https://example.org/c', accessedAt: '2026-11-11', datesFor: '2026', allYear: true, periods: [{ from: '01-01', to: '12-31' }] };
+    const [trail] = applyLiftSeasons([{ id: 'a', liftAccess: { dependency: 'required' }, season: { highPoint: 1400, snow: { months: [1], likelihood: 'possible', highPoint: 1400 } } }], { lifts: { c: lift }, trails: { a: { lifts: ['c'] } } });
+    expect(trail.season.lifts[0]).toEqual(expect.objectContaining({ allYear: true, shutMonths: [] }));
+    expect(words.describe(trail.season).lifts[0].line).toBe('The Example cable car runs all year (2026), apart from closures the operator announces. The walk needs it.');
+  });
 });
