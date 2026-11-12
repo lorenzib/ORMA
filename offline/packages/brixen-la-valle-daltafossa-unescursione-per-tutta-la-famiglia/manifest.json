@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia",
   "name": "Altfasstal to the Wieserhütte",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T15:52:23.449Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.887Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1044574,
+  "packageBytes": 1044575,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.82112,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Altfasstal to the Wieserhütte safety information",
       "url": "safety.json",
-      "bytes": 1906,
-      "sha256": "fc43e76ede5396595819bfd37c58b2fb5d71117cd78ab595adc07495dc96c0d2"
+      "bytes": 1907,
+      "sha256": "26cde2a90b8789346058d9a50fb8208ff33fec1e42c72f4fd07dee7369344b30"
     }
   ]
 }

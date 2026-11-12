@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "weissensee-ortsee-ronacherfels",
   "name": "Neusach to the east shore by the Kleine Steinwand, Weissensee",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:26:38.842Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.845Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1181736,
+  "packageBytes": 1181737,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6858,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Neusach to the east shore by the Kleine Steinwand, Weissensee safety information",
       "url": "safety.json",
-      "bytes": 2099,
-      "sha256": "8e18809546c69ed7c2b3b4f98b4c4b482573760c3080189a1c6ee9c8f88adbea"
+      "bytes": 2100,
+      "sha256": "0f1d012b13a128ca8f6f2019f4bf454d9d080475a6dca43712eb1d486315bf6c"
     }
   ]
 }

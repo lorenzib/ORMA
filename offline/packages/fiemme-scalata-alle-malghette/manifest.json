@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-scalata-alle-malghette",
   "name": "La “scalata” alle Malghette",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:34.241Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.048Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 210823,
+  "packageBytes": 210819,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.2879,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "La “scalata” alle Malghette safety information",
       "url": "safety.json",
-      "bytes": 1487,
-      "sha256": "9b072b3f392bca35e62bbf8156bf7bb22ecaf7564a79757e45d5e7c06e132906"
+      "bytes": 1483,
+      "sha256": "d24c4497b7646bc9b4f7983d3fa8bc3baf2214a37f293eada782572fd2d50d06"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-bivacco-malga-baselga",
   "name": "Bivacco Malga Baselga",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:45:20.127Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.692Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 301925,
+  "packageBytes": 301926,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.27046,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Bivacco Malga Baselga safety information",
       "url": "safety.json",
-      "bytes": 1346,
-      "sha256": "5fa336a662646c544cdd3e92268e8bd84a7540f90f2056dfdca2691a174947e2"
+      "bytes": 1347,
+      "sha256": "740443a9615d5791d59582fb6ef5c3ddd3a48ddb06b2182a5a36f0a2d24f4419"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-dobbiaco-lago-di-dobbiaco",
   "name": "Toblach – Lago di Dobbiaco",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:29:32.396Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.622Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 771213,
+  "packageBytes": 771214,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.69351,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Toblach – Lago di Dobbiaco safety information",
       "url": "safety.json",
-      "bytes": 2115,
-      "sha256": "32e27e4e55cff9f091d67663c2aec2c3b020aa96aaa7b6db1aa45c2df467ef5c"
+      "bytes": 2116,
+      "sha256": "5fe65ed8b42603c94ab828446af5375e90890900ac90d88037d1a2d4bede9cb0"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "engadin-around-lake-st-moritz",
   "name": "Lake St. Moritz shore loop",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T20:43:26.483Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.965Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 777654,
+  "packageBytes": 777651,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.48511,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lake St. Moritz shore loop safety information",
       "url": "safety.json",
-      "bytes": 1312,
-      "sha256": "77fadda954edf2a842edcc50a970f52e380bb2c7b5694d5d7be9f94f36f84d98"
+      "bytes": 1309,
+      "sha256": "90b47cb22835325a29ce8681ed88888b906c7e735d4fbb8aa91390e6cbe91370"
     }
   ]
 }

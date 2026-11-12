@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14378946",
   "name": "Lac de Pramol",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:35.379Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.325Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 433366,
+  "packageBytes": 433362,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.20923,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lac de Pramol safety information",
       "url": "safety.json",
-      "bytes": 2117,
-      "sha256": "87a4bee72f761dbf0fd2eed146e0c38259977fdb8a7b65a870d77b4dbd52b241"
+      "bytes": 2113,
+      "sha256": "023ba79ead197bea1ac6c37cfd19cddda1a8eb8883bd31823d1c1faab6b0cee4"
     }
   ]
 }

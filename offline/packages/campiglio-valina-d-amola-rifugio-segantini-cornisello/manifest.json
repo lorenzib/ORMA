@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "campiglio-valina-d-amola-rifugio-segantini-cornisello",
   "name": "Valina d’Amola – Segantini – Cornisello",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:57:05.718Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.902Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 392537,
+  "packageBytes": 392533,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.20167,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Valina d’Amola – Segantini – Cornisello safety information",
       "url": "safety.json",
-      "bytes": 1336,
-      "sha256": "11e3cf554a427a05ab1bbd018d1481717cc7a134bdbd0ad764ee1d03809d99d1"
+      "bytes": 1332,
+      "sha256": "19cdbcdce352056ee3f120acb905970b4c833e07eb0e960e6498cc64f69b0df3"
     }
   ]
 }

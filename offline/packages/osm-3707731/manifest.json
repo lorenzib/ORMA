@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-3707731",
   "name": "Gratschenbergrunde",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:35.712Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.388Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 480171,
+  "packageBytes": 480172,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.64876,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Gratschenbergrunde safety information",
       "url": "safety.json",
-      "bytes": 1772,
-      "sha256": "1adcbaeb53d91b6df4b52927f3b3a869127a5eee1bdc03dfd5ea8d0e5eb40b8c"
+      "bytes": 1773,
+      "sha256": "5a54077f20455427af3ffa0cad13920105b873618e1b3300e23f857df597d167"
     }
   ]
 }

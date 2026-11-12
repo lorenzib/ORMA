@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "aosta-ru-courtaud",
   "name": "Rû Courtaud",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:04:22.003Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.865Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 966097,
@@ -233,7 +233,7 @@
       "label": "Rû Courtaud safety information",
       "url": "safety.json",
       "bytes": 1980,
-      "sha256": "53fa41f1eb35724eb5163292eaa12f792031f88f0d4856eb130aa0333c8a1b76"
+      "sha256": "71ec691a1158cb5d8f9c8e5f471175ce83b1d3180ff798e6c3a3e88b7534ba3c"
     }
   ]
 }

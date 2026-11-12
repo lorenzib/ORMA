@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "villnoess-ranui-zannes",
   "name": "Ranui to Zannes",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:45:02.162Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.811Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 568636,
+  "packageBytes": 568633,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62412,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Ranui to Zannes safety information",
       "url": "safety.json",
-      "bytes": 1433,
-      "sha256": "933c3ebbe2d623f291ad90210ca945c118ac1c577a826ad9be7432ff97d1b081"
+      "bytes": 1430,
+      "sha256": "821ef583804891f0b9b61c03f8ab35b99c695ab2752f80dc64a49eb9f3a6be84"
     }
   ]
 }

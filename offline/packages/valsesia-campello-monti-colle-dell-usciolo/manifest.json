@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "valsesia-campello-monti-colle-dell-usciolo",
   "name": "Campello Monti to the Colle dell’Usciolo",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T17:33:08.704Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.787Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 334459,
@@ -233,7 +233,7 @@
       "label": "Campello Monti to the Colle dell’Usciolo safety information",
       "url": "safety.json",
       "bytes": 1345,
-      "sha256": "5788d6c7383b4bbfcbb024b260fe9e674984e016fc25b86f660b52dda675dd4e"
+      "sha256": "d8a003f50fdc2d4ac0dc40be5e33215f4ad281d6785127195dbd43e4f4a25834"
     }
   ]
 }

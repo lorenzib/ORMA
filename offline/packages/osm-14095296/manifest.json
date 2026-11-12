@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14095296",
   "name": "Les Marais d'Albens",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.317Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.319Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 555742,
+  "packageBytes": 555743,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.78551,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Les Marais d'Albens safety information",
       "url": "safety.json",
-      "bytes": 1239,
-      "sha256": "f24bbda20ad5b9b411ad9bec8e06594adfdcf83db7946ab4b60829773d50e7ab"
+      "bytes": 1240,
+      "sha256": "0aa59aa98354a73ad003215b46ce1ae60b9c4bb71945807316e3b32a6b0c666d"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12736753",
   "name": "Albeins-Klerant-Milland - Albes-Cleran-Millan",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.892Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.306Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1234612,
+  "packageBytes": 1234617,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67235,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Albeins-Klerant-Milland - Albes-Cleran-Millan safety information",
       "url": "safety.json",
-      "bytes": 2381,
-      "sha256": "cd5f4d24da92ece5fe10fb53b684e9f5bf2d5cba4fc07bed85c6483f8001fc6d"
+      "bytes": 2386,
+      "sha256": "dcfcdfc960ea56609fd4ce5ec377541b1fe8b098c5e6a5f75cf140bf969ba67d"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-16395076",
   "name": "Boucle du Lac de la Thuile",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.563Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.356Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 438027,
+  "packageBytes": 438023,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.5243,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Boucle du Lac de la Thuile safety information",
       "url": "safety.json",
-      "bytes": 1122,
-      "sha256": "25b0a0114a36f13e34ca3ed80059dd0649e581c18da910fce44cba2859cc979c"
+      "bytes": 1118,
+      "sha256": "aab9c4ac2a1acb2b79615e9ed671e0dbea8eb3ded065566661a198400270bfd3"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12173965",
   "name": "Kleine Schlossrunde",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.797Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.279Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 470738,
+  "packageBytes": 470734,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.75363,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Kleine Schlossrunde safety information",
       "url": "safety.json",
-      "bytes": 1759,
-      "sha256": "ae0718b660daa79817ac940f39e9965da369703409ba03f3360fd2193b44ec5c"
+      "bytes": 1755,
+      "sha256": "ffcd7f71b59115ebd1f2a90d2f8ff1827e05aa1bbfcc1c15d25c2d2b4d0dda9f"
     }
   ]
 }

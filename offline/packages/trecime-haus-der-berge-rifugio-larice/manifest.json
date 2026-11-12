@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "trecime-haus-der-berge-rifugio-larice",
   "name": "Haus der Berge – Lärchenhütte",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:16:59.099Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.627Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 454944,
@@ -233,7 +233,7 @@
       "label": "Haus der Berge – Lärchenhütte safety information",
       "url": "safety.json",
       "bytes": 1356,
-      "sha256": "9c0c2291fc4450593f485b06ef2ef30ce44caaf321d84a57332b0ced432b565a"
+      "sha256": "6959be214a8f619d9a7a371fda543b23ad86e1f4a4b95ce155f3d77755022a68"
     }
   ]
 }

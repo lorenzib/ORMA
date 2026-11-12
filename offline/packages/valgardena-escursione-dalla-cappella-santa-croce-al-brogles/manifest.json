@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-escursione-dalla-cappella-santa-croce-al-brogles",
   "name": "Santa Croce – Brogles",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:46:48.755Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.734Z",
+  "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 644914,
+  "packageBytes": 644915,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.58877,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Santa Croce – Brogles safety information",
       "url": "safety.json",
-      "bytes": 1441,
-      "sha256": "e5f30865a6cf4cf8464ab333bd7821f8abb6fb3829d5ebd3a571460bd8c9b058"
+      "bytes": 1442,
+      "sha256": "84e296e66a43a6afa00e6eaffbf0cd9f33afefd5511698864c8da7521ac581dd"
     }
   ]
 }

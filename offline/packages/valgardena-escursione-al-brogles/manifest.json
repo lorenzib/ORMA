@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-escursione-al-brogles",
   "name": "Resciesa – Brogles",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:33:43.611Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.721Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 471462,
+  "packageBytes": 471463,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59384,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Resciesa – Brogles safety information",
       "url": "safety.json",
-      "bytes": 1340,
-      "sha256": "be70482d61d8ce1f775c607439e22fb0ab1966c1e0f09ba47fc82ac10ac9655b"
+      "bytes": 1341,
+      "sha256": "68a68ec4f974bc47afc2a4eb51cf49bb0d11532a36dd6571ea63c3090c217c44"
     }
   ]
 }

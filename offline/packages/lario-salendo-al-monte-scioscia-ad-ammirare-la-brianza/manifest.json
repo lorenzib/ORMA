@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza",
   "name": "Monte Scioscia viewpoint loop",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:31:48.108Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.164Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1169136,
+  "packageBytes": 1169132,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.81972,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Monte Scioscia viewpoint loop safety information",
       "url": "safety.json",
-      "bytes": 1620,
-      "sha256": "ac8bc39c079360bcb82f0f321c709fb4fc2e6eaedb4369b397f1261e511ecfa9"
+      "bytes": 1616,
+      "sha256": "663b1a2eca78560aadccf13ee4c4155157f7002b7deda8d6c3597017ad1aec5d"
     }
   ]
 }

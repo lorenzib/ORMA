@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "engadin-nature-trail-la-senda-samedan-smartrail",
   "name": "La Senda nature trail, Samedan",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T20:48:14.366Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.982Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 789585,
@@ -233,7 +233,7 @@
       "label": "La Senda nature trail, Samedan safety information",
       "url": "safety.json",
       "bytes": 1380,
-      "sha256": "fd028e13550ea28e44e1a8bb193ed8b2d766ae33eb94afd9f056a98b6fcf9aaf"
+      "sha256": "61e25beae14ca0eb38a7b0fcc29c7decf094963279d444276dbe174f8248f8f0"
     }
   ]
 }

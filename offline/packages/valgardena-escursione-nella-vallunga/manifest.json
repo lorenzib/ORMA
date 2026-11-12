@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-escursione-nella-vallunga",
   "name": "Vallunga",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:46:58.433Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.736Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 281624,
+  "packageBytes": 281620,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56032,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Vallunga safety information",
       "url": "safety.json",
-      "bytes": 2465,
-      "sha256": "aa408894062d6892aabdc1c540d5717ddf9ee64e08db5170bedb755345afb8a5"
+      "bytes": 2461,
+      "sha256": "5869e22885ab27a68c222e749758bce2809f93a83dca39b9234f070f961f7084"
     }
   ]
 }

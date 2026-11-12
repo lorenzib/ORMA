@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-pradi-da-le-fior",
   "name": "I Pradi da le Fior",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T11:59:45.661Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.047Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 371167,
+  "packageBytes": 371164,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.1973,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "I Pradi da le Fior safety information",
       "url": "safety.json",
-      "bytes": 1446,
-      "sha256": "a25d32e1e7d43a6899878b2634462156f460643491577cb6b11a71c2adf0ee5a"
+      "bytes": 1443,
+      "sha256": "80ce7d9f9bbd96e5c752a8b927e4ee916c14c94ceacf9e9e5e9662fe36679fd0"
     }
   ]
 }
