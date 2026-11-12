@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "trecime-lago-di-braies-malga-foresta",
   "name": "Lago di Braies – Grünwaldalm",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.634Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T13:45:55.147Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 371256,
@@ -217,7 +217,7 @@
       "label": "Lago di Braies – Grünwaldalm routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 31579,
-      "sha256": "9e25af4ba76231abff41a53179a7dd431f629bd60c49eeedf1adf3418382a81a"
+      "sha256": "6eecf8d9d61b696fbae6bde4e6600b1519d87b3a936d0c1fcb8e7f5eb7ac8d87"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Lago di Braies – Grünwaldalm safety information",
       "url": "safety.json",
       "bytes": 1874,
-      "sha256": "09070addbe3b72e08b74bb35e4bd9984b072d9bb427fd311c07206e7f49c1464"
+      "sha256": "e1395404e64c6eccbfbebf627a07913b07b0db7da2085c57b4436aa51791f1d0"
     }
   ]
 }

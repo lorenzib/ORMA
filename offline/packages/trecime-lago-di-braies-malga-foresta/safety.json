@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "trailId": "trecime-lago-di-braies-malga-foresta",
-  "generatedAt": "2026-11-02T00:00:00Z",
+  "generatedAt": "2026-11-12T00:00:00Z",
   "verificationStatus": "source-verified",
   "facts": {
     "routeType": "One way",
@@ -45,7 +45,7 @@
     {
       "name": "OpenStreetMap corridor extract via Overpass",
       "url": "https://www.openstreetmap.org/copyright",
-      "downloadedAt": "2026-11-02",
+      "downloadedAt": "2026-11-12",
       "licence": "ODbL"
     }
   ],
