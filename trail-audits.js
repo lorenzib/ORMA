@@ -66390,6 +66390,285 @@
       ],
       startPoint: { lat: 46.757579, lng: 12.040246, label: "The church of Valdaora di Sopra (Oberolang), the board’s start" },
       desc: "An easy loop from Valdaora di Sopra past an old smithy and sawmill, along the Rio Brunst and up a forest road to the Otto Chiese viewpoint over the Braies Dolomites, then back across the meadows. The board lists 4.3 km and 128 m up."
+    },
+    'arabba-castello-di-andraz-passeggiata-per-famiglie': {
+      // Hand audit: 12 November 2026, verified on arrival (Dolomites one-way walks, owner rule of 12 November 2026).
+      // “Castello di Andraz - Passeggiata per famiglie”, published by Arabba Fodom Turismo one way with no return, drawn there and back on 11 OSM ways along the
+      // line it publishes (data/board-line-routes.geojson). Distance and climb are the board’s one-way figures doubled
+      // (climb = its up plus its down); the time is measured by ORMA (DIN 33466), as the board times one way only.
+      // Commune: Livinallongo del Col di Lana (no dog rule online: national rule); Arabba Fodom Turismo asks for a lead on all paths because of grazing. No park or Natura 2000 site (EEA). No main road on the line; the car park is off the Passo Falzarego road (SR48).
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Andraz, Livinallongo del Col di Lana",
+      valley: "Belluno – Agordino",
+      province: "belluno",
+      distance: 2.2,
+      elevation: 78,
+      hours: '0.75',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The board publishes the walk one way, from the car park to the castle (1.1 km, 6 m up and 72 m down, 0:30 h), and gives no return. ORMA walks it there and back on the same gravel road: 2.2 km with 78 m up and down. The time, about 45 minutes, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park for the Castello di Andraz, on the left of the Passo Falzarego road a few hairpins above Cernadoi, by the sign for the castle, the board’s start.",
+        "sequence": "Follow the gravel road from the car park through the larch wood; it drops gently and in about 30 minutes reaches the Castello di Andraz, on its boulder at about 1,750 m. The board gives no way back, so return the same way, uphill to the car park.",
+        "switches": "The car park by the castle sign, above Cernadoi; The gravel road down through the larch wood; The Castello di Andraz on its boulder; Back the same way, uphill to the car park.",
+        "steps": [
+          {
+            "text": "The car park by the castle sign, above Cernadoi",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The gravel road down through the larch wood",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Castello di Andraz on its boulder",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back the same way, uphill to the car park",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Arabba Fodom Turismo, Castello di Andraz - Passeggiata per famiglie (route description)",
+            "url": "https://www.outdooractive.com/it/r/54887003",
+            "authority": "Arabba Fodom Turismo",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-12"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-12',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The gravel road to the Castello di Andraz (utvonalfelmeresek on Mapillary, CC BY-SA 4.0), 24 August 2020, 2 m from the line.",
+        route: "Official one-way walk of 1.1 km from The car park for the Castello di Andraz, off the Passo Falzarego road above Cernadoi, as Arabba Fodom Turismo publishes it, with no return given; walked there and back on the same path (owner rule, 12 November 2026). The stored line is drawn on 11 OSM ways along the board’s published line out and back, 2.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number on the board’s page: from the car park by the castle sign, the gravel road down through the larch wood to the Castello di Andraz in about 30 minutes, then back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at km 0.7 (OSM nodes 7881096222).",
+        elevation: "Official one way: 1.1 km, 6 m up and 72 m down, 0:30 h, highest point 1,811 m, lowest 1,746 m (Arabba Fodom Turismo, Outdooractive). There and back on the same road: 2.2 km, 78 m up and 78 m down; about 45 min measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Arabba Fodom Turismo, Castello di Andraz - Passeggiata per famiglie (its Outdooractive tour)",
+          "Italian national rule (Ministero della Salute dog ordinance of 6 August 2013, extended on 16 July 2026): a lead of at most 1.5 m and a muzzle carried. The commune of Livinallongo del Col di Lana publishes no dog or police regulation",
+          "Arabba Fodom Turismo, travelling with a dog: 'Il cane deve essere necessariamente accompagnato al guinzaglio, anche all'aperto e sui sentieri, è infatti facile trovare animali al pascolo'",
+          "No Natura 2000 site or park on the line (EEA)",
+          "OpenStreetMap ways along the board’s line (11 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-12'
+      },
+      shadeCoverage: 45,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["A gravel road with occasional service traffic to the castle: keep your dog on a short lead","Cows may graze the pastures in summer: keep your dog on a lead, as the Arabba tourist board asks","The way back is uphill all the way to the car park"],
+      terrainType: "Gravel road",
+      shadeDescription: "Partly shaded: larch and spruce line much of the road; the last stretch to the castle is open.",
+      terrainDescription: "A short, gentle family walk on a gravel road through larch wood to the medieval Castello di Andraz on its boulder below the Settsass, and back the same way.",
+      waterDescription: "Drinking water is mapped at about km 0.7 (OSM); there is no bar at the castle, so bring water.",
+      dogNotes: "Livinallongo del Col di Lana has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. The Arabba tourist board asks for a lead on every path because cows graze in summer.",
+      tips: "Park by the castle sign above Cernadoi: 1.1 km and about 30 minutes down to the castle, as the board lists, and the same way back uphill, about 45 minutes in all. In summer the castle opens for guided visits; dogs wait outside.",
+      sourceLinks: [
+        { label: "Arabba Fodom Turismo, Castello di Andraz - Passeggiata per famiglie", url: "https://www.outdooractive.com/it/r/54887003" },
+        { label: "Arabba Fodom Turismo, on holiday with your dog", url: "https://www.arabba.it/it/info-eventi/servizi-informazioni-utili/in-vacanza-con-l-amico-a-quattro-zampe/175-0.html" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.506126, lng: 11.997344, label: "The car park for the Castello di Andraz, off the Passo Falzarego road above Cernadoi, the board’s start" },
+      desc: "A short family walk on a gravel road through larch wood to the medieval Castello di Andraz, on its boulder below the Settsass, and back the same way. The board lists 1.1 km one way, about 30 minutes; there and back it is 2.2 km with 78 m up and down."
+    },
+    'kronplatz-sorafurcia-plan-de-corones': {
+      // Hand audit: 12 November 2026, verified on arrival (Dolomites one-way walks, owner rule of 12 November 2026).
+      // “Sorafurcia - Plan de Corones”, published by Olang tourist board (Tourismusverein Olang) one way with no return, drawn there and back on 49 OSM ways along the
+      // line it publishes (data/board-line-routes.geojson). Distance and climb are the board’s one-way figures doubled
+      // (climb = its up plus its down); the time is measured by ORMA (DIN 33466), as the board times one way only.
+      // Communes: Olang 98% (2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried) and Bruneck on the summit plateau (2%, its 2008 dog regulation). No park, biotope or Natura 2000 site (province landscape-plan layers). No main road on the line. The Kronplatz gondolas run in summer, so the descent can be ridden; the walk does not need them.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Sorafurcia – Plan de Corones, Olang",
+      distance: 11.8,
+      elevation: 917,
+      hours: '6.3',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The board publishes the walk one way, up from Sorafurcia to the summit (5.9 km, 915 m up and 2 m down, 3:00 h), and gives no return. ORMA walks it there and back on path 3: 11.8 km with 917 m up and down. The time, about 6 h 20 min, is measured by ORMA (DIN 33466), not the board’s. In summer you can ride a Kronplatz gondola down instead.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in Sorafurcia (Geiselsberg) above Valdaora, at about 1,350 m, the board’s start.",
+        "sequence": "Follow path 3 uphill: it climbs steadily on forest roads and mountain paths through the woods, past the Oberegger and Lorenzi huts, to the open summit plateau of Plan de Corones (Kronplatz) at 2,275 m, with the Concordia 2000 bell, the huts and the Messner Mountain Museum. The board gives no way back, so return the same way on path 3.",
+        "switches": "Path 3 all the way up from Sorafurcia to the summit plateau; back down the same way on path 3.",
+        "sources": [
+          {
+            "label": "Olang tourist board (Tourismusverein Olang), Sorafurcia - Plan de Corones (route description)",
+            "url": "https://www.outdooractive.com/it/r/810054716",
+            "authority": "Olang tourist board (Tourismusverein Olang)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-12"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-12',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Piz da Peres from Plan de Corones (Francesco Zanardini on Wikimedia Commons, CC BY-SA 3.0), uploaded 28 August 2013, 17 m from the line.",
+        route: "Official one-way walk of 5.9 km from Sorafurcia (Geiselsberg) above Valdaora, about 1,350 m, as Olang tourist board (Tourismusverein Olang) publishes it, with no return given; walked there and back on the same path (owner rule, 12 November 2026). The stored line is drawn on 49 OSM ways along the board’s published line out and back, 11.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Path 3 from Sorafurcia to the summit plateau of Plan de Corones, and back the same way on path 3.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 2.1 (OSM nodes 7741057385, 283551180).",
+        elevation: "Official one way: 5.9 km, 915 m up and 2 m down, 3:00 h, highest point 2,275 m, lowest 1,360 m (Olang tourist board (Tourismusverein Olang), Outdooractive). There and back on path 3: 11.8 km, 917 m up and 917 m down; about 6 h 20 min measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Olang tourist board (Tourismusverein Olang), Sorafurcia - Plan de Corones (its Outdooractive tour)",
+          "Gemeinde Olang / Comune di Valdaora, Verordnung betreffend die Haltung von Hunden und anderen Tieren (Gemeinderat Nr. 11, 25.02.2010, amended Nr. 5, 23.02.2026), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds and parks, or on farmed meadows and fields in the growing season; no bathing in fountains",
+          "Stadtgemeinde Bruneck, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat 65/2008, amended 4/2010), Art. 4 and 8 (the last few hundred metres on the summit plateau)",
+          "No park, biotope or Natura 2000 site on the line (Province of Bolzano landscape-plan layers; EEA)",
+          "OpenStreetMap ways along the board’s line (49 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-12'
+      },
+      shadeCoverage: 50,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["A long, steady climb of over 900 m: only for fit dogs used to mountain days","About 1.2 km of the climb is on asphalt and 2.4 km on forest roads, where farm and hut vehicles pass: keep your dog on a short lead","The summit plateau is a busy lift area in summer, with gondolas, mountain bikes and crowds: keep your dog close","Cows may graze the pastures in summer: keep your dog on a lead"],
+      terrainType: "Forest road, mountain path and some asphalt",
+      shadeDescription: "Shaded lower down: forest for much of the climb. Open and exposed to the sun and wind on the upper slopes and the summit plateau.",
+      terrainDescription: "A long, steady climb on path 3 from Sorafurcia through the woods to the open summit plateau of Plan de Corones, with its huts and views over the Pustertal and the Dolomites, and back down the same way.",
+      waterDescription: "Drinking water is mapped at the start and at about km 2.1 (OSM); the huts on the way and on the summit serve drinks, so bring a bowl.",
+      dogNotes: "Olang requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs off farmed meadows in the growing season; Bruneck, which owns the edge of the summit plateau, has the same lead and muzzle rule. Cows graze up here in summer, so keep the lead on.",
+      tips: "Start early from Sorafurcia: about 3 hours up on path 3, as the board lists, and a little over 6 hours there and back. Carry water for your dog, as the upper slopes are open and hot on summer afternoons. If paws or legs are tired at the top, a Kronplatz gondola can take you down in summer.",
+      sourceLinks: [
+        { label: "Olang tourist board (Tourismusverein Olang), Sorafurcia - Plan de Corones", url: "https://www.outdooractive.com/it/r/810054716" },
+        { label: "Gemeinde Olang, dog regulation (2010, amended 2026)", url: "https://www.gemeinde.olang.bz.it/system/web/GetDocument.ashx?cts=1792490199&fileId=179640" },
+        { label: "Stadtgemeinde Bruneck, dog regulation (2008, amended 2010)", url: "https://www.gemeinde.bruneck.bz.it/system/web/GetDocument.ashx?cts=1740139932&fileId=971388" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Province of Bolzano geoservices, landscape plan layers (WFS)", url: "https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.747985, lng: 12.002188, label: "Sorafurcia (Geiselsberg) above Valdaora, about 1,350 m, the board’s start" },
+      desc: "A long, steady climb on path 3 from Sorafurcia above Valdaora, through the woods and past mountain huts, to the summit plateau of Plan de Corones at 2,275 m, and back the same way. The board lists 5.9 km and 915 m up one way; there and back it is 11.8 km with about 920 m up and down."
+    },
+    'kronplatz-steinmeile': {
+      // Hand audit: 12 November 2026, verified on arrival (Dolomites one-way walks, owner rule of 12 November 2026).
+      // “Sentiero tematico “Steinmeile” (percorso con poche barriere)”, published by Olang tourist board (Tourismusverein Olang) one way with no return, drawn there and back on 25 OSM ways along the
+      // line it publishes (data/board-line-routes.geojson). Distance and climb are the board’s one-way figures doubled
+      // (climb = its up plus its down); the time is measured by ORMA (DIN 33466), as the board times one way only.
+      // Commune: Olang (2010 dog regulation, amended 2026). The line runs beside, not inside, the Rio Furcia wetland; no park, biotope or Natura 2000 site on it (province landscape-plan layers). 175 m on the Via Rienza (tertiary) in all, at the start.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Valdaora di Sotto – Rio Furcia, Olang",
+      distance: 3.2,
+      elevation: 79,
+      hours: '1',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The board publishes the theme trail one way, from the play area of Valdaora di Sotto to the bridge past the lime kiln (1.6 km, 78 m up and 1 m down, 0:28 h), and gives no return. ORMA walks it there and back on the same path: 3.2 km with 79 m up and down. The time, about an hour, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the play area of Valdaora di Sotto (Niederolang), at the stone arch that marks the trail, on Via Rienza, the board’s start.",
+        "sequence": "Walk a few metres along Via Rienza, then go straight on onto the packed-earth path beside the Rio Furcia, past the first rock stations. Pass under the railway bridge and climb gently to a second stone underpass, then follow the edge of the Rio Furcia wetland on grass and gravel. A short, steep gravel ramp leads to a wooden bridge; beyond it the path is tarred for a while, with two short steep pitches, up to the Fraktionshalle with its play area, fountain and car park. Carry on uphill on grass and gravel, past more rock displays, wooden sculptures and benches, to the old lime kiln (Calcara di Untermühlbach), and on for the last 150 m to the small bridge at the end of the trail. The board gives no way back, so return the same way.",
+        "switches": "The stone arch at the play area on Via Rienza; The path along the Rio Furcia, under the railway bridge; Beside the Rio Furcia wetland to the wooden bridge; Up to the Fraktionshalle, with its fountain; On to the old lime kiln and the small bridge at the end; Back the same way to the play area.",
+        "steps": [
+          {
+            "text": "The stone arch at the play area on Via Rienza",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The path along the Rio Furcia, under the railway bridge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Beside the Rio Furcia wetland to the wooden bridge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Up to the Fraktionshalle, with its fountain",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "On to the old lime kiln and the small bridge at the end",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back the same way to the play area",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Olang tourist board (Tourismusverein Olang), Sentiero tematico “Steinmeile” (percorso con poche barriere) (route description)",
+            "url": "https://www.outdooractive.com/it/r/812760859",
+            "authority": "Olang tourist board (Tourismusverein Olang)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-12"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-12',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Valdaora di Sotto near the start (voschix on Mapillary, CC BY-SA 4.0), 13 September 2017, 4 m from the line.",
+        route: "Official one-way walk of 1.6 km from The play area of Valdaora di Sotto, by the stone arch on Via Rienza, as Olang tourist board (Tourismusverein Olang) publishes it, with no return given; walked there and back on the same path (owner rule, 12 November 2026). The stored line is drawn on 25 OSM ways along the board’s published line out and back, 3.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number on the board’s page: from the stone arch on Via Rienza along the Rio Furcia, under the railway bridge, past the wetland and over the wooden bridge to the Fraktionshalle, then up to the old lime kiln and the end bridge, and back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 0.2, km 1.5 (OSM nodes 7740611085, 3451774094, 13063167149).",
+        elevation: "Official one way: 1.6 km, 78 m up and 1 m down, 0:28 h, highest point 1,063 m, lowest 985 m (Olang tourist board (Tourismusverein Olang), Outdooractive). There and back on the same path: 3.2 km, 79 m up and 79 m down; about 1 h measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Olang tourist board (Tourismusverein Olang), Sentiero tematico “Steinmeile” (percorso con poche barriere) (its Outdooractive tour)",
+          "Gemeinde Olang / Comune di Valdaora, Verordnung betreffend die Haltung von Hunden und anderen Tieren (Gemeinderat Nr. 11, 25.02.2010, amended Nr. 5, 23.02.2026), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds and parks, or on farmed meadows and fields in the growing season; no bathing in fountains",
+          "No park, biotope or Natura 2000 site on the line (Province of Bolzano landscape-plan layers; EEA)",
+          "OpenStreetMap ways along the board’s line (25 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-12'
+      },
+      shadeCoverage: 35,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 90 m on Via Rienza at the start, open to cars: keep your dog on a short lead","Short steep ramps (up to 18–20%) and loose stones in places","Olang keeps dogs out of play areas and parks: the trail starts at a play area and passes another at the Fraktionshalle, so keep to the path","The path runs beside the Rio Furcia wetland: keep your dog out of the water and the reeds"],
+      terrainType: "Packed earth, gravel, grass and short tarred stretches",
+      shadeDescription: "Partly shaded: trees line the stream for much of the way; the tarred stretches and the meadows near the Fraktionshalle are open.",
+      terrainDescription: "An easy, barrier-free theme trail along the Rio Furcia from Valdaora di Sotto, past displays of South Tyrol’s rocks, the stream’s wetland and an old lime kiln, and back the same way.",
+      waterDescription: "Drinking water is mapped at the start, at about km 0.2 and at the Fraktionshalle fountain, about km 1.5 (OSM).",
+      dogNotes: "Olang requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of play areas, parks and cemeteries, off farmed meadows in the growing season and out of the fountains. The trail starts at a play area and passes another, so keep to the path.",
+      tips: "Start at the stone arch by the play area in Valdaora di Sotto: 1.6 km and about half an hour to the end bridge, as the board lists, and the same way back. An easy outing for an older dog or a puppy; the steep little ramps are short.",
+      sourceLinks: [
+        { label: "Olang tourist board (Tourismusverein Olang), Sentiero tematico “Steinmeile” (percorso con poche barriere)", url: "https://www.outdooractive.com/it/r/812760859" },
+        { label: "Gemeinde Olang, dog regulation (2010, amended 2026)", url: "https://www.gemeinde.olang.bz.it/system/web/GetDocument.ashx?cts=1792490199&fileId=179640" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Province of Bolzano geoservices, landscape plan layers (WFS)", url: "https://geoservices1.civis.bz.it/geoserver/ows?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.770677, lng: 12.016864, label: "The play area of Valdaora di Sotto, by the stone arch on Via Rienza, the board’s start" },
+      desc: "An easy, barrier-free theme trail from Valdaora di Sotto along the Rio Furcia, past rock displays, the stream’s wetland and an old lime kiln, and back the same way. The board lists 1.6 km one way, about half an hour; there and back it is 3.2 km with about 80 m up and down."
     }
   };
 

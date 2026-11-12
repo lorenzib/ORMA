@@ -343,6 +343,23 @@
       }
     },
     {
+      "id": "arabba-castello-di-andraz-passeggiata-per-famiglie",
+      "approvedReviewId": "mapillary-arabba-castello-di-andraz-passeggiata-per-famiglie-on-route",
+      "approvedAt": "2026-11-12T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/arabba-castello-di-andraz-road.jpg",
+        "heroImage": "images/trails/arabba-castello-di-andraz-road.jpg",
+        "imageAlt": "A pale gravel road curving up between a mossy rock wall and a grassy bank, with the stone ruin of the Castello di Andraz on a wooded rise ahead under a cloudy sky",
+        "imageCredit": "The gravel road to the Castello di Andraz",
+        "imageCreditText": "The gravel road to the Castello di Andraz by utvonalfelmeresek",
+        "imageCreator": "utvonalfelmeresek",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=323753315785177",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "bormio-da-arnoga-al-rifugio-federico",
       "approvedReviewId": "commons-bormio-da-arnoga-al-rifugio-federico-on-route",
       "approvedAt": "2026-10-28T12:00:00.000Z",
@@ -2617,6 +2634,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=323993905810567",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "kronplatz-sorafurcia-plan-de-corones",
+      "approvedReviewId": "commons-kronplatz-sorafurcia-plan-de-corones-on-route",
+      "approvedAt": "2026-11-12T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-sorafurcia-plan-de-corones-piz-da-peres.jpg",
+        "heroImage": "images/trails/kronplatz-sorafurcia-plan-de-corones-piz-da-peres.jpg",
+        "imageAlt": "The grey limestone ridge of Piz da Peres rising above dark forested slopes, with jagged Dolomite peaks fading into the distance under a blue sky with white clouds",
+        "imageCredit": "Piz da Peres from Plan de Corones",
+        "imageCreditText": "Piz da Peres from Plan de Corones by Francesco Zanardini",
+        "imageCreator": "Francesco Zanardini",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Piz_da_Peres_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "kronplatz-steinmeile",
+      "approvedReviewId": "mapillary-kronplatz-steinmeile-on-route",
+      "approvedAt": "2026-11-12T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-steinmeile-valdaora-di-sotto.jpg",
+        "heroImage": "images/trails/kronplatz-steinmeile-valdaora-di-sotto.jpg",
+        "imageAlt": "A quiet village street in Valdaora di Sotto with a white guesthouse, an old barn and a slender church spire, and rocky peaks in the distance under a pale sky",
+        "imageCredit": "Valdaora di Sotto near the start",
+        "imageCreditText": "Valdaora di Sotto near the start by voschix",
+        "imageCreator": "voschix",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=291995535735254",
         "imageSourceType": "licensed-source"
       }
     },

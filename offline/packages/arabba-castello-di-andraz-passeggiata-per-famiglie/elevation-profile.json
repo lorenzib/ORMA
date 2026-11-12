@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "arabba-castello-di-andraz-passeggiata-per-famiglie",
+  "distanceKm": 2.1,
+  "ascentM": 78,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1799
+    },
+    {
+      "km": 0.2,
+      "elev": 1805
+    },
+    {
+      "km": 0.3,
+      "elev": 1786
+    },
+    {
+      "km": 0.5,
+      "elev": 1765
+    },
+    {
+      "km": 0.6,
+      "elev": 1750
+    },
+    {
+      "km": 0.8,
+      "elev": 1775
+    },
+    {
+      "km": 1,
+      "elev": 1780
+    },
+    {
+      "km": 1.1,
+      "elev": 1780
+    },
+    {
+      "km": 1.3,
+      "elev": 1775
+    },
+    {
+      "km": 1.4,
+      "elev": 1750
+    },
+    {
+      "km": 1.6,
+      "elev": 1765
+    },
+    {
+      "km": 1.7,
+      "elev": 1786
+    },
+    {
+      "km": 1.9,
+      "elev": 1805
+    },
+    {
+      "km": 2,
+      "elev": 1799
+    },
+    {
+      "km": 2.1,
+      "elev": 1799
+    }
+  ]
+}

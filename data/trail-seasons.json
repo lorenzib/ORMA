@@ -9461,6 +9461,78 @@
           "accessedAt": "2026-11-12"
         }
       }
+    },
+    "arabba-castello-di-andraz-passeggiata-per-famiglie": {
+      "highPoint": 1805,
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/54887003",
+          "accessedAt": "2026-11-12"
+        }
+      }
+    },
+    "kronplatz-sorafurcia-plan-de-corones": {
+      "highPoint": 2256,
+      "recommended": {
+        "months": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810054716",
+          "accessedAt": "2026-11-12"
+        }
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 2.5,
+          "names": [
+            "Lorenzi",
+            "Ruipa",
+            "Alpen"
+          ]
+        }
+      ]
+    },
+    "kronplatz-steinmeile": {
+      "highPoint": 1059,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/812760859",
+          "accessedAt": "2026-11-12"
+        }
+      }
     }
   }
 }

@@ -3857,6 +3857,30 @@
       "quote": "Sentiero tematico · Lunghezza 4,3 km · Durata 1:10 h · Salita 128 m · Discesa 139 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-11T21:00:00.000Z"
+    },
+    "arabba-castello-di-andraz-passeggiata-per-famiglie": {
+      "url": "https://www.outdooractive.com/it/r/54887003",
+      "publisher": "Arabba Fodom Turismo (Outdooractive)",
+      "name": "Castello di Andraz - Passeggiata per famiglie",
+      "quote": "Facile · Distanza 1,1 km · Durata 0:30 h · Salita 6 m · Discesa 72 m · “si segue quindi la strada, che in circa 30 minuti comodi porta al Castello di Andraz”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-12T18:00:00.000Z"
+    },
+    "kronplatz-sorafurcia-plan-de-corones": {
+      "url": "https://www.outdooractive.com/it/r/810054716",
+      "publisher": "Olang tourist board (Tourismusverein Olang) (Outdooractive)",
+      "name": "Sorafurcia - Plan de Corones",
+      "quote": "Difficile · Distanza 5,9 km · Durata 3:00 h · Salita 915 m · Discesa 2 m · “il sentiero n. 3 sale costantemente su strade forestali e sentieri di montagna fino all’altopiano di Plan de Corones (2.275 m)”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-12T18:00:00.000Z"
+    },
+    "kronplatz-steinmeile": {
+      "url": "https://www.outdooractive.com/it/r/812760859",
+      "publisher": "Olang tourist board (Tourismusverein Olang) (Outdooractive)",
+      "name": "Sentiero tematico “Steinmeile” (percorso con poche barriere)",
+      "quote": "Facile · Distanza 1,6 km · Durata 0:28 h · Salita 78 m · Discesa 1 m · “L’itinerario parte dal parco giochi di Valdaora di Sotto”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-12T18:00:00.000Z"
     }
   }
 }

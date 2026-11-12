@@ -1963,6 +1963,21 @@
       "name": "Lacerta Prima theme trail at Valdaora di Sopra",
       "slug": "lacerta-prima-valdaora-di-sopra",
       "gloss": "a farm-lane and forest loop to the Otto Chiese viewpoint"
+    },
+    "arabba-castello-di-andraz-passeggiata-per-famiglie": {
+      "name": "Castello di Andraz",
+      "slug": "castello-di-andraz",
+      "gloss": "a family walk to the medieval castle and back"
+    },
+    "kronplatz-sorafurcia-plan-de-corones": {
+      "name": "Sorafurcia to Plan de Corones",
+      "slug": "sorafurcia-plan-de-corones",
+      "gloss": "path 3 up to the Kronplatz summit and back"
+    },
+    "kronplatz-steinmeile": {
+      "name": "Steinmeile stone trail",
+      "slug": "steinmeile-valdaora",
+      "gloss": "a barrier-free stone trail along the Rio Furcia and back"
     }
   }
 }

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "kronplatz-steinmeile",
+  "generatedAt": "2026-11-12T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.2,
+    "ascentM": 79,
+    "highestPointM": 1059,
+    "expectedDuration": "1 h",
+    "difficulty": "Easy",
+    "shadePercent": 35
+  },
+  "trailhead": {
+    "lat": 46.770677,
+    "lng": 12.016864,
+    "label": "The play area of Valdaora di Sotto, by the stone arch on Via Rienza, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7703453,
+      "lng": 12.0172117,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7676263,
+      "lng": 12.0172421,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.756941,
+      "lng": 12.0184848,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 90 m on Via Rienza at the start, open to cars: keep your dog on a short lead.",
+    "Short steep ramps (up to 18–20%) and loose stones in places.",
+    "Olang keeps dogs out of play areas and parks: the trail starts at a play area and passes another at the Fraktionshalle, so keep to the path.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-12"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-12",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Steinmeile stone trail": "Sentiero tematico “Steinmeile” a Valdaora di Sotto",
+    "The play area of Valdaora di Sotto, by the stone arch on Via Rienza, the board’s start": "L’area giochi di Valdaora di Sotto, presso l’arco in pietra in via Rienza, la partenza ufficiale",
+    "About 90 m on Via Rienza at the start, open to cars: keep your dog on a short lead.": "Circa 90 m su via Rienza alla partenza, aperta alle auto: tieni il cane al guinzaglio corto.",
+    "Short steep ramps (up to 18–20%) and loose stones in places.": "Brevi rampe ripide (fino al 18–20%) e sassi smossi in alcuni punti.",
+    "Olang keeps dogs out of play areas and parks: the trail starts at a play area and passes another at the Fraktionshalle, so keep to the path.": "Valdaora vieta i cani nelle aree giochi e nei parchi: il sentiero parte da un’area giochi e ne costeggia un’altra alla Fraktionshalle, quindi resta sul sentiero."
+  }
+}
