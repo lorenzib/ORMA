@@ -14,11 +14,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start in Sorafurcia (Geiselsberg) above Valdaora, at about 1,350 m, the board’s start.": "Parti da Sorafurcia sopra Valdaora, a circa 1.350 m: è la partenza ufficiale.",
   "Follow path 3 uphill: it climbs steadily on forest roads and mountain paths through the woods, past the Oberegger and Lorenzi huts, to the open summit plateau of Plan de Corones (Kronplatz) at 2,275 m, with the Concordia 2000 bell, the huts and the Messner Mountain Museum. The board gives no way back, so return the same way on path 3.": "Segui il sentiero 3 in salita: sale costantemente su strade forestali e sentieri di montagna nel bosco, oltre le malghe Oberegger e Lorenzi, fino all’altopiano aperto della cima di Plan de Corones a 2.275 m, con la campana Concordia 2000, i rifugi e il Messner Mountain Museum. Il sito ufficiale non indica il ritorno, quindi torna per la stessa strada sul sentiero 3.",
   "Path 3 all the way up from Sorafurcia to the summit plateau; back down the same way on path 3.": "Sentiero 3 per tutta la salita da Sorafurcia all’altopiano della cima; discesa per la stessa strada sul sentiero 3.",
-  "Sorafurcia (Geiselsberg), about 1,350 m": "Sorafurcia, circa 1.350 m",
-  "Path 3 up through the woods on forest roads and paths": "Il sentiero 3 in salita nel bosco su strade forestali e sentieri",
-  "Past the huts below the summit": "Oltre i rifugi sotto la cima",
-  "The summit plateau of Plan de Corones, 2,275 m": "L’altopiano della cima di Plan de Corones, 2.275 m",
-  "Back down the same way on path 3": "Discesa per la stessa strada sul sentiero 3",
   "Drinking water": "Acqua potabile",
   "Piz da Peres from Plan de Corones": "Il Piz da Peres da Plan de Corones"
 });

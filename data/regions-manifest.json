@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-12T16:33:51.936Z",
+  "generatedAt": "2026-11-12T17:04:14.695Z",
   "regions": {
     "dolomites": {
-      "trailCount": 369,
-      "trails": "data/regions/dolomites-trails.js?v=4bcb9975e5d1",
+      "trailCount": 372,
+      "trails": "data/regions/dolomites-trails.js?v=446501ddabec",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=aba145c5d16a",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -374,6 +374,9 @@
         "valdisole-percorso-della-fauna-in-val-di-peio": "data/trail-details/valdisole-percorso-della-fauna-in-val-di-peio.js?v=755f75b53e6a",
         "colle-passeggiata-intorno-al-colle": "data/trail-details/colle-passeggiata-intorno-al-colle.js?v=b2fbfdc45c59",
         "kronplatz-sulle-tracce-della-lacerta-prima": "data/trail-details/kronplatz-sulle-tracce-della-lacerta-prima.js?v=e1cacd1723a8",
+        "arabba-castello-di-andraz-passeggiata-per-famiglie": "data/trail-details/arabba-castello-di-andraz-passeggiata-per-famiglie.js?v=24fc8e497f1d",
+        "kronplatz-sorafurcia-plan-de-corones": "data/trail-details/kronplatz-sorafurcia-plan-de-corones.js?v=1f9dd6706782",
+        "kronplatz-steinmeile": "data/trail-details/kronplatz-steinmeile.js?v=eb32c07d885e",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=24e2aaa3dfc9"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -984,6 +987,9 @@
     "valdisole-percorso-della-fauna-in-val-di-peio": "dolomites",
     "colle-passeggiata-intorno-al-colle": "dolomites",
     "kronplatz-sulle-tracce-della-lacerta-prima": "dolomites",
+    "arabba-castello-di-andraz-passeggiata-per-famiglie": "dolomites",
+    "kronplatz-sorafurcia-plan-de-corones": "dolomites",
+    "kronplatz-steinmeile": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1661,6 +1667,9 @@
     "valdisole-percorso-della-fauna-in-val-di-peio": "percorso-della-fauna-val-di-peio",
     "colle-passeggiata-intorno-al-colle": "passeggiata-intorno-al-colle-santa-lucia",
     "kronplatz-sulle-tracce-della-lacerta-prima": "lacerta-prima-valdaora-di-sopra",
+    "arabba-castello-di-andraz-passeggiata-per-famiglie": "castello-di-andraz",
+    "kronplatz-sorafurcia-plan-de-corones": "sorafurcia-plan-de-corones",
+    "kronplatz-steinmeile": "steinmeile-valdaora",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2185,6 +2194,9 @@
     "percorso-della-fauna-val-di-peio": "valdisole-percorso-della-fauna-in-val-di-peio",
     "passeggiata-intorno-al-colle-santa-lucia": "colle-passeggiata-intorno-al-colle",
     "lacerta-prima-valdaora-di-sopra": "kronplatz-sulle-tracce-della-lacerta-prima",
+    "castello-di-andraz": "arabba-castello-di-andraz-passeggiata-per-famiglie",
+    "sorafurcia-plan-de-corones": "kronplatz-sorafurcia-plan-de-corones",
+    "steinmeile-valdaora": "kronplatz-steinmeile",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
