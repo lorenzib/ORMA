@@ -72,7 +72,7 @@ describe('what the map already says is on a walk',()=>{
   });
 
   test('the bounding box changes speed, never the answer',()=>{
-    const line=trail('sassolungo').path;
+    const line=trail('giro-del-sasso-lungo').path;
     const features=catalogue('dolomites');
     const wide=placesOnRoute(line,features,{radiusMetres:60});
     // Every kept point is genuinely within the radius, box or no box.
