@@ -50,6 +50,17 @@
       ],
       "line": "From 25 December 2026 to 29 March 2027 the road up to Plätzwiese is a toll road: cars may drive up only before 10:00 or from 15:00, up to 100 cars, and a paid shuttle runs from Brückele. Until 24 December there are no limits.",
       "monthNote": "In {month} the road up to Plätzwiese is a toll road: cars may drive up only before 10:00 or from 15:00."
+    },
+    "ra-stua-road": {
+      "operator": "Cortina hiking map 2025 (Cortina Marketing)",
+      "url": "https://cortina.dolomiti.org/wp-content/uploads/2025/06/Cortina_Sentieri_Hiking_Map_2025_web.pdf",
+      "accessedAt": "2026-11-12",
+      "months": [
+        7,
+        8
+      ],
+      "line": "In 2025, from 28 June to 31 August, the road from Sant’Uberto to Malga Ra Stua was closed to cars, and a shuttle bus ran from Fiames (park information point) instead. These are the latest dates found.",
+      "monthNote": "In {month} the road to Malga Ra Stua may be closed to cars: take the shuttle bus from Fiames (in 2025 it ran from 28 June to 31 August)."
     }
   },
   "trails": {
@@ -86,6 +97,11 @@
     "prato-piazza": {
       "access": [
         "plaetzwiese-road"
+      ]
+    },
+    "cortina-anello-dei-tre-rifugi": {
+      "access": [
+        "ra-stua-road"
       ]
     }
   },
@@ -135,6 +151,18 @@
       ],
       "why": "Shut from November to May on OpenStreetMap, but the walks start at the La Villa bus stop and do not use it.",
       "url": "https://www.openstreetmap.org/way/807646089",
+      "accessedAt": "2026-11-12"
+    },
+    {
+      "road": "Cinque Torri, Croda da Lago and Val di Fanes roads (summer car closures on the same Cortina map)",
+      "trails": [
+        "cinque-torri-assisted",
+        "cortina-passeggiata-gourmet",
+        "cortina-malga-ra-stua",
+        "cortina-castello-di-botestagno"
+      ],
+      "why": "These walks start below or beside the closed stretches (Bai de Dones, Pezié de Parù, Sant’Uberto, Fiames), so no shuttle is needed.",
+      "url": "https://cortina.dolomiti.org/wp-content/uploads/2025/06/Cortina_Sentieri_Hiking_Map_2025_web.pdf",
       "accessedAt": "2026-11-12"
     }
   ]
