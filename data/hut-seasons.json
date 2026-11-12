@@ -1,0 +1,832 @@
+{
+  "contractVersion": "hut-seasons-v1",
+  "note": "When the staffed huts on the verified walks are open, read by hand from the hut, its operator or the valley board on accessedAt. periods are MM-DD to MM-DD and may cross New Year; datesFor says which season each set of dates is for. knownMonths, when given, are the only months the dates speak for (a hut that has published summer dates only). approx marks dates the source gives as rough (mid-June, end of September). A walk lists the huts it passes; goals are the huts it walks to. Huts with no dated, current source are left out. Curated by hand; check each spring and autumn.",
+  "huts": {
+    "utia-cherz": {
+      "name": "Ütia Cherz",
+      "osmId": "way/199514205",
+      "periods": [
+        {
+          "from": "06-25",
+          "to": "09-15"
+        },
+        {
+          "from": "12-04",
+          "to": "04-07"
+        }
+      ],
+      "datesFor": {
+        "summer": "2026",
+        "winter": "2026/27"
+      },
+      "url": "https://www.alta-badia.org/de/freizeit-aktiv/berge-wandern/huetteninfo-alta-badia/",
+      "accessedAt": "2026-11-11"
+    },
+    "rifugio-gardeccia": {
+      "name": "Rifugio Gardeccia",
+      "osmId": "way/122023472",
+      "periods": [
+        {
+          "from": "12-17",
+          "to": "03-29"
+        }
+      ],
+      "knownMonths": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "datesFor": {
+        "winter": "2026/27"
+      },
+      "url": "https://www.gardeccia.it",
+      "accessedAt": "2026-11-11"
+    },
+    "rifugio-malga-ra-stua": {
+      "name": "Rifugio Malga Ra Stua",
+      "osmId": "way/186517562",
+      "periods": [
+        {
+          "from": "05-23",
+          "to": "10-11"
+        },
+        {
+          "from": "12-26",
+          "to": "03-29"
+        }
+      ],
+      "datesFor": {
+        "summer": "2026",
+        "winter": "2026/27"
+      },
+      "url": "https://www.rifugiomalgarastua.it/",
+      "accessedAt": "2026-11-11"
+    },
+    "heiligkreuz-hospitz": {
+      "name": "Heiligkreuz hospice (La Crusc)",
+      "osmId": "way/42321524",
+      "periods": [
+        {
+          "from": "06-12",
+          "to": "10-04"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "datesFor": {
+        "summer": "2026"
+      },
+      "url": "https://www.lacrusc.com/",
+      "accessedAt": "2026-11-11"
+    },
+    "baita-sangon": {
+      "name": "Baita Sangon",
+      "osmId": "way/121497030",
+      "periods": [
+        {
+          "from": "06-13",
+          "to": "10-04"
+        },
+        {
+          "from": "12-04",
+          "to": "03-28"
+        }
+      ],
+      "datesFor": {
+        "summer": "2026",
+        "winter": "2026/27"
+      },
+      "url": "https://www.valgardena.it/en/addresses/detail-gastronomy/base/company/st-christina-groeden/sangon-huette/203DC75ADED44607B7D6C6E49C0FC050/",
+      "accessedAt": "2026-11-11"
+    },
+    "talschlusshutte-fischleintal": {
+      "name": "Talschlusshütte (Rifugio Fondovalle)",
+      "osmId": "way/96096595",
+      "periods": [
+        {
+          "from": "05-22",
+          "to": "10-20"
+        },
+        {
+          "from": "12-25",
+          "to": "03-28"
+        }
+      ],
+      "approx": true,
+      "datesFor": {
+        "summer": "2026",
+        "winter": "2026/27"
+      },
+      "url": "https://www.talschlusshuette.com/",
+      "accessedAt": "2026-11-11"
+    },
+    "maiser-alm": {
+      "name": "Maiser Alm",
+      "osmId": "node/850631424",
+      "periods": [
+        {
+          "from": "05-01",
+          "to": "11-10"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "datesFor": {
+        "summer": "2026"
+      },
+      "url": "https://merano-suedtirol.it/en/hafling-voeran-meran-2000/food-wine/rid-c9ba8d44c7784fb8987a321a1c026b19-g-maiser-alm.html",
+      "accessedAt": "2026-11-11"
+    },
+    "frommeralm": {
+      "name": "Frommeralm",
+      "osmId": "way/123811054",
+      "periods": [
+        {
+          "from": "05-22",
+          "to": "11-01"
+        },
+        {
+          "from": "12-05",
+          "to": "03-29"
+        }
+      ],
+      "datesFor": {
+        "summer": "2026",
+        "winter": "2026/27"
+      },
+      "url": "https://eggental.com/en/info/restaurant-frommeralm_5125",
+      "accessedAt": "2026-11-11"
+    },
+    "edelweisshutte": {
+      "name": "Rifugio Edelweiss",
+      "osmId": "way/42141392",
+      "periods": [
+        {
+          "from": "06-08",
+          "to": "09-30"
+        },
+        {
+          "from": "12-04",
+          "to": "04-07"
+        }
+      ],
+      "datesFor": {
+        "summer": "2026",
+        "winter": "2026/27"
+      },
+      "url": "https://www.alta-badia.org/de/freizeit-aktiv/berge-wandern/huetteninfo-alta-badia/",
+      "accessedAt": "2026-11-11"
+    },
+    "hofer-alpl": {
+      "name": "Hofer Alpl",
+      "periods": [
+        {
+          "from": "04-02",
+          "to": "01-06"
+        }
+      ],
+      "datesFor": {
+        "year": "2026/27"
+      },
+      "url": "https://www.seiseralm.it/en/active/summer/hiking/huts/514D86DD3B1A1B2CBCC06F45049DA4C7-hofer-alpl.html",
+      "accessedAt": "2026-11-11"
+    },
+    "gamsblut-hutte": {
+      "name": "Gamsblut hut",
+      "osmId": "way/152231018",
+      "periods": [
+        {
+          "from": "06-09",
+          "to": "10-10"
+        },
+        {
+          "from": "12-04",
+          "to": "04-04"
+        }
+      ],
+      "datesFor": {
+        "summer": "2027",
+        "winter": "2026/27"
+      },
+      "url": "https://www.valgardena.it/en/addresses/detail-gastronomy/base/company/s-cristina-val-gardena/gamsblut-hut/1C2DB06E9434460C81E0940A47C49A89/",
+      "accessedAt": "2026-11-11"
+    },
+    "fermeda-hutte": {
+      "name": "Baita Fermeda",
+      "osmId": "way/127051060",
+      "periods": [
+        {
+          "from": "06-13",
+          "to": "10-18"
+        },
+        {
+          "from": "12-04",
+          "to": "04-04"
+        }
+      ],
+      "datesFor": {
+        "summer": "2027",
+        "winter": "2026/27"
+      },
+      "url": "https://www.valgardena.it/en/addresses/detail-gastronomy/base/company/s-cristina-val-gardena/fermeda-hut/71E7DC3FB089483891D1A131467C32D7/",
+      "accessedAt": "2026-11-11"
+    },
+    "emilio-comici-hutte": {
+      "name": "Rifugio Emilio Comici",
+      "osmId": "way/41964731",
+      "periods": [
+        {
+          "from": "06-10",
+          "to": "10-10"
+        },
+        {
+          "from": "12-03",
+          "to": "04-04"
+        }
+      ],
+      "datesFor": {
+        "summer": "2027",
+        "winter": "2026/27"
+      },
+      "url": "https://www.valgardena.it/en/addresses/detail-gastronomy/base/company/wolkenstein-groeden/emilio-comici-huette/D5AE0185E93711D3A09D006097A8F6AC/",
+      "accessedAt": "2026-11-11"
+    },
+    "rifugio-segantini": {
+      "name": "Rifugio Segantini",
+      "osmId": "way/94750442",
+      "periods": [
+        {
+          "from": "06-01",
+          "to": "10-04"
+        }
+      ],
+      "approx": true,
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "datesFor": {
+        "summer": "2026"
+      },
+      "url": "https://www.rifugiosegantini.com",
+      "accessedAt": "2026-11-11"
+    },
+    "malga-schgaguler-schwaige": {
+      "name": "Malga Schgaguler Schwaige",
+      "osmId": "way/116657747",
+      "periods": [
+        {
+          "from": "05-15",
+          "to": "10-30"
+        },
+        {
+          "from": "12-05",
+          "to": "03-31"
+        }
+      ],
+      "datesFor": {
+        "summer": "2026",
+        "winter": "2026/27"
+      },
+      "url": "https://www.seiseralm.it/en/active/summer/hiking/huts/AB90F6290E6E409DB03863AE0E3431E7-schgaguler-schwaige.html",
+      "accessedAt": "2026-11-11"
+    },
+    "schluterhutte": {
+      "name": "Rifugio Genova (Schlüterhütte)",
+      "osmId": "node/11056910068",
+      "periods": [
+        {
+          "from": "06-13",
+          "to": "10-11"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "datesFor": {
+        "summer": "2026"
+      },
+      "url": "https://www.schlueterhuette.com/",
+      "accessedAt": "2026-11-11"
+    },
+    "utia-de-puez": {
+      "name": "Rifugio Puez",
+      "osmId": "way/152266832",
+      "periods": [
+        {
+          "from": "06-04",
+          "to": "10-10"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "datesFor": {
+        "summer": "2027"
+      },
+      "url": "https://www.valgardena.it/it/indirizzi/dettagli-gastronomia/base/company/selva-di-val-gardena/puez-hut/71247288BA7C525A24D9852A3B9732DC/",
+      "accessedAt": "2026-11-11"
+    },
+    "sennes-hutte": {
+      "name": "Rifugio Sennes",
+      "osmId": "way/103325526",
+      "periods": [
+        {
+          "from": "06-06",
+          "to": "10-10"
+        },
+        {
+          "from": "12-26",
+          "to": "01-06"
+        },
+        {
+          "from": "01-31",
+          "to": "03-31"
+        }
+      ],
+      "datesFor": {
+        "summer": "2027",
+        "winter": "2026/27"
+      },
+      "url": "https://www.sennes.com/",
+      "accessedAt": "2026-11-11"
+    },
+    "isi-hutte": {
+      "name": "Malga Isi (Isi Hütte)",
+      "osmId": "node/1474883150",
+      "periods": [
+        {
+          "from": "06-28",
+          "to": "10-11"
+        },
+        {
+          "from": "12-26",
+          "to": "03-28"
+        }
+      ],
+      "approx": true,
+      "datesFor": {
+        "summer": "2026",
+        "winter": "2026/27"
+      },
+      "url": "https://www.isi.st/",
+      "accessedAt": "2026-11-11"
+    },
+    "gampen-alm": {
+      "name": "Malga Gampen (Gampen Alm)",
+      "osmId": "node/9122391246",
+      "periods": [
+        {
+          "from": "05-17",
+          "to": "09-30"
+        },
+        {
+          "from": "12-26",
+          "to": "03-05"
+        }
+      ],
+      "approx": true,
+      "datesFor": {
+        "summer": "2026",
+        "winter": "2026/27"
+      },
+      "url": "https://www.gampenalm.com/de/kontakt",
+      "accessedAt": "2026-11-11"
+    },
+    "klausner-hutte": {
+      "name": "Klausner Hütte",
+      "osmId": "node/1424260978",
+      "periods": [
+        {
+          "from": "05-07",
+          "to": "10-25"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "datesFor": {
+        "summer": "2026"
+      },
+      "url": "https://www.klausnerhuette.it",
+      "accessedAt": "2026-11-11"
+    },
+    "edelrauthutte": {
+      "name": "Rifugio Ponte di Ghiaccio (Edelrauthütte)",
+      "osmId": "node/9917556577",
+      "periods": [
+        {
+          "from": "06-06",
+          "to": "10-04"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "datesFor": {
+        "summer": "2026"
+      },
+      "url": "https://www.edelrauthuette.it/",
+      "accessedAt": "2026-11-11"
+    },
+    "rotwandhutte": {
+      "name": "Rotwandhütte (Meran 2000)",
+      "osmId": "node/5022808389",
+      "periods": [
+        {
+          "from": "11-27",
+          "to": "03-29"
+        }
+      ],
+      "knownMonths": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "datesFor": {
+        "winter": "2026/27"
+      },
+      "url": "https://www.merano-suedtirol.it/en/hafling-voeran-meran-2000/food-wine/restaurants-alp-inns/rid-306735082BC62EABBD9EB001D721A19D-g-rotwand.html",
+      "accessedAt": "2026-11-11"
+    },
+    "masare-hutte": {
+      "name": "Baita Masarè",
+      "osmId": "way/395315349",
+      "periods": [
+        {
+          "from": "12-05",
+          "to": "03-28"
+        }
+      ],
+      "knownMonths": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "datesFor": {
+        "winter": "2026/27"
+      },
+      "url": "https://www.seiseralm.it/it/attivita/estate/escursioni/rifugi-e-malghe/77A76F713BF31388B1DC7CF232044C60-baita-masare.html",
+      "accessedAt": "2026-11-11"
+    },
+    "ochsenhutte": {
+      "name": "Baita Ochsenhütte",
+      "osmId": "way/265308798",
+      "periods": [
+        {
+          "from": "06-05",
+          "to": "10-31"
+        },
+        {
+          "from": "12-14",
+          "to": "03-29"
+        }
+      ],
+      "datesFor": {
+        "summer": "2026",
+        "winter": "2026/27"
+      },
+      "url": "https://eggental.com/en/info/malga-ochsenhtte_5220",
+      "accessedAt": "2026-11-11"
+    },
+    "baita-messnerjoch": {
+      "name": "Baita Messnerjoch",
+      "periods": [
+        {
+          "from": "12-12",
+          "to": "03-29"
+        }
+      ],
+      "knownMonths": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "datesFor": {
+        "winter": "2026/27"
+      },
+      "url": "https://www.seiseralm.it/de/aktiv/sommer/wandern/huetten-almen/1F6766F6D6C4816D7F91B2941F406254-skihut-messner-joch.html",
+      "accessedAt": "2026-11-11"
+    },
+    "rifugio-alpino-fazzon": {
+      "name": "Rifugio Alpino Fazzon",
+      "osmId": "way/120201443",
+      "periods": [
+        {
+          "from": "07-01",
+          "to": "09-30"
+        }
+      ],
+      "approx": true,
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "datesFor": {
+        "summer": "2026"
+      },
+      "url": "https://www.rifugiofazzon.com/",
+      "accessedAt": "2026-11-11"
+    },
+    "baita-pramulin-hutte": {
+      "name": "Baita Pramulin",
+      "osmId": "way/695002223",
+      "periods": [
+        {
+          "from": "12-05",
+          "to": "04-04"
+        },
+        {
+          "from": "06-29",
+          "to": "09-27"
+        }
+      ],
+      "datesFor": {
+        "summer": "2027",
+        "winter": "2026/27"
+      },
+      "url": "https://www.valgardena.it/en/addresses/detail-gastronomy/base/company/selva-di-val-gardena/pramulin-hut/2C63DD12E8FD3BA8507E4C3CB45C7B3D/",
+      "accessedAt": "2026-11-11"
+    },
+    "grossberghutte": {
+      "name": "Großberghütte",
+      "osmId": "node/446285924",
+      "periods": [
+        {
+          "from": "05-09",
+          "to": "11-08"
+        },
+        {
+          "from": "12-04",
+          "to": "04-04"
+        }
+      ],
+      "datesFor": {
+        "summer": "2026",
+        "winter": "2026/27"
+      },
+      "url": "https://www.grossberghuette.com/",
+      "accessedAt": "2026-11-11"
+    },
+    "rifugio-biella": {
+      "name": "Rifugio Biella",
+      "osmId": "way/121491779",
+      "periods": [
+        {
+          "from": "06-12",
+          "to": "09-25"
+        }
+      ],
+      "knownMonths": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "datesFor": {
+        "summer": "2027"
+      },
+      "url": "https://rifugiobiella.it/en/",
+      "accessedAt": "2026-11-11"
+    }
+  },
+  "trails": {
+    "ahrntal-escursione-rifugio-ponte-di-ghiaccio": {
+      "huts": [
+        "edelrauthutte"
+      ],
+      "goals": [
+        "edelrauthutte"
+      ]
+    },
+    "altabadia-colfosco-rifugio-puez": {
+      "huts": [
+        "edelweisshutte",
+        "utia-de-puez"
+      ],
+      "goals": [
+        "utia-de-puez"
+      ]
+    },
+    "altabadia-da-furnacia-a-la-crusc": {
+      "huts": [
+        "heiligkreuz-hospitz"
+      ],
+      "goals": [
+        "heiligkreuz-hospitz"
+      ]
+    },
+    "brixen-alto-sentiero-di-lazfons": {
+      "huts": [
+        "klausner-hutte"
+      ]
+    },
+    "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": {
+      "huts": [
+        "grossberghutte"
+      ]
+    },
+    "campiglio-trekking-al-rifugio-segantini": {
+      "huts": [
+        "rifugio-segantini"
+      ],
+      "goals": [
+        "rifugio-segantini"
+      ]
+    },
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": {
+      "huts": [
+        "rifugio-segantini"
+      ]
+    },
+    "cortina-anello-dei-tre-rifugi": {
+      "huts": [
+        "rifugio-malga-ra-stua",
+        "sennes-hutte",
+        "rifugio-biella"
+      ],
+      "goals": [
+        "rifugio-malga-ra-stua",
+        "sennes-hutte",
+        "rifugio-biella"
+      ]
+    },
+    "cortina-malga-ra-stua": {
+      "huts": [
+        "rifugio-malga-ra-stua"
+      ],
+      "goals": [
+        "rifugio-malga-ra-stua"
+      ]
+    },
+    "eggental-frommer-ochsenhuette": {
+      "huts": [
+        "frommeralm",
+        "ochsenhutte"
+      ],
+      "goals": [
+        "ochsenhutte"
+      ]
+    },
+    "eggental-kaiserstein-baita-masare": {
+      "huts": [
+        "masare-hutte"
+      ],
+      "goals": [
+        "masare-hutte"
+      ]
+    },
+    "eggental-passo-nigra-baita-messnerjoch": {
+      "huts": [
+        "baita-messnerjoch"
+      ],
+      "goals": [
+        "baita-messnerjoch"
+      ]
+    },
+    "fassa-sentiero-della-foresta": {
+      "huts": [
+        "rifugio-gardeccia"
+      ]
+    },
+    "fiemme-passo-oclini": {
+      "huts": [
+        "isi-hutte"
+      ]
+    },
+    "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": {
+      "huts": [
+        "maiser-alm",
+        "rotwandhutte"
+      ]
+    },
+    "osm-11855879": {
+      "huts": [
+        "utia-cherz"
+      ]
+    },
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": {
+      "huts": [
+        "hofer-alpl"
+      ],
+      "goals": [
+        "hofer-alpl"
+      ]
+    },
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "huts": [
+        "malga-schgaguler-schwaige"
+      ]
+    },
+    "trecime-sasso-di-sesto": {
+      "huts": [
+        "talschlusshutte-fischleintal"
+      ]
+    },
+    "valdisole-fazzon-lago-dei-caprioli": {
+      "huts": [
+        "rifugio-alpino-fazzon"
+      ],
+      "goals": [
+        "rifugio-alpino-fazzon"
+      ]
+    },
+    "valgardena-escursione-ortisei-passo-sella": {
+      "huts": [
+        "emilio-comici-hutte"
+      ]
+    },
+    "valgardena-percorso-dei-masi-tradizionali": {
+      "huts": [
+        "baita-pramulin-hutte"
+      ]
+    },
+    "valgardena-seceda-da-col-raiser": {
+      "huts": [
+        "fermeda-hutte"
+      ]
+    },
+    "valgardena-seceda-dal-rifugio-firenze": {
+      "huts": [
+        "baita-sangon",
+        "fermeda-hutte"
+      ]
+    },
+    "valgardena-tour-alla-volta-del-lech-sant": {
+      "huts": [
+        "gamsblut-hutte"
+      ]
+    },
+    "valgardena-uciei-de-freeines": {
+      "huts": [
+        "gamsblut-hutte",
+        "baita-pramulin-hutte"
+      ]
+    },
+    "villnoess-dolorama-3a-tappa": {
+      "huts": [
+        "schluterhutte",
+        "gampen-alm"
+      ]
+    }
+  }
+}
