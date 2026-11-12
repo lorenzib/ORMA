@@ -96,12 +96,77 @@ describe('SOCIAL-07 the passport as a picture', () => {
     expect(passport.renderPassport(passport.buildPassport([], TRAILS), { t, canShare: true })).not.toContain('jp-share');
   });
 
+  test('a visa on the card shows its level, not a count of the whole valley', () => {
+    const canvas = fakeCanvas();
+    card.renderPassportCard(p, { t, format: 'story' }, canvas);
+    const all = canvas.texts.join('\n');
+    expect(all).toContain('★★★★★ journal.passport.level.legend'); // every trail of a valley is the top level
+    expect(all).not.toContain('journal.passport.of');
+    const two = passport.buildPassport([walk('t0', '2026-10-10'), walk('t1', '2026-10-11')], TRAILS);
+    const first = fakeCanvas();
+    card.renderPassportCard(two, { t, format: 'post' }, first);
+    expect(first.texts.join('\n')).toContain('★☆☆☆☆ journal.passport.level.visitor');
+  });
+
+  test('a new visa is its own picture: the dog, the valley, its level and the trails stamped there', () => {
+    const c = card.visaContent(p, { valley: 'Val Gardena', format: 'story' });
+    expect(c.valley.name).toBe('Val Gardena');
+    expect(c.stamps.map(s => s.trailId)).toEqual(['t5', 't4', 't3']);
+    expect(c.moreStamps).toBe(3);
+    expect(card.visaContent(p, { valley: 'Nowhere' })).toBeNull();
+    const canvas = fakeCanvas();
+    const now = Date.parse('2026-10-20T12:00:00Z'); // Val Gardena was entered on 10 Oct
+    card.renderVisaCard(p, { t, valley: 'Val Gardena', format: 'story', dogName: 'Luna', now }, canvas);
+    const all = canvas.texts.join('\n');
+    expect(all).toContain('journal.passport.card.visaTitle{"name":"Luna"}');
+    expect(all).toContain('VAL GARDENA');
+    expect(all).toContain('Trail number 5');
+    expect(all).not.toContain('Trail number 6'); // another valley's trail
+    expect(all).toContain('journal.passport.card.more{"n":"3"}');
+    const nameless = fakeCanvas();
+    card.renderVisaCard(p, { t, valley: 'Cembra', format: 'post', now }, nameless);
+    expect(nameless.texts).toContain('journal.passport.card.visaTitleNoName');
+    expect(card.shareText(p, { t, valley: 'Cembra', dogName: 'Luna', now }))
+      .toBe('journal.passport.card.visaCaption{"name":"Luna","valley":"Cembra","level":"journal.passport.level.legend"}');
+    // A visa from months ago is shared as a visa, not a new one.
+    const later = Date.parse('2027-03-01');
+    const old = fakeCanvas();
+    card.renderVisaCard(p, { t, valley: 'Val Gardena', format: 'story', dogName: 'Luna', now: later }, old);
+    expect(old.texts).toContain('journal.passport.card.visaTitlePlain{"name":"Luna"}');
+    expect(old.texts.join('\n')).not.toContain('card.visaTitle{');
+    expect(card.shareText(p, { t, valley: 'Cembra', dogName: 'Luna', now: later }))
+      .toBe('journal.passport.card.visaCaptionPlain{"name":"Luna","valley":"Cembra","level":"journal.passport.level.legend"}');
+  });
+
+  test('a level just reached is shared as a level up', () => {
+    const canvas = fakeCanvas();
+    card.renderVisaCard(p, { t, valley: 'Val Gardena', format: 'story', dogName: 'Luna', moment: 'level' }, canvas);
+    expect(canvas.texts).toContain('JOURNAL.PASSPORT.CARD.LEVELKICKER');
+    expect(canvas.texts).toContain('journal.passport.card.levelTitle{"name":"Luna"}');
+    expect(card.shareText(p, { t, valley: 'Val Gardena', dogName: 'Luna', moment: 'level' }))
+      .toBe('journal.passport.card.levelCaption{"name":"Luna","valley":"Val Gardena","level":"journal.passport.level.legend"}');
+  });
+
+  test('the visa picture keeps clear of Instagram’s reply bar and still shows the dog on a post', () => {
+    ['story', 'post'].forEach(format => {
+      const c = card.visaContent(p, { valley: 'Val Gardena', format });
+      const photo = card.visaPhoto(c);
+      expect(photo).toBeGreaterThanOrEqual(120);
+      const bottom = card.VISA_TOP + photo + 40 + card.visaHeight(c);
+      const limit = format === 'story' ? c.format.height - 260 : c.format.height - c.format.footerFromBottom - 40;
+      expect(bottom).toBeLessThanOrEqual(limit);
+    });
+  });
+
   test('the journal wires the share window', () => {
     const page = read('journal.html');
     expect(page.indexOf('dog-passport.js')).toBeLessThan(page.indexOf('passport-card.js'));
     expect(page).toContain('id="jnPassShareOverlay"');
     expect(page).toContain("ev.target.closest('.jp-share')");
     expect(page).toContain('canShare: !!window.DoloPawsPassportCard,');
+    expect(page).toContain("ev.target.closest('.jp-visa-share')");
+    expect(page).toContain('valley: passShareValley || undefined,');
+    expect(page).toContain('moment: passShareMoment || undefined,');
   });
 
   test('every card label exists in English and Italian', () => {

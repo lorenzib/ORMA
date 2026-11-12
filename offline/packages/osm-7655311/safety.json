@@ -8,7 +8,7 @@
     "distanceKm": 7.7,
     "ascentM": 186,
     "highestPointM": 748,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 10
   },
@@ -63,5 +63,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Partschins village centre, by the church square (official start)": "Centro del paese di Partschins, vicino alla piazza della chiesa (partenza ufficiale)",
+    "A short suspension footbridge near the Winklerhof (km 0.7).": "Una breve passerella sospesa vicino al Winklerhof (km 0,7).",
+    "About 70 m of steps, then about 450 m of rocky path with rails (km 2.5–2.9).": "Circa 70 m di gradini, poi circa 450 m di sentiero roccioso con corrimano (km 2,5–2,9).",
+    "A cattle grid and gates near km 4.5 and 5.3.": "Una griglia per il bestiame e dei cancelli vicino al km 4,5 e 5,3."
+  }
 }

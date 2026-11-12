@@ -8,7 +8,7 @@
     "distanceKm": 8.74,
     "ascentM": 301,
     "highestPointM": 1937,
-    "expectedDuration": "2–2.5 hours",
+    "expectedDuration": "2 h – 2 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 29
   },
@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Seiser Alm Bahn mountain station, Compatsch": "Stazione a monte della Seiser Alm Bahn, Compatsch",
+    "About 1.2 km on asphalt in Compatsch and Saltria and near Hotel Steger Dellai.": "Circa 1,2 km su asfalto a Compatsch e Saltria e vicino all'Hotel Steger Dellai.",
+    "Crosses the Seiser Alm access road and joins the Saltria road.": "Attraversa la strada di accesso all'Alpe di Siusi e si immette nella strada di Saltria.",
+    "Narrower, rougher path on route 12 down into the Saltria valley.": "Sentiero più stretto e accidentato sul percorso 12 in discesa verso la valle di Saltria."
+  }
 }

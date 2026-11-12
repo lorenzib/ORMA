@@ -8,7 +8,7 @@
     "distanceKm": 3.2,
     "ascentM": 191,
     "highestPointM": 968,
-    "expectedDuration": "1–1.5 hours",
+    "expectedDuration": "1 h – 1 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 20
   },
@@ -49,5 +49,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Village square (Dorfplatz), Verdings": "Piazza del paese (Dorfplatz), Verdings",
+    "About 0.5 km on the asphalt road to Pardell, shared with cars.": "Circa 0,5 km sulla strada asfaltata per Pardell, condivisa con le auto.",
+    "Village streets in Verdings.": "Strade del paese a Verdings.",
+    "Old cobbled path, slippery when wet.": "Vecchia mulattiera acciottolata, scivolosa quando è bagnata."
+  }
 }

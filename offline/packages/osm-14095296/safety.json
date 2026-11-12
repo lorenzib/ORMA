@@ -8,7 +8,7 @@
     "distanceKm": 6.6,
     "ascentM": 22,
     "highestPointM": 365,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 15
   },
@@ -39,5 +39,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Start here: Albens cemetery parking, Entrelacs (do not park at the D1201 trail entrance, it is prohibited)": "Parti da qui: parcheggio del cimitero di Albens, Entrelacs (non parcheggiare all'ingresso del sentiero sulla D1201, è vietato)",
+    "One railway level crossing.": "Un passaggio a livello ferroviario.",
+    "About 1 km on quiet country lanes.": "Circa 1 km su tranquille stradine di campagna."
+  }
 }

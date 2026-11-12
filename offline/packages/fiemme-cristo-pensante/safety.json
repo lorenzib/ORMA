@@ -8,7 +8,7 @@
     "distanceKm": 9.2,
     "ascentM": 428,
     "highestPointM": 2251,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Hard",
     "shadePercent": 0
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-10",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Cristo Pensante on Monte Castellazzo": "Il Cristo Pensante sul Monte Castellazzo",
+    "The car park on the hairpin just past Passo Rolle, the board’s start": "Il parcheggio sul tornante subito dopo Passo Rolle, la partenza ufficiale",
+    "The car park is on the SS50 hairpin at Passo Rolle: keep your dog on a short lead by the road.": "Il parcheggio è sul tornante della SS50 a Passo Rolle: tieni il cane al guinzaglio corto vicino alla strada.",
+    "Stony path on the open summit of Monte Castellazzo, with loose rock: watch your dog’s paws.": "Sentiero sassoso sulla cima aperta del Monte Castellazzo, con pietre smosse: attenzione alle zampe del cane.",
+    "No shade and no shelter on the top: turn back if storms build.": "Niente ombra e nessun riparo in cima: torna indietro se si formano temporali."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 27.1,
     "ascentM": 1801,
     "highestPointM": 2523,
-    "expectedDuration": "9 hours",
+    "expectedDuration": "9 h",
     "difficulty": "Hard",
     "shadePercent": 25
   },
@@ -70,5 +70,11 @@
       "downloadedAt": "2026-11-07",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Junction for Kandellen, Frondeigen and the Silvestertal above Wahlen, the board’s start": "Bivio per Kandellen, Frondeigen e la Silvestertal sopra Wahlen, la partenza indicata dall’ente turistico",
+    "Steep grass slopes up to the Golfen with no clear path in places.": "Ripidi pendii erbosi fino al Golfen, a tratti senza un sentiero evidente.",
+    "About 9 km of open ridge above 2,400 m, mountain-hiking ground (SAC T2), far from shelter in a storm.": "Circa 9 km di cresta aperta sopra i 2.400 m, terreno escursionistico di montagna (SAC T2), lontano da ripari in caso di temporale.",
+    "About 4 km on roads, the last kilometre on asphalt.": "Circa 4 km su strada, l’ultimo chilometro su asfalto."
+  }
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12302191",
   "name": "Dorfrundweg Rasen",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.876Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.254Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 642141,
+  "packageBytes": 661756,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.7723,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dorfrundweg Rasen safety information",
       "url": "safety.json",
-      "bytes": 2435,
-      "sha256": "65524f773f36a3225839affc7ed1ef3516973c4495b23d68d3bfeb335d9d7a44"
+      "bytes": 3377,
+      "sha256": "3e785afa61a7867449c42b30224de349c41b8bd908bcad2614071aa3e3710c43"
     }
   ]
 }

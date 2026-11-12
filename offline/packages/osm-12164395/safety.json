@@ -8,7 +8,7 @@
     "distanceKm": 6.3,
     "ascentM": 205,
     "highestPointM": 894,
-    "expectedDuration": "1.5–2.5 hours",
+    "expectedDuration": "1 h 30 min – 2 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 50
   },
@@ -52,5 +52,8 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Raiffeisenplatz, Niedervintl (route 4 signpost)": "Raiffeisenplatz, Niedervintl (cartello del percorso 4)"
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 6.2,
     "ascentM": 152,
     "highestPointM": 1516,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 18
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Canazei (Piaz G. Marconi), the APT’s start": "Canazei (Piaz G. Marconi), partenza indicata dall'APT",
+    "About 3.3 km on tarmac, mostly quiet lanes between the hamlets, open to cars.": "Circa 3,3 km su asfalto, per lo più tranquille stradine tra le frazioni, aperte alle auto.",
+    "Short forest paths; the APT suggests walking poles.": "Brevi sentieri nel bosco; l'APT consiglia i bastoncini.",
+    "Working farms and barns at Pian.": "Masi e fienili in attività a Pian."
+  }
 }

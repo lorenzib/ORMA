@@ -8,7 +8,7 @@
     "distanceKm": 8.6,
     "ascentM": 220,
     "highestPointM": 1341,
-    "expectedDuration": "3.5 hours",
+    "expectedDuration": "3 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 20
   },
@@ -138,5 +138,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Le Buet station and car park, Vallorcine (official start)": "Stazione e parcheggio di Le Buet, Vallorcine (partenza ufficiale)",
+    "About 300 m on or across the D1506.": "Circa 300 m sulla D1506 o attraverso di essa.",
+    "Village lanes through the hamlets.": "Stradine di paese attraverso le frazioni."
+  }
 }

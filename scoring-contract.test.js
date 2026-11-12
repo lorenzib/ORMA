@@ -11,7 +11,7 @@ function run(fixture){
 
 describe('SCORE-01 canonical recommendation contract', () => {
   test('the fixture set and calculator use the same immutable version', () => {
-    expect(scoring.VERSION).toBe('1.8.0');
+    expect(scoring.VERSION).toBe('1.9.0');
     expect(fixtures.scoringVersion).toBe(scoring.VERSION);
   });
 
@@ -125,6 +125,30 @@ describe('SCORE-01 canonical recommendation contract', () => {
     expect(cost(['Roots', 'Scree', 'Road', 'Bikes'], fitAdult)).toBe(-10);
     expect(cost(['Roots', 'Scree', 'Road', 'Bikes'], { ...fitAdult, ageYears:9 })).toBe(-15);
     expect(scoring.calculateRecommendation({ trail:flatWalk, dog:fitAdult }).score).toBe(80);
+  });
+
+  // v1.9.0. A trail's terrain rank is its steepest grade, and 250 of the 355
+  // Dolomites walks reach rank 2. At 30 a rank, a healthy dog of moderate
+  // fitness was ruled out of most of them for steepness alone.
+  test('steepness does not hold back a healthy adult dog, whatever its fitness above low', () => {
+    const steep = { ...flatWalk, suitability:{ ...flatWalk.suitability, terrainRank:2 } };
+    const codes = dog => scoring.calculateRecommendation({ trail:steep, dog }).cautions.map(entry => entry.code);
+    expect(codes({ ...fitAdult, fitness:'moderate' })).not.toContain('trail.terrain.above-tolerance');
+    expect(codes(fitAdult)).not.toContain('trail.terrain.above-tolerance');
+  });
+
+  test('steepness still counts, at 10 a rank, for a dog with a reason to mind it', () => {
+    const steep = { ...flatWalk, suitability:{ ...flatWalk.suitability, terrainRank:2 } };
+    const cost = dog => (scoring.calculateRecommendation({ trail:steep, dog }).cautions
+      .find(entry => entry.code === 'trail.terrain.above-tolerance') || { impact:0 }).impact;
+    const moderate = { ...fitAdult, fitness:'moderate' };
+    expect(cost({ ...fitAdult, fitness:'low' })).toBe(-20);
+    expect(cost({ ...moderate, ageYears:9 })).toBe(-20);
+    expect(cost({ ...moderate, ageYears:0.6 })).toBe(-20);
+    expect(cost({ ...moderate, conditions:['joints'] })).toBe(-20);
+    expect(cost({ ...moderate, traits:{ shortLegged:true } })).toBe(-10);
+    expect(cost({ ...fitAdult, weightKg:50 })).toBe(-10);
+    expect(cost({ ...moderate, conditions:['overweight'] })).toBe(-10);
   });
 
   test('dynamic explanations expose translation metadata without changing canonical messages', () => {

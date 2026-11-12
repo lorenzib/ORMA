@@ -8,7 +8,7 @@
     "distanceKm": 6.3,
     "ascentM": 299,
     "highestPointM": 1056,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 67
   },
@@ -111,5 +111,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Fiè to Siusi by the Laghetto di Fiè": "Da Fiè a Siusi passando per il Laghetto di Fiè",
+    "The roundabout in Fiè allo Sciliar (880 m), the board’s start": "La rotonda di Fiè allo Sciliar (880 m), punto di partenza della scheda ufficiale",
+    "The first stretch follows the tarmac road (path 1) towards Umes and the last runs on a lane past the gondola station: keep your dog on a short lead.": "Il primo tratto segue la strada asfaltata (sentiero 1) verso Umes e l'ultimo corre su una stradina accanto alla stazione della cabinovia: tieni il cane al guinzaglio corto.",
+    "The Fiè di Sopra meadows are farmed: Völs keeps dogs off farmed land, so stay on the path.": "I prati di Fiè di Sopra sono coltivati: Völs vieta ai cani i terreni coltivati, quindi resta sul sentiero.",
+    "Busy around the Laghetto di Fiè in summer; swimming is for people: keep your dog out of the bathing area.": "D'estate c'è molta gente attorno al Laghetto di Fiè; il bagno è per le persone: tieni il cane fuori dalla zona balneare."
+  }
 }

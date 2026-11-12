@@ -8,7 +8,7 @@
     "distanceKm": 5.2,
     "ascentM": 678,
     "highestPointM": 2549,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 8
   },
@@ -55,5 +55,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lake Neves to the Ponte di Ghiaccio hut": "Dal Lago di Neves al Rifugio Ponte di Ghiaccio",
+    "Lake Neves (Neves-Stausee), the board’s start": "Lago di Neves (Neves-Stausee), la partenza indicata dalla scheda ufficiale",
+    "Cows graze around Lake Neves and in the valley in summer: keep your dog on a lead.": "D'estate le mucche pascolano intorno al lago di Neves e nella valle: tieni il cane al guinzaglio.",
+    "Rocky, stony path in the upper part below the hut.": "Sentiero roccioso e sassoso nella parte alta sotto il rifugio.",
+    "Open high ground up to about 2,540 m: turn back if storms build.": "Terreno d'alta quota aperto fino a circa 2.540 m: torna indietro se si formano temporali."
+  }
 }

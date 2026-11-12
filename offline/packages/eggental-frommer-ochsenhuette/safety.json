@@ -8,7 +8,7 @@
     "distanceKm": 2.1,
     "ascentM": 102,
     "highestPointM": 1830,
-    "expectedDuration": "0.75 hours",
+    "expectedDuration": "45 min",
     "difficulty": "Moderate",
     "shadePercent": 56
   },
@@ -47,5 +47,11 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Malga Frommer to the Baita Ochsenhütte": "Da Malga Frommer alla Baita Ochsenhütte",
+    "The Malga Frommer Alm by the top station of the Nova Levante gondola, the board’s start": "La Malga Frommer Alm vicino alla stazione a monte della cabinovia di Nova Levante, la partenza della scheda ufficiale",
+    "Busy around the gondola station and the Malga Frommer Alm in summer: keep your dog on a short lead.": "D'estate c'è molta gente attorno alla stazione della cabinovia e alla Malga Frommer Alm: tieni il cane al guinzaglio corto.",
+    "Path 1A runs just above the Via Nigra road.": "Il sentiero 1A corre poco sopra la strada della Via Nigra."
+  }
 }

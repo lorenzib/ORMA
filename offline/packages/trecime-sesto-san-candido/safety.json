@@ -8,7 +8,7 @@
     "distanceKm": 19.3,
     "ascentM": 462,
     "highestPointM": 1399,
-    "expectedDuration": "5.5 hours",
+    "expectedDuration": "5 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 45
   },
@@ -125,5 +125,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Sexten – Innichen and back": "Sexten – Innichen, andata e ritorno",
+    "Church in Moos, Sexten, the board’s start": "Chiesa di Moos, Sexten, partenza indicata dalla scheda ufficiale",
+    "A long day: 19 km there and back, or take the bus back from Innichen.": "Una giornata lunga: 19 km andata e ritorno, oppure torna in autobus da Innichen.",
+    "Summer 2026: the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built: keep your dog close where the walk joins path 4.": "Estate 2026: la scheda ufficiale segnala intenso traffico di cantiere sul sentiero 4 durante la costruzione della nuova cabinovia Helmissimo: tieni il cane vicino dove il percorso si immette sul sentiero 4.",
+    "Village streets and farm lanes in Moos, Sexten and Innichen.": "Strade di paese e strade poderali a Moos, Sexten e Innichen."
+  }
 }

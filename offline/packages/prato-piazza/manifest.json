@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "prato-piazza",
   "name": "Prato Piazza (Plätzwiese)",
-  "version": "2026.11.12-beta.6",
-  "generatedAt": "2026-11-12T11:09:05.990Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.7",
+  "generatedAt": "2026-11-12T12:31:14.510Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 339971,
+  "packageBytes": 359010,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.63878,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -217,7 +217,7 @@
       "label": "Prato Piazza (Plätzwiese) routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 76953,
-      "sha256": "564f6fe1fa5b329ff047de093c84ef92988808190a54c94a6b353e6137ce4182"
+      "sha256": "3e13e1dc6848314ad57f41eddb29c5fb648e6e14a834d2140370e08e641c5312"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Prato Piazza (Plätzwiese) safety information",
       "url": "safety.json",
-      "bytes": 1740,
-      "sha256": "1512169dd0e61045a1692606f9d48f2538a08694606377b3da283353e9e311de"
+      "bytes": 2106,
+      "sha256": "e93bbce81114378c00055d742faad65cefbbdbd5f280bd1e78fa8dafbc796fee"
     }
   ]
 }

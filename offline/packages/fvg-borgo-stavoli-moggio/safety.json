@@ -8,7 +8,7 @@
     "distanceKm": 6.9,
     "ascentM": 379,
     "highestPointM": 570,
-    "expectedDuration": "3.1 hours",
+    "expectedDuration": "3 h 5 min",
     "difficulty": "Hard",
     "shadePercent": 51
   },
@@ -41,5 +41,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Campiolo, by the parking places at the start of path CAI 417, the board’s start": "Campiolo, vicino ai posti auto all'inizio del sentiero CAI 417, partenza indicata dalla scheda ufficiale",
+    "A mule track along steep slopes above the Glagnò gorge, with guard rails in places: keep your dog on a short lead.": "Una mulattiera lungo ripidi pendii sopra la forra del Glagnò, a tratti con parapetti: tieni il cane al guinzaglio corto.",
+    "A long steady climb of about 380 m.": "Una lunga salita costante di circa 380 m.",
+    "Not advised in bad weather or the hottest summer hours.": "Sconsigliato con il maltempo o nelle ore più calde d'estate."
+  }
 }

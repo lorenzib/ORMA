@@ -8,7 +8,7 @@
     "distanceKm": 7,
     "ascentM": 249,
     "highestPointM": 1041,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 30
   },
@@ -49,5 +49,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Feldthurns village centre by Schloss Velthurns (official start)": "Centro di Feldthurns vicino a Schloss Velthurns (partenza ufficiale)",
+    "About 800 m on village streets and the Schnauderer Straße, and longer stretches on quiet farm roads open to cars.": "Circa 800 m su strade di paese e sulla Schnauderer Straße, e tratti più lunghi su tranquille strade agricole aperte alle auto.",
+    "Working farms at Schnauders, the Glangerhof and Guln.": "Masi in attività a Schnauders, al Glangerhof e a Guln.",
+    "A deer enclosure at the Glangerhof.": "Un recinto di cervi al Glangerhof."
+  }
 }

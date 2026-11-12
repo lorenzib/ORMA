@@ -8,7 +8,7 @@
     "distanceKm": 11.7,
     "ascentM": 673,
     "highestPointM": 1927,
-    "expectedDuration": "3.75 hours",
+    "expectedDuration": "3 h 45 min",
     "difficulty": "Hard",
     "shadePercent": 15
   },
@@ -41,5 +41,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Mont d'Arbois gondola base, Megève (official start)": "Stazione a valle della cabinovia del Mont d'Arbois, Megève (partenza ufficiale)",
+    "Crosses the Charlotte bike park's downhill trails on the crest: watch for riders.": "Sulla cresta attraversa le piste da downhill del bike park Charlotte: attenzione ai ciclisti.",
+    "Ski-area service tracks, with service vehicles.": "Sterrate di servizio del comprensorio sciistico, con mezzi di servizio.",
+    "About 2.2 km on the Route Edmond de Rothschild and village roads, with cars.": "Circa 2,2 km sulla Route Edmond de Rothschild e sulle strade del paese, con auto."
+  }
 }

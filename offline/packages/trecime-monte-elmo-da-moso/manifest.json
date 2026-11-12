@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-monte-elmo-da-moso",
   "name": "Moos – Helm",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:46:32.361Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.641Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 577081,
+  "packageBytes": 596397,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.68759,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Moos – Helm safety information",
       "url": "safety.json",
-      "bytes": 1435,
-      "sha256": "5df66535472a96cd899e02b86556f8e69be3a69ea5768671e6e51c3b8aea28a5"
+      "bytes": 2078,
+      "sha256": "62050830170cff2093ae4061d2a511c278d2df08e05418a2f2ef95ea22401935"
     }
   ]
 }

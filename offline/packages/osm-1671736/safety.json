@@ -8,7 +8,7 @@
     "distanceKm": 8,
     "ascentM": 450,
     "highestPointM": 1090,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 44
   },
@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Verdins, behind the parish church, bus stop Verdins (official start)": "Verdins, dietro la chiesa parrocchiale, fermata dell'autobus Verdins (partenza ufficiale)",
+    "A steep climb up through a meadow to the Hoferhof (the board warns of it).": "Una salita ripida attraverso un prato fino all'Hoferhof (la scheda ufficiale la segnala).",
+    "About 3.5 km on farm roads and lanes open to cars.": "Circa 3,5 km su strade poderali e stradine aperte alle auto.",
+    "Narrow paths (about 0.8 m) on the Höfeweg itself.": "Sentieri stretti (circa 0,8 m) sull'Höfeweg vero e proprio."
+  }
 }

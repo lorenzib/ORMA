@@ -8,7 +8,7 @@
     "distanceKm": 6.9,
     "ascentM": 94,
     "highestPointM": 1984,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 40
   },
@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Passo San Pellegrino (Moena), the APT’s start": "Passo San Pellegrino (Moena), la partenza indicata dall'APT",
+    "Open alpine pasture at about 1,900–1,970 m with cattle in summer: keep your distance.": "Pascolo alpino aperto a circa 1.900–1.970 m con bestiame d'estate: mantieni le distanze.",
+    "Gravel track shared with the refuge’s vehicles and, in some years, a horse-drawn carriage.": "Strada sterrata condivisa con i mezzi del rifugio e, in alcuni anni, con una carrozza trainata da cavalli.",
+    "No shade on the open basin, strong sun and wind.": "Nessuna ombra nella conca aperta, sole e vento forti."
+  }
 }

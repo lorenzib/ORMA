@@ -8,7 +8,7 @@
     "distanceKm": 2.3,
     "ascentM": 146,
     "highestPointM": 1362,
-    "expectedDuration": "0.75 hours",
+    "expectedDuration": "45 min",
     "difficulty": "Moderate",
     "shadePercent": 12
   },
@@ -54,5 +54,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lake Bergsee from Burgeis": "Il Bergsee da Burgeis",
+    "Burgeis tourist office, the board’s start": "Ufficio turistico di Burgeis, partenza indicata dalla scheda ufficiale",
+    "Village lanes in Burgeis with occasional cars: lead on.": "Stradine di paese a Burgeis con qualche auto: guinzaglio.",
+    "Little shade on the open slope above the village.": "Poca ombra sul pendio aperto sopra il paese."
+  }
 }

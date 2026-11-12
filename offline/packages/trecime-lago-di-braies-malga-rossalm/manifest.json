@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-lago-di-braies-malga-rossalm",
   "name": "Pragser Wildsee – Rossalm",
-  "version": "2026.11.12-beta.2",
-  "generatedAt": "2026-11-12T11:17:33.176Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.636Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 519906,
+  "packageBytes": 539117,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65635,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -217,7 +217,7 @@
       "label": "Pragser Wildsee – Rossalm routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 75015,
-      "sha256": "ed5a0d77c67452a8a893b9be064beea7b33ae6dc721b8f9270980da99d6f8e76"
+      "sha256": "1cf4f0b0a56e3442a7160aa6898107801c23fe374f40f7effe80fe9c7c9fa8cb"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Pragser Wildsee – Rossalm safety information",
       "url": "safety.json",
-      "bytes": 1457,
-      "sha256": "84f4d0b323f7af897c28ce9c09dffb79e42f3584115be77629961ea89fb96f94"
+      "bytes": 1995,
+      "sha256": "60c30ac4d9743c3ba7c2081739a5d1c19d2668289c195abfd703275c9c62332a"
     }
   ]
 }

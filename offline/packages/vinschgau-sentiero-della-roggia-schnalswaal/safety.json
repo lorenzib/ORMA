@@ -8,7 +8,7 @@
     "distanceKm": 6.8,
     "ascentM": 300,
     "highestPointM": 862,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Hard",
     "shadePercent": 19
   },
@@ -49,5 +49,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Schnalswaal, Kastelbell to Staben": "Schnalswaal, da Kastelbell a Staben",
+    "The square in Kastelbell, the board’s start": "La piazza di Kastelbell, partenza indicata dalla scheda ufficiale",
+    "The Sonnenberg is dry and south-facing: hot in summer, go early and bring water.": "Il Sonnenberg è secco ed esposto a sud: caldo in estate, parti presto e porta acqua.",
+    "Lanes in Kastelbell and Staben at both ends: lead on.": "Stradine a Kastelbell e Staben all'inizio e alla fine: guinzaglio.",
+    "Orchards and vineyards beside the path are farmed and closed to dogs in Kastelbell-Tschars: keep to the path.": "I frutteti e i vigneti accanto al sentiero sono coltivati e a Kastelbell-Tschars sono vietati ai cani: resta sul sentiero."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 5.1,
     "ascentM": 272,
     "highestPointM": 1588,
-    "expectedDuration": "1.75 hours",
+    "expectedDuration": "1 h 45 min",
     "difficulty": "Hard",
     "shadePercent": 49
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Sonnenrundweg loop at Stuls": "Anello del Sonnenrundweg a Stuls",
+    "Car park by the church in Stuls, the board’s start": "Parcheggio vicino alla chiesa di Stuls, la partenza indicata dalla scheda ufficiale",
+    "Most of the loop is on a quiet tarred farm road with hairpins, shared with cars and tractors: lead on and keep to the side.": "Gran parte dell'anello è su una tranquilla strada agricola asfaltata a tornanti, condivisa con auto e trattori: guinzaglio e tieniti a lato.",
+    "About 120 m on the Stuls road near the village: keep your dog close on a short lead.": "Circa 120 m sulla strada di Stuls vicino al paese: tieni il cane vicino al guinzaglio corto.",
+    "Meadows beside the road are farmed and closed to dogs in Moos in Passeier in the growing season: keep to the road and path.": "I prati accanto alla strada sono coltivati e a Moos in Passeier sono vietati ai cani durante la stagione vegetativa: resta sulla strada e sul sentiero."
+  }
 }

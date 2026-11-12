@@ -8,7 +8,7 @@
     "distanceKm": 4.4,
     "ascentM": 250,
     "highestPointM": 718,
-    "expectedDuration": "1.8 hours",
+    "expectedDuration": "1 h 50 min",
     "difficulty": "Hard",
     "shadePercent": 79
   },
@@ -61,5 +61,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Car park by the information office below Cologna, the APT’s start": "Parcheggio vicino all'ufficio informazioni sotto Cologna, la partenza indicata dall'APT",
+    "A steep, narrow stretch of path on the way down just after the church of San Martino (km 3.8).": "Un tratto di sentiero ripido e stretto in discesa subito dopo la chiesa di San Martino (km 3,8).",
+    "Lanes through Cologna at the start are open to cars.": "Le stradine di Cologna all'inizio sono aperte alle auto."
+  }
 }

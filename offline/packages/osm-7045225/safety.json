@@ -8,7 +8,7 @@
     "distanceKm": 7.4,
     "ascentM": 436,
     "highestPointM": 1405,
-    "expectedDuration": "2.75–3 hours",
+    "expectedDuration": "2 h 45 min – 3 h",
     "difficulty": "Hard",
     "shadePercent": 75
   },
@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Santèl, on the SP 64 above Fai della Paganella (official start of SAT path 603); the walk ends at Fai Le Coste": "Santèl, sulla SP 64 sopra Fai della Paganella (partenza ufficiale del sentiero SAT 603); il percorso termina a Fai Le Coste",
+    "Slight exposure below some rock ledges near the end (SAT).": "Leggera esposizione sotto alcune cenge rocciose verso la fine (SAT).",
+    "Log steps and old stone paving on the descent.": "Gradini di tronchi e vecchio selciato in discesa.",
+    "Bear area: SAT signs warn of bears.": "Zona orsi: i cartelli SAT avvertono della presenza di orsi."
+  }
 }

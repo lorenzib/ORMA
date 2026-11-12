@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12173549",
   "name": "Mühlenweg",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.780Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.233Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 648478,
+  "packageBytes": 667814,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.82624,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Mühlenweg safety information",
       "url": "safety.json",
-      "bytes": 1689,
-      "sha256": "76457e7909709e40f9d998078f70946b27c55ba84371fe66026a8bc73699c130"
+      "bytes": 2352,
+      "sha256": "95c5970ace4e4bb4d779696633ed4a8f95db58f46ab0dfb6369ec74125ce6170"
     }
   ]
 }

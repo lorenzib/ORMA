@@ -8,7 +8,7 @@
     "distanceKm": 7.5,
     "ascentM": 172,
     "highestPointM": 1478,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 11
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "La Villa bus stop, the board’s start": "Fermata dell'autobus di La Villa, la partenza indicata dalla scheda ufficiale",
+    "A short stretch on the main road through Pedraces: keep your dog close.": "Un breve tratto sulla strada principale attraverso Pedraces: tieni il cane vicino.",
+    "The path crosses hay meadows: Badia keeps dogs off farmed meadows in the growing season, so stay on the path.": "Il sentiero attraversa prati da fieno: Badia vieta ai cani i prati coltivati nella stagione vegetativa, quindi resta sul sentiero.",
+    "Paths and lanes shared with cyclists.": "Sentieri e stradine condivisi con i ciclisti."
+  }
 }

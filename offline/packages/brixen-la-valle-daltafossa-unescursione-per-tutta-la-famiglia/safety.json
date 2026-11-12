@@ -8,7 +8,7 @@
     "distanceKm": 5,
     "ascentM": 253,
     "highestPointM": 1852,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 17
   },
@@ -62,5 +62,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Altfasstal to the Wieserhütte": "Dall’Altfasstal alla Wieserhütte",
+    "Altfasstal car park (paid), the board’s start": "Parcheggio della Altfasstal (a pagamento), la partenza indicata dalla scheda ufficiale",
+    "Forest road shared with bikes and occasional service traffic: keep your dog close.": "Strada forestale condivisa con le bici e con qualche mezzo di servizio: tieni il cane vicino.",
+    "Cows graze in the upper valley in summer: keep your dog on a lead.": "D'estate le mucche pascolano nell'alta valle: tieni il cane al guinzaglio.",
+    "Kneipp pools along the way: keep your dog out of them.": "Vasche Kneipp lungo il percorso: tieni il cane fuori."
+  }
 }

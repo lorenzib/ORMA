@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14379010",
   "name": "Croix de Pralognan",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:35.396Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.7",
+  "generatedAt": "2026-11-12T12:31:14.287Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 486272,
+  "packageBytes": 505274,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.20806,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Croix de Pralognan safety information",
       "url": "safety.json",
-      "bytes": 1356,
-      "sha256": "4a4624b00778191d7395e44bb0ca7db12093e7ade3133f102bbf88b0bf7c573b"
+      "bytes": 1685,
+      "sha256": "716812fb446332773b07cadeff129e07b424c586accc0ed0fe215deb0583a12b"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-tonadico",
   "name": "Tonadico",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:36.272Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.5",
+  "generatedAt": "2026-11-12T12:31:14.545Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 877654,
+  "packageBytes": 896820,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.17217,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Tonadico safety information",
       "url": "safety.json",
-      "bytes": 2000,
-      "sha256": "7afe147a6e6dd1e656de1ae5cb0c59ed32d23a0ffa8b30b69bb1768f56cb684b"
+      "bytes": 2493,
+      "sha256": "00c51b2264fff38e40f6015b023b72b5133d06501d4b1728b43f2cd5daaed6cc"
     }
   ]
 }

@@ -8,7 +8,7 @@
     "distanceKm": 6.6,
     "ascentM": 290,
     "highestPointM": 1252,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Hard",
     "shadePercent": 74
   },
@@ -69,5 +69,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Leitenwaal and Berkwaal, Schluderns": "Leitenwaal e Berkwaal, Schluderns",
+    "The Vuseum in Schluderns, the board’s start": "Il Vuseum di Schluderns, partenza indicata dalla scheda ufficiale",
+    "Narrow wooden walkways with railings in the gorge: keep your dog close on a short lead.": "Strette passerelle di legno con parapetti nella gola: tieni il cane vicino al guinzaglio corto.",
+    "Steep climb on path 18 to the Ganglegg.": "Salita ripida sul sentiero 18 fino al Ganglegg.",
+    "Village lanes in Schluderns at both ends: lead on.": "Stradine di paese a Schluderns all'inizio e alla fine: guinzaglio."
+  }
 }

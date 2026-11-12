@@ -8,7 +8,7 @@
     "distanceKm": 5.7,
     "ascentM": 368,
     "highestPointM": 2002,
-    "expectedDuration": "2.75 hours",
+    "expectedDuration": "2 h 45 min",
     "difficulty": "Hard",
     "shadePercent": 15
   },
@@ -69,5 +69,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Val Pelouse crest path and Perrière refuge": "Sentiero di cresta di Val Pelouse e rifugio della Perrière",
+    "Val Pelouse car park at the end of the D 208, the board’s start": "Parcheggio di Val Pelouse alla fine della D 208, punto di partenza della scheda ufficiale",
+    "Working alpages: sheep or cows may graze around the refuge and the col in summer, possibly with guard dogs; keep your dog on a lead and walk round the herds.": "Alpeggi in attività: d'estate pecore o mucche possono pascolare attorno al rifugio e al colle, forse con cani da guardiania; tieni il cane al guinzaglio e aggira le mandrie.",
+    "Open crest at about 1,720–2,000 m: little shade and quick weather changes.": "Cresta aperta a circa 1.720–2.000 m: poca ombra e tempo che cambia in fretta.",
+    "The descent follows a grassy ski slope that is steep in places.": "La discesa segue una pista da sci erbosa, ripida in alcuni tratti."
+  }
 }

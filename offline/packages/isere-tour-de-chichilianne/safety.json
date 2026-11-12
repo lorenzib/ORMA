@@ -8,7 +8,7 @@
     "distanceKm": 3.8,
     "ascentM": 116,
     "highestPointM": 1042,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 28
   },
@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Place de la Fontaine in Chichilianne, by the church, the board’s start": "Place de la Fontaine a Chichilianne, vicino alla chiesa, la partenza della scheda ufficiale",
+    "Two river crossings, one by a ford: the stones can be slippery and the water higher after rain.": "Due attraversamenti del fiume, uno a guado: i sassi possono essere scivolosi e l'acqua più alta dopo la pioggia.",
+    "A short steep forest climb to Le Châtel.": "Una breve salita ripida nel bosco fino a Le Châtel.",
+    "The D 7B is crossed once.": "Si attraversa una volta la D 7B."
+  }
 }

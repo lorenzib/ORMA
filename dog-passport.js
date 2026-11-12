@@ -14,8 +14,23 @@
   // markup, so both are testable on their own.
 
   var LAKE = /(lago|laghi|laghetto|\blacs?\b|\blej\b|see\b|seen\b)/i;
-  var MILESTONE_WALKS = 10;
-  var MILESTONE_KM = 100;
+  // Badges come in ladders, like levels in a game: the next one is always
+  // in reach, and passing it shows the one after.
+  var LADDER_WALKS = [5, 10, 25, 50, 100, 250];
+  var LADDER_KM = [10, 25, 50, 100, 250, 500, 1000];
+  var LADDER_VALLEYS = [2, 3, 5, 10, 20];
+  // A valley visa levels up with the trails walked in it, not by finishing
+  // it: most valleys have far more trails than anyone walks. A level asks for
+  // at most the valley's own number of trails, so a small valley still has
+  // all five levels in reach.
+  var VALLEY_LEVELS = [
+    { id: 'visitor', at: 1 },
+    { id: 'explorer', at: 3 },
+    { id: 'regular', at: 5 },
+    { id: 'local', at: 10 },
+    { id: 'legend', at: 20 },
+  ];
+  var NEW_VISA_DAYS = 14;
   var OUTLINE_POINTS = 60;
 
   function number(value){
@@ -38,6 +53,40 @@
       .filter(function(e){ return e && (e.proof === 'gps' || e.proof === 'gpx') && e.trailId; })
       .map(function(e){ return { entry: e, trail: trailById(e.trailId) }; })
       .sort(function(a, b){ return String(a.entry.date).localeCompare(String(b.entry.date)); });
+  }
+
+  // Where a dog stands in a valley: level 0-5, the level's id, and how many
+  // more trails reach the next one (null at the top).
+  function valleyLevel(done, total){
+    var steps = VALLEY_LEVELS.map(function(l){ return { id: l.id, need: Math.min(l.at, Math.max(1, total)) }; });
+    var reached = steps.filter(function(s){ return done >= s.need; });
+    var current = reached[reached.length - 1] || null;
+    var next = steps[reached.length] || null;
+    return {
+      level: reached.length,
+      of: steps.length,
+      id: current ? current.id : null,
+      from: current ? current.need : 0,
+      next: next ? { id: next.id, need: next.need, left: next.need - done } : null,
+    };
+  }
+
+  // The highest badge of a ladder already earned, and the next one.
+  function ladder(id, have, steps){
+    var earned = steps.filter(function(n){ return have >= n; });
+    var out = [];
+    if(earned.length) out.push({ id: id, have: have, target: earned[earned.length - 1] });
+    var next = steps[earned.length];
+    if(next) out.push({ id: id, have: have, target: next });
+    return out;
+  }
+
+  // A visa first stamped in the last two weeks: worth showing off.
+  function isNewVisa(valley, now){
+    var first = Date.parse(valley && valley.firstDate);
+    var at = Number(now);
+    if(!Number.isFinite(first) || !Number.isFinite(at)) return false;
+    return at - first >= -86400000 && at - first <= NEW_VISA_DAYS * 86400000;
   }
 
   function buildPassport(entries, trails){
@@ -72,8 +121,8 @@
       stamp.dates.push(e.date);
     });
 
-    // Every catalogue trail per valley, so "2 of 16" is honest and the
-    // valley page can show the ones still to walk.
+    // Every catalogue trail per valley, so a small valley's levels fit it
+    // and the valley page can show the ones still to walk.
     var valleyTrails = new Map();
     list.forEach(function(t){
       if(!t || !t.valley || !t.id) return;
@@ -104,10 +153,12 @@
         if(a.walked) return String(b.lastDate).localeCompare(String(a.lastDate));
         return (a.distance || Infinity) - (b.distance || Infinity) || a.name.localeCompare(b.name);
       });
+      var done = trailsHere.filter(function(t){ return t.walked; }).length;
       return {
         name: name,
-        done: trailsHere.filter(function(t){ return t.walked; }).length,
+        done: done,
         total: trailsHere.length,
+        level: valleyLevel(done, trailsHere.length),
         firstDate: valleyFirst.get(name),
         trails: trailsHere,
       };
@@ -121,9 +172,11 @@
       { id: 'first', have: walks.length, target: 1 },
       { id: 'lakes', have: lakes, target: 1 },
       { id: 'huts', have: huts, target: 1 },
-      { id: 'walks', have: walks.length, target: MILESTONE_WALKS },
-      { id: 'km', have: Math.round(km * 10) / 10, target: MILESTONE_KM },
-    ].map(function(m){ m.done = m.have >= m.target; return m; });
+    ].concat(
+      ladder('walks', walks.length, LADDER_WALKS),
+      ladder('km', Math.round(km * 10) / 10, LADDER_KM),
+      ladder('valleys', valleys.length, LADDER_VALLEYS)
+    ).map(function(m){ m.done = m.have >= m.target; return m; });
 
     var since = walks.length ? walks[0].entry.date : null;
 
@@ -140,6 +193,27 @@
         climb: Math.round(climb),
       },
     };
+  }
+
+  // What a walk just earned, worked out by comparing the passport without it
+  // and with it: a territory entered for the first time, a territory that
+  // went up a level, and badges earned. Biggest news first.
+  function passportMoments(before, after){
+    var out = [];
+    var was = new Map(((before && before.valleys) || []).map(function(v){ return [v.name, v]; }));
+    var levels = [];
+    ((after && after.valleys) || []).forEach(function(v){
+      var old = was.get(v.name);
+      if(!old) out.push({ kind: 'territory', valley: v.name, level: v.level });
+      else if(v.level.level > old.level.level) levels.push({ kind: 'level', valley: v.name, level: v.level });
+    });
+    levels.sort(function(a, b){ return b.level.level - a.level.level; });
+    var had = new Set(((before && before.milestones) || []).filter(function(m){ return m.done; })
+      .map(function(m){ return m.id + ':' + m.target; }));
+    var badges = ((after && after.milestones) || []).filter(function(m){
+      return m.done && !had.has(m.id + ':' + m.target);
+    }).map(function(m){ return { kind: 'badge', id: m.id, target: m.target, have: m.have }; });
+    return out.concat(levels, badges);
   }
 
   // The trail's route as an SVG path inside a size×size box, keeping its
@@ -216,28 +290,49 @@
       '</dl></div>';
   }
 
+  // Five stars, one per level: the game's way of saying how far along.
+  function stars(level){
+    var out = '';
+    for(var i = 0; i < level.of; i++) out += i < level.level ? '★' : '☆';
+    return out;
+  }
+
+  function levelLabel(v, t){
+    return v.level.id ? t('journal.passport.level.' + v.level.id) : '';
+  }
+
   function renderVisas(passport, options, t, fmt, lang){
     if(!passport.valleys.length) return '';
     var open = options.openValley || '';
     var visas = passport.valleys.map(function(v, i){
       var isOpen = v.name === open;
-      return '<button type="button" class="jp-visa jp-ink' + (i % INKS) + (isOpen ? ' is-open' : '') + '"' +
+      var fresh = isNewVisa(v, options.now);
+      return '<button type="button" class="jp-visa jp-ink' + (i % INKS) + (isOpen ? ' is-open' : '') + (fresh ? ' is-new' : '') + '"' +
         ' data-valley="' + esc(v.name) + '" aria-expanded="' + isOpen + '">' +
+        (fresh ? '<span class="jp-visa-new">' + esc(t('journal.passport.newVisa')) + '</span>' : '') +
         '<span class="jp-visa-name">' + esc(v.name) + '</span>' +
         '<span class="jp-visa-date">' + esc(t('journal.passport.entered', { date: shortDate(v.firstDate, lang) })) + '</span>' +
-        '<span class="jp-visa-of">' + esc(t('journal.passport.of', { done: fmt(v.done), total: fmt(v.total) })) + '</span>' +
+        '<span class="jp-visa-level"><span class="jp-stars" aria-hidden="true">' + stars(v.level) + '</span> ' +
+          esc(levelLabel(v, t)) + '</span>' +
       '</button>';
     }).join('');
     var openValley = passport.valleys.filter(function(v){ return v.name === open; })[0];
     return '<div class="jp-hrow"><h3 class="jp-h">' + esc(t('journal.passport.visas')) + '</h3>' +
         '<span class="jp-hint">' + esc(t('journal.passport.visasHint')) + '</span></div>' +
       '<div class="jp-visas">' + visas + '</div>' +
-      (openValley ? renderValley(openValley, t, fmt, lang) : '');
+      (openValley ? renderValley(openValley, options, t, fmt, lang) : '');
   }
 
-  // One valley's whole list: what is walked, then the blanks still to fill.
-  function renderValley(v, t, fmt, lang){
-    var pct = Math.max(3, Math.round(v.done / v.total * 100));
+  // One valley: its level, how far to the next one, then the trails walked
+  // and the ones to try next.
+  function renderValley(v, options, t, fmt, lang){
+    var lv = v.level;
+    var pct = lv.next ? Math.max(6, Math.round((v.done - lv.from) / (lv.next.need - lv.from) * 100)) : 100;
+    var nextName = lv.next ? t('journal.passport.level.' + lv.next.id) : '';
+    var goal = lv.next
+      ? t(lv.next.left === 1 ? 'journal.passport.nextLevelOne' : 'journal.passport.nextLevel', { n: fmt(lv.next.left), level: nextName })
+      : t('journal.passport.topLevel', { valley: v.name });
+    var fresh = isNewVisa(v, options.now);
     var slot = function(tr){
       var sub = tr.walked
         ? shortDate(tr.lastDate, lang)
@@ -254,10 +349,16 @@
     var shown = left.slice(0, SLOTS_SHOWN), rest = left.slice(SLOTS_SHOWN);
     return '<div class="jp-valley" id="jpValley">' +
       '<div class="jp-vrow"><strong>' + esc(v.name) + '</strong><span class="jp-of">' +
-        esc(t('journal.passport.of', { done: fmt(v.done), total: fmt(v.total) })) + '</span></div>' +
-      '<span class="jp-bar"><i style="width:' + pct + '%"></i></span>' +
+        '<span class="jp-stars" aria-hidden="true">' + stars(lv) + '</span> ' +
+        esc(t('journal.passport.levelOf', { n: fmt(lv.level), of: fmt(lv.of), level: levelLabel(v, t) })) + '</span></div>' +
+      '<span class="jp-bar' + (lv.next ? '' : ' is-top') + '"><i style="width:' + pct + '%"></i></span>' +
+      '<p class="jp-goal">' + esc(goal) + '</p>' +
+      (options.canShare
+        ? '<button type="button" class="jp-visa-share" data-valley="' + esc(v.name) + '">' +
+            esc(t(fresh ? 'journal.passport.shareNewVisa' : 'journal.passport.shareVisa')) + '</button>'
+        : '') +
       (left.length
-        ? '<p class="jp-next-tip">' + esc(t('journal.passport.leftTip', { n: fmt(left.length) })) + '</p>'
+        ? '<p class="jp-next-tip">' + esc(t('journal.passport.whereNext')) + '</p>'
         : '<p class="jp-next-tip">' + esc(t('journal.passport.allDone')) + '</p>') +
       '<ul class="jp-slots">' + walked.concat(shown).map(slot).join('') + '</ul>' +
       (rest.length
@@ -267,7 +368,44 @@
     '</div>';
   }
 
-  // options: { t(key, vars), dogName, dogBreed, dogPhoto, openValley, lang }
+  function milestoneLabel(m, t, fmt){
+    if(m.id === 'lakes') return m.have > 1 ? t('journal.passport.lakes', { n: m.have }) : t('journal.passport.lakeOne');
+    if(m.id === 'huts') return m.have > 1 ? t('journal.passport.huts', { n: m.have }) : t('journal.passport.hutOne');
+    return t('journal.passport.mile.' + m.id, { n: fmt(m.target) });
+  }
+
+  function momentTitle(m, t, fmt){
+    if(m.kind === 'territory') return m.valley;
+    if(m.kind === 'level') return t('journal.passport.moment.levelTitle', { level: t('journal.passport.level.' + m.level.id), valley: m.valley });
+    return milestoneLabel(m, t, fmt);
+  }
+
+  // The card a walk's news gets at the top of the page: the biggest moment,
+  // anything else it earned in one line, and a picture to share.
+  function renderMoment(moments, options, t, fmt){
+    if(!moments || !moments.length) return '';
+    var top = moments[0];
+    var rest = moments.slice(1).map(function(m){
+      return (m.kind === 'badge' ? '✓ ' : '') + momentTitle(m, t, fmt);
+    });
+    var shareValley = top.kind === 'badge' ? '' : top.valley;
+    return '<div class="jp-moment jp-moment-' + top.kind + '" id="jpMoment" tabindex="-1" role="status">' +
+      '<button type="button" class="jp-moment-close" aria-label="' + esc(t('journal.close')) + '">&times;</button>' +
+      '<span class="jp-moment-burst" aria-hidden="true">' + (top.kind === 'badge' ? '🏅' : '🐾') + '</span>' +
+      '<span class="jp-moment-kicker">' + esc(t('journal.passport.moment.' + top.kind)) + '</span>' +
+      '<strong class="jp-moment-title">' + esc(momentTitle(top, t, fmt)) + '</strong>' +
+      // A level up already names the level in its title: just the stars.
+      (top.level ? '<span class="jp-moment-level"><span class="jp-stars" aria-hidden="true">' + stars(top.level) + '</span>' +
+        (top.kind === 'level' ? '' : ' ' + esc(t('journal.passport.level.' + top.level.id))) + '</span>' : '') +
+      (rest.length ? '<span class="jp-moment-also">' + esc(t('journal.passport.moment.also', { list: rest.join(' · ') })) + '</span>' : '') +
+      (options.canShare
+        ? '<button type="button" class="jp-moment-share"' + (shareValley ? ' data-valley="' + esc(shareValley) + '"' : '') +
+            ' data-moment="' + esc(top.kind) + '">' + esc(t('journal.passport.moment.share')) + '</button>'
+        : '') +
+    '</div>';
+  }
+
+  // options: { t(key, vars), dogName, dogBreed, dogPhoto, openValley, lang, canShare, now, moments }
   function renderPassport(passport, options){
     options = options || {};
     var t = options.t || function(key){ return key; };
@@ -304,16 +442,14 @@
 
     var milestones = '<h3 class="jp-h">' + esc(t('journal.passport.milestones')) + '</h3><div class="jp-miles">' +
       passport.milestones.map(function(m){
-        var label;
-        if(m.id === 'lakes') label = m.have > 1 ? t('journal.passport.lakes', { n: m.have }) : t('journal.passport.lakeOne');
-        else if(m.id === 'huts') label = m.have > 1 ? t('journal.passport.huts', { n: m.have }) : t('journal.passport.hutOne');
-        else label = t('journal.passport.mile.' + m.id);
+        var label = milestoneLabel(m, t, fmt);
         var left = Math.ceil(m.target - m.have);
         if(!m.done && m.target > 1 && m.have > 0) label += ' · ' + t('journal.passport.toGo', { n: fmt(left) });
         return '<span class="jp-mile' + (m.done ? ' is-done' : '') + '">' + (m.done ? '✓ ' : '') + esc(label) + '</span>';
       }).join('') + '</div>';
 
     return renderIdPage(passport, options, t, fmt, lang) +
+      renderMoment(options.moments, options, t, fmt) +
       (totals.stamps
         ? '<p class="jp-sum">' + esc(summary) + '</p>'
         : '<p class="jp-empty">' + esc(t('journal.passport.empty')) + '</p>') +
@@ -324,7 +460,10 @@
       '<p class="jp-rule">' + esc(t('journal.passport.rule')) + '</p>';
   }
 
-  var api = { buildPassport: buildPassport, renderPassport: renderPassport, outlinePath: outlinePath, isLake: isLake };
+  var api = {
+    buildPassport: buildPassport, renderPassport: renderPassport, outlinePath: outlinePath, isLake: isLake,
+    valleyLevel: valleyLevel, isNewVisa: isNewVisa, passportMoments: passportMoments, stars: stars, VALLEY_LEVELS: VALLEY_LEVELS,
+  };
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   global.DoloPawsPassport = api;
 })(typeof window !== 'undefined' ? window : globalThis);

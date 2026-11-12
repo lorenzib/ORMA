@@ -8,7 +8,7 @@
     "distanceKm": 3.1,
     "ascentM": 237,
     "highestPointM": 1538,
-    "expectedDuration": "1.3 hours",
+    "expectedDuration": "1 h 20 min",
     "difficulty": "Moderate",
     "shadePercent": 77
   },
@@ -61,5 +61,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Malga Alta di Fazzon, where the APT’s line begins (park by Malga Bassa, at the lake)": "Malga Alta di Fazzon, dove inizia la traccia dell'APT (parcheggia presso Malga Bassa, al lago)",
+    "Farm animals at Malga Alta di Fazzon: cows, goats, sheep and pigs in summer.": "Animali alla Malga Alta di Fazzon: mucche, capre, pecore e maiali in estate.",
+    "The forest road is shared with farm vehicles to the malga.": "La strada forestale è condivisa con i mezzi agricoli fino alla malga."
+  }
 }

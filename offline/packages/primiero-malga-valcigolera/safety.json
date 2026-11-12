@@ -8,7 +8,7 @@
     "distanceKm": 9.1,
     "ascentM": 431,
     "highestPointM": 1879,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Hard",
     "shadePercent": 64
   },
@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "San Martino di Castrozza, the APT’s start": "San Martino di Castrozza, la partenza indicata dall'APT",
+    "Village streets and road crossings in San Martino at the start and end.": "Strade del paese e attraversamenti stradali a San Martino, all'inizio e alla fine.",
+    "Forest road shared with forestry vehicles.": "Strada forestale percorsa anche da mezzi forestali.",
+    "An optional steeper path on the way up.": "Un sentiero facoltativo più ripido in salita."
+  }
 }

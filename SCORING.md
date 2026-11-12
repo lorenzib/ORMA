@@ -14,7 +14,18 @@ and reviewed examples are documented in
 
 ## Current version
 
-Version `1.8.0` makes the score less harsh where it counted one fact twice
+Version `1.9.0` stops steepness ruling out healthy dogs. A trail's terrain
+rank is its steepest grade, and 250 of 355 Dolomites walks reach rank 2, so a
+healthy dog of moderate fitness lost 30 points on most of them for steepness
+alone, on top of the climb charged as ascent. A healthy adult dog of moderate or
+high fitness now has terrain tolerance 2; low fitness, puppies, seniors, joint,
+back, heart or weight conditions, short legs and 45+ kg keep the old
+tolerances, at 10 a rank instead of 30. On the Dolomites, a healthy moderate dog
+goes from 44 green / 135 orange / 190 red to 173 / 154 / 42; a 9-year-old from
+3 / 29 / 337 to 6 / 191 / 172. One reviewed fixture changes category: the fit
+48 kg dog on the long steep route is now good with care (66), not ruled out.
+
+Version `1.8.0` made the score less harsh where it counted one fact twice
 or charged notes as hazards. A route's baseline heat risk and its shade are one
 danger, a dog overheating, so only the larger of the two is charged; both are
 still listed. Recorded route cautions cost 4 each, to 10 (6 each, to 15, for a

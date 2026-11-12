@@ -8,7 +8,7 @@
     "distanceKm": 6.7,
     "ascentM": 640,
     "highestPointM": 1923,
-    "expectedDuration": "3.5 hours",
+    "expectedDuration": "3 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 0
   },
@@ -57,5 +57,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Parking des Chalets de Bise, Vacheresse (official start)": "Parking des Chalets de Bise, Vacheresse (partenza ufficiale)",
+    "Steep descent back to the Chalets de Bise (official).": "Discesa ripida per tornare ai Chalets de Bise (dato ufficiale).",
+    "A cliff edge beside the path between the Col de Pavis and the lake.": "Un bordo di scarpata accanto al sentiero tra il Col de Pavis e il lago.",
+    "Stony paths with short scree patches.": "Sentieri sassosi con brevi tratti di ghiaione."
+  }
 }

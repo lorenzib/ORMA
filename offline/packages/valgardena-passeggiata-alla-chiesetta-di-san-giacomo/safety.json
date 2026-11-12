@@ -8,7 +8,7 @@
     "distanceKm": 6,
     "ascentM": 330,
     "highestPointM": 1578,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Hard",
     "shadePercent": 84
   },
@@ -68,5 +68,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "San Giacomo from Ortisei": "San Giacomo da Ortisei",
+    "Ortisei parish church, the board’s start": "Chiesa parrocchiale di Ortisei, partenza indicata dalla scheda ufficiale",
+    "Forest path with roots and a steady climb.": "Sentiero nel bosco con radici e una salita costante.",
+    "Village streets in Ortisei: keep your dog close.": "Strade del paese a Ortisei: tieni il cane vicino."
+  }
 }

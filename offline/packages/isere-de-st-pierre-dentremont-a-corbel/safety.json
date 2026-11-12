@@ -8,7 +8,7 @@
     "distanceKm": 9,
     "ascentM": 450,
     "highestPointM": 962,
-    "expectedDuration": "3.25 hours",
+    "expectedDuration": "3 h 15 min",
     "difficulty": "Hard",
     "shadePercent": 50
   },
@@ -104,5 +104,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Saint-Pierre-d’Entremont to Corbel loop": "Anello da Saint-Pierre-d’Entremont a Corbel",
+    "Saint-Pierre-d’Entremont tourist office, the board’s start": "Ufficio turistico di Saint-Pierre-d’Entremont, la partenza della scheda ufficiale",
+    "About half the loop is on village streets and small roads; the Route du Dauphiné through Saint-Pierre-d’Entremont carries traffic.": "Circa metà dell'anello è su strade di paese e stradine; la Route du Dauphiné che attraversa Saint-Pierre-d’Entremont è trafficata.",
+    "A steady forest climb to the Pas de la Coche (about 1,005 m).": "Una salita costante nel bosco fino al Pas de la Coche (circa 1.005 m).",
+    "Livestock may be in the meadows around Corbel.": "Nei prati attorno a Corbel potrebbe esserci del bestiame."
+  }
 }

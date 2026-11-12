@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "brixen-escursione-al-rifugio-bressanone",
   "name": "Fane Alm to the Brixner Hütte",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T15:52:55.771Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:13.815Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 395956,
+  "packageBytes": 415260,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.87647,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Fane Alm to the Brixner Hütte safety information",
       "url": "safety.json",
-      "bytes": 1657,
-      "sha256": "e0dd92e6bd78c93785fd9088d3f1169e1d00a69e81c58bb9b4d48a3a7a6f57e1"
+      "bytes": 2288,
+      "sha256": "4718c57cbbc0148ddcd2a6ddac61d585c13dacb8e005d404cadd7dd390dd2f97"
     }
   ]
 }

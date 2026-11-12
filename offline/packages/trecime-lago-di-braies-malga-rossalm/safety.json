@@ -8,7 +8,7 @@
     "distanceKm": 6.6,
     "ascentM": 846,
     "highestPointM": 2281,
-    "expectedDuration": "2.9 hours",
+    "expectedDuration": "2 h 55 min",
     "difficulty": "Hard",
     "shadePercent": 35
   },
@@ -48,5 +48,11 @@
       "downloadedAt": "2026-11-12",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pragser Wildsee car park, the board’s start": "Parcheggio del Pragser Wildsee, la partenza indicata dalla scheda ufficiale",
+    "A long, steep climb of almost 850 m: plan rests and water for your dog.": "Una salita lunga e ripida di quasi 850 m: prevedi soste e acqua per il tuo cane.",
+    "The lake shore is very crowded in summer: keep your dog close.": "D'estate la riva del lago è molto affollata: tieni il cane vicino.",
+    "Cows graze around the Rossalm.": "Intorno alla Rossalm pascolano le mucche."
+  }
 }

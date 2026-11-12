@@ -8,7 +8,7 @@
     "distanceKm": 5.2,
     "ascentM": 214,
     "highestPointM": 1880,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 58
   },
@@ -69,5 +69,12 @@
       "downloadedAt": "2026-11-10",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Peio Paese to Lago Covel": "Da Peio Paese al Lago Covel",
+    "San Rocco in Peio Paese, by the military cemetery, the board’s start": "San Rocco a Peio Paese, accanto al cimitero militare, la partenza ufficiale",
+    "Minor village road at the start and end in Peio Paese: keep your dog on a short lead.": "Strada di paese all’inizio e alla fine a Peio Paese: tieni il cane al guinzaglio corto.",
+    "The forest road to the Covel meadows is open to cars for about 1 km: keep your dog close if one comes.": "La strada forestale verso i prati di Covel è aperta alle auto per circa 1 km: tieni il cane vicino se ne arriva una.",
+    "Goats and sheep graze at Malga Covel in summer.": "In estate a Malga Covel pascolano capre e pecore."
+  }
 }

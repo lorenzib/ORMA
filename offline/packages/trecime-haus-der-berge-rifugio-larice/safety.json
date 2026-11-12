@@ -8,7 +8,7 @@
     "distanceKm": 8,
     "ascentM": 538,
     "highestPointM": 1833,
-    "expectedDuration": "3.1 hours",
+    "expectedDuration": "3 h 5 min",
     "difficulty": "Hard",
     "shadePercent": 55
   },
@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Haus der Berge by the Helmjet valley station, Sexten, the board’s start": "Haus der Berge vicino alla stazione a valle dell'Helmjet, Sexten, la partenza indicata dalla scheda ufficiale",
+    "A paved road from the Panorama before the forest road: watch for cars.": "Una strada asfaltata dal Panorama prima della strada forestale: attenzione alle auto.",
+    "Forest road shared with forestry vehicles.": "Strada forestale percorsa anche da mezzi forestali.",
+    "No drinking water is mapped on the line: carry water for your dog.": "Sul tracciato non è segnata acqua potabile: porta acqua per il tuo cane."
+  }
 }

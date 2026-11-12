@@ -8,7 +8,7 @@
     "distanceKm": 2.7,
     "ascentM": 61,
     "highestPointM": 674,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Easy",
     "shadePercent": 53
   },
@@ -48,5 +48,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lases village, the APT’s start": "Paese di Lases, la partenza indicata dall'APT",
+    "Village streets with cars at the start.": "Vie del paese con auto alla partenza.",
+    "Short flights of stone and wooden steps on the lake path.": "Brevi rampe di gradini in pietra e in legno sul sentiero del lago.",
+    "Fishing and nesting areas round the lake: keep your dog on the lead and out of the reeds.": "Zone di pesca e di nidificazione intorno al lago: tieni il cane al guinzaglio e fuori dal canneto."
+  }
 }

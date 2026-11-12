@@ -8,7 +8,7 @@
     "distanceKm": 4.36,
     "ascentM": 130,
     "highestPointM": 1485,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 0.5
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Children’s nature trail, Kals": "Sentiero natura per bambini, Kals",
+    "the Großdorf car park in Kals am Großglockner, the board’s start": "Il parcheggio di Großdorf a Kals am Großglockner, la partenza indicata dalla scheda ufficiale",
+    "The Kalserbach runs fast beside the path and under the mills: keep your dog out of the water.": "Il Kalserbach scorre veloce accanto al sentiero e sotto i mulini: tieni il cane fuori dall'acqua.",
+    "Wooden bridges and narrow path by the Stockmühlen.": "Ponti di legno e sentiero stretto presso gli Stockmühlen.",
+    "A playground on the way: keep your dog on the path.": "Un parco giochi lungo la via: tieni il cane sul sentiero."
+  }
 }

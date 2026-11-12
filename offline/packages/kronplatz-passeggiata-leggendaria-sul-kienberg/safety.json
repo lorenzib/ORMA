@@ -8,7 +8,7 @@
     "distanceKm": 11.8,
     "ascentM": 417,
     "highestPointM": 1089,
-    "expectedDuration": "3.5 hours",
+    "expectedDuration": "3 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 64
   },
@@ -90,5 +90,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "The Kienberg legends loop": "Anello delle leggende del Kienberg",
+    "The car park by the Koflerhof in Casteldarne (Ehrenburg), the board’s start": "Il parcheggio vicino al Koflerhof a Casteldarne (Ehrenburg), la partenza indicata dalla scheda ufficiale",
+    "Lanes through Casteldarne and past the Kienberg farms: watch for local traffic and farm dogs.": "Stradine attraverso Casteldarne e accanto ai masi del Kienberg: attenzione al traffico locale e ai cani da cortile.",
+    "A long loop with about 420 m of climbing: take enough water for your dog.": "Un anello lungo con circa 420 m di salita: porta acqua a sufficienza per il tuo cane.",
+    "Meadows on the Kienberg and around Mantana: keep your dog off them in the growing season.": "Prati sul Kienberg e attorno a Mantana: tieni il cane fuori durante la stagione vegetativa."
+  }
 }

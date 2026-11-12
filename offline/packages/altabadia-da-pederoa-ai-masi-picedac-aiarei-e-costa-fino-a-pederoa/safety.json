@@ -8,7 +8,7 @@
     "distanceKm": 13.5,
     "ascentM": 407,
     "highestPointM": 1559,
-    "expectedDuration": "3.8 hours",
+    "expectedDuration": "3 h 50 min",
     "difficulty": "Hard",
     "shadePercent": 64
   },
@@ -40,5 +40,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pederoa, opposite the Pizzeria Traföi, the board’s start": "Pederoa, di fronte alla Pizzeria Traföi, la partenza indicata dalla scheda ufficiale",
+    "About 3.5 km on a road with little traffic up to Picedac: keep your dog close.": "Circa 3,5 km su una strada poco trafficata fino a Picedac: tieni il cane vicino.",
+    "Farm tracks past working farms: watch for tractors and farm dogs.": "Strade poderali accanto a masi in attività: attenzione ai trattori e ai cani dei masi.",
+    "The path back runs beside the river.": "Il sentiero di ritorno corre accanto al fiume."
+  }
 }

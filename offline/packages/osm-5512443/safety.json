@@ -8,7 +8,7 @@
     "distanceKm": 8.3,
     "ascentM": 349,
     "highestPointM": 851,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 30
   },
@@ -56,5 +56,11 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Naturns village centre (official start)": "Centro di Naturns (partenza ufficiale)",
+    "About 2.8 km on village streets and narrow farm roads with cars.": "Circa 2,8 km su strade del paese e strette strade poderali con auto.",
+    "Stony, dry path on the Sonnenberg; short drops beside the path near the Wallburgboden.": "Sentiero sassoso e secco sul Sonnenberg; brevi salti accanto al sentiero vicino al Wallburgboden.",
+    "Short flights of steps on the Wallburgweg.": "Brevi rampe di gradini sul Wallburgweg."
+  }
 }

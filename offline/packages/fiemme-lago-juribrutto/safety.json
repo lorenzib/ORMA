@@ -8,7 +8,7 @@
     "distanceKm": 6.8,
     "ascentM": 470,
     "highestPointM": 2336,
-    "expectedDuration": "3.5 hours",
+    "expectedDuration": "3 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 20
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-10",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lago di Juribrutto from Malga Vallazza": "Lago di Juribrutto da Malga Vallazza",
+    "Beside Malga Vallazza on the Passo Valles road, the board’s start": "Accanto a Malga Vallazza sulla strada del Passo Valles, la partenza ufficiale",
+    "The start is on the Passo Valles road (SP81): keep your dog on a short lead by the road.": "La partenza è sulla strada del Passo Valles (SP81): tieni il cane al guinzaglio corto vicino alla strada.",
+    "Open saddle at about 2,300 m with no shelter: turn back if storms build.": "Sella aperta a circa 2.300 m senza riparo: torna indietro se si formano temporali.",
+    "Old First World War trenches beside the tarns: keep your dog out of them.": "Vecchie trincee della Grande Guerra accanto ai laghetti: tieni il cane fuori."
+  }
 }

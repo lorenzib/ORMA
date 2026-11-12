@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsesia-gta-tappa-21-campello-monti-rimella",
   "name": "Campello Monti to Rimella over the Bocchetta",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T17:19:13.701Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.789Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 773106,
+  "packageBytes": 792653,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.90167,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Campello Monti to Rimella over the Bocchetta safety information",
       "url": "safety.json",
-      "bytes": 1439,
-      "sha256": "8fb18f9d7a5222044cc013f8c4c0c49fc51d9541ce2cb7884d7b58a050af2a47"
+      "bytes": 2313,
+      "sha256": "13e8877b9a890aea18d632c97a96f67280d176757fb33ac98c24651bb1df2b5d"
     }
   ]
 }

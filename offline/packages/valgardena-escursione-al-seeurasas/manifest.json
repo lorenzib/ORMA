@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-escursione-al-seeurasas",
   "name": "Ortisei – Sëurasas",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:34:26.767Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.722Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 737736,
+  "packageBytes": 756939,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56614,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Ortisei – Sëurasas safety information",
       "url": "safety.json",
-      "bytes": 3007,
-      "sha256": "c490e3914587bbaa55102f4b8dd5a72bf417f8af877b6b6b21efa5a81bd31111"
+      "bytes": 3537,
+      "sha256": "b7ee0ee0edb0af36442fb1f7ab35042399723fc9ecab6d8308fd23ea9568c918"
     }
   ]
 }

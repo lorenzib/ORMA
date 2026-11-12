@@ -8,7 +8,7 @@
     "distanceKm": 15.6,
     "ascentM": 543,
     "highestPointM": 1176,
-    "expectedDuration": "4.5–5.5 hours",
+    "expectedDuration": "4 h 30 min – 5 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 35
   },
@@ -68,5 +68,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Bad Schörgau bus stop, on the loop; the loop can equally be started at the church square in Sarnthein": "Fermata dell'autobus Bad Schörgau, sull'anello; si può partire anche dalla piazza della chiesa a Sarnthein",
+    "About 5 km on village lanes and minor roads with traffic.": "Circa 5 km su stradine di paese e strade secondarie con traffico.",
+    "A few hundred metres beside or across the main valley road.": "Qualche centinaio di metri accanto o attraverso la strada principale di valle."
+  }
 }

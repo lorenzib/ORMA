@@ -8,7 +8,7 @@
     "distanceKm": 4.8,
     "ascentM": 47,
     "highestPointM": 1705,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 10
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Guarda to Ardez": "Da Guarda ad Ardez",
+    "Guarda village centre, the board’s start": "Il centro di Guarda, punto di partenza della scheda ufficiale",
+    "Most of the walk is on a small road: lead short for the odd car.": "Gran parte del percorso è su una stradina: guinzaglio corto per qualche auto di passaggio.",
+    "Little shade on the sunny terrace: carry water on hot days.": "Poca ombra sulla terrazza soleggiata: nelle giornate calde porta acqua.",
+    "A descent of 274 m into Ardez: take it slowly with older dogs.": "Una discesa di 274 m fino ad Ardez: con i cani anziani vai piano."
+  }
 }

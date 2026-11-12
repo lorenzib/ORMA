@@ -8,7 +8,7 @@
     "distanceKm": 4.4,
     "ascentM": 49,
     "highestPointM": 1829,
-    "expectedDuration": "1.25 hours",
+    "expectedDuration": "1 h 15 min",
     "difficulty": "Easy",
     "shadePercent": 55
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Chastè peninsula loop from Sils": "Anello della penisola di Chastè da Sils",
+    "Sils/Segl Maria car park, the board’s start": "Parcheggio di Sils/Segl Maria, la partenza della scheda ufficiale",
+    "Rocky and rooty forest path on the peninsula.": "Sentiero nel bosco sassoso e pieno di radici sulla penisola.",
+    "Steep banks down to the lake on the peninsula: keep your dog on a lead near the water.": "Sponde ripide verso il lago sulla penisola: vicino all'acqua tieni il cane al guinzaglio.",
+    "Hay meadows on the plain are closed from 1 June until the hay harvest: keep to the track.": "I prati da fieno della piana sono chiusi dal 1° giugno fino alla fienagione: resta sulla sterrata."
+  }
 }

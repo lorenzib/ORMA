@@ -8,7 +8,7 @@
     "distanceKm": 11.8,
     "ascentM": 231,
     "highestPointM": 1710,
-    "expectedDuration": "3.25 hours",
+    "expectedDuration": "3 h 15 min",
     "difficulty": "Moderate",
     "shadePercent": 93
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Passo Nigra to the Malga Hagner Alm": "Da Passo Nigra alla Malga Hagner Alm",
+    "The Passo Nigra (1,688 m), the board’s start": "Il Passo Nigra (1.688 m), la partenza della scheda ufficiale",
+    "The Passo Nigra road is busy in summer: keep your dog on a short lead at the start.": "D'estate la strada del Passo Nigra è trafficata: alla partenza tieni il cane al guinzaglio corto.",
+    "Cattle may graze around the Malga Hagner Alm in summer: keep your dog close.": "D'estate attorno alla Malga Hagner Alm possono pascolare i bovini: tieni il cane vicino.",
+    "Mountain bikes share the forest road.": "Le mountain bike usano la stessa strada forestale."
+  }
 }

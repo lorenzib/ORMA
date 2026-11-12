@@ -8,7 +8,7 @@
     "distanceKm": 10.1,
     "ascentM": 232,
     "highestPointM": 960,
-    "expectedDuration": "2.3 hours",
+    "expectedDuration": "2 h 20 min",
     "difficulty": "Moderate",
     "shadePercent": 64
   },
@@ -97,5 +97,12 @@
       "downloadedAt": "2026-11-05",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lago di Molveno loop": "Anello del Lago di Molveno",
+    "Molveno campsite, the APT’s start": "Campeggio di Molveno, la partenza indicata dall'APT",
+    "One crossing of the main road on the east shore.": "Un attraversamento della strada principale sulla sponda orientale.",
+    "Busy lakeside paths, beaches and the lido in summer.": "D'estate sentieri lungo il lago, spiagge e lido affollati.",
+    "Keep your dog out of the water where swimming areas are signed.": "Tieni il cane fuori dall'acqua dove sono segnalate zone di balneazione."
+  }
 }

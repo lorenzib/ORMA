@@ -8,7 +8,7 @@
     "distanceKm": 9.4,
     "ascentM": 1212,
     "highestPointM": 2532,
-    "expectedDuration": "4.5 hours",
+    "expectedDuration": "4 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 20
   },
@@ -62,5 +62,12 @@
       "downloadedAt": "2026-11-06",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Moos to Monte Arnese (Hornischeck)": "Da Moos al Monte Arnese (Hornischeck)",
+    "The Schäfer shop in Moos, the board’s start": "Il negozio Schäfer a Moos, punto di partenza della scheda ufficiale",
+    "About 200 m beside the SS52 in Moos at the start: keep your dog on a short lead.": "Circa 200 m lungo la SS52 a Moos alla partenza: tieni il cane al guinzaglio corto.",
+    "Steep, narrow paths above the Klammbachalm: sure footing needed, for you and your dog.": "Sentieri ripidi e stretti sopra la Klammbachalm: serve passo sicuro, per te e per il cane.",
+    "High, open ridge at 2,000–2,550 m with no shade: storms build quickly on summer afternoons.": "Cresta alta e aperta a 2.000–2.550 m senza ombra: d'estate nel pomeriggio i temporali si formano in fretta."
+  }
 }

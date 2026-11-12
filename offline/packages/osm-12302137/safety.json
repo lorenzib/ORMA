@@ -8,7 +8,7 @@
     "distanceKm": 4.4,
     "ascentM": 150,
     "highestPointM": 1378,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 13
   },
@@ -61,5 +61,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Antholz Mittertal village centre, bus 431 stop Antholz Mittertal (official start)": "Centro del paese di Antholz Mittertal, fermata Antholz Mittertal dell'autobus 431 (partenza ufficiale)",
+    "Most of the loop is on quiet village and farm lanes, some tarmac, open to cars.": "Gran parte dell'anello è su tranquille stradine di paese e poderali, in parte asfaltate, aperte alle auto.",
+    "Working farms at the Wanzler Hof and the Eggerhöfe.": "Masi in attività al Wanzler Hof e agli Eggerhöfe."
+  }
 }

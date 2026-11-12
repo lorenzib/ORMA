@@ -8,7 +8,7 @@
     "distanceKm": 13,
     "ascentM": 642,
     "highestPointM": 2343,
-    "expectedDuration": "4–5 hours",
+    "expectedDuration": "4–5 h",
     "difficulty": "Hard",
     "shadePercent": 15
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Würzjoch / Passo delle Erbe car park (paid June–October; bus 469 in summer)": "Parcheggio Würzjoch / Passo delle Erbe (a pagamento da giugno a ottobre; d'estate autobus 469)",
+    "Steep, loose rock and gravel up to and down from the Peitlerscharte (up to about 35%).": "Roccia e ghiaia ripide e instabili in salita e in discesa dalla Peitlerscharte (fino a circa il 35%).",
+    "Scree slopes below the Scharte.": "Ghiaioni sotto la Scharte.",
+    "Gravel tracks shared with mountain bikes.": "Strade sterrate condivise con le mountain bike."
+  }
 }

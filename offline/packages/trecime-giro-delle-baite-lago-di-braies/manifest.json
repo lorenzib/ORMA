@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-giro-delle-baite-lago-di-braies",
   "name": "Pragser Wildsee huts circuit",
-  "version": "2026.11.12-beta.2",
-  "generatedAt": "2026-11-12T11:18:16.051Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.625Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 439130,
+  "packageBytes": 458471,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.68601,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -217,7 +217,7 @@
       "label": "Pragser Wildsee huts circuit routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 53235,
-      "sha256": "86f4165393df19604e978d890d133dd74a0a0d80ee14cfd8fbeb6086fb60ca7a"
+      "sha256": "79a679a9a13e4cc282d6cc85138e42a515b2c7bc6b7db4afeb6192d533e99fda"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Pragser Wildsee huts circuit safety information",
       "url": "safety.json",
-      "bytes": 1484,
-      "sha256": "64bf181ca22745be6507e1118e80f4d800151445e9d97cb83e33319ef393c1e0"
+      "bytes": 2152,
+      "sha256": "837de1f22732ba31f652b1fb6baa49fe1f57cf8bbfac69bc0b9cf26495744fcd"
     }
   ]
 }

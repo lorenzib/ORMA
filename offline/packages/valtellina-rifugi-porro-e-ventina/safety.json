@@ -8,7 +8,7 @@
     "distanceKm": 3.1,
     "ascentM": 372,
     "highestPointM": 1958,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 9
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Chiareggio to the Porro and Ventina huts": "Da Chiareggio ai rifugi Porro e Ventina",
+    "The car park in Chiareggio, the board’s start": "Il parcheggio di Chiareggio, partenza indicata dalla scheda ufficiale",
+    "Cattle graze the pastures around the huts in summer: keep your distance and your dog close.": "In estate le mucche pascolano intorno ai rifugi: mantieni le distanze e tieni il cane vicino.",
+    "Stony mule track with loose stones in places: watch your dog’s paws.": "Mulattiera sassosa con pietre instabili in alcuni punti: attenzione alle zampe del tuo cane.",
+    "Storms build fast on summer afternoons at this height.": "A questa quota nei pomeriggi estivi i temporali si formano in fretta."
+  }
 }

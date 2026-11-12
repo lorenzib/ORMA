@@ -8,7 +8,7 @@
     "distanceKm": 1.6,
     "ascentM": 76,
     "highestPointM": 1180,
-    "expectedDuration": "0.5 hours",
+    "expectedDuration": "30 min",
     "difficulty": "Moderate",
     "shadePercent": 0.25
   },
@@ -39,5 +39,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Gail river walk, Maria Luggau": "Passeggiata lungo il Gail, Maria Luggau",
+    "below the pilgrimage church in Maria Luggau, the board’s start": "Sotto la chiesa di pellegrinaggio di Maria Luggau, la partenza indicata dalla scheda ufficiale",
+    "About 300 m on the Gailtalstraße (B111) through Maria Luggau, signed 50 km/h: keep your dog close on a short lead.": "Circa 300 m sulla Gailtalstraße (B111) attraverso Maria Luggau, con limite di 50 km/h: tieni il cane vicino al guinzaglio corto.",
+    "The Gail runs fast beside the path: keep your dog out of the water.": "Il Gail scorre veloce accanto al sentiero: tieni il cane fuori dall'acqua."
+  }
 }

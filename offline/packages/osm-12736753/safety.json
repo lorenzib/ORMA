@@ -8,7 +8,7 @@
     "distanceKm": 11.6,
     "ascentM": 360,
     "highestPointM": 887,
-    "expectedDuration": "3–3.5 hours",
+    "expectedDuration": "3 h – 3 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 50
   },
@@ -83,5 +83,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Albeins, Kindergarten bus stop (parking and overview board in the village)": "Albeins, fermata dell'autobus Kindergarten (parcheggio e pannello informativo in paese)",
+    "About 2.5 km on quiet village roads without a pavement (Prasod, Klerant).": "Circa 2,5 km su tranquille strade di paese senza marciapiede (Prasod, Klerant).",
+    "Busy street crossings in Milland (Plosestraße, Sarnser Straße).": "Attraversamenti di strade trafficate a Milland (Plosestraße, Sarnser Straße).",
+    "Asphalt sections hot in summer.": "Tratti asfaltati caldi d'estate."
+  }
 }

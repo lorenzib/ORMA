@@ -8,7 +8,7 @@
     "distanceKm": 4.8,
     "ascentM": 1,
     "highestPointM": 1914,
-    "expectedDuration": "2.2 hours",
+    "expectedDuration": "2 h 10 min",
     "difficulty": "Moderate",
     "shadePercent": 50
   },
@@ -48,5 +48,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Rotwand gondola top station, Rotwandwiesen, the board’s start": "Stazione a monte della cabinovia Rotwand, Rotwandwiesen, la partenza indicata dalla scheda ufficiale",
+    "A descent of about 570 m: take it slowly on the steeper path 17.": "Una discesa di circa 570 m: prendila con calma sul più ripido sentiero 17.",
+    "Forest road shared with forestry vehicles and pushchairs.": "Strada forestale condivisa con mezzi forestali e passeggini.",
+    "Check the Rotwand gondola is running before you set out.": "Prima di partire verifica che la cabinovia Rotwand sia in funzione."
+  }
 }

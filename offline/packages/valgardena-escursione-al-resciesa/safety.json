@@ -8,7 +8,7 @@
     "distanceKm": 5,
     "ascentM": 197,
     "highestPointM": 2252,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 0
   },
@@ -41,5 +41,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Resciesa summit loop": "Anello della cima del Resciesa",
+    "Resciesa funicular top station, above Ortisei, the board’s start": "Stazione a monte della funicolare del Resciesa, sopra Ortisei, partenza indicata dalla scheda ufficiale",
+    "Open high ground with no shade: storms build fast in summer afternoons.": "Terreno aperto in quota senza ombra: nei pomeriggi estivi i temporali si formano in fretta.",
+    "Cattle graze the Resciesa meadows in summer.": "In estate le mucche pascolano sui prati del Resciesa.",
+    "Check the funicular’s last run before setting out.": "Controlla l'ultima corsa della funicolare prima di partire."
+  }
 }

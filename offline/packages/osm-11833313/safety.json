@@ -8,7 +8,7 @@
     "distanceKm": 3.1,
     "ascentM": 70,
     "highestPointM": 845,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Moderate",
     "shadePercent": 43
   },
@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Kiens village centre (official start)": "Centro del paese di Kiens (partenza ufficiale)",
+    "Village lanes in Kiens and Ehrenburg open to cars.": "Stradine di paese a Kiens e a Ehrenburg aperte alle auto.",
+    "A short steep lane with a handrail near the start.": "Una breve stradina ripida con corrimano vicino alla partenza.",
+    "Fields and meadows beside the tracks.": "Campi e prati accanto alle strade poderali."
+  }
 }

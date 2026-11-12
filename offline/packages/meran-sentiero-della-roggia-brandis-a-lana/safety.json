@@ -8,7 +8,7 @@
     "distanceKm": 2.8,
     "ascentM": 29,
     "highestPointM": 391,
-    "expectedDuration": "0.8 hours",
+    "expectedDuration": "50 min",
     "difficulty": "Moderate",
     "shadePercent": 60
   },
@@ -41,5 +41,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Brandis-Waalweg, Lana to the Brandis waterfall": "Brandis-Waalweg, da Lana alla cascata di Brandis",
+    "Brandis-Waalweg access just above the Gampen car park (P4) in Lana, the board’s start": "Accesso al Brandis-Waalweg appena sopra il parcheggio Gampen (P4) a Lana, la partenza indicata dalla scheda ufficiale",
+    "About 170 m along the Gampen road (SS238) in Lana: keep your dog close on a short lead.": "Circa 170 m lungo la strada delle Palade (Gampen, SS238) a Lana: tieni il cane vicino al guinzaglio corto.",
+    "A short steep stretch of about 20 m above the parish church of Niederlana.": "Un breve tratto ripido di circa 20 m sopra la chiesa parrocchiale di Niederlana.",
+    "Orchards and vineyards beside the path are farmed land, closed to dogs in Lana in the growing season: keep to the path.": "I frutteti e i vigneti accanto al sentiero sono terreni coltivati, a Lana vietati ai cani durante la stagione vegetativa: resta sul sentiero."
+  }
 }

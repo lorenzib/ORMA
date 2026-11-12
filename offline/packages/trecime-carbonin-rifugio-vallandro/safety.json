@@ -8,7 +8,7 @@
     "distanceKm": 6,
     "ascentM": 579,
     "highestPointM": 2021,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Hard",
     "shadePercent": 55
   },
@@ -55,5 +55,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Schluderbach (Carbonin), the board’s start": "Schluderbach (Carbonin), la partenza indicata dalla scheda ufficiale",
+    "A steady climb of almost 600 m on a forest road.": "Una salita costante di quasi 600 m su strada forestale.",
+    "The shortcuts are steeper and rougher than the road.": "Le scorciatoie sono più ripide e accidentate della strada.",
+    "Cows graze on the Plätzwiese.": "Sulla Plätzwiese pascolano le mucche."
+  }
 }

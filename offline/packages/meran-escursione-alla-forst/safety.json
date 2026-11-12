@@ -8,7 +8,7 @@
     "distanceKm": 8.2,
     "ascentM": 295,
     "highestPointM": 588,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 3
   },
@@ -70,5 +70,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Forst and the Marlinger Waalweg from Algund": "Forst e il Marlinger Waalweg da Algund",
+    "The village centre of Algund, the board’s start": "Il centro del paese di Algund, la partenza indicata dalla scheda ufficiale",
+    "Crosses the old Vinschgau state road, which has little traffic: lead short while crossing.": "Attraversa la vecchia statale della Val Venosta (Vinschgau), poco trafficata: guinzaglio corto durante l'attraversamento.",
+    "Steps up from the Alperia power station to the old state road.": "Gradini in salita dalla centrale Alperia fino alla vecchia statale.",
+    "Access roads to Josefsberg and road 9 are tarred and open to cars: lead on.": "Le strade d'accesso al Josefsberg e la strada 9 sono asfaltate e aperte alle auto: guinzaglio."
+  }
 }

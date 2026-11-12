@@ -8,7 +8,7 @@
     "distanceKm": 0.9,
     "ascentM": 5,
     "highestPointM": 1327,
-    "expectedDuration": "0.5 hours",
+    "expectedDuration": "30 min",
     "difficulty": "Easy",
     "shadePercent": 5
   },
@@ -54,5 +54,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Brach to Pieve di Marebbe": "Da Brach a Pieve di Marebbe",
+    "The hamlet of Brach above Pieve di Marebbe, the board’s start": "La frazione di Brach sopra Pieve di Marebbe, la partenza indicata dalla scheda ufficiale",
+    "On a quiet tarred road the whole way, with no pavement: keep your dog close for the odd car.": "Su una strada asfaltata tranquilla per tutto il percorso, senza marciapiede: tieni il cane vicino per qualche auto di passaggio.",
+    "Hay meadows beside the road: keep your dog off them in summer.": "Prati da fieno accanto alla strada: d'estate tieni il cane fuori."
+  }
 }

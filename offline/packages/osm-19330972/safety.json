@@ -8,7 +8,7 @@
     "distanceKm": 2.3,
     "ascentM": 80,
     "highestPointM": 1317,
-    "expectedDuration": "0.75 hours",
+    "expectedDuration": "45 min",
     "difficulty": "Easy",
     "shadePercent": 10
   },
@@ -82,5 +82,10 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Rathausplatz, by the town hall in Altrei (official start)": "Rathausplatz, presso il municipio di Altrei (partenza ufficiale)",
+    "About 500 m on the village through-road (50 km/h) and about 900 m on residential streets with cars.": "Circa 500 m sulla strada di attraversamento del paese (50 km/h) e circa 900 m su strade residenziali con auto.",
+    "Some sections can be slippery when wet (official note).": "Alcuni tratti possono essere scivolosi quando sono bagnati (nota ufficiale)."
+  }
 }
