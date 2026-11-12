@@ -1797,4 +1797,6 @@ window.ORMA_PHRASES_IT = {
   "Add a photo": "Aggiungi una foto",
   "More about the walk": "Altro sulla passeggiata",
   "Fewer questions": "Meno domande",
+  "Watch out for: {hazards}.": "Fai attenzione a: {hazards}.",
+  "This walk asks too much of {name}, so the score stays at its lowest.": "Questo giro è troppo impegnativo per {name}, quindi il punteggio resta al minimo.",
 };

@@ -199,13 +199,36 @@
     return Math.round(Math.max(0, ascent - (last - first)));
   }
 
+  // A trail's terrainRank is its steepest grade anywhere, so one short steep
+  // step marks a whole walk steep. Read from the height profile, a pitch only
+  // counts when it holds over a stretch of 300 m or more. The stored rank is
+  // kept when it is lower, or when there is no usable profile (v1.10.0).
+  const SUSTAINED_STRETCH_KM = 0.3;
+  function sustainedTerrainRank(trail){
+    const rank = Number.isFinite(trail.terrainRank) ? trail.terrainRank : null;
+    const profile = Array.isArray(trail.elevationProfile) ? trail.elevationProfile : [];
+    if(rank === null || profile.length < 2) return rank;
+    let steepest = 0;
+    let measured = false;
+    for(let i = 1; i < profile.length; i++){
+      const km = Number(profile[i].km) - Number(profile[i - 1].km);
+      const rise = Number(profile[i].elev) - Number(profile[i - 1].elev);
+      if(!Number.isFinite(km) || !Number.isFinite(rise) || km < SUSTAINED_STRETCH_KM) continue;
+      measured = true;
+      steepest = Math.max(steepest, Math.abs(rise) / (km * 1000));
+    }
+    if(!measured) return rank;
+    const sustained = steepest < 0.10 ? 0 : steepest < 0.18 ? 1 : 2;
+    return Math.min(rank, sustained);
+  }
+
   function normalizeTrail(trail){
     if(trail && trail.metrics && trail.suitability && trail.verification) return trail;
     trail = trail || {};
     const suitability = {
       safetyLevel: ['low-risk', 'moderate', 'caution'].includes(trail.safetyLevel)
         ? trail.safetyLevel : 'unknown',
-      terrainRank: Number.isFinite(trail.terrainRank) ? trail.terrainRank : null,
+      terrainRank: sustainedTerrainRank(trail),
       shadePercent: Number.isFinite(trail.shadeCoverage) ? trail.shadeCoverage : null,
       heatRisk: ['low', 'moderate', 'high'].includes(trail.heatRisk)
         ? trail.heatRisk : 'unknown',
@@ -308,6 +331,7 @@
     conditions,
     behaviour,
     normalizeDog,
+    sustainedTerrainRank,
     normalizeTrail,
     effectiveLimits,
     recommendLegacyTrail,
