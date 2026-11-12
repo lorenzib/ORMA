@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-12T11:15:15.638Z",
+  "generatedAt": "2026-11-12T14:17:31.517Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-12T11:15:15.638Z",
+      "lastSeenAt": "2026-11-12T14:17:31.517Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -60,7 +60,7 @@
       "effectiveAt": "2026-11-12T23:00:00+00:00",
       "expiresAt": "2026-11-13T23:00:00+00:00",
       "firstPublishedAt": "2026-11-12T05:16:20.516Z",
-      "lastSeenAt": "2026-11-12T11:15:15.638Z",
+      "lastSeenAt": "2026-11-12T14:17:31.517Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -111,7 +111,7 @@
       "effectiveAt": "2026-11-11T15:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-12T11:15:15.638Z",
+      "lastSeenAt": "2026-11-12T14:17:31.517Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -148,7 +148,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-12T11:15:15.638Z",
+      "lastSeenAt": "2026-11-12T14:17:31.517Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -185,7 +185,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-12T11:15:15.638Z",
+      "lastSeenAt": "2026-11-12T14:17:31.517Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -298,7 +298,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-12T11:15:15.638Z",
+      "lastSeenAt": "2026-11-12T14:17:31.517Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -333,7 +333,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-12T17:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-12T11:15:15.638Z",
+      "lastSeenAt": "2026-11-12T14:17:31.517Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -342,7 +342,6 @@
         "tre-cime",
         "cadini",
         "prato-piazza",
-        "sassolungo",
         "lago-braies",
         "lago-carezza",
         "valley-view",
@@ -678,7 +677,8 @@
         "valdisole-masi-verniana-bait-de-mezol-malga-saviana",
         "valdisole-peio-paese-lago-covel",
         "valdisole-percorso-geologico-in-val-di-rabbi",
-        "valdisole-percorso-della-fauna-in-val-di-peio"
+        "valdisole-percorso-della-fauna-in-val-di-peio",
+        "kronplatz-sulle-tracce-della-lacerta-prima"
       ],
       "trailNames": [
         "Alpe di Siusi Meadow Loop",
@@ -687,7 +687,6 @@
         "Tre Cime di Lavaredo classic circuit",
         "Cadini di Misurina Viewpoint",
         "Prato Piazza (Plätzwiese)",
-        "Sassolungo–Sassopiatto Loop",
         "Lago di Braies Seeweg circuit",
         "Lago di Carezza Loop",
         "Val di Funes Panorama Trail",
@@ -1025,7 +1024,8 @@
         "Forte Strino to Malga Verniana and Malga Saviana",
         "Peio Paese to Lago Covel",
         "Geology trail in the Val di Rabbi",
-        "Wildlife trail in the Val di Peio"
+        "Wildlife trail in the Val di Peio",
+        "Lacerta Prima theme trail at Valdaora di Sopra"
       ],
       "sourceStatus": "available"
     },
@@ -1044,7 +1044,7 @@
       "effectiveAt": "2026-11-13T00:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-12T11:15:15.638Z",
+      "lastSeenAt": "2026-11-12T14:17:31.517Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -1111,7 +1111,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-12T11:15:15.638Z",
+      "lastSeenAt": "2026-11-12T14:17:31.517Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
