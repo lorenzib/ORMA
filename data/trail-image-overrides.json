@@ -3705,23 +3705,6 @@
       }
     },
     {
-      "id": "osm-12027153",
-      "approvedReviewId": "hand-correction-osm-12027153",
-      "approvedAt": "2026-10-23T15:00:00.000Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-12027153-bletterbach-gorge.jpg",
-        "heroImage": "images/trails/osm-12027153-bletterbach-gorge.jpg",
-        "imageAlt": "The banded red and grey rock walls at the head of the Bletterbach gorge, with a boulder bed on the gorge floor",
-        "imageCredit": "The head of the Bletterbach gorge",
-        "imageCreditText": "The head of the Bletterbach gorge by Wasquewhat",
-        "imageCreator": "Wasquewhat",
-        "imageLicence": "CC BY 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0/",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gorz_Bletterbach.jpg",
-        "imageSourceType": "licensed-source"
-      }
-    },
-    {
       "id": "osm-12044077",
       "approvedReviewId": "commons-osm-12044077",
       "approvedAt": "2026-09-06T14:27:06.592Z",
@@ -5468,23 +5451,6 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Guidepost_(86979).jpg",
-        "imageSourceType": "licensed-source"
-      }
-    },
-    {
-      "id": "osm-7086961",
-      "approvedReviewId": "commons-osm-7086961",
-      "approvedAt": "2026-09-08T17:23:42.369Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-7086961-lago-negro.jpg",
-        "heroImage": "images/trails/osm-7086961-lago-negro.jpg",
-        "imageAlt": "The Lago Negro tarn in its granite cirque below Cima d'Asta with grass and scree on the slopes above",
-        "imageCredit": "Lago Negro di Cima d'Asta",
-        "imageCreditText": "Lago Negro di Cima d'Asta by EndlessPalca",
-        "imageCreator": "EndlessPalca",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Negro_di_Cima_d%27Asta.jpg",
         "imageSourceType": "licensed-source"
       }
     },

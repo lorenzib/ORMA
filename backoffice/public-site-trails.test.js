@@ -250,8 +250,10 @@ describe('the existing-site verification boundary',()=>{
     // circuit as the Giro del Sasso Lungo, whose page its addresses now open.
     // Then 522 and 520 with Dolomites batch 10: the Lacerta Prima theme loop
     // at Valdaora di Sopra.
-    expect(catalogue).toHaveLength(522);
-    expect(currentSiteTrails(catalogue)).toHaveLength(520);
+    // Then 520 and 518: GEOWeg and Giro del Zimon removed on 12 November, not
+    // walks for dogs (iron stairs and a helmet; an EE path).
+    expect(catalogue).toHaveLength(520);
+    expect(currentSiteTrails(catalogue)).toHaveLength(518);
   });
 
   test('requires the artwork the public trail page needs',()=>{

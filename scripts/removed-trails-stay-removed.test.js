@@ -19,9 +19,9 @@ const json = file => JSON.parse(read(file));
  * tests fail if any of them comes back by any door.
  */
 describe('walks removed from ORMA stay removed', () => {
-  test('the list names the three the owner removed', () => {
+  test('the list names the walks the owner removed', () => {
     expect(REMOVED_TRAILS.map(trail => trail.name).sort())
-      .toEqual(['Alpage de Commune', 'Chalets de Salvadon', 'Rundweg Rotwand']);
+      .toEqual(['Alpage de Commune', 'Chalets de Salvadon', 'GEOWeg - Sentiero GEOlogico', 'Giro del Zimon', 'Rundweg Rotwand']);
   });
 
   const catalogue = loadProductionTrails(ROOT);

@@ -1913,30 +1913,6 @@
       }
     },
     {
-      "trailId": "osm-12027153",
-      "name": "GEOWeg - Sentiero GEOlogico",
-      "origin": "imported",
-      "publicRecordPresent": true,
-      "modernGraduationVerified": false,
-      "externalRelationId": "relation/12027153",
-      "campaignState": "identity-check-queued",
-      "priorityScore": 221,
-      "baselineBlockers": [
-        "review-date-missing",
-        "claim-sources-missing",
-        "shadeCoverage-unknown",
-        "heatRisk-unknown",
-        "exposure-unknown",
-        "category-review-incomplete"
-      ],
-      "existing": {
-        "reviewedAt": null,
-        "sourceCount": 0,
-        "pathPointCount": 146,
-        "reviewedCategories": []
-      }
-    },
-    {
       "trailId": "osm-12150790",
       "name": "Giro dei Capitelli - Kapellenrunde",
       "origin": "imported",
@@ -2005,30 +1981,6 @@
         "reviewedAt": null,
         "sourceCount": 0,
         "pathPointCount": 153,
-        "reviewedCategories": []
-      }
-    },
-    {
-      "trailId": "osm-7086961",
-      "name": "Giro del Zimon",
-      "origin": "imported",
-      "publicRecordPresent": true,
-      "modernGraduationVerified": false,
-      "externalRelationId": "relation/7086961",
-      "campaignState": "identity-check-queued",
-      "priorityScore": 221,
-      "baselineBlockers": [
-        "review-date-missing",
-        "claim-sources-missing",
-        "shadeCoverage-unknown",
-        "heatRisk-unknown",
-        "exposure-unknown",
-        "category-review-incomplete"
-      ],
-      "existing": {
-        "reviewedAt": null,
-        "sourceCount": 0,
-        "pathPointCount": 74,
         "reviewedCategories": []
       }
     },

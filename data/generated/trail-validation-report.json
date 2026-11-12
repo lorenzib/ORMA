@@ -10,9 +10,9 @@
     "regions-config.js"
   ],
   "totals": {
-    "sourceRecords": 522,
-    "canonicalRecords": 522,
-    "published": 520,
+    "sourceRecords": 520,
+    "canonicalRecords": 520,
+    "published": 518,
     "draft": 2,
     "errors": 0
   },
@@ -23,8 +23,8 @@
       "draft": 0
     },
     "osm": {
-      "total": 161,
-      "published": 159,
+      "total": 159,
+      "published": 157,
       "draft": 2
     }
   },

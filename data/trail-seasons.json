@@ -3942,20 +3942,6 @@
         "highPoint": 2039
       }
     },
-    "osm-12027153": {
-      "highPoint": 1747,
-      "snow": {
-        "months": [
-          1,
-          2,
-          3,
-          4,
-          12
-        ],
-        "likelihood": "likely",
-        "highPoint": 1747
-      }
-    },
     "osm-12044077": {
       "highPoint": 1267,
       "snow": {
@@ -5619,22 +5605,6 @@
         ],
         "likelihood": "possible",
         "highPoint": 1405
-      }
-    },
-    "osm-7086961": {
-      "highPoint": 2511,
-      "snow": {
-        "months": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          11,
-          12
-        ],
-        "likelihood": "likely",
-        "highPoint": 2511
       }
     },
     "osm-7277805": {
