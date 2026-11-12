@@ -420,3 +420,14 @@ describe('shared navigation hardening', () => {
     expect(bell.querySelector('.nav-bell-badge')).toBeNull();
   });
 });
+
+describe('menu wording written after translation', () => {
+  // i18n.js translates data-i18n once, when the page loads. A link or button
+  // the menu adds later must carry its reader's words itself, or an Italian
+  // reader sees "Log in" in an Italian menu (12 Nov 2026).
+  test('every label the menu writes goes through copy()', () => {
+    const literal = [...mobileNav.matchAll(/\.textContent\s*=\s*(['"`])([^'"`]*[A-Za-z]{2}[^'"`]*)\1/g)]
+      .map(match => match[2]);
+    expect(literal).toEqual([]);
+  });
+});
