@@ -100,3 +100,52 @@ describe('the homepage card says its cautions plainly', () => {
     expect(missing).toEqual([]);
   });
 });
+
+describe('the trail page breakdown says the same things plainly', () => {
+  const engine = require('./scoring/recommendation-v1.js');
+  const verified = Object.fromEntries(['route', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access']
+    .map(key => [key, 'verified']));
+  function sorapis(hazards){
+    return engine.calculateRecommendation({
+      dog:{ fitness:'moderate', ageYears:4, weightKg:14 },
+      effectiveLimits:{ terrainRank:1 },
+      trail:{
+        metrics:{ distanceKm:8.9, ascentM:662, descentM:662 },
+        suitability:{ terrainRank:2, exposure:true, heatRisk:'low', shadePercent:60,
+          surfaceHazards:hazards, dogAccess:{ status:'allowed' } },
+        verification:{ categories:verified },
+      },
+    });
+  }
+  const rows = view => view.breakdownRows.map(row => row.message);
+
+  test('no grade or tolerance, and every caution kept under a plain heading', () => {
+    useLanguage('en');
+    const recommendation = sorapis(['Steep rock steps where a dog may need a hand', 'A short, fairly exposed ledge with no cable']);
+    const view = decision.present(recommendation, { dogName:'Teo' });
+    expect(rows(view)).toEqual(expect.arrayContaining([
+      'Parts of the path run beside steep drops.',
+      'The path is rougher than Teo is used to.',
+      'Watch out for: Steep rock steps where a dog may need a hand; A short, fairly exposed ledge with no cable.',
+    ]));
+    expect(rows(view).join(' ')).not.toMatch(/grade|tolerance|Recorded route/);
+    // The engine's own sentence is still there for anything that audits it.
+    expect(view.breakdown.length).toBe(recommendation.factors.filter(f => f.code !== 'score.floor').length);
+    expect(recommendation.factors.find(f => f.code === 'trail.terrain.above-tolerance').message).toMatch(/tolerance/);
+  });
+
+  test('a single caution is said on its own', () => {
+    useLanguage('en');
+    const view = decision.present(sorapis(['Rocky steps near the ridge']), { dogName:'Teo' });
+    expect(rows(view)).toContain('Rocky steps near the ridge.');
+  });
+
+  test('the floor note says why the score stops, not that it rests at its floor', () => {
+    useLanguage('en');
+    const view = decision.present({
+      category:'not-recommended',
+      factors:[{ code:'score.floor', impact:5, message:'The demands above already exceed what this dog can comfortably take, so the score rests at its floor.' }],
+    }, { dogName:'Teo' });
+    expect(view.breakdownNote).toBe('This walk asks too much of Teo, so the score stays at its lowest.');
+  });
+});
