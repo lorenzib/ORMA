@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-lago-lases-buse-giaz",
   "name": "Il Lago di Lases e le buse del giaz",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:33.989Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:19.916Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 621029,
+  "packageBytes": 621025,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.13193,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Il Lago di Lases e le buse del giaz safety information",
       "url": "safety.json",
-      "bytes": 1511,
-      "sha256": "a83e6d36ea88ac35dc71037b071f67e149266e960c7928afb77541ef4b6e9b4c"
+      "bytes": 1507,
+      "sha256": "e8d512f31b5cb7561206aeee219160b5563617a46f4b701cd56e9d95a7b02c02"
     }
   ]
 }

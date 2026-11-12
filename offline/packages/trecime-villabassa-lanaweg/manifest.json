@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-villabassa-lanaweg",
   "name": "Niederdorf – Lanaweg loop",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:32:25.583Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.670Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1159852,
+  "packageBytes": 1159853,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.73349,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Niederdorf – Lanaweg loop safety information",
       "url": "safety.json",
-      "bytes": 3634,
-      "sha256": "e6d354ee598fc750dea83de279c787d55549556930da0a29dc121acedfbc5478"
+      "bytes": 3635,
+      "sha256": "a90302d6fc876bce44a8ef5ff41fdc972539fe98bb881fad099a706226078174"
     }
   ]
 }

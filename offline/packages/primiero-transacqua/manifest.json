@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-transacqua",
   "name": "Transacqua",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:36.286Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.548Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 794602,
+  "packageBytes": 794599,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16912,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Transacqua safety information",
       "url": "safety.json",
-      "bytes": 1817,
-      "sha256": "477bdc2b682f7137fbe39c814d006d204b895e16671d065cba33840855bd4a69"
+      "bytes": 1814,
+      "sha256": "0d285349ed387e500f3b25b4c45e73c8edd93dadd3d3026641660a5a3c9f7452"
     }
   ]
 }

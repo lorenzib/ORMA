@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "trecime-monte-elmo-da-moso",
   "name": "Moos – Helm",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:46:32.361Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.641Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 577081,
@@ -233,7 +233,7 @@
       "label": "Moos – Helm safety information",
       "url": "safety.json",
       "bytes": 1435,
-      "sha256": "5df66535472a96cd899e02b86556f8e69be3a69ea5768671e6e51c3b8aea28a5"
+      "sha256": "cbe0f376bcc96b14e48639cd32e45e0ee473ffd05f50b2f198bdf17db5c13a2b"
     }
   ]
 }

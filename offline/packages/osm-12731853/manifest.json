@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12731853",
   "name": "Rundweg Laugen Elvas",
-  "version": "2026.11.06-beta.1",
-  "generatedAt": "2026-11-06T20:43:23.369Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.302Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 397079,
+  "packageBytes": 397080,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.72853,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Laugen Elvas safety information",
       "url": "safety.json",
-      "bytes": 1448,
-      "sha256": "be5480b6cea4ac006cad1758579ca8da5164028c0b180617fd86bbec6689ca6f"
+      "bytes": 1449,
+      "sha256": "9d0afc7fc00f1f37f60c74502f443445836a36ee834a51dbc8eb3a02aecfbc66"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6410700",
   "name": "Dolomitenblickrunde",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.826Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.413Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 726166,
+  "packageBytes": 726171,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.76291,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dolomitenblickrunde safety information",
       "url": "safety.json",
-      "bytes": 1480,
-      "sha256": "4c4adc841c346201cf23e17c157cdee8aa59885e6aeb1e9b36f49f0d55f86653"
+      "bytes": 1485,
+      "sha256": "9c7a6e5b7255c4235922e85192840d8436938e00a85ea61722d049d965c044ae"
     }
   ]
 }

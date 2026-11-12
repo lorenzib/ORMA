@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "eggental-passo-nigra-malga-hagner",
   "name": "Passo Nigra to the Malga Hagner Alm",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T22:50:54.100Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.960Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 625208,
@@ -233,7 +233,7 @@
       "label": "Passo Nigra to the Malga Hagner Alm safety information",
       "url": "safety.json",
       "bytes": 1351,
-      "sha256": "7d1177e96baee13b09944f208de8da7366633dc8fc1cf19daecf4e1ed87d5ede"
+      "sha256": "13bc59dfe7d879e5c5862960eacd3eb0a2d359815542f38fd44d87b63fd8ae89"
     }
   ]
 }

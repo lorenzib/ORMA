@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "weissensee-nordic-7-franz-josephs-hoehe",
   "name": "Franz-Josephs-Höhe loop, Weissensee",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:17:36.016Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.840Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 827989,
@@ -233,7 +233,7 @@
       "label": "Franz-Josephs-Höhe loop, Weissensee safety information",
       "url": "safety.json",
       "bytes": 1334,
-      "sha256": "6981e452e115df7554464009e3d40885e00f8b38e9f358899a72976a976a41fa"
+      "sha256": "56e812beb9b4a813b95446fe486164c3e9c680e7af1c7569ee23b9f3ac857244"
     }
   ]
 }

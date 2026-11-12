@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-escursione-da-s-cristina-al-passo-sella",
   "name": "Santa Cristina – Passo Sella",
-  "version": "2026.11.05-beta.1",
-  "generatedAt": "2026-11-05T16:10:59.563Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.731Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1398883,
+  "packageBytes": 1398884,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.50629,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Santa Cristina – Passo Sella safety information",
       "url": "safety.json",
-      "bytes": 1949,
-      "sha256": "b7298d20aa8b81551d6151a3112103ad1cf89f7479567cc556f0979e8bd3e1a4"
+      "bytes": 1950,
+      "sha256": "54136979a1c237265a285ac6eb4638f9460621856ce78534f69c9bdf4f7aba88"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-da-alba-a-penia",
   "name": "Da Alba a Penìa",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:34.084Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:19.999Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 382767,
@@ -233,7 +233,7 @@
       "label": "Da Alba a Penìa safety information",
       "url": "safety.json",
       "bytes": 1826,
-      "sha256": "8288a22dba85018613e7e4598338609a94900f69d8a1067de5748195f5264ba2"
+      "sha256": "9fa7dbff3c362da6a92c87d4a1efae9801e79b2d4ac2ac10d578e330ef58f59e"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "aosta-sentiero-della-regina",
   "name": "Sentiero della Regina",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:06:28.632Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.867Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 604791,
+  "packageBytes": 604787,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.76243,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sentiero della Regina safety information",
       "url": "safety.json",
-      "bytes": 1868,
-      "sha256": "03686923872ec38a5b31324fedd0c16e46fd2fdb78beba59e59331136f642d0e"
+      "bytes": 1864,
+      "sha256": "d718d04688017834b7c9f648b9fa2e6346e1965aa8f54f37091e3ca0c184506f"
     }
   ]
 }

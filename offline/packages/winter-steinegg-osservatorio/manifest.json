@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "winter-steinegg-osservatorio",
   "name": "Steinegg to the Gummer observatory in winter",
-  "version": "2026.11.07-beta.1",
-  "generatedAt": "2026-11-07T22:26:45.119Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.855Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 473795,
+  "packageBytes": 473796,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.44947,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Steinegg to the Gummer observatory in winter safety information",
       "url": "safety.json",
-      "bytes": 1379,
-      "sha256": "0a878d523cc54b392108f5ddeee13d96889e1dad5975aff59dc9e6325154f9f1"
+      "bytes": 1380,
+      "sha256": "6c9c76151cfca5a92b6e4a1c6150860adfca85d4a935797abec13705170f6350"
     }
   ]
 }

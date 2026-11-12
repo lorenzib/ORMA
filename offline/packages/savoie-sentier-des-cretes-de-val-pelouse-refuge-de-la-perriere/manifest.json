@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere",
   "name": "Val Pelouse crest path and Perrière refuge",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T04:13:12.026Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.574Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 450259,
@@ -233,7 +233,7 @@
       "label": "Val Pelouse crest path and Perrière refuge safety information",
       "url": "safety.json",
       "bytes": 2193,
-      "sha256": "b3152f7ed02743385b4debc2b9cf52c95ff0edb743fe39ac7096356df2867e47"
+      "sha256": "89e0e5594b8eb50ad5362a2ad557189adc6c2f1c5c710ed2233fa926d1a5bcff"
     }
   ]
 }

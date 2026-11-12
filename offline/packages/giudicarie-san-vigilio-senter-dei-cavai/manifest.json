@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "giudicarie-san-vigilio-senter-dei-cavai",
   "name": "San Vigilio and the Senter dei Cavai",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T09:20:51.128Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.077Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1285172,
+  "packageBytes": 1285168,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.03066,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "San Vigilio and the Senter dei Cavai safety information",
       "url": "safety.json",
-      "bytes": 2716,
-      "sha256": "758eec17b4d205a750ef4a15787b7677dddd9a81e406cfd7fdb9c9b27d8b508b"
+      "bytes": 2712,
+      "sha256": "9776ccbf65b558c99c10aad67e75ef2769b5090a90cc89b5a620d80996991b6d"
     }
   ]
 }

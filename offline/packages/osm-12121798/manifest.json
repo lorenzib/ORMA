@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osm-12121798",
   "name": "Le terroir de Serpolière",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:34.715Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.259Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 319636,
@@ -233,7 +233,7 @@
       "label": "Le terroir de Serpolière safety information",
       "url": "safety.json",
       "bytes": 1507,
-      "sha256": "d1cb94a7dcdd4a1616fd15ab831a9e0e934ae0a520208ac05efdf678d3336e6f"
+      "sha256": "848afc936de756dda2f6f41b3a80636d390cecc01dd6d0393e6b41bdfed34d98"
     }
   ]
 }

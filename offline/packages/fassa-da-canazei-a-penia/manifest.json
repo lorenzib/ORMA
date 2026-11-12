@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-da-canazei-a-penia",
   "name": "Da Canazei a Penìa",
-  "version": "2026.11.06-beta.1",
-  "generatedAt": "2026-11-06T21:47:34.881Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.001Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 570672,
+  "packageBytes": 570673,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.45455,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Da Canazei a Penìa safety information",
       "url": "safety.json",
-      "bytes": 1814,
-      "sha256": "fb17227af2bfd2560f4a7c22b920ca2e029b437afde2196db557432a56d4ddab"
+      "bytes": 1815,
+      "sha256": "e71a2f708359e307a33faee4b6ebd15dfe83c6769a0963b836b665f6c2f9635b"
     }
   ]
 }

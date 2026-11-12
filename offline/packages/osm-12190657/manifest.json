@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12190657",
   "name": "Rundweg Langfenn",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.836Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.290Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 494620,
+  "packageBytes": 494625,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.57259,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Langfenn safety information",
       "url": "safety.json",
-      "bytes": 1170,
-      "sha256": "cfd9a7219a4ccd71fb091738fc4dc17d1ef1a4cee3ea1ff47556504c56d56662"
+      "bytes": 1175,
+      "sha256": "e7902c30e0d5c3dbef0a9732db6d1a897879cd10c6378f08085362e1c619d85a"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "villnoess-da-russis-fino-al-passo-delle-erbe",
   "name": "Ponte Russis to Passo delle Erbe",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:45:02.396Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.801Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1110258,
+  "packageBytes": 1110259,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.64896,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Ponte Russis to Passo delle Erbe safety information",
       "url": "safety.json",
-      "bytes": 1901,
-      "sha256": "d38cb6d978b72cf537c855f3503da50954122f0852aa26b9af12a6b9ab937a03"
+      "bytes": 1902,
+      "sha256": "02f8bedd8c01765a61d461d8b30a7652be0b1e2793e007e2fb232a445d0dfe57"
     }
   ]
 }

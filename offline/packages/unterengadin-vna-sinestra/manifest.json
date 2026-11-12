@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "unterengadin-vna-sinestra",
   "name": "Vnà to Val Sinestra",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T20:35:33.907Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.683Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 298145,
@@ -233,7 +233,7 @@
       "label": "Vnà to Val Sinestra safety information",
       "url": "safety.json",
       "bytes": 1361,
-      "sha256": "6c1e9f45ef7915be7aafdc4e6a1dca2dea7e1ccca4f001c9269aef70d1853d53"
+      "sha256": "4f937db02edc29f58af8b97f7ccc88564fc862e7ac7c36226141d5f062c14303"
     }
   ]
 }

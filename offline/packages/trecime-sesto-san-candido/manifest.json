@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-sesto-san-candido",
   "name": "Sexten – Innichen and back",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:10:36.791Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.666Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1441365,
+  "packageBytes": 1441366,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.68459,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sexten – Innichen and back safety information",
       "url": "safety.json",
-      "bytes": 3363,
-      "sha256": "b3f0d11cb3cd7f6eb23d3e4ed5b12865536840173edab2bffc17697e904a53df"
+      "bytes": 3364,
+      "sha256": "18e243a1c0e374619429b264a2f513abf2919acf40b8fe539c462c86b78f456b"
     }
   ]
 }

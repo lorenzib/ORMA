@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "altabadia-escursione-corvara-la-villa",
   "name": "Corvara – La Villa",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:12:35.742Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.847Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 922082,
@@ -233,7 +233,7 @@
       "label": "Corvara – La Villa safety information",
       "url": "safety.json",
       "bytes": 1920,
-      "sha256": "586364283019f3baee26388146e22e527b3a13efe8333b42db0ee23684e1fc57"
+      "sha256": "462413445f839190883a778b2f2d7388bca42f7b54da2dfa39f61d255401432f"
     }
   ]
 }
