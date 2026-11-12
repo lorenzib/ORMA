@@ -34,7 +34,7 @@
     const link = document.createElement('a');
     link.className = 'dp-skip-link';
     link.href = '#mainContent';
-    link.textContent = 'Skip to main content';
+    link.textContent = copy('mobile.skip', 'Skip to main content');
     link.setAttribute('data-i18n', 'mobile.skip');
     const resolveTarget = () => {
       const candidates = Array.from(document.querySelectorAll('main, [data-main-content], #newCustomerHomepage, #returningCustomerHomepage'));
@@ -78,7 +78,7 @@
       if(!breedLink || group.querySelector('a[href$="alpine-plants-for-dogs.html"]')) return;
       const link = document.createElement('a');
       link.href = (breedLink.getAttribute('href') || '').replace('breed-group-caveats.html', 'alpine-plants-for-dogs.html');
-      link.textContent = 'Alpine plants guide';
+      link.textContent = copy('mobile.alpinePlants', 'Alpine plants guide');
       link.setAttribute('data-i18n', 'mobile.alpinePlants');
       group.appendChild(link);
     });
@@ -750,7 +750,7 @@
           login.type = 'button';
           login.id = 'accountBtn';
           login.className = 'account-btn';
-          login.textContent = 'Log in';
+          login.textContent = copy('nav.login', 'Log in');
           login.setAttribute('data-i18n', 'nav.login');
           login.addEventListener('click', () => lazyOpenLogin(login));
           linksEl.appendChild(login);

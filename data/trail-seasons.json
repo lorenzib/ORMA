@@ -9442,6 +9442,25 @@
           "accessedAt": "2026-11-11"
         }
       }
+    },
+    "kronplatz-sulle-tracce-della-lacerta-prima": {
+      "highPoint": 1205,
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/811108780",
+          "accessedAt": "2026-11-12"
+        }
+      }
     }
   }
 }

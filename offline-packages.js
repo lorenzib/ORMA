@@ -146,6 +146,7 @@
     'kronplatz-passeggiata-valdaora-monguelfo': "Olang to Welsberg by the reservoir",
     'kronplatz-san-lorenzo-maria-sares': "San Lorenzo to Maria Sares",
     'kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi': "The Gais channel path loop",
+    'kronplatz-sulle-tracce-della-lacerta-prima': "Lacerta Prima theme trail at Valdaora di Sopra",
     'kronplatz-valdaora-di-sopra-goste': "Valdaora di Sopra to the Alte Goste",
     'kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle': "Valdaora di Sotto to Bad Bergfall",
     'lago-braies': "Lago di Braies Seeweg circuit",
