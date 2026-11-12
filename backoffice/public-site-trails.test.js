@@ -248,8 +248,10 @@ describe('the existing-site verification boundary',()=>{
     // Colle di Santa Lucia.
     // Then 521 and 519: the Sassolungo–Sassopiatto Loop retired, the same
     // circuit as the Giro del Sasso Lungo, whose page its addresses now open.
-    expect(catalogue).toHaveLength(521);
-    expect(currentSiteTrails(catalogue)).toHaveLength(519);
+    // Then 522 and 520 with Dolomites batch 10: the Lacerta Prima theme loop
+    // at Valdaora di Sopra.
+    expect(catalogue).toHaveLength(522);
+    expect(currentSiteTrails(catalogue)).toHaveLength(520);
   });
 
   test('requires the artwork the public trail page needs',()=>{
