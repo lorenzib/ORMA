@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osttirol-kinder-naturerlebnispfad-kals-ag",
   "name": "Children’s nature trail, Kals",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:04:09.792Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.488Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 504086,
+  "packageBytes": 504082,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 47.00677,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Children’s nature trail, Kals safety information",
       "url": "safety.json",
-      "bytes": 1378,
-      "sha256": "15f404f951ce2bc5e78efbbdecd05c1ca12b2467ea42f7599f60f582c71b9514"
+      "bytes": 1374,
+      "sha256": "4e44b9cdde88facbb50965e91a9483815b6372d0d59d5a4cdd9404bb5fa7e67c"
     }
   ]
 }

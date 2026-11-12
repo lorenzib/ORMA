@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "trecime-circolare-maistatt",
   "name": "Maistatt loop",
-  "version": "2026.11.06-beta.1",
-  "generatedAt": "2026-11-06T21:47:35.254Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.620Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 997332,
@@ -233,7 +233,7 @@
       "label": "Maistatt loop safety information",
       "url": "safety.json",
       "bytes": 2879,
-      "sha256": "54f5598cf89415c5c0c43c217b5d8780fe8b04e42d17342245f829071ac3efb8"
+      "sha256": "7e2de00014480875e1aca2232a65c4e4c15035be1141c99cffd874685248caae"
     }
   ]
 }

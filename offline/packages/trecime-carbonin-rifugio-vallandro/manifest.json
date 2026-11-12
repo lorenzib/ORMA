@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-carbonin-rifugio-vallandro",
   "name": "Schluderbach – Dürrensteinhütte",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:56:48.645Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.614Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 306510,
+  "packageBytes": 306506,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61754,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Schluderbach – Dürrensteinhütte safety information",
       "url": "safety.json",
-      "bytes": 1591,
-      "sha256": "f82dda898e5fb9f863f9359cbc86f0d7257db6f1e4b2f86e739653cbc74d1c02"
+      "bytes": 1587,
+      "sha256": "5a9641a9742fb9a8a756ff241dbddab014ebeef5bceaaead57563fdd1a174043"
     }
   ]
 }

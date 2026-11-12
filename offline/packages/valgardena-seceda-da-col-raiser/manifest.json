@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-seceda-da-col-raiser",
   "name": "Col Raiser – Seceda",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:41:55.254Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.759Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 406888,
+  "packageBytes": 406889,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.58153,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Col Raiser – Seceda safety information",
       "url": "safety.json",
-      "bytes": 1547,
-      "sha256": "3649e2ce6f5ef23a9100806b449125609d73c678164323ec36237d2173e44652"
+      "bytes": 1548,
+      "sha256": "47f4a479ebcca73b56a048d0c85b379222f9c6ab3cedcbab2bdf3b3efcf954f6"
     }
   ]
 }

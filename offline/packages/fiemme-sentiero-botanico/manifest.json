@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-sentiero-botanico",
   "name": "Sentiero botanico naturalistico",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:34.258Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.051Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 816333,
+  "packageBytes": 816334,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.22777,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sentiero botanico naturalistico safety information",
       "url": "safety.json",
-      "bytes": 1672,
-      "sha256": "cd91cfdf3867e9e7be7e2929fd470683b0b66bbfdb9e5826df7e7b6e0c0dbbe5"
+      "bytes": 1673,
+      "sha256": "acb302ab7631d08c55c8aedf6d3d0164876ec4559d1883d917fa934030358bf8"
     }
   ]
 }

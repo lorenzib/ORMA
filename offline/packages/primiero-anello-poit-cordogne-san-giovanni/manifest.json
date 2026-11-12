@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-anello-poit-cordogne-san-giovanni",
   "name": "Anello Poit - Cordognè - San Giovanni",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:11:41.858Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.521Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 495050,
+  "packageBytes": 495046,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.13297,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Anello Poit - Cordognè - San Giovanni safety information",
       "url": "safety.json",
-      "bytes": 1582,
-      "sha256": "60a5fc3731bd28595346d8a568f80c3a343096e48ea148d4893056c3dd1f86e1"
+      "bytes": 1578,
+      "sha256": "228f2d14e4447ba142d314fcf8332ced5ccd2306f6ec55d934167b9fc657b1df"
     }
   ]
 }

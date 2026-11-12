@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-lago-juribrutto",
   "name": "Lago di Juribrutto from Malga Vallazza",
-  "version": "2026.11.10-beta.1",
-  "generatedAt": "2026-11-10T21:52:26.505Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.039Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 416905,
+  "packageBytes": 416906,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.32705,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lago di Juribrutto from Malga Vallazza safety information",
       "url": "safety.json",
-      "bytes": 1392,
-      "sha256": "f2707f0c72013c877ae5042eddff19c92316a7d3721d2135a967ad8f477b7d3b"
+      "bytes": 1393,
+      "sha256": "d35cdf8497e1b7bde9c8ef8a973326d7699ccbff327ebdad19cdb5dd79a0c15c"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "aosta-champoluc-cascata-mascognaz",
   "name": "Champoluc – Mascognaz waterfall",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:05:09.510Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.859Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 408428,
+  "packageBytes": 408425,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.81932,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Champoluc – Mascognaz waterfall safety information",
       "url": "safety.json",
-      "bytes": 1601,
-      "sha256": "ba17f4d63b94253dcce93fe8970405504c4ff81370a0d406daca269d1b14ae9b"
+      "bytes": 1598,
+      "sha256": "6d2939240d129a91fa5f6714a9ae2deb6c5311e1654f4fa72e113bd5f511de16"
     }
   ]
 }

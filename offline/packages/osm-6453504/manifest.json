@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6453504",
   "name": "Walderlebnispfad Aschbach",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.836Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.415Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 216840,
+  "packageBytes": 216837,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.63271,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Walderlebnispfad Aschbach safety information",
       "url": "safety.json",
-      "bytes": 1640,
-      "sha256": "8209522d810163c4c914596aca1ae1d6d3ec3f1e5944d9e84a69b32b448e9ce6"
+      "bytes": 1637,
+      "sha256": "d581a17aa5106ea6deede6b7ab2a1bf20ea620399bf017576597cfd816b89667"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6401355",
   "name": "Panoramarundweg Concordia 360°",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T17:01:15.318Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.409Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 245288,
+  "packageBytes": 245284,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.73267,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Panoramarundweg Concordia 360° safety information",
       "url": "safety.json",
-      "bytes": 1340,
-      "sha256": "2cfaa122e5762ea26810ae2bfff7b805064e11ea7499a262afda5a06997350ef"
+      "bytes": 1336,
+      "sha256": "ad217358f9f6adaa581952e228cd64cd63c566bacf603cfae69d9ef826a33006"
     }
   ]
 }

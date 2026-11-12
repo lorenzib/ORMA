@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-moena-soraga-someda",
   "name": "Da Moena a Soraga, la natura a due passi da casa",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:34.132Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.011Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 754732,
@@ -233,7 +233,7 @@
       "label": "Da Moena a Soraga, la natura a due passi da casa safety information",
       "url": "safety.json",
       "bytes": 2364,
-      "sha256": "593ea4f44ee2db537a48b07f82e24d898052f33f8b19f072f8ca36726d81e635"
+      "sha256": "27c0fb6379b364ea7ba8677885716fc8dbf2a92b99ac401e18b91611221b22f0"
     }
   ]
 }

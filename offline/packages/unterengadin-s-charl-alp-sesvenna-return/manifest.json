@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "unterengadin-s-charl-alp-sesvenna-return",
   "name": "S-charl to Alp Sesvenna and back",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T20:40:01.673Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.677Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 190381,
@@ -233,7 +233,7 @@
       "label": "S-charl to Alp Sesvenna and back safety information",
       "url": "safety.json",
       "bytes": 1379,
-      "sha256": "3ce27815adbe2a7d20a41698956305137a33f36e13d9c4bd36af731919fd188b"
+      "sha256": "71b11bb635a3d8f2d9264a3633da3034d13e8b1950f1a148044c66f64ffcbd77"
     }
   ]
 }

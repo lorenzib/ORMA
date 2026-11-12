@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-10220399",
   "name": "Martinsweg",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.469Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.213Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 219541,
+  "packageBytes": 219542,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65113,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Martinsweg safety information",
       "url": "safety.json",
-      "bytes": 1813,
-      "sha256": "551dc37e4c5c9d7dc3eb80c8ba43551ee36986949378afc83b5aec1bf17c9d8f"
+      "bytes": 1814,
+      "sha256": "8ad1ae0a461b2d22c84da53bb10a5e789e428d2fa4c8d4abcb2e47e3d21791bc"
     }
   ]
 }

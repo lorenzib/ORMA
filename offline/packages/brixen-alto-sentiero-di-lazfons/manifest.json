@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "brixen-alto-sentiero-di-lazfons",
   "name": "Latzfons high trail",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T15:50:30.691Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.878Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 912875,
+  "packageBytes": 912876,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67981,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Latzfons high trail safety information",
       "url": "safety.json",
-      "bytes": 1878,
-      "sha256": "9d2538239ba8ba6844c569f395b38f0c671d0359fd8044cb1ec6af6130bbe53c"
+      "bytes": 1879,
+      "sha256": "ff8f06b05d101e8f2dcdb935912bb11818291a7903480d56bcdfa759bb365e44"
     }
   ]
 }

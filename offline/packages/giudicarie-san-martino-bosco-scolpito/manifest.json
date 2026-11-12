@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "giudicarie-san-martino-bosco-scolpito",
   "name": "San Martino – Bosco Scolpito",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T17:59:23.534Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.074Z",
+  "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 915729,
+  "packageBytes": 915730,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.91558,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "San Martino – Bosco Scolpito safety information",
       "url": "safety.json",
-      "bytes": 1781,
-      "sha256": "f26f5adc3e726f41720a8e6a0b7d7fdb7b80d80acc7b798faca4eb602845688d"
+      "bytes": 1782,
+      "sha256": "7db0e0d85dc5f1538648f85151d9ad5e96cd6202acc2e0ca9f4e110935cd56a0"
     }
   ]
 }

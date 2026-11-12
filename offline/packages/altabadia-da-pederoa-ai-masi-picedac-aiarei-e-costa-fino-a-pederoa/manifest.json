@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa",
   "name": "Pederoa – Picedac – Costa",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:16:47.953Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.833Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1102399,
+  "packageBytes": 1102400,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61897,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Pederoa – Picedac – Costa safety information",
       "url": "safety.json",
-      "bytes": 1375,
-      "sha256": "599f99875923550029e7a36c1b3d4b10344e9f29d71c6dd396d1d61c05bbd893"
+      "bytes": 1376,
+      "sha256": "bd90102bf3da56b2707aef775eb28be185441e29fe4b7fbea26bbe9df98cf24e"
     }
   ]
 }

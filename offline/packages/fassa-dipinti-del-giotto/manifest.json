@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-dipinti-del-giotto",
   "name": "Sulle tracce dei dipinti del Giotto della Val di Fassa",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:34.097Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.003Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 443257,
+  "packageBytes": 443258,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.43666,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sulle tracce dei dipinti del Giotto della Val di Fassa safety information",
       "url": "safety.json",
-      "bytes": 1995,
-      "sha256": "2b8e0b60919b6a692462705996b9170f189c67c70778b8934eebab5525c7e55c"
+      "bytes": 1996,
+      "sha256": "ee3a20e39e9575b9964e104f05cf5a1e4414e0e3718f2f528f2eaf6d1e5df355"
     }
   ]
 }

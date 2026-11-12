@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9511999",
   "name": "Tru dles Viles",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:36.118Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.478Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1124479,
+  "packageBytes": 1124484,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.57931,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Tru dles Viles safety information",
       "url": "safety.json",
-      "bytes": 1849,
-      "sha256": "e9a827454c46f72dc55439d1d6f9222dc6893827181f10aa2116b4cd4e73b76c"
+      "bytes": 1854,
+      "sha256": "468acc9b161e87fc70d1f357d95bb745f5f7b2365e5e762b8ee066710924d8b3"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11517208",
   "name": "La Croix des Salles",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:34.498Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.220Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 818929,
+  "packageBytes": 818930,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.86599,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "La Croix des Salles safety information",
       "url": "safety.json",
-      "bytes": 1564,
-      "sha256": "f746a48c8d14cb582eb74fc77cb7843f50f4cfbd668d724e68e0a7caf204c008"
+      "bytes": 1565,
+      "sha256": "68280b83f395e261ac1fb754599a42397bb1ded1a0472907a02b1f562ea2bd83"
     }
   ]
 }
