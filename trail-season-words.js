@@ -51,6 +51,27 @@
     return tx('The {road} is usually open from {from} to {to}.', { road: tx(road.name), from: partMonth(road.usually.from), to: partMonth(road.usually.to) });
   }
 
+  // Staffed huts on the walk (trail.season.huts, from data/hut-seasons.json):
+  // information only, never a limit on the walk's months.
+  const hutsOf = season => (season && season.huts) || [];
+  const hutClosed = (hut, month) => (hut.closedMonths || []).includes(month);
+  // "The Utia de Puez is open from 4 June to 10 October (summer 2027 dates;
+  // winter dates not yet published)."
+  function hutLine(hut) {
+    const runs = hut.periods.map(p => tx(hut.approx ? 'from about {from} to about {to}' : 'from {from} to {to}', { from: dayMonth(p.from), to: dayMonth(p.to) })).join(tx(' and '));
+    const dates = hut.datesFor || {};
+    const year = [
+      dates.summer && tx('summer {year}', { year: dates.summer }),
+      dates.winter && tx('winter {year}', { year: dates.winter }),
+      dates.year,
+    ].filter(Boolean).join(', ');
+    if (hut.winterOnly) return tx('The {hut} is open {runs} ({year} dates; summer dates not yet published).', { hut: tx(hut.name), runs, year });
+    return hut.summerOnly
+      ? tx('The {hut} is open {runs} ({year} dates; winter dates not yet published).', { hut: tx(hut.name), runs, year })
+      : tx('The {hut} is open {runs} ({year} dates).', { hut: tx(hut.name), runs, year });
+  }
+  const hostOf = url => String(url || '').replace(/^https?:\/\/(www\.)?/, '').split('/')[0];
+
   // "The Col Raiser gondola runs from 30 May to 1 November and from 6 December
   // to 6 April (2025/26 dates)."
   function liftLine(lift) {
@@ -189,6 +210,15 @@
         after: tx(', read on {date}.', { date: readOn(road.accessedAt) }),
       },
     })));
+    out.lifts = out.lifts.concat(hutsOf(season).map(hut => ({
+      line: hutLine(hut),
+      source: {
+        before: tx('Source: '),
+        label: hostOf(hut.url),
+        url: hut.url,
+        after: tx(', read on {date}.', { date: readOn(hut.accessedAt) }),
+      },
+    })));
     for (const use of season.winterUse || []) {
       const names = use.names && use.names.length ? ` (${use.names.join(', ')})` : '';
       out.winter.push(tx(KIND_SENTENCES[use.kind], { km: fmt(use.km), names }));
@@ -238,6 +268,9 @@
     for (const road of roadsOf(season)) {
       if ((road.shutMonths || []).includes(month)) notes.push(tx('In {month} the {road} is closed, and the walk starts at the end of it.', { month: name, road: tx(road.name) }));
     }
+    const shutHuts = hutsOf(season).filter(hut => hut.goal && hutClosed(hut, month)).map(hut => tx(hut.name));
+    if (shutHuts.length === 1) notes.push(tx('In {month} the {hut} is closed: take food and water for you and your dog.', { month: name, hut: shutHuts[0] }));
+    else if (shutHuts.length) notes.push(tx('In {month} these huts are closed: {huts}. Take food and water for you and your dog.', { month: name, huts: shutHuts.join(', ') }));
     if ((season.winterUse || []).length && WINTER_SPORT_MONTHS.includes(month)) {
       notes.push(tx('In {month}, parts of it are likely to be ski runs or tracks.', { month: name }));
     }
@@ -348,7 +381,7 @@
     return now.concat(later);
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
