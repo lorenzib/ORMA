@@ -195,6 +195,27 @@
     };
   }
 
+  // What a walk just earned, worked out by comparing the passport without it
+  // and with it: a territory entered for the first time, a territory that
+  // went up a level, and badges earned. Biggest news first.
+  function passportMoments(before, after){
+    var out = [];
+    var was = new Map(((before && before.valleys) || []).map(function(v){ return [v.name, v]; }));
+    var levels = [];
+    ((after && after.valleys) || []).forEach(function(v){
+      var old = was.get(v.name);
+      if(!old) out.push({ kind: 'territory', valley: v.name, level: v.level });
+      else if(v.level.level > old.level.level) levels.push({ kind: 'level', valley: v.name, level: v.level });
+    });
+    levels.sort(function(a, b){ return b.level.level - a.level.level; });
+    var had = new Set(((before && before.milestones) || []).filter(function(m){ return m.done; })
+      .map(function(m){ return m.id + ':' + m.target; }));
+    var badges = ((after && after.milestones) || []).filter(function(m){
+      return m.done && !had.has(m.id + ':' + m.target);
+    }).map(function(m){ return { kind: 'badge', id: m.id, target: m.target, have: m.have }; });
+    return out.concat(levels, badges);
+  }
+
   // The trail's route as an SVG path inside a size×size box, keeping its
   // shape (north up, longitude scaled by latitude). Empty when there is none.
   function outlinePath(path, size){
@@ -347,7 +368,44 @@
     '</div>';
   }
 
-  // options: { t(key, vars), dogName, dogBreed, dogPhoto, openValley, lang, canShare, now }
+  function milestoneLabel(m, t, fmt){
+    if(m.id === 'lakes') return m.have > 1 ? t('journal.passport.lakes', { n: m.have }) : t('journal.passport.lakeOne');
+    if(m.id === 'huts') return m.have > 1 ? t('journal.passport.huts', { n: m.have }) : t('journal.passport.hutOne');
+    return t('journal.passport.mile.' + m.id, { n: fmt(m.target) });
+  }
+
+  function momentTitle(m, t, fmt){
+    if(m.kind === 'territory') return m.valley;
+    if(m.kind === 'level') return t('journal.passport.moment.levelTitle', { level: t('journal.passport.level.' + m.level.id), valley: m.valley });
+    return milestoneLabel(m, t, fmt);
+  }
+
+  // The card a walk's news gets at the top of the page: the biggest moment,
+  // anything else it earned in one line, and a picture to share.
+  function renderMoment(moments, options, t, fmt){
+    if(!moments || !moments.length) return '';
+    var top = moments[0];
+    var rest = moments.slice(1).map(function(m){
+      return (m.kind === 'badge' ? '✓ ' : '') + momentTitle(m, t, fmt);
+    });
+    var shareValley = top.kind === 'badge' ? '' : top.valley;
+    return '<div class="jp-moment jp-moment-' + top.kind + '" id="jpMoment" tabindex="-1" role="status">' +
+      '<button type="button" class="jp-moment-close" aria-label="' + esc(t('journal.close')) + '">&times;</button>' +
+      '<span class="jp-moment-burst" aria-hidden="true">' + (top.kind === 'badge' ? '🏅' : '🐾') + '</span>' +
+      '<span class="jp-moment-kicker">' + esc(t('journal.passport.moment.' + top.kind)) + '</span>' +
+      '<strong class="jp-moment-title">' + esc(momentTitle(top, t, fmt)) + '</strong>' +
+      // A level up already names the level in its title: just the stars.
+      (top.level ? '<span class="jp-moment-level"><span class="jp-stars" aria-hidden="true">' + stars(top.level) + '</span>' +
+        (top.kind === 'level' ? '' : ' ' + esc(t('journal.passport.level.' + top.level.id))) + '</span>' : '') +
+      (rest.length ? '<span class="jp-moment-also">' + esc(t('journal.passport.moment.also', { list: rest.join(' · ') })) + '</span>' : '') +
+      (options.canShare
+        ? '<button type="button" class="jp-moment-share"' + (shareValley ? ' data-valley="' + esc(shareValley) + '"' : '') +
+            ' data-moment="' + esc(top.kind) + '">' + esc(t('journal.passport.moment.share')) + '</button>'
+        : '') +
+    '</div>';
+  }
+
+  // options: { t(key, vars), dogName, dogBreed, dogPhoto, openValley, lang, canShare, now, moments }
   function renderPassport(passport, options){
     options = options || {};
     var t = options.t || function(key){ return key; };
@@ -384,16 +442,14 @@
 
     var milestones = '<h3 class="jp-h">' + esc(t('journal.passport.milestones')) + '</h3><div class="jp-miles">' +
       passport.milestones.map(function(m){
-        var label;
-        if(m.id === 'lakes') label = m.have > 1 ? t('journal.passport.lakes', { n: m.have }) : t('journal.passport.lakeOne');
-        else if(m.id === 'huts') label = m.have > 1 ? t('journal.passport.huts', { n: m.have }) : t('journal.passport.hutOne');
-        else label = t('journal.passport.mile.' + m.id, { n: fmt(m.target) });
+        var label = milestoneLabel(m, t, fmt);
         var left = Math.ceil(m.target - m.have);
         if(!m.done && m.target > 1 && m.have > 0) label += ' · ' + t('journal.passport.toGo', { n: fmt(left) });
         return '<span class="jp-mile' + (m.done ? ' is-done' : '') + '">' + (m.done ? '✓ ' : '') + esc(label) + '</span>';
       }).join('') + '</div>';
 
     return renderIdPage(passport, options, t, fmt, lang) +
+      renderMoment(options.moments, options, t, fmt) +
       (totals.stamps
         ? '<p class="jp-sum">' + esc(summary) + '</p>'
         : '<p class="jp-empty">' + esc(t('journal.passport.empty')) + '</p>') +
@@ -406,7 +462,7 @@
 
   var api = {
     buildPassport: buildPassport, renderPassport: renderPassport, outlinePath: outlinePath, isLake: isLake,
-    valleyLevel: valleyLevel, isNewVisa: isNewVisa, stars: stars, VALLEY_LEVELS: VALLEY_LEVELS,
+    valleyLevel: valleyLevel, isNewVisa: isNewVisa, passportMoments: passportMoments, stars: stars, VALLEY_LEVELS: VALLEY_LEVELS,
   };
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   global.DoloPawsPassport = api;

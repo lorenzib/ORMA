@@ -213,8 +213,54 @@ describe('SOCIAL-05 passport front page and valley list', () => {
   test('the journal opens a valley when its visa is tapped', () => {
     const page = read('journal.html');
     expect(page).toContain("ev.target.closest('.jp-visa')");
+    expect(page).toContain('noteMoments(state.entries.filter(function(e){ return e !== justSaved; }));');
+    expect(page).toContain('noteMoments(previousEntries);');
+    expect(page).toContain("ev.target.closest('.jp-moment-share')");
+    expect(page).toMatch(/function closeAfter\(\)\{[\s\S]*?revealMoment\(\);\n  \}/);
     expect(page).toContain('openValley: passportValley,');
     expect(page).toContain('dogBreed = p.breed');
+  });
+});
+
+describe('pawprint moments: what a walk just earned', () => {
+  const t = (key, vars) => key + (vars ? JSON.stringify(vars) : '');
+  const build = list => passport.buildPassport(list, TRAILS);
+  const one = [walk('a', 'carezza', '2026-10-12')];
+
+  test('a first walk in a valley is a new territory, with the badges it earned', () => {
+    const moments = passport.passportMoments(build([]), build(one));
+    expect(moments[0]).toMatchObject({ kind: 'territory', valley: 'Val di Fassa', level: { id: 'visitor' } });
+    expect(moments.filter(m => m.kind === 'badge').map(m => m.id)).toEqual(['first', 'lakes']);
+  });
+
+  test('a third trail in the same valley is a level up; walking one again earns nothing', () => {
+    const two = one.concat(walk('b', 'fuciade', '2026-10-13'));
+    const three = two.concat(walk('c', 'other', '2026-10-14'));
+    const up = passport.passportMoments(build(two), build(three));
+    expect(up[0]).toMatchObject({ kind: 'level', valley: 'Val di Fassa' });
+    expect(up[0].level.level).toBeGreaterThan(build(two).valleys[0].level.level);
+    const again = three.concat(walk('d', 'carezza', '2026-10-20'));
+    expect(passport.passportMoments(build(three), build(again))).toEqual([]);
+  });
+
+  test('a walk with no GPS proof earns no moment', () => {
+    expect(passport.passportMoments(build(one), build(one.concat(walk('x', 'seceda', '2026-10-15', { proof: undefined }))))).toEqual([]);
+  });
+
+  test('the card shows the biggest news, the rest in one line, and a share button', () => {
+    const moments = passport.passportMoments(build([]), build(one));
+    const html = passport.renderPassport(build(one), { t, moments, canShare: true });
+    expect(html).toContain('class="jp-moment jp-moment-territory"');
+    expect(html).toContain('journal.passport.moment.territory');
+    expect(html).toContain('<strong class="jp-moment-title">Val di Fassa</strong>');
+    expect(html).toContain('journal.passport.moment.also{&quot;list&quot;:&quot;✓ journal.passport.mile.first');
+    expect(html).toContain('data-valley="Val di Fassa" data-moment="territory"');
+    expect(html.indexOf('jp-moment')).toBeLessThan(html.indexOf('jp-visas'));
+    expect(passport.renderPassport(build(one), { t })).not.toContain('jp-moment');
+    const badgeOnly = [{ kind: 'badge', id: 'walks', target: 5, have: 5 }];
+    const badge = passport.renderPassport(build(one), { t, moments: badgeOnly, canShare: true });
+    expect(badge).toContain('journal.passport.mile.walks{&quot;n&quot;:&quot;5&quot;}');
+    expect(badge).toContain('<button type="button" class="jp-moment-share" data-moment="badge">');
   });
 });
 
@@ -245,6 +291,8 @@ describe('SOCIAL-05 the proof reaches the journal', () => {
     const keys = new Set([...read('dog-passport.js').matchAll(/'(journal\.passport\.[\w.]+)'/g)].map(m => m[1]));
     keys.delete('journal.passport.mile.');
     keys.delete('journal.passport.level.');
+    keys.delete('journal.passport.moment.');
+    ['territory', 'level', 'badge'].forEach(kind => keys.add('journal.passport.moment.' + kind));
     ['first', 'walks', 'km', 'valleys'].forEach(id => keys.add('journal.passport.mile.' + id));
     passport.VALLEY_LEVELS.forEach(l => keys.add('journal.passport.level.' + l.id));
     expect(keys.size).toBeGreaterThan(15);

@@ -127,7 +127,7 @@
       overlay.innerHTML = '<div class="jn-modal">' +
         '<div class="jn-modal-head"><h2 id="appHealthTitle">' + esc(label('journal.health.title', 'Walks in Apple Health')) + '</h2>' +
         '<button type="button" class="jn-x app-health-close" aria-label="' + esc(label('journal.close', 'Close')) + '">&times;</button></div>' +
-        '<p class="app-health-sub">' + esc(label('journal.health.sub', 'Choose a walk. A walk that follows most of an ORMA trail earns a passport stamp.')) + '</p>' +
+        '<p class="app-health-sub">' + esc(label('journal.health.sub', 'Choose a walk. A walk that follows most of an ORMA trail leaves a pawprint.')) + '</p>' +
         '<div class="app-health-body" role="status"></div></div>';
       document.body.appendChild(overlay);
       overlay.querySelector('.app-health-close').addEventListener('click', close);

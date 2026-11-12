@@ -127,7 +127,7 @@ describe('SOCIAL-07 the passport as a picture', () => {
     card.renderVisaCard(p, { t, valley: 'Cembra', format: 'post', now }, nameless);
     expect(nameless.texts).toContain('journal.passport.card.visaTitleNoName');
     expect(card.shareText(p, { t, valley: 'Cembra', dogName: 'Luna', now }))
-      .toBe('journal.passport.card.visaCaption{"name":"Luna","valley":"Cembra"}');
+      .toBe('journal.passport.card.visaCaption{"name":"Luna","valley":"Cembra","level":"journal.passport.level.legend"}');
     // A visa from months ago is shared as a visa, not a new one.
     const later = Date.parse('2027-03-01');
     const old = fakeCanvas();
@@ -135,7 +135,16 @@ describe('SOCIAL-07 the passport as a picture', () => {
     expect(old.texts).toContain('journal.passport.card.visaTitlePlain{"name":"Luna"}');
     expect(old.texts.join('\n')).not.toContain('card.visaTitle{');
     expect(card.shareText(p, { t, valley: 'Cembra', dogName: 'Luna', now: later }))
-      .toBe('journal.passport.card.visaCaptionPlain{"name":"Luna","valley":"Cembra"}');
+      .toBe('journal.passport.card.visaCaptionPlain{"name":"Luna","valley":"Cembra","level":"journal.passport.level.legend"}');
+  });
+
+  test('a level just reached is shared as a level up', () => {
+    const canvas = fakeCanvas();
+    card.renderVisaCard(p, { t, valley: 'Val Gardena', format: 'story', dogName: 'Luna', moment: 'level' }, canvas);
+    expect(canvas.texts).toContain('JOURNAL.PASSPORT.CARD.LEVELKICKER');
+    expect(canvas.texts).toContain('journal.passport.card.levelTitle{"name":"Luna"}');
+    expect(card.shareText(p, { t, valley: 'Val Gardena', dogName: 'Luna', moment: 'level' }))
+      .toBe('journal.passport.card.levelCaption{"name":"Luna","valley":"Val Gardena","level":"journal.passport.level.legend"}');
   });
 
   test('the visa picture keeps clear of Instagram’s reply bar and still shows the dog on a post', () => {
@@ -157,7 +166,7 @@ describe('SOCIAL-07 the passport as a picture', () => {
     expect(page).toContain('canShare: !!window.DoloPawsPassportCard,');
     expect(page).toContain("ev.target.closest('.jp-visa-share')");
     expect(page).toContain('valley: passShareValley || undefined,');
-    expect(page).toContain('if(valley && hadValleys.indexOf(valley) < 0) passportValley = valley;');
+    expect(page).toContain('moment: passShareMoment || undefined,');
   });
 
   test('every card label exists in English and Italian', () => {
