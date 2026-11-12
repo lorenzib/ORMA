@@ -46,7 +46,7 @@ Complete one record per route and package version.
 | Field | Result |
 |---|---|
 | Trail ID | `lago-carezza` |
-| Package version | `2026.11.11-beta.27` |
+| Package version | `2026.11.12-beta.28` |
 | Reviewed at (ISO date/time and timezone) |  |
 | Reviewer |  |
 | Weather and recent conditions |  |
@@ -69,14 +69,16 @@ Revision `2026.10.30-beta.25` changes only the status back (OFF-08): on 30 Octob
 
 Revision `2026.10.30-beta.26` changes only the offline page: the "Package status" card at the bottom is gone. The route, map, profile and safety sheet are unchanged from beta.25.
 
-Revision `2026.11.11-beta.27` adds Italian: the offline page shows Italian to an Italian reader, and the safety sheet carries the Italian of its name, start and cautions. The English wording, route, map and profile are unchanged from beta.26.
+Revision `2026.11.12-beta.27` changes only the expected time's wording on the safety sheet: "30 minutes" now reads "30 min", as the site writes times. The route, map and profile are unchanged from beta.26.
+
+Revision `2026.11.12-beta.28` adds Italian: the offline page shows Italian to an Italian reader, and the safety sheet carries the Italian of its name, start and cautions. The English wording, route, map and profile are unchanged from beta.27.
 
 ## Alpe di Siusi Meadow Loop
 
 | Field | Result |
 |---|---|
 | Trail ID | `alpe-siusi` |
-| Package version | `2026.11.11-beta.13` |
+| Package version | `2026.11.12-beta.14` |
 | Reviewed at (ISO date/time and timezone) |  |
 | Reviewer |  |
 | Weather and recent conditions |  |
@@ -93,7 +95,7 @@ Revision `2026.11.11-beta.27` adds Italian: the offline page shows Italian to an
 | Defect IDs and notes |  |
 | Overall result | Pass / Fail |
 
-Revision `2026.11.11-beta.13` adds Italian: the offline page shows Italian to an Italian reader, and the safety sheet carries the Italian of its name, start and cautions; the English wording, route, map and profile are unchanged. Revision `2026.10.30-beta.12` changes only the offline page: the "Package status" card at the bottom is gone; the route, map and profile are unchanged. Revision `2026.10.24-beta.11` changes only wording (OFF-08): the package now says "Not yet verified by ORMA" instead of asking for a field review; the route, map and profile are unchanged. Revision `2026.10.23-beta.10` changes no route, map, profile or safety byte: the shared offline reader now finds any trail's package by its id, and leaves out a fact a trail does not record. Revision `2026.10.06-beta.9` changed only the stated distance and the schematic elevation profile's km marks: the catalogue carried a 7.5 km hand estimate, and the geometry gate measured the approved composite (paths 7, 6 and 30) at 5.5 km. The route line, routing graph and map corridor are unchanged from beta.8. Check the distance shown against your own track as part of "Loop and direction representation accurate".
+Revision `2026.11.12-beta.14` adds Italian: the offline page shows Italian to an Italian reader, and the safety sheet carries the Italian of its name, start and cautions; the English wording, route, map and profile are unchanged. Revision `2026.11.12-beta.13` changes only the expected time's wording on the safety sheet: "2–2.5 hours" now reads "2 h – 2 h 30 min", as the site writes times; the route, map and profile are unchanged. Revision `2026.10.30-beta.12` changes only the offline page: the "Package status" card at the bottom is gone; the route, map and profile are unchanged. Revision `2026.10.24-beta.11` changes only wording (OFF-08): the package now says "Not yet verified by ORMA" instead of asking for a field review; the route, map and profile are unchanged. Revision `2026.10.23-beta.10` changes no route, map, profile or safety byte: the shared offline reader now finds any trail's package by its id, and leaves out a fact a trail does not record. Revision `2026.10.06-beta.9` changed only the stated distance and the schematic elevation profile's km marks: the catalogue carried a 7.5 km hand estimate, and the geometry gate measured the approved composite (paths 7, 6 and 30) at 5.5 km. The route line, routing graph and map corridor are unchanged from beta.8. Check the distance shown against your own track as part of "Loop and direction representation accurate".
 
 ## Pass and stop rules
 

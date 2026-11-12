@@ -40,8 +40,8 @@ explicitly.
 ## 1. Freeze the pilot packages (owner: ORMA)
 
 The device and field results are only valid for the package versions they were
-run on. The ledger names **Lago di Carezza `beta.27`** and **Alpe di Siusi
-`beta.13`**. OFF-07 showed that a change to the shared offline reader bumps
+run on. The ledger names **Lago di Carezza `beta.28`** and **Alpe di Siusi
+`beta.14`**. OFF-07 showed that a change to the shared offline reader bumps
 both pilots, which makes any earlier result stale.
 
 - [ ] Do not merge changes to `offline/` (reader, service worker, CSS), the
