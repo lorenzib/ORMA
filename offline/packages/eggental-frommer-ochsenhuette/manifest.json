@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "eggental-frommer-ochsenhuette",
   "name": "Malga Frommer to the Baita Ochsenhütte",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:19.954Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:13.890Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 476550,
+  "packageBytes": 495898,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42946,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Malga Frommer to the Baita Ochsenhütte safety information",
       "url": "safety.json",
-      "bytes": 1485,
-      "sha256": "04398809455b736584228901ce2fa570423769a5a78e7d09f2caf01f239b5894"
+      "bytes": 2160,
+      "sha256": "d703839cd43492a9c81fbf2dd44eb26814929b7a6a7c1dc4d58fdc9bf5e8927a"
     }
   ]
 }

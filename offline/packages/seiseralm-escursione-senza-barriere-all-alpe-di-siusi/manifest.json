@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-escursione-senza-barriere-all-alpe-di-siusi",
   "name": "Mont Sëuc to the Sporthotel Sonne",
-  "version": "2026.11.11-beta.4",
-  "generatedAt": "2026-11-11T18:25:20.587Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.5",
+  "generatedAt": "2026-11-12T12:31:14.587Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 404988,
+  "packageBytes": 424446,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55029,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Mont Sëuc to the Sporthotel Sonne safety information",
       "url": "safety.json",
-      "bytes": 1407,
-      "sha256": "d5d6e0de4e37f40f37ae0bb7b867df89179223ce0ba88812b978802c7d2b1cd8"
+      "bytes": 2192,
+      "sha256": "06894fda6120ed1a0791f9351243bf2519423c68589ed7a0030e98828051cc98"
     }
   ]
 }

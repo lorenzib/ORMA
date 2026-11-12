@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-percorso-geologico-in-val-di-rabbi",
   "name": "Geology trail in the Val di Rabbi",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.715Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.710Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 281453,
+  "packageBytes": 301103,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.41339,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Geology trail in the Val di Rabbi safety information",
       "url": "safety.json",
-      "bytes": 3470,
-      "sha256": "349119dbb1689d857973080bc483dba85c3e11f59c19e91c5099576a84383cc4"
+      "bytes": 4447,
+      "sha256": "5c61b426a41fe3169fd67be2bffdfdb61c4a9e6b64d829fe30f5ee51fdf6b66e"
     }
   ]
 }

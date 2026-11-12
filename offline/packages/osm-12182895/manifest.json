@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12182895",
   "name": "Talrundweg",
-  "version": "2026.11.11-beta.6",
-  "generatedAt": "2026-11-11T18:25:20.286Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.7",
+  "generatedAt": "2026-11-12T12:31:14.243Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1503831,
+  "packageBytes": 1523027,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61928,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Talrundweg safety information",
       "url": "safety.json",
-      "bytes": 2016,
-      "sha256": "865c85f9dc3f95a19c0746735088abe58f7e3232adb55d002bc6d1b94683ab8c"
+      "bytes": 2539,
+      "sha256": "15c953aac0b3eda84ae5490c782b009361410a9a3de3de6fe239be27e4688d2b"
     }
   ]
 }

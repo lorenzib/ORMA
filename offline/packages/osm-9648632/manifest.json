@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9648632",
   "name": "Pana Raida",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:25:20.479Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.479Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 241789,
+  "packageBytes": 261042,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.54267,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Pana Raida safety information",
       "url": "safety.json",
-      "bytes": 1309,
-      "sha256": "dab80d7545a2645e9761840cc0a8b7920927d3f65ab1862c9db6719a6a447aec"
+      "bytes": 1889,
+      "sha256": "6dd8bbf5f170d078723096efb9a8e3c79f64f5a2091455ebf2f422653acdc4f5"
     }
   ]
 }

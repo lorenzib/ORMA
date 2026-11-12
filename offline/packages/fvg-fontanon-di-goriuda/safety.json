@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pian della Sega car park, Val Raccolana, the board’s start": "Parcheggio di Pian della Sega, Val Raccolana, partenza indicata dalla scheda ufficiale",
+    "Wet, slippery rock by the waterfall and its pool.": "Roccia bagnata e scivolosa vicino alla cascata e alla sua pozza.",
+    "Ice on the path in winter: spikes advised.": "Ghiaccio sul sentiero d'inverno: consigliati i ramponcini.",
+    "A short stretch of tarred valley road at the start.": "Un breve tratto di strada asfaltata di fondovalle alla partenza."
+  }
 }

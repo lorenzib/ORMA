@@ -47,5 +47,14 @@
       "downloadedAt": "2026-08-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Alpe di Siusi Meadow Loop": "Anello dei prati dell’Alpe di Siusi",
+    "Compatsch main gondola station and trailhead": "Stazione principale della cabinovia di Compatsch e punto di partenza",
+    "Compatsch trailhead fountain": "Fontana alla partenza di Compatsch",
+    "ORMA hasn’t verified this route yet. Follow local signs.": "ORMA non ha ancora verificato questo percorso. Segui la segnaletica locale.",
+    "The high meadow is exposed to sun and fast-changing mountain weather.": "L’alpeggio in quota è esposto al sole e al tempo di montagna che cambia in fretta.",
+    "Keep dogs controlled around grazing livestock and follow posted local rules.": "Tieni il cane sotto controllo vicino al bestiame al pascolo e rispetta le regole locali affisse.",
+    "Carry water even though a trailhead fountain is listed.": "Porta comunque acqua, anche se alla partenza è indicata una fontana."
+  }
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-10220399",
   "name": "Martinsweg",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:25:20.213Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.167Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 219542,
+  "packageBytes": 238798,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65113,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Martinsweg safety information",
       "url": "safety.json",
-      "bytes": 1814,
-      "sha256": "8ad1ae0a461b2d22c84da53bb10a5e789e428d2fa4c8d4abcb2e47e3d21791bc"
+      "bytes": 2397,
+      "sha256": "8c9626dd55b47ca8ac8a6f6197e0ca10c2d6cc8fbe7d782dc1d9293c2d1326fc"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12737724",
   "name": "Historische Rundwanderung Teis",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:25:20.309Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.268Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 975395,
+  "packageBytes": 994547,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.64764,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Historische Rundwanderung Teis safety information",
       "url": "safety.json",
-      "bytes": 1982,
-      "sha256": "553e1d7dc1c039463c64838c6b78210677abf7acb1d83855df18554e7afea087"
+      "bytes": 2461,
+      "sha256": "1982e77f3d70164cfbff181a815b7316252e14ab5376b2d2584c507c57c12faa"
     }
   ]
 }

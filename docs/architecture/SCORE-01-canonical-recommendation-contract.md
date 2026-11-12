@@ -114,6 +114,14 @@ Adjustments are multiplicative where several facts apply:
 | Under 5 kg | distance ×0.8 |
 | Short-legged or 45+ kg | terrain capped at rank 1 |
 
+A trail's terrain rank is its steepest sustained grade (rank 2 from 18%), not
+the roughness of its ground, and the climb is charged separately as ascent.
+From `1.9.0` a healthy adult dog (no puppy, senior, orthopedic, cardiac or
+overweight fact, not short-legged or 45+ kg) of moderate or high fitness has
+terrain tolerance 2: steepness is not a limit for it. What can stop it is
+charged where it is recorded, as exposure or a route caution. Steepness still
+counts for low fitness and for every dog fact in the table above.
+
 The minimum computational distance is 2 km and minimum ascent is 100 m. Those
 floors prevent nonsensical arithmetic; they are not claims that every dog can
 safely complete that amount.
@@ -124,7 +132,7 @@ The calculation starts at 100 and never returns less than 5.
 
 | Factor | Effect |
 |---|---|
-| Terrain above effective tolerance | −30 per rank |
+| Terrain above effective tolerance | −10 per rank (−30 before `1.9.0`) |
 | Distance above effective range | −5 per kilometre, maximum −35 |
 | Ascent above effective range | −4 per additional 100 m, maximum −20 |
 | Descent above 400 m for fragile or giant dogs | −4 per additional 100 m, maximum −20 |

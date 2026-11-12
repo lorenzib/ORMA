@@ -138,5 +138,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Niederdorf – Lanaweg loop": "Anello Niederdorf – Lanaweg",
+    "Fire station, Niederdorf, the board’s start": "Caserma dei vigili del fuoco, Niederdorf, partenza indicata dalla scheda ufficiale",
+    "Village streets and farm lanes at the start and end.": "Strade di paese e strade poderali all'inizio e alla fine.",
+    "Farmed meadows either side: Niederdorf bans dogs from farmed land from April to October.": "Prati coltivati su entrambi i lati: Niederdorf vieta ai cani i terreni coltivati da aprile a ottobre."
+  }
 }

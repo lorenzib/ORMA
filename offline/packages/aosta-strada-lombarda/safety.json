@@ -75,5 +75,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Bivio Villa Margherita, the register’s start": "Bivio Villa Margherita, la partenza indicata dal catasto",
+    "About 250 m along the main valley road (SR44) and stretches of village streets: keep your dog close.": "Circa 250 m lungo la strada principale della valle (SR44) e tratti di vie del paese: tieni il cane vicino.",
+    "Little shade on hot days.": "Poca ombra nelle giornate calde."
+  }
 }

@@ -69,5 +69,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Parcheggio Barmasc, the register’s start": "Parcheggio Barmasc, la partenza indicata dal catasto",
+    "The path follows an open irrigation channel for most of its length: keep your dog out of the water and off the channel edge.": "Il sentiero segue per gran parte un canale d'irrigazione a cielo aperto: tieni il cane fuori dall'acqua e lontano dal bordo del canale.",
+    "A short stretch of dirt road open to permitted vehicles.": "Un breve tratto di strada sterrata aperta ai veicoli autorizzati.",
+    "Pastures: livestock may be grazing in summer.": "Pascoli: d'estate può esserci bestiame al pascolo."
+  }
 }

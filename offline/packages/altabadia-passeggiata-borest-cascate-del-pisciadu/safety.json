@@ -69,5 +69,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Borest – Pisciadú waterfall": "Borest – cascata del Pisciadú",
+    "Boé gondola car park, Corvara, the board’s start": "Parcheggio della cabinovia Boé, Corvara, la partenza indicata dalla scheda ufficiale",
+    "The path runs beside a fast mountain stream: keep your dog out of the water.": "Il sentiero corre accanto a un impetuoso torrente di montagna: tieni il cane fuori dall'acqua.",
+    "Rocky ground near the waterfall.": "Terreno roccioso vicino alla cascata.",
+    "Boulder field below the Sella walls: watch for loose stones.": "Campo di massi sotto le pareti del Sella: attenzione ai sassi instabili."
+  }
 }

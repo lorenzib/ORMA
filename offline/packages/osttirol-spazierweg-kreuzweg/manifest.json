@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osttirol-spazierweg-kreuzweg",
   "name": "Kreuzweg to Klaunz, Matrei",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.493Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.490Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 719673,
+  "packageBytes": 738890,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.99281,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Kreuzweg to Klaunz, Matrei safety information",
       "url": "safety.json",
-      "bytes": 1276,
-      "sha256": "d09674a026e81581433e492e2112c251d5f07f5264b21c5f3b42d43262ccef5e"
+      "bytes": 1820,
+      "sha256": "af6b24f6848c83848f347a2da061f5af2040a2206eb0416bc8e8ac1bfa05a0e6"
     }
   ]
 }

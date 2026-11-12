@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-gasthof-panorama-rifugio-pendio-monte-elmo",
   "name": "Fort Mitterberg – Helmhanghütte",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.624Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.623Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 223397,
+  "packageBytes": 242521,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.69359,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Fort Mitterberg – Helmhanghütte safety information",
       "url": "safety.json",
-      "bytes": 1281,
-      "sha256": "aa7c80ff2d0eb9a1bcd8f122b6fe81c1ff84b84e3d5c464dfba34ccbced627e3"
+      "bytes": 1732,
+      "sha256": "fef9bf6b51ff91d7af1ecb03a06b6959ca1ef9b27db85e3c8f14de5c4fdc9665"
     }
   ]
 }

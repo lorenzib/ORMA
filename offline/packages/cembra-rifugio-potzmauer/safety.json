@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pradèt car park above Grumes, the APT’s start": "Parcheggio di Pradèt sopra Grumes, la partenza indicata dall'APT",
+    "A mountain path (480) with roots and stones, and forest roads used by occasional forestry vehicles.": "Un sentiero di montagna (480) con radici e sassi, e strade forestali percorse occasionalmente da mezzi forestali.",
+    "A steady climb of about 300 m.": "Una salita costante di circa 300 m.",
+    "A stream beside the path: keep your dog out of it after heavy rain.": "Un torrente accanto al sentiero: dopo forti piogge tieni il cane fuori dall'acqua."
+  }
 }

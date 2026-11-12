@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Brunngasse, Teis village centre (official start)": "Brunngasse, centro di Teis (partenza ufficiale)",
+    "The first 1.5 km on a quiet tarmac road open to cars.": "I primi 1,5 km su una tranquilla strada asfaltata aperta alle auto.",
+    "Forest roads used by forestry vehicles.": "Strade forestali percorse da mezzi forestali.",
+    "A working farm at the Gneller Hof.": "Un maso in attività al Gneller Hof."
+  }
 }

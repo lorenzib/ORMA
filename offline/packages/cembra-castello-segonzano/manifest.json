@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-castello-segonzano",
   "name": "Il Castello di Segonzano e il canyon del Prà",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:19.905Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:13.838Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 866684,
+  "packageBytes": 886000,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.17972,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Il Castello di Segonzano e il canyon del Prà safety information",
       "url": "safety.json",
-      "bytes": 1578,
-      "sha256": "031e02d5c73f7faae53c8133cfa92b36d69c4ce55ab89a1b79d85c81ada3273f"
+      "bytes": 2221,
+      "sha256": "8099e7f58223bc192f45cbf48d400b708ffa28945d863a87c76675aa5f1616e7"
     }
   ]
 }

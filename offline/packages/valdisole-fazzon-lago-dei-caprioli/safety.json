@@ -39,5 +39,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Rifugio Fazzon (1,250 m), the APT’s start": "Rifugio Fazzon (1.250 m), partenza indicata dall'APT",
+    "The lanes on the Fazzon plain are tarmac and used by cars to the rifugio and the lake.": "Le stradine della piana di Fazzon sono asfaltate e percorse dalle auto fino al rifugio e al lago.",
+    "The lake shore is busy with families in summer.": "In estate la riva del lago è affollata di famiglie."
+  }
 }

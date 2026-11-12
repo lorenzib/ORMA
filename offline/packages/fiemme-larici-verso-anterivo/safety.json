@@ -55,5 +55,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Prà del Manz car park above Capriana, the APT’s start": "Parcheggio di Prà del Manz sopra Capriana, partenza indicata dall'APT",
+    "The whole walk is on a quiet tarred road open to cars (signed 50 km/h), with no pavement: keep your dog close and on the inside.": "Tutta la passeggiata è su una tranquilla strada asfaltata aperta alle auto (limite 50 km/h), senza marciapiede: tieni il cane vicino e sul lato interno.",
+    "Two small road bridges.": "Due piccoli ponti stradali.",
+    "Village streets and the cobbled square in Anterivo.": "Vie del paese e la piazza acciottolata di Anterivo."
+  }
 }

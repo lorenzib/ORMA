@@ -82,5 +82,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Seceda gondola valley station, Ortisei, the board’s start": "Stazione a valle della cabinovia del Seceda, Ortisei, partenza indicata dalla scheda ufficiale",
+    "Beside a fast mountain stream: keep your dog out of the water.": "Accanto a un impetuoso torrente di montagna: tieni il cane fuori dall'acqua.",
+    "Passes a children’s playground, where dogs are not allowed.": "Passa accanto a un parco giochi per bambini, dove i cani non sono ammessi."
+  }
 }

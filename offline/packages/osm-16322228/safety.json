@@ -37,5 +37,8 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Parking du plan d'eau, avenue de Chambéry, Challes-les-Eaux; bus 2 and 3 stop Plan d'Eau": "Parking du plan d'eau, avenue de Chambéry, Challes-les-Eaux; autobus 2 e 3, fermata Plan d'Eau"
+  }
 }

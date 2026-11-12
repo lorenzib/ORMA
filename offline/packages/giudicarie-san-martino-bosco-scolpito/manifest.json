@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "giudicarie-san-martino-bosco-scolpito",
   "name": "San Martino – Bosco Scolpito",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.074Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.015Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 915730,
+  "packageBytes": 934909,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.91558,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "San Martino – Bosco Scolpito safety information",
       "url": "safety.json",
-      "bytes": 1782,
-      "sha256": "7db0e0d85dc5f1538648f85151d9ad5e96cd6202acc2e0ca9f4e110935cd56a0"
+      "bytes": 2288,
+      "sha256": "643a84c4b0a96c4dc920879c275abe56062184debb678b972327b32d901431a2"
     }
   ]
 }

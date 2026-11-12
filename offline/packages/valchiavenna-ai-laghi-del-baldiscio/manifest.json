@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valchiavenna-ai-laghi-del-baldiscio",
   "name": "Isola to the Baldiscio lakes",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.690Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.690Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 569455,
+  "packageBytes": 589098,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42252,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Isola to the Baldiscio lakes safety information",
       "url": "safety.json",
-      "bytes": 1496,
-      "sha256": "0b6cc9c409c6c0ba1ca159299352b9b61feca17f5471369d62ebdfc3cd6624ce"
+      "bytes": 2466,
+      "sha256": "4a39872999e0fe7cbdc73e5ecbbafa3f8528e0aea23516c2713650fe0e9b8b76"
     }
   ]
 }

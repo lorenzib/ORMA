@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-borgo-di-tamion",
   "name": "Alla scoperta del borgo ladino di Tamion",
-  "version": "2026.11.11-beta.4",
-  "generatedAt": "2026-11-11T18:25:19.993Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.5",
+  "generatedAt": "2026-11-12T12:31:13.935Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 487430,
+  "packageBytes": 506879,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.39008,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Alla scoperta del borgo ladino di Tamion safety information",
       "url": "safety.json",
-      "bytes": 2102,
-      "sha256": "6580958bcddeb710ae59a79ce6ddd2c922e4dfe8599c52e1cfb755a829ba67c5"
+      "bytes": 2878,
+      "sha256": "a3196b12121ecbd31d98540fe6299e93a8d2b299fe44e68618411c7d9879ed8b"
     }
   ]
 }

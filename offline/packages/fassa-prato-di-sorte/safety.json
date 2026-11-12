@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Moena (Piaz de Sotegrava), the APT’s start": "Moena (Piaz de Sotegrava), partenza indicata dall'APT",
+    "The valley cycle and foot path is shared with bikes: keep to the right.": "La ciclopedonale di fondovalle è condivisa con le bici: tieni la destra.",
+    "Open meadow that is mown for hay: keep to the path.": "Prato aperto falciato per il fieno: resta sul sentiero.",
+    "Busy round the Fiabilandia playground in summer.": "Affollato d'estate intorno al parco giochi Fiabilandia."
+  }
 }

@@ -63,5 +63,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pozza di Fassa (Piaza de Comun), the APT’s start": "Pozza di Fassa (Piaza de Comun), la partenza indicata dall'APT",
+    "About 1.3 km on tarmac, partly village streets open to cars.": "Circa 1,3 km su asfalto, in parte vie del paese aperte alle auto.",
+    "Farm animals at the Agua Biencia farm: keep your distance.": "Animali della fattoria al maso Agua Biencia: tieniti a distanza.",
+    "Gravel tracks over meadows that are mown for hay: keep to the track.": "Strade sterrate attraverso prati falciati per il fieno: resta sulla carrareccia."
+  }
 }

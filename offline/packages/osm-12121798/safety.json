@@ -48,5 +48,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Les Féards car park by the pétanque ground, Le Claret (official start)": "Parcheggio Les Féards vicino al campo da bocce, Le Claret (partenza ufficiale)",
+    "About 385 m on the Route de Serpolière, a public road with cars.": "Circa 385 m sulla Route de Serpolière, strada pubblica con auto.",
+    "Service lanes and farm tracks; no steps or scree.": "Strade di servizio e strade poderali; niente gradini né ghiaioni."
+  }
 }

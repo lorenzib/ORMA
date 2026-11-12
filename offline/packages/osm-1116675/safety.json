@@ -39,5 +39,10 @@
       "downloadedAt": "2026-11-10",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Rotwand gondola top station, Rotwandwiesen (1,925 m)": "Stazione a monte della cabinovia Croda Rossa, Prati di Croda Rossa (1.925 m)",
+    "Ski-slope tracks shared with mountain bikes and the occasional lift-service vehicle.": "Piste da sci condivise con mountain bike e, a volte, mezzi di servizio degli impianti.",
+    "Check the Rotwand gondola is running before you set out.": "Prima di partire verifica che la cabinovia Rotwand sia in funzione."
+  }
 }

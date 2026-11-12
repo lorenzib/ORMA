@@ -47,5 +47,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Car park in front of the mairie, Le Châtel (official start)": "Parcheggio davanti alla mairie, Le Châtel (partenza ufficiale)",
+    "About 500 m on village lanes and the D77.": "Circa 500 m su stradine di paese e sulla D77.",
+    "Small stream crossings without bridges.": "Piccoli guadi di ruscelli senza ponte."
+  }
 }

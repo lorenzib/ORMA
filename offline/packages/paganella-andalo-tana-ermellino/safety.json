@@ -39,5 +39,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Andalo Life park, the APT’s start": "Parco Andalo Life, la partenza indicata dall'APT",
+    "Mostly tarmac and gravel road, shared with bikes and the odd car.": "Per lo più strada asfaltata e sterrata, condivisa con bici e qualche auto.",
+    "The Andalo Life park and the lake shore are busy with families and horses from the riding stables.": "Il parco Andalo Life e la riva del lago sono affollati di famiglie e di cavalli del maneggio."
+  }
 }

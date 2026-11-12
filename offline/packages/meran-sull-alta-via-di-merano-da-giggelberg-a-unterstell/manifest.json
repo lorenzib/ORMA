@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell",
   "name": "Meraner Höhenweg from the Texelbahn to Unterstell",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.206Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.160Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 890099,
+  "packageBytes": 909834,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65517,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Meraner Höhenweg from the Texelbahn to Unterstell safety information",
       "url": "safety.json",
-      "bytes": 1690,
-      "sha256": "b51c90ac9aee61ba5d1445be38f0f0b47018dd17fc3d8dcfdc36dd83ef0c5c94"
+      "bytes": 2752,
+      "sha256": "2be9dfd2c98700a4c58fa2ec2b0f57198c6bc0d70eaac3f283d33d85f5040c5e"
     }
   ]
 }

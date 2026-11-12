@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles",
   "name": "Rifugio Sesvenna to Mals",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.815Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.810Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1396150,
+  "packageBytes": 1415608,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.68719,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rifugio Sesvenna to Mals safety information",
       "url": "safety.json",
-      "bytes": 3408,
-      "sha256": "c1742c6cd190202bc6669a79e22f431fdb614b1633691d1e02f7d153cf447c03"
+      "bytes": 4193,
+      "sha256": "04413ef46f0763e83d0fe5b3a7e34bfabecfdb6f298ffb19fbee2385d1113501"
     }
   ]
 }

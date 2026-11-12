@@ -70,5 +70,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Ortisei valley promenade": "Passeggiata di fondovalle a Ortisei",
+    "Ortisei parish church, the board’s start": "Chiesa parrocchiale di Ortisei, partenza indicata dalla scheda ufficiale",
+    "Village streets and quiet roads with some traffic: keep your dog close.": "Strade di paese e strade tranquille con un po' di traffico: tieni il cane vicino.",
+    "Paths shared with cyclists.": "Sentieri condivisi con i ciclisti.",
+    "Icy in winter.": "Ghiacciato in inverno."
+  }
 }

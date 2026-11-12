@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12731853",
   "name": "Rundweg Laugen Elvas",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.302Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.261Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 397080,
+  "packageBytes": 415911,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.72853,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Laugen Elvas safety information",
       "url": "safety.json",
-      "bytes": 1449,
-      "sha256": "9d0afc7fc00f1f37f60c74502f443445836a36ee834a51dbc8eb3a02aecfbc66"
+      "bytes": 1607,
+      "sha256": "afea7d7a873afc9fa4bfcd204a67eac7284ffa4e47e0c2936eb1477307c0da56"
     }
   ]
 }

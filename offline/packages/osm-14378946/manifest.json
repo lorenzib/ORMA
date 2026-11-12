@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14378946",
   "name": "Lac de Pramol",
-  "version": "2026.11.11-beta.6",
-  "generatedAt": "2026-11-11T18:25:20.325Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.7",
+  "generatedAt": "2026-11-12T12:31:14.284Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 433362,
+  "packageBytes": 452455,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.20923,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lac de Pramol safety information",
       "url": "safety.json",
-      "bytes": 2113,
-      "sha256": "023ba79ead197bea1ac6c37cfd19cddda1a8eb8883bd31823d1c1faab6b0cee4"
+      "bytes": 2533,
+      "sha256": "0913e29b3b0b932a79bec0c4e8a73d20c9bca77f0011499695db17da15cdcc79"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "scoringVersion": "1.8.0",
+  "scoringVersion": "1.9.0",
   "trailFixtures": {
     "easy-reviewed": {
       "metrics": {
@@ -387,7 +387,7 @@
     },
     {
       "id": "large-dog-long-descent",
-      "decision": "A 45 kg or heavier dog receives a terrain cap and explicit long-descent joint-load caution.",
+      "decision": "A 45 kg or heavier dog receives a terrain cap and explicit long-descent joint-load caution. From 1.9.0 a fit giant dog on a long steep route is good with care, not ruled out: the descent and the steepness are charged, the climb is within its range.",
       "dog": {
         "ageYears": 4,
         "weightKg": 48,
@@ -401,8 +401,8 @@
         "heatRisk": "low"
       },
       "expected": {
-        "score": 46,
-        "category": "not-recommended",
+        "score": 66,
+        "category": "possible-with-cautions",
         "confidence": "high"
       }
     },
@@ -424,6 +424,27 @@
       "expected": {
         "score": 92,
         "category": "strong-option",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "healthy-moderate-steep-route",
+      "decision": "A healthy adult dog of moderate fitness is not held back by steepness, which is most mountain paths; the distance and climb beyond its range are what make a long route good with care rather than a strong option.",
+      "dog": {
+        "ageYears": 4,
+        "weightKg": 25,
+        "fitness": "moderate",
+        "conditions": [],
+        "traits": {}
+      },
+      "trail": "challenging-reviewed",
+      "currentConditions": {
+        "status": "known",
+        "heatRisk": "low"
+      },
+      "expected": {
+        "score": 74,
+        "category": "possible-with-cautions",
         "confidence": "high"
       }
     },

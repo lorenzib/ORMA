@@ -62,5 +62,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Helm gondola top station, the board’s start": "Stazione a monte della cabinovia dell'Helm, la partenza indicata dalla scheda ufficiale",
+    "A long descent of over 900 m: hard on joints and paws, take it slowly.": "Una lunga discesa di oltre 900 m: dura per articolazioni e zampe, prendila con calma.",
+    "Summer 2026: the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built: keep your dog close on the forest road.": "Estate 2026: la scheda ufficiale segnala un forte traffico di cantiere sul sentiero 4 per la costruzione della nuova cabinovia Helmissimo: tieni il cane vicino sulla strada forestale.",
+    "Forest roads shared with forestry vehicles.": "Strade forestali percorse anche da mezzi forestali."
+  }
 }

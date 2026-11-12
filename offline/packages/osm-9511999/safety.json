@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "La Villa, bus stop in front of the tourist office (Casa de Cultura)": "La Villa, fermata dell'autobus davanti all'ufficio turistico (Casa de Cultura)",
+    "Crossing of the main road at the La Villa start.": "Attraversamento della strada principale alla partenza di La Villa.",
+    "Short stretch on the Punt de Altin road bridge.": "Breve tratto sul ponte stradale di Punt de Altin.",
+    "Strada San Linert and two road crossings in San Leonardo.": "Strada San Linert e due attraversamenti stradali a San Leonardo."
+  }
 }

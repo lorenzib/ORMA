@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "savoie-promenade-confort-lac-et-barrage-de-saint-guerin",
   "name": "Lac de Saint-Guérin shore path",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:25:20.573Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.570Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 295355,
+  "packageBytes": 315001,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.63705,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lac de Saint-Guérin shore path safety information",
       "url": "safety.json",
-      "bytes": 1495,
-      "sha256": "407f94f485f6c91024b8894f4740cfa74d8471c659121c37a57a36fb73872ade"
+      "bytes": 2468,
+      "sha256": "87d20069650f45d79e12cfb934ae6beaecc3762384f72c1c167d427a180ff6cb"
     }
   ]
 }

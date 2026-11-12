@@ -70,5 +70,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Piz Sorega gondola top station, above San Cassiano, the board’s start": "Stazione a monte della cabinovia del Piz Sorega, sopra San Cassiano, la partenza indicata dalla scheda ufficiale",
+    "Open high plateau with no shade: storms build fast in summer afternoons.": "Altopiano aperto senza ombra: nei pomeriggi estivi i temporali si formano in fretta.",
+    "Tracks shared with mountain bikes, and ski-area service vehicles.": "Strade sterrate condivise con le mountain bike e con i mezzi di servizio del comprensorio sciistico.",
+    "Cattle graze the plateau in summer: keep your distance.": "D'estate il bestiame pascola sull'altopiano: mantieni le distanze."
+  }
 }

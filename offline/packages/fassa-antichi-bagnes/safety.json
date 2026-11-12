@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pozza di Fassa (Piaza de Comun), the APT’s start": "Pozza di Fassa (Piaza de Comun), la partenza indicata dall'APT",
+    "About 1.2 km on tarmac, partly the valley cycle and foot path shared with bikes.": "Circa 1,2 km su asfalto, in parte sulla ciclopedonale della valle condivisa con le bici.",
+    "Forest paths with roots near the spring.": "Sentieri nel bosco con radici vicino alla sorgente.",
+    "Village streets in Pozza open to cars.": "Vie del paese a Pozza aperte alle auto."
+  }
 }

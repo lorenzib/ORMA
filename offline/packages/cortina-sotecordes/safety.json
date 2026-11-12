@@ -62,5 +62,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Start, the board’s start": "Partenza, la partenza indicata dalla scheda ufficiale",
+    "Mountain paths with scree at 2,000–2,400 m.": "Sentieri di montagna con ghiaione tra 2.000 e 2.400 m.",
+    "No shade above the tree line and strong sun at altitude.": "Nessuna ombra sopra il limite del bosco e sole forte in quota.",
+    "Remains of First World War works at Forcella Col dei Bos: keep your dog out of the tunnels.": "Resti di opere della Prima guerra mondiale a Forcella Col dei Bos: tieni il cane fuori dalle gallerie."
+  }
 }

@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Val Susauna from Chapella": "Val Susauna da Chapella",
+    "Chapella, La Resgia bus stop, the board’s start": "La fermata dell'autobus Chapella, La Resgia, la partenza della scheda ufficiale",
+    "About 3.3 km of quiet tarred road between Chapella and Susauna, open to cars: lead on and keep to the side.": "Circa 3,3 km di tranquilla strada asfaltata tra Chapella e Susauna, aperta alle auto: guinzaglio e tieniti a lato.",
+    "Cattle may graze in Val Susauna in summer: keep your dog on a short lead and go round the herd.": "D'estate in Val Susauna possono pascolare i bovini: tieni il cane al guinzaglio corto e aggira la mandria.",
+    "The gravel road is open to farm and forestry vehicles.": "La strada sterrata è aperta ai mezzi agricoli e forestali."
+  }
 }

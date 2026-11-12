@@ -62,5 +62,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "La Villa bus stop, the board’s start": "Fermata dell'autobus di La Villa, la partenza indicata dalla scheda ufficiale",
+    "Crossing roads in La Villa and San Cassiano: keep your dog close.": "Attraversamento di strade a La Villa e a San Cassiano: tieni il cane vicino.",
+    "Paths shared with cyclists.": "Sentieri condivisi con i ciclisti.",
+    "The path runs beside the stream.": "Il sentiero corre accanto al torrente."
+  }
 }

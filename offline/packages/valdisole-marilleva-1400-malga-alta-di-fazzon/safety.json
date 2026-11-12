@@ -69,5 +69,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Marilleva 1400, by the church car park, the APT’s start": "Marilleva 1400, presso il parcheggio della chiesa, partenza indicata dall'APT",
+    "The Sentiero delle coste is a mountain path with roots and stones.": "Il Sentiero delle coste è un sentiero di montagna con radici e sassi.",
+    "Farm animals at Malga Alta di Fazzon: cows, goats, sheep and pigs in summer.": "Animali alla Malga Alta di Fazzon: mucche, capre, pecore e maiali in estate.",
+    "Cobbled and gravel stretches at Marilleva 1400.": "Tratti acciottolati e sterrati a Marilleva 1400."
+  }
 }

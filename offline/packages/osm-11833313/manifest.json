@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11833313",
   "name": "Römerweg Kiens",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:25:20.249Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.204Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1102622,
+  "packageBytes": 1121742,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.79597,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Römerweg Kiens safety information",
       "url": "safety.json",
-      "bytes": 1397,
-      "sha256": "c46933f24fdcc119b8cfe9c39b3950d8860e1ae0ca201a501347baae57303479"
+      "bytes": 1844,
+      "sha256": "f3ea30514a5499a1e28a0e326936da356fc4609c912720ce807e9848ccdb8167"
     }
   ]
 }

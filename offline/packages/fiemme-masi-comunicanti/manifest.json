@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-masi-comunicanti",
   "name": "Masi Comunicanti",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:25:20.042Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:13.984Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 695508,
+  "packageBytes": 715006,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.25256,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Masi Comunicanti safety information",
       "url": "safety.json",
-      "bytes": 2074,
-      "sha256": "e9578d7fc9a1b7e939e0d3495aa0f92e3baa21d2fdf613d4671fb1e96802abe6"
+      "bytes": 2899,
+      "sha256": "0be4f82005d261de9fbd6372925409930df99453a80615fa9ecb546992a8f716"
     }
   ]
 }
