@@ -8,7 +8,7 @@
     "distanceKm": 3.6,
     "ascentM": 39,
     "highestPointM": 1500,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Easy",
     "shadePercent": null
   },
@@ -37,5 +37,9 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lago di Braies Seeweg circuit": "Giro del Lago di Braies (Seeweg)",
+    "Lago di Braies access, use the approved official P1–P4 parking set": "Accesso al Lago di Braies, usa i parcheggi ufficiali autorizzati P1–P4"
+  }
 }

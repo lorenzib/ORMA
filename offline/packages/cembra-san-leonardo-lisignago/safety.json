@@ -8,7 +8,7 @@
     "distanceKm": 4.4,
     "ascentM": 280,
     "highestPointM": 577,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Hard",
     "shadePercent": 37
   },
@@ -41,5 +41,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lisignago, behind the church of San Biagio, the APT’s start": "Lisignago, dietro la chiesa di San Biagio, la partenza indicata dall'APT",
+    "Mostly tarred farm lanes and quiet roads, used by farm vehicles at harvest.": "Per lo più stradine poderali asfaltate e strade tranquille, percorse dai mezzi agricoli durante la vendemmia.",
+    "Vineyards on both sides: keep your dog on the lead and off the vines.": "Vigneti su entrambi i lati: tieni il cane al guinzaglio e lontano dalle viti.",
+    "A climb of about 280 m back to Lisignago.": "Una salita di circa 280 m per tornare a Lisignago."
+  }
 }

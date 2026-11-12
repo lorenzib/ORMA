@@ -6588,23 +6588,6 @@
       }
     },
     {
-      "id": "sassolungo",
-      "approvedReviewId": "commons-sassolungo",
-      "approvedAt": "2026-09-05T21:14:34.033Z",
-      "fields": {
-        "imageIcon": "images/trails/sassolungo-commons.jpg",
-        "heroImage": "images/trails/sassolungo-commons.jpg",
-        "imageAlt": "The Sassopiatto in the Dolomites at evening",
-        "imageCredit": "Plattkofel Abends",
-        "imageCreditText": "Plattkofel Abends by Fafner",
-        "imageCreator": "Fafner",
-        "imageLicence": "CC BY-SA 3.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Plattkofel_Abends.jpg",
-        "imageSourceType": "licensed-source"
-      }
-    },
-    {
       "id": "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees",
       "approvedReviewId": "mapillary-savoie-areches-beaufort-croix-du-berger-et-lac-des-fees-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",

@@ -8,7 +8,7 @@
     "distanceKm": 6.4,
     "ascentM": 430,
     "highestPointM": 1745,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 25
   },
@@ -118,5 +118,12 @@
       "downloadedAt": "2026-11-11",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Geology trail in the Val di Rabbi": "Percorso geologico in Val di Rabbi",
+    "Ramoni car park at Còler, upper Val di Rabbi, the board’s start": "Il parcheggio Ramoni al Còler, alta Val di Rabbi, la partenza ufficiale",
+    "The waterfalls path is steep, with spray and wet, slippery steps: the board grades the walk difficult.": "Il sentiero delle cascate è ripido, con spruzzi e gradini bagnati e scivolosi: il sito ufficiale classifica il giro come difficile.",
+    "In summer the upper Val di Rabbi is closed to cars from 10:00 to 18:00 (27 June to 6 September in 2026): arrive before 10:00 or take the Stelviobus from Rabbi Fonti.": "D’estate l’alta Val di Rabbi è chiusa alle auto dalle 10:00 alle 18:00 (dal 27 giugno al 6 settembre nel 2026): arriva prima delle 10:00 o prendi lo Stelviobus da Rabbi Fonti.",
+    "Cows may graze around Malga Stablasolo in summer.": "D’estate attorno a Malga Stablasolo possono pascolare le mucche."
+  }
 }

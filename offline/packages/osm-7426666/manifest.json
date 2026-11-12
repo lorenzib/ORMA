@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7426666",
   "name": "Maiser Waalweg",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.929Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.437Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 4112811,
+  "packageBytes": 4132178,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.66096,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Maiser Waalweg safety information",
       "url": "safety.json",
-      "bytes": 1712,
-      "sha256": "6e9c553ebc0540876e6b8d3c0f72d2fa0a4cf7aef90f98f61f3541b3de47cd5a"
+      "bytes": 2406,
+      "sha256": "7a668eb7c19fb97ace29c31a78db7c42b818d66445576ebc3b9e9fc15475381e"
     }
   ]
 }

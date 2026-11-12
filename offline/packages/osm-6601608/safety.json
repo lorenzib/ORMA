@@ -8,7 +8,7 @@
     "distanceKm": 6,
     "ascentM": 201,
     "highestPointM": 1023,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Moderate",
     "shadePercent": 40
   },
@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Rathausplatz, Sand in Taufers (official start)": "Rathausplatz, Sand in Taufers (partenza ufficiale)",
+    "A crossing of the busy Ahrntaler Straße right at the start.": "Un attraversamento della trafficata Ahrntaler Straße subito alla partenza.",
+    "A crossing of the main road near the Cascade, km 4.0.": "Un attraversamento della strada principale vicino alla Cascade, km 4,0.",
+    "A wooden footbridge over the Ahr, km 0.3.": "Una passerella di legno sull'Ahr, km 0,3."
+  }
 }

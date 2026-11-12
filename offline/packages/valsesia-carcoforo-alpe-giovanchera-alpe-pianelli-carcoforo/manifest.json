@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo",
   "name": "Giro del Ginepro from Carcoforo",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T17:23:21.835Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.785Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 378099,
+  "packageBytes": 397431,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.90483,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Giro del Ginepro from Carcoforo safety information",
       "url": "safety.json",
-      "bytes": 1370,
-      "sha256": "fe665e16cf46df4dee232a8f5fbaaa36cf407e3e088aefc4a2384377a811b9c4"
+      "bytes": 2029,
+      "sha256": "2522b1805e76effaa355d81871177dc2a3a81f4d6b2041738cce7e1add024de8"
     }
   ]
 }

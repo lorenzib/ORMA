@@ -8,7 +8,7 @@
     "distanceKm": 7.3,
     "ascentM": 121,
     "highestPointM": 1467,
-    "expectedDuration": "2.25 hours",
+    "expectedDuration": "2 h 15 min",
     "difficulty": "Moderate",
     "shadePercent": 48
   },
@@ -48,5 +48,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Oberkirn to Verdins via Prenn and Untertall": "Da Oberkirn a Verdins per Prenn e Untertall",
+    "Top station of the Verdins–Tall cable car, the board’s start": "Stazione a monte della funivia Verdins–Tall, la partenza indicata dalla scheda ufficiale",
+    "About 690 m of descent: hard on knees and paws, take it slowly.": "Circa 690 m di discesa: pesante per ginocchia e zampe, vai piano.",
+    "Meadows beside the path are farmed and closed to dogs in Schenna in the growing season: keep to the path.": "I prati accanto al sentiero sono coltivati e a Schenna sono vietati ai cani durante la stagione vegetativa: resta sul sentiero.",
+    "Farm roads through Prenn and Untertall: lead on for passing cars and tractors.": "Strade agricole attraverso Prenn e Untertall: guinzaglio per le auto e i trattori di passaggio."
+  }
 }

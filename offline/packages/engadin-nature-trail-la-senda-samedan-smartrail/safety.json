@@ -8,7 +8,7 @@
     "distanceKm": 6.5,
     "ascentM": 227,
     "highestPointM": 1983,
-    "expectedDuration": "2.25 hours",
+    "expectedDuration": "2 h 15 min",
     "difficulty": "Moderate",
     "shadePercent": 39
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "La Senda nature trail, Samedan": "Sentiero natura La Senda, Samedan",
+    "Muntarütsch car park above Samedan, the board’s start": "Parcheggio Muntarütsch sopra Samedan, la partenza della scheda ufficiale",
+    "Upper-village roads at the end: lead short for passing cars.": "Strade della parte alta del paese alla fine: guinzaglio corto per le auto di passaggio.",
+    "Forest path with roots and short steep stretches above Muntarütsch.": "Sentiero nel bosco con radici e brevi tratti ripidi sopra Muntarütsch.",
+    "Hay meadows near Samedan are closed 15 May–30 September: keep to the path.": "I prati da fieno vicino a Samedan sono chiusi dal 15 maggio al 30 settembre: resta sul sentiero."
+  }
 }

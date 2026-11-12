@@ -8,7 +8,7 @@
     "distanceKm": 4.9,
     "ascentM": 160,
     "highestPointM": 772,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 34
   },
@@ -56,5 +56,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Stabnerwaal, Staben to Tschars": "Stabnerwaal, da Staben a Tschars",
+    "Staben railway station, the board’s start": "Stazione ferroviaria di Staben, partenza indicata dalla scheda ufficiale",
+    "The Sonnenberg is dry, south-facing steppe: very hot in summer, go early and bring water.": "Il Sonnenberg è una steppa secca esposta a sud: molto caldo in estate, parti presto e porta acqua.",
+    "About 60 m on the main road and lanes in Staben and Tschars: lead on.": "Circa 60 m sulla strada principale e stradine a Staben e Tschars: guinzaglio.",
+    "Orchards and vineyards beside the path are farmed and closed to dogs in Kastelbell-Tschars: keep to the path.": "I frutteti e i vigneti accanto al sentiero sono coltivati e a Kastelbell-Tschars sono vietati ai cani: resta sul sentiero."
+  }
 }

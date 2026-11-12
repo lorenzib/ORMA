@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "campiglio-madonna-di-campiglio-monte-spinale",
   "name": "Madonna di Campiglio – Monte Spinale",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:00:06.378Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:13.829Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 547214,
+  "packageBytes": 566385,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.21318,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Madonna di Campiglio – Monte Spinale safety information",
       "url": "safety.json",
-      "bytes": 1777,
-      "sha256": "824e300f6e8949eebcf088b4e04819b2fc3c967253b1adc7bb09b48589cc914f"
+      "bytes": 2275,
+      "sha256": "47712d6ca4c02332f95ef0ca8ce75452cd5871a2a9a9ce05cbfeccda15ed68c1"
     }
   ]
 }

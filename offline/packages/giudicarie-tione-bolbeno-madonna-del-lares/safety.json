@@ -8,7 +8,7 @@
     "distanceKm": 3.1,
     "ascentM": 238,
     "highestPointM": 790,
-    "expectedDuration": "1.3 hours",
+    "expectedDuration": "1 h 20 min",
     "difficulty": "Moderate",
     "shadePercent": 57
   },
@@ -97,5 +97,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Via Baita, Tione di Trento, the APT’s start": "Via Baita, Tione di Trento, la partenza indicata dall'APT",
+    "The cycle path to Bolbeno is shared with bikes: keep your dog on a short lead.": "La pista ciclabile per Bolbeno è condivisa con le bici: tieni il cane al guinzaglio corto.",
+    "The forest road to the sanctuary is tarmac and open to occasional vehicles.": "La strada forestale per il santuario è asfaltata e aperta a qualche veicolo occasionale.",
+    "A short flight of steps up to the chapel.": "Una breve rampa di gradini fino alla cappella."
+  }
 }

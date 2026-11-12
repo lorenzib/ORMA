@@ -8,7 +8,7 @@
     "distanceKm": 1,
     "ascentM": 176,
     "highestPointM": 1699,
-    "expectedDuration": "0.55 hours",
+    "expectedDuration": "35 min",
     "difficulty": "Moderate",
     "shadePercent": 25
   },
@@ -82,5 +82,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Periasc, the register’s start": "Periasc, la partenza indicata dal catasto",
+    "About 140 m along the main valley road (SR45), with traffic: keep your dog close.": "Circa 140 m lungo la strada principale della valle (SR45), con traffico: tieni il cane vicino.",
+    "A steep old mule track.": "Una vecchia mulattiera ripida."
+  }
 }

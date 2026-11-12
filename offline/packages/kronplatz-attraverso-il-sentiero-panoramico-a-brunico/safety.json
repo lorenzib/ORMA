@@ -8,7 +8,7 @@
     "distanceKm": 8.6,
     "ascentM": 45,
     "highestPointM": 1052,
-    "expectedDuration": "2.3 hours",
+    "expectedDuration": "2 h 20 min",
     "difficulty": "Moderate",
     "shadePercent": 47
   },
@@ -69,5 +69,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Panoramic path from Olang to Bruneck": "Sentiero panoramico da Olang a Bruneck",
+    "The parish church of Valdaora di Sotto (Niederolang), the board’s start": "La chiesa parrocchiale di Valdaora di Sotto (Niederolang), la partenza indicata dalla scheda ufficiale",
+    "Quiet farm lanes with occasional cars and tractors.": "Stradine agricole tranquille con qualche auto e trattore.",
+    "Busy streets in the centre of Bruneck at the end: keep your dog close.": "Strade trafficate nel centro di Bruneck alla fine: tieni il cane vicino.",
+    "Some stretches on forest paths with roots.": "Alcuni tratti su sentieri nel bosco con radici."
+  }
 }

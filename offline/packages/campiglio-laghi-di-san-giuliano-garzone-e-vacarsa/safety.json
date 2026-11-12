@@ -8,7 +8,7 @@
     "distanceKm": 11,
     "ascentM": 665,
     "highestPointM": 2148,
-    "expectedDuration": "6 hours",
+    "expectedDuration": "6 h",
     "difficulty": "Hard",
     "shadePercent": 48
   },
@@ -62,5 +62,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "San Giuliano, Garzonè and Vacarsa lakes": "Laghi di San Giuliano, Garzonè e Vacarsa",
+    "Car park at Pöc dali Fafc above Caderzone Terme, the APT’s start": "Parcheggio di Pöc dali Fafc sopra Caderzone Terme, la partenza indicata dall'APT",
+    "Mountain paths with a climb to a 2,175 m pass.": "Sentieri di montagna con salita a un passo a 2.175 m.",
+    "Cattle on the pastures of Malga San Giuliano and Malga Campostril in summer.": "D'estate bestiame sui pascoli di Malga San Giuliano e Malga Campostril.",
+    "Long day: six hours, little shelter on the pass.": "Giornata lunga: sei ore, pochi ripari sul passo."
+  }
 }

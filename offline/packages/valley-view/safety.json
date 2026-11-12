@@ -8,7 +8,7 @@
     "distanceKm": 6.6,
     "ascentM": 322,
     "highestPointM": 1426,
-    "expectedDuration": "2–2.25 hours",
+    "expectedDuration": "2 h – 2 h 15 min",
     "difficulty": "Moderate",
     "shadePercent": 30
   },
@@ -70,5 +70,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Val di Funes Panorama Trail": "Sentiero panoramico della Val di Funes",
+    "St. Peter village centre (Villnöss), by the tourist office": "Centro di St. Peter (Villnöss), presso l'ufficio turistico",
+    "About 1.9 km of asphalt, including the road towards Coll/Würzjoch.": "Circa 1,9 km di asfalto, compresa la strada verso Coll/Würzjoch.",
+    "Crossing of the Coller Straße.": "Attraversamento della Coller Straße.",
+    "Short flights of steps.": "Brevi rampe di gradini."
+  }
 }

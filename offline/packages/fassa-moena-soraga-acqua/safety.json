@@ -8,7 +8,7 @@
     "distanceKm": 4.8,
     "ascentM": 139,
     "highestPointM": 1271,
-    "expectedDuration": "1.25 hours",
+    "expectedDuration": "1 h 15 min",
     "difficulty": "Moderate",
     "shadePercent": 0
   },
@@ -62,5 +62,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Moena (Piaz de Sotegrava), the APT’s start": "Moena (Piaz de Sotegrava), partenza indicata dall'APT",
+    "About 2.8 km on tarmac: town streets in Moena and Soraga and a farm lane open to farm traffic.": "Circa 2,8 km su asfalto: vie del paese a Moena e Soraga e una stradina agricola aperta ai mezzi agricoli.",
+    "Hay meadows and farms above the reservoir: keep to the lane.": "Prati da fieno e masi sopra il lago: resta sulla stradina.",
+    "Water birds in the riverside park at Soraga: keep your dog out of the water and on the lead.": "Uccelli acquatici nel parco sul fiume a Soraga: tieni il cane fuori dall'acqua e al guinzaglio."
+  }
 }

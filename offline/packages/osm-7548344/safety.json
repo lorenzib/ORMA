@@ -8,7 +8,7 @@
     "distanceKm": 3,
     "ascentM": 250,
     "highestPointM": 1114,
-    "expectedDuration": "1.5–2 hours",
+    "expectedDuration": "1 h 30 min – 2 h",
     "difficulty": "Hard",
     "shadePercent": 40
   },
@@ -37,5 +37,8 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Mapped route start at Niante Aze; verify current parking locally": "Partenza del percorso mappato a Niante Aze; verifica sul posto il parcheggio attuale"
+  }
 }

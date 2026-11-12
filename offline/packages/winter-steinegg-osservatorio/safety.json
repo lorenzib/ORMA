@@ -8,7 +8,7 @@
     "distanceKm": 4.9,
     "ascentM": 57,
     "highestPointM": 1320,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Easy",
     "shadePercent": 15
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-07",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Steinegg to the Gummer observatory in winter": "Da Steinegg all’osservatorio di Gummer d’inverno",
+    "The Schenken car park by the Lantschnay bus stop, the board’s start": "Il parcheggio Schenken vicino alla fermata Lantschnay, la partenza indicata dall’ente turistico",
+    "The board warns that some stretches can be very icy in winter.": "L’ente turistico avverte che in inverno alcuni tratti possono essere molto ghiacciati.",
+    "Almost all on a quiet asphalt road with a few cars: keep your dog on a short lead.": "Quasi tutto su una strada asfaltata tranquilla con poche auto: tieni il cane al guinzaglio corto.",
+    "About 180 m on the provincial road by the start: keep your dog close.": "Circa 180 m sulla strada provinciale vicino alla partenza: tieni il cane vicino."
+  }
 }

@@ -246,10 +246,12 @@ describe('the existing-site verification boundary',()=>{
     // both in the Stelvio park.
     // Then 522 and 520 with Dolomites batch 9: the short loop round the
     // Colle di Santa Lucia.
-    // Then 523 and 521 with Dolomites batch 10: the Lacerta Prima theme loop
+    // Then 521 and 519: the Sassolungo–Sassopiatto Loop retired, the same
+    // circuit as the Giro del Sasso Lungo, whose page its addresses now open.
+    // Then 522 and 520 with Dolomites batch 10: the Lacerta Prima theme loop
     // at Valdaora di Sopra.
-    expect(catalogue).toHaveLength(523);
-    expect(currentSiteTrails(catalogue)).toHaveLength(521);
+    expect(catalogue).toHaveLength(522);
+    expect(currentSiteTrails(catalogue)).toHaveLength(520);
   });
 
   test('requires the artwork the public trail page needs',()=>{

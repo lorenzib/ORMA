@@ -8,7 +8,7 @@
     "distanceKm": 7,
     "ascentM": 562,
     "highestPointM": 2131,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Hard",
     "shadePercent": 51
   },
@@ -48,5 +48,11 @@
       "downloadedAt": "2026-11-05",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "The lower car park at the Arnoga hairpin, the published start": "Il parcheggio inferiore al tornante di Arnoga, la partenza pubblicata",
+    "A natural balcony over the Viola canyon on the steeper stretch above the Caricc farm: keep your dog close and on a short lead.": "Un balcone naturale sul canyon del Viola nel tratto più ripido sopra il maso Caricc: tieni il cane vicino e con il guinzaglio corto.",
+    "Cattle graze the Val Viola in summer: keep your distance.": "D'estate il bestiame pascola in Val Viola: mantieni le distanze.",
+    "Above 2,000 m the open stretch to the hut has no shade and storms build fast on summer afternoons.": "Oltre i 2.000 m il tratto aperto fino al rifugio è senza ombra e nei pomeriggi estivi i temporali si formano in fretta."
+  }
 }

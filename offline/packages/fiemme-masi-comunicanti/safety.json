@@ -8,7 +8,7 @@
     "distanceKm": 7.4,
     "ascentM": 400,
     "highestPointM": 1019,
-    "expectedDuration": "4 hours",
+    "expectedDuration": "4 h",
     "difficulty": "Hard",
     "shadePercent": 49
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Capriana (Piazza Roma), the APT’s start": "Capriana (Piazza Roma), partenza indicata dall'APT",
+    "About 460 m on the Capriana provincial road (SP51) and two crossings of the busy Val di Cembra state road (SS612): lead short, cross with care.": "Circa 460 m sulla strada provinciale di Capriana (SP51) e due attraversamenti della trafficata statale della Val di Cembra (SS612): guinzaglio corto, attraversa con attenzione.",
+    "A path along the Avisio: keep your dog out of the river, which can rise fast.": "Un sentiero lungo l'Avisio: tieni il cane fuori dal fiume, che può ingrossarsi in fretta.",
+    "A few metal steps by the Meneghina mill and a steep concrete ramp up to Carbonare.": "Alcuni gradini in metallo vicino al mulino Meneghina e una ripida rampa in cemento fino a Carbonare."
+  }
 }

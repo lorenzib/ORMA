@@ -8,7 +8,7 @@
     "distanceKm": 7.2,
     "ascentM": 91,
     "highestPointM": 585,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Moderate",
     "shadePercent": 38
   },
@@ -92,5 +92,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "San Vigilio and the Senter dei Cavai": "San Vigilio e il Senter dei Cavai",
+    "Church of Santa Maria Assunta, Tione di Trento, the APT’s start": "Chiesa di Santa Maria Assunta, Tione di Trento, la partenza indicata dall'APT",
+    "The swinging rope bridge over the Sarca at km 1.6 (the “pont che bala”): about 23 m long, anchored with ropes, with a wooden deck.": "Il ponte di corde oscillante sul Sarca al km 1,6 (il “pont che bala”): lungo circa 23 m, ancorato con funi, con piano di calpestio in legno.",
+    "The cycle path back to Tione is shared with bikes and fully in the sun.": "La pista ciclabile per tornare a Tione è condivisa con le bici ed è completamente al sole.",
+    "Pavement and road crossings in Tione and Sesena.": "Marciapiedi e attraversamenti stradali a Tione e a Sesena."
+  }
 }

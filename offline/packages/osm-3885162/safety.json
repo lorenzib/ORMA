@@ -8,7 +8,7 @@
     "distanceKm": 7.8,
     "ascentM": 38,
     "highestPointM": 1186,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 45
   },
@@ -62,5 +62,11 @@
       "downloadedAt": "2026-11-06",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Zoggler dam, St. Walburg: bus stop Ulten, Zoggler Staudamm; free car park on the south side of the dam": "Diga di Zoggler, St. Walburg: fermata dell'autobus Ulten, Zoggler Staudamm; parcheggio gratuito sul lato sud della diga",
+    "Promenade beside the LS/SP9 valley road for about 2 km.": "Passeggiata accanto alla strada di valle LS/SP9 per circa 2 km.",
+    "Road crossings at Kuppelwies and at the dam.": "Attraversamenti stradali a Kuppelwies e alla diga.",
+    "Asphalt access road to the dam car park, with cars.": "Strada d'accesso asfaltata al parcheggio della diga, con auto."
+  }
 }

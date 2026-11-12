@@ -8,7 +8,7 @@
     "distanceKm": 1.1,
     "ascentM": 10,
     "highestPointM": 1222,
-    "expectedDuration": "0.5 hours",
+    "expectedDuration": "30 min",
     "difficulty": "Easy",
     "shadePercent": 38
   },
@@ -40,5 +40,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lago Santo car park, Cembra, the APT’s start": "Parcheggio del Lago Santo, Cembra, la partenza indicata dall'APT",
+    "Grassy and compacted lakeside paths, a little muddy after rain.": "Sentieri lungo il lago erbosi e battuti, un po' fangosi dopo la pioggia.",
+    "Busy with bathers in summer: keep your dog close on the beach.": "D'estate molti bagnanti: sulla spiaggia tieni il cane vicino.",
+    "Dogs may not go into the water except in the signed dog-bathing area just north of the Rio Mercar outlet.": "I cani non possono entrare in acqua, tranne nell'area di balneazione per cani segnalata appena a nord dell'emissario del Rio Mercar."
+  }
 }

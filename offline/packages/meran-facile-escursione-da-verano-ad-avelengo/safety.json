@@ -8,7 +8,7 @@
     "distanceKm": 6.3,
     "ascentM": 135,
     "highestPointM": 1458,
-    "expectedDuration": "1.75 hours",
+    "expectedDuration": "1 h 45 min",
     "difficulty": "Moderate",
     "shadePercent": 98
   },
@@ -48,5 +48,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Vöran to Hafling past the Bruggen pond": "Da Vöran a Hafling passando per lo stagno di Bruggen",
+    "Sportplatz Vöran bus stop, the board’s start": "Fermata dell'autobus Sportplatz Vöran, la partenza indicata dalla scheda ufficiale",
+    "Wide forest road shared with farm and forestry vehicles: lead on.": "Ampia strada forestale condivisa con mezzi agricoli e forestali: guinzaglio.",
+    "Meadows beside the road are farmed and closed to dogs in Vöran: keep to the road.": "I prati accanto alla strada sono coltivati e a Vöran sono vietati ai cani: resta sulla strada.",
+    "Short stretch on the Hafling road into the village at the end: keep your dog close.": "Breve tratto sulla strada di Hafling entrando in paese alla fine: tieni il cane vicino."
+  }
 }

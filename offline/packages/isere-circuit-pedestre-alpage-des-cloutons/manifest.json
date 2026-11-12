@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "isere-circuit-pedestre-alpage-des-cloutons",
   "name": "Alpage des Cloutons loop from Saint-Honoré 1500",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T19:22:30.859Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.028Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 456671,
+  "packageBytes": 476262,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 44.96871,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Alpage des Cloutons loop from Saint-Honoré 1500 safety information",
       "url": "safety.json",
-      "bytes": 1465,
-      "sha256": "14c47cf9788d71397dd7ed0643af618a9f54edac3c25a4a511aacc8157c2aca8"
+      "bytes": 2383,
+      "sha256": "646498e84639566a2635557ca33b6c8c7b0d54064d875027a049312b760b33f6"
     }
   ]
 }

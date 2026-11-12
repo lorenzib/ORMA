@@ -8,7 +8,7 @@
     "distanceKm": 5.3,
     "ascentM": 7,
     "highestPointM": 2053,
-    "expectedDuration": "1.6 hours",
+    "expectedDuration": "1 h 35 min",
     "difficulty": "Moderate",
     "shadePercent": 55
   },
@@ -62,5 +62,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Helmjet gondola top station, the board’s start": "Stazione a monte della cabinovia Helmjet, la partenza indicata dalla scheda ufficiale",
+    "A descent of about 740 m: hard on joints and paws, take it slowly.": "Una discesa di circa 740 m: dura per articolazioni e zampe, prendila con calma.",
+    "Summer 2026: the board warns of heavy construction traffic on path 4 while the new Helmissimo gondola is built: keep your dog close on the forest road.": "Estate 2026: la scheda ufficiale segnala un forte traffico di cantiere sul sentiero 4 per la costruzione della nuova cabinovia Helmissimo: tieni il cane vicino sulla strada forestale.",
+    "The last stretch is on quiet paved roads into Sexten.": "L'ultimo tratto è su tranquille strade asfaltate fino a Sexten."
+  }
 }

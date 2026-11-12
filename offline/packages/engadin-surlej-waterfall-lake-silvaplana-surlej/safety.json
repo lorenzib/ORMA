@@ -8,7 +8,7 @@
     "distanceKm": 6.2,
     "ascentM": 166,
     "highestPointM": 1922,
-    "expectedDuration": "1.75 hours",
+    "expectedDuration": "1 h 45 min",
     "difficulty": "Moderate",
     "shadePercent": 62
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Surlej waterfall and Lake Silvaplana loop": "Anello della cascata di Surlej e del Lago di Silvaplana",
+    "Surlej bridge, the board’s start": "Ponte di Surlej, la partenza della scheda ufficiale",
+    "About 150 m beside the Via da Surlej at the end: lead short for passing cars.": "Circa 150 m accanto a Via da Surlej alla fine: guinzaglio corto per le auto di passaggio.",
+    "Forest tracks shared with mountain bikers: keep your dog close.": "Strade forestali condivise con i ciclisti in mountain bike: tieni il cane vicino.",
+    "Meadows near Surlej are closed from 1 June until the end of the hay harvest: keep to the path.": "I prati vicino a Surlej sono chiusi dal 1° giugno fino alla fine della fienagione: resta sul sentiero."
+  }
 }

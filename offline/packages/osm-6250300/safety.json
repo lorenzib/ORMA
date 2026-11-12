@@ -8,7 +8,7 @@
     "distanceKm": 3.6,
     "ascentM": 100,
     "highestPointM": 1353,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Easy",
     "shadePercent": 60
   },
@@ -38,5 +38,9 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Chemin des Parchets at Plaine-Joux, by a water tap, about 200 m east of the Plaine-Joux car park (321 chemin des Parchets), where the tourist office starts the walk": "Chemin des Parchets a Plaine-Joux, vicino a un rubinetto d'acqua, circa 200 m a est del parcheggio di Plaine-Joux (321 chemin des Parchets), dove l'ufficio turistico fa partire il percorso",
+    "The paved access road from the Plaine-Joux car park, crossed once on the loop.": "La strada d'accesso asfaltata dal parcheggio di Plaine-Joux, attraversata una volta durante l'anello."
+  }
 }

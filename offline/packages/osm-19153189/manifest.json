@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-19153189",
   "name": "Le Belvédère (Saint-Pierre-d'Albigny)",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.610Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.325Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 592032,
+  "packageBytes": 610867,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.56837,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Le Belvédère (Saint-Pierre-d'Albigny) safety information",
       "url": "safety.json",
-      "bytes": 1116,
-      "sha256": "5480467e3d2ab9860e85356404f81d4b349aa5c0dfb18d2b324461d4d60bc31c"
+      "bytes": 1278,
+      "sha256": "dad5adeb560d40025be1df8b95fea0b19933a995535108617cb932cbe52703b2"
     }
   ]
 }

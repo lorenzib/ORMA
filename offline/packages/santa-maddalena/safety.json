@@ -8,7 +8,7 @@
     "distanceKm": 3.2,
     "ascentM": 134,
     "highestPointM": 1352,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Easy",
     "shadePercent": 5
   },
@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Bergerplatz, the central square of St. Magdalena (official start)": "Bergerplatz, la piazza centrale di St. Magdalena (partenza ufficiale)",
+    "About 2 km on asphalt farm roads, hot in summer.": "Circa 2 km su strade interpoderali asfaltate, calde d'estate.",
+    "Shared access roads without pavement (residents’ traffic, 30 km/h).": "Strade di accesso condivise senza marciapiede (traffico dei residenti, 30 km/h).",
+    "Short dirt steps on the meadow path.": "Brevi gradini di terra sul sentiero nei prati."
+  }
 }

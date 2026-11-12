@@ -45,9 +45,12 @@ const path = require('path');
 const { loadProductionTrails } = require('./load-production-trails');
 const evidence = require('../trust/evidence-v1.js');
 const offlineElevation = require('../offline-elevation.js');
+const routeReturn = require('../route-return.js');
 const { renderOfflineMap } = require('./render-offline-osm-map');
 const { buildFootpathNetwork } = require('./build-offline-footpath-network');
 const { buildManifest } = require('./build-offline-manifest');
+const trailTextIt = require('./trail-text-it');
+const vm = require('vm');
 
 const ROOT = path.resolve(__dirname, '..');
 const PACKAGES_DIR = path.join(ROOT, 'offline', 'packages');
@@ -309,10 +312,9 @@ function routeFor(trail){
   };
 }
 
+// "3.9 hours" read as 3 h 9 min; the page says 3 h 55 min, as the site does.
 function durationText(hours){
-  const text = String(hours || '').trim();
-  if(!text) return null;
-  return `${text} ${text === '1' ? 'hour' : 'hours'}`;
+  return routeReturn.formatDuration(hours) || null;
 }
 
 // The same rule the Browse difficulty filter applies (discovery-filters.js).
@@ -338,6 +340,44 @@ function plainLabel(label){
     .trim();
 }
 
+// The walk's own wording in Italian, keyed by the English the package stores:
+// its name, its start label and the hazards it lists. The offline page has the
+// fixed wording (Loop, the water and lead-rule cautions, the 112 note) built in
+// (offline/offline-app.js); this is what only the walk knows.
+let italianNames = null;
+function italianName(id){
+  if(!italianNames){
+    const context = { window:{} };
+    vm.createContext(context);
+    vm.runInContext(fs.readFileSync(path.join(ROOT, 'i18n-trail-names-it.js'), 'utf8'), context);
+    italianNames = context.window.ORMA_TRAIL_NAMES_IT || {};
+  }
+  return italianNames[id] || null;
+}
+
+function sentenceEnd(text){
+  return text.trim().replace(/\.?$/, '.');
+}
+
+function italianTextFor(trail, rawStartLabel, hazards){
+  const table = trailTextIt.readTable(trail.id);
+  const out = {};
+  const add = (english, italian) => {
+    if(english && typeof italian === 'string' && italian.trim() && italian !== english) out[english] = italian;
+  };
+  add(trail.name, italianName(trail.id));
+  const raw = String(rawStartLabel || '');
+  if(plainLabel(raw)){
+    add(plainLabel(raw), table[plainLabel(raw)] || (table[raw] && String(table[raw])
+      .replace(/\s*\((?:punto di accesso )?verificat[oa] su OSM\)/gi, '').trim()));
+  }
+  hazards.forEach(text => {
+    const italian = table[text] || table[text.trim()];
+    if(italian) add(sentenceEnd(text), sentenceEnd(italian));
+  });
+  return out;
+}
+
 function safetyFor(trail, profile, retrievedAt){
   const start = trail.startPoint && Number.isFinite(trail.startPoint.lat)
     ? trail.startPoint
@@ -354,14 +394,16 @@ function safetyFor(trail, profile, retrievedAt){
   const cautions = [];
   if(trail.heatRisk === 'high') cautions.push('Heat risk is high on this walk: start early and carry extra water.');
   if(trail.exposure === true) cautions.push('Parts of this walk are exposed; keep your dog close and on a short lead.');
-  (Array.isArray(trail.surfaceHazards) ? trail.surfaceHazards : [])
+  const hazards = (Array.isArray(trail.surfaceHazards) ? trail.surfaceHazards : [])
     .filter(text => typeof text === 'string' && text.trim())
-    .slice(0, 3)
-    .forEach(text => cautions.push(text.trim().replace(/\.?$/, '.')));
+    .slice(0, 3);
+  hazards.forEach(text => cautions.push(sentenceEnd(text)));
   cautions.push(water.length
     ? 'Carry water even though water points are listed.'
     : 'No water point is listed on this walk: carry enough for you and your dog.');
   cautions.push('Follow local signs, lead rules and temporary closures.');
+  const trailhead = { lat:start.lat, lng:start.lng, label:plainLabel(start.label) || 'Start of the route' };
+  const textIt = italianTextFor(trail, start.label, hazards);
   return {
     schemaVersion:1,
     trailId:trail.id,
@@ -376,7 +418,7 @@ function safetyFor(trail, profile, retrievedAt){
       difficulty:difficultyOf(trail),
       shadePercent:Number.isFinite(trail.shadeCoverage) ? trail.shadeCoverage : null,
     },
-    trailhead:{ lat:start.lat, lng:start.lng, label:plainLabel(start.label) || 'Start of the route' },
+    trailhead,
     waypoints:water,
     cautions,
     emergency:{
@@ -392,6 +434,7 @@ function safetyFor(trail, profile, retrievedAt){
         licence:'ODbL',
       },
     ],
+    ...(Object.keys(textIt).length ? { textIt } : {}),
   };
 }
 

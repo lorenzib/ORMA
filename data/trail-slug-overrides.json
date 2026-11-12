@@ -112,6 +112,11 @@
       "gloss": "the little-train path"
     },
     "giro-del-sasso-lungo": {
+      "slug": "giro-del-sasso-lungo",
+      "retired": [
+        "sassolungo-sassopiatto-loop",
+        "sassolungo"
+      ],
       "gloss": "the Sassolungo circuit"
     },
     "osm-6250300": {

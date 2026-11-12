@@ -166,9 +166,32 @@
   .jp-visa:focus-visible{outline:2px solid #1F4B36;outline-offset:3px;}
   .jp-ink0{color:#2F6B4F;} .jp-ink1{color:#9A4B24;} .jp-ink2{color:#43508F;} .jp-ink3{color:#7A5A12;}
   .jp-visa-name{font:800 12.5px/1.2 'Inter',sans-serif;letter-spacing:.05em;text-transform:uppercase;}
-  .jp-visa-date,.jp-visa-of{font:600 11px/1.3 'Inter',sans-serif;}
+  .jp-visa-date,.jp-visa-level{font:600 11px/1.3 'Inter',sans-serif;}
+  .jp-stars{letter-spacing:1px;}
+  .jp-visa{position:relative;}
+  .jp-visa-new{position:absolute;top:-10px;right:-8px;padding:2px 7px;border-radius:999px;background:#C4652F;color:#fff;font:800 10px/1.4 'Inter',sans-serif;letter-spacing:.04em;text-transform:uppercase;transform:rotate(6deg);}
+  .jp-goal{margin:8px 0 0;font:600 13px/1.4 'Inter',sans-serif;color:#2F5B3A;}
+  .jp-bar.is-top i{background:linear-gradient(90deg,#C4652F,#E0A040);}
+  .jp-moment{position:relative;display:grid;justify-items:center;gap:4px;margin:14px 0 4px;padding:18px 16px 16px;border-radius:18px;background:linear-gradient(160deg,#FFF6E8,#F3E3C6);border:2px solid #E0A040;text-align:center;}
+  .jp-moment.is-pop{animation:jpPop .5s cubic-bezier(.2,1.4,.4,1) both;}
+  .jp-moment:focus{outline:none;}
+  .jp-moment:focus-visible{outline:2px solid #1F4B36;outline-offset:3px;}
+  .jp-moment-territory{background:linear-gradient(160deg,#EEF6EF,#DCEBDC);border-color:#4A7856;}
+  .jp-moment-burst{font-size:30px;line-height:1;}
+  .jp-moment-kicker{font:800 12px/1.3 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#C4652F;}
+  .jp-moment-title{font:800 21px/1.2 'Bricolage Grotesque','Inter',sans-serif;color:#1F3A2A;}
+  .jp-moment-level{font:700 13px/1.4 'Inter',sans-serif;color:#2F5B3A;}
+  .jp-moment-also{font-size:12.5px;color:var(--ink-soft);}
+  .jp-moment-share{margin-top:6px;border:0;background:#2F6B4F;color:#fff;border-radius:999px;padding:9px 20px;font:700 13.5px/1.2 'Inter',sans-serif;cursor:pointer;}
+  .jp-moment-share:focus-visible{outline:2px solid #1F4B36;outline-offset:2px;}
+  .jp-moment-close{position:absolute;top:6px;right:8px;border:0;background:transparent;font-size:22px;line-height:1;color:var(--ink-soft);cursor:pointer;padding:4px 6px;}
+  @keyframes jpPop{from{transform:scale(.92);opacity:0;}to{transform:none;opacity:1;}}
+  @media (prefers-reduced-motion: reduce){.jp-moment{animation:none;}}
+  .jp-visa-share{margin-top:10px;border:1.5px solid #2F6B4F;background:#fff;color:#2F6B4F;border-radius:999px;padding:6px 14px;font:700 12.5px/1.2 'Inter',sans-serif;cursor:pointer;}
+  .jp-visa-share:hover{background:#EEF6EF;}
+  .jp-visa-share:focus-visible{outline:2px solid #1F4B36;outline-offset:2px;}
   .jp-valley{margin-top:12px;padding:12px;border-radius:14px;background:#fff;border:1px solid #E3E8DF;}
-  .jp-vrow{display:flex;justify-content:space-between;gap:8px;margin-bottom:6px;font-size:14px;}
+  .jp-vrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 10px;margin-bottom:6px;font-size:14px;}
   .jp-next-tip{margin:8px 0 10px;font-size:12.5px;color:var(--ink-soft);}
   .jp-slots{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px;}
   .jp-slot{display:grid;grid-template-columns:22px 1fr;column-gap:6px;align-items:start;height:100%;box-sizing:border-box;padding:8px;border-radius:10px;border:1.5px dashed #C9D1C5;color:inherit;text-decoration:none;}
@@ -298,7 +321,7 @@
     <p class="jn-hint" data-i18n="journal.modal.hint">Add a walk you've already done. It joins the journal straight away.</p>
     <div class="jn-gpx-row">
       <button type="button" id="jnGpxBtn" class="jn-gpx-btn" data-i18n="journal.gpx.add">Add from a file</button>
-      <span class="jn-gpx-sub" data-i18n="journal.gpx.sub">A GPX, FIT or TCX file from your watch, Strava or Komoot. It can earn a passport stamp.</span>
+      <span class="jn-gpx-sub" data-i18n="journal.gpx.sub">A GPX, FIT or TCX file from your watch, Strava or Komoot. It can leave a pawprint.</span>
       <input type="file" id="jnGpxInput" accept=".gpx,.fit,.tcx,.gz,application/gpx+xml,application/vnd.ant.fit,application/xml,text/xml,application/gzip" hidden>
     </div>
     <label for="jnTrailSearch" data-i18n="journal.trail">Trail</label>
@@ -469,11 +492,11 @@
 <div class="jn-overlay" id="jnPassShareOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="jnPassShareTitle">
   <div class="jn-modal jn-share-modal">
     <div class="jn-modal-head">
-      <h2 id="jnPassShareTitle" style="margin:0;font-size:22px;" data-i18n="journal.passport.card.title">Share the passport</h2>
+      <h2 id="jnPassShareTitle" style="margin:0;font-size:22px;" data-i18n="journal.passport.card.title">Share the pawprints</h2>
       <button type="button" class="jn-x" id="jnPassShareClose" aria-label="Close" data-i18n-aria-label="journal.close">&times;</button>
     </div>
     <div class="jn-share-layout">
-      <div class="jn-share-preview-wrap"><img id="jnPassSharePreview" class="jn-share-preview" alt="The dog passport picture"></div>
+      <div class="jn-share-preview-wrap"><img id="jnPassSharePreview" class="jn-share-preview" alt="The pawprints picture"></div>
       <div class="jn-share-options">
         <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.shareCard.format">Format</span><div class="jn-choice-row" id="jnPassShareFormats">
           <button type="button" class="jn-choice on" data-format="story" data-i18n="page.journal.story916">Story 9:16</button><button type="button" class="jn-choice" data-format="post" data-i18n="page.journal.post45">Post 4:5</button>
@@ -482,7 +505,7 @@
           <button type="button" class="auth-submit" id="jnPassShareGo" data-i18n="journal.passport.card.share">Share</button>
           <button type="button" class="jn-edit-photo-btn" id="jnPassShareDownload" data-i18n="journal.shareCard.download">Download image</button>
         </div>
-        <p class="jn-share-helper" data-i18n="journal.passport.card.helper">The picture shows your dog, the valleys and the trail names. It never shows your own GPS track.</p>
+        <p class="jn-share-helper" data-i18n="journal.passport.card.helper">The picture shows your dog, the territories and the trail names. It never shows your own GPS track.</p>
       </div>
     </div>
   </div>
@@ -552,7 +575,7 @@
 </footer>
 
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261111-5"></script>
+<script src="i18n.js?v=20261112-1"></script>
 <script type="module" src="firebase-init.js?v=20261107-1"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20261030-1" defer></script>
@@ -564,8 +587,8 @@
 <script src="walk-card.js?v=20260825-1"></script>
 <script src="walk-proof.js?v=20261110-1"></script>
 <script src="gpx-walk.js?v=20261111-2"></script>
-<script src="dog-passport.js?v=20261111-1"></script>
-<script src="passport-card.js?v=20261111-1"></script>
+<script src="dog-passport.js?v=20261112-1"></script>
+<script src="passport-card.js?v=20261112-1"></script>
 <script>
   // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
   function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
@@ -967,6 +990,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var el = document.getElementById('jnPassport');
     var passport = window.DoloPawsPassport;
     if(!el || !passport) return;
+    var moments = currentMoments();
     el.innerHTML = passport.renderPassport(passport.buildPassport(state.entries, allTrails()), {
       t: function(key, vars){ return window.t(key, vars); },
       dogName: dogDisplayName,
@@ -975,6 +999,8 @@ document.addEventListener('DOMContentLoaded', function(){
       openValley: passportValley,
       canShare: !!window.DoloPawsPassportCard,
       lang: document.documentElement.lang || undefined,
+      now: Date.now(),
+      moments: moments,
     });
     var title = el.querySelector('.jp-title');
     if(title) title.id = 'jnPassportTitle';
@@ -983,11 +1009,61 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function renderAll(){ renderStats(); renderPassport(); renderTimeline(); }
 
+  // What the walk just saved earned (a new territory, a level, a badge):
+  // the pawprints without it against the pawprints with it. Shown as a card
+  // at the top of the pawprints until closed; a territory or level opens
+  // that territory too.
+  // The trails can load after the walk arrives, so the moment is worked out
+  // again on every draw from the two lists of walks kept here.
+  var momentWalks = null;
+  var momentOpened = false;
+  var momentToShow = false;
+  function noteMoments(entriesBefore){
+    momentWalks = { before: entriesBefore.slice(), after: state.entries.slice() };
+    momentOpened = false;
+    momentToShow = true;
+  }
+  function currentMoments(){
+    var api = window.DoloPawsPassport;
+    if(!momentWalks || !api || !api.passportMoments) return [];
+    var trails = allTrails();
+    var moments = api.passportMoments(api.buildPassport(momentWalks.before, trails), api.buildPassport(momentWalks.after, trails));
+    if(!momentOpened && moments[0] && moments[0].valley){ momentOpened = true; passportValley = moments[0].valley; }
+    return moments;
+  }
+  // Once the saved-walk sheet closes, bring the news into view.
+  function revealMoment(){
+    if(!momentToShow) return;
+    momentToShow = false;
+    // After the sheet's own save has redrawn the page.
+    setTimeout(function(){
+      var card = document.getElementById('jpMoment');
+      if(!card) return;
+      card.scrollIntoView({ block: 'center' });
+      card.classList.add('is-pop');
+      card.focus({ preventScroll: true });
+    }, 80);
+  }
+
   // Tapping a valley visa opens that valley's trail list; tapping it again closes it.
   var passportValley = '';
   var dogBreed = '';
   document.getElementById('jnPassport').addEventListener('click', function(ev){
     if(ev.target.closest && ev.target.closest('.jp-share')){ openPassportShare(ev.target.closest('.jp-share')); return; }
+    var momentShare = ev.target.closest && ev.target.closest('.jp-moment-share');
+    if(momentShare){
+      openPassportShare(momentShare, momentShare.getAttribute('data-valley') || '', momentShare.getAttribute('data-moment') || '');
+      return;
+    }
+    if(ev.target.closest && ev.target.closest('.jp-moment-close')){
+      momentWalks = null;
+      renderPassport();
+      var head = document.querySelector('#jnPassport .jp-title');
+      if(head){ head.setAttribute('tabindex', '-1'); head.focus(); }
+      return;
+    }
+    var visaShare = ev.target.closest && ev.target.closest('.jp-visa-share');
+    if(visaShare){ openPassportShare(visaShare, visaShare.getAttribute('data-valley') || ''); return; }
     var visa = ev.target.closest && ev.target.closest('.jp-visa');
     if(!visa) return;
     var name = visa.getAttribute('data-valley') || '';
@@ -1085,6 +1161,7 @@ document.addEventListener('DOMContentLoaded', function(){
     afterId = null;
     releaseAfterPhotos();
     if(afterReturnFocus && afterReturnFocus.focus) afterReturnFocus.focus();
+    revealMoment();
   }
 
   document.getElementById('jnWithChips').addEventListener('click', function(event){
@@ -1774,6 +1851,8 @@ document.addEventListener('DOMContentLoaded', function(){
   // ---- SOCIAL-07: share the passport as a picture ----------------------
   var passShareOverlay = document.getElementById('jnPassShareOverlay');
   var passShareFormat = 'story';
+  var passShareValley = '';
+  var passShareMoment = '';
   var passShareReturn = null;
   var passShareToken = 0;
   function passportCardOptions(){
@@ -1781,6 +1860,9 @@ document.addEventListener('DOMContentLoaded', function(){
       t: function(key, vars){ return window.t(key, vars); },
       lang: document.documentElement.lang || undefined,
       format: passShareFormat,
+      valley: passShareValley || undefined,
+      moment: passShareMoment || undefined,
+      now: Date.now(),
       dogName: dogDisplayName,
       dogBreed: dogBreed,
       dogPhoto: dogPhotoData,
@@ -1798,10 +1880,15 @@ document.addEventListener('DOMContentLoaded', function(){
       document.getElementById('jnPassSharePreview').src = canvas.toDataURL('image/png');
     }).catch(function(){ showStatus(window.t('journal.shareError')); });
   }
-  function openPassportShare(trigger){
+  // With a valley, the picture is that valley's visa ("Luna's new visa").
+  function openPassportShare(trigger, valley, moment){
     if(!window.DoloPawsPassportCard || !window.DoloPawsPassport) return;
     passShareReturn = trigger || null;
+    passShareValley = valley || '';
+    passShareMoment = moment || '';
     passShareFormat = 'story';
+    document.getElementById('jnPassShareTitle').textContent =
+      window.t(passShareValley ? 'journal.passport.card.visaShareTitle' : 'journal.passport.card.title');
     document.querySelectorAll('#jnPassShareFormats [data-format]').forEach(function(b){ b.classList.toggle('on', b.dataset.format === passShareFormat); });
     document.getElementById('jnPassSharePreview').alt = window.t('journal.passport.card.previewAlt');
     passShareOverlay.hidden = false;
@@ -1937,6 +2024,8 @@ document.addEventListener('DOMContentLoaded', function(){
       document.getElementById('jnGpxVerdict').textContent = window.t('journal.saveError');
       return;
     }
+    // A new territory, a level or a badge: shown once the sheet closes.
+    noteMoments(previousEntries);
     gpxOverlay.hidden = true;
     gpxResult = null;
     renderAll();
@@ -2007,7 +2096,11 @@ document.addEventListener('DOMContentLoaded', function(){
     if(savedId || journalParams.get('recorded') === '1'){
       if(window.history && window.history.replaceState) window.history.replaceState({}, '', 'journal.html');
       var justSaved = savedId ? entryById(savedId) : state.entries[0];
-      if(justSaved) setTimeout(function(){ openAfter(justSaved, true); }, 220);
+      if(justSaved){
+        noteMoments(state.entries.filter(function(e){ return e !== justSaved; }));
+        renderPassport();
+        setTimeout(function(){ openAfter(justSaved, true); }, 220);
+      }
     }
     document.getElementById('jnStorageNote').hidden = false;
     storageNote('synced');

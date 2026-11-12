@@ -8,7 +8,7 @@
     "distanceKm": 3.7,
     "ascentM": 31,
     "highestPointM": 1998,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Easy",
     "shadePercent": 27
   },
@@ -39,5 +39,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Ospizio San Bartolomeo, Passo del Tonale, the APT’s start": "Ospizio San Bartolomeo, Passo del Tonale, partenza indicata dall'APT",
+    "Gravel road used by farm and service vehicles.": "Strada sterrata percorsa da mezzi agricoli e di servizio.",
+    "Ruined fortifications and barracks: keep your dog away from walls and openings.": "Fortificazioni e baraccamenti in rovina: tieni il cane lontano da muri e aperture."
+  }
 }

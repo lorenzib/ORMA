@@ -8,7 +8,7 @@
     "distanceKm": 4.8,
     "ascentM": 161,
     "highestPointM": 1372,
-    "expectedDuration": "1.8 hours",
+    "expectedDuration": "1 h 50 min",
     "difficulty": "Moderate",
     "shadePercent": 15
   },
@@ -84,5 +84,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Petrol station on the SS 49 at Innichen, the board’s start": "Distributore di benzina sulla SS 49 a Innichen, la partenza indicata dalla scheda ufficiale",
+    "Mostly on narrow paved farm lanes: watch for farm traffic.": "Per lo più su strette stradine interpoderali asfaltate: attenzione ai mezzi agricoli.",
+    "Open meadows with little shade: carry water on hot days.": "Prati aperti con poca ombra: nelle giornate calde porta acqua.",
+    "Farmed meadows either side: keep your dog on the lane.": "Prati coltivati su entrambi i lati: tieni il cane sulla stradina."
+  }
 }

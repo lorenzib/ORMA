@@ -8,7 +8,7 @@
     "distanceKm": 4.8,
     "ascentM": 516,
     "highestPointM": 2020,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Hard",
     "shadePercent": 95
   },
@@ -55,5 +55,12 @@
       "downloadedAt": "2026-11-09",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Passo Cimabanche to Forcella Lerosa": "Da Passo Cimabanche a Forcella Lerosa",
+    "Passo Cimabanche, by the disused powder magazine, the board’s start": "Passo Cimabanche, accanto alla polveriera dismessa, la partenza ufficiale",
+    "A steady climb of 500 m on a stony mule track.": "Una salita regolare di 500 m su una mulattiera sassosa.",
+    "The start is by the busy SS51 at Passo Cimabanche: keep your dog on a short lead in the car park.": "La partenza è accanto alla trafficata SS51 a Passo Cimabanche: tieni il cane al guinzaglio corto nel parcheggio.",
+    "Cows may graze on the Lerosa meadows in summer.": "In estate le mucche possono pascolare sui prati di Lerosa."
+  }
 }

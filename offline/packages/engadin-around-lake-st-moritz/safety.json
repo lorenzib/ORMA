@@ -8,7 +8,7 @@
     "distanceKm": 4.3,
     "ascentM": 2,
     "highestPointM": 1802,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Easy",
     "shadePercent": 26
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lake St. Moritz shore loop": "Anello sulla riva del Lago di St. Moritz",
+    "St. Moritz station, the board’s start": "La stazione di St. Moritz, la partenza della scheda ufficiale",
+    "The lake has no railing: keep your dog on a short lead along the water.": "Il lago non ha parapetto: lungo l'acqua tieni il cane al guinzaglio corto.",
+    "Short ramps of up to 11% at the bridges.": "Brevi rampe fino all'11% in corrispondenza dei ponti.",
+    "Busy with walkers, cyclists and prams in summer: keep your dog close.": "D'estate c'è molta gente a piedi, in bici e con il passeggino: tieni il cane vicino."
+  }
 }

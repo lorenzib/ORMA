@@ -8,7 +8,7 @@
     "distanceKm": 9.4,
     "ascentM": 559,
     "highestPointM": 2435,
-    "expectedDuration": "5 hours",
+    "expectedDuration": "5 h",
     "difficulty": "Hard",
     "shadePercent": 0
   },
@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Valina d’Amola car park, the APT’s start": "Parcheggio di Valina d’Amola, la partenza indicata dall'APT",
+    "A steep, zigzagging ridge up to the Rifugio Segantini.": "Una cresta ripida, a zig-zag, fino al Rifugio Segantini.",
+    "High and open above 2,000 m: the APT advises an early start and stable weather.": "In quota e aperto oltre i 2.000 m: l'APT consiglia di partire presto e con tempo stabile.",
+    "Small wooden bridges over fast streams.": "Piccoli ponti di legno su torrenti impetuosi."
+  }
 }

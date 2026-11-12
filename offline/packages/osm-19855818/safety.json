@@ -8,7 +8,7 @@
     "distanceKm": 8.3,
     "ascentM": 600,
     "highestPointM": 1918,
-    "expectedDuration": "4.5 hours",
+    "expectedDuration": "4 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 55
   },
@@ -40,5 +40,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Tennis du Mottet, Valmorel (official start; parking P4, P5 or P6)": "Tennis du Mottet, Valmorel (partenza ufficiale; parcheggio P4, P5 o P6)",
+    "Stone steps up to Plan Salin and a long switchback descent ('Les 51 virages').": "Gradini di pietra fino a Plan Salin e una lunga discesa a tornanti ('Les 51 virages').",
+    "Wet, shaded ground by the waterfalls; strongly advised against in rain or storms (official).": "Terreno bagnato e ombreggiato vicino alle cascate; vivamente sconsigliato con pioggia o temporali (indicazione ufficiale).",
+    "Mountain bikes may cross the path in the forest (official).": "Nel bosco le mountain bike possono attraversare il sentiero (indicazione ufficiale)."
+  }
 }

@@ -398,7 +398,6 @@ window.ORMA_TRAIL_NAMES_IT = {
   "rendena-ciclabile-javre-dare-vigo-pelugo": "Anello sulla ciclabile Javrè – Pelugo",
   "rendena-giro-del-belvedere-giustino": "Giro del Belvedere",
   "santa-maddalena": "Rundweg St. Magdalena",
-  "sassolungo": "Giro Sassolungo–Sassopiatto",
   "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": "Croix du Berger dal Lac des Fées",
   "savoie-areches-beaufort-la-grande-berge": "La Grande Berge dal Plan de la Lai",
   "savoie-boucle-du-fornet-par-la-cascade-du-fornet": "Anello della cascata del Fornet da Le Fornet",

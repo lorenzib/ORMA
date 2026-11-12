@@ -8,7 +8,7 @@
     "distanceKm": 2.9,
     "ascentM": 197,
     "highestPointM": 1926,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 24
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Eulalia and Gian Plaiv trail, Zuoz": "Sentiero Eulalia e Gian Plaiv, Zuoz",
+    "The village square (Plaz) in Zuoz, the board’s start": "La piazza del paese (Plaz) di Zuoz, la partenza della scheda ufficiale",
+    "Village streets in Zuoz, including a short stretch of the main street: lead short for passing cars.": "Strade di paese a Zuoz, compreso un breve tratto della via principale: guinzaglio corto per le auto di passaggio.",
+    "Steep cobbled lanes in the old village.": "Ripide stradine acciottolate nel borgo antico.",
+    "Hay meadows are closed in the growing season: keep to the track.": "I prati da fieno sono chiusi durante il periodo vegetativo: resta sulla sterrata."
+  }
 }

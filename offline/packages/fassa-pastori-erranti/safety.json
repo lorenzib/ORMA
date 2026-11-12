@@ -8,7 +8,7 @@
     "distanceKm": 7.2,
     "ascentM": 245,
     "highestPointM": 1540,
-    "expectedDuration": "2.25 hours",
+    "expectedDuration": "2 h 15 min",
     "difficulty": "Moderate",
     "shadePercent": 32
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Vigo di Fassa (Strada Rezia), the APT’s start": "Vigo di Fassa (Strada Rezia), la partenza indicata dall'APT",
+    "About 1 km on tarmac, mostly quiet lanes in the hamlets, open to cars.": "Circa 1 km su asfalto, per lo più tranquille stradine nelle frazioni, aperte alle auto.",
+    "Steady climbs on gravel farm tracks; the APT suggests walking poles.": "Salite costanti su strade sterrate agricole; l'APT consiglia i bastoncini.",
+    "Working farms and barns at Vallonga and Tamion.": "Masi e fienili in attività a Vallonga e Tamion."
+  }
 }

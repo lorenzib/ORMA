@@ -8,7 +8,7 @@
     "distanceKm": 8.5,
     "ascentM": 393,
     "highestPointM": 1288,
-    "expectedDuration": "2.5–3 hours",
+    "expectedDuration": "2 h 30 min – 3 h",
     "difficulty": "Hard",
     "shadePercent": 80
   },
@@ -47,5 +47,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Place Tobé, Plateau d'Assy (official start)": "Place Tobé, Plateau d'Assy (partenza ufficiale)",
+    "The Nant Bordon suspension footbridge (metal grating).": "La passerella sospesa sul Nant Bordon (grata metallica).",
+    "About 500 m on lanes open to cars near the start.": "Circa 500 m su stradine aperte alle auto vicino alla partenza."
+  }
 }

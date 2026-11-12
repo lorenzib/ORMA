@@ -8,7 +8,7 @@
     "distanceKm": 4.2,
     "ascentM": 800,
     "highestPointM": 2103,
-    "expectedDuration": "2.75 hours",
+    "expectedDuration": "2 h 45 min",
     "difficulty": "Hard",
     "shadePercent": 9
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Campello Monti to the Lago del Capezzone": "Da Campello Monti al Lago del Capezzone",
+    "The car park in Campello Monti (1,305 m), the park authority’s start": "Il parcheggio di Campello Monti (1.305 m), la partenza dell'ente parco",
+    "Steep: 800 m up in 4.2 km.": "Ripido: 800 m di salita in 4,2 km.",
+    "Near the top the path crosses a smooth rock slab on cut steps: lift or help your dog over, and turn back if it is wet or icy.": "Vicino alla cima il sentiero attraversa una placca di roccia liscia su gradini scavati: solleva o aiuta il cane a passare, e torna indietro se è bagnata o ghiacciata.",
+    "Unbridged stream crossings.": "Guadi di torrenti senza ponte."
+  }
 }

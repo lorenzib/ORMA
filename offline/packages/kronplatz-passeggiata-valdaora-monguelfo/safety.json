@@ -8,7 +8,7 @@
     "distanceKm": 6.1,
     "ascentM": 34,
     "highestPointM": 1092,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 64
   },
@@ -55,5 +55,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Olang to Welsberg by the reservoir": "Da Olang a Welsberg lungo il bacino",
+    "Valdaora di Sopra, on the Pustertal cycle path, the board’s start": "Valdaora di Sopra, sulla pista ciclabile della Pustertal, la partenza indicata dalla scheda ufficiale",
+    "Shared with cyclists on the Pustertal cycle path: keep your dog close and on the right.": "Condivisa con i ciclisti sulla pista ciclabile della Pustertal: tieni il cane vicino e sulla destra.",
+    "Fenced stretch above the reservoir: do not let your dog down to the water.": "Tratto recintato sopra il lago artificiale: non lasciare scendere il cane verso l'acqua.",
+    "Short stretches on village roads at each end.": "Brevi tratti su strade di paese a entrambe le estremità."
+  }
 }

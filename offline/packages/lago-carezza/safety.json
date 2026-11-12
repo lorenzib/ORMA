@@ -8,7 +8,7 @@
     "distanceKm": 1.3,
     "ascentM": 20,
     "highestPointM": 1540,
-    "expectedDuration": "30 minutes",
+    "expectedDuration": "30 min",
     "difficulty": "Easy",
     "shadePercent": 70
   },
@@ -46,5 +46,12 @@
       "downloadedAt": "2026-07-27",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lago di Carezza Loop": "Anello del Lago di Carezza",
+    "Main parking area at Lago di Carezza": "Parcheggio principale del Lago di Carezza",
+    "Trailhead fountain": "Fontana alla partenza",
+    "The lake is fenced and swimming is not permitted.": "Il lago è recintato e non è permesso fare il bagno.",
+    "Carry water even though a fountain is listed.": "Porta comunque acqua, anche se è indicata una fontana."
+  }
 }

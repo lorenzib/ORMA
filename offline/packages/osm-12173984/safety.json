@@ -8,7 +8,7 @@
     "distanceKm": 5.5,
     "ascentM": 130,
     "highestPointM": 1194,
-    "expectedDuration": "1.5–2 hours",
+    "expectedDuration": "1 h 30 min – 2 h",
     "difficulty": "Easy",
     "shadePercent": 38
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Welsberg tourist office (official start), 180 m from the loop via the main square": "Ufficio turistico di Welsberg (partenza ufficiale), a 180 m dall'anello passando per la piazza principale",
+    "About 2 km on the asphalt old valley road, groomed as a cross-country ski trail in winter.": "Circa 2 km sulla vecchia strada di valle asfaltata, battuta come pista da fondo d'inverno.",
+    "Village lanes with light traffic.": "Stradine di paese con poco traffico.",
+    "Narrow wooden bridge.": "Stretto ponte di legno."
+  }
 }

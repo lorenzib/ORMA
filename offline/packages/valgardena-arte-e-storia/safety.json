@@ -8,7 +8,7 @@
     "distanceKm": 2.1,
     "ascentM": 76,
     "highestPointM": 1743,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 70
   },
@@ -55,5 +55,12 @@
       "downloadedAt": "2026-11-06",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Selva Way of the Cross": "Via Crucis di Selva",
+    "Daunëi, Selva di Val Gardena, the board’s start": "Daunëi, Selva di Val Gardena, partenza indicata dalla scheda ufficiale",
+    "The side trip up to the castle ruins climbs steep steps along the cliff: leave it out with a dog.": "La deviazione verso le rovine del castello sale per ripidi gradini lungo la parete: con il cane lasciala perdere.",
+    "Rocky ground and loose stones under the Stevia walls.": "Terreno roccioso e sassi instabili sotto le pareti dello Stevia.",
+    "Forest path with roots.": "Sentiero nel bosco con radici."
+  }
 }

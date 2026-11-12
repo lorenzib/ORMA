@@ -8,7 +8,7 @@
     "distanceKm": 3,
     "ascentM": 137,
     "highestPointM": 1324,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Moderate",
     "shadePercent": 6
   },
@@ -61,5 +61,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Moena (Piaz de Sotegrava), the APT’s start": "Moena (Piaz de Sotegrava), partenza indicata dall'APT",
+    "Almost all on tarmac: steep village streets in Moena open to cars, then the lane to Malga Roncac.": "Quasi tutto su asfalto: ripide vie del paese a Moena aperte alle auto, poi la stradina per Malga Roncac.",
+    "Hay meadows by the malga: keep to the lane.": "Prati da fieno vicino alla malga: resta sulla stradina."
+  }
 }

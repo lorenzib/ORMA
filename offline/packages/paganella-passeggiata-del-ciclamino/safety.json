@@ -8,7 +8,7 @@
     "distanceKm": 2.8,
     "ascentM": 76,
     "highestPointM": 960,
-    "expectedDuration": "0.8 hours",
+    "expectedDuration": "50 min",
     "difficulty": "Moderate",
     "shadePercent": 56
   },
@@ -54,5 +54,10 @@
       "downloadedAt": "2026-11-05",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Molveno, the APT’s start": "Molveno, la partenza indicata dall'APT",
+    "The path runs beside a fast stream: keep your dog out of the water after rain.": "Il sentiero corre accanto a un torrente impetuoso: dopo la pioggia tieni il cane fuori dall'acqua.",
+    "Village streets in Molveno at the start.": "Strade del paese di Molveno alla partenza."
+  }
 }

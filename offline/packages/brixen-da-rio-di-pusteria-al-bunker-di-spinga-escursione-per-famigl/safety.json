@@ -8,7 +8,7 @@
     "distanceKm": 3.4,
     "ascentM": 596,
     "highestPointM": 1384,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Hard",
     "shadePercent": 6
   },
@@ -77,5 +77,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Mühlbach to Spinges": "Da Mühlbach a Spinges",
+    "Mühlbach village centre, the board’s start": "Centro del paese di Mühlbach, la partenza indicata dalla scheda ufficiale",
+    "Steep lanes, mostly paved, shared with local traffic: keep your dog on a lead.": "Stradine ripide, per lo più asfaltate, condivise con il traffico locale: tieni il cane al guinzaglio.",
+    "Very little shade on the south-facing slope: go early in summer.": "Pochissima ombra sul pendio esposto a sud: d'estate parti presto.",
+    "Meadows are farmed: keep your dog on the path.": "I prati sono coltivati: tieni il cane sul sentiero."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 3.1,
     "ascentM": 30,
     "highestPointM": 1174,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Easy",
     "shadePercent": 27
   },
@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Antholz Niedertal village, bus 431 stop Antholz Niedertal (official start)": "Paese di Antholz Niedertal, fermata Antholz Niedertal dell'autobus 431 (partenza ufficiale)",
+    "A stretch on the cycle path along the stream, shared with bikes.": "Un tratto sulla ciclabile lungo il torrente, condiviso con le bici.",
+    "About 200 m on the Niedertaler Straße and short lanes past the Walderhöfe.": "Circa 200 m sulla Niedertaler Straße e brevi stradine accanto ai Walderhöfe.",
+    "A small wooden bridge with steps at km 2.1.": "Un piccolo ponte di legno con gradini al km 2,1."
+  }
 }

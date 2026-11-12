@@ -8,7 +8,7 @@
     "distanceKm": 2.9,
     "ascentM": 130,
     "highestPointM": 2030,
-    "expectedDuration": "0.75 hours",
+    "expectedDuration": "45 min",
     "difficulty": "Easy",
     "shadePercent": 3
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Morteratsch glacier path": "Sentiero del ghiacciaio del Morteratsch",
+    "Morteratsch station and Hotel Morteratsch, the board’s start": "La stazione di Morteratsch e l'Hotel Morteratsch, la partenza della scheda ufficiale",
+    "Busy with walkers and children in summer: keep your dog close.": "D'estate c'è molta gente a piedi e molti bambini: tieni il cane vicino.",
+    "Beyond the wooden bridge the way to the glacier tongue crosses scree and a rock step: not part of this walk.": "Oltre il ponte di legno la via verso la lingua del ghiacciaio attraversa ghiaioni e un gradino roccioso: non fa parte di questa escursione.",
+    "Never let your dog onto the glacier or the meltwater streams.": "Non lasciare mai andare il cane sul ghiacciaio o nei torrenti di fusione."
+  }
 }

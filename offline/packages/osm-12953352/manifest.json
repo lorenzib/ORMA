@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12953352",
   "name": "Archeopfad Brixen",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.922Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.271Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 893238,
+  "packageBytes": 912522,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.71343,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Archeopfad Brixen safety information",
       "url": "safety.json",
-      "bytes": 1937,
-      "sha256": "a33fb738b9706c05e920c57c8d155bd47bd2b2b04e0663a76503cb25735df1c4"
+      "bytes": 2548,
+      "sha256": "f81808c6b7923460f30309eb04a5f8d7622021b076fe1509618894581e9fedc0"
     }
   ]
 }

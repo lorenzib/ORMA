@@ -8,7 +8,7 @@
     "distanceKm": 3,
     "ascentM": 133,
     "highestPointM": 1409,
-    "expectedDuration": "0.9 hours",
+    "expectedDuration": "55 min",
     "difficulty": "Moderate",
     "shadePercent": 0.5
   },
@@ -47,5 +47,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Tuffbad loop, Lesachtal": "Anello del Tuffbad, Lesachtal",
+    "the car park below the Tuffbad, above St. Lorenzen im Lesachtal, the board’s start": "Il parcheggio sotto il Tuffbad, sopra St. Lorenzen im Lesachtal, la partenza indicata dalla scheda ufficiale",
+    "Alpine tracks and the forest road are open to farm and forestry vehicles.": "Le strade alpine e la strada forestale sono aperte ai mezzi agricoli e forestali.",
+    "Cattle may graze the alpine meadows in summer: short lead, give the herd room.": "D'estate il bestiame può pascolare sui prati alpini: guinzaglio corto, lascia spazio alla mandria."
+  }
 }

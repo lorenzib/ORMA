@@ -8,7 +8,7 @@
     "distanceKm": 10.5,
     "ascentM": 150,
     "highestPointM": 560,
-    "expectedDuration": "3.5 hours",
+    "expectedDuration": "3 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 60
   },
@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Top of the Raffeinweg above Lana, by the Waalheim car park (official start; signed from the Ultnerstraße)": "In cima al Raffeinweg sopra Lana, vicino al parcheggio Waalheim (partenza ufficiale; segnalata dalla Ultnerstraße)",
+    "The open irrigation channel runs right beside the path.": "La roggia aperta scorre proprio accanto al sentiero.",
+    "A steep tarmac climb of about 200 m up the Raffeinweg to the channel, then steps near the start.": "Una ripida salita asfaltata di circa 200 m su per il Raffeinweg fino alla roggia, poi gradini vicino alla partenza.",
+    "Several small footbridges.": "Diverse piccole passerelle."
+  }
 }

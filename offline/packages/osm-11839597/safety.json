@@ -8,7 +8,7 @@
     "distanceKm": 2.2,
     "ascentM": 100,
     "highestPointM": 1215,
-    "expectedDuration": "0.5–1 hours",
+    "expectedDuration": "30 min – 1 h",
     "difficulty": "Easy",
     "shadePercent": 80
   },
@@ -37,5 +37,9 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Fenn Promenade": "Passeggiata del Fenn",
+    "Dorf bus stop and village car park, Klobenstein (official start)": "Fermata dell'autobus Dorf e parcheggio del paese, Klobenstein (partenza ufficiale)"
+  }
 }

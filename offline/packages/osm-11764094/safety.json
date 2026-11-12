@@ -8,7 +8,7 @@
     "distanceKm": 12,
     "ascentM": 379,
     "highestPointM": 901,
-    "expectedDuration": "3.5 hours",
+    "expectedDuration": "3 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 35
   },
@@ -76,5 +76,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Dörferrunde: Natz, Raas, Schabs and Viums": "Dörferrunde: Natz, Raas, Schabs e Viums",
+    "Natz village centre, bus stop Natz Kirche (official start)": "Centro di Natz, fermata dell'autobus Natz Kirche (partenza ufficiale)",
+    "Road crossing at Hotel Seehof / Flötscher Weiher.": "Attraversamento stradale all'Hotel Seehof / Flötscher Weiher.",
+    "About 300 m on Laugenstraße without a pavement.": "Circa 300 m sulla Laugenstraße senza marciapiede.",
+    "About 1.5 km of asphalt and cobbles through Natz.": "Circa 1,5 km di asfalto e acciottolato attraverso Natz."
+  }
 }

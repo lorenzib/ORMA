@@ -8,7 +8,7 @@
     "distanceKm": 8,
     "ascentM": 55,
     "highestPointM": 2279,
-    "expectedDuration": "2.25 hours",
+    "expectedDuration": "2 h 15 min",
     "difficulty": "Moderate",
     "shadePercent": 0
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lago Bianco loop from Ospizio Bernina": "Anello del Lago Bianco dall’Ospizio Bernina",
+    "Ospizio Bernina station on the Bernina railway, the board’s start": "Stazione di Ospizio Bernina sulla ferrovia del Bernina, la partenza della scheda ufficiale",
+    "No shade at 2,200 m: strong sun and wind, bring water.": "Nessuna ombra a 2.200 m: sole forte e vento, porta acqua.",
+    "Weather turns fast on the pass: bring a layer for you and your dog.": "Sul passo il tempo cambia in fretta: porta uno strato in più per te e per il cane.",
+    "The Bernina railway runs along the lake: lead short near the tracks.": "La ferrovia del Bernina corre lungo il lago: guinzaglio corto vicino ai binari."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 9.18,
     "ascentM": 580,
     "highestPointM": 878,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Hard",
     "shadePercent": 59
   },
@@ -55,5 +55,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lasnigo, Barni and the Crezzo lake": "Lasnigo, Barni e il lago di Crezzo",
+    "Piazza Roma, Lasnigo, the published start": "Piazza Roma, Lasnigo, la partenza indicata",
+    "A steep woodland climb above Barni.": "Una ripida salita nel bosco sopra Barni.",
+    "Long stretches on quiet tarmac roads with occasional cars, including the 2.5 km descent.": "Lunghi tratti su strade asfaltate tranquille con qualche auto, compresa la discesa di 2,5 km.",
+    "The Crezzo lake: keep your dog out of the water near the picnic areas.": "Il lago di Crezzo: tieni il cane fuori dall'acqua vicino alle aree picnic."
+  }
 }
