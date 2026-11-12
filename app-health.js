@@ -178,6 +178,18 @@
   if(typeof module !== 'undefined' && module.exports){ module.exports = api; return; }
   if(root.__ormaAppHealth) return;
   root.__ormaAppHealth = true;
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire);
-  else wire();
+  // The journal sets up DoloPawsJournalImport in its own DOMContentLoaded
+  // handler, and this deferred script runs before that event fires. So wait
+  // for the journal rather than for the page: try now, after
+  // DOMContentLoaded (the journal's handler was added first, so it runs
+  // first) and after load, and wire once.
+  var wired = false;
+  function start(){
+    if(wired || !root.DoloPawsJournalImport) return;
+    wired = true;
+    wire();
+  }
+  start();
+  document.addEventListener('DOMContentLoaded', start);
+  root.addEventListener('load', start);
 })(typeof window !== 'undefined' ? window : globalThis);

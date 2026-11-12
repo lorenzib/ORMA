@@ -131,6 +131,18 @@ describe('SOCIAL-06 a walk from Apple Health: wiring', () => {
     expect(read('journal.html')).not.toMatch(/<script[^>]+app-health\.js/); // the website never loads it
   });
 
+  // The journal builds DoloPawsJournalImport in its DOMContentLoaded handler,
+  // after this deferred script has run: wiring at once found nothing and the
+  // button never appeared.
+  test('the script waits for the journal before adding its button', () => {
+    const script = read('app-health.js');
+    expect(script).toContain("if(wired || !root.DoloPawsJournalImport) return;");
+    expect(script).toContain("document.addEventListener('DOMContentLoaded', start);");
+    expect(script).toContain("root.addEventListener('load', start);");
+    const page = read('journal.html');
+    expect(page.indexOf("document.addEventListener('DOMContentLoaded'")).toBeLessThan(page.indexOf('window.DoloPawsJournalImport = {'));
+  });
+
   test('the journal hands its file window to the app', () => {
     const page = read('journal.html');
     expect(page).toContain('window.DoloPawsJournalImport = {');
