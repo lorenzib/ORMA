@@ -53,7 +53,7 @@ describe('high-mountain walks sit out their off-season', () => {
   test('every page that lists walks loads the season words before using them', () => {
     for(const page of ['index.html', 'browse-trails.html', 'collections.html']){
       const html = fs.readFileSync(path.join(__dirname, page), 'utf8');
-      expect(html).toContain('trail-season-words.js?v=20261111-2');
+      expect(html).toContain('trail-season-words.js?v=20261111-3');
     }
     expect(fs.readFileSync(path.join(__dirname, 'collections-page.js'), 'utf8')).toContain('hiddenThisMonth');
   });
