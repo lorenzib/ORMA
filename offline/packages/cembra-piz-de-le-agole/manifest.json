@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-piz-de-le-agole",
   "name": "Il Piz de le Agole, balcone sulla valle",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:05:19.226Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.927Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 981544,
+  "packageBytes": 981545,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.15652,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Il Piz de le Agole, balcone sulla valle safety information",
       "url": "safety.json",
-      "bytes": 1473,
-      "sha256": "8953c1b062ea12b0ef17ab7c9ea8878e5c1f3f71afa8cba754996fc355fe0b0c"
+      "bytes": 1474,
+      "sha256": "4b06323d24f8ac291e0355fe27272b39d606dadbf7aaefd21fdea2768f251ea7"
     }
   ]
 }

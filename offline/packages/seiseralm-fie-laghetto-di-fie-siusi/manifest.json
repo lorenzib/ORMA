@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-fie-laghetto-di-fie-siusi",
   "name": "Fiè to Siusi by the Laghetto di Fiè",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T19:46:27.490Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.590Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1191667,
+  "packageBytes": 1191663,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.51373,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Fiè to Siusi by the Laghetto di Fiè safety information",
       "url": "safety.json",
-      "bytes": 3285,
-      "sha256": "b4b7c5e0295f27cf0a59b6b8908a19625862022265e1152d48e2d9d1aca7e8f1"
+      "bytes": 3281,
+      "sha256": "2215cd92507242bfec2ef59c79e8f1d7566dcba5a79f6f462bf7fbc157015809"
     }
   ]
 }

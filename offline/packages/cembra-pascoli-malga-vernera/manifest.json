@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-pascoli-malga-vernera",
   "name": "Sui Pascoli di Malga Vernera",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:34.004Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:19.923Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 196242,
+  "packageBytes": 196239,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.20463,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sui Pascoli di Malga Vernera safety information",
       "url": "safety.json",
-      "bytes": 1630,
-      "sha256": "2871fc19825f546812669a2c94829219f735d361899ba6e34928fa62aeabbf9d"
+      "bytes": 1627,
+      "sha256": "2ba0742cee8bd8ff7f4f2a0c731647361f8c531ded44ec7ff6bee1734dfcf785"
     }
   ]
 }

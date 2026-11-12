@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "colle-passeggiata-intorno-al-colle",
   "name": "Walk round the Colle di Santa Lucia",
-  "version": "2026.11.11-beta.1",
-  "generatedAt": "2026-11-11T17:11:01.871Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.935Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 180776,
+  "packageBytes": 180773,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.4418,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Walk round the Colle di Santa Lucia safety information",
       "url": "safety.json",
-      "bytes": 1704,
-      "sha256": "e03ccbb9eddb4d7c02fc1508a88003c3ecf701e132164f2a074c968d30e2449c"
+      "bytes": 1701,
+      "sha256": "003e630802a2054f25215e1a1c6bfee7451afb8eabae08baf703697798081642"
     }
   ]
 }

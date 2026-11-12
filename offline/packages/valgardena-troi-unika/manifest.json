@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-troi-unika",
   "name": "Troi Unika art trail on Monte Pana",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T19:36:24.557Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.769Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 231269,
+  "packageBytes": 231266,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.54611,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Troi Unika art trail on Monte Pana safety information",
       "url": "safety.json",
-      "bytes": 1304,
-      "sha256": "9094fe1dc556cc4f509af75b5d8b73f8fe2b9e80ae0d9fab3c59cdd8d3c351a3"
+      "bytes": 1301,
+      "sha256": "81c186d0b4a734131975901cd548f740165f6ab0323d05d5e72f6459ea618932"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12173984",
   "name": "Große Schlossrunde",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T10:19:30.333Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.281Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 740345,
+  "packageBytes": 740350,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.75363,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Große Schlossrunde safety information",
       "url": "safety.json",
-      "bytes": 1988,
-      "sha256": "391561dbff5aece4188f25bbebcd5eb462c5dd04c21481477101023b1ab3b25b"
+      "bytes": 1993,
+      "sha256": "23030cbe68788f57f38f64d4d155578c030ab8a2ea9f0eedd056ee786184fac7"
     }
   ]
 }

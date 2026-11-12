@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal",
   "name": "Leitenwaal and Berkwaal, Schluderns",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T15:59:33.476Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.827Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 596653,
+  "packageBytes": 596649,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65854,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Leitenwaal and Berkwaal, Schluderns safety information",
       "url": "safety.json",
-      "bytes": 2038,
-      "sha256": "d880968c2a321151a62f733e2d759e119682c0e22b59f302459690b7802abfb9"
+      "bytes": 2034,
+      "sha256": "5f3dc893198b96e1320c32cc62a47a79dfbe648e05299abeedf23fba88a3d0f6"
     }
   ]
 }

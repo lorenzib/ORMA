@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-sentiero-gustav-mahler",
   "name": "Gustav Mahler path",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:30:12.131Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.655Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 622096,
+  "packageBytes": 622092,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.71949,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Gustav Mahler path safety information",
       "url": "safety.json",
-      "bytes": 1739,
-      "sha256": "2f4c430a2d51aa73ba5562f32844e53874806159a151fb9ea202b7cd62cdadeb"
+      "bytes": 1735,
+      "sha256": "7656ffa5f103c59069ff90f7a4676732a2d0130985e344f5b7ad799f65c83122"
     }
   ]
 }

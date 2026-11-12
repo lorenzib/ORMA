@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lago-braies",
   "name": "Lago di Braies Seeweg circuit",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:34.454Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.139Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 348308,
+  "packageBytes": 348305,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6855,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lago di Braies Seeweg circuit safety information",
       "url": "safety.json",
-      "bytes": 1137,
-      "sha256": "19d988338141d479f7f69b33a0a2593c7780e082fcc52e22876f509c685e5723"
+      "bytes": 1134,
+      "sha256": "4dfe484051453c0a3ded74d2b8214437ef02da7d7c3b41ef482870a260c6f8a0"
     }
   ]
 }

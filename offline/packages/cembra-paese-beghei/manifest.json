@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-paese-beghei",
   "name": "Il paese dei “Beghei”",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:46:48.441Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:19.921Z",
+  "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 534766,
+  "packageBytes": 534762,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16628,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Il paese dei “Beghei” safety information",
       "url": "safety.json",
-      "bytes": 1457,
-      "sha256": "a84c272be62630ea58e896c5903e75e5bb10abec2978f956f5efc23cacb95f2d"
+      "bytes": 1453,
+      "sha256": "cb914eb0c80306fedd69622f683426083d35cc4b47762af84e8b72ae562ee3c6"
     }
   ]
 }

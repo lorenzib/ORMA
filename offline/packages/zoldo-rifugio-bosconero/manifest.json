@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "zoldo-rifugio-bosconero",
   "name": "Pontesei to the Rifugio Bosconero",
-  "version": "2026.11.09-beta.1",
-  "generatedAt": "2026-11-09T21:57:13.530Z",
-  "scoringVersion": "1.7.0",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.861Z",
+  "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 355968,
+  "packageBytes": 355964,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.33286,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Pontesei to the Rifugio Bosconero safety information",
       "url": "safety.json",
-      "bytes": 1671,
-      "sha256": "97a42c1614b04e6d174b072f5478af8c0f92aa73d6612bd3242259cc003b3557"
+      "bytes": 1667,
+      "sha256": "e25e30232d6ac0df48be9c752d15367a045286e9682a58c20703f64a548b8eec"
     }
   ]
 }

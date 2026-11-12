@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11795251",
   "name": "Dörferrundweg (Vintl)",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:34.583Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.238Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1614314,
+  "packageBytes": 1614319,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.79966,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dörferrundweg (Vintl) safety information",
       "url": "safety.json",
-      "bytes": 2554,
-      "sha256": "394dae6019cc40ed3d00d7caaa5e4edb74561aa4bb684bf40dc107e3d532687a"
+      "bytes": 2559,
+      "sha256": "0f1cd18610466cb6087480b51d7acdb01c1f040759dc3a5a89e8584d77473146"
     }
   ]
 }

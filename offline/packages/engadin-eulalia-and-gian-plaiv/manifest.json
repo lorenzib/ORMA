@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "engadin-eulalia-and-gian-plaiv",
   "name": "Eulalia and Gian Plaiv trail, Zuoz",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T10:48:57.173Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.976Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 511801,
+  "packageBytes": 511797,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59656,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Eulalia and Gian Plaiv trail, Zuoz safety information",
       "url": "safety.json",
-      "bytes": 1360,
-      "sha256": "afd92a9e4e982501d5b4e22ce0c6aef0bcd3be8b0cca644037298306fb20620f"
+      "bytes": 1356,
+      "sha256": "03531c4830ff02aa9e4dcf92ab02217a3258c96fd5562b4d3b1df0e392f0bb9a"
     }
   ]
 }

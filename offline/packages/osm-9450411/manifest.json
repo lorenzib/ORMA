@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9450411",
   "name": "Poststeig",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:36.065Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.466Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 2301518,
+  "packageBytes": 2301519,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56675,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Poststeig safety information",
       "url": "safety.json",
-      "bytes": 2782,
-      "sha256": "738b416ec0b94f2b7662ca5cedc42fbe92107050690c1a1ae60a7a598c19ae1f"
+      "bytes": 2783,
+      "sha256": "0dc7bacbcd2b36f5e054e4ea63f14b961e95c4c8a77390b8471ffb25040ea40b"
     }
   ]
 }

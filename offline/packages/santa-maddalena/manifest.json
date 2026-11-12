@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "santa-maddalena",
   "name": "Rundweg St. Magdalena",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:36.299Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.561Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 710299,
+  "packageBytes": 710296,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6372,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg St. Magdalena safety information",
       "url": "safety.json",
-      "bytes": 1678,
-      "sha256": "9a6b5ab92b6cbd0064072ca0aa6fdec70f22bdbf0a0a1660d7ab7b3fcf5a4afa"
+      "bytes": 1675,
+      "sha256": "f208078152562f5c12414d530e50a967e96a4bdda207f1483fe294c3ae2a6caa"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-colfosco-rifugio-puez",
   "name": "Colfosco to the Rifugio Puez",
-  "version": "2026.11.05-beta.1",
-  "generatedAt": "2026-11-05T16:35:29.270Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.823Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 677398,
+  "packageBytes": 677394,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55079,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Colfosco to the Rifugio Puez safety information",
       "url": "safety.json",
-      "bytes": 1764,
-      "sha256": "82748a23d866aac1a3f52f6654471ad444dee5c4a27c054a5eff6a86f7fc0911"
+      "bytes": 1760,
+      "sha256": "58f0045314060d84cfa135699382187a22b61c48235847f3fbf3ab776ae41870"
     }
   ]
 }

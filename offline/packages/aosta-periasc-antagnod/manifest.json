@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "aosta-periasc-antagnod",
   "name": "Périasc – Antagnod",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:05:43.251Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.861Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 407907,
+  "packageBytes": 407903,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.80619,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Périasc – Antagnod safety information",
       "url": "safety.json",
-      "bytes": 2174,
-      "sha256": "b43917baf1939c912d418718a8b0d0f6b175d79b6b44dfe349d4318f8a6774f5"
+      "bytes": 2170,
+      "sha256": "8179ac5773492117ac590a4350c409c60db81fb936b82726c4253f4cb1f68373"
     }
   ]
 }

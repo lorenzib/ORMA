@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-tour-alla-volta-del-lech-sant",
   "name": "Lech Sant",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:17:50.167Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.768Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 460668,
+  "packageBytes": 460669,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56285,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lech Sant safety information",
       "url": "safety.json",
-      "bytes": 1309,
-      "sha256": "6f883c04cb6138864ee0e21b5fe4a591e4fab28805284c7dc45befc34716dd82"
+      "bytes": 1310,
+      "sha256": "6073fb768d8511abbd2ca33e0018e53f523ed52aa4ce07e3a4cec3a7764d2787"
     }
   ]
 }

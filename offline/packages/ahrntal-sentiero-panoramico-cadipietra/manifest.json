@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "ahrntal-sentiero-panoramico-cadipietra",
   "name": "Steinhaus panoramic path",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T23:23:12.534Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.820Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 409048,
+  "packageBytes": 409045,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.98699,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Steinhaus panoramic path safety information",
       "url": "safety.json",
-      "bytes": 1337,
-      "sha256": "200b371dbfd002f927327a3bd048c098aa240a72bd46e41dea759a0d53e08cbb"
+      "bytes": 1334,
+      "sha256": "8b41bc22a467f86eedc3aae0b7a00e0d4502b58d6eb11916a8181ab0df0b48ea"
     }
   ]
 }

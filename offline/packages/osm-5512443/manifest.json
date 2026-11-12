@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-5512443",
   "name": "Wallburgweg",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T10:18:49.720Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.398Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 833292,
+  "packageBytes": 833293,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.64539,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Wallburgweg safety information",
       "url": "safety.json",
-      "bytes": 1696,
-      "sha256": "26fddf7553e65a31978d82c61508e0939083383ad90199d0bf2f4b90df9da9c3"
+      "bytes": 1697,
+      "sha256": "5c9a79c02c2b6e173b8887b3d02369c3a260352798b4b545e6373f87fbe44c9f"
     }
   ]
 }

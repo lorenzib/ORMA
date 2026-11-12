@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "engadin-corvatsch-murtel-fuorcla-surlej",
   "name": "Fuorcla Surlej from Murtèl",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T20:46:59.330Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.974Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 182582,
@@ -233,7 +233,7 @@
       "label": "Fuorcla Surlej from Murtèl safety information",
       "url": "safety.json",
       "bytes": 1414,
-      "sha256": "3b7d5dd20975976895a0f9bb31b8d01e5eab0a225c7228c7ebdf86ce85116b14"
+      "sha256": "dd60d0a334bd13bececc181d58707a61e78e89acbf715f4f6319793e85080e7c"
     }
   ]
 }

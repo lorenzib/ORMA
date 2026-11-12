@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "savoie-boucle-du-fornet-par-la-cascade-du-fornet",
   "name": "Fornet waterfall loop from Le Fornet",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T04:07:22.846Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.567Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 257563,
@@ -233,7 +233,7 @@
       "label": "Fornet waterfall loop from Le Fornet safety information",
       "url": "safety.json",
       "bytes": 1759,
-      "sha256": "6510d5d5944682c4be5ea7101869512ec347f069ec2c3518213759a0b73f170a"
+      "sha256": "a8182b32ff60f02145d30190f34989b3246b7a67d66f24b09581903f40233d73"
     }
   ]
 }

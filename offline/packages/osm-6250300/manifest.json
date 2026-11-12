@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6250300",
   "name": "Boucle du Lac Vert",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:35.787Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.407Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 248005,
+  "packageBytes": 248002,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.94428,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Boucle du Lac Vert safety information",
       "url": "safety.json",
-      "bytes": 1301,
-      "sha256": "37040b57b1bfcef958c41869b28a43b0837b25bd2ef1a954b835a5c8e97c64c1"
+      "bytes": 1298,
+      "sha256": "e1f891a4cf6b89ff7fc23dc690650e31e4ff276aec897be0fc05077cbd758d9c"
     }
   ]
 }

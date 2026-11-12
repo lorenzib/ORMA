@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "cortina-passeggiata-gourmet",
   "name": "Passeggiata gourmet",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:12:17.667Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.945Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
   "packageBytes": 248803,
@@ -233,7 +233,7 @@
       "label": "Passeggiata gourmet safety information",
       "url": "safety.json",
       "bytes": 1393,
-      "sha256": "e60a986e70dcca1eb081beede3062566e3b21fbc4a2c1d64192978768a118daf"
+      "sha256": "3a821ab4595ab6a54ecbc2668e91d12405f7c8714319e891c1cd05073a2a8894"
     }
   ]
 }

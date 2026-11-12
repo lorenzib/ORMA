@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14381570",
   "name": "Albanne",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:35.412Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.330Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 579382,
+  "packageBytes": 579383,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.20183,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Albanne safety information",
       "url": "safety.json",
-      "bytes": 2219,
-      "sha256": "bb44f137e29bf2921709d0bc6d9681ce229f5cc36d6776154a2b7f1e1d93c458"
+      "bytes": 2220,
+      "sha256": "5a4580c58bb9b8950dda028b713fc7bbbbf022e8e004bfad26f01c6ba7851ef2"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-giro-delle-malghe-monte-tramontana",
   "name": "Nörderberg alms loop, Naturns",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T21:52:17.222Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.192Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 412870,
+  "packageBytes": 412866,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.60516,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Nörderberg alms loop, Naturns safety information",
       "url": "safety.json",
-      "bytes": 1946,
-      "sha256": "601131f27cce4cb18d3b571cbdec3bc62e9682c691a78ad9d7476862a55041c3"
+      "bytes": 1942,
+      "sha256": "4f82883cf413d961735381043f033e08f73eb7937e4fe8019abdd37c6cb9e46c"
     }
   ]
 }
