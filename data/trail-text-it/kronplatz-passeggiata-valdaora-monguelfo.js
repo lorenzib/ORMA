@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Cycle path, gravel and tarmac": "Pista ciclabile, sterrato e asfalto",
   "Valdaora di Sopra, on the Pustertal cycle path, the board’s start": "Valdaora di Sopra, sulla pista ciclabile della Pustertal, la partenza indicata dalla scheda ufficiale",
   "A gravel path beside a wooden fence above the turquoise Olang reservoir, with a bench, a painted sign and spruce forest on the slope": "Un sentiero sterrato accanto a una staccionata in legno sopra il lago artificiale turchese di Olang, con una panchina, un cartello dipinto e un bosco di abeti rossi sul pendio",
+  "The Valdaora reservoir among forest": "Il lago di Valdaora tra i boschi",
   "Partly shaded: nearly two thirds runs beside spruce and larch on the reservoir slope; the stretches through the villages are open.": "In parte all'ombra: quasi due terzi corrono accanto ad abeti rossi e larici sul pendio del lago artificiale; i tratti nei paesi sono aperti.",
   "Start in Valdaora (Olang) on the Pustertal cycle path, the board’s start.": "Parti da Valdaora (Olang) sulla pista ciclabile della Pustertal, la partenza indicata dalla scheda ufficiale.",
   "Along the cycle path beside the Valdaora reservoir to Monguelfo (Welsberg).": "Lungo la pista ciclabile accanto al lago artificiale di Valdaora fino a Monguelfo (Welsberg).",

@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "A compacted gravel forest road and a short cobbled lane": "Una strada forestale in sterrato compatto e una breve stradina acciottolata",
   "Solaiolo car park, the APT’s start": "Parcheggio di Solaiolo, partenza indicata dall'APT",
   "A long summer meadow of tall grass rising to the white hut of Le Malghette at the edge of spruce woods under a clear blue sky": "Un lungo prato estivo d'erba alta che sale fino alla baita bianca di Le Malghette al margine del bosco di abeti rossi, sotto un cielo azzurro limpido",
+  "The Palù Longa wetland in the forest": "La zona umida di Palù Longa nel bosco",
   "About half the way is shaded, in the spruce and larch woods below the meadow.": "Circa metà del percorso è all'ombra, nei boschi di abeti rossi e larici sotto il prato.",
   "Start at the Solaiolo car park, the tourist board’s start.": "Parti dal parcheggio di Solaiolo, la partenza indicata dall'ente turistico.",
   "Up the gravel road in three climbs, past the lane to the Palù Longa lake and the little stone hut, to the big meadow and the Le Malghette hut, and back the same way.": "Su per la strada sterrata in tre salite, oltre la stradina per il lago di Palù Longa e la piccola baita in pietra, fino al grande prato e alla baita di Le Malghette, e ritorno per la stessa via.",

@@ -5,6 +5,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest and lakeshore paths with roots, steps and a narrow rock-wall section": "Sentieri nel bosco e lungo la riva con radici, gradini e un tratto stretto lungo una parete di roccia",
   "Lago di Braies access, use the approved official P1–P4 parking set": "Accesso al Lago di Braies, usa i parcheggi ufficiali autorizzati P1–P4",
   "Southern shore of Lago di Braies with the lake and surrounding Dolomite peaks.": "La sponda sud del Lago di Braies con il lago e le cime dolomitiche attorno.",
+  "Lago di Braies under steep forested slopes": "Il Lago di Braies sotto ripidi versanti boscosi",
+  "Croda del Becco rising above Lago di Braies": "La Croda del Becco sopra il Lago di Braies",
   "Start at the lakeside access by Hotel Lago di Braies / Hotel Pragser Wildsee.": "Parti dall'accesso al lago vicino all'Hotel Lago di Braies / Hotel Pragser Wildsee.",
   "Follow the official lakeside circuit using markers 1 and 19. Keep to the path around the lake; one shore is a broad forest road and the opposite shore includes climbs and steps.": "Segui il giro ufficiale del lago con i segnavia 1 e 19. Resta sul sentiero attorno al lago; una sponda è un'ampia strada forestale, quella opposta ha salite e gradini.",
   "The official route publishes markers 1 and 19 together for the lake circuit rather than a separate numbered change point. At junctions, continue on the combined 1/19 lakeside circuit signs and keep to the path around the lake.": "Il percorso ufficiale indica insieme i segnavia 1 e 19 per il giro del lago, senza un punto di cambio numerato separato. Ai bivi continua a seguire i cartelli combinati 1/19 del giro del lago e resta sul sentiero attorno al lago."

@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest paths, village lanes and the valley cycle and foot path": "Sentieri nel bosco, stradine di paese e la ciclopedonale della valle",
   "Pozza di Fassa (Piaza de Comun), the APT’s start": "Pozza di Fassa (Piaza de Comun), la partenza indicata dall'APT",
   "Grey Dolomite peaks above a dark spruce forest and a row of houses on a meadow above Pozza": "Cime dolomitiche grigie sopra uno scuro bosco di abeti rossi e una fila di case su un prato sopra Pozza",
+  "The Catinaccio above Pozza di Fassa": "Il Catinaccio sopra Pozza di Fassa",
   "Mostly open: about a fifth is in the wood round the spring; the riverside path and the village are open.": "Per lo più aperto: circa un quinto è nel bosco intorno alla sorgente; il sentiero lungo il fiume e il paese sono aperti.",
   "Start at Piaza de Comun in Pozza, the tourist board’s start.": "Parti da Piaza de Comun a Pozza, la partenza indicata dall'ente turistico.",
   "Up the pavement towards the lifts, right through the Freina quarter, down a path through a light wood to the cycle and foot path from Soraga, and back along the Avisio to Pozza.": "Sali sul marciapiede verso gli impianti, a destra attraverso il rione Freina, giù per un sentiero in un bosco rado fino alla ciclopedonale da Soraga, e ritorno lungo l'Avisio fino a Pozza.",

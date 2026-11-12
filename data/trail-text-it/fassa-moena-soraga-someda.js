@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village streets, farm lanes and a short flight of steps; mostly tarmac": "Vie del paese, stradine agricole e una breve scalinata; per lo più asfalto",
   "Moena (Piaz de Ramon), the APT’s start": "Moena (Piaz de Ramon), partenza indicata dall'APT",
   "The small white church of Santi Rocco, Fabiano e Sebastiano in Someda with its pointed spire, between old houses, autumn larches and rock behind": "La piccola chiesa bianca dei Santi Rocco, Fabiano e Sebastiano a Someda con il campanile appuntito, tra vecchie case, larici autunnali e roccia sullo sfondo",
+  "The Sorte meadows under the mountains": "I prati di Sorte sotto le montagne",
   "Almost no tree cover: the lane above the reservoir runs across open meadows.": "Quasi nessuna copertura arborea: la stradina sopra il lago attraversa prati aperti.",
   "Start at Piaz de Ramon in Moena, the tourist board’s start.": "Parti da Piaz de Ramon a Moena, la partenza indicata dall'ente turistico.",
   "Through the narrow passage and up the steps to Strada de Someda, to Someda and its church, along Strada Frate E. Chiocchetti-Lenz, Strada del Termen and Strada de Roisc to Soraga Alta, down Troi de Pala into Soraga, and back the same way.": "Attraverso lo stretto passaggio e su per i gradini fino a Strada de Someda, fino a Someda e alla sua chiesa, lungo Strada Frate E. Chiocchetti-Lenz, Strada del Termen e Strada de Roisc fino a Soraga Alta, giù per Troi de Pala fino a Soraga, e ritorno per la stessa via.",

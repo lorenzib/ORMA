@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Gravel forest roads and forest paths": "Strade forestali sterrate e sentieri nel bosco",
   "Helm gondola top station, the board’s start": "Stazione a monte della cabinovia dell'Helm, la partenza indicata dalla scheda ufficiale",
   "The pale limestone walls of the Sexten Dolomites seen from the Helm, golden larches in the valley below and a blue sky with thin cloud": "Le chiare pareti calcaree delle Dolomiti di Sesto viste dall'Helm, larici dorati nella valle sottostante e un cielo azzurro con nuvole sottili",
+  "Sexten and the Fischleintal from above": "Sesto e la Val Fiscalina dall'alto",
+  "Schwalbenkofel and the Bullköpfe from Monte Elmo": "Croda dei Rondoi e Testa di Toro dal Monte Elmo",
   "The walk starts at the top of the Vierschach – Helm gondola, whose cabins are closed, and ends on foot in Vierschach. Keep your dog on a lead in the cabin and carry a muzzle.": "La passeggiata parte dalla stazione a monte della cabinovia Vierschach – Helm, con cabine chiuse, e finisce a piedi a Vierschach. In cabina tieni il cane al guinzaglio e porta la museruola al seguito.",
   "Over half shaded: below the open Helm summit area the paths run through larch and spruce forest.": "Più di metà all'ombra: sotto la zona aperta della cima dell'Helm i sentieri attraversano boschi di larice e abete rosso.",
   "Start at the Helm restaurant at the top of the gondola from Vierschach; the tourist board’s start.": "Parti dal ristorante Helm alla stazione a monte della cabinovia da Vierschach; la partenza indicata dall'ente turistico.",

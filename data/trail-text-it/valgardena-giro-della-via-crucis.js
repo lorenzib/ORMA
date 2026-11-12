@@ -8,6 +8,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village lanes, meadow paths and the old railway path": "Stradine di paese, sentieri tra i prati e il sentiero della vecchia ferrovia",
   "Casa Orchidee above the parish church, Santa Cristina, the board’s start": "Casa Orchidee sopra la chiesa parrocchiale, Santa Cristina, partenza indicata dalla scheda ufficiale",
   "A wooden bench on a grassy slope above Santa Cristina, the village roofs and a road below": "Una panchina di legno su un pendio erboso sopra Santa Cristina, i tetti del paese e una strada più in basso",
+  "Sassolungo and Sassopiatto": "Sassolungo e Sassopiatto",
+  "The Sassolungo group from above Santa Cristina": "Il gruppo del Sassolungo da sopra Santa Cristina",
   "Almost no shade: the loop runs across open meadows above the village.": "Quasi nessuna ombra: l'anello attraversa prati aperti sopra il paese.",
   "From the Casa Orchidee above the parish church of Santa Cristina along the Way of the Cross over the Col da Mëssa to the hamlet of Plesdinaz; down the Plesdinaz road to the junction with the Cisles road, along the Cisles road to the old railway path (Sentiero del Trenino), and back to the start.": "Dalla Casa Orchidee sopra la chiesa parrocchiale di Santa Cristina lungo la Via Crucis passando per il Col da Mëssa fino alla frazione di Plesdinaz; scendi per la strada di Plesdinaz fino al bivio con la strada del Cisles, lungo la strada del Cisles fino al vecchio tracciato della ferrovia (Sentiero del Trenino), e torna alla partenza.",
   "Drinking fountain at the start": "Fontanella alla partenza",

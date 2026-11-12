@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Lakeside path, mountain paths and gravel track": "Sentiero lungo il lago, sentieri di montagna e strada sterrata",
   "Pragser Wildsee car park, the board’s start": "Parcheggio del Pragser Wildsee, la partenza indicata dalla scheda ufficiale",
   "The wooden Rossalm hut and its outbuildings on a grassy alpine slope, a gravel track climbing past it towards scattered larches and pines": "La malga Rossalm in legno e i suoi annessi su un pendio alpino erboso, una strada sterrata che sale oltre verso larici e pini sparsi",
+  "Lago di Braies below the cliffs": "Il Lago di Braies sotto le pareti",
   "Partly shaded: the lower part of the climb is in forest; the upper slopes to the Rossalm are open.": "In parte all'ombra: la parte bassa della salita è nel bosco; i pendii alti verso la Rossalm sono aperti.",
   "Start at the Pragser Wildsee, on its west shore; the tourist board’s start.": "Parti dal Pragser Wildsee, sulla sponda ovest; la partenza indicata dall'ente turistico.",
   "Paths 1 and 4: along the west shore of the Pragser Wildsee to its south-east end, right at the junction on path 1 and up for about 2.2 km to the next junction, then on path 4 for about 3 km to the Rossalm. Back the same way.": "Sentieri 1 e 4: lungo la sponda ovest del Pragser Wildsee fino all'estremità sud-est, a destra al bivio sul sentiero 1 e su per circa 2,2 km fino al bivio successivo, poi sul sentiero 4 per circa 3 km fino alla Rossalm. Ritorno per la stessa via.",

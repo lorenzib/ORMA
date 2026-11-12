@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Waal path, mule tracks and village lanes": "Sentiero lungo la roggia (Waal), mulattiere e stradine di paese",
   "The square in Kastelbell, the board’s start": "La piazza di Kastelbell, partenza indicata dalla scheda ufficiale",
   "A small whitewashed wayside shrine with a wrought-iron grille and flowers inside, in dappled shade beside the path": "Un piccolo capitello imbiancato a calce con una grata in ferro battuto e fiori all'interno, nella mezz'ombra accanto al sentiero",
+  "Juval castle on its ridge": "Castel Juval sul suo crinale",
+  "Juval castle above the valley": "Castel Juval sopra la valle",
   "Mostly open: about a fifth runs through mapped woodland; the Sonnenberg slopes are in full sun.": "Per lo più aperto: circa un quinto corre nel bosco segnato sulla mappa; i pendii del Sonnenberg sono in pieno sole.",
   "Start on the square in Kastelbell, the board’s start.": "Parti dalla piazza di Kastelbell, la partenza indicata dalla scheda ufficiale.",
   "Walk to the Köfelgut winery, then follow path 3 along the Schnalswaal, level through chestnut and mixed woods, to Castel Juval, part of the Messner Mountain Museum. From there take path 1 down to Staben.": "Cammina fino alla cantina Köfelgut, poi segui il sentiero 3 lungo lo Schnalswaal, in piano tra boschi di castagni e misti, fino a Castel Juval, parte del Messner Mountain Museum. Da lì prendi il sentiero 1 in discesa fino a Staben.",
