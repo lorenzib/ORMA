@@ -66289,6 +66289,107 @@
       ],
       startPoint: { lat: 46.446903, lng: 12.014045, label: "The piazza of Colle Santa Lucia, by the church, the association’s start" },
       desc: "A short, easy loop round the knoll of Colle Santa Lucia, through hay meadows and past the Via Crucis stations, with views of the village church and the Pelmo. The association lists 1.1 km and 59 m up."
+    },
+    'kronplatz-sulle-tracce-della-lacerta-prima': {
+      // Hand audit: 11 November 2026, verified on arrival (new-trail Dolomites batch 10).
+      // “Sulle tracce della Lacerta Prima”, published by Olang tourist board (Tourismusverein Olang), drawn on 23 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Olang (2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried; no dogs in cemeteries, parks, playgrounds or on farmed meadows). No park or Natura 2000 site. No main road, but about 1.9 km of village and farm lanes. The Lacerta Prima sculpture is only promised for autumn 2026, so the record does not mention it.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Valdaora di Sopra – Rio Brunst – Otto Chiese, Olang",
+      distance: 4.3,
+      elevation: 128,
+      hours: '1.25',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the church of Valdaora di Sopra past the old smithy and sawmill, along the Rio Brunst, up a forest road to the Otto Chiese viewpoint and back across the Seefelder meadows, as the board publishes it (4.3 km, 128 m up, 1:10 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the church of Valdaora di Sopra (Oberolang), the board’s start.",
+        "sequence": "Walk past the Mondo Bimbi play area towards the old smithy (Fucina) and the Lipper sawmill. Cross the Rio Brunst and take the narrow path along the stream to the Chill Area. A forest road then leads to the Otto Chiese viewpoint, looking over the Braies Dolomites and the Kühwiesenkopf, where the Megachirella wachtleri fossil was found in 1999. Back on the forest road, carry on towards “Alte Böden”, then follow the signs for “Seefelder” across wide meadows, and the loop brings you back to the church.",
+        "switches": "Past Mondo Bimbi to the Fucina and the Lipper sawmill; over the Rio Brunst onto the streamside path to the Chill Area; forest road to the Otto Chiese viewpoint; back on the forest road towards “Alte Böden”; “Seefelder” across the meadows; back to the church.",
+        "steps": [
+          {
+            "text": "The church of Valdaora di Sopra",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past Mondo Bimbi to the old smithy and the Lipper sawmill",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Over the Rio Brunst and along the stream to the Chill Area",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Forest road to the Otto Chiese viewpoint",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Towards “Alte Böden”, then “Seefelder” across the meadows back to the church",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Olang tourist board (Tourismusverein Olang), Sulle tracce della Lacerta Prima (route description)",
+            "url": "https://www.outdooractive.com/it/r/811108780",
+            "authority": "Olang tourist board (Tourismusverein Olang)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-11"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-11',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Valdaora di Sopra church (corinasdavide on Wikimedia Commons, CC BY 3.0), 9 August 2008, 71 m from the line.",
+        route: "Official loop of 4.3 km from The church of Valdaora di Sopra (Oberolang), as Olang tourist board (Tourismusverein Olang) publishes it; the stored line is drawn on 23 OSM ways along the board’s published line, 4.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number on the board’s page: from the church of Valdaora di Sopra past Mondo Bimbi to the Fucina and the Lipper sawmill, over the Rio Brunst and along the stream to the Chill Area, forest road to the Otto Chiese viewpoint, then towards “Alte Böden” and “Seefelder” across the meadows back to the church.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 0.7, km 0.9, km 4.1 (OSM nodes 2206612489, 7773490787, 7773490785, 13073881258).",
+        elevation: "Official 4.3 km, 128 m up and 139 m down, 1:10 h (Olang tourist board (Tourismusverein Olang), Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Olang tourist board (Tourismusverein Olang), Sulle tracce della Lacerta Prima (its Outdooractive tour)",
+          "Gemeinde Olang / Comune di Valdaora, Verordnung betreffend die Haltung von Hunden und anderen Tieren (Gemeinderat Nr. 11, 25.02.2010, amended Nr. 5, 23.02.2026), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds and parks, or on farmed meadows and fields in the growing season; no bathing in fountains",
+          "No park or Natura 2000 site on the line (EEA; Province of Bolzano landscape-plan layers)",
+          "OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-11'
+      },
+      shadeCoverage: 22,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 1.9 km on village streets and farm lanes, open to cars and tractors: keep your dog on a short lead","Narrow path along the Rio Brunst: keep your dog close by the water","Olang keeps dogs out of the cemetery at the start, the play area and the farmed meadows: stay on the lanes and paths"],
+      terrainType: "Village lanes, streamside path and forest road",
+      shadeDescription: "Mostly open: the streamside path and the forest road to the viewpoint give some shade; the meadows and lanes are in full sun.",
+      terrainDescription: "An easy theme loop from Valdaora di Sopra past an old smithy and sawmill, along the Rio Brunst and up to the Otto Chiese viewpoint over the Braies Dolomites, then back across open meadows.",
+      waterDescription: "Drinking water is mapped at the start and at about km 0.7, 0.9 and 4.1 (OSM); cafés and a pizzeria are by the church.",
+      dogNotes: "Olang requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of cemeteries, parks and playgrounds, off farmed meadows in the growing season and out of the fountains. The walk starts by the church and cemetery and passes a play area, so keep to the lanes and paths.",
+      tips: "Start at the church of Valdaora di Sopra: 4.3 km and 128 m up, a little over an hour, as the board lists. Much of it is on quiet lanes, so keep a short lead; carry water on hot days, as most of the loop is in the sun.",
+      sourceLinks: [
+        { label: "Olang tourist board (Tourismusverein Olang), Sulle tracce della Lacerta Prima", url: "https://www.outdooractive.com/it/r/811108780" },
+        { label: "Gemeinde Olang, dog regulation (2010, amended 2026)", url: "https://www.gemeinde.olang.bz.it/system/web/GetDocument.ashx?cts=1792490199&fileId=179640" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.757579, lng: 12.040246, label: "The church of Valdaora di Sopra (Oberolang), the board’s start" },
+      desc: "An easy loop from Valdaora di Sopra past an old smithy and sawmill, along the Rio Brunst and up a forest road to the Otto Chiese viewpoint over the Braies Dolomites, then back across the meadows. The board lists 4.3 km and 128 m up."
     }
   };
 

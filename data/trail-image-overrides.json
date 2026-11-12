@@ -2621,6 +2621,23 @@
       }
     },
     {
+      "id": "kronplatz-sulle-tracce-della-lacerta-prima",
+      "approvedReviewId": "commons-kronplatz-sulle-tracce-della-lacerta-prima-on-route",
+      "approvedAt": "2026-11-11T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/kronplatz-valdaora-di-sopra-church.jpg",
+        "heroImage": "images/trails/kronplatz-valdaora-di-sopra-church.jpg",
+        "imageAlt": "A white church tower and cemetery wall on a rise above freshly mown green meadows, with wooded hills under a blue sky",
+        "imageCredit": "Valdaora di Sopra church",
+        "imageCreditText": "Valdaora di Sopra church by corinasdavide",
+        "imageCreator": "corinasdavide",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Giochi_di_luci_(DC)_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "kronplatz-valdaora-di-sopra-goste",
       "approvedReviewId": "mapillary-kronplatz-valdaora-di-sopra-goste-on-route",
       "approvedAt": "2026-10-29T18:00:00.000Z",

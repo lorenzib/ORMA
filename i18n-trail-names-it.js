@@ -159,6 +159,7 @@ window.ORMA_TRAIL_NAMES_IT = {
   "kronplatz-san-lorenzo-maria-sares": "Da San Lorenzo a Maria Sares",
   "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": "Anello del sentiero della roggia di Gais",
   "kronplatz-sentiero-tematico-tru-dles-liondes": "Tru dles Liondes",
+  "kronplatz-sulle-tracce-della-lacerta-prima": "Sulle tracce della Lacerta Prima a Valdaora di Sopra",
   "kronplatz-valdaora-di-sopra-goste": "Da Valdaora di Sopra all’Alte Goste",
   "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": "Da Valdaora di Sotto a Bad Bergfall",
   "lago-braies": "Giro del Lago di Braies (Seeweg)",
