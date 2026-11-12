@@ -24,6 +24,8 @@ window.ORMA_TRAIL_NAMES_IT = {
   "aosta-sentiero-della-regina": "Sentiero della Regina",
   "aosta-strada-lombarda": "Strada Lombarda",
   "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "Alpenzù Piccolo e Alpenzù Grande",
+  "auronzo-proazei": "Anello di Proazei sopra il lago di Auronzo",
+  "auronzo-zamberlan": "Da Cima Gogna a Zamberlan",
   "bormio-da-arnoga-al-rifugio-federico": "Arnoga – Rifugio Federico, Val Viola",
   "brixen-alto-sentiero-di-lazfons": "Alta via di Latzfons",
   "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": "Da Mühlbach a Spinges",

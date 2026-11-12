@@ -1963,6 +1963,16 @@
       "name": "Lacerta Prima theme trail at Valdaora di Sopra",
       "slug": "lacerta-prima-valdaora-di-sopra",
       "gloss": "a farm-lane and forest loop to the Otto Chiese viewpoint"
+    },
+    "auronzo-proazei": {
+      "name": "Proazei loop above Lake Auronzo",
+      "slug": "proazei-auronzo",
+      "gloss": "a short forest loop from the Transacqua bridge"
+    },
+    "auronzo-zamberlan": {
+      "name": "Cima Gogna to Zamberlan",
+      "slug": "cima-gogna-zamberlan",
+      "gloss": "a steady forest-track climb above Cima Gogna and back"
     }
   }
 }

@@ -3857,6 +3857,22 @@
       "quote": "Sentiero tematico · Lunghezza 4,3 km · Durata 1:10 h · Salita 128 m · Discesa 139 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-11T21:00:00.000Z"
+    },
+    "auronzo-proazei": {
+      "url": "https://www.outdooractive.com/it/r/812510469",
+      "publisher": "Consorzio Turistico Tre Cime Dolomiti (Outdooractive)",
+      "name": "4 - Proazei",
+      "quote": "Distanza 2,0 km · Durata 0:40 h · Salita 77 m · Discesa 77 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-12T21:00:00.000Z"
+    },
+    "auronzo-zamberlan": {
+      "url": "https://www.outdooractive.com/it/r/812604280",
+      "publisher": "Consorzio Turistico Tre Cime Dolomiti (Outdooractive)",
+      "name": "20 - Zamberlan",
+      "quote": "Distanza 6,4 km · Durata 2:45 h · Salita 528 m · Discesa 528 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-12T21:00:00.000Z"
     }
   }
 }

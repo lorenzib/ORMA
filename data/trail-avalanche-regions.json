@@ -147,6 +147,18 @@
       ],
       "highPoint": 1901
     },
+    "auronzo-proazei": {
+      "regions": [
+        "IT-34-BL-03"
+      ],
+      "highPoint": 922
+    },
+    "auronzo-zamberlan": {
+      "regions": [
+        "IT-34-BL-03"
+      ],
+      "highPoint": 1279
+    },
     "bormio-da-arnoga-al-rifugio-federico": {
       "regions": [
         "IT-25-SO-03"

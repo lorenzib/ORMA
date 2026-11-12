@@ -66390,6 +66390,207 @@
       ],
       startPoint: { lat: 46.757579, lng: 12.040246, label: "The church of Valdaora di Sopra (Oberolang), the board’s start" },
       desc: "An easy loop from Valdaora di Sopra past an old smithy and sawmill, along the Rio Brunst and up a forest road to the Otto Chiese viewpoint over the Braies Dolomites, then back across the meadows. The board lists 4.3 km and 128 m up."
+    },
+    'auronzo-proazei': {
+      // Hand audit: 12 November 2026, verified on arrival (new-trail Dolomites batch 11).
+      // “4 - Proazei”, published by Consorzio Turistico Tre Cime Dolomiti, drawn on 3 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Auronzo di Cadore (no dog rule found online: national rule). No park or Natura 2000 site. No main road: forest path and track; via Navarre is a track in OSM.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Ponte di Transacqua – Proazei – Navare, Auronzo di Cadore",
+      distance: 2,
+      elevation: 77,
+      hours: '0.75',
+      routeShape: 'loop',
+      routeShapeNote: "A short loop from the Transacqua bridge on Lake Auronzo up a mule track into the woods to Proazei, down path 4 to Navare and back along the Ansiei river, as the board publishes it (2 km, 77 m up, 40 min).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Ponte di Transacqua, the bridge over Lake Auronzo, the board’s start.",
+        "sequence": "From the bridge climb a steep mule track and carry on through the woods. At Proazei, at the fork with path 4a, keep on path 4 steeply down to Navare. There turn right along via Navarre, pass the Ponte Malon hydroelectric plant and follow the Ansiei river along its right bank back to the start.",
+        "switches": "Steep mule track up from the Transacqua bridge into the woods; at Proazei keep on path 4 (not 4a) steeply down to Navare; right along via Navarre past the Ponte Malon power station; along the Ansiei back to the bridge.",
+        "steps": [
+          {
+            "text": "Ponte di Transacqua on Lake Auronzo",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Steep mule track up into the woods",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Proazei: keep on path 4 at the fork with path 4a",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Steeply down to Navare",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Right along via Navarre past the Ponte Malon power station and along the Ansiei back to the bridge",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Consorzio Turistico Tre Cime Dolomiti, 4 - Proazei (route description)",
+            "url": "https://www.outdooractive.com/it/r/812510469",
+            "authority": "Consorzio Turistico Tre Cime Dolomiti",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-12"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-12',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Transacqua bridge, Lake Auronzo (Kufoleto on Wikimedia Commons, CC BY 3.0), 26 August 2008, 43 m from the line.",
+        route: "Official loop of 2 km from The Ponte di Transacqua on Lake Auronzo, as Consorzio Turistico Tre Cime Dolomiti publishes it; the stored line is drawn on 3 OSM ways along the board’s published line, 2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Path 4: from the Transacqua bridge up the mule track to Proazei, keeping on path 4 at the fork with path 4a, down to Navare, then via Navarre past the Ponte Malon power station and along the Ansiei back to the bridge.",
+        mapPoints: "Start at the board’s start; drinking water at the start (OSM nodes 7733745213).",
+        elevation: "Official 2 km, 77 m up and 77 m down, 40 min (Consorzio Turistico Tre Cime Dolomiti, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Consorzio Turistico Tre Cime Dolomiti, 4 - Proazei (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Auronzo di Cadore (its site lists documents only through a script), so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (EEA)",
+          "OpenStreetMap ways along the board’s line (3 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-12'
+      },
+      shadeCoverage: 46,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["A steep mule track at the start and a steep descent to Navare: take it slowly with an older dog","Via Navarre is a track that can see the odd car to the houses and the power station: keep your dog close","The Ansiei river runs beside the last stretch: keep your dog out of the fast water"],
+      terrainType: "Mule track, forest path and riverside track",
+      shadeDescription: "About half in woods, on the climb and the descent; the riverside stretch and the bridge are open.",
+      terrainDescription: "A short loop from the Transacqua bridge on Lake Auronzo up through the woods to Proazei and down to the Ansiei river, past the Ponte Malon power station.",
+      waterDescription: "Drinking water is mapped at the start (OSM); bars by the lake at the start.",
+      dogNotes: "Auronzo has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried. Keep your dog out of the Ansiei river, which runs fast below the dam.",
+      tips: "Start at the Transacqua bridge on Lake Auronzo: 2 km and 77 m up, about 40 minutes, as the board lists. Short but with two steep bits; good as a leg-stretch before or after time by the lake.",
+      sourceLinks: [
+        { label: "Consorzio Turistico Tre Cime Dolomiti, 4 - Proazei", url: "https://www.outdooractive.com/it/r/812510469" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.548355, lng: 12.43936, label: "The Ponte di Transacqua on Lake Auronzo, the board’s start" },
+      desc: "A short loop from the Transacqua bridge on Lake Auronzo up a mule track into the woods to Proazei, down path 4 to Navare and back along the Ansiei river. The board lists 2 km and 77 m up."
+    },
+    'auronzo-zamberlan': {
+      // Hand audit: 12 November 2026, verified on arrival (new-trail Dolomites batch 11).
+      // “20 - Zamberlan”, published by Consorzio Turistico Tre Cime Dolomiti, drawn on 7 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Auronzo di Cadore (no dog rule found online: national rule). Natura 2000 ZPS IT3230089 (DGR 786/2016 Art. 99 restates the national rule). No main road: all forest track; the start is beside the SS52 at Cima Gogna. Out and back on the same track, as the board says.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Cima Gogna – Le Prese – Pian di Barco – Zamberlan, Auronzo di Cadore",
+      distance: 6.4,
+      elevation: 528,
+      hours: '2.75',
+      routeShape: 'out-and-back',
+      routeShapeNote: "A walk there and back from Cima Gogna up the forest track past Le Prese and Pian di Barco to Zamberlan, returning the same way, as the board publishes it (6.4 km, 528 m up and down, 2:45 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Cima Gogna, about 5 km before Auronzo centre on the SS52 Carnica, the board’s start.",
+        "sequence": "A wide track soon brings you to Le Prese. From there the route climbs, more and more steeply. At the fork with path 18 carry on to Pian di Barco. The last stretch up to Zamberlan is very steep. Come back the same way.",
+        "switches": "Wide track from Cima Gogna to Le Prese; climbing track past the fork with path 18 to Pian di Barco; very steep last stretch to Zamberlan; back the same way.",
+        "steps": [
+          {
+            "text": "Cima Gogna, on the SS52 before Auronzo",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Wide track to Le Prese",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Climb past the fork with path 18 to Pian di Barco",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Very steep last stretch to Zamberlan",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back the same way to Cima Gogna",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Consorzio Turistico Tre Cime Dolomiti, 20 - Zamberlan (route description)",
+            "url": "https://www.outdooractive.com/it/r/812604280",
+            "authority": "Consorzio Turistico Tre Cime Dolomiti",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-12"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-12',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Forest track near Auronzo (Kufoleto on Wikimedia Commons, CC BY 3.0), 3 November 2007, 251 m from the line.",
+        route: "Official 6.4 km there and back from Cima Gogna, on the SS52 before Auronzo, as Consorzio Turistico Tre Cime Dolomiti publishes it; the stored line is drawn on 7 OSM ways along the board’s published line, 6.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Path 20: from Cima Gogna on the wide track to Le Prese, climbing past the fork with path 18 to Pian di Barco and steeply up to Zamberlan; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 6.4 km there and back, 528 m up and 528 m down, 2:45 h (Consorzio Turistico Tre Cime Dolomiti, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Consorzio Turistico Tre Cime Dolomiti, 20 - Zamberlan (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Auronzo di Cadore (its site lists documents only through a script), so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Natura 2000: ZPS IT3230089 Dolomiti del Cadore e del Comelico along the whole line (EEA); Veneto’s alpine conservation measures (DGR 786/2016 Allegato A, Art. 99) only restate the national dog rule",
+          "OpenStreetMap ways along the board’s line (7 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-12'
+      },
+      shadeCoverage: 87,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The start is beside the busy SS52 at Cima Gogna: keep your dog on a short lead there","The last stretch to Zamberlan is very steep: take it slowly with an older or less fit dog","Forest track open to forestry vehicles: keep your dog close if one comes"],
+      terrainType: "Forest track",
+      shadeDescription: "Almost all in spruce forest, shaded the whole way.",
+      terrainDescription: "A steady climb on a forest track through the spruce woods above Cima Gogna, past Le Prese and Pian di Barco to the clearing of Zamberlan, and back the same way.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog.",
+      dogNotes: "Auronzo has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried. The walk is in a Natura 2000 bird area: keep your dog on the track and close.",
+      tips: "Start at Cima Gogna on the SS52: 6.4 km there and back with 528 m up, about 2¾ hours, as the board lists. Shady all the way, so good on warm days; carry water, as there is none on the route.",
+      sourceLinks: [
+        { label: "Consorzio Turistico Tre Cime Dolomiti, 20 - Zamberlan", url: "https://www.outdooractive.com/it/r/812604280" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Veneto, DGR 786/2016 Allegato A, Natura 2000 conservation measures, alpine region (Art. 99, dogs)", url: "https://download.mase.gov.it/Natura2000/Materiale%20Designazione%20ZSC/Veneto/04_Misure%20di%20Conservazione/DGR%20786_27_05_2016-%20Allegato%20A%20MdC%20Alpina.pdf" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.520063, lng: 12.467127, label: "Cima Gogna, on the SS52 before Auronzo, the board’s start" },
+      desc: "A shady climb on a forest track from Cima Gogna past Le Prese and Pian di Barco to Zamberlan above the Ansiei valley, and back the same way. The board lists 6.4 km there and back and 528 m up."
     }
   };
 

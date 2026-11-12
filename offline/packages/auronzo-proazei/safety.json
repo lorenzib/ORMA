@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "auronzo-proazei",
+  "generatedAt": "2026-11-12T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2,
+    "ascentM": 77,
+    "highestPointM": 922,
+    "expectedDuration": "45 min",
+    "difficulty": "Moderate",
+    "shadePercent": 46
+  },
+  "trailhead": {
+    "lat": 46.548355,
+    "lng": 12.43936,
+    "label": "The Ponte di Transacqua on Lake Auronzo, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5493685,
+      "lng": 12.4397688,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A steep mule track at the start and a steep descent to Navare: take it slowly with an older dog.",
+    "Via Navarre is a track that can see the odd car to the houses and the power station: keep your dog close.",
+    "The Ansiei river runs beside the last stretch: keep your dog out of the fast water.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-12"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-12",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Proazei loop above Lake Auronzo": "Anello di Proazei sopra il lago di Auronzo",
+    "The Ponte di Transacqua on Lake Auronzo, the board’s start": "Il Ponte di Transacqua sul lago di Auronzo, la partenza ufficiale",
+    "A steep mule track at the start and a steep descent to Navare: take it slowly with an older dog.": "Una mulattiera ripida alla partenza e una discesa ripida fino a Navare: vai piano con un cane anziano.",
+    "Via Navarre is a track that can see the odd car to the houses and the power station: keep your dog close.": "Via Navarre è una strada sterrata dove può passare qualche auto diretta alle case e alla centrale: tieni il cane vicino.",
+    "The Ansiei river runs beside the last stretch: keep your dog out of the fast water.": "Il fiume Ansiei scorre accanto all’ultimo tratto: tieni il cane lontano dall’acqua veloce."
+  }
+}

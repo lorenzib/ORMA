@@ -385,6 +385,42 @@
         "highPoint": 1901
       }
     },
+    "auronzo-proazei": {
+      "highPoint": 922,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/812510469",
+          "accessedAt": "2026-11-12"
+        }
+      }
+    },
+    "auronzo-zamberlan": {
+      "highPoint": 1279,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/812604280",
+          "accessedAt": "2026-11-12"
+        }
+      }
+    },
     "bormio-da-arnoga-al-rifugio-federico": {
       "highPoint": 2131,
       "snow": {

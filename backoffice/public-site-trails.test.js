@@ -250,8 +250,10 @@ describe('the existing-site verification boundary',()=>{
     // circuit as the Giro del Sasso Lungo, whose page its addresses now open.
     // Then 522 and 520 with Dolomites batch 10: the Lacerta Prima theme loop
     // at Valdaora di Sopra.
-    expect(catalogue).toHaveLength(522);
-    expect(currentSiteTrails(catalogue)).toHaveLength(520);
+    // Then 524 and 522 with Dolomites batch 11: the Proazei loop and Cima
+    // Gogna to Zamberlan above Auronzo di Cadore.
+    expect(catalogue).toHaveLength(524);
+    expect(currentSiteTrails(catalogue)).toHaveLength(522);
   });
 
   test('requires the artwork the public trail page needs',()=>{

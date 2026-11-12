@@ -26,6 +26,8 @@
     'aosta-sentiero-della-regina': "Sentiero della Regina",
     'aosta-strada-lombarda': "Strada Lombarda",
     'aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande': "Alpenzù Piccolo and Alpenzù Grande",
+    'auronzo-proazei': "Proazei loop above Lake Auronzo",
+    'auronzo-zamberlan': "Cima Gogna to Zamberlan",
     'bormio-da-arnoga-al-rifugio-federico': "Arnoga – Rifugio Federico, Val Viola",
     'brixen-alto-sentiero-di-lazfons': "Latzfons high trail",
     'brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl': "Mühlbach to Spinges",
