@@ -38,13 +38,28 @@ describe('road seasons', () => {
     expect(() => applyRoadSeasons([{ id: 'w', season: snowy }], { roads: { r: road }, trails: { x: { roads: ['r'] } } })).toThrow(/unknown walk/);
   });
 
+  test('an access rule is said, noted in its months, and never changes the walk’s months', () => {
+    const board = { recommended: { months: [5, 6, 7, 8, 9, 10], source: { label: 'Board', url: 'https://example.org', accessedAt: '2026-11-01' } } };
+    const rule = { operator: 'Example valley', url: 'https://example.org/valley', accessedAt: '2026-11-12', months: [7, 8], line: 'Cars need a booking in summer.', monthNote: 'In {month} cars need a booking.' };
+    const trail = applyRoadSeasons([{ id: 'w', season: board }], { roads: {}, access: { a: rule }, trails: { w: { access: ['a'] } } })[0];
+    expect(trail.season.roads).toBeUndefined();
+    expect(words.bestMonths(trail.season)).toEqual([5, 6, 7, 8, 9, 10]);
+    const out = words.describe(trail.season);
+    expect(out.lifts[0]).toEqual(expect.objectContaining({ line: 'Cars need a booking in summer.' }));
+    expect(out.lifts[0].source.label).toBe('Example valley');
+    expect(words.nowNote(trail.season, 7)).toBe('July is in this walk’s season. In July cars need a booking.');
+    expect(words.nowNote(trail.season, 6)).toBe('June is in this walk’s season.');
+    expect(() => applyRoadSeasons([{ id: 'w', season: board }], { access: { a: { ...rule, monthNote: 'no month' } }, trails: {} })).toThrow(/month note/);
+    expect(() => applyRoadSeasons([{ id: 'w', season: board }], { access: {}, trails: { w: { access: ['a'] } } })).toThrow(/unknown access rule/);
+  });
+
   test('the curated file holds sourced roads for real walks', () => {
     const artifact = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'road-seasons.json'), 'utf8'));
     const { loadProductionTrails } = require('./scripts/load-production-trails');
     const trails = loadProductionTrails(__dirname);
     for (const id of Object.keys(artifact.trails)) {
       const trail = trails.find(t => t.id === id);
-      expect(trail.season.roads.length).toBeGreaterThan(0);
+      expect((trail.season.roads || []).length + (trail.season.access || []).length).toBeGreaterThan(0);
     }
   });
 });
