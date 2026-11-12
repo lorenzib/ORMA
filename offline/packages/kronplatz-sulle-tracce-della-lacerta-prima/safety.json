@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "trailId": "kronplatz-sulle-tracce-della-lacerta-prima",
+  "generatedAt": "2026-11-12T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.3,
+    "ascentM": 128,
+    "highestPointM": 1205,
+    "expectedDuration": "1 h 15 min",
+    "difficulty": "Moderate",
+    "shadePercent": 22
+  },
+  "trailhead": {
+    "lat": 46.757579,
+    "lng": 12.040246,
+    "label": "The church of Valdaora di Sopra (Oberolang), the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7573827,
+      "lng": 12.0403817,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.758393,
+      "lng": 12.040034,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.756784,
+      "lng": 12.04049,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.752241,
+      "lng": 12.043419,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.750109,
+      "lng": 12.043558,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7589434,
+      "lng": 12.0384597,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 1.9 km on village streets and farm lanes, open to cars and tractors: keep your dog on a short lead.",
+    "Narrow path along the Rio Brunst: keep your dog close by the water.",
+    "Olang keeps dogs out of the cemetery at the start, the play area and the farmed meadows: stay on the lanes and paths.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-11"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-12",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Lacerta Prima theme trail at Valdaora di Sopra": "Sulle tracce della Lacerta Prima a Valdaora di Sopra",
+    "The church of Valdaora di Sopra (Oberolang), the board’s start": "La chiesa di Valdaora di Sopra, la partenza ufficiale",
+    "About 1.9 km on village streets and farm lanes, open to cars and tractors: keep your dog on a short lead.": "Circa 1,9 km su strade del paese e stradine di campagna, aperte ad auto e trattori: tieni il cane al guinzaglio corto.",
+    "Narrow path along the Rio Brunst: keep your dog close by the water.": "Sentiero stretto lungo il Rio Brunst: tieni il cane vicino all’acqua.",
+    "Olang keeps dogs out of the cemetery at the start, the play area and the farmed meadows: stay on the lanes and paths.": "Valdaora vieta i cani nel cimitero alla partenza, nell’area giochi e nei prati coltivati: resta su stradine e sentieri."
+  }
+}
