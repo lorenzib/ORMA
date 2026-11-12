@@ -20141,13 +20141,14 @@ if(document.querySelector('.td2')){
 
   /**
    * "What to know today" on the homepage card, in the same plain voice as
-   * FIT_SENTENCES beside it.
+   * FIT_SENTENCES beside it, and the rows of the trail page's "Why 44% for
+   * Teo" breakdown.
    *
    * The engine's sentences are written to be checked against the score, so
    * they carry its working: "The terrain is harder than Teo is up to (grade 2,
-   * tolerance 1)." On a card that is jargon. These say the same thing the way
+   * tolerance 1)." To a reader that is jargon. These say the same thing the way
    * the safety guides now talk (#1304): short, everyday words, "we" and "you".
-   * The trail page keeps the engine's sentences, beside the points they cost.
+   * The points beside each breakdown row already say how much it cost.
    *
    * Keyed by messageKey, else code. A caution with no card sentence keeps the
    * engine's, so nothing is dropped; the hard stops (chairlift, dogs banned)
@@ -20177,6 +20178,7 @@ if(document.querySelector('.td2')){
     'trail.heat.unknown': () => tx('We don’t know yet how warm this route gets.'),
     'trail.shade.unknown': () => tx('We don’t know how much shade there is.'),
     'trail.surface-hazards.unknown': () => tx('We don’t know what the path is like underfoot.'),
+    'score.floor': () => tx('This walk asks too much of {name}, so the score stays at its lowest.'),
   });
 
   // A list of route cautions becomes the first one, as the board wrote it, and
@@ -20205,10 +20207,21 @@ if(document.querySelector('.td2')){
     return `${lead} ${tail}`;
   }
 
-  function cardMessage(item, translate, tr, extra){
+  // The trail page lists every caution, so it keeps the whole list and only
+  // loses the "Recorded route cautions:" heading. One caution is just itself.
+  function hazardBreakdownSentence(item, tr, extra){
+    const vars = item.vars || {};
+    const hazards = cautionWords(String(vars.hazards || '').trim());
+    if(!hazards) return translatedMessage(item, null, extra);
+    if(Number(vars.count) === 1) return `${hazards.replace(/[.;:]+$/, '')}.`;
+    return tr('recommendation.breakdown.surface-hazards.many', tx('Watch out for: {hazards}.'), { ...extra, hazards });
+  }
+
+  // forPage 'card' (the homepage card) or 'trail' (the trail page breakdown).
+  function cardMessage(item, translate, tr, extra, forPage = 'card'){
     const key = item && (item.messageKey || item.code);
     if(key === 'trail.surface-hazards.present.one' || key === 'trail.surface-hazards.present.many'){
-      return hazardCardSentence(item, tr, extra);
+      return forPage === 'trail' ? hazardBreakdownSentence(item, tr, extra) : hazardCardSentence(item, tr, extra);
     }
     const sentence = CARD_SENTENCES[key];
     if(!sentence) return translatedMessage(item, translate, extra);
@@ -20301,7 +20314,8 @@ if(document.querySelector('.td2')){
       .filter(entry => entry !== floorEntry)
       .map(entry => ({
         impact:Number.isFinite(entry.impact) ? entry.impact : 0,
-        message:translatedMessage(entry, translate, extra),
+        // The engine's own sentence stays on `factors`; the reader gets the plain one.
+        message:cardMessage(entry, translate, tr, extra, 'trail'),
         code:entry.code,
         kind:kindOf(entry),
       }));
@@ -20464,7 +20478,7 @@ if(document.querySelector('.td2')){
       // The floor is not a factor the reader can act on, and rendering its
       // positive impact alongside the costs reads as a bonus. It closes the
       // list as a note instead, explaining why the total stops where it does.
-      breakdownNote:floorEntry ? translatedMessage(floorEntry, translate, extra) : null,
+      breakdownNote:floorEntry ? cardMessage(floorEntry, translate, tr, extra, 'trail') : null,
       unknowns:unknowns.slice(0, 5),
       trailUnknowns:trailUnknowns.slice(0, 5),
       // For the homepage card's "What to know today" (see CARD_SENTENCES).
