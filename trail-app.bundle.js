@@ -5602,7 +5602,7 @@ function breedInsights(name){
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
 
-  const VERSION = '1.8.0';
+  const VERSION = '1.9.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -5873,6 +5873,15 @@ function breedInsights(name){
     }
     if(toy) distanceKm *= 0.8;
     if((traits.shortLegged === true || giant) && terrain > 1) terrain = 1;
+    // A trail's terrain rank is its steepest sustained grade (18% or more is 2),
+    // which is most mountain paths, and the climb is charged on its own. For a
+    // healthy adult dog that is not a limit: what can stop it is said
+    // explicitly, as exposure or a recorded route caution. Steepness still
+    // counts for a dog with a reason to mind it, or an owner who asked for
+    // flat walks (v1.9.0).
+    const steepnessMatters = puppy || senior || orthopedic || traits.shortLegged === true || giant
+      || conditions.has('cardiac') || conditions.has('overweight') || base === FITNESS.low;
+    if(!steepnessMatters) terrain = Math.max(terrain, FITNESS.high.terrain);
 
     return {
       terrain: Math.max(0, terrain),
@@ -5982,7 +5991,9 @@ function breedInsights(name){
     if(terrain === null){
       unknowns.push(item('trail.terrain.unknown', 'Terrain difficulty is unknown.'));
     }else if(terrain > dog.terrain){
-      const penalty = (terrain - dog.terrain) * 30;
+      // 10 a rank, not 30: the climb that makes a path steep is charged as
+      // ascent already, so this is the extra strain of the steep pitch alone.
+      const penalty = (terrain - dog.terrain) * 10;
       penalise(penalty, item('trail.terrain.above-tolerance',
         `Terrain is above this dog's effective tolerance (${terrain} versus ${dog.terrain}).`,
         { terrain, tolerance:dog.terrain }));
