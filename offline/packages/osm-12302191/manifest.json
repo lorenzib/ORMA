@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12302191",
   "name": "Dorfrundweg Rasen",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.876Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.296Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 642141,
+  "packageBytes": 642142,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.7723,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dorfrundweg Rasen safety information",
       "url": "safety.json",
-      "bytes": 2435,
-      "sha256": "65524f773f36a3225839affc7ed1ef3516973c4495b23d68d3bfeb335d9d7a44"
+      "bytes": 2436,
+      "sha256": "b3c72bf2ce90aa85c4e0670d350b532d10077ca1add219cc38a11ce016814870"
     }
   ]
 }

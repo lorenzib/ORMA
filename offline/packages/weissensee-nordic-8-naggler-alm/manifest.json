@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "weissensee-nordic-8-naggler-alm",
   "name": "Climb to the Naggler Alm, Weissensee",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:25:10.157Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.841Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 458318,
@@ -233,7 +233,7 @@
       "label": "Climb to the Naggler Alm, Weissensee safety information",
       "url": "safety.json",
       "bytes": 1500,
-      "sha256": "0fd60feaafc45fddc7f3d2ddac80bab438860bfca50eb4333f655f098c036645"
+      "sha256": "0be9d114276ed998d80cafc2a9bb503a95269bd4258a1fa09f35463f00a95755"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-malga-valcigolera",
   "name": "San Martino di Castrozza - Malga Valcigolera",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:36.220Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.532Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 707457,
+  "packageBytes": 707453,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.24853,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "San Martino di Castrozza - Malga Valcigolera safety information",
       "url": "safety.json",
-      "bytes": 1443,
-      "sha256": "c2d501f1cc8c86692fae94d4d8582e7b0e0e8eb651d7936c2d370b0c3dc94e66"
+      "bytes": 1439,
+      "sha256": "5cd2e77ebf793766b461bbcd124b54ae4ee37bd9d80e6633072e349064c98ad2"
     }
   ]
 }

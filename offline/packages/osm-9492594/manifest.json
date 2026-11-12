@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9492594",
   "name": "Vogelweider Rundweg",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:36.082Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.469Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1110969,
+  "packageBytes": 1110965,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59866,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Vogelweider Rundweg safety information",
       "url": "safety.json",
-      "bytes": 1880,
-      "sha256": "38d6868eb7a9a4c2e05698d2d03ca9dd96225986ac05e5c20ab70a2c12d01a2c"
+      "bytes": 1876,
+      "sha256": "a444e5d746399e603a4a3adf6c5f0a8a9d17d2ac514d0d0fe7d59783b95af048"
     }
   ]
 }

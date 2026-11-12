@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "meran-itinerario-raststeinweg",
   "name": "Raststeinweg loop, Schenna",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T21:48:51.563Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.196Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 946116,
@@ -233,7 +233,7 @@
       "label": "Raststeinweg loop, Schenna safety information",
       "url": "safety.json",
       "bytes": 2497,
-      "sha256": "8f20b8f8732916fc381c28729321924afedbbaddc23d5a98557363d47aa7d227"
+      "sha256": "be29afec26391f5cdb23aed5ff8b850eaba6b9acc5cae76075b531df6f5eebd1"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-sesto-chiesa-gasthof-panorama",
   "name": "Sexten – Gasthof Panorama",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:11:21.177Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.661Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 404397,
+  "packageBytes": 404393,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.69588,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sexten – Gasthof Panorama safety information",
       "url": "safety.json",
-      "bytes": 1488,
-      "sha256": "739a3c1003a669f20ffe9d0c4b79262e54d4df4f95ee8c8edb7fda558c1aa39c"
+      "bytes": 1484,
+      "sha256": "4506f9b66a57a249f6436bbb80c9ed6f745c22551a1c887924b0a44b320ce4d0"
     }
   ]
 }

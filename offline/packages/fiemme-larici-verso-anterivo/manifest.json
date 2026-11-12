@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-larici-verso-anterivo",
   "name": "Passeggiata col passeggino tra i larici verso Anterivo",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T11:59:02.940Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.040Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 267706,
+  "packageBytes": 267702,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.27258,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passeggiata col passeggino tra i larici verso Anterivo safety information",
       "url": "safety.json",
-      "bytes": 1654,
-      "sha256": "475f6ee49e5bbc78a2372b86446071aa9f12a86f20b3000a3fee961521343817"
+      "bytes": 1650,
+      "sha256": "c65157fcb6ee54fef77719f0bf8fa8b214d8a03cedbd0f51b870c6bcfb7d0825"
     }
   ]
 }

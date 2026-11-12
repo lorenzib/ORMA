@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-escursione-ortisei-passo-sella",
   "name": "Ortisei – Passo Sella",
-  "version": "2026.11.05-beta.1",
-  "generatedAt": "2026-11-05T16:12:46.614Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.742Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 2506357,
+  "packageBytes": 2506358,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.50547,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Ortisei – Passo Sella safety information",
       "url": "safety.json",
-      "bytes": 2963,
-      "sha256": "cced10fccb8b1e3b5d94b730b7b9601c031e80a5d87a5b84e649aea0bfe6c856"
+      "bytes": 2964,
+      "sha256": "d8f25cebfdd305afd8e8c2b1687802833c540f4177e3e947492d93747990faa8"
     }
   ]
 }

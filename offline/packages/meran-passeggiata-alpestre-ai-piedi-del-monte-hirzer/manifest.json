@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer",
   "name": "Hirzer alms loop from Klammeben",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T17:35:57.299Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.198Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 342694,
+  "packageBytes": 342695,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.73426,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Hirzer alms loop from Klammeben safety information",
       "url": "safety.json",
-      "bytes": 1479,
-      "sha256": "337cb41a9c8e4fca378183691de1682de458c76200765bee2d1592072c09529a"
+      "bytes": 1480,
+      "sha256": "9716baa7f238a78af0071da35f6b3d87acb1ee10b90bf90e3390516e39751c1b"
     }
   ]
 }

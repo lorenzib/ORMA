@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-passeggiata-insolita",
   "name": "Passeggiata insolita lungo il Rio Gambis",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T09:19:35.374Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.044Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 588491,
+  "packageBytes": 588488,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.2823,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passeggiata insolita lungo il Rio Gambis safety information",
       "url": "safety.json",
-      "bytes": 2020,
-      "sha256": "a8f07a59810a668d765d1c4c854654e7aa99139dffb899b6b5a85ef55ab7de79"
+      "bytes": 2017,
+      "sha256": "4ee8fcd660eb40567ee7fed98714ba59060f6b1a8bcc1388bfd89a9957f3c475"
     }
   ]
 }

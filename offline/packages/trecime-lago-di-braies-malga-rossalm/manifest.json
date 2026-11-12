@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-lago-di-braies-malga-rossalm",
   "name": "Pragser Wildsee – Rossalm",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:55:25.666Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.636Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 519906,
+  "packageBytes": 519907,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65635,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Pragser Wildsee – Rossalm safety information",
       "url": "safety.json",
-      "bytes": 1457,
-      "sha256": "36497f578b1e709ecb7e71bb9774c79487fd649ecbb2c19570328fee74b372df"
+      "bytes": 1458,
+      "sha256": "c16f2ec2fe62023fb753aec0dfdeb67af92bc7a920ebb1371be5c492a1469f4d"
     }
   ]
 }

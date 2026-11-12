@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-sasso-di-sesto",
   "name": "Fischleintal – Sextner Stein",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:45:12.440Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.652Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 399016,
+  "packageBytes": 399017,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.63339,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Fischleintal – Sextner Stein safety information",
       "url": "safety.json",
-      "bytes": 2008,
-      "sha256": "dab3b193e104855e6f97500dcdf270b72be769c2e67356837010645f8491ae35"
+      "bytes": 2009,
+      "sha256": "6aae669d53778b41d8773164f45e163876d15db82c25e9927eec443876b9da65"
     }
   ]
 }

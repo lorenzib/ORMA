@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7446701",
   "name": "Waltner Rundweg 18",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:35.941Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.443Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 479682,
+  "packageBytes": 479683,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.81439,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Waltner Rundweg 18 safety information",
       "url": "safety.json",
-      "bytes": 1803,
-      "sha256": "f751d4de44063a491f75fcf21b0a8a8f4a4a333344496caec48f018df9f600e5"
+      "bytes": 1804,
+      "sha256": "dc5be7eb7d04426e8c23d73cc5bbd10e10abc91f928f595e2ef237728a95e3df"
     }
   ]
 }

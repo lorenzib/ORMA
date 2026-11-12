@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14381584",
   "name": "Beaumollard",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:35.429Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.332Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 428690,
+  "packageBytes": 428695,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.21117,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Beaumollard safety information",
       "url": "safety.json",
-      "bytes": 1540,
-      "sha256": "2a8007de3c9ef7497f39afe0c6e5ef5c037996b88bd0b554cabc5898751fca38"
+      "bytes": 1545,
+      "sha256": "6048736110289774e8dea37befbcaec0d4f3053ba0530ed7827b4c4ec5da58d8"
     }
   ]
 }

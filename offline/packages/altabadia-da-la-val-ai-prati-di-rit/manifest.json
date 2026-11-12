@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "trailId": "altabadia-da-la-val-ai-prati-di-rit",
   "name": "La Val – Prati di Rit",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:46:48.596Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:19.828Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 678283,
   "packageBudgetBytes": 5242880,
@@ -233,7 +233,7 @@
       "label": "La Val – Prati di Rit safety information",
       "url": "safety.json",
       "bytes": 1822,
-      "sha256": "3984cbeb7bf0b6923664b36f5539ee6bf2494d06cf818aa368deb3e7f007e323"
+      "sha256": "9dfb950f579d419e1042d16de6f6005904c4c9f33fece7ef1085f604fabf766a"
     }
   ]
 }

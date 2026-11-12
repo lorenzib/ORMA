@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fvg-monte-rest-da-passo-rest",
   "name": "Dal Passo Rest al Monte Rest",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:12:24.727Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.065Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 345396,
@@ -233,7 +233,7 @@
       "label": "Dal Passo Rest al Monte Rest safety information",
       "url": "safety.json",
       "bytes": 1330,
-      "sha256": "68812b199edd0f1a5fc84512f494041d372e36844701c0ddc191aa8b01bd2bb0"
+      "sha256": "48095737cfc83bed00c88fc7a2aa1b6cd6e10c579325dda483f404b99028f74f"
     }
   ]
 }

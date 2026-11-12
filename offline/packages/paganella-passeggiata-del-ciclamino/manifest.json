@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "paganella-passeggiata-del-ciclamino",
   "name": "Passeggiata del Ciclamino",
-  "version": "2026.11.05-beta.1",
-  "generatedAt": "2026-11-05T16:18:02.924Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.512Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 617744,
+  "packageBytes": 617741,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.1343,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passeggiata del Ciclamino safety information",
       "url": "safety.json",
-      "bytes": 1564,
-      "sha256": "7613d20cb72dba947c66268274b4b837bff86bb4615ee892e3eae449c5ea33b5"
+      "bytes": 1561,
+      "sha256": "00d8b127e9a78d3b78593afcf928170557074ec35d9a0a8c2796558c7c53fc7d"
     }
   ]
 }

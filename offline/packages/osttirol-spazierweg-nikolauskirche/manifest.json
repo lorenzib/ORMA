@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "osttirol-spazierweg-nikolauskirche",
   "name": "St. Nikolaus church walk, Matrei",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:02:14.621Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.496Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1049794,
@@ -233,7 +233,7 @@
       "label": "St. Nikolaus church walk, Matrei safety information",
       "url": "safety.json",
       "bytes": 1624,
-      "sha256": "1284b3f2b046626cdadc1deada0b0a77708e7839aeae9c01774bfe7674cb9b5a"
+      "sha256": "ee9adcff9475f681c20091bae2bc798dc3f9a7b56c8c78ddc5006c273e92e263"
     }
   ]
 }

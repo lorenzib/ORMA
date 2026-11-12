@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-pietra-del-futuro",
   "name": "La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:01:44.743Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.924Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 511236,
+  "packageBytes": 511233,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.13193,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases safety information",
       "url": "safety.json",
-      "bytes": 1449,
-      "sha256": "182f7712bfe2796ec6cf5e89a03f00d89187df462aec6a6a73ed1eefabacc0f5"
+      "bytes": 1446,
+      "sha256": "c64d3e5c9a61a85c1173aa9534ecb0290138904c1ff6637c4e0ca3b644c2bc59"
     }
   ]
 }

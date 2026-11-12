@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-val-danna-percorso-kneipp",
   "name": "Val d’Anna",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:36:43.635Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.773Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 396757,
+  "packageBytes": 396754,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5729,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Val d’Anna safety information",
       "url": "safety.json",
-      "bytes": 2277,
-      "sha256": "dd38a85b0f03149c6158aea835d0813e2bec60f8214b707e21a88bb64de0648b"
+      "bytes": 2274,
+      "sha256": "8061e15aa29abd5dba0aaba382c4e679fd2716505b55facefa0ede96394193c5"
     }
   ]
 }

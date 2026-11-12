@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7424683",
   "name": "Marlinger Waalweg",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.891Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.427Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 2520569,
+  "packageBytes": 2520570,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62276,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Marlinger Waalweg safety information",
       "url": "safety.json",
-      "bytes": 1700,
-      "sha256": "05ea9b98a738fbe004293612ba892c112b7a2be5634c474ca642c7bdf5404560"
+      "bytes": 1701,
+      "sha256": "1a307cf3352eb3b3fe88c06b9e59a97fb3b58eea8b31817e250286e0cd5855e0"
     }
   ]
 }

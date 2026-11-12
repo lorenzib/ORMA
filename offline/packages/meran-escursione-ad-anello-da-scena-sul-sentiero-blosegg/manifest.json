@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg",
   "name": "Bloseggweg loop from Schenna",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T12:25:44.977Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.177Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 1065934,
@@ -233,7 +233,7 @@
       "label": "Bloseggweg loop from Schenna safety information",
       "url": "safety.json",
       "bytes": 3873,
-      "sha256": "b46a004c9dcc82e9ed3a9766b75944024577a9d8c801d296aa829589ef921ca9"
+      "sha256": "4fb705edb3a069c8fc63b228c091f515aad255303e30ecaef5d0f792f91ed58b"
     }
   ]
 }

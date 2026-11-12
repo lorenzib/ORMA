@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-tonadico",
   "name": "Tonadico",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:36.272Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.545Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 877654,
+  "packageBytes": 877651,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.17217,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Tonadico safety information",
       "url": "safety.json",
-      "bytes": 2000,
-      "sha256": "7afe147a6e6dd1e656de1ae5cb0c59ed32d23a0ffa8b30b69bb1768f56cb684b"
+      "bytes": 1997,
+      "sha256": "77cf212ef9f506ee1f1924c7dfc591c25a792999d7114112a4f818cdd247c27f"
     }
   ]
 }

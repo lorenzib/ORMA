@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fvg-fontanon-di-goriuda",
   "name": "Fontanon di Goriuda",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:42:41.191Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.060Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 243917,
+  "packageBytes": 243913,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.3902,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Fontanon di Goriuda safety information",
       "url": "safety.json",
-      "bytes": 1297,
-      "sha256": "2b382135dd6e120e23e54a577c0f7298e4480973a1e918d136359ee99944f4e9"
+      "bytes": 1293,
+      "sha256": "7c6b004988dbd4d6f0194b08c3818278966e0e01a95e5531ae0d87374471d06f"
     }
   ]
 }

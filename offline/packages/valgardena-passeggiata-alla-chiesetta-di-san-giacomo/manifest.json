@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-passeggiata-alla-chiesetta-di-san-giacomo",
   "name": "San Giacomo from Ortisei",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:25:08.764Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.747Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 626851,
+  "packageBytes": 626847,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56838,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "San Giacomo from Ortisei safety information",
       "url": "safety.json",
-      "bytes": 1885,
-      "sha256": "d92e074131175c8aaccb9d7c4099eac41377a64223b82013168889f5a215a2a8"
+      "bytes": 1881,
+      "sha256": "43faef3b0cf706735bc45b1791320944cb99ae7625ba1bf4ccbbec570a63fd62"
     }
   ]
 }

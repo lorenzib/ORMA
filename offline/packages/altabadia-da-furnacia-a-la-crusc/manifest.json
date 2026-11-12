@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-da-furnacia-a-la-crusc",
   "name": "Furnacia – La Crusc",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:13:56.850Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.826Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 414976,
+  "packageBytes": 414977,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61081,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Furnacia – La Crusc safety information",
       "url": "safety.json",
-      "bytes": 1328,
-      "sha256": "eef4a1e08f68faada339dd61844fafbd8cfa185c840b8f8828403ad5c26242aa"
+      "bytes": 1329,
+      "sha256": "9488d1cc9684c65c416fab2a9ac0d876fc65f7c71c57667ccce4fd6699e976bd"
     }
   ]
 }

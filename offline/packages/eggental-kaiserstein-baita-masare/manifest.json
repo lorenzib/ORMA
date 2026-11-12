@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "eggental-kaiserstein-baita-masare",
   "name": "Kaiserstein to the Baita Masarè",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T22:51:39.425Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.957Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 229901,
+  "packageBytes": 229897,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.41248,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Kaiserstein to the Baita Masarè safety information",
       "url": "safety.json",
-      "bytes": 1329,
-      "sha256": "c4f491d102e1be6f2fc80e5fa319966778dfc85986b41e6876886efa31f683bd"
+      "bytes": 1325,
+      "sha256": "e3179a056616e8be0e3f5cc23d571c3ee68b2de50d6fe16f93f6a593d22c3223"
     }
   ]
 }

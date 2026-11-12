@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-1506470",
   "name": "Sissiweg - Sentiero Sissi",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.466Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.338Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1175222,
+  "packageBytes": 1175219,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65671,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sissiweg - Sentiero Sissi safety information",
       "url": "safety.json",
-      "bytes": 2155,
-      "sha256": "c667d25da74fcd6c9c70dd0175a10df13aa766337421fd28466f8c91976b2ed0"
+      "bytes": 2152,
+      "sha256": "bf7490ad5935243fae123af55cede0283b66edff6c9d1f84f177cbb88d40abfd"
     }
   ]
 }

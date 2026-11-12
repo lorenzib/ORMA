@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-123162",
   "name": "Planetenweg - Sentiero dei pianeti",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T10:18:09.039Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.298Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 715437,
+  "packageBytes": 715433,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.44688,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Planetenweg - Sentiero dei pianeti safety information",
       "url": "safety.json",
-      "bytes": 1296,
-      "sha256": "69af037aa50f0b26b7396d6141719afec1308b7e7df8957f51a861337659477b"
+      "bytes": 1292,
+      "sha256": "c90ed59b203a79727a5aecb98a72c0e2f67b13c3656955a92aa35f4dc4fd5082"
     }
   ]
 }

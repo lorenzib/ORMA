@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "engadin-corvatsch-hahnensee-st-moritz",
   "name": "Hahnensee from Murtèl to St. Moritz",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T10:47:16.058Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.972Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1304674,
+  "packageBytes": 1304670,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42843,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Hahnensee from Murtèl to St. Moritz safety information",
       "url": "safety.json",
-      "bytes": 1390,
-      "sha256": "622430cb1c916224383faf94adea9255838f2be2f687f32c81239dad3de2b14c"
+      "bytes": 1386,
+      "sha256": "e813e6190673ca2a82c8bfa28e5ad4fa50b1a08db7dba6e1c03843f29b7e02d6"
     }
   ]
 }

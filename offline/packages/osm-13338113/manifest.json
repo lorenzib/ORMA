@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-13338113",
   "name": "Lac de Darbon",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.933Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.314Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 499489,
+  "packageBytes": 499490,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.32693,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lac de Darbon safety information",
       "url": "safety.json",
-      "bytes": 1784,
-      "sha256": "586919d62c343b2228230b6c394d5f97c9c25d66968c398e1533f7c5b46e8325"
+      "bytes": 1785,
+      "sha256": "77093f8fdfccfe13bd6cc20acde4ca223fd5f1cbe0a39386740d432a4f9b9cf2"
     }
   ]
 }

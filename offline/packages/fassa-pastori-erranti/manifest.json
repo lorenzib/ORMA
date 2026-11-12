@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fassa-pastori-erranti",
   "name": "Sulla via degli antichi pastori erranti",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:34.154Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.018Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 547917,
@@ -233,7 +233,7 @@
       "label": "Sulla via degli antichi pastori erranti safety information",
       "url": "safety.json",
       "bytes": 1973,
-      "sha256": "7e5debb1b80a15718c1ac8e0417f7871bca2d1f7f0c25c8a6b63309def32107f"
+      "sha256": "abfc1d1765b0d9e04743fe8f7bef121dee2960c7c18dd9b6d9b747457c857b53"
     }
   ]
 }

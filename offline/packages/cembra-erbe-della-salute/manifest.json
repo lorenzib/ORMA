@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-erbe-della-salute",
   "name": "Le erbe della salute",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:33.957Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:19.909Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 463717,
+  "packageBytes": 463714,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.22589,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Le erbe della salute safety information",
       "url": "safety.json",
-      "bytes": 1420,
-      "sha256": "7535a781a5ddf51957e94ff0cfe8f162aeab4923de8b967c46215e5c7c4486be"
+      "bytes": 1417,
+      "sha256": "d4ed6c008f006cfc378f718e3794669777bf581d5ed1ef1f316fba935353cc89"
     }
   ]
 }

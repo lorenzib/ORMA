@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-1671736",
   "name": "Höfeweg",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.583Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.361Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1437840,
+  "packageBytes": 1437841,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67673,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Höfeweg safety information",
       "url": "safety.json",
-      "bytes": 1827,
-      "sha256": "7f846dd35bd63379c14e71237352f7f4220cf6173657bd00a10c9a87957b2643"
+      "bytes": 1828,
+      "sha256": "5cdd216e0c7532b7ddc53c4485e38bbb99c22dc373e4d2767d8f2fe9ebebcab9"
     }
   ]
 }

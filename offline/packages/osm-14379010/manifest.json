@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14379010",
   "name": "Croix de Pralognan",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:35.396Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.328Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 486272,
+  "packageBytes": 486268,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.20806,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Croix de Pralognan safety information",
       "url": "safety.json",
-      "bytes": 1356,
-      "sha256": "4a4624b00778191d7395e44bb0ca7db12093e7ade3133f102bbf88b0bf7c573b"
+      "bytes": 1352,
+      "sha256": "3e82017f2762463bd3f29901a3f39b74852f05869391f6bdd08ca01f7d1db062"
     }
   ]
 }

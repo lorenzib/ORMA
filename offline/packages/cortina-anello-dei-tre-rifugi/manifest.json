@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-anello-dei-tre-rifugi",
   "name": "Three-hut loop from Malga Ra Stua",
-  "version": "2026.11.09-beta.1",
-  "generatedAt": "2026-11-09T21:54:19.674Z",
-  "scoringVersion": "1.7.0",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.937Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 550650,
+  "packageBytes": 550646,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62175,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Three-hut loop from Malga Ra Stua safety information",
       "url": "safety.json",
-      "bytes": 2439,
-      "sha256": "f1682021213eda7b9bdba5207212f516da1c7ea1a0abb685522ada8cb0211619"
+      "bytes": 2435,
+      "sha256": "1c41c2e9e0f17c9b9b1b132736d99c2253de1fe0b405d901b76bc21d145b1a00"
     }
   ]
 }

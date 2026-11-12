@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valtellina-rifugi-porro-e-ventina",
   "name": "Chiareggio to the Porro and Ventina huts",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T19:44:02.997Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.798Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 310597,
+  "packageBytes": 310598,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.29213,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Chiareggio to the Porro and Ventina huts safety information",
       "url": "safety.json",
-      "bytes": 1364,
-      "sha256": "b69df107dabb6d4d2896bacba0e5e018149c467199a31cd47c7a68cec87c2a93"
+      "bytes": 1365,
+      "sha256": "1777590eb64d5705a92a76f9251bbdb005d9de1340b7176852d8235b2e11d7b5"
     }
   ]
 }

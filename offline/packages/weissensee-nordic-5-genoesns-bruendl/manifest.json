@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "weissensee-nordic-5-genoesns-bruendl",
   "name": "Genösn’s Bründl loop, Weissensee",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:16:50.675Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.835Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 390190,
+  "packageBytes": 390187,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.70309,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Genösn’s Bründl loop, Weissensee safety information",
       "url": "safety.json",
-      "bytes": 1328,
-      "sha256": "99c989f1ff651305b0a0e77ca93411545bec54d0c4c1fb9bedc7834b65f0c33b"
+      "bytes": 1325,
+      "sha256": "6a92eea36a6335ef92e35d990a5a029e8940f0d52bef6e213d49650982169378"
     }
   ]
 }

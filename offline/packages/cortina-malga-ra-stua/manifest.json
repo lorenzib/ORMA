@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-malga-ra-stua",
   "name": "Malga Ra Stua",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:46:48.026Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:19.941Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 313240,
+  "packageBytes": 313241,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59944,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Malga Ra Stua safety information",
       "url": "safety.json",
-      "bytes": 1474,
-      "sha256": "859567c4b73cb3ada5fd899e1e4dddc9a8cfa993f018910e9e75dafac146014e"
+      "bytes": 1475,
+      "sha256": "75ddd234d6f95426b70fd83f5576fa7e25478d76352289b619f957a587c7f07c"
     }
   ]
 }

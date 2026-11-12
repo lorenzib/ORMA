@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "vinschgau-piani-di-annenberg",
   "name": "Annaberger Böden from Latsch",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T16:01:08.076Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.819Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 580051,
+  "packageBytes": 580047,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61539,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Annaberger Böden from Latsch safety information",
       "url": "safety.json",
-      "bytes": 1612,
-      "sha256": "36ae62f71f7d848e56c5cbd3a6036f2c9357b788393ca15629af93b5523a25b9"
+      "bytes": 1608,
+      "sha256": "f6319301f214b5b374b87fb3df3575086239bad0ed51cf7d62aac94878f40df8"
     }
   ]
 }

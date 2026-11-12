@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-fiera-pieve",
   "name": "Fiera-Pieve",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:36.178Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.523Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 701546,
+  "packageBytes": 701542,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16873,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Fiera-Pieve safety information",
       "url": "safety.json",
-      "bytes": 2027,
-      "sha256": "8b657d07595a738861c722def262d2fb7a5d9abc1528c796560619842155c976"
+      "bytes": 2023,
+      "sha256": "66c4535c2e960a9a3139a2ba59d752c34dca14619192596fdbf783ed22d9c621"
     }
   ]
 }

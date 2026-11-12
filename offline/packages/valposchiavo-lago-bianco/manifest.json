@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "valposchiavo-lago-bianco",
   "name": "Lago Bianco loop from Ospizio Bernina",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T17:30:53.071Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.781Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 314973,
@@ -233,7 +233,7 @@
       "label": "Lago Bianco loop from Ospizio Bernina safety information",
       "url": "safety.json",
       "bytes": 1351,
-      "sha256": "34d709b6e85762875a83e4b2dc50eaf2d480d1f4c835508f6802cadfdf7aa97a"
+      "sha256": "b1c242f3c24a46e0d6468f1750cbb0beaf672df09eee8af331d08bc04cc1ac95"
     }
   ]
 }

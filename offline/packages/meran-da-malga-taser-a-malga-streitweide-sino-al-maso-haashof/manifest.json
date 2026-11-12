@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof",
   "name": "Taser Höhenweg to the Haashof, Schenna",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T21:49:43.765Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.171Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 612271,
+  "packageBytes": 612267,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.70147,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Taser Höhenweg to the Haashof, Schenna safety information",
       "url": "safety.json",
-      "bytes": 1822,
-      "sha256": "a877f2255621b6cf62a72ab22f2ad8b10d90a4921fd23b71d123cc029098df84"
+      "bytes": 1818,
+      "sha256": "5df5a92bf2f383719c520647e9d5f0ffface92e5852c0191c0bc908ddd9ef54a"
     }
   ]
 }

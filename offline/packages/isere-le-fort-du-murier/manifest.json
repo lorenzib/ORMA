@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "isere-le-fort-du-murier",
   "name": "Fort du Murier loop above Gières",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T21:52:57.543Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.096Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 382143,
+  "packageBytes": 382139,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.15839,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Fort du Murier loop above Gières safety information",
       "url": "safety.json",
-      "bytes": 1380,
-      "sha256": "ea4eea79eda579d0b12eb021e59a678fd8820fe31aa074750b5c6ff3d6a03256"
+      "bytes": 1376,
+      "sha256": "b520f27ebb8dd89284fb50f2ab7e8d316b7c4a9ac10634551f3ac271aecbc711"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-antichi-bagnes",
   "name": "Agli antichi Bagnes",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:34.043Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:19.989Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 488362,
+  "packageBytes": 488358,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.4168,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Agli antichi Bagnes safety information",
       "url": "safety.json",
-      "bytes": 1777,
-      "sha256": "d8d64947380a427b66e117f60ec822b288797c04942844dcd201575de2fba5f4"
+      "bytes": 1773,
+      "sha256": "f39ef1f4cc51c7d9807ad330fc302d358b1f37b7d719aac1ee5cd1156bed6561"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-villabassa-mooskirche",
   "name": "Niederdorf – Mooskirche",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:38:10.660Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.673Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 920529,
+  "packageBytes": 920526,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.73449,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Niederdorf – Mooskirche safety information",
       "url": "safety.json",
-      "bytes": 2467,
-      "sha256": "96bc657ba2417cf63713fdb82768bf0f286d2c05c6c1765fff4c48d312212676"
+      "bytes": 2464,
+      "sha256": "e7860410828c7d28f5e9fd1311d4b6d8273eaaf000a273241eccc7dc2b07997c"
     }
   ]
 }

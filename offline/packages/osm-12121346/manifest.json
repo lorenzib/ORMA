@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12121346",
   "name": "Le tour des hameaux de Montandré, Champessuit et Grenis",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:34.699Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.257Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 340778,
+  "packageBytes": 340783,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.27641,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Le tour des hameaux de Montandré, Champessuit et Grenis safety information",
       "url": "safety.json",
-      "bytes": 1727,
-      "sha256": "ccd7d767e35a38b56bedd670859644ba2ad5ef4bb0983d1be437cf277a3bd339"
+      "bytes": 1732,
+      "sha256": "4ee0af6e9ac8cb18405f4e4b2403ae02b406d57775b46b1b13f5a214c19d107c"
     }
   ]
 }

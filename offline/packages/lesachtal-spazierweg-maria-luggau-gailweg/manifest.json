@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lesachtal-spazierweg-maria-luggau-gailweg",
   "name": "Gail river walk, Maria Luggau",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:14:34.500Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.166Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 277812,
+  "packageBytes": 277809,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.69861,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Gail river walk, Maria Luggau safety information",
       "url": "safety.json",
-      "bytes": 1353,
-      "sha256": "a1effc2e47d7dd2a8b13aa3df42016bd8dfca3291a0aca2e27b0c1667861c15e"
+      "bytes": 1350,
+      "sha256": "3e9af7cda98851f36d50cca45056597806aaed1bff098b79012c16c8a6fa6b46"
     }
   ]
 }

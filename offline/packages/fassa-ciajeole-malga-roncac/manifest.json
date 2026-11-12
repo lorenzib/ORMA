@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-ciajeole-malga-roncac",
   "name": "Passi nella storia: da Ciajeole a Malga Roncac",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:46:48.870Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:19.997Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 518359,
+  "packageBytes": 518356,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.37313,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passi nella storia: da Ciajeole a Malga Roncac safety information",
       "url": "safety.json",
-      "bytes": 1752,
-      "sha256": "aa56891e7959cb78a02a3dfdf7bdd8adbb02c739f966087674a60d58cd37db33"
+      "bytes": 1749,
+      "sha256": "35355ad9d8a1c5105f33cc8d09185ee3ba0c953c307cb184677259f443c43cc8"
     }
   ]
 }

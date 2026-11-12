@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-innichen-waldkapelle-sexten",
   "name": "Innichen – Waldkapelle – Sexten",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:53:44.579Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.632Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1004617,
+  "packageBytes": 1004613,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6979,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Innichen – Waldkapelle – Sexten safety information",
       "url": "safety.json",
-      "bytes": 2035,
-      "sha256": "f8d2d35599b69350ef79c0df5b9022d0c75e7dc9c5561f68bd98a8b2e3d8334f"
+      "bytes": 2031,
+      "sha256": "1cabc9496993afa7e709aa79b3575587f339cfa4908ee81b79a8913e7e1585fa"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11775923",
   "name": "Törggeleweg",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.554Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.230Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 688791,
+  "packageBytes": 688796,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.72641,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Törggeleweg safety information",
       "url": "safety.json",
-      "bytes": 2207,
-      "sha256": "660ed4ea43a8d43cda50079b10fad8e476ccabb6035e43a9de846d55568f5034"
+      "bytes": 2212,
+      "sha256": "a9f1e0b16746c0f7e9598f6c819d7a40974e69997934c59daabf4f835b107ae7"
     }
   ]
 }

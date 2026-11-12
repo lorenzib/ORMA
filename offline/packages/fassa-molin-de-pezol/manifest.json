@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-molin-de-pezol",
   "name": "Molin de Pèzol",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:46:47.971Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.013Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 567021,
+  "packageBytes": 567018,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42627,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Molin de Pèzol safety information",
       "url": "safety.json",
-      "bytes": 1876,
-      "sha256": "4f3b567d28e5b0484f4c586747d65983127ec1c15d6a558b241ad83878082ae3"
+      "bytes": 1873,
+      "sha256": "70738546f063c77710f4d29df6501fda5fe415172c921b61cdff1ba5aa5355c4"
     }
   ]
 }

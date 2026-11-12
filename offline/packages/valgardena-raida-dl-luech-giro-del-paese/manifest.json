@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-raida-dl-luech-giro-del-paese",
   "name": "Raida dl luech",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:48:18.388Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.757Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 577959,
+  "packageBytes": 577960,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55188,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Raida dl luech safety information",
       "url": "safety.json",
-      "bytes": 3241,
-      "sha256": "bae86f7ea8278568c5ca3c7d47e05fbb40548a37e79d06305c24d741c4fc6765"
+      "bytes": 3242,
+      "sha256": "21bc3d4ad2a062b02f8422bc381c0332de319068685373ba55af9e6f1353f2c9"
     }
   ]
 }

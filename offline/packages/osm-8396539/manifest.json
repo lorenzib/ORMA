@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-8396539",
   "name": "Kulturwanderweg Peter Mitterhofer",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:36.046Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.460Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1247290,
+  "packageBytes": 1247295,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.66147,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Kulturwanderweg Peter Mitterhofer safety information",
       "url": "safety.json",
-      "bytes": 2163,
-      "sha256": "868b3266a0b25bb275dc8d3db8ac847e7573264c88e72c18f84ceda7079efd2a"
+      "bytes": 2168,
+      "sha256": "55a37e7425baf4ed88ea421ad94edeeed4285780523d59a08e7d621984ed4916"
     }
   ]
 }

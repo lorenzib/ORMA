@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-sesto-alte-saege-val-campo-di-dentro",
   "name": "Sexten – Innerfeldtal",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:51:12.580Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.658Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 855400,
+  "packageBytes": 855401,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67106,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sexten – Innerfeldtal safety information",
       "url": "safety.json",
-      "bytes": 1990,
-      "sha256": "b7f936254db791cee6df4b5ad33bfbb0fd3e3f13af81cc358308487de90b0d73"
+      "bytes": 1991,
+      "sha256": "67938353351227b4765b79d3690fc7db90c01b670fa8f601df4c5ee6d085b8b0"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-3202880",
   "name": "Rundweg Montiggler Seen",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.695Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.385Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 349343,
+  "packageBytes": 349348,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.41611,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Montiggler Seen safety information",
       "url": "safety.json",
-      "bytes": 1353,
-      "sha256": "0804e644067a69dc9c0a071f9537b9f6630e6b33b7c6e0c491ff83c56c0cd26f"
+      "bytes": 1358,
+      "sha256": "caf3abec762bc2edec53b5275f906544ff9a16ee4d3b0c72640c7a80e9941cce"
     }
   ]
 }

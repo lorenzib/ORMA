@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-alla-ricerca-di-un-panorama-unico",
   "name": "Brogno to the Nuvolone viewpoint",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:19:32.693Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.141Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 754228,
+  "packageBytes": 754229,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.93203,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Brogno to the Nuvolone viewpoint safety information",
       "url": "safety.json",
-      "bytes": 1331,
-      "sha256": "25d5e638531239d7818231da210d30e5470b830b40002d1e273c84cd0932d5f6"
+      "bytes": 1332,
+      "sha256": "e454c01fb2b7a65ae949eee92a800572dc6145c8a1965b937180edbd0540ce67"
     }
   ]
 }

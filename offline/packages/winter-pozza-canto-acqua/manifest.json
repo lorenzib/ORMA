@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "winter-pozza-canto-acqua",
   "name": "Pozza along the Avisio in winter",
-  "version": "2026.11.07-beta.1",
-  "generatedAt": "2026-11-07T22:26:05.945Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.853Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 569650,
+  "packageBytes": 569647,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42628,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Pozza along the Avisio in winter safety information",
       "url": "safety.json",
-      "bytes": 2859,
-      "sha256": "a4bfbda522ec26295da09791d95194441bb6ff1a7558b6a674c4880ae3556517"
+      "bytes": 2856,
+      "sha256": "be3d9079ce5bec881673f78301b0fcc7f04ec93fd4bafcc332c9e73629fabafd"
     }
   ]
 }

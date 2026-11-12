@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-lago-santo",
   "name": "Il Lago Santo",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:33.999Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:19.917Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 159971,
+  "packageBytes": 159968,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.19126,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Il Lago Santo safety information",
       "url": "safety.json",
-      "bytes": 1361,
-      "sha256": "d2c454c334f3d4ffad363a749bca3771f27f875d5abf883abd98f8c7868aae6e"
+      "bytes": 1358,
+      "sha256": "e87399787aaca0e7e2be3b3179d0bc9f4a3410f44470b22fde8ae3b1d8338c26"
     }
   ]
 }

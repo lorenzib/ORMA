@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-5479112",
   "name": "Chemin des Diligences",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.744Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.396Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1229397,
+  "packageBytes": 1229398,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.01551,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Chemin des Diligences safety information",
       "url": "safety.json",
-      "bytes": 3711,
-      "sha256": "1c6b27ad0b12fb1b1c5ab88583685886ea8e9da2547eb147dfc11e64ebb13609"
+      "bytes": 3712,
+      "sha256": "52a4e1ca14e251ec66ed762e73e539fbd883a8efc143063a384855a5edeef406"
     }
   ]
 }

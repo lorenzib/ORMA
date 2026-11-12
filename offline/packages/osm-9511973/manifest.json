@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9511973",
   "name": "Roda de Armentara",
-  "version": "2026.11.06-beta.1",
-  "generatedAt": "2026-11-06T04:44:24.270Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.475Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 739471,
+  "packageBytes": 739472,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6057,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Roda de Armentara safety information",
       "url": "safety.json",
-      "bytes": 1950,
-      "sha256": "c8dcbe0f53ffeedecfb9dee52c083461a32819f25c09b225f38b264b43bd3c15"
+      "bytes": 1951,
+      "sha256": "8e3eee9d22ae0984aa824587b2d998c554d5625c21fd2dc20499ef004f2330d4"
     }
   ]
 }

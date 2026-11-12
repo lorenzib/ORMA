@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-san-lorenzo-maria-sares",
   "name": "San Lorenzo to Maria Sares",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.383Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.130Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1740597,
+  "packageBytes": 1740594,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.75981,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "San Lorenzo to Maria Sares safety information",
       "url": "safety.json",
-      "bytes": 2505,
-      "sha256": "f9ccd1fe31776be2f4274da65f694138dd7329624e633236be1db709c261a0ac"
+      "bytes": 2502,
+      "sha256": "a2379a21b6c8eb912d135472dccb33c8fa5cc5c4f8db9343587d5880712db451"
     }
   ]
 }

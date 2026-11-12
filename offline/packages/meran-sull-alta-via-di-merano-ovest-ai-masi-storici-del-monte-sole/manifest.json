@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole",
   "name": "Meraner Höhenweg west and the Sonnenberg farms, Partschins",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T17:26:16.424Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.209Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 740707,
@@ -233,7 +233,7 @@
       "label": "Meraner Höhenweg west and the Sonnenberg farms, Partschins safety information",
       "url": "safety.json",
       "bytes": 1604,
-      "sha256": "56f05b47b9e79d3460f762e7be5446b6475b8ff6d9d50276e71a9c8e6f99c79f"
+      "sha256": "493897f8fc70d42079a75f66cb2e46394027c5be5a74a6f7ada5349df5a1560b"
     }
   ]
 }

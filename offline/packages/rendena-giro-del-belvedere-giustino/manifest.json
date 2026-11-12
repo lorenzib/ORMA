@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "rendena-giro-del-belvedere-giustino",
   "name": "Giro del Belvedere",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:22:25.927Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.558Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 465207,
+  "packageBytes": 465204,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.14496,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Giro del Belvedere safety information",
       "url": "safety.json",
-      "bytes": 1707,
-      "sha256": "e96271936d8298a7b4987f9d6c68808f836da891d62df1a446fa7daeed41bf1f"
+      "bytes": 1704,
+      "sha256": "c1cadcf89346080e1be351fd131e0ea96f2810c82aaf6ab5b332ee7f24fa3307"
     }
   ]
 }

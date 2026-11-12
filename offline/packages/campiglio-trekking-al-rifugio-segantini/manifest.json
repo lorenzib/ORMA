@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "campiglio-trekking-al-rifugio-segantini",
   "name": "Rifugio Segantini loop",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:58:36.267Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.900Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 211362,
+  "packageBytes": 211358,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.2004,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rifugio Segantini loop safety information",
       "url": "safety.json",
-      "bytes": 1284,
-      "sha256": "8b2db784587056b734825b852881b854522f180adeebe15938b2d3a4a859c5bb"
+      "bytes": 1280,
+      "sha256": "5752b35633428887e017fb14f738e91b796a4fbcbf259d17b75580bcf69a8efd"
     }
   ]
 }

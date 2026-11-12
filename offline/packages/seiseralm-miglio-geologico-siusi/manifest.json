@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-miglio-geologico-siusi",
   "name": "Siusi geological mile",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T19:45:48.108Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.592Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 547424,
+  "packageBytes": 547421,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.54033,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Siusi geological mile safety information",
       "url": "safety.json",
-      "bytes": 2202,
-      "sha256": "14b1bacb3e115593fbbac6c1355701ec9656367b2d79f00e5209a443a44437b3"
+      "bytes": 2199,
+      "sha256": "aedeafc1dbd6c15812ab89c018c4cb83c4bc0a70587a9833327b9a2a94e20b36"
     }
   ]
 }

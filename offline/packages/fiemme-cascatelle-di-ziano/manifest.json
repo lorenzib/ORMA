@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-cascatelle-di-ziano",
   "name": "Le Cascatelle di Ziano di Fiemme",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:34.213Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.030Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 484504,
+  "packageBytes": 484501,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.28099,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Le Cascatelle di Ziano di Fiemme safety information",
       "url": "safety.json",
-      "bytes": 1326,
-      "sha256": "8f13efdf423093ff8735eb7e9c2417868bda9e96e4ac5c1a7b38d7978146a26e"
+      "bytes": 1323,
+      "sha256": "ae8a2553b3f11a262f0c6f7bc5de878f050ef956ec14f000bd2f1fa1bc1f0cd4"
     }
   ]
 }

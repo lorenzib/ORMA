@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12182895",
   "name": "Talrundweg",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:34.825Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.286Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1503821,
+  "packageBytes": 1503831,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61928,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Talrundweg safety information",
       "url": "safety.json",
-      "bytes": 2006,
-      "sha256": "834862eed9af076a8cdb132c0ae55111d06b6922d3ffbd4952514fc58da585d1"
+      "bytes": 2016,
+      "sha256": "865c85f9dc3f95a19c0746735088abe58f7e3232adb55d002bc6d1b94683ab8c"
     }
   ]
 }

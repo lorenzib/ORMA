@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "trecime-monte-elmo-versciaco",
   "name": "Helm – Vierschach",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:57:27.425Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.643Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 592149,
@@ -233,7 +233,7 @@
       "label": "Helm – Vierschach safety information",
       "url": "safety.json",
       "bytes": 1893,
-      "sha256": "2ef947265cf5d526a10251efc98c18d2abf25ffa7ca920ef5b3086d333d38078"
+      "sha256": "13a2bbd6e0a2a9a678526ca392b4ed08a31371831b8ec96e5a91d742b296138c"
     }
   ]
 }

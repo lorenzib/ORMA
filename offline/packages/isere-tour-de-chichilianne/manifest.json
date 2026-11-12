@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "isere-tour-de-chichilianne",
   "name": "Tour de Chichilianne",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T19:25:35.293Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.100Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 336331,
+  "packageBytes": 336332,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 44.80743,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Tour de Chichilianne safety information",
       "url": "safety.json",
-      "bytes": 1332,
-      "sha256": "4c0f5a9ddadaf1ac7d4a5bff7c6b400653546f1c28a7f7dee9bf22b9211c983a"
+      "bytes": 1333,
+      "sha256": "1952083f448edcc27a3a54279f0c375484c9a77eb18aa70953822bbc2ec924d2"
     }
   ]
 }

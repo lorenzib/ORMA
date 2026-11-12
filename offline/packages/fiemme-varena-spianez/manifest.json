@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-varena-spianez",
   "name": "Col passeggino tra Varena e Spianez",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:46:48.135Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.054Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 541626,
+  "packageBytes": 541622,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.29102,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Col passeggino tra Varena e Spianez safety information",
       "url": "safety.json",
-      "bytes": 1832,
-      "sha256": "13fb742a2805580b03896305b3096c531eb045d28f97160d0f2d790a5b3c09ec"
+      "bytes": 1828,
+      "sha256": "6cb325dc4943afab41e291610af4e6779c1eb830b3291ffc7db784fbfb81c21f"
     }
   ]
 }

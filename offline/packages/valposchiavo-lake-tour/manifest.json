@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valposchiavo-lake-tour",
   "name": "Lago di Poschiavo loop from Le Prese",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T17:28:40.411Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.783Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 545466,
+  "packageBytes": 545462,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.26931,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lago di Poschiavo loop from Le Prese safety information",
       "url": "safety.json",
-      "bytes": 1357,
-      "sha256": "1c27f680ec192f261878526c4dce20f7732a59fdc4dbc0ce4d03ba79af54cad8"
+      "bytes": 1353,
+      "sha256": "3685be4e482c08c61f32b033e1718bd6cd55a1a173ef280674682920e69d352b"
     }
   ]
 }

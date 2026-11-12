@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-passeggiata-da-ortisei-a-s-cristina",
   "name": "Ortisei valley promenade",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:18:32.523Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.750Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 986035,
+  "packageBytes": 986031,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55598,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Ortisei valley promenade safety information",
       "url": "safety.json",
-      "bytes": 1989,
-      "sha256": "c53f1a08f49248921986e238786faec0cb4d1f4831ff4552479f07aa5c364f2c"
+      "bytes": 1985,
+      "sha256": "a8929811a3b9e40909be629ba34042515d0a3ffe0fe4265d7f8692ff0b89775e"
     }
   ]
 }

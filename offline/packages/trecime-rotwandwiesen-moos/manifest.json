@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-rotwandwiesen-moos",
   "name": "Rotwandwiesen – Moos",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:43:59.623Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.648Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 408291,
+  "packageBytes": 408292,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65833,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rotwandwiesen – Moos safety information",
       "url": "safety.json",
-      "bytes": 1480,
-      "sha256": "306efac51e271be1a9872482fd3619ba5641937d1e4422634de8a6d721f5fe7e"
+      "bytes": 1481,
+      "sha256": "f8f69b4d1e66beb37cbf4668077daeaa8700296bd2c0f9209b2bf8636c3a2a48"
     }
   ]
 }

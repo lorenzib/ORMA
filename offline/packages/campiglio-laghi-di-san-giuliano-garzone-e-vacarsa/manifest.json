@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa",
   "name": "San Giuliano, Garzonè and Vacarsa lakes",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:54:03.003Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.893Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 466812,
+  "packageBytes": 466808,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.13158,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "San Giuliano, Garzonè and Vacarsa lakes safety information",
       "url": "safety.json",
-      "bytes": 1822,
-      "sha256": "ce266aec9044b19a3e7197a744ea8f141ea220d62881b15933ae7e78c780b262"
+      "bytes": 1818,
+      "sha256": "7d7f6c022456d7ab9f63a710f839ee72b492db322b618ab39e3577bd45ccb0f7"
     }
   ]
 }

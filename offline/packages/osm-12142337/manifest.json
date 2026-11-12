@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12142337",
   "name": "Rundweg Peitlerkofel",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.733Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.265Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1095668,
+  "packageBytes": 1095664,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.64216,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Peitlerkofel safety information",
       "url": "safety.json",
-      "bytes": 2007,
-      "sha256": "8b63763475cdc2a1eda4bf163e918cc6c8389fd1821da0254eab00cee02057d4"
+      "bytes": 2003,
+      "sha256": "1142e2c2d46af654e3d22a7614e4cf442a6e9dba564e14ceb534eef5d1442fa5"
     }
   ]
 }

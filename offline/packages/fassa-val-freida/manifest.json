@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-val-freida",
   "name": "Sulle tracce dei pastori all'imbocco della Val Freida",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:40:11.462Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.028Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 279942,
+  "packageBytes": 279938,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.3759,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sulle tracce dei pastori all'imbocco della Val Freida safety information",
       "url": "safety.json",
-      "bytes": 1426,
-      "sha256": "6cfd3a0bfc3832c37b615f49be14237b88fdf7d5e0f364ea99789b2c2acafb90"
+      "bytes": 1422,
+      "sha256": "c1b1569fa6000c2631caa0669fc01c4586ff770b0026078987f496cc04164e76"
     }
   ]
 }

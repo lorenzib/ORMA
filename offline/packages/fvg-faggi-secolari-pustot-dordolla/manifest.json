@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "trailId": "fvg-faggi-secolari-pustot-dordolla",
   "name": "I faggi secolari di Pustot a Dordolla",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T18:00:13.763Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.059Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 411522,
   "packageBudgetBytes": 5242880,
@@ -233,7 +233,7 @@
       "label": "I faggi secolari di Pustot a Dordolla safety information",
       "url": "safety.json",
       "bytes": 1308,
-      "sha256": "91e30cceccbca60015a9d04f6475deeed21d63672f3cf45a715d2486b3772c59"
+      "sha256": "7df684c1e8fb4a08d2b25239091420e6a5178b58e8ff00dfa88faef2730442a4"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-percorso-dei-masi-tradizionali",
   "name": "Santa Cristina farms path",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:18:51.326Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.754Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 797307,
+  "packageBytes": 797308,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5555,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Santa Cristina farms path safety information",
       "url": "safety.json",
-      "bytes": 2799,
-      "sha256": "8fd278c666fb051fcdcf1c98734542af132f4a296e6d55af596d064ba4745756"
+      "bytes": 2800,
+      "sha256": "b68708f579353fa7683d62592dde87571d99efff82c26c3e4918eb81e394ab4f"
     }
   ]
 }

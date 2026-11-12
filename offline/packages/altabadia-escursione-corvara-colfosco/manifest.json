@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-escursione-corvara-colfosco",
   "name": "Corvara – Colfosco",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:06:31.447Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.842Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 548894,
+  "packageBytes": 548895,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.54466,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Corvara – Colfosco safety information",
       "url": "safety.json",
-      "bytes": 1968,
-      "sha256": "593b8fc36abe335ece3b170694c2dd2d5129eea3a338b787d9c177505872f8b3"
+      "bytes": 1969,
+      "sha256": "968ad1f29e4e65139f60fac3acd75c3cad40e9d083b142463b3f4de4dd7aa2f6"
     }
   ]
 }

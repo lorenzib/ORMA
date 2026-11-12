@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "eggental-jolanda-baita-messnerjoch",
   "name": "Jolanda to the Baita Messnerjoch",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T22:52:31.563Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.956Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 502365,
@@ -233,7 +233,7 @@
       "label": "Jolanda to the Baita Messnerjoch safety information",
       "url": "safety.json",
       "bytes": 1295,
-      "sha256": "2e94c732acb798a460a0a2f7d2538b3098bb4bdd4b3cb05016ee01a282113ab7"
+      "sha256": "961803e4e7967159fb0e212caca87337f0c5e6a724634be414b205bbb8204153"
     }
   ]
 }

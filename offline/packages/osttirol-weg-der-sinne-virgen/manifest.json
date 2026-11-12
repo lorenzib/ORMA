@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osttirol-weg-der-sinne-virgen",
   "name": "Weg der Sinne, Virgen",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T14:02:56.103Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.501Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 830157,
+  "packageBytes": 830158,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.99135,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Weg der Sinne, Virgen safety information",
       "url": "safety.json",
-      "bytes": 1506,
-      "sha256": "86675c0bc20fe8770d35468105636e3b77d2c46c0a03a465dcb18be195592223"
+      "bytes": 1507,
+      "sha256": "aa01532d09ed68f2c1507810271460b7dd7131d55b44b40f38982cd8b02e520c"
     }
   ]
 }

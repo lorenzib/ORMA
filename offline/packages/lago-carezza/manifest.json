@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lago-carezza",
   "name": "Lago di Carezza Loop",
-  "version": "2026.10.30-beta.26",
-  "generatedAt": "2026-10-30T16:15:33.824Z",
+  "version": "2026.11.12-beta.27",
+  "generatedAt": "2026-11-12T10:30:00.266Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 134428,
+  "packageBytes": 134424,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.407,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lago di Carezza Loop safety information",
       "url": "safety.json",
-      "bytes": 1297,
-      "sha256": "64e34267e512be836b5ccfbdaffcc397ab5e1ba14c59b34f6f1514cbd7fe1c34"
+      "bytes": 1293,
+      "sha256": "fb1a5f9a074271aa92d970eda934e0ed0e4c5926aee21e0146acbd718205588c"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7426666",
   "name": "Maiser Waalweg",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.929Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.441Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 4112811,
+  "packageBytes": 4112812,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.66096,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Maiser Waalweg safety information",
       "url": "safety.json",
-      "bytes": 1712,
-      "sha256": "6e9c553ebc0540876e6b8d3c0f72d2fa0a4cf7aef90f98f61f3541b3de47cd5a"
+      "bytes": 1713,
+      "sha256": "80734c1426268eee602b250bc5d86ad9111fcf1c700fa32c20430e4d8803bf46"
     }
   ]
 }

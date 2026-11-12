@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "isere-de-st-pierre-dentremont-a-corbel",
   "name": "Saint-Pierre-d’Entremont to Corbel loop",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T19:24:22.296Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.090Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 693266,
@@ -233,7 +233,7 @@
       "label": "Saint-Pierre-d’Entremont to Corbel loop safety information",
       "url": "safety.json",
       "bytes": 2942,
-      "sha256": "a7d303dbbb1feb127b77d42b7f8c6f26a9a8939cadee1a24fc51476805902479"
+      "sha256": "01239671b52216f96614ed66b540eab97fb98438d5b2c2fce43f726051c0f3ae"
     }
   ]
 }

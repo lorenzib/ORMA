@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "fvg-borgo-stavoli-moggio",
   "name": "Il borgo isolato di Stavoli di Moggio",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:27:35.805Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.057Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 360971,
@@ -233,7 +233,7 @@
       "label": "Il borgo isolato di Stavoli di Moggio safety information",
       "url": "safety.json",
       "bytes": 1458,
-      "sha256": "266d86a11899a3e57bf96f1f703eeddda1efb36c21ad45edcc219f5927523052"
+      "sha256": "19df3460b89eae19ab115a1ea0a4a1ffb6ac6bc2e4f1bd9f07af46dfa17d30aa"
     }
   ]
 }

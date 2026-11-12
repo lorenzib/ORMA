@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-5597577",
   "name": "Rundweg Gsindboden",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.757Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.401Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 339211,
+  "packageBytes": 339212,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62561,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Gsindboden safety information",
       "url": "safety.json",
-      "bytes": 1532,
-      "sha256": "63766f9ba9d682117b9c6dbfce6b3c95a44088202d872f54a0bed7afdf886557"
+      "bytes": 1533,
+      "sha256": "d3caa7953f23b54c51a454521f22dfc8f3114fd5e2b387496d5c9d5177b5454f"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "engadin-surlej-waterfall-lake-silvaplana-surlej",
   "name": "Surlej waterfall and Lake Silvaplana loop",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T20:47:38.210Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.985Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 438868,
@@ -233,7 +233,7 @@
       "label": "Surlej waterfall and Lake Silvaplana loop safety information",
       "url": "safety.json",
       "bytes": 1389,
-      "sha256": "6d02bdaba7fe02ba2401e5ebd364c8c7b4b50f7854143997fe329644eafb7330"
+      "sha256": "89026fe4bb63836e8d4c06fb4d6d170cf9041797bd6aed7325e70cf2ece4b9e2"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "eggental-pietralba-petersberger-leger",
   "name": "Pietralba to the Petersberger Leger",
-  "version": "2026.11.04-beta.1",
-  "generatedAt": "2026-11-04T22:54:56.674Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.963Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 241889,
@@ -233,7 +233,7 @@
       "label": "Pietralba to the Petersberger Leger safety information",
       "url": "safety.json",
       "bytes": 1892,
-      "sha256": "cb5e000ea7eff11cdc897914e0c1044fe57ba3ec90056ee1740bc709482dac3b"
+      "sha256": "90101686ce1d954755b0390a151f7e23f621ffe58788dbbe47e7abe286bec3b1"
     }
   ]
 }

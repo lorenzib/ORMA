@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "paganella-giro-della-toresela",
   "name": "Giro della Toresela",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:29:15.335Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.510Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 673863,
+  "packageBytes": 673860,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.20409,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Giro della Toresela safety information",
       "url": "safety.json",
-      "bytes": 1825,
-      "sha256": "8895e8138a5def0dea2dc3c7645418ec251d5018b4d435117508a9f892772e94"
+      "bytes": 1822,
+      "sha256": "dc404e9954bae42f92542b104422f37a531e08101b42d29142b15e7580ad2093"
     }
   ]
 }

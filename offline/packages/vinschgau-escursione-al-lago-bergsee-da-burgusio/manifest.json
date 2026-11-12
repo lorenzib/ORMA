@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "vinschgau-escursione-al-lago-bergsee-da-burgusio",
   "name": "Lake Bergsee from Burgeis",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:23:35.868Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.817Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 351559,
+  "packageBytes": 351555,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.70752,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lake Bergsee from Burgeis safety information",
       "url": "safety.json",
-      "bytes": 1601,
-      "sha256": "c4726ff72a9b7a88dcfad400f0838df8214a2e0af66e742be9c34e7d7b6ba78e"
+      "bytes": 1597,
+      "sha256": "3283194d5e8bb61a981cf6127c23506cf954be03fc936416bb3bc557e17c6a48"
     }
   ]
 }

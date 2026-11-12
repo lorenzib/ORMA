@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-brunate-e-le-sue-chiese",
   "name": "Brunate churches loop",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:55:28.266Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.147Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 777607,
+  "packageBytes": 777603,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.81346,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Brunate churches loop safety information",
       "url": "safety.json",
-      "bytes": 1944,
-      "sha256": "ffcb37602d61b7f5fb63f6b5987e439a417dbdd37efa58085aae4f9ad6617e2e"
+      "bytes": 1940,
+      "sha256": "f3b4b958cf38484653679c017b013cd6cf8fee39cb6789a357a22f8bbf3759eb"
     }
   ]
 }

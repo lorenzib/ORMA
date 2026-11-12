@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-peio-paese-lago-covel",
   "name": "Peio Paese to Lago Covel",
-  "version": "2026.11.10-beta.1",
-  "generatedAt": "2026-11-10T21:53:59.468Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.711Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 377426,
+  "packageBytes": 377422,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.358,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Peio Paese to Lago Covel safety information",
       "url": "safety.json",
-      "bytes": 2114,
-      "sha256": "f9d7cdbaa68121f8734ba46af71f7b113025c839505321a01a903701f4beadf6"
+      "bytes": 2110,
+      "sha256": "63c1d401a8226c7e8ffc7bc28b3f96a17a36d21a29f0763939a1b409ab7c2649"
     }
   ]
 }

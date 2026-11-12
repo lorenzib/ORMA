@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11791915",
   "name": "Dorfrundweg Aicha",
-  "version": "2026.11.06-beta.1",
-  "generatedAt": "2026-11-06T20:43:25.590Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.234Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 502071,
+  "packageBytes": 502067,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.77238,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dorfrundweg Aicha safety information",
       "url": "safety.json",
-      "bytes": 1517,
-      "sha256": "390803bfc6ceb7980f80fab88a15f43916e68fee91aaaa481993db6dc4232656"
+      "bytes": 1513,
+      "sha256": "048d1a9e2f515540ee5ba20b7c528af2590f70f0bb70ff5173479c5eae0cacc7"
     }
   ]
 }

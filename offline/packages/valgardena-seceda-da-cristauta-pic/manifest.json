@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "valgardena-seceda-da-cristauta-pic",
   "name": "Cristauta – Seceda over Monte Pic",
-  "version": "2026.11.05-beta.1",
-  "generatedAt": "2026-11-05T16:15:07.255Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.762Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 682430,
@@ -233,7 +233,7 @@
       "label": "Cristauta – Seceda over Monte Pic safety information",
       "url": "safety.json",
       "bytes": 1504,
-      "sha256": "6df9cd939fbb9c90452916c1edbc0ed1bccbc064f20bd40cf3634c367b343e98"
+      "sha256": "bf9b2085c7597b80b8599a33278fc81bed2ca0a8c835c8583a0c10ea12d36754"
     }
   ]
 }

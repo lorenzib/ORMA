@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-monte-pat-malga-vernera",
   "name": "Dalla Baita Monte Pat a Malga Vernera",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T12:05:51.839Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.919Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 163116,
+  "packageBytes": 163113,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.21252,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dalla Baita Monte Pat a Malga Vernera safety information",
       "url": "safety.json",
-      "bytes": 1344,
-      "sha256": "7c264040a30934392b9e4af5ee1bf7e5b68edd2a24c3d2cca09b93abc5cb68d3"
+      "bytes": 1341,
+      "sha256": "ce005b3ed7dea2c7bbe57e47310078f9100a37c832e100662ea544c745c9ed1c"
     }
   ]
 }

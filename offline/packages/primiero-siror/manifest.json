@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-siror",
   "name": "Siror",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:36.262Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.543Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 975480,
+  "packageBytes": 975477,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.17444,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Siror safety information",
       "url": "safety.json",
-      "bytes": 1830,
-      "sha256": "2ad87f7b049ad4c1bec32202163bdeb9a1f27d66e931acb45b0a6cb94276966c"
+      "bytes": 1827,
+      "sha256": "9e040b1f7391494786114028c711adbbe6d7a7da3e1bb4d878b2f8b5ff27c420"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-anello-ai-piedi-del-monte-oriolo",
   "name": "Lasnigo, Barni and the Crezzo lake",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:00:02.076Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.144Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 924704,
+  "packageBytes": 924700,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.87789,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lasnigo, Barni and the Crezzo lake safety information",
       "url": "safety.json",
-      "bytes": 1654,
-      "sha256": "189b6f2137495a9f326888640456370491e39576453e597f1fdcaa07897dc504"
+      "bytes": 1650,
+      "sha256": "1fcdba1034a5c0e07bb4e0aa0db8fcd3b4a9cd4acc94798808d51d5a704443af"
     }
   ]
 }

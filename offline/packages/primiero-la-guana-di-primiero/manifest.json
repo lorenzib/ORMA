@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-la-guana-di-primiero",
   "name": "La Guana di Primiero",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:36.192Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.526Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 833979,
+  "packageBytes": 833975,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16336,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "La Guana di Primiero safety information",
       "url": "safety.json",
-      "bytes": 1871,
-      "sha256": "1281caa98e0c563034a66aeef06695576039539e46a411902f05ea6e1f922609"
+      "bytes": 1867,
+      "sha256": "da2439a2b5d69689c800f969a28676cf5b3274ab3e1913ee00c32781a97702f9"
     }
   ]
 }

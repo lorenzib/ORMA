@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-masi-comunicanti",
   "name": "Masi Comunicanti",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:14:21.834Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.042Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 695512,
+  "packageBytes": 695508,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.25256,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Masi Comunicanti safety information",
       "url": "safety.json",
-      "bytes": 2078,
-      "sha256": "6194c3744c709cac89154759ce655087eea41d9ac9d1ffae82dbe9825d3af389"
+      "bytes": 2074,
+      "sha256": "e9578d7fc9a1b7e939e0d3495aa0f92e3baa21d2fdf613d4671fb1e96802abe6"
     }
   ]
 }

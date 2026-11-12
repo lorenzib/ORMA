@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11839597",
   "name": "Fenn Promenade",
-  "version": "2026.10.30-beta.6",
-  "generatedAt": "2026-10-30T16:15:34.646Z",
+  "version": "2026.11.11-beta.7",
+  "generatedAt": "2026-11-11T18:25:20.251Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 339615,
+  "packageBytes": 339616,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.53471,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Fenn Promenade safety information",
       "url": "safety.json",
-      "bytes": 1140,
-      "sha256": "8633d9bd30d38a8f9c870e2be8c7e46f27f1679c2633241f906fcd3f283815ad"
+      "bytes": 1141,
+      "sha256": "4b14d745b1a9ff07c0518162d98121ebd70929a79f931e85437b53ee64cdc1c9"
     }
   ]
 }

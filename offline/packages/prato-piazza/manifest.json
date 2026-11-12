@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "prato-piazza",
   "name": "Prato Piazza (Plätzwiese)",
-  "version": "2026.10.30-beta.5",
-  "generatedAt": "2026-10-30T16:15:36.153Z",
+  "version": "2026.11.11-beta.6",
+  "generatedAt": "2026-11-11T18:25:20.514Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 339971,
+  "packageBytes": 339976,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.63878,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Prato Piazza (Plätzwiese) safety information",
       "url": "safety.json",
-      "bytes": 1740,
-      "sha256": "0c52d668fce06f2491a59079bf593365ca797c593b99bb21f3fa7204d6f7b374"
+      "bytes": 1745,
+      "sha256": "5d6e407197baf4e75298c9476a20e774e5718db6739b898e662b1dd6ba53c3bb"
     }
   ]
 }

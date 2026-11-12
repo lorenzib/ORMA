@@ -246,8 +246,10 @@ describe('the existing-site verification boundary',()=>{
     // both in the Stelvio park.
     // Then 522 and 520 with Dolomites batch 9: the short loop round the
     // Colle di Santa Lucia.
-    expect(catalogue).toHaveLength(522);
-    expect(currentSiteTrails(catalogue)).toHaveLength(520);
+    // Then 521 and 519: the Sassolungo–Sassopiatto Loop retired, the same
+    // circuit as the Giro del Sasso Lungo, whose page its addresses now open.
+    expect(catalogue).toHaveLength(521);
+    expect(currentSiteTrails(catalogue)).toHaveLength(519);
   });
 
   test('requires the artwork the public trail page needs',()=>{

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "engadin-diavolezza-sass-queder",
   "name": "Sass Queder from Diavolezza",
-  "version": "2026.11.03-beta.1",
-  "generatedAt": "2026-11-03T20:45:03.839Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.975Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 136727,
+  "packageBytes": 136724,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.40655,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sass Queder from Diavolezza safety information",
       "url": "safety.json",
-      "bytes": 1418,
-      "sha256": "fe9d601975c049fee66c45bcbe7f480b156a88310a015457710bfa579d6f4101"
+      "bytes": 1415,
+      "sha256": "7b308ee40778a6b9be4869ef02beeba0e64a6b2dbc02d250e9c0e488d5af6419"
     }
   ]
 }

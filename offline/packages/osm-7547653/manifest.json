@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7547653",
   "name": "Anello dei Forti",
-  "version": "2026.10.30-beta.4",
-  "generatedAt": "2026-10-30T16:15:35.950Z",
+  "version": "2026.11.11-beta.5",
+  "generatedAt": "2026-11-11T18:25:20.445Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 291825,
+  "packageBytes": 291826,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.50917,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Anello dei Forti safety information",
       "url": "safety.json",
-      "bytes": 1465,
-      "sha256": "833c04caa8257ffa9b7f7d0c659516d619524e520d3dd2d708522e5a82779da2"
+      "bytes": 1466,
+      "sha256": "9c327901c8a2a6d10f1d66ab494026607021490f63932ed5e7c0ebb456c58271"
     }
   ]
 }

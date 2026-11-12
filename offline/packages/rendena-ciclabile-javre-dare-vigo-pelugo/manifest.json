@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "rendena-ciclabile-javre-dare-vigo-pelugo",
   "name": "Javrè – Pelugo cycle path loop",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:18:12.329Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:20.556Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1039343,
+  "packageBytes": 1039344,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.05735,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Javrè – Pelugo cycle path loop safety information",
       "url": "safety.json",
-      "bytes": 2123,
-      "sha256": "7941486e80aeb239f4c3d0d8625c3f902bf279622b4430957cb0edd23045820a"
+      "bytes": 2124,
+      "sha256": "db53d00c881094302b4cf63417427f7accb1838da8060f86a80af20adc01186e"
     }
   ]
 }

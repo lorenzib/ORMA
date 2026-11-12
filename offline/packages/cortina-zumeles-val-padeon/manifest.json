@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-zumeles-val-padeon",
   "name": "Forcella Zumeles and Val Padeon",
-  "version": "2026.11.09-beta.1",
-  "generatedAt": "2026-11-09T21:53:44.267Z",
-  "scoringVersion": "1.7.0",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.949Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 540343,
+  "packageBytes": 540344,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.54785,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Forcella Zumeles and Val Padeon safety information",
       "url": "safety.json",
-      "bytes": 1969,
-      "sha256": "40556f4625de60fb06f2f78f6c075a389ddbe560d4fb02f3c7b513e53c6691d7"
+      "bytes": 1970,
+      "sha256": "713ee6b902311f6a9be64146fc75c8cd79f86b0bc3b5fde7633f0184a79701ab"
     }
   ]
 }

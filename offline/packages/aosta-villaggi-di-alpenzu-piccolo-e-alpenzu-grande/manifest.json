@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande",
   "name": "Alpenzù Piccolo and Alpenzù Grande",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T13:09:58.488Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.873Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 409747,
@@ -233,7 +233,7 @@
       "label": "Alpenzù Piccolo and Alpenzù Grande safety information",
       "url": "safety.json",
       "bytes": 1738,
-      "sha256": "bf62f0e0d09c3dfd99206c129949844beb86fc13b184658eb2a8f19aa4117b51"
+      "sha256": "f0ccf5aa9b97587d4dbbfe399186fdea1b18e0eb17a1a76538fa7b17fe05e52a"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-giro-monte-corona",
   "name": "Giro panoramico sul Monte Corona",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T17:58:44.639Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.913Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 565109,
+  "packageBytes": 565110,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16159,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Giro panoramico sul Monte Corona safety information",
       "url": "safety.json",
-      "bytes": 1491,
-      "sha256": "061232aa464cae011c32a14ac0a7c5d799c679d2d9ec59886c3b83a13d968cac"
+      "bytes": 1492,
+      "sha256": "b8eba60f29ec888608c23b8d462ca2cd306141caaf5c2df9f396c3585ce8e4fe"
     }
   ]
 }

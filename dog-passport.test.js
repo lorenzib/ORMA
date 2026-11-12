@@ -60,14 +60,46 @@ describe('SOCIAL-05 dog passport', () => {
     expect(fassa.trails[0].lastDate).toBe('2026-10-12');
   });
 
-  test('milestones: first walk, a lake, a hut, 10 walks, 100 km', () => {
+  test('milestones: first walk, a lake, a hut, then badge ladders that always show the next one', () => {
     const p = passport.buildPassport([walk('a', 'carezza', '2026-10-12'), walk('b', 'fuciade', '2026-10-13')], TRAILS);
     const byId = Object.fromEntries(p.milestones.map(m => [m.id, m]));
     expect(byId.first.done).toBe(true);
     expect(byId.lakes).toMatchObject({ have: 1, done: true });
     expect(byId.huts).toMatchObject({ have: 1, done: true });
-    expect(byId.walks).toMatchObject({ have: 2, target: 10, done: false });
-    expect(byId.km).toMatchObject({ have: 8, target: 100, done: false });
+    expect(byId.walks).toMatchObject({ have: 2, target: 5, done: false });
+    expect(byId.km).toMatchObject({ have: 8, target: 10, done: false });
+    expect(byId.valleys).toMatchObject({ have: 1, target: 2, done: false });
+    // Six walks: the 5-walk badge is earned and the 10-walk one is next.
+    const six = passport.buildPassport(['a', 'b', 'c', 'd', 'e', 'f'].map((id, i) => walk(id, 'carezza', '2026-10-1' + i)), TRAILS);
+    const walks = six.milestones.filter(m => m.id === 'walks');
+    expect(walks.map(m => [m.target, m.done])).toEqual([[5, true], [10, false]]);
+    const kms = six.milestones.filter(m => m.id === 'km');
+    expect(kms.map(m => [m.target, m.done])).toEqual([[10, true], [25, false]]);
+  });
+
+  test('a valley visa levels up with trails walked, not by finishing the valley', () => {
+    const lv = passport.valleyLevel;
+    // A big valley: 1, 3, 5, 10, 20 trails.
+    expect(lv(0, 64)).toMatchObject({ level: 0, id: null, next: { id: 'visitor', left: 1 } });
+    expect(lv(1, 64)).toMatchObject({ level: 1, id: 'visitor', from: 1, next: { id: 'explorer', need: 3, left: 2 } });
+    expect(lv(4, 64)).toMatchObject({ level: 2, id: 'explorer', next: { id: 'regular', left: 1 } });
+    expect(lv(12, 64)).toMatchObject({ level: 4, id: 'local', next: { id: 'legend', need: 20, left: 8 } });
+    expect(lv(20, 64)).toMatchObject({ level: 5, id: 'legend', next: null });
+    // A small valley keeps every level in reach: four trails make a legend.
+    expect(lv(3, 4)).toMatchObject({ level: 2, id: 'explorer', next: { id: 'regular', need: 4, left: 1 } });
+    expect(lv(4, 4)).toMatchObject({ level: 5, id: 'legend', next: null });
+    expect(lv(1, 1)).toMatchObject({ level: 5, id: 'legend' });
+    const p = passport.buildPassport([walk('a', 'carezza', '2026-10-12')], TRAILS);
+    expect(p.valleys[0].level).toMatchObject({ level: 1, id: 'visitor', next: { id: 'explorer', need: 3, left: 2 } });
+    expect(passport.stars(p.valleys[0].level)).toBe('★☆☆☆☆');
+  });
+
+  test('a visa first stamped in the last two weeks is new', () => {
+    const v = { firstDate: '2026-11-01' };
+    expect(passport.isNewVisa(v, Date.parse('2026-11-10'))).toBe(true);
+    expect(passport.isNewVisa(v, Date.parse('2026-11-20'))).toBe(false);
+    expect(passport.isNewVisa(v, undefined)).toBe(false);
+    expect(passport.isNewVisa({ firstDate: 'nonsense' }, Date.parse('2026-11-10'))).toBe(false);
   });
 
   test('a walk on a trail no longer in the catalogue still stamps, by name', () => {
@@ -109,7 +141,8 @@ describe('SOCIAL-05 dog passport', () => {
       walk('a', 'carezza', '2026-10-01'), walk('b', 'fuciade', '2026-10-05'), walk('c', 'carezza', '2026-10-09'),
     ], TRAILS), { t });
     expect(order.indexOf('Lago di Carezza')).toBeLessThan(order.indexOf('Rifugio Fuciade'));
-    expect(order).toContain('journal.passport.toGo{&quot;n&quot;:&quot;88&quot;}');
+    expect(order).toContain('journal.passport.toGo{&quot;n&quot;:&quot;13&quot;}');
+    expect(order).toContain('journal.passport.mile.km{&quot;n&quot;:&quot;25&quot;}');
   });
 });
 
@@ -141,6 +174,30 @@ describe('SOCIAL-05 passport front page and valley list', () => {
     expect(open).toContain('aria-expanded="true"');
     expect(open).toContain('class="jp-slot is-walked"');
     expect(open.match(/class="jp-slot"/g)).toHaveLength(2);
+  });
+
+  test('a visa shows its level as stars and a name, never a count of the whole valley', () => {
+    const p = passport.buildPassport([walk('a', 'carezza', '2026-10-12')], TRAILS);
+    const html = passport.renderPassport(p, { t, openValley: 'Val di Fassa' });
+    expect(html).toContain('<span class="jp-stars" aria-hidden="true">★☆☆☆☆</span> journal.passport.level.visitor');
+    expect(html).toContain('journal.passport.nextLevel{&quot;n&quot;:&quot;2&quot;,&quot;level&quot;:&quot;journal.passport.level.explorer&quot;}');
+    expect(html).toContain('journal.passport.whereNext');
+    expect(html).not.toMatch(/journal\.passport\.of\b|leftTip/);
+    const top = passport.buildPassport([walk('a', 'carezza', '2026-10-12'), walk('b', 'fuciade', '2026-10-13'), walk('c', 'other', '2026-10-14')], TRAILS);
+    expect(passport.renderPassport(top, { t, openValley: 'Val di Fassa' }))
+      .toContain('journal.passport.topLevel{&quot;valley&quot;:&quot;Val di Fassa&quot;}');
+  });
+
+  test('a new visa wears a badge, and an open valley offers its visa as a picture', () => {
+    const p = passport.buildPassport([walk('a', 'carezza', '2026-11-08'), walk('b', 'seceda', '2026-10-01')], TRAILS);
+    const now = Date.parse('2026-11-10T12:00:00Z');
+    const html = passport.renderPassport(p, { t, now, canShare: true, openValley: 'Val di Fassa' });
+    expect(html.match(/jp-visa-new/g)).toHaveLength(1);
+    expect(html).toContain('class="jp-visa jp-ink1 is-open is-new" data-valley="Val di Fassa"');
+    expect(html).toContain('<button type="button" class="jp-visa-share" data-valley="Val di Fassa">journal.passport.shareNewVisa</button>');
+    const old = passport.renderPassport(p, { t, now, canShare: true, openValley: 'Val Gardena' });
+    expect(old).toContain('journal.passport.shareVisa</button>');
+    expect(passport.renderPassport(p, { t, now, openValley: 'Val di Fassa' })).not.toContain('jp-visa-share');
   });
 
   test('a big valley shows eight blanks and folds the rest away', () => {
@@ -186,7 +243,10 @@ describe('SOCIAL-05 the proof reaches the journal', () => {
   test('every passport label exists in English and Italian', () => {
     const i18n = read('i18n.js');
     const keys = new Set([...read('dog-passport.js').matchAll(/'(journal\.passport\.[\w.]+)'/g)].map(m => m[1]));
-    ['first', 'walks', 'km'].forEach(id => { keys.delete('journal.passport.mile.'); keys.add('journal.passport.mile.' + id); });
+    keys.delete('journal.passport.mile.');
+    keys.delete('journal.passport.level.');
+    ['first', 'walks', 'km', 'valleys'].forEach(id => keys.add('journal.passport.mile.' + id));
+    passport.VALLEY_LEVELS.forEach(l => keys.add('journal.passport.level.' + l.id));
     expect(keys.size).toBeGreaterThan(15);
     keys.forEach(key => expect(i18n.split(`'${key}':`).length - 1).toBe(2));
   });

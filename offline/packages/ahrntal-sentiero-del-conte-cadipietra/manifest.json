@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "ahrntal-sentiero-del-conte-cadipietra",
   "name": "Count’s path above Steinhaus",
-  "version": "2026.11.02-beta.1",
-  "generatedAt": "2026-11-02T23:23:50.867Z",
+  "version": "2026.11.11-beta.2",
+  "generatedAt": "2026-11-11T18:25:19.818Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 365679,
+  "packageBytes": 365675,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.98895,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Count’s path above Steinhaus safety information",
       "url": "safety.json",
-      "bytes": 1636,
-      "sha256": "cd78ef00528b54eae47570c109f372e0721317fb284d47e3f35eee246f54e8b5"
+      "bytes": 1632,
+      "sha256": "b5e156108789e469f963706163cd500de354388e29ef9ae7144706bf8d24cba1"
     }
   ]
 }

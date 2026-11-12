@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14376573",
   "name": "Crêt de Talière",
-  "version": "2026.11.11-beta.7",
-  "generatedAt": "2026-11-11T17:01:15.355Z",
+  "version": "2026.11.11-beta.8",
+  "generatedAt": "2026-11-11T18:25:20.324Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 261955,
+  "packageBytes": 261951,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.19973,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Crêt de Talière safety information",
       "url": "safety.json",
-      "bytes": 1153,
-      "sha256": "fd55b6e82088c353e874f989d5cbf88bd8b6a4d5ff379e42a1dd33a4830e0f8b"
+      "bytes": 1149,
+      "sha256": "687ad3eb39d996c1b6e8b827bfab8dc33559be754eee2c9e21ef6eafbc465bb0"
     }
   ]
 }

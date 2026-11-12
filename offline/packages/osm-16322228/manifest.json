@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-16322228",
   "name": "Boucle du Marais des Chassettes",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:35.539Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.351Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 979074,
+  "packageBytes": 979071,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.54539,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Boucle du Marais des Chassettes safety information",
       "url": "safety.json",
-      "bytes": 1139,
-      "sha256": "94e01557801fe80c14250d408203bd8ae18c549ff70d6f387aac01271e0e821d"
+      "bytes": 1136,
+      "sha256": "97c4c31d150404e64aa83bbc01318cd5703ed104b088f1c130de96964c1f0830"
     }
   ]
 }

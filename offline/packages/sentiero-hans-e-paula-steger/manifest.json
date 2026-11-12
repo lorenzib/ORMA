@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "sentiero-hans-e-paula-steger",
   "name": "Sentiero Hans e Paula Steger",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:36.379Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.603Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 934079,
+  "packageBytes": 934084,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.51589,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sentiero Hans e Paula Steger safety information",
       "url": "safety.json",
-      "bytes": 1687,
-      "sha256": "d87aca9feac5bafd4d81111e772b9f1ac2693093c9179a3f3555b2d450011938"
+      "bytes": 1692,
+      "sha256": "451e51fda259a99044d2bdeff5e0fb47784dd5eb90b28e91266d1e8dbc76e76d"
     }
   ]
 }

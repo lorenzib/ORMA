@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-san-leonardo-lisignago",
   "name": "San Leonardo e le campagne di Lisignago",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:46:48.324Z",
-  "scoringVersion": "1.6.0",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:19.931Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 771232,
+  "packageBytes": 771228,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.15226,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "San Leonardo e le campagne di Lisignago safety information",
       "url": "safety.json",
-      "bytes": 1416,
-      "sha256": "3462f6f255007376735db2626328615d6768af59b07055fe7fc0f4978791511b"
+      "bytes": 1412,
+      "sha256": "9be0e96c4351fdff89484975dfadcb781aba20c0fba2e535be5691a170724d60"
     }
   ]
 }

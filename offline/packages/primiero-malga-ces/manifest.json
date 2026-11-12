@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "trailId": "primiero-malga-ces",
   "name": "San Martino di Castrozza - Malga Ces",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:36.203Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.530Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
   "packageBytes": 674732,
@@ -233,7 +233,7 @@
       "label": "San Martino di Castrozza - Malga Ces safety information",
       "url": "safety.json",
       "bytes": 1438,
-      "sha256": "2289d4d3b9336e5548546811ab8d59cf8d2ef0e2a2a162547c012833d3b49a11"
+      "sha256": "2123ceca9798abf5788f622a01841c9b264e46e1de1ea5f3acfb1fa703135101"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11270309",
   "name": "Passeggiata delle Sorgenti - Quellenpromenade",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.481Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.217Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 530261,
+  "packageBytes": 530258,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.23386,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passeggiata delle Sorgenti - Quellenpromenade safety information",
       "url": "safety.json",
-      "bytes": 1873,
-      "sha256": "f2c3e6461ad490294b6e963556bd2318e94201c3e104692c7192696a5cda5a18"
+      "bytes": 1870,
+      "sha256": "b7c1ac504f9496c95953d81599dda7330e92167c7457561e64e11b026601ca56"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11764094",
   "name": "Dörferrunde: Natz, Raas, Schabs and Viums",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.513Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.223Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1460384,
+  "packageBytes": 1460385,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.73736,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dörferrunde: Natz, Raas, Schabs and Viums safety information",
       "url": "safety.json",
-      "bytes": 2161,
-      "sha256": "2a668bbd8adc966bed1cca8eb789e693ae3d4a55d5b822d122a40a477d8afa88"
+      "bytes": 2162,
+      "sha256": "8998b2c9cb43fc2b12849ca6f8f690199e459248191e12737bfc8ce5afd08e16"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9493733",
   "name": "Tru di Lëc",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:36.097Z",
+  "version": "2026.11.11-beta.3",
+  "generatedAt": "2026-11-11T18:25:20.472Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 593710,
+  "packageBytes": 593711,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59262,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Tru di Lëc safety information",
       "url": "safety.json",
-      "bytes": 1794,
-      "sha256": "f1c0bd3e04b62bf27284021d7d37af643a918cb630afc59e7e007cd0b5662c12"
+      "bytes": 1795,
+      "sha256": "8866ba9a5a04f035149e65b3ebb9138cc1283e51572b0a4963610e6cf3dfbcf8"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-prato-di-sorte",
   "name": "Prato di Sorte",
-  "version": "2026.10.30-beta.3",
-  "generatedAt": "2026-10-30T16:15:34.170Z",
+  "version": "2026.11.11-beta.4",
+  "generatedAt": "2026-11-11T18:25:20.020Z",
   "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 597494,
+  "packageBytes": 597495,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.35471,
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Prato di Sorte safety information",
       "url": "safety.json",
-      "bytes": 1787,
-      "sha256": "1b5930e79fd879e84301cb1d734e1bce1e8c3e3550cf289a95386d000c740a73"
+      "bytes": 1788,
+      "sha256": "98ef4816c437cc101bfbbe5021e62d2f4fd952797b36076a2c5745f075748034"
     }
   ]
 }
