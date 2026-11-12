@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-9675994",
+  "generatedAt": "2026-11-12T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 1.5,
+    "ascentM": 40,
+    "highestPointM": 1332,
+    "expectedDuration": "30 min",
+    "difficulty": "Moderate",
+    "shadePercent": 65
+  },
+  "trailhead": {
+    "lat": 46.4241244,
+    "lng": 11.4446947,
+    "label": "On the farm road at Unterkofl, Deutschnofen (where the loop meets the road)"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 500 m on the narrow asphalt farm road to Unterkofl, used by cars.",
+    "Passes through two working farmyards (Unterkofl and Oberkofl).",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-12"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-12",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "On the farm road at Unterkofl, Deutschnofen (where the loop meets the road)": "Sulla strada di campagna a Unterkofl, Deutschnofen (dove l'anello incontra la strada)",
+    "About 500 m on the narrow asphalt farm road to Unterkofl, used by cars.": "Circa 500 m sulla stretta strada di campagna asfaltata verso Unterkofl, percorsa da auto.",
+    "Passes through two working farmyards (Unterkofl and Oberkofl).": "Attraversa i cortili di due masi in attività (Unterkofl e Oberkofl)."
+  }
+}
