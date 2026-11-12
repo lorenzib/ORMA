@@ -4,7 +4,7 @@
   "name": "Tonadico",
   "version": "2026.11.12-beta.5",
   "generatedAt": "2026-11-12T12:31:14.545Z",
-  "scoringVersion": "1.9.0",
+  "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
   "packageBytes": 896820,
   "packageBudgetBytes": 5242880,
