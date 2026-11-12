@@ -11,12 +11,14 @@
 // that opens in late May is shut in May. A walk that needs the road is out of
 // season in its shut months (trail-season-words.js).
 //
-// A road closed to cars for part of the summer, with a shuttle instead
-// (carFree), leaves the walk in season: trail.season.carFree says when to take
-// the shuttle, { id, name, shuttle, periods, closedMonths, datesFor, ... }.
+// Access rules are roads that stay open but limit cars for part of the year
+// (a summer booking, a winter toll with time windows). They never change a
+// walk's months: the walk gets the rule in trail.season.access,
+//
+//   { id, line, monthNote, months, operator, url, accessedAt }
+//
+// and the page says it, and in its months the monthly note does.
 
-const { runningMonths } = require('./lift-seasons');
-const MD = /^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 const ALL_MONTHS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const PARTS = new Set(['early', 'mid', 'late']);
 const isMonth = m => Number.isInteger(m) && m >= 1 && m <= 12;
@@ -32,41 +34,38 @@ function validateRoad(id, road){
   if(!/^\d{4}-\d{2}-\d{2}$/.test(road.accessedAt || '')) throw new Error(`Road ${id} has no read-on date`);
 }
 
-function validateCarFree(id, road){
-  if(!road || typeof road.name !== 'string' || !road.name.trim()) throw new Error(`Car-free road ${id} has no name`);
-  if(typeof road.shuttle !== 'string' || !road.shuttle.trim()) throw new Error(`Car-free road ${id} does not say which shuttle to take`);
-  if(!Array.isArray(road.periods) || !road.periods.length || !road.periods.every(p => MD.test(p.from || '') && MD.test(p.to || ''))) throw new Error(`Car-free road ${id} has a period that is not MM-DD to MM-DD`);
-  if(!road.datesFor) throw new Error(`Car-free road ${id} does not say which year its dates are`);
-  if(!/^https:\/\//.test(road.url || '')) throw new Error(`Car-free road ${id} has no source url`);
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(road.accessedAt || '')) throw new Error(`Car-free road ${id} has no read-on date`);
+function validateAccess(id, rule){
+  if(!rule || typeof rule.line !== 'string' || !rule.line.trim()) throw new Error(`Access rule ${id} has no line`);
+  if(typeof rule.monthNote !== 'string' || !rule.monthNote.includes('{month}')) throw new Error(`Access rule ${id} has no month note`);
+  if(!Array.isArray(rule.months) || !rule.months.length || !rule.months.every(isMonth)) throw new Error(`Access rule ${id} has bad months`);
+  if(!/^https:\/\//.test(rule.url || '')) throw new Error(`Access rule ${id} has no source url`);
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(rule.accessedAt || '')) throw new Error(`Access rule ${id} has no read-on date`);
 }
 
 function applyRoadSeasons(trails, artifact){
   const roads = (artifact && artifact.roads) || {};
-  const carFree = (artifact && artifact.carFree) || {};
-  Object.entries(carFree).forEach(([id, road]) => validateCarFree(id, road));
+  const access = (artifact && artifact.access) || {};
+  Object.entries(access).forEach(([id, rule]) => validateAccess(id, rule));
   const uses = (artifact && artifact.trails) || {};
   Object.entries(roads).forEach(([id, road]) => validateRoad(id, road));
   const known = new Set(trails.map(trail => trail.id));
   for(const [trailId, use] of Object.entries(uses)){
     if(!known.has(trailId)) throw new Error(`Road seasons name an unknown walk: ${trailId}`);
     for(const roadId of use.roads || []) if(!roads[roadId]) throw new Error(`Road seasons for ${trailId} name an unknown road: ${roadId}`);
-    for(const roadId of use.carFree || []) if(!carFree[roadId]) throw new Error(`Road seasons for ${trailId} name an unknown car-free road: ${roadId}`);
+    for(const ruleId of use.access || []) if(!access[ruleId]) throw new Error(`Road seasons for ${trailId} name an unknown access rule: ${ruleId}`);
   }
   return trails.map(trail => {
     const use = uses[trail.id];
     if(!use || !trail.season) return trail;
-    const shuttles = (use.carFree || []).map(roadId => {
-      const road = carFree[roadId];
-      return {
-        id: roadId, name: road.name, shuttle: road.shuttle,
-        periods: road.periods.map(({ from, to }) => ({ from, to })),
-        // The months it is closed to cars for at least half of: the month's note.
-        closedMonths: runningMonths(road.periods),
-        datesFor: road.datesFor, operator: road.operator || '', url: road.url, accessedAt: road.accessedAt,
-      };
-    });
-    const records = (use.roads || []).map(roadId => {
+    const season = { ...trail.season };
+    if((use.access || []).length){
+      season.access = use.access.map(ruleId => {
+        const rule = access[ruleId];
+        return { id: ruleId, line: rule.line, monthNote: rule.monthNote, months: rule.months.slice().sort((a, b) => a - b), operator: rule.operator || '', url: rule.url, accessedAt: rule.accessedAt };
+      });
+    }
+    if(!(use.roads || []).length) return { ...trail, season };
+    const records = use.roads.map(roadId => {
       const road = roads[roadId];
       const open = new Set(road.openMonths);
       return {
@@ -76,8 +75,8 @@ function applyRoadSeasons(trails, artifact){
         operator: road.operator || '', url: road.url, accessedAt: road.accessedAt,
       };
     });
-    return { ...trail, season: { ...trail.season, ...(records.length ? { roads: records } : {}), ...(shuttles.length ? { carFree: shuttles } : {}) } };
+    return { ...trail, season: { ...season, roads: records } };
   });
 }
 
-module.exports = { applyRoadSeasons, validateRoad, validateCarFree };
+module.exports = { applyRoadSeasons, validateRoad, validateAccess };

@@ -1,6 +1,6 @@
 {
   "contractVersion": "road-seasons-v1",
-  "note": "Roads that close for the winter and are the only drive to a walk's start. openMonths are the months the road is open for most of the month, read from the road's operator or town on accessedAt; usually says, in the source's own terms, when it opens and shuts (part: early, mid or late). A walk listed under trails is out of season in the months its road is shut. Curated by hand; check each spring and autumn. Roads checked and left out, because they stay open in winter or the walk can be reached another way, are in checked. carFree lists roads closed to cars for part of the summer, with a shuttle instead: the walk stays in season, and the page says when to take the shuttle (periods are MM-DD, datesFor says which year).",
+  "note": "Roads that close for the winter and are the only drive to a walk's start. openMonths are the months the road is open for most of the month, read from the road's operator or town on accessedAt; usually says, in the source's own terms, when it opens and shuts (part: early, mid or late). A walk listed under trails is out of season in the months its road is shut. Curated by hand; check each spring and autumn. Roads checked and left out, because they stay open in winter or the walk can be reached another way, are in checked. access holds roads that stay open but limit cars for part of the year (a summer booking, a winter toll with time windows): information only, never a change to a walk's months; months are the months its monthly note shows.",
   "roads": {
     "tre-cime-toll-road": {
       "name": "Tre Cime toll road (Misurina – Rifugio Auronzo)",
@@ -26,6 +26,43 @@
       ]
     }
   },
+  "access": {
+    "braies-valley": {
+      "operator": "Braies valley (prags.bz)",
+      "url": "https://www.prags.bz/it",
+      "accessedAt": "2026-11-12",
+      "months": [
+        7,
+        8,
+        9
+      ],
+      "line": "In 2026, from 1 July to 15 September, cars could drive into the Braies valley between 9:00 and 16:00 only with an online booking, and buses 439 and 442 had to be booked online too. The valley says the rule returns in summer 2027. On foot or by bike the valley is always open.",
+      "monthNote": "In {month}, cars may need an online booking to drive into the Braies valley between 9:00 and 16:00 (the 2026 rule ran to 15 September)."
+    },
+    "plaetzwiese-road": {
+      "operator": "Braies valley (prags.bz)",
+      "url": "https://www.prags.bz/it/plaetzwiese",
+      "accessedAt": "2026-11-12",
+      "months": [
+        1,
+        2,
+        3
+      ],
+      "line": "From 25 December 2026 to 29 March 2027 the road up to Plätzwiese is a toll road: cars may drive up only before 10:00 or from 15:00, up to 100 cars, and a paid shuttle runs from Brückele. Until 24 December there are no limits.",
+      "monthNote": "In {month} the road up to Plätzwiese is a toll road: cars may drive up only before 10:00 or from 15:00."
+    },
+    "ra-stua-road": {
+      "operator": "Cortina hiking map 2025 (Cortina Marketing)",
+      "url": "https://cortina.dolomiti.org/wp-content/uploads/2025/06/Cortina_Sentieri_Hiking_Map_2025_web.pdf",
+      "accessedAt": "2026-11-12",
+      "months": [
+        7,
+        8
+      ],
+      "line": "In 2025, from 28 June to 31 August, the road from Sant’Uberto to Malga Ra Stua was closed to cars, and a shuttle bus ran from Fiames (park information point) instead. These are the latest dates found.",
+      "monthNote": "In {month} the road to Malga Ra Stua may be closed to cars: take the shuttle bus from Fiames (in 2025 it ran from 28 June to 31 August)."
+    }
+  },
   "trails": {
     "tre-cime": {
       "roads": [
@@ -37,8 +74,33 @@
         "tre-cime-toll-road"
       ]
     },
+    "lago-braies": {
+      "access": [
+        "braies-valley"
+      ]
+    },
+    "trecime-lago-di-braies-malga-foresta": {
+      "access": [
+        "braies-valley"
+      ]
+    },
+    "trecime-lago-di-braies-malga-rossalm": {
+      "access": [
+        "braies-valley"
+      ]
+    },
+    "trecime-giro-delle-baite-lago-di-braies": {
+      "access": [
+        "braies-valley"
+      ]
+    },
+    "prato-piazza": {
+      "access": [
+        "plaetzwiese-road"
+      ]
+    },
     "cortina-anello-dei-tre-rifugi": {
-      "carFree": [
+      "access": [
         "ra-stua-road"
       ]
     }
@@ -63,6 +125,35 @@
       "accessedAt": "2026-11-11"
     },
     {
+      "road": "Plätzwiese road (Brückele – Plätzwiese)",
+      "trails": [
+        "prato-piazza"
+      ],
+      "why": "Not shut in winter: from 25 December it is a toll road with time windows, listed under access.",
+      "url": "https://www.prags.bz/it/plaetzwiese",
+      "accessedAt": "2026-11-12"
+    },
+    {
+      "road": "Würzjoch road from Villnöss (Ponte Russis)",
+      "trails": [
+        "villnoess-da-russis-fino-al-passo-delle-erbe"
+      ],
+      "why": "The pass is drivable from Villnöss only from May to November, but OpenStreetMap shows the road at Ponte Russis closed only at night from November to May; the walk's own season (July to September) sits inside the opening anyway.",
+      "url": "https://www.suedtirol.info/de/de/information/mobilitaet/paesse-in-suedtirol/wuerzjoch",
+      "accessedAt": "2026-11-12"
+    },
+    {
+      "road": "Streda Rottonara (La Villa)",
+      "trails": [
+        "osm-9511999",
+        "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt",
+        "altabadia-sentiero-degli-artisti-tru-di-artisc"
+      ],
+      "why": "Shut from November to May on OpenStreetMap, but the walks start at the La Villa bus stop and do not use it.",
+      "url": "https://www.openstreetmap.org/way/807646089",
+      "accessedAt": "2026-11-12"
+    },
+    {
       "road": "Cinque Torri, Croda da Lago and Val di Fanes roads (summer car closures on the same Cortina map)",
       "trails": [
         "cinque-torri-assisted",
@@ -74,21 +165,5 @@
       "url": "https://cortina.dolomiti.org/wp-content/uploads/2025/06/Cortina_Sentieri_Hiking_Map_2025_web.pdf",
       "accessedAt": "2026-11-12"
     }
-  ],
-  "carFree": {
-    "ra-stua-road": {
-      "name": "road from Sant’Uberto to Malga Ra Stua",
-      "shuttle": "the shuttle bus from Fiames (park information point)",
-      "periods": [
-        {
-          "from": "06-28",
-          "to": "08-31"
-        }
-      ],
-      "datesFor": "2025",
-      "operator": "Cortina hiking map 2025 (Cortina Marketing)",
-      "url": "https://cortina.dolomiti.org/wp-content/uploads/2025/06/Cortina_Sentieri_Hiking_Map_2025_web.pdf",
-      "accessedAt": "2026-11-12"
-    }
-  }
+  ]
 }
