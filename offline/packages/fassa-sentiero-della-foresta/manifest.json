@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-sentiero-della-foresta",
   "name": "Sentiero della Foresta",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.491Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:34.281Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 338713,
+  "packageBytes": 338801,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42992,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sentiero della Foresta safety information",
       "url": "safety.json",
-      "bytes": 2164,
-      "sha256": "8843fba7344b5d2adf5828c8669e3014af1c9a6373200f44344f099e88d8d07f"
+      "bytes": 2161,
+      "sha256": "6562ba2a4cfbfa4cf1a9818fcf5b630e6a4000da307c49d261fd63ce3f44c975"
     }
   ]
 }

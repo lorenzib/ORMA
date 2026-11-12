@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lesachtal-tuffbad",
   "name": "Tuffbad loop, Lesachtal",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.579Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:35.139Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 244775,
+  "packageBytes": 244863,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.71956,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Tuffbad loop, Lesachtal safety information",
       "url": "safety.json",
-      "bytes": 2114,
-      "sha256": "906bf31115194cc38f679b5e15850d9491b5def4b89d54cb3b3c9f053d9c4805"
+      "bytes": 2111,
+      "sha256": "ff69f328c474862c540ffe3f7a3ceaab89711421250c3c6e7600f380e2b36632"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "paganella-giro-del-lago-di-molveno",
   "name": "Lago di Molveno loop",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.837Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:37.575Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1087015,
+  "packageBytes": 1087107,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.10518,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lago di Molveno loop safety information",
       "url": "safety.json",
-      "bytes": 3160,
-      "sha256": "bac9417849c5d5c9847ad35c230c7c5c7bb2f5492de4e6f27a9705676d014490"
+      "bytes": 3161,
+      "sha256": "5518ce02368276b0be194fcaf7f2b79911422fdc595c48fd0b14e9148bd70b1f"
     }
   ]
 }

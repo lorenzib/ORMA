@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fvg-lago-di-sella-sompdogna",
   "name": "Il laghetto di sella Sompdogna",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.514Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:34.484Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 324448,
+  "packageBytes": 324535,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.45366,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Il laghetto di sella Sompdogna safety information",
       "url": "safety.json",
-      "bytes": 1906,
-      "sha256": "119460a638561f2433af7d179e58dce3ca0453db95cc4a6576cc134a53f99b32"
+      "bytes": 1902,
+      "sha256": "5cd23cdd4aab251401f14718ef910fbf5b2f244abe6bd5ebb16f52f9fccca620"
     }
   ]
 }

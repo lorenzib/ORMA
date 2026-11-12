@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej",
   "name": "Murtèl to Surlej via Alpetta",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.461Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:34.035Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 418875,
+  "packageBytes": 418966,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42774,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -233,7 +233,7 @@
       "label": "Murtèl to Surlej via Alpetta safety information",
       "url": "safety.json",
       "bytes": 2086,
-      "sha256": "09426d0f28f350de061c9da83328f4a12e93d86179f4a9cb3bd4ef1448887737"
+      "sha256": "56bd21575302b5d42808d958cce83aa395637440422da3491331b7c8510943a9"
     }
   ]
 }

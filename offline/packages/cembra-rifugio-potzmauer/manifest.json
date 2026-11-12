@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-rifugio-potzmauer",
   "name": "Al Rifugio Potzmauer",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.426Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:33.734Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 265133,
+  "packageBytes": 265225,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.21962,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Al Rifugio Potzmauer safety information",
       "url": "safety.json",
-      "bytes": 1943,
-      "sha256": "2adc535289e51096f5e716f882426451a0386c4bb927d7c262789a1fcb5362f3"
+      "bytes": 1944,
+      "sha256": "4c597c43f484dbfb03a8cb3bb54cc9f51a59ee588fe99f4a5dda7aa9ab9f7356"
     }
   ]
 }

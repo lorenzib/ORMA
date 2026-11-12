@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14864704",
   "name": "Boucle du Taillefer",
-  "version": "2026.11.11-beta.6",
-  "generatedAt": "2026-11-11T18:38:14.687Z",
+  "version": "2026.11.12-beta.7",
+  "generatedAt": "2026-11-12T10:47:36.419Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 679550,
+  "packageBytes": 679637,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.80241,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Boucle du Taillefer safety information",
       "url": "safety.json",
-      "bytes": 1790,
-      "sha256": "c7790be8c38a7a9c5485e1faa656ef89f4e53f0fac7572b074c6f63f004fa9d7"
+      "bytes": 1786,
+      "sha256": "4fc27c74b57626df3dcf1e2451a41c703cc5ccc85dcfda273d097eaaf0fa8447"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-fiera-pieve",
   "name": "Fiera-Pieve",
-  "version": "2026.11.11-beta.4",
-  "generatedAt": "2026-11-11T18:38:14.850Z",
+  "version": "2026.11.12-beta.5",
+  "generatedAt": "2026-11-12T10:47:37.670Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 720699,
+  "packageBytes": 720786,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16873,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Fiera-Pieve safety information",
       "url": "safety.json",
-      "bytes": 2598,
-      "sha256": "27d24afe19a56e13c64a78ab2bad4caa60ad0e90a9bb990c5488979e4de9694f"
+      "bytes": 2594,
+      "sha256": "a6d15680ca7164d5fffa68a08ef2052a995a50244865e2b769fc5191f2387779"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees",
   "name": "Croix du Berger from the Lac des Fées",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.882Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:38.352Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 285875,
+  "packageBytes": 285967,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.61351,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Croix du Berger from the Lac des Fées safety information",
       "url": "safety.json",
-      "bytes": 2624,
-      "sha256": "8cc2c8b789e46eb58907a5e06fac92b73325f913c5622fa1e2ce1a0d264e5f96"
+      "bytes": 2625,
+      "sha256": "76c01f5db7e93a052aab536c284054d3f8fe17d49c39f6a7db1bc8da7a9280c8"
     }
   ]
 }

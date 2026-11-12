@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12173984",
   "name": "Große Schlossrunde",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.653Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:36.027Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 759472,
+  "packageBytes": 759568,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.75363,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Große Schlossrunde safety information",
       "url": "safety.json",
-      "bytes": 2533,
-      "sha256": "768c7d83c1d78681604c93223d2e760d83b4cc0674f2c0121c49ec0475fdc3e0"
+      "bytes": 2538,
+      "sha256": "c53a5bcb5f3946df4f8e8def13912e823922e3aeebd7b7002633f658b7bf5e31"
     }
   ]
 }

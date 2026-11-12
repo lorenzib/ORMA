@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-percorso-verde",
   "name": "Percorso Verde (I percorsi del benessere)",
-  "version": "2026.11.11-beta.4",
-  "generatedAt": "2026-11-11T18:38:14.860Z",
+  "version": "2026.11.12-beta.5",
+  "generatedAt": "2026-11-12T10:47:38.124Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 769255,
+  "packageBytes": 769343,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.17234,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Percorso Verde (I percorsi del benessere) safety information",
       "url": "safety.json",
-      "bytes": 2241,
-      "sha256": "f4250904dd6c0004d8175bfd9c1c346ae4ff55630331269ea7778b08ee2b91e5"
+      "bytes": 2238,
+      "sha256": "5f4111c1356e966fb6ddbed910f42f89631e79e5febff18479434d5c70511da7"
     }
   ]
 }

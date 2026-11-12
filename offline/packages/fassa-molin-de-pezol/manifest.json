@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-molin-de-pezol",
   "name": "Molin de Pèzol",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.483Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:34.213Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 586176,
+  "packageBytes": 586264,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42627,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Molin de Pèzol safety information",
       "url": "safety.json",
-      "bytes": 2449,
-      "sha256": "89feb7408963aa18a983cd54c70e722e9349ede2b18e9df09c625cb06a6be77f"
+      "bytes": 2446,
+      "sha256": "33abda8ce909e52b0d1f381fc7a9969134f13db049290a3606f79c34111120da"
     }
   ]
 }

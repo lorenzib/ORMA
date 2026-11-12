@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-passeggiata-valdaora-monguelfo",
   "name": "Olang to Welsberg by the reservoir",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.552Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:34.778Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1165680,
+  "packageBytes": 1165772,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.74369,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Olang to Welsberg by the reservoir safety information",
       "url": "safety.json",
-      "bytes": 2460,
-      "sha256": "7dbe86017dda44099b15d3e6781f580c577c2a7f61b6ad8520af03af69944edb"
+      "bytes": 2461,
+      "sha256": "2c9d17f74b9b15ff5db85ed81fccb5bad4b0d59a7a48818fdee727f42daefe38"
     }
   ]
 }

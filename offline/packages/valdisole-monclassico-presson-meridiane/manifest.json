@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-monclassico-presson-meridiane",
   "name": "Monclassico and Presson, the sundial villages",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:15.004Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:41.351Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 311435,
+  "packageBytes": 311523,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.32884,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Monclassico and Presson, the sundial villages safety information",
       "url": "safety.json",
-      "bytes": 3034,
-      "sha256": "1c788bb620e4478d01a940385a3fa20485b507c4adf54b8ad295b5e763c0ada9"
+      "bytes": 3031,
+      "sha256": "8ad90986b8f6e1f341e1e60235f54f2eb4c93ae547ed9c6952a8abc502f00ac8"
     }
   ]
 }

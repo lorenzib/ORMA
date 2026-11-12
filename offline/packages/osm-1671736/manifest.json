@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-1671736",
   "name": "Höfeweg",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.706Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:36.631Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1457028,
+  "packageBytes": 1457120,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67673,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Höfeweg safety information",
       "url": "safety.json",
-      "bytes": 2433,
-      "sha256": "e139931e7ea20ed9deb83178cd084ddb9ecd238784d0771ba38117ce180fdcca"
+      "bytes": 2434,
+      "sha256": "486edaedbbc81eeb9bcfa8cea8cdb063758b851339bf9305d82c872f5bbfe023"
     }
   ]
 }

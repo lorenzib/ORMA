@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12302182",
   "name": "Dorfrundweg Niedertal",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.660Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:36.116Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 365310,
+  "packageBytes": 365398,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.81871,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dorfrundweg Niedertal safety information",
       "url": "safety.json",
-      "bytes": 2279,
-      "sha256": "e39ed0749aef14ff264ba72dfaf5f8de43ffabb630a4180dd3a3584f27aebb36"
+      "bytes": 2276,
+      "sha256": "d40f59d5137de99894f21192cedad8d3564ddb323eaa5179004ef1f736090f3b"
     }
   ]
 }

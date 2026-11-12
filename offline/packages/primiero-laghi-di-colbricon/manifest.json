@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-laghi-di-colbricon",
   "name": "Laghi di Colbricon from Malga Rolle",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.853Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:37.703Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 488405,
+  "packageBytes": 488497,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.27805,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Laghi di Colbricon from Malga Rolle safety information",
       "url": "safety.json",
-      "bytes": 2098,
-      "sha256": "a442525369010a823b49fc382e7e2ec3347b7c82484271d34a6c5d83b2ae9202"
+      "bytes": 2099,
+      "sha256": "f1753bb6389fef7ee759d86b98963d888fc83606aabff545e292b0873102ce04"
     }
   ]
 }

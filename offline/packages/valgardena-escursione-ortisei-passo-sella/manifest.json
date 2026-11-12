@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-escursione-ortisei-passo-sella",
   "name": "Ortisei – Passo Sella",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:15.037Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:42.658Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 2525421,
+  "packageBytes": 2525513,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.50547,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Ortisei – Passo Sella safety information",
       "url": "safety.json",
-      "bytes": 3445,
-      "sha256": "91e5edec130ae65eb42f75380b769ebc989436febe45c1236fe4283a2e6dd3d8"
+      "bytes": 3446,
+      "sha256": "090a05da65513206c8a1e079927148f232ba110f07ae631b443622fc7fc4416b"
     }
   ]
 }

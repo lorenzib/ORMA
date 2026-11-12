@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "giro-del-sasso-lungo",
   "name": "Giro del Sasso Lungo",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.519Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:34.525Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 865197,
+  "packageBytes": 865288,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.49603,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -233,7 +233,7 @@
       "label": "Giro del Sasso Lungo safety information",
       "url": "safety.json",
       "bytes": 2328,
-      "sha256": "0e0a12931d25e114dfe3a9924be78db8899a9167bb73e58db6c510a144a1c715"
+      "sha256": "101773119c3e2c30865173e7256e9fd7849df99b9b7db5b9fa01dac7535d4a2e"
     }
   ]
 }

@@ -253,8 +253,9 @@
   }
 
   // Wording from the package's safety.json: the walk's own Italian (textIt)
-  // first, then the fixed wording above. Durations are "2.5 hours" or
-  // "30 minutes"; anything else unknown stays as the package wrote it.
+  // first, then the fixed wording above. Generated packages write durations as
+  // "2 h 30 min", which Italian reads as is; the pilots still say "2.5 hours"
+  // or "30 minutes". Anything else unknown stays as the package wrote it.
   let packageTextIt = {};
   function packageText(english){
     if(LANG !== 'it' || english === null || english === undefined) return english;

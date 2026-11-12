@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12190538",
   "name": "Flaaser Rundweg",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.657Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:36.079Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 548638,
+  "packageBytes": 548730,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.58073,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Flaaser Rundweg safety information",
       "url": "safety.json",
-      "bytes": 1584,
-      "sha256": "eabe3617b556900f65260520056ee326c846d7dc4d00514262e555f8143c7b2b"
+      "bytes": 1585,
+      "sha256": "6dc47319a4edce44331f156fbb0c55407ce2d6bd85ed9f0a71ef48c0e5d39969"
     }
   ]
 }

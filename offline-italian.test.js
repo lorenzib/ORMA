@@ -28,7 +28,7 @@ function italianNames(){
 }
 
 const IT = italianTable();
-const DURATION = /^\d+(?:\.\d+)?(?:\s*[–-]\s*\d+(?:\.\d+)?)?\s+(?:hours?|minutes?)$/;
+const DURATION = /^(?:\d+(?:\.\d+)?(?:\s*[–-]\s*\d+(?:\.\d+)?)?\s+(?:hours?|minutes?)|(?:\d+ h(?: \d+ min)?|\d+ min)(?: – (?:\d+ h(?: \d+ min)?|\d+ min))?|\d+–\d+ h)$/;
 
 describe('the offline page in Italian', () => {
   test('every line of the page itself has Italian', () => {

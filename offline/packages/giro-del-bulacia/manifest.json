@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "giro-del-bulacia",
   "name": "Giro della Bullaccia",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.517Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:34.513Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 833700,
+  "packageBytes": 833796,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.53889,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Giro della Bullaccia safety information",
       "url": "safety.json",
-      "bytes": 2830,
-      "sha256": "f03f755b95a25bb80d30805941ec173c3dd21eb3e549e4baf76df34fb9c1ef80"
+      "bytes": 2835,
+      "sha256": "27aa9d29965fc652a7ad3865f16c560aa0a06a3137dd79f5bfc767a40dab6e31"
     }
   ]
 }

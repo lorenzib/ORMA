@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11828233",
   "name": "Valser Rundweg",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.631Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:35.797Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 581294,
+  "packageBytes": 581394,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.83137,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Valser Rundweg safety information",
       "url": "safety.json",
-      "bytes": 2104,
-      "sha256": "0399151722fbf98945ba11b51c12015d8e270a1dac816be888855af420a05e6b"
+      "bytes": 2113,
+      "sha256": "e6bcee2362028427244fb795603a1d4994fff7b886c5a5db3674d2a25e877256"
     }
   ]
 }

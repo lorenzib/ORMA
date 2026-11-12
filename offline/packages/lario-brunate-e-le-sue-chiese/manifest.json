@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-brunate-e-le-sue-chiese",
   "name": "Brunate churches loop",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.565Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:34.977Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 796769,
+  "packageBytes": 796856,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.81346,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Brunate churches loop safety information",
       "url": "safety.json",
-      "bytes": 2524,
-      "sha256": "f170d7c7e9b2b0b110ba6e689124299f0b7a366f8a89b3f9a3b7b3dacdd1f91d"
+      "bytes": 2520,
+      "sha256": "360df29e64a830192c1ca32c7b1a4f53c68017931d1175cbf9ab508079642120"
     }
   ]
 }

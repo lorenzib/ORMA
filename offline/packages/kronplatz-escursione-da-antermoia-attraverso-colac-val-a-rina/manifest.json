@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina",
   "name": "Antermoia to Rina",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.543Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:34.723Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1175536,
+  "packageBytes": 1175628,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.68709,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Antermoia to Rina safety information",
       "url": "safety.json",
-      "bytes": 2054,
-      "sha256": "de2c8ad1bced9b46238e26411cfc4be7feac80d3a60eb2f05001bc848906b621"
+      "bytes": 2055,
+      "sha256": "6bf39f6085853082f4372baa9b7d6a763f06d9c9d53e4f77fc4bb36682717c4d"
     }
   ]
 }

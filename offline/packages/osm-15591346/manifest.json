@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-15591346",
   "name": "Sentier des Buis",
-  "version": "2026.11.11-beta.6",
-  "generatedAt": "2026-11-11T18:38:14.691Z",
+  "version": "2026.11.12-beta.7",
+  "generatedAt": "2026-11-12T10:47:36.449Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 984286,
+  "packageBytes": 984382,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.50109,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Sentier des Buis safety information",
       "url": "safety.json",
-      "bytes": 2098,
-      "sha256": "d61f67df35d040c2c372e1a1bf72517177074ba0d4c0e19266816f85a8ccdba6"
+      "bytes": 2103,
+      "sha256": "4763f2d2b1657beba4d4bf84c72b52bb5e8298bc9072ef087b1afc8e5fd5ba25"
     }
   ]
 }

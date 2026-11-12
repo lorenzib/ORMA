@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "zoldo-bosco-secolare",
   "name": "Astragal to Villa through the old forest",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:15.139Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:45.859Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 428476,
+  "packageBytes": 428568,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.34642,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Astragal to Villa through the old forest safety information",
       "url": "safety.json",
-      "bytes": 1984,
-      "sha256": "a571d06765e9e9dfe63855d5015d85c1d530ea3f22fef8b00e7da06b4976cb9e"
+      "bytes": 1985,
+      "sha256": "af7c5104a494439fa3f2ef15952745c291cbcc7c95c011ce4573198956f6ad7e"
     }
   ]
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7424683",
   "name": "Marlinger Waalweg",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.765Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:37.113Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 2539809,
+  "packageBytes": 2539901,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62276,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Marlinger Waalweg safety information",
       "url": "safety.json",
-      "bytes": 2358,
-      "sha256": "5e306f8feb0951baff5584e2e66e1ca0a0ae15b84f953e1d5784d2801410b93f"
+      "bytes": 2359,
+      "sha256": "ab755689d857ae0e3aa87cc6e53743bef5f405e2b2053e1994519fe73fdd4890"
     }
   ]
 }

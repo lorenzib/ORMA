@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-castello-di-botestagno",
   "name": "Castello di Botestagno",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.432Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:33.794Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 241156,
+  "packageBytes": 241243,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59354,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Castello di Botestagno safety information",
       "url": "safety.json",
-      "bytes": 1775,
-      "sha256": "5c78c832828f12eca27ee6b54987c7a189605302ad79a79593c90754a2a51bef"
+      "bytes": 1771,
+      "sha256": "9263b4aabb76b5a254feedb20875169b327b649f2c87d256a68ce6a53bc88a9c"
     }
   ]
 }

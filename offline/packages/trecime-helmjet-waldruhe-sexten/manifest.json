@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-helmjet-waldruhe-sexten",
   "name": "Helm – Waldruhe – Sexten",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.942Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:39.356Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 506284,
+  "packageBytes": 506376,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.69791,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Helm – Waldruhe – Sexten safety information",
       "url": "safety.json",
-      "bytes": 2695,
-      "sha256": "18de741b0c2d0725d1d3cc20dfde02db2b97ffeb19258ec878fe424b0faa9e2d"
+      "bytes": 2696,
+      "sha256": "d7d0c5f8566d2f1eec5cde1cb1db09d066bbdfa212b9980f26b3d2b9d686a006"
     }
   ]
 }

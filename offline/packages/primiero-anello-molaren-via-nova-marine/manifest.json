@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-anello-molaren-via-nova-marine",
   "name": "Anello Molaren - Via Nova - Marine",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.846Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:37.650Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 912952,
+  "packageBytes": 913043,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.15056,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -233,7 +233,7 @@
       "label": "Anello Molaren - Via Nova - Marine safety information",
       "url": "safety.json",
       "bytes": 2650,
-      "sha256": "031700cf5a1195fc9dac1790b1f7c558b9b4b9cc72035e74a5a6710a5f2dba9f"
+      "sha256": "fe2ffdda0fcc156a5733c231e1b93d422cd4831beed89f8ae59f6203f60bf212"
     }
   ]
 }

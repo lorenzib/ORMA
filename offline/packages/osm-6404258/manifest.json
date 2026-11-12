@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6404258",
   "name": "Rundweg Salla",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.751Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:37.037Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 615938,
+  "packageBytes": 616025,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.74281,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Rundweg Salla safety information",
       "url": "safety.json",
-      "bytes": 2121,
-      "sha256": "571feaaf649bd3a73bbfa039219d553558dafa16632c91889a47e8a92dce0396"
+      "bytes": 2117,
+      "sha256": "85e66980c344d649ae9819164f37341b0ce8f62d091139733f6ea15ed530ba76"
     }
   ]
 }

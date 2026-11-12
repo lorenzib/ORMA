@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "winter-voels-voelser-weiher",
   "name": "Völs to the Völser Weiher in winter",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:15.138Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:45.801Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 907613,
+  "packageBytes": 907700,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.51373,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Völs to the Völser Weiher in winter safety information",
       "url": "safety.json",
-      "bytes": 4443,
-      "sha256": "ea753d6e64442cd7056939744db4316f301afc84cc826bade2b3f62a1affde0e"
+      "bytes": 4439,
+      "sha256": "f8afd485cdd81ab8313f73e480691adabd64b10e06bc6c9074058f1580cb49f5"
     }
   ]
 }

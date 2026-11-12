@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "isere-boucle-du-couzon",
   "name": "Couzon loop from Saint-Pierre-de-Chartreuse",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.528Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:34.604Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 645786,
+  "packageBytes": 645878,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.33621,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Couzon loop from Saint-Pierre-de-Chartreuse safety information",
       "url": "safety.json",
-      "bytes": 2394,
-      "sha256": "91edf9801e44a5e5d41e151cfef574455952f8bc2a8cddde0fefd87824df19ed"
+      "bytes": 2395,
+      "sha256": "d128aa5e40aa44db3ae2bc85376b71df78fc01b7409d73b252ff4adf084beffc"
     }
   ]
 }

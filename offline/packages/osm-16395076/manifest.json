@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-16395076",
   "name": "Boucle du Lac de la Thuile",
-  "version": "2026.11.11-beta.3",
-  "generatedAt": "2026-11-11T18:38:14.702Z",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T10:47:36.547Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 456788,
+  "packageBytes": 456875,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.5243,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Boucle du Lac de la Thuile safety information",
       "url": "safety.json",
-      "bytes": 1301,
-      "sha256": "09a0a43f581f4a71ecf6cdc325ea00afcd7d89dc380558234fcd5ddfbc76676f"
+      "bytes": 1297,
+      "sha256": "dc7c6a44a3c377555a7798c3aae3ed043407001ce68ea1ef778e4b5510bfb030"
     }
   ]
 }

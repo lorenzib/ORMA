@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-mortisa-e-le-grotte-di-volpera",
   "name": "Mortisa e le Grotte di Volpera",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.436Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:33.817Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 812225,
+  "packageBytes": 812317,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.51536,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Mortisa e le Grotte di Volpera safety information",
       "url": "safety.json",
-      "bytes": 2081,
-      "sha256": "c66b6729ef7e274ce70583f1ee6b1e6fbcd7f526cfd28d0836a5cd3b0905cd91"
+      "bytes": 2082,
+      "sha256": "697dcbd381ec7e95072237bf4919e9912b011b5d140288975feb91265d000ed8"
     }
   ]
 }

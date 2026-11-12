@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14375158",
   "name": "Crêt de la Parenche",
-  "version": "2026.11.11-beta.6",
-  "generatedAt": "2026-11-11T18:38:14.678Z",
+  "version": "2026.11.12-beta.7",
+  "generatedAt": "2026-11-12T10:47:36.330Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 525758,
+  "packageBytes": 525854,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.20806,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Crêt de la Parenche safety information",
       "url": "safety.json",
-      "bytes": 1866,
-      "sha256": "54b47c86b557e5bf2ede57c0d897df7493940556dc678a16f339ecd1218ffbf4"
+      "bytes": 1871,
+      "sha256": "44ebd26097568c68082f7fb96546272657099ffb02a5a3ee9b632fb5df2f4dc7"
     }
   ]
 }

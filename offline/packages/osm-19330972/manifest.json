@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-19330972",
   "name": "Dorfrundweg - Giro del Paese",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.712Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:36.710Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 242718,
+  "packageBytes": 242805,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.27394,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dorfrundweg - Giro del Paese safety information",
       "url": "safety.json",
-      "bytes": 2863,
-      "sha256": "b48a54a93a13a6b3475f1287b06a789f7388f0522192d3228d418242a6da8234"
+      "bytes": 2859,
+      "sha256": "4f1582c07eec2022d6e76597661c0990c2854a7b6e3b1f0ab5cbc39dc9c9c205"
     }
   ]
 }

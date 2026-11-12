@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-19541366",
   "name": "Lac Blanc",
-  "version": "2026.11.11-beta.6",
-  "generatedAt": "2026-11-11T18:38:14.713Z",
+  "version": "2026.11.12-beta.7",
+  "generatedAt": "2026-11-12T10:47:36.727Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 352613,
+  "packageBytes": 352705,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.28654,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Lac Blanc safety information",
       "url": "safety.json",
-      "bytes": 1622,
-      "sha256": "213e9bb11597111b85a947f0f1da790d906801dfa7279c721e4068174d47f802"
+      "bytes": 1623,
+      "sha256": "acdc501ca0fe3a4e4f0bd13b821cf6cc159eee452e6b59db662af9291211cd96"
     }
   ]
 }

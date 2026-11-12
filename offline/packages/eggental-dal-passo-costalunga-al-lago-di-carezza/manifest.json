@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "eggental-dal-passo-costalunga-al-lago-di-carezza",
   "name": "Passo Costalunga to Lake Carezza",
-  "version": "2026.11.11-beta.4",
-  "generatedAt": "2026-11-11T18:38:14.441Z",
+  "version": "2026.11.12-beta.5",
+  "generatedAt": "2026-11-12T10:47:33.863Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 611593,
+  "packageBytes": 611681,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.39722,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Passo Costalunga to Lake Carezza safety information",
       "url": "safety.json",
-      "bytes": 2275,
-      "sha256": "564a2a85637665c102b3ee15e597afb15c053675d4f862eda2b11ba6b91d161a"
+      "bytes": 2272,
+      "sha256": "6f044233944b464e1d95eca7b86a261b9a83d4db0d65c7f62daff4f44cb70219"
     }
   ]
 }

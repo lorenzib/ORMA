@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "campiglio-monte-spinale-rifugio-graffer",
   "name": "Monte Spinale – Rifugio Graffer",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.409Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:33.578Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 537226,
+  "packageBytes": 537318,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.21065,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Monte Spinale – Rifugio Graffer safety information",
       "url": "safety.json",
-      "bytes": 1964,
-      "sha256": "586cf4d9a2fa28755badecb90110bbc76ce61965a0d661447b41ce861d179192"
+      "bytes": 1965,
+      "sha256": "1fe3c2af90e5653021689a3f462487aa0d116091ace31871efd15daea7760c5d"
     }
   ]
 }

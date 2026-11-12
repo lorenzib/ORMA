@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara",
   "name": "San Cassiano – Pralongiá – Corvara",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.370Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:33.177Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 716245,
+  "packageBytes": 716337,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.52904,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "San Cassiano – Pralongiá – Corvara safety information",
       "url": "safety.json",
-      "bytes": 2788,
-      "sha256": "06d7d9ab7a1dff3d4ccb7f7ad0d605b244252e04ffcdb374f1d9de866df6245a"
+      "bytes": 2789,
+      "sha256": "5fdeb5ae6381dd862e51896f86691d079d93963166aacf31a775f25c4b40c802"
     }
   ]
 }

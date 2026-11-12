@@ -45,6 +45,7 @@ const path = require('path');
 const { loadProductionTrails } = require('./load-production-trails');
 const evidence = require('../trust/evidence-v1.js');
 const offlineElevation = require('../offline-elevation.js');
+const routeReturn = require('../route-return.js');
 const { renderOfflineMap } = require('./render-offline-osm-map');
 const { buildFootpathNetwork } = require('./build-offline-footpath-network');
 const { buildManifest } = require('./build-offline-manifest');
@@ -311,10 +312,9 @@ function routeFor(trail){
   };
 }
 
+// "3.9 hours" read as 3 h 9 min; the page says 3 h 55 min, as the site does.
 function durationText(hours){
-  const text = String(hours || '').trim();
-  if(!text) return null;
-  return `${text} ${text === '1' ? 'hour' : 'hours'}`;
+  return routeReturn.formatDuration(hours) || null;
 }
 
 // The same rule the Browse difficulty filter applies (discovery-filters.js).

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "vinschgau-sentiero-della-roggia-schnalswaal",
   "name": "Schnalswaal, Kastelbell to Staben",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:15.112Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:45.370Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1229915,
+  "packageBytes": 1230002,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62333,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Schnalswaal, Kastelbell to Staben safety information",
       "url": "safety.json",
-      "bytes": 2403,
-      "sha256": "55bb4e6e6663a79678a5962e8b3e5240786cae1c8ddf05097d8fb5fd17d09479"
+      "bytes": 2399,
+      "sha256": "ba9af64d5fbeb71a2b598f0acaad1d7c8c09f0f5c0403ee621430f5d2e00e251"
     }
   ]
 }

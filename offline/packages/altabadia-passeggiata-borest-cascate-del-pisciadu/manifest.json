@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-passeggiata-borest-cascate-del-pisciadu",
   "name": "Borest – Pisciadú waterfall",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.379Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:33.296Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 629273,
+  "packageBytes": 629365,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5361,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Borest – Pisciadú waterfall safety information",
       "url": "safety.json",
-      "bytes": 2636,
-      "sha256": "b26ffb463511c3b93e0736e3853984b75503e2a88be5c5a429fe4ff319533cf9"
+      "bytes": 2637,
+      "sha256": "32bfd56d2bb8ce62a3ec38155b92ee3ed3b90051cba8634e52a8e599f156abf2"
     }
   ]
 }

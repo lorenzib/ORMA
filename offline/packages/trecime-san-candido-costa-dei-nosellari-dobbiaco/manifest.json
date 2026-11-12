@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-san-candido-costa-dei-nosellari-dobbiaco",
   "name": "Innichen – Haselsberg – Toblach",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.961Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:39.553Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 859198,
+  "packageBytes": 859290,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.7218,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Innichen – Haselsberg – Toblach safety information",
       "url": "safety.json",
-      "bytes": 2977,
-      "sha256": "25471c59ae463b7988e9a3d647d2f19312bc5160127656d588cae2a14a2fdec4"
+      "bytes": 2978,
+      "sha256": "daf9f22491d687a8862e956b0cb7dbc60fb15616796cbabe44d7586423a9a3cc"
     }
   ]
 }

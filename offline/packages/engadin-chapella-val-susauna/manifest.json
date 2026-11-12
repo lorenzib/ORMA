@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "engadin-chapella-val-susauna",
   "name": "Val Susauna from Chapella",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.453Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:33.960Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 436273,
+  "packageBytes": 436360,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62773,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Val Susauna from Chapella safety information",
       "url": "safety.json",
-      "bytes": 2195,
-      "sha256": "3e0b899115ef06941f7ab5d8427a14b49631fa28a5e06891df8b9ad8eed925dd"
+      "bytes": 2191,
+      "sha256": "55d4046772721710dee70b7bc85fb5af8bd5ff8d75c29837732f9636a74ef8b8"
     }
   ]
 }

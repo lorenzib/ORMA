@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12164395",
   "name": "Dörferrundweg",
-  "version": "2026.11.11-beta.6",
-  "generatedAt": "2026-11-11T18:38:14.647Z",
+  "version": "2026.11.12-beta.7",
+  "generatedAt": "2026-11-12T10:47:35.950Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1532463,
+  "packageBytes": 1532564,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.81348,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Dörferrundweg safety information",
       "url": "safety.json",
-      "bytes": 1598,
-      "sha256": "3dac0decc45d31e99033223189b8b1d21a4316d9ea5d23347b1d0f2a517270f9"
+      "bytes": 1608,
+      "sha256": "6298ff659b5f92198694ce3cb35af1fda34e7d60f0fcde101183b9032d5741e1"
     }
   ]
 }

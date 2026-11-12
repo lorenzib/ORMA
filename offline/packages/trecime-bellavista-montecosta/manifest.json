@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-bellavista-montecosta",
   "name": "Niederdorf – Bellavista",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T18:38:14.928Z",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T10:47:38.847Z",
   "scoringVersion": "1.8.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1612484,
+  "packageBytes": 1612576,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.73459,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 52708,
-      "sha256": "d438bc3dbdc32356d1c06728c105368b9738248c6ead914e709c7c9424a1c21d"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Niederdorf – Bellavista safety information",
       "url": "safety.json",
-      "bytes": 3384,
-      "sha256": "9bccb0ef766a7dfcc7d84dc2fc509c7de0c0da81283d375666ed667eb743a726"
+      "bytes": 3385,
+      "sha256": "287f2768d3c2b73b011460168c5065b191196c2ff20e416a6a1d737678afd5d0"
     }
   ]
 }
