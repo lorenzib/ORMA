@@ -1,22 +1,94 @@
 {
   "contractVersion": "road-seasons-v1",
-  "note": "Roads that close for the winter and are the only drive to a walk's start. openMonths are the months the road is open for most of the month, read from the road's operator or town on accessedAt; usually says, in the source's own terms, when it opens and shuts (part: early, mid or late). A walk listed under trails is out of season in the months its road is shut. Curated by hand; check each spring and autumn. Roads checked and left out, because they stay open in winter or the walk can be reached another way, are in checked.",
+  "note": "Roads that close for the winter and are the only drive to a walk's start. openMonths are the months the road is open for most of the month, read from the road's operator or town on accessedAt; usually says, in the source's own terms, when it opens and shuts (part: early, mid or late). A walk listed under trails is out of season in the months its road is shut. Curated by hand; check each spring and autumn. Roads checked and left out, because they stay open in winter or the walk can be reached another way, are in checked. carFree lists roads closed to cars for part of the summer, with a shuttle instead: the walk stays in season, and the page says when to take the shuttle (periods are MM-DD, datesFor says which year).",
   "roads": {
     "tre-cime-toll-road": {
       "name": "Tre Cime toll road (Misurina – Rifugio Auronzo)",
       "operator": "Comune di Auronzo di Cadore",
       "url": "https://auronzo.info/parcheggio-tre-cime-di-lavaredo/",
       "accessedAt": "2026-11-11",
-      "usually": { "from": { "part": "late", "month": 5 }, "to": { "part": "late", "month": 10 } },
-      "openMonths": [6, 7, 8, 9, 10]
+      "usually": {
+        "from": {
+          "part": "late",
+          "month": 5
+        },
+        "to": {
+          "part": "late",
+          "month": 10
+        }
+      },
+      "openMonths": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
     }
   },
   "trails": {
-    "tre-cime": { "roads": ["tre-cime-toll-road"] },
-    "cadini": { "roads": ["tre-cime-toll-road"] }
+    "tre-cime": {
+      "roads": [
+        "tre-cime-toll-road"
+      ]
+    },
+    "cadini": {
+      "roads": [
+        "tre-cime-toll-road"
+      ]
+    },
+    "cortina-anello-dei-tre-rifugi": {
+      "carFree": [
+        "ra-stua-road"
+      ]
+    }
   },
   "checked": [
-    { "road": "Würzjoch (Passo delle Erbe)", "trails": ["osm-12142337"], "why": "Shut in winter only between Afers and the pass; the road from St. Martin in Thurn stays open.", "url": "https://www.quaeldich.de/paesse/wuerzjoch/", "accessedAt": "2026-11-11" },
-    { "road": "Passo Valles (SP 81)", "trails": ["fiemme-lago-juribrutto"], "why": "No dated winter closure found; the walk's own season (June to October) already sits inside any likely opening.", "url": "https://www.ufficiostampa.provincia.tn.it/content/view/pdf/7315", "accessedAt": "2026-11-11" }
-  ]
+    {
+      "road": "Würzjoch (Passo delle Erbe)",
+      "trails": [
+        "osm-12142337"
+      ],
+      "why": "Shut in winter only between Afers and the pass; the road from St. Martin in Thurn stays open.",
+      "url": "https://www.quaeldich.de/paesse/wuerzjoch/",
+      "accessedAt": "2026-11-11"
+    },
+    {
+      "road": "Passo Valles (SP 81)",
+      "trails": [
+        "fiemme-lago-juribrutto"
+      ],
+      "why": "No dated winter closure found; the walk's own season (June to October) already sits inside any likely opening.",
+      "url": "https://www.ufficiostampa.provincia.tn.it/content/view/pdf/7315",
+      "accessedAt": "2026-11-11"
+    },
+    {
+      "road": "Cinque Torri, Croda da Lago and Val di Fanes roads (summer car closures on the same Cortina map)",
+      "trails": [
+        "cinque-torri-assisted",
+        "cortina-passeggiata-gourmet",
+        "cortina-malga-ra-stua",
+        "cortina-castello-di-botestagno"
+      ],
+      "why": "These walks start below or beside the closed stretches (Bai de Dones, Pezié de Parù, Sant’Uberto, Fiames), so no shuttle is needed.",
+      "url": "https://cortina.dolomiti.org/wp-content/uploads/2025/06/Cortina_Sentieri_Hiking_Map_2025_web.pdf",
+      "accessedAt": "2026-11-12"
+    }
+  ],
+  "carFree": {
+    "ra-stua-road": {
+      "name": "road from Sant’Uberto to Malga Ra Stua",
+      "shuttle": "the shuttle bus from Fiames (park information point)",
+      "periods": [
+        {
+          "from": "06-28",
+          "to": "08-31"
+        }
+      ],
+      "datesFor": "2025",
+      "operator": "Cortina hiking map 2025 (Cortina Marketing)",
+      "url": "https://cortina.dolomiti.org/wp-content/uploads/2025/06/Cortina_Sentieri_Hiking_Map_2025_web.pdf",
+      "accessedAt": "2026-11-12"
+    }
+  }
 }

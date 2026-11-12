@@ -44,7 +44,18 @@ describe('road seasons', () => {
     const trails = loadProductionTrails(__dirname);
     for (const id of Object.keys(artifact.trails)) {
       const trail = trails.find(t => t.id === id);
-      expect(trail.season.roads.length).toBeGreaterThan(0);
+      expect((trail.season.roads || []).length + (trail.season.carFree || []).length).toBeGreaterThan(0);
     }
+  });
+
+  test('a road closed to cars in summer says when to take the shuttle, and keeps the walk in season', () => {
+    const carFree = { name: 'road to the hut', shuttle: 'the shuttle from the village', periods: [{ from: '06-28', to: '08-31' }], datesFor: '2025', operator: 'Example map', url: 'https://example.org/map', accessedAt: '2026-11-12' };
+    const [trail] = applyRoadSeasons([{ id: 'w', season: snowy }], { roads: {}, carFree: { c: carFree }, trails: { w: { carFree: ['c'] } } });
+    expect(trail.season.carFree[0].closedMonths).toEqual([7, 8]);
+    expect(trail.season.roads).toBeUndefined();
+    expect(words.bestMonths(trail.season)).toEqual([6, 7, 8, 9, 10]);
+    expect(words.describe(trail.season).lifts[0].line).toBe('From 28 June to 31 August (2025 dates) the road to the hut is closed to cars; take the shuttle from the village.');
+    expect(words.nowNote(trail.season, 8)).toMatch(/In August the road to the hut is closed to cars; take the shuttle from the village\.$/);
+    expect(() => applyRoadSeasons([{ id: 'w', season: snowy }], { carFree: { c: { ...carFree, shuttle: '' } }, trails: {} })).toThrow(/which shuttle/);
   });
 });

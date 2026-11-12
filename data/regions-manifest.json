@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-11T18:22:36.929Z",
+  "generatedAt": "2026-11-12T10:28:33.391Z",
   "regions": {
     "dolomites": {
       "trailCount": 369,
-      "trails": "data/regions/dolomites-trails.js?v=679b972ff8d6",
+      "trails": "data/regions/dolomites-trails.js?v=b3f5030a193c",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=aba145c5d16a",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -361,7 +361,7 @@
         "winter-pozza-canto-acqua": "data/trail-details/winter-pozza-canto-acqua.js?v=1cb6996a598b",
         "winter-steinegg-osservatorio": "data/trail-details/winter-steinegg-osservatorio.js?v=6bf4fd90a30a",
         "cortina-zumeles-val-padeon": "data/trail-details/cortina-zumeles-val-padeon.js?v=3e1971fd349c",
-        "cortina-anello-dei-tre-rifugi": "data/trail-details/cortina-anello-dei-tre-rifugi.js?v=a2817e99e6d0",
+        "cortina-anello-dei-tre-rifugi": "data/trail-details/cortina-anello-dei-tre-rifugi.js?v=c1fa1273b567",
         "cortina-forcella-lerosa": "data/trail-details/cortina-forcella-lerosa.js?v=25024cbcb71b",
         "valdisole-cogolo-chiesa-di-santa-lucia": "data/trail-details/valdisole-cogolo-chiesa-di-santa-lucia.js?v=b196285d1e53",
         "valdisole-malga-strino": "data/trail-details/valdisole-malga-strino.js?v=cc22ad560c4d",
