@@ -20,8 +20,8 @@
   var INK = '#2E4034', CREAM = '#F5F2E8', SOFT = '#6B7A6E', TERRA = '#C4652F',
       PAPER = '#FFFFFF', SAND = '#EDE3CC', LINE = '#E3DFD2', STAMP = '#2F6B4F';
   var VISA_INKS = ['#2F6B4F', '#9A4B24', '#43508F', '#7A5A12'];
-  var FILENAME = 'orma-dog-passport.png';
-  var VISA_FILENAME = 'orma-new-visa.png';
+  var FILENAME = 'orma-pawprints.png';
+  var VISA_FILENAME = 'orma-territory.png';
 
   function formatOf(name){ return FORMATS[name] || FORMATS.story; }
 
@@ -62,12 +62,13 @@
     options = options || {};
     var t = options.t || function(key){ return key; };
     if(options.valley){
-      var valley = (passport && passport.valleys || []).filter(function(v){ return v.name === options.valley; })[0];
-      var api = passportApi();
-      var fresh = !!(valley && api && api.isNewVisa && api.isNewVisa(valley, options.now));
-      return t(fresh ? 'journal.passport.card.visaCaption' : 'journal.passport.card.visaCaptionPlain', {
+      var content = visaContent(passport, options);
+      var mode = content ? content.mode : 'plain';
+      var level = content && content.valley.level && content.valley.level.id;
+      return t(VISA_WORDS[mode].caption, {
         name: options.dogName || t('journal.passport.card.yourDog'),
         valley: options.valley,
+        level: level ? t('journal.passport.level.' + level) : '',
       });
     }
     var totals = passport ? passport.totals : { stamps: 0, valleys: 0, km: 0 };
@@ -305,6 +306,14 @@
   // ---- One valley: the new visa --------------------------------------------
 
   var VISA_STAMPS = 3;
+  var VISA_WORDS = {
+    'new': { kicker: 'journal.passport.card.visaKicker', title: 'journal.passport.card.visaTitle',
+      titleNoName: 'journal.passport.card.visaTitleNoName', caption: 'journal.passport.card.visaCaption' },
+    plain: { kicker: 'journal.passport.card.visaKickerPlain', title: 'journal.passport.card.visaTitlePlain',
+      titleNoName: 'journal.passport.card.visaTitleNoNamePlain', caption: 'journal.passport.card.visaCaptionPlain' },
+    level: { kicker: 'journal.passport.card.levelKicker', title: 'journal.passport.card.levelTitle',
+      titleNoName: 'journal.passport.card.levelTitleNoName', caption: 'journal.passport.card.levelCaption' },
+  };
 
   // What the visa picture shows: the valley, its level, and the trails stamped
   // there (newest first). Null when the passport has no such visa.
@@ -319,8 +328,11 @@
     return {
       format: formatOf(options.format),
       valley: valley,
-      // "Luna's new visa" only for a visa first stamped in the last two weeks.
+      // "New territory" only for one first walked in the last two weeks;
+      // a level just reached says "Level up" instead.
       fresh: !!(api && api.isNewVisa && api.isNewVisa(valley, options.now)),
+      mode: options.moment === 'level' ? 'level'
+        : (api && api.isNewVisa && api.isNewVisa(valley, options.now) ? 'new' : 'plain'),
       stamps: here.slice(0, VISA_STAMPS),
       moreStamps: Math.max(0, here.length - VISA_STAMPS),
     };
@@ -354,7 +366,8 @@
     ctx.fillStyle = CREAM; ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = INK; ctx.font = '700 44px "Bricolage Grotesque", sans-serif'; ctx.fillText('ORMA', 70, 100);
     ctx.fillStyle = TERRA; ctx.font = '700 24px Inter, sans-serif';
-    ctx.fillText(String(t(content.fresh ? 'journal.passport.card.visaKicker' : 'journal.passport.card.visaKickerPlain')).toUpperCase(), 70, 140);
+    var words = VISA_WORDS[content.mode];
+    ctx.fillText(String(t(words.kicker)).toUpperCase(), 70, 140);
 
     var footerY = H - f.footerFromBottom, box = visaBox(f);
     // A post has less room: the photo shrinks before anything is cut.
@@ -379,9 +392,7 @@
 
     // "Luna's new visa"
     ctx.textAlign = 'center'; ctx.fillStyle = INK;
-    var title = options.dogName
-      ? t(content.fresh ? 'journal.passport.card.visaTitle' : 'journal.passport.card.visaTitlePlain', { name: options.dogName })
-      : t(content.fresh ? 'journal.passport.card.visaTitleNoName' : 'journal.passport.card.visaTitleNoNamePlain');
+    var title = options.dogName ? t(words.title, { name: options.dogName }) : t(words.titleNoName);
     var size = 72;
     ctx.font = '800 ' + size + 'px "Bricolage Grotesque", Inter, sans-serif';
     while(size > 44 && ctx.measureText(title).width > W - 140){ size -= 4; ctx.font = '800 ' + size + 'px "Bricolage Grotesque", Inter, sans-serif'; }
