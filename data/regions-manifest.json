@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-11T17:51:22.275Z",
+  "generatedAt": "2026-11-11T18:22:36.929Z",
   "regions": {
     "dolomites": {
       "trailCount": 369,
-      "trails": "data/regions/dolomites-trails.js?v=c45ccea863c0",
+      "trails": "data/regions/dolomites-trails.js?v=679b972ff8d6",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=aba145c5d16a",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -285,7 +285,7 @@
         "campiglio-carisolo-centro-storico": "data/trail-details/campiglio-carisolo-centro-storico.js?v=499d72615153",
         "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa": "data/trail-details/campiglio-laghi-di-san-giuliano-garzone-e-vacarsa.js?v=31d5dc69a287",
         "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio": "data/trail-details/campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio.js?v=62376ed3a570",
-        "campiglio-monte-spinale-rifugio-graffer": "data/trail-details/campiglio-monte-spinale-rifugio-graffer.js?v=699175b5fd9b",
+        "campiglio-monte-spinale-rifugio-graffer": "data/trail-details/campiglio-monte-spinale-rifugio-graffer.js?v=c5fb2a11c609",
         "paganella-giro-del-lago-di-molveno": "data/trail-details/paganella-giro-del-lago-di-molveno.js?v=b7779236fba0",
         "paganella-passeggiata-del-ciclamino": "data/trail-details/paganella-passeggiata-del-ciclamino.js?v=3f82c4582cdf",
         "campiglio-valina-d-amola-rifugio-segantini-cornisello": "data/trail-details/campiglio-valina-d-amola-rifugio-segantini-cornisello.js?v=5affa06b1311",
@@ -340,7 +340,7 @@
         "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": "data/trail-details/meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof.js?v=1ec4d018697d",
         "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell": "data/trail-details/meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell.js?v=8c6e2050fd5b",
         "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": "data/trail-details/meran-escursione-alle-malghe-maiser-alm-moschwaldalm.js?v=8df694d64b3d",
-        "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": "data/trail-details/meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo.js?v=2fb62dc3ba0b",
+        "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": "data/trail-details/meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo.js?v=34c3bba735ec",
         "meran-giro-delle-malghe-monte-tramontana": "data/trail-details/meran-giro-delle-malghe-monte-tramontana.js?v=ca54c8d894bc",
         "valgardena-troi-unika": "data/trail-details/valgardena-troi-unika.js?v=9bd46675c89d",
         "valgardena-cudan-dumat": "data/trail-details/valgardena-cudan-dumat.js?v=705983cbc120",
