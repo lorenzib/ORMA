@@ -92,6 +92,8 @@
     "build:app": "node scripts/build-app.js",
     "app:sync": "npm run build:app && npx cap sync ios",
     "app:open": "npx cap open ios",
+    "app:sync:android": "npm run build:app && npx cap sync android",
+    "app:open:android": "npx cap open android",
     "backoffice:valley-research": "node backoffice/cli/valley-research.js",
     "backoffice:retire-blocked-jobs": "node backoffice/cli/retire-blocked-jobs.js",
     "backoffice:requeue-fixed": "node backoffice/cli/requeue-fixed-jobs.js",
@@ -151,6 +153,7 @@
     "puppeteer@24.16.0": true
   },
   "dependencies": {
+    "@capacitor/android": "^8.6.0",
     "@capacitor/core": "^8.6.0",
     "@capacitor/ios": "^8.6.0"
   }
