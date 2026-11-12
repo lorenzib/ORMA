@@ -8,7 +8,7 @@
     "distanceKm": 14.8,
     "ascentM": 837,
     "highestPointM": 1951,
-    "expectedDuration": "5 hours",
+    "expectedDuration": "5 h",
     "difficulty": "Hard",
     "shadePercent": 67
   },
@@ -69,5 +69,12 @@
       "downloadedAt": "2026-11-10",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Forte Strino to Malga Verniana and Malga Saviana": "Da Forte Strino a Malga Verniana e Malga Saviana",
+    "The car park by Forte Strino, beside the SS42, the board’s start": "Il parcheggio di Forte Strino, accanto alla SS42, la partenza ufficiale",
+    "The car park is beside the busy SS42: keep your dog on a short lead there.": "Il parcheggio è accanto alla trafficata SS42: lì tieni il cane al guinzaglio corto.",
+    "A long day: 14.8 km and 837 m up, graded difficult by the board for its length.": "Una giornata lunga: 14,8 km e 837 m di salita, classificata difficile dal sito ufficiale per la lunghezza.",
+    "Forest roads open to farm and forestry vehicles: keep your dog close if one comes.": "Strade forestali aperte ai mezzi agricoli e forestali: tieni il cane vicino se ne arriva uno."
+  }
 }

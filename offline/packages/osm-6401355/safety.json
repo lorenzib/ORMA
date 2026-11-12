@@ -8,7 +8,7 @@
     "distanceKm": 2.4,
     "ascentM": 75,
     "highestPointM": 2266,
-    "expectedDuration": "0.75 hours",
+    "expectedDuration": "45 min",
     "difficulty": "Moderate",
     "shadePercent": 0
   },
@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-10",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Cable car top stations on the Kronplatz summit (official start)": "Stazioni a monte degli impianti sulla cima del Kronplatz (partenza ufficiale)",
+    "No shade at all on the open summit at 2,250 m, with strong sun and wind.": "Nessuna ombra sulla cima aperta a 2.250 m, con sole e vento forti.",
+    "Wide gravel tracks shared with ski-area service vehicles.": "Ampie strade sterrate condivise con i mezzi di servizio del comprensorio sciistico.",
+    "Busy round the museums, the peace bell and the giant swing in summer.": "D'estate affollato intorno ai musei, alla campana della pace e all'altalena gigante."
+  }
 }

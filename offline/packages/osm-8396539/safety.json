@@ -8,7 +8,7 @@
     "distanceKm": 8.2,
     "ascentM": 171,
     "highestPointM": 643,
-    "expectedDuration": "2–2.5 hours",
+    "expectedDuration": "2 h – 2 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 24
   },
@@ -70,5 +70,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Töll weir and hydroelectric plant on the Etsch cycle path (official start)": "Traversa e centrale idroelettrica di Töll sulla ciclabile dell'Etsch (partenza ufficiale)",
+    "About 500 m on the pavement of the busy Vinschgauer Straße (SS38) in Rabland, with a zebra crossing.": "Circa 500 m sul marciapiede della trafficata Vinschgauer Straße (SS38) a Rabland, con un passaggio pedonale.",
+    "Roughly half the loop is on village streets and lanes open to cars.": "Circa metà dell'anello è su strade e stradine di paese aperte alle auto.",
+    "The Etsch cycle path and the cycle bridge at Töll, shared with bikes.": "La ciclabile dell'Etsch e il ponte ciclabile a Töll, condivisi con le bici."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 5.7,
     "ascentM": 25,
     "highestPointM": 739,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 55
   },
@@ -62,5 +62,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Latschanderwaal, Latsch to Kastelbell": "Latschanderwaal, da Latsch a Kastelbell",
+    "Latsch village centre, the board’s start": "Centro di Latsch, partenza indicata dalla scheda ufficiale",
+    "About 110 m on the main road at the start in Latsch, and lanes in both villages: lead on.": "Circa 110 m sulla strada principale alla partenza a Latsch, e stradine in entrambi i paesi: guinzaglio.",
+    "Stony, uneven first stretch of the waal path: watch your dog’s paws.": "Primo tratto del sentiero lungo la roggia sassoso e irregolare: attenzione alle zampe del tuo cane.",
+    "Orchards and vineyards beside the path are farmed and closed to dogs: keep to the path.": "I frutteti e i vigneti accanto al sentiero sono coltivati e vietati ai cani: resta sul sentiero."
+  }
 }

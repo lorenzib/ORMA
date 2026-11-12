@@ -8,7 +8,7 @@
     "distanceKm": 14,
     "ascentM": 567,
     "highestPointM": 1476,
-    "expectedDuration": "4 hours",
+    "expectedDuration": "4 h",
     "difficulty": "Hard",
     "shadePercent": 44
   },
@@ -90,5 +90,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Kastelruth bear-trap loop": "Anello della trappola per orsi di Kastelruth",
+    "The centre of Kastelruth (Castelrotto), the board’s start": "Il centro di Kastelruth (Castelrotto), la partenza indicata dalla scheda ufficiale",
+    "About 170 m along the Panider road (SP64) near Passo Pinei, and crossings of the San Michele road: keep your dog close.": "Circa 170 m lungo la strada di Panider (SP64) vicino a Passo Pinei e attraversamenti della strada di San Michele: tieni il cane vicino.",
+    "Lanes past the farms around Kastelruth and San Michele: watch for local traffic and farm dogs.": "Stradine tra i masi intorno a Kastelruth e San Michele: attenzione al traffico locale e ai cani dei masi.",
+    "The path out of Kastelruth passes the churchyard wall: dogs should not go in.": "Il sentiero in uscita da Kastelruth costeggia il muro del cimitero: il cane non deve entrare."
+  }
 }

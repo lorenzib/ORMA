@@ -8,7 +8,7 @@
     "distanceKm": 7.9,
     "ascentM": 679,
     "highestPointM": 1049,
-    "expectedDuration": "3.5 hours",
+    "expectedDuration": "3 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 92
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Brogno to the Nuvolone viewpoint": "Da Brogno al belvedere del Nuvolone",
+    "Brogno, Bellagio, the published start": "Brogno, Bellagio, la partenza indicata",
+    "A steep, sustained climb of almost 500 m in the first 2 km.": "Una salita ripida e continua di quasi 500 m nei primi 2 km.",
+    "Do not take the rough path to the Nuvolone summit: keep left for the bocchetta.": "Non prendere il sentiero accidentato verso la cima del Nuvolone: tieni la sinistra per la bocchetta.",
+    "A steep concrete road in hairpins on the descent.": "Una ripida strada in cemento a tornanti in discesa."
+  }
 }

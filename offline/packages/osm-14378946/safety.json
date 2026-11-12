@@ -8,7 +8,7 @@
     "distanceKm": 5.3,
     "ascentM": 181,
     "highestPointM": 1770,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Moderate",
     "shadePercent": 75
   },
@@ -75,5 +75,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Les Karellis resort, by the Vinouve chairlift (official start)": "Stazione di Les Karellis, presso la seggiovia di Vinouve (partenza ufficiale)",
+    "Peat bog beside the path (signed danger).": "Torbiera accanto al sentiero (segnalata come pericolosa).",
+    "About 400 m on tarmac, including the lake road open to cars.": "Circa 400 m su asfalto, compresa la strada del lago aperta alle auto."
+  }
 }

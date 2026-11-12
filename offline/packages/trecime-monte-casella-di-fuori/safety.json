@@ -8,7 +8,7 @@
     "distanceKm": 13.2,
     "ascentM": 832,
     "highestPointM": 2043,
-    "expectedDuration": "5.1 hours",
+    "expectedDuration": "5 h 5 min",
     "difficulty": "Hard",
     "shadePercent": 55
   },
@@ -97,5 +97,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Außergsell – Innergsell loop": "Anello Außergsell – Innergsell",
+    "Heating plant, Sexten, the board’s start": "Centrale di teleriscaldamento, Sexten, la partenza indicata dalla scheda ufficiale",
+    "A long climb of over 800 m, steep in places: plan rests and water for your dog.": "Una lunga salita di oltre 800 m, ripida in alcuni tratti: prevedi soste e acqua per il tuo cane.",
+    "No staffed hut on the way: carry food and water.": "Nessun rifugio gestito lungo il percorso: porta cibo e acqua.",
+    "Open ridge and meadows at about 2,000 m: turn back if a storm builds.": "Cresta e prati aperti a circa 2.000 m: torna indietro se si forma un temporale."
+  }
 }

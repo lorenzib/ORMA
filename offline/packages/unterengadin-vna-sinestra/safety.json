@@ -8,7 +8,7 @@
     "distanceKm": 3.8,
     "ascentM": 77,
     "highestPointM": 1658,
-    "expectedDuration": "1.25 hours",
+    "expectedDuration": "1 h 15 min",
     "difficulty": "Moderate",
     "shadePercent": 49
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Vnà to Val Sinestra": "Da Vnà alla Val Sinestra",
+    "Vnà, by the Jalmèr PostBus stop, the board’s start": "Vnà, alla fermata dell’AutoPostale Jalmèr, la partenza della scheda ufficiale",
+    "A descent of 174 m into Val Sinestra: take it slowly with older dogs.": "Una discesa di 174 m in Val Sinestra: vai piano con i cani anziani.",
+    "A short stretch on the road at the end of the valley: lead short.": "Un breve tratto su strada in fondo alla valle: guinzaglio corto.",
+    "Cows may graze the meadows above Vnà: lead short and go round the herd.": "Nei prati sopra Vnà possono pascolare mucche: guinzaglio corto e aggira la mandria."
+  }
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12736753",
   "name": "Albeins-Klerant-Milland - Albes-Cleran-Millan",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.892Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.265Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1234612,
+  "packageBytes": 1253876,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67235,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Albeins-Klerant-Milland - Albes-Cleran-Millan safety information",
       "url": "safety.json",
-      "bytes": 2381,
-      "sha256": "cd5f4d24da92ece5fe10fb53b684e9f5bf2d5cba4fc07bed85c6483f8001fc6d"
+      "bytes": 2972,
+      "sha256": "bba1d0b2712345782c8c389b751a8b4f958ac029d9e36dcf6566dc79e2c660f7"
     }
   ]
 }

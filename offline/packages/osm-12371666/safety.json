@@ -8,7 +8,7 @@
     "distanceKm": 1.3,
     "ascentM": 60,
     "highestPointM": 390,
-    "expectedDuration": "0.5 hours",
+    "expectedDuration": "30 min",
     "difficulty": "Moderate",
     "shadePercent": 5
   },
@@ -61,5 +61,10 @@
       "downloadedAt": "2026-11-06",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Kastelaz Promenade": "Passeggiata del Kastelaz",
+    "Start here — Bus stop Tramin, Altersheim, 14 m from the route": "Parti da qui — Fermata dell'autobus Tramin, Altersheim, a 14 m dal percorso",
+    "About 480 m on asphalt lanes used by cars (the St. Jakob lane to the Kastelazkeller and the Kastelazweg).": "Circa 480 m su stradine asfaltate percorse dalle auto (la stradina di St. Jakob verso il Kastelazkeller e il Kastelazweg)."
+  }
 }

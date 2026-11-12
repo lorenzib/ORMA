@@ -8,7 +8,7 @@
     "distanceKm": 4.8,
     "ascentM": 350,
     "highestPointM": 2214,
-    "expectedDuration": "3.5 hours",
+    "expectedDuration": "3 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 13
   },
@@ -48,5 +48,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Croix du Berger from the Lac des Fées": "Croix du Berger dal Lac des Fées",
+    "Lac des Fées car park above the Saint-Guérin dam, the board’s start": "Parcheggio del Lac des Fées sopra la diga di Saint-Guérin, la partenza indicata dalla scheda ufficiale",
+    "Working alpages: cows graze around the Cormet d’Arêches in summer and guard dogs may be present; keep your dog on a lead and walk round the herds.": "Alpeggi in attività: d'estate le mucche pascolano attorno al Cormet d’Arêches e possono esserci cani da guardiania; tieni il cane al guinzaglio e aggira le mandrie.",
+    "Steady climb of 350 m on mountain paths to about 2,210 m, with steep grassy humps near the cross.": "Salita costante di 350 m su sentieri di montagna fino a circa 2.210 m, con ripidi dossi erbosi vicino alla croce.",
+    "High, open ground: little shade and quick weather changes.": "Terreno alto e aperto: poca ombra e cambi di tempo rapidi."
+  }
 }

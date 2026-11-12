@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11860429",
   "name": "Roda dles Viles",
-  "version": "2026.10.30-beta.2",
-  "generatedAt": "2026-10-30T16:15:34.667Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.209Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 397866,
+  "packageBytes": 417103,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6539,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Roda dles Viles safety information",
       "url": "safety.json",
-      "bytes": 1458,
-      "sha256": "522dae7601ab8938593717123ff1548b661266167b2b79002db9a50dee2556b0"
+      "bytes": 2022,
+      "sha256": "63a9a89b651d3063a1a427850edd5ebfe6e7eb2148b98cd7c51a3ef9ad3d70ec"
     }
   ]
 }

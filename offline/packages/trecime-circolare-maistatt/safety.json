@@ -8,7 +8,7 @@
     "distanceKm": 4.8,
     "ascentM": 133,
     "highestPointM": 1273,
-    "expectedDuration": "1.35 hours",
+    "expectedDuration": "1 h 20 min",
     "difficulty": "Easy",
     "shadePercent": 30
   },
@@ -104,5 +104,12 @@
       "downloadedAt": "2026-10-27",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Maistatt loop": "Anello di Maistatt",
+    "Primary school, Niederdorf, the board’s start": "Scuola elementare, Niederdorf, la partenza indicata dalla scheda ufficiale",
+    "A fenced cow pasture on the Maistatt road: keep your dog close past the cattle.": "Un pascolo recintato con mucche sulla strada di Maistatt: tieni il cane vicino passando accanto al bestiame.",
+    "Two railway underpasses and village streets.": "Due sottopassi ferroviari e strade del paese.",
+    "Farmed meadows either side: Niederdorf bans dogs from farmed land from April to October.": "Prati coltivati su entrambi i lati: Niederdorf vieta ai cani i terreni coltivati da aprile a ottobre."
+  }
 }

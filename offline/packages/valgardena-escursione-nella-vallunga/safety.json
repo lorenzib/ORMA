@@ -8,7 +8,7 @@
     "distanceKm": 7.5,
     "ascentM": 201,
     "highestPointM": 1829,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 2
   },
@@ -90,5 +90,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "The mouth of the Vallunga, Selva di Val Gardena, the board’s start": "Imbocco della Vallunga, Selva di Val Gardena, partenza indicata dalla scheda ufficiale",
+    "Cattle may graze the upper pastures in summer: keep your distance.": "In estate sui pascoli alti possono pascolare le mucche: mantieni le distanze.",
+    "Open valley floor with little shade.": "Fondovalle aperto con poca ombra.",
+    "Rocky ground and scree under the valley walls: stay on the track.": "Terreno roccioso e ghiaioni sotto le pareti della valle: resta sulla strada."
+  }
 }

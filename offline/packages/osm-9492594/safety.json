@@ -8,7 +8,7 @@
     "distanceKm": 7.7,
     "ascentM": 422,
     "highestPointM": 1091,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Hard",
     "shadePercent": 25
   },
@@ -63,5 +63,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Lajen Dorfplatz, on the loop (parking at the sports ground, 270 m east)": "Dorfplatz di Lajen, sull'anello (parcheggio al campo sportivo, 270 m a est)",
+    "79 m on the SP139 Lajen road without a pavement.": "79 m sulla strada SP139 per Lajen senza marciapiede.",
+    "Two crossings of the busy Grödner Straße (SS242dir) in Ried, no pavement.": "Due attraversamenti della trafficata Grödner Straße (SS242dir) a Ried, senza marciapiede.",
+    "Crossing of the SP139 above Ried.": "Attraversamento della SP139 sopra Ried."
+  }
 }

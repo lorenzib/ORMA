@@ -8,7 +8,7 @@
     "distanceKm": 6.8,
     "ascentM": 266,
     "highestPointM": 1637,
-    "expectedDuration": "2–2.5 hours",
+    "expectedDuration": "2 h – 2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 60
   },
@@ -54,5 +54,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Les Karellis tourist office (official start)": "Ufficio turistico di Les Karellis (partenza ufficiale)",
+    "About 700 m on resort lanes, mostly the Route du Lac.": "Circa 700 m su stradine della stazione, per lo più la Route du Lac.",
+    "One crossing of the forest road.": "Un attraversamento della strada forestale."
+  }
 }

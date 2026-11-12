@@ -8,7 +8,7 @@
     "distanceKm": 3.5,
     "ascentM": 423,
     "highestPointM": 2460,
-    "expectedDuration": "1.6 hours",
+    "expectedDuration": "1 h 35 min",
     "difficulty": "Hard",
     "shadePercent": 7
   },
@@ -48,5 +48,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Top station of the Col Raiser gondola, above Santa Cristina, the board’s start": "Stazione a monte della cabinovia Col Raiser, sopra Santa Cristina, partenza indicata dalla scheda ufficiale",
+    "At the Seceda top station the ridge path beyond runs along a sheer north face: keep your dog on a short lead there.": "Alla stazione a monte del Seceda il sentiero di cresta prosegue lungo una parete nord a strapiombo: lì tieni il cane al guinzaglio corto.",
+    "Cattle graze the Mastlé and Seceda pastures in summer: keep your distance.": "In estate le mucche pascolano sui pascoli del Mastlé e del Seceda: mantieni le distanze.",
+    "Open alpine slopes with no shade.": "Pendii alpini aperti senza ombra."
+  }
 }

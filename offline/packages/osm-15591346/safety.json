@@ -8,7 +8,7 @@
     "distanceKm": 9.7,
     "ascentM": 780,
     "highestPointM": 1028,
-    "expectedDuration": "4–4.5 hours",
+    "expectedDuration": "4 h – 4 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 60
   },
@@ -41,5 +41,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Start here: cemetery car park on chemin de Beauvoir, Montmélian, heading for the Calloudes hamlet": "Parti da qui: parcheggio del cimitero sul chemin de Beauvoir, Montmélian, in direzione della frazione di Calloudes",
+    "Unprotected drop at the Roc de Manettaz belvedere (signed danger).": "Salto non protetto al belvedere del Roc de Manettaz (segnalato come pericoloso).",
+    "Sustained climbing on mountain paths (T2).": "Salita continua su sentieri di montagna (T2).",
+    "About 500 m along the chemin de Beauvoir at the start, with a pavement.": "Circa 500 m lungo il chemin de Beauvoir alla partenza, con marciapiede."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 19.7,
     "ascentM": 457,
     "highestPointM": 1598,
-    "expectedDuration": "5.3 hours",
+    "expectedDuration": "5 h 20 min",
     "difficulty": "Hard",
     "shadePercent": 55
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Haus der Berge, Sexten, the board’s start": "Haus der Berge, Sexten, partenza indicata dalla scheda ufficiale",
+    "A long day: almost 20 km there and back.": "Una giornata lunga: quasi 20 km andata e ritorno.",
+    "The paved path 105 is shared with bikes and the odd car to the Dreischusterhütte.": "Il sentiero asfaltato 105 è condiviso con bici e qualche auto fino alla Dreischusterhütte.",
+    "A climbing crag in the Innerfeldtal: keep your dog away from the base of the rock.": "Una falesia d'arrampicata nell'Innerfeldtal: tieni il cane lontano dalla base della parete."
+  }
 }

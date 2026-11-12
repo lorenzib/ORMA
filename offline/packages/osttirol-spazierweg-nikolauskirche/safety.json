@@ -8,7 +8,7 @@
     "distanceKm": 5.7,
     "ascentM": 140,
     "highestPointM": 1032,
-    "expectedDuration": "1.75 hours",
+    "expectedDuration": "1 h 45 min",
     "difficulty": "Moderate",
     "shadePercent": 0.15
   },
@@ -48,5 +48,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "St. Nikolaus church walk, Matrei": "Passeggiata alla chiesa di St. Nikolaus, Matrei",
+    "the Rauterplatz in the centre of Matrei in Osttirol, the board’s start": "La Rauterplatz nel centro di Matrei in Osttirol, la partenza indicata dalla scheda ufficiale",
+    "About 600 m on the Virgener Straße and 140 m on the Virgental road (L24) over the Brugger bridge, part of it signed 70 km/h: keep your dog close on a short lead and use the pavement.": "Circa 600 m sulla Virgener Straße e 140 m sulla strada della Virgental (L24) sul ponte Brugger, in parte con limite di 70 km/h: tieni il cane vicino al guinzaglio corto e usa il marciapiede.",
+    "Farm lanes near Weier and Bichl open to traffic.": "Stradine di campagna vicino a Weier e Bichl aperte al traffico.",
+    "The Isel is fast and cold: keep your dog out of it.": "L'Isel è veloce e fredda: tieni il cane fuori dall'acqua."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 4.7,
     "ascentM": 160,
     "highestPointM": 2023,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 27
   },
@@ -40,5 +40,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Passo Oclini / Jochgrimm car park, the APT’s start": "Parcheggio del Passo Oclini / Jochgrimm, partenza indicata dall'APT",
+    "A forest road closed to private cars, but used by farm and hut vehicles.": "Una strada forestale chiusa alle auto private, ma percorsa dai mezzi agricoli e dei rifugi.",
+    "The way back crosses open pasture where cows graze in summer: keep your dog on the lead and give the herd room.": "Il ritorno attraversa un pascolo aperto dove d'estate pascolano le mucche: tieni il cane al guinzaglio e lascia spazio alla mandria.",
+    "About 160 m on the pass road at the start and end.": "Circa 160 m sulla strada del passo alla partenza e all'arrivo."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 8.5,
     "ascentM": 448,
     "highestPointM": 928,
-    "expectedDuration": "2.5–3 hours",
+    "expectedDuration": "2 h 30 min – 3 h",
     "difficulty": "Hard",
     "shadePercent": 57
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Teis village centre (official start)": "Centro del paese di Teis (partenza ufficiale)",
+    "A short flight of steps down near Nafen, km 1.4.": "Una breve rampa di gradini in discesa vicino a Nafen, al km 1,4.",
+    "Village lanes in Teis, Nafen and Albeins open to cars.": "Stradine di paese a Teis, Nafen e Albeins aperte alle auto.",
+    "Forest road 9 used by farm and forestry vehicles.": "Strada forestale 9 percorsa da mezzi agricoli e forestali."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 7.4,
     "ascentM": 450,
     "highestPointM": 1836,
-    "expectedDuration": "2.4 hours",
+    "expectedDuration": "2 h 25 min",
     "difficulty": "Hard",
     "shadePercent": 44
   },
@@ -104,5 +104,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Santa Cristina farms path": "Sentiero dei masi di Santa Cristina",
+    "Parish square of Santa Cristina, the board’s start": "Piazza della chiesa di Santa Cristina, partenza indicata dalla scheda ufficiale",
+    "Working farms and hay meadows: keep your dog on the path.": "Masi in attività e prati da fieno: tieni il cane sul sentiero.",
+    "Short stretches on village and farm roads with traffic.": "Brevi tratti su strade di paese e poderali con traffico.",
+    "Steady climb of about 450 m.": "Salita costante di circa 450 m."
+  }
 }

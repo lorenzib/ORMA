@@ -6774,33 +6774,6 @@
         "highPoint": 1352
       }
     },
-    "sassolungo": {
-      "highPoint": 2680,
-      "snow": {
-        "months": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          11,
-          12
-        ],
-        "likelihood": "likely",
-        "highPoint": 2680
-      },
-      "winterUse": [
-        {
-          "kind": "downhill",
-          "km": 1,
-          "names": [
-            "Rodella",
-            "Gabia",
-            "Comici - Tramans"
-          ]
-        }
-      ]
-    },
     "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": {
       "highPoint": 2214,
       "snow": {

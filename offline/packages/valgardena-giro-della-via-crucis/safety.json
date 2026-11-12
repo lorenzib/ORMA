@@ -8,7 +8,7 @@
     "distanceKm": 3.3,
     "ascentM": 138,
     "highestPointM": 1572,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Moderate",
     "shadePercent": 0
   },
@@ -69,5 +69,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Casa Orchidee above the parish church, Santa Cristina, the board’s start": "Casa Orchidee sopra la chiesa parrocchiale, Santa Cristina, partenza indicata dalla scheda ufficiale",
+    "Village lanes and a short stretch of road: keep your dog close.": "Stradine di paese e un breve tratto di strada: tieni il cane vicino.",
+    "Paths shared with cyclists on the old railway path.": "Tratti condivisi con i ciclisti sul sentiero della vecchia ferrovia."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 3,
     "ascentM": 69,
     "highestPointM": 1612,
-    "expectedDuration": "0.75 hours",
+    "expectedDuration": "45 min",
     "difficulty": "Moderate",
     "shadePercent": 65
   },
@@ -48,5 +48,11 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Karersee car park, Welschnofen (official start)": "Parcheggio del Karersee, Welschnofen (partenza ufficiale)",
+    "One crossing of the main road at the Hotel Lake & River.": "Un attraversamento della strada principale all'Hotel Lake & River.",
+    "About 400 m on paved lanes and a service road.": "Circa 400 m su stradine asfaltate e una strada di servizio.",
+    "Suspension bridge with a metal grid floor.": "Ponte sospeso con fondo in grata metallica."
+  }
 }

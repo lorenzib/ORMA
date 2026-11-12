@@ -8,7 +8,7 @@
     "distanceKm": 6.7,
     "ascentM": 382,
     "highestPointM": 736,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Moderate",
     "shadePercent": 60
   },
@@ -39,5 +39,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Parking de l'église, Duingt (paid in July and August); free car park on route des Prés Bernard": "Parking de l'église, Duingt (a pagamento a luglio e agosto); parcheggio gratuito in route des Prés Bernard",
+    "A few rocky, uneven passages along the Taillefer crest.": "Alcuni passaggi rocciosi e irregolari lungo la cresta del Taillefer.",
+    "About 1.4 km on tarmac, including some 230 m of the D8 road.": "Circa 1,4 km su asfalto, compresi circa 230 m della strada D8."
+  }
 }

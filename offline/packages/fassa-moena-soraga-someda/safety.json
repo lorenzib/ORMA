@@ -8,7 +8,7 @@
     "distanceKm": 6.1,
     "ascentM": 175,
     "highestPointM": 1269,
-    "expectedDuration": "1.75 hours",
+    "expectedDuration": "1 h 45 min",
     "difficulty": "Moderate",
     "shadePercent": 6
   },
@@ -83,5 +83,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Moena (Piaz de Ramon), the APT’s start": "Moena (Piaz de Ramon), partenza indicata dall'APT",
+    "A flight of steps up to Someda at the start (the APT gives a pavement detour beside it).": "Una scalinata fino a Someda all'inizio (l'APT indica una deviazione sul marciapiede a fianco).",
+    "Mostly tarmac: village streets and farm lanes open to local traffic.": "Per lo più asfalto: vie del paese e stradine agricole aperte al traffico locale.",
+    "Hay meadows between Someda and Soraga Alta: keep to the lane.": "Prati da fieno tra Someda e Soraga Alta: resta sulla stradina."
+  }
 }

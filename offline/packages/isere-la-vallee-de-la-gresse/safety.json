@@ -8,7 +8,7 @@
     "distanceKm": 6.2,
     "ascentM": 286,
     "highestPointM": 752,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Hard",
     "shadePercent": 49
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Gresse valley loop from Miribel-Lanchâtre": "Anello della valle della Gresse da Miribel-Lanchâtre",
+    "Miribel-Lanchâtre town hall, the board’s start": "Municipio di Miribel-Lanchâtre, la partenza della scheda ufficiale",
+    "A short stretch of scree before the Gresse torrent can be slippery after heavy rain.": "Un breve tratto di ghiaione prima del torrente Gresse può essere scivoloso dopo forti piogge.",
+    "A ford across the Pierre du Mai stream.": "Un guado sul torrente Pierre du Mai.",
+    "Farm gates to close behind you; the D 8 is crossed and briefly followed at the end.": "Cancelli dei pascoli da richiudere dietro di te; alla fine si attraversa la D 8 e la si segue per un breve tratto."
+  }
 }

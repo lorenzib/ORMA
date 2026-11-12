@@ -8,7 +8,7 @@
     "distanceKm": 5.4,
     "ascentM": 286,
     "highestPointM": 844,
-    "expectedDuration": "1.5–2 hours",
+    "expectedDuration": "1 h 30 min – 2 h",
     "difficulty": "Hard",
     "shadePercent": 15
   },
@@ -63,5 +63,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Adlerbrücke (Ponte Aquila), Stufels side, Adlerbrücke bus stop": "Adlerbrücke (Ponte Aquila), lato Stufels, fermata dell'autobus Adlerbrücke",
+    "Stone setts in the Stufels lanes.": "Cubetti di pietra nelle stradine di Stufels.",
+    "Quiet 30 km/h lanes with no pavement (about a fifth of the walk).": "Tranquille stradine con limite di 30 km/h senza marciapiede (circa un quinto della passeggiata).",
+    "Crossings of the Laugenstraße in Elvas and of the Elvaser Straße on the way down.": "Attraversamenti della Laugenstraße a Elvas e della Elvaser Straße in discesa."
+  }
 }

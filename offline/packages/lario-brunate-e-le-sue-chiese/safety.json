@@ -8,7 +8,7 @@
     "distanceKm": 5.49,
     "ascentM": 300,
     "highestPointM": 940,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Hard",
     "shadePercent": 40
   },
@@ -69,5 +69,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Brunate churches loop": "Anello delle chiese di Brunate",
+    "The via Laghetto car park, Brunate, the published start": "Il parcheggio di via Laghetto, Brunate, la partenza indicata",
+    "Village lanes and roads with cars: keep your dog close.": "Stradine di paese e strade con auto: tieni il cane vicino.",
+    "Steep steps and cobbled mule tracks on the way to San Maurizio.": "Gradini ripidi e mulattiere acciottolate verso San Maurizio.",
+    "Busy viewpoints at the lighthouse at weekends.": "Punti panoramici affollati al faro nei fine settimana."
+  }
 }

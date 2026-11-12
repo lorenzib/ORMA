@@ -8,7 +8,7 @@
     "distanceKm": 3.2,
     "ascentM": 152,
     "highestPointM": 1429,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Moderate",
     "shadePercent": 69
   },
@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Aschbach cable car top station (official start and end)": "Stazione a monte della funivia di Aschbach (partenza e arrivo ufficiali)",
+    "Forest tracks and paths with some roots and stones.": "Strade forestali e sentieri con qualche radice e pietra.",
+    "Short stretches on the Aschbach village road at the start.": "Brevi tratti sulla strada del paese di Aschbach alla partenza.",
+    "Hunting stands and a game-feeding place by the path.": "Postazioni di caccia e una mangiatoia per la selvaggina accanto al sentiero."
+  }
 }

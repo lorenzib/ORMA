@@ -8,7 +8,7 @@
     "distanceKm": 6.6,
     "ascentM": 449,
     "highestPointM": 2157,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Hard",
     "shadePercent": 25
   },
@@ -48,5 +48,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Cristauta car park, above Santa Cristina, the board’s start": "Parcheggio Cristauta, sopra Santa Cristina, partenza indicata dalla scheda ufficiale",
+    "Steady climb of about 450 m on natural paths.": "Salita costante di circa 450 m su sentieri naturali.",
+    "Early in the season some stretches may still hold snow.": "A inizio stagione alcuni tratti possono essere ancora innevati.",
+    "Open grassy ridge near the summit cross: keep your dog close.": "Dorsale erbosa aperta vicino alla croce di vetta: tieni il cane vicino."
+  }
 }

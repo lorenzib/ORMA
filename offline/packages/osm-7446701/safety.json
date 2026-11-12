@@ -8,7 +8,7 @@
     "distanceKm": 8.4,
     "ascentM": 368,
     "highestPointM": 1533,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 35
   },
@@ -61,5 +61,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Gasthof Alpenrose and the Walten bus stop, Innerwalten (official start)": "Gasthof Alpenrose e fermata dell'autobus Walten, Innerwalten (partenza ufficiale)",
+    "About 500 m on or beside the SS44 Jaufenstraße (60 km/h), partly without a pavement.": "Circa 500 m sopra o accanto alla SS44 Jaufenstraße (60 km/h), in parte senza marciapiede.",
+    "About 1.9 km on minor roads and farm lanes with cars.": "Circa 1,9 km su strade secondarie e stradine di campagna con auto."
+  }
 }

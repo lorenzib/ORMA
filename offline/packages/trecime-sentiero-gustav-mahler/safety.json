@@ -8,7 +8,7 @@
     "distanceKm": 4.7,
     "ascentM": 72,
     "highestPointM": 1236,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Easy",
     "shadePercent": 45
   },
@@ -61,5 +61,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Gustav Mahler path": "Sentiero Gustav Mahler",
+    "Former Grand Hotel, Neu-Toblach, the board’s start": "Ex Grand Hotel, Neu-Toblach, partenza indicata dalla scheda ufficiale",
+    "The way back is the paved cycle path: share it with bikes.": "Il ritorno è sulla pista ciclabile asfaltata: condividila con le bici.",
+    "A short climb beside a ski slope near the start.": "Una breve salita accanto a una pista da sci vicino alla partenza."
+  }
 }

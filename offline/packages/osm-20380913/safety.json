@@ -8,7 +8,7 @@
     "distanceKm": 5.1,
     "ascentM": 233,
     "highestPointM": 844,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 39
   },
@@ -41,5 +41,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Village square by the school and church in Tabland, Citybus 264 (official start)": "Piazza del paese presso la scuola e la chiesa di Tabland, Citybus 264 (partenza ufficiale)",
+    "The first and last kilometre are on tarmac roads open to cars, including the Tabland road back to the village.": "Il primo e l'ultimo chilometro sono su strade asfaltate aperte alle auto, compresa la strada di Tabland per tornare in paese.",
+    "A rougher stretch of path and track near km 2.4–2.7.": "Un tratto più accidentato di sentiero e sterrata tra il km 2,4 e il km 2,7.",
+    "Rock outcrops at some of the viewpoints.": "Affioramenti rocciosi in alcuni punti panoramici."
+  }
 }

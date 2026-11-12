@@ -8,7 +8,7 @@
     "distanceKm": 9.6,
     "ascentM": 170,
     "highestPointM": 816,
-    "expectedDuration": "2.5–3 hours",
+    "expectedDuration": "2 h 30 min – 3 h",
     "difficulty": "Moderate",
     "shadePercent": 40
   },
@@ -94,5 +94,8 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Start here — Parking, 10 m from the route": "Parti da qui — Parcheggio, a 10 m dal percorso"
+  }
 }

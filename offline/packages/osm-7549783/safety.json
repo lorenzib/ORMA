@@ -8,7 +8,7 @@
     "distanceKm": 3.7,
     "ascentM": 380,
     "highestPointM": 1139,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 80
   },
@@ -54,5 +54,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pianizole, first hairpin of the Strada del Genio, at the Tita Poa botanical trail board (official start)": "Pianizole, primo tornante della Strada del Genio, al pannello del sentiero botanico Tita Poa (partenza ufficiale)",
+    "A short passage over outcropping rock with natural steps (official).": "Un breve passaggio su roccia affiorante con gradini naturali (scheda ufficiale).",
+    "Small stream crossings.": "Piccoli attraversamenti di ruscelli."
+  }
 }

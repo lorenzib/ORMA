@@ -8,7 +8,7 @@
     "distanceKm": 4.2,
     "ascentM": 101,
     "highestPointM": 1949,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Easy",
     "shadePercent": 79
   },
@@ -47,5 +47,11 @@
       "downloadedAt": "2026-11-05",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Laghi di Colbricon from Malga Rolle": "Laghi di Colbricon da Malga Rolle",
+    "Malga Rolle below the Passo Rolle, the board’s start": "Malga Rolle sotto il Passo Rolle, punto di partenza della scheda ufficiale",
+    "Roots and rocky stretches on the mule track: not for pushchairs, as the board warns.": "Radici e tratti sassosi sulla mulattiera: non adatta ai passeggini, come avverte la scheda ufficiale.",
+    "The start is by the Passo Rolle road: keep your dog on a short lead in the car park.": "La partenza è lungo la strada del Passo Rolle: nel parcheggio tieni il cane al guinzaglio corto."
+  }
 }

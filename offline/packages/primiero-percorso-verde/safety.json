@@ -8,7 +8,7 @@
     "distanceKm": 1.6,
     "ascentM": 23,
     "highestPointM": 744,
-    "expectedDuration": "0.5 hours",
+    "expectedDuration": "30 min",
     "difficulty": "Easy",
     "shadePercent": 0
   },
@@ -63,5 +63,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Parco Clarofonte, the APT’s start": "Parco Clarofonte, la partenza indicata dall'APT",
+    "All tarmac and pavement, beside a road for part of it.": "Tutto su asfalto e marciapiede, in parte lungo una strada.",
+    "Two bridges and road junctions in town.": "Due ponti e incroci stradali in paese.",
+    "Busy with cars round the hotels in summer.": "D'estate molto traffico intorno agli alberghi."
+  }
 }

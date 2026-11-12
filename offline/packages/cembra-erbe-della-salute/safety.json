@@ -8,7 +8,7 @@
     "distanceKm": 2.1,
     "ascentM": 100,
     "highestPointM": 1055,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Moderate",
     "shadePercent": 45
   },
@@ -47,5 +47,10 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Grauno (Centro servizi Castelet, at the top of the village), the APT’s start": "Grauno (Centro servizi Castelet, in cima al paese), la partenza indicata dall'APT",
+    "Village streets and a cobbled lane, slippery when wet.": "Vie del paese e una stradina acciottolata, scivolosa col bagnato.",
+    "A short, steep woodland path down to the village.": "Un breve e ripido sentiero nel bosco in discesa verso il paese."
+  }
 }

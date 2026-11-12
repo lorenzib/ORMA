@@ -8,7 +8,7 @@
     "distanceKm": 6.9,
     "ascentM": 740,
     "highestPointM": 1932,
-    "expectedDuration": "4.5 hours",
+    "expectedDuration": "4 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 83
   },
@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Località Fazzon – Malga Bassa, by the Lago dei Caprioli, the APT’s start": "Località Fazzon – Malga Bassa, presso il Lago dei Caprioli, partenza indicata dall'APT",
+    "A rough, steep mountain path for the upper half of the climb (about 2.2 km).": "Un sentiero di montagna ripido e accidentato per la metà superiore della salita (circa 2,2 km).",
+    "Stream crossings in the Val Baselga.": "Guadi di torrenti in Val Baselga.",
+    "Possible grazing cattle on the upper pastures in summer.": "Possibile bestiame al pascolo sui pascoli alti in estate."
+  }
 }

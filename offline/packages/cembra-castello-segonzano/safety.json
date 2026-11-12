@@ -8,7 +8,7 @@
     "distanceKm": 6.1,
     "ascentM": 190,
     "highestPointM": 665,
-    "expectedDuration": "3.5 hours",
+    "expectedDuration": "3 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 30
   },
@@ -49,5 +49,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Scancio, Segonzano (car park by the Hotel Piramidi), the APT’s start": "Scancio, Segonzano (parcheggio vicino all'Hotel Piramidi), la partenza indicata dall'APT",
+    "About 250 m on the SP 71 provincial road at the start and end: lead short.": "Circa 250 m sulla strada provinciale SP 71 all'inizio e alla fine: guinzaglio corto.",
+    "Quiet tarred lanes between the hamlets, with farm traffic.": "Tranquille stradine asfaltate tra le frazioni, con traffico agricolo.",
+    "Woodland paths in the Prà gorge, one stretch rough underfoot.": "Sentieri nel bosco nella forra di Prà, un tratto con fondo accidentato."
+  }
 }

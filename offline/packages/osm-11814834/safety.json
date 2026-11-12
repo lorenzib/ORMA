@@ -8,7 +8,7 @@
     "distanceKm": 7,
     "ascentM": 345,
     "highestPointM": 1599,
-    "expectedDuration": "2–2.5 hours",
+    "expectedDuration": "2 h – 2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 55
   },
@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172)": "Panider Sattel / Passo Pinei, fermata dell'autobus Pas Pinëi (linea 172)",
+    "Start beside the Panider Sattel pass road (SP64).": "Partenza accanto alla strada del passo Panider Sattel (SP64).",
+    "About 1.2 km on tarmac: access lane and Pufels farm and village roads with local traffic.": "Circa 1,2 km su asfalto: strada d'accesso e strade poderali e del paese di Pufels con traffico locale.",
+    "Short flight of steps on the upper path.": "Breve rampa di gradini sul sentiero superiore."
+  }
 }

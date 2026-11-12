@@ -8,7 +8,7 @@
     "distanceKm": 6.7,
     "ascentM": 329,
     "highestPointM": 1472,
-    "expectedDuration": "2–2.5 hours",
+    "expectedDuration": "2 h – 2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 30
   },
@@ -55,5 +55,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Parkplatz Zentrum, Terenten village centre (official start)": "Parkplatz Zentrum, centro del paese di Terenten (partenza ufficiale)",
+    "About 450 m on the SP40 main road through the village, no pavement.": "Circa 450 m sulla strada principale SP40 attraverso il paese, senza marciapiede.",
+    "Quiet asphalt farm roads (Margener Straße, Hansleitnerweg).": "Tranquille strade poderali asfaltate (Margener Straße, Hansleitnerweg).",
+    "Short steps and an eroded gully at the earth pyramids.": "Brevi gradini e un canalone eroso alle piramidi di terra."
+  }
 }

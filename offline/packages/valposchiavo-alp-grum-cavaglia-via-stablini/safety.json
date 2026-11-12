@@ -8,7 +8,7 @@
     "distanceKm": 3,
     "ascentM": 1,
     "highestPointM": 2092,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Moderate",
     "shadePercent": 28
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Alp Grüm to Cavaglia via Stablini": "Da Alp Grüm a Cavaglia per Stablini",
+    "Alp Grüm station on the Bernina railway, the board’s start": "Stazione di Alp Grüm sulla ferrovia del Bernina, la partenza della scheda ufficiale",
+    "A steady descent of 390 m: take it slowly with older dogs.": "Una discesa costante di 390 m: vai piano con i cani anziani.",
+    "Popular with mountain bikers in summer: keep your dog close and step aside.": "D'estate è frequentato dai ciclisti in mountain bike: tieni il cane vicino e fatti da parte.",
+    "The path crosses the Bernina railway: lead short at the crossings.": "Il sentiero attraversa la ferrovia del Bernina: guinzaglio corto agli attraversamenti."
+  }
 }

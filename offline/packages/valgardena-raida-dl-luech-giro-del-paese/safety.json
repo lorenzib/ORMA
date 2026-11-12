@@ -8,7 +8,7 @@
     "distanceKm": 3.9,
     "ascentM": 151,
     "highestPointM": 1466,
-    "expectedDuration": "1.2 hours",
+    "expectedDuration": "1 h 10 min",
     "difficulty": "Moderate",
     "shadePercent": 10
   },
@@ -125,5 +125,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Parish church of Santa Cristina, the board’s start": "Chiesa parrocchiale di Santa Cristina, partenza indicata dalla scheda ufficiale",
+    "Crossing of the main road at Soplajes.": "Attraversamento della strada principale a Soplajes.",
+    "Village streets with traffic.": "Strade di paese con traffico.",
+    "Steep, possibly slippery Triech path near the end.": "Sentiero Triech ripido e a volte scivoloso verso la fine."
+  }
 }

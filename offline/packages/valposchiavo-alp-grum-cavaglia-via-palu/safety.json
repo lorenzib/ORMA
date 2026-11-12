@@ -8,7 +8,7 @@
     "distanceKm": 3.2,
     "ascentM": 1,
     "highestPointM": 2092,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Moderate",
     "shadePercent": 53
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Alp Grüm to Cavaglia via Lagh da Palü": "Da Alp Grüm a Cavaglia per il Lagh da Palü",
+    "Alp Grüm station on the Bernina railway, the board’s start": "Stazione di Alp Grüm sulla ferrovia del Bernina, la partenza della scheda ufficiale",
+    "A steady descent of 390 m: take it slowly with older dogs.": "Una discesa costante di 390 m: vai piano con i cani anziani.",
+    "The path crosses the Bernina railway twice: lead short at the crossings.": "Il sentiero attraversa due volte la ferrovia del Bernina: guinzaglio corto agli attraversamenti.",
+    "Glacier lake with cold water: keep your dog out of the water near the power-plant outflow.": "Lago glaciale con acqua fredda: non far entrare il cane in acqua vicino allo scarico della centrale."
+  }
 }

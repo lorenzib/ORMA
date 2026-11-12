@@ -8,7 +8,7 @@
     "distanceKm": 4.8,
     "ascentM": 92,
     "highestPointM": 892,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Easy",
     "shadePercent": 67
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Clelles canal loop": "Anello del canale di Clelles",
+    "Clelles-Mens railway station, the board’s start": "Stazione ferroviaria di Clelles-Mens, la partenza della scheda ufficiale",
+    "The departmental road is crossed twice: keep your dog close.": "La strada dipartimentale si attraversa due volte: tieni il cane vicino.",
+    "Stretches of open farmland between the woods, with little shade there on hot days.": "Tratti di campagna aperta tra i boschi, con poca ombra nelle giornate calde.",
+    "Livestock may be in the fields beside the track.": "Nei campi accanto alla sterrata potrebbe esserci del bestiame."
+  }
 }

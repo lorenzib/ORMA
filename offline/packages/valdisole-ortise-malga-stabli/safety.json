@@ -8,7 +8,7 @@
     "distanceKm": 7.2,
     "ascentM": 342,
     "highestPointM": 1833,
-    "expectedDuration": "2.4 hours",
+    "expectedDuration": "2 h 25 min",
     "difficulty": "Hard",
     "shadePercent": 29
   },
@@ -61,5 +61,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Car park by the church, Ortisè, the APT’s start": "Parcheggio vicino alla chiesa, Ortisè, partenza indicata dall'APT",
+    "The gravel road is open to cars as far as Malga Stabli.": "La strada sterrata è aperta alle auto fino a Malga Stabli.",
+    "Cattle graze around Malga Stabli in summer.": "In estate le mucche pascolano intorno a Malga Stabli."
+  }
 }

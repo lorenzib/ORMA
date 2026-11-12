@@ -8,7 +8,7 @@
     "distanceKm": 3.2,
     "ascentM": 350,
     "highestPointM": 1401,
-    "expectedDuration": "1.75 hours",
+    "expectedDuration": "1 h 45 min",
     "difficulty": "Hard",
     "shadePercent": 100
   },
@@ -39,5 +39,11 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Cervatto to the Madonna del Balmone": "Da Cervatto alla Madonna del Balmone",
+    "Cervatto (1,002 m), the park authority’s start": "Cervatto (1.002 m), la partenza dell'ente parco",
+    "The first stretch from Cervatto to Giavina is on the village road: lead on for passing cars.": "Il primo tratto da Cervatto a Giavina è sulla strada del paese: cane al guinzaglio per le auto di passaggio.",
+    "Old stone mule track with steps and loose stones in places, slippery when wet.": "Vecchia mulattiera in pietra con gradini e in alcuni punti sassi smossi, scivolosa con il bagnato."
+  }
 }

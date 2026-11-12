@@ -8,7 +8,7 @@
     "distanceKm": 9,
     "ascentM": 220,
     "highestPointM": 1696,
-    "expectedDuration": "2.5–3 hours",
+    "expectedDuration": "2 h 30 min – 3 h",
     "difficulty": "Moderate",
     "shadePercent": 60
   },
@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Les Karellis resort, by the Vinouve chairlift": "Stazione di Les Karellis, presso la seggiovia di Vinouve",
+    "Scree crossings on forest tracks.": "Attraversamenti di ghiaioni sulle strade forestali.",
+    "Two road stretches of about 150 m and one road crossing.": "Due tratti di strada di circa 150 m e un attraversamento stradale.",
+    "Electric fence at the summer pasture.": "Recinzione elettrica al pascolo estivo."
+  }
 }

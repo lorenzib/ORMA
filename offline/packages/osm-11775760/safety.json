@@ -8,7 +8,7 @@
     "distanceKm": 3.1,
     "ascentM": 172,
     "highestPointM": 806,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Moderate",
     "shadePercent": 25
   },
@@ -49,5 +49,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Vahrn village car park (Dorfparkplatz), the official start": "Parcheggio del paese di Vahrn (Dorfparkplatz), la partenza ufficiale",
+    "Short stretch on the village road (40 km/h, pavement on one side).": "Breve tratto sulla strada del paese (40 km/h, marciapiede su un lato).",
+    "Road crossings in the village, including the Schalderer Straße hairpin with no pavement.": "Attraversamenti stradali in paese, compreso il tornante della Schalderer Straße senza marciapiede.",
+    "Tarmac lanes that get hot in summer (about 30% of the loop).": "Stradine asfaltate che d'estate si scaldano (circa il 30% dell'anello)."
+  }
 }

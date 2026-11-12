@@ -8,7 +8,7 @@
     "distanceKm": 10.6,
     "ascentM": 558,
     "highestPointM": 2122,
-    "expectedDuration": "3.5 hours",
+    "expectedDuration": "3 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 27
   },
@@ -62,5 +62,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Latzfons high trail": "Alta via di Latzfons",
+    "Kühhof car park above Latzfons, the board’s start": "Parcheggio del Kühhof sopra Latzfons, la partenza indicata dalla scheda ufficiale",
+    "Cows and horses graze on the Kühberg and Latzfons alps in summer: keep your dog on a lead.": "D'estate mucche e cavalli pascolano sulle malghe del Kühberg e di Latzfons: tieni il cane al guinzaglio.",
+    "Rocky, stony stretches around the Schalderer Scharte.": "Tratti rocciosi e sassosi intorno alla Schalderer Scharte.",
+    "Open high ground at about 2,100 m: turn back if storms build.": "Terreno d'alta quota aperto a circa 2.100 m: torna indietro se si formano temporali."
+  }
 }

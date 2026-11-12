@@ -8,7 +8,7 @@
     "distanceKm": 5.2,
     "ascentM": 900,
     "highestPointM": 2093,
-    "expectedDuration": "2.9 hours",
+    "expectedDuration": "2 h 55 min",
     "difficulty": "Hard",
     "shadePercent": 91
   },
@@ -111,5 +111,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Parish church of Ortisei, the board’s start": "Chiesa parrocchiale di Ortisei, partenza indicata dalla scheda ufficiale",
+    "Steep, sustained climb of 900 m: hard work for dogs in warm weather.": "Salita ripida e continua di 900 m: faticosa per i cani quando fa caldo.",
+    "Natural mountain path with roots, possibly slippery when wet.": "Sentiero di montagna naturale con radici, scivoloso se bagnato.",
+    "Town streets with traffic at the start.": "Strade cittadine con traffico alla partenza."
+  }
 }

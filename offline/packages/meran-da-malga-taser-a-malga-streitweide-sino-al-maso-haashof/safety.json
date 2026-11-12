@@ -8,7 +8,7 @@
     "distanceKm": 8.4,
     "ascentM": 350,
     "highestPointM": 1561,
-    "expectedDuration": "3 hours",
+    "expectedDuration": "3 h",
     "difficulty": "Hard",
     "shadePercent": 78
   },
@@ -55,5 +55,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Taser Höhenweg to the Haashof, Schenna": "Taser Höhenweg fino all’Haashof, Schenna",
+    "Top station of the Taser cable car at the Taser Alm, the board’s start": "Stazione a monte della funivia Taser alla Taser Alm, la partenza della scheda ufficiale",
+    "The last hour to Tall is on a tarred access road open to cars: lead on and keep to the side.": "L'ultima ora fino a Tall è su una strada d'accesso asfaltata aperta alle auto: tieni il cane al guinzaglio e stai sul bordo.",
+    "Cattle may graze around the Taser and Streitweider alms in summer: keep your dog on a short lead and give cows a wide berth.": "D'estate attorno alle malghe Taser e Streitweider possono pascolare i bovini: tieni il cane al guinzaglio corto e stai alla larga dalle mucche.",
+    "A few short, steeper stretches of mountain path on the Höhenweg.": "Alcuni brevi tratti più ripidi di sentiero di montagna sull'Höhenweg."
+  }
 }

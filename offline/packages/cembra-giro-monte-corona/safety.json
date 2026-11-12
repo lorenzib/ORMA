@@ -8,7 +8,7 @@
     "distanceKm": 7.2,
     "ascentM": 390,
     "highestPointM": 1028,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 78
   },
@@ -48,5 +48,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Ville di Giovo, the APT’s start": "Ville di Giovo, la partenza indicata dall'APT",
+    "The viewpoint and the ridge are at a cliff edge: keep your dog on a short lead.": "Il punto panoramico e la cresta sono sul bordo di una parete rocciosa: tieni il cane con il guinzaglio corto.",
+    "A steep, narrow descent through a cleft in the rock ridge, with rough ground.": "Una discesa ripida e stretta attraverso una fenditura nella cresta rocciosa, su terreno accidentato.",
+    "About 1 km on quiet tarred lanes through the vineyards.": "Circa 1 km su tranquille stradine asfaltate tra i vigneti."
+  }
 }

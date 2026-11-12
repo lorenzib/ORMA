@@ -8,7 +8,7 @@
     "distanceKm": 3.3,
     "ascentM": 145,
     "highestPointM": 1328,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Moderate",
     "shadePercent": 55
   },
@@ -97,5 +97,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Haunold lift valley station, Innichen, the board’s start": "Stazione a valle dell'impianto Haunold, Innichen, la partenza indicata dalla scheda ufficiale",
+    "The first stretch is the Pustertal cycle path: share it with bikes.": "Il primo tratto è sulla pista ciclabile della Pustertal: condividila con le bici.",
+    "The spa buildings are ruins: keep out of the fenced area.": "Gli edifici termali sono ruderi: non entrare nell'area recintata.",
+    "Forest road: watch for forestry traffic.": "Strada forestale: attenzione ai mezzi forestali."
+  }
 }

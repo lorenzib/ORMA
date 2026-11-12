@@ -8,7 +8,7 @@
     "distanceKm": 3.3,
     "ascentM": 311,
     "highestPointM": 1901,
-    "expectedDuration": "1.45 hours",
+    "expectedDuration": "1 h 25 min",
     "difficulty": "Hard",
     "shadePercent": 58
   },
@@ -61,5 +61,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Alpenzù Piccolo and Alpenzù Grande": "Alpenzù Piccolo e Alpenzù Grande",
+    "Prima di Gressoney-La-Trinité, the register’s start": "Prima di Gressoney-La-Trinité, la partenza indicata dal catasto",
+    "A steady climb on a forest and meadow path.": "Una salita costante su un sentiero tra boschi e prati.",
+    "Alpine pastures around the hamlets: livestock may be grazing in summer.": "Pascoli alpini intorno ai borghi: d'estate può esserci bestiame al pascolo."
+  }
 }

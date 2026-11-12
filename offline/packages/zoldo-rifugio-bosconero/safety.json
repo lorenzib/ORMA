@@ -8,7 +8,7 @@
     "distanceKm": 6.7,
     "ascentM": 642,
     "highestPointM": 1366,
-    "expectedDuration": "4 hours",
+    "expectedDuration": "4 h",
     "difficulty": "Hard",
     "shadePercent": 89
   },
@@ -55,5 +55,12 @@
       "downloadedAt": "2026-11-09",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pontesei to the Rifugio Bosconero": "Da Pontesei al Rifugio Bosconero",
+    "Pontesei on the SP251, the board’s start": "Pontesei sulla SP251, la partenza ufficiale",
+    "A steady, steep forest path of 640 m up.": "Un sentiero nel bosco regolare e ripido, 640 m di salita.",
+    "Stony stream bed to cross in the Val Bosconero, which can carry water after rain.": "Un greto sassoso da attraversare nella Val Bosconero, che dopo la pioggia può portare acqua.",
+    "The start is on the SP251 at Pontesei: keep your dog on a short lead by the road.": "La partenza è sulla SP251 a Pontesei: tieni il cane al guinzaglio corto lungo la strada."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 6.8,
     "ascentM": 250,
     "highestPointM": 1114,
-    "expectedDuration": "2.5 hours",
+    "expectedDuration": "2 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 34
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Grumes (“Le Fontanelle” car park by the theatre), the APT’s start": "Grumes (parcheggio “Le Fontanelle” vicino al teatro), la partenza indicata dall'APT",
+    "Two crossings of the busy SS 612 in Grumes: lead short.": "Due attraversamenti della trafficata SS 612 a Grumes: guinzaglio corto.",
+    "Mostly quiet tarred lanes open to farm and resident traffic.": "Per lo più tranquille stradine asfaltate aperte al traffico agricolo e dei residenti.",
+    "A short mountain path and stretches of rough cobbles.": "Un breve sentiero di montagna e tratti di acciottolato sconnesso."
+  }
 }

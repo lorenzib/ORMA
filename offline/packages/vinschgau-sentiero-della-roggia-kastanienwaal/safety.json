@@ -8,7 +8,7 @@
     "distanceKm": 2.2,
     "ascentM": 70,
     "highestPointM": 826,
-    "expectedDuration": "0.5 hours",
+    "expectedDuration": "30 min",
     "difficulty": "Moderate",
     "shadePercent": 18
   },
@@ -90,5 +90,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Schlanders centre, the pedestrian zone, the board’s start": "Centro di Schlanders, la zona pedonale, partenza indicata dalla scheda ufficiale",
+    "Most of the loop is on village lanes with occasional cars: lead on.": "Gran parte dell'anello è su stradine di paese con qualche auto: guinzaglio.",
+    "A sunny, south-facing slope: hot in summer, go early.": "Un pendio soleggiato esposto a sud: caldo in estate, parti presto."
+  }
 }

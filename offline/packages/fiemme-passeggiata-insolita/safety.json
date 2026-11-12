@@ -8,7 +8,7 @@
     "distanceKm": 3,
     "ascentM": 42,
     "highestPointM": 1036,
-    "expectedDuration": "1 hour",
+    "expectedDuration": "1 h",
     "difficulty": "Easy",
     "shadePercent": 2
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Cavalese (ice stadium car park), the APT’s start": "Cavalese (parcheggio dello stadio del ghiaccio), partenza indicata dall'APT",
+    "Town pavements and streets throughout, open to cars; cross the Strada Statale at the Palafiemme with care.": "Marciapiedi e vie del paese per tutto il percorso, aperte alle auto; attraversa con attenzione la Strada Statale al Palafiemme.",
+    "A short promenade beside the Rio Gambis: keep your dog out of the stream.": "Una breve passeggiata lungo il Rio Gambis: tieni il cane fuori dal torrente.",
+    "Busy streets in the centre in summer and on market days.": "Vie del centro affollate d'estate e nei giorni di mercato."
+  }
 }

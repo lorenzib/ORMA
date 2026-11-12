@@ -8,7 +8,7 @@
     "distanceKm": 4.2,
     "ascentM": 100,
     "highestPointM": 930,
-    "expectedDuration": "1.5 hours",
+    "expectedDuration": "1 h 30 min",
     "difficulty": "Moderate",
     "shadePercent": 20
   },
@@ -52,5 +52,8 @@
       "downloadedAt": "2026-11-06",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Elvas route start beside the mapped bus stop": "Partenza del percorso a Elvas, accanto alla fermata dell'autobus segnata sulla mappa"
+  }
 }

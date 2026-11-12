@@ -8,7 +8,7 @@
     "distanceKm": 7.3,
     "ascentM": 594,
     "highestPointM": 2209,
-    "expectedDuration": "4 hours",
+    "expectedDuration": "4 h",
     "difficulty": "Hard",
     "shadePercent": 66
   },
@@ -40,5 +40,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Pozzi Alti car park, Val di Stavel, the APT’s start": "Parcheggio Pozzi Alti, Val di Stavel, partenza indicata dall'APT",
+    "Rocky mountain paths (T2) above 1,850 m.": "Sentieri di montagna rocciosi (T2) sopra i 1.850 m.",
+    "A short, low First World War tunnel at km 0.7 (about 17 m, 1.9 m high): dark inside.": "Una breve e bassa galleria della Prima guerra mondiale al km 0,7 (circa 17 m, alta 1,9 m): buia all'interno.",
+    "Snow can linger near the hut into early summer.": "Vicino al rifugio la neve può resistere fino a inizio estate."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 3,
     "ascentM": 47,
     "highestPointM": 745,
-    "expectedDuration": "0.75 hours",
+    "expectedDuration": "45 min",
     "difficulty": "Easy",
     "shadePercent": 3
   },
@@ -63,5 +63,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Fiera di Primiero, the APT’s start": "Fiera di Primiero, la partenza indicata dall'APT",
+    "About 2 km on tarmac, partly a cycle and foot path shared with bikes.": "Circa 2 km su asfalto, in parte una pista ciclopedonale condivisa con le bici.",
+    "A short stretch on a quiet commune road up to Navoi.": "Un breve tratto su una tranquilla strada comunale che sale a Navoi.",
+    "Busy at the Guana in summer; the APT advises not to drive there.": "D'estate affollato alla Guana; l'APT consiglia di non arrivarci in auto."
+  }
 }

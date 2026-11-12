@@ -8,7 +8,7 @@
     "distanceKm": 1.4,
     "ascentM": 0,
     "highestPointM": 2007,
-    "expectedDuration": "0.5 hours",
+    "expectedDuration": "30 min",
     "difficulty": "Moderate",
     "shadePercent": 21
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Mont Sëuc to the Sporthotel Sonne": "Da Mont Sëuc allo Sporthotel Sonne",
+    "Top station of the Mont Sëuc cable car from Ortisei, the board’s start": "Stazione a monte della funivia del Mont Sëuc da Ortisei, la partenza indicata dalla scheda ufficiale",
+    "Cows graze the Alpe di Siusi in summer: keep your dog close and give herds a wide berth.": "D'estate le mucche pascolano all'Alpe di Siusi: tieni il cane vicino e stai ben lontano dalle mandrie.",
+    "About a quarter is on a service road used by hut traffic.": "Circa un quarto è su una strada di servizio percorsa dai mezzi delle baite.",
+    "Open, high meadows at 1,900–2,000 m: little shade on sunny days.": "Prati aperti in quota a 1.900–2.000 m: poca ombra nelle giornate di sole."
+  }
 }

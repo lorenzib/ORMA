@@ -8,7 +8,7 @@
     "distanceKm": 2,
     "ascentM": 60,
     "highestPointM": 1626,
-    "expectedDuration": "0.7 hours",
+    "expectedDuration": "40 min",
     "difficulty": "Easy",
     "shadePercent": 30
   },
@@ -39,5 +39,10 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Mitterberg fort car park, Sexten, the board’s start": "Parcheggio del forte Mitterberg, Sexten, la partenza indicata dalla scheda ufficiale",
+    "The first stretch past the Panorama is a paved road: watch for cars.": "Il primo tratto oltre il Panorama è su strada asfaltata: attenzione alle auto.",
+    "No drinking water is mapped: carry water for your dog.": "Non è segnata acqua potabile: porta acqua per il tuo cane."
+  }
 }

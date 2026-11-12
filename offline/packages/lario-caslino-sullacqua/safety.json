@@ -8,7 +8,7 @@
     "distanceKm": 5.32,
     "ascentM": 447,
     "highestPointM": 523,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Hard",
     "shadePercent": 36
   },
@@ -48,5 +48,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Caslino d’Erba and the Lambro": "Caslino d’Erba e il Lambro",
+    "The car park at Caslino d’Erba station, the published start": "Il parcheggio della stazione di Caslino d'Erba, la partenza indicata",
+    "A crossing of the SP 40 provincial road: keep your dog on a short lead.": "Un attraversamento della strada provinciale SP 40: tieni il cane al guinzaglio corto.",
+    "Steep descents and long flights of steps.": "Discese ripide e lunghe scalinate.",
+    "The Piot and the Lambro: keep your dog out of the water near the weirs.": "Il Piot e il Lambro: tieni il cane fuori dall'acqua vicino alle briglie."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 2.1,
     "ascentM": 86,
     "highestPointM": 1082,
-    "expectedDuration": "0.75 hours",
+    "expectedDuration": "45 min",
     "difficulty": "Easy",
     "shadePercent": 0
   },
@@ -55,5 +55,12 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Count’s path above Steinhaus": "Sentiero del Conte sopra Steinhaus",
+    "Klausberg car park in Steinhaus (Cadipietra), the board’s start": "Parcheggio del Klausberg a Steinhaus (Cadipietra), la partenza indicata dalla scheda ufficiale",
+    "Farm tracks through meadows: keep your dog on the path.": "Strade poderali tra i prati: tieni il cane sul sentiero.",
+    "Grassy, uneven stretches, slippery when wet.": "Tratti erbosi e irregolari, scivolosi col bagnato.",
+    "No shade: go early on hot days.": "Nessuna ombra: parti presto nelle giornate calde."
+  }
 }

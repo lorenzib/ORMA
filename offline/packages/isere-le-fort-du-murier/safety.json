@@ -8,7 +8,7 @@
     "distanceKm": 4.2,
     "ascentM": 152,
     "highestPointM": 577,
-    "expectedDuration": "2 hours",
+    "expectedDuration": "2 h",
     "difficulty": "Moderate",
     "shadePercent": 48
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-04",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Fort du Murier loop above Gières": "Anello del Fort du Murier sopra Gières",
+    "Fort du Murier car park above Gières, the board’s start": "Parcheggio del Fort du Murier sopra Gières, la partenza della scheda ufficiale",
+    "About a third of the loop is on quiet hamlet roads; the D 112 is reached at the Le Murier crossroads.": "Circa un terzo dell'anello è su tranquille strade di frazione; all'incrocio di Le Murier si raggiunge la D 112.",
+    "Stony, earthy tracks and a sunken lane that can be muddy after rain.": "Sterrate sassose e terrose e una strada incassata che può essere fangosa dopo la pioggia.",
+    "Low altitude (about 430–580 m): warm on summer afternoons.": "Bassa quota (circa 430–580 m): fa caldo nei pomeriggi d'estate."
+  }
 }

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-via-della-frutta-antica",
   "name": "La via della frutta antica",
-  "version": "2026.10.30-beta.1",
-  "generatedAt": "2026-10-30T19:14:58.534Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.3",
+  "generatedAt": "2026-11-12T12:31:14.552Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 2055312,
+  "packageBytes": 2074627,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.14398,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "La via della frutta antica safety information",
       "url": "safety.json",
-      "bytes": 2098,
-      "sha256": "4137ed6e9e91fcd6a0148a7374b2b144cc15c189f73412ee0be5c9025e92d0c5"
+      "bytes": 2740,
+      "sha256": "8a20ac820918fab201781fc99fcf1dbc03af60896cd6a3d1238201531183f71c"
     }
   ]
 }

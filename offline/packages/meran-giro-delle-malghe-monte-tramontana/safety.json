@@ -8,7 +8,7 @@
     "distanceKm": 11,
     "ascentM": 541,
     "highestPointM": 1859,
-    "expectedDuration": "4 hours",
+    "expectedDuration": "4 h",
     "difficulty": "Hard",
     "shadePercent": 92
   },
@@ -62,5 +62,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Nörderberg alms loop, Naturns": "Anello delle malghe del Nörderberg, Naturns",
+    "The Kreuzbrünnl car park on the Nörderberg above Naturns, the board’s start": "Il parcheggio di Kreuzbrünnl sul Nörderberg sopra Naturns, punto di partenza della scheda ufficiale",
+    "Cattle graze around the three alms in summer: keep your dog on a short lead and give cows a wide berth.": "D'estate i bovini pascolano attorno alle tre malghe: tieni il cane al guinzaglio corto e stai ben alla larga dalle mucche.",
+    "Forest roads shared with farm vehicles and the hiker taxi: lead on.": "Strade forestali condivise con mezzi agricoli e taxi escursionisti: guinzaglio.",
+    "The farm road up to Kreuzbrünnl is narrow and steep: drive slowly or take the hiker taxi.": "La strada agricola che sale a Kreuzbrünnl è stretta e ripida: guida piano o prendi il taxi escursionisti."
+  }
 }

@@ -8,7 +8,7 @@
     "distanceKm": 14.3,
     "ascentM": 640,
     "highestPointM": 1853,
-    "expectedDuration": "4.5 hours",
+    "expectedDuration": "4 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 45
   },
@@ -62,5 +62,11 @@
       "downloadedAt": "2026-11-05",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Badia (Pedraces) bus stop on the main road, the board’s start": "Fermata dell'autobus di Badia (Pedraces) sulla statale, la partenza indicata dall'ente turistico",
+    "About half the loop is on farm access roads, some of them tarred, with occasional farm traffic and no pavement.": "Circa metà dell'anello è su strade d'accesso ai masi, in parte asfaltate, con qualche mezzo agricolo e senza marciapiede.",
+    "A short stretch beside the main Val Badia road at the start in Badia.": "Un breve tratto accanto alla statale della Val Badia alla partenza a Badia.",
+    "The Armentara meadows are protected hay meadows: stay on the track and keep your dog off the grass.": "I prati dell'Armentara sono prati da fieno protetti: resta sulla strada e tieni il cane fuori dall'erba."
+  }
 }

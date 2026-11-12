@@ -20,7 +20,8 @@
   var INK = '#2E4034', CREAM = '#F5F2E8', SOFT = '#6B7A6E', TERRA = '#C4652F',
       PAPER = '#FFFFFF', SAND = '#EDE3CC', LINE = '#E3DFD2', STAMP = '#2F6B4F';
   var VISA_INKS = ['#2F6B4F', '#9A4B24', '#43508F', '#7A5A12'];
-  var FILENAME = 'orma-dog-passport.png';
+  var FILENAME = 'orma-pawprints.png';
+  var VISA_FILENAME = 'orma-territory.png';
 
   function formatOf(name){ return FORMATS[name] || FORMATS.story; }
 
@@ -60,6 +61,16 @@
   function shareText(passport, options){
     options = options || {};
     var t = options.t || function(key){ return key; };
+    if(options.valley){
+      var content = visaContent(passport, options);
+      var mode = content ? content.mode : 'plain';
+      var level = content && content.valley.level && content.valley.level.id;
+      return t(VISA_WORDS[mode].caption, {
+        name: options.dogName || t('journal.passport.card.yourDog'),
+        valley: options.valley,
+        level: level ? t('journal.passport.level.' + level) : '',
+      });
+    }
     var totals = passport ? passport.totals : { stamps: 0, valleys: 0, km: 0 };
     var fmt = function(n){ return Number(n).toLocaleString(options.lang); };
     return t('journal.passport.card.caption', {
@@ -197,11 +208,18 @@
       while(size > 22 && ctx.measureText(name).width > vw - 60){ size -= 2; ctx.font = '800 ' + size + 'px Inter, sans-serif'; }
       ctx.fillText(fitText(ctx, name, vw - 60), 0, -12);
       ctx.font = '700 22px Inter, sans-serif';
-      ctx.fillText(t('journal.passport.entered', { date: shortDate(v.firstDate, lang) }) + '  ·  ' +
-        t('journal.passport.of', { done: v.done, total: v.total }), 0, 30);
+      ctx.fillText(t('journal.passport.entered', { date: shortDate(v.firstDate, lang) }) + '  ·  ' + visaLevel(v, t), 0, 30);
       ctx.restore();
     });
     return Math.ceil(content.valleys.length / cols) * VISA_ROW;
+  }
+
+  // "★★☆☆☆ Explorer": the valley's level, as on the passport.
+  function visaLevel(v, t){
+    var api = passportApi();
+    var lv = v && v.level;
+    if(!lv || !api || !api.stars) return '';
+    return api.stars(lv) + (lv.id ? ' ' + t('journal.passport.level.' + lv.id) : '');
   }
 
   var ID_H = 300, VISA_ROW = 146, STAMP_LABEL = 100, ID_BLOCK = ID_H + 90 + 110;
@@ -285,6 +303,143 @@
     return canvas;
   }
 
+  // ---- One valley: the new visa --------------------------------------------
+
+  var VISA_STAMPS = 3;
+  var VISA_WORDS = {
+    'new': { kicker: 'journal.passport.card.visaKicker', title: 'journal.passport.card.visaTitle',
+      titleNoName: 'journal.passport.card.visaTitleNoName', caption: 'journal.passport.card.visaCaption' },
+    plain: { kicker: 'journal.passport.card.visaKickerPlain', title: 'journal.passport.card.visaTitlePlain',
+      titleNoName: 'journal.passport.card.visaTitleNoNamePlain', caption: 'journal.passport.card.visaCaptionPlain' },
+    level: { kicker: 'journal.passport.card.levelKicker', title: 'journal.passport.card.levelTitle',
+      titleNoName: 'journal.passport.card.levelTitleNoName', caption: 'journal.passport.card.levelCaption' },
+  };
+
+  // What the visa picture shows: the valley, its level, and the trails stamped
+  // there (newest first). Null when the passport has no such visa.
+  function visaContent(passport, options){
+    options = options || {};
+    var valley = (passport && passport.valleys || []).filter(function(v){ return v.name === options.valley; })[0];
+    if(!valley) return null;
+    var lastDate = function(s){ return String(s.dates[s.dates.length - 1] || ''); };
+    var here = (passport.stamps || []).filter(function(s){ return s.valley === valley.name; })
+      .sort(function(a, b){ return lastDate(b).localeCompare(lastDate(a)); });
+    var api = passportApi();
+    return {
+      format: formatOf(options.format),
+      valley: valley,
+      // "New territory" only for one first walked in the last two weeks;
+      // a level just reached says "Level up" instead.
+      fresh: !!(api && api.isNewVisa && api.isNewVisa(valley, options.now)),
+      mode: options.moment === 'level' ? 'level'
+        : (api && api.isNewVisa && api.isNewVisa(valley, options.now) ? 'new' : 'plain'),
+      stamps: here.slice(0, VISA_STAMPS),
+      moreStamps: Math.max(0, here.length - VISA_STAMPS),
+    };
+  }
+
+  var VISA_PHOTO = 220, VISA_STAMP_ROW = 290, VISA_TOP = 170;
+  function visaBox(f){ return f.height > 1500 ? 470 : 380; }
+  // Everything but the dog's photo, which takes what room is left (up to 220).
+  function visaHeight(content){
+    return 90 + 40 + visaBox(content.format) + (content.stamps.length ? 70 + VISA_STAMP_ROW : 0);
+  }
+  function visaPhoto(content){
+    var f = content.format;
+    var room = f.height - f.footerFromBottom - 40 - VISA_TOP - visaHeight(content) - 40;
+    var size = Math.min(VISA_PHOTO, room);
+    return size >= 120 ? size : 0;
+  }
+
+  function renderVisaCard(passport, options, canvas){
+    options = Object.assign({ t: function(key){ return key; } }, options || {});
+    var t = options.t, lang = options.lang;
+    var content = visaContent(passport, options);
+    if(!content) return renderPassportCard(passport, options, canvas);
+    var f = content.format, W = f.width, H = f.height, v = content.valley;
+    canvas = canvas || document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    var ctx = canvas.getContext('2d');
+    var fmt = function(n){ return Number(n).toLocaleString(lang); };
+    var ink = VISA_INKS[Math.max(0, passport.valleys.indexOf(v)) % VISA_INKS.length];
+
+    ctx.fillStyle = CREAM; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = INK; ctx.font = '700 44px "Bricolage Grotesque", sans-serif'; ctx.fillText('ORMA', 70, 100);
+    ctx.fillStyle = TERRA; ctx.font = '700 24px Inter, sans-serif';
+    var words = VISA_WORDS[content.mode];
+    ctx.fillText(String(t(words.kicker)).toUpperCase(), 70, 140);
+
+    var footerY = H - f.footerFromBottom, box = visaBox(f);
+    // A post has less room: the photo shrinks before anything is cut.
+    var photo = visaPhoto(content);
+    var used = visaHeight(content) + (photo ? photo + 40 : 0);
+    var y = VISA_TOP + Math.max(0, Math.floor((footerY - 40 - VISA_TOP - used) / 2));
+
+    // The dog, in a round frame.
+    if(photo){
+      var r = photo / 2, cx = W / 2, cy = y + r;
+      ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.closePath(); ctx.clip();
+      if(options.dogPhotoImage) coverImage(ctx, options.dogPhotoImage, cx - r, cy - r, photo, photo);
+      else {
+        ctx.fillStyle = SAND; ctx.fillRect(cx - r, cy - r, photo, photo);
+        ctx.fillStyle = '#8A6A2E'; ctx.font = '800 ' + Math.round(photo * 0.42) + 'px Inter, sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText(String(options.dogName || '?').charAt(0).toUpperCase(), cx, cy + photo * 0.15);
+      }
+      ctx.restore();
+      ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.lineWidth = 8; ctx.strokeStyle = PAPER; ctx.stroke();
+      y += photo + 40;
+    }
+
+    // "Luna's new visa"
+    ctx.textAlign = 'center'; ctx.fillStyle = INK;
+    var title = options.dogName ? t(words.title, { name: options.dogName }) : t(words.titleNoName);
+    var size = 72;
+    ctx.font = '800 ' + size + 'px "Bricolage Grotesque", Inter, sans-serif';
+    while(size > 44 && ctx.measureText(title).width > W - 140){ size -= 4; ctx.font = '800 ' + size + 'px "Bricolage Grotesque", Inter, sans-serif'; }
+    ctx.fillText(fitText(ctx, title, W - 140), W / 2, y + 70);
+    y += 90 + 40;
+
+    // The visa itself: a big rubber stamp, slightly crooked.
+    var bw = W - 200, bh = box - 40;
+    ctx.save();
+    ctx.translate(W / 2, y + box / 2);
+    ctx.rotate(-0.04);
+    roundRect(ctx, -bw / 2, -bh / 2, bw, bh, 36); ctx.fillStyle = PAPER; ctx.fill();
+    ctx.lineWidth = 10; ctx.strokeStyle = ink; ctx.stroke();
+    roundRect(ctx, -bw / 2 + 18, -bh / 2 + 18, bw - 36, bh - 36, 24); ctx.lineWidth = 3; ctx.stroke();
+    ctx.fillStyle = ink;
+    ctx.font = '700 26px Inter, sans-serif';
+    ctx.fillText(String(t('journal.passport.card.visaLabel')).toUpperCase(), 0, -bh / 2 + 82);
+    var name = String(v.name).toUpperCase(), ns = 76;
+    ctx.font = '800 ' + ns + 'px Inter, sans-serif';
+    while(ns > 40 && ctx.measureText(name).width > bw - 90){ ns -= 4; ctx.font = '800 ' + ns + 'px Inter, sans-serif'; }
+    var lines = ctx.measureText(name).width > bw - 90 ? wrapLines(ctx, name, bw - 90, 2) : [name];
+    var ly = (lines.length > 1 ? -ns * 0.35 : ns * 0.2) - (box < 470 ? 24 : 0);
+    lines.forEach(function(line, i){ ctx.fillText(line, 0, ly + i * ns * 1.05); });
+    ctx.font = '700 28px Inter, sans-serif';
+    ctx.fillText(t('journal.passport.entered', { date: shortDate(v.firstDate, lang, true) }), 0, bh / 2 - 112);
+    ctx.font = '800 40px Inter, sans-serif';
+    ctx.fillText(visaLevel(v, t), 0, bh / 2 - 52);
+    ctx.restore();
+    y += box;
+
+    // The trails stamped there.
+    if(content.stamps.length){
+      y += 70;
+      ctx.textAlign = 'left';
+      drawHeading(ctx, t('journal.passport.card.visaStamps'),
+        content.moreStamps ? t('journal.passport.card.more', { n: fmt(content.moreStamps) }) : '', y, W);
+      // One or two stamps sit in the middle, not at the left of three slots.
+      drawStamps(ctx, { stamps: content.stamps, format: { cols: content.stamps.length, r: 78 } }, options, y + 30, W);
+    }
+
+    ctx.textAlign = 'left';
+    ctx.strokeStyle = LINE; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(70, footerY); ctx.lineTo(W - 70, footerY); ctx.stroke();
+    ctx.fillStyle = SOFT; ctx.font = '600 26px Inter, sans-serif';
+    ctx.fillText(t('journal.passport.card.footer'), 70, footerY + 54);
+    return canvas;
+  }
+
   function loadImage(src){
     return new Promise(function(resolve){
       if(!src || typeof Image === 'undefined'){ resolve(null); return; }
@@ -300,28 +455,30 @@
     var photo = typeof options.dogPhoto === 'string' && /^data:image\/(png|jpe?g|webp|gif);/i.test(options.dogPhoto)
       ? options.dogPhoto : '';
     return loadImage(photo).then(function(img){
-      return renderPassportCard(passport, Object.assign({}, options, { dogPhotoImage: img }));
+      var opts = Object.assign({}, options, { dogPhotoImage: img });
+      return options.valley ? renderVisaCard(passport, opts) : renderPassportCard(passport, opts);
     });
   }
 
-  function download(canvas){
-    var a = document.createElement('a'); a.download = FILENAME; a.href = canvas.toDataURL('image/png'); a.click();
+  function download(canvas, name){
+    var a = document.createElement('a'); a.download = name || FILENAME; a.href = canvas.toDataURL('image/png'); a.click();
     return 'downloaded';
   }
 
   // The phone's share sheet when it takes a picture, otherwise a download.
   function sharePassportCard(passport, options, how){
+    var name = options && options.valley ? VISA_FILENAME : FILENAME;
     return createPassportCard(passport, options).then(function(canvas){
-      if(how === 'download') return download(canvas);
+      if(how === 'download') return download(canvas, name);
       return new Promise(function(resolve){
         canvas.toBlob(function(blob){
-          var file = blob && typeof File !== 'undefined' ? new File([blob], FILENAME, { type: 'image/png' }) : null;
+          var file = blob && typeof File !== 'undefined' ? new File([blob], name, { type: 'image/png' }) : null;
           var nav = typeof navigator !== 'undefined' ? navigator : null;
           if(file && nav && nav.share && nav.canShare && nav.canShare({ files: [file] })){
             nav.share({ files: [file], text: shareText(passport, options) })
               .then(function(){ resolve('shared'); })
-              .catch(function(error){ resolve(error && error.name === 'AbortError' ? 'cancelled' : download(canvas)); });
-          } else resolve(download(canvas));
+              .catch(function(error){ resolve(error && error.name === 'AbortError' ? 'cancelled' : download(canvas, name)); });
+          } else resolve(download(canvas, name));
         }, 'image/png');
       });
     });
@@ -330,6 +487,7 @@
   var api = {
     FORMATS: FORMATS, FILENAME: FILENAME,
     cardContent: cardContent, contentHeight: contentHeight, shareText: shareText,
+    visaContent: visaContent, visaHeight: visaHeight, visaPhoto: visaPhoto, VISA_TOP: VISA_TOP, renderVisaCard: renderVisaCard,
     renderPassportCard: renderPassportCard, createPassportCard: createPassportCard,
     sharePassportCard: sharePassportCard,
   };

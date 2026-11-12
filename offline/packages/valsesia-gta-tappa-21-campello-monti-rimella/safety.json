@@ -8,7 +8,7 @@
     "distanceKm": 8.6,
     "ascentM": 620,
     "highestPointM": 1919,
-    "expectedDuration": "3.25 hours",
+    "expectedDuration": "3 h 15 min",
     "difficulty": "Hard",
     "shadePercent": 31
   },
@@ -40,5 +40,12 @@
       "downloadedAt": "2026-11-03",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Campello Monti to Rimella over the Bocchetta": "Da Campello Monti a Rimella per la Bocchetta",
+    "Campello Monti (1,305 m), the Region’s start": "Campello Monti (1.305 m), la partenza della Regione",
+    "620 m up and 750 m down over a 1,924 m pass: check the weather.": "620 m di salita e 750 m di discesa oltre un passo a 1.924 m: controlla il meteo.",
+    "Stony, steep hairpins below the Alpe Scarpia.": "Tornanti ripidi e sassosi sotto l'Alpe Scarpia.",
+    "Grazing pastures on both sides of the pass in summer: Rimella asks for a short lead near flocks, no stepping between flock and guard dog, and the widest possible berth.": "D'estate pascoli in uso su entrambi i versanti del passo: Rimella chiede guinzaglio corto vicino alle greggi, di non mettersi mai tra il gregge e il cane da guardiania e di stare il più possibile alla larga."
+  }
 }

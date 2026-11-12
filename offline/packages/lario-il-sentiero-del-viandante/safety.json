@@ -8,7 +8,7 @@
     "distanceKm": 8,
     "ascentM": 400,
     "highestPointM": 405,
-    "expectedDuration": "4.5 hours",
+    "expectedDuration": "4 h 30 min",
     "difficulty": "Hard",
     "shadePercent": 32
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-11-02",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "The lakefront at Varenna, the published start": "Il lungolago di Varenna, la partenza indicata",
+    "Two short stretches on the Parlasco–Bellano state road with traffic: keep your dog on a short lead.": "Due brevi tratti sulla statale Parlasco–Bellano, con traffico: tieni il cane al guinzaglio corto.",
+    "Steep stepped lanes and cobbled mule tracks in Varenna and Bellano.": "Ripide stradine a gradini e mulattiere acciottolate a Varenna e a Bellano.",
+    "The Orrido di Bellano is a separate, ticketed visit on walkways over the gorge; ask at the gate before taking a dog.": "L'Orrido di Bellano è una visita a parte, a pagamento, su passerelle sopra la gola; chiedi all'ingresso prima di portare il cane."
+  }
 }

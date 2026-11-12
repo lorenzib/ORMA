@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-1116675",
   "name": "Familienrundweg",
-  "version": "2026.11.11-beta.2",
-  "generatedAt": "2026-11-11T17:01:15.275Z",
-  "scoringVersion": "1.8.0",
+  "version": "2026.11.12-beta.4",
+  "generatedAt": "2026-11-12T12:31:14.168Z",
+  "scoringVersion": "1.9.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 198655,
+  "packageBytes": 217800,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65552,
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 34126,
-      "sha256": "79ec3243a0a18dbfd42740f6b30cf33797ded5e5624009b569f4aed423afd024"
+      "bytes": 52799,
+      "sha256": "5b0765e79c80d976357c0c2c7c3184f3b4464ebcc781ac9aa90ea10d881183e8"
     },
     {
       "role": "gps-policy",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Familienrundweg safety information",
       "url": "safety.json",
-      "bytes": 1267,
-      "sha256": "99e4e26cb4f4c07d27797cbae1acb21d87d79f593720df22b8ea9e5b642523b0"
+      "bytes": 1739,
+      "sha256": "2340501aebeee0e807013f6b7af82ef8113478d9bede4c06aec4ca371c62b3b1"
     }
   ]
 }

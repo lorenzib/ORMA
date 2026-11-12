@@ -8,7 +8,7 @@
     "distanceKm": 8.5,
     "ascentM": 413,
     "highestPointM": 2139,
-    "expectedDuration": "2.5–3 hours",
+    "expectedDuration": "2 h 30 min – 3 h",
     "difficulty": "Hard",
     "shadePercent": 23
   },
@@ -69,5 +69,11 @@
       "downloadedAt": "2026-10-30",
       "licence": "ODbL"
     }
-  ]
+  ],
+  "textIt": {
+    "Compatsch, Seiser Alm gondola top station": "Compatsch, stazione a monte della cabinovia dell'Alpe di Siusi",
+    "About 0.7 km of quiet paved road each way between the gondola and the loop (path 14), plus a short paved stretch in Compatsch, with hotel and service vehicles.": "Circa 0,7 km di strada asfaltata tranquilla per tratta tra la cabinovia e l'anello (sentiero 14), più un breve tratto asfaltato a Compatsch, con veicoli di hotel e di servizio.",
+    "Short stone steps near the Puflatsch top station.": "Brevi gradini in pietra vicino alla stazione a monte del Puflatsch.",
+    "Pasture gates and electric fencing on the plateau.": "Cancelli dei pascoli e recinzioni elettriche sull'altopiano."
+  }
 }
