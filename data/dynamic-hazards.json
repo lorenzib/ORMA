@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-12T05:16:20.516Z",
+  "generatedAt": "2026-11-12T08:20:37.151Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:veneto",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-12T12:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-12T05:16:20.516Z",
+      "lastSeenAt": "2026-11-12T08:20:37.151Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -84,7 +84,7 @@
       "effectiveAt": "2026-11-11T09:00:00+00:00",
       "expiresAt": "2026-11-13T22:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-12T05:16:20.516Z",
+      "lastSeenAt": "2026-11-12T08:20:37.151Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -127,7 +127,7 @@
       "effectiveAt": "2026-11-11T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-12T05:16:20.516Z",
+      "lastSeenAt": "2026-11-12T08:20:37.151Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -194,7 +194,7 @@
       "effectiveAt": "2026-11-12T23:00:00+00:00",
       "expiresAt": "2026-11-13T23:00:00+00:00",
       "firstPublishedAt": "2026-11-12T05:16:20.516Z",
-      "lastSeenAt": "2026-11-12T05:16:20.516Z",
+      "lastSeenAt": "2026-11-12T08:20:37.151Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -227,7 +227,8 @@
         "Balade du Plateau d'Assy au Lac Vert",
         "Ombres sur l'Alpage",
         "Sentier pédestre des Graniteurs"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-france:avalanches:is-re",
@@ -244,7 +245,7 @@
       "effectiveAt": "2026-11-11T15:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-12T05:16:20.516Z",
+      "lastSeenAt": "2026-11-12T08:20:37.151Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -281,7 +282,7 @@
       "effectiveAt": "2026-11-12T05:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-12T05:16:20.516Z",
+      "lastSeenAt": "2026-11-12T08:20:37.151Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -318,7 +319,7 @@
       "effectiveAt": "2026-11-12T05:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-12T05:16:20.516Z",
+      "lastSeenAt": "2026-11-12T08:20:37.151Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -431,7 +432,7 @@
       "effectiveAt": "2026-11-12T06:00:00+00:00",
       "expiresAt": "2026-11-12T17:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-12T05:16:20.516Z",
+      "lastSeenAt": "2026-11-12T08:20:37.151Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -466,7 +467,7 @@
       "effectiveAt": "2026-11-12T06:00:00+00:00",
       "expiresAt": "2026-11-12T17:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-12T05:16:20.516Z",
+      "lastSeenAt": "2026-11-12T08:20:37.151Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -1179,7 +1180,7 @@
       "effectiveAt": "2026-11-12T12:00:00+00:00",
       "expiresAt": "2026-11-13T22:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-12T05:16:20.516Z",
+      "lastSeenAt": "2026-11-12T08:20:37.151Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
