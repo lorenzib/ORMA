@@ -1,14 +1,19 @@
-// The iPhone app's "Add from Apple Health" on the journal page. Most people
-// who walk with a watch already have the walk in Apple Health, so the app can
-// read it there instead of asking for an exported file. The app's own native
-// plugin (ios/App/App/HealthWalksPlugin.swift) only reads: walking and hiking
-// workouts, and the GPS route of the one chosen. Nothing is written to Health.
+// The app's "Add from Apple Health" (iPhone) and "Add from Health Connect"
+// (Android) on the journal page. Most people who walk with a watch already
+// have the walk in their phone's health store, so the app can read it there
+// instead of asking for an exported file. The app's own native plugin, one
+// per phone with the same four methods and answers
+// (ios/App/App/HealthWalksPlugin.swift,
+// android/app/src/main/java/com/apporma/orma/HealthWalksPlugin.kt), only
+// reads: walking and hiking workouts, and the GPS route of the one chosen.
+// Nothing is written to either store.
 //
 // The route is judged by the same check as a file (gpx-walk.js
 // assessPoints) and shown, saved and stamped by the journal's own file window
 // (window.DoloPawsJournalImport in journal.html). Apple never tells an app
 // whether it may read Health data, so "no walks" and "not allowed" look the
-// same; the empty list says where to check.
+// same; the empty list says where to check. The Android plugin answers the
+// same way when permission is missing.
 //
 // scripts/build-app.js adds this script to the app's journal.html only.
 // The look is in app-shell.css under .app-health.
@@ -20,6 +25,34 @@
   var DUPLICATE_MS = 30 * 60 * 1000;
 
   // ---- No DOM below this line until wire(): tested in app-health.test.js ----
+
+  var PLATFORMS = ['ios', 'android'];
+
+  // The words that name the store: Apple Health on an iPhone, Health Connect
+  // on Android. Everything else on the sheet is the same on both.
+  var STORE_WORDS = {
+    ios: {
+      add: ['journal.health.add', 'Add from Apple Health'],
+      title: ['journal.health.title', 'Walks in Apple Health'],
+      loading: ['journal.health.loading', 'Reading Apple Health…'],
+      none: ['journal.health.none', 'No walks or hikes found in Apple Health. If you said no to ORMA reading them, or shared only recent data, you can change it in the Health app: Sharing, Apps, ORMA.'],
+      error: ['journal.health.error', 'Apple Health could not be read just now. Try again in a moment.'],
+      resultTitle: ['journal.health.resultTitle', 'Walk from Apple Health'],
+    },
+    android: {
+      add: ['journal.health.android.add', 'Add from Health Connect'],
+      title: ['journal.health.android.title', 'Walks in Health Connect'],
+      loading: ['journal.health.android.loading', 'Reading Health Connect…'],
+      none: ['journal.health.android.none', 'No walks or hikes found in Health Connect. If you said no to ORMA reading them, you can change it in Health Connect: App permissions, ORMA. A new app sees only the last 30 days.'],
+      error: ['journal.health.android.error', 'Health Connect could not be read just now. Try again in a moment.'],
+      resultTitle: ['journal.health.android.resultTitle', 'Walk from Health Connect'],
+    },
+  };
+
+  function storeWord(platform, name){
+    var words = STORE_WORDS[platform] || STORE_WORDS.ios;
+    return label(words[name][0], words[name][1]);
+  }
 
   function label(key, fallback, vars){
     var value = typeof root.t === 'function' ? root.t(key, vars) : '';
@@ -63,11 +96,10 @@
       });
   }
 
-  function listHtml(rows){
+  function listHtml(rows, platform){
     if(!rows.length){
-      // No number of days: iOS lets the walker share only the last 30.
-      return '<p class="app-health-empty">' + esc(label('journal.health.none',
-        'No walks or hikes found in Apple Health. If you said no to ORMA reading them, or shared only recent data, you can change it in the Health app: Sharing, Apps, ORMA.')) + '</p>';
+      // No number of days on iOS: it lets the walker share only the last 30.
+      return '<p class="app-health-empty">' + esc(storeWord(platform, 'none')) + '</p>';
     }
     return '<ul class="app-health-list">' + rows.map(function(r){
       return '<li><button type="button" class="app-health-walk" data-id="' + esc(r.id) + '">' +
@@ -78,13 +110,13 @@
     }).join('') + '</ul>';
   }
 
-  // The plugin, only inside the iPhone app. The pages do not bundle
+  // The plugin, only inside the iPhone or Android app. The pages do not bundle
   // Capacitor's JavaScript library, so there is no registerPlugin: the native
   // bridge's own nativePromise calls the plugin by its name (jsName).
   var METHODS = ['isAvailable', 'requestAccess', 'listWalks', 'getRoute'];
   function plugin(){
     var cap = root.Capacitor;
-    if(!cap || typeof cap.getPlatform !== 'function' || cap.getPlatform() !== 'ios') return null;
+    if(!cap || typeof cap.getPlatform !== 'function' || PLATFORMS.indexOf(cap.getPlatform()) < 0) return null;
     if(cap.Plugins && cap.Plugins.HealthWalks) return cap.Plugins.HealthWalks;
     if(typeof cap.registerPlugin === 'function') return cap.registerPlugin('HealthWalks');
     if(typeof cap.nativePromise !== 'function') return null;
@@ -103,6 +135,8 @@
     var gpx = root.DoloPawsGpxWalk;
     var row = document.querySelector('.jn-gpx-row');
     if(!health || !journal || !gpx || !row || document.getElementById('appHealthBtn')) return;
+    var platform = root.Capacitor.getPlatform();
+    var word = function(name){ return storeWord(platform, name); };
 
     Promise.resolve(health.isAvailable()).then(function(r){
       if(!r || !r.available) return;
@@ -110,7 +144,7 @@
       btn.type = 'button';
       btn.id = 'appHealthBtn';
       btn.className = 'jn-gpx-btn app-health-btn';
-      btn.textContent = label('journal.health.add', 'Add from Apple Health');
+      btn.textContent = word('add');
       row.insertBefore(btn, row.firstChild);
       btn.addEventListener('click', openList);
     }).catch(function(){});
@@ -125,7 +159,7 @@
       overlay.setAttribute('aria-modal', 'true');
       overlay.setAttribute('aria-labelledby', 'appHealthTitle');
       overlay.innerHTML = '<div class="jn-modal">' +
-        '<div class="jn-modal-head"><h2 id="appHealthTitle">' + esc(label('journal.health.title', 'Walks in Apple Health')) + '</h2>' +
+        '<div class="jn-modal-head"><h2 id="appHealthTitle">' + esc(word('title')) + '</h2>' +
         '<button type="button" class="jn-x app-health-close" aria-label="' + esc(label('journal.close', 'Close')) + '">&times;</button></div>' +
         '<p class="app-health-sub">' + esc(label('journal.health.sub', 'Choose a walk. A walk that follows most of an ORMA trail leaves a pawprint.')) + '</p>' +
         '<div class="app-health-body" role="status"></div></div>';
@@ -145,16 +179,16 @@
 
     function openList(){
       var o = sheet();
-      body('<p class="app-health-wait">' + esc(label('journal.health.loading', 'Reading Apple Health…')) + '</p>');
+      body('<p class="app-health-wait">' + esc(word('loading')) + '</p>');
       o.hidden = false;
       Promise.resolve(health.requestAccess()).then(function(){
         return health.listWalks({ days: DAYS, limit: LIMIT });
       }).then(function(r){
-        body(listHtml(walkRows(r && r.walks, journal.entries(), { lang: lang() })));
+        body(listHtml(walkRows(r && r.walks, journal.entries(), { lang: lang() }), platform));
         var first = o.querySelector('.app-health-walk, .app-health-close');
         if(first) first.focus();
       }).catch(function(){
-        body('<p class="app-health-empty">' + esc(label('journal.health.error', 'Apple Health could not be read just now. Try again in a moment.')) + '</p>');
+        body('<p class="app-health-empty">' + esc(word('error')) + '</p>');
       });
     }
 
@@ -164,17 +198,17 @@
         var result = gpx.assessPoints(r && r.points, journal.trails(), { now: Date.now() });
         close();
         journal.show(result, {
-          title: label('journal.health.resultTitle', 'Walk from Apple Health'),
+          title: word('resultTitle'),
           againLabel: label('journal.health.again', 'Choose another walk'),
           onAgain: openList,
         });
       }).catch(function(){
-        body('<p class="app-health-empty">' + esc(label('journal.health.error', 'Apple Health could not be read just now. Try again in a moment.')) + '</p>');
+        body('<p class="app-health-empty">' + esc(word('error')) + '</p>');
       });
     }
   }
 
-  var api = { DAYS: DAYS, walkRows: walkRows, listHtml: listHtml, plugin: plugin, wire: wire };
+  var api = { DAYS: DAYS, walkRows: walkRows, listHtml: listHtml, storeWord: storeWord, plugin: plugin, wire: wire };
   if(typeof module !== 'undefined' && module.exports){ module.exports = api; return; }
   if(root.__ormaAppHealth) return;
   root.__ormaAppHealth = true;

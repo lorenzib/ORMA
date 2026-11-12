@@ -45,7 +45,14 @@ describe('SOCIAL-06 a walk from Apple Health: the list', () => {
     expect(html).toContain('data-id="A"');
   });
 
-  test('the plugin is only looked for inside the iPhone app', () => {
+  test('on Android the empty list names Health Connect and where to allow reading', () => {
+    expect(health.listHtml([], 'android')).toContain('Health Connect: App permissions, ORMA');
+    expect(health.listHtml([], 'android')).not.toContain('Apple');
+    expect(health.storeWord('android', 'add')).toBe('Add from Health Connect');
+    expect(health.storeWord('ios', 'add')).toBe('Add from Apple Health');
+  });
+
+  test('the plugin is only looked for inside the iPhone or Android app', () => {
     delete window.Capacitor;
     expect(health.plugin()).toBeNull();
     window.Capacitor = { getPlatform: () => 'web', registerPlugin: () => ({}) };
@@ -60,6 +67,8 @@ describe('SOCIAL-06 a walk from Apple Health: the list', () => {
     bridged.getRoute({ id: 'A' });
     bridged.isAvailable();
     expect(sent).toEqual([['HealthWalks', 'getRoute', { id: 'A' }], ['HealthWalks', 'isAvailable', {}]]);
+    window.Capacitor = { getPlatform: () => 'android', registerPlugin: name => (name === 'HealthWalks' ? fake : null) };
+    expect(health.plugin()).toBe(fake);
     delete window.Capacitor;
   });
 });
@@ -109,6 +118,31 @@ describe('SOCIAL-06 a walk from Apple Health: judged like a file', () => {
     expect(shown[0][1]).toMatchObject({ title: 'Walk from Apple Health', againLabel: 'Choose another walk' });
     expect(typeof shown[0][1].onAgain).toBe('function');
     expect(document.querySelector('.app-health').hidden).toBe(true);
+    delete window.Capacitor;
+  });
+
+  test('on Android the same sheet speaks of Health Connect', async () => {
+    document.body.innerHTML = '<div class="jn-gpx-row"></div>';
+    const plugin = {
+      isAvailable: async () => ({ available: true }),
+      requestAccess: async () => ({ asked: false }),
+      listWalks: async () => ({ walks: [] }),
+      getRoute: async () => ({ points: route(4) }),
+    };
+    window.Capacitor = { getPlatform: () => 'android', registerPlugin: () => plugin };
+    window.DoloPawsGpxWalk = gpx;
+    window.DoloPawsJournalImport = { trails: () => [TRAIL], entries: () => [], show: () => {} };
+    const tick = () => new Promise(r => setTimeout(r, 0));
+    health.wire();
+    await tick();
+    const btn = document.getElementById('appHealthBtn');
+    expect(btn.textContent).toBe('Add from Health Connect');
+    btn.click();
+    await tick(); await tick();
+    const sheet = document.querySelector('.app-health');
+    expect(sheet.querySelector('h2').textContent).toBe('Walks in Health Connect');
+    expect(sheet.querySelector('.app-health-empty').textContent).toContain('Health Connect: App permissions, ORMA');
+    sheet.remove();
     delete window.Capacitor;
   });
 
@@ -170,10 +204,31 @@ describe('SOCIAL-06 a walk from Apple Health: wiring', () => {
     expect(plist).not.toContain('NSHealthUpdateUsageDescription');
   });
 
-  test('every Apple Health label exists in English and Italian', () => {
+  test('the Android plugin only reads, asks per route, and is registered on the app', () => {
+    const kotlin = read('android/app/src/main/java/com/apporma/orma/HealthWalksPlugin.kt');
+    expect(kotlin).toContain('@CapacitorPlugin(name = "HealthWalks")');
+    ['isAvailable', 'requestAccess', 'listWalks', 'getRoute'].forEach(method =>
+      expect(kotlin).toMatch(new RegExp(`@PluginMethod\\s+fun ${method}\\(`)));
+    expect(kotlin).toContain('ExerciseRouteRequestContract()');
+    expect(kotlin).not.toMatch(/getWritePermission|insertRecords|updateRecords|deleteRecords/);
+    expect(read('android/app/src/main/java/com/apporma/orma/MainActivity.java')).toContain('registerPlugin(HealthWalksPlugin.class);');
+  });
+
+  test('the Android manifest asks to read only, and shows the privacy policy to Health Connect', () => {
+    const manifest = read('android/app/src/main/AndroidManifest.xml');
+    const health = [...manifest.matchAll(/android\.permission\.health\.(\w+)/g)].map(m => m[1]);
+    expect(health).toEqual(['READ_EXERCISE', 'READ_DISTANCE', 'READ_EXERCISE_ROUTES']);
+    expect(manifest).toContain('<action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />');
+    expect(manifest).toContain('<category android:name="android.intent.category.HEALTH_PERMISSIONS" />');
+    expect(manifest).toContain('<package android:name="com.google.android.apps.healthdata" />');
+    expect(read('android/app/src/main/java/com/apporma/orma/HealthPrivacyActivity.java'))
+      .toContain('"https://www.app-orma.com/privacy.html"');
+  });
+
+  test('every Health label, for both phones, exists in English and Italian', () => {
     const i18n = read('i18n.js');
-    const keys = new Set([...read('app-health.js').matchAll(/label\('(journal\.health\.\w+)'/g)].map(m => m[1]));
-    expect(keys.size).toBe(12);
+    const keys = new Set([...read('app-health.js').matchAll(/(?:label\(|\[)'(journal\.health\.[\w.]+)'/g)].map(m => m[1]));
+    expect(keys.size).toBe(18);
     keys.forEach(key => expect(i18n.split(`'${key}':`).length - 1).toBe(2));
   });
 });
