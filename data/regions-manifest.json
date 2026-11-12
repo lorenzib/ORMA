@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-12T14:07:56.716Z",
+  "generatedAt": "2026-11-12T14:18:02.390Z",
   "regions": {
     "dolomites": {
-      "trailCount": 368,
-      "trails": "data/regions/dolomites-trails.js?v=81b86648e732",
+      "trailCount": 369,
+      "trails": "data/regions/dolomites-trails.js?v=8d2095b306ae",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=aba145c5d16a",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -373,6 +373,7 @@
         "valdisole-percorso-geologico-in-val-di-rabbi": "data/trail-details/valdisole-percorso-geologico-in-val-di-rabbi.js?v=26b090e83ab7",
         "valdisole-percorso-della-fauna-in-val-di-peio": "data/trail-details/valdisole-percorso-della-fauna-in-val-di-peio.js?v=755f75b53e6a",
         "colle-passeggiata-intorno-al-colle": "data/trail-details/colle-passeggiata-intorno-al-colle.js?v=b2fbfdc45c59",
+        "kronplatz-sulle-tracce-della-lacerta-prima": "data/trail-details/kronplatz-sulle-tracce-della-lacerta-prima.js?v=e1cacd1723a8",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=24e2aaa3dfc9"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -982,6 +983,7 @@
     "valdisole-percorso-geologico-in-val-di-rabbi": "dolomites",
     "valdisole-percorso-della-fauna-in-val-di-peio": "dolomites",
     "colle-passeggiata-intorno-al-colle": "dolomites",
+    "kronplatz-sulle-tracce-della-lacerta-prima": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1658,6 +1660,7 @@
     "valdisole-percorso-geologico-in-val-di-rabbi": "percorso-geologico-val-di-rabbi",
     "valdisole-percorso-della-fauna-in-val-di-peio": "percorso-della-fauna-val-di-peio",
     "colle-passeggiata-intorno-al-colle": "passeggiata-intorno-al-colle-santa-lucia",
+    "kronplatz-sulle-tracce-della-lacerta-prima": "lacerta-prima-valdaora-di-sopra",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2181,6 +2184,7 @@
     "percorso-geologico-val-di-rabbi": "valdisole-percorso-geologico-in-val-di-rabbi",
     "percorso-della-fauna-val-di-peio": "valdisole-percorso-della-fauna-in-val-di-peio",
     "passeggiata-intorno-al-colle-santa-lucia": "colle-passeggiata-intorno-al-colle",
+    "lacerta-prima-valdaora-di-sopra": "kronplatz-sulle-tracce-della-lacerta-prima",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
