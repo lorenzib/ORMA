@@ -14,7 +14,7 @@
     return vars ? String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : text;
   }
 
-  const VERSION = '1.9.0';
+  const VERSION = '1.10.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -294,6 +294,12 @@
     const steepnessMatters = puppy || senior || orthopedic || traits.shortLegged === true || giant
       || conditions.has('cardiac') || conditions.has('overweight') || base === FITNESS.low;
     if(!steepnessMatters) terrain = Math.max(terrain, FITNESS.high.terrain);
+    // One limit (age, joints, a heart or weight condition) softens steepness
+    // rather than ruling it out: such a dog still manages a moderately steep
+    // path. Only low fitness, or two limits together, leaves no tolerance (v1.10.0).
+    const limits = [puppy, senior, orthopedic, conditions.has('cardiac'), conditions.has('overweight')]
+      .filter(Boolean).length;
+    if(base !== FITNESS.low && limits <= 1) terrain = Math.max(terrain, FITNESS.moderate.terrain);
 
     return {
       terrain: Math.max(0, terrain),

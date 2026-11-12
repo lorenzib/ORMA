@@ -9312,25 +9312,25 @@
       // figure; the relation measures 5.3 km and that is what is published.
       // Wholly in Lozzo di Cadore, not Auronzo. Lozzo police regulation Art. 39:
       // dogs on a lead in every public place, trails included.
-      // Seal withdrawn 24 October 2026: no authority publishes a walking time for
-      // the loop alone, and ORMA verifies only on an official climb and time.
-      // The corrections stand; the walk reads Reviewed until a time is found.
+      // Seal restored 12 November 2026 on the owner's decision: no authority publishes a walking
+      // time for the loop alone, so ORMA works it out by DIN 33466 from the line's 5.3 km and the
+      // CAI leaflet's official 100 m climb (1 h 35 min). The climb stays the official figure.
       area: 'Pian dei Buoi, Lozzo di Cadore',
       distance: 5.3,
       elevation: 100,
-      hours: '1.5–2',
+      hours: '1.5',
       curated: true,
-      tier: 'under-review',
-      reviewedAt: '2026-10-23',
+      tier: 'route-audited',
+      reviewedAt: '2026-11-12',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Davide borca, CC BY-SA 4.0: the Pian dei Buoi plateau, its tracks and pasture, with the Dolomite walls behind (autumn larch).',
         route: 'OSM relation 7388748 (5.33 km) passes every landmark of the official waymark-33 description within about 60 m and matches the official map; the leaflet’s 4.5 km is given as “circa”.',
         routeNumbers: 'Waymark 33, white and green, from Bivio Pellegrini round the whole loop; the only branch is the short “variante anello 33” spur to a gun post, after which walkers return to 33.',
         mapPoints: 'Start at Bivio dei Pellegrini (route node 420511537) beside the small car park; drinking water at OSM node 9261740471, 18 m from the start.',
-        elevation: 'Official ascent 100 m (CAI Lozzo leaflet), in place of the sampled 252 m. Held: no authority publishes a walking time for the loop alone.'
+        elevation: 'Official ascent 100 m (CAI Lozzo leaflet), in place of the sampled 252 m. No official time for the loop alone: worked out by ORMA, 1 h 35 min by DIN 33466 from 5.3 km and 100 m up and down.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { elevation: 'No authority publishes a walking time for the loop alone (the CAI leaflet gives the climb only).' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -9349,7 +9349,7 @@
       terrainDescription: 'A gentle loop on paths and old military tracks across the Pian dei Buoi hills, with no equipped or exposed sections.',
       waterDescription: 'Drinking water at the start only. In summer Lago Morto is a cattle trough and Lago delle Sepolture a small bog, and the Col Vidal fountain has been dry for decades, so carry water.',
       dogNotes: 'Lozzo di Cadore requires dogs on a lead in every public place, trails included (at most 1.5 m on roads). Cattle graze the plateau in summer and the loop passes Casera delle Armente and a cowshed. Keep dogs out of the WWI caverns and trenches.',
-      tips: 'Park at Bivio Pellegrini, where there is a fountain, and follow waymark 33 round the hills past the Col Vidal forts and Casera delle Armente: about 5.3 km with 100 m of climbing. Keep your dog on a lead throughout, as Lozzo di Cadore requires on its trails, and expect grazing cattle in summer. There is no other water, so carry plenty; the access road is one-way by timetable in July and August.',
+      tips: 'Park at Bivio Pellegrini, where there is a fountain, and follow waymark 33 round the hills past the Col Vidal forts and Casera delle Armente: about 5.3 km with 100 m of climbing and an hour and a half of walking (a time worked out by ORMA; no official one is published). Keep your dog on a lead throughout, as Lozzo di Cadore requires on its trails, and expect grazing cattle in summer. There is no other water, so carry plenty; the access road is one-way by timetable in July and August.',
       sourceLinks: [
         { label: 'Parco della Memoria, 13.2 Anello dei Colli', url: 'https://www.lozzodicadore.eu/parcodellamemoria/13-1-col-vidal-e-13-2-anello-dei-colli-solo-testo-e-pdf/' },
         { label: 'CAI Lozzo di Cadore, Anelli e Vie', url: 'https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-descrizione.pdf' },
@@ -14726,13 +14726,33 @@
       ]
     },
     'osm-9675994': {
-      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
-      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
+      // Seal restored 12 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: the line matches the province trail register's 'St. Agatha Rundweg' (routes-hikingtrails.11426959,
       // 1.51 km) within 22 m everywhere; waymark A. Dogs: Deutschnofen dog regulation Art. 4 and 8. No Natura 2000 site on the line.
       // Place corrected from Nova Levante to Deutschnofen.
       "area": "Deutschnofen / Nova Ponente",
+      "imageIcon": "images/trails/osm-9675994-unterkofl.jpg",
+      "imageCredit": "The Unterkofl farm, Deutschnofen",
+      "heroImage": "images/trails/osm-9675994-unterkofl.jpg",
+      "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Unterkofl_Deutschnofen_1.JPG",
+      "imageCreator": "Plentn",
+      "imageLicence": "CC0",
+      "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "imageCreditText": "The Unterkofl farm, Deutschnofen by Plentn",
+      "imageAlt": "The Unterkofl farmhouses and barn beside a narrow farm road above Deutschnofen, forested slopes and Dolomite peaks behind",
+      "imageSourceType": "licensed-source",
+      "routeNumberGuidance": {"mode":"landmarks","start":"Start on the farm road at Unterkofl above Deutschnofen, where the loop meets the road.","sequence":"Up on waymark A to the small St. Agatha chapel, on through the forest over the hilltop to the Oberkofl farm, and back down the farm road to Unterkofl.","switches":"At the Oberkofl farm, leave waymark A for the farm road back down to Unterkofl.","steps":[{"text":"From the farm road at Unterkofl, follow waymark A up into the forest to the small, remote St. Agatha chapel.","from":[0]},{"text":"Stay on waymark A through the forest over the hilltop to the Oberkofl farm, passing through the farmyard.","from":[0]},{"text":"From Oberkofl, walk back down the farm road to Unterkofl, about 500 m on asphalt where cars come and go.","from":[0]}],"sources":[{"tag":"tourist board","label":"Wanderung zum Kirchlein St. Agatha","authority":"Eggental Tourismus","url":"https://eggental.com/de/activity/wanderung-zum-kirchlein-st-agatha_45778","reviewedAt":"2026-11-12"},{"tag":"register","label":"St. Agatha Rundweg (waymark A)","authority":"Autonome Provinz Bozen, hiking-trail register","url":"https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426959","reviewedAt":"2026-11-12"}]},
+      "terrainType": "gravel (64%), paved (36%), from OSM surface data",
+      "terrainRank": 2,
+      "safetyLevel": "caution",
+      "waterSources": [],
+      "path": [[46.4236881,11.4458308],[46.4238866,11.4460668],[46.4239679,11.4462673],[46.4240354,11.4465395],[46.4240789,11.4466348],[46.4241251,11.4467407],[46.42419,11.4468265],[46.4241646,11.4469962],[46.4241404,11.4470361],[46.4241223,11.4470974],[46.4241325,11.4471484],[46.4241764,11.4471876],[46.424215,11.4471853],[46.424245,11.4471387],[46.4242783,11.4470606],[46.4243798,11.4470565],[46.4244399,11.4470391],[46.424549,11.4469338],[46.4245966,11.4467789],[46.4245952,11.4465415],[46.4246067,11.4463471],[46.4245785,11.4461432],[46.4246003,11.4460453],[46.4246881,11.4458844],[46.4247753,11.4458517],[46.4250287,11.4456383],[46.4252488,11.4455907],[46.4253481,11.4455357],[46.4255117,11.4454962],[46.4255806,11.4454459],[46.4256837,11.4452662],[46.4257036,11.4451877],[46.4257137,11.4451233],[46.4257068,11.4449362],[46.4257364,11.4445768],[46.4258672,11.4441624],[46.4259656,11.4439264],[46.4260877,11.4436924],[46.4262307,11.4433368],[46.4263372,11.4429447],[46.42642,11.4425901],[46.4264023,11.4421352],[46.4262189,11.4417919],[46.4260059,11.4415687],[46.4258284,11.4413885],[46.4257397,11.4409593],[46.4256721,11.4406706],[46.4256332,11.4405044],[46.4254202,11.4402898],[46.4252072,11.4401697],[46.4249555,11.4400007],[46.4248622,11.4403098],[46.4248192,11.4404965],[46.4248362,11.4407142],[46.4248724,11.441141],[46.4249682,11.4414473],[46.4251656,11.4417876],[46.4252946,11.441833],[46.4255253,11.4417621],[46.4256543,11.4417677],[46.4257226,11.4418464],[46.4257736,11.4419184],[46.4257993,11.4420234],[46.4257985,11.4421208],[46.4257863,11.4421924],[46.4257545,11.4422737],[46.4255878,11.4425334],[46.4253322,11.4428851],[46.4250639,11.4431488],[46.4249269,11.4433139],[46.424802,11.4435543],[46.4246111,11.4440088],[46.4244748,11.4443208],[46.4244136,11.4444052],[46.4243641,11.4444476],[46.4243184,11.4444629],[46.4242743,11.444463],[46.4242244,11.4444332],[46.4241244,11.4446947],[46.4241318,11.444762],[46.4241626,11.4448192],[46.4241263,11.4449152],[46.4240605,11.4450175],[46.4238991,11.4451331],[46.423817,11.4452108],[46.4237482,11.4453436],[46.4237128,11.4455213],[46.4236975,11.4456752],[46.4236881,11.4458308]],
+      "lat": 46.4236881,
+      "lng": 11.4458308,
+      "elevation": 40,
       "hours": "0.5",
+      "elevationProfile": [{"km":0,"elev":1290}, {"km":0.1,"elev":1303}, {"km":0.2,"elev":1313}, {"km":0.3,"elev":1320}, {"km":0.4,"elev":1330}, {"km":0.5,"elev":1330}, {"km":0.6,"elev":1330}, {"km":0.7,"elev":1331}, {"km":0.8,"elev":1332}, {"km":0.9,"elev":1332}, {"km":1,"elev":1330}, {"km":1.1,"elev":1326}, {"km":1.2,"elev":1321}, {"km":1.2,"elev":1309}, {"km":1.4,"elev":1296}, {"km":1.4,"elev":1294}, {"km":1.5,"elev":1290}],
       "startPoint": {
         "lat": 46.4241244,
         "lng": 11.4446947,
@@ -14750,8 +14770,37 @@
         "name": "St. Agatha Rundweg (waymark A)",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426959"
       },
-      "desc": "A short loop on waymark A over the wooded hilltop above Deutschnofen, past the small, remote St. Agatha chapel and the Unterkofl and Oberkofl farms. It is about 1.5 km and a little over half an hour, with some 60 m of up and down, mostly in forest.\n\nDeutschnofen's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows, so keep to the track where it runs beside the meadows.",
-      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Deutschnofen requires, and stay off the meadows. The loop passes through two working farmyards and uses about 500 m of the farm road, where cars come and go. There is no water on the way, so bring some. Two thirds of the loop is in forest, so it stays fairly cool."
+      "desc": "A short loop on waymark A over the wooded hilltop above Deutschnofen, past the small, remote St. Agatha chapel and the Unterkofl and Oberkofl farms. It is about 1.5 km and half an hour, with some 40 m of up and down, mostly in forest, as measured by ORMA (no official figure).\n\nDeutschnofen's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows, so keep to the track where it runs beside the meadows.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Deutschnofen requires, and stay off the meadows. The loop passes through two working farmyards and uses about 500 m of the farm road, where cars come and go. There is no water on the way, so bring some. Two thirds of the loop is in forest, so it stays fairly cool.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-11-12",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Plentn, CC0: the Unterkofl farm on the loop with Dolomite peaks behind, 13 m from the line.",
+        "route": "Published line 1.52 km, closed, within 22 m of the province register's St. Agatha Rundweg (1.51 km) everywhere.",
+        "routeNumbers": "Start on the farm road at Unterkofl above Deutschnofen and follow waymark A up to the small St. Agatha chapel, on through the forest over the hilltop to the Oberkofl farm, and back down the farm road to Unterkofl.",
+        "mapPoints": "Start where the loop meets the Unterkofl farm road; there is no water on the loop.",
+        "elevation": "No official figure. Measured by ORMA from the map: 1.52 km, about 40 m up and down between 1,290 and 1,332 m, 29 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
+      "verified": {
+        "categories": ["water", "heat", "exposure", "livestock", "surfaceHazards", "access"],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'St. Agatha Rundweg', line routes-hikingtrails.11426959, 1,509 m; every register point within 22 m of the line",
+          "Eggental Tourismus, 'Wanderung zum Kirchlein St. Agatha': 'Am Oberkoflhof biegt man rechts auf den Weg [A] ab, der direkt zum kleinen, abgelegenen Kirchlein St. Agata führt' (waymark A on this loop)",
+          "Gemeinde Deutschnofen, Verordnung über die Haltung und Führung von Hunden (GR 6/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields), Art. 12 (applies outside built-up areas)",
+          "No Natura 2000 site on the line (EEA); the Deutschnofen landscape plan's rules (2026) set no dog rule",
+          "OpenStreetMap: road classes, surfaces, forest and farmyards along the line"
+        ],
+        "date": "2026-11-12"
+      },
+      "sourceLinks": [
+        { "label": "South Tyrol trail register, St. Agatha Rundweg (Open Data Hub)", "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426959" },
+        { "label": "Eggental Tourismus, Wanderung zum Kirchlein St. Agatha", "url": "https://eggental.com/de/activity/wanderung-zum-kirchlein-st-agatha_45778" },
+        { "label": "Gemeinde Deutschnofen, dog regulation (PDF)", "url": "https://www.gemeinde.deutschnofen.bz.it/system/web/GetDocument.ashx?cts=1708335105&fileId=1001871" },
+        { "label": "OpenStreetMap relation 9675994", "url": "https://www.openstreetmap.org/relation/9675994" }
+      ]
     },
     'osm-12190538': {
       // Seal restored 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
