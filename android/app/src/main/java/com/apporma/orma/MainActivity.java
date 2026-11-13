@@ -9,6 +9,8 @@ public class MainActivity extends BridgeActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // ORMA's own native plugins, registered before the web view starts.
+        registerPlugin(HealthWalksPlugin.class);
         super.onCreate(savedInstanceState);
 
         // Android's back button (or back swipe) goes to the previous ORMA page,
