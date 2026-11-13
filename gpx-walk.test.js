@@ -110,6 +110,96 @@ describe('SOCIAL-06 a walk from a GPX file', () => {
   });
 });
 
+describe('a there-and-back is walked twice over the same ground', () => {
+  const proof = require('./walk-proof.js');
+  const vm = require('vm');
+  const KM_LAT = 1 / 110.54;
+  const back = points => points.slice(0, -1).reverse();
+  // 2 km out east and the same 2 km home: the line overlaps itself.
+  const OUT = line(46.6, 11.7, 2);
+  const THERE_AND_BACK = { id: 'there-and-back', name: 'To the hut and back', routeShape: 'out-and-back',
+    path: OUT.concat(back(OUT)), distance: 4 };
+  // A 1 km square, walked round once.
+  const SQUARE = (() => {
+    const [lat, lng] = [46.7, 11.7];
+    const side = () => Array.from({ length: 10 }, (_, i) => i / 10);
+    return [].concat(
+      side().map(f => [lat, lng + f * KM_LNG]),
+      side().map(f => [lat + f * KM_LAT, lng + KM_LNG]),
+      side().map(f => [lat + KM_LAT, lng + (1 - f) * KM_LNG]),
+      side().map(f => [lat + (1 - f) * KM_LAT, lng]),
+      [[lat, lng]]);
+  })();
+  const LOOP = { id: 'square', name: 'Square loop', routeShape: 'loop', path: SQUARE, distance: 4 };
+  // A 3 km stem out to the square, round it, and back down the stem.
+  const STEM = line(46.7, 11.7 - 3 * KM_LNG, 3);
+  const LOLLIPOP = { id: 'lollipop', name: 'Stem and loop', routeShape: 'lollipop',
+    path: STEM.concat(SQUARE.slice(1), back(STEM)), distance: 10 };
+
+  // The same walk judged the old way: every fix on the nearest point of the line.
+  function nearestOnlyShare(points, trail){
+    const ln = gpx.prepareLine(trail.path);
+    let coverage = proof.createCoverage(ln.lengthM);
+    // track() puts a fix every 20 m, so thinning (8 m) keeps every one.
+    gpx.parseGpx(track(points, 4)).points.forEach(p => {
+      coverage = proof.markFix(coverage, gpx.project(ln, p.lat, p.lng));
+    });
+    return proof.share(coverage);
+  }
+
+  test('walked all the way out and all the way home, it earns a pawprint', () => {
+    const r = gpx.assessGpx(track(THERE_AND_BACK.path, 4), [THERE_AND_BACK], { now: NOW });
+    expect(r).toMatchObject({ ok: true, proven: true, reason: 'proven' });
+    expect(r.share).toBeGreaterThan(0.95);
+    // The nearest point of the line put the whole way home on the way out.
+    expect(nearestOnlyShare(THERE_AND_BACK.path, THERE_AND_BACK)).toBeLessThan(0.55);
+  });
+
+  test('walked only halfway out and back again, it does not', () => {
+    const halfway = OUT.slice(0, 11);
+    const r = gpx.assessGpx(track(halfway.concat(back(halfway)), 4), [THERE_AND_BACK], { now: NOW });
+    expect(r).toMatchObject({ ok: true, proven: false, reason: 'too-little-of-the-route' });
+    expect(r.share).toBeLessThan(0.6);
+  });
+
+  test('walked out only, it does not', () => {
+    const r = gpx.assessGpx(track(OUT, 4), [THERE_AND_BACK], { now: NOW });
+    expect(r.proven).toBe(false);
+    expect(r.share).toBeLessThan(0.55);
+  });
+
+  test('a lollipop walked up the stem, round and down again earns a pawprint', () => {
+    const r = gpx.assessGpx(track(LOLLIPOP.path, 4), [LOLLIPOP], { now: NOW });
+    expect(r.proven).toBe(true);
+    expect(r.share).toBeGreaterThan(0.95);
+    expect(nearestOnlyShare(LOLLIPOP.path, LOLLIPOP)).toBeLessThan(0.75);
+  });
+
+  // Only the stretch at the start and finish, which share one spot, can differ.
+  test('a loop is judged as before, apart from the 50 m where it starts and ends', () => {
+    const oneStretch = proof.BIN_M / gpx.prepareLine(SQUARE).lengthM + 1e-6;
+    const whole = gpx.assessGpx(track(SQUARE, 4), [LOOP], { now: NOW });
+    expect(whole.proven).toBe(true);
+    // The finish is the start, so the old way put the last fixes at the start.
+    expect(whole.share).toBe(1);
+    expect(nearestOnlyShare(SQUARE, LOOP)).toBeGreaterThan(0.95);
+    const part = SQUARE.slice(0, 25);
+    const some = gpx.assessGpx(track(part, 4), [LOOP], { now: NOW });
+    expect(some.proven).toBe(false);
+    expect(Math.abs(some.share - nearestOnlyShare(part, LOOP))).toBeLessThanOrEqual(oneStretch);
+  });
+
+  test('Castello di Botestagno walked along its own line at 4 km/h is proven', () => {
+    const sandbox = { window: { trails: [], gondolas: [] } };
+    vm.runInNewContext(read('data/regions/dolomites-trails.js'), sandbox);
+    const trail = sandbox.window.trails.find(t => t.id === 'cortina-castello-di-botestagno');
+    expect(trail.routeShape).toBe('out-and-back');
+    const r = gpx.assessGpx(track(trail.path, 4), [trail], { now: NOW });
+    expect(r).toMatchObject({ ok: true, proven: true, reason: 'proven' });
+    expect(nearestOnlyShare(trail.path, trail)).toBeLessThan(0.6);
+  });
+});
+
 describe('SOCIAL-06 the gpx mark reaches the account and the passport', () => {
   test('the journal keeps gps and gpx marks and drops anything else', () => {
     const r = gpx.assessGpx(track(TRAILS[0].path, 4), TRAILS, { now: NOW });
