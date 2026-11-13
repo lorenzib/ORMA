@@ -13,10 +13,12 @@
 //
 // A list each caller maintains separately goes stale the moment somebody adds
 // a build directory, and it goes stale silently.
-// ios/ is the native app shell: `npx cap sync` copies the whole app bundle into
-// ios/App/App/public, so a walker reading it finds a second copy of every file.
+// ios/ and android/ are the native app shells: `npx cap sync` copies the whole
+// app bundle into ios/App/App/public and android/app/src/main/assets/public,
+// so a walker reading them finds a second copy of every file.
 const GENERATED_DIRECTORIES = Object.freeze([
   '.git', 'node_modules', '_site', 'dist', 'coverage', '.cache', '.firebase', 'ios',
+  'android',
 ]);
 
 /** Is this entry name a directory some build writes? */
