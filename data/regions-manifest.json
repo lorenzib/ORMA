@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-13T11:07:24.485Z",
+  "generatedAt": "2026-11-13T11:22:56.451Z",
   "regions": {
     "dolomites": {
-      "trailCount": 369,
-      "trails": "data/regions/dolomites-trails.js?v=103dcc9f9eed",
+      "trailCount": 372,
+      "trails": "data/regions/dolomites-trails.js?v=5905ce3a80aa",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=27d6277ba004",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -137,7 +137,7 @@
         "osm-3707731": "data/trail-details/osm-3707731.js?v=56d6a48c8e1d",
         "osm-11833313": "data/trail-details/osm-11833313.js?v=e7ba6737b803",
         "osm-12737724": "data/trail-details/osm-12737724.js?v=94ccbc418006",
-        "osm-6401355": "data/trail-details/osm-6401355.js?v=465c36dcdeb9",
+        "osm-6401355": "data/trail-details/osm-6401355.js?v=d2d151fb55da",
         "fassa-da-canazei-a-penia": "data/trail-details/fassa-da-canazei-a-penia.js?v=9239531e1ef2",
         "fassa-sentiero-della-foresta": "data/trail-details/fassa-sentiero-della-foresta.js?v=836851309b3c",
         "fassa-antichi-bagnes": "data/trail-details/fassa-antichi-bagnes.js?v=849578dcbae2",
@@ -374,6 +374,9 @@
         "kronplatz-sulle-tracce-della-lacerta-prima": "data/trail-details/kronplatz-sulle-tracce-della-lacerta-prima.js?v=e1cacd1723a8",
         "auronzo-proazei": "data/trail-details/auronzo-proazei.js?v=9647997de929",
         "auronzo-zamberlan": "data/trail-details/auronzo-zamberlan.js?v=118e93f83f51",
+        "arabba-castello-di-andraz-passeggiata-per-famiglie": "data/trail-details/arabba-castello-di-andraz-passeggiata-per-famiglie.js?v=24fc8e497f1d",
+        "kronplatz-sorafurcia-plan-de-corones": "data/trail-details/kronplatz-sorafurcia-plan-de-corones.js?v=1f9dd6706782",
+        "kronplatz-steinmeile": "data/trail-details/kronplatz-steinmeile.js?v=eb32c07d885e",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=d5f08b9de225"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -984,6 +987,9 @@
     "kronplatz-sulle-tracce-della-lacerta-prima": "dolomites",
     "auronzo-proazei": "dolomites",
     "auronzo-zamberlan": "dolomites",
+    "arabba-castello-di-andraz-passeggiata-per-famiglie": "dolomites",
+    "kronplatz-sorafurcia-plan-de-corones": "dolomites",
+    "kronplatz-steinmeile": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1661,6 +1667,9 @@
     "kronplatz-sulle-tracce-della-lacerta-prima": "lacerta-prima-valdaora-di-sopra",
     "auronzo-proazei": "proazei-auronzo",
     "auronzo-zamberlan": "cima-gogna-zamberlan",
+    "arabba-castello-di-andraz-passeggiata-per-famiglie": "castello-di-andraz",
+    "kronplatz-sorafurcia-plan-de-corones": "sorafurcia-plan-de-corones",
+    "kronplatz-steinmeile": "steinmeile-valdaora",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2185,6 +2194,9 @@
     "lacerta-prima-valdaora-di-sopra": "kronplatz-sulle-tracce-della-lacerta-prima",
     "proazei-auronzo": "auronzo-proazei",
     "cima-gogna-zamberlan": "auronzo-zamberlan",
+    "castello-di-andraz": "arabba-castello-di-andraz-passeggiata-per-famiglie",
+    "sorafurcia-plan-de-corones": "kronplatz-sorafurcia-plan-de-corones",
+    "steinmeile-valdaora": "kronplatz-steinmeile",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

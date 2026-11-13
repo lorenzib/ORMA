@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "kronplatz-sorafurcia-plan-de-corones",
+  "generatedAt": "2026-11-12T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 11.8,
+    "ascentM": 917,
+    "highestPointM": 2256,
+    "expectedDuration": "6 h 20 min",
+    "difficulty": "Hard",
+    "shadePercent": 50
+  },
+  "trailhead": {
+    "lat": 46.747985,
+    "lng": 12.002188,
+    "label": "Sorafurcia (Geiselsberg) above Valdaora, about 1,350 m, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.747029,
+      "lng": 12.003508,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7461647,
+      "lng": 11.9866711,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A long, steady climb of over 900 m: only for fit dogs used to mountain days.",
+    "About 1.2 km of the climb is on asphalt and 2.4 km on forest roads, where farm and hut vehicles pass: keep your dog on a short lead.",
+    "The summit plateau is a busy lift area in summer, with gondolas, mountain bikes and crowds: keep your dog close.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-12"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-12",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Sorafurcia to Plan de Corones": "Da Sorafurcia a Plan de Corones, andata e ritorno",
+    "Sorafurcia (Geiselsberg) above Valdaora, about 1,350 m, the board’s start": "Sorafurcia sopra Valdaora, circa 1.350 m, la partenza ufficiale",
+    "A long, steady climb of over 900 m: only for fit dogs used to mountain days.": "Una lunga salita costante di oltre 900 m: solo per cani allenati e abituati alle giornate in montagna.",
+    "About 1.2 km of the climb is on asphalt and 2.4 km on forest roads, where farm and hut vehicles pass: keep your dog on a short lead.": "Circa 1,2 km della salita sono su asfalto e 2,4 km su strade forestali, dove passano mezzi agricoli e dei rifugi: tieni il cane al guinzaglio corto.",
+    "The summit plateau is a busy lift area in summer, with gondolas, mountain bikes and crowds: keep your dog close.": "D’estate l’altopiano della cima è una zona di impianti affollata, con cabinovie, mountain bike e tanta gente: tieni il cane vicino."
+  }
+}

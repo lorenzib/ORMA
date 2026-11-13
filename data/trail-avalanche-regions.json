@@ -147,6 +147,12 @@
       ],
       "highPoint": 1901
     },
+    "arabba-castello-di-andraz-passeggiata-per-famiglie": {
+      "regions": [
+        "IT-34-BL-01"
+      ],
+      "highPoint": 1805
+    },
     "auronzo-proazei": {
       "regions": [
         "IT-34-BL-03"
@@ -883,6 +889,18 @@
         "IT-32-BZ-19"
       ],
       "highPoint": 1245
+    },
+    "kronplatz-sorafurcia-plan-de-corones": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 2256
+    },
+    "kronplatz-steinmeile": {
+      "regions": [
+        "IT-32-BZ-19"
+      ],
+      "highPoint": 1059
     },
     "kronplatz-sulle-tracce-della-lacerta-prima": {
       "regions": [

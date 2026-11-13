@@ -254,8 +254,11 @@ describe('the existing-site verification boundary',()=>{
     // walks for dogs (iron stairs and a helmet; an EE path).
     // Then 522 and 520 with Dolomites batch 11: the Proazei loop and Cima
     // Gogna to Zamberlan above Auronzo di Cadore.
-    expect(catalogue).toHaveLength(522);
-    expect(currentSiteTrails(catalogue)).toHaveLength(520);
+    // Then 525 and 523 with the Dolomites one-way walks, sealed there and
+    // back on the same path: Castello di Andraz, Sorafurcia to Plan de
+    // Corones and the Steinmeile at Valdaora di Sotto.
+    expect(catalogue).toHaveLength(525);
+    expect(currentSiteTrails(catalogue)).toHaveLength(523);
   });
 
   test('requires the artwork the public trail page needs',()=>{
