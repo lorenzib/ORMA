@@ -34,6 +34,26 @@
       "note": "A 930 m one-way connecting path (route 8A) between two tracks in Altrei, inside Naturpark Trudner Horn.",
       "withdrawnAt": "2026-10-22",
       "removedAt": "2026-10-24"
+    },
+    {
+      "id": "osm-12027153",
+      "osmRelation": 12027153,
+      "name": "GEOWeg - Sentiero GEOlogico",
+      "slug": "geoweg-sentiero-geologico",
+      "area": "Aldein / Aldino – Bletterbach",
+      "reason": "not-a-dog-walk",
+      "note": "Goes down into the Bletterbach gorge on iron stairs and ladders, where the park operator requires a helmet. Not a walk for dogs.",
+      "removedAt": "2026-11-12"
+    },
+    {
+      "id": "osm-7086961",
+      "osmRelation": 7086961,
+      "name": "Giro del Zimon",
+      "slug": "giro-del-zimon",
+      "area": "Pieve Tesino",
+      "reason": "not-a-dog-walk",
+      "note": "SAT path 392, graded EE (expert hikers only), on granite at 2,280–2,510 m, starting at a 2,500 m pass hours from any road. Not a walk for dogs.",
+      "removedAt": "2026-11-12"
     }
   ]
 }
