@@ -9312,25 +9312,25 @@
       // figure; the relation measures 5.3 km and that is what is published.
       // Wholly in Lozzo di Cadore, not Auronzo. Lozzo police regulation Art. 39:
       // dogs on a lead in every public place, trails included.
-      // Seal withdrawn 24 October 2026: no authority publishes a walking time for
-      // the loop alone, and ORMA verifies only on an official climb and time.
-      // The corrections stand; the walk reads Reviewed until a time is found.
+      // Seal restored 12 November 2026 on the owner's decision: no authority publishes a walking
+      // time for the loop alone, so ORMA works it out by DIN 33466 from the line's 5.3 km and the
+      // CAI leaflet's official 100 m climb (1 h 35 min). The climb stays the official figure.
       area: 'Pian dei Buoi, Lozzo di Cadore',
       distance: 5.3,
       elevation: 100,
-      hours: '1.5–2',
+      hours: '1.5',
       curated: true,
-      tier: 'under-review',
-      reviewedAt: '2026-10-23',
+      tier: 'route-audited',
+      reviewedAt: '2026-11-12',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Davide borca, CC BY-SA 4.0: the Pian dei Buoi plateau, its tracks and pasture, with the Dolomite walls behind (autumn larch).',
         route: 'OSM relation 7388748 (5.33 km) passes every landmark of the official waymark-33 description within about 60 m and matches the official map; the leaflet’s 4.5 km is given as “circa”.',
         routeNumbers: 'Waymark 33, white and green, from Bivio Pellegrini round the whole loop; the only branch is the short “variante anello 33” spur to a gun post, after which walkers return to 33.',
         mapPoints: 'Start at Bivio dei Pellegrini (route node 420511537) beside the small car park; drinking water at OSM node 9261740471, 18 m from the start.',
-        elevation: 'Official ascent 100 m (CAI Lozzo leaflet), in place of the sampled 252 m. Held: no authority publishes a walking time for the loop alone.'
+        elevation: 'Official ascent 100 m (CAI Lozzo leaflet), in place of the sampled 252 m. No official time for the loop alone: worked out by ORMA, 1 h 35 min by DIN 33466 from 5.3 km and 100 m up and down.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { elevation: 'No authority publishes a walking time for the loop alone (the CAI leaflet gives the climb only).' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -9349,7 +9349,7 @@
       terrainDescription: 'A gentle loop on paths and old military tracks across the Pian dei Buoi hills, with no equipped or exposed sections.',
       waterDescription: 'Drinking water at the start only. In summer Lago Morto is a cattle trough and Lago delle Sepolture a small bog, and the Col Vidal fountain has been dry for decades, so carry water.',
       dogNotes: 'Lozzo di Cadore requires dogs on a lead in every public place, trails included (at most 1.5 m on roads). Cattle graze the plateau in summer and the loop passes Casera delle Armente and a cowshed. Keep dogs out of the WWI caverns and trenches.',
-      tips: 'Park at Bivio Pellegrini, where there is a fountain, and follow waymark 33 round the hills past the Col Vidal forts and Casera delle Armente: about 5.3 km with 100 m of climbing. Keep your dog on a lead throughout, as Lozzo di Cadore requires on its trails, and expect grazing cattle in summer. There is no other water, so carry plenty; the access road is one-way by timetable in July and August.',
+      tips: 'Park at Bivio Pellegrini, where there is a fountain, and follow waymark 33 round the hills past the Col Vidal forts and Casera delle Armente: about 5.3 km with 100 m of climbing and an hour and a half of walking (a time worked out by ORMA; no official one is published). Keep your dog on a lead throughout, as Lozzo di Cadore requires on its trails, and expect grazing cattle in summer. There is no other water, so carry plenty; the access road is one-way by timetable in July and August.',
       sourceLinks: [
         { label: 'Parco della Memoria, 13.2 Anello dei Colli', url: 'https://www.lozzodicadore.eu/parcodellamemoria/13-1-col-vidal-e-13-2-anello-dei-colli-solo-testo-e-pdf/' },
         { label: 'CAI Lozzo di Cadore, Anelli e Vie', url: 'https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-descrizione.pdf' },
@@ -10100,21 +10100,6 @@
         { km: 2.9, lat: 46.642557, lng: 11.710932, osmId: 'node/7612305685', label: 'Drinking-water tap at the Naturparkhaus, 116 m off the route' }
       ],
       desc: 'An easy village loop in St. Magdalena, Villnöss: past the Faller and Kaserott farms up to the church, along the road to Bühlerhof, and back across the meadows on the Sunnseitenweg below the Odle peaks. The official route lists 3.2 km and 134 m of ascent.'
-    },
-    'osm-12027153': {
-      // Correction, 23 October 2026 (not a verification). The imported text
-      // said the walk had no ladders; the Bletterbach park operator warns of
-      // several iron-stair sections where the injury risk for dogs is very
-      // high, and requires a helmet against rockfall. Start, place and the
-      // official figures from the GEOPARC Bletterbach pages and flyer.
-      area: 'Aldein / Aldino – Bletterbach',
-      hours: '2.5–3.5',
-      exposure: true,
-      safetyLevel: 'caution',
-      surfaceHazards: ['Several iron-stair sections in the gorge (operator: very high injury risk for dogs)', 'Rockfall: helmet compulsory in the gorge', 'Boulder and stream bed on the gorge floor'],
-      startPoint: { lat: 46.3662149, lng: 11.4071866, label: 'Bletterbach visitor centre, Lerch 40, Aldein (official start)' },
-      desc: 'The geological trail through the Bletterbach gorge, part of the UNESCO Dolomites GEOPARC, from the visitor centre at Aldein down into the gorge and up to the Gorz, past rock walls that show some 40 million years of Earth history. The park sets a ticket, a season, and a compulsory helmet against rockfall, and closes the gorge in bad weather. Officially about 4.6 km to the Butterloch from Aldein, and 6.3 to 9 km for the Gorz walk, with 200 to 300 m of climb. This walk is not verified by ORMA.\n\nThe park operator warns dog owners that the GEOWeg has several sections of iron stairs where the risk of injury to dogs is very high; if you take your dog anyway, it must stay on a lead.',
-      tips: 'Think twice before bringing your dog: the park itself warns that the iron-stair sections are very dangerous for dogs. If you go, keep your dog on a lead, as the park requires, and turn back at the first iron stairs if your dog is unsure. Everyone in the gorge must wear a helmet (free to borrow at the visitor centre), and the park advises strongly against the gorge in rain, storms or cold because of rockfall. Check opening dates, tickets and any path closures at the visitor centre before you start.'
     },
     'nuvolau': {
       // Hand audit 23 October 2026, completing the Dolomites session's research (line fixed in #946 along the official route).
@@ -14726,13 +14711,33 @@
       ]
     },
     'osm-9675994': {
-      // Correction, 23 October 2026; verified seal withdrawn 24 October 2026 because no authority publishes this walk's climb
-      // and walking time (owner's rule: hold until an official figure is found). The research below still stands.
+      // Seal restored 12 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
       // Hand audit 23 October 2026: the line matches the province trail register's 'St. Agatha Rundweg' (routes-hikingtrails.11426959,
       // 1.51 km) within 22 m everywhere; waymark A. Dogs: Deutschnofen dog regulation Art. 4 and 8. No Natura 2000 site on the line.
       // Place corrected from Nova Levante to Deutschnofen.
       "area": "Deutschnofen / Nova Ponente",
+      "imageIcon": "images/trails/osm-9675994-unterkofl.jpg",
+      "imageCredit": "The Unterkofl farm, Deutschnofen",
+      "heroImage": "images/trails/osm-9675994-unterkofl.jpg",
+      "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Unterkofl_Deutschnofen_1.JPG",
+      "imageCreator": "Plentn",
+      "imageLicence": "CC0",
+      "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "imageCreditText": "The Unterkofl farm, Deutschnofen by Plentn",
+      "imageAlt": "The Unterkofl farmhouses and barn beside a narrow farm road above Deutschnofen, forested slopes and Dolomite peaks behind",
+      "imageSourceType": "licensed-source",
+      "routeNumberGuidance": {"mode":"landmarks","start":"Start on the farm road at Unterkofl above Deutschnofen, where the loop meets the road.","sequence":"Up on waymark A to the small St. Agatha chapel, on through the forest over the hilltop to the Oberkofl farm, and back down the farm road to Unterkofl.","switches":"At the Oberkofl farm, leave waymark A for the farm road back down to Unterkofl.","steps":[{"text":"From the farm road at Unterkofl, follow waymark A up into the forest to the small, remote St. Agatha chapel.","from":[0]},{"text":"Stay on waymark A through the forest over the hilltop to the Oberkofl farm, passing through the farmyard.","from":[0]},{"text":"From Oberkofl, walk back down the farm road to Unterkofl, about 500 m on asphalt where cars come and go.","from":[0]}],"sources":[{"tag":"tourist board","label":"Wanderung zum Kirchlein St. Agatha","authority":"Eggental Tourismus","url":"https://eggental.com/de/activity/wanderung-zum-kirchlein-st-agatha_45778","reviewedAt":"2026-11-12"},{"tag":"register","label":"St. Agatha Rundweg (waymark A)","authority":"Autonome Provinz Bozen, hiking-trail register","url":"https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426959","reviewedAt":"2026-11-12"}]},
+      "terrainType": "gravel (64%), paved (36%), from OSM surface data",
+      "terrainRank": 2,
+      "safetyLevel": "caution",
+      "waterSources": [],
+      "path": [[46.4236881,11.4458308],[46.4238866,11.4460668],[46.4239679,11.4462673],[46.4240354,11.4465395],[46.4240789,11.4466348],[46.4241251,11.4467407],[46.42419,11.4468265],[46.4241646,11.4469962],[46.4241404,11.4470361],[46.4241223,11.4470974],[46.4241325,11.4471484],[46.4241764,11.4471876],[46.424215,11.4471853],[46.424245,11.4471387],[46.4242783,11.4470606],[46.4243798,11.4470565],[46.4244399,11.4470391],[46.424549,11.4469338],[46.4245966,11.4467789],[46.4245952,11.4465415],[46.4246067,11.4463471],[46.4245785,11.4461432],[46.4246003,11.4460453],[46.4246881,11.4458844],[46.4247753,11.4458517],[46.4250287,11.4456383],[46.4252488,11.4455907],[46.4253481,11.4455357],[46.4255117,11.4454962],[46.4255806,11.4454459],[46.4256837,11.4452662],[46.4257036,11.4451877],[46.4257137,11.4451233],[46.4257068,11.4449362],[46.4257364,11.4445768],[46.4258672,11.4441624],[46.4259656,11.4439264],[46.4260877,11.4436924],[46.4262307,11.4433368],[46.4263372,11.4429447],[46.42642,11.4425901],[46.4264023,11.4421352],[46.4262189,11.4417919],[46.4260059,11.4415687],[46.4258284,11.4413885],[46.4257397,11.4409593],[46.4256721,11.4406706],[46.4256332,11.4405044],[46.4254202,11.4402898],[46.4252072,11.4401697],[46.4249555,11.4400007],[46.4248622,11.4403098],[46.4248192,11.4404965],[46.4248362,11.4407142],[46.4248724,11.441141],[46.4249682,11.4414473],[46.4251656,11.4417876],[46.4252946,11.441833],[46.4255253,11.4417621],[46.4256543,11.4417677],[46.4257226,11.4418464],[46.4257736,11.4419184],[46.4257993,11.4420234],[46.4257985,11.4421208],[46.4257863,11.4421924],[46.4257545,11.4422737],[46.4255878,11.4425334],[46.4253322,11.4428851],[46.4250639,11.4431488],[46.4249269,11.4433139],[46.424802,11.4435543],[46.4246111,11.4440088],[46.4244748,11.4443208],[46.4244136,11.4444052],[46.4243641,11.4444476],[46.4243184,11.4444629],[46.4242743,11.444463],[46.4242244,11.4444332],[46.4241244,11.4446947],[46.4241318,11.444762],[46.4241626,11.4448192],[46.4241263,11.4449152],[46.4240605,11.4450175],[46.4238991,11.4451331],[46.423817,11.4452108],[46.4237482,11.4453436],[46.4237128,11.4455213],[46.4236975,11.4456752],[46.4236881,11.4458308]],
+      "lat": 46.4236881,
+      "lng": 11.4458308,
+      "elevation": 40,
       "hours": "0.5",
+      "elevationProfile": [{"km":0,"elev":1290}, {"km":0.1,"elev":1303}, {"km":0.2,"elev":1313}, {"km":0.3,"elev":1320}, {"km":0.4,"elev":1330}, {"km":0.5,"elev":1330}, {"km":0.6,"elev":1330}, {"km":0.7,"elev":1331}, {"km":0.8,"elev":1332}, {"km":0.9,"elev":1332}, {"km":1,"elev":1330}, {"km":1.1,"elev":1326}, {"km":1.2,"elev":1321}, {"km":1.2,"elev":1309}, {"km":1.4,"elev":1296}, {"km":1.4,"elev":1294}, {"km":1.5,"elev":1290}],
       "startPoint": {
         "lat": 46.4241244,
         "lng": 11.4446947,
@@ -14750,8 +14755,37 @@
         "name": "St. Agatha Rundweg (waymark A)",
         "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426959"
       },
-      "desc": "A short loop on waymark A over the wooded hilltop above Deutschnofen, past the small, remote St. Agatha chapel and the Unterkofl and Oberkofl farms. It is about 1.5 km and a little over half an hour, with some 60 m of up and down, mostly in forest.\n\nDeutschnofen's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows, so keep to the track where it runs beside the meadows.",
-      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Deutschnofen requires, and stay off the meadows. The loop passes through two working farmyards and uses about 500 m of the farm road, where cars come and go. There is no water on the way, so bring some. Two thirds of the loop is in forest, so it stays fairly cool."
+      "desc": "A short loop on waymark A over the wooded hilltop above Deutschnofen, past the small, remote St. Agatha chapel and the Unterkofl and Oberkofl farms. It is about 1.5 km and half an hour, with some 40 m of up and down, mostly in forest, as measured by ORMA (no official figure).\n\nDeutschnofen's dog regulation requires a lead of at most 1.5 m on all public ground, inside and outside the village, and owners must carry a muzzle. Dogs are not allowed on farmed meadows, so keep to the track where it runs beside the meadows.",
+      "tips": "Keep your dog on a short lead (1.5 m at most) and carry a muzzle, as Deutschnofen requires, and stay off the meadows. The loop passes through two working farmyards and uses about 500 m of the farm road, where cars come and go. There is no water on the way, so bring some. Two thirds of the loop is in forest, so it stays fairly cool.",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-11-12",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Commons, Plentn, CC0: the Unterkofl farm on the loop with Dolomite peaks behind, 13 m from the line.",
+        "route": "Published line 1.52 km, closed, within 22 m of the province register's St. Agatha Rundweg (1.51 km) everywhere.",
+        "routeNumbers": "Start on the farm road at Unterkofl above Deutschnofen and follow waymark A up to the small St. Agatha chapel, on through the forest over the hilltop to the Oberkofl farm, and back down the farm road to Unterkofl.",
+        "mapPoints": "Start where the loop meets the Unterkofl farm road; there is no water on the loop.",
+        "elevation": "No official figure. Measured by ORMA from the map: 1.52 km, about 40 m up and down between 1,290 and 1,332 m, 29 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      "graduation": { "status": "verified", "required": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "completed": ["photo", "route", "routeNumbers", "mapPoints", "elevation", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"], "blockers": {} },
+      "verified": {
+        "categories": ["water", "heat", "exposure", "livestock", "surfaceHazards", "access"],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'St. Agatha Rundweg', line routes-hikingtrails.11426959, 1,509 m; every register point within 22 m of the line",
+          "Eggental Tourismus, 'Wanderung zum Kirchlein St. Agatha': 'Am Oberkoflhof biegt man rechts auf den Weg [A] ab, der direkt zum kleinen, abgelegenen Kirchlein St. Agata führt' (waymark A on this loop)",
+          "Gemeinde Deutschnofen, Verordnung über die Haltung und Führung von Hunden (GR 6/2010): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields), Art. 12 (applies outside built-up areas)",
+          "No Natura 2000 site on the line (EEA); the Deutschnofen landscape plan's rules (2026) set no dog rule",
+          "OpenStreetMap: road classes, surfaces, forest and farmyards along the line"
+        ],
+        "date": "2026-11-12"
+      },
+      "sourceLinks": [
+        { "label": "South Tyrol trail register, St. Agatha Rundweg (Open Data Hub)", "url": "https://tourism.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426959" },
+        { "label": "Eggental Tourismus, Wanderung zum Kirchlein St. Agatha", "url": "https://eggental.com/de/activity/wanderung-zum-kirchlein-st-agatha_45778" },
+        { "label": "Gemeinde Deutschnofen, dog regulation (PDF)", "url": "https://www.gemeinde.deutschnofen.bz.it/system/web/GetDocument.ashx?cts=1708335105&fileId=1001871" },
+        { "label": "OpenStreetMap relation 9675994", "url": "https://www.openstreetmap.org/relation/9675994" }
+      ]
     },
     'osm-12190538': {
       // Seal restored 6 November 2026 on the owner's decision: no authority publishes this walk's climb or time, so both are
@@ -66289,6 +66323,107 @@
       ],
       startPoint: { lat: 46.446903, lng: 12.014045, label: "The piazza of Colle Santa Lucia, by the church, the association’s start" },
       desc: "A short, easy loop round the knoll of Colle Santa Lucia, through hay meadows and past the Via Crucis stations, with views of the village church and the Pelmo. The association lists 1.1 km and 59 m up."
+    },
+    'kronplatz-sulle-tracce-della-lacerta-prima': {
+      // Hand audit: 11 November 2026, verified on arrival (new-trail Dolomites batch 10).
+      // “Sulle tracce della Lacerta Prima”, published by Olang tourist board (Tourismusverein Olang), drawn on 23 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Olang (2010 dog regulation, amended 2026: lead ≤1.5 m, muzzle carried; no dogs in cemeteries, parks, playgrounds or on farmed meadows). No park or Natura 2000 site. No main road, but about 1.9 km of village and farm lanes. The Lacerta Prima sculpture is only promised for autumn 2026, so the record does not mention it.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Valdaora di Sopra – Rio Brunst – Otto Chiese, Olang",
+      distance: 4.3,
+      elevation: 128,
+      hours: '1.25',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the church of Valdaora di Sopra past the old smithy and sawmill, along the Rio Brunst, up a forest road to the Otto Chiese viewpoint and back across the Seefelder meadows, as the board publishes it (4.3 km, 128 m up, 1:10 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the church of Valdaora di Sopra (Oberolang), the board’s start.",
+        "sequence": "Walk past the Mondo Bimbi play area towards the old smithy (Fucina) and the Lipper sawmill. Cross the Rio Brunst and take the narrow path along the stream to the Chill Area. A forest road then leads to the Otto Chiese viewpoint, looking over the Braies Dolomites and the Kühwiesenkopf, where the Megachirella wachtleri fossil was found in 1999. Back on the forest road, carry on towards “Alte Böden”, then follow the signs for “Seefelder” across wide meadows, and the loop brings you back to the church.",
+        "switches": "Past Mondo Bimbi to the Fucina and the Lipper sawmill; over the Rio Brunst onto the streamside path to the Chill Area; forest road to the Otto Chiese viewpoint; back on the forest road towards “Alte Böden”; “Seefelder” across the meadows; back to the church.",
+        "steps": [
+          {
+            "text": "The church of Valdaora di Sopra",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past Mondo Bimbi to the old smithy and the Lipper sawmill",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Over the Rio Brunst and along the stream to the Chill Area",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Forest road to the Otto Chiese viewpoint",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Towards “Alte Böden”, then “Seefelder” across the meadows back to the church",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Olang tourist board (Tourismusverein Olang), Sulle tracce della Lacerta Prima (route description)",
+            "url": "https://www.outdooractive.com/it/r/811108780",
+            "authority": "Olang tourist board (Tourismusverein Olang)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-11"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-11',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Valdaora di Sopra church (corinasdavide on Wikimedia Commons, CC BY 3.0), 9 August 2008, 71 m from the line.",
+        route: "Official loop of 4.3 km from The church of Valdaora di Sopra (Oberolang), as Olang tourist board (Tourismusverein Olang) publishes it; the stored line is drawn on 23 OSM ways along the board’s published line, 4.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number on the board’s page: from the church of Valdaora di Sopra past Mondo Bimbi to the Fucina and the Lipper sawmill, over the Rio Brunst and along the stream to the Chill Area, forest road to the Otto Chiese viewpoint, then towards “Alte Böden” and “Seefelder” across the meadows back to the church.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 0.7, km 0.9, km 4.1 (OSM nodes 2206612489, 7773490787, 7773490785, 13073881258).",
+        elevation: "Official 4.3 km, 128 m up and 139 m down, 1:10 h (Olang tourist board (Tourismusverein Olang), Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Olang tourist board (Tourismusverein Olang), Sulle tracce della Lacerta Prima (its Outdooractive tour)",
+          "Gemeinde Olang / Comune di Valdaora, Verordnung betreffend die Haltung von Hunden und anderen Tieren (Gemeinderat Nr. 11, 25.02.2010, amended Nr. 5, 23.02.2026), Art. 4 and 8: a lead of at most 1.5 m on all public ground and a muzzle carried; no dogs in cemeteries, playgrounds and parks, or on farmed meadows and fields in the growing season; no bathing in fountains",
+          "No park or Natura 2000 site on the line (EEA; Province of Bolzano landscape-plan layers)",
+          "OpenStreetMap ways along the board’s line (23 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-11'
+      },
+      shadeCoverage: 22,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 1.9 km on village streets and farm lanes, open to cars and tractors: keep your dog on a short lead","Narrow path along the Rio Brunst: keep your dog close by the water","Olang keeps dogs out of the cemetery at the start, the play area and the farmed meadows: stay on the lanes and paths"],
+      terrainType: "Village lanes, streamside path and forest road",
+      shadeDescription: "Mostly open: the streamside path and the forest road to the viewpoint give some shade; the meadows and lanes are in full sun.",
+      terrainDescription: "An easy theme loop from Valdaora di Sopra past an old smithy and sawmill, along the Rio Brunst and up to the Otto Chiese viewpoint over the Braies Dolomites, then back across open meadows.",
+      waterDescription: "Drinking water is mapped at the start and at about km 0.7, 0.9 and 4.1 (OSM); cafés and a pizzeria are by the church.",
+      dogNotes: "Olang requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of cemeteries, parks and playgrounds, off farmed meadows in the growing season and out of the fountains. The walk starts by the church and cemetery and passes a play area, so keep to the lanes and paths.",
+      tips: "Start at the church of Valdaora di Sopra: 4.3 km and 128 m up, a little over an hour, as the board lists. Much of it is on quiet lanes, so keep a short lead; carry water on hot days, as most of the loop is in the sun.",
+      sourceLinks: [
+        { label: "Olang tourist board (Tourismusverein Olang), Sulle tracce della Lacerta Prima", url: "https://www.outdooractive.com/it/r/811108780" },
+        { label: "Gemeinde Olang, dog regulation (2010, amended 2026)", url: "https://www.gemeinde.olang.bz.it/system/web/GetDocument.ashx?cts=1792490199&fileId=179640" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.757579, lng: 12.040246, label: "The church of Valdaora di Sopra (Oberolang), the board’s start" },
+      desc: "An easy loop from Valdaora di Sopra past an old smithy and sawmill, along the Rio Brunst and up a forest road to the Otto Chiese viewpoint over the Braies Dolomites, then back across the meadows. The board lists 4.3 km and 128 m up."
     }
   };
 

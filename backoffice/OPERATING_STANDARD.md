@@ -2463,7 +2463,10 @@ resting and rejection are unchanged.
    first and gave false dips on steep ground, so all four use the EU-DEM.
    The owner extended it on 7 November 2026 to the Castelfeder nature trail
    (Montan), whose only official figures are for the 6.1 km tour it is part
-   of. The rule stands for every other walk.
+   of. On 12 November 2026 it was extended to St. Agatha Rundweg
+   (Deutschnofen), climb and time both measured, and to Anello dei Colli
+   (Lozzo di Cadore), where the CAI publishes the climb and only the time is
+   worked out by DIN 33466. The rule stands for every other walk.
 2. **Every municipality the line crosses.** The Ranger is given sample points
    along the whole line -- the start, one every kilometre, the point farthest
    from the start, and the end -- because a loop often crosses into the next

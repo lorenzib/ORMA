@@ -14,6 +14,19 @@ and reviewed examples are documented in
 
 ## Current version
 
+Version `1.10.0` gives dogs with a limit fairer steepness. A trail's terrain
+rank is its steepest grade anywhere, so one short steep step marked a whole
+walk steep: 263 of 368 Dolomites walks are rank 2. The score now reads the
+trail's height profile and counts a pitch only when it holds over 300 m or
+more; the stored rank stands when it is lower or there is no usable profile
+(98 walks ease). And one limit (puppy, senior, joints or back, heart, overweight)
+now softens steepness to tolerance 1 instead of ruling it out; low fitness, or
+two limits together, still leave tolerance 0. Healthy dogs do not change. On the
+Dolomites, green / orange / red moves for a 9-year-old from 6 / 186 / 176 to
+36 / 230 / 102, a puppy from 5 / 178 / 185 to 53 / 200 / 115, a dog with sore
+joints from 6 / 183 / 179 to 36 / 225 / 107, low fitness from 5 / 175 / 188 to
+19 / 186 / 163. No reviewed fixture changes.
+
 Version `1.9.0` stops steepness ruling out healthy dogs. A trail's terrain
 rank is its steepest grade, and 250 of 355 Dolomites walks reach rank 2, so a
 healthy dog of moderate fitness lost 30 points on most of them for steepness

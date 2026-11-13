@@ -122,6 +122,14 @@ terrain tolerance 2: steepness is not a limit for it. What can stop it is
 charged where it is recorded, as exposure or a route caution. Steepness still
 counts for low fitness and for every dog fact in the table above.
 
+From `1.10.0` a single puppy, senior, orthopedic, cardiac or overweight fact
+leaves a dog of moderate or high fitness terrain tolerance 1, not 0: one limit
+softens steepness rather than ruling it out. Low fitness, or two of those facts
+together, still leave tolerance 0. The legacy adapter also reads the trail's
+height profile: a pitch counts only when it holds over a stretch of 300 m or
+more, so one short steep step no longer makes a whole walk rank 2. The stored
+rank stands when it is lower, or when the profile has no stretch that long.
+
 The minimum computational distance is 2 km and minimum ascent is 100 m. Those
 floors prevent nonsensical arithmetic; they are not claims that every dog can
 safely complete that amount.

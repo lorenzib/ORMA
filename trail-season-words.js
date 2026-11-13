@@ -201,6 +201,15 @@
         after: tx(', read on {date}.', { date: readOn(lift.accessedAt) }),
       },
     }));
+    out.lifts = out.lifts.concat(((season.access) || []).map(rule => ({
+      line: tx(rule.line),
+      source: {
+        before: tx('Source: '),
+        label: tx(rule.operator) || hostOf(rule.url),
+        url: rule.url,
+        after: tx(', read on {date}.', { date: readOn(rule.accessedAt) }),
+      },
+    })));
     out.lifts = out.lifts.concat(roadsOf(season).map(road => ({
       line: [roadLine(road), tx('The walk starts at the end of it; while it is shut, there is no drive to the start.')].join(' '),
       source: {
@@ -264,6 +273,9 @@
       notes.push(lift.required
         ? tx('In {month} the {lift} is not running, and the walk needs it.', { month: name, lift: lift.name })
         : tx('In {month} the {lift} is not running; the walk does not need it.', { month: name, lift: lift.name }));
+    }
+    for (const rule of season.access || []) {
+      if (rule.months.includes(month)) notes.push(tx(rule.monthNote, { month: name }));
     }
     for (const road of roadsOf(season)) {
       if ((road.shutMonths || []).includes(month)) notes.push(tx('In {month} the {road} is closed, and the walk starts at the end of it.', { month: name, road: tx(road.name) }));

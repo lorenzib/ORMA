@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-7388748",
+  "generatedAt": "2026-11-12T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.3,
+    "ascentM": 100,
+    "highestPointM": 1864,
+    "expectedDuration": "1 h 30 min",
+    "difficulty": "Moderate",
+    "shadePercent": 20
+  },
+  "trailhead": {
+    "lat": 46.5103134,
+    "lng": 12.4067517,
+    "label": "Bivio dei Pellegrini, beside the small Pellegrini car park (Pian dei Buoi)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5104486,
+      "lng": 12.4068797,
+      "label": "Drinking-water point at Bivio dei Pellegrini",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Unpaved military tracks open to farm and forestry vehicles.",
+    "WWI trenches, caverns and ruins beside the path; tunnel roofs are unsafe.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-12"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-12",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Bivio dei Pellegrini, beside the small Pellegrini car park (Pian dei Buoi)": "Bivio dei Pellegrini, accanto al piccolo parcheggio Pellegrini (Pian dei Buoi)",
+    "Unpaved military tracks open to farm and forestry vehicles.": "Strade militari sterrate aperte ai mezzi agricoli e forestali.",
+    "WWI trenches, caverns and ruins beside the path; tunnel roofs are unsafe.": "Trincee, caverne e ruderi della Prima guerra mondiale accanto al sentiero; le volte delle gallerie non sono sicure."
+  }
+}
