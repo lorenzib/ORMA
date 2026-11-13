@@ -29,13 +29,13 @@
         46.35228510232558
       ],
       "nearestExisting": {
-        "trailId": "osm-12027153",
-        "trailName": "GEOWeg - Sentiero GEOlogico",
-        "distanceKm": 1.569659978153051
+        "trailId": "fiemme-passo-oclini",
+        "trailName": "Passo Oclini, tra il Corno Nero e il Corno Bianco",
+        "distanceKm": 1.474826965531545
       },
       "expansionTier": "existing-area",
       "expansionScore": 3,
-      "whyCandidate": "A plausible loop under 12 km, 1.6 km from GEOWeg - Sentiero GEOlogico, awaiting full route and dog-suitability verification.",
+      "whyCandidate": "A plausible loop under 12 km, 1.5 km from Passo Oclini, tra il Corno Nero e il Corno Bianco, awaiting full route and dog-suitability verification.",
       "sourceUrl": "https://hiking.waymarkedtrails.org/#route?id=12025052",
       "status": "awaiting-ceo-selection",
       "nextStage": "route-identity-and-geometry",
