@@ -197,6 +197,18 @@
       ],
       "line": "Bus 330 to Zans runs most of the year, but in 2026 it did not run from 30 March to 25 April or from 9 November into December.",
       "monthNote": "In {month} bus 330 to Zans may not run (in 2026 it stopped from 30 March to 25 April and from 9 November into December)."
+    },
+    "plaetzwiese-summer": {
+      "operator": "stol.it, May 2026",
+      "url": "https://www.stol.it/artikel/chronik/mobilitaet-verkehrsregelung-im-sommer-im-gebiet-drei-zinnen",
+      "accessedAt": "2026-11-13",
+      "months": [
+        7,
+        8,
+        9
+      ],
+      "line": "In 2026, from 1 July to 15 September, cars could drive up to Plätzwiese between 9:00 and 16:00 only with an online booking; before 9:00 and after 16:00 they paid a fee. Bus 443 from Monguelfo, Dobbiaco and Villabassa needed no booking.",
+      "monthNote": "In {month}, cars may need an online booking to drive up to Plätzwiese between 9:00 and 16:00 (the 2026 rule ran from 1 July to 15 September)."
     }
   },
   "trails": {
@@ -236,6 +248,7 @@
     "prato-piazza": {
       "access": [
         "plaetzwiese-road",
+        "plaetzwiese-summer",
         "bus-prato-piazza"
       ]
     },
