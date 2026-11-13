@@ -8,6 +8,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Gravel road, tarmac and a short nature path": "Strada sterrata, asfalto e un breve sentiero naturalistico",
   "Andalo Life park, the APT’s start": "Parco Andalo Life, la partenza indicata dall'APT",
   "A gravel path running through a mown meadow with hay bales between spruce woods, mountains and a blue sky with white clouds beyond": "Un sentiero sterrato che attraversa un prato falciato con balle di fieno tra boschi di abeti rossi, con montagne e un cielo azzurro con nuvole bianche sullo sfondo",
+  "Hay bales in the meadows near Andalo": "Balle di fieno nei prati vicino ad Andalo",
+  "Lago di Andalo among meadows and forest": "Il Lago di Andalo tra prati e bosco",
   "Part shade: about 67% runs under trees, in the woods towards Priori.": "In parte all'ombra: circa il 67% passa sotto gli alberi, nei boschi verso i Priori.",
   "Not a numbered route: from the riding stables in the Andalo Life park along the compacted gravel road beside the paved path round the Lago di Andalo, into the woods to the Tana dell’Ermellino at Priori, a bar-restaurant with a playground and picnic tables, and back. About three quarters on tarmac or gravel road, the rest on a nature path.": "Percorso senza numero: dal maneggio nel parco Andalo Life lungo la strada di ghiaia battuta accanto al percorso pavimentato intorno al Lago di Andalo, nel bosco fino alla Tana dell’Ermellino a Priori, bar-ristorante con parco giochi e tavoli da picnic, e ritorno. Circa tre quarti su asfalto o strada sterrata, il resto su sentiero naturale.",
   "Path 812 near Cavedago, on the walk": "Il sentiero 812 vicino a Cavedago, lungo la passeggiata"

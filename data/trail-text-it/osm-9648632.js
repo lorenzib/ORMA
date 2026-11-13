@@ -8,6 +8,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Meadow and woodland paths with play stations, almost level": "Sentieri tra prati e boschi con postazioni di gioco, quasi pianeggianti",
   "Car park at the top of Monte Pana (official start)": "Parcheggio in cima al Monte Pana (partenza ufficiale)",
   "Green meadows on Monte Pana with a small chapel and forest edge, the rock towers of the Langkofel and Plattkofel under a blue summer sky": "Prati verdi sul Monte Pana con una cappellina e il margine del bosco, le torri rocciose del Langkofel e del Plattkofel sotto un cielo estivo azzurro",
+  "Santa Cristina and the Val Gardena": "Santa Cristina e la Val Gardena",
+  "The Vallunga seen from Monte Pana": "La Vallunga vista dal Monte Pana",
   "Almost all open meadow: under a tenth is in the trees, so there is little shade at midday.": "Quasi tutto prato aperto: meno di un decimo è tra gli alberi, quindi a mezzogiorno c'è poca ombra.",
   "Signed as PanaRaida: from the car park at the top of Monte Pana towards the Monte Pana Dolomites Hotel, past the chapel by the architect Franz Baumann, through meadows and wood to a small pond, and back by the Monte Pana cross-country centre.": "Segnalato come PanaRaida: dal parcheggio in cima al Monte Pana verso il Monte Pana Dolomites Hotel, oltre la cappella dell'architetto Franz Baumann, attraverso prati e bosco fino a un laghetto, e ritorno passando per il centro di fondo del Monte Pana.",
   "Monte Pana below the Langkofel": "Monte Pana sotto il Langkofel"

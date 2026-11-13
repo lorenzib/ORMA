@@ -6,6 +6,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Surface not yet field-verified": "Fondo non ancora verificato sul campo",
   "Start here — Bus stop Gufidaun - Gudon, 12 m from the route (OSM-verified access point)": "Partenza qui — Fermata dell'autobus Gufidaun - Gudon, a 12 m dal percorso (punto di accesso verificato su OSM)",
   "Santa Maddalena in Val di Funes below the Odle peaks": "Santa Maddalena in Val di Funes sotto le Odle",
+  "The village of Gufidaun on its hillside": "Il paese di Gudon sul suo pendio",
+  "Säben monastery on its rock above the valley": "Il monastero di Sabiona sulla sua rupe sopra la valle",
   "Drinking water": "Acqua potabile",
   "Trattermandl": "Trattermandl",
   "Villnoess St Magdalena 1": "Villnoess St Magdalena 1"

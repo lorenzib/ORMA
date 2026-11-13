@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Gravel paths and quiet road": "Sentieri sterrati e strada tranquilla",
   "The main square of San Vigilio, the board’s start": "La piazza principale di San Vigilio, la partenza indicata dalla scheda ufficiale",
   "A gravel footpath beside a wooden fence running parallel to a quiet road through pine and larch forest, with parked cars further up": "Un sentiero sterrato accanto a una staccionata in legno, parallelo a una strada tranquilla nel bosco di pini e larici, con auto parcheggiate più in alto",
+  "A clear stream at San Vigilio di Marebbe": "Un ruscello limpido a San Vigilio di Marebbe",
   "Mostly shaded: about seven tenths runs through pine and larch along the stream.": "Per lo più all'ombra: circa sette decimi si snodano tra pini e larici lungo il torrente.",
   "Start in the main square of San Vigilio, the board’s start; the board also lets you start from the Aqua Bad Cortina hotel.": "Parti dalla piazza principale di San Vigilio, la partenza indicata dalla scheda ufficiale; la scheda ufficiale permette anche di partire dall'hotel Aqua Bad Cortina.",
   "From the main square towards Valiares, the “Tres La Val” path to the Ciamaor beach, then on beside the Rü de Rudo stream to a small bridge and Lé dla Creda.": "Dalla piazza principale verso Valiares, il sentiero “Tres La Val” fino alla spiaggia di Ciamaor, poi avanti accanto al torrente Rü de Rudo fino a un ponticello e a Lé dla Creda.",

@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Gravel and pebble footways, asphalt approach": "Sentieri di ghiaia e ciottoli, accesso asfaltato",
   "Lago di Carezza car park (paid); follow the yellow signs through the underpass": "Parcheggio del Lago di Carezza (a pagamento); segui i cartelli gialli attraverso il sottopassaggio",
   "Fireweed in flower on the shore of Lago di Carezza, the turquoise water reflecting spruce forest below the Latemar ridge": "Epilobio in fiore sulla riva del Lago di Carezza, l'acqua turchese che riflette il bosco di abeti rossi sotto la cresta del Latemar",
+  "Mountains reflected in the green water of Lago di Carezza": "Montagne riflesse nell'acqua verde del Lago di Carezza",
+  "Lago di Carezza with the Latemar beyond the forest": "Il Lago di Carezza con il Latemar oltre il bosco",
   "Spruce forest wraps most of the lake circuit; the shore-side edge and the car park are open.": "Il bosco di abeti rossi avvolge gran parte del giro del lago; il bordo lungo la riva e il parcheggio sono aperti.",
   "No route number: from the car park follow the yellow signs through the underpass to the viewing platform, then walk round the lake clockwise.": "Percorso senza numero: dal parcheggio segui i cartelli gialli attraverso il sottopassaggio fino alla piattaforma panoramica, poi fai il giro del lago in senso orario.",
   "Drinking water by the underpass exit": "Acqua potabile all'uscita del sottopasso",

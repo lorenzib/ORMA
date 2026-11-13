@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village lanes and farm tracks; trekking-pram friendly": "Stradine di paese e strade poderali; adatto ai passeggini da trekking",
   "Vigo di Fassa (Strada Rezia), the APT’s start": "Vigo di Fassa (Strada Rezia), la partenza indicata dall'APT",
   "The roofs of Vigo di Fassa under a blue sky, with wooded mountains across the valley": "I tetti di Vigo di Fassa sotto un cielo azzurro, con montagne boscose dall'altra parte della valle",
+  "Vigo di Fassa below the mountains": "Vigo di Fassa sotto le montagne",
+  "Vigo di Fassa seen from the Buffaure cable car": "Vigo di Fassa vista dalla cabinovia del Buffaure",
   "No shade: the whole loop is on the sunny lanes and meadows between the hamlets.": "Nessuna ombra: tutto l'anello si svolge sulle stradine e sui prati soleggiati tra le frazioni.",
   "Start at the tourist office in Strada Rezia, Vigo, the tourist board’s start.": "Parti dall'ufficio turistico in Strada Rezia, Vigo, la partenza indicata dall'ente turistico.",
   "Along Strada Rezia, across the Passo Costalunga road into Strada de Val, up Strada de Somcosta, down Strada de Larcioné to the south of the village, onto the country lane from Soraga, and back along Strada dal Dos and the path beside the main road.": "Lungo Strada Rezia, attraverso la strada del Passo Costalunga in Strada de Val, su per Strada de Somcosta, giù per Strada de Larcioné verso il sud del paese, sulla stradina di campagna da Soraga, e ritorno lungo Strada dal Dos e il sentiero accanto alla strada principale.",
