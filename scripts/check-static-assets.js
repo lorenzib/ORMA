@@ -1,11 +1,14 @@
 const fs = require('fs');
 const path = require('path');
+const { isGeneratedDirectory } = require('./generated-directories');
 
 const root = path.resolve(__dirname, '..');
 
 function walk(directory){
   return fs.readdirSync(directory, { withFileTypes:true }).flatMap(entry => {
-    if(entry.name === 'node_modules' || entry.name === '.git') return [];
+    // Build output (dist, _site, the native app shells' copies of the app
+    // bundle and Gradle's own reports) is not a source page.
+    if(entry.isDirectory() && isGeneratedDirectory(entry.name)) return [];
     const target = path.join(directory, entry.name);
     return entry.isDirectory() ? walk(target) : [target];
   });

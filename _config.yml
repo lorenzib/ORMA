@@ -79,8 +79,9 @@ exclude:
   - _config.yml
   - pages-public-manifest.json
   - capacitor.config.json
-  # The native iPhone project; the app is built from dist/app, not served.
+  # The native iPhone and Android projects; the app is built from dist/app, not served.
   - ios
+  - android
   # Loaded only inside the native app; the website reads the trail list directly.
   - app-trail-data.js
   - app-shell.css
