@@ -252,11 +252,13 @@ describe('the existing-site verification boundary',()=>{
     // at Valdaora di Sopra.
     // Then 520 and 518: GEOWeg and Giro del Zimon removed on 12 November, not
     // walks for dogs (iron stairs and a helmet; an EE path).
-    // Then 523 and 521 with the Dolomites one-way walks, sealed there and
+    // Then 522 and 520 with Dolomites batch 11: the Proazei loop and Cima
+    // Gogna to Zamberlan above Auronzo di Cadore.
+    // Then 525 and 523 with the Dolomites one-way walks, sealed there and
     // back on the same path: Castello di Andraz, Sorafurcia to Plan de
     // Corones and the Steinmeile at Valdaora di Sotto.
-    expect(catalogue).toHaveLength(523);
-    expect(currentSiteTrails(catalogue)).toHaveLength(521);
+    expect(catalogue).toHaveLength(525);
+    expect(currentSiteTrails(catalogue)).toHaveLength(523);
   });
 
   test('requires the artwork the public trail page needs',()=>{
