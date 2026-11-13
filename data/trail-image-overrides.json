@@ -343,6 +343,40 @@
       }
     },
     {
+      "id": "auronzo-proazei",
+      "approvedReviewId": "commons-auronzo-proazei-on-route",
+      "approvedAt": "2026-11-12T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/auronzo-ponte-transacqua.jpg",
+        "heroImage": "images/trails/auronzo-ponte-transacqua.jpg",
+        "imageAlt": "A long low bridge across a turquoise mountain lake, with pedal boats in the foreground, a village of chalets behind and steep wooded slopes rising to rocky peaks",
+        "imageCredit": "Transacqua bridge, Lake Auronzo",
+        "imageCreditText": "Transacqua bridge, Lake Auronzo by Kufoleto",
+        "imageCreator": "Kufoleto",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auronzo_transacqua_bridge_2.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "auronzo-zamberlan",
+      "approvedReviewId": "commons-auronzo-zamberlan-on-route",
+      "approvedAt": "2026-11-12T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/auronzo-zamberlan-track.jpg",
+        "heroImage": "images/trails/auronzo-zamberlan-track.jpg",
+        "imageAlt": "A neat stack of cut spruce logs beside a forest track in a dim spruce wood, with autumn light behind",
+        "imageCredit": "Forest track near Auronzo",
+        "imageCreditText": "Forest track near Auronzo by Kufoleto",
+        "imageCreator": "Kufoleto",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cumulo_legna_auronzo.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "bormio-da-arnoga-al-rifugio-federico",
       "approvedReviewId": "commons-bormio-da-arnoga-al-rifugio-federico-on-route",
       "approvedAt": "2026-10-28T12:00:00.000Z",
