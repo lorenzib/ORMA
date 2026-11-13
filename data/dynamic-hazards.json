@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-13T11:14:32.054Z",
+  "generatedAt": "2026-11-13T14:16:21.631Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-13T11:14:32.054Z",
+      "lastSeenAt": "2026-11-13T14:16:21.631Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -60,7 +60,7 @@
       "effectiveAt": "2026-11-12T21:00:00+00:00",
       "expiresAt": "2026-11-13T23:00:00+00:00",
       "firstPublishedAt": "2026-11-12T05:16:20.516Z",
-      "lastSeenAt": "2026-11-13T11:14:32.054Z",
+      "lastSeenAt": "2026-11-13T14:16:21.631Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -111,7 +111,7 @@
       "effectiveAt": "2026-11-12T21:00:00+00:00",
       "expiresAt": "2026-11-13T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-13T11:14:32.054Z",
+      "lastSeenAt": "2026-11-13T14:16:21.631Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -148,7 +148,7 @@
       "effectiveAt": "2026-11-12T21:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-13T11:14:32.054Z",
+      "lastSeenAt": "2026-11-13T14:16:21.631Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -185,7 +185,7 @@
       "effectiveAt": "2026-11-12T21:00:00+00:00",
       "expiresAt": "2026-11-12T23:00:00+00:00",
       "firstPublishedAt": "2026-11-11T17:15:13.589Z",
-      "lastSeenAt": "2026-11-13T11:14:32.054Z",
+      "lastSeenAt": "2026-11-13T14:16:21.631Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -298,7 +298,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-13T11:14:32.054Z",
+      "lastSeenAt": "2026-11-13T14:16:21.631Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -333,7 +333,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-12T17:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-13T11:14:32.054Z",
+      "lastSeenAt": "2026-11-13T14:16:21.631Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -678,7 +678,9 @@
         "valdisole-peio-paese-lago-covel",
         "valdisole-percorso-geologico-in-val-di-rabbi",
         "valdisole-percorso-della-fauna-in-val-di-peio",
-        "kronplatz-sulle-tracce-della-lacerta-prima"
+        "kronplatz-sulle-tracce-della-lacerta-prima",
+        "kronplatz-sorafurcia-plan-de-corones",
+        "kronplatz-steinmeile"
       ],
       "trailNames": [
         "Alpe di Siusi Meadow Loop",
@@ -1023,7 +1025,9 @@
         "Peio Paese to Lago Covel",
         "Geology trail in the Val di Rabbi",
         "Wildlife trail in the Val di Peio",
-        "Lacerta Prima theme trail at Valdaora di Sopra"
+        "Lacerta Prima theme trail at Valdaora di Sopra",
+        "Sorafurcia to Plan de Corones",
+        "Steinmeile stone trail"
       ],
       "sourceStatus": "available"
     },
@@ -1042,7 +1046,7 @@
       "effectiveAt": "2026-11-13T00:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-13T11:14:32.054Z",
+      "lastSeenAt": "2026-11-13T14:16:21.631Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -1068,7 +1072,8 @@
         "zoldo-bosco-secolare",
         "colle-passeggiata-intorno-al-colle",
         "auronzo-proazei",
-        "auronzo-zamberlan"
+        "auronzo-zamberlan",
+        "arabba-castello-di-andraz-passeggiata-per-famiglie"
       ],
       "trailNames": [
         "Passo Giau to Rifugio Nuvolau",
@@ -1094,7 +1099,8 @@
         "Astragal to Villa through the old forest",
         "Walk round the Colle di Santa Lucia",
         "Proazei loop above Lake Auronzo",
-        "Cima Gogna to Zamberlan"
+        "Cima Gogna to Zamberlan",
+        "Castello di Andraz"
       ],
       "sourceStatus": "available"
     },
@@ -1113,7 +1119,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-13T11:14:32.054Z",
+      "lastSeenAt": "2026-11-13T14:16:21.631Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
