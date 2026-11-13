@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Mountain paths, field paths and a short farm road": "Sentieri di montagna, sentieri tra i campi e una breve strada agricola",
   "Top station of the Texelbahn above Partschins, the board’s start": "Stazione a monte della Texelbahn sopra Partschins, punto di partenza della scheda ufficiale",
   "A narrow earth path winding between large granite boulders and long summer grass, with a dry-stone wall on the right": "Uno stretto sentiero di terra che si snoda tra grandi massi di granito ed erba alta estiva, con un muretto a secco a destra",
+  "The Adige valley from the Giggelberg": "La valle dell'Adige dal Giggelberg",
   "The walk starts at the top station of the Texelbahn above Partschins; its cabins are closed. It ends at the valley station. Dogs ride on a lead and muzzled.": "La passeggiata parte dalla stazione a monte della Texelbahn sopra Partschins; le cabine sono chiuse. Termina alla stazione a valle. I cani viaggiano al guinzaglio e con la museruola.",
   "Mostly open: about a fifth runs through mapped larch woods; the Höhenweg and the farm meadows are in full sun.": "Per lo più aperto: circa un quinto attraversa boschi di larici segnati sulla mappa; il Höhenweg e i prati dei masi sono in pieno sole.",
   "Ride the Texelbahn up from Partschins and start at its top station, the board’s start.": "Sali con la Texelbahn da Partschins e parti dalla stazione a monte, la partenza indicata dalla scheda ufficiale.",

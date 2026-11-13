@@ -8,6 +8,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest path and track": "Sentiero nel bosco e sterrata",
   "The Maria Weißenstein car park at the Pietralba sanctuary (1,520 m), the board’s start": "Il parcheggio Maria Weißenstein al santuario di Pietralba (1.520 m), la partenza della scheda ufficiale",
   "A wide gravel track curving past a small stone outbuilding with a tiled roof, between meadows and leafy trees under a grey sky": "Un'ampia sterrata che curva accanto a un piccolo edificio in pietra con tetto di tegole, tra prati e alberi frondosi sotto un cielo grigio",
+  "The view from Maria Weissenstein": "La vista da Pietralba",
   "Mostly shaded: about four fifths runs through mapped forest.": "Per lo più all'ombra: circa quattro quinti del percorso passano nel bosco cartografato.",
   "Start at the Maria Weißenstein car park by the Pietralba sanctuary (1,520 m), the board’s start.": "Parti dal parcheggio Maria Weißenstein vicino al santuario di Pietralba (1.520 m), la partenza della scheda ufficiale.",
   "Follow the forest path marked 2 through woods and clearings to the Malga Monte San Pietro (Petersberger Leger). Come back the same way.": "Segui il sentiero nel bosco segnato 2 tra boschi e radure fino alla Malga Monte San Pietro (Petersberger Leger). Torna per la stessa strada.",

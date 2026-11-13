@@ -450,6 +450,2676 @@
           "sourcePage": "https://commons.wikimedia.org/wiki/File:Ronacherfels,_Wei%C3%9Fensee.jpg"
         }
       ]
+    },
+    {
+      "id": "alpe-siusi",
+      "photos": [
+        {
+          "image": "images/trails/alpe-siusi-gallery-le-odle-dall-alpe-di.jpg",
+          "alt": "The Odle peaks seen across the Alpe di Siusi meadows",
+          "title": "Le Odle dall'Alpe di Siusi - panoramio",
+          "creator": "Francesco Zanardini",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Le_Odle_dall%27Alpe_di_Siusi_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/alpe-siusi-gallery-sassolungo-e-sassopiatto-dall-alpe.jpg",
+          "alt": "Sassolungo and Sassopiatto above the Alpe di Siusi",
+          "title": "Sassolungo e Sassopiatto dall'Alpe di Siusi - panoramio",
+          "creator": "Francesco Zanardini",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sassolungo_e_Sassopiatto_dall%27Alpe_di_Siusi_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "tre-cime",
+      "photos": [
+        {
+          "image": "images/trails/tre-cime-gallery-tre-cime-di-lavaredo.jpg",
+          "alt": "The north faces of the Tre Cime di Lavaredo",
+          "title": "Tre Cime di Lavaredo - panoramio (2)",
+          "creator": "Pavel Špindler",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tre_Cime_di_Lavaredo_-_panoramio_(2).jpg"
+        },
+        {
+          "image": "images/trails/tre-cime-gallery-rif-auronzo-dc.jpg",
+          "alt": "Rifugio Auronzo below rocky peaks",
+          "title": "Rif. auronzo (DC) - panoramio",
+          "creator": "corinasdavide",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Rif._auronzo_(DC)_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prato-piazza",
+      "photos": [
+        {
+          "image": "images/trails/prato-piazza-gallery-pragser-dolomiten-platzwiese-2017-09.jpg",
+          "alt": "The Prato Piazza meadows from the air, Monte Cristallo behind",
+          "title": "Pragser Dolomiten Plätzwiese-2017-09-21-16-21-49-Pano",
+          "creator": "Alexander Hoernigk",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Pragser_Dolomiten_Pl%C3%A4tzwiese-2017-09-21-16-21-49-Pano.jpg"
+        },
+        {
+          "image": "images/trails/prato-piazza-gallery-platzwiese-fort-am-strudelkopfsattel-2017.jpg",
+          "alt": "The ruined fort at the edge of the Prato Piazza meadows",
+          "title": "Plätzwiese Fort am Strudelkopfsattel -2017-09-21-12-18-26",
+          "creator": "Alexander Hoernigk",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Pl%C3%A4tzwiese_Fort_am_Strudelkopfsattel_-2017-09-21-12-18-26.jpg"
+        }
+      ]
+    },
+    {
+      "id": "lago-braies",
+      "photos": [
+        {
+          "image": "images/trails/lago-braies-gallery-lago-di-braies-dc.jpg",
+          "alt": "Lago di Braies under steep forested slopes",
+          "title": "Lago di Braies (DC) - panoramio",
+          "creator": "corinasdavide",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Braies_(DC)_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/lago-braies-gallery-croda-del-becco-lago-braies.jpg",
+          "alt": "Croda del Becco rising above Lago di Braies",
+          "title": "Croda del Becco - Lago Braies - panoramio",
+          "creator": "Francesco Zanardini",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Croda_del_Becco_-_Lago_Braies_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "lago-carezza",
+      "photos": [
+        {
+          "image": "images/trails/lago-carezza-gallery-karersee-in-south-tyrol-water.jpg",
+          "alt": "Mountains reflected in the green water of Lago di Carezza",
+          "title": "Karersee in South Tyrol — water reflections — Sony DSC-HX5V — 2011-05-26 — Mattes",
+          "creator": "Mattes",
+          "licence": "Public domain",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Karersee_in_South_Tyrol_%E2%80%94_water_reflections_%E2%80%94_Sony_DSC-HX5V_%E2%80%94_2011-05-26_%E2%80%94_Mattes.jpg"
+        },
+        {
+          "image": "images/trails/lago-carezza-gallery-karersee-4.jpg",
+          "alt": "Lago di Carezza with the Latemar beyond the forest",
+          "title": "Karersee 4",
+          "creator": "Mattes",
+          "licence": "Public domain",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Karersee_4.jpg"
+        }
+      ]
+    },
+    {
+      "id": "lago-sorapis",
+      "photos": [
+        {
+          "image": "images/trails/lago-sorapis-gallery-cima-cadin-della-neve-and.jpg",
+          "alt": "Cima Cadin della Neve above the Val d'Ansiei",
+          "title": "Cima Cadin della Neve and others from Val d'Ansiei in Auronzo di Cadore, Belluno, Veneto, Italy, 2025 October",
+          "creator": "Ximonic (Simo Räsänen)",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Cima_Cadin_della_Neve_and_others_from_Val_d%27Ansiei_in_Auronzo_di_Cadore,_Belluno,_Veneto,_Italy,_2025_October.jpg"
+        },
+        {
+          "image": "images/trails/lago-sorapis-gallery-croda-rotta-and-cima-de.jpg",
+          "alt": "Croda Rotta and Cima de Marchi from the north",
+          "title": "Croda Rotta and Cima de Marchi from north, Auronzo di Cadore, Belluno, Veneto, Italy, 2025 October",
+          "creator": "Ximonic (Simo Räsänen)",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Croda_Rotta_and_Cima_de_Marchi_from_north,_Auronzo_di_Cadore,_Belluno,_Veneto,_Italy,_2025_October.jpg"
+        }
+      ]
+    },
+    {
+      "id": "giro-del-bulacia",
+      "photos": [
+        {
+          "image": "images/trails/giro-del-bulacia-gallery-sassolungo-da-puflatsch.jpg",
+          "alt": "Sassolungo seen from the Bullaccia meadows",
+          "title": "Sassolungo da puflatsch - panoramio",
+          "creator": "Gianni Bassini",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sassolungo_da_puflatsch_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-1116675",
+      "photos": [
+        {
+          "image": "images/trails/osm-1116675-gallery-rotwandwiesenhutte.jpg",
+          "alt": "The Rotwandwiesen hut in morning light",
+          "title": "Rotwandwiesenhütte",
+          "creator": "FkMohr",
+          "licence": "CC BY 3.0 de",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/de/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Rotwandwiesenh%C3%BCtte.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-1116680",
+      "photos": [
+        {
+          "image": "images/trails/osm-1116680-gallery-sexten-schmiedenwalder-014-2019-09.jpg",
+          "alt": "Forest and peaks above Sexten",
+          "title": "Sexten Schmiedenwälder 014 2019 09 28",
+          "creator": "Friedrich Haag",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sexten_Schmiedenw%C3%A4lder_014_2019_09_28.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-2179746",
+      "photos": [
+        {
+          "image": "images/trails/osm-2179746-gallery-castelfeder.jpg",
+          "alt": "The grassy hilltop of Castelfeder",
+          "title": "Castelfeder - panoramio",
+          "creator": "Figure",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Castelfeder_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/osm-2179746-gallery-castelfeder-6460.jpg",
+          "alt": "Rocky slopes and oaks on Castelfeder",
+          "title": "Castelfeder-6460",
+          "creator": "DKrieger",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Castelfeder-6460.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-3202880",
+      "photos": [
+        {
+          "image": "images/trails/osm-3202880-gallery-lago-di-monticolo-photo-by.jpg",
+          "alt": "Lago di Monticolo framed by trees",
+          "title": "Lago di Monticolo - Photo by Giovanni Ussi - Lago Grande 31",
+          "creator": "Giovanni Ussi",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Monticolo_-_Photo_by_Giovanni_Ussi_-_Lago_Grande_31.jpg"
+        },
+        {
+          "image": "images/trails/osm-3202880-gallery-lago-di-monticolo-photo-by-2.jpg",
+          "alt": "The clear water of Lago di Monticolo",
+          "title": "Lago di Monticolo - Photo by Giovanni Ussi - Lago Grande 36",
+          "creator": "Giovanni Ussi",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Monticolo_-_Photo_by_Giovanni_Ussi_-_Lago_Grande_36.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-3885162",
+      "photos": [
+        {
+          "image": "images/trails/osm-3885162-gallery-2011-04-07-10-41.jpg",
+          "alt": "Meadows and peaks above the Ultental",
+          "title": "2011-04-07 10-41-01 Italy Trentino-Alto Adige Santa Valpurga",
+          "creator": "Hansueli Krapf",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:2011-04-07_10-41-01_Italy_Trentino-Alto_Adige_Santa_Valpurga.jpg"
+        },
+        {
+          "image": "images/trails/osm-3885162-gallery-zoggler-stausee-im-august-2025.jpg",
+          "alt": "The Zoggler reservoir in the Ultental, water low",
+          "title": "Zoggler-Stausee im August 2025",
+          "creator": "Carbayon",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Zoggler-Stausee_im_August_2025.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-7446701",
+      "photos": [
+        {
+          "image": "images/trails/osm-7446701-gallery-kolbenspitze-und-pfelderer-tal.jpg",
+          "alt": "The Kolbenspitze above the Pfelders valley",
+          "title": "Kolbenspitze und Pfelderer Tal",
+          "creator": "Puusterke",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Kolbenspitze_und_Pfelderer_Tal.jpg"
+        },
+        {
+          "image": "images/trails/osm-7446701-gallery-kolbenspitze.jpg",
+          "alt": "The Kolbenspitze from the valley meadows",
+          "title": "Kolbenspitze",
+          "creator": "Puusterke",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Kolbenspitze.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-9487078",
+      "photos": [
+        {
+          "image": "images/trails/osm-9487078-gallery-siusi-castel-hauenstein-02.jpg",
+          "alt": "The ruins of Hauenstein castle in the forest above Seis",
+          "title": "Siusi - Castel Hauenstein 02",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Siusi_-_Castel_Hauenstein_02.jpg"
+        },
+        {
+          "image": "images/trails/osm-9487078-gallery-siusi-allo-sciliar.jpg",
+          "alt": "Seis am Schlern with the valley below",
+          "title": "Siusi allo Sciliar",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Siusi_allo_Sciliar.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-9493733",
+      "photos": [
+        {
+          "image": "images/trails/osm-9493733-gallery-badia-mountains-2.jpg",
+          "alt": "Mountain view above Badia",
+          "title": "Badia - mountains 2",
+          "creator": "Tiia Monto",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Badia_-_mountains_2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-9511973",
+      "photos": [
+        {
+          "image": "images/trails/osm-9511973-gallery-gran-ega-river.jpg",
+          "alt": "The Gran Ega river along a path in Badia",
+          "title": "Gran Ega river",
+          "creator": "Tiia Monto",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Gran_Ega_river.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-11764094",
+      "photos": [
+        {
+          "image": "images/trails/osm-11764094-gallery-natz-310807.jpg",
+          "alt": "Natz and its orchards on the plateau",
+          "title": "Natz 310807",
+          "creator": "Bernd Haynold",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Natz_310807.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-11774783",
+      "photos": [
+        {
+          "image": "images/trails/osm-11774783-gallery-gufidaun-sudtirol.jpg",
+          "alt": "The village of Gufidaun on its hillside",
+          "title": "Gufidaun (Südtirol)",
+          "creator": "Rolf Kranz",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Gufidaun_(S%C3%BCdtirol).jpg"
+        },
+        {
+          "image": "images/trails/osm-11774783-gallery-kloster-saben.jpg",
+          "alt": "Säben monastery on its rock above the valley",
+          "title": "Kloster Säben",
+          "creator": "Rolf Kranz",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Kloster_S%C3%A4ben.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-11775760",
+      "photos": [
+        {
+          "image": "images/trails/osm-11775760-gallery-vahrn-bachbauer-bd-17793-1.jpg",
+          "alt": "An old wooden farmhouse at Vahrn",
+          "title": "Vahrn Bachbauer (BD 17793 1 05-2015)",
+          "creator": "Oliver Abels",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Vahrn_Bachbauer_(BD_17793_1_05-2015).jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-11828233",
+      "photos": [
+        {
+          "image": "images/trails/osm-11828233-gallery-wurmaulspitze-2.jpg",
+          "alt": "The Wurmaulspitze above high pastures",
+          "title": "Wurmaulspitze 2",
+          "creator": "Plentn",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Wurmaulspitze_2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-11832013",
+      "photos": [
+        {
+          "image": "images/trails/osm-11832013-gallery-lago-di-valdurna-04.jpg",
+          "alt": "Lake Durnholz between forested slopes",
+          "title": "Lago di Valdurna 04",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Valdurna_04.jpg"
+        },
+        {
+          "image": "images/trails/osm-11832013-gallery-valdurna.jpg",
+          "alt": "The village of Durnholz above its lake",
+          "title": "Valdurna",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Valdurna.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-11839597",
+      "photos": [
+        {
+          "image": "images/trails/osm-11839597-gallery-vista-dal-tschusihof.jpg",
+          "alt": "A view over the forest from the Tschusi farm",
+          "title": "Vista dal tschusihof - panoramio (1)",
+          "creator": "Gianni Bassini",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Vista_dal_tschusihof_-_panoramio_(1).jpg"
+        },
+        {
+          "image": "images/trails/osm-11839597-gallery-view.jpg",
+          "alt": "Dolomite peaks under cloud from the Fenn promenade",
+          "title": "..... - panoramio (1)",
+          "creator": "Mykola Berkash",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:....._-_panoramio_(1).jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-11855879",
+      "photos": [
+        {
+          "image": "images/trails/osm-11855879-gallery-sella-ostflanke-2017.jpg",
+          "alt": "The eastern peaks of the Sella group",
+          "title": "Sella Ostflanke 2017",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sella_Ostflanke_2017.jpg"
+        },
+        {
+          "image": "images/trails/osm-11855879-gallery-with-sas-cherz-view-ski.jpg",
+          "alt": "Snowy slopes of Sas Cherz above Arabba",
+          "title": "With Sas Cherz view Ski resort Arabba-Marmolada - panoramio",
+          "creator": "Zoran Kurelić Rabko",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:With_Sas_Cherz_view_Ski_resort_Arabba-Marmolada_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-12142337",
+      "photos": [
+        {
+          "image": "images/trails/osm-12142337-gallery-vista-utia-vaciara-1.jpg",
+          "alt": "Meadows and peaks seen from Utia Vaciara",
+          "title": "Vista Utia Vaciara (1)",
+          "creator": "Andrek02",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Vista_Utia_Vaciara_(1).jpg"
+        },
+        {
+          "image": "images/trails/osm-12142337-gallery-peitlerkofel-in-trentino-alto-adige.jpg",
+          "alt": "The Peitlerkofel in evening light",
+          "title": "Peitlerkofel in Trentino-Alto Adige, Italy, 2025 October",
+          "creator": "Ximonic (Simo Räsänen)",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Peitlerkofel_in_Trentino-Alto_Adige,_Italy,_2025_October.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-12182936",
+      "photos": [
+        {
+          "image": "images/trails/osm-12182936-gallery-sarner-scharte-sarentino.jpg",
+          "alt": "The Sarntal mountains near the Sarner Scharte",
+          "title": "Sarner Scharte - Sarentino - panoramio",
+          "creator": "Mario Penner",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sarner_Scharte_-_Sarentino_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/osm-12182936-gallery-castel-regino-by-drone-01.jpg",
+          "alt": "Reinegg castle on its wooded hill in the Sarntal",
+          "title": "Castel Regino by drone 01",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Castel_Regino_by_drone_01.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-12731853",
+      "photos": [
+        {
+          "image": "images/trails/osm-12731853-gallery-brixen-pfeffersberg.jpg",
+          "alt": "Brixen and the slopes of the Pfeffersberg",
+          "title": "Brixen Pfeffersberg",
+          "creator": "Plentn",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Brixen_Pfeffersberg.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-13491868",
+      "photos": [
+        {
+          "image": "images/trails/osm-13491868-gallery-klausen-kloster-saben-15429-15430.jpg",
+          "alt": "Säben monastery above Klausen",
+          "title": "Klausen Kloster Säben (15429,15430)",
+          "creator": "Oliver Abels ( SBT )",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Klausen_Kloster_S%C3%A4ben_(15429,15430).JPG"
+        }
+      ]
+    },
+    {
+      "id": "osm-19697977",
+      "photos": [
+        {
+          "image": "images/trails/osm-19697977-gallery-tiroler-grauvieh-cattle-sarntal-20200825.jpg",
+          "alt": "Two grey cattle grazing in the Sarntal Alps",
+          "title": "Tiroler Grauvieh cattle Sarntal 20200825 n1",
+          "creator": "Marie-Lan Taÿ Pamart",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tiroler_Grauvieh_cattle_Sarntal_20200825_n1.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-19703479",
+      "photos": [
+        {
+          "image": "images/trails/osm-19703479-gallery-20180707-voran-sudtirol-01.jpg",
+          "alt": "Meadows and forest at Vöran",
+          "title": "20180707 Vöran - Südtirol 01",
+          "creator": "Commander-pirx",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:20180707_V%C3%B6ran_-_S%C3%BCdtirol_01.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-19974725",
+      "photos": [
+        {
+          "image": "images/trails/osm-19974725-gallery-karersee-hdr.jpg",
+          "alt": "Lago di Carezza and the forest around it",
+          "title": "Karersee HDR",
+          "creator": "Afrank99",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Karersee_HDR.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-7426648",
+      "photos": [
+        {
+          "image": "images/trails/osm-7426648-gallery-17579-burg-thurnstein-castel-torre.jpg",
+          "alt": "Thurnstein castle above the Adige valley",
+          "title": "17579 Burg Thurnstein Castel Torre Tirol 20220909 0262",
+          "creator": "Tilman2007",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:17579_Burg_Thurnstein_Castel_Torre_Tirol_20220909_0262.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-7424683",
+      "photos": [
+        {
+          "image": "images/trails/osm-7424683-gallery-leben-holderberg-5990-2.jpg",
+          "alt": "Lebenberg castle among vineyards",
+          "title": "Leben-Holderberg-5990-2",
+          "creator": "Dietrich Krieger",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Leben-Holderberg-5990-2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-6453504",
+      "photos": [
+        {
+          "image": "images/trails/osm-6453504-gallery-kirchlein-unterhalb-des-aschbacherhofs.jpg",
+          "alt": "The small chapel below the Aschbach farm",
+          "title": "Kirchlein unterhalb des Aschbacherhofs - panoramio",
+          "creator": "Jürgen Kehrberger",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Kirchlein_unterhalb_des_Aschbacherhofs_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-1671736",
+      "photos": [
+        {
+          "image": "images/trails/osm-1671736-gallery-schenna-st-georgen-falschauer-valley.jpg",
+          "alt": "The Ultental and the Ortler Alps from St. Georgen",
+          "title": "Schenna St. Georgen Falschauer Valley and Ortler Alps 2",
+          "creator": "Ymblanter",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Schenna_St._Georgen_Falschauer_Valley_and_Ortler_Alps_2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-9648632",
+      "photos": [
+        {
+          "image": "images/trails/osm-9648632-gallery-st-christina-groden.jpg",
+          "alt": "Santa Cristina and the Val Gardena",
+          "title": "St. Christina (Gröden)",
+          "creator": "Otto Domes",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:St._Christina_(Gr%C3%B6den).jpg"
+        },
+        {
+          "image": "images/trails/osm-9648632-gallery-langental-aus-monte-pana.jpg",
+          "alt": "The Vallunga seen from Monte Pana",
+          "title": "Langental aus Monte Pana",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Langental_aus_Monte_Pana.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-11768853",
+      "photos": [
+        {
+          "image": "images/trails/osm-11768853-gallery-feldthurns-maria-himmelfahrt-14795-panorama.jpg",
+          "alt": "Feldthurns and its church above the Eisack valley",
+          "title": "Feldthurns Mariä Himmelfahrt (14795) Panorama",
+          "creator": "Oliver Abels ( SBT )",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Feldthurns_Mari%C3%A4_Himmelfahrt_(14795)_Panorama.JPG"
+        }
+      ]
+    },
+    {
+      "id": "osm-11833313",
+      "photos": [
+        {
+          "image": "images/trails/osm-11833313-gallery-kiens-de-rienz-img-1138.jpg",
+          "alt": "The Rienz river at Kiens",
+          "title": "Kiens, de Rienz IMG 1138 2019-08-04 09.50",
+          "creator": "Michielverbeek",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Kiens,_de_Rienz_IMG_1138_2019-08-04_09.50.jpg"
+        },
+        {
+          "image": "images/trails/osm-11833313-gallery-kiens-de-rienz-img-1108.jpg",
+          "alt": "The Rienz river flowing through woods at Kiens",
+          "title": "Kiens, de Rienz IMG 1108 2019-08-03 20.31",
+          "creator": "Michielverbeek",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Kiens,_de_Rienz_IMG_1108_2019-08-03_20.31.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-12737724",
+      "photos": [
+        {
+          "image": "images/trails/osm-12737724-gallery-route-from-austrian-border-to.jpg",
+          "alt": "Meadows and church at St. Peter near Feldthurns",
+          "title": "Route from Austrian border to Milan. August 2016. (34220704202)",
+          "creator": "Alexander Baranov from Montpellier, France",
+          "licence": "CC BY 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Route_from_Austrian_border_to_Milan._August_2016._(34220704202).jpg"
+        },
+        {
+          "image": "images/trails/osm-12737724-gallery-tiso-by-drone-01.jpg",
+          "alt": "The village of Teis from above",
+          "title": "Tiso by drone 01",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tiso_by_drone_01.jpg"
+        }
+      ]
+    },
+    {
+      "id": "osm-6401355",
+      "photos": [
+        {
+          "image": "images/trails/osm-6401355-gallery-st-nikolaus-in-hof-enneberg.jpg",
+          "alt": "The Gader valley below the Kronplatz",
+          "title": "St. Nikolaus in Hof, Enneberg 02",
+          "creator": "Braveheart",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:St._Nikolaus_in_Hof,_Enneberg_02.jpg"
+        },
+        {
+          "image": "images/trails/osm-6401355-gallery-piz-da-peres.jpg",
+          "alt": "The Piz da Peres ridge",
+          "title": "Piz da Peres - panoramio",
+          "creator": "Francesco Zanardini",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Piz_da_Peres_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fassa-da-canazei-a-penia",
+      "photos": [
+        {
+          "image": "images/trails/fassa-da-canazei-a-penia-gallery-canazei-province-of-trento-italy.jpg",
+          "alt": "Canazei below the peaks of the Val di Fassa",
+          "title": "Canazei, Province of Trento, Italy - panoramio (26)",
+          "creator": "Marco Salvatori",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Canazei,_Province_of_Trento,_Italy_-_panoramio_(26).jpg"
+        },
+        {
+          "image": "images/trails/fassa-da-canazei-a-penia-gallery-mountain-valley-in-canazei.jpg",
+          "alt": "A mountain valley above Canazei",
+          "title": "Mountain valley in Canazei (Unsplash)",
+          "creator": "Benjamin Voros vorosbenisop",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Mountain_valley_in_Canazei_(Unsplash).jpg"
+        }
+      ]
+    },
+    {
+      "id": "fassa-sentiero-della-foresta",
+      "photos": [
+        {
+          "image": "images/trails/fassa-sentiero-della-foresta-gallery-piste-di-vigo.jpg",
+          "alt": "Peaks above the slopes at Vigo di Fassa",
+          "title": "Piste di Vigo - panoramio",
+          "creator": "Pier B.",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Piste_di_Vigo_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/fassa-sentiero-della-foresta-gallery-gruppo-del-catinaccio-valli-del.jpg",
+          "alt": "The Catinaccio group above the Vajolet valleys",
+          "title": "Gruppo del Catinaccio - Valli del Vajolet",
+          "creator": "Adert",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Gruppo_del_Catinaccio_-_Valli_del_Vajolet.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fassa-antichi-bagnes",
+      "photos": [
+        {
+          "image": "images/trails/fassa-antichi-bagnes-gallery-catinaccio-pozza-di-fassa-italy.jpg",
+          "alt": "The Catinaccio above Pozza di Fassa",
+          "title": "Catinaccio Pozza di Fassa Italy - panoramio (1)",
+          "creator": "Hiroki Ogawa",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Catinaccio_Pozza_di_Fassa_Italy_-_panoramio_(1).jpg"
+        }
+      ]
+    },
+    {
+      "id": "fassa-borgo-dei-patins",
+      "photos": [
+        {
+          "image": "images/trails/fassa-borgo-dei-patins-gallery-vigo-di-fassa-province-of.jpg",
+          "alt": "Vigo di Fassa below the mountains",
+          "title": "Vigo di Fassa, Province of Trento, Italy - panoramio",
+          "creator": "Carsten Wiehe",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Vigo_di_Fassa,_Province_of_Trento,_Italy_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/fassa-borgo-dei-patins-gallery-vigo-di-fassa-da-cabinovia.jpg",
+          "alt": "Vigo di Fassa seen from the Buffaure cable car",
+          "title": "Vigo di Fassa da cabinovia Buffaure",
+          "creator": "Bbruno",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Vigo_di_Fassa_da_cabinovia_Buffaure.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fassa-prato-di-sorte",
+      "photos": [
+        {
+          "image": "images/trails/fassa-prato-di-sorte-gallery-parco-richard-lowy-a-moena.jpg",
+          "alt": "The Richard Löwy park in Moena",
+          "title": "Parco \"Richard Löwy\" a Moena",
+          "creator": "Holapaco77",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Parco_%22Richard_L%C3%B6wy%22_a_Moena.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fassa-passato-ritrovato",
+      "photos": [
+        {
+          "image": "images/trails/fassa-passato-ritrovato-gallery-campitello-di-fassa-province-of.jpg",
+          "alt": "Campitello di Fassa below the Sassolungo",
+          "title": "Campitello di Fassa, Province of Trento, Italy - panoramio (6)",
+          "creator": "Marco Salvatori",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Campitello_di_Fassa,_Province_of_Trento,_Italy_-_panoramio_(6).jpg"
+        },
+        {
+          "image": "images/trails/fassa-passato-ritrovato-gallery-canazei-granite-ridges.jpg",
+          "alt": "Granite ridges above Canazei",
+          "title": "Canazei granite ridges (Unsplash)",
+          "creator": "Benjamin Voros vorosbenisop",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Canazei_granite_ridges_(Unsplash).jpg"
+        }
+      ]
+    },
+    {
+      "id": "fassa-santuario-dei-pellegrini",
+      "photos": [
+        {
+          "image": "images/trails/fassa-santuario-dei-pellegrini-gallery-nach-sellajoch.jpg",
+          "alt": "Peaks on the road towards the Sella pass",
+          "title": "NACH SELLAJOCH - panoramio",
+          "creator": "johanvanbetsbrugge",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:NACH_SELLAJOCH_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/fassa-santuario-dei-pellegrini-gallery-s-giuliana.jpg",
+          "alt": "The church of Santa Giuliana in a meadow",
+          "title": "S. Giuliana - panoramio (1)",
+          "creator": "Fabio Poggi",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:S._Giuliana_-_panoramio_(1).jpg"
+        }
+      ]
+    },
+    {
+      "id": "fassa-malga-aloch",
+      "photos": [
+        {
+          "image": "images/trails/fassa-malga-aloch-gallery-ita-trentino-alto-adige-provincia.jpg",
+          "alt": "Meadows and forest below the Buffaure",
+          "title": "ITA — Trentino-Alto Adige — Provincia autonoma di Trento — Pozza di Fassa — Piaza de Sèn Nicolò, 4 (cabinovia Buffaure) Mattes 2023-06-13",
+          "creator": "Mateus2019",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:ITA_%E2%80%94_Trentino-Alto_Adige_%E2%80%94_Provincia_autonoma_di_Trento_%E2%80%94_Pozza_di_Fassa_%E2%80%94_Piaza_de_S%C3%A8n_Nicol%C3%B2,_4_(cabinovia_Buffaure)_Mattes_2023-06-13.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fassa-alpe-di-fuciade",
+      "photos": [
+        {
+          "image": "images/trails/fassa-alpe-di-fuciade-gallery-fuciadeinverno.jpg",
+          "alt": "The Fuciade pastures in winter",
+          "title": "FuciadeInverno",
+          "creator": "Adert",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:FuciadeInverno.jpg"
+        }
+      ]
+    },
+    {
+      "id": "primiero-fiera-pieve",
+      "photos": [
+        {
+          "image": "images/trails/primiero-fiera-pieve-gallery-fall-trees-and-covered-bridge.jpg",
+          "alt": "Autumn trees by the river at Fiera di Primiero",
+          "title": "Fall Trees and Covered Bridge - Fiera di Primiero",
+          "creator": "Eric Kilby",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Fall_Trees_and_Covered_Bridge_-_Fiera_di_Primiero.jpg"
+        }
+      ]
+    },
+    {
+      "id": "primiero-anello-poit-cordogne-san-giovanni",
+      "photos": [
+        {
+          "image": "images/trails/primiero-anello-poit-cordogne-san-giovanni-gallery-dolomites-29185385265.jpg",
+          "alt": "Dolomite peaks above green meadows near Primiero",
+          "title": "Dolomites (29185385265)",
+          "creator": "Nick Savchenko from Kiev, Ukraine",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Dolomites_(29185385265).jpg"
+        }
+      ]
+    },
+    {
+      "id": "cortina-malga-ra-stua",
+      "photos": [
+        {
+          "image": "images/trails/cortina-malga-ra-stua-gallery-ra-aga-de-cianpo-de.jpg",
+          "alt": "The Aga de Cianpo de Crósc stream near Malga Ra Stua",
+          "title": "Ra Aga de Cianpo de Crósc n2",
+          "creator": "Marie-Lan Taÿ Pamart",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Ra_Aga_de_Cianpo_de_Cr%C3%B3sc_n2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cortina-passeggiata-gourmet",
+      "photos": [
+        {
+          "image": "images/trails/cortina-passeggiata-gourmet-gallery-punta-marietta-from-southeast-cortina.jpg",
+          "alt": "Punta Marietta from the southeast",
+          "title": "Punta Marietta from southeast, Cortina d'Ampezzo, Veneto, Italy, 2025 October - 2",
+          "creator": "Ximonic (Simo Räsänen)",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Punta_Marietta_from_southeast,_Cortina_d%27Ampezzo,_Veneto,_Italy,_2025_October_-_2.jpg"
+        },
+        {
+          "image": "images/trails/cortina-passeggiata-gourmet-gallery-pomagagnon-from-vervei-cortina-d.jpg",
+          "alt": "Pomagagnon seen from Vervei",
+          "title": "Pomagagnon from Vervei, Cortina d'Ampezzo, Belluno, Veneto, Italy, 2025 October",
+          "creator": "Ximonic (Simo Räsänen)",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Pomagagnon_from_Vervei,_Cortina_d%27Ampezzo,_Belluno,_Veneto,_Italy,_2025_October.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cortina-mortisa-e-le-grotte-di-volpera",
+      "photos": [
+        {
+          "image": "images/trails/cortina-mortisa-e-le-grotte-di-volpera-gallery-cortina-faloria.jpg",
+          "alt": "Mountains above Cortina d'Ampezzo",
+          "title": "Cortina - Faloria",
+          "creator": "Tiia Monto",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Cortina_-_Faloria.jpg"
+        },
+        {
+          "image": "images/trails/cortina-mortisa-e-le-grotte-di-volpera-gallery-boite.jpg",
+          "alt": "The Boite river in Cortina d'Ampezzo",
+          "title": "Boite",
+          "creator": "Tiia Monto",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Boite.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cortina-sotecordes",
+      "photos": [
+        {
+          "image": "images/trails/cortina-sotecordes-gallery-tofana-de-rozes.jpg",
+          "alt": "The Tofana de Rozes",
+          "title": "Tofana de Rozes - panoramio",
+          "creator": "Maurizio Ceol",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tofana_de_Rozes_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/cortina-sotecordes-gallery-cortina-d-ampezzo-province-of.jpg",
+          "alt": "Cortina d'Ampezzo below its mountains",
+          "title": "Cortina d'Ampezzo, Province of Belluno, Italy - panoramio (11)",
+          "creator": "Hans Braam",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Cortina_d%27Ampezzo,_Province_of_Belluno,_Italy_-_panoramio_(11).jpg"
+        }
+      ]
+    },
+    {
+      "id": "fiemme-passeggiata-insolita",
+      "photos": [
+        {
+          "image": "images/trails/fiemme-passeggiata-insolita-gallery-cucal-e-cornon.jpg",
+          "alt": "The Cucal and Cornon peaks above the Val di Fiemme",
+          "title": "Cucal e Cornon - panoramio",
+          "creator": "temporali",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Cucal_e_Cornon_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fiemme-varena-spianez",
+      "photos": [
+        {
+          "image": "images/trails/fiemme-varena-spianez-gallery-la-stagione-dei-colori.jpg",
+          "alt": "Autumn larches in the Val di Fiemme",
+          "title": "La stagione dei colori - panoramio",
+          "creator": "Maurizio Ceol",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:La_stagione_dei_colori_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "primiero-malga-ces",
+      "photos": [
+        {
+          "image": "images/trails/primiero-malga-ces-gallery-velo-della-madonna.jpg",
+          "alt": "The Pale di San Martino above the forest",
+          "title": "Velo della Madonna",
+          "creator": "Rambolola",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Velo_della_Madonna.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cembra-pietra-del-futuro",
+      "photos": [
+        {
+          "image": "images/trails/cembra-pietra-del-futuro-gallery-lago-di-lases-in-inverno.jpg",
+          "alt": "Lago di Lases in winter from above",
+          "title": "Lago di Lases in inverno 03",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Lases_in_inverno_03.jpg"
+        },
+        {
+          "image": "images/trails/cembra-pietra-del-futuro-gallery-lago-di-lases-in-inverno-2.jpg",
+          "alt": "Lago di Lases and its village in winter",
+          "title": "Lago di Lases in inverno 01",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Lases_in_inverno_01.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cembra-lago-lases-buse-giaz",
+      "photos": [
+        {
+          "image": "images/trails/cembra-lago-lases-buse-giaz-gallery-lago-di-lases-in-inverno.jpg",
+          "alt": "Snow around Lago di Lases",
+          "title": "Lago di Lases in inverno 02",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Lases_in_inverno_02.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cembra-san-leonardo-lisignago",
+      "photos": [
+        {
+          "image": "images/trails/cembra-san-leonardo-lisignago-gallery-ceola-vista.jpg",
+          "alt": "The village of Ceola among fields and woods",
+          "title": "Ceola, vista",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Ceola,_vista.jpg"
+        },
+        {
+          "image": "images/trails/cembra-san-leonardo-lisignago-gallery-albiano-vista.jpg",
+          "alt": "Albiano and the Val di Cembra",
+          "title": "Albiano, vista",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Albiano,_vista.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cembra-castello-segonzano",
+      "photos": [
+        {
+          "image": "images/trails/cembra-castello-segonzano-gallery-segonzano-pra-e-cantilaga-01.jpg",
+          "alt": "Prà and its terraces from the air",
+          "title": "Segonzano - Prà e Cantilaga 01",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Segonzano_-_Pr%C3%A0_e_Cantilaga_01.jpg"
+        },
+        {
+          "image": "images/trails/cembra-castello-segonzano-gallery-campi-di-piazzo.jpg",
+          "alt": "The fields of Piazzo from the air",
+          "title": "Campi di Piazzo",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Campi_di_Piazzo.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fiemme-scalata-alle-malghette",
+      "photos": [
+        {
+          "image": "images/trails/fiemme-scalata-alle-malghette-gallery-il-biotopo-palu-longa.jpg",
+          "alt": "The Palù Longa wetland in the forest",
+          "title": "Il biotopo Palù Longa - panoramio",
+          "creator": "Mario Penner",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Il_biotopo_Pal%C3%B9_Longa_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt",
+      "photos": [
+        {
+          "image": "images/trails/altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt-gallery-pedraces.jpg",
+          "alt": "Pedraces below the Sas dla Crusc",
+          "title": "Pedraces",
+          "creator": "Tiia Monto",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Pedraces.jpg"
+        }
+      ]
+    },
+    {
+      "id": "altabadia-escursione-corvara-colfosco",
+      "photos": [
+        {
+          "image": "images/trails/altabadia-escursione-corvara-colfosco-gallery-da-colfosco-verso-il-sella.jpg",
+          "alt": "The Sella group seen from Colfosco",
+          "title": "Da Colfosco verso il Sella - panoramio",
+          "creator": "Alessandro Gigliotti",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Da_Colfosco_verso_il_Sella_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/altabadia-escursione-corvara-colfosco-gallery-colfosco-1650-m-viev-from.jpg",
+          "alt": "Colfosco from the Sassongher",
+          "title": "Colfosco 1650 m, viev from Sassongher 2.475 m - panoramio",
+          "creator": "Guba Zoky Rabko",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Colfosco_1650_m,_viev_from_Sassongher_2.475_m_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "altabadia-escursione-corvara-la-villa",
+      "photos": [
+        {
+          "image": "images/trails/altabadia-escursione-corvara-la-villa-gallery-panorama-in-la-villa-trentino.jpg",
+          "alt": "A path above La Villa with peaks beyond",
+          "title": "Panorama in La Villa, Trentino-Alto Adige, Italy",
+          "creator": "Giuseppe Milo",
+          "licence": "CC BY 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_in_La_Villa,_Trentino-Alto_Adige,_Italy.jpg"
+        }
+      ]
+    },
+    {
+      "id": "altabadia-da-furnacia-a-la-crusc",
+      "photos": [
+        {
+          "image": "images/trails/altabadia-da-furnacia-a-la-crusc-gallery-sas-dla-crusc.jpg",
+          "alt": "The cliffs of the Sas dla Crusc",
+          "title": "Sas dla Crusc",
+          "creator": "Tiia Monto",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sas_dla_Crusc.jpg"
+        },
+        {
+          "image": "images/trails/altabadia-da-furnacia-a-la-crusc-gallery-santa-croce-church-pedraces-santa.jpg",
+          "alt": "Santa Croce church below the Sas dla Crusc",
+          "title": "Santa Croce Church(Pedraces) - Santa Croce Peak 2999m - panoramio",
+          "creator": "Guba Zoky Rabko",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Santa_Croce_Church(Pedraces)_-_Santa_Croce_Peak_2999m_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara",
+      "photos": [
+        {
+          "image": "images/trails/altabadia-da-san-cassiano-al-pralongia-fino-a-corvara-gallery-ms15.jpg",
+          "alt": "The Sassongher above Corvara",
+          "title": "MS15",
+          "creator": "Andrj15",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:MS15.jpg"
+        },
+        {
+          "image": "images/trails/altabadia-da-san-cassiano-al-pralongia-fino-a-corvara-gallery-corvara-sassonger.jpg",
+          "alt": "Corvara and the Sassongher",
+          "title": "Corvara ^ Sassonger - panoramio",
+          "creator": "Zoran Kurelić Rabko",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Corvara_%5E_Sassonger_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "altabadia-passeggiata-borest-cascate-del-pisciadu",
+      "photos": [
+        {
+          "image": "images/trails/altabadia-passeggiata-borest-cascate-del-pisciadu-gallery-corvara-sassongher-2002-09-26.jpg",
+          "alt": "Meadows below the Sassongher at Corvara",
+          "title": "Corvara Sassongher 2002-09-26 15.13.47",
+          "creator": "Alexander Hoernigk",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Corvara_Sassongher_2002-09-26_15.13.47.jpg"
+        },
+        {
+          "image": "images/trails/altabadia-passeggiata-borest-cascate-del-pisciadu-gallery-pond-in-corvara.jpg",
+          "alt": "A pond in Corvara with peaks behind",
+          "title": "Pond in Corvara",
+          "creator": "Tiia Monto",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Pond_in_Corvara.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-tour-alla-volta-del-lech-sant",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-tour-alla-volta-del-lech-sant-gallery-lech-dl-mandl-sun-mastle.jpg",
+          "alt": "Lech dl Mandl with the Sassolungo behind",
+          "title": "Lech dl Mandl sun Mastle cun Saslonch",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lech_dl_Mandl_sun_Mastle_cun_Saslonch.jpg"
+        },
+        {
+          "image": "images/trails/valgardena-tour-alla-volta-del-lech-sant-gallery-lech-dl-mandl-sun-mastle-2.jpg",
+          "alt": "Lech dl Mandl with the Seceda behind",
+          "title": "Lech dl Mandl sun Mastle cun Secëda",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lech_dl_Mandl_sun_Mastle_cun_Sec%C3%ABda.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-escursione-al-resciesa",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-escursione-al-resciesa-gallery-raschotzer-hutte.jpg",
+          "alt": "The Resciesa hut above Ortisei",
+          "title": "Raschötzer Hütte",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Rasch%C3%B6tzer_H%C3%BCtte.jpg"
+        },
+        {
+          "image": "images/trails/valgardena-escursione-al-resciesa-gallery-pic-urtijei.jpg",
+          "alt": "The western slope of the Pic above Ortisei",
+          "title": "Pic Urtijëi",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Pic_Urtij%C3%ABi.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-giro-della-via-crucis",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-giro-della-via-crucis-gallery-sassolungo-e-sassopiatto.jpg",
+          "alt": "Sassolungo and Sassopiatto",
+          "title": "Sassolungo e Sassopiatto - panoramio",
+          "creator": "Francesco Zanardini",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sassolungo_e_Sassopiatto_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/valgardena-giro-della-via-crucis-gallery-langkofel.jpg",
+          "alt": "The Sassolungo group from above Santa Cristina",
+          "title": "Langkofel",
+          "creator": "Supakon Mohr",
+          "licence": "CC BY-SA 3.0 de",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Langkofel.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-escursione-dalla-cappella-santa-croce-al-brogles",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-escursione-dalla-cappella-santa-croce-al-brogles-gallery-resciesa-in-spring.jpg",
+          "alt": "The Resciesa meadows in spring",
+          "title": "Resciesa in spring",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Resciesa_in_spring.JPG"
+        },
+        {
+          "image": "images/trails/valgardena-escursione-dalla-cappella-santa-croce-al-brogles-gallery-sa-la-creeusc-sun-resciesa.jpg",
+          "alt": "The summit cross on the Resciesa",
+          "title": "Sa la crëeusc sun Resciesa",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sa_la_cr%C3%ABeusc_sun_Resciesa.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-passeggiata-alla-chiesetta-di-san-giacomo",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-passeggiata-alla-chiesetta-di-san-giacomo-gallery-aesculus-hippocastanum-in-urtijei.jpg",
+          "alt": "Meadows and autumn trees above Ortisei",
+          "title": "Aesculus hippocastanum in Urtijëi",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Aesculus_hippocastanum_in_Urtij%C3%ABi.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-dobbiaco-lago-di-dobbiaco",
+      "photos": [
+        {
+          "image": "images/trails/trecime-dobbiaco-lago-di-dobbiaco-gallery-toblacher-see-italy.jpg",
+          "alt": "Lago di Dobbiaco among forest and peaks",
+          "title": "Toblacher See, Italy (Unsplash)",
+          "creator": "Tim Stief timstief",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Toblacher_See,_Italy_(Unsplash).jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-sentiero-gustav-mahler",
+      "photos": [
+        {
+          "image": "images/trails/trecime-sentiero-gustav-mahler-gallery-letteau-toblach-01.jpg",
+          "alt": "Forest along the Letteau near Dobbiaco",
+          "title": "Letteau Toblach 01",
+          "creator": "Raphael Mair",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Letteau_Toblach_01.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-bagni-di-san-candido",
+      "photos": [
+        {
+          "image": "images/trails/trecime-bagni-di-san-candido-gallery-2-8-stage-1-6.jpg",
+          "alt": "The ruin of Wildbad Innichen in the woods",
+          "title": "2-8 Stage 1-6 San Candido - Rifugio Antonio Locatelli (Dreizinnenhütte) - panoramio (1)",
+          "creator": "Hans Braam",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:2-8_Stage_1-6_San_Candido_-_Rifugio_Antonio_Locatelli_(Dreizinnenh%C3%BCtte)_-_panoramio_(1).jpg"
+        }
+      ]
+    },
+    {
+      "id": "fassa-moena-soraga-acqua",
+      "photos": [
+        {
+          "image": "images/trails/fassa-moena-soraga-acqua-gallery-sorte-moena-02.jpg",
+          "alt": "The Sorte meadows above Moena",
+          "title": "Sorte (Moena) 02",
+          "creator": "Holapaco77",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sorte_(Moena)_02.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fassa-moena-soraga-someda",
+      "photos": [
+        {
+          "image": "images/trails/fassa-moena-soraga-someda-gallery-prati-di-sorte-moena-04.jpg",
+          "alt": "The Sorte meadows under the mountains",
+          "title": "Prati di Sorte (Moena) 04",
+          "creator": "Holapaco77",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Prati_di_Sorte_(Moena)_04.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valdisole-fazzon-lago-dei-caprioli",
+      "photos": [
+        {
+          "image": "images/trails/valdisole-fazzon-lago-dei-caprioli-gallery-pellizzano-lago-dei-caprioli-east.jpg",
+          "alt": "Lago dei Caprioli from the east",
+          "title": "Pellizzano-lago dei Caprioli-east",
+          "creator": "Matteo Ianeselli",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Pellizzano-lago_dei_Caprioli-east.jpg"
+        },
+        {
+          "image": "images/trails/valdisole-fazzon-lago-dei-caprioli-gallery-trentino-val-di-sole-lago.jpg",
+          "alt": "Lago dei Caprioli and the forest around it",
+          "title": "Trentino - Val di Sole - Lago dei Caprioli, panoramica - panoramio (1)",
+          "creator": "Mauro Cavallo",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Trentino_-_Val_di_Sole_-_Lago_dei_Caprioli,_panoramica_-_panoramio_(1).jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-percorso-dei-masi-tradizionali",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-percorso-dei-masi-tradizionali-gallery-val-de-iender-santa-cristina.jpg",
+          "alt": "The Iender valley above Santa Cristina",
+          "title": "Val de Iender Santa Cristina",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Val_de_Iender_Santa_Cristina.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-raida-dl-luech-giro-del-paese",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-raida-dl-luech-giro-del-paese-gallery-cesa-ampezan-ridl-da-ruacia.jpg",
+          "alt": "An old farmhouse at Selva",
+          "title": "Cësa Ampezan Ridl da Ruacia Sëlva",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:C%C3%ABsa_Ampezan_Ridl_da_Ruacia_S%C3%ABlva.jpeg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-lago-di-braies-malga-rossalm",
+      "photos": [
+        {
+          "image": "images/trails/trecime-lago-di-braies-malga-rossalm-gallery-lago-braies.jpg",
+          "alt": "Lago di Braies below the cliffs",
+          "title": "Lago Braies - panoramio",
+          "creator": "Francesco Zanardini",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Braies_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-carbonin-rifugio-vallandro",
+      "photos": [
+        {
+          "image": "images/trails/trecime-carbonin-rifugio-vallandro-gallery-croda-rossa-dc.jpg",
+          "alt": "The Croda Rossa above the forest",
+          "title": "Croda rossa (DC) - panoramio",
+          "creator": "corinasdavide",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Croda_rossa_(DC)_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/trecime-carbonin-rifugio-vallandro-gallery-cadini-di-misurina-from-forte.jpg",
+          "alt": "The Cadini di Misurina from the Prato Piazza fort",
+          "title": "Cadini di Misurina from forte di Prato Piazza, Pustertal, Trentino-Alto Adige, Italy, 2025 October",
+          "creator": "Ximonic (Simo Räsänen)",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Cadini_di_Misurina_from_forte_di_Prato_Piazza,_Pustertal,_Trentino-Alto_Adige,_Italy,_2025_October.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-monte-elmo-versciaco",
+      "photos": [
+        {
+          "image": "images/trails/trecime-monte-elmo-versciaco-gallery-150224-doroth-val-fiscalina-petrides.jpg",
+          "alt": "Sexten and the Fischleintal from above",
+          "title": "150224 Doroth Val Fiscalina Petrides",
+          "creator": "Konrad Petrides",
+          "licence": "Public domain",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:150224_Doroth_Val_Fiscalina_Petrides.jpg"
+        },
+        {
+          "image": "images/trails/trecime-monte-elmo-versciaco-gallery-schwalbenkofel-and-sudliche-bullkopfe-from.jpg",
+          "alt": "Schwalbenkofel and the Bullköpfe from Monte Elmo",
+          "title": "Schwalbenkofel and Südliche Bullköpfe from Monte Elmo, Sexten, Pustertal, Trentino-Alto Adige, Italy, 2025 October",
+          "creator": "Ximonic (Simo Räsänen)",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Schwalbenkofel_and_S%C3%BCdliche_Bullk%C3%B6pfe_from_Monte_Elmo,_Sexten,_Pustertal,_Trentino-Alto_Adige,_Italy,_2025_October.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-sesto-san-candido",
+      "photos": [
+        {
+          "image": "images/trails/trecime-sesto-san-candido-gallery-wiesen-004-2019-09-28.jpg",
+          "alt": "A flower meadow near Sexten",
+          "title": "Wiesen 004 2019 09 28",
+          "creator": "Friedrich Haag",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Wiesen_004_2019_09_28.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-haus-der-berge-rifugio-larice",
+      "photos": [
+        {
+          "image": "images/trails/trecime-haus-der-berge-rifugio-larice-gallery-la-magia-delle-dolomiti.jpg",
+          "alt": "The Sexten Dolomites at dusk",
+          "title": "La magia delle Dolomiti - panoramio",
+          "creator": "Mario Penner",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:La_magia_delle_Dolomiti_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-gasthof-panorama-rifugio-pendio-monte-elmo",
+      "photos": [
+        {
+          "image": "images/trails/trecime-gasthof-panorama-rifugio-pendio-monte-elmo-gallery-forte-mitterberg-sesto-trentino-alto.jpg",
+          "alt": "The ruin of Fort Mitterberg above Sexten",
+          "title": "Forte Mitterberg, Sesto, Trentino-Alto Adige, Italy, 2025 October - 2",
+          "creator": "Ximonic (Simo Räsänen)",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Forte_Mitterberg,_Sesto,_Trentino-Alto_Adige,_Italy,_2025_October_-_2.jpg"
+        },
+        {
+          "image": "images/trails/trecime-gasthof-panorama-rifugio-pendio-monte-elmo-gallery-forte-mitterberg-sesto-trentino-alto-2.jpg",
+          "alt": "Fort Mitterberg with the Sexten Dolomites behind",
+          "title": "Forte Mitterberg, Sesto, Trentino-Alto Adige, Italy, 2025 October - 3",
+          "creator": "Ximonic (Simo Räsänen)",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Forte_Mitterberg,_Sesto,_Trentino-Alto_Adige,_Italy,_2025_October_-_3.jpg"
+        }
+      ]
+    },
+    {
+      "id": "paganella-andalo-tana-ermellino",
+      "photos": [
+        {
+          "image": "images/trails/paganella-andalo-tana-ermellino-gallery-rotoballe-cavedago-trento-italia-30.jpg",
+          "alt": "Hay bales in the meadows near Andalo",
+          "title": "Rotoballe - Cavedago, Trento, Italia - 30 Giugno 2024",
+          "creator": "Giorgio Galeotti",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Rotoballe_-_Cavedago,_Trento,_Italia_-_30_Giugno_2024.jpg"
+        },
+        {
+          "image": "images/trails/paganella-andalo-tana-ermellino-gallery-lago-di-andalo-andalo-trento.jpg",
+          "alt": "Lago di Andalo among meadows and forest",
+          "title": "Lago di Andalo - Andalo, Trento, Italia - 30 Giugno 2024 07",
+          "creator": "Giorgio Galeotti",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Andalo_-_Andalo,_Trento,_Italia_-_30_Giugno_2024_07.jpg"
+        }
+      ]
+    },
+    {
+      "id": "paganella-sette-passi-sette-ville",
+      "photos": [
+        {
+          "image": "images/trails/paganella-sette-passi-sette-ville-gallery-dolaso-frazione-san-lorenzo-in.jpg",
+          "alt": "Dolaso with the Brenta massif behind",
+          "title": "Dolaso frazione san lorenzo in banale",
+          "creator": "James Conrad Baker",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Dolaso_frazione_san_lorenzo_in_banale.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-arte-e-storia",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-arte-e-storia-gallery-s-silvester-chapel-wolkenstein.jpg",
+          "alt": "The chapel of San Silvestro below the cliffs",
+          "title": "S. Silvester Chapel Wolkenstein",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:S._Silvester_Chapel_Wolkenstein.jpg"
+        },
+        {
+          "image": "images/trails/valgardena-arte-e-storia-gallery-steviola-da-duman-gherdeina.jpg",
+          "alt": "The Steviola peak at sunrise in the Vallunga",
+          "title": "Steviola da duman Gherdëina",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Steviola_da_duman_Gherd%C3%ABina.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-escursione-al-brogles",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-escursione-al-brogles-gallery-bredles-y-l-odles-cun.jpg",
+          "alt": "The Odle peaks above the meadows",
+          "title": "Bredles y l Odles cun Sas Rigais",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Bredles_y_l_Odles_cun_Sas_Rigais.jpg"
+        },
+        {
+          "image": "images/trails/valgardena-escursione-al-brogles-gallery-bredles-y-l-odles-cun-2.jpg",
+          "alt": "The Odle peaks in winter",
+          "title": "Bredles y l Odles cun Sas Rigais dinviern",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Bredles_y_l_Odles_cun_Sas_Rigais_dinviern.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-escursione-da-s-cristina-al-passo-sella",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-escursione-da-s-cristina-al-passo-sella-gallery-rifugio-passo-sella.jpg",
+          "alt": "Rifugio Passo Sella below the Sassolungo",
+          "title": "Rifugio Passo Sella - panoramio",
+          "creator": "Michael Paraskevas",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Rifugio_Passo_Sella_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/valgardena-escursione-da-s-cristina-al-passo-sella-gallery-selva-province-of-bolzano-south.jpg",
+          "alt": "Selva below the Sella group",
+          "title": "Sëlva, Province of Bolzano - South Tyrol, Italy - panoramio",
+          "creator": "Michele Sirchi",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:S%C3%ABlva,_Province_of_Bolzano_-_South_Tyrol,_Italy_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-uciei-de-freeines",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-uciei-de-freeines-gallery-stevia-y-muntijela.jpg",
+          "alt": "Stevia and the Sella from the Seceda",
+          "title": "Stevia y Muntijela",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Stevia_y_Muntijela.JPG"
+        },
+        {
+          "image": "images/trails/valgardena-uciei-de-freeines-gallery-odles-cansles-stevia-da-col.jpg",
+          "alt": "The Odle and Stevia from Col Raiser",
+          "title": "Odles Cansles Stevia da Col Reiser",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Odles_Cansles_Stevia_da_Col_Reiser.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-seceda-dal-rifugio-firenze",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-seceda-dal-rifugio-firenze-gallery-saslonch-da-mastle-gherdeina.jpg",
+          "alt": "The Mastlé meadows with the Sella and Sassolungo behind",
+          "title": "Saslonch da Mastle Gherdeina",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Saslonch_da_Mastle_Gherdeina.jpg"
+        },
+        {
+          "image": "images/trails/valgardena-seceda-dal-rifugio-firenze-gallery-odles-as-seen-from-seceda.jpg",
+          "alt": "The Odle seen from the Seceda",
+          "title": "Odles as seen from Seceda",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Odles_as_seen_from_Seceda.JPG"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-escursione-ortisei-passo-sella",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-escursione-ortisei-passo-sella-gallery-partenza-del-giro-al-sasso.jpg",
+          "alt": "The start of the path round the Sassolungo",
+          "title": "Partenza del giro al sasso lungo - panoramio",
+          "creator": "Maurizio Ceol",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Partenza_del_giro_al_sasso_lungo_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/valgardena-escursione-ortisei-passo-sella-gallery-selva-di-val-gardena.jpg",
+          "alt": "Selva di Val Gardena under the peaks",
+          "title": "Selva di Val Gardena - panoramio (1)",
+          "creator": "Pier B.",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Selva_di_Val_Gardena_-_panoramio_(1).jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-rotwandwiesen-moos",
+      "photos": [
+        {
+          "image": "images/trails/trecime-rotwandwiesen-moos-gallery-sexten-bad-moos-002-2019.jpg",
+          "alt": "Meadows and forest at Bad Moos",
+          "title": "Sexten Bad Moos 002 2019 09 28",
+          "creator": "Friedrich Haag",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sexten_Bad_Moos_002_2019_09_28.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trecime-sasso-di-sesto",
+      "photos": [
+        {
+          "image": "images/trails/trecime-sasso-di-sesto-gallery-fischleintal-sextener-sonnenuhr.jpg",
+          "alt": "The Fischleintal and the Sexten sundial peaks",
+          "title": "Fischleintal Sextener Sonnenuhr",
+          "creator": "Steinsplitter",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Fischleintal_Sextener_Sonnenuhr.JPG"
+        },
+        {
+          "image": "images/trails/trecime-sasso-di-sesto-gallery-pano-da-campo-fiscalino-verso.jpg",
+          "alt": "The Fischleintal from Campo Fiscalino",
+          "title": "Pano da campo fiscalino verso fondovalle - panoramio",
+          "creator": "Francesco Laffi",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Pano_da_campo_fiscalino_verso_fondovalle_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "campiglio-lago-ritorto-nel-blu-dipinto-di-blu",
+      "photos": [
+        {
+          "image": "images/trails/campiglio-lago-ritorto-nel-blu-dipinto-di-blu-gallery-brenta-dolomites-view-from-ritorto.jpg",
+          "alt": "The Brenta Dolomites from the Ritorto lodge",
+          "title": "Brenta Dolomites, view from Ritorto lodge 01",
+          "creator": "Marco Ober",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Brenta_Dolomites,_view_from_Ritorto_lodge_01.jpg"
+        },
+        {
+          "image": "images/trails/campiglio-lago-ritorto-nel-blu-dipinto-di-blu-gallery-two-goats-at-ritorto-lodge.jpg",
+          "alt": "Two goats at the Ritorto lodge, the Brenta behind",
+          "title": "Two goats at Ritorto lodge, Brenta Dolomites in the background",
+          "creator": "Marco Ober",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Two_goats_at_Ritorto_lodge,_Brenta_Dolomites_in_the_background.jpg"
+        }
+      ]
+    },
+    {
+      "id": "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa",
+      "photos": [
+        {
+          "image": "images/trails/campiglio-laghi-di-san-giuliano-garzone-e-vacarsa-gallery-laghi-di-san-giuliano-2.jpg",
+          "alt": "Lago di San Giuliano in the mountains",
+          "title": "Laghi di San Giuliano 2",
+          "creator": "Oscar Collini",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Laghi_di_San_Giuliano_2.jpg"
+        },
+        {
+          "image": "images/trails/campiglio-laghi-di-san-giuliano-garzone-e-vacarsa-gallery-caderzone-terme-lago-di-san.jpg",
+          "alt": "Lago di San Giuliano and its shore",
+          "title": "Caderzone Terme - Lago di San Giuliano 03",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Caderzone_Terme_-_Lago_di_San_Giuliano_03.jpg"
+        }
+      ]
+    },
+    {
+      "id": "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio",
+      "photos": [
+        {
+          "image": "images/trails/campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio-gallery-dolomiti-di-brenta-da-malga.jpg",
+          "alt": "The Brenta Dolomites from Malga Ritort",
+          "title": "Dolomiti di Brenta da malga Ritort",
+          "creator": "Oscar Collini",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Dolomiti_di_Brenta_da_malga_Ritort.jpg"
+        }
+      ]
+    },
+    {
+      "id": "paganella-giro-del-lago-di-molveno",
+      "photos": [
+        {
+          "image": "images/trails/paganella-giro-del-lago-di-molveno-gallery-molveno-lake-viewed-by-sout.jpg",
+          "alt": "Lake Molveno from its south shore",
+          "title": "Molveno lake - viewed by sout coast",
+          "creator": "Dega180",
+          "licence": "CC0",
+          "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Molveno_lake_-_viewed_by_sout_coast.jpg"
+        },
+        {
+          "image": "images/trails/paganella-giro-del-lago-di-molveno-gallery-molveno.jpg",
+          "alt": "Molveno on the shore of its lake",
+          "title": "MOLVENO - panoramio - Gregorini Demetrio",
+          "creator": "Gregorini Demetrio",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:MOLVENO_-_panoramio_-_Gregorini_Demetrio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "paganella-passeggiata-del-ciclamino",
+      "photos": [
+        {
+          "image": "images/trails/paganella-passeggiata-del-ciclamino-gallery-lago-di-molveno-in-estate.jpg",
+          "alt": "Molveno and its lake below the Brenta Dolomites",
+          "title": "Lago di Molveno in estate",
+          "creator": "Serena Sartori",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Molveno_in_estate.jpg"
+        }
+      ]
+    },
+    {
+      "id": "campiglio-valina-d-amola-rifugio-segantini-cornisello",
+      "photos": [
+        {
+          "image": "images/trails/campiglio-valina-d-amola-rifugio-segantini-cornisello-gallery-presso-il-rifugio-segantini.jpg",
+          "alt": "Pastures near Rifugio Segantini",
+          "title": "Presso il rifugio Segantini",
+          "creator": "Oscar Collini",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Presso_il_rifugio_Segantini.jpg"
+        },
+        {
+          "image": "images/trails/campiglio-valina-d-amola-rifugio-segantini-cornisello-gallery-lago-di-cornisello-superiore-01.jpg",
+          "alt": "The upper Cornisello lake",
+          "title": "Lago di Cornisello Superiore 01",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Cornisello_Superiore_01.jpg"
+        }
+      ]
+    },
+    {
+      "id": "campiglio-madonna-di-campiglio-monte-spinale",
+      "photos": [
+        {
+          "image": "images/trails/campiglio-madonna-di-campiglio-monte-spinale-gallery-small-lake-madonna-di-campiglio.jpg",
+          "alt": "A small lake above Madonna di Campiglio",
+          "title": "Small lake Madonna di Campiglio",
+          "creator": "Andrew",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Small_lake_Madonna_di_Campiglio.JPG"
+        }
+      ]
+    },
+    {
+      "id": "kronplatz-passeggiata-valdaora-monguelfo",
+      "photos": [
+        {
+          "image": "images/trails/kronplatz-passeggiata-valdaora-monguelfo-gallery-lago-di-valdaora-dc.jpg",
+          "alt": "The Valdaora reservoir among forest",
+          "title": "Lago di valdaora (DC) - panoramio",
+          "creator": "corinasdavide",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_valdaora_(DC)_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "kronplatz-passeggiata-san-vigilio-le-dla-creda",
+      "photos": [
+        {
+          "image": "images/trails/kronplatz-passeggiata-san-vigilio-le-dla-creda-gallery-les-fontanes.jpg",
+          "alt": "A clear stream at San Vigilio di Marebbe",
+          "title": "Les Fontanes - panoramio",
+          "creator": "Alessandro Gigliotti",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Les_Fontanes_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "kronplatz-attraverso-il-sentiero-panoramico-a-brunico",
+      "photos": [
+        {
+          "image": "images/trails/kronplatz-attraverso-il-sentiero-panoramico-a-brunico-gallery-39031-bruneck-province-of-bolzano.jpg",
+          "alt": "The river through Brunico",
+          "title": "39031 Bruneck, Province of Bolzano - South Tyrol, Italy - panoramio (2)",
+          "creator": "Foto Fitti",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:39031_Bruneck,_Province_of_Bolzano_-_South_Tyrol,_Italy_-_panoramio_(2).jpg"
+        }
+      ]
+    },
+    {
+      "id": "kronplatz-valdaora-di-sopra-goste",
+      "photos": [
+        {
+          "image": "images/trails/kronplatz-valdaora-di-sopra-goste-gallery-scorci-di-valdaora-dc.jpg",
+          "alt": "Peaks above Valdaora",
+          "title": "Scorci di valdaora (DC) - panoramio",
+          "creator": "corinasdavide",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Scorci_di_valdaora_(DC)_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "seiseralm-escursione-senza-barriere-all-alpe-di-siusi",
+      "photos": [
+        {
+          "image": "images/trails/seiseralm-escursione-senza-barriere-all-alpe-di-siusi-gallery-saslonch-langkofel-gruppe-sassolungo-udu.jpg",
+          "alt": "The Alpe di Siusi with the Sassolungo group behind",
+          "title": "Saslonch Langkofel Gruppe Sassolungo udu da Mont de Seuc",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Saslonch_Langkofel_Gruppe_Sassolungo_udu_da_Mont_de_Seuc.jpg"
+        },
+        {
+          "image": "images/trails/seiseralm-escursione-senza-barriere-all-alpe-di-siusi-gallery-seiser-alm-16.jpg",
+          "alt": "The Alpe di Siusi from Mont Seuc towards the Sella",
+          "title": "Seiser Alm 16",
+          "creator": "H. Zell",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Seiser_Alm_16.jpg"
+        }
+      ]
+    },
+    {
+      "id": "villnoess-da-russis-fino-al-passo-delle-erbe",
+      "photos": [
+        {
+          "image": "images/trails/villnoess-da-russis-fino-al-passo-delle-erbe-gallery-italy-2016-07-18-28900210162.jpg",
+          "alt": "The Odle peaks above the Val di Funes meadows",
+          "title": "Italy 2016-07-18 (28900210162)",
+          "creator": "Guillaume Baviere from Uppsala, Sweden",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Italy_2016-07-18_(28900210162).jpg"
+        },
+        {
+          "image": "images/trails/villnoess-da-russis-fino-al-passo-delle-erbe-gallery-italy-2016-07-18-28900197592.jpg",
+          "alt": "Pastures below the Odle in the Val di Funes",
+          "title": "Italy 2016-07-18 (28900197592)",
+          "creator": "Guillaume Baviere from Uppsala, Sweden",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Italy_2016-07-18_(28900197592).jpg"
+        }
+      ]
+    },
+    {
+      "id": "villnoess-dolorama-3a-tappa",
+      "photos": [
+        {
+          "image": "images/trails/villnoess-dolorama-3a-tappa-gallery-bredles-y-odles.jpg",
+          "alt": "The Odle group in the Dolomites",
+          "title": "Bredles y Odles",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Bredles_y_Odles.jpg"
+        },
+        {
+          "image": "images/trails/villnoess-dolorama-3a-tappa-gallery-gran-vista-sul-sassolungo-sella.jpg",
+          "alt": "The Sassolungo, Sella and Marmolada from the Resciesa",
+          "title": "Gran vista sul Sassolungo - Sella - Marmolada - Catinaccio dal Rasciesa - panoramio",
+          "creator": "Francesco Zanardini",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Gran_vista_sul_Sassolungo_-_Sella_-_Marmolada_-_Catinaccio_dal_Rasciesa_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles",
+      "photos": [
+        {
+          "image": "images/trails/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles-gallery-it-pforzheimer-huette.jpg",
+          "alt": "The old Pforzheim hut in the Schlinig valley",
+          "title": "IT Pforzheimer Huette",
+          "creator": "Daniel Schwen",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:IT_Pforzheimer_Huette.jpg"
+        },
+        {
+          "image": "images/trails/vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles-gallery-alte-pforzheimer-huette-1993.jpg",
+          "alt": "The ruin of the old Pforzheim hut",
+          "title": "Alte Pforzheimer Huette 1993",
+          "creator": "Mikmaq",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Alte_Pforzheimer_Huette_1993.jpg"
+        }
+      ]
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-latschanderwaal-4954",
+      "photos": [
+        {
+          "image": "images/trails/vinschgau-sentiero-della-roggia-latschanderwaal-4954-gallery-kastelbell1.jpg",
+          "alt": "Kastelbell castle above the valley",
+          "title": "Kastelbell1",
+          "creator": "Adrian Michael",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Kastelbell1.jpeg"
+        }
+      ]
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-kastanienwaal",
+      "photos": [
+        {
+          "image": "images/trails/vinschgau-sentiero-della-roggia-kastanienwaal-gallery-schlanders-city.jpg",
+          "alt": "Schlanders in the Vinschgau",
+          "title": "Schlanders City - panoramio",
+          "creator": "Arnold Unterholzner",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Schlanders_City_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal",
+      "photos": [
+        {
+          "image": "images/trails/vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal-gallery-panorama-vom-ganglegg-schluderns-vinschgau.jpg",
+          "alt": "The upper Vinschgau from the Ganglegg",
+          "title": "Panorama vom Ganglegg - Schluderns - Vinschgau - 20160622 (28187381764)",
+          "creator": "Armin S Kowalski",
+          "licence": "CC BY-SA 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_vom_Ganglegg_-_Schluderns_-_Vinschgau_-_20160622_(28187381764).jpg"
+        }
+      ]
+    },
+    {
+      "id": "vinschgau-sentiero-della-roggia-schnalswaal",
+      "photos": [
+        {
+          "image": "images/trails/vinschgau-sentiero-della-roggia-schnalswaal-gallery-schloss-juval.jpg",
+          "alt": "Juval castle on its ridge",
+          "title": "Schloss Juval",
+          "creator": "F Delventhal",
+          "licence": "CC BY 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Schloss_Juval.jpg"
+        },
+        {
+          "image": "images/trails/vinschgau-sentiero-della-roggia-schnalswaal-gallery-view-of-castle-juval-view.jpg",
+          "alt": "Juval castle above the valley",
+          "title": "View of castle Juval; view on Valley",
+          "creator": "F Delventhal",
+          "licence": "CC BY 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:View_of_castle_Juval;_view_on_Valley.jpg"
+        }
+      ]
+    },
+    {
+      "id": "brixen-alto-sentiero-di-lazfons",
+      "photos": [
+        {
+          "image": "images/trails/brixen-alto-sentiero-di-lazfons-gallery-kuhberg-07.jpg",
+          "alt": "High pastures on the Kühberg alm",
+          "title": "Kühberg 07",
+          "creator": "Clemens Stockner",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:K%C3%BChberg_07.jpg"
+        }
+      ]
+    },
+    {
+      "id": "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia",
+      "photos": [
+        {
+          "image": "images/trails/brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia-gallery-altfasstal.jpg",
+          "alt": "The Altfass valley",
+          "title": "Altfasstal - panoramio",
+          "creator": "Gianni Bassini",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Altfasstal_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "brixen-escursione-al-rifugio-bressanone",
+      "photos": [
+        {
+          "image": "images/trails/brixen-escursione-al-rifugio-bressanone-gallery-malga-fana.jpg",
+          "alt": "The Fane Alm huts",
+          "title": "Malga fana - panoramio",
+          "creator": "Maurizio Ceol",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Malga_fana_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ahrntal-sentiero-panoramico-cadipietra",
+      "photos": [
+        {
+          "image": "images/trails/ahrntal-sentiero-panoramico-cadipietra-gallery-hillside-flickr-stiller-beobachter.jpg",
+          "alt": "A hillside meadow above Steinhaus",
+          "title": "Hillside - Flickr - Stiller Beobachter",
+          "creator": "Stiller Beobachter from Ansbach, Germany",
+          "licence": "CC BY 2.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Hillside_-_Flickr_-_Stiller_Beobachter.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ahrntal-escursione-rifugio-ponte-di-ghiaccio",
+      "photos": [
+        {
+          "image": "images/trails/ahrntal-escursione-rifugio-ponte-di-ghiaccio-gallery-lago-ponte-di-ghiaccio-vandoies.jpg",
+          "alt": "Lago Ponte di Ghiaccio below the peaks",
+          "title": "Lago Ponte di Ghiaccio - Vandoies, Bolzano, Italia - Agosto 1994",
+          "creator": "Giorgio Galeotti",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Ponte_di_Ghiaccio_-_Vandoies,_Bolzano,_Italia_-_Agosto_1994.jpg"
+        }
+      ]
+    },
+    {
+      "id": "meran-sentiero-della-roggia-brandis-a-lana",
+      "photos": [
+        {
+          "image": "images/trails/meran-sentiero-della-roggia-brandis-a-lana-gallery-lana-city.jpg",
+          "alt": "Lana and its orchards from the Brandis path",
+          "title": "Lana city",
+          "creator": "böhringer friedrich",
+          "licence": "CC BY-SA 2.5",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lana_city.JPG"
+        }
+      ]
+    },
+    {
+      "id": "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg",
+      "photos": [
+        {
+          "image": "images/trails/meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg-gallery-passeiertal-und-meran-von-schenna.jpg",
+          "alt": "The Passeier valley and Merano from Schenna",
+          "title": "Passeiertal und Meran von Schenna 2015",
+          "creator": "Tuxyso",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Passeiertal_und_Meran_von_Schenna_2015.jpg"
+        }
+      ]
+    },
+    {
+      "id": "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole",
+      "photos": [
+        {
+          "image": "images/trails/meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole-gallery-2021-erste-julireise-mateus2019-batch.jpg",
+          "alt": "The Adige valley from the Giggelberg",
+          "title": "2021 — Erste Julireise Mateus2019 — Batch (22)",
+          "creator": "Mateus2019",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:2021_%E2%80%94_Erste_Julireise_Mateus2019_%E2%80%94_Batch_(22).jpg"
+        }
+      ]
+    },
+    {
+      "id": "meran-escursione-alla-forst",
+      "photos": [
+        {
+          "image": "images/trails/meran-escursione-alla-forst-gallery-algund-etsch-stromschnellen-2026-3784.jpg",
+          "alt": "Rapids on the Adige near Algund",
+          "title": "Algund, Etsch, Stromschnellen -- 2026 -- 3784",
+          "creator": "Dietmar Rabich",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Algund,_Etsch,_Stromschnellen_--_2026_--_3784.jpg"
+        }
+      ]
+    },
+    {
+      "id": "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer",
+      "photos": [
+        {
+          "image": "images/trails/meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer-gallery-schenna-klammeben-view-of-otztal.jpg",
+          "alt": "The Stubai Alps from Klammeben",
+          "title": "Schenna Klammeben view of Ötztal Alps 1",
+          "creator": "Ymblanter",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Schenna_Klammeben_view_of_%C3%96tztal_Alps_1.jpg"
+        },
+        {
+          "image": "images/trails/meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer-gallery-schenna-hirzer-from-klammeben.jpg",
+          "alt": "The Hirzer seen from Klammeben",
+          "title": "Schenna Hirzer from Klammeben",
+          "creator": "Ymblanter",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Schenna_Hirzer_from_Klammeben.jpg"
+        }
+      ]
+    },
+    {
+      "id": "meran-itinerario-raststeinweg",
+      "photos": [
+        {
+          "image": "images/trails/meran-itinerario-raststeinweg-gallery-schenner-waalweg-blick-von-sudlich.jpg",
+          "alt": "The Schenna irrigation channel path, looking north",
+          "title": "Schenner Waalweg, Blick von südlich des Unterroadhofs nach Norden",
+          "creator": "Stephan van Helden",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Schenner_Waalweg,_Blick_von_s%C3%BCdlich_des_Unterroadhofs_nach_Norden.jpg"
+        },
+        {
+          "image": "images/trails/meran-itinerario-raststeinweg-gallery-schenner-waalweg-blick-von-sudlich-2.jpg",
+          "alt": "The Schenna irrigation channel path, looking west",
+          "title": "Schenner Waalweg, Blick von südlich des Unterroadhofs nach Westen 2",
+          "creator": "Stephan van Helden",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Schenner_Waalweg,_Blick_von_s%C3%BCdlich_des_Unterroadhofs_nach_Westen_2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof",
+      "photos": [
+        {
+          "image": "images/trails/meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof-gallery-schenna-view-of-texelgruppe-from.jpg",
+          "alt": "The Texel group from the Taser lift station",
+          "title": "Schenna view of Texelgruppe from the top station of Taserbahn",
+          "creator": "Ymblanter",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Schenna_view_of_Texelgruppe_from_the_top_station_of_Taserbahn.jpg"
+        },
+        {
+          "image": "images/trails/meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof-gallery-schenna-panorama-of-videgg.jpg",
+          "alt": "The Videgg meadows above Schenna",
+          "title": "Schenna panorama of Videgg",
+          "creator": "Ymblanter",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Schenna_panorama_of_Videgg.jpg"
+        }
+      ]
+    },
+    {
+      "id": "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo",
+      "photos": [
+        {
+          "image": "images/trails/meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo-gallery-st-vigil-am-joch-20180816.jpg",
+          "alt": "The chapel of St. Vigil am Joch",
+          "title": "St. Vigil am Joch 20180816",
+          "creator": "Marie-Lan Taÿ Pamart",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:St._Vigil_am_Joch_20180816.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valgardena-cudan-dumat",
+      "photos": [
+        {
+          "image": "images/trails/valgardena-cudan-dumat-gallery-urtijei.jpg",
+          "alt": "Ortisei in the Val Gardena",
+          "title": "Urtijei",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Urtijei.jpg"
+        }
+      ]
+    },
+    {
+      "id": "seiseralm-miglio-geologico-siusi",
+      "photos": [
+        {
+          "image": "images/trails/seiseralm-miglio-geologico-siusi-gallery-von-seis-rosengartenstra-e-in.jpg",
+          "alt": "Meadows from Seis towards Völs and the Ritten",
+          "title": "Von Seis (Rosengartenstraße) in Richtung Völs und Ritten - panoramio",
+          "creator": "giggel",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Von_Seis_(Rosengartenstra%C3%9Fe)_in_Richtung_V%C3%B6ls_und_Ritten_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/seiseralm-miglio-geologico-siusi-gallery-blick-auf-st-valentin-kastelruth.jpg",
+          "alt": "St. Valentin seen from Seis am Schlern",
+          "title": "Blick auf St. Valentin Kastelruth von Seis am Schlern aus 2022-10-16",
+          "creator": "Strubbl",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Blick_auf_St._Valentin_Kastelruth_von_Seis_am_Schlern_aus_2022-10-16.jpg"
+        }
+      ]
+    },
+    {
+      "id": "seiseralm-fie-laghetto-di-fie-siusi",
+      "photos": [
+        {
+          "image": "images/trails/seiseralm-fie-laghetto-di-fie-siusi-gallery-fie-allo-sciliar-vols-am.jpg",
+          "alt": "The church at Fiè allo Sciliar",
+          "title": "Fiè allo Sciliar-Völs am Schlern, Santa Maria Assunta 001",
+          "creator": "Mattana",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Fi%C3%A8_allo_Sciliar-V%C3%B6ls_am_Schlern,_Santa_Maria_Assunta_001.jpg"
+        }
+      ]
+    },
+    {
+      "id": "eggental-jolanda-baita-messnerjoch",
+      "photos": [
+        {
+          "image": "images/trails/eggental-jolanda-baita-messnerjoch-gallery-latemargruppe-welschnofen-bozen-italy-july.jpg",
+          "alt": "The Latemar from the meadows above Nova Levante",
+          "title": "Latemargruppe - Welschnofen, Bozen, Italy - July 4, 2020",
+          "creator": "Giorgio Galeotti",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Latemargruppe_-_Welschnofen,_Bozen,_Italy_-_July_4,_2020.jpg"
+        },
+        {
+          "image": "images/trails/eggental-jolanda-baita-messnerjoch-gallery-latemargruppe-welschnofen-bozen-italy-july-2.jpg",
+          "alt": "The Latemar above the forest",
+          "title": "Latemargruppe - Welschnofen, Bozen, Italy - July 4, 2020 01",
+          "creator": "Giorgio Galeotti",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Latemargruppe_-_Welschnofen,_Bozen,_Italy_-_July_4,_2020_01.jpg"
+        }
+      ]
+    },
+    {
+      "id": "eggental-pietralba-petersberger-leger",
+      "photos": [
+        {
+          "image": "images/trails/eggental-pietralba-petersberger-leger-gallery-view-from-maria-weissenstein-cloister.jpg",
+          "alt": "The view from Maria Weissenstein",
+          "title": "View from Maria Weissenstein cloister - panoramio",
+          "creator": "Figure",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:View_from_Maria_Weissenstein_cloister_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "seiseralm-compatsch-wiedner-eck",
+      "photos": [
+        {
+          "image": "images/trails/seiseralm-compatsch-wiedner-eck-gallery-mont-de-seuc-y-l.jpg",
+          "alt": "Mont Seuc and the Sassolungo",
+          "title": "Mont de Seuc y l Saslong",
+          "creator": "Wolfgang Moroder",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Mont_de_Seuc_y_l_Saslong.jpg"
+        }
+      ]
+    },
+    {
+      "id": "primiero-laghi-di-colbricon",
+      "photos": [
+        {
+          "image": "images/trails/primiero-laghi-di-colbricon-gallery-enrosadira-in-ottobre-sulle-pale.jpg",
+          "alt": "The Pale di San Martino glowing at sunset",
+          "title": "Enrosadira in ottobre sulle pale",
+          "creator": "Marco Galiani",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Enrosadira_in_ottobre_sulle_pale.jpg"
+        },
+        {
+          "image": "images/trails/primiero-laghi-di-colbricon-gallery-val-duron-10.jpg",
+          "alt": "The Val Duron meadows",
+          "title": "Val Duron 10",
+          "creator": "Domthor",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Val_Duron_10.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cortina-zumeles-val-padeon",
+      "photos": [
+        {
+          "image": "images/trails/cortina-zumeles-val-padeon-gallery-cortina-d-ampezzo-and-mountains.jpg",
+          "alt": "Cortina d'Ampezzo and the Tofane",
+          "title": "Cortina d'Ampezzo and mountains",
+          "creator": "Tiia Monto",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Cortina_d%27Ampezzo_and_mountains.jpg"
+        },
+        {
+          "image": "images/trails/cortina-zumeles-val-padeon-gallery-trail-in-cortina-d-ampezzo.jpg",
+          "alt": "A trail above Cortina d'Ampezzo",
+          "title": "Trail in Cortina d'Ampezzo 2",
+          "creator": "Tiia Monto",
+          "licence": "CC BY-SA 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Trail_in_Cortina_d%27Ampezzo_2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cortina-anello-dei-tre-rifugi",
+      "photos": [
+        {
+          "image": "images/trails/cortina-anello-dei-tre-rifugi-gallery-crepe-de-socroda-n2.jpg",
+          "alt": "The Croda Rossa massif above Cortina",
+          "title": "Crepe de Socroda n2",
+          "creator": "Marie-Lan Taÿ Pamart",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Crepe_de_Socroda_n2.jpg"
+        },
+        {
+          "image": "images/trails/cortina-anello-dei-tre-rifugi-gallery-wayside-cross-valon-scuro-n1.jpg",
+          "alt": "A wayside cross in the Valon Scuro",
+          "title": "Wayside cross Valon Scuro n1",
+          "creator": "Marie-Lan Taÿ Pamart",
+          "licence": "CC BY 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Wayside_cross_Valon_Scuro_n1.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valdisole-cogolo-chiesa-di-santa-lucia",
+      "photos": [
+        {
+          "image": "images/trails/valdisole-cogolo-chiesa-di-santa-lucia-gallery-bassa-val-di-peio.jpg",
+          "alt": "The lower Val di Peio",
+          "title": "Bassa val di Peio",
+          "creator": "Syrio",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Bassa_val_di_Peio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fiemme-cristo-pensante",
+      "photos": [
+        {
+          "image": "images/trails/fiemme-cristo-pensante-gallery-trova-il-tempo-di-pensare.jpg",
+          "alt": "Snowy mountains near Monte Castellazzo",
+          "title": "Trova il tempo di pensare,trova il tempo di pregare, trova il tempo di sorridere - panoramio",
+          "creator": "Maurizio Ceol",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Trova_il_tempo_di_pensare,trova_il_tempo_di_pregare,_trova_il_tempo_di_sorridere_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fiemme-lago-juribrutto",
+      "photos": [
+        {
+          "image": "images/trails/fiemme-lago-juribrutto-gallery-cima-venegia-con-dietro-il.jpg",
+          "alt": "Cima Venegia with the Pale di San Martino behind",
+          "title": "Cima venegia con dietro il gruppo delle pale - panoramio",
+          "creator": "Maurizio Ceol",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Cima_venegia_con_dietro_il_gruppo_delle_pale_-_panoramio.jpg"
+        },
+        {
+          "image": "images/trails/fiemme-lago-juribrutto-gallery-le-pale-sempre-in-bella.jpg",
+          "alt": "The Pale di San Martino above the meadows",
+          "title": "Le Pale sempre in bella vista - panoramio",
+          "creator": "Maurizio Ceol",
+          "licence": "CC BY 3.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Le_Pale_sempre_in_bella_vista_-_panoramio.jpg"
+        }
+      ]
+    },
+    {
+      "id": "valdisole-peio-paese-lago-covel",
+      "photos": [
+        {
+          "image": "images/trails/valdisole-peio-paese-lago-covel-gallery-bergtocht-van-peio-paese-naar.jpg",
+          "alt": "Old huts on the path from Peio to Lago Covel",
+          "title": "Bergtocht van Peio Paese naar Lago Covel (1,839 m) in het Nationaal park Stelvio (Italië). Oude boerenschuur 02",
+          "creator": "Dominicus Johannes Bergsma",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Bergtocht_van_Peio_Paese_naar_Lago_Covel_(1,839_m)_in_het_Nationaal_park_Stelvio_(Itali%C3%AB)._Oude_boerenschuur_02.jpg"
+        },
+        {
+          "image": "images/trails/valdisole-peio-paese-lago-covel-gallery-bergtocht-van-peio-paese-naar-2.jpg",
+          "alt": "Huts in the meadows below Lago Covel",
+          "title": "Bergtocht van Peio Paese naar Lago Covel (1,839 m) in het Nationaal park Stelvio (Italië). Oude boerenschuur 03",
+          "creator": "Dominicus Johannes Bergsma",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Bergtocht_van_Peio_Paese_naar_Lago_Covel_(1,839_m)_in_het_Nationaal_park_Stelvio_(Itali%C3%AB)._Oude_boerenschuur_03.jpg"
+        }
+      ]
+    },
+    {
+      "id": "colle-passeggiata-intorno-al-colle",
+      "photos": [
+        {
+          "image": "images/trails/colle-passeggiata-intorno-al-colle-gallery-chiesa-di-santa-lucia-in.jpg",
+          "alt": "The church of Santa Lucia with peaks behind",
+          "title": "Chiesa di Santa Lucia in Colle Santa Lucia in Belluno, Veneto, Italy, 2025 September - 3",
+          "creator": "Ximonic (Simo Räsänen)",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Chiesa_di_Santa_Lucia_in_Colle_Santa_Lucia_in_Belluno,_Veneto,_Italy,_2025_September_-_3.jpg"
+        },
+        {
+          "image": "images/trails/colle-passeggiata-intorno-al-colle-gallery-chiesa-di-santa-lucia-in-2.jpg",
+          "alt": "Colle Santa Lucia and its church",
+          "title": "Chiesa di Santa Lucia in Colle Santa Lucia in Belluno, Veneto, Italy, 2025 September",
+          "creator": "Ximonic (Simo Räsänen)",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Chiesa_di_Santa_Lucia_in_Colle_Santa_Lucia_in_Belluno,_Veneto,_Italy,_2025_September.jpg"
+        }
+      ]
+    },
+    {
+      "id": "cinque-torri-assisted",
+      "photos": [
+        {
+          "image": "images/trails/cinque-torri-assisted-gallery-cinquetorri-20170724.jpg",
+          "alt": "The Cinque Torri from the west",
+          "title": "CinqueTorri 20170724",
+          "creator": "Ka23 13",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:CinqueTorri_20170724.jpg"
+        },
+        {
+          "image": "images/trails/cinque-torri-assisted-gallery-cinquetorri-eastfaces-20170724.jpg",
+          "alt": "The east faces of the Cinque Torri",
+          "title": "CinqueTorri EastFaces 20170724",
+          "creator": "Ka23 13",
+          "licence": "CC BY-SA 4.0",
+          "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:CinqueTorri_EastFaces_20170724.jpg"
+        }
+      ]
     }
   ]
 }

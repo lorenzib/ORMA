@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest paths": "Sentieri nel bosco",
   "Aschbach, top station of the cable car from Rabland, the board’s start": "Aschbach, stazione a monte della funivia da Rabland, punto di partenza della scheda ufficiale",
   "A rocky, root-laced path climbing through spruce forest, with a red-and-white waymark on a tree trunk and mossy banks either side": "Un sentiero sassoso e intrecciato di radici che sale in un bosco di abete rosso, con un segnavia bianco-rosso su un tronco e scarpate muschiose ai lati",
+  "The chapel of St. Vigil am Joch": "La cappella di San Vigilio al Giogo",
   "The loop starts and ends at Aschbach, the top station of the cable car from Rabland; its cabins are closed. Dogs ride on a lead and muzzled.": "L'anello parte e arriva ad Aschbach, la stazione a monte della funivia da Rabland; le cabine sono chiuse. I cani viaggiano al guinzaglio e con la museruola.",
   "Mostly shaded: the board describes the route as about 60% woodland; the meadows around St. Vigil and Seespitz are open.": "Per lo più all'ombra: la scheda ufficiale descrive il percorso come bosco per circa il 60%; i prati attorno a St. Vigil e Seespitz sono aperti.",
   "Ride the cable car up from Rabland to Aschbach and start at its top station, the board’s start.": "Sali con la funivia da Rabland ad Aschbach e parti dalla stazione a monte, punto di partenza della scheda ufficiale.",

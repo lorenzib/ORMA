@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village lanes, a cobbled avenue and forest paths": "Stradine del paese, un viale acciottolato e sentieri nel bosco",
   "Vigo di Fassa (Strada Rezia), the APT’s start": "Vigo di Fassa (Strada Rezia), la partenza indicata dall'APT",
   "The stone church of Santa Giuliana with its walled churchyard, a cobbled path climbing to it through the grass and larches": "La chiesa in pietra di Santa Giuliana con il suo sagrato cintato, un sentiero acciottolato che vi sale tra l'erba e i larici",
+  "Peaks on the road towards the Sella pass": "Cime sulla strada verso il Passo Sella",
+  "The church of Santa Giuliana in a meadow": "La chiesa di Santa Giuliana in un prato",
   "About two fifths is in the larch wood round the church; the lanes in Vigo are open.": "Circa due quinti sono nel lariceto intorno alla chiesa; le stradine di Vigo sono aperte.",
   "Start in the centre of Vigo, the tourist board’s start.": "Parti dal centro di Vigo, la partenza indicata dall'ente turistico.",
   "Up Strada de Piz to the covered fountain, a few metres of Strada de Sent’Uiana, the avenue across the meadow and along the pastures to the First World War cemetery and the sanctuary of Santa Giuliana; on along the gravel road to the path from Valongia, down Strada de Pontac and back along Strada Rezia.": "Su per Strada de Piz fino alla fontana coperta, pochi metri di Strada de Sent'Uiana, il viale attraverso il prato e lungo i pascoli fino al cimitero della Prima guerra mondiale e al santuario di Santa Giuliana; poi lungo la strada sterrata fino al sentiero da Valongia, giù per Strada de Pontac e ritorno lungo Strada Rezia.",

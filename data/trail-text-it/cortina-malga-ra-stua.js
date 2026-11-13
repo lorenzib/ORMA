@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest path and gorge path with bridges": "Sentiero nel bosco e sentiero nella forra con ponti",
   "Parcheggio Sant Hubertus, the board’s start": "Parcheggio Sant Hubertus, la partenza indicata dalla scheda ufficiale",
   "The wooden hut of Malga Ra Stua on a green pasture below wooded slopes and pale Dolomite peaks": "La baita di legno di Malga Ra Stua su un pascolo verde sotto versanti boscosi e chiare cime dolomitiche",
+  "The Aga de Cianpo de Crósc stream near Malga Ra Stua": "Il torrente Aga de Cianpo de Crósc vicino a Malga Ra Stua",
   "Mostly shaded: almost nine tenths runs through forest; the meadow at Malga Ra Stua is open.": "Per lo più all'ombra: quasi nove decimi passano nel bosco; il prato a Malga Ra Stua è aperto.",
   "Path 6: from the Sant’Uberto car park, known as the “tornichè”, on path 6 left of the road, gently up through spruce, pine and larch to the Boite, then through the “Souto de Ra Stua” gorge on a series of bridges past waterfalls and canyons, to the meadow and the hut of Malga Ra Stua, and back.": "Sentiero 6: dal parcheggio di Sant’Uberto, detto “tornichè”, sul sentiero 6 a sinistra della strada, sali dolcemente tra abeti rossi, pini e larici fino al Boite, poi attraverso la gola “Souto de Ra Stua” su una serie di ponti oltre cascate e forre, fino al prato e alla baita di Malga Ra Stua, e ritorno.",
   "Drinking fountain": "Fontanella",

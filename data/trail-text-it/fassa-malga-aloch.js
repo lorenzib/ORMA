@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Gravel tracks and meadow paths; trekking-pram friendly": "Strade sterrate e sentieri nei prati; adatto ai passeggini da trekking",
   "Pozza di Fassa (Piaza de Comun), the APT’s start": "Pozza di Fassa (Piaza de Comun), la partenza indicata dall'APT",
   "The chalets of Pozza di Fassa below a forested slope with a grassy clearing, two rock peaks above": "Gli chalet di Pozza di Fassa sotto un pendio boscoso con una radura erbosa, due cime rocciose sopra",
+  "Meadows and forest below the Buffaure": "Prati e bosco sotto il Buffaure",
   "About two fifths is under trees; the meadows below Malga Aloch are open.": "Circa due quinti sono sotto gli alberi; i prati sotto Malga Aloch sono aperti.",
   "Start at Piaza de Comun in Pozza, the tourist board’s start.": "Parti da Piaza de Comun a Pozza, la partenza indicata dall'ente turistico.",
   "Up the pavement towards the lifts, right through the Freina quarter, on along the forest road to Masc Aloch and Malga Aloch, and back the same way.": "Su per il marciapiede verso gli impianti, a destra attraverso il rione di Freina, poi lungo la strada forestale fino a Masc Aloch e Malga Aloch, e ritorno per la stessa via.",
