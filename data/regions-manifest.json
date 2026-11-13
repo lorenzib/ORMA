@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-13T10:24:05.397Z",
+  "generatedAt": "2026-11-13T10:23:49.520Z",
   "regions": {
     "dolomites": {
-      "trailCount": 367,
-      "trails": "data/regions/dolomites-trails.js?v=26728fee6703",
+      "trailCount": 369,
+      "trails": "data/regions/dolomites-trails.js?v=85b2dee5c61a",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=aba145c5d16a",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
         "santa-maddalena": "data/trail-details/santa-maddalena.js?v=7b0b5a07444a",
         "tre-cime": "data/trail-details/tre-cime.js?v=a98f816d1a80",
         "cadini": "data/trail-details/cadini.js?v=90a402fe2e3a",
-        "prato-piazza": "data/trail-details/prato-piazza.js?v=447ba3bcd2bc",
+        "prato-piazza": "data/trail-details/prato-piazza.js?v=89a3e15b0eb3",
         "nuvolau": "data/trail-details/nuvolau.js?v=e2115678b59a",
         "lago-braies": "data/trail-details/lago-braies.js?v=0bc548c74f5c",
         "lago-carezza": "data/trail-details/lago-carezza.js?v=b84e4d0d4281",
@@ -372,6 +372,8 @@
         "valdisole-percorso-della-fauna-in-val-di-peio": "data/trail-details/valdisole-percorso-della-fauna-in-val-di-peio.js?v=755f75b53e6a",
         "colle-passeggiata-intorno-al-colle": "data/trail-details/colle-passeggiata-intorno-al-colle.js?v=b2fbfdc45c59",
         "kronplatz-sulle-tracce-della-lacerta-prima": "data/trail-details/kronplatz-sulle-tracce-della-lacerta-prima.js?v=e1cacd1723a8",
+        "auronzo-proazei": "data/trail-details/auronzo-proazei.js?v=9647997de929",
+        "auronzo-zamberlan": "data/trail-details/auronzo-zamberlan.js?v=118e93f83f51",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=24e2aaa3dfc9"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -980,6 +982,8 @@
     "valdisole-percorso-della-fauna-in-val-di-peio": "dolomites",
     "colle-passeggiata-intorno-al-colle": "dolomites",
     "kronplatz-sulle-tracce-della-lacerta-prima": "dolomites",
+    "auronzo-proazei": "dolomites",
+    "auronzo-zamberlan": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1655,6 +1659,8 @@
     "valdisole-percorso-della-fauna-in-val-di-peio": "percorso-della-fauna-val-di-peio",
     "colle-passeggiata-intorno-al-colle": "passeggiata-intorno-al-colle-santa-lucia",
     "kronplatz-sulle-tracce-della-lacerta-prima": "lacerta-prima-valdaora-di-sopra",
+    "auronzo-proazei": "proazei-auronzo",
+    "auronzo-zamberlan": "cima-gogna-zamberlan",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2177,6 +2183,8 @@
     "percorso-della-fauna-val-di-peio": "valdisole-percorso-della-fauna-in-val-di-peio",
     "passeggiata-intorno-al-colle-santa-lucia": "colle-passeggiata-intorno-al-colle",
     "lacerta-prima-valdaora-di-sopra": "kronplatz-sulle-tracce-della-lacerta-prima",
+    "proazei-auronzo": "auronzo-proazei",
+    "cima-gogna-zamberlan": "auronzo-zamberlan",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
