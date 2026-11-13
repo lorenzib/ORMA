@@ -150,3 +150,60 @@ describe('SOCIAL-02 wiring', () => {
     expect(onFix.indexOf('markCoverage(')).toBeLessThan(onFix.indexOf('reachedFinish('));
   });
 });
+
+// Hike mode places each fix as it comes, without the fixes still to come.
+describe('placing a live walk on a line that doubles back', () => {
+  const proof = require('./walk-proof.js');
+  const KM_LNG = 1 / (111.32 * Math.cos(46.6 * Math.PI / 180));
+  // 2 km east and the same 2 km home again, drawn as one line.
+  const out = Array.from({ length: 41 }, (_, i) => [46.6, 11.7 + (i / 20) * KM_LNG]);
+  const line = proof.prepareLine(out.concat(out.slice(0, -1).reverse()));
+  const at = km => [46.6 + 0.00005, 11.7 + km * KM_LNG]; // 5 m off the path
+
+  function walk(kms, placement = proof.createPlacement(null)){
+    let coverage = proof.createCoverage(line.lengthM);
+    const placed = [];
+    kms.forEach(km => {
+      const [lat, lng] = at(km);
+      const step = proof.placeFix(placement, proof.passesNear(line, lat, lng, proof.NEAR_M));
+      placement = step.placement;
+      placed.push(step.fix.alongM);
+      coverage = proof.markFix(coverage, step.fix);
+    });
+    return { placed, coverage, placement };
+  }
+  const there = Array.from({ length: 101 }, (_, i) => i * 0.02);
+  const home = there.slice(0, -1).reverse();
+
+  test('the way home is placed on the second half and the whole line is walked', () => {
+    const { placed, coverage } = walk(there.concat(home));
+    expect(placed[0]).toBeLessThan(10);
+    expect(placed[100]).toBeCloseTo(2000, -1);
+    expect(placed[placed.length - 1]).toBeGreaterThan(line.lengthM - 30);
+    expect(proof.share(coverage)).toBeGreaterThan(0.97);
+  });
+
+  test('an untidy turnaround: wandering short of the end and back does not strand the walk', () => {
+    const dither = [1.9, 1.95, 1.92, 1.97, 1.93, 1.96, 1.94];
+    const { placed, coverage } = walk(there.slice(0, 95).concat(dither, home.slice(5)));
+    expect(placed[placed.length - 1]).toBeGreaterThan(line.lengthM - 30);
+    expect(proof.share(coverage)).toBeGreaterThan(proof.MIN_SHARE);
+  });
+
+  test('a long gap in the signal on the way home is still the way home', () => {
+    const { placed } = walk(there.concat(home.filter(km => km > 1.5 || km < 0.3)));
+    expect(placed[placed.length - 1]).toBeGreaterThan(line.lengthM - 30);
+  });
+
+  test('only out is half the line', () => {
+    const { coverage } = walk(there);
+    expect(proof.share(coverage)).toBeLessThan(0.55);
+  });
+
+  test('a resumed walk picks up on the half it was on', () => {
+    const resumed = proof.createPlacement(line.lengthM - 1000); // 1 km from home
+    const { placed } = walk([1, 0.98, 0.96], resumed);
+    expect(placed[2]).toBeCloseTo(line.lengthM - 960, -1);
+    expect(proof.placedAlongM(proof.createPlacement(null))).toBeNull();
+  });
+});
