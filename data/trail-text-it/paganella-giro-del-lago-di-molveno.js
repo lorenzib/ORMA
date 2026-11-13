@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Lakeside paths and forest paths": "Sentieri lungo il lago e sentieri nel bosco",
   "Molveno campsite, the APT’s start": "Campeggio di Molveno, la partenza indicata dall'APT",
   "The still turquoise Lago di Molveno with pale rocks on the shore in the foreground and wooded mountains beyond under a soft evening sky": "Il Lago di Molveno turchese e immobile con rocce chiare sulla riva in primo piano e montagne boscose sullo sfondo sotto un tenue cielo serale",
+  "Lake Molveno from its south shore": "Il Lago di Molveno dalla riva sud",
+  "Molveno on the shore of its lake": "Molveno sulla riva del suo lago",
   "Part shade: about 64% runs under trees, in the woods above and below the road on the east shore.": "In parte all'ombra: circa il 64% passa sotto gli alberi, nei boschi sopra e sotto la strada sulla sponda orientale.",
   "Not a numbered route: from the campsite at Molveno towards the Roman bridge and the Fortini di Napoleone (fortifications of 1796–1801, a short detour), along the west shore and then the east shore, the most panoramic stretch; cross the main road but do not walk along it, the path runs first in the woods above the road and then below it; back to Molveno on the King of the Belgians’ path and over the Bior bridge.": "Percorso senza numero: dal campeggio di Molveno verso il ponte romano e i Fortini di Napoleone (fortificazioni del 1796–1801, breve deviazione), lungo la sponda ovest e poi la sponda est, il tratto più panoramico; attraversa la strada principale ma non camminarci lungo, il sentiero corre prima nel bosco sopra la strada e poi sotto; ritorno a Molveno sul sentiero del Re dei Belgi e sul ponte del Bior.",
   "Drinking fountain": "Fontanella",

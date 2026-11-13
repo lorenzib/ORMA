@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village streets, gravel forest road and a forest path": "Strade del paese, strada forestale sterrata e un sentiero nel bosco",
   "San Martino di Castrozza, the APT’s start": "San Martino di Castrozza, la partenza indicata dall'APT",
   "The main street of San Martino di Castrozza in summer, a small church with a cross on its gable, hotels and walkers, the grey rock towers of the Pale di San Martino above wooded slopes": "La via principale di San Martino di Castrozza d'estate, una piccola chiesa con una croce sul timpano, alberghi ed escursionisti, le torri di roccia grigia delle Pale di San Martino sopra i versanti boscosi",
+  "The Pale di San Martino above the forest": "Le Pale di San Martino sopra il bosco",
   "Mostly shaded: about two thirds runs through the forest between San Martino and Malga Ces.": "Per lo più all'ombra: circa due terzi del percorso attraversano il bosco tra San Martino e Malga Ces.",
   "Start in the centre of San Martino di Castrozza, the tourist board’s start.": "Parti dal centro di San Martino di Castrozza, la partenza indicata dall'ente turistico.",
   "Towards the Plank pond, on along the forest road at Scacciapensieri, then the signs for Malga Ces on the forest road and a path up the left side of the valley; back the same way.": "Verso lo stagno di Plank, avanti sulla strada forestale a Scacciapensieri, poi i cartelli per Malga Ces sulla strada forestale e un sentiero che risale il lato sinistro della valle; ritorno per la stessa via.",

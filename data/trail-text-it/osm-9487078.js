@@ -5,5 +5,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Sparsely mapped: gravel (63%), dirt (25%), natural ground (13%), from OSM surface data": "Mappato in modo scarso: ghiaia (63%), terra (25%), terreno naturale (13%), dai dati OSM sul fondo",
   "Seiser Alm cable-car valley station, Seis (official start)": "Stazione a valle della cabinovia dell'Alpe di Siusi (Seiser Alm), Seis (partenza ufficiale)",
   "The walls of the Hauenstein castle ruin in the forest above Seis am Schlern, seen from above, which the walk passes": "Le mura dei ruderi del castello di Hauenstein nel bosco sopra Seis am Schlern, viste dall'alto, accanto a cui passa il percorso",
+  "The ruins of Hauenstein castle in the forest above Seis": "Le rovine di Castel Hauenstein nel bosco sopra Siusi",
+  "Seis am Schlern with the valley below": "Siusi allo Sciliar con la valle sotto",
   "The Hauenstein castle ruin above Seis": "Il rudere del castello di Hauenstein sopra Siusi"
 });

@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village lanes, field tracks and woodland paths": "Stradine di paese, strade campestri e sentieri nel bosco",
   "Scancio, Segonzano (car park by the Hotel Piramidi), the APT’s start": "Scancio, Segonzano (parcheggio vicino all'Hotel Piramidi), la partenza indicata dall'APT",
   "The two ruined towers of the Castello di Segonzano on a wooded rock above terraced vineyards under a cloudy summer sky": "Le due torri in rovina del Castello di Segonzano su una rupe boscosa sopra vigneti terrazzati, sotto un cielo estivo nuvoloso",
+  "Prà and its terraces from the air": "Prà e i suoi terrazzamenti dall'alto",
+  "The fields of Piazzo from the air": "I campi di Piazzo dall'alto",
   "Mostly open: about 30% of the loop is shaded, in the woods of the Prà gorge.": "Per lo più aperto: circa il 30% dell'anello è all'ombra, nei boschi della forra di Prà.",
   "No route number: from the car park by the Hotel Piramidi in Scancio, briefly along the SP 71 and through Saletto, past the ruins of the Castello di Segonzano and down through Piazzo, then lanes and paths towards the Avisio and the Ponte di Cantilaga (do not cross the bridge), on to the hamlet of Prà, and back through the fields and the woods of the Prà gorge to Saletto and Scancio.": "Senza numero di percorso: dal parcheggio vicino all'Hotel Piramidi a Scancio, brevemente lungo la SP 71 e attraverso Saletto, oltre i ruderi del Castello di Segonzano e giù attraverso Piazzo, poi stradine e sentieri verso l'Avisio e il Ponte di Cantilaga (non attraversare il ponte), avanti fino alla frazione di Prà, e ritorno tra i campi e i boschi della forra di Prà fino a Saletto e Scancio.",
   "Drinking fountain": "Fontanella",

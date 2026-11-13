@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Gravel track and mountain path": "Strada sterrata e sentiero di montagna",
   "Lake Neves (Neves-Stausee), the board’s start": "Lago di Neves (Neves-Stausee), la partenza indicata dalla scheda ufficiale",
   "A stony path across open alpine pasture above Lake Neves, with dark peaks of the Zillertal Alps beyond": "Un sentiero sassoso attraverso un pascolo alpino aperto sopra il lago di Neves, con le cime scure delle Alpi della Zillertal sullo sfondo",
+  "Lago Ponte di Ghiaccio below the peaks": "Il Lago Ponte di Ghiaccio sotto le cime",
   "Almost no shade: about 8% runs through mapped woodland; the rest is open alpine ground.": "Quasi senza ombra: circa l'8% passa in zone boscose mappate; il resto è terreno alpino aperto.",
   "Start at Lake Neves (Neves-Stausee) above Lappach, which you can reach by car, the board’s start.": "Parti dal lago di Neves (Neves-Stausee) sopra Lappach, raggiungibile in auto, la partenza indicata dalla scheda ufficiale.",
   "Cross the dam and follow path 26 along the lake and up the valley. The path climbs steadily to the Ponte di Ghiaccio hut (Edelrauthütte) on the pass at about 2,540 m, around two and a half hours from the lake.": "Attraversa la diga e segui il sentiero 26 lungo il lago e su per la valle. Il sentiero sale con costanza fino al rifugio Ponte di Ghiaccio (Edelrauthütte) sul passo, a circa 2.540 m, a circa due ore e mezza dal lago.",

@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Packed dirt & grass, occasional rock": "Terra battuta ed erba, a tratti roccia",
   "Berggasthof Plätzwiese, above the Plätzwiese car park": "Berggasthof Plätzwiese, sopra il parcheggio di Plätzwiese",
   "Prato Piazza (Plätzwiese) trail": "Sentiero di Prato Piazza (Plätzwiese)",
+  "The Prato Piazza meadows from the air, Monte Cristallo behind": "I prati di Prato Piazza dall'alto, con il Monte Cristallo dietro",
+  "The ruined fort at the edge of the Prato Piazza meadows": "Il forte in rovina al margine dei prati di Prato Piazza",
   "Almost no shade: open high pasture and dwarf pine between 2,000 and 2,300 m.": "Quasi nessuna ombra: pascoli d'alta quota aperti e mughi tra 2.000 e 2.300 m.",
   "At the saddle by the war memorial, leave the track and turn right for the summit of the Strudelkopf": "Alla sella presso il monumento ai caduti, lascia la strada sterrata e gira a destra per la cima dello Strudelkopf",
   "Berggasthof Plätzwiese (restaurant)": "Berggasthof Plätzwiese (ristorante)",

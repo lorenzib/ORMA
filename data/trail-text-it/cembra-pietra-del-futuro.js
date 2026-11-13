@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village lanes, a lakeside path with some steps, paved paths": "Stradine di paese, un sentiero lungo il lago con qualche gradino, sentieri pavimentati",
   "Lases village, the APT’s start": "Paese di Lases, la partenza indicata dall'APT",
   "The Lago di Lases seen from a grassy shore between tall trees, a red pedal boat on the beach and porphyry quarry cliffs above the far shore under a summer sky": "Il Lago di Lases visto da una riva erbosa tra alti alberi, un pedalò rosso sulla spiaggia e pareti di cava di porfido sopra la sponda opposta sotto un cielo estivo",
+  "Lago di Lases in winter from above": "Il Lago di Lases in inverno dall'alto",
+  "Lago di Lases and its village in winter": "Il Lago di Lases e il suo paese in inverno",
   "About half the way is shaded by the woods on the lake shore.": "Circa metà del percorso è all'ombra dei boschi sulla riva del lago.",
   "No route number: from the centre of Lases along Via Principale and down Via Lago to the lake, then the Sentiero Lago Lases along the shore, with stone and wooden steps in places, past the bathing meadow to the far end of the lake. One way: return the same way or by the lake road.": "Senza numero di percorso: dal centro di Lases lungo Via Principale e giù per Via Lago fino al lago, poi il Sentiero Lago Lases lungo la riva, a tratti con gradini di pietra e di legno, oltre il prato per la balneazione fino all'estremità opposta del lago. Solo andata: ritorno per la stessa strada oppure per la strada del lago.",
   "Drinking fountain": "Fontanella",
