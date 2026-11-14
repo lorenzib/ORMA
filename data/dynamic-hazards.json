@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-14T14:13:35.889Z",
+  "generatedAt": "2026-11-14T17:12:32.717Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T14:13:35.889Z",
+      "lastSeenAt": "2026-11-14T17:12:32.717Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -46,6 +46,56 @@
       "sourceStatus": "available"
     },
     {
+      "id": "meteoalarm-france:avalanches:haute-savoie",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Moderate avalanches warning",
+      "area": "Haute-Savoie",
+      "title": "avalanches warning for Haute-Savoie",
+      "message": "An official moderate avalanches warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-france",
+      "sourceLabel": "MeteoAlarm France",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/7d34ae2e-2a71-40e0-9b33-1c44d5d67678",
+      "identifier": "2.49.0.0.250.0.FR.20261114160054.533028",
+      "effectiveAt": "2026-11-14T15:00:00+00:00",
+      "expiresAt": "2026-11-15T23:00:00+00:00",
+      "firstPublishedAt": "2026-11-14T17:12:32.717Z",
+      "lastSeenAt": "2026-11-14T17:12:32.717Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "osm-6250300",
+        "osm-10116283",
+        "osm-10116380",
+        "osm-20347406",
+        "osm-11517208",
+        "osm-14987412",
+        "osm-18055492",
+        "osm-14864704",
+        "osm-5479112",
+        "osm-13337921",
+        "osm-13338113",
+        "osm-16180587",
+        "osm-19064561",
+        "osm-19661726"
+      ],
+      "trailNames": [
+        "Boucle du Lac Vert",
+        "Itinéraire de découverte historique",
+        "Itinéraire découverte de la nature",
+        "Sentier des Patriotes",
+        "La Croix des Salles",
+        "Sentier du Four",
+        "Le Mont d'Arbois - Mont Joux",
+        "Boucle du Taillefer",
+        "Chemin des Diligences",
+        "Au pied du Roc d'Enfer",
+        "Lac de Darbon",
+        "Balade du Plateau d'Assy au Lac Vert",
+        "Ombres sur l'Alpage",
+        "Sentier pédestre des Graniteurs"
+      ]
+    },
+    {
       "id": "meteoalarm-italy:thunderstorm:piemonte",
       "state": "active",
       "severity": "moderate",
@@ -60,7 +110,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T14:13:35.889Z",
+      "lastSeenAt": "2026-11-14T17:12:32.717Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -95,7 +145,7 @@
       "effectiveAt": "2026-11-13T00:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T14:13:35.889Z",
+      "lastSeenAt": "2026-11-14T17:12:32.717Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -168,7 +218,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T14:13:35.889Z",
+      "lastSeenAt": "2026-11-14T17:12:32.717Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
