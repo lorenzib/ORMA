@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-14T17:12:32.717Z",
+  "generatedAt": "2026-11-14T20:13:54.704Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T17:12:32.717Z",
+      "lastSeenAt": "2026-11-14T20:13:54.704Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -60,7 +60,7 @@
       "effectiveAt": "2026-11-14T15:00:00+00:00",
       "expiresAt": "2026-11-15T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-14T17:12:32.717Z",
+      "lastSeenAt": "2026-11-14T20:13:54.704Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -93,7 +93,8 @@
         "Balade du Plateau d'Assy au Lac Vert",
         "Ombres sur l'Alpage",
         "Sentier pédestre des Graniteurs"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:thunderstorm:piemonte",
@@ -110,7 +111,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T17:12:32.717Z",
+      "lastSeenAt": "2026-11-14T20:13:54.704Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -145,7 +146,7 @@
       "effectiveAt": "2026-11-13T00:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T17:12:32.717Z",
+      "lastSeenAt": "2026-11-14T20:13:54.704Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -218,7 +219,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T17:12:32.717Z",
+      "lastSeenAt": "2026-11-14T20:13:54.704Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
