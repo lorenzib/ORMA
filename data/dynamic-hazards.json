@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-14T02:19:55.517Z",
+  "generatedAt": "2026-11-14T05:14:50.359Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T02:19:55.517Z",
+      "lastSeenAt": "2026-11-14T05:14:50.359Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -60,7 +60,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-12T23:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T02:19:55.517Z",
+      "lastSeenAt": "2026-11-14T05:14:50.359Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -95,7 +95,7 @@
       "effectiveAt": "2026-11-13T00:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T02:19:55.517Z",
+      "lastSeenAt": "2026-11-14T05:14:50.359Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -168,7 +168,7 @@
       "effectiveAt": "2026-11-12T09:00:00+00:00",
       "expiresAt": "2026-11-13T05:59:00+00:00",
       "firstPublishedAt": "2026-11-10T23:12:38.670Z",
-      "lastSeenAt": "2026-11-14T02:19:55.517Z",
+      "lastSeenAt": "2026-11-14T05:14:50.359Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
