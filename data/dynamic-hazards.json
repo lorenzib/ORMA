@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-15T05:15:17.285Z",
+  "generatedAt": "2026-11-15T08:18:34.762Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-14T15:00:00+00:00",
       "expiresAt": "2026-11-16T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-15T05:15:17.285Z",
+      "lastSeenAt": "2026-11-15T08:18:34.762Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -68,7 +68,7 @@
       "effectiveAt": "2026-11-15T23:00:00+00:00",
       "expiresAt": "2026-11-16T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-15T05:15:17.285Z",
+      "lastSeenAt": "2026-11-15T08:18:34.762Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -87,7 +87,8 @@
         "Couzon loop from Saint-Pierre-de-Chartreuse",
         "Molière plateau loop above Autrans",
         "Fort du Murier loop above Gières"
-      ]
+      ],
+      "sourceStatus": "available"
     }
   ]
 }
