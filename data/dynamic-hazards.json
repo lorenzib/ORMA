@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-15T08:18:34.762Z",
+  "generatedAt": "2026-11-15T11:13:01.178Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -12,12 +12,12 @@
       "message": "An official moderate avalanches warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/c83e0bc2-bc02-4fbc-988e-0700eba3a3ff",
-      "identifier": "2.49.0.0.250.0.FR.20261115060049.863028",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a4bfe6d0-2524-4aee-b0eb-0d37d1efc1ff",
+      "identifier": "2.49.0.0.250.0.FR.20261115100043.322028",
       "effectiveAt": "2026-11-14T15:00:00+00:00",
       "expiresAt": "2026-11-16T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-15T08:18:34.762Z",
+      "lastSeenAt": "2026-11-15T11:13:01.178Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -63,12 +63,12 @@
       "message": "An official moderate avalanches warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/c83e0bc2-bc02-4fbc-988e-0700eba3a3ff",
-      "identifier": "2.49.0.0.250.0.FR.20261115060049.863028",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a4bfe6d0-2524-4aee-b0eb-0d37d1efc1ff",
+      "identifier": "2.49.0.0.250.0.FR.20261115100043.322028",
       "effectiveAt": "2026-11-15T23:00:00+00:00",
       "expiresAt": "2026-11-16T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-15T08:18:34.762Z",
+      "lastSeenAt": "2026-11-15T11:13:01.178Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
