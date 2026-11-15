@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-15T02:20:15.806Z",
+  "generatedAt": "2026-11-15T05:15:17.285Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -12,12 +12,12 @@
       "message": "An official moderate avalanches warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/7d34ae2e-2a71-40e0-9b33-1c44d5d67678",
-      "identifier": "2.49.0.0.250.0.FR.20261114160054.533028",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/c83e0bc2-bc02-4fbc-988e-0700eba3a3ff",
+      "identifier": "2.49.0.0.250.0.FR.20261115060049.863028",
       "effectiveAt": "2026-11-14T15:00:00+00:00",
-      "expiresAt": "2026-11-15T23:00:00+00:00",
+      "expiresAt": "2026-11-16T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-15T02:20:15.806Z",
+      "lastSeenAt": "2026-11-15T05:15:17.285Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -52,6 +52,42 @@
         "Sentier pédestre des Graniteurs"
       ],
       "sourceStatus": "available"
+    },
+    {
+      "id": "meteoalarm-france:avalanches:is-re",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Moderate avalanches warning",
+      "area": "Isère",
+      "title": "avalanches warning for Isère",
+      "message": "An official moderate avalanches warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-france",
+      "sourceLabel": "MeteoAlarm France",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/c83e0bc2-bc02-4fbc-988e-0700eba3a3ff",
+      "identifier": "2.49.0.0.250.0.FR.20261115060049.863028",
+      "effectiveAt": "2026-11-15T23:00:00+00:00",
+      "expiresAt": "2026-11-16T23:00:00+00:00",
+      "firstPublishedAt": "2026-11-15T05:15:17.285Z",
+      "lastSeenAt": "2026-11-15T05:15:17.285Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "isere-circuit-pedestre-alpage-des-cloutons",
+        "isere-la-vallee-de-la-gresse",
+        "isere-le-canal-de-clelles",
+        "isere-tour-de-chichilianne",
+        "isere-boucle-du-couzon",
+        "isere-le-plateau-de-la-moliere",
+        "isere-le-fort-du-murier"
+      ],
+      "trailNames": [
+        "Alpage des Cloutons loop from Saint-Honoré 1500",
+        "Gresse valley loop from Miribel-Lanchâtre",
+        "Clelles canal loop",
+        "Tour de Chichilianne",
+        "Couzon loop from Saint-Pierre-de-Chartreuse",
+        "Molière plateau loop above Autrans",
+        "Fort du Murier loop above Gières"
+      ]
     }
   ]
 }
