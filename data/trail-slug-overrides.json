@@ -1985,6 +1985,11 @@
       "name": "Cima Gogna to Zamberlan",
       "slug": "cima-gogna-zamberlan",
       "gloss": "a steady forest-track climb above Cima Gogna and back"
+    },
+    "auronzo-namos": {
+      "name": "Santa Caterina to Pian de Namos",
+      "slug": "pian-de-namos-auronzo",
+      "gloss": "a mule-track climb to the mountain huts of Namos and back"
     }
   }
 }

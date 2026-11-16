@@ -66904,6 +66904,76 @@
       ],
       startPoint: { lat: 46.520063, lng: 12.467127, label: "Cima Gogna, on the SS52 before Auronzo, the board’s start" },
       desc: "A shady climb on a forest track from Cima Gogna past Le Prese and Pian di Barco to Zamberlan above the Ansiei valley, and back the same way. The board lists 6.4 km there and back and 528 m up."
+    },
+    'auronzo-namos': {
+      // Hand audit: 16 November 2026, verified on arrival (Dolomites walks whose page only suggests another way back, owner rule of 16 November 2026).
+      // “19 - Namos”, published by Consorzio Turistico Tre Cime Dolomiti one way (its only return is a suggested different path), drawn there and back on 13 OSM ways along the
+      // line it publishes (data/board-line-routes.geojson). Distance and climb are the board’s one-way figures doubled
+      // (climb = its up plus its down); the time is measured by ORMA (DIN 33466), as the board times one way only.
+      // Commune: Auronzo di Cadore (no dog rule found online: national rule). Natura 2000 ZPS IT3230089 Dolomiti del Cadore e del Comelico on most of the line (EEA); Veneto’s alpine measures (DGR 786/2016 Art. 99) only restate the national rule. No main road: 100 m on Via Santa Caterina at the start, then track and path. The page’s author tip suggests going on down path 20 and path 18 back to Cella instead; owner rule of 16 November 2026: a suggested other way back does not block the walk, which ORMA walks back on the same path.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Cella (Villapiccola) – Namos – Pian de Namos, Auronzo di Cadore",
+      distance: 4,
+      elevation: 271,
+      hours: '1.9',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The board publishes path 19 one way, from the Santa Caterina chapel at Cella to Pian de Namos (2 km, 271 m up, 0:55 h), and suggests a different way down by paths 20 and 18. ORMA walks it there and back on the same path: 4 km with 271 m up and down. The time, about 1 h 55, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the little chapel of Santa Caterina d’Alessandria in the hamlet of Cella (Villapiccola), by the Lake Santa Caterina dam, the board’s start. There are a few parking places on the SR48 just before the dam.",
+        "sequence": "Follow path 17, leaving path 18 on your right. After about 700 m on a gentle slope, turn right onto path 19: a steep mule track climbs to Namos, with its mountain huts. Beyond it the climb eases through mixed spruce, fir and beech woods to the clearing of Pian de Namos. The board suggests going on down by paths 20 and 18; ORMA’s walk goes back the same way, on paths 19 and 17.",
+        "switches": "Path 17 from the chapel, leaving path 18 on the right; after about 700 m right onto path 19, steeply up to Namos and gently on to Pian de Namos; back the same way on paths 19 and 17.",
+        "sources": [
+          {
+            "label": "Consorzio Turistico Tre Cime Dolomiti, 19 - Namos (route description)",
+            "url": "https://www.outdooractive.com/it/r/812627745",
+            "authority": "Consorzio Turistico Tre Cime Dolomiti",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Auronzo and Lake Santa Caterina from the slope above Cella (Kufoleto on Wikimedia Commons, CC BY 3.0), 26 August 2008, 13 m from the line.",
+        route: "Official one-way walk of 2 km from The chapel of Santa Caterina d’Alessandria at Cella (Villapiccola), by Lake Santa Caterina, as Consorzio Turistico Tre Cime Dolomiti publishes it; the page only suggests a different way down, and ORMA walks it there and back on the same path (owner rules of 12 and 16 November 2026). The stored line is drawn on 13 OSM ways along the board’s published line out and back, 4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 17 and 19: from the Santa Caterina chapel at Cella on path 17, past the turn for path 18, then right on path 19 steeply up to Namos and on to Pian de Namos; back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at the start (OSM nodes 13938018384).",
+        elevation: "Official one way: 2 km, 271 m up and 0 m down, 0:55 h, highest point Pian de Namos 1,102 m, lowest 832 m (Consorzio Turistico Tre Cime Dolomiti, Outdooractive). There and back on the same path: 4 km, 271 m up and 271 m down; about 1 h 55 measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Consorzio Turistico Tre Cime Dolomiti, 19 - Namos (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Auronzo di Cadore (its site lists documents only through a script), so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Natura 2000: ZPS IT3230089 Dolomiti del Cadore e del Comelico on most of the line (EEA); Veneto’s alpine conservation measures (DGR 786/2016 Allegato A, Art. 99) only restate the national dog rule",
+          "OpenStreetMap ways along the board’s line (13 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 66,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The steep mule track up from path 17 to Namos: take it slowly with an older or less fit dog, and carefully on the way down","Private mountain huts and their meadows at Namos: keep your dog on the path and close","Forest track open to forestry vehicles in places: keep your dog close if one comes"],
+      terrainType: "Gravel track and steep mule track, then woodland path",
+      shadeDescription: "Mostly in spruce, fir and beech woods; the clearings at Namos and Pian de Namos are open.",
+      terrainDescription: "A short, steep climb from the chapel of Santa Caterina above Auronzo on a mule track to the mountain huts of Namos, then gently through the woods to the clearing of Pian de Namos, with views of the Tre Cime and the Duranno, and back the same way.",
+      waterDescription: "Drinking water is mapped at the start (OSM), and none further on: carry enough for you and your dog.",
+      dogNotes: "Auronzo has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried. Most of the walk is in a Natura 2000 bird area: keep your dog on the path and close.",
+      tips: "Start at the Santa Caterina chapel by the lake: about an hour up to Pian de Namos, as the board lists, and the same way back. The mule track to Namos is short but steep, so go slowly with your dog, especially on the way down.",
+      sourceLinks: [
+        { label: "Consorzio Turistico Tre Cime Dolomiti, 19 - Namos", url: "https://www.outdooractive.com/it/r/812627745" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Veneto, DGR 786/2016 Allegato A, Natura 2000 conservation measures, alpine region (Art. 99, dogs)", url: "https://download.mase.gov.it/Natura2000/Materiale%20Designazione%20ZSC/Veneto/04_Misure%20di%20Conservazione/DGR%20786_27_05_2016-%20Allegato%20A%20MdC%20Alpina.pdf" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.540046, lng: 12.463338, label: "The chapel of Santa Caterina d’Alessandria at Cella (Villapiccola), by Lake Santa Caterina, the board’s start" },
+      desc: "A short, steep climb from the Santa Caterina chapel above Lake Auronzo on paths 17 and 19 to the mountain huts of Namos and the clearing of Pian de Namos, and back the same way. The board lists 2 km one way, just under an hour; there and back it is 4 km with 271 m up and down."
     }
   };
 

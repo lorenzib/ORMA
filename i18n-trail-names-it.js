@@ -25,6 +25,7 @@ window.ORMA_TRAIL_NAMES_IT = {
   "aosta-strada-lombarda": "Strada Lombarda",
   "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "Alpenzù Piccolo e Alpenzù Grande",
   "arabba-castello-di-andraz-passeggiata-per-famiglie": "Al Castello di Andraz, andata e ritorno",
+  "auronzo-namos": "Da Santa Caterina a Pian de Namos, andata e ritorno",
   "auronzo-proazei": "Anello di Proazei sopra il lago di Auronzo",
   "auronzo-zamberlan": "Da Cima Gogna a Zamberlan",
   "bormio-da-arnoga-al-rifugio-federico": "Arnoga – Rifugio Federico, Val Viola",

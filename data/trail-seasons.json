@@ -9539,6 +9539,24 @@
           "accessedAt": "2026-11-12"
         }
       }
+    },
+    "auronzo-namos": {
+      "highPoint": 1094,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/812627745",
+          "accessedAt": "2026-11-16"
+        }
+      }
     }
   }
 }

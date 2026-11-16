@@ -257,8 +257,10 @@ describe('the existing-site verification boundary',()=>{
     // Then 525 and 523 with the Dolomites one-way walks, sealed there and
     // back on the same path: Castello di Andraz, Sorafurcia to Plan de
     // Corones and the Steinmeile at Valdaora di Sotto.
-    expect(catalogue).toHaveLength(525);
-    expect(currentSiteTrails(catalogue)).toHaveLength(523);
+    // Then 526 and 524 with Pian de Namos above Auronzo, whose page only
+    // suggests another way down (owner rule of 16 November 2026).
+    expect(catalogue).toHaveLength(526);
+    expect(currentSiteTrails(catalogue)).toHaveLength(524);
   });
 
   test('requires the artwork the public trail page needs',()=>{
