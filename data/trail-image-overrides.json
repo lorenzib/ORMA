@@ -6979,6 +6979,40 @@
       }
     },
     {
+      "id": "seiseralm-promenadenweg-tiers",
+      "approvedReviewId": "commons-seiseralm-promenadenweg-tiers-on-route",
+      "approvedAt": "2026-11-16T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-promenadenweg-tiers-velseck.jpg",
+        "heroImage": "images/trails/seiseralm-promenadenweg-tiers-velseck.jpg",
+        "imageAlt": "A white manor house with wooden balconies and a lawn in front, a gravel path on the left and a wooded peak with pale cliffs rising behind under a blue sky",
+        "imageCredit": "The Ansitz Velseck below the Völsegg peak, Tiers",
+        "imageCreditText": "The Ansitz Velseck below the Völsegg peak, Tiers by Commander-pirx",
+        "imageCreator": "Commander-pirx",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ansitz_Velseck_Völseggspitze_Tschafon_2023-007.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seiseralm-umser-rundweg",
+      "approvedReviewId": "commons-seiseralm-umser-rundweg-on-route",
+      "approvedAt": "2026-11-16T18:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/seiseralm-umser-rundweg-st-martin.jpg",
+        "heroImage": "images/trails/seiseralm-umser-rundweg-st-martin.jpg",
+        "imageAlt": "A white village church with a pointed tower and a fresco on its gable above a green meadow, with wooded mountains and grey cliffs behind under a cloudy sky",
+        "imageCredit": "St. Martin’s church, Ums",
+        "imageCreditText": "St. Martin’s church, Ums by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Umes,_chiesa_di_San_Martino_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "sentiero-del-trenino",
       "approvedReviewId": "commons-sentiero-del-trenino-on-route",
       "approvedAt": "2026-10-23T23:00:00.000Z",

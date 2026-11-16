@@ -7097,6 +7097,30 @@
         }
       }
     },
+    "seiseralm-promenadenweg-tiers": {
+      "highPoint": 1242,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1242
+      }
+    },
+    "seiseralm-umser-rundweg": {
+      "highPoint": 1008,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1008
+      }
+    },
     "sentiero-del-trenino": {
       "highPoint": 1535,
       "recommended": {

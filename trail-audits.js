@@ -67317,6 +67317,209 @@
       ],
       startPoint: { lat: 46.355294, lng: 11.492079, label: "The panoramic boardwalk by the lake at Passo Lavazè, the sheet’s start" },
       desc: "A nearly level walk from the lake at Passo Lavazè across the pastures and through stone-pine woods on waymark 9 to Malga Costa, with views of the Latemar and the Rosengarten, and back the same way. The Fondazione Dolomiti UNESCO lists 2.96 km one way; there and back it is 5.9 km with 81 m up and down."
+    },
+    'seiseralm-umser-rundweg': {
+      // Hand audit: 16 November 2026, verified on arrival (new-trail Dolomites batch 13).
+      // Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // “Umser Rundweg” (routes-hikingtrails.11427825), drawn on 21 OSM ways along the register line (data/board-line-routes.geojson).
+      // Commune: Völs am Schlern (2015 dog regulation, amended 2019). No park or Natura 2000 site. Roads: no main road; about 1.6 km on quiet asphalt hamlet lanes (Müllerweg, Tschafonweg), which the owner accepted on 16 Nov 2026, and two crossings of the Umser Straße.
+      area: "Ums / Umes, Völs am Schlern",
+      distance: 3.8,
+      elevation: 160,
+      hours: '1.4',
+      routeShape: 'loop',
+      routeShapeNote: "A loop round the hamlet of Ums on the waymarked Umser Rundweg, as the province trail register maps it (3.8 km): up path 8 to the Schlernstraße, along the Müllerweg, on path 4 into Ums, then the Tschafonweg and a gravel track back down to the start. Climb and time are measured by ORMA, not published by the register.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start by the Völser Bach below Ums, where paths 2 and 8 meet; the loop is waymarked “Umser Rundweg” all the way.",
+        "sequence": "Follow path 8, a track and then a lane, up to the Schlernstraße. Cross the Umser Straße onto the Müllerweg lane for about 600 m. At its end take path 4, a path and then a track, into Ums past the fire station and the Gasthof Kircher. Cross the Umser Straße by St. Martin’s church and walk the Tschafonweg lane (paths 3 and 4) for about 650 m. Turn off onto the Umser Rundweg path, then a gravel track, and join path 8 back down to the start.",
+        "switches": "Path 8 up to the Schlernstraße; across the Umser Straße onto the Müllerweg; path 4 into Ums; across by St. Martin’s church onto the Tschafonweg; off onto the Umser Rundweg path and gravel track; path 8 back down.",
+        "steps": [
+          {
+            "text": "By the Völser Bach below Ums, where paths 2 and 8 meet",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 8 up to the Schlernstraße, then across the Umser Straße onto the Müllerweg lane",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 4 into Ums, past the fire station and the Gasthof Kircher",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "St. Martin’s church, then the Tschafonweg lane on paths 3 and 4",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Umser Rundweg path and a gravel track, then path 8 back down to the start",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Umser Rundweg (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427825",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "St. Martin’s church, Ums (Syrio on Wikimedia Commons, CC BY-SA 4.0), 22 September 2024, 22 m from the line.",
+        route: "Register loop 'Umser Rundweg' (routes-hikingtrails.11427825, 3.84 km) from By the Völser Bach below Ums, where paths 2 and 8 meet; the stored line is drawn on 21 OSM ways along the register line, 3.8 km, with 100% of the guide line within 25 m of it and 100% of it within 25 m of the guide line.",
+        routeNumbers: "Waymarked “Umser Rundweg”: path 8 up to the Schlernstraße, the Müllerweg lane, path 4 into Ums, the Tschafonweg (paths 3 and 4), then the Umser Rundweg path and gravel track back to path 8 and the start.",
+        mapPoints: "Start where the register loop leaves the lane; drinking water at km 1.9, km 2.1 (OSM nodes 7318189295, 4269751545).",
+        elevation: "No official figure. Measured by ORMA from the map: 3.81 km, about 160 m up and down between 848 and 1,018 m, 1 h 23 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Umser Rundweg', line routes-hikingtrails.11427825, 3,843 m",
+          "Gemeinde Völs am Schlern / Comune di Fiè allo Sciliar, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 57, 23.11.2015, amended Nr. 39, 11.07.2019), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds",
+          "No park, reserve or Natura 2000 site on the line (EEA)",
+          "OpenStreetMap ways along the register line (21 ways), road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 37,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 1.6 km on quiet asphalt lanes between the farms, where a car or tractor may pass: keep your dog on a short lead there","Two crossings of the Umser Straße, at the Schlernstraße and by the church in Ums: cross with care","Farmed meadows line much of the loop: Völs keeps dogs off them"],
+      terrainType: "Farm lanes, gravel tracks and a short path",
+      shadeDescription: "Partly shaded: about a third runs through woods; the lanes between the meadows are open.",
+      terrainDescription: "A gentle loop at 850–1,020 m round the hamlet of Ums under the Schlern, past farms, meadows and St. Martin’s church, on lanes, gravel tracks and a short forest path.",
+      waterDescription: "Drinking water is mapped in Ums, around km 1.9 and 2.1. The Gasthof Kircher in Ums is on the way.",
+      dogNotes: "Völs requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of cemeteries and playgrounds and off farmed meadows.",
+      tips: "An easy 3.8 km loop with about 160 m of up and down, roughly an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Völs requires, and keep off the meadows. Water in Ums, about halfway.",
+      sourceLinks: [
+        { label: "South Tyrol trail register, Umser Rundweg (Open Data Hub)", url: "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427825" },
+        { label: "Gemeinde Völs am Schlern, dog regulation (2015, amended 2019)", url: "https://www.gemeinde.voels.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.513007, lng: 11.525496, label: "By the Völser Bach below Ums, where paths 2 and 8 meet" },
+      desc: "A gentle loop round the hamlet of Ums under the Schlern, past farms, meadows and St. Martin’s church, on the waymarked Umser Rundweg. It is about 3.8 km with some 160 m of up and down, as measured by ORMA (the province register gives only the length)."
+    },
+    'seiseralm-promenadenweg-tiers': {
+      // Hand audit: 16 November 2026, verified on arrival (new-trail Dolomites batch 13).
+      // Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // “Promenadenweg (Tiers)” (routes-hikingtrails.11425959), drawn on 11 OSM ways along the register line (data/board-line-routes.geojson).
+      // Commune: Tiers (2015 dog regulation, amended 2023). About a quarter in the Schlern-Rosengarten nature park (N2000 IT3110029): lead. Roads: one 40 m crossing of the Völsegger Weg; the closing 310 m gravel lane to the Ansitz Velseck (customers’ cars only) and 150 m of the asphalt Völsegger Weg (path 6B), added by ORMA to close the register line, which ends 190 m from its start.
+      area: "Völsegg / Velseck, Tiers am Rosengarten",
+      distance: 3.7,
+      elevation: 230,
+      hours: '1.7',
+      routeShape: 'loop',
+      routeShapeNote: "A forest loop on the waymarked Promenadenweg below the Völsegg, as the province trail register maps it (3.4 km), closed by ORMA on the gravel lane from the Ansitz Velseck and 150 m of the Völsegger Weg back to the start (path 6B): 3.7 km in all. Climb and time are measured by ORMA, not published by the register.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start on the Völsegger Weg (path 6B) below the Ansitz Velseck, about 1.3 km north-west of Tiers, where the Promenadenweg path leaves the lane.",
+        "sequence": "Take the Promenadenweg (path 14) into the forest for about 1.1 km, then stay on the Promenadenweg, crossing the Völsegger Weg once. At about km 2.2 the Promenadenweg joins path 6 for some 900 m. A short track (paths 6 and 6B) brings you down towards the Ansitz Velseck; just before it, take the gravel lane down past the manor to the Völsegger Weg, and follow the lane down to the start.",
+        "switches": "Promenadenweg (path 14) into the forest; across the Völsegger Weg; on with path 6; the track (6 and 6B) towards the Ansitz Velseck; the gravel lane down past the manor; the Völsegger Weg back to the start.",
+        "steps": [
+          {
+            "text": "The Völsegger Weg below the Ansitz Velseck, where the Promenadenweg leaves the lane",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Promenadenweg (path 14) through the forest, crossing the Völsegger Weg once",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "With path 6 for about 900 m",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The track (paths 6 and 6B) towards the Ansitz Velseck",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The gravel lane down past the manor and the Völsegger Weg back to the start",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Promenadenweg (Tiers) (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425959",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Ansitz Velseck below the Völsegg peak, Tiers (Commander-pirx on Wikimedia Commons, CC BY-SA 4.0), 9 June 2023, 52 m from the line.",
+        route: "Register loop 'Promenadenweg (Tiers)' (routes-hikingtrails.11425959, 3.36 km) from On the Völsegger Weg below the Ansitz Velseck, Tiers; the stored line is drawn on 11 OSM ways along the register line, 3.7 km, with 100% of the guide line within 25 m of it and 100% of it within 25 m of the guide line. The register line ends 190 m from its start; ORMA closes it on the gravel lane past the Ansitz Velseck and the Völsegger Weg (path 6B).",
+        routeNumbers: "Waymarked “Promenadenweg”: path 14 into the forest, the Promenadenweg across the Völsegger Weg, path 6, the track on paths 6 and 6B towards the Ansitz Velseck, then the gravel lane and the Völsegger Weg (path 6B) back to the start.",
+        mapPoints: "Start where the register loop leaves the lane; drinking water at km 2.6, km 3.2 (OSM nodes 7843800085, 3698877742).",
+        elevation: "No official figure. Measured by ORMA from the map: 3.73 km, about 230 m up and down between 1,057 and 1,241 m, 1 h 42 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Promenadenweg (Tiers)', line routes-hikingtrails.11425959, 3,358 m",
+          "Gemeinde Tiers / Comune di Tires, Verordnung zur Führung und Haltung von Hunden und Tieren (Gemeinderat Nr. 48, 08.10.2015, amended Nr. 55, 28.12.2023), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds or kindergarten and primary-school yards, on farmed land in the growing season, or in tended public green spaces; no bathing in the village-centre fountains",
+          "About a quarter of the line is in the Schlern-Rosengarten nature park (Natura 2000 IT3110029): dogs on a lead (Decree of the Provincial President 19/2013)",
+          "OpenStreetMap ways along the register line (11 ways), road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 90,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The Promenadenweg has rooty, stony stretches in the forest: watch your dog’s footing","The last 450 m are on the gravel lane to the Ansitz Velseck and the Völsegger Weg, where guests’ cars come and go: keep your dog on a short lead","One crossing of the Völsegger Weg in the middle of the loop"],
+      terrainType: "Forest paths and a gravel lane",
+      shadeDescription: "Almost all in forest; only the lane by the Ansitz Velseck is open.",
+      terrainDescription: "A forest loop at 1,060–1,240 m below the Völsegg, on the Promenadenweg and path 6, ending past the Ansitz Velseck manor.",
+      waterDescription: "Drinking water is mapped at about km 2.6 and by the Ansitz Velseck near the end, where there is a restaurant.",
+      dogNotes: "Tiers requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of playgrounds and cemeteries and off farmed land in the growing season. About a quarter of the loop is in the Schlern-Rosengarten nature park, where dogs stay on a lead at all times.",
+      tips: "A shady 3.7 km forest loop with about 230 m of up and down, roughly an hour and three quarters. Keep your dog on a lead of at most 1.5 m and carry a muzzle; the nature park asks for a lead throughout. Water near the end by the Ansitz Velseck.",
+      sourceLinks: [
+        { label: "South Tyrol trail register, Promenadenweg (Tiers) (Open Data Hub)", url: "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425959" },
+        { label: "Gemeinde Tiers, dog regulation (2015, amended 2023)", url: "https://www.gemeinde.tiers.bz.it/system/web/verordnung.aspx?detailonr=224983319" },
+        { label: "South Tyrol nature parks, rules of conduct", url: "https://naturparks.provinz.bz.it/de/verhaltensregeln-im-naturpark" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.475974, lng: 11.513007, label: "On the Völsegger Weg below the Ansitz Velseck, Tiers" },
+      desc: "A shady forest loop below the Völsegg above Tiers, on the waymarked Promenadenweg and path 6, ending past the Ansitz Velseck manor. It is about 3.7 km with some 230 m of up and down, as measured by ORMA (the province register gives only the length)."
     }
   };
 

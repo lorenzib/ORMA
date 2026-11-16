@@ -2010,6 +2010,16 @@
       "name": "Passo Lavazè to Malga Costa",
       "slug": "malga-costa-passo-lavaze",
       "gloss": "a level walk by the Lavazè lake and through stone-pine woods to Malga Costa and back"
+    },
+    "seiseralm-umser-rundweg": {
+      "name": "Umser Rundweg, Ums",
+      "slug": "umser-rundweg-ums",
+      "gloss": "a loop round the hamlet of Ums below the Schlern"
+    },
+    "seiseralm-promenadenweg-tiers": {
+      "name": "Promenadenweg, Tiers",
+      "slug": "promenadenweg-tiers",
+      "gloss": "a forest loop below the Völsegg peak above Tiers"
     }
   }
 }
