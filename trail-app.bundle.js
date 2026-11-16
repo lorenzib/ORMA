@@ -11740,7 +11740,13 @@ function initHikeMode(map, trail, options){
   // back again (the Tre Cime board's, and any built with --there-and-back)
   // closes on itself and is already the whole walk; halving it put the walker
   // at the far end with half the way out still to go.
-  const outAndBack = trail.routeShape === 'out-and-back' && !closes;
+  // A line drawn out and back need not close, though: Malga Crel comes home
+  // past the campsite and ends 116 m from its start, Monte Vederna 616 m.
+  // Halving those showed 2.2 km at the turnaround of a 9.2 km walk. So the
+  // line is one leg only when it is also well short of the stated distance
+  // (a leg is about half of it; the whole walk about all of it).
+  const lineIsOneLeg = totalMeters / 1000 < statedKm * 0.75;
+  const outAndBack = trail.routeShape === 'out-and-back' && !closes && lineIsOneLeg;
   // Declared shape wins over guessing from the ends. A there-and-back whose
   // line is later completed closes on itself, and closure alone would then
   // read it as a loop and switch off the next-water and next-hut readouts.
