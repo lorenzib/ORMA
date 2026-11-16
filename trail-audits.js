@@ -66974,6 +66974,106 @@
       ],
       startPoint: { lat: 46.540046, lng: 12.463338, label: "The chapel of Santa Caterina d’Alessandria at Cella (Villapiccola), by Lake Santa Caterina, the board’s start" },
       desc: "A short, steep climb from the Santa Caterina chapel above Lake Auronzo on paths 17 and 19 to the mountain huts of Namos and the clearing of Pian de Namos, and back the same way. The board lists 2 km one way, just under an hour; there and back it is 4 km with 271 m up and down."
+    },
+    'alleghe-dolomiti-in-miniatura': {
+      // Hand audit: 16 November 2026, verified on arrival (new-trail Dolomites batch 12).
+      // “Le Dolomiti in Miniatura di San Tomaso Agordino”, published by Consorzio Operatori Turistici Alleghe - Caprile, drawn on 15 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: San Tomaso Agordino (no dog rule found online: national rule). No park or Natura 2000 site. Roads: 20 m of tertiary road at the start pin outside the town hall; then village lanes, footway and forest track. Lollipop: about half is the stem walked out and back (walkedTwice rule, #1326).
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Celat – Pianezze – Forcella San Tomaso, San Tomaso Agordino",
+      distance: 5.2,
+      elevation: 385,
+      hours: '2.25',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop on a forest path from the Celat town hall up to the fork for Pianezze, round by Pianezze and the Forcella San Tomaso past about twenty sculptures of the main Dolomite groups, and back down the same way to Celat: a loop on a stem, the climb from Celat to the fork walked both ways, as the board publishes it (5.2 km, 385 m up, 2:20 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the town hall in Celat, San Tomaso Agordino, the board’s start; parking is by the church.",
+        "sequence": "Go through the underpass between the houses of Celat and climb, fairly steeply at first, to the fork for Pianezze, where the loop begins. Go down towards Pianezze, then follow the signs up to the Forcella San Tomaso, the highest point, past the sculptures of the Dolomite groups. From the forcella come back to the fork and down the same way to Celat.",
+        "switches": "Underpass between the houses of Celat; fairly steep climb to the fork for Pianezze; down towards Pianezze, then follow the signs up to the Forcella San Tomaso past the sculptures; back to the fork and down the same way to Celat.",
+        "steps": [
+          {
+            "text": "Celat town hall, San Tomaso Agordino",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Through the underpass between the houses and up to the fork for Pianezze",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down towards Pianezze, then follow the signs uphill past the sculptures",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Forcella San Tomaso, the highest point",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back to the fork and down the same way to Celat",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Consorzio Operatori Turistici Alleghe - Caprile, Le Dolomiti in Miniatura di San Tomaso Agordino (route description)",
+            "url": "https://www.outdooractive.com/it/r/802959689",
+            "authority": "Consorzio Operatori Turistici Alleghe - Caprile",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Celat town hall, San Tomaso Agordino (Syrio on Wikimedia Commons, CC BY-SA 4.0), 1 September 2024, 10 m from the line.",
+        route: "Official loop of 5.2 km from The Celat town hall, San Tomaso Agordino, as Consorzio Operatori Turistici Alleghe - Caprile publishes it; the stored line is drawn on 15 OSM ways along the board’s published line, 5.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number: the route is signed \"Dolomiti in miniatura\". From the Celat town hall up to the fork for Pianezze, round by Pianezze and the Forcella San Tomaso past the sculptures, and back down the same way to Celat.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 5.2 km, 385 m up and 384 m down, 2:20 h (Consorzio Operatori Turistici Alleghe - Caprile, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Consorzio Operatori Turistici Alleghe - Caprile, Le Dolomiti in Miniatura di San Tomaso Agordino (its Outdooractive tour)",
+          "No dog rule found online for the Comune di San Tomaso Agordino (its general acts list holds only national laws), so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (EEA)",
+          "OpenStreetMap ways along the board’s line (15 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 82,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["A fairly steep climb out of Celat at the start: take it slowly with an older dog","The descent back into the village can be slippery: go carefully and keep your dog close","The start is on the village road outside the town hall: keep your dog on a short lead there"],
+      terrainType: "Village lanes and forest path",
+      shadeDescription: "Mostly in woods, once out of the village.",
+      terrainDescription: "A forest loop above the village of Celat, past about twenty large sculptures of the main Dolomite groups, each with a board about the peaks, up to the Forcella San Tomaso.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. Celat has a pizzeria at the start.",
+      dogNotes: "San Tomaso Agordino has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the Celat town hall, with parking by the church: 5.2 km and 385 m up, about 2 hours 20 minutes, as the board lists. Wear shoes with grip: the board warns the descent into the village can be slippery.",
+      sourceLinks: [
+        { label: "Consorzio Operatori Turistici Alleghe - Caprile, Le Dolomiti in Miniatura di San Tomaso Agordino", url: "https://www.outdooractive.com/it/r/802959689" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.38114, lng: 11.975445, label: "The Celat town hall, San Tomaso Agordino, the board’s start" },
+      desc: "A forest loop from the village of Celat up to the Forcella San Tomaso, past about twenty large sculptures of the main Dolomite groups. The board lists 5.2 km and 385 m up."
     }
   };
 

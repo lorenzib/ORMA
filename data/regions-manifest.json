@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-16T10:21:49.466Z",
+  "generatedAt": "2026-11-16T11:08:24.020Z",
   "regions": {
     "dolomites": {
-      "trailCount": 373,
-      "trails": "data/regions/dolomites-trails.js?v=21c0861b8c73",
+      "trailCount": 374,
+      "trails": "data/regions/dolomites-trails.js?v=527f9b9a29c2",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=27d6277ba004",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -378,6 +378,7 @@
         "kronplatz-sorafurcia-plan-de-corones": "data/trail-details/kronplatz-sorafurcia-plan-de-corones.js?v=1f9dd6706782",
         "kronplatz-steinmeile": "data/trail-details/kronplatz-steinmeile.js?v=eb32c07d885e",
         "auronzo-namos": "data/trail-details/auronzo-namos.js?v=bbb523db7c50",
+        "alleghe-dolomiti-in-miniatura": "data/trail-details/alleghe-dolomiti-in-miniatura.js?v=5c56005e48fb",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=d5f08b9de225"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -992,6 +993,7 @@
     "kronplatz-sorafurcia-plan-de-corones": "dolomites",
     "kronplatz-steinmeile": "dolomites",
     "auronzo-namos": "dolomites",
+    "alleghe-dolomiti-in-miniatura": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1673,6 +1675,7 @@
     "kronplatz-sorafurcia-plan-de-corones": "sorafurcia-plan-de-corones",
     "kronplatz-steinmeile": "steinmeile-valdaora",
     "auronzo-namos": "pian-de-namos-auronzo",
+    "alleghe-dolomiti-in-miniatura": "dolomiti-in-miniatura-san-tomaso",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2201,6 +2204,7 @@
     "sorafurcia-plan-de-corones": "kronplatz-sorafurcia-plan-de-corones",
     "steinmeile-valdaora": "kronplatz-steinmeile",
     "pian-de-namos-auronzo": "auronzo-namos",
+    "dolomiti-in-miniatura-san-tomaso": "alleghe-dolomiti-in-miniatura",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
