@@ -3913,6 +3913,30 @@
       "quote": "Distanza 5,2 km · Durata 2:20 h · Salita 385 m · Discesa 384 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-16T10:00:00.000Z"
+    },
+    "dolomitiunesco-val-san-nicolo": {
+      "url": "https://www.visitdolomites.com/wp-content/uploads/2021/02/2B_Val_San_Nicolo_agg_2019.pdf",
+      "publisher": "Fondazione Dolomiti UNESCO (Dolomiti Accessibili sheet with GPX track)",
+      "name": "2B Val San Nicolò",
+      "quote": "Lunghezza 3.300 m · Dislivello complessivo 261 m · “L’escursione inizia in località Sauch, all’ingresso della Val San Nicolò.”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-16T12:00:00.000Z"
+    },
+    "dolomitiunesco-pecol-malga-pioda": {
+      "url": "https://www.visitdolomites.com/wp-content/uploads/2021/02/3C_Malga_Pioda_agg_2019.pdf",
+      "publisher": "Fondazione Dolomiti UNESCO (Dolomiti Accessibili sheet with GPX track)",
+      "name": "3C Pecòl – Malga Pioda",
+      "quote": "Lunghezza 3.270 m · Dislivello 307 m in salita · “Dal parcheggio presso il Rifugio Palafavera si prosegue lungo una strada forestale (Via Coi – chiusa al traffico), seguendo la segnaletica dei sentieri n° 564-556.”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-16T12:00:00.000Z"
+    },
+    "dolomitiunesco-lavaze-malga-costa": {
+      "url": "https://www.visitdolomites.com/wp-content/uploads/2021/02/7C_Passo_Lavaze.pdf",
+      "publisher": "Fondazione Dolomiti UNESCO (Dolomiti Accessibili sheet with GPX track)",
+      "name": "7C Passo Lavazè – Malga Costa/Liegalm",
+      "quote": "Lunghezza 2.960 m · 5 m in salita; 76 m in discesa · “Il ritorno avviene lungo lo stesso percorso fino al lago.”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-16T12:00:00.000Z"
     }
   }
 }

@@ -67074,6 +67074,249 @@
       ],
       startPoint: { lat: 46.38114, lng: 11.975445, label: "The Celat town hall, San Tomaso Agordino, the board’s start" },
       desc: "A forest loop from the village of Celat up to the Forcella San Tomaso, past about twenty large sculptures of the main Dolomite groups. The board lists 5.2 km and 385 m up."
+    },
+    'dolomitiunesco-val-san-nicolo': {
+      // Hand audit: 16 November 2026, verified on arrival (Fondazione Dolomiti UNESCO “Dolomiti Accessibili” sheets, owner rule of 16 November 2026: ORMA-measured time).
+      // “2B Val San Nicolò”, published by Fondazione Dolomiti UNESCO one way to its end point with a GPX track and no walking time, drawn there
+      // and back on 27 OSM ways along that track (data/board-line-routes.geojson). Distance and climb are the sheet’s
+      // one-way figures doubled (climb = its up plus its down); the time is measured by ORMA (DIN 33466).
+      // Commune: San Giovanni di Fassa (no dog rule published: national rule; the APT Val di Fassa dog flyer asks for a lead and a muzzle on buses). No park or Natura 2000 site on the line (EEA). No main road: the valley road is closed to private traffic, asphalt to the Baita Ciampiè, then gravel. In summer the start is reached only by shuttle bus (June–October), as the sheet says.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Sauch – Baita Ciampiè – Baita alle Cascate, Val San Nicolò, San Giovanni di Fassa",
+      distance: 6.6,
+      elevation: 261,
+      hours: '2.3',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Fondazione Dolomiti UNESCO publishes the walk one way, from Sauch to the Baita alle Cascate (3.3 km, 261 m up), with a GPX track and no walking time. ORMA walks it there and back on the same road: 6.6 km with 261 m up and down. The time, about 2 h 20, is measured by ORMA (DIN 33466).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Sauch, at the entrance to the Val San Nicolò, the sheet’s start. In summer the valley road is closed to private cars: take the shuttle bus from Pera (Vac car park) or the road train from Pozza (June to October).",
+        "sequence": "Follow the narrow asphalt road through the hay meadows to the Baita Ciampiè, about 1.5 km. From there the road carries on as an even gravel track for about 2 km, partly in the woods and partly along the Rio San Nicolò, to the Jonta waterfalls and the Baita alle Cascate. The last 100 m climb steeply on cobbles. Come back the same way.",
+        "switches": "Asphalt road from Sauch through the meadows to the Baita Ciampiè; gravel track on along the Rio San Nicolò to the Jonta waterfalls and the Baita alle Cascate; back the same way.",
+        "steps": [
+          {
+            "text": "Sauch, at the entrance to the Val San Nicolò",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Asphalt road through the hay meadows to the Baita Ciampiè (about 1.5 km)",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Gravel track along the Rio San Nicolò, partly in the woods",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Steep, cobbled last 100 m to the Baita alle Cascate by the Jonta waterfalls",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back the same way to Sauch",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Fondazione Dolomiti UNESCO, 2B Val San Nicolò (route description)",
+            "url": "https://www.visitdolomites.com/wp-content/uploads/2021/02/2B_Val_San_Nicolo_agg_2019.pdf",
+            "authority": "Fondazione Dolomiti UNESCO",
+            "tag": "UNESCO foundation",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The gravel track past the hay huts in the Val San Nicolò (Maurizio Ceol on Wikimedia Commons, CC BY 3.0), 19 June 2013, 14 m from the line.",
+        route: "Official one-way route of 3.3 km from Sauch to the Baita alle Cascate, as the Fondazione Dolomiti UNESCO publishes it with a GPX track; ORMA walks it there and back on the same road, 6.6 km. The stored line is drawn on 27 OSM ways along the sheet’s GPX track out and back, 6.5 km, with 100% of the published track within 25 m of it and 100% of it within 25 m of the track.",
+        routeNumbers: "No path number on the sheet: from Sauch on the valley road to the Baita Ciampiè, then on the gravel track along the Rio San Nicolò to the Jonta waterfalls and the Baita alle Cascate; back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at km 2, km 2.9 (OSM nodes 9062287872, 5318733180).",
+        elevation: "Official one way: 3.3 km and 261 m of climb, average gradient 8%, from Sauch at 1,718 m to the Baita alle Cascate at 1,983 m (Fondazione Dolomiti UNESCO, Dolomiti Accessibili sheet 2B). There and back on the same road: 6.6 km, 261 m up and 261 m down; about 2 h 20 measured by ORMA (DIN 33466), since the sheet gives no time."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Fondazione Dolomiti UNESCO, 2B Val San Nicolò (Dolomiti Accessibili sheet with GPX track)",
+          "Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)",
+          "APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa",
+          "No park or Natura 2000 site on the line (EEA Natura 2000 map service)",
+          "OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 16,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The shuttle bus and the road train use the asphalt road as far as the Baita Ciampiè in summer: keep your dog close when they pass","The last 100 m to the Baita alle Cascate are steep and cobbled: take it slowly with an older dog","Cows may graze the meadows in summer: keep a short lead and give them room","Keep your dog back from the edge of the stream and the waterfalls"],
+      terrainType: "Narrow asphalt road, then an even gravel forest road",
+      shadeDescription: undefined,
+      terrainDescription: undefined,
+      waterDescription: undefined,
+      dogNotes: "San Giovanni di Fassa has no dog rule of its own, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried. The APT Val di Fassa asks for a lead near livestock and a lead and muzzle on the shuttle bus.",
+      tips: "In summer the valley road is closed to cars: take the shuttle bus from Pera or the road train from Pozza to Sauch, with your dog on a lead and a muzzle to hand. It is 3.3 km and 261 m up to the Jonta waterfalls; about 2 h 20 there and back. Best from mid-June to early October, when the huts are open.",
+      sourceLinks: [
+        { label: "Fondazione Dolomiti UNESCO, 2B Val San Nicolò", url: "https://www.visitdolomites.com/wp-content/uploads/2021/02/2B_Val_San_Nicolo_agg_2019.pdf" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)", url: "https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.423827, lng: 11.74627, label: "Sauch, at the entrance to the Val San Nicolò (the shuttle bus stop), the sheet’s start" },
+      desc: "A gentle walk up the Val San Nicolò above Pozza di Fassa, through hay meadows and along the stream to the Jonta waterfalls and the Baita alle Cascate, and back the same way. The Fondazione Dolomiti UNESCO lists 3.3 km and 261 m one way; there and back it is 6.6 km with 261 m up and down."
+    },
+    'dolomitiunesco-pecol-malga-pioda': {
+      // Hand audit: 16 November 2026, verified on arrival (Fondazione Dolomiti UNESCO “Dolomiti Accessibili” sheets, owner rule of 16 November 2026: ORMA-measured time).
+      // “3C Pecòl – Malga Pioda”, published by Fondazione Dolomiti UNESCO one way to its end point with a GPX track and no walking time, drawn there
+      // and back on 9 OSM ways along that track (data/board-line-routes.geojson). Distance and climb are the sheet’s
+      // one-way figures doubled (climb = its up plus its down); the time is measured by ORMA (DIN 33466).
+      // Commune: Val di Zoldo, dog regulation DCC 25/2025 Art. 9(2) lead of at most 1.5 m and Art. 9(3) muzzle carried. No park or Natura 2000 site on the line (EEA). Only main road: about 50 m by the SP251 at the Palafavera car park; then a forest road closed to traffic.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Palafavera (Pecòl) – Malga Pioda, Val di Zoldo",
+      distance: 6.5,
+      elevation: 307,
+      hours: '2.4',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Fondazione Dolomiti UNESCO publishes the walk one way, from the Palafavera car park to Malga Pioda (3.27 km, 307 m up), with a GPX track and no walking time. ORMA walks it there and back on the same forest road: 6.5 km with 307 m up and down. The time, about 2 h 25, is measured by ORMA (DIN 33466).",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park by the Rifugio Palafavera, near Pecòl in the Val di Zoldo, the sheet’s start. A shuttle bus serves Palafavera in summer.",
+        "sequence": "Past the barrier, follow the Via Coi forest road, closed to traffic, on paths 564 and 556. It climbs steadily on gravel along the gentle lower slopes of the Civetta, through larch and spruce and across open pastures with views of the Civetta and the Pelmo, to the pastures of Malga Pioda. Come back the same way.",
+        "switches": "Via Coi forest road from the Palafavera car park on paths 564 and 556, steadily up to Malga Pioda; back the same way.",
+        "sources": [
+          {
+            "label": "Fondazione Dolomiti UNESCO, 3C Pecòl – Malga Pioda (route description)",
+            "url": "https://www.visitdolomites.com/wp-content/uploads/2021/02/3C_Malga_Pioda_agg_2019.pdf",
+            "authority": "Fondazione Dolomiti UNESCO",
+            "tag": "UNESCO foundation",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Monte Pelmo from the Via Coi forest road above Palafavera (kallerna on Wikimedia Commons, CC BY-SA 4.0), 8 August 2025, 4 m from the line.",
+        route: "Official one-way route of 3.3 km from the Palafavera car park to Malga Pioda, as the Fondazione Dolomiti UNESCO publishes it with a GPX track; ORMA walks it there and back on the same forest road, 6.5 km. The stored line is drawn on 9 OSM ways along the sheet’s GPX track out and back, 6.6 km, with 100% of the published track within 25 m of it and 100% of it within 25 m of the track.",
+        routeNumbers: "Paths 564 and 556: from the Palafavera car park up the Via Coi forest road to Malga Pioda; back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at the start, the start, km 3.2 (OSM nodes 5832946775, 5832947830, 3651040186).",
+        elevation: "Official one way: 3.27 km and 307 m up, average gradient 9%, from the Palafavera car park at 1,514 m to Malga Pioda at 1,820 m (Fondazione Dolomiti UNESCO, Dolomiti Accessibili sheet 3C). There and back on the same forest road: 6.5 km, 307 m up and 307 m down; about 2 h 25 measured by ORMA (DIN 33466), since the sheet gives no time."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Fondazione Dolomiti UNESCO, 3C Pecòl – Malga Pioda (Dolomiti Accessibili sheet with GPX track)",
+          "Comune di Val di Zoldo, Regolamento comunale di igiene urbana veterinaria e per il benessere dei cani (DCC n. 25 of 28 May 2025), Art. 9(2): dogs always on a lead of at most 1.5 m in public places and places open to the public; Art. 9(3): a muzzle carried",
+          "No park or Natura 2000 site on the line (EEA Natura 2000 map service)",
+          "OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 37,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 50 m by the SP251 at the Palafavera car park: keep your dog on a short lead there","Gravel forest road with loose stones and cross drains: watch your dog’s paws","Cows graze the Malga Pioda pastures in summer: keep a short lead and give them room","Forestry and farm vehicles may use the forest road: keep your dog close if one comes"],
+      terrainType: "Gravel forest road closed to traffic",
+      shadeDescription: undefined,
+      terrainDescription: undefined,
+      waterDescription: undefined,
+      dogNotes: "Val di Zoldo’s dog regulation (2025) requires a lead of at most 1.5 m in public places and a muzzle carried. Cows graze at Malga Pioda in summer: keep your dog on a short lead there.",
+      tips: "Start at the Palafavera car park near Pecòl: 3.3 km and 307 m up to Malga Pioda; about 2 h 25 there and back. The sheet recommends late June to mid-September, when the malga is in use. Malga Pioda serves no food, so bring water and a snack.",
+      sourceLinks: [
+        { label: "Fondazione Dolomiti UNESCO, 3C Pecòl – Malga Pioda", url: "https://www.visitdolomites.com/wp-content/uploads/2021/02/3C_Malga_Pioda_agg_2019.pdf" },
+        { label: "Comune di Val di Zoldo, deliberations 2025 (DCC n. 25, dog regulation)", url: "https://servizi.comune.valdizoldo.bl.it/ServiziOnLine/Atti/ElencoAtti?anno=2025&numero=25&Documento=Delibere" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.402595, lng: 12.10088, label: "The car park by the Rifugio Palafavera, near Pecòl, the sheet’s start" },
+      desc: "A steady climb on the Via Coi forest road from Palafavera near Pecòl to the pastures of Malga Pioda below the Civetta, with views of the Pelmo, and back the same way. The Fondazione Dolomiti UNESCO lists 3.3 km and 307 m up one way; there and back it is 6.5 km with 307 m up and down."
+    },
+    'dolomitiunesco-lavaze-malga-costa': {
+      // Hand audit: 16 November 2026, verified on arrival (Fondazione Dolomiti UNESCO “Dolomiti Accessibili” sheets, owner rule of 16 November 2026: ORMA-measured time).
+      // “7C Passo Lavazè – Malga Costa/Liegalm”, published by Fondazione Dolomiti UNESCO one way to its end point with a GPX track and no walking time, drawn there
+      // and back on 15 OSM ways along that track (data/board-line-routes.geojson). Distance and climb are the sheet’s
+      // one-way figures doubled (climb = its up plus its down); the time is measured by ORMA (DIN 33466).
+      // Communes: Ville di Fiemme (about 70% of the line; no dog rule published: national rule) and Deutschnofen / Nova Ponente (about 30%; dog regulation 2010 Art. 4 and 8). No South Tyrol nature park or biotope and no Natura 2000 site on the line (EEA, Province of Bolzano layers). No main road on the line; the car park is by the SS620 at the pass.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Passo Lavazè – Malga Costa / Liegalm, Ville di Fiemme and Deutschnofen",
+      distance: 5.9,
+      elevation: 81,
+      hours: '1.7',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Fondazione Dolomiti UNESCO publishes the walk to Malga Costa (2.96 km, 5 m up and 76 m down) with a GPX track and returns the same way, but gives no walking time. ORMA walks it there and back: 5.9 km with 81 m up and down. The time, about 1 h 40, is measured by ORMA (DIN 33466).",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the panoramic boardwalk over the lake at Passo Lavazè, the sheet’s start. There is a car park at the pass, on the SS620, and a shuttle bus from Cavalese in July to September.",
+        "sequence": "Past the boardwalk, follow the lakeside path for about 200 m. At the fork keep left on waymark 9 for Malga Costa. After about 500 m across the pastures, take the forest track into the woods: it runs gently down for about 2 km through stone pines to the clearing of Malga Costa (Liegalm). Come back the same way to the lake.",
+        "switches": "Lakeside path from the boardwalk; left at the fork on waymark 9 across the pastures; forest track gently down through the stone pines to Malga Costa; back the same way.",
+        "sources": [
+          {
+            "label": "Fondazione Dolomiti UNESCO, 7C Passo Lavazè – Malga Costa/Liegalm (route description)",
+            "url": "https://www.visitdolomites.com/wp-content/uploads/2021/02/7C_Passo_Lavaze.pdf",
+            "authority": "Fondazione Dolomiti UNESCO",
+            "tag": "UNESCO foundation",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Walkers on the pasture track at Passo Lavazè (dadadavid3 on Mapillary, CC BY-SA 4.0), 1 September 2018, 1 m from the line.",
+        route: "Official one-way route of 2.96 km from the lake at Passo Lavazè to Malga Costa, as the Fondazione Dolomiti UNESCO publishes it with a GPX track, returning the same way; 5.9 km there and back. The stored line is drawn on 15 OSM ways along the sheet’s GPX track out and back, 5.8 km, with 100% of the published track within 25 m of it and 100% of it within 25 m of the track.",
+        routeNumbers: "Waymark 9: from the lakeside path at Passo Lavazè, left at the fork across the pastures and on the forest track through the stone pines to Malga Costa; back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at the start, the start (OSM nodes 4630769527, 5051805023).",
+        elevation: "Official one way: 2.96 km, 5 m up and 76 m down, average gradient 3%, from Passo Lavazè at 1,804 m to Malga Costa at 1,733 m (Fondazione Dolomiti UNESCO, Dolomiti Accessibili sheet 7C). There and back on the same path: 5.9 km, 81 m up and 81 m down; about 1 h 40 measured by ORMA (DIN 33466), since the sheet gives no time."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Fondazione Dolomiti UNESCO, 7C Passo Lavazè – Malga Costa/Liegalm (Dolomiti Accessibili sheet with GPX track)",
+          "Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Ville di Fiemme publishes no dog rule)",
+          "Gemeinde Deutschnofen, Verordnung über die Haltung und Führung von Hunden (2010), Art. 4 (lead of at most 1.5 m, muzzle carried) and Art. 8 (no dogs on farmed meadows)",
+          "No South Tyrol nature park or biotope and no Natura 2000 site on the line (Province of Bolzano layers, EEA Natura 2000 map service)",
+          "OpenStreetMap ways along the board’s line (15 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 24,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The car park is by the SS620 at the pass: keep your dog on a short lead there","Cows graze the Lavazè pastures in summer, with a wooden cattle gate on the way: keep a short lead, give them room and close the gate","Deutschnofen allows no dogs on farmed meadows: keep your dog on the track","A short rough stretch on the forest track: watch your dog’s paws"],
+      terrainType: "Level lakeside path and gravel forest track",
+      shadeDescription: undefined,
+      terrainDescription: undefined,
+      waterDescription: undefined,
+      dogNotes: "Most of the walk is in Ville di Fiemme, which has no dog rule of its own, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried. The last third, to Malga Costa, is in Deutschnofen, whose dog regulation also asks for a lead of at most 1.5 m and a muzzle carried, and keeps dogs off farmed meadows. Cows graze the pastures in summer.",
+      tips: "Start at the boardwalk by the lake at Passo Lavazè: 3 km almost level to Malga Costa on waymark 9; about 1 h 40 there and back. Best from mid-June to early October. An easy walk for older dogs; keep a short lead past the grazing cows.",
+      sourceLinks: [
+        { label: "Fondazione Dolomiti UNESCO, 7C Passo Lavazè – Malga Costa/Liegalm", url: "https://www.visitdolomites.com/wp-content/uploads/2021/02/7C_Passo_Lavaze.pdf" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Gemeinde Deutschnofen, Verordnung über die Haltung und Führung von Hunden (2010)", url: "https://www.gemeinde.deutschnofen.bz.it/system/web/GetDocument.ashx?cts=1708335105&fileId=1001871" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.355294, lng: 11.492079, label: "The panoramic boardwalk by the lake at Passo Lavazè, the sheet’s start" },
+      desc: "A nearly level walk from the lake at Passo Lavazè across the pastures and through stone-pine woods on waymark 9 to Malga Costa, with views of the Latemar and the Rosengarten, and back the same way. The Fondazione Dolomiti UNESCO lists 2.96 km one way; there and back it is 5.9 km with 81 m up and down."
     }
   };
 

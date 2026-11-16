@@ -209,6 +209,19 @@
       ],
       "line": "In 2026, from 1 July to 15 September, cars could drive up to Plätzwiese between 9:00 and 16:00 only with an online booking; before 9:00 and after 16:00 they paid a fee. Bus 443 from Monguelfo, Dobbiaco and Villabassa needed no booking.",
       "monthNote": "In {month}, cars may need an online booking to drive up to Plätzwiese between 9:00 and 16:00 (the 2026 rule ran from 1 July to 15 September)."
+    },
+    "san-nicolo-road": {
+      "operator": "APT Val di Fassa, Val San Nicolò road-train timetable (summer 2026)",
+      "url": "https://www.fassa.com/02-file-documenti-APT/PIANIFICA/COME%20MUOVERSI/Orari-timetables-trenino-train-Val-San-Nicolo.pdf",
+      "accessedAt": "2026-11-16",
+      "months": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "line": "In summer the road into the Val San Nicolò is closed to private cars (Fondazione Dolomiti UNESCO, Dolomiti Accessibili sheet 2B). In 2026, from 20 June to 20 September, a road train ran from Pozza di Fassa (Piaza de Comun) up the valley to the Baita Ciampiè; dogs rode for €3, on a lead and with a muzzle.",
+      "monthNote": "In {month} the road into the Val San Nicolò is closed to private cars: walk up or take the road train from Pozza di Fassa (in 2026 it ran from 20 June to 20 September)."
     }
   },
   "trails": {
@@ -330,6 +343,11 @@
     "osm-11780502": {
       "access": [
         "bus-zans"
+      ]
+    },
+    "dolomitiunesco-val-san-nicolo": {
+      "access": [
+        "san-nicolo-road"
       ]
     }
   },

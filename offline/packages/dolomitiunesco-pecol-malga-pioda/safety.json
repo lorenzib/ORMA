@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "dolomitiunesco-pecol-malga-pioda",
+  "generatedAt": "2026-11-16T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.5,
+    "ascentM": 307,
+    "highestPointM": 1809,
+    "expectedDuration": "2 h 25 min",
+    "difficulty": "Hard",
+    "shadePercent": 37
+  },
+  "trailhead": {
+    "lat": 46.402595,
+    "lng": 12.10088,
+    "label": "The car park by the Rifugio Palafavera, near Pecòl, the sheet’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.4024223,
+      "lng": 12.102052,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4027737,
+      "lng": 12.101655,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4072236,
+      "lng": 12.0753747,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 50 m by the SP251 at the Palafavera car park: keep your dog on a short lead there.",
+    "Gravel forest road with loose stones and cross drains: watch your dog’s paws.",
+    "Cows graze the Malga Pioda pastures in summer: keep a short lead and give them room.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-16"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-16",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Pecòl to Malga Pioda": "Da Pecòl a Malga Pioda, andata e ritorno",
+    "The car park by the Rifugio Palafavera, near Pecòl, the sheet’s start": "Il parcheggio presso il Rifugio Palafavera, vicino a Pecòl, partenza della scheda",
+    "About 50 m by the SP251 at the Palafavera car park: keep your dog on a short lead there.": "Circa 50 m lungo la SP251 al parcheggio di Palafavera: lì tieni il cane al guinzaglio corto.",
+    "Gravel forest road with loose stones and cross drains: watch your dog’s paws.": "Strada forestale sterrata con sassi smossi e canalette trasversali: attenzione alle zampe del cane.",
+    "Cows graze the Malga Pioda pastures in summer: keep a short lead and give them room.": "D’estate le mucche pascolano a Malga Pioda: guinzaglio corto e lascia loro spazio."
+  }
+}

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-16T11:08:24.020Z",
+  "generatedAt": "2026-11-16T12:17:32.660Z",
   "regions": {
     "dolomites": {
-      "trailCount": 374,
-      "trails": "data/regions/dolomites-trails.js?v=527f9b9a29c2",
+      "trailCount": 377,
+      "trails": "data/regions/dolomites-trails.js?v=af1589f8c48b",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=27d6277ba004",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -379,6 +379,9 @@
         "kronplatz-steinmeile": "data/trail-details/kronplatz-steinmeile.js?v=eb32c07d885e",
         "auronzo-namos": "data/trail-details/auronzo-namos.js?v=bbb523db7c50",
         "alleghe-dolomiti-in-miniatura": "data/trail-details/alleghe-dolomiti-in-miniatura.js?v=5c56005e48fb",
+        "dolomitiunesco-val-san-nicolo": "data/trail-details/dolomitiunesco-val-san-nicolo.js?v=6518a17da445",
+        "dolomitiunesco-pecol-malga-pioda": "data/trail-details/dolomitiunesco-pecol-malga-pioda.js?v=dc0aababfd4e",
+        "dolomitiunesco-lavaze-malga-costa": "data/trail-details/dolomitiunesco-lavaze-malga-costa.js?v=0ab25ac49dcd",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=d5f08b9de225"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -994,6 +997,9 @@
     "kronplatz-steinmeile": "dolomites",
     "auronzo-namos": "dolomites",
     "alleghe-dolomiti-in-miniatura": "dolomites",
+    "dolomitiunesco-val-san-nicolo": "dolomites",
+    "dolomitiunesco-pecol-malga-pioda": "dolomites",
+    "dolomitiunesco-lavaze-malga-costa": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1676,6 +1682,9 @@
     "kronplatz-steinmeile": "steinmeile-valdaora",
     "auronzo-namos": "pian-de-namos-auronzo",
     "alleghe-dolomiti-in-miniatura": "dolomiti-in-miniatura-san-tomaso",
+    "dolomitiunesco-val-san-nicolo": "val-san-nicolo-cascate-jonta",
+    "dolomitiunesco-pecol-malga-pioda": "malga-pioda-pecol",
+    "dolomitiunesco-lavaze-malga-costa": "malga-costa-passo-lavaze",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2205,6 +2214,9 @@
     "steinmeile-valdaora": "kronplatz-steinmeile",
     "pian-de-namos-auronzo": "auronzo-namos",
     "dolomiti-in-miniatura-san-tomaso": "alleghe-dolomiti-in-miniatura",
+    "val-san-nicolo-cascate-jonta": "dolomitiunesco-val-san-nicolo",
+    "malga-pioda-pecol": "dolomitiunesco-pecol-malga-pioda",
+    "malga-costa-passo-lavaze": "dolomitiunesco-lavaze-malga-costa",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
