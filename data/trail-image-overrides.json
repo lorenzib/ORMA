@@ -54,6 +54,23 @@
       }
     },
     {
+      "id": "alleghe-dolomiti-in-miniatura",
+      "approvedReviewId": "commons-alleghe-dolomiti-in-miniatura-on-route",
+      "approvedAt": "2026-11-16T10:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/san-tomaso-celat-municipio.jpg",
+        "heroImage": "images/trails/san-tomaso-celat-municipio.jpg",
+        "imageAlt": "A white village town hall with wooden balconies and flags above a porch marked Poste and Municipio, with chalets and a steep spruce-covered slope behind and a dog walking on the road",
+        "imageCredit": "Celat town hall, San Tomaso Agordino",
+        "imageCreditText": "Celat town hall, San Tomaso Agordino by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Celat_-_Municipio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "alpe-siusi",
       "approvedReviewId": "aWdy0ikCoO8Dud0tseoI",
       "approvedAt": "2026-09-03T21:24:03.637Z",

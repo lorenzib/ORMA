@@ -7,6 +7,7 @@ window.ORMA_TRAIL_NAMES_IT = {
   "ahrntal-escursione-rifugio-ponte-di-ghiaccio": "Dal Lago di Neves al Rifugio Ponte di Ghiaccio",
   "ahrntal-sentiero-del-conte-cadipietra": "Sentiero del Conte sopra Steinhaus",
   "ahrntal-sentiero-panoramico-cadipietra": "Sentiero panoramico di Steinhaus",
+  "alleghe-dolomiti-in-miniatura": "Le Dolomiti in miniatura di San Tomaso Agordino",
   "alpe-siusi": "Anello dei prati dell’Alpe di Siusi",
   "altabadia-colfosco-rifugio-puez": "Da Colfosco al Rifugio Puez",
   "altabadia-da-furnacia-a-la-crusc": "Furnacia – La Crusc",

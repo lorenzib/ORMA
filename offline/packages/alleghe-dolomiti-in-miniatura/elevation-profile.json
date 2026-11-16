@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "alleghe-dolomiti-in-miniatura",
+  "distanceKm": 5.2,
+  "ascentM": 385,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1093
+    },
+    {
+      "km": 0.4,
+      "elev": 1156
+    },
+    {
+      "km": 0.8,
+      "elev": 1198
+    },
+    {
+      "km": 1.2,
+      "elev": 1305
+    },
+    {
+      "km": 1.6,
+      "elev": 1290
+    },
+    {
+      "km": 2,
+      "elev": 1305
+    },
+    {
+      "km": 2.4,
+      "elev": 1376
+    },
+    {
+      "km": 2.8,
+      "elev": 1385
+    },
+    {
+      "km": 3.2,
+      "elev": 1381
+    },
+    {
+      "km": 3.6,
+      "elev": 1352
+    },
+    {
+      "km": 4,
+      "elev": 1305
+    },
+    {
+      "km": 4.4,
+      "elev": 1187
+    },
+    {
+      "km": 4.8,
+      "elev": 1156
+    },
+    {
+      "km": 5.2,
+      "elev": 1106
+    }
+  ]
+}

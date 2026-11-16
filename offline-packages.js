@@ -9,6 +9,7 @@
     'ahrntal-escursione-rifugio-ponte-di-ghiaccio': "Lake Neves to the Ponte di Ghiaccio hut",
     'ahrntal-sentiero-del-conte-cadipietra': "Count’s path above Steinhaus",
     'ahrntal-sentiero-panoramico-cadipietra': "Steinhaus panoramic path",
+    'alleghe-dolomiti-in-miniatura': "Dolomites in Miniature, San Tomaso Agordino",
     'alpe-siusi': "Alpe di Siusi Meadow Loop",
     'altabadia-colfosco-rifugio-puez': "Colfosco to the Rifugio Puez",
     'altabadia-da-furnacia-a-la-crusc': "Furnacia – La Crusc",
