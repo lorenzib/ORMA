@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-13T11:22:56.451Z",
+  "generatedAt": "2026-11-16T10:21:49.466Z",
   "regions": {
     "dolomites": {
-      "trailCount": 372,
-      "trails": "data/regions/dolomites-trails.js?v=5905ce3a80aa",
+      "trailCount": 373,
+      "trails": "data/regions/dolomites-trails.js?v=21c0861b8c73",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=27d6277ba004",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -377,6 +377,7 @@
         "arabba-castello-di-andraz-passeggiata-per-famiglie": "data/trail-details/arabba-castello-di-andraz-passeggiata-per-famiglie.js?v=24fc8e497f1d",
         "kronplatz-sorafurcia-plan-de-corones": "data/trail-details/kronplatz-sorafurcia-plan-de-corones.js?v=1f9dd6706782",
         "kronplatz-steinmeile": "data/trail-details/kronplatz-steinmeile.js?v=eb32c07d885e",
+        "auronzo-namos": "data/trail-details/auronzo-namos.js?v=bbb523db7c50",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=d5f08b9de225"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -990,6 +991,7 @@
     "arabba-castello-di-andraz-passeggiata-per-famiglie": "dolomites",
     "kronplatz-sorafurcia-plan-de-corones": "dolomites",
     "kronplatz-steinmeile": "dolomites",
+    "auronzo-namos": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1670,6 +1672,7 @@
     "arabba-castello-di-andraz-passeggiata-per-famiglie": "castello-di-andraz",
     "kronplatz-sorafurcia-plan-de-corones": "sorafurcia-plan-de-corones",
     "kronplatz-steinmeile": "steinmeile-valdaora",
+    "auronzo-namos": "pian-de-namos-auronzo",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2197,6 +2200,7 @@
     "castello-di-andraz": "arabba-castello-di-andraz-passeggiata-per-famiglie",
     "sorafurcia-plan-de-corones": "kronplatz-sorafurcia-plan-de-corones",
     "steinmeile-valdaora": "kronplatz-steinmeile",
+    "pian-de-namos-auronzo": "auronzo-namos",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

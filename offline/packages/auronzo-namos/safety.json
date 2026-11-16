@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "auronzo-namos",
+  "generatedAt": "2026-11-16T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4,
+    "ascentM": 271,
+    "highestPointM": 1094,
+    "expectedDuration": "1 h 55 min",
+    "difficulty": "Hard",
+    "shadePercent": 66
+  },
+  "trailhead": {
+    "lat": 46.540046,
+    "lng": 12.463338,
+    "label": "The chapel of Santa Caterina d’Alessandria at Cella (Villapiccola), by Lake Santa Caterina, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5416105,
+      "lng": 12.4632282,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The steep mule track up from path 17 to Namos: take it slowly with an older or less fit dog, and carefully on the way down.",
+    "Private mountain huts and their meadows at Namos: keep your dog on the path and close.",
+    "Forest track open to forestry vehicles in places: keep your dog close if one comes.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-16"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-16",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Santa Caterina to Pian de Namos": "Da Santa Caterina a Pian de Namos, andata e ritorno",
+    "The chapel of Santa Caterina d’Alessandria at Cella (Villapiccola), by Lake Santa Caterina, the board’s start": "La chiesetta di Santa Caterina d’Alessandria a Cella (Villapiccola), vicino al lago di Santa Caterina, la partenza ufficiale",
+    "The steep mule track up from path 17 to Namos: take it slowly with an older or less fit dog, and carefully on the way down.": "La ripida mulattiera che dal sentiero 17 sale a Namos: procedete con calma con un cane anziano o poco allenato, e con attenzione in discesa.",
+    "Private mountain huts and their meadows at Namos: keep your dog on the path and close.": "Baite private e i loro prati a Namos: tenete il cane sul sentiero e vicino a voi.",
+    "Forest track open to forestry vehicles in places: keep your dog close if one comes.": "Strada forestale aperta in alcuni tratti ai mezzi forestali: tenete il cane vicino se ne arriva uno."
+  }
+}

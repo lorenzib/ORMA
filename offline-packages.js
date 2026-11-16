@@ -27,6 +27,7 @@
     'aosta-strada-lombarda': "Strada Lombarda",
     'aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande': "Alpenzù Piccolo and Alpenzù Grande",
     'arabba-castello-di-andraz-passeggiata-per-famiglie': "Castello di Andraz",
+    'auronzo-namos': "Santa Caterina to Pian de Namos",
     'auronzo-proazei': "Proazei loop above Lake Auronzo",
     'auronzo-zamberlan': "Cima Gogna to Zamberlan",
     'bormio-da-arnoga-al-rifugio-federico': "Arnoga – Rifugio Federico, Val Viola",

@@ -360,6 +360,23 @@
       }
     },
     {
+      "id": "auronzo-namos",
+      "approvedReviewId": "commons-auronzo-namos-on-route",
+      "approvedAt": "2026-11-16T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/auronzo-namos-view-over-auronzo.jpg",
+        "heroImage": "images/trails/auronzo-namos-view-over-auronzo.jpg",
+        "imageAlt": "Looking down from a wooded slope over the turquoise Lake Santa Caterina and the village of Auronzo, with its church dome, towards the jagged Cadini peaks in summer",
+        "imageCredit": "Auronzo and Lake Santa Caterina from the slope above Cella",
+        "imageCreditText": "Auronzo and Lake Santa Caterina from the slope above Cella by Kufoleto",
+        "imageCreator": "Kufoleto",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auronzo_cadore_dolomiti_belluno_estate.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "auronzo-proazei",
       "approvedReviewId": "commons-auronzo-proazei-on-route",
       "approvedAt": "2026-11-12T21:00:00.000Z",
