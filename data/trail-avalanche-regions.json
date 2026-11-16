@@ -419,6 +419,26 @@
       ],
       "highPoint": 2039
     },
+    "dolomitiunesco-lavaze-malga-costa": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18-02",
+        "IT-32-TN-09"
+      ],
+      "highPoint": 1810
+    },
+    "dolomitiunesco-pecol-malga-pioda": {
+      "regions": [
+        "IT-34-BL-01"
+      ],
+      "highPoint": 1809
+    },
+    "dolomitiunesco-val-san-nicolo": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1972
+    },
     "eggental-dal-passo-costalunga-al-lago-di-carezza": {
       "regions": [
         "IT-32-BZ-17",

@@ -9576,6 +9576,66 @@
           "accessedAt": "2026-11-16"
         }
       }
+    },
+    "dolomitiunesco-val-san-nicolo": {
+      "highPoint": 1972,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1972
+      }
+    },
+    "dolomitiunesco-pecol-malga-pioda": {
+      "highPoint": 1809,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1809
+      },
+      "winterUse": [
+        {
+          "kind": "downhill",
+          "km": 3.2,
+          "names": [
+            "Cornia",
+            "Le Coste",
+            "Roa Bianca"
+          ]
+        }
+      ]
+    },
+    "dolomitiunesco-lavaze-malga-costa": {
+      "highPoint": 1810,
+      "snow": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          12
+        ],
+        "likelihood": "likely",
+        "highPoint": 1810
+      },
+      "winterUse": [
+        {
+          "kind": "nordic",
+          "km": 3.4,
+          "names": []
+        }
+      ]
     }
   }
 }

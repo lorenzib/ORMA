@@ -1995,6 +1995,21 @@
       "name": "Dolomites in Miniature, San Tomaso Agordino",
       "slug": "dolomiti-in-miniatura-san-tomaso",
       "gloss": "a forest loop past sculptures of the Dolomite groups"
+    },
+    "dolomitiunesco-val-san-nicolo": {
+      "name": "Val San Nicolò to the Jonta waterfalls",
+      "slug": "val-san-nicolo-cascate-jonta",
+      "gloss": "a quiet valley road past hay meadows to the Jonta waterfalls and back"
+    },
+    "dolomitiunesco-pecol-malga-pioda": {
+      "name": "Pecòl to Malga Pioda",
+      "slug": "malga-pioda-pecol",
+      "gloss": "a forest road below the Civetta to the Malga Pioda pastures and back"
+    },
+    "dolomitiunesco-lavaze-malga-costa": {
+      "name": "Passo Lavazè to Malga Costa",
+      "slug": "malga-costa-passo-lavaze",
+      "gloss": "a level walk by the Lavazè lake and through stone-pine woods to Malga Costa and back"
     }
   }
 }

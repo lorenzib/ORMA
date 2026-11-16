@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "dolomitiunesco-val-san-nicolo",
+  "distanceKm": 6.5,
+  "ascentM": 261,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1715
+    },
+    {
+      "km": 0.5,
+      "elev": 1755
+    },
+    {
+      "km": 1,
+      "elev": 1778
+    },
+    {
+      "km": 1.5,
+      "elev": 1808
+    },
+    {
+      "km": 2,
+      "elev": 1874
+    },
+    {
+      "km": 2.5,
+      "elev": 1928
+    },
+    {
+      "km": 3,
+      "elev": 1972
+    },
+    {
+      "km": 3.5,
+      "elev": 1961
+    },
+    {
+      "km": 4,
+      "elev": 1928
+    },
+    {
+      "km": 4.5,
+      "elev": 1883
+    },
+    {
+      "km": 5,
+      "elev": 1815
+    },
+    {
+      "km": 5.5,
+      "elev": 1778
+    },
+    {
+      "km": 6,
+      "elev": 1746
+    },
+    {
+      "km": 6.5,
+      "elev": 1727
+    }
+  ]
+}

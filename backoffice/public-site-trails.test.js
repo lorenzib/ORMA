@@ -261,8 +261,11 @@ describe('the existing-site verification boundary',()=>{
     // suggests another way down (owner rule of 16 November 2026).
     // Then 527 and 525 with Dolomites batch 12: the Dolomites in Miniature
     // sculpture loop at Celat, San Tomaso Agordino.
-    expect(catalogue).toHaveLength(527);
-    expect(currentSiteTrails(catalogue)).toHaveLength(525);
+    // Then 530 and 528 with the Dolomiti Accessibili sheets, sealed there and
+    // back with an ORMA-measured time: Val San Nicolò, Pecòl to Malga Pioda and
+    // Passo Lavazè to Malga Costa.
+    expect(catalogue).toHaveLength(530);
+    expect(currentSiteTrails(catalogue)).toHaveLength(528);
   });
 
   test('requires the artwork the public trail page needs',()=>{

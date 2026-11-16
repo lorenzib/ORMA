@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "dolomitiunesco-lavaze-malga-costa",
+  "generatedAt": "2026-11-16T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.9,
+    "ascentM": 81,
+    "highestPointM": 1810,
+    "expectedDuration": "1 h 40 min",
+    "difficulty": "Easy",
+    "shadePercent": 24
+  },
+  "trailhead": {
+    "lat": 46.355294,
+    "lng": 11.492079,
+    "label": "The panoramic boardwalk by the lake at Passo Lavazè, the sheet’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.3548914,
+      "lng": 11.4927199,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.3551956,
+      "lng": 11.4920938,
+      "label": "Fontana del Lavazè",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The car park is by the SS620 at the pass: keep your dog on a short lead there.",
+    "Cows graze the Lavazè pastures in summer, with a wooden cattle gate on the way: keep a short lead, give them room and close the gate.",
+    "Deutschnofen allows no dogs on farmed meadows: keep your dog on the track.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-16"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-16",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Passo Lavazè to Malga Costa": "Da Passo Lavazè a Malga Costa, andata e ritorno",
+    "The panoramic boardwalk by the lake at Passo Lavazè, the sheet’s start": "Il pontile panoramico sul lago di Passo Lavazè, partenza della scheda",
+    "The car park is by the SS620 at the pass: keep your dog on a short lead there.": "Il parcheggio è lungo la SS620 al passo: lì tieni il cane al guinzaglio corto.",
+    "Cows graze the Lavazè pastures in summer, with a wooden cattle gate on the way: keep a short lead, give them room and close the gate.": "D’estate le mucche pascolano sui prati del Lavazè, e lungo la via c’è un cancello in legno per il bestiame: guinzaglio corto, lascia loro spazio e richiudi il cancello.",
+    "Deutschnofen allows no dogs on farmed meadows: keep your dog on the track.": "Nova Ponente non ammette cani sui prati coltivati: tieni il cane sulla strada."
+  }
+}

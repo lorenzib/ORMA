@@ -1091,6 +1091,57 @@
       }
     },
     {
+      "id": "dolomitiunesco-lavaze-malga-costa",
+      "approvedReviewId": "mapillary-dolomitiunesco-lavaze-malga-costa-on-route",
+      "approvedAt": "2026-11-16T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/dolomitiunesco-lavaze-malga-costa-pasture-track.jpg",
+        "heroImage": "images/trails/dolomitiunesco-lavaze-malga-costa-pasture-track.jpg",
+        "imageAlt": "Four walkers seen from behind on a muddy dirt track across open pasture at Passo Lavazè, with a puddle in front, spruce woods and low cloud",
+        "imageCredit": "Walkers on the pasture track at Passo Lavazè",
+        "imageCreditText": "Walkers on the pasture track at Passo Lavazè by dadadavid3",
+        "imageCreator": "dadadavid3",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=219480429514526",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "dolomitiunesco-pecol-malga-pioda",
+      "approvedReviewId": "commons-dolomitiunesco-pecol-malga-pioda-on-route",
+      "approvedAt": "2026-11-16T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/dolomitiunesco-pecol-malga-pioda-monte-pelmo.jpg",
+        "heroImage": "images/trails/dolomitiunesco-pecol-malga-pioda-monte-pelmo.jpg",
+        "imageAlt": "The pale rock walls of Monte Pelmo rise above a dense green spruce forest under a clear blue sky",
+        "imageCredit": "Monte Pelmo from the Via Coi forest road above Palafavera",
+        "imageCreditText": "Monte Pelmo from the Via Coi forest road above Palafavera by kallerna",
+        "imageCreator": "kallerna",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monte_Pelmo_3.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "dolomitiunesco-val-san-nicolo",
+      "approvedReviewId": "commons-dolomitiunesco-val-san-nicolo-on-route",
+      "approvedAt": "2026-11-16T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/dolomitiunesco-val-san-nicolo-track-and-huts.jpg",
+        "heroImage": "images/trails/dolomitiunesco-val-san-nicolo-track-and-huts.jpg",
+        "imageAlt": "A stony gravel track runs between green meadows past two wooden hay huts, with larches and a pointed peak against the bright morning sun",
+        "imageCredit": "The gravel track past the hay huts in the Val San Nicolò",
+        "imageCreditText": "The gravel track past the hay huts in the Val San Nicolò by Maurizio Ceol",
+        "imageCreator": "Maurizio Ceol",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Val_San_Nicol%C3%B2_-_panoramio_(2).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "eggental-dal-passo-costalunga-al-lago-di-carezza",
       "approvedReviewId": "commons-eggental-dal-passo-costalunga-al-lago-di-carezza-on-route",
       "approvedAt": "2026-10-29T20:00:00.000Z",
