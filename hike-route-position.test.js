@@ -202,6 +202,28 @@ describe('a live recording on a line that doubles back', () => {
     expect(walk.walks).toEqual([[trail.id, expect.anything(), 'gps']]);
   });
 
+  // Drawn out and back, but the ends do not meet: Malga Crel comes home past
+  // the campsite (116 m apart), Monte Vederna 616 m. Treating these as one
+  // leg halved the walk: 2.2 km at Malga Crel's turnaround, 4.6 km at home.
+  test.each(['primiero-malga-crel','primiero-monte-vederna'])('%s: a whole walk that does not close is not halved', id => {
+    const trail=realTrail(id);
+    expect(trail.routeShape).toBe('out-and-back');
+    expect(metres(trail.path[0], trail.path[trail.path.length-1])).toBeGreaterThan(75);
+    const walk=record(trail, trail.path);
+    const km=walk.routeKm;
+    expect(Math.max(...km)).toBeGreaterThan(trail.distance*0.9);
+    expect(Math.max(...km)).toBeLessThanOrEqual(trail.distance+0.01);
+    expect(walk.finished).toBe(true);
+  });
+
+  test('a there-and-back drawn one way is still halved', () => {
+    const trail=realTrail('prato-piazza');
+    // Walk the line out to its far end: that is the turnaround, half the walk.
+    const walk=record(trail, trail.path);
+    expect(walk.routeKm[walk.routeKm.length-1]).toBeCloseTo(trail.distance/2, 0);
+    expect(walk.finished).toBe(false);
+  });
+
   test('a resumed hike picks up where it was placed on the line', () => {
     const source=fs.readFileSync('hike-mode.js','utf8');
     expect(source).toContain('walkProof.createPlacement(coverage && coverage.lastAlongM)');
