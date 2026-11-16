@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-16T20:16:23.407Z",
+  "generatedAt": "2026-11-16T23:13:17.800Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -14,10 +14,10 @@
       "sourceLabel": "MeteoAlarm France",
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/6fbb025e-536d-4446-8ab5-877ae5746127",
       "identifier": "2.49.0.0.250.0.FR.20261116160237.462028",
-      "effectiveAt": "2026-11-15T15:00:00+00:00",
+      "effectiveAt": "2026-11-16T15:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-16T20:16:23.407Z",
+      "lastSeenAt": "2026-11-16T23:13:17.800Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -65,10 +65,10 @@
       "sourceLabel": "MeteoAlarm France",
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/6fbb025e-536d-4446-8ab5-877ae5746127",
       "identifier": "2.49.0.0.250.0.FR.20261116160237.462028",
-      "effectiveAt": "2026-11-15T15:00:00+00:00",
+      "effectiveAt": "2026-11-16T15:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-16T20:16:23.407Z",
+      "lastSeenAt": "2026-11-16T23:13:17.800Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -105,7 +105,7 @@
       "effectiveAt": "2026-11-16T15:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T20:16:23.407Z",
+      "lastSeenAt": "2026-11-16T23:13:17.800Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -218,7 +218,7 @@
       "effectiveAt": "2026-11-16T23:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T20:16:23.407Z",
+      "lastSeenAt": "2026-11-16T23:13:17.800Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -269,7 +269,7 @@
       "effectiveAt": "2026-11-16T23:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T20:16:23.407Z",
+      "lastSeenAt": "2026-11-16T23:13:17.800Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -306,7 +306,7 @@
       "effectiveAt": "2026-11-16T23:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T20:16:23.407Z",
+      "lastSeenAt": "2026-11-16T23:13:17.800Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -419,7 +419,7 @@
       "effectiveAt": "2026-11-17T00:00:00+00:00",
       "expiresAt": "2026-11-18T19:59:00+00:00",
       "firstPublishedAt": "2026-11-16T11:20:03.785Z",
-      "lastSeenAt": "2026-11-16T20:16:23.407Z",
+      "lastSeenAt": "2026-11-16T23:13:17.800Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -454,7 +454,7 @@
       "effectiveAt": "2026-11-17T00:00:00+00:00",
       "expiresAt": "2026-11-17T19:59:00+00:00",
       "firstPublishedAt": "2026-11-16T11:20:03.785Z",
-      "lastSeenAt": "2026-11-16T20:16:23.407Z",
+      "lastSeenAt": "2026-11-16T23:13:17.800Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "aosta-ru-courtaud",
