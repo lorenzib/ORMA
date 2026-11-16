@@ -33,7 +33,9 @@ concurrency:
 jobs:
   tiles:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    # Four regions took 18 minutes on 9 Nov; on 16 Nov a slow Geofabrik
+    # pushed two builds past a 30-minute limit before the last region.
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7

@@ -259,8 +259,10 @@ describe('the existing-site verification boundary',()=>{
     // Corones and the Steinmeile at Valdaora di Sotto.
     // Then 526 and 524 with Pian de Namos above Auronzo, whose page only
     // suggests another way down (owner rule of 16 November 2026).
-    expect(catalogue).toHaveLength(526);
-    expect(currentSiteTrails(catalogue)).toHaveLength(524);
+    // Then 527 and 525 with Dolomites batch 12: the Dolomites in Miniature
+    // sculpture loop at Celat, San Tomaso Agordino.
+    expect(catalogue).toHaveLength(527);
+    expect(currentSiteTrails(catalogue)).toHaveLength(525);
   });
 
   test('requires the artwork the public trail page needs',()=>{
