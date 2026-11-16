@@ -6,6 +6,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Sparsely mapped: gravel (82%), rock (13%), natural ground (5%), from OSM surface data": "Mappatura scarsa: ghiaia (82%), roccia (13%), terreno naturale (5%), da dati OSM sul fondo",
   "Route 14 start by the Kirchsteiger Alm, Meran 2000": "Partenza dell'itinerario 14 presso la Kirchsteiger Alm, Meran 2000",
   "Panoramaweg trail": "Sentiero Panoramaweg",
+  "Two grey cattle grazing in the Sarntal Alps": "Due mucche grigie al pascolo nelle Alpi Sarentine",
   "Start at the route 14 point by the Kirchsteiger Alm, Meran 2000, as the province register gives.": "Parti dal punto dell'itinerario 14 presso la Kirchsteiger Alm, Meran 2000, come indica il catasto provinciale.",
   "Follow route 14 out along the Kirchsteiger Alm track to the loop, round by Falkenau, the Mittagerhütte and the Kesselberg saddle, back along the Panoramaweg path past the Hötzl Schupfe, and out the same track to the start.": "Segui l'itinerario 14 lungo la sterrata della Kirchsteiger Alm fino all'anello, fai il giro passando per Falkenau, la Mittagerhütte e la sella del Kesselberg, torna lungo il sentiero Panoramaweg passando per la Hötzl Schupfe e riprendi la stessa sterrata fino alla partenza.",
   "None away from 14: routes 10 and 13 share some sections and signposts.": "Nessuno, si resta sul 14: gli itinerari 10 e 13 condividono alcuni tratti e cartelli.",

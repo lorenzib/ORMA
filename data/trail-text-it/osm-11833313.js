@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village lanes, farm tracks and field paths": "Stradine di paese, strade poderali e sentieri tra i campi",
   "Kiens village centre (official start)": "Centro del paese di Kiens (partenza ufficiale)",
   "The green, fast-flowing Rienz between wooded banks and a few houses at Kiens, forested mountainsides above": "La Rienz, verde e impetuosa, tra rive boscose e qualche casa a Kiens, con versanti coperti di bosco sopra",
+  "The Rienz river at Kiens": "Il fiume Rienza a Chienes",
+  "The Rienz river flowing through woods at Kiens": "Il fiume Rienza tra i boschi di Chienes",
   "A little under half has trees, mostly along the Rienz and the edge of the wood; the fields between the villages are open.": "Poco meno della metà è alberata, soprattutto lungo la Rienz e al margine del bosco; i campi tra i paesi sono aperti.",
   "Signed as the Römerweg: from Kiens village centre through the farmland to Ehrenburg, past rest and information points on Roman travel, the Roman milestone, Ehrenburg castle and the parish church of Mariä Himmelfahrt, and back to Kiens.": "Segnalato come Römerweg: dal centro di Kiens attraverso i campi fino a Ehrenburg, oltre punti di sosta e di informazione sui viaggi in epoca romana, il miliario romano, il castello di Ehrenburg e la chiesa parrocchiale di Mariä Himmelfahrt, e ritorno a Kiens.",
   "Drinking fountain in Kiens": "Fontanella a Kiens",

@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Tarred lanes and forest path": "Stradine asfaltate e sentiero nel bosco",
   "Valdaora di Sopra (Oberolang), the board’s start": "Valdaora di Sopra (Oberolang), la partenza indicata dalla scheda ufficiale",
   "A tarred path between birches and spruces beside the Olang reservoir, with the dam tower and a fenced bank on the left": "Un sentiero asfaltato tra betulle e abeti rossi accanto al lago artificiale di Olang, con la torre della diga e una sponda recintata a sinistra",
+  "Peaks above Valdaora": "Cime sopra Valdaora",
   "Partly shaded: about two fifths runs through forest above the reservoir; the stretch out of the village is open.": "In parte all'ombra: circa due quinti attraversano il bosco sopra il lago artificiale; il tratto in uscita dal paese è aperto.",
   "Start in Valdaora di Sopra (Oberolang), the board’s start.": "Parti da Valdaora di Sopra (Oberolang), la partenza indicata dalla scheda ufficiale.",
   "Follow the Lottersteig, path 21B, from Valdaora di Sopra to the historic old Goste inn (alte Goste).": "Segui il Lottersteig, sentiero 21B, da Valdaora di Sopra fino alla storica vecchia locanda Goste (alte Goste).",

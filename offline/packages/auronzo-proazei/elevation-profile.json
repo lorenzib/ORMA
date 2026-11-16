@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "auronzo-proazei",
+  "distanceKm": 2,
+  "ascentM": 77,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 824
+    },
+    {
+      "km": 0.2,
+      "elev": 874
+    },
+    {
+      "km": 0.3,
+      "elev": 848
+    },
+    {
+      "km": 0.5,
+      "elev": 862
+    },
+    {
+      "km": 0.6,
+      "elev": 922
+    },
+    {
+      "km": 0.8,
+      "elev": 915
+    },
+    {
+      "km": 0.9,
+      "elev": 882
+    },
+    {
+      "km": 1,
+      "elev": 862
+    },
+    {
+      "km": 1.2,
+      "elev": 845
+    },
+    {
+      "km": 1.4,
+      "elev": 842
+    },
+    {
+      "km": 1.5,
+      "elev": 837
+    },
+    {
+      "km": 1.6,
+      "elev": 829
+    },
+    {
+      "km": 1.8,
+      "elev": 826
+    },
+    {
+      "km": 2,
+      "elev": 824
+    }
+  ]
+}

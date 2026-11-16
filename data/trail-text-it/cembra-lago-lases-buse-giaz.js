@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest tracks, a lakeside path with some steps, quiet roads": "Strade forestali, un sentiero lungo il lago con qualche gradino, strade tranquille",
   "Lago di Lases car park on the SP 71, the APT’s start": "Parcheggio del Lago di Lases sulla SP 71, la partenza indicata dall'APT",
   "The Lago di Lases stretching away under a summer sky, wooded slopes and pale porphyry quarry faces on the far side and willow branches in the foreground": "Il Lago di Lases che si allunga sotto un cielo estivo, versanti boscosi e chiare pareti di cava di porfido sulla sponda opposta e rami di salice in primo piano",
+  "Snow around Lago di Lases": "Neve intorno al Lago di Lases",
   "Mostly shaded: about three quarters of the loop runs through woods.": "Per lo più all'ombra: circa tre quarti dell'anello passano nei boschi.",
   "Start at the car park on the SP 71 by the Lago di Lases, the tourist board’s start.": "Parti dal parcheggio sulla SP 71 vicino al Lago di Lases, la partenza indicata dall'ente turistico.",
   "Left along the lake shore, off into the woods to the Val Fredda and its ice pits, back to the shore and round to the south end of the lake, over the small bridge and back along the opposite shore.": "A sinistra lungo la riva del lago, poi nel bosco fino alla Val Fredda e alle sue buche del ghiaccio, di nuovo alla riva e intorno fino all'estremità sud del lago, oltre il ponticello e ritorno lungo la sponda opposta.",

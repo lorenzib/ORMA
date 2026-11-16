@@ -9,6 +9,7 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Wide gravel track and natural paths across alpine pasture; pram-friendly": "Ampia strada sterrata e sentieri naturali attraverso il pascolo alpino; adatto ai passeggini",
   "Passo San Pellegrino (Moena), the APT’s start": "Passo San Pellegrino (Moena), la partenza indicata dall'APT",
   "A gravel track across green pasture to the wooden hay barns of Fuciade, a snow-dusted rocky ridge behind": "Una strada sterrata attraverso un pascolo verde fino ai fienili di legno di Fuciade, una cresta rocciosa spolverata di neve dietro",
+  "The Fuciade pastures in winter": "I pascoli di Fuciade in inverno",
   "About two fifths passes larch and stone pine near the pass; the Fuciade basin itself is open.": "Circa due quinti passano tra larici e pini cembri vicino al passo; la conca di Fuciade in sé è aperta.",
   "Start at Passo San Pellegrino, the tourist board’s start.": "Parti dal Passo San Pellegrino, la partenza indicata dall'ente turistico.",
   "About 200 m down the far side of the pass, left onto the tarred road to the car park by the Hotel Miralago, then the easy, mostly level road to the Fuciade basin and the Rifugio Fuchiade, and back the same way.": "Circa 200 m in discesa sul versante opposto del passo, a sinistra sulla strada asfaltata fino al parcheggio vicino all'Hotel Miralago, poi la strada facile e per lo più pianeggiante fino alla conca di Fuciade e al Rifugio Fuchiade, e ritorno per la stessa via.",

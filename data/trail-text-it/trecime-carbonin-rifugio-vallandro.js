@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Forest road with steeper shortcuts": "Strada forestale con scorciatoie più ripide",
   "Schluderbach (Carbonin), the board’s start": "Schluderbach (Carbonin), la partenza indicata dalla scheda ufficiale",
   "The timber-clad Dürrensteinhütte with red geraniums on its balconies, a wide gravel forecourt in front and rocks and spruces behind under a deep blue sky": "La Dürrensteinhütte rivestita in legno con gerani rossi sui balconi, un ampio piazzale sterrato davanti e rocce e abeti rossi dietro sotto un cielo blu intenso",
+  "The Croda Rossa above the forest": "La Croda Rossa sopra il bosco",
+  "The Cadini di Misurina from the Prato Piazza fort": "I Cadini di Misurina dal forte di Prato Piazza",
   "Over half shaded: the forest road climbs through spruce and larch; the Plätzwiese at the top is open.": "Più di metà all'ombra: la strada forestale sale tra abeti rossi e larici; la Plätzwiese in cima è aperta.",
   "Start in Schluderbach (Carbonin), the tourist board’s start.": "Parti da Schluderbach (Carbonin), la partenza indicata dall'ente turistico.",
   "Path 37: from Schluderbach the forest road climbs gently through the forest to the Dürrensteinhütte (Rifugio Vallandro) on the Plätzwiese. Shortcuts cut the bends but are steeper. The walk can be joined to a walk on the Plätzwiese.": "Sentiero 37: da Schluderbach la strada forestale sale dolcemente nel bosco fino alla Dürrensteinhütte (Rifugio Vallandro) sulla Plätzwiese. Alcune scorciatoie tagliano i tornanti ma sono più ripide. La passeggiata si può unire a un giro sulla Plätzwiese.",

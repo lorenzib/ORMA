@@ -6,6 +6,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "High-alpine dirt and rocky mountain paths, including one narrower section": "Sentieri d'alta quota in terra e roccia, con un tratto più stretto",
   "Parcheggio Rifugio Auronzo (P1), approved parking pin": "Parcheggio Rifugio Auronzo (P1), punto di parcheggio approvato",
   "Tre Cime di Lavaredo rock towers in warm morning light beneath a blue sky.": "Le torri di roccia delle Tre Cime di Lavaredo nella luce calda del mattino sotto un cielo azzurro.",
+  "The north faces of the Tre Cime di Lavaredo": "Le pareti nord delle Tre Cime di Lavaredo",
+  "Rifugio Auronzo below rocky peaks": "Il Rifugio Auronzo sotto cime rocciose",
   "Start at Rifugio Auronzo.": "Parti dal Rifugio Auronzo.",
   "Follow trail 101 from Rifugio Auronzo to Rifugio Lavaredo, then climb to Forcella Lavaredo and continue to Rifugio Locatelli. From Rifugio Locatelli, follow trail 105 across the northern side of the Tre Cime and via Forcella Col di Mezzo back to Rifugio Auronzo.": "Segui il sentiero 101 dal Rifugio Auronzo al Rifugio Lavaredo, poi sali a Forcella Lavaredo e prosegui fino al Rifugio Locatelli. Dal Rifugio Locatelli segui il sentiero 105 lungo il versante nord delle Tre Cime e per Forcella Col di Mezzo torna al Rifugio Auronzo.",
   "At Rifugio Locatelli, leave trail 101 and take trail 105 towards Forcella Col di Mezzo and Rifugio Auronzo.": "Al Rifugio Locatelli lascia il sentiero 101 e prendi il sentiero 105 verso Forcella Col di Mezzo e il Rifugio Auronzo.",

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "auronzo-zamberlan",
+  "generatedAt": "2026-11-12T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.4,
+    "ascentM": 528,
+    "highestPointM": 1279,
+    "expectedDuration": "2 h 45 min",
+    "difficulty": "Hard",
+    "shadePercent": 87
+  },
+  "trailhead": {
+    "lat": 46.520063,
+    "lng": 12.467127,
+    "label": "Cima Gogna, on the SS52 before Auronzo, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The start is beside the busy SS52 at Cima Gogna: keep your dog on a short lead there.",
+    "The last stretch to Zamberlan is very steep: take it slowly with an older or less fit dog.",
+    "Forest track open to forestry vehicles: keep your dog close if one comes.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-12"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-12",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Cima Gogna to Zamberlan": "Da Cima Gogna a Zamberlan",
+    "Cima Gogna, on the SS52 before Auronzo, the board’s start": "Cima Gogna, sulla SS52 prima di Auronzo, la partenza ufficiale",
+    "The start is beside the busy SS52 at Cima Gogna: keep your dog on a short lead there.": "La partenza è accanto alla trafficata SS52 a Cima Gogna: lì tieni il cane al guinzaglio corto.",
+    "The last stretch to Zamberlan is very steep: take it slowly with an older or less fit dog.": "L’ultimo tratto fino a Zamberlan è molto ripido: vai piano con un cane anziano o meno allenato.",
+    "Forest track open to forestry vehicles: keep your dog close if one comes.": "Strada forestale aperta ai mezzi forestali: tieni il cane vicino se ne arriva uno."
+  }
+}

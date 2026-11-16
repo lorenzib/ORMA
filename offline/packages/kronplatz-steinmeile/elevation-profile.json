@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "kronplatz-steinmeile",
+  "distanceKm": 3.1,
+  "ascentM": 79,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 987
+    },
+    {
+      "km": 0.3,
+      "elev": 997
+    },
+    {
+      "km": 0.5,
+      "elev": 1012
+    },
+    {
+      "km": 0.7,
+      "elev": 1017
+    },
+    {
+      "km": 1,
+      "elev": 1031
+    },
+    {
+      "km": 1.2,
+      "elev": 1046
+    },
+    {
+      "km": 1.4,
+      "elev": 1059
+    },
+    {
+      "km": 1.7,
+      "elev": 1059
+    },
+    {
+      "km": 1.9,
+      "elev": 1046
+    },
+    {
+      "km": 2.1,
+      "elev": 1031
+    },
+    {
+      "km": 2.4,
+      "elev": 1017
+    },
+    {
+      "km": 2.6,
+      "elev": 1012
+    },
+    {
+      "km": 2.8,
+      "elev": 1007
+    },
+    {
+      "km": 3.1,
+      "elev": 987
+    }
+  ]
+}

@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Wide gravel path and service road": "Ampio sentiero sterrato e strada di servizio",
   "Top station of the Mont Sëuc cable car from Ortisei, the board’s start": "Stazione a monte della funivia del Mont Sëuc da Ortisei, la partenza indicata dalla scheda ufficiale",
   "A wide gravel path along a grassy slope with spruce trees, looking across the green Alpe di Siusi to the Sassolungo and Sassopiatto under a blue sky": "Un ampio sentiero sterrato lungo un pendio erboso con abeti rossi, con vista sull'Alpe di Siusi verde fino al Sassolungo e al Sassopiatto sotto il cielo azzurro",
+  "The Alpe di Siusi with the Sassolungo group behind": "L'Alpe di Siusi con il gruppo del Sassolungo dietro",
+  "The Alpe di Siusi from Mont Seuc towards the Sella": "L'Alpe di Siusi dal Mont Seuc verso il Sella",
   "The walk starts at the top station of the cable car from Ortisei; its cabins are closed. The walk comes back the same way to the station.": "La passeggiata parte dalla stazione a monte della funivia da Ortisei; le cabine sono chiuse. La passeggiata torna alla stazione per la stessa via.",
   "Mostly open: about a fifth runs past mapped woodland; the meadows are in full sun.": "Per lo più aperto: circa un quinto del percorso costeggia boschi segnati sulla mappa; i prati sono in pieno sole.",
   "Start at the top station of the Mont Sëuc cable car from Ortisei (2,005 m), the board’s start.": "Parti dalla stazione a monte della funivia del Mont Sëuc da Ortisei (2.005 m), la partenza indicata dalla scheda ufficiale.",

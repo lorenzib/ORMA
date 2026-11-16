@@ -10,6 +10,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Gravel farm tracks and meadow paths, with a steep rocky path over the Peitlerscharte": "Strade poderali sterrate e sentieri tra i prati, con un sentiero ripido e roccioso sulla Peitlerscharte",
   "Würzjoch / Passo delle Erbe car park (paid June–October; bus 469 in summer)": "Parcheggio Würzjoch / Passo delle Erbe (a pagamento da giugno a ottobre; d'estate autobus 469)",
   "A gravel track and a wooden waymark post on summer pasture below the rocky Peitlerkofel peak.": "Una strada sterrata e un palo segnavia di legno sul pascolo estivo sotto la cima rocciosa del Peitlerkofel.",
+  "Meadows and peaks seen from Utia Vaciara": "Prati e cime visti dall'Utia Vaciara",
+  "The Peitlerkofel in evening light": "Il Sass de Putia nella luce della sera",
   "Mostly open high meadow, scree and dwarf pine between 1,970 and 2,360 m, with a little woodland on the north-side return.": "Per lo più prati d'alta quota aperti, ghiaioni e mughi tra 1.970 e 2.360 m, con un po' di bosco nel ritorno sul versante nord.",
   "From the Würzjoch take 8A south across the meadows; at the fork go right under the north face and climb on path 4 to the Peitlerscharte (2,357 m); descend steeply on 4B, follow 35 past the Vaciara hut to the Gömajoch, then take 8B west past the Göma and Fornella huts and 8A back to the pass.": "Dal Würzjoch prendi l'8A verso sud attraverso i prati; al bivio vai a destra sotto la parete nord e sali sul sentiero 4 fino alla Peitlerscharte (2.357 m); scendi ripidamente sul 4B, segui il 35 oltre la baita Vaciara fino al Gömajoch, poi prendi l'8B verso ovest oltre le baite Göma e Fornella e l'8A per tornare al passo.",
   "Spring": "Sorgente",

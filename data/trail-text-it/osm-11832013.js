@@ -7,6 +7,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "paved (58%), pebblestone (42%), from OSM surface data": "asfalto (58%), ciottoli (42%), dai dati sul fondo di OSM",
   "Start here — Bus stop Durnholz - Valdurna, 27 m from the route (OSM-verified access point)": "Parti da qui — Fermata dell'autobus Durnholz - Valdurna, a 27 m dal percorso (punto di accesso verificato su OSM)",
   "The Durnholzer See in the upper Sarntal with Durnholz church and its slender spire on the far shore, wooded slopes and meadows around": "Il Durnholzer See nell'alta Sarntal con la chiesa di Durnholz e il suo sottile campanile sulla riva opposta, pendii boscosi e prati intorno",
+  "Lake Durnholz between forested slopes": "Il lago di Valdurna tra versanti boscosi",
+  "The village of Durnholz above its lake": "Il paese di Valdurna sopra il suo lago",
   "Path 22, Seerundweg, as the Sarntal brochure states; path 16 to the Seebalm leaves at the Fischerwirt.": "Sentiero 22, Seerundweg, come indica l'opuscolo della Val Sarentino; il sentiero 16 per la Seebalm si stacca al Fischerwirt.",
   "Drinking water": "Acqua potabile",
   "The Durnholzer See and Durnholz church": "Il Durnholzer See e la chiesa di Durnholz"

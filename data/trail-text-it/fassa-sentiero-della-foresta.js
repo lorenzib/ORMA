@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Wide gravel forest track; pram-friendly": "Ampia strada forestale sterrata; adatto ai passeggini",
   "Vigo di Fassa (stazione a monte funivia Ciampedie), the APT’s start": "Vigo di Fassa (stazione a monte funivia Ciampedie), partenza indicata dall'APT",
   "Walkers on a gravel path across the Ciampedie meadow by a chairlift and a play area, the pale towers of the Rosengarten behind": "Escursionisti su un sentiero sterrato attraverso il prato di Ciampedie vicino a una seggiovia e a un'area giochi, con le chiare torri del Catinaccio sullo sfondo",
+  "Peaks above the slopes at Vigo di Fassa": "Cime sopra le piste di Vigo di Fassa",
+  "The Catinaccio group above the Vajolet valleys": "Il gruppo del Catinaccio sopra le valli del Vajolet",
   "The walk starts and ends on the Ciampedie plateau, which you reach by the closed cabins of the Catinaccio cable car from Vigo. The APT asks for a lead and a muzzle on lifts.": "La passeggiata inizia e finisce sull'altopiano di Ciampedie, che raggiungi con le cabine chiuse della funivia del Catinaccio da Vigo. L'APT chiede guinzaglio e museruola sugli impianti.",
   "Mostly shaded: about seven tenths runs through the larch and spruce forest; Ciampedie and the Gardeccia hollow are open.": "Per lo più all'ombra: circa sette decimi passano nel bosco di larici e abeti rossi; Ciampedie e la conca del Gardeccia sono aperte.",
   "Start at the top station of the Catinaccio cable car at Ciampedie, reached in a few minutes from Vigo di Fassa; the board’s start.": "Parti dalla stazione a monte della funivia del Catinaccio a Ciampedie, raggiungibile in pochi minuti da Vigo di Fassa; è la partenza indicata dalla scheda ufficiale.",

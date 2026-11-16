@@ -9,6 +9,8 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Village lanes, the valley cycle and foot path and short forest paths; pram-friendly": "Stradine del paese, la ciclopedonale di fondovalle e brevi sentieri nel bosco; adatto ai passeggini",
   "Canazei (Piaz G. Marconi), the APT’s start": "Canazei (Piaz G. Marconi), partenza indicata dall'APT",
   "Penìa’s houses and onion-domed church tower below a wooded slope, with a mown meadow and a tractor in the foreground": "Le case di Penìa e il campanile a cipolla sotto un pendio boscoso, con un prato falciato e un trattore in primo piano",
+  "Canazei below the peaks of the Val di Fassa": "Canazei sotto le cime della Val di Fassa",
+  "A mountain valley above Canazei": "Una valle di montagna sopra Canazei",
   "Mostly open: about a fifth runs through trees along the river; the rest crosses meadows and the villages.": "Per lo più aperto: circa un quinto passa tra gli alberi lungo il fiume; il resto attraversa prati e paesi.",
   "Start at the tourist office on the main square of Canazei, the tourist board’s start.": "Parti dall'ufficio turistico sulla piazza principale di Canazei, la partenza indicata dall'ente turistico.",
   "Down Strèda Roma and Strèda de Cercenà past the football pitch and the Dòlaondes pool, over the Pènt de la Roa, up the Avisio on Strèda dò Veisc to Penìa, back down the other bank to the ice stadium, back to the Pènt de la Roa and home on the Ciasates walk.": "Giù per Strèda Roma e Strèda de Cercenà oltre il campo da calcio e la piscina Dòlaondes, sul Pènt de la Roa, su lungo l'Avisio per Strèda dò Veisc fino a Penìa, giù per l'altra sponda fino allo stadio del ghiaccio, di nuovo al Pènt de la Roa e ritorno sulla passeggiata Ciasates.",
