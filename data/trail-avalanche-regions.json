@@ -2228,6 +2228,20 @@
       ],
       "highPoint": 1025
     },
+    "seiseralm-promenadenweg-tiers": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1242
+    },
+    "seiseralm-umser-rundweg": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1008
+    },
     "sentiero-del-trenino": {
       "regions": [
         "IT-32-BZ-18",

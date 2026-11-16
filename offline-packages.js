@@ -339,6 +339,8 @@
     'seiseralm-escursione-senza-barriere-all-alpe-di-siusi': "Mont Sëuc to the Sporthotel Sonne",
     'seiseralm-fie-laghetto-di-fie-siusi': "Fiè to Siusi by the Laghetto di Fiè",
     'seiseralm-miglio-geologico-siusi': "Siusi geological mile",
+    'seiseralm-promenadenweg-tiers': "Promenadenweg, Tiers",
+    'seiseralm-umser-rundweg': "Umser Rundweg, Ums",
     'sentiero-del-trenino': "Sentiero del Trenino",
     'sentiero-hans-e-paula-steger': "Sentiero Hans e Paula Steger",
     'tre-cime': "Tre Cime di Lavaredo classic circuit",

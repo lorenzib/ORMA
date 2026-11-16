@@ -421,6 +421,8 @@ window.ORMA_TRAIL_NAMES_IT = {
   "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": "Da Mont Sëuc allo Sporthotel Sonne",
   "seiseralm-fie-laghetto-di-fie-siusi": "Da Fiè a Siusi passando per il Laghetto di Fiè",
   "seiseralm-miglio-geologico-siusi": "Il miglio geologico di Siusi",
+  "seiseralm-promenadenweg-tiers": "Promenadenweg, Tires",
+  "seiseralm-umser-rundweg": "Sentiero circolare di Umes",
   "sentiero-del-trenino": "Sentiero del Trenino",
   "sentiero-hans-e-paula-steger": "Sentiero Hans e Paula Steger",
   "tre-cime": "Il giro classico delle Tre Cime di Lavaredo",

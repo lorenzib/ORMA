@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "seiseralm-promenadenweg-tiers",
+  "distanceKm": 3.7,
+  "ascentM": 230,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1141
+    },
+    {
+      "km": 0.3,
+      "elev": 1103
+    },
+    {
+      "km": 0.6,
+      "elev": 1053
+    },
+    {
+      "km": 0.9,
+      "elev": 1085
+    },
+    {
+      "km": 1.1,
+      "elev": 1119
+    },
+    {
+      "km": 1.5,
+      "elev": 1103
+    },
+    {
+      "km": 1.7,
+      "elev": 1111
+    },
+    {
+      "km": 2,
+      "elev": 1133
+    },
+    {
+      "km": 2.3,
+      "elev": 1209
+    },
+    {
+      "km": 2.6,
+      "elev": 1219
+    },
+    {
+      "km": 2.8,
+      "elev": 1242
+    },
+    {
+      "km": 3.1,
+      "elev": 1225
+    },
+    {
+      "km": 3.4,
+      "elev": 1220
+    },
+    {
+      "km": 3.7,
+      "elev": 1141
+    }
+  ]
+}

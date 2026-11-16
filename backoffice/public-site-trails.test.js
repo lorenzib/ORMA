@@ -264,8 +264,10 @@ describe('the existing-site verification boundary',()=>{
     // Then 530 and 528 with the Dolomiti Accessibili sheets, sealed there and
     // back with an ORMA-measured time: Val San Nicolò, Pecòl to Malga Pioda and
     // Passo Lavazè to Malga Costa.
-    expect(catalogue).toHaveLength(530);
-    expect(currentSiteTrails(catalogue)).toHaveLength(528);
+    // Then 532 and 530 with two South Tyrol trail-register loops, climb and
+    // time measured by ORMA: the Umser Rundweg and the Promenadenweg at Tiers.
+    expect(catalogue).toHaveLength(532);
+    expect(currentSiteTrails(catalogue)).toHaveLength(530);
   });
 
   test('requires the artwork the public trail page needs',()=>{
