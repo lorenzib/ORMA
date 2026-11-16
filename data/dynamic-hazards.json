@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-16T08:34:57.225Z",
+  "generatedAt": "2026-11-16T11:20:03.785Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-15T15:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-16T08:34:57.225Z",
+      "lastSeenAt": "2026-11-16T11:20:03.785Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -68,7 +68,7 @@
       "effectiveAt": "2026-11-15T15:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-16T08:34:57.225Z",
+      "lastSeenAt": "2026-11-16T11:20:03.785Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -105,7 +105,7 @@
       "effectiveAt": "2026-11-16T23:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T08:34:57.225Z",
+      "lastSeenAt": "2026-11-16T11:20:03.785Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -218,7 +218,7 @@
       "effectiveAt": "2026-11-16T23:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T08:34:57.225Z",
+      "lastSeenAt": "2026-11-16T11:20:03.785Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -269,7 +269,7 @@
       "effectiveAt": "2026-11-16T23:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T08:34:57.225Z",
+      "lastSeenAt": "2026-11-16T11:20:03.785Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -306,7 +306,7 @@
       "effectiveAt": "2026-11-16T23:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T08:34:57.225Z",
+      "lastSeenAt": "2026-11-16T11:20:03.785Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -403,6 +403,74 @@
         "Saint-Pierre-d’Entremont to Corbel loop"
       ],
       "sourceStatus": "available"
+    },
+    {
+      "id": "meteoalarm-italy:thunderstorm:piemonte",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Yellow Thunderstorm Warning",
+      "area": "Piemonte",
+      "title": "thunderstorm warning for Piemonte",
+      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-italy",
+      "sourceLabel": "MeteoAlarm Italy",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/0d58ade5-c51b-4eb0-b75d-e35a67fd1186",
+      "identifier": "2.49.0.0.380.3.IT.261116113433.101",
+      "effectiveAt": "2026-11-17T00:00:00+00:00",
+      "expiresAt": "2026-11-18T19:59:00+00:00",
+      "firstPublishedAt": "2026-11-16T11:20:03.785Z",
+      "lastSeenAt": "2026-11-16T11:20:03.785Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "valsesia-gta-tappa-21-campello-monti-rimella",
+        "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo",
+        "valsesia-cervatto-madonna-del-balmone",
+        "valsesia-campello-monti-alpe-fornale-di-sopra",
+        "valsesia-campello-monti-colle-dell-usciolo",
+        "valsesia-campello-monti-lago-del-capezzone"
+      ],
+      "trailNames": [
+        "Campello Monti to Rimella over the Bocchetta",
+        "Giro del Ginepro from Carcoforo",
+        "Cervatto to the Madonna del Balmone",
+        "Campello Monti to the Alpe Fornale di Sopra",
+        "Campello Monti to the Colle dell’Usciolo",
+        "Campello Monti to the Lago del Capezzone"
+      ]
+    },
+    {
+      "id": "meteoalarm-italy:thunderstorm:valle-d-aosta",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Yellow Thunderstorm Warning",
+      "area": "Valle d'Aosta",
+      "title": "thunderstorm warning for Valle d'Aosta",
+      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-italy",
+      "sourceLabel": "MeteoAlarm Italy",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/ff8fee7b-0305-476d-baa9-5a345a1d3517",
+      "identifier": "2.49.0.0.380.3.IT.261116113433.098",
+      "effectiveAt": "2026-11-17T00:00:00+00:00",
+      "expiresAt": "2026-11-17T19:59:00+00:00",
+      "firstPublishedAt": "2026-11-16T11:20:03.785Z",
+      "lastSeenAt": "2026-11-16T11:20:03.785Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "aosta-ru-courtaud",
+        "aosta-champoluc-cascata-mascognaz",
+        "aosta-periasc-antagnod",
+        "aosta-sentiero-della-regina",
+        "aosta-strada-lombarda",
+        "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande"
+      ],
+      "trailNames": [
+        "Rû Courtaud",
+        "Champoluc – Mascognaz waterfall",
+        "Périasc – Antagnod",
+        "Sentiero della Regina",
+        "Strada Lombarda",
+        "Alpenzù Piccolo and Alpenzù Grande"
+      ]
     }
   ]
 }
