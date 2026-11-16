@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-16T05:17:46.485Z",
+  "generatedAt": "2026-11-16T08:34:57.225Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-15T15:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-16T05:17:46.485Z",
+      "lastSeenAt": "2026-11-16T08:34:57.225Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -68,7 +68,7 @@
       "effectiveAt": "2026-11-15T15:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-16T05:17:46.485Z",
+      "lastSeenAt": "2026-11-16T08:34:57.225Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -105,7 +105,7 @@
       "effectiveAt": "2026-11-16T23:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T05:17:46.485Z",
+      "lastSeenAt": "2026-11-16T08:34:57.225Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -200,7 +200,8 @@
         "Fornet waterfall loop from Le Fornet",
         "Val Pelouse crest path and Perrière refuge",
         "Saint-Pierre-d’Entremont to Corbel loop"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-france:rain-flood:haute-savoie",
@@ -217,7 +218,7 @@
       "effectiveAt": "2026-11-16T23:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T05:17:46.485Z",
+      "lastSeenAt": "2026-11-16T08:34:57.225Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -250,7 +251,8 @@
         "Balade du Plateau d'Assy au Lac Vert",
         "Ombres sur l'Alpage",
         "Sentier pédestre des Graniteurs"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-france:rain-flood:is-re",
@@ -267,7 +269,7 @@
       "effectiveAt": "2026-11-16T23:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T05:17:46.485Z",
+      "lastSeenAt": "2026-11-16T08:34:57.225Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -286,7 +288,8 @@
         "Couzon loop from Saint-Pierre-de-Chartreuse",
         "Molière plateau loop above Autrans",
         "Fort du Murier loop above Gières"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-france:rain-flood:savoie",
@@ -303,7 +306,7 @@
       "effectiveAt": "2026-11-16T23:00:00+00:00",
       "expiresAt": "2026-11-17T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-16T05:17:46.485Z",
+      "lastSeenAt": "2026-11-16T08:34:57.225Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -398,7 +401,8 @@
         "Fornet waterfall loop from Le Fornet",
         "Val Pelouse crest path and Perrière refuge",
         "Saint-Pierre-d’Entremont to Corbel loop"
-      ]
+      ],
+      "sourceStatus": "available"
     }
   ]
 }
