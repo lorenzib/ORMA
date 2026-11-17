@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-17T17:15:29.951Z",
+  "generatedAt": "2026-11-17T20:16:28.351Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-16T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-17T17:15:29.951Z",
+      "lastSeenAt": "2026-11-17T20:16:28.351Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -68,7 +68,7 @@
       "effectiveAt": "2026-11-16T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-17T17:15:29.951Z",
+      "lastSeenAt": "2026-11-17T20:16:28.351Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -105,7 +105,7 @@
       "effectiveAt": "2026-11-16T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-17T17:15:29.951Z",
+      "lastSeenAt": "2026-11-17T20:16:28.351Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -218,7 +218,7 @@
       "effectiveAt": "2026-11-17T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-17T17:15:29.951Z",
-      "lastSeenAt": "2026-11-17T17:15:29.951Z",
+      "lastSeenAt": "2026-11-17T20:16:28.351Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -237,7 +237,8 @@
         "Couzon loop from Saint-Pierre-de-Chartreuse",
         "Molière plateau loop above Autrans",
         "Fort du Murier loop above Gières"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-france:rain-flood:haute-savoie",
@@ -254,7 +255,7 @@
       "effectiveAt": "2026-11-17T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-17T17:15:29.951Z",
+      "lastSeenAt": "2026-11-17T20:16:28.351Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -305,7 +306,7 @@
       "effectiveAt": "2026-11-17T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-17T17:15:29.951Z",
+      "lastSeenAt": "2026-11-17T20:16:28.351Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -342,7 +343,7 @@
       "effectiveAt": "2026-11-17T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-17T17:15:29.951Z",
+      "lastSeenAt": "2026-11-17T20:16:28.351Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -455,7 +456,7 @@
       "effectiveAt": "2026-11-17T09:00:00+00:00",
       "expiresAt": "2026-11-18T00:59:00+00:00",
       "firstPublishedAt": "2026-11-17T11:14:27.427Z",
-      "lastSeenAt": "2026-11-17T17:15:29.951Z",
+      "lastSeenAt": "2026-11-17T20:16:28.351Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
