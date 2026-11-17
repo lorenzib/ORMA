@@ -69504,32 +69504,6 @@
         "start": "Start at the waymark-1 signpost below the Rafeil hill in Gufidaun, a few minutes up the steps from the fire station and the bus stop.",
         "sequence": "Follow waymark 1 (“Rafeil-Rundweg”) up two short flights of steps, then the lanes of the upper village on path 1A. Take the Putzen track past the Trattermandl fountain and the Ansitz Koburg, then the path on round the wooded Rafeil hill, past the picnic area, back to the start.",
         "switches": "Waymark 1 up the steps; path 1A on the village lanes; the Putzen track past the Trattermandl fountain; waymark 1 on the path round the hill back to the start.",
-        "steps": [
-          {
-            "text": "The waymark-1 signpost below the Rafeil hill",
-            "from": [
-              0
-            ]
-          },
-          {
-            "text": "Up the steps, then the village lanes on path 1A",
-            "from": [
-              0
-            ]
-          },
-          {
-            "text": "The Putzen track past the Trattermandl fountain and the Ansitz Koburg",
-            "from": [
-              0
-            ]
-          },
-          {
-            "text": "Waymark 1 round the wooded hill, past the picnic area, back to the start",
-            "from": [
-              0
-            ]
-          }
-        ],
         "sources": [
           {
             "label": "Rafeil-Rundweg, waymark 1 (province trail register)",
