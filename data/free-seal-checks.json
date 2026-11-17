@@ -1,6 +1,6 @@
 {
   "contractVersion": "free-seal-checks-v1",
-  "generatedAt": "2026-11-09T04:32:49.936Z",
+  "generatedAt": "2026-11-16T04:39:33.525Z",
   "note": "Free measurements behind the ORMA Verified seal: municipalities on the line (OpenStreetMap admin level 8), Natura 2000 sites it touches (EEA), its length against the recorded official distance, and where its photograph was taken. Written by npm run backoffice:free-checks; nothing here is a verification.",
   "trails": {
     "alpe-siusi": {
@@ -31,6 +31,557 @@
       "photo": {
         "status": "host-not-supported",
         "from": null
+      }
+    },
+    "altabadia-da-furnacia-a-la-crusc": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Badia - Abtei",
+            "names": {
+              "it": "Badia",
+              "de": "Abtei"
+            },
+            "osmArea": 3600047255
+          },
+          {
+            "name": "La Val - Wengen - La Valle",
+            "names": {
+              "it": "La Valle",
+              "de": "Wengen"
+            },
+            "osmArea": 3600047289
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3110048",
+            "name": "Prati Armentara"
+          },
+          {
+            "code": "IT3110049",
+            "name": "Parco Naturale Fanes - Senes - Braies"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.2,
+        "officialKm": 4.2,
+        "deltaPercent": -0.1,
+        "source": {
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-furnacia-a-la-crusc",
+          "authority": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+          "quote": "Percorso 4,2 km · Durata 1:30 h · Salita 324 m · Discesa 2 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "altabadia-da-la-val-ai-prati-di-rit": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "La Val - Wengen - La Valle",
+            "names": {
+              "it": "La Valle",
+              "de": "Wengen"
+            },
+            "osmArea": 3600047289
+          }
+        ],
+        "samples": 16,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 14,
+        "officialKm": 14.1,
+        "deltaPercent": -0.7,
+        "source": {
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-la-val-ai-prati-di-rit",
+          "authority": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+          "quote": "Percorso 14,1 km · Durata 4:45 h · Salita 728 m · Discesa 728 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.6515,
+          "lng": 11.942962
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 30,
+        "onTheWalk": true
+      }
+    },
+    "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Badia - Abtei",
+            "names": {
+              "it": "Badia",
+              "de": "Abtei"
+            },
+            "osmArea": 3600047255
+          },
+          {
+            "name": "La Val - Wengen - La Valle",
+            "names": {
+              "it": "La Valle",
+              "de": "Wengen"
+            },
+            "osmArea": 3600047289
+          }
+        ],
+        "samples": 16,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 13.5,
+        "officialKm": 13.5,
+        "deltaPercent": 0,
+        "source": {
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa",
+          "authority": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+          "quote": "Percorso 13,5 km · Durata 3:50 h · Salita 407 m · Discesa 407 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.646847,
+          "lng": 11.894669
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 5,
+        "onTheWalk": true
+      }
+    },
+    "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Badia - Abtei",
+            "names": {
+              "it": "Badia",
+              "de": "Abtei"
+            },
+            "osmArea": 3600047255
+          },
+          {
+            "name": "Corvara in Badia - Corvara",
+            "names": {
+              "it": "Corvara in Badia",
+              "de": "Corvara"
+            },
+            "osmArea": 3600047252
+          },
+          {
+            "name": "Livinallongo del Col di Lana",
+            "names": {
+              "it": "Livinallongo del Col di Lana"
+            },
+            "osmArea": 3600047224
+          }
+        ],
+        "samples": 10,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 8.71,
+        "officialKm": 8.7,
+        "deltaPercent": 0.1,
+        "source": {
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/da-san-cassiano-al-pralongia-fino-a-corvara",
+          "authority": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+          "quote": "Percorso 8,7 km · Durata 2:40 h · Salita 128 m · Discesa 581 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.548321,
+          "lng": 11.917568
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 10,
+        "onTheWalk": true
+      }
+    },
+    "altabadia-escursione-corvara-colfosco": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Corvara in Badia - Corvara",
+            "names": {
+              "it": "Corvara in Badia",
+              "de": "Corvara"
+            },
+            "osmArea": 3600047252
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.8,
+        "officialKm": 4.8,
+        "deltaPercent": 0,
+        "source": {
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-colfosco",
+          "authority": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+          "quote": "Percorso 4,8 km · Durata 1:20 h · Salita 128 m · Discesa 132 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.548295,
+          "lng": 11.869231
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 2,
+        "onTheWalk": true
+      }
+    },
+    "altabadia-escursione-corvara-la-villa": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Badia - Abtei",
+            "names": {
+              "it": "Badia",
+              "de": "Abtei"
+            },
+            "osmArea": 3600047255
+          },
+          {
+            "name": "Corvara in Badia - Corvara",
+            "names": {
+              "it": "Corvara in Badia",
+              "de": "Corvara"
+            },
+            "osmArea": 3600047252
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 5.03,
+        "officialKm": 5.1,
+        "deltaPercent": -1.3,
+        "source": {
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-corvara-la-villa",
+          "authority": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+          "quote": "Percorso 5,1 km · Durata 1:15 h · Salita 21 m · Discesa 132 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "lookup-failed",
+        "error": "No mirror named a municipality: Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed; Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed"
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.57,
+        "officialKm": 7.5,
+        "deltaPercent": 0.9,
+        "source": {
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/escursione-da-la-villa-al-lago-lech-da-sompunt",
+          "authority": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+          "quote": "Percorso 7,5 km · Durata 2:30 h · Salita 172 m · Discesa 174 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.610026,
+          "lng": 11.893797
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 12,
+        "onTheWalk": true
+      }
+    },
+    "altabadia-passeggiata-borest-cascate-del-pisciadu": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Corvara in Badia - Corvara",
+            "names": {
+              "it": "Corvara in Badia",
+              "de": "Corvara"
+            },
+            "osmArea": 3600047252
+          }
+        ],
+        "samples": 5,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 3.71,
+        "officialKm": 3.7,
+        "deltaPercent": 0.2,
+        "source": {
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/passeggiata-borest-cascate-del-pisciadu",
+          "authority": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+          "quote": "Percorso 3,7 km · Durata 1:10 h · Salita 204 m · Discesa 16 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.549219,
+          "lng": 11.85292
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 11,
+        "onTheWalk": true
+      }
+    },
+    "altabadia-sentiero-degli-artisti-tru-di-artisc": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Badia - Abtei",
+            "names": {
+              "it": "Badia",
+              "de": "Abtei"
+            },
+            "osmArea": 3600047255
+          }
+        ],
+        "samples": 8,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 5.11,
+        "officialKm": 5.2,
+        "deltaPercent": -1.8,
+        "source": {
+          "url": "https://www.altabadia.org/it/tour/oadetail/oa/sentiero-degli-artisti-tru-di-artisc",
+          "authority": "Società Cooperativa Turistica Alta Badia (altabadia.org, Outdooractive)",
+          "quote": "Percorso 5,2 km · Durata 1:40 h · Salita 245 m · Discesa 46 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.575766,
+          "lng": 11.924371
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 40,
+        "onTheWalk": true
       }
     },
     "cadini": {
@@ -78,6 +629,764 @@
       "line": {
         "status": "no-published-distance",
         "lineKm": 1.66
+      },
+      "photo": {
+        "status": "no-location",
+        "from": "wikimedia-commons"
+      }
+    },
+    "cembra-castello-segonzano": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "lookup-failed",
+        "error": "No mirror named a municipality: Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed; Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed"
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 5.85,
+        "officialKm": 6.1,
+        "deltaPercent": -4.1,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/il-castello-di-segonzano-e-il-canyon-del-pr-_9748",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 6,1 km Durata 3 h 30 min Salita 190 m Discesa 186 m"
+        }
+      },
+      "photo": {
+        "status": "no-location",
+        "from": "wikimedia-commons"
+      }
+    },
+    "cembra-dos-paion": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Giovo",
+            "osmArea": 3600046939
+          }
+        ],
+        "samples": 8,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 5.9,
+        "officialKm": 6,
+        "deltaPercent": -1.6,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/passeggiata-al-belvedere-del-dos-paion-sul-monte-corona_9837",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 6,0 km Durata 2 h 02 min Salita 308 m Discesa 308 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.176605,
+          "lng": 11.157117
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 49,
+        "onTheWalk": true
+      }
+    },
+    "cembra-erbe-della-salute": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Altavalle",
+            "osmArea": 3600047012
+          }
+        ],
+        "samples": 5,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 2.02,
+        "officialKm": 2.1,
+        "deltaPercent": -3.6,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/le-erbe-della-salute_63414",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 2,1 km Durata 1 h 00 min Salita 100 m Discesa 100 m"
+        }
+      },
+      "photo": {
+        "status": "no-location",
+        "from": "wikimedia-commons"
+      }
+    },
+    "cembra-giro-masi-grumes": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Altavalle",
+            "osmArea": 3600047012
+          }
+        ],
+        "samples": 9,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 6.84,
+        "officialKm": 6.8,
+        "deltaPercent": 0.7,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/il-giro-dei-masi-di-grumes_9684",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 6,8 km Durata 2 h 30 min Salita 250 m Discesa 250 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "cembra-giro-monte-corona": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "lookup-failed",
+        "error": "No mirror named a municipality: Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed; Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed"
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.07,
+        "officialKm": 7.2,
+        "deltaPercent": -1.8,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/giro-panoramico-sul-monte-corona_39031",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 7,2 km Durata 2 h 40 min Salita 390 m Discesa 390 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.176201,
+          "lng": 11.157621
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 90,
+        "onTheWalk": true
+      }
+    },
+    "cembra-lago-lases-buse-giaz": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "lookup-failed",
+        "error": "No mirror named a municipality: Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed; Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed"
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3120049",
+            "name": "Lona - Lases"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.85,
+        "officialKm": 4.9,
+        "deltaPercent": -1.1,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/il-lago-di-lases-e-le-buse-del-giaz_9812",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 4,9 km Durata 2 h 00 min Salita 150 m Discesa 150 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.141337,
+          "lng": 11.218758
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 1,
+        "onTheWalk": true
+      }
+    },
+    "cembra-lago-santo": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Cembra Lisignago",
+            "osmArea": 3600046947
+          }
+        ],
+        "samples": 4,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 1.06,
+        "officialKm": 1.1,
+        "deltaPercent": -3.9,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/il-lago-santo_63413",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 1,1 km Durata 20 min Salita 10 m Discesa 10 m"
+        }
+      },
+      "photo": {
+        "status": "no-location",
+        "from": "wikimedia-commons"
+      }
+    },
+    "cembra-monte-pat-malga-vernera": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Sover",
+            "osmArea": 3600047013
+          }
+        ],
+        "samples": 5,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 2.08,
+        "officialKm": 2.3,
+        "deltaPercent": -9.6,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/dalla-baita-monte-pat-a-malga-vernera_9739",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 2,3 km Durata 1 h 00 min Salita 183 m Discesa 183 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.217044444,
+          "lng": 11.351963889
+        },
+        "from": "panoramax",
+        "metresFromLine": 4,
+        "onTheWalk": true
+      }
+    },
+    "cembra-paese-beghei": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Segonzano",
+            "osmArea": 3600046973
+          }
+        ],
+        "samples": 6,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 3.97,
+        "officialKm": 4,
+        "deltaPercent": -0.8,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/il-paese-dei-beghei-_9886",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 4,0 km Durata 2 h 00 min Salita 200 m Discesa 200 m"
+        }
+      },
+      "photo": {
+        "status": "no-location",
+        "from": "wikimedia-commons"
+      }
+    },
+    "cembra-pascoli-malga-vernera": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Sover",
+            "osmArea": 3600047013
+          }
+        ],
+        "samples": 6,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 3.64,
+        "officialKm": 3.6,
+        "deltaPercent": 1,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/sui-pascoli-di-malga-vernera_63417",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 3,6 km Durata 1 h 10 min Salita 185 m Discesa 185 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.216708333,
+          "lng": 11.352775
+        },
+        "from": "panoramax",
+        "metresFromLine": 2,
+        "onTheWalk": true
+      }
+    },
+    "cembra-pietra-del-futuro": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Lona-Lases",
+            "names": {
+              "de": "Lohne-Lazes"
+            },
+            "osmArea": 3600046922
+          }
+        ],
+        "samples": 5,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3120049",
+            "name": "Lona - Lases"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 2.62,
+        "officialKm": 2.7,
+        "deltaPercent": -2.9,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/la-pietra-del-futuro-percorso-con-audioguida-dei-ragazzi-della-scuola-elementare-di-lona-lases_35376",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 2,7 km Durata 50 min Salita 61 m Discesa 63 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.142244,
+          "lng": 11.22056
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 4,
+        "onTheWalk": true
+      }
+    },
+    "cembra-piz-de-le-agole": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Cembra Lisignago",
+            "osmArea": 3600046947
+          }
+        ],
+        "samples": 13,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 10.06,
+        "officialKm": 10.2,
+        "deltaPercent": -1.3,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/il-piz-de-le-agole-balcone-sulla-valle_9623",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 10,2 km Durata 3 h 30 min Salita 600 m Discesa 600 m"
+        }
+      },
+      "photo": {
+        "status": "no-location",
+        "from": "wikimedia-commons"
+      }
+    },
+    "cembra-rifugio-potzmauer": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Altavalle",
+            "osmArea": 3600047012
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.65,
+        "officialKm": 4.8,
+        "deltaPercent": -3.1,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/al-rifugio-potzmauer_9863",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 4,8 km Durata 1 h 30 min Salita 300 m Discesa 300 m"
+        }
+      },
+      "photo": {
+        "status": "no-location",
+        "from": "wikimedia-commons"
+      }
+    },
+    "cembra-san-leonardo-lisignago": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Cembra Lisignago",
+            "osmArea": 3600046947
+          },
+          {
+            "name": "Giovo",
+            "osmArea": 3600046939
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.4,
+        "officialKm": 4.4,
+        "deltaPercent": -0.1,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/san-leonardo-e-le-campagne-di-lisignago_9746",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 4,4 km Durata 2 h 00 min Salita 280 m Discesa 280 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.15694,
+          "lng": 11.184632
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 7,
+        "onTheWalk": true
+      }
+    },
+    "cembra-vecchi-mestieri-grumes": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Altavalle",
+            "osmArea": 3600047012
+          }
+        ],
+        "samples": 8,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 5.07,
+        "officialKm": 5.3,
+        "deltaPercent": -4.4,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/il-sentiero-dei-vecchi-mestieri-da-grumes_9859",
+          "authority": "APT Fiemme Cembra (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 5,3 km Durata 3 h 00 min Salita 400 m Discesa 400 m"
+        }
       },
       "photo": {
         "status": "no-location",
@@ -531,6 +1840,170 @@
         "onTheWalk": true
       }
     },
+    "fassa-borgo-di-tamion": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "San Giovanni di Fassa - Sèn Jan",
+            "names": {
+              "it": "San Giovanni di Fassa"
+            },
+            "osmArea": 3600047181
+          },
+          {
+            "name": "Soraga di Fassa",
+            "osmArea": 3600047178
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.69,
+        "officialKm": 4.7,
+        "deltaPercent": -0.3,
+        "source": {
+          "url": "https://www.fassa.com/it/itinerari/alla-scoperta-del-borgo-ladino-di-tamion",
+          "authority": "APT Val di Fassa (fassa.com, Outdooractive)",
+          "quote": "Distanza 4,7 km Durata 2:03 h Salita 339 m Discesa 339 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.393951,
+          "lng": 11.665918
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 27,
+        "onTheWalk": true
+      }
+    },
+    "fassa-ciajeole-malga-roncac": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Moena",
+            "names": {
+              "it": "Moena",
+              "de": "Moyen"
+            },
+            "osmArea": 3600047136
+          }
+        ],
+        "samples": 5,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 2.95,
+        "officialKm": 3,
+        "deltaPercent": -1.6,
+        "source": {
+          "url": "https://www.fassa.com/it/itinerari/passi-nella-storia-dall-antico-rione-di-ciajeole-a-malga-roncac",
+          "authority": "APT Val di Fassa (fassa.com, Outdooractive)",
+          "quote": "Distanza 3 km Durata 1:00 h Salita 137 m Discesa 137 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "fassa-da-alba-a-penia": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Canazei",
+            "osmArea": 3600047202
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.5,
+        "officialKm": 4.5,
+        "deltaPercent": 0,
+        "source": {
+          "url": "https://www.fassa.com/it/itinerari/da-alba-a-penia-l-ultimo-borgo-prima-della-marmolada",
+          "authority": "APT Val di Fassa (fassa.com, Outdooractive)",
+          "quote": "Distanza 4,5 km Durata 1:10 h Salita 97 m Discesa 97 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
     "fassa-da-canazei-a-penia": {
       "checkedAt": "2026-11-09T04:32:49.936Z",
       "communes": {
@@ -580,6 +2053,65 @@
         "from": "wikimedia-commons"
       }
     },
+    "fassa-dipinti-del-giotto": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Mazzin",
+            "names": {
+              "it": "Mazzin"
+            },
+            "osmArea": 3600047217
+          },
+          {
+            "name": "San Giovanni di Fassa - Sèn Jan",
+            "names": {
+              "it": "San Giovanni di Fassa"
+            },
+            "osmArea": 3600047181
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.67,
+        "officialKm": 4.7,
+        "deltaPercent": -0.6,
+        "source": {
+          "url": "https://www.fassa.com/it/itinerari/sulle-tracce-dei-dipinti-del-giotto-della-val-di-fassa",
+          "authority": "APT Val di Fassa (fassa.com, Outdooractive)",
+          "quote": "Distanza 4,7 km Durata 1:25 h Salita 152 m Discesa 153 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
     "fassa-malga-aloch": {
       "checkedAt": "2026-11-09T04:32:49.936Z",
       "communes": {
@@ -625,6 +2157,106 @@
           "url": "https://www.fassa.com/it/itinerari/storie-di-vita-contadina-a-malga-aloch-e-masc-aloch",
           "authority": "APT Val di Fassa (fassa.com, Outdooractive)",
           "quote": "Distanza 2 km Durata 0:35 h Salita 58 m Discesa 58 m"
+        }
+      },
+      "photo": {
+        "status": "no-location",
+        "from": "wikimedia-commons"
+      }
+    },
+    "fassa-moena-soraga-acqua": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "lookup-failed",
+        "error": "No mirror named a municipality: Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed; Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed"
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.67,
+        "officialKm": 4.8,
+        "deltaPercent": -2.8,
+        "source": {
+          "url": "https://www.fassa.com/it/itinerari/da-moena-a-soraga-dove-l-acqua-ha-segnato-la-storia",
+          "authority": "APT Val di Fassa (fassa.com, Outdooractive)",
+          "quote": "Distanza 4,8 km Durata 1:20 h Salita 139 m Discesa 139 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.392888,
+          "lng": 11.666663
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 65,
+        "onTheWalk": true
+      }
+    },
+    "fassa-moena-soraga-someda": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Moena",
+            "names": {
+              "it": "Moena",
+              "de": "Moyen"
+            },
+            "osmArea": 3600047136
+          },
+          {
+            "name": "Soraga di Fassa",
+            "osmArea": 3600047178
+          }
+        ],
+        "samples": 9,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 6.2,
+        "officialKm": 6.1,
+        "deltaPercent": 1.7,
+        "source": {
+          "url": "https://www.fassa.com/it/itinerari/da-moena-a-soraga-la-natura-a-due-passi-da-casa",
+          "authority": "APT Val di Fassa (fassa.com, Outdooractive)",
+          "quote": "Distanza 6,1 km Durata 1:50 h Salita 175 m Discesa 175 m"
         }
       },
       "photo": {
@@ -1034,6 +2666,104 @@
         "onTheWalk": true
       }
     },
+    "fassa-val-freida": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Soraga di Fassa",
+            "osmArea": 3600047178
+          }
+        ],
+        "samples": 5,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 2.74,
+        "officialKm": 2.8,
+        "deltaPercent": -2.1,
+        "source": {
+          "url": "https://www.fassa.com/it/itinerari/sulle-tracce-dei-pastori-all-imbocco-della-val-freida",
+          "authority": "APT Val di Fassa (fassa.com, Outdooractive)",
+          "quote": "Distanza 2,8 km Durata 0:50 h Salita 116 m Discesa 116 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "fiemme-cascatelle-di-ziano": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Ziano di Fiemme",
+            "osmArea": 3600047051
+          }
+        ],
+        "samples": 5,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 2.03,
+        "officialKm": 2.2,
+        "deltaPercent": -7.9,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/le-cascatelle-di-ziano-di-fiemme_9658",
+          "authority": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 2,2 km Durata 1 h 00 min Salita 100 m Discesa 100 m"
+        }
+      },
+      "photo": {
+        "status": "no-location",
+        "from": "wikimedia-commons"
+      }
+    },
     "fiemme-cavalese-passeggiata-panoramica": {
       "checkedAt": "2026-11-09T04:32:49.936Z",
       "communes": {
@@ -1086,6 +2816,529 @@
         },
         "from": "wikimedia-commons",
         "metresFromLine": 40,
+        "onTheWalk": true
+      }
+    },
+    "fiemme-giro-cavalese-castello": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Castello-Molina di Fiemme",
+            "osmArea": 3600046995
+          },
+          {
+            "name": "Cavalese",
+            "osmArea": 3600047014
+          },
+          {
+            "name": "Ville di Fiemme",
+            "osmArea": 3610521316
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.72,
+        "officialKm": 4.8,
+        "deltaPercent": -1.6,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/montagna-senza-limiti-giro-ad-anello-cavalese-castello-di-fiemme_36616",
+          "authority": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 4,8 km Durata 1 h 30 min Salita 65 m Discesa 65 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.288404,
+          "lng": 11.455157
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 58,
+        "onTheWalk": true
+      }
+    },
+    "fiemme-larici-verso-anterivo": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Anterivo - Altrei",
+            "names": {
+              "it": "Anterivo",
+              "de": "Altrei"
+            },
+            "osmArea": 3600047075
+          },
+          {
+            "name": "Capriana",
+            "osmArea": 3600047064
+          }
+        ],
+        "samples": 8,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3110036",
+            "name": "Parco Naturale Monte Corno"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 5.51,
+        "officialKm": 5.5,
+        "deltaPercent": 0.2,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/passeggiata-col-passeggino-tra-i-larici-verso-anterivo_9806",
+          "authority": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 5,5 km Durata 2 h 00 min Salita 60 m Discesa 60 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.277811,
+          "lng": 11.36591
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 5,
+        "onTheWalk": true
+      }
+    },
+    "fiemme-masi-comunicanti": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Capriana",
+            "osmArea": 3600047064
+          }
+        ],
+        "samples": 10,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.18,
+        "officialKm": 7.4,
+        "deltaPercent": -3,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/masi-comunicanti_9726",
+          "authority": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 7,4 km Durata 4 h 00 min Salita 400 m Discesa 400 m"
+        }
+      },
+      "photo": {
+        "status": "no-location",
+        "from": "wikimedia-commons"
+      }
+    },
+    "fiemme-passeggiata-insolita": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Cavalese",
+            "osmArea": 3600047014
+          }
+        ],
+        "samples": 5,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 2.94,
+        "officialKm": 3,
+        "deltaPercent": -1.9,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/montagna-senza-limiti-passeggiata-insolita-lungo-il-rio-gambis_38529",
+          "authority": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 3,0 km Durata 1 h 00 min Salita 42 m Discesa 42 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "fiemme-passo-oclini": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Aldein - Aldino",
+            "names": {
+              "it": "Aldino",
+              "de": "Aldein"
+            },
+            "osmArea": 3600047122
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.71,
+        "officialKm": 4.7,
+        "deltaPercent": 0.3,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/passo-oclini-tra-il-corno-nero-e-il-corno-bianco_10468",
+          "authority": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 4,7 km Durata 1 h 30 min Salita 160 m Discesa 160 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.347093,
+          "lng": 11.450799
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 30,
+        "onTheWalk": true
+      }
+    },
+    "fiemme-pradi-da-le-fior": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Valfloriana",
+            "osmArea": 3600046970
+          }
+        ],
+        "samples": 6,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 3.07,
+        "officialKm": 3.1,
+        "deltaPercent": -0.9,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/i-pradi-da-le-fior_63416",
+          "authority": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 3,1 km Durata 55 min Salita 103 m Discesa 103 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.201755,
+          "lng": 11.379519
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 19,
+        "onTheWalk": true
+      }
+    },
+    "fiemme-scalata-alle-malghette": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Anterivo - Altrei",
+            "names": {
+              "it": "Anterivo",
+              "de": "Altrei"
+            },
+            "osmArea": 3600047075
+          },
+          {
+            "name": "Ville di Fiemme",
+            "osmArea": 3610521316
+          }
+        ],
+        "samples": 6,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3110036",
+            "name": "Parco Naturale Monte Corno"
+          },
+          {
+            "code": "IT3120020",
+            "name": "Palu' Longa"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 3.88,
+        "officialKm": 3.9,
+        "deltaPercent": -0.4,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/montagna-senza-limiti-la-scalata-alle-malghette_46674",
+          "authority": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 3,9 km Durata 2 h 00 min Salita 163 m Discesa 163 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.292704,
+          "lng": 11.360679
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 9,
+        "onTheWalk": true
+      }
+    },
+    "fiemme-sentiero-botanico": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Altavalle",
+            "osmArea": 3600047012
+          },
+          {
+            "name": "Capriana",
+            "osmArea": 3600047064
+          }
+        ],
+        "samples": 14,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 11.85,
+        "officialKm": 11.8,
+        "deltaPercent": 0.5,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/sentiero-botanico-naturalistico_9640",
+          "authority": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 11,8 km Durata 4 h 30 min Salita 300 m Discesa 300 m"
+        }
+      },
+      "photo": {
+        "status": "no-location",
+        "from": "wikimedia-commons"
+      }
+    },
+    "fiemme-varena-spianez": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Ville di Fiemme",
+            "osmArea": 3610521316
+          }
+        ],
+        "samples": 11,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 8.55,
+        "officialKm": 8.6,
+        "deltaPercent": -0.6,
+        "source": {
+          "url": "https://www.visitfiemme.it/it/activity/col-passeggino-tra-varena-e-spianez_9861",
+          "authority": "APT Val di Fiemme (visitfiemme.it, Outdooractive)",
+          "quote": "Lunghezza 8,6 km Durata 2 h 00 min Salita 120 m Discesa 120 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.296774,
+          "lng": 11.472827
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 1,
         "onTheWalk": true
       }
     },
@@ -1261,6 +3514,167 @@
         "from": "wikimedia-commons",
         "metresFromLine": 4973,
         "onTheWalk": false
+      }
+    },
+    "giudicarie-san-martino-bosco-scolpito": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Pieve di Bono-Prezzo",
+            "osmArea": 3600046478
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.36,
+        "officialKm": 4.4,
+        "deltaPercent": -0.8,
+        "source": {
+          "url": "https://www.campigliodolomiti.it/it/itinerari/san-martino-e-il-sentiero-del-bosco-scolpito",
+          "authority": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+          "quote": "Distanza 4,4 km · Durata 1:45 h · Salita 250 m · Discesa 216 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "giudicarie-san-vigilio-senter-dei-cavai": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Tione di Trento",
+            "osmArea": 3600046601
+          },
+          {
+            "name": "Tre Ville",
+            "osmArea": 3600046784
+          }
+        ],
+        "samples": 10,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.54,
+        "officialKm": 7.2,
+        "deltaPercent": 4.8,
+        "source": {
+          "url": "https://www.campigliodolomiti.it/it/itinerari/chiesetta-di-san-vigilio-e-senter-dei-cavai",
+          "authority": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+          "quote": "Distanza 7,2 km · Durata 3:00 h · Salita 91 m · Discesa 91 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.04232,
+          "lng": 10.729203
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 44,
+        "onTheWalk": true
+      }
+    },
+    "giudicarie-tione-bolbeno-madonna-del-lares": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Borgo Lares",
+            "osmArea": 3600046687
+          },
+          {
+            "name": "Tione di Trento",
+            "osmArea": 3600046601
+          }
+        ],
+        "samples": 5,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 3.18,
+        "officialKm": 3.1,
+        "deltaPercent": 2.4,
+        "source": {
+          "url": "https://www.campigliodolomiti.it/it/itinerari/tione-di-trento-bolbeno-madonna-del-lares",
+          "authority": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+          "quote": "Distanza 3,1 km · Durata 1:15 h · Salita 238 m · Discesa 30 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
       }
     },
     "lago-braies": {
@@ -10857,6 +13271,215 @@
         "onTheWalk": true
       }
     },
+    "primiero-malga-ces": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Primiero San Martino di Castrozza",
+            "osmArea": 3605703955
+          }
+        ],
+        "samples": 10,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3120168",
+            "name": "Lagorai Orientale - Cima Bocche"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.74,
+        "officialKm": 7.8,
+        "deltaPercent": -0.8,
+        "source": {
+          "url": "https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-malga-ces",
+          "authority": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+          "quote": "Distanza 7,8 km Durata 2:10 h Salita 218 m Discesa 218 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "primiero-malga-crel": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Primiero San Martino di Castrozza",
+            "osmArea": 3605703955
+          }
+        ],
+        "samples": 11,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3120160",
+            "name": "Lagorai"
+          },
+          {
+            "code": "IT3120168",
+            "name": "Lagorai Orientale - Cima Bocche"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 8.96,
+        "officialKm": 9.2,
+        "deltaPercent": -2.6,
+        "source": {
+          "url": "https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-malga-crel",
+          "authority": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+          "quote": "Distanza 9,2 km Durata 2:30 h Salita 260 m Discesa 264 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "primiero-malga-valcigolera": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Primiero San Martino di Castrozza",
+            "osmArea": 3605703955
+          }
+        ],
+        "samples": 12,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3120168",
+            "name": "Lagorai Orientale - Cima Bocche"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 9.14,
+        "officialKm": 9.1,
+        "deltaPercent": 0.5,
+        "source": {
+          "url": "https://www.sanmartino.com/it/itinerari/san-martino-di-castrozza-malga-valcigolera",
+          "authority": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+          "quote": "Distanza 9,1 km Durata 3:00 h Salita 431 m Discesa 432 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "primiero-monte-vederna": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "lookup-failed",
+        "error": "No mirror named a municipality: Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed; Unable to look up municipalities: Overpass returned HTTP 502; overpass.kumi.systems returned no municipality; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed"
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 8.04,
+        "officialKm": 8.2,
+        "deltaPercent": -2,
+        "source": {
+          "url": "https://www.sanmartino.com/it/itinerari/passeggiata-a-monte-vederna-croce-degli-alpini",
+          "authority": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+          "quote": "Distanza 8,2 km Durata 2:00 h Salita 300 m Discesa 300 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.12137778,
+          "lng": 11.79423611
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 61,
+        "onTheWalk": true
+      }
+    },
     "primiero-percorso-verde": {
       "checkedAt": "2026-11-09T04:32:49.936Z",
       "communes": {
@@ -10904,6 +13527,65 @@
       "photo": {
         "status": "host-not-supported",
         "from": "www.mapillary.com"
+      }
+    },
+    "primiero-ponte-su-funi": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Imer",
+            "osmArea": 3600046876
+          },
+          {
+            "name": "Mezzano",
+            "osmArea": 3600046881
+          }
+        ],
+        "samples": 9,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 6.15,
+        "officialKm": 6.2,
+        "deltaPercent": -0.8,
+        "source": {
+          "url": "https://www.sanmartino.com/it/itinerari/ponte-su-funi-rio-san-piero-da-mezzano",
+          "authority": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+          "quote": "Distanza 6,2 km Durata 2:05 h Salita 240 m Discesa 243 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.15408,
+          "lng": 11.80768
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 91,
+        "onTheWalk": true
       }
     },
     "primiero-san-martino-di-castrozza-val-di-roda-prati-col": {
@@ -11109,6 +13791,126 @@
       "photo": {
         "status": "host-not-supported",
         "from": "www.mapillary.com"
+      }
+    },
+    "primiero-via-della-frutta-antica": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Canal San Bovo",
+            "osmArea": 3600046871
+          },
+          {
+            "name": "Imer",
+            "osmArea": 3600046876
+          },
+          {
+            "name": "Mezzano",
+            "osmArea": 3600046881
+          },
+          {
+            "name": "Primiero San Martino di Castrozza",
+            "osmArea": 3605703955
+          }
+        ],
+        "samples": 9,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.88,
+        "officialKm": 8,
+        "deltaPercent": -1.5,
+        "source": {
+          "url": "https://www.sanmartino.com/it/itinerari/la-via-della-frutta-antica",
+          "authority": "APT San Martino di Castrozza (sanmartino.com, Outdooractive)",
+          "quote": "Distanza 8 km Durata 3:00 h Salita 321 m Discesa 52 m"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "rendena-ciclabile-javre-dare-vigo-pelugo": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Pelugo",
+            "osmArea": 3600046837
+          },
+          {
+            "name": "Porte di Rendena",
+            "osmArea": 3600046781
+          }
+        ],
+        "samples": 10,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.19,
+        "officialKm": 7.2,
+        "deltaPercent": -0.2,
+        "source": {
+          "url": "https://www.campigliodolomiti.it/it/itinerari/giro-della-ciclabile-javre-dare-vigo-pelugo",
+          "authority": "Madonna di Campiglio Azienda per il Turismo (campigliodolomiti.it, Outdooractive)",
+          "quote": "Distanza 7,2 km · Durata 2:30 h · Salita 79 m · Discesa 56 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.07064722,
+          "lng": 10.71504444
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 5,
+        "onTheWalk": true
       }
     },
     "santa-maddalena": {
@@ -11495,6 +14297,1043 @@
       "photo": {
         "status": "host-not-supported",
         "from": null
+      }
+    },
+    "trecime-bagni-di-san-candido": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Innichen - San Candido",
+            "names": {
+              "it": "San Candido",
+              "de": "Innichen"
+            },
+            "osmArea": 3600047309
+          }
+        ],
+        "samples": 6,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3110050",
+            "name": "Parco Naturale Tre Cime"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 3.31,
+        "officialKm": 3.3,
+        "deltaPercent": 0.3,
+        "source": {
+          "url": "https://www.dreizinnen.com/it/activity/escursione-a-tema-bagni-di-san-candido_630",
+          "authority": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+          "quote": "Lunghezza 3,3 km · Durata 1:00 · Salita 145 m · Discesa 57 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.7176,
+          "lng": 12.294528
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 41,
+        "onTheWalk": true
+      }
+    },
+    "trecime-circolare-maistatt": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Niederdorf - Villabassa",
+            "names": {
+              "it": "Villabassa",
+              "de": "Niederdorf"
+            },
+            "osmArea": 3600047313
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.83,
+        "officialKm": 4.8,
+        "deltaPercent": 0.6,
+        "source": {
+          "url": "https://www.dreizinnen.com/it/activity/escursione-circolare-maistatt-_50004",
+          "authority": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+          "quote": "Lunghezza 4,8 km · Durata 1:21 · Salita 133 m · Discesa 133 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.738587,
+          "lng": 12.169246
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 0,
+        "onTheWalk": true
+      }
+    },
+    "trecime-dobbiaco-lago-di-dobbiaco": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Toblach - Dobbiaco",
+            "names": {
+              "it": "Dobbiaco",
+              "de": "Toblach"
+            },
+            "osmArea": 3600047285
+          }
+        ],
+        "samples": 10,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3110049",
+            "name": "Parco Naturale Fanes - Senes - Braies"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.86,
+        "officialKm": 7.9,
+        "deltaPercent": -0.6,
+        "source": {
+          "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-dobbiaco-lago-di-dobbiaco-percorso-naturalistico-attorno-al-lago-dobbiaco_553",
+          "authority": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+          "quote": "Lunghezza 7,9 km · Durata 2:30 · Salita 61 m · Discesa 61 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.660983,
+          "lng": 12.054405
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 13012,
+        "onTheWalk": false
+      }
+    },
+    "trecime-lago-di-braies-malga-foresta": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "lookup-failed",
+        "error": "No mirror named a municipality: Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed; Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed"
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3110049",
+            "name": "Parco Naturale Fanes - Senes - Braies"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 2.16,
+        "officialKm": 2.1,
+        "deltaPercent": 2.9,
+        "source": {
+          "url": "https://www.dreizinnen.com/it/activity/escursione-estiva-lago-di-braies-malga-foresta-_651",
+          "authority": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+          "quote": "Lunghezza 2,1 km · Durata 1:00 · Salita 118 m · Discesa 18 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.692116,
+          "lng": 12.066089
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 14,
+        "onTheWalk": true
+      }
+    },
+    "trecime-san-candido-costa-dei-nosellari-dobbiaco": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Innichen - San Candido",
+            "names": {
+              "it": "San Candido",
+              "de": "Innichen"
+            },
+            "osmArea": 3600047309
+          },
+          {
+            "name": "Toblach - Dobbiaco",
+            "names": {
+              "it": "Dobbiaco",
+              "de": "Toblach"
+            },
+            "osmArea": 3600047285
+          }
+        ],
+        "samples": 6,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.88,
+        "officialKm": 4.8,
+        "deltaPercent": 1.8,
+        "source": {
+          "url": "https://www.dreizinnen.com/it/activity/escursione-san-candido-costa-dei-nosellari-dobbiaco_628",
+          "authority": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+          "quote": "Lunghezza 4,8 km · Durata 1:50 · Salita 161 m · Discesa 109 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.735475,
+          "lng": 12.224005
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 17,
+        "onTheWalk": true
+      }
+    },
+    "trecime-sentiero-gustav-mahler": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Toblach - Dobbiaco",
+            "names": {
+              "it": "Dobbiaco",
+              "de": "Toblach"
+            },
+            "osmArea": 3600047285
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.74,
+        "officialKm": 4.7,
+        "deltaPercent": 0.9,
+        "source": {
+          "url": "https://www.dreizinnen.com/it/activity/sentiero-tematico-sentiero-gustav-mahler_50104",
+          "authority": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+          "quote": "Lunghezza 4,7 km · Durata 2:00 · Salita 72 m · Discesa 72 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.72335278,
+          "lng": 12.22500556
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 24,
+        "onTheWalk": true
+      }
+    },
+    "trecime-villabassa-mooskirche": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Niederdorf - Villabassa",
+            "names": {
+              "it": "Villabassa",
+              "de": "Niederdorf"
+            },
+            "osmArea": 3600047313
+          }
+        ],
+        "samples": 5,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 2.48,
+        "officialKm": 2.5,
+        "deltaPercent": -0.9,
+        "source": {
+          "url": "https://www.dreizinnen.com/it/activity/passeggiata-per-famiglie-villabassa-giro-del-bosco-mooskirche-villabassa_606",
+          "authority": "Tre Cime Dolomites tourist board (Drei Zinnen Dolomites, dreizinnen.com)",
+          "quote": "Lunghezza 2,5 km · Durata 0:38 · Salita 21 m · Discesa 21 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.74277,
+          "lng": 12.155434
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 53,
+        "onTheWalk": true
+      }
+    },
+    "valdisole-bivacco-malga-baselga": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Pellizzano",
+            "osmArea": 3600047076
+          }
+        ],
+        "samples": 10,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3120165",
+            "name": "Vermiglio - Folgarida"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.33,
+        "officialKm": 6.9,
+        "deltaPercent": 6.3,
+        "source": {
+          "url": "https://www.visitvaldisole.it/it/activity/bivaccomalgabaselga-37723",
+          "authority": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+          "quote": "Lunghezza 6.9 km · Durata 4:30 h · Salita 740 m · Discesa 740 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.290391,
+          "lng": 10.766666
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 86,
+        "onTheWalk": true
+      }
+    },
+    "valdisole-fazzon-lago-dei-caprioli": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Pellizzano",
+            "osmArea": 3600047076
+          }
+        ],
+        "samples": 4,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 1.55,
+        "officialKm": 1.5,
+        "deltaPercent": 3.3,
+        "source": {
+          "url": "https://www.visitvaldisole.it/it/activity/passeggiatadalrifugiofazzonallagodeicaprioli-10077",
+          "authority": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+          "quote": "Lunghezza 1.5 km · Durata 0:45 h · Salita 62 m · Discesa 62 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.291962,
+          "lng": 10.76731
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 12,
+        "onTheWalk": true
+      }
+    },
+    "valdisole-lago-dei-caprioli-malga-alta-di-fazzon": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Pellizzano",
+            "osmArea": 3600047076
+          }
+        ],
+        "samples": 5,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 2.83,
+        "officialKm": 3.1,
+        "deltaPercent": -8.6,
+        "source": {
+          "url": "https://www.visitvaldisole.it/it/activity/lagodeicaprioli_malgaaltadifazzon-14247",
+          "authority": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+          "quote": "Lunghezza 3.1 km · Durata 1:15 h · Salita 237 m · Discesa 237 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.291255,
+          "lng": 10.767094
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 101,
+        "onTheWalk": true
+      }
+    },
+    "valdisole-marilleva-1400-malga-alta-di-fazzon": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Mezzana",
+            "osmArea": 3600047086
+          },
+          {
+            "name": "Pellizzano",
+            "osmArea": 3600047076
+          }
+        ],
+        "samples": 6,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.31,
+        "officialKm": 4.4,
+        "deltaPercent": -2.1,
+        "source": {
+          "url": "https://www.visitvaldisole.it/it/activity/marilleva1400_malgaaltadifazzon-37485",
+          "authority": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+          "quote": "Lunghezza 4.4 km · Durata 2:00 h · Salita 211 m · Discesa 352 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.29168,
+          "lng": 10.766773
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 50,
+        "onTheWalk": true
+      }
+    },
+    "valdisole-rifugio-stavel-denza": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Vermiglio",
+            "osmArea": 3600047048
+          }
+        ],
+        "samples": 10,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3120165",
+            "name": "Vermiglio - Folgarida"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.38,
+        "officialKm": 7.3,
+        "deltaPercent": 1.1,
+        "source": {
+          "url": "https://www.visitvaldisole.it/it/activity/rifugiostavel__francescodenza__-10471",
+          "authority": "Azienda per il Turismo Val di Sole (visitvaldisole.it, Outdooractive)",
+          "quote": "Lunghezza 7.3 km · Durata 4:00 h · Salita 594 m · Discesa 594 m"
+        }
+      },
+      "photo": {
+        "status": "located",
+        "geotag": {
+          "lat": 46.243843,
+          "lng": 10.655215
+        },
+        "from": "wikimedia-commons",
+        "metresFromLine": 10,
+        "onTheWalk": true
+      }
+    },
+    "valgardena-escursione-al-resciesa": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Urtijëi - St. Ulrich in Gröden - Ortisei",
+            "names": {
+              "it": "Ortisei",
+              "de": "St. Ulrich in Gröden"
+            },
+            "osmArea": 3600047265
+          }
+        ],
+        "samples": 7,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3110026",
+            "name": "Valle di Funes - Sas De Putia - Rasciesa nel Parco Naturale Puez-Odle"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 4.92,
+        "officialKm": 5,
+        "deltaPercent": -1.7,
+        "source": {
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-al-resciesa/16420468/",
+          "authority": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+          "quote": "Distanza 5,0 km · Salita 197 m · Durata 1:29 ore"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Urtijëi - St. Ulrich in Gröden - Ortisei",
+            "names": {
+              "it": "Ortisei",
+              "de": "St. Ulrich in Gröden"
+            },
+            "osmArea": 3600047265
+          }
+        ],
+        "samples": 15,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [
+          {
+            "code": "IT3110026",
+            "name": "Valle di Funes - Sas De Putia - Rasciesa nel Parco Naturale Puez-Odle"
+          }
+        ],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 13.01,
+        "officialKm": 13,
+        "deltaPercent": 0.1,
+        "source": {
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/escursione-dalla-cappella-santa-croce-al-brogles/800791260/",
+          "authority": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+          "quote": "Distanza 13,0 km · Salita 422 m · Durata 3:48 ore"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "valgardena-giro-della-via-crucis": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "lookup-failed",
+        "error": "No mirror named a municipality: Unable to look up municipalities: Overpass returned HTTP 502; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed; Unable to look up municipalities: Overpass returned HTTP 504; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: This operation was aborted; Unable to look up municipalities: fetch failed"
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 3.26,
+        "officialKm": 3.3,
+        "deltaPercent": -1.1,
+        "source": {
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/giro-della-via-crucis/810054903/",
+          "authority": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+          "quote": "Distanza 3,3 km · Salita 138 m · Durata 1:00 ore"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Urtijëi - St. Ulrich in Gröden - Ortisei",
+            "names": {
+              "it": "Ortisei",
+              "de": "St. Ulrich in Gröden"
+            },
+            "osmArea": 3600047265
+          }
+        ],
+        "samples": 8,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 5.71,
+        "officialKm": 6,
+        "deltaPercent": -4.8,
+        "source": {
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/passeggiata-alla-chiesetta-di-san-giacomo/16570805/",
+          "authority": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+          "quote": "Distanza 6,0 km · Salita 330 m · Durata 2:00 ore"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "valgardena-passeggiata-da-ortisei-a-s-cristina": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Kastelruth - Castelrotto",
+            "names": {
+              "it": "Castelrotto",
+              "de": "Kastelruth"
+            },
+            "osmArea": 3600047234
+          },
+          {
+            "name": "Santa Cristina Gherdëina - St. Christina in Gröden - Santa Cristina Valgardena",
+            "names": {
+              "it": "Santa Cristina Valgardena",
+              "de": "St. Christina in Gröden"
+            },
+            "osmArea": 3600047244
+          },
+          {
+            "name": "Urtijëi - St. Ulrich in Gröden - Ortisei",
+            "names": {
+              "it": "Ortisei",
+              "de": "St. Ulrich in Gröden"
+            },
+            "osmArea": 3600047265
+          }
+        ],
+        "samples": 10,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.18,
+        "officialKm": 7.2,
+        "deltaPercent": -0.2,
+        "source": {
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/passeggiata-da-ortisei-a-s-cristina/16420476/",
+          "authority": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+          "quote": "Distanza 7,2 km · Salita 147 m · Durata 1:57 ore"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
+      }
+    },
+    "valgardena-tour-alla-volta-del-lech-sant": {
+      "checkedAt": "2026-11-16T04:39:33.525Z",
+      "communes": {
+        "status": "checked",
+        "communes": [
+          {
+            "name": "Santa Cristina Gherdëina - St. Christina in Gröden - Santa Cristina Valgardena",
+            "names": {
+              "it": "Santa Cristina Valgardena",
+              "de": "St. Christina in Gröden"
+            },
+            "osmArea": 3600047244
+          }
+        ],
+        "samples": 10,
+        "source": {
+          "label": "OpenStreetMap administrative boundaries (admin level 8)",
+          "url": "https://overpass-api.de/api/interpreter",
+          "authority": "OpenStreetMap contributors",
+          "licence": "ODbL-1.0"
+        }
+      },
+      "protectedAreas": {
+        "status": "checked",
+        "sites": [],
+        "control": {
+          "code": "IT3110049",
+          "name": "Parco Naturale Fanes - Senes - Braies",
+          "found": true
+        },
+        "source": {
+          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
+          "url": "https://natura2000.eea.europa.eu/",
+          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
+          "authority": "European Environment Agency"
+        }
+      },
+      "line": {
+        "status": "matches",
+        "lineKm": 7.66,
+        "officialKm": 7.7,
+        "deltaPercent": -0.6,
+        "source": {
+          "url": "https://www.valgardena.it/it/outdoor/base/outdoor/tour-alla-volta-del-lech-sant/49659382/",
+          "authority": "Dolomites Val Gardena (valgardena.it, Outdooractive)",
+          "quote": "Distanza 7,7 km · Salita 349 m · Durata 2:40 ore"
+        }
+      },
+      "photo": {
+        "status": "host-not-supported",
+        "from": "www.mapillary.com"
       }
     },
     "valley-view": {
