@@ -15,10 +15,6 @@ window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "Start at the waymark-1 signpost below the Rafeil hill in Gufidaun, a few minutes up the steps from the fire station and the bus stop.": "Parti dal cartello del segnavia 1 sotto il colle di Rafeil a Gudon, a pochi minuti di scale dalla caserma dei vigili del fuoco e dalla fermata dell’autobus.",
   "Follow waymark 1 (“Rafeil-Rundweg”) up two short flights of steps, then the lanes of the upper village on path 1A. Take the Putzen track past the Trattermandl fountain and the Ansitz Koburg, then the path on round the wooded Rafeil hill, past the picnic area, back to the start.": "Segui il segnavia 1 (“Rafeil-Rundweg”) su per due brevi rampe di scale, poi le stradine della parte alta del paese sul sentiero 1A. Prendi la strada di campagna Putzen oltre la fontana del Trattermandl e la residenza Koburg, poi il sentiero intorno al colle boscoso di Rafeil, oltre l’area picnic, fino alla partenza.",
   "Waymark 1 up the steps; path 1A on the village lanes; the Putzen track past the Trattermandl fountain; waymark 1 on the path round the hill back to the start.": "Segnavia 1 su per le scale; sentiero 1A sulle stradine del paese; la strada di campagna Putzen oltre la fontana del Trattermandl; segnavia 1 sul sentiero intorno al colle fino alla partenza.",
-  "The waymark-1 signpost below the Rafeil hill": "Il cartello del segnavia 1 sotto il colle di Rafeil",
-  "Up the steps, then the village lanes on path 1A": "Su per le scale, poi le stradine del paese sul sentiero 1A",
-  "The Putzen track past the Trattermandl fountain and the Ansitz Koburg": "La strada di campagna Putzen oltre la fontana del Trattermandl e la residenza Koburg",
-  "Waymark 1 round the wooded hill, past the picnic area, back to the start": "Segnavia 1 intorno al colle boscoso, oltre l’area picnic, fino alla partenza",
   "Trattermandl": "Trattermandl",
   "Drinking water": "Acqua potabile",
   "The Rafeil knolls, Gufidaun": "Le cupole di roccia di Rafeil, Gudon"
