@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-17T20:16:28.351Z",
+  "generatedAt": "2026-11-17T23:14:02.815Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -14,10 +14,10 @@
       "sourceLabel": "MeteoAlarm France",
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/1561305a-0de7-4c98-8b55-2cbd4326fe5f",
       "identifier": "2.49.0.0.250.0.FR.20261117160219.854028",
-      "effectiveAt": "2026-11-16T15:00:00+00:00",
+      "effectiveAt": "2026-11-17T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-17T20:16:28.351Z",
+      "lastSeenAt": "2026-11-17T23:14:02.815Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -65,10 +65,10 @@
       "sourceLabel": "MeteoAlarm France",
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/1561305a-0de7-4c98-8b55-2cbd4326fe5f",
       "identifier": "2.49.0.0.250.0.FR.20261117160219.854028",
-      "effectiveAt": "2026-11-16T15:00:00+00:00",
+      "effectiveAt": "2026-11-17T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-17T20:16:28.351Z",
+      "lastSeenAt": "2026-11-17T23:14:02.815Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -102,10 +102,10 @@
       "sourceLabel": "MeteoAlarm France",
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/1561305a-0de7-4c98-8b55-2cbd4326fe5f",
       "identifier": "2.49.0.0.250.0.FR.20261117160219.854028",
-      "effectiveAt": "2026-11-16T15:00:00+00:00",
+      "effectiveAt": "2026-11-17T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-17T20:16:28.351Z",
+      "lastSeenAt": "2026-11-17T23:14:02.815Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -218,7 +218,7 @@
       "effectiveAt": "2026-11-17T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-17T17:15:29.951Z",
-      "lastSeenAt": "2026-11-17T20:16:28.351Z",
+      "lastSeenAt": "2026-11-17T23:14:02.815Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -255,7 +255,7 @@
       "effectiveAt": "2026-11-17T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-17T20:16:28.351Z",
+      "lastSeenAt": "2026-11-17T23:14:02.815Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -306,7 +306,7 @@
       "effectiveAt": "2026-11-17T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-17T20:16:28.351Z",
+      "lastSeenAt": "2026-11-17T23:14:02.815Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -343,7 +343,7 @@
       "effectiveAt": "2026-11-17T15:00:00+00:00",
       "expiresAt": "2026-11-18T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-17T20:16:28.351Z",
+      "lastSeenAt": "2026-11-17T23:14:02.815Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -456,7 +456,7 @@
       "effectiveAt": "2026-11-17T09:00:00+00:00",
       "expiresAt": "2026-11-18T00:59:00+00:00",
       "firstPublishedAt": "2026-11-17T11:14:27.427Z",
-      "lastSeenAt": "2026-11-17T20:16:28.351Z",
+      "lastSeenAt": "2026-11-17T23:14:02.815Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
