@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12047303",
+  "generatedAt": "2026-11-17T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.8,
+    "ascentM": 70,
+    "highestPointM": 1216,
+    "expectedDuration": "55 min",
+    "difficulty": "Moderate",
+    "shadePercent": 28
+  },
+  "trailhead": {
+    "lat": 46.7379459,
+    "lng": 12.1687099,
+    "label": "The Von-Kurz-Platz, the village square of Niederdorf"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7366483,
+      "lng": 12.1674328,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7366692,
+      "lng": 12.1667727,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7370346,
+      "lng": 12.1720272,
+      "label": "Schneider",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 1.6 km on village streets and lanes in Niederdorf, where cars come and go: keep your dog on a short lead.",
+    "One crossing of the busy Pustertaler Straße (SS49) on the Maistattweg at about km 2.3: cross with great care.",
+    "Several gates on the Langerl track across the meadows: close them behind you.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-17",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "The Von-Kurz-Platz, the village square of Niederdorf": "Piazza Von Kurz, la piazza di Villabassa",
+    "About 1.6 km on village streets and lanes in Niederdorf, where cars come and go: keep your dog on a short lead.": "Circa 1,6 km su vie e stradine di Villabassa, dove passano le auto: tieni il cane al guinzaglio corto.",
+    "One crossing of the busy Pustertaler Straße (SS49) on the Maistattweg at about km 2.3: cross with great care.": "Un attraversamento della trafficata Via Pusteria (SS49) sulla Via Maistatt verso il km 2,3: attraversa con molta attenzione.",
+    "Several gates on the Langerl track across the meadows: close them behind you.": "Diversi cancelli sulla strada del Langerl attraverso i prati: richiudili dopo il passaggio."
+  }
+}

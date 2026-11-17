@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11774783",
+  "generatedAt": "2026-11-17T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 1.4,
+    "ascentM": 60,
+    "highestPointM": 727,
+    "expectedDuration": "30 min",
+    "difficulty": "Moderate",
+    "shadePercent": 65
+  },
+  "trailhead": {
+    "lat": 46.648348,
+    "lng": 11.597087,
+    "label": "At the waymark-1 signpost below the Rafeil hill in Gufidaun, a short walk up from the fire station and the bus stop"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.6492655,
+      "lng": 11.5997674,
+      "label": "Trattermandl",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.6485816,
+      "lng": 11.5960305,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Two short flights of steps near the start.",
+    "About 200 m on the lanes of the upper village, where cars may pass.",
+    "A playground lies just off the path: Klausen keeps dogs out of playgrounds.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-17",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "At the waymark-1 signpost below the Rafeil hill in Gufidaun, a short walk up from the fire station and the bus stop": "Al cartello del segnavia 1 sotto il colle di Rafeil a Gudon, poco sopra la caserma dei vigili del fuoco e la fermata dell’autobus",
+    "Two short flights of steps near the start.": "Due brevi rampe di scale vicino alla partenza.",
+    "About 200 m on the lanes of the upper village, where cars may pass.": "Circa 200 m sulle stradine della parte alta del paese, dove possono passare auto.",
+    "A playground lies just off the path: Klausen keeps dogs out of playgrounds.": "Un parco giochi è appena fuori dal sentiero: Chiusa vieta ai cani i parchi giochi."
+  }
+}
