@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "dolomitiunesco-pecol-malga-pioda",
+  "distanceKm": 6.6,
+  "ascentM": 307,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1516
+    },
+    {
+      "km": 0.6,
+      "elev": 1548
+    },
+    {
+      "km": 1,
+      "elev": 1590
+    },
+    {
+      "km": 1.6,
+      "elev": 1663
+    },
+    {
+      "km": 2,
+      "elev": 1759
+    },
+    {
+      "km": 2.5,
+      "elev": 1770
+    },
+    {
+      "km": 3,
+      "elev": 1805
+    },
+    {
+      "km": 3.5,
+      "elev": 1799
+    },
+    {
+      "km": 4,
+      "elev": 1809
+    },
+    {
+      "km": 4.5,
+      "elev": 1759
+    },
+    {
+      "km": 5,
+      "elev": 1663
+    },
+    {
+      "km": 5.5,
+      "elev": 1597
+    },
+    {
+      "km": 6,
+      "elev": 1548
+    },
+    {
+      "km": 6.6,
+      "elev": 1516
+    }
+  ]
+}

@@ -296,39 +296,8 @@
     return best;
   }
 
-  // A step back along the line costs this many times a step forward.
-  var BACK_WEIGHT = 4;
-
-  // Every pass of the line near a fix, and the nearest point of all.
-  //
-  // Many trails cross the same ground twice: a there-and-back is drawn out
-  // and back over one path, a lollipop shares its stem. One fix then sits on
-  // the line in two places. A pass is each low point of the distance from the
-  // fix as you go along the line, kept when it is within nearM.
-  function passesNear(line, lat, lng, nearM){
-    var px = lng * line.kx, py = lat * line.ky;
-    var nearest = { alongM: 0, distanceM: Infinity };
-    var passes = [];
-    var before = Infinity, low = null;
-    for(var i = 1; i < line.xy.length; i++){
-      var ax = line.xy[i - 1][0], ay = line.xy[i - 1][1];
-      var dx = line.xy[i][0] - ax, dy = line.xy[i][1] - ay;
-      var len2 = dx * dx + dy * dy;
-      var f = len2 ? Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / len2)) : 0;
-      var ex = ax + dx * f - px, ey = ay + dy * f - py;
-      var here = { alongM: line.cum[i - 1] + (line.cum[i] - line.cum[i - 1]) * f, distanceM: Math.sqrt(ex * ex + ey * ey) };
-      if(here.distanceM < nearest.distanceM) nearest = here;
-      // A pass ends where the distance stops falling and starts to rise again.
-      if(here.distanceM < before) low = here;
-      else if(here.distanceM > before && low){
-        if(low.distanceM <= nearM) passes.push(low);
-        low = null;
-      }
-      before = here.distanceM;
-    }
-    if(low && low.distanceM <= nearM) passes.push(low);
-    return { nearest: nearest, passes: passes };
-  }
+  // Every pass of the line near a fix (walk-proof.js, shared with hike mode).
+  function passesNear(line, lat, lng, nearM){ return proofApi().passesNear(line, lat, lng, nearM); }
 
   // Where along the line each fix of the walk was.
   //
@@ -337,13 +306,14 @@
   // (Castello di Botestagno scored 55% walked end to end). So the whole walk
   // is placed at once: of all the ways to put each fix on one of its passes,
   // take the one that moves least along the line, where a step back counts
-  // BACK_WEIGHT times a step forward. Walking home on the second half is then
-  // cheaper than walking backwards down the first, while GPS wobble and a
-  // switchback's neighbouring leg still cost more than staying put.
+  // BACK_WEIGHT (walk-proof.js) times a step forward. Walking home on the
+  // second half is then cheaper than walking backwards down the first, while
+  // GPS wobble and a switchback's neighbouring leg still cost more than
+  // staying put.
   // A fix with nothing near keeps its nearest point (markFix ignores it).
   function placeWalk(line, points, nearM){
     var found = points.map(function(p){ return passesNear(line, p.lat, p.lng, nearM); });
-    var cost = function(fromM, toM){ return toM >= fromM ? toM - fromM : (fromM - toM) * BACK_WEIGHT; };
+    var cost = proofApi().moveCost;
     var steps = [];       // per on-line fix: { at, total[], from[] }
     found.forEach(function(f, i){
       if(!f.passes.length) return;

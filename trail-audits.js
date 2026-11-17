@@ -66904,6 +66904,622 @@
       ],
       startPoint: { lat: 46.520063, lng: 12.467127, label: "Cima Gogna, on the SS52 before Auronzo, the board’s start" },
       desc: "A shady climb on a forest track from Cima Gogna past Le Prese and Pian di Barco to Zamberlan above the Ansiei valley, and back the same way. The board lists 6.4 km there and back and 528 m up."
+    },
+    'auronzo-namos': {
+      // Hand audit: 16 November 2026, verified on arrival (Dolomites walks whose page only suggests another way back, owner rule of 16 November 2026).
+      // “19 - Namos”, published by Consorzio Turistico Tre Cime Dolomiti one way (its only return is a suggested different path), drawn there and back on 13 OSM ways along the
+      // line it publishes (data/board-line-routes.geojson). Distance and climb are the board’s one-way figures doubled
+      // (climb = its up plus its down); the time is measured by ORMA (DIN 33466), as the board times one way only.
+      // Commune: Auronzo di Cadore (no dog rule found online: national rule). Natura 2000 ZPS IT3230089 Dolomiti del Cadore e del Comelico on most of the line (EEA); Veneto’s alpine measures (DGR 786/2016 Art. 99) only restate the national rule. No main road: 100 m on Via Santa Caterina at the start, then track and path. The page’s author tip suggests going on down path 20 and path 18 back to Cella instead; owner rule of 16 November 2026: a suggested other way back does not block the walk, which ORMA walks back on the same path.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Cella (Villapiccola) – Namos – Pian de Namos, Auronzo di Cadore",
+      distance: 4,
+      elevation: 271,
+      hours: '1.9',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The board publishes path 19 one way, from the Santa Caterina chapel at Cella to Pian de Namos (2 km, 271 m up, 0:55 h), and suggests a different way down by paths 20 and 18. ORMA walks it there and back on the same path: 4 km with 271 m up and down. The time, about 1 h 55, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the little chapel of Santa Caterina d’Alessandria in the hamlet of Cella (Villapiccola), by the Lake Santa Caterina dam, the board’s start. There are a few parking places on the SR48 just before the dam.",
+        "sequence": "Follow path 17, leaving path 18 on your right. After about 700 m on a gentle slope, turn right onto path 19: a steep mule track climbs to Namos, with its mountain huts. Beyond it the climb eases through mixed spruce, fir and beech woods to the clearing of Pian de Namos. The board suggests going on down by paths 20 and 18; ORMA’s walk goes back the same way, on paths 19 and 17.",
+        "switches": "Path 17 from the chapel, leaving path 18 on the right; after about 700 m right onto path 19, steeply up to Namos and gently on to Pian de Namos; back the same way on paths 19 and 17.",
+        "sources": [
+          {
+            "label": "Consorzio Turistico Tre Cime Dolomiti, 19 - Namos (route description)",
+            "url": "https://www.outdooractive.com/it/r/812627745",
+            "authority": "Consorzio Turistico Tre Cime Dolomiti",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Auronzo and Lake Santa Caterina from the slope above Cella (Kufoleto on Wikimedia Commons, CC BY 3.0), 26 August 2008, 13 m from the line.",
+        route: "Official one-way walk of 2 km from The chapel of Santa Caterina d’Alessandria at Cella (Villapiccola), by Lake Santa Caterina, as Consorzio Turistico Tre Cime Dolomiti publishes it; the page only suggests a different way down, and ORMA walks it there and back on the same path (owner rules of 12 and 16 November 2026). The stored line is drawn on 13 OSM ways along the board’s published line out and back, 4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 17 and 19: from the Santa Caterina chapel at Cella on path 17, past the turn for path 18, then right on path 19 steeply up to Namos and on to Pian de Namos; back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at the start (OSM nodes 13938018384).",
+        elevation: "Official one way: 2 km, 271 m up and 0 m down, 0:55 h, highest point Pian de Namos 1,102 m, lowest 832 m (Consorzio Turistico Tre Cime Dolomiti, Outdooractive). There and back on the same path: 4 km, 271 m up and 271 m down; about 1 h 55 measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Consorzio Turistico Tre Cime Dolomiti, 19 - Namos (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Auronzo di Cadore (its site lists documents only through a script), so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Natura 2000: ZPS IT3230089 Dolomiti del Cadore e del Comelico on most of the line (EEA); Veneto’s alpine conservation measures (DGR 786/2016 Allegato A, Art. 99) only restate the national dog rule",
+          "OpenStreetMap ways along the board’s line (13 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 66,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The steep mule track up from path 17 to Namos: take it slowly with an older or less fit dog, and carefully on the way down","Private mountain huts and their meadows at Namos: keep your dog on the path and close","Forest track open to forestry vehicles in places: keep your dog close if one comes"],
+      terrainType: "Gravel track and steep mule track, then woodland path",
+      shadeDescription: "Mostly in spruce, fir and beech woods; the clearings at Namos and Pian de Namos are open.",
+      terrainDescription: "A short, steep climb from the chapel of Santa Caterina above Auronzo on a mule track to the mountain huts of Namos, then gently through the woods to the clearing of Pian de Namos, with views of the Tre Cime and the Duranno, and back the same way.",
+      waterDescription: "Drinking water is mapped at the start (OSM), and none further on: carry enough for you and your dog.",
+      dogNotes: "Auronzo has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried. Most of the walk is in a Natura 2000 bird area: keep your dog on the path and close.",
+      tips: "Start at the Santa Caterina chapel by the lake: about an hour up to Pian de Namos, as the board lists, and the same way back. The mule track to Namos is short but steep, so go slowly with your dog, especially on the way down.",
+      sourceLinks: [
+        { label: "Consorzio Turistico Tre Cime Dolomiti, 19 - Namos", url: "https://www.outdooractive.com/it/r/812627745" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Veneto, DGR 786/2016 Allegato A, Natura 2000 conservation measures, alpine region (Art. 99, dogs)", url: "https://download.mase.gov.it/Natura2000/Materiale%20Designazione%20ZSC/Veneto/04_Misure%20di%20Conservazione/DGR%20786_27_05_2016-%20Allegato%20A%20MdC%20Alpina.pdf" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.540046, lng: 12.463338, label: "The chapel of Santa Caterina d’Alessandria at Cella (Villapiccola), by Lake Santa Caterina, the board’s start" },
+      desc: "A short, steep climb from the Santa Caterina chapel above Lake Auronzo on paths 17 and 19 to the mountain huts of Namos and the clearing of Pian de Namos, and back the same way. The board lists 2 km one way, just under an hour; there and back it is 4 km with 271 m up and down."
+    },
+    'alleghe-dolomiti-in-miniatura': {
+      // Hand audit: 16 November 2026, verified on arrival (new-trail Dolomites batch 12).
+      // “Le Dolomiti in Miniatura di San Tomaso Agordino”, published by Consorzio Operatori Turistici Alleghe - Caprile, drawn on 15 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: San Tomaso Agordino (no dog rule found online: national rule). No park or Natura 2000 site. Roads: 20 m of tertiary road at the start pin outside the town hall; then village lanes, footway and forest track. Lollipop: about half is the stem walked out and back (walkedTwice rule, #1326).
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Celat – Pianezze – Forcella San Tomaso, San Tomaso Agordino",
+      distance: 5.2,
+      elevation: 385,
+      hours: '2.25',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop on a forest path from the Celat town hall up to the fork for Pianezze, round by Pianezze and the Forcella San Tomaso past about twenty sculptures of the main Dolomite groups, and back down the same way to Celat: a loop on a stem, the climb from Celat to the fork walked both ways, as the board publishes it (5.2 km, 385 m up, 2:20 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the town hall in Celat, San Tomaso Agordino, the board’s start; parking is by the church.",
+        "sequence": "Go through the underpass between the houses of Celat and climb, fairly steeply at first, to the fork for Pianezze, where the loop begins. Go down towards Pianezze, then follow the signs up to the Forcella San Tomaso, the highest point, past the sculptures of the Dolomite groups. From the forcella come back to the fork and down the same way to Celat.",
+        "switches": "Underpass between the houses of Celat; fairly steep climb to the fork for Pianezze; down towards Pianezze, then follow the signs up to the Forcella San Tomaso past the sculptures; back to the fork and down the same way to Celat.",
+        "steps": [
+          {
+            "text": "Celat town hall, San Tomaso Agordino",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Through the underpass between the houses and up to the fork for Pianezze",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down towards Pianezze, then follow the signs uphill past the sculptures",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Forcella San Tomaso, the highest point",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back to the fork and down the same way to Celat",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Consorzio Operatori Turistici Alleghe - Caprile, Le Dolomiti in Miniatura di San Tomaso Agordino (route description)",
+            "url": "https://www.outdooractive.com/it/r/802959689",
+            "authority": "Consorzio Operatori Turistici Alleghe - Caprile",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Celat town hall, San Tomaso Agordino (Syrio on Wikimedia Commons, CC BY-SA 4.0), 1 September 2024, 10 m from the line.",
+        route: "Official loop of 5.2 km from The Celat town hall, San Tomaso Agordino, as Consorzio Operatori Turistici Alleghe - Caprile publishes it; the stored line is drawn on 15 OSM ways along the board’s published line, 5.2 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "No path number: the route is signed \"Dolomiti in miniatura\". From the Celat town hall up to the fork for Pianezze, round by Pianezze and the Forcella San Tomaso past the sculptures, and back down the same way to Celat.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 5.2 km, 385 m up and 384 m down, 2:20 h (Consorzio Operatori Turistici Alleghe - Caprile, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Consorzio Operatori Turistici Alleghe - Caprile, Le Dolomiti in Miniatura di San Tomaso Agordino (its Outdooractive tour)",
+          "No dog rule found online for the Comune di San Tomaso Agordino (its general acts list holds only national laws), so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (EEA)",
+          "OpenStreetMap ways along the board’s line (15 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 82,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["A fairly steep climb out of Celat at the start: take it slowly with an older dog","The descent back into the village can be slippery: go carefully and keep your dog close","The start is on the village road outside the town hall: keep your dog on a short lead there"],
+      terrainType: "Village lanes and forest path",
+      shadeDescription: "Mostly in woods, once out of the village.",
+      terrainDescription: "A forest loop above the village of Celat, past about twenty large sculptures of the main Dolomite groups, each with a board about the peaks, up to the Forcella San Tomaso.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. Celat has a pizzeria at the start.",
+      dogNotes: "San Tomaso Agordino has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the Celat town hall, with parking by the church: 5.2 km and 385 m up, about 2 hours 20 minutes, as the board lists. Wear shoes with grip: the board warns the descent into the village can be slippery.",
+      sourceLinks: [
+        { label: "Consorzio Operatori Turistici Alleghe - Caprile, Le Dolomiti in Miniatura di San Tomaso Agordino", url: "https://www.outdooractive.com/it/r/802959689" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.38114, lng: 11.975445, label: "The Celat town hall, San Tomaso Agordino, the board’s start" },
+      desc: "A forest loop from the village of Celat up to the Forcella San Tomaso, past about twenty large sculptures of the main Dolomite groups. The board lists 5.2 km and 385 m up."
+    },
+    'dolomitiunesco-val-san-nicolo': {
+      // Hand audit: 16 November 2026, verified on arrival (Fondazione Dolomiti UNESCO “Dolomiti Accessibili” sheets, owner rule of 16 November 2026: ORMA-measured time).
+      // “2B Val San Nicolò”, published by Fondazione Dolomiti UNESCO one way to its end point with a GPX track and no walking time, drawn there
+      // and back on 27 OSM ways along that track (data/board-line-routes.geojson). Distance and climb are the sheet’s
+      // one-way figures doubled (climb = its up plus its down); the time is measured by ORMA (DIN 33466).
+      // Commune: San Giovanni di Fassa (no dog rule published: national rule; the APT Val di Fassa dog flyer asks for a lead and a muzzle on buses). No park or Natura 2000 site on the line (EEA). No main road: the valley road is closed to private traffic, asphalt to the Baita Ciampiè, then gravel. In summer the start is reached only by shuttle bus (June–October), as the sheet says.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Sauch – Baita Ciampiè – Baita alle Cascate, Val San Nicolò, San Giovanni di Fassa",
+      distance: 6.6,
+      elevation: 261,
+      hours: '2.3',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Fondazione Dolomiti UNESCO publishes the walk one way, from Sauch to the Baita alle Cascate (3.3 km, 261 m up), with a GPX track and no walking time. ORMA walks it there and back on the same road: 6.6 km with 261 m up and down. The time, about 2 h 20, is measured by ORMA (DIN 33466).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Sauch, at the entrance to the Val San Nicolò, the sheet’s start. In summer the valley road is closed to private cars: take the shuttle bus from Pera (Vac car park) or the road train from Pozza (June to October).",
+        "sequence": "Follow the narrow asphalt road through the hay meadows to the Baita Ciampiè, about 1.5 km. From there the road carries on as an even gravel track for about 2 km, partly in the woods and partly along the Rio San Nicolò, to the Jonta waterfalls and the Baita alle Cascate. The last 100 m climb steeply on cobbles. Come back the same way.",
+        "switches": "Asphalt road from Sauch through the meadows to the Baita Ciampiè; gravel track on along the Rio San Nicolò to the Jonta waterfalls and the Baita alle Cascate; back the same way.",
+        "steps": [
+          {
+            "text": "Sauch, at the entrance to the Val San Nicolò",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Asphalt road through the hay meadows to the Baita Ciampiè (about 1.5 km)",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Gravel track along the Rio San Nicolò, partly in the woods",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Steep, cobbled last 100 m to the Baita alle Cascate by the Jonta waterfalls",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back the same way to Sauch",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Fondazione Dolomiti UNESCO, 2B Val San Nicolò (route description)",
+            "url": "https://www.visitdolomites.com/wp-content/uploads/2021/02/2B_Val_San_Nicolo_agg_2019.pdf",
+            "authority": "Fondazione Dolomiti UNESCO",
+            "tag": "UNESCO foundation",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The gravel track past the hay huts in the Val San Nicolò (Maurizio Ceol on Wikimedia Commons, CC BY 3.0), 19 June 2013, 14 m from the line.",
+        route: "Official one-way route of 3.3 km from Sauch to the Baita alle Cascate, as the Fondazione Dolomiti UNESCO publishes it with a GPX track; ORMA walks it there and back on the same road, 6.6 km. The stored line is drawn on 27 OSM ways along the sheet’s GPX track out and back, 6.5 km, with 100% of the published track within 25 m of it and 100% of it within 25 m of the track.",
+        routeNumbers: "No path number on the sheet: from Sauch on the valley road to the Baita Ciampiè, then on the gravel track along the Rio San Nicolò to the Jonta waterfalls and the Baita alle Cascate; back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at km 2, km 2.9 (OSM nodes 9062287872, 5318733180).",
+        elevation: "Official one way: 3.3 km and 261 m of climb, average gradient 8%, from Sauch at 1,718 m to the Baita alle Cascate at 1,983 m (Fondazione Dolomiti UNESCO, Dolomiti Accessibili sheet 2B). There and back on the same road: 6.6 km, 261 m up and 261 m down; about 2 h 20 measured by ORMA (DIN 33466), since the sheet gives no time."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Fondazione Dolomiti UNESCO, 2B Val San Nicolò (Dolomiti Accessibili sheet with GPX track)",
+          "Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (San Giovanni di Fassa publishes no dog rule)",
+          "APT Val di Fassa, “In Val di Fassa con il cane” (2025), published by the Comune di Campitello di Fassa",
+          "No park or Natura 2000 site on the line (EEA Natura 2000 map service)",
+          "OpenStreetMap ways along the board’s line (27 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 16,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The shuttle bus and the road train use the asphalt road as far as the Baita Ciampiè in summer: keep your dog close when they pass","The last 100 m to the Baita alle Cascate are steep and cobbled: take it slowly with an older dog","Cows may graze the meadows in summer: keep a short lead and give them room","Keep your dog back from the edge of the stream and the waterfalls"],
+      terrainType: "Narrow asphalt road, then an even gravel forest road",
+      shadeDescription: undefined,
+      terrainDescription: undefined,
+      waterDescription: undefined,
+      dogNotes: "San Giovanni di Fassa has no dog rule of its own, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried. The APT Val di Fassa asks for a lead near livestock and a lead and muzzle on the shuttle bus.",
+      tips: "In summer the valley road is closed to cars: take the shuttle bus from Pera or the road train from Pozza to Sauch, with your dog on a lead and a muzzle to hand. It is 3.3 km and 261 m up to the Jonta waterfalls; about 2 h 20 there and back. Best from mid-June to early October, when the huts are open.",
+      sourceLinks: [
+        { label: "Fondazione Dolomiti UNESCO, 2B Val San Nicolò", url: "https://www.visitdolomites.com/wp-content/uploads/2021/02/2B_Val_San_Nicolo_agg_2019.pdf" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "APT Val di Fassa, In Val di Fassa con il cane (flyer, 2025)", url: "https://www.comune.campitellodifassa.tn.it/ocmultibinary/download/1732/26273/1/105c33d092adfed76afbd2ad8cd77d70.pdf/file/flyer_in_val_di_fassa_col_cane.pdf" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.423827, lng: 11.74627, label: "Sauch, at the entrance to the Val San Nicolò (the shuttle bus stop), the sheet’s start" },
+      desc: "A gentle walk up the Val San Nicolò above Pozza di Fassa, through hay meadows and along the stream to the Jonta waterfalls and the Baita alle Cascate, and back the same way. The Fondazione Dolomiti UNESCO lists 3.3 km and 261 m one way; there and back it is 6.6 km with 261 m up and down."
+    },
+    'dolomitiunesco-pecol-malga-pioda': {
+      // Hand audit: 16 November 2026, verified on arrival (Fondazione Dolomiti UNESCO “Dolomiti Accessibili” sheets, owner rule of 16 November 2026: ORMA-measured time).
+      // “3C Pecòl – Malga Pioda”, published by Fondazione Dolomiti UNESCO one way to its end point with a GPX track and no walking time, drawn there
+      // and back on 9 OSM ways along that track (data/board-line-routes.geojson). Distance and climb are the sheet’s
+      // one-way figures doubled (climb = its up plus its down); the time is measured by ORMA (DIN 33466).
+      // Commune: Val di Zoldo, dog regulation DCC 25/2025 Art. 9(2) lead of at most 1.5 m and Art. 9(3) muzzle carried. No park or Natura 2000 site on the line (EEA). Only main road: about 50 m by the SP251 at the Palafavera car park; then a forest road closed to traffic.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Palafavera (Pecòl) – Malga Pioda, Val di Zoldo",
+      distance: 6.5,
+      elevation: 307,
+      hours: '2.4',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Fondazione Dolomiti UNESCO publishes the walk one way, from the Palafavera car park to Malga Pioda (3.27 km, 307 m up), with a GPX track and no walking time. ORMA walks it there and back on the same forest road: 6.5 km with 307 m up and down. The time, about 2 h 25, is measured by ORMA (DIN 33466).",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park by the Rifugio Palafavera, near Pecòl in the Val di Zoldo, the sheet’s start. A shuttle bus serves Palafavera in summer.",
+        "sequence": "Past the barrier, follow the Via Coi forest road, closed to traffic, on paths 564 and 556. It climbs steadily on gravel along the gentle lower slopes of the Civetta, through larch and spruce and across open pastures with views of the Civetta and the Pelmo, to the pastures of Malga Pioda. Come back the same way.",
+        "switches": "Via Coi forest road from the Palafavera car park on paths 564 and 556, steadily up to Malga Pioda; back the same way.",
+        "sources": [
+          {
+            "label": "Fondazione Dolomiti UNESCO, 3C Pecòl – Malga Pioda (route description)",
+            "url": "https://www.visitdolomites.com/wp-content/uploads/2021/02/3C_Malga_Pioda_agg_2019.pdf",
+            "authority": "Fondazione Dolomiti UNESCO",
+            "tag": "UNESCO foundation",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Monte Pelmo from the Via Coi forest road above Palafavera (kallerna on Wikimedia Commons, CC BY-SA 4.0), 8 August 2025, 4 m from the line.",
+        route: "Official one-way route of 3.3 km from the Palafavera car park to Malga Pioda, as the Fondazione Dolomiti UNESCO publishes it with a GPX track; ORMA walks it there and back on the same forest road, 6.5 km. The stored line is drawn on 9 OSM ways along the sheet’s GPX track out and back, 6.6 km, with 100% of the published track within 25 m of it and 100% of it within 25 m of the track.",
+        routeNumbers: "Paths 564 and 556: from the Palafavera car park up the Via Coi forest road to Malga Pioda; back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at the start, the start, km 3.2 (OSM nodes 5832946775, 5832947830, 3651040186).",
+        elevation: "Official one way: 3.27 km and 307 m up, average gradient 9%, from the Palafavera car park at 1,514 m to Malga Pioda at 1,820 m (Fondazione Dolomiti UNESCO, Dolomiti Accessibili sheet 3C). There and back on the same forest road: 6.5 km, 307 m up and 307 m down; about 2 h 25 measured by ORMA (DIN 33466), since the sheet gives no time."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Fondazione Dolomiti UNESCO, 3C Pecòl – Malga Pioda (Dolomiti Accessibili sheet with GPX track)",
+          "Comune di Val di Zoldo, Regolamento comunale di igiene urbana veterinaria e per il benessere dei cani (DCC n. 25 of 28 May 2025), Art. 9(2): dogs always on a lead of at most 1.5 m in public places and places open to the public; Art. 9(3): a muzzle carried",
+          "No park or Natura 2000 site on the line (EEA Natura 2000 map service)",
+          "OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 37,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 50 m by the SP251 at the Palafavera car park: keep your dog on a short lead there","Gravel forest road with loose stones and cross drains: watch your dog’s paws","Cows graze the Malga Pioda pastures in summer: keep a short lead and give them room","Forestry and farm vehicles may use the forest road: keep your dog close if one comes"],
+      terrainType: "Gravel forest road closed to traffic",
+      shadeDescription: undefined,
+      terrainDescription: undefined,
+      waterDescription: undefined,
+      dogNotes: "Val di Zoldo’s dog regulation (2025) requires a lead of at most 1.5 m in public places and a muzzle carried. Cows graze at Malga Pioda in summer: keep your dog on a short lead there.",
+      tips: "Start at the Palafavera car park near Pecòl: 3.3 km and 307 m up to Malga Pioda; about 2 h 25 there and back. The sheet recommends late June to mid-September, when the malga is in use. Malga Pioda serves no food, so bring water and a snack.",
+      sourceLinks: [
+        { label: "Fondazione Dolomiti UNESCO, 3C Pecòl – Malga Pioda", url: "https://www.visitdolomites.com/wp-content/uploads/2021/02/3C_Malga_Pioda_agg_2019.pdf" },
+        { label: "Comune di Val di Zoldo, deliberations 2025 (DCC n. 25, dog regulation)", url: "https://servizi.comune.valdizoldo.bl.it/ServiziOnLine/Atti/ElencoAtti?anno=2025&numero=25&Documento=Delibere" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.402595, lng: 12.10088, label: "The car park by the Rifugio Palafavera, near Pecòl, the sheet’s start" },
+      desc: "A steady climb on the Via Coi forest road from Palafavera near Pecòl to the pastures of Malga Pioda below the Civetta, with views of the Pelmo, and back the same way. The Fondazione Dolomiti UNESCO lists 3.3 km and 307 m up one way; there and back it is 6.5 km with 307 m up and down."
+    },
+    'dolomitiunesco-lavaze-malga-costa': {
+      // Hand audit: 16 November 2026, verified on arrival (Fondazione Dolomiti UNESCO “Dolomiti Accessibili” sheets, owner rule of 16 November 2026: ORMA-measured time).
+      // “7C Passo Lavazè – Malga Costa/Liegalm”, published by Fondazione Dolomiti UNESCO one way to its end point with a GPX track and no walking time, drawn there
+      // and back on 15 OSM ways along that track (data/board-line-routes.geojson). Distance and climb are the sheet’s
+      // one-way figures doubled (climb = its up plus its down); the time is measured by ORMA (DIN 33466).
+      // Communes: Ville di Fiemme (about 70% of the line; no dog rule published: national rule) and Deutschnofen / Nova Ponente (about 30%; dog regulation 2010 Art. 4 and 8). No South Tyrol nature park or biotope and no Natura 2000 site on the line (EEA, Province of Bolzano layers). No main road on the line; the car park is by the SS620 at the pass.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Passo Lavazè – Malga Costa / Liegalm, Ville di Fiemme and Deutschnofen",
+      distance: 5.9,
+      elevation: 81,
+      hours: '1.7',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Fondazione Dolomiti UNESCO publishes the walk to Malga Costa (2.96 km, 5 m up and 76 m down) with a GPX track and returns the same way, but gives no walking time. ORMA walks it there and back: 5.9 km with 81 m up and down. The time, about 1 h 40, is measured by ORMA (DIN 33466).",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the panoramic boardwalk over the lake at Passo Lavazè, the sheet’s start. There is a car park at the pass, on the SS620, and a shuttle bus from Cavalese in July to September.",
+        "sequence": "Past the boardwalk, follow the lakeside path for about 200 m. At the fork keep left on waymark 9 for Malga Costa. After about 500 m across the pastures, take the forest track into the woods: it runs gently down for about 2 km through stone pines to the clearing of Malga Costa (Liegalm). Come back the same way to the lake.",
+        "switches": "Lakeside path from the boardwalk; left at the fork on waymark 9 across the pastures; forest track gently down through the stone pines to Malga Costa; back the same way.",
+        "sources": [
+          {
+            "label": "Fondazione Dolomiti UNESCO, 7C Passo Lavazè – Malga Costa/Liegalm (route description)",
+            "url": "https://www.visitdolomites.com/wp-content/uploads/2021/02/7C_Passo_Lavaze.pdf",
+            "authority": "Fondazione Dolomiti UNESCO",
+            "tag": "UNESCO foundation",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Walkers on the pasture track at Passo Lavazè (dadadavid3 on Mapillary, CC BY-SA 4.0), 1 September 2018, 1 m from the line.",
+        route: "Official one-way route of 2.96 km from the lake at Passo Lavazè to Malga Costa, as the Fondazione Dolomiti UNESCO publishes it with a GPX track, returning the same way; 5.9 km there and back. The stored line is drawn on 15 OSM ways along the sheet’s GPX track out and back, 5.8 km, with 100% of the published track within 25 m of it and 100% of it within 25 m of the track.",
+        routeNumbers: "Waymark 9: from the lakeside path at Passo Lavazè, left at the fork across the pastures and on the forest track through the stone pines to Malga Costa; back the same way.",
+        mapPoints: "Start at the board’s start; drinking water at the start, the start (OSM nodes 4630769527, 5051805023).",
+        elevation: "Official one way: 2.96 km, 5 m up and 76 m down, average gradient 3%, from Passo Lavazè at 1,804 m to Malga Costa at 1,733 m (Fondazione Dolomiti UNESCO, Dolomiti Accessibili sheet 7C). There and back on the same path: 5.9 km, 81 m up and 81 m down; about 1 h 40 measured by ORMA (DIN 33466), since the sheet gives no time."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Fondazione Dolomiti UNESCO, 7C Passo Lavazè – Malga Costa/Liegalm (Dolomiti Accessibili sheet with GPX track)",
+          "Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026 (Ville di Fiemme publishes no dog rule)",
+          "Gemeinde Deutschnofen, Verordnung über die Haltung und Führung von Hunden (2010), Art. 4 (lead of at most 1.5 m, muzzle carried) and Art. 8 (no dogs on farmed meadows)",
+          "No South Tyrol nature park or biotope and no Natura 2000 site on the line (Province of Bolzano layers, EEA Natura 2000 map service)",
+          "OpenStreetMap ways along the board’s line (15 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 24,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The car park is by the SS620 at the pass: keep your dog on a short lead there","Cows graze the Lavazè pastures in summer, with a wooden cattle gate on the way: keep a short lead, give them room and close the gate","Deutschnofen allows no dogs on farmed meadows: keep your dog on the track","A short rough stretch on the forest track: watch your dog’s paws"],
+      terrainType: "Level lakeside path and gravel forest track",
+      shadeDescription: undefined,
+      terrainDescription: undefined,
+      waterDescription: undefined,
+      dogNotes: "Most of the walk is in Ville di Fiemme, which has no dog rule of its own, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried. The last third, to Malga Costa, is in Deutschnofen, whose dog regulation also asks for a lead of at most 1.5 m and a muzzle carried, and keeps dogs off farmed meadows. Cows graze the pastures in summer.",
+      tips: "Start at the boardwalk by the lake at Passo Lavazè: 3 km almost level to Malga Costa on waymark 9; about 1 h 40 there and back. Best from mid-June to early October. An easy walk for older dogs; keep a short lead past the grazing cows.",
+      sourceLinks: [
+        { label: "Fondazione Dolomiti UNESCO, 7C Passo Lavazè – Malga Costa/Liegalm", url: "https://www.visitdolomites.com/wp-content/uploads/2021/02/7C_Passo_Lavaze.pdf" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Gemeinde Deutschnofen, Verordnung über die Haltung und Führung von Hunden (2010)", url: "https://www.gemeinde.deutschnofen.bz.it/system/web/GetDocument.ashx?cts=1708335105&fileId=1001871" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.355294, lng: 11.492079, label: "The panoramic boardwalk by the lake at Passo Lavazè, the sheet’s start" },
+      desc: "A nearly level walk from the lake at Passo Lavazè across the pastures and through stone-pine woods on waymark 9 to Malga Costa, with views of the Latemar and the Rosengarten, and back the same way. The Fondazione Dolomiti UNESCO lists 2.96 km one way; there and back it is 5.9 km with 81 m up and down."
+    },
+    'seiseralm-umser-rundweg': {
+      // Hand audit: 16 November 2026, verified on arrival (new-trail Dolomites batch 13).
+      // Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // “Umser Rundweg” (routes-hikingtrails.11427825), drawn on 21 OSM ways along the register line (data/board-line-routes.geojson).
+      // Commune: Völs am Schlern (2015 dog regulation, amended 2019). No park or Natura 2000 site. Roads: no main road; about 1.6 km on quiet asphalt hamlet lanes (Müllerweg, Tschafonweg), which the owner accepted on 16 Nov 2026, and two crossings of the Umser Straße.
+      area: "Ums / Umes, Völs am Schlern",
+      distance: 3.8,
+      elevation: 160,
+      hours: '1.4',
+      routeShape: 'loop',
+      routeShapeNote: "A loop round the hamlet of Ums on the waymarked Umser Rundweg, as the province trail register maps it (3.8 km): up path 8 to the Schlernstraße, along the Müllerweg, on path 4 into Ums, then the Tschafonweg and a gravel track back down to the start. Climb and time are measured by ORMA, not published by the register.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start by the Völser Bach below Ums, where paths 2 and 8 meet; the loop is waymarked “Umser Rundweg” all the way.",
+        "sequence": "Follow path 8, a track and then a lane, up to the Schlernstraße. Cross the Umser Straße onto the Müllerweg lane for about 600 m. At its end take path 4, a path and then a track, into Ums past the fire station and the Gasthof Kircher. Cross the Umser Straße by St. Martin’s church and walk the Tschafonweg lane (paths 3 and 4) for about 650 m. Turn off onto the Umser Rundweg path, then a gravel track, and join path 8 back down to the start.",
+        "switches": "Path 8 up to the Schlernstraße; across the Umser Straße onto the Müllerweg; path 4 into Ums; across by St. Martin’s church onto the Tschafonweg; off onto the Umser Rundweg path and gravel track; path 8 back down.",
+        "steps": [
+          {
+            "text": "By the Völser Bach below Ums, where paths 2 and 8 meet",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 8 up to the Schlernstraße, then across the Umser Straße onto the Müllerweg lane",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 4 into Ums, past the fire station and the Gasthof Kircher",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "St. Martin’s church, then the Tschafonweg lane on paths 3 and 4",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Umser Rundweg path and a gravel track, then path 8 back down to the start",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Umser Rundweg (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427825",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "St. Martin’s church, Ums (Syrio on Wikimedia Commons, CC BY-SA 4.0), 22 September 2024, 22 m from the line.",
+        route: "Register loop 'Umser Rundweg' (routes-hikingtrails.11427825, 3.84 km) from By the Völser Bach below Ums, where paths 2 and 8 meet; the stored line is drawn on 21 OSM ways along the register line, 3.8 km, with 100% of the guide line within 25 m of it and 100% of it within 25 m of the guide line.",
+        routeNumbers: "Waymarked “Umser Rundweg”: path 8 up to the Schlernstraße, the Müllerweg lane, path 4 into Ums, the Tschafonweg (paths 3 and 4), then the Umser Rundweg path and gravel track back to path 8 and the start.",
+        mapPoints: "Start where the register loop leaves the lane; drinking water at km 1.9, km 2.1 (OSM nodes 7318189295, 4269751545).",
+        elevation: "No official figure. Measured by ORMA from the map: 3.81 km, about 160 m up and down between 848 and 1,018 m, 1 h 23 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Umser Rundweg', line routes-hikingtrails.11427825, 3,843 m",
+          "Gemeinde Völs am Schlern / Comune di Fiè allo Sciliar, Gemeindeverordnung über die Haltung und Führung von Hunden (Gemeinderat Nr. 57, 23.11.2015, amended Nr. 39, 11.07.2019), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds, kindergarten and primary-school yards, on farmed land such as meadows and fields, or in tended public green spaces and flower beds",
+          "No park, reserve or Natura 2000 site on the line (EEA)",
+          "OpenStreetMap ways along the register line (21 ways), road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 37,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 1.6 km on quiet asphalt lanes between the farms, where a car or tractor may pass: keep your dog on a short lead there","Two crossings of the Umser Straße, at the Schlernstraße and by the church in Ums: cross with care","Farmed meadows line much of the loop: Völs keeps dogs off them"],
+      terrainType: "Farm lanes, gravel tracks and a short path",
+      shadeDescription: "Partly shaded: about a third runs through woods; the lanes between the meadows are open.",
+      terrainDescription: "A gentle loop at 850–1,020 m round the hamlet of Ums under the Schlern, past farms, meadows and St. Martin’s church, on lanes, gravel tracks and a short forest path.",
+      waterDescription: "Drinking water is mapped in Ums, around km 1.9 and 2.1. The Gasthof Kircher in Ums is on the way.",
+      dogNotes: "Völs requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of cemeteries and playgrounds and off farmed meadows.",
+      tips: "An easy 3.8 km loop with about 160 m of up and down, roughly an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Völs requires, and keep off the meadows. Water in Ums, about halfway.",
+      sourceLinks: [
+        { label: "South Tyrol trail register, Umser Rundweg (Open Data Hub)", url: "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427825" },
+        { label: "Gemeinde Völs am Schlern, dog regulation (2015, amended 2019)", url: "https://www.gemeinde.voels.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_Fuehrung_von_Hunden" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.513007, lng: 11.525496, label: "By the Völser Bach below Ums, where paths 2 and 8 meet" },
+      desc: "A gentle loop round the hamlet of Ums under the Schlern, past farms, meadows and St. Martin’s church, on the waymarked Umser Rundweg. It is about 3.8 km with some 160 m of up and down, as measured by ORMA (the province register gives only the length)."
+    },
+    'seiseralm-promenadenweg-tiers': {
+      // Hand audit: 16 November 2026, verified on arrival (new-trail Dolomites batch 13).
+      // Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // “Promenadenweg (Tiers)” (routes-hikingtrails.11425959), drawn on 11 OSM ways along the register line (data/board-line-routes.geojson).
+      // Commune: Tiers (2015 dog regulation, amended 2023). About a quarter in the Schlern-Rosengarten nature park (N2000 IT3110029): lead. Roads: one 40 m crossing of the Völsegger Weg; the closing 310 m gravel lane to the Ansitz Velseck (customers’ cars only) and 150 m of the asphalt Völsegger Weg (path 6B), added by ORMA to close the register line, which ends 190 m from its start.
+      area: "Völsegg / Velseck, Tiers am Rosengarten",
+      distance: 3.7,
+      elevation: 230,
+      hours: '1.7',
+      routeShape: 'loop',
+      routeShapeNote: "A forest loop on the waymarked Promenadenweg below the Völsegg, as the province trail register maps it (3.4 km), closed by ORMA on the gravel lane from the Ansitz Velseck and 150 m of the Völsegger Weg back to the start (path 6B): 3.7 km in all. Climb and time are measured by ORMA, not published by the register.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start on the Völsegger Weg (path 6B) below the Ansitz Velseck, about 1.3 km north-west of Tiers, where the Promenadenweg path leaves the lane.",
+        "sequence": "Take the Promenadenweg (path 14) into the forest for about 1.1 km, then stay on the Promenadenweg, crossing the Völsegger Weg once. At about km 2.2 the Promenadenweg joins path 6 for some 900 m. A short track (paths 6 and 6B) brings you down towards the Ansitz Velseck; just before it, take the gravel lane down past the manor to the Völsegger Weg, and follow the lane down to the start.",
+        "switches": "Promenadenweg (path 14) into the forest; across the Völsegger Weg; on with path 6; the track (6 and 6B) towards the Ansitz Velseck; the gravel lane down past the manor; the Völsegger Weg back to the start.",
+        "steps": [
+          {
+            "text": "The Völsegger Weg below the Ansitz Velseck, where the Promenadenweg leaves the lane",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Promenadenweg (path 14) through the forest, crossing the Völsegger Weg once",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "With path 6 for about 900 m",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The track (paths 6 and 6B) towards the Ansitz Velseck",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The gravel lane down past the manor and the Völsegger Weg back to the start",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Promenadenweg (Tiers) (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425959",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-16"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-16',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Ansitz Velseck below the Völsegg peak, Tiers (Commander-pirx on Wikimedia Commons, CC BY-SA 4.0), 9 June 2023, 52 m from the line.",
+        route: "Register loop 'Promenadenweg (Tiers)' (routes-hikingtrails.11425959, 3.36 km) from On the Völsegger Weg below the Ansitz Velseck, Tiers; the stored line is drawn on 11 OSM ways along the register line, 3.7 km, with 100% of the guide line within 25 m of it and 100% of it within 25 m of the guide line. The register line ends 190 m from its start; ORMA closes it on the gravel lane past the Ansitz Velseck and the Völsegger Weg (path 6B).",
+        routeNumbers: "Waymarked “Promenadenweg”: path 14 into the forest, the Promenadenweg across the Völsegger Weg, path 6, the track on paths 6 and 6B towards the Ansitz Velseck, then the gravel lane and the Völsegger Weg (path 6B) back to the start.",
+        mapPoints: "Start where the register loop leaves the lane; drinking water at km 2.6, km 3.2 (OSM nodes 7843800085, 3698877742).",
+        elevation: "No official figure. Measured by ORMA from the map: 3.73 km, about 230 m up and down between 1,057 and 1,241 m, 1 h 42 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Promenadenweg (Tiers)', line routes-hikingtrails.11425959, 3,358 m",
+          "Gemeinde Tiers / Comune di Tires, Verordnung zur Führung und Haltung von Hunden und Tieren (Gemeinderat Nr. 48, 08.10.2015, amended Nr. 55, 28.12.2023), Art. 4 and 8: a lead of at most 1.5 m and a muzzle carried; no dogs in cemeteries, playgrounds or kindergarten and primary-school yards, on farmed land in the growing season, or in tended public green spaces; no bathing in the village-centre fountains",
+          "About a quarter of the line is in the Schlern-Rosengarten nature park (Natura 2000 IT3110029): dogs on a lead (Decree of the Provincial President 19/2013)",
+          "OpenStreetMap ways along the register line (11 ways), road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        date: '2026-11-16'
+      },
+      shadeCoverage: 90,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The Promenadenweg has rooty, stony stretches in the forest: watch your dog’s footing","The last 450 m are on the gravel lane to the Ansitz Velseck and the Völsegger Weg, where guests’ cars come and go: keep your dog on a short lead","One crossing of the Völsegger Weg in the middle of the loop"],
+      terrainType: "Forest paths and a gravel lane",
+      shadeDescription: "Almost all in forest; only the lane by the Ansitz Velseck is open.",
+      terrainDescription: "A forest loop at 1,060–1,240 m below the Völsegg, on the Promenadenweg and path 6, ending past the Ansitz Velseck manor.",
+      waterDescription: "Drinking water is mapped at about km 2.6 and by the Ansitz Velseck near the end, where there is a restaurant.",
+      dogNotes: "Tiers requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs out of playgrounds and cemeteries and off farmed land in the growing season. About a quarter of the loop is in the Schlern-Rosengarten nature park, where dogs stay on a lead at all times.",
+      tips: "A shady 3.7 km forest loop with about 230 m of up and down, roughly an hour and three quarters. Keep your dog on a lead of at most 1.5 m and carry a muzzle; the nature park asks for a lead throughout. Water near the end by the Ansitz Velseck.",
+      sourceLinks: [
+        { label: "South Tyrol trail register, Promenadenweg (Tiers) (Open Data Hub)", url: "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425959" },
+        { label: "Gemeinde Tiers, dog regulation (2015, amended 2023)", url: "https://www.gemeinde.tiers.bz.it/system/web/verordnung.aspx?detailonr=224983319" },
+        { label: "South Tyrol nature parks, rules of conduct", url: "https://naturparks.provinz.bz.it/de/verhaltensregeln-im-naturpark" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.475974, lng: 11.513007, label: "On the Völsegger Weg below the Ansitz Velseck, Tiers" },
+      desc: "A shady forest loop below the Völsegg above Tiers, on the waymarked Promenadenweg and path 6, ending past the Ansitz Velseck manor. It is about 3.7 km with some 230 m of up and down, as measured by ORMA (the province register gives only the length)."
     }
   };
 

@@ -1985,6 +1985,41 @@
       "name": "Cima Gogna to Zamberlan",
       "slug": "cima-gogna-zamberlan",
       "gloss": "a steady forest-track climb above Cima Gogna and back"
+    },
+    "auronzo-namos": {
+      "name": "Santa Caterina to Pian de Namos",
+      "slug": "pian-de-namos-auronzo",
+      "gloss": "a mule-track climb to the mountain huts of Namos and back"
+    },
+    "alleghe-dolomiti-in-miniatura": {
+      "name": "Dolomites in Miniature, San Tomaso Agordino",
+      "slug": "dolomiti-in-miniatura-san-tomaso",
+      "gloss": "a forest loop past sculptures of the Dolomite groups"
+    },
+    "dolomitiunesco-val-san-nicolo": {
+      "name": "Val San Nicolò to the Jonta waterfalls",
+      "slug": "val-san-nicolo-cascate-jonta",
+      "gloss": "a quiet valley road past hay meadows to the Jonta waterfalls and back"
+    },
+    "dolomitiunesco-pecol-malga-pioda": {
+      "name": "Pecòl to Malga Pioda",
+      "slug": "malga-pioda-pecol",
+      "gloss": "a forest road below the Civetta to the Malga Pioda pastures and back"
+    },
+    "dolomitiunesco-lavaze-malga-costa": {
+      "name": "Passo Lavazè to Malga Costa",
+      "slug": "malga-costa-passo-lavaze",
+      "gloss": "a level walk by the Lavazè lake and through stone-pine woods to Malga Costa and back"
+    },
+    "seiseralm-umser-rundweg": {
+      "name": "Umser Rundweg, Ums",
+      "slug": "umser-rundweg-ums",
+      "gloss": "a loop round the hamlet of Ums below the Schlern"
+    },
+    "seiseralm-promenadenweg-tiers": {
+      "name": "Promenadenweg, Tiers",
+      "slug": "promenadenweg-tiers",
+      "gloss": "a forest loop below the Völsegg peak above Tiers"
     }
   }
 }

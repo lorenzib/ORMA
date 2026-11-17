@@ -257,8 +257,17 @@ describe('the existing-site verification boundary',()=>{
     // Then 525 and 523 with the Dolomites one-way walks, sealed there and
     // back on the same path: Castello di Andraz, Sorafurcia to Plan de
     // Corones and the Steinmeile at Valdaora di Sotto.
-    expect(catalogue).toHaveLength(525);
-    expect(currentSiteTrails(catalogue)).toHaveLength(523);
+    // Then 526 and 524 with Pian de Namos above Auronzo, whose page only
+    // suggests another way down (owner rule of 16 November 2026).
+    // Then 527 and 525 with Dolomites batch 12: the Dolomites in Miniature
+    // sculpture loop at Celat, San Tomaso Agordino.
+    // Then 530 and 528 with the Dolomiti Accessibili sheets, sealed there and
+    // back with an ORMA-measured time: Val San Nicolò, Pecòl to Malga Pioda and
+    // Passo Lavazè to Malga Costa.
+    // Then 532 and 530 with two South Tyrol trail-register loops, climb and
+    // time measured by ORMA: the Umser Rundweg and the Promenadenweg at Tiers.
+    expect(catalogue).toHaveLength(532);
+    expect(currentSiteTrails(catalogue)).toHaveLength(530);
   });
 
   test('requires the artwork the public trail page needs',()=>{

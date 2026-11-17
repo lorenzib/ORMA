@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "seiseralm-promenadenweg-tiers",
+  "generatedAt": "2026-11-16T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.7,
+    "ascentM": 230,
+    "highestPointM": 1242,
+    "expectedDuration": "1 h 40 min",
+    "difficulty": "Moderate",
+    "shadePercent": 90
+  },
+  "trailhead": {
+    "lat": 46.475974,
+    "lng": 11.513007,
+    "label": "On the Völsegger Weg below the Ansitz Velseck, Tiers"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.477413,
+      "lng": 11.520066,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.4775609,
+      "lng": 11.514103,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The Promenadenweg has rooty, stony stretches in the forest: watch your dog’s footing.",
+    "The last 450 m are on the gravel lane to the Ansitz Velseck and the Völsegger Weg, where guests’ cars come and go: keep your dog on a short lead.",
+    "One crossing of the Völsegger Weg in the middle of the loop.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-16"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-16",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Promenadenweg, Tiers": "Promenadenweg, Tires",
+    "On the Völsegger Weg below the Ansitz Velseck, Tiers": "Sulla Via Völsegg sotto la residenza Velseck, Tires",
+    "The Promenadenweg has rooty, stony stretches in the forest: watch your dog’s footing.": "Il Promenadenweg ha tratti con radici e sassi nel bosco: fai attenzione a dove mette le zampe il cane.",
+    "The last 450 m are on the gravel lane to the Ansitz Velseck and the Völsegger Weg, where guests’ cars come and go: keep your dog on a short lead.": "Gli ultimi 450 m sono sulla stradina sterrata della residenza Velseck e sulla Via Völsegg, dove passano le auto degli ospiti: tieni il cane al guinzaglio corto.",
+    "One crossing of the Völsegger Weg in the middle of the loop.": "Un attraversamento della Via Völsegg a metà anello."
+  }
+}

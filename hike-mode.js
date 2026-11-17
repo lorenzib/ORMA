@@ -96,7 +96,13 @@ function initHikeMode(map, trail, options){
   // back again (the Tre Cime board's, and any built with --there-and-back)
   // closes on itself and is already the whole walk; halving it put the walker
   // at the far end with half the way out still to go.
-  const outAndBack = trail.routeShape === 'out-and-back' && !closes;
+  // A line drawn out and back need not close, though: Malga Crel comes home
+  // past the campsite and ends 116 m from its start, Monte Vederna 616 m.
+  // Halving those showed 2.2 km at the turnaround of a 9.2 km walk. So the
+  // line is one leg only when it is also well short of the stated distance
+  // (a leg is about half of it; the whole walk about all of it).
+  const lineIsOneLeg = totalMeters / 1000 < statedKm * 0.75;
+  const outAndBack = trail.routeShape === 'out-and-back' && !closes && lineIsOneLeg;
   // Declared shape wins over guessing from the ends. A there-and-back whose
   // line is later completed closes on itself, and closure alone would then
   // read it as a loop and switch off the next-water and next-hut readouts.
@@ -112,6 +118,13 @@ function initHikeMode(map, trail, options){
   // hike counts as a walk only when they cover most of the route.
   const walkProof = window.DoloPawsWalkProof || null;
   let coverage = null;
+  // Where along the line this walk is. A there-and-back drawn out and back,
+  // or a lollipop's stem, crosses the same ground twice; the nearest point of
+  // the line put the whole way home on the way out, so coverage stalled near
+  // half and the km readout ran backwards. walk-proof.js keeps every pass a
+  // fix could be on and follows the one the walk reached with least movement.
+  const placeLine = walkProof ? walkProof.prepareLine(trail.path, cum) : null;
+  let placement = walkProof ? walkProof.createPlacement(null) : null;
   // SOCIAL-03: where this recording began, so a loop started from any car
   // park on it ends back there. A resumed hike falls back to the line's start.
   let recordingStart = null;
@@ -663,10 +676,25 @@ function initHikeMode(map, trail, options){
       moveLiveDot(rejoin.target.lat, rejoin.target.lng);
     }
     else moveLiveDot(lat, lng);
-    const routeProgressM = rejoin
-      ? cum[rejoin.segmentIndex] +
-        (cum[rejoin.segmentIndex + 1] - cum[rejoin.segmentIndex]) * rejoin.segmentFraction
-      : cum[snap.idx];
+    // A usable fix near the line is placed on the pass the walk has reached;
+    // any other fix keeps the walk where it was last placed, so a moment of
+    // poor signal on the way home does not snap it back to the way out.
+    let placed = null;
+    if(placement && placeLine && assessment.usableForProgress){
+      const step = walkProof.placeFix(placement,
+        walkProof.passesNear(placeLine, lat, lng, walkProof.NEAR_M));
+      placement = step.placement;
+      if(step.fix.distanceM <= walkProof.NEAR_M) placed = step.fix;
+    }
+    const placedAlongM = placement ? walkProof.placedAlongM(placement) : null;
+    const routeProgressM = placed
+      ? placed.alongM
+      : placedAlongM !== null
+        ? placedAlongM
+        : rejoin
+          ? cum[rejoin.segmentIndex] +
+            (cum[rejoin.segmentIndex + 1] - cum[rejoin.segmentIndex]) * rejoin.segmentFraction
+          : cum[snap.idx];
     if(routeProgressM > furthestRouteM) furthestRouteM = routeProgressM;
     const currentRouteKm = hikeRoutePositionKm({
       routeProgressM, totalMeters, statedKm, outAndBack, furthestRouteM,
@@ -690,7 +718,7 @@ function initHikeMode(map, trail, options){
         lastKnownKm = distanceTracker.distanceM / 1000;
       }
       lastValidFixAt = fixTimestamp;
-      markCoverage(routeProgressM, routeDistanceM);
+      markCoverage(routeProgressM, placed ? placed.distanceM : routeDistanceM);
       if(!recordingStart) recordingStart = [lat, lng];
       if(walkProof && walkProof.reachedFinish({
         coverage,
@@ -864,6 +892,7 @@ function initHikeMode(map, trail, options){
     hikeStartedAt = Date.now();
     lastKnownKm = 0;
     coverage = walkProof ? walkProof.createCoverage(totalMeters) : null;
+    placement = walkProof ? walkProof.createPlacement(null) : null;
     recordingStart = null;
     distanceTracker = window.DoloPawsHikeDistance
       ? window.DoloPawsHikeDistance.create(0)
@@ -953,6 +982,8 @@ function initHikeMode(map, trail, options){
     coverage = walkProof
       ? walkProof.loadCoverage(durableSession.sessionId) || walkProof.createCoverage(totalMeters)
       : null;
+    // Pick the walk up where it was last placed on the line.
+    placement = walkProof ? walkProof.createPlacement(coverage && coverage.lastAlongM) : null;
     recordingStart = progress ? trail.path[0] : null;
     distanceTracker = window.DoloPawsHikeDistance
       ? window.DoloPawsHikeDistance.create(lastKnownKm)

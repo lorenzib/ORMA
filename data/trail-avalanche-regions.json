@@ -33,6 +33,12 @@
       ],
       "highPoint": 1134
     },
+    "alleghe-dolomiti-in-miniatura": {
+      "regions": [
+        "IT-34-BL-01"
+      ],
+      "highPoint": 1385
+    },
     "alpe-siusi": {
       "regions": [
         "IT-32-BZ-18",
@@ -152,6 +158,12 @@
         "IT-34-BL-01"
       ],
       "highPoint": 1805
+    },
+    "auronzo-namos": {
+      "regions": [
+        "IT-34-BL-03"
+      ],
+      "highPoint": 1094
     },
     "auronzo-proazei": {
       "regions": [
@@ -406,6 +418,26 @@
         "IT-34-BL-02"
       ],
       "highPoint": 2039
+    },
+    "dolomitiunesco-lavaze-malga-costa": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18-02",
+        "IT-32-TN-09"
+      ],
+      "highPoint": 1810
+    },
+    "dolomitiunesco-pecol-malga-pioda": {
+      "regions": [
+        "IT-34-BL-01"
+      ],
+      "highPoint": 1809
+    },
+    "dolomitiunesco-val-san-nicolo": {
+      "regions": [
+        "IT-32-TN-16"
+      ],
+      "highPoint": 1972
     },
     "eggental-dal-passo-costalunga-al-lago-di-carezza": {
       "regions": [
@@ -2195,6 +2227,20 @@
         "IT-32-BZ-18-02"
       ],
       "highPoint": 1025
+    },
+    "seiseralm-promenadenweg-tiers": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1242
+    },
+    "seiseralm-umser-rundweg": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1008
     },
     "sentiero-del-trenino": {
       "regions": [

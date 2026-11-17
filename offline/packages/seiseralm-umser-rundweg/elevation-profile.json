@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "seiseralm-umser-rundweg",
+  "distanceKm": 3.8,
+  "ascentM": 160,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 982
+    },
+    {
+      "km": 0.3,
+      "elev": 929
+    },
+    {
+      "km": 0.6,
+      "elev": 900
+    },
+    {
+      "km": 0.9,
+      "elev": 884
+    },
+    {
+      "km": 1.2,
+      "elev": 849
+    },
+    {
+      "km": 1.5,
+      "elev": 902
+    },
+    {
+      "km": 1.8,
+      "elev": 915
+    },
+    {
+      "km": 2,
+      "elev": 938
+    },
+    {
+      "km": 2.3,
+      "elev": 967
+    },
+    {
+      "km": 2.6,
+      "elev": 974
+    },
+    {
+      "km": 2.9,
+      "elev": 1001
+    },
+    {
+      "km": 3.2,
+      "elev": 1007
+    },
+    {
+      "km": 3.5,
+      "elev": 1008
+    },
+    {
+      "km": 3.8,
+      "elev": 988
+    }
+  ]
+}

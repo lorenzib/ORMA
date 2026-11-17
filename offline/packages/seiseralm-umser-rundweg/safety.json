@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "trailId": "seiseralm-umser-rundweg",
+  "generatedAt": "2026-11-16T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.8,
+    "ascentM": 160,
+    "highestPointM": 1008,
+    "expectedDuration": "1 h 25 min",
+    "difficulty": "Moderate",
+    "shadePercent": 37
+  },
+  "trailhead": {
+    "lat": 46.513007,
+    "lng": 11.525496,
+    "label": "By the Völser Bach below Ums, where paths 2 and 8 meet"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.503093,
+      "lng": 11.518366,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.503521,
+      "lng": 11.521547,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 1.6 km on quiet asphalt lanes between the farms, where a car or tractor may pass: keep your dog on a short lead there.",
+    "Two crossings of the Umser Straße, at the Schlernstraße and by the church in Ums: cross with care.",
+    "Farmed meadows line much of the loop: Völs keeps dogs off them.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-16"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-16",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Umser Rundweg, Ums": "Sentiero circolare di Umes",
+    "By the Völser Bach below Ums, where paths 2 and 8 meet": "Lungo il Rio di Fiè sotto Umes, dove si incontrano i sentieri 2 e 8",
+    "About 1.6 km on quiet asphalt lanes between the farms, where a car or tractor may pass: keep your dog on a short lead there.": "Circa 1,6 km su stradine asfaltate tranquille tra i masi, dove può passare un’auto o un trattore: lì tieni il cane al guinzaglio corto.",
+    "Two crossings of the Umser Straße, at the Schlernstraße and by the church in Ums: cross with care.": "Due attraversamenti della Via Umes, alla Via Sciliar e vicino alla chiesa di Umes: attraversa con attenzione.",
+    "Farmed meadows line much of the loop: Völs keeps dogs off them.": "Gran parte dell’anello costeggia prati coltivati: Fiè vieta ai cani di entrarci."
+  }
+}
