@@ -52,6 +52,8 @@
   .sc-card{background:var(--card,#fff);border:1px solid var(--paper-line,#E5DECF);border-radius:18px;padding:20px;box-shadow:0 12px 34px rgba(46,64,52,.055);}
   .sc-card h4{margin:0 0 8px;font:700 13.5px 'Inter',sans-serif;color:var(--ink,#22312A);}
   .sc-card p{margin:8px 0 0;font-size:13px;line-height:1.55;color:var(--ink-soft,#6b6350);}
+  .sc-subhead{margin:26px 0 8px;font:700 19px/1.2 'Bricolage Grotesque',sans-serif;color:#22312A;scroll-margin-top:150px;}
+  .sc-steepness{max-width:460px;margin:12px 0 14px;padding:10px 18px;}
   .sc-stat{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:5px 0;border-bottom:1px dashed var(--paper-line,#E5DECF);}
   .sc-stat:last-of-type{border-bottom:none;}
   .sc-stat b{color:var(--ink,#22312A);}
@@ -223,19 +225,19 @@
       <div class="sc-cards">
         <div class="sc-card">
           <h4>Forma bassa</h4>
-          <div class="sc-stat"><span>Terreno</span><b>Sentieri facili</b></div>
+          <div class="sc-stat"><span>Pendenza</span><b>Pendenze dolci</b></div>
           <div class="sc-stat"><span>Distanza</span><b>Fino a 5 km</b></div>
           <div class="sc-stat"><span>Dislivello</span><b>Fino a 250 m</b></div>
         </div>
         <div class="sc-card">
           <h4>Forma moderata</h4>
-          <div class="sc-stat"><span>Terreno</span><b>Sentieri ripidi ok</b></div>
+          <div class="sc-stat"><span>Pendenza</span><b>Sentieri ripidi ok</b></div>
           <div class="sc-stat"><span>Distanza</span><b>Fino a 10 km</b></div>
           <div class="sc-stat"><span>Dislivello</span><b>Fino a 600 m</b></div>
         </div>
         <div class="sc-card">
           <h4>Forma alta</h4>
-          <div class="sc-stat"><span>Terreno</span><b>Sentieri ripidi ok</b></div>
+          <div class="sc-stat"><span>Pendenza</span><b>Sentieri ripidi ok</b></div>
           <div class="sc-stat"><span>Distanza</span><b>Fino a 18 km</b></div>
           <div class="sc-stat"><span>Dislivello</span><b>Fino a 1200 m</b></div>
         </div>
@@ -243,6 +245,15 @@
 
       <p>La forma fisica risponde a quanto lontano e quanto dislivello. Per un cane adulto in salute un sentiero ripido non è un limite in sé: ciò che può fermarlo, una cengia esposta o un ghiaione, è segnalato sul sentiero. La pendenza conta ancora per la forma bassa, i cuccioli, i cani anziani, con problemi di articolazioni o schiena, a zampe corte e molto grandi. Uno di questi limiti rende i sentieri ripidi più faticosi, non vietati: solo la forma bassa, o due limiti insieme, li escludono. E un sentiero conta come ripido solo dove il tratto ripido dura 300 m o più, non per un breve gradino. Il comportamento risponde a dove. Puoi raccontarci anche del richiamo, della reattività, dell'istinto predatorio, di come sta il tuo cane con bestiame, traffico e folla, della tolleranza al caldo e della durata di passeggiata che preferisci.</p>
       <p>Queste domande funzionano diversamente dal resto del profilo. Se ne lasci una in bianco non diciamo nulla al riguardo, in nessuna delle due direzioni: nessuna penalità e nemmeno una rassicurazione. Dire che un percorso va bene per un cane di cui non abbiamo mai chiesto il richiamo è l'errore da evitare davvero.</p>
+
+      <h4 class="sc-subhead" id="pendenza">Quanto è ripido un sentiero</h4>
+      <p>Leggiamo il profilo altimetrico di ogni passeggiata e cerchiamo il tratto più ripido che dura almeno 300 m. È quel tratto, non un breve gradino, a dare la pendenza della passeggiata:</p>
+      <div class="sc-card sc-steepness">
+        <div class="sc-stat"><span>Dolce</span><b>meno del 10%</b></div>
+        <div class="sc-stat"><span>Abbastanza ripida</span><b>10–18%</b></div>
+        <div class="sc-stat"><span>Ripida, come la maggior parte dei sentieri di montagna</span><b>18% o più</b></div>
+      </div>
+      <p>Una pendenza del 10% sale di 10 m ogni 100 m di cammino. Ogni cane ha un limite sugli stessi tre gradini. Quando una passeggiata è un gradino più ripida del limite del tuo cane, la pagina del sentiero lo dice con la cifra, per esempio “il tratto più ripido è di circa il 15%, e Teo sta meglio su pendenze dolci”, e la compatibilità scende di 10 punti per gradino.</p>
 
       <h3>Passo 3 · Spieghiamo la compatibilità</h3>
       <p>Stesso sentiero, due cani, due punteggi.</p>
@@ -463,6 +474,14 @@ document.documentElement.classList.add('sc-js');
         panels[itemIndex].hidden = !active;
       });
       if (focus) buttons[index].focus();
+    }
+    // A link to something inside a step (the trail page's "How ORMA scores a
+    // walk" goes to #steepness) opens that step, or it would land on step 1.
+    var target = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    var holding = target ? panels.findIndex(function(panel){ return panel.contains(target); }) : -1;
+    if (holding > 0) {
+      show(holding, false);
+      requestAnimationFrame(function(){ target.scrollIntoView({ block:'start' }); });
     }
     buttons.forEach(function(button, index){
       button.addEventListener('click', function(){ show(index, false); });
