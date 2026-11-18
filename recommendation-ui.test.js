@@ -164,3 +164,39 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(window.recommendTrail).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('the trail page breakdown keeps the points one tap away', () => {
+  const controller = fs.readFileSync(path.join(__dirname, 'trail-recommendation.js'), 'utf8');
+  const slice = (start, end) => controller.slice(controller.indexOf(start), controller.indexOf(end));
+  // eslint-disable-next-line no-new-func
+  const breakdown = new Function(
+    `${slice('  function esc(', '  function tr(')}\n${slice('  function breakdown(', '  function sections(')}\nreturn breakdown;`
+  )();
+  const tr = (key, fallback, vars) => Object.keys(vars || {})
+    .reduce((out, name) => out.split(`{${name}}`).join(vars[name]), fallback);
+  const view = {
+    score:48, breakdownFor:'Teo', breakdown:[{}, {}, {}], notChecked:[],
+    factorRows:[
+      { topic:'Drops', detail:'Parts of the path run beside steep drops.', status:'Lowers score', tone:'cost', points:'−30' },
+      { topic:'Climb', detail:'662 m of climbing is a lot for Teo.', status:'Lowers score', tone:'cost', points:'−4' },
+      { topic:'Season', detail:'In season this month', status:'Fits', tone:'ok', points:'0' },
+    ],
+  };
+
+  test('the rows carry reasons and word pills, never a number of points', () => {
+    const html = breakdown(view, tr);
+    const rows = html.slice(html.indexOf('<ol class="recommendation-factors">'), html.indexOf('</ol>'));
+    for(const row of view.factorRows) expect(rows).toContain(row.detail);
+    expect(rows).toContain('>Lowers score<');
+    expect(rows).not.toMatch(/−\d/);
+  });
+
+  test('a closed "How the score adds up" list holds every row\'s points', () => {
+    const html = breakdown(view, tr);
+    const points = html.slice(html.indexOf('<details class="recommendation-points">'));
+    expect(points).toMatch(/^<details class="recommendation-points"><summary>How the score adds up<\/summary>/);
+    expect(points.match(/<li>/g)).toHaveLength(3);
+    expect(points).toContain('−30');
+    expect(points).toContain('−4');
+  });
+});

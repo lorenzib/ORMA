@@ -1850,6 +1850,7 @@ window.ORMA_PHRASES_IT = {
   "Checks": "Verifiche",
   "Other": "Altro",
   "Fits": "Va bene",
+  "Lowers score": "Toglie punti",
   "{distance} km": "{distance} km",
   "{ascent} m up": "{ascent} m di salita",
   "Fits the time you have": "Rientra nel tempo che hai",
