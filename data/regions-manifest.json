@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-18T10:01:51.018Z",
+  "generatedAt": "2026-11-18T21:55:15.957Z",
   "regions": {
     "dolomites": {
       "trailCount": 380,
-      "trails": "data/regions/dolomites-trails.js?v=6f0de517e899",
+      "trails": "data/regions/dolomites-trails.js?v=43a224f48ccb",
       "details": {
-        "alpe-siusi": "data/trail-details/alpe-siusi.js?v=27d6277ba004",
+        "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
         "santa-maddalena": "data/trail-details/santa-maddalena.js?v=7b0b5a07444a",
         "tre-cime": "data/trail-details/tre-cime.js?v=ec96a1f62b42",
@@ -15,16 +15,16 @@
         "nuvolau": "data/trail-details/nuvolau.js?v=e2115678b59a",
         "lago-braies": "data/trail-details/lago-braies.js?v=0fd136648572",
         "lago-carezza": "data/trail-details/lago-carezza.js?v=e3fd8f90e4df",
-        "lago-sorapis": "data/trail-details/lago-sorapis.js?v=aedab5578e39",
+        "lago-sorapis": "data/trail-details/lago-sorapis.js?v=4244af4bdd77",
         "valley-view": "data/trail-details/valley-view.js?v=10fd7fd16496",
         "piancavallo": "data/trail-details/piancavallo.js?v=76d38935ff53",
         "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=6b01664c4a7e",
         "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=1fd1becf6498",
-        "sentiero-hans-e-paula-steger": "data/trail-details/sentiero-hans-e-paula-steger.js?v=95937c10f9c6",
+        "sentiero-hans-e-paula-steger": "data/trail-details/sentiero-hans-e-paula-steger.js?v=3fa7e5d84387",
         "sentiero-del-trenino": "data/trail-details/sentiero-del-trenino.js?v=68aebd4206f5",
         "giro-del-sasso-lungo": "data/trail-details/giro-del-sasso-lungo.js?v=8d07d60a78f3",
         "osm-123162": "data/trail-details/osm-123162.js?v=ba108eb4a6ef",
-        "osm-1116675": "data/trail-details/osm-1116675.js?v=69bf15849ef8",
+        "osm-1116675": "data/trail-details/osm-1116675.js?v=92222fc35e61",
         "osm-1116680": "data/trail-details/osm-1116680.js?v=74736220f4ee",
         "osm-1780768": "data/trail-details/osm-1780768.js?v=e0215a1ecb20",
         "osm-2179746": "data/trail-details/osm-2179746.js?v=bdbbe1144e45",
@@ -39,10 +39,10 @@
         "osm-6529356": "data/trail-details/osm-6529356.js?v=371cea9bfc7f",
         "osm-6823031": "data/trail-details/osm-6823031.js?v=4ef400871d80",
         "osm-7045225": "data/trail-details/osm-7045225.js?v=f8faafd3be82",
-        "osm-7388748": "data/trail-details/osm-7388748.js?v=898eb2315414",
+        "osm-7388748": "data/trail-details/osm-7388748.js?v=befbccfdfa31",
         "osm-7446701": "data/trail-details/osm-7446701.js?v=ab75db0a8391",
         "osm-7546708": "data/trail-details/osm-7546708.js?v=b385e0b1af17",
-        "osm-7547653": "data/trail-details/osm-7547653.js?v=40337d9aa010",
+        "osm-7547653": "data/trail-details/osm-7547653.js?v=97f6f17635c2",
         "osm-7547983": "data/trail-details/osm-7547983.js?v=d634ec2c48af",
         "osm-7548201": "data/trail-details/osm-7548201.js?v=9d7f6bd8c25a",
         "osm-7548344": "data/trail-details/osm-7548344.js?v=9fe040d4375a",
@@ -379,9 +379,9 @@
         "kronplatz-steinmeile": "data/trail-details/kronplatz-steinmeile.js?v=eb32c07d885e",
         "auronzo-namos": "data/trail-details/auronzo-namos.js?v=bbb523db7c50",
         "alleghe-dolomiti-in-miniatura": "data/trail-details/alleghe-dolomiti-in-miniatura.js?v=5c56005e48fb",
-        "dolomitiunesco-val-san-nicolo": "data/trail-details/dolomitiunesco-val-san-nicolo.js?v=6518a17da445",
-        "dolomitiunesco-pecol-malga-pioda": "data/trail-details/dolomitiunesco-pecol-malga-pioda.js?v=dc0aababfd4e",
-        "dolomitiunesco-lavaze-malga-costa": "data/trail-details/dolomitiunesco-lavaze-malga-costa.js?v=0ab25ac49dcd",
+        "dolomitiunesco-val-san-nicolo": "data/trail-details/dolomitiunesco-val-san-nicolo.js?v=02f9d0231212",
+        "dolomitiunesco-pecol-malga-pioda": "data/trail-details/dolomitiunesco-pecol-malga-pioda.js?v=004b414bcaf8",
+        "dolomitiunesco-lavaze-malga-costa": "data/trail-details/dolomitiunesco-lavaze-malga-costa.js?v=b74d683f10b1",
         "seiseralm-umser-rundweg": "data/trail-details/seiseralm-umser-rundweg.js?v=bb1082871a50",
         "seiseralm-promenadenweg-tiers": "data/trail-details/seiseralm-promenadenweg-tiers.js?v=a4f0e7db0484",
         "auronzo-pian-di-barco": "data/trail-details/auronzo-pian-di-barco.js?v=cec1ee180099",
@@ -394,7 +394,7 @@
     },
     "savoy": {
       "trailCount": 59,
-      "trails": "data/regions/savoy-trails.js?v=8f112a175e96",
+      "trails": "data/regions/savoy-trails.js?v=7b20f1d485f9",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=ac1a219e3928",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=33e57d48bf41",
@@ -404,7 +404,7 @@
         "osm-20347406": "data/trail-details/osm-20347406.js?v=6dab8abc850d",
         "osm-11517208": "data/trail-details/osm-11517208.js?v=39e39ecaa22c",
         "osm-14987412": "data/trail-details/osm-14987412.js?v=9c354c27731b",
-        "osm-18055492": "data/trail-details/osm-18055492.js?v=27f89f8db83c",
+        "osm-18055492": "data/trail-details/osm-18055492.js?v=a0a304f049db",
         "osm-14864704": "data/trail-details/osm-14864704.js?v=2abf8f1a6269",
         "osm-14095296": "data/trail-details/osm-14095296.js?v=33467d524df3",
         "osm-16322228": "data/trail-details/osm-16322228.js?v=c2c02e5ce288",
@@ -422,8 +422,8 @@
         "osm-12121798": "data/trail-details/osm-12121798.js?v=3c0ae6660c72",
         "osm-12127424": "data/trail-details/osm-12127424.js?v=6df885509d9e",
         "osm-12745924": "data/trail-details/osm-12745924.js?v=23187ea6bcac",
-        "osm-13337921": "data/trail-details/osm-13337921.js?v=8ce9aa505cfb",
-        "osm-13338113": "data/trail-details/osm-13338113.js?v=bf989173ba80",
+        "osm-13337921": "data/trail-details/osm-13337921.js?v=2447c430e636",
+        "osm-13338113": "data/trail-details/osm-13338113.js?v=04664a9ecbba",
         "osm-14375158": "data/trail-details/osm-14375158.js?v=596d9837964e",
         "osm-14376573": "data/trail-details/osm-14376573.js?v=244400262fe0",
         "osm-14377007": "data/trail-details/osm-14377007.js?v=2ccebfd45832",
@@ -433,10 +433,10 @@
         "osm-14381570": "data/trail-details/osm-14381570.js?v=70bf5a4ac691",
         "osm-14381584": "data/trail-details/osm-14381584.js?v=273e192f948e",
         "osm-14381788": "data/trail-details/osm-14381788.js?v=597e96051364",
-        "osm-14381930": "data/trail-details/osm-14381930.js?v=fd4b2f3436e3",
+        "osm-14381930": "data/trail-details/osm-14381930.js?v=b2ca93efd2ab",
         "osm-15321049": "data/trail-details/osm-15321049.js?v=ce5909e9c68b",
         "osm-15321786": "data/trail-details/osm-15321786.js?v=7f6307a4e120",
-        "osm-15535697": "data/trail-details/osm-15535697.js?v=2690721d8e4e",
+        "osm-15535697": "data/trail-details/osm-15535697.js?v=70174dc98337",
         "osm-16180587": "data/trail-details/osm-16180587.js?v=d2a4c5ccef17",
         "osm-16218739": "data/trail-details/osm-16218739.js?v=82a34ff7d7ab",
         "osm-16490407": "data/trail-details/osm-16490407.js?v=b6c360334a54",
@@ -445,7 +445,7 @@
         "osm-19541366": "data/trail-details/osm-19541366.js?v=040e713400e7",
         "osm-19661726": "data/trail-details/osm-19661726.js?v=a3b6cc4ba0c6",
         "osm-19760372": "data/trail-details/osm-19760372.js?v=f07517fdd181",
-        "osm-19855818": "data/trail-details/osm-19855818.js?v=b1b49a94b77e",
+        "osm-19855818": "data/trail-details/osm-19855818.js?v=2a4c993dd111",
         "osm-21021130": "data/trail-details/osm-21021130.js?v=b22f4272b28d",
         "savoie-promenade-confort-lac-et-barrage-de-saint-guerin": "data/trail-details/savoie-promenade-confort-lac-et-barrage-de-saint-guerin.js?v=a5711ed95069",
         "savoie-itineraire-poussette-des-chalets-brules": "data/trail-details/savoie-itineraire-poussette-des-chalets-brules.js?v=13bb193c15d2",
@@ -480,7 +480,7 @@
     },
     "lombardy": {
       "trailCount": 14,
-      "trails": "data/regions/lombardy-trails.js?v=d836f1f8aab0",
+      "trails": "data/regions/lombardy-trails.js?v=134fd19e4855",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=ba72cffa8ee5",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=1549bacc0a6c",
@@ -495,7 +495,7 @@
         "valtellina-passo-di-campagneda": "data/trail-details/valtellina-passo-di-campagneda.js?v=06d8feba617c",
         "valchiavenna-ai-laghi-del-baldiscio": "data/trail-details/valchiavenna-ai-laghi-del-baldiscio.js?v=5dc16ea054d3",
         "lario-nel-cuore-del-triangolo-lariano": "data/trail-details/lario-nel-cuore-del-triangolo-lariano.js?v=1607cf727288",
-        "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "data/trail-details/lario-dal-passo-del-giovo-al-rifugio-sommafiume.js?v=1089b383bf1a"
+        "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "data/trail-details/lario-dal-passo-del-giovo-al-rifugio-sommafiume.js?v=58054bb2867a"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -531,14 +531,14 @@
     },
     "aosta": {
       "trailCount": 6,
-      "trails": "data/regions/aosta-trails.js?v=7c0a6c7801ab",
+      "trails": "data/regions/aosta-trails.js?v=742bda3b3318",
       "details": {
         "aosta-ru-courtaud": "data/trail-details/aosta-ru-courtaud.js?v=0f45eb0da32b",
-        "aosta-champoluc-cascata-mascognaz": "data/trail-details/aosta-champoluc-cascata-mascognaz.js?v=d1a17ef05b21",
+        "aosta-champoluc-cascata-mascognaz": "data/trail-details/aosta-champoluc-cascata-mascognaz.js?v=13af409179f5",
         "aosta-periasc-antagnod": "data/trail-details/aosta-periasc-antagnod.js?v=ebed6a3a9bd2",
         "aosta-sentiero-della-regina": "data/trail-details/aosta-sentiero-della-regina.js?v=2c6d02d614f1",
         "aosta-strada-lombarda": "data/trail-details/aosta-strada-lombarda.js?v=f165d9b9c39d",
-        "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "data/trail-details/aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande.js?v=0eeddbdee621"
+        "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": "data/trail-details/aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande.js?v=96c2ce5bbe2b"
       },
       "water": "data/regions/aosta-water.geojson",
       "hutsBars": "data/regions/aosta-huts-bars.geojson",
@@ -547,12 +547,12 @@
     },
     "piedmont": {
       "trailCount": 6,
-      "trails": "data/regions/piedmont-trails.js?v=75ba2a5a8cde",
+      "trails": "data/regions/piedmont-trails.js?v=a1b16610c41f",
       "details": {
-        "valsesia-gta-tappa-21-campello-monti-rimella": "data/trail-details/valsesia-gta-tappa-21-campello-monti-rimella.js?v=933f79ba5c1c",
-        "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "data/trail-details/valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo.js?v=296ab2113c76",
+        "valsesia-gta-tappa-21-campello-monti-rimella": "data/trail-details/valsesia-gta-tappa-21-campello-monti-rimella.js?v=7ad0c44a1326",
+        "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "data/trail-details/valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo.js?v=0bab2b4505b2",
         "valsesia-cervatto-madonna-del-balmone": "data/trail-details/valsesia-cervatto-madonna-del-balmone.js?v=bd450431c1b0",
-        "valsesia-campello-monti-alpe-fornale-di-sopra": "data/trail-details/valsesia-campello-monti-alpe-fornale-di-sopra.js?v=d0abb6e537f0",
+        "valsesia-campello-monti-alpe-fornale-di-sopra": "data/trail-details/valsesia-campello-monti-alpe-fornale-di-sopra.js?v=23dec6c41ef1",
         "valsesia-campello-monti-colle-dell-usciolo": "data/trail-details/valsesia-campello-monti-colle-dell-usciolo.js?v=51f9e82d2f50",
         "valsesia-campello-monti-lago-del-capezzone": "data/trail-details/valsesia-campello-monti-lago-del-capezzone.js?v=8deca43496be"
       },
@@ -563,7 +563,7 @@
     },
     "tyrol": {
       "trailCount": 23,
-      "trails": "data/regions/tyrol-trails.js?v=68f7f866f865",
+      "trails": "data/regions/tyrol-trails.js?v=6df0ae0ae155",
       "details": {
         "osttirol-rundwanderung-schloss-weissenstein": "data/trail-details/osttirol-rundwanderung-schloss-weissenstein.js?v=0bbd094e44f4",
         "osttirol-naturkraftweg-umbalfaelle": "data/trail-details/osttirol-naturkraftweg-umbalfaelle.js?v=5a4d3208ded4",
@@ -587,7 +587,7 @@
         "weissensee-nordic-8-naggler-alm": "data/trail-details/weissensee-nordic-8-naggler-alm.js?v=69977b7ca8b6",
         "weissensee-techendorf-tschabitscher-kreuzwirt": "data/trail-details/weissensee-techendorf-tschabitscher-kreuzwirt.js?v=a3ab1725968b",
         "weissensee-ortsee-ronacherfels": "data/trail-details/weissensee-ortsee-ronacherfels.js?v=11a99a7d55a2",
-        "gailtal-auernig-hoehenweg": "data/trail-details/gailtal-auernig-hoehenweg.js?v=477fa35fde64"
+        "gailtal-auernig-hoehenweg": "data/trail-details/gailtal-auernig-hoehenweg.js?v=dad0807cb244"
       },
       "water": "data/regions/tyrol-water.geojson",
       "hutsBars": "data/regions/tyrol-huts-bars.geojson",
