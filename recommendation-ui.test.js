@@ -31,9 +31,13 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).toContain('root.dataset.scoringVersion = view.scoringVersion');
   });
 
-  test('only a strong option gets the green tick on the fine line', () => {
-    expect(controller).toContain("view.fineTone === 'reassure' ? '' : ' is-neutral'");
-    expect(html).toContain('.recommendation-fine.is-neutral::before{content:none;}');
+  test('each breakdown row carries a status chip, and unknowns sit apart', () => {
+    expect(controller).toContain('recommendation-factor-status is-${esc(row.tone)}');
+    expect(html).toContain('.recommendation-factor-status.is-ok{');
+    expect(html).toContain('.recommendation-factor-status.is-cost{');
+    expect(controller).toContain('recommendation-unchecked');
+    // The fold line and its bare "fine" chip are gone.
+    expect(controller).not.toContain('recommendation-fine');
   });
 
   test('conclusion, reasons, cautions, and unknowns come from one presentation', () => {
@@ -152,7 +156,9 @@ describe('UX-04 canonical recommendation journey', () => {
     // Internal unknown-count and scoring language stay out of customer copy.
     expect(document.body.textContent).not.toContain('trail fact not yet verified');
     expect(document.body.textContent).not.toContain('Canonical scoring');
-    expect(block.textContent).not.toContain('Access is not reviewed.');
+    // What the score could not check is said apart, under its own heading.
+    expect(block.querySelector('.recommendation-unchecked').textContent).toContain('Access is not reviewed.');
+    expect(block.querySelector('.recommendation-factors')).toBeNull();
     expect(document.getElementById('heroVerdict').textContent)
       .toBe('Good with care in an unpersonalized planning view.');
     expect(window.recommendTrail).toHaveBeenCalledTimes(1);

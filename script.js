@@ -4232,54 +4232,26 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   const view = liRecommendationView(trail, profile);
   if(!view) return '';
   const dogName = liScoredSubject(profile);
-  const items = entries => entries.map(entry => `<li>${liPersonalisationText(entry)}</li>`).join('');
-  // The folded phrases carry the positives that cost nothing; a positive with
-  // no short form of its own keeps a row, so nothing is dropped silently. With
-  // nothing folded the ranked reasons stand on their own and cannot repeat it.
-  const standalone = (view.breakdownRows || [])
-    .filter(row => row && row.kind === 'positive' && row.message)
-    .map(row => row.message);
-  const bullets = (standalone.length ? standalone : view.fits.length ? [] : view.reasons).slice(0, 2);
-  // Both halves of this card say the same kind of thing in the same way.
-  //
-  // "What to know today" has always been short sentences in a list. This side
-  // used the adapter's fold-line instead -- the phrases joined into one
-  // sentence with the "Fine for Eddie:" prefix dropped, because the heading
-  // already names the dog. With seven positives that is a seven-item fragment
-  // with no verb in it, set beside two plain sentences, and it reads as two
-  // voices on one card.
-  //
-  // It also *looked* different, for a reason no test could see: the paragraph
-  // carried `li-answer-fine`, a class with no rule anywhere in the stylesheet,
-  // so it inherited the card's base size while the list beside it is set to
-  // 11px. Listing these fixes the size as a side effect, because they now use
-  // the same rule.
-  //
-  // Four at most. Seen at full length on the live card, seven reasons against
-  // two cautions is lopsided, and on a card about whether a walk suits a dog
-  // the cautions are the half worth reading. The engine emits the positives in
-  // its own order and they all cost nothing, so there is no "most important"
-  // four to pick -- this is the first four, and the trail page still carries
-  // the complete line for anyone who wants all of them.
-  const FIT_LIMIT = 4;
-  const fitList = view.fits.slice(0, FIT_LIMIT);
-  const fitBody = [
-    fitList.length ? `<ul>${items(fitList)}</ul>` : '',
-    bullets.length ? `<ul>${items(bullets)}</ul>` : '',
-  ].join('');
-  const fit = fitBody
-    ? `<div><b>${liIsNotRecommended(trail) ? tx('Not the problem here') : tx('Why it fits {name}', { name:liPersonalisationText(dogName) })}</b>${fitBody}</div>`
+  // One verdict line and the cautions under it. The card used to list "Why
+  // it fits" beside "What to know today": five bullets of equal weight on one
+  // side ("The terrain is manageable.") and, as often as not, a single line on
+  // the other that had nothing to do with today. A card is skimmed in a list
+  // of a dozen, so it now says the verdict in one sentence -- "Good for Teo:
+  // 9.6 km, a gentle 170 m climb and water on the way." -- and the one or two
+  // things to check. The trail page keeps the full row-by-row breakdown.
+  const verdict = view.cardVerdict
+    ? `<p class="li-answer-verdict"><span><b>${liPersonalisationText(view.cardVerdict.lead)}:</b> ${liPersonalisationText(view.cardVerdict.facts)}.</span></p>`
     : '';
   // Cautions first (hard stops already lead them), then what is simply not
   // known, which is a different kind of statement and belongs after. Only
   // trail unknowns: a missing profile field becomes the prompt below, and
-  // saying the same thing twice on one card reads as two problems. The card
-  // says them in plain words (cardCautions), not in the engine's own terms.
-  const concerns = view.cardCautions.slice(0, 3);
-  if(concerns.length < 2) concerns.push(...view.cardTrailUnknowns.slice(0, 2 - concerns.length));
-  const know = concerns.length
-    ? `<div><b>${liWalkDate === liDateOffsetIso(0) ? tx('What to know today') : tx('What to know for this day')}</b><ul>${items(concerns)}</ul></div>`
-    : '';
+  // saying the same thing twice on one card reads as two problems. A strong
+  // option says one; any other verdict says why it is not one, so two.
+  const limit = recommendation && recommendation.category === 'strong-option' ? 1 : 2;
+  const concerns = view.cardCautions.slice(0, limit);
+  if(concerns.length < limit) concerns.push(...view.cardTrailUnknowns.slice(0, limit - concerns.length));
+  const know = concerns
+    .map(entry => `<p class="li-answer-check">${liPersonalisationText(entry)}</p>`).join('');
   const fresh = isNew
     ? `<p class="li-answer-new"><b>${tx('New for {name}.', { name:liPersonalisationText(dogName) })}</b> ${liNewForMeaning(profile)}</p>`
     : '';
@@ -4297,7 +4269,7 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   // every card also has: two of the same button on one card is one too many.
   const panelId = `li-why-${encodeURIComponent(trail.id)}`;
   return `<div class="li-answer-explanation" id="${panelId}"${open ? '' : ' hidden'}>
-    ${fresh}${fit}${know}${gap}
+    ${fresh}${verdict}${know}${gap}
     <div class="li-answer-actions">
       <a class="li-answer-open" href="${liTrailHref(trail.id)}">${tx('View trail details')}</a>
     </div>
