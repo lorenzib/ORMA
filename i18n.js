@@ -948,6 +948,22 @@
     'browse.filters.terrain': 'Terrain underfoot',
     'browse.filters.show': 'Show trails',
     'browse.filters.showCount': 'Show {count}',
+    'browse.filters.filterDistance': 'Filter by distance',
+    'browse.filters.filterRating': 'Filter by trail rating',
+    'browse.filters.filterTerrain': 'Filter by terrain tolerance',
+    'browse.filters.filterHeat': 'Filter by reviewed shade or heat',
+    'browse.filters.filterExposure': 'Filter by reviewed exposure',
+    'browse.filters.filterAccess': 'Filter by reviewed dog access',
+    'browse.filters.filterCountry': 'Filter trails by country',
+    'browse.filters.filterRegion': 'Filter trails by region',
+    'browse.filters.filterValley': 'Filter trails by valley',
+    'browse.filters.anyHeat': 'Any shade or heat data',
+    'browse.filters.shade30': 'At least 30% shade',
+    'browse.filters.anyExposure': 'Any exposure data',
+    'browse.filters.anyAccess': 'Any dog-access status',
+    'browse.filters.upTo3': 'Up to 3 km',
+    'browse.filters.upTo6': 'Up to 6 km',
+    'browse.filters.upTo20': 'Up to 20 km',
     'browse.quick.aria': 'Quick dog filters',
     'browse.quick.shade': 'High shade',
     'browse.quick.water': 'Water',
@@ -1754,6 +1770,8 @@
     'page.index.trailActions': 'Trail actions',
     'page.index.trailMapNumberedMarkersCorrespond': 'Trail map. Numbered markers correspond to the ranked shortlist; other trails are grey.',
     'page.index.drawARouteHere': 'Draw a route here',
+    'page.index.todaysPicks': 'Today’s picks',
+    'page.index.backToTodaysPicks': '← Back to today’s picks',
     'page.index.expandMap': 'Expand map',
     'page.index.mapKey': 'Map key',
     'page.index.1MatchesList': '<i class="is-ranked">1</i>Matches list',
@@ -2929,6 +2947,22 @@
     'browse.filters.terrain': 'Terreno',
     'browse.filters.show': 'Mostra sentieri',
     'browse.filters.showCount': 'Mostra {count}',
+    'browse.filters.filterDistance': 'Filtra per distanza',
+    'browse.filters.filterRating': 'Filtra per valutazione del sentiero',
+    'browse.filters.filterTerrain': 'Filtra per tolleranza al terreno',
+    'browse.filters.filterHeat': 'Filtra per ombra o caldo verificati',
+    'browse.filters.filterExposure': 'Filtra per esposizione verificata',
+    'browse.filters.filterAccess': 'Filtra per accesso dei cani verificato',
+    'browse.filters.filterCountry': 'Filtra i sentieri per paese',
+    'browse.filters.filterRegion': 'Filtra i sentieri per regione',
+    'browse.filters.filterValley': 'Filtra i sentieri per valle',
+    'browse.filters.anyHeat': 'Qualsiasi dato su ombra o caldo',
+    'browse.filters.shade30': 'Almeno il 30% di ombra',
+    'browse.filters.anyExposure': 'Qualsiasi dato sull’esposizione',
+    'browse.filters.anyAccess': 'Qualsiasi regola di accesso per i cani',
+    'browse.filters.upTo3': 'Fino a 3 km',
+    'browse.filters.upTo6': 'Fino a 6 km',
+    'browse.filters.upTo20': 'Fino a 20 km',
     'browse.quick.aria': 'Filtri rapidi per il cane',
     'browse.quick.shade': 'Molta ombra',
     'browse.quick.water': 'Acqua',
@@ -3735,6 +3769,8 @@
     'page.index.trailActions': 'Azioni sul sentiero',
     'page.index.trailMapNumberedMarkersCorrespond': 'Mappa dei sentieri. I segnaposto numerati corrispondono alla classifica; gli altri sentieri sono in grigio.',
     'page.index.drawARouteHere': 'Disegna un percorso qui',
+    'page.index.todaysPicks': 'Le scelte di oggi',
+    'page.index.backToTodaysPicks': '← Torna alle scelte di oggi',
     'page.index.expandMap': 'Ingrandisci la mappa',
     'page.index.mapKey': 'Legenda',
     'page.index.1MatchesList': '<i class="is-ranked">1</i>In classifica',
@@ -3990,6 +4026,7 @@
   try {
     lang = localStorage.getItem(STORAGE_KEY);
   } catch (e) { lang = null; }
+  const chosen = lang === 'en' || lang === 'it';
   if (lang !== 'en' && lang !== 'it') {
     lang = (navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
   }
@@ -3997,6 +4034,12 @@
   // its menus and footer follow it whatever the saved choice is.
   const fixedLang = document.documentElement.getAttribute('data-orma-lang');
   if (fixedLang === 'en' || fixedLang === 'it') lang = fixedLang;
+  // Somebody who arrives on an Italian copy (from a search, say) and has never
+  // picked a language keeps Italian as they move on to the app's pages, which
+  // otherwise follow the browser. A saved choice is never overwritten.
+  if (fixedLang === 'it' && !chosen) {
+    try { localStorage.setItem(STORAGE_KEY, 'it'); } catch (e) { /* storage blocked: this page stays Italian */ }
+  }
   document.documentElement.lang = lang;
 
   // Wording that scripts write on the page uses the English sentence as its own
@@ -4216,10 +4259,11 @@
     links.appendChild(wrap);
   }
 
-  // Guides, the safety library and the legal pages have Italian copies under
-  // /it/. Italian readers following a link to one get the copy. Links built
-  // later by scripts are caught when they are clicked.
-  const ITALIAN_COPY = /^\/((?:guides\/[\w-]+|safety-guide|privacy|terms)\.html)$/;
+  // Guides, the safety library, the legal pages and the main pages (home,
+  // browse, about, scoring, contact) have Italian copies under /it/. Italian
+  // readers following a link to one get the copy. Links built later by scripts
+  // are caught when they are clicked.
+  const ITALIAN_COPY = /^\/((?:guides\/[\w-]+|safety-guide|privacy|terms|browse-trails|about|how-scoring-works|contact)\.html|index\.html|)$/;
   function italianCopyOf(anchor){
     if (lang !== 'it' || !anchor || !anchor.href) return null;
     let url;
@@ -4227,7 +4271,7 @@
     if (url.origin !== location.origin) return null;
     const match = ITALIAN_COPY.exec(url.pathname);
     if (!match) return null;
-    url.pathname = '/it/' + match[1];
+    url.pathname = '/it/' + match[1].replace(/^index\.html$/, '');
     return url.href;
   }
   function routeToItalianCopies(){

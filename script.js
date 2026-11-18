@@ -381,6 +381,18 @@ function liLoadWalkDate(){
 
 let liWalkDate = liLoadWalkDate();
 
+// The homepage opens on "Today's picks": three walks from the ranked list. The
+// map and the full list are one press away, and stay open for the rest of the
+// session once opened (sessionStorage, so a new visit opens on the picks).
+const LI_MAP_REVEALED_SESSION_KEY = 'orma-home-map-revealed-v1';
+const LI_PICK_COUNT = 3;
+function liLoadMapRevealed(){
+  try{
+    return typeof sessionStorage !== 'undefined' && sessionStorage.getItem(LI_MAP_REVEALED_SESSION_KEY) === '1';
+  }catch(error){ return false; }
+}
+let liMapRevealed = liLoadMapRevealed();
+
 // Read as the end of the headline: "...in Alta Pusteria tomorrow",
 // "...on Saturday 25 Oct".
 function liWalkDateLabel(){
@@ -841,6 +853,12 @@ function liFocusSearchForPlace(){
 const LI_LOCATION_NUDGE_DISMISSED_KEY = 'orma-home-location-nudge-dismissed-v1';
 let liLocationPermission = 'unknown';   // unknown | prompt | granted | denied | error | unavailable
 let liLocationRequestPending = false;
+// Set when the reader's position has no ORMA walk within reach: the page
+// stays on the Dolomites and says so, with how far the nearest walk is.
+let liOutOfRange = null;
+const LI_LOCATION_ASKED_KEY = 'orma-location-asked-v1';
+let liLocationAsked = false;   // also kept here, for browsers that block storage
+const LI_OUT_OF_RANGE_DISMISSED_KEY = 'orma-out-of-range-dismissed-v1';
 
 // Dismissing it is an answer, not a mood: someone who closed this does not
 // want to be asked again next time they open ORMA. localStorage rather than
@@ -851,8 +869,30 @@ function liLocationNudgeDismissed(){
 }
 
 function liDismissLocationNudge(){
-  try{ localStorage.setItem(LI_LOCATION_NUDGE_DISMISSED_KEY, '1'); }catch(error){}
+  if(liOutOfRange){
+    // Closing "ORMA isn't in your area yet" is for this visit only; the
+    // offer to turn on location is a separate, longer-lived choice.
+    try{ sessionStorage.setItem(LI_OUT_OF_RANGE_DISMISSED_KEY, '1'); }catch(error){}
+  } else {
+    try{ localStorage.setItem(LI_LOCATION_NUDGE_DISMISSED_KEY, '1'); }catch(error){}
+  }
   liRenderLocationNudge();
+}
+
+function liOutOfRangeDismissed(){
+  try{ return sessionStorage.getItem(LI_OUT_OF_RANGE_DISMISSED_KEY) === '1'; }catch(error){ return false; }
+}
+
+// The nearest ORMA walk to a position, in whole km, or null with no catalogue.
+function liNearestTrailKm(lat, lng){
+  let best = Infinity;
+  liCatalogueTrails().forEach(trail => {
+    const point = liTrailLngLat(trail);
+    if(!point) return;
+    const km = liDistanceKm(lat, lng, point[1], point[0]);
+    if(km < best) best = km;
+  });
+  return Number.isFinite(best) ? Math.round(best) : null;
 }
 
 // Anything ORMA has within reach of a position. The page only moves itself
@@ -865,8 +905,9 @@ function liAnyTrailNear(lat, lng, radiusKm){
   });
 }
 
-// `auto` is the page acting on a permission already granted, not the reader
-// pressing Near me: that one is shown even when nothing is close.
+// `auto` is the page acting by itself (a permission already granted, or the
+// one ask on a first visit), not the reader pressing Near me. Either way a
+// position with nothing close keeps the Dolomites and says so.
 function liRequestCurrentLocation(options){
   const auto = !!(options && options.auto);
   if(typeof navigator === 'undefined' || !navigator.geolocation){
@@ -882,12 +923,16 @@ function liRequestCurrentLocation(options){
     liLocationPermission = 'granted';
     const lat = Number(position.coords.latitude);
     const lng = Number(position.coords.longitude);
-    if(auto && !liAnyTrailNear(lat, lng, LI_LOCATION_RADIUS_KM)){
-      // Nothing within reach: stay on the Dolomites. Jumping to whichever
-      // region had the nearest trail opened the page somewhere nobody chose.
+    if(!liAnyTrailNear(lat, lng, LI_LOCATION_RADIUS_KM)){
+      // Nothing within reach: show the Dolomites and say why, rather than an
+      // empty "near you" list. Jumping to whichever region had the nearest
+      // trail opened the page somewhere nobody chose.
+      liOutOfRange = { nearestKm:liNearestTrailKm(lat, lng) };
+      if(!auto && liLocationContext && liLocationContext.kind === 'current') liSetLocationContext(liDefaultLocationContext());
       liRenderLocationNudge();
       return;
     }
+    liOutOfRange = null;
     liSetLocationContext({ kind:'current', lat, lng, radiusKm:LI_LOCATION_RADIUS_KM });
   }, error => {
     liLocationRequestPending = false;
@@ -899,6 +944,11 @@ function liRequestCurrentLocation(options){
 // Reads the permission state without asking for anything. Only a permission
 // the owner already granted is acted on, and only when nothing else was
 // chosen: a saved town or valley is a decision, and a position is not.
+function liLocationAskedThisVisit(){
+  if(liLocationAsked) return true;
+  try{ return sessionStorage.getItem(LI_LOCATION_ASKED_KEY) === '1'; }catch(error){ return false; }
+}
+
 async function liProbeLocationPermission(){
   if(typeof navigator === 'undefined' || !navigator.geolocation){
     liLocationPermission = 'unavailable';
@@ -919,7 +969,15 @@ async function liProbeLocationPermission(){
     }
   }catch(error){ state = 'prompt'; }
   liLocationPermission = state;
-  if(state === 'granted' && liLocationContext && liLocationContext.auto) liRequestCurrentLocation({ auto:true });
+  const chosenNothing = !!(liLocationContext && liLocationContext.auto);
+  if(state === 'granted' && chosenNothing) liRequestCurrentLocation({ auto:true });
+  else if(state === 'prompt' && chosenNothing && !liLocationAskedThisVisit()){
+    // The homepage follows where the reader is, so a first visit with no
+    // place chosen asks once. Saying no leaves the Dolomites and the band.
+    liLocationAsked = true;
+    try{ sessionStorage.setItem(LI_LOCATION_ASKED_KEY, '1'); }catch(error){}
+    liRequestCurrentLocation({ auto:true });
+  }
   else liRenderLocationNudge();
 }
 
@@ -930,10 +988,20 @@ function liRenderLocationNudge(){
   const detail = document.getElementById('liLocationNudgeDetail');
   const button = document.getElementById('liLocationNudgeBtn');
   const located = !!liLocationContext && liLocationContext.kind === 'current';
-  const show = !located && !liLocationNudgeDismissed() && liLocationPermission !== 'granted';
+  // Picking a town or valley clears liOutOfRange (liSetLocationContext), so
+  // the caveat shows only until the reader has chosen somewhere.
+  const outOfRange = !!liOutOfRange && !located && !liOutOfRangeDismissed();
+  const show = outOfRange || (!located && !liLocationNudgeDismissed() && liLocationPermission !== 'granted');
   nudge.hidden = !show;
   if(!show) return;
-  const copy = liLocationRequestPending
+  const nearest = liOutOfRange && Number.isFinite(liOutOfRange.nearestKm) ? liOutOfRange.nearestKm : null;
+  const copy = outOfRange
+    ? { title:tx('ORMA isn’t in your area yet'),
+        detail:nearest !== null
+          ? tx('The nearest ORMA walk is {km} km away. We cover the Dolomites and parts of the Alps, so here are the Dolomites. Search a town or valley to look elsewhere.', { km:nearest.toLocaleString() })
+          : tx('We cover the Dolomites and parts of the Alps, so here are the Dolomites. Search a town or valley to look elsewhere.'),
+        button:null }
+    : liLocationRequestPending
     ? { title:tx('Finding you…'), detail:tx('Your position stays in this browser session and is not added to your profile.'), button:tx('Finding you…'), disabled:true }
     : liLocationPermission === 'denied'
       ? { title:tx('Location is off for ORMA in this browser'), detail:tx('Turn it on in your browser’s site settings, or search for a town or valley.'), button:null }
@@ -949,7 +1017,7 @@ function liRenderLocationNudge(){
     button.disabled = !!copy.disabled;
     if(copy.button) button.textContent = copy.button;
   }
-  nudge.dataset.state = liLocationRequestPending ? 'pending' : liLocationPermission;
+  nudge.dataset.state = outOfRange ? 'out-of-range' : liLocationRequestPending ? 'pending' : liLocationPermission;
 }
 
 // The dog menu lists the last trails opened as a shortlist, never as a history.
@@ -1041,9 +1109,10 @@ function liRenderLocationContext(profile){
   const summaryLabel = document.getElementById('liLocationSummaryLabel');
   const summaryKick = document.getElementById('liLocationSummaryKick');
   // The list and the map are always there: a place narrows them, it does not
-  // unlock them.
+  // unlock them. They open behind "See all N walks on the map" under today's
+  // picks (liSetMapRevealed), so the page opens on the answer.
   if(toolbar) toolbar.hidden = false;
-  if(workspace) workspace.hidden = false;
+  if(workspace) workspace.hidden = !liMapRevealed;
   if(document.body){
     document.body.classList.remove('li-location-needed');
     document.body.classList.add('li-location-ready');
@@ -1097,6 +1166,9 @@ function liSetLocationContext(context){
   if(!next) return;
   // Choosing any real place by another door makes the way back stale.
   if(!liIsAllTrailsContext(next)) liContextBeforeShowAll = null;
+  // A place the reader picks answers "ORMA isn't in your area yet"; the
+  // Dolomites the page falls back to does not.
+  if(!(context && context.auto)) liOutOfRange = null;
   liLocationContext = next;
   // A new area supersedes the old map framing and selection; the filters and
   // the date are about the dog and the day, so they stay.
@@ -1802,15 +1874,26 @@ function initTrailMap(){
     }
   };
   if(areaButton){
-    let lastMapView = '';
-    trailMapInstance.on('moveend', () => {
+    // Where the map starts, not nothing: the first moveend, when the map
+    // finishes loading, compared with '' and read as a pan to "the map view".
+    let lastMapView = liMapViewSignature(trailMapInstance);
+    trailMapInstance.on('moveend', event => {
       const signature = liMapViewSignature(trailMapInstance);
+      // The page's own framing says so on the event. The time window alone
+      // missed a fit that settled late, on a map just revealed or still
+      // loading tiles, and read it as a pan to "the map view".
+      if(event && event.liAutoFrame){ lastMapView = signature; return; }
+      // A map folded away behind today's picks is not where the reader is
+      // looking, so nothing it does (a resize to nothing, a late fit) can
+      // replace their place in the headline with "the map view".
+      if(!liMapRevealed){ lastMapView = signature; return; }
       if(!liMapMoveIsReaders(signature, lastMapView)){ lastMapView = signature; return; }
       lastMapView = signature;
       if(mapViewTimer) clearTimeout(mapViewTimer);
       // A pan is a series of moveends; wait for the hand to stop before
       // re-ranking, so one gesture costs one render and one forecast.
       mapViewTimer = setTimeout(() => {
+        if(!liMapRevealed) return;
         liApplyMapViewport(trailMapInstance.getBounds());
         syncAreaButton();
       }, 350);
@@ -2091,7 +2174,7 @@ function initTrailMap(){
     if(pendingPathList) updatePathLayer(pendingPathList);
     if(pendingMarkerList) updateMapMarkers(pendingMarkerList);
     if(liPendingLocationCenter && currentMapTrails.length === 0){
-      trailMapInstance.flyTo({ center:liPendingLocationCenter, zoom:10 });
+      trailMapInstance.flyTo({ center:liPendingLocationCenter, zoom:10 }, { liAutoFrame:true });
     }
     const selected = currentMapTrails.find(trail => trail.id === selectedTrailId);
     if(selected) setSelectedTrailRoute(selected, { fit:false });
@@ -2134,6 +2217,8 @@ function startMobileTrailMap(){
   const isMobile = typeof window.matchMedia === 'function'
     && window.matchMedia('(max-width: 700px)').matches;
   if(!isMobile || !returningHome || returningHome.hidden) return Promise.resolve(null);
+  // Behind today's picks the map waits until it is asked for.
+  if(!liMapRevealed) return Promise.resolve(null);
 
   scheduleTrailMap();
   if(trailMapInstance){
@@ -2472,7 +2557,7 @@ function updateMapMarkers(list){
       }
     });
     liMapAutoFramingUntil = Date.now() + LI_MAP_AUTO_FRAME_MS;
-    trailMapInstance.fitBounds(bounds, { padding: 40, maxZoom: 12 });
+    trailMapInstance.fitBounds(bounds, { padding: 40, maxZoom: 12 }, { liAutoFrame:true });
   }
 }
 
@@ -3539,6 +3624,19 @@ function initLoggedInShell(){
     setTrailsCollapsed(!liBody.classList.contains('list-collapsed'));
   });
 
+  // Today's picks <-> the map and the full list.
+  const seeAllWalks = document.getElementById('liSeeAllWalks');
+  const backToPicks = document.getElementById('liBackToPicks');
+  if(seeAllWalks) seeAllWalks.addEventListener('click', () => {
+    liSetMapRevealed(true);
+    if(backToPicks && typeof backToPicks.focus === 'function') backToPicks.focus({ preventScroll:true });
+  });
+  if(backToPicks) backToPicks.addEventListener('click', () => {
+    liSetMapRevealed(false);
+    if(seeAllWalks && typeof seeAllWalks.focus === 'function') seeAllWalks.focus({ preventScroll:true });
+  });
+  liSyncMapReveal();
+
   // Notification bell opens the full notification centre from the design.
   const bellBtn = document.getElementById('liBellBtn');
   const bellMenu = document.getElementById('liBellMenu');
@@ -4078,6 +4176,191 @@ if(typeof window !== 'undefined'){
   });
 }
 
+// ============================================================
+// Today's picks: three walks from the ranked list the map and the list show
+// (same dog, filters, place and day). Among them it prefers, in this order,
+// walks that are in season, have known dog rules, are not caution terrain and
+// are a strong option. A walk's strength is how many of those it meets from
+// the first one on, so a walk that is out of season never outranks one in
+// season however high it sits; within the same strength the ranked order
+// stands. When fewer than three meet any of them, the ranked order fills in.
+function liPickFacts(trail, profile){
+  const recommendation = (trail && trail.recommendation) || {};
+  const flags = (list, code) => Array.isArray(list) && list.some(entry => entry && entry.code === code);
+  // The "Out of season" tag's rule this month -- the one the list and the map
+  // pins use -- and the engine's own word when it was asked about a month.
+  const outOfSeason = liOutOfSeasonNow(trail)
+    || flags(recommendation.cautions, 'trail.season.outside')
+    || flags(recommendation.factors, 'trail.season.outside');
+  return {
+    inSeason: !outOfSeason,
+    // "We don't know the local rules for dogs" on the card.
+    knownDogRules: !flags(recommendation.unknowns, 'trail.dog-access.unknown'),
+    // The card's trail rating: anything not low-risk or moderate reads "Caution terrain".
+    notCaution: safetyClass(trail && trail.safetyLevel) !== 'safety-caution',
+    strongOption: liRecommendationPresentation(trail, profile).category === 'strong-option',
+  };
+}
+
+function liPickStrength(trail, profile){
+  const facts = liPickFacts(trail, profile);
+  const order = [facts.inSeason, facts.knownDogRules, facts.notCaution, facts.strongOption];
+  let strength = 0;
+  while(strength < order.length && order[strength]) strength++;
+  return strength;
+}
+
+// A pick is a recommendation, so a "Low match" is never one: fewer cards, or
+// none, says more than padding the row with a walk ORMA would not suggest.
+function liIsGoodMatch(trail, profile){
+  return liRecommendationPresentation(trail, profile).category !== 'not-recommended';
+}
+
+function liTodaysPicks(list, profile, count = LI_PICK_COUNT){
+  return (list || [])
+    .filter(trail => liIsGoodMatch(trail, profile))
+    .map((trail, index) => ({ trail, index, strength:liPickStrength(trail, profile) }))
+    .sort((a, b) => b.strength - a.strength || a.index - b.index)
+    .slice(0, count)
+    .map(entry => entry.trail);
+}
+
+// The list's own empty state, so the picks and the list say the same thing
+// and offer the same way out. `buttonId` keeps the two buttons distinct.
+function liEmptyStateHtml(buttonId){
+  const label = liSelectedGeographyLabel();
+  const nearHere = liLocationContext && liLocationContext.kind === 'current' && !liQuery.trim() && liActiveFilterCount() === 0;
+  const msg = showingSavedOnly
+    ? t('home.noSaved')
+    : (liQuery.trim() || liActiveFilterCount() > 0)
+      ? tx('Try widening your search or filters.')
+      : liLocationContext && liLocationContext.kind === 'current'
+        ? tx('No ORMA trails are mapped within {km} km yet.', { km:liLocationContext.radiusKm })
+        : t('home.noTrailsValley', {label});
+  return {
+    html: `
+      <div class="li-empty">
+        <div class="li-empty-title">${tx('No trails match')}</div>
+        <p>${msg}</p>
+        <button type="button" id="${buttonId}">${nearHere ? tx('Choose another area') : tx('Reset filters')}</button>
+      </div>`,
+    action: nearHere ? liResetLocationContext : liResetAllFilters,
+  };
+}
+
+function liPickCardHtml(trail, profile){
+  const presentation = liRecommendationPresentation(trail, profile);
+  const name = trailDisplayName(trail);
+  const photo = trailCardVisual(trail, { className:'li-pick-photo' });
+  const pill = presentation.label
+    ? `<span class="li-pick-match" style="--li-pick-tone:${presentation.color};">${liPersonalisationText(presentation.label)}</span>`
+    : '';
+  return `<a class="li-pick" href="${liTrailHref(trail.id)}" data-id="${liEscapeHtml(trail.id)}">
+      ${photo}
+      <span class="li-pick-body">
+        <span class="li-row-name li-pick-name">${liEscapeHtml(name)}</span>
+        <span class="li-row-meta li-pick-meta">${liRowMeta(trail)}</span>
+        ${pill}
+      </span>
+    </a>`;
+}
+
+function liRenderTodaysPicks(displayList, profile){
+  const host = document.getElementById('liPicksList');
+  const more = document.getElementById('liSeeAllWalks');
+  const list = Array.isArray(displayList) ? displayList : [];
+  const n = list.length;
+  if(more){
+    // The count the list itself shows. Nothing to see means no button: the
+    // empty state above it already offers the way out.
+    more.hidden = n === 0;
+    more.textContent = n === 1 ? tx('See 1 walk on the map') : tx('See all {n} walks on the map', { n:localNum(n) });
+  }
+  if(!host) return;
+  if(!n){
+    const empty = liEmptyStateHtml('liPicksEmptyReset');
+    host.innerHTML = empty.html;
+    const reset = document.getElementById('liPicksEmptyReset');
+    if(reset) reset.addEventListener('click', empty.action);
+    return;
+  }
+  const picks = liTodaysPicks(list, profile);
+  if(!picks.length){
+    const name = profile && profile.name ? profile.name : '';
+    host.innerHTML = `
+      <div class="li-empty">
+        <div class="li-empty-title">${name ? tx('No good matches for {name} here today', { name:liEscapeHtml(name) }) : tx('No good matches here today')}</div>
+        <p>${tx('The walks here are low matches. See them all on the map, or search another town or valley.')}</p>
+      </div>`;
+    return;
+  }
+  host.innerHTML = picks.map(trail => liPickCardHtml(trail, profile)).join('');
+  host.querySelectorAll('.li-pick').forEach(card => {
+    card.addEventListener('click', () => {
+      warmTrailDetail(trails.find(item => item.id === card.dataset.id));
+    });
+  });
+}
+
+// Shows or hides the map and the full list. Hidden is the default: the page
+// opens on today's picks. Opening is remembered for the session.
+function liSyncMapReveal(){
+  const workspace = document.querySelector('#returningCustomerHomepage .li-body');
+  const picks = document.getElementById('liTodaysPicks');
+  const more = document.getElementById('liSeeAllWalks');
+  if(workspace) workspace.hidden = !liMapRevealed;
+  if(picks) picks.hidden = liMapRevealed;
+  if(more) more.setAttribute('aria-expanded', String(liMapRevealed));
+  if(document.body){
+    document.body.classList.toggle('li-picks-mode', !liMapRevealed);
+    document.body.classList.toggle('li-map-revealed', liMapRevealed);
+  }
+}
+
+function liSetMapRevealed(open){
+  const next = !!open;
+  const changed = next !== liMapRevealed;
+  liMapRevealed = next;
+  try{
+    if(next) sessionStorage.setItem(LI_MAP_REVEALED_SESSION_KEY, '1');
+    else sessionStorage.removeItem(LI_MAP_REVEALED_SESSION_KEY);
+  }catch(error){}
+  if(!next){
+    // Folding the map away also leaves any area it was showing: the headline
+    // goes back to the place the map replaced, not "in the map view".
+    if(window.DoloPawsBrowseMapFS && typeof window.DoloPawsBrowseMapFS.exit === 'function'
+      && document.getElementById('trailMapWrap') && document.getElementById('trailMapWrap').classList.contains('map-fs')){
+      window.DoloPawsBrowseMapFS.exit();
+    }
+    if(liLocationContext && liLocationContext.kind === 'map'){
+      liSetLocationContext(liExitMapArea() || liDefaultLocationContext());
+    }
+  }
+  liSyncMapReveal();
+  if(changed && typeof window.CustomEvent === 'function'){
+    window.dispatchEvent(new window.CustomEvent('dolopaws-home-map-reveal-changed', { detail:{ revealed:next } }));
+  }
+  if(next){
+    // MapLibre measures its container when it is created and on resize; a
+    // container that was display:none measured as nothing. The map is created
+    // lazily on first reveal, and resized whenever it is shown again.
+    scheduleTrailMap();
+    if(trailMapInstance){
+      // Shown again: measure, then frame the list as it is now -- a fit made
+      // while the map was folded away was made against an empty box.
+      requestAnimationFrame(() => {
+        trailMapInstance.resize();
+        if(trailMapLoaded && currentMapTrails.length) updateMapMarkers(currentMapTrails);
+      });
+    } else if(trailMapSchedule && typeof trailMapSchedule.start === 'function'){
+      Promise.resolve(trailMapSchedule.start()).then(() => {
+        if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
+      });
+    }
+  }
+  return next;
+}
+
 async function renderReturningHomepage(profile, options = {}){
   profile = liResolveActiveProfile(profile);
   const heading = document.getElementById('returningHeading');
@@ -4095,6 +4378,10 @@ async function renderReturningHomepage(profile, options = {}){
   // the owner has supplied an explicit geographic context.
   if(!liLocationContext){
     if(listEl) listEl.innerHTML = '';
+    const picksHost = document.getElementById('liPicksList');
+    if(picksHost) picksHost.innerHTML = '';
+    const picksMore = document.getElementById('liSeeAllWalks');
+    if(picksMore) picksMore.hidden = true;
     updateMapMarkers([]);
     return;
   }
@@ -4149,6 +4436,11 @@ async function renderReturningHomepage(profile, options = {}){
 
   renderLiConditionsCard(profile, displayList);
 
+  // Today's picks come from this same list, so they follow the dog, the
+  // filters, the place and the day, and the button counts what the list shows.
+  liRenderTodaysPicks(displayList, profile);
+  liSyncMapReveal();
+
   // "Show N trails", the apply button doubles as the live result count.
   const applyBtn = document.getElementById('liFiltersApply');
   if(applyBtn) applyBtn.textContent = displayList.length === 1 ? tx('Show 1 trail') : tx('Show {count} trails', { count: displayList.length });
@@ -4180,22 +4472,10 @@ async function renderReturningHomepage(profile, options = {}){
 
   if(displayList.length === 0){
     // Geography is now search/map, so the label is simply the current scope.
-    const label = liSelectedGeographyLabel();
-    const msg = showingSavedOnly
-      ? t('home.noSaved')
-      : (liQuery.trim() || liActiveFilterCount() > 0)
-        ? tx('Try widening your search or filters.')
-        : liLocationContext && liLocationContext.kind === 'current'
-          ? tx('No ORMA trails are mapped within {km} km yet.', { km:liLocationContext.radiusKm })
-          : t('home.noTrailsValley', {label});
-    listEl.innerHTML = `
-      <div class="li-empty">
-        <div class="li-empty-title">${tx('No trails match')}</div>
-        <p>${msg}</p>
-        <button type="button" id="liEmptyReset">${liLocationContext && liLocationContext.kind === 'current' && !liQuery.trim() && liActiveFilterCount() === 0 ? tx('Choose another area') : tx('Reset filters')}</button>
-      </div>`;
+    const empty = liEmptyStateHtml('liEmptyReset');
+    listEl.innerHTML = empty.html;
     const emptyReset = document.getElementById('liEmptyReset');
-    if(emptyReset) emptyReset.addEventListener('click', liLocationContext && liLocationContext.kind === 'current' && !liQuery.trim() && liActiveFilterCount() === 0 ? liResetLocationContext : liResetAllFilters);
+    if(emptyReset) emptyReset.addEventListener('click', empty.action);
     return;
   }
 
