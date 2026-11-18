@@ -853,6 +853,12 @@ function liFocusSearchForPlace(){
 const LI_LOCATION_NUDGE_DISMISSED_KEY = 'orma-home-location-nudge-dismissed-v1';
 let liLocationPermission = 'unknown';   // unknown | prompt | granted | denied | error | unavailable
 let liLocationRequestPending = false;
+// Set when the reader's position has no ORMA walk within reach: the page
+// stays on the Dolomites and says so, with how far the nearest walk is.
+let liOutOfRange = null;
+const LI_LOCATION_ASKED_KEY = 'orma-location-asked-v1';
+let liLocationAsked = false;   // also kept here, for browsers that block storage
+const LI_OUT_OF_RANGE_DISMISSED_KEY = 'orma-out-of-range-dismissed-v1';
 
 // Dismissing it is an answer, not a mood: someone who closed this does not
 // want to be asked again next time they open ORMA. localStorage rather than
@@ -863,8 +869,30 @@ function liLocationNudgeDismissed(){
 }
 
 function liDismissLocationNudge(){
-  try{ localStorage.setItem(LI_LOCATION_NUDGE_DISMISSED_KEY, '1'); }catch(error){}
+  if(liOutOfRange){
+    // Closing "ORMA isn't in your area yet" is for this visit only; the
+    // offer to turn on location is a separate, longer-lived choice.
+    try{ sessionStorage.setItem(LI_OUT_OF_RANGE_DISMISSED_KEY, '1'); }catch(error){}
+  } else {
+    try{ localStorage.setItem(LI_LOCATION_NUDGE_DISMISSED_KEY, '1'); }catch(error){}
+  }
   liRenderLocationNudge();
+}
+
+function liOutOfRangeDismissed(){
+  try{ return sessionStorage.getItem(LI_OUT_OF_RANGE_DISMISSED_KEY) === '1'; }catch(error){ return false; }
+}
+
+// The nearest ORMA walk to a position, in whole km, or null with no catalogue.
+function liNearestTrailKm(lat, lng){
+  let best = Infinity;
+  liCatalogueTrails().forEach(trail => {
+    const point = liTrailLngLat(trail);
+    if(!point) return;
+    const km = liDistanceKm(lat, lng, point[1], point[0]);
+    if(km < best) best = km;
+  });
+  return Number.isFinite(best) ? Math.round(best) : null;
 }
 
 // Anything ORMA has within reach of a position. The page only moves itself
@@ -877,8 +905,9 @@ function liAnyTrailNear(lat, lng, radiusKm){
   });
 }
 
-// `auto` is the page acting on a permission already granted, not the reader
-// pressing Near me: that one is shown even when nothing is close.
+// `auto` is the page acting by itself (a permission already granted, or the
+// one ask on a first visit), not the reader pressing Near me. Either way a
+// position with nothing close keeps the Dolomites and says so.
 function liRequestCurrentLocation(options){
   const auto = !!(options && options.auto);
   if(typeof navigator === 'undefined' || !navigator.geolocation){
@@ -894,12 +923,16 @@ function liRequestCurrentLocation(options){
     liLocationPermission = 'granted';
     const lat = Number(position.coords.latitude);
     const lng = Number(position.coords.longitude);
-    if(auto && !liAnyTrailNear(lat, lng, LI_LOCATION_RADIUS_KM)){
-      // Nothing within reach: stay on the Dolomites. Jumping to whichever
-      // region had the nearest trail opened the page somewhere nobody chose.
+    if(!liAnyTrailNear(lat, lng, LI_LOCATION_RADIUS_KM)){
+      // Nothing within reach: show the Dolomites and say why, rather than an
+      // empty "near you" list. Jumping to whichever region had the nearest
+      // trail opened the page somewhere nobody chose.
+      liOutOfRange = { nearestKm:liNearestTrailKm(lat, lng) };
+      if(!auto && liLocationContext && liLocationContext.kind === 'current') liSetLocationContext(liDefaultLocationContext());
       liRenderLocationNudge();
       return;
     }
+    liOutOfRange = null;
     liSetLocationContext({ kind:'current', lat, lng, radiusKm:LI_LOCATION_RADIUS_KM });
   }, error => {
     liLocationRequestPending = false;
@@ -911,6 +944,11 @@ function liRequestCurrentLocation(options){
 // Reads the permission state without asking for anything. Only a permission
 // the owner already granted is acted on, and only when nothing else was
 // chosen: a saved town or valley is a decision, and a position is not.
+function liLocationAskedThisVisit(){
+  if(liLocationAsked) return true;
+  try{ return sessionStorage.getItem(LI_LOCATION_ASKED_KEY) === '1'; }catch(error){ return false; }
+}
+
 async function liProbeLocationPermission(){
   if(typeof navigator === 'undefined' || !navigator.geolocation){
     liLocationPermission = 'unavailable';
@@ -931,7 +969,15 @@ async function liProbeLocationPermission(){
     }
   }catch(error){ state = 'prompt'; }
   liLocationPermission = state;
-  if(state === 'granted' && liLocationContext && liLocationContext.auto) liRequestCurrentLocation({ auto:true });
+  const chosenNothing = !!(liLocationContext && liLocationContext.auto);
+  if(state === 'granted' && chosenNothing) liRequestCurrentLocation({ auto:true });
+  else if(state === 'prompt' && chosenNothing && !liLocationAskedThisVisit()){
+    // The homepage follows where the reader is, so a first visit with no
+    // place chosen asks once. Saying no leaves the Dolomites and the band.
+    liLocationAsked = true;
+    try{ sessionStorage.setItem(LI_LOCATION_ASKED_KEY, '1'); }catch(error){}
+    liRequestCurrentLocation({ auto:true });
+  }
   else liRenderLocationNudge();
 }
 
@@ -942,10 +988,20 @@ function liRenderLocationNudge(){
   const detail = document.getElementById('liLocationNudgeDetail');
   const button = document.getElementById('liLocationNudgeBtn');
   const located = !!liLocationContext && liLocationContext.kind === 'current';
-  const show = !located && !liLocationNudgeDismissed() && liLocationPermission !== 'granted';
+  // Picking a town or valley clears liOutOfRange (liSetLocationContext), so
+  // the caveat shows only until the reader has chosen somewhere.
+  const outOfRange = !!liOutOfRange && !located && !liOutOfRangeDismissed();
+  const show = outOfRange || (!located && !liLocationNudgeDismissed() && liLocationPermission !== 'granted');
   nudge.hidden = !show;
   if(!show) return;
-  const copy = liLocationRequestPending
+  const nearest = liOutOfRange && Number.isFinite(liOutOfRange.nearestKm) ? liOutOfRange.nearestKm : null;
+  const copy = outOfRange
+    ? { title:tx('ORMA isn’t in your area yet'),
+        detail:nearest !== null
+          ? tx('The nearest ORMA walk is {km} km away. We cover the Dolomites and parts of the Alps, so here are the Dolomites. Search a town or valley to look elsewhere.', { km:nearest.toLocaleString() })
+          : tx('We cover the Dolomites and parts of the Alps, so here are the Dolomites. Search a town or valley to look elsewhere.'),
+        button:null }
+    : liLocationRequestPending
     ? { title:tx('Finding you…'), detail:tx('Your position stays in this browser session and is not added to your profile.'), button:tx('Finding you…'), disabled:true }
     : liLocationPermission === 'denied'
       ? { title:tx('Location is off for ORMA in this browser'), detail:tx('Turn it on in your browser’s site settings, or search for a town or valley.'), button:null }
@@ -961,7 +1017,7 @@ function liRenderLocationNudge(){
     button.disabled = !!copy.disabled;
     if(copy.button) button.textContent = copy.button;
   }
-  nudge.dataset.state = liLocationRequestPending ? 'pending' : liLocationPermission;
+  nudge.dataset.state = outOfRange ? 'out-of-range' : liLocationRequestPending ? 'pending' : liLocationPermission;
 }
 
 // The dog menu lists the last trails opened as a shortlist, never as a history.
@@ -1110,6 +1166,9 @@ function liSetLocationContext(context){
   if(!next) return;
   // Choosing any real place by another door makes the way back stale.
   if(!liIsAllTrailsContext(next)) liContextBeforeShowAll = null;
+  // A place the reader picks answers "ORMA isn't in your area yet"; the
+  // Dolomites the page falls back to does not.
+  if(!(context && context.auto)) liOutOfRange = null;
   liLocationContext = next;
   // A new area supersedes the old map framing and selection; the filters and
   // the date are about the dog and the day, so they stay.
