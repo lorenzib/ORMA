@@ -1885,4 +1885,12 @@ window.ORMA_PHRASES_IT = {
   "no steep drops recorded": "nessuno strapiombo registrato",
   "Good for {name}": "Adatto a {name}",
   "Mostly fine for {name}": "Quasi tutto bene per {name}",
+  "{km} km one way": "{km} km solo andata",
+  "Not given": "Non indicata",
+  "Up, same down": "Salita, uguale discesa",
+  "Show the figures for": "Mostra i dati per",
+  "One way": "Solo andata",
+  "There and back": "Andata e ritorno",
+  "Ends away from the start: plan a lift, bus or second car back.": "Finisce lontano dalla partenza: prevedi un impianto, un autobus o una seconda auto per tornare.",
+  "Back the same way on the same path.": "Ritorno per la stessa via, sullo stesso sentiero.",
 };

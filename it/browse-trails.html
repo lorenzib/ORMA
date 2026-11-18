@@ -1916,12 +1916,13 @@
         const provenance = icons
           ? icons.badgeHtml(provStyle, provenanceLabel)
           : `<span class="badge-pill badge-${provStyle}">${provenanceLabel}</span>`;
-        // A one-way walk is shown, and scored, there and back, so nobody
-        // plans 3.5 km for a 7 km day (route-return.js).
+        // A one-way walk is shown, and scored, one way as its source gives it,
+        // and says so, so nobody plans 3.5 km for a 7 km day (route-return.js).
         const routeReturn = window.ORMARouteReturn;
-        const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+        const oneWayWalk = !!(routeReturn && routeReturn.isOneWay(t));
+        const shown = oneWayWalk ? routeReturn.forView(t) : t;
         const back = shown !== t;
-        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : `${num(shown.distance)} km`) : null, shown.elevation != null ? bt('card.climb', '{m} m climb', { m: shown.elevation }) : null, shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null, t.area]
+        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : oneWayWalk ? bt('card.oneWay', '{km} km one way', { km: num(shown.distance) }) : `${num(shown.distance)} km`) : null, shown.elevation != null ? bt('card.climb', '{m} m climb', { m: shown.elevation }) : null, shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null, t.area]
           .filter(Boolean).join(' · ');
         const verdict = matchVerdict(t);
         const tier = verdict.label;

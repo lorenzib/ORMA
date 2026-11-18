@@ -124,16 +124,21 @@
     const conditions = window.DoloPawsCurrentConditions || warnings.length
       ? { status:'not-provided', ...(window.DoloPawsCurrentConditions || {}), warnings }
       : undefined;
-    // A one-way walk is scored as the reader chose to see it: one way, or
-    // there and back on the same paths (route-return.js).
+    // A walk that is not a loop is scored as the reader chose to see it: one
+    // way, or there and back on the same paths (route-return.js).
     const routeReturn = window.ORMARouteReturn;
-    const oneWay = !!(routeReturn && routeReturn.isOneWay(trail));
+    const oneWay = !!(routeReturn && routeReturn.hasChoice && routeReturn.hasChoice(trail));
     const scored = oneWay ? routeReturn.forView(trail) : trail;
     const recommendation = recommendTrail(scored, subjectFor(profile), conditions);
-    const routeNote = !oneWay ? ''
-      : `<p class="recommendation-route-view">${esc(scored !== trail
+    const routeNoteText = !oneWay ? ''
+      : scored.returnLeg
         ? tr('recommendation.routeView.back', 'Scored for walking there and back: {km} km, about {climb} m up and the same down. The time is an estimate.', { km:scored.distance, climb:scored.elevation })
-        : tr('recommendation.routeView.oneWay', 'Scored for one way. This walk ends away from its start, so plan how you will get back.'))}</p>`;
+      : scored.oneWayOf
+        ? tr('recommendation.routeView.leg', 'Scored for one way: {km} km and about {climb} m up. No one-way time is given, so plan how you will get back.', { km:scored.distance, climb:scored.elevation })
+      : routeReturn.isThereAndBack(trail)
+        ? tr('recommendation.routeView.roundTrip', 'Scored for there and back on the same path, as the source gives it.')
+        : tr('recommendation.routeView.oneWay', 'Scored for one way. This walk ends away from its start, so plan how you will get back.');
+    const routeNote = routeNoteText ? `<p class="recommendation-route-view">${esc(routeNoteText)}</p>` : '';
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
       translate:window.t,
