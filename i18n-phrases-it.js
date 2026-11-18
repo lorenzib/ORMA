@@ -1006,6 +1006,8 @@ window.ORMA_PHRASES_IT = {
   "Shared by {name}’s human": "Condivisa dall’umano di {name}",
   "Shelter": "Riparo",
   "Show": "Mostra",
+  "Show 1 trail": "Mostra 1 sentiero",
+  "Show {count} trails": "Mostra {count} sentieri",
   "Show advice": "Mostra i consigli",
   "Show advice for {title}": "Mostra i consigli: {title}",
   "Show all trails": "Mostra tutti i sentieri",
