@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="it" data-orma-lang="it">
+<head>
+<meta charset="UTF-8">
+<base href="/">
+<link rel="canonical" href="https://www.app-orma.com/it/browse-trails.html">
+<link rel="alternate" hreflang="en" href="https://www.app-orma.com/browse-trails.html">
+<link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/browse-trails.html">
+<link rel="alternate" hreflang="x-default" href="https://www.app-orma.com/browse-trails.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tutti i sentieri | ORMA</title>
+<meta name="description" content="Tutti i sentieri adatti ai cani su ORMA, nelle Dolomiti e oltre, da sfogliare senza account, ciascuno valutato per zampe, ombra, acqua e terreno.">
+<meta name="theme-color" content="#2E4034">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=20260916-5">
+<style>
+  /* Guest bar, the homepage component reused verbatim; CTA is a link here */
+  a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
+  .hp-guestbar[hidden]{display:none;}
+  /* Compare explainer, sits with the results, same sage info treatment */
+  .browse-compare-note{margin:0 0 12px;padding:12px 15px;background:#fff;border:1px solid var(--paper-line);border-radius:12px;font-size:12.5px;line-height:1.55;color:var(--ink-soft);}
+  .browse-compare-note b{font-family:'Bricolage Grotesque',sans-serif;font-size:13.5px;}
+  .browse-compare-note em{font-style:normal;font-weight:700;}
+  /* Keep the browse-page introduction and discovery controls compact and
+     aligned to the same content grid. */
+  .browse-design-head,.browse-design-wrap{max-width:1680px;padding-left:clamp(24px,3vw,44px);padding-right:clamp(24px,3vw,44px);}
+  .browse-design-wrap{padding-top:6px;}
+  .browse-primary-controls{margin:10px 0 18px;padding:12px;border:1px solid rgba(46,64,52,.1);border-radius:18px;background:rgba(255,255,255,.56);box-shadow:0 10px 30px rgba(35,53,40,.05);}
+  .browse-area-controls{display:flex;align-items:center;gap:9px;min-width:0;}
+  /* Geography is allowed to share the available row instead of reserving
+     fixed widths that push the remaining filters outside the page canvas. */
+  .browse-geo-group,.browse-geo-group--valley{display:block;flex:1 1 0;width:auto;min-width:0;}
+  .browse-geo-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  .browse-geo-group .area-select-shell{width:100%;}
+  .browse-geo-group .area-select-trigger{min-height:42px;padding:8px 10px 8px 12px;gap:6px;font-size:12.5px;}
+  .browse-geo-group .area-select-trigger__copy{display:inline-flex;align-items:baseline;gap:8px;min-width:0;}
+  .browse-geo-group .area-select-trigger__kicker{flex:none;color:#3E7A91;font:800 9px/1 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
+  .browse-geo-group .area-select-trigger__label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  /* Match Collections: until a location is chosen, each selector presents
+     only its category prompt instead of a redundant "All …" label. */
+  .browse-geo-group .area-select-trigger--kicker-until-selected:not(.area-select-trigger--has-selection) .area-select-trigger__label{display:none;}
+  .browse-geo-group .area-select-trigger--kicker-until-selected.area-select-trigger--has-selection .area-select-trigger__kicker{display:none;}
+  .browse-primary-controls .browse-tools{width:100%;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-start;}
+  .browse-primary-controls .browse-search-shell{flex:1 1 300px;width:auto;max-width:360px;min-width:0;}
+  .browse-primary-controls .browse-filter-divider{display:none;}
+  .simple-grid{display:flex;flex-direction:column;gap:12px;}
+  .simple-card{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(190px,235px);grid-template-rows:auto auto;column-gap:16px;row-gap:9px;align-items:center;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-panel);overflow:hidden;transition:box-shadow .2s,border-color .2s,transform .2s;}
+  .simple-card:hover{border-color:var(--accent-light);transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
+  .simple-card .photo{grid-column:1;grid-row:1/3;width:120px;height:96px;border-radius:var(--radius-thumb,12px);background:#E7ECE3;overflow:hidden;}
+  .simple-card__main{grid-column:2;grid-row:1;min-width:0;align-self:end;text-decoration:none;}
+  .simple-card .name{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;color:var(--ink);}
+  .simple-card__meta{font-size:12px;color:var(--ink-soft);margin-top:3px;}
+  .simple-card__facts{grid-column:2;grid-row:2;display:flex;gap:7px;flex-wrap:wrap;align-items:center;align-self:start;}
+  .browse-season{display:inline-flex;align-items:center;min-height:22px;padding:2px 9px;border-radius:999px;font:700 11px/1.2 'Inter',sans-serif;white-space:nowrap;}
+  .browse-season--best{background:#EEF0EA;color:#3C4A3A;}
+  .browse-season--out{background:#F6E3DE;color:#7A2E1E;}
+  .browse-season--dog{background:#F7EBD2;color:#6D4916;}
+  .simple-card__match{grid-column:3;grid-row:1/3;align-self:stretch;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:12px;min-width:0;margin:-14px -14px -14px 0;padding:18px;border-left:1px solid rgba(46,64,52,.08);background:var(--success-dim);}
+  .simple-card__score{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;}
+  .simple-card__match strong{font:800 14px/1.25 'Inter',sans-serif;color:var(--success);text-align:left;text-wrap:balance;}
+  .simple-card__match small{font:700 9.5px/1 'Inter',sans-serif;letter-spacing:.09em;color:var(--ink-soft);white-space:nowrap;text-align:left;}
+  .simple-card__match-reason{margin:6px 0 0;color:var(--ink-soft);font:500 11.5px/1.35 'Inter',sans-serif;}
+  .simple-card__match-actions{display:flex;align-items:center;gap:7px;}
+  .simple-card__match--good{background:#FFF0D6;}
+  .simple-card__match--good strong{color:#9A6518;}
+  .simple-card__match--check{background:#F7E5E0;}
+  .simple-card__match--check strong{color:#9C3A25;}
+  .browse-card-actions{display:flex;align-items:center;gap:8px;}
+  .browse-card-compare{display:inline-flex;align-items:center;justify-content:center;min-height:36px;border-radius:var(--radius-pill);font:700 10.5px 'Inter',sans-serif;border:1px solid var(--paper-line);background:#fff;color:var(--ink-soft);padding:6px 12px;cursor:pointer;}
+  .browse-card-compare[aria-pressed="true"]{background:#EAF3EC;border-color:#7EAD91;color:#24462E;}
+  .browse-card-compare:disabled{cursor:not-allowed;opacity:.48;}
+  /* Search and geography form the primary row; refinements stay together on
+     the row below instead of stretching across unrelated grid columns. */
+  .browse-tools{position:relative;display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:18px;}
+  .browse-filter-divider{width:1px;height:22px;background:var(--divider);margin:0 3px;}
+  .browse-search-shell{flex:1 1 240px;max-width:320px;display:flex;align-items:center;gap:9px;background:var(--card);border:var(--border-strong);border-radius:var(--radius-pill);padding:9px 15px;color:var(--ink-soft);}
+  .browse-tools .browse-search{flex:1;min-width:0;max-width:none;}
+  .browse-tools input{min-height:0;padding:0;border:0;background:none;color:var(--ink);font:400 14px 'Inter',sans-serif;}
+  .browse-tools select{min-height:38px;padding:8px 34px 8px 14px;border:var(--border-strong);border-radius:var(--radius-pill);background:var(--card);color:var(--ink);font:600 13px 'Inter',sans-serif;appearance:none;-webkit-appearance:none;cursor:pointer;}
+  .browse-tools input:focus,.browse-tools select:focus{outline:none;border-color:var(--accent);}
+  .browse-filter-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+  .browse-field{position:relative;display:block;min-width:0;}
+  .browse-field::after{content:'▾';position:absolute;right:13px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--ink-soft);pointer-events:none;}
+  .browse-field>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  .browse-field--advanced{display:none;}
+  .browse-water{min-height:38px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
+  .browse-water[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
+  .browse-quick-filters{display:flex;align-items:center;gap:8px;}
+  .browse-quick-filter,.browse-saved-only{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:40px;min-height:40px;box-sizing:border-box;padding:0 13px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:var(--card);color:var(--ink);font:600 12.5px/1 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
+  #browseWater .dp-icon-svg{transform:translateY(1px);}
+  #browseWater>span:last-child,.browse-saved-only>span:nth-child(2){display:inline-flex;align-items:center;min-height:21px;line-height:1;}
+  .browse-quick-filter[aria-pressed="true"],.browse-saved-only[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;color:#24462E;font-weight:700;}
+  .browse-saved-count{display:inline-flex;align-items:center;justify-content:center;min-width:21px;height:21px;padding:0 6px;border-radius:999px;background:#EDF0E8;font-size:11px;}
+  .browse-filter-controls{display:none!important;}
+  .browse-filter-group{padding:2px 0 11px;}
+  .browse-filter-group+.browse-filter-group{border-top:1px solid var(--divider);padding-top:12px;}
+  .browse-filter-group__title{font:700 10px/1 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+  #browseFiltersBtn.on{border-color:#9FC4B0;font-weight:700;}
+  #browseFiltersMenu{left:auto;right:0;}
+  @media(max-width:700px){
+    #browseFiltersMenu{
+      position:fixed;top:auto;right:8px;bottom:max(8px,env(safe-area-inset-bottom));left:8px;
+      width:auto;max-height:calc(100dvh - 16px - env(safe-area-inset-bottom));
+      overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+    }
+    #browseFiltersMenu .li-fhead{position:sticky;top:-16px;z-index:2;margin:-16px -16px 0;padding:16px;background:var(--card);}
+    #browseFiltersApply{position:sticky;bottom:-16px;z-index:2;margin:16px -16px -16px;width:calc(100% + 32px);border-radius:0 0 14px 14px;}
+  }
+  .browse-results-meta .browse-result-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  @media(max-width:760px){
+    .browse-design-head{padding-left:18px;padding-right:18px;}
+    .browse-design-wrap{padding-left:16px;padding-right:16px;}
+    .browse-primary-controls{margin-top:8px;padding:10px;}
+    .browse-geo-group .area-select-trigger{width:100%;min-width:0;justify-content:space-between;padding-inline:10px;}
+    .browse-profile-banner{align-items:flex-start;flex-direction:column;}
+    .browse-filter-divider{display:none;}
+    .browse-filter-controls{flex:1 1 100%;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:9px;padding-bottom:3px;scrollbar-width:none;}
+    .browse-filter-controls::-webkit-scrollbar{display:none;}
+    /* The wrappers are the flex items, without flex:none they shrink in
+       the nowrap scroll row and the selects inside pile onto each other. */
+    .browse-filter-controls .browse-field,.browse-filter-controls select,.browse-water{flex:none;}
+    .simple-card{grid-template-columns:84px minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:12px;row-gap:12px;padding:12px;}
+    .simple-card .photo{grid-column:1;grid-row:1;width:84px;height:76px;align-self:start;}
+    .simple-card__main{grid-column:2;grid-row:1;align-self:center;}
+    .simple-card__facts{grid-column:1/-1;grid-row:2;align-items:center;}
+    .simple-card__match{grid-column:1/-1;grid-row:3;width:auto;min-width:0;margin:0 -12px -12px;align-items:flex-start;justify-content:flex-start;border-left:0;border-top:1px solid rgba(46,64,52,.08);padding:13px 12px 12px;}
+    .simple-card__score{align-items:flex-start;gap:4px;min-width:0;}
+    .simple-card__match strong{font-size:13px;}
+    .simple-card__match-actions{margin-left:0;flex:none;}
+    .browse-card-compare{min-height:32px;padding-inline:11px;}
+  }
+  @media(max-width:360px){
+    .simple-card__match{display:flex;}
+    .simple-card__match-actions{width:auto;justify-content:flex-start;margin-left:0;}
+  }
+  .trail-trust-note{margin:0 0 14px;padding:11px 13px;border-left:3px solid #8a5a16;background:#f6ecdb;border-radius:0 10px 10px 0;color:#5f4a2c;font-size:12.5px;line-height:1.55;}
+  .browse-results-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;color:var(--ink-soft);font-size:12.5px;font-weight:600;flex-wrap:wrap;}
+  .browse-clear{border:0;background:none;color:var(--accent);font:700 12.5px 'Inter',sans-serif;cursor:pointer;padding:4px 0;}
+  .browse-empty{grid-column:1/-1;}
+  .browse-empty__filters{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px 0 4px;}
+  .browse-empty__filter{padding:5px 9px;border-radius:999px;background:#F5E4C6;color:#6D4916;font:700 11.5px 'Inter',sans-serif;}
+  .browse-recovery{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:14px;}
+  .browse-recovery button{min-height:40px;border:1.5px solid var(--paper-line);border-radius:10px;background:#fff;color:var(--ink);padding:8px 13px;font:700 12.5px 'Inter',sans-serif;cursor:pointer;}
+  .browse-recovery button.safe{background:#EAF3EC;border-color:#9FC4B0;}
+  /* Compare tray, mirrors the navigation header: same dark-green glass,
+     beige nav-link text, and the CTA styled like the header's cream pill. */
+  .compare-tray{position:fixed;left:50%;bottom:18px;z-index:80;width:min(680px,calc(100% - 28px));transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 14px 13px 18px;border:1px solid rgba(242,238,226,.09);border-radius:16px;background:rgba(38,53,42,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#DCE1D4;box-shadow:0 18px 45px rgba(18,30,22,.34);}
+  .compare-tray[hidden]{display:none;}
+  .compare-tray__copy{min-width:0;}
+  .compare-tray__copy strong{display:block;font:600 13.5px 'Inter',sans-serif;color:#F2EEE2;}
+  .compare-tray__names{display:block;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#DCE1D4;font:400 12px 'Inter',sans-serif;}
+  .compare-tray__actions{display:flex;align-items:center;gap:10px;flex:none;}
+  .compare-tray__clear{border:0;background:transparent;color:#DCE1D4;font:400 13px 'Inter',sans-serif;cursor:pointer;padding:8px;}
+  .compare-tray__clear:hover{color:#fff;font-weight:500;}
+  .compare-tray__go{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 18px;border-radius:var(--radius-pill);background:#F7F4EB;color:#1b1f19;text-decoration:none;font:600 13.5px 'Inter',sans-serif;}
+  .compare-tray__go:hover{opacity:.9;color:#1b1f19;}
+  .compare-tray__go[aria-disabled="true"]{background:rgba(247,244,235,.35);color:rgba(247,244,235,.85);pointer-events:none;}
+  @media(max-width:560px){
+    .compare-tray{bottom:76px;align-items:flex-end;padding:11px 12px;}
+    .compare-tray__clear{display:none;}
+    .compare-tray__go{padding-inline:11px;}
+  }
+  /* Explore workspace: the list and map are two views of the same filtered
+     catalogue. The map is a working discovery surface, not a decoration. */
+  .browse-design-head{padding-bottom:4px;}
+  .browse-design-head .sub{max-width:720px;}
+  .browse-search-group{display:flex;align-items:center;gap:3px;min-width:0;height:42px;box-sizing:border-box;padding:3px;border:1.5px solid var(--paper-line);border-radius:var(--radius-pill);background:#fff;}
+  .browse-search-group:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(62,122,145,.1);}
+  .browse-search-group .browse-search-shell{width:100%;max-width:none;min-width:0;min-height:34px;margin:0;padding:0 10px;border:0;background:transparent;}
+  .browse-search-submit{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:7px 15px;border:0;border-radius:var(--radius-pill);background:#3E7A91;color:#fff;font:750 11.5px 'Inter',sans-serif;cursor:pointer;box-shadow:none;}
+  .browse-search-submit:hover{background:#32697E;}
+  .browse-location-breadcrumb{display:flex;align-items:center;justify-content:flex-end;min-height:22px;margin:-6px 0 8px;color:#66766B;font:650 12px/1.4 'Inter',sans-serif;}
+  .browse-location-breadcrumb:empty{visibility:hidden;}
+  .browse-explorer{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(480px,.95fr);height:clamp(520px,58vh,720px);min-height:520px;border:1px solid var(--paper-line);border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 16px 42px rgba(34,50,38,.08);}
+  .browse-list-pane{min-width:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 16px 22px;background:#FBFAF5;border-left:1px solid var(--paper-line);scrollbar-gutter:stable;}
+  .browse-list-pane .browse-compare-note{margin-bottom:14px;}
+  .browse-list-pane .browse-results-meta{position:sticky;top:-18px;z-index:4;margin:0 -16px 12px;padding:14px 16px 10px;background:rgba(251,250,245,.96);backdrop-filter:blur(8px);}
+  .browse-list-pane .simple-card{grid-template-columns:112px minmax(0,1fr) 165px;grid-template-rows:auto auto;gap:9px 13px;padding:12px;}
+  .browse-list-pane .simple-card .photo{grid-column:1;grid-row:1/3;width:112px;height:92px;align-self:start;}
+  .browse-list-pane .simple-card__main{grid-column:2;grid-row:1;align-self:end;}
+  .browse-list-pane .simple-card__facts{grid-column:2;grid-row:2;}
+  .browse-list-pane .simple-card__match{grid-column:3;grid-row:1/3;min-width:0;margin:-12px -12px -12px 0;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:10px;border:0;border-left:1px solid rgba(46,64,52,.08);padding:14px;}
+  .browse-list-pane .simple-card__score{flex-direction:column;align-items:flex-start;gap:3px;}
+  .browse-list-pane .simple-card__score small{font-size:8.5px;}
+  .browse-list-pane .simple-card__match-actions{margin-left:0;}
+  .browse-list-pane .simple-card.is-map-selected{border-color:#2E4034;box-shadow:0 0 0 1px #2E4034,0 9px 24px rgba(35,53,40,.12);transform:none;}
+  .browse-map-pane{position:relative;min-width:0;background:#DCE6D8;}
+  #browseMap{position:absolute;inset:0;}
+  .browse-map-placeholder{position:absolute;inset:0;display:grid;place-content:center;gap:8px;padding:24px;text-align:center;background:linear-gradient(145deg,#EEF1E7,#D7E4D7);color:#53675A;font:650 13px/1.45 'Inter',sans-serif;}
+  .browse-map-placeholder strong{color:#2E4034;font:700 18px 'Bricolage Grotesque',sans-serif;}
+  .browse-search-area{position:absolute;top:16px;left:50%;z-index:8;transform:translateX(-50%);display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:8px 16px;border:1px solid rgba(46,64,52,.15);border-radius:999px;background:rgba(255,255,255,.96);color:#32697E;box-shadow:0 6px 20px rgba(35,53,40,.18);font:800 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+  .browse-search-area[hidden]{display:none;}
+  .browse-map-style{position:absolute;right:14px;bottom:14px;z-index:8;display:flex;gap:3px;padding:3px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);}
+  .browse-map-style button{min-height:34px;padding:7px 12px;border:0;border-radius:8px;background:transparent;color:#2E4034;font:700 11.5px 'Inter',sans-serif;cursor:pointer;}
+  .browse-map-style button.on{background:#2E4034;color:#fff;}
+  .browse-view-toggle{display:none;}
+  .browse-map-popup{display:grid;gap:4px;padding:2px 14px 2px 0;color:#2E4034;}
+  .browse-map-popup strong{font:700 14px/1.25 'Bricolage Grotesque',sans-serif;}
+  .browse-map-popup span{color:#66766B;font-size:11.5px;}
+  .browse-map-popup__verdict{display:grid;gap:1px;margin:2px 0 1px;}
+  .browse-map-popup__verdict small{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
+  .browse-map-popup__verdict b{font:700 13px/1.2 'Bricolage Grotesque',sans-serif;}
+  .browse-map-key{position:absolute;left:14px;bottom:14px;z-index:8;display:grid;gap:4px;padding:8px 11px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);color:#2E4034;font:600 11px/1.2 'Inter',sans-serif;}
+  .browse-map-key__title{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
+  .browse-map-key__row{display:flex;align-items:center;gap:7px;}
+  @media(max-width:760px){.browse-map-key{bottom:58px;}}
+  .browse-map-key__dot{width:10px;height:10px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(46,64,52,.18);}
+  .browse-map-popup a{color:#32697E;font-size:11.5px;font-weight:800;text-decoration:none;}
+  .browse-map-pane .maplibregl-popup-content{border:1px solid rgba(46,64,52,.12);border-radius:13px;padding:11px 12px;box-shadow:0 10px 30px rgba(35,53,40,.18);}
+  .browse-map-pane .maplibregl-ctrl-top-right{top:8px;right:8px;}
+  @media(max-width:1040px){
+    .browse-location-breadcrumb{justify-content:flex-start;margin-top:2px;}
+    .browse-view-toggle{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:8px 0 12px;padding:4px;border:1px solid var(--paper-line);border-radius:12px;background:#F0EDE3;}
+    .browse-view-toggle button{min-height:40px;border:0;border-radius:9px;background:transparent;color:#53675A;font:750 13px 'Inter',sans-serif;cursor:pointer;}
+    .browse-view-toggle button.on{background:#fff;color:#2E4034;box-shadow:0 2px 7px rgba(35,53,40,.1);}
+    .browse-explorer{display:block;height:auto;min-height:0;border-radius:18px;}
+    .browse-list-pane{height:auto;max-height:none;overflow:visible;border-left:0;padding:14px 12px 18px;}
+    .browse-list-pane .browse-results-meta{position:static;margin:0 0 12px;padding:0;background:transparent;backdrop-filter:none;}
+    .browse-map-pane{height:clamp(430px,62dvh,680px);min-height:430px;}
+    .browse-explorer[data-mobile-view="list"] .browse-map-pane{display:none;}
+    .browse-explorer[data-mobile-view="map"] .browse-list-pane{display:none;}
+    .browse-map-style{bottom:10px;right:10px;}
+    .browse-search-area{top:12px;}
+  }
+  @media(max-width:760px){
+    .browse-list-pane .simple-card{grid-template-columns:84px minmax(0,1fr);grid-template-rows:auto auto auto;gap:12px;padding:12px;}
+    .browse-list-pane .simple-card .photo{grid-column:1;grid-row:1;width:84px;height:76px;}
+    .browse-list-pane .simple-card__main{grid-column:2;grid-row:1;align-self:center;}
+    .browse-list-pane .simple-card__facts{grid-column:1/-1;grid-row:2;}
+    .browse-list-pane .simple-card__match{grid-column:1/-1;grid-row:3;width:auto;margin:0 -12px -12px;align-items:flex-start;justify-content:flex-start;border-left:0;border-top:1px solid rgba(46,64,52,.08);padding:13px 12px 12px;}
+    /* On a phone the verdict band spans the card, so stacking the verdict,
+       View trail and Compare left most of it empty: View trail sits beside
+       the verdict and Compare under it. */
+    .simple-card__match,.browse-list-pane .simple-card__match{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:12px;row-gap:8px;}
+    .simple-card__match-actions,.browse-card-actions{display:contents;}
+    .browse-card-open{grid-column:2;grid-row:1/3;}
+    .browse-card-compare,.browse-card-compare[aria-pressed="true"]{grid-column:1;grid-row:2;justify-self:start;}
+  }
+  @media(max-width:430px){
+    .browse-search-group{gap:6px;}
+    .browse-search-submit{padding-inline:13px;}
+    .browse-list-pane .simple-card{grid-template-columns:88px minmax(0,1fr);}
+    .browse-list-pane .simple-card .photo{width:88px;height:78px;}
+  }
+
+  /* One row, like the homepage: search, Area, Filters, Saved. Area opens the
+     Country / Region / Valley pickers; Filters holds everything else,
+     shade, water, chairlift and multi-day included; what is on shows as
+     removable chips underneath. The same row at every width; phones let
+     the search take its own line. */
+  #browseTools{display:flex;flex-wrap:nowrap;align-items:center;gap:8px;}
+  #browseTools>.browse-search-group{flex:1 1 320px;min-width:0;}
+  #browseTools .browse-search-shell{max-width:none;}
+  #browseTools>.browse-area-wrap,#browseTools>#browseFiltersWrap,#browseTools>.browse-saved-only{flex:none;width:auto;}
+  .browse-area-btn{display:inline-flex;align-items:center;gap:7px;height:42px;max-width:300px;box-sizing:border-box;padding:0 14px;border:1.5px solid var(--paper-line);border-radius:999px;background:#fff;color:var(--ink);font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+  .browse-area-btn svg{flex:none;color:var(--accent);}
+  .browse-area-btn #browseAreaLabel{overflow:hidden;text-overflow:ellipsis;}
+  .browse-area-btn:hover,.browse-area-btn[aria-expanded="true"]{border-color:#9FC4B0;}
+  #browseAreaPanel{position:absolute;top:calc(100% + 8px);left:0;z-index:60;width:300px;box-sizing:border-box;padding:12px;border:1px solid var(--paper-line);border-radius:14px;background:#fff;box-shadow:0 14px 34px -12px rgba(23,42,28,.4);}
+  #browseAreaPanel[hidden]{display:none;}
+  #browseAreaPanel .browse-area-controls{display:grid;grid-template-columns:1fr;gap:10px;}
+  #browseAreaPanel .browse-geo-group{display:flex;flex-direction:column;gap:5px;width:100%;}
+  #browseAreaPanel .browse-geo-label{position:static;width:auto;height:auto;overflow:visible;clip:auto;color:#8A9689;font:700 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
+  /* Inside the panel the heading above names the picker, so the picker
+     shows its value ("All countries") rather than repeating its name. */
+  #browseAreaPanel .area-select-trigger__kicker{display:none;}
+  #browseAreaPanel .area-select-trigger__label{display:inline;}
+  #browseFiltersMenu .browse-quick-filters{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:4px 8px 2px;padding:0;border:0;}
+  #browseFiltersMenu .browse-quick-filter{width:100%;min-width:0;height:38px;min-height:38px;padding:0 10px;font-size:12px;}
+  .browse-active-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px;}
+  .browse-active-chips[hidden]{display:none;}
+  .browse-active-chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px 0 12px;border:1px solid #A9C5AE;border-radius:999px;background:#E1ECE2;color:#24462E;font:700 12px 'Inter',sans-serif;cursor:pointer;}
+  .browse-active-chip span{font-size:15px;line-height:1;opacity:.7;}
+  .browse-active-chip:hover span{opacity:1;}
+  .browse-active-clear{border:0;background:none;color:var(--accent);font:700 12px 'Inter',sans-serif;cursor:pointer;padding:4px 6px;}
+
+  /* The card: View trail is the one main action; Compare is a quiet tick box. */
+  .browse-card-actions{flex-direction:column;align-items:flex-start;gap:9px;}
+  .browse-card-open{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 16px;border-radius:999px;background:var(--accent);color:#fff;font:800 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;}
+  .browse-card-open:hover{filter:brightness(1.06);}
+  .browse-card-compare,.browse-card-compare[aria-pressed="true"]{min-height:0;padding:2px 0;border:0;background:none;color:var(--ink-soft);font:600 12px 'Inter',sans-serif;gap:7px;}
+  .browse-card-compare::before{content:'';width:14px;height:14px;box-sizing:border-box;border:1.5px solid #9AA69B;border-radius:4px;background:#fff;}
+  .browse-card-compare[aria-pressed="true"]{color:#24462E;}
+  .browse-card-compare[aria-pressed="true"]::before{border-color:#3E7A91;background:#3E7A91 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/10px no-repeat;}
+  .browse-card-compare:hover{color:var(--ink);}
+
+  /* The rating chip says what it is and where it is explained. */
+  .browse-rating-link{display:inline-flex;border-radius:999px;text-decoration:none;}
+  .browse-rating-link .dp-badge>span{text-decoration:underline dotted;text-underline-offset:3px;}
+  .browse-rating-link .dp-badge::after{content:'ⓘ';margin-left:2px;font-size:11px;opacity:.75;}
+  .browse-rating-link:hover .dp-badge{filter:brightness(.97);}
+  .browse-rating-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  @media(max-width:760px){
+    #browseTools{flex-wrap:wrap;}
+    #browseTools>.browse-search-group{flex:1 1 100%;}
+    #browseTools>.browse-area-wrap{flex:1 1 0;min-width:0;}
+    #browseTools .browse-area-btn{width:100%;max-width:none;}
+    #browseAreaPanel{width:min(300px,calc(100vw - 32px));}
+    /* Saved shrinks to its heart and count so the second row holds all three. */
+    #browseTools>.browse-saved-only{padding-inline:11px;gap:6px;}
+    #browseTools>.browse-saved-only [data-i18n="browse.quick.saved"]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+    #browseTools #browseFiltersBtn{width:auto;padding-inline:12px;}
+    #browseTools #browseFiltersBtn .li-caret{display:none;}
+    #browseTools .browse-area-btn{padding-inline:12px;}
+  }
+</style>
+<link rel="stylesheet" href="/geo-filters.css?v=20260904-1">
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="/it/"><img src="/logo.svg?v=5" alt="">ORMA</a><span class="topnav-page" data-i18n="account.nav.browse">Sentieri</span>
+  <div class="links">
+    <a href="/it/browse-trails.html" class="active" data-i18n="account.nav.browse">Sentieri</a>
+    <a href="/collections.html" data-i18n="account.nav.collections">Raccolte</a>
+    <a href="/it/safety-guide.html" data-i18n="account.nav.safety">Guide di sicurezza</a>
+    <a href="/journal.html" data-i18n="account.nav.journal">Il mio diario delle passeggiate</a>
+    <button id="accountBtn" class="account-btn" data-i18n="nav.login">Accedi</button>
+  </div>
+</div>
+
+<!-- Same guest bar as the homepage, for continuity; hidden once logged in. -->
+<div class="hp-guestbar hp-guestbar--compact" id="browseGuestBar">
+  <div class="hp-guestbar-copy"><b data-i18n="browse.guest.title">Modalità ospite · I punteggi usano il profilo di un cane di taglia media.</b> <span data-i18n="browse.guest.sub">Aggiungi il tuo cane per abbinamenti personalizzati.</span></div>
+  <a class="hp-guestbar-cta" href="/it/?wizard=1" data-i18n="hp.guest.addDog">Aggiungi il tuo cane</a>
+</div>
+
+<header class="browse-design-head section-page-head">
+  <h1 id="trailCountHeading" data-i18n="account.nav.browse">Sentieri</h1>
+  <p class="sub section-page-subtitle" data-i18n="browse.sub">Esplora tutti i sentieri o restringi la mappa alla zona in cui vuoi camminare.</p>
+</header>
+
+<main class="browse-design-wrap section-page-wrap">
+  <div id="browseCollections" hidden></div>
+
+  <div class="browse-primary-controls">
+    <div class="browse-tools" id="browseTools" aria-label="Cerca e filtra i sentieri" data-i18n-aria-label="page.browseTrails.searchAndFilterTrails">
+    <div class="browse-search-group">
+      <label class="browse-search-shell">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        <input class="browse-search" id="browseSearch" type="search" placeholder="Cerca sentiero, paese, regione o valle" data-i18n-ph="browse.search.ph" aria-label="Cerca sentieri e destinazioni" data-i18n-aria-label="browse.search.aria">
+      </label>
+      <button type="button" id="browseSearchBtn" class="browse-search-submit" data-i18n="browse.search.go">Cerca</button>
+    </div>
+    <!-- One "Area" control in the row; Country, Region and Valley open
+         inside it and still drive the same selects. -->
+    <div class="li-menuwrap browse-area-wrap" id="browseAreaWrap">
+      <button type="button" id="browseAreaBtn" class="browse-area-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="browseAreaPanel">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
+        <span id="browseAreaLabel" data-i18n="areas.all">Tutte le zone</span> <span class="li-caret" aria-hidden="true">▾</span>
+      </button>
+      <div class="browse-area-panel" id="browseAreaPanel" role="dialog" aria-label="Scegli una zona" hidden data-i18n-aria-label="page.browseTrails.chooseAnArea">
+        <div class="browse-area-controls" aria-label="Scegli la zona del sentiero" data-i18n-aria-label="page.browseTrails.chooseTrailArea">
+          <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
+            <span class="browse-geo-label" data-i18n="browse.geo.country">Paese</span>
+            <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filtra i sentieri per paese" data-i18n-aria-label="browse.filters.filterCountry"></select></span>
+          </label>
+          <label class="browse-geo-group geo-filter-control" for="browseRegionSelect">
+            <span class="browse-geo-label" data-i18n="browse.geo.region">Regione</span>
+            <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-kicker-until-selected data-control-kicker="Region" aria-label="Filtra i sentieri per regione" data-i18n-aria-label="browse.filters.filterRegion"></select></span>
+          </label>
+          <label class="browse-geo-group browse-geo-group--valley geo-filter-control" for="browseValleySelect">
+            <span class="browse-geo-label" data-i18n="browse.geo.valley">Valle</span>
+            <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filtra i sentieri per valle" data-i18n-aria-label="browse.filters.filterValley"></select></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="li-menuwrap" id="browseFiltersWrap">
+        <button type="button" id="browseFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
+          <span data-i18n="browse.filters.button">Filtri</span><span id="browseFiltersCount"></span> <span class="li-caret">▾</span>
+        </button>
+        <div class="li-menu li-filters-menu discovery-filter-panel" id="browseFiltersMenu" hidden>
+          <div class="li-fhead">
+            <span data-i18n="browse.filters.title">Filtra sentieri</span>
+            <button type="button" id="browseFiltersReset" data-i18n="browse.filters.resetAll">Azzera tutto</button>
+          </div>
+          <div class="browse-filter-group">
+            <div class="browse-filter-group__title" data-i18n="browse.filters.quick">Filtri rapidi</div>
+            <div class="browse-quick-filters" aria-label="Filtri rapidi per il cane" data-i18n-aria-label="browse.quick.aria">
+              <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span data-i18n="browse.quick.shade">Molta ombra</span></button>
+              <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="22" aria-hidden="true"></span><span data-i18n="browse.quick.water">Acqua</span></button>
+              <button type="button" class="browse-quick-filter" id="browseChairlifts" aria-pressed="false" data-audit-label="Chairlift-assisted routes" title="I percorsi che usano una seggiovia aperta sono nascosti per impostazione predefinita: possono essere fatali per un cane non abituato" data-i18n-title="browse.chairlifts.title"><span aria-hidden="true">⚠</span><span data-i18n="browse.chairlifts.label">Includi percorsi con seggiovia</span></button>
+              <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Mostra gli itinerari lunghi di più giorni (oltre 25 km)" data-i18n-title="browse.quick.multiDayTitle"><span aria-hidden="true">🏕️</span><span data-i18n="browse.quick.multiDay">Più giorni</span></button>
+            </div>
+          </div>
+          <div class="browse-filter-group">
+            <div class="browse-filter-group__title" data-i18n="browse.filters.essentials">Essenziali del percorso</div>
+            <div class="li-fsec" data-i18n="browse.filters.distance">Distanza</div>
+            <div class="li-seg" id="brDistSeg"></div>
+            <div class="li-fsec" data-i18n="browse.filters.rating">Valutazione del sentiero</div>
+            <div class="li-seg" id="brRiskSeg"></div>
+            <div class="li-fsec" data-i18n="browse.filters.minMatch">Abbinamento minimo</div>
+            <div class="li-seg" id="brMatchSeg"></div>
+          </div>
+          <div class="browse-filter-group">
+            <div class="browse-filter-group__title" data-i18n="browse.filters.conditions">Terreno e condizioni del sentiero</div>
+            <div class="li-fsec" data-i18n="browse.filters.terrain">Terreno</div>
+            <div class="li-seg" id="brTerrainSeg"></div>
+          </div>
+          <button type="button" class="li-apply" id="browseFiltersApply" data-i18n="browse.filters.show">Mostra sentieri</button>
+        </div>
+      </div>
+      <button type="button" id="browseSavedOnly" class="browse-saved-only" aria-pressed="false">
+        <span class="orma-saved-heart" aria-hidden="true">♥</span><span data-i18n="browse.quick.saved">Salvati</span><span class="browse-saved-count" id="browseSavedCount">0</span>
+      </button>
+    <div class="browse-filter-controls" id="browseFilterControls" hidden>
+      <label class="browse-field"><span data-i18n="browse.filters.distance">Distanza</span>
+        <select id="browseDistance" aria-label="Filtra per distanza" data-i18n-aria-label="browse.filters.filterDistance">
+          <option value="all">Distanza</option>
+          <option value="3" hidden data-i18n="browse.filters.upTo3">Fino a 3 km</option>
+          <option value="5">Meno di 5 km</option>
+          <option value="6" hidden data-i18n="browse.filters.upTo6">Fino a 6 km</option>
+          <option value="10">5–10 km</option>
+          <option value="20" hidden data-i18n="browse.filters.upTo20">Fino a 20 km</option>
+          <option value="u5" hidden>Meno di 5 km</option>
+          <option value="5to10" hidden>5–10 km</option>
+          <option value="10p" hidden>Oltre 10 km</option>
+        </select>
+      </label>
+      <label class="browse-field"><span data-i18n="browse.filters.rating">Valutazione del sentiero</span>
+        <select id="browseRisk" aria-label="Filtra per valutazione del sentiero" data-i18n-aria-label="browse.filters.filterRating">
+          <option value="all">Valutazione del sentiero</option>
+          <option value="low-risk">Basso rischio</option>
+          <option value="moderate" data-i18n="hp.difficulty.moderate">Moderato</option>
+          <option value="caution">Attenzione</option>
+        </select>
+      </label>
+      <label class="browse-field browse-field--advanced"><span data-i18n="account.profile.terrainTolerance">Tolleranza del terreno</span>
+        <select id="browseTerrain" aria-label="Filtra per tolleranza al terreno" data-i18n-aria-label="browse.filters.filterTerrain">
+          <option value="">Qualsiasi terreno</option>
+          <option value="soft">Solo superfici dolci</option>
+          <option value="mixed">Fino a terreno misto</option>
+          <option value="rocky">Anche terreno roccioso</option>
+        </select>
+      </label>
+      <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.shadeHeat">Ombra e caldo</span>
+        <select id="browseHeat" aria-label="Filtra per ombra o caldo verificati" data-i18n-aria-label="browse.filters.filterHeat">
+          <option value="" data-i18n="browse.filters.anyHeat">Qualsiasi dato su ombra o caldo</option>
+          <option value="shade-reviewed" data-i18n="browse.filters.shade30">Almeno il 30% di ombra</option>
+          <option value="shade-40" hidden>Oltre il 40% di ombra</option>
+          <option value="shade-60" hidden>Oltre il 60% di ombra</option>
+        </select>
+      </label>
+      <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.exposure">Esposizione</span>
+        <select id="browseExposure" aria-label="Filtra per esposizione verificata" data-i18n-aria-label="browse.filters.filterExposure">
+          <option value="" data-i18n="browse.filters.anyExposure">Qualsiasi dato sull’esposizione</option>
+          <option value="none-reviewed">Nessuna esposizione segnalata</option>
+        </select>
+      </label>
+      <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.dogRestrictions">Restrizioni per i cani</span>
+        <select id="browseAccess" aria-label="Filtra per accesso dei cani verificato" data-i18n-aria-label="browse.filters.filterAccess">
+          <option value="" data-i18n="browse.filters.anyAccess">Qualsiasi regola di accesso per i cani</option>
+          <option value="allowed-reviewed">Cani ammessi</option>
+        </select>
+      </label>
+      </div>
+    </div>
+    <!-- What is switched on, each removable, so nothing filters out of sight. -->
+    <div class="browse-active-chips" id="browseActiveChips" aria-label="Filtri attivi" hidden data-i18n-aria-label="page.browseTrails.activeFilters"></div>
+  </div>
+  <div id="browseLocationBreadcrumb" class="browse-location-breadcrumb" aria-live="polite"></div>
+  <div class="browse-view-toggle" role="group" aria-label="Scegli la vista del catalogo" data-i18n-aria-label="browse.view.aria">
+    <button type="button" class="on" data-browse-view="list" aria-pressed="true" data-i18n="browse.view.list">Elenco</button>
+    <button type="button" data-browse-view="map" aria-pressed="false" data-i18n="browse.view.map">Mappa</button>
+  </div>
+  <section id="browseExplorer" class="browse-explorer" data-mobile-view="list" aria-label="Catalogo dei sentieri e mappa" data-i18n-aria-label="page.browseTrails.trailCatalogueAndMap">
+    <div class="browse-map-pane" aria-label="Mappa dei sentieri corrispondenti" data-i18n-aria-label="browse.map.aria">
+      <div id="browseMap">
+        <div class="browse-map-placeholder"><strong data-i18n="browse.map.loading">Caricamento della mappa…</strong><span data-i18n="browse.map.loadingSub">Puoi continuare a esplorare il catalogo mentre la mappa si carica.</span></div>
+      </div>
+      <button type="button" id="browseSearchArea" class="browse-search-area" hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>
+        <span data-i18n="browse.map.searchArea">Cerca in questa zona</span>
+      </button>
+      <div class="browse-map-key" id="browseMapKey" aria-label="Cosa significano i colori" data-i18n-aria-label="browse.map.keyAria">
+        <span class="browse-map-key__title" id="browseMapKeyTitle" data-i18n="page.browseTrails.forAMediumDog">Per un cane di taglia media</span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="good"></i><span data-category="strong-option"></span></span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="fair"></i><span data-category="possible-with-cautions"></span></span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="poor"></i><span data-category="not-recommended"></span></span>
+      </div>
+      <div class="browse-map-style" role="group" aria-label="Aspetto della mappa" data-i18n-aria-label="browse.map.styleAria">
+        <button type="button" class="on" data-browse-map-style="map" aria-pressed="true" data-i18n="browse.map.styleMap">Mappa</button>
+        <button type="button" data-browse-map-style="terrain" aria-pressed="false" data-i18n="browse.map.styleTerrain">Rilievo</button>
+      </div>
+    </div>
+    <div class="browse-list-pane">
+      <!-- What Compare does, feeds the tray at the bottom + compare.html -->
+      <aside class="browse-compare-note" data-i18n="page.browseTrails.decidingBetweenTrailsPickCompare"><b>Indeciso tra più sentieri?</b> Scegli <em>Confronta</em> su due o tre e mettiamo a confronto distanza, terreno, ombra, acqua e adattabilità al cane.</aside>
+      <div class="browse-results-meta">
+        <span id="browseResultCount" aria-live="polite"></span>
+        <span class="browse-result-accessible" data-i18n="browse.trustNote">Le informazioni sui sentieri combinano i dati del percorso mappato e le fonti ORMA disponibili.</span>
+        <button type="button" id="browseClear" class="browse-clear" hidden data-i18n="browse.clearFilters">Azzera i filtri</button>
+      </div>
+      <div class="simple-grid" id="simpleTrailsList"></div>
+    </div>
+  </section>
+
+  <details hidden style="margin-top:34px;font-size:13.5px;color:var(--ink-soft);">
+    <summary style="cursor:pointer;font-weight:700;color:var(--ink);" data-i18n="page.browseTrails.fullTrailIndexAz">Indice completo dei sentieri (A–Z)</summary>
+    <div style="columns:2;column-gap:28px;margin-top:14px;line-height:2;">
+<!-- TRAIL-INDEX-START (auto-generated by scripts/generate-trail-pages.js, do not edit by hand) -->
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Dolomiti, Italia</p>
+<a href="/it/trails/antichi-bagnes-pozza.html" style="display:block;color:inherit;">Agli antichi Bagnes</a>
+<a href="/it/trails/rifugio-potzmauer.html" style="display:block;color:inherit;">Al Rifugio Potzmauer</a>
+<a href="/it/trails/santuario-santa-giuliana.html" style="display:block;color:inherit;">Al santuario di Santa Giuliana</a>
+<a href="/it/trails/albeins-klerant-milland-albes-cleran-millan.html" style="display:block;color:inherit;">Albeins-Klerant-Milland - Albes-Cleran-Millan</a>
+<a href="/it/trails/algunder-waalweg.html" style="display:block;color:inherit;">Algunder Waalweg</a>
+<a href="/it/trails/borgo-di-tamion-soraga.html" style="display:block;color:inherit;">Alla scoperta del borgo ladino di Tamion</a>
+<a href="/it/trails/alpe-di-fuciade.html" style="display:block;color:inherit;">Alpe di Fuciade</a>
+<a href="/it/trails/alpe-di-siusi-meadow-loop.html" style="display:block;color:inherit;">Anello dei prati dell’Alpe di Siusi</a>
+<a href="/it/trails/altfasstal-to-wieserhuette.html" style="display:block;color:inherit;">Dall’Altfasstal alla Wieserhütte</a>
+<a href="/it/trails/andalo-tana-ermellino.html" style="display:block;color:inherit;">Andalo – Tana dell’Ermellino</a>
+<a href="/it/trails/anello-dei-colli.html" style="display:block;color:inherit;">Anello dei Colli</a>
+<a href="/it/trails/anello-dei-faggi.html" style="display:block;color:inherit;">Anello dei Faggi</a>
+<a href="/it/trails/anello-dei-forti.html" style="display:block;color:inherit;">Anello dei Forti</a>
+<a href="/it/trails/anello-dei-pradi.html" style="display:block;color:inherit;">Anello dei Pradi</a>
+<a href="/it/trails/anello-del-bosco.html" style="display:block;color:inherit;">Anello del Bosco</a>
+<a href="/it/trails/anello-del-sole.html" style="display:block;color:inherit;">Anello del Sole</a>
+<a href="/it/trails/anello-del-troi-de-le-ciaure.html" style="display:block;color:inherit;">Anello del Troi de le Ciaure</a>
+<a href="/it/trails/anello-di-ciampeviei.html" style="display:block;color:inherit;">Anello di Ciampeviei</a>
+<a href="/it/trails/anello-di-soracrode.html" style="display:block;color:inherit;">Anello di Soracrode</a>
+<a href="/it/trails/anello-di-valpiana.html" style="display:block;color:inherit;">Anello di Valpiana</a>
+<a href="/it/trails/anello-di-valzalina.html" style="display:block;color:inherit;">Anello di Valzalina</a>
+<a href="/it/trails/anello-molaren-via-nova-marine.html" style="display:block;color:inherit;">Anello Molaren - Via Nova - Marine</a>
+<a href="/it/trails/anello-poit-cordogne-san-giovanni.html" style="display:block;color:inherit;">Anello Poit - Cordognè - San Giovanni</a>
+<a href="/it/trails/annaberger-boden-from-latsch.html" style="display:block;color:inherit;">Annaberger Böden da Latsch</a>
+<a href="/it/trails/antermoia-colac-rina.html" style="display:block;color:inherit;">Da Antermoia a Rina</a>
+<a href="/it/trails/anton-schwingshackl-weg.html" style="display:block;color:inherit;">Anton Schwingshackl Weg</a>
+<a href="/it/trails/archeopfad-brixen.html" style="display:block;color:inherit;">Archeopfad Brixen</a>
+<a href="/it/trails/astragal-villa-bosco-secolare.html" style="display:block;color:inherit;">Da Astragal a Villa attraverso il bosco antico</a>
+<a href="/it/trails/aussergsell-innergsell-loop.html" style="display:block;color:inherit;">Anello Außergsell – Innergsell</a>
+<a href="/it/trails/birmehlweg-sentiero-birmehl.html" style="display:block;color:inherit;">Birmehlweg - Sentiero Birmehl</a>
+<a href="/it/trails/bivacco-malga-baselga.html" style="display:block;color:inherit;">Bivacco Malga Baselga</a>
+<a href="/it/trails/bloseggweg-loop-schenna.html" style="display:block;color:inherit;">Anello del Bloseggweg da Schenna</a>
+<a href="/it/trails/borest-pisciadu-waterfall.html" style="display:block;color:inherit;">Borest – cascata del Pisciadú</a>
+<a href="/it/trails/brach-pieve-di-marebbe.html" style="display:block;color:inherit;">Da Brach a Pieve di Marebbe</a>
+<a href="/it/trails/brandis-waalweg-lana.html" style="display:block;color:inherit;">Brandis-Waalweg, da Lana alla cascata di Brandis</a>
+<a href="/it/trails/bunkerweg.html" style="display:block;color:inherit;">Bunkerweg</a>
+<a href="/it/trails/carisolo-old-village.html" style="display:block;color:inherit;">Il borgo antico di Carisolo</a>
+<a href="/it/trails/carl-toldt-weg.html" style="display:block;color:inherit;">Carl-Toldt-Weg</a>
+<a href="/it/trails/castello-di-andraz.html" style="display:block;color:inherit;">Al Castello di Andraz, andata e ritorno</a>
+<a href="/it/trails/castello-di-botestagno.html" style="display:block;color:inherit;">Castello di Botestagno</a>
+<a href="/it/trails/cavalese-panoramic-walk.html" style="display:block;color:inherit;">Cavalese - Passeggiata panoramica</a>
+<a href="/it/trails/cima-gogna-zamberlan.html" style="display:block;color:inherit;">Da Cima Gogna a Zamberlan</a>
+<a href="/it/trails/cimabanche-plaetzwiese.html" style="display:block;color:inherit;">Cimabanche – Plätzwiese</a>
+<a href="/it/trails/cinque-torri-three-refuges-assisted-circuit.html" style="display:block;color:inherit;">Giro dei tre rifugi alle Cinque Torri, con la seggiovia</a>
+<a href="/it/trails/cogolo-santa-lucia.html" style="display:block;color:inherit;">Da Cogolo alla chiesa di Santa Lucia</a>
+<a href="/it/trails/varena-spianez-loop.html" style="display:block;color:inherit;">Col passeggino tra Varena e Spianez</a>
+<a href="/it/trails/col-raiser-seceda.html" style="display:block;color:inherit;">Col Raiser – Seceda</a>
+<a href="/it/trails/colfosco-rifugio-puez.html" style="display:block;color:inherit;">Da Colfosco al Rifugio Puez</a>
+<a href="/it/trails/compatsch-wiedner-eck-loop.html" style="display:block;color:inherit;">Anello Compatsch – Wiedner Eck</a>
+<a href="/it/trails/corvara-colfosco.html" style="display:block;color:inherit;">Corvara – Colfosco</a>
+<a href="/it/trails/corvara-la-villa.html" style="display:block;color:inherit;">Corvara – La Villa</a>
+<a href="/it/trails/counts-path-steinhaus.html" style="display:block;color:inherit;">Sentiero del Conte sopra Steinhaus</a>
+<a href="/it/trails/cristauta-seceda-monte-pic.html" style="display:block;color:inherit;">Cristauta – Seceda per il Monte Pic</a>
+<a href="/it/trails/cristo-pensante-monte-castellazzo.html" style="display:block;color:inherit;">Il Cristo Pensante sul Monte Castellazzo</a>
+<a href="/it/trails/ortisei-cudan-dumat.html" style="display:block;color:inherit;">Da Cudan a Dumat sopra Ortisei</a>
+<a href="/it/trails/alba-penia.html" style="display:block;color:inherit;">Da Alba a Penìa</a>
+<a href="/it/trails/da-canazei-a-penia.html" style="display:block;color:inherit;">Da Canazei a Penìa</a>
+<a href="/it/trails/moena-soraga-avisio.html" style="display:block;color:inherit;">Da Moena a Soraga, dove l'acqua ha segnato la storia</a>
+<a href="/it/trails/moena-soraga-someda.html" style="display:block;color:inherit;">Da Moena a Soraga, la natura a due passi da casa</a>
+<a href="/it/trails/baita-monte-pat-malga-vernera.html" style="display:block;color:inherit;">Dalla Baita Monte Pat a Malga Vernera</a>
+<a href="/it/trails/dolomitenblickrunde.html" style="display:block;color:inherit;">Dolomitenblickrunde</a>
+<a href="/it/trails/dolomiti-in-miniatura-san-tomaso.html" style="display:block;color:inherit;">Le Dolomiti in miniatura di San Tomaso Agordino</a>
+<a href="/it/trails/dolorama-genova-to-resciesa.html" style="display:block;color:inherit;">Dolorama tappa 3: dal Rifugio Genova al Resciesa</a>
+<a href="/it/trails/dorferrunde-natz-raas-schabs-viums.html" style="display:block;color:inherit;">Dörferrunde: Natz, Raas, Schabs e Viums</a>
+<a href="/it/trails/dorferrundweg.html" style="display:block;color:inherit;">Dörferrundweg</a>
+<a href="/it/trails/dorferrundweg-vintl.html" style="display:block;color:inherit;">Dörferrundweg (Vintl)</a>
+<a href="/it/trails/dorfrundweg-giro-del-paese.html" style="display:block;color:inherit;">Dorfrundweg - Giro del Paese</a>
+<a href="/it/trails/dorfrundweg-aicha.html" style="display:block;color:inherit;">Dorfrundweg Aicha</a>
+<a href="/it/trails/dorfrundweg-mittertal.html" style="display:block;color:inherit;">Dorfrundweg Mittertal</a>
+<a href="/it/trails/dorfrundweg-niedertal.html" style="display:block;color:inherit;">Dorfrundweg Niedertal</a>
+<a href="/it/trails/dorfrundweg-rasen.html" style="display:block;color:inherit;">Dorfrundweg Rasen</a>
+<a href="/it/trails/dorfrundweg-st-sigmund.html" style="display:block;color:inherit;">Dorfrundweg St. Sigmund</a>
+<a href="/it/trails/sotecordes.html" style="display:block;color:inherit;">Escursione di Sotecordes</a>
+<a href="/it/trails/familienrundweg.html" style="display:block;color:inherit;">Familienrundweg</a>
+<a href="/it/trails/fane-alm-to-brixner-huette.html" style="display:block;color:inherit;">Dalla Fane Alm alla Brixner Hütte</a>
+<a href="/it/trails/fenn-promenade.html" style="display:block;color:inherit;">Passeggiata del Fenn</a>
+<a href="/it/trails/fie-laghetto-di-fie-siusi.html" style="display:block;color:inherit;">Da Fiè a Siusi passando per il Laghetto di Fiè</a>
+<a href="/it/trails/fiera-pieve.html" style="display:block;color:inherit;">Fiera-Pieve</a>
+<a href="/it/trails/fischleintal-sextner-stein.html" style="display:block;color:inherit;">Fischleintal – Sextner Stein</a>
+<a href="/it/trails/flaaser-rundweg.html" style="display:block;color:inherit;">Flaaser Rundweg</a>
+<a href="/it/trails/forcella-zumeles-val-padeon.html" style="display:block;color:inherit;">Forcella Zumeles e Val Padeon</a>
+<a href="/it/trails/algund-forst-marlinger-waalweg.html" style="display:block;color:inherit;">Forst e il Marlinger Waalweg da Algund</a>
+<a href="/it/trails/fort-mitterberg-helmhanghuette.html" style="display:block;color:inherit;">Fort Mitterberg – Helmhanghütte</a>
+<a href="/it/trails/forte-strino-malga-verniana-saviana.html" style="display:block;color:inherit;">Da Forte Strino a Malga Verniana e Malga Saviana</a>
+<a href="/it/trails/furnacia-la-crusc.html" style="display:block;color:inherit;">Furnacia – La Crusc</a>
+<a href="/it/trails/percorso-geologico-val-di-rabbi.html" style="display:block;color:inherit;">Percorso geologico in Val di Rabbi</a>
+<a href="/it/trails/geotrail-bula-pufels-bulla-osm-11814834.html" style="display:block;color:inherit;">Geotrail Bula - Pufels - Bulla</a>
+<a href="/it/trails/geotrail-bula-pufels-bulla.html" style="display:block;color:inherit;">Geotrail Bula / Pufels / Bulla</a>
+<a href="/it/trails/cavalese-castello-di-fiemme-loop.html" style="display:block;color:inherit;">Giro ad anello Cavalese - Castello di Fiemme</a>
+<a href="/it/trails/giro-dei-capitelli-kapellenrunde.html" style="display:block;color:inherit;">Giro dei Capitelli - Kapellenrunde</a>
+<a href="/it/trails/giro-del-belvedere-giustino.html" style="display:block;color:inherit;">Giro del Belvedere</a>
+<a href="/it/trails/giro-del-fausior.html" style="display:block;color:inherit;">Giro del Fausior</a>
+<a href="/it/trails/giro-del-sasso-lungo.html" style="display:block;color:inherit;">Giro del Sasso Lungo</a>
+<a href="/it/trails/giro-della-bullaccia.html" style="display:block;color:inherit;">Giro della Bullaccia</a>
+<a href="/it/trails/giro-della-toresela.html" style="display:block;color:inherit;">Giro della Toresela</a>
+<a href="/it/trails/giro-di-bedolpian.html" style="display:block;color:inherit;">Giro di Bedolpian</a>
+<a href="/it/trails/giro-panoramico-monte-corona.html" style="display:block;color:inherit;">Giro panoramico sul Monte Corona</a>
+<a href="/it/trails/gratschenbergrunde.html" style="display:block;color:inherit;">Gratschenbergrunde</a>
+<a href="/it/trails/grosse-schlossrunde.html" style="display:block;color:inherit;">Große Schlossrunde</a>
+<a href="/it/trails/gsieser-talblickweg.html" style="display:block;color:inherit;">Gsieser Talblickweg</a>
+<a href="/it/trails/gustav-mahler-path-toblach.html" style="display:block;color:inherit;">Sentiero Gustav Mahler</a>
+<a href="/it/trails/haus-der-berge-laerchenhuette.html" style="display:block;color:inherit;">Haus der Berge – Lärchenhütte</a>
+<a href="/it/trails/helm-vierschach.html" style="display:block;color:inherit;">Helm – Vierschach</a>
+<a href="/it/trails/helm-waldruhe-sexten.html" style="display:block;color:inherit;">Helm – Waldruhe – Sexten</a>
+<a href="/it/trails/herrnsteig.html" style="display:block;color:inherit;">Herrnsteig</a>
+<a href="/it/trails/hinzlweg.html" style="display:block;color:inherit;">Hinzlweg</a>
+<a href="/it/trails/hirzer-alms-loop-klammeben.html" style="display:block;color:inherit;">Anello delle malghe dell’Hirzer da Klammeben</a>
+<a href="/it/trails/historic-ortisei.html" style="display:block;color:inherit;">Ortisei storica</a>
+<a href="/it/trails/historische-rundwanderung-teis.html" style="display:block;color:inherit;">Historische Rundwanderung Teis</a>
+<a href="/it/trails/hofeweg.html" style="display:block;color:inherit;">Höfeweg</a>
+<a href="/it/trails/pradi-da-le-fior.html" style="display:block;color:inherit;">I Pradi da le Fior</a>
+<a href="/it/trails/segreti-di-una-volta-pozza.html" style="display:block;color:inherit;">I segreti di una volta</a>
+<a href="/it/trails/mazzin-cammino-dei-pitores.html" style="display:block;color:inherit;">Il cammino dei pitores</a>
+<a href="/it/trails/castello-di-segonzano-canyon-del-pra.html" style="display:block;color:inherit;">Il Castello di Segonzano e il canyon del Prà</a>
+<a href="/it/trails/giro-dei-masi-di-grumes.html" style="display:block;color:inherit;">Il Giro dei Masi di Grumes</a>
+<a href="/it/trails/lago-di-lases-buse-del-giaz.html" style="display:block;color:inherit;">Il Lago di Lases e le buse del giaz</a>
+<a href="/it/trails/lago-santo-cembra.html" style="display:block;color:inherit;">Il Lago Santo</a>
+<a href="/it/trails/paese-dei-beghei-sevignano.html" style="display:block;color:inherit;">Il paese dei “Beghei”</a>
+<a href="/it/trails/passato-ritrovato-pian.html" style="display:block;color:inherit;">Il passato ritrovato</a>
+<a href="/it/trails/piz-de-le-agole-lisignago.html" style="display:block;color:inherit;">Il Piz de le Agole, balcone sulla valle</a>
+<a href="/it/trails/sentiero-vecchi-mestieri-grumes.html" style="display:block;color:inherit;">Il Sentiero dei vecchi mestieri – da Grumes</a>
+<a href="/it/trails/innichen-haselsberg-toblach.html" style="display:block;color:inherit;">Innichen – Haselsberg – Toblach</a>
+<a href="/it/trails/innichen-waldkapelle-sexten.html" style="display:block;color:inherit;">Innichen – Waldkapelle – Sexten</a>
+<a href="/it/trails/javre-pelugo-cycle-path-loop.html" style="display:block;color:inherit;">Anello sulla ciclabile Javrè – Pelugo</a>
+<a href="/it/trails/jolanda-baita-messnerjoch.html" style="display:block;color:inherit;">Da Jolanda alla Baita Messnerjoch</a>
+<a href="/it/trails/kaiserstein-baita-masare.html" style="display:block;color:inherit;">Da Kaiserstein alla Baita Masarè</a>
+<a href="/it/trails/kastanienwaal-schlanders.html" style="display:block;color:inherit;">Kastanienwaal, Schlanders</a>
+<a href="/it/trails/kastelaz-promenade.html" style="display:block;color:inherit;">Passeggiata del Kastelaz</a>
+<a href="/it/trails/kastelruth-bear-trap-loop.html" style="display:block;color:inherit;">Anello della trappola per orsi di Kastelruth</a>
+<a href="/it/trails/kirchensteig.html" style="display:block;color:inherit;">Kirchensteig</a>
+<a href="/it/trails/kleine-schlossrunde.html" style="display:block;color:inherit;">Kleine Schlossrunde</a>
+<a href="/it/trails/kofelrunde.html" style="display:block;color:inherit;">Kofelrunde</a>
+<a href="/it/trails/kranterrunde.html" style="display:block;color:inherit;">Kranterrunde</a>
+<a href="/it/trails/kulturwanderweg-peter-mitterhofer.html" style="display:block;color:inherit;">Kulturwanderweg Peter Mitterhofer</a>
+<a href="/it/trails/scalata-alle-malghette.html" style="display:block;color:inherit;">La “scalata” alle Malghette</a>
+<a href="/it/trails/la-guana-di-primiero.html" style="display:block;color:inherit;">La Guana di Primiero</a>
+<a href="/it/trails/lases-pietra-del-futuro.html" style="display:block;color:inherit;">La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases</a>
+<a href="/it/trails/la-val-prati-di-rit.html" style="display:block;color:inherit;">La Val – Prati di Rit</a>
+<a href="/it/trails/via-della-frutta-antica.html" style="display:block;color:inherit;">La via della frutta antica</a>
+<a href="/it/trails/la-villa-lech-da-sompunt.html" style="display:block;color:inherit;">La Villa – Lech da Sompunt</a>
+<a href="/it/trails/lacerta-prima-valdaora-di-sopra.html" style="display:block;color:inherit;">Sulle tracce della Lacerta Prima a Valdaora di Sopra</a>
+<a href="/it/trails/laghi-di-colbricon-malga-rolle.html" style="display:block;color:inherit;">Laghi di Colbricon da Malga Rolle</a>
+<a href="/it/trails/lago-dei-caprioli-malga-alta-fazzon.html" style="display:block;color:inherit;">Lago dei Caprioli – Malga Alta di Fazzon</a>
+<a href="/it/trails/lago-di-braies-gruenwaldalm.html" style="display:block;color:inherit;">Lago di Braies – Grünwaldalm</a>
+<a href="/it/trails/lago-di-braies-seeweg-circuit.html" style="display:block;color:inherit;">Giro del Lago di Braies (Seeweg)</a>
+<a href="/it/trails/lago-di-carezza-loop.html" style="display:block;color:inherit;">Anello del Lago di Carezza</a>
+<a href="/it/trails/lago-juribrutto-malga-vallazza.html" style="display:block;color:inherit;">Lago di Juribrutto da Malga Vallazza</a>
+<a href="/it/trails/lago-di-molveno-loop.html" style="display:block;color:inherit;">Anello del Lago di Molveno</a>
+<a href="/it/trails/lago-di-nambino-walk.html" style="display:block;color:inherit;">Lago di Nambino</a>
+<a href="/it/trails/lago-di-sorapis-trail.html" style="display:block;color:inherit;">Sentiero del Lago di Sorapis</a>
+<a href="/it/trails/lago-ritorto.html" style="display:block;color:inherit;">Lago Ritorto</a>
+<a href="/it/trails/lake-bergsee-from-burgeis.html" style="display:block;color:inherit;">Il Bergsee da Burgeis</a>
+<a href="/it/trails/lake-carezza-to-stadlalm.html" style="display:block;color:inherit;">Dal Lago di Carezza alla Stadlalm</a>
+<a href="/it/trails/lake-neves-to-ponte-di-ghiaccio-hut.html" style="display:block;color:inherit;">Dal Lago di Neves al Rifugio Ponte di Ghiaccio</a>
+<a href="/it/trails/lang-erl-weg.html" style="display:block;color:inherit;">Lang-Erl-Weg</a>
+<a href="/it/trails/langer-rundweg-am-karer-see.html" style="display:block;color:inherit;">Langer Rundweg am Karer See</a>
+<a href="/it/trails/latschanderwaal-latsch-to-kastelbell.html" style="display:block;color:inherit;">Latschanderwaal, da Latsch a Kastelbell</a>
+<a href="/it/trails/latzfons-high-trail.html" style="display:block;color:inherit;">Alta via di Latzfons</a>
+<a href="/it/trails/cascatelle-di-ziano.html" style="display:block;color:inherit;">Le Cascatelle di Ziano di Fiemme</a>
+<a href="/it/trails/erbe-della-salute-grauno.html" style="display:block;color:inherit;">Le erbe della salute</a>
+<a href="/it/trails/lech-sant.html" style="display:block;color:inherit;">Lech Sant</a>
+<a href="/it/trails/leitenwaal-berkwaal-schluderns.html" style="display:block;color:inherit;">Leitenwaal e Berkwaal, Schluderns</a>
+<a href="/it/trails/campiglio-malga-ritort.html" style="display:block;color:inherit;">Madonna di Campiglio – Malga Ritort</a>
+<a href="/it/trails/campiglio-monte-spinale.html" style="display:block;color:inherit;">Madonna di Campiglio – Monte Spinale</a>
+<a href="/it/trails/maiser-moschwald-alms-falzeben.html" style="display:block;color:inherit;">Anello delle malghe Maiser e Moschwald da Falzeben</a>
+<a href="/it/trails/maiser-waalweg.html" style="display:block;color:inherit;">Maiser Waalweg</a>
+<a href="/it/trails/maistatt-loop-niederdorf.html" style="display:block;color:inherit;">Anello di Maistatt</a>
+<a href="/it/trails/malga-aloch-pozza.html" style="display:block;color:inherit;">Malga Aloch e Masc Aloch</a>
+<a href="/it/trails/malga-frommer-ochsenhuette.html" style="display:block;color:inherit;">Da Malga Frommer alla Baita Ochsenhütte</a>
+<a href="/it/trails/malga-ra-stua.html" style="display:block;color:inherit;">Malga Ra Stua</a>
+<a href="/it/trails/malga-strino.html" style="display:block;color:inherit;">Malga Strino</a>
+<a href="/it/trails/marilleva-1400-malga-alta-fazzon.html" style="display:block;color:inherit;">Marilleva 1400 – Malga Alta di Fazzon</a>
+<a href="/it/trails/marlinger-waalweg.html" style="display:block;color:inherit;">Marlinger Waalweg</a>
+<a href="/it/trails/martinsweg.html" style="display:block;color:inherit;">Martinsweg</a>
+<a href="/it/trails/masi-comunicanti-capriana.html" style="display:block;color:inherit;">Masi Comunicanti</a>
+<a href="/it/trails/hoehenweg-texelbahn-to-unterstell.html" style="display:block;color:inherit;">Meraner Höhenweg dalla Texelbahn a Unterstell</a>
+<a href="/it/trails/hoehenweg-west-sonnenberg-farms-partschins.html" style="display:block;color:inherit;">Meraner Höhenweg ovest e i masi del Sonnenberg, Partschins</a>
+<a href="/it/trails/mittlerer-rundweg-am-karer-see.html" style="display:block;color:inherit;">Mittlerer Rundweg am Karer See</a>
+<a href="/it/trails/molin-de-pezol.html" style="display:block;color:inherit;">Molin de Pèzol</a>
+<a href="/it/trails/monclassico-presson-sundials.html" style="display:block;color:inherit;">Monclassico e Presson, i paesi delle meridiane</a>
+<a href="/it/trails/mont-seuc-to-sporthotel-sonne.html" style="display:block;color:inherit;">Da Mont Sëuc allo Sporthotel Sonne</a>
+<a href="/it/trails/monte-spinale-rifugio-graffer.html" style="display:block;color:inherit;">Monte Spinale – Rifugio Graffer</a>
+<a href="/it/trails/moos-helm.html" style="display:block;color:inherit;">Moos – Helm</a>
+<a href="/it/trails/moso-monte-arnese.html" style="display:block;color:inherit;">Da Moos al Monte Arnese (Hornischeck)</a>
+<a href="/it/trails/mortisa-grotte-di-volpera.html" style="display:block;color:inherit;">Mortisa e le Grotte di Volpera</a>
+<a href="/it/trails/muehlbach-to-spinges.html" style="display:block;color:inherit;">Da Mühlbach a Spinges</a>
+<a href="/it/trails/muhlenweg.html" style="display:block;color:inherit;">Mühlenweg</a>
+<a href="/it/trails/natur-und-kulturweg.html" style="display:block;color:inherit;">Natur- und Kulturweg</a>
+<a href="/it/trails/naturerlebnispfad-sand-in-taufers.html" style="display:block;color:inherit;">Naturerlebnispfad Sand in Taufers</a>
+<a href="/it/trails/naturerlebnispfad-zans.html" style="display:block;color:inherit;">Naturerlebnispfad Zans</a>
+<a href="/it/trails/naturlehrpfad.html" style="display:block;color:inherit;">Naturlehrpfad</a>
+<a href="/it/trails/niederdorf-bellavista.html" style="display:block;color:inherit;">Niederdorf – Bellavista</a>
+<a href="/it/trails/niederdorf-lanaweg-loop.html" style="display:block;color:inherit;">Anello Niederdorf – Lanaweg</a>
+<a href="/it/trails/niederdorf-mooskirche.html" style="display:block;color:inherit;">Niederdorf – Mooskirche</a>
+<a href="/it/trails/noerderberg-alms-loop-naturns.html" style="display:block;color:inherit;">Anello delle malghe del Nörderberg, Naturns</a>
+<a href="/it/trails/nossingbuhel.html" style="display:block;color:inherit;">Nössingbühel</a>
+<a href="/it/trails/oberkirn-to-verdins-via-prenn.html" style="display:block;color:inherit;">Da Oberkirn a Verdins per Prenn e Untertall</a>
+<a href="/it/trails/olang-welsberg-reservoir-path.html" style="display:block;color:inherit;">Da Olang a Welsberg lungo il bacino</a>
+<a href="/it/trails/ortise-malga-stabli.html" style="display:block;color:inherit;">Ortisè – Malga Stabli</a>
+<a href="/it/trails/ortisei-passo-sella.html" style="display:block;color:inherit;">Ortisei – Passo Sella</a>
+<a href="/it/trails/ortisei-seurasas.html" style="display:block;color:inherit;">Ortisei – Sëurasas</a>
+<a href="/it/trails/ortisei-valley-promenade.html" style="display:block;color:inherit;">Passeggiata di fondovalle a Ortisei</a>
+<a href="/it/trails/oswald-von-wolkenstein-weg.html" style="display:block;color:inherit;">Oswald-von-Wolkenstein-Weg</a>
+<a href="/it/trails/pana-raida.html" style="display:block;color:inherit;">Pana Raida</a>
+<a href="/it/trails/panoramarundweg.html" style="display:block;color:inherit;">Panoramarundweg</a>
+<a href="/it/trails/panoramarundweg-concordia-360.html" style="display:block;color:inherit;">Panoramarundweg Concordia 360°</a>
+<a href="/it/trails/panoramaweg-in-feldthurns.html" style="display:block;color:inherit;">Panoramaweg in Feldthurns</a>
+<a href="/it/trails/panoramaweg-burgraviato-merano.html" style="display:block;color:inherit;">Panoramaweg, Burgraviato – Merano</a>
+<a href="/it/trails/panoramaweg-oltradige-bassa-atesina.html" style="display:block;color:inherit;">Panoramaweg, Oltradige – Bassa Atesina</a>
+<a href="/it/trails/olang-bruneck-panoramic-path.html" style="display:block;color:inherit;">Sentiero panoramico da Olang a Bruneck</a>
+<a href="/it/trails/monte-vederna.html" style="display:block;color:inherit;">Passeggiata a Monte Vederna – Croce degli Alpini</a>
+<a href="/it/trails/dos-paion-monte-corona.html" style="display:block;color:inherit;">Passeggiata al belvedere del Dos Paion sul Monte Corona</a>
+<a href="/it/trails/pra-del-manz-to-anterivo.html" style="display:block;color:inherit;">Passeggiata col passeggino tra i larici verso Anterivo</a>
+<a href="/it/trails/passeggiata-del-ciclamino-molveno.html" style="display:block;color:inherit;">Passeggiata del Ciclamino</a>
+<a href="/it/trails/passeggiata-delle-sorgenti-quellenpromenade.html" style="display:block;color:inherit;">Passeggiata delle Sorgenti - Quellenpromenade</a>
+<a href="/it/trails/passeggiata-gourmet-cortina.html" style="display:block;color:inherit;">Passeggiata gourmet</a>
+<a href="/it/trails/rio-gambis-cavalese.html" style="display:block;color:inherit;">Passeggiata insolita lungo il Rio Gambis</a>
+<a href="/it/trails/ciajeole-malga-roncac-moena.html" style="display:block;color:inherit;">Passi nella storia: da Ciajeole a Malga Roncac</a>
+<a href="/it/trails/cimabanche-forcella-lerosa.html" style="display:block;color:inherit;">Da Passo Cimabanche a Forcella Lerosa</a>
+<a href="/it/trails/costalunga-to-lake-carezza.html" style="display:block;color:inherit;">Da Passo Costalunga al Lago di Carezza</a>
+<a href="/it/trails/passo-giau-to-rifugio-nuvolau.html" style="display:block;color:inherit;">Da Passo Giau al Rifugio Nuvolau</a>
+<a href="/it/trails/malga-costa-passo-lavaze.html" style="display:block;color:inherit;">Da Passo Lavazè a Malga Costa, andata e ritorno</a>
+<a href="/it/trails/passo-nigra-baita-messnerjoch.html" style="display:block;color:inherit;">Da Passo Nigra alla Baita Messnerjoch</a>
+<a href="/it/trails/passo-nigra-malga-hagner.html" style="display:block;color:inherit;">Da Passo Nigra alla Malga Hagner Alm</a>
+<a href="/it/trails/passo-nigra-to-tiers.html" style="display:block;color:inherit;">Da Passo Nigra a Tiers passando per il maso Jocher</a>
+<a href="/it/trails/passo-oclini-gurndin-isi.html" style="display:block;color:inherit;">Passo Oclini, tra il Corno Nero e il Corno Bianco</a>
+<a href="/it/trails/tonale-forte-mero.html" style="display:block;color:inherit;">Passo Tonale – Forte Mero</a>
+<a href="/it/trails/tonale-forte-mero-forte-zaccarana.html" style="display:block;color:inherit;">Passo Tonale – Forte Mero e Forte Zaccarana</a>
+<a href="/it/trails/malga-pioda-pecol.html" style="display:block;color:inherit;">Da Pecòl a Malga Pioda, andata e ritorno</a>
+<a href="/it/trails/pederoa-masi-picedac-costa.html" style="display:block;color:inherit;">Pederoa – Picedac – Costa</a>
+<a href="/it/trails/peio-paese-lago-covel.html" style="display:block;color:inherit;">Da Peio Paese al Lago Covel</a>
+<a href="/it/trails/percorso-verde-primiero.html" style="display:block;color:inherit;">Percorso Verde (I percorsi del benessere)</a>
+<a href="/it/trails/piancavallo-malghe-loop.html" style="display:block;color:inherit;">Anello delle malghe di Piancavallo</a>
+<a href="/it/trails/pietralba-petersberger-leger.html" style="display:block;color:inherit;">Da Pietralba al Petersberger Leger</a>
+<a href="/it/trails/planetenweg-sentiero-dei-pianeti.html" style="display:block;color:inherit;">Planetenweg - Sentiero dei pianeti</a>
+<a href="/it/trails/russis-to-passo-delle-erbe.html" style="display:block;color:inherit;">Da Ponte Russis al Passo delle Erbe</a>
+<a href="/it/trails/ponte-su-funi.html" style="display:block;color:inherit;">Ponte su Funi Rio San Piero da Mezzano</a>
+<a href="/it/trails/pontesei-rifugio-bosconero.html" style="display:block;color:inherit;">Da Pontesei al Rifugio Bosconero</a>
+<a href="/it/trails/poststeig.html" style="display:block;color:inherit;">Poststeig</a>
+<a href="/it/trails/pozza-canto-acqua-winter.html" style="display:block;color:inherit;">Pozza lungo l’Avisio d’inverno</a>
+<a href="/it/trails/pragser-wildsee-rossalm.html" style="display:block;color:inherit;">Pragser Wildsee – Rossalm</a>
+<a href="/it/trails/pragser-wildsee-huts-circuit.html" style="display:block;color:inherit;">Giro dei rifugi del Pragser Wildsee</a>
+<a href="/it/trails/prato-di-sorte-moena.html" style="display:block;color:inherit;">Prato di Sorte</a>
+<a href="/it/trails/prato-piazza-platzwiese.html" style="display:block;color:inherit;">Prato Piazza (Plätzwiese)</a>
+<a href="/it/trails/proazei-auronzo.html" style="display:block;color:inherit;">Anello di Proazei sopra il lago di Auronzo</a>
+<a href="/it/trails/promenadenweg-tiers.html" style="display:block;color:inherit;">Promenadenweg, Tires</a>
+<a href="/it/trails/rafeil-rundweg.html" style="display:block;color:inherit;">Rafeil-Rundweg</a>
+<a href="/it/trails/raida-dl-luech.html" style="display:block;color:inherit;">Raida dl luech</a>
+<a href="/it/trails/ranui-to-zannes.html" style="display:block;color:inherit;">Da Ranui a Zannes</a>
+<a href="/it/trails/raststeinweg-loop-schenna.html" style="display:block;color:inherit;">Anello del Raststeinweg, Schenna</a>
+<a href="/it/trails/resciesa-brogles.html" style="display:block;color:inherit;">Resciesa – Brogles</a>
+<a href="/it/trails/resciesa-summit-loop.html" style="display:block;color:inherit;">Anello della cima del Resciesa</a>
+<a href="/it/trails/fazzon-lago-dei-caprioli.html" style="display:block;color:inherit;">Rifugio Fazzon – Lago dei Caprioli</a>
+<a href="/it/trails/rifugio-segantini-loop.html" style="display:block;color:inherit;">Anello del Rifugio Segantini</a>
+<a href="/it/trails/sesvenna-hut-to-malles.html" style="display:block;color:inherit;">Dal Rifugio Sesvenna a Mals</a>
+<a href="/it/trails/rifugio-stavel-denza.html" style="display:block;color:inherit;">Rifugio Stavel – Francesco Denza</a>
+<a href="/it/trails/roda-de-armentara.html" style="display:block;color:inherit;">Roda de Armentara</a>
+<a href="/it/trails/roda-de-cherz.html" style="display:block;color:inherit;">Roda de Cherz</a>
+<a href="/it/trails/roda-dles-viles.html" style="display:block;color:inherit;">Roda dles Viles</a>
+<a href="/it/trails/roemerweg-kiens.html" style="display:block;color:inherit;">Römerweg Kiens</a>
+<a href="/it/trails/rotwandwiesen-moos.html" style="display:block;color:inherit;">Rotwandwiesen – Moos</a>
+<a href="/it/trails/ruine-castelfeder-rovine-castelfeder.html" style="display:block;color:inherit;">Ruine Castelfeder - Rovine Castelfeder</a>
+<a href="/it/trails/rundweg-beimsteinkogel.html" style="display:block;color:inherit;">Rundweg Beimsteinkogel</a>
+<a href="/it/trails/rundweg-gsindboden.html" style="display:block;color:inherit;">Rundweg Gsindboden</a>
+<a href="/it/trails/rundweg-kasserol.html" style="display:block;color:inherit;">Rundweg Kasserol</a>
+<a href="/it/trails/rundweg-katharinaberg.html" style="display:block;color:inherit;">Rundweg Katharinaberg</a>
+<a href="/it/trails/rundweg-langfenn.html" style="display:block;color:inherit;">Rundweg Langfenn</a>
+<a href="/it/trails/rundweg-laugen-elvas.html" style="display:block;color:inherit;">Rundweg Laugen Elvas</a>
+<a href="/it/trails/rundweg-montiggler-seen.html" style="display:block;color:inherit;">Rundweg Montiggler Seen</a>
+<a href="/it/trails/rundweg-olberg.html" style="display:block;color:inherit;">Rundweg Ölberg</a>
+<a href="/it/trails/rundweg-peitlerkofel.html" style="display:block;color:inherit;">Rundweg Peitlerkofel</a>
+<a href="/it/trails/rundweg-reischach.html" style="display:block;color:inherit;">Rundweg Reischach</a>
+<a href="/it/trails/rundweg-salla.html" style="display:block;color:inherit;">Rundweg Salla</a>
+<a href="/it/trails/rundweg-schmieden.html" style="display:block;color:inherit;">Rundweg Schmieden</a>
+<a href="/it/trails/rundweg-schwarzegg-sentiero-circolare-dosso-nero.html" style="display:block;color:inherit;">Rundweg Schwarzegg - Sentiero circolare Dosso Nero</a>
+<a href="/it/trails/rundweg-st-magdalena.html" style="display:block;color:inherit;">Rundweg St. Magdalena</a>
+<a href="/it/trails/sagenweg-sentiero-delle-leggende.html" style="display:block;color:inherit;">Sagenweg - Sentiero delle leggende</a>
+<a href="/it/trails/san-cassiano-pralongia-corvara.html" style="display:block;color:inherit;">San Cassiano – Pralongiá – Corvara</a>
+<a href="/it/trails/san-giacomo-ortisei.html" style="display:block;color:inherit;">San Giacomo da Ortisei</a>
+<a href="/it/trails/san-giuliano-garzone-vacarsa-lakes.html" style="display:block;color:inherit;">Laghi di San Giuliano, Garzonè e Vacarsa</a>
+<a href="/it/trails/san-leonardo-lisignago.html" style="display:block;color:inherit;">San Leonardo e le campagne di Lisignago</a>
+<a href="/it/trails/st-lorenzen-maria-saalen.html" style="display:block;color:inherit;">Da San Lorenzo a Maria Sares</a>
+<a href="/it/trails/san-martino-bosco-scolpito.html" style="display:block;color:inherit;">San Martino – Bosco Scolpito</a>
+<a href="/it/trails/malga-ces.html" style="display:block;color:inherit;">San Martino di Castrozza - Malga Ces</a>
+<a href="/it/trails/malga-crel.html" style="display:block;color:inherit;">San Martino di Castrozza - Malga Crel</a>
+<a href="/it/trails/malga-valcigolera.html" style="display:block;color:inherit;">San Martino di Castrozza - Malga Valcigolera</a>
+<a href="/it/trails/val-di-roda-prati-col.html" style="display:block;color:inherit;">San Martino di Castrozza - Val di Roda - Prati Col</a>
+<a href="/it/trails/san-vigilio-senter-dei-cavai.html" style="display:block;color:inherit;">San Vigilio e il Senter dei Cavai</a>
+<a href="/it/trails/san-vigilio-le-dla-creda.html" style="display:block;color:inherit;">Da San Vigilio a Lé dla Creda</a>
+<a href="/it/trails/pian-de-namos-auronzo.html" style="display:block;color:inherit;">Da Santa Caterina a Pian de Namos, andata e ritorno</a>
+<a href="/it/trails/pian-di-barco-auronzo.html" style="display:block;color:inherit;">Da Santa Caterina a Pian di Barco, andata e ritorno</a>
+<a href="/it/trails/santa-cristina-passo-sella.html" style="display:block;color:inherit;">Santa Cristina – Passo Sella</a>
+<a href="/it/trails/santa-cristina-farms-path.html" style="display:block;color:inherit;">Sentiero dei masi di Santa Cristina</a>
+<a href="/it/trails/santa-croce-brogles.html" style="display:block;color:inherit;">Santa Croce – Brogles</a>
+<a href="/it/trails/schluderbach-duerrensteinhuette.html" style="display:block;color:inherit;">Schluderbach – Dürrensteinhütte</a>
+<a href="/it/trails/schnalswaal-kastelbell-to-staben.html" style="display:block;color:inherit;">Schnalswaal, da Kastelbell a Staben</a>
+<a href="/it/trails/schorgaurunde.html" style="display:block;color:inherit;">Schörgaurunde</a>
+<a href="/it/trails/schwalbenwandrunde.html" style="display:block;color:inherit;">Schwalbenwandrunde</a>
+<a href="/it/trails/seceda-ridge-trail.html" style="display:block;color:inherit;">Sentiero di cresta del Seceda</a>
+<a href="/it/trails/seceda-via-rifugio-firenze.html" style="display:block;color:inherit;">Seceda passando per il Rifugio Firenze</a>
+<a href="/it/trails/seerundweg.html" style="display:block;color:inherit;">Seerundweg</a>
+<a href="/it/trails/seerundweg-antholzer-see.html" style="display:block;color:inherit;">Seerundweg Antholzer See</a>
+<a href="/it/trails/seeweg-val-d-ultimo.html" style="display:block;color:inherit;">Seeweg, Val d'Ultimo</a>
+<a href="/it/trails/selva-way-of-the-cross.html" style="display:block;color:inherit;">Via Crucis di Selva</a>
+<a href="/it/trails/senter-dei-popi-madonna-del-lares.html" style="display:block;color:inherit;">Senter dei Popi – Madonna del Lares</a>
+<a href="/it/trails/sentiero-botanico-grauno-capriana.html" style="display:block;color:inherit;">Sentiero botanico naturalistico</a>
+<a href="/it/trails/sentiero-del-sabadalt.html" style="display:block;color:inherit;">Sentiero del Sabadalt</a>
+<a href="/it/trails/sentiero-del-trenino.html" style="display:block;color:inherit;">Sentiero del Trenino</a>
+<a href="/it/trails/sentiero-della-foresta.html" style="display:block;color:inherit;">Sentiero della Foresta</a>
+<a href="/it/trails/sentiero-hans-e-paula-steger.html" style="display:block;color:inherit;">Sentiero Hans e Paula Steger</a>
+<a href="/it/trails/sette-passi-sette-ville.html" style="display:block;color:inherit;">Sette passi per sette Ville</a>
+<a href="/it/trails/seurasas.html" style="display:block;color:inherit;">Sëurasas</a>
+<a href="/it/trails/sexten-gasthof-panorama.html" style="display:block;color:inherit;">Sexten – Gasthof Panorama</a>
+<a href="/it/trails/sexten-innerfeldtal.html" style="display:block;color:inherit;">Sexten – Innerfeldtal</a>
+<a href="/it/trails/sexten-innichen-there-and-back.html" style="display:block;color:inherit;">Sexten – Innichen, andata e ritorno</a>
+<a href="/it/trails/sexten-waldkapelle.html" style="display:block;color:inherit;">Sexten – Waldkapelle</a>
+<a href="/it/trails/sextener-rundweg.html" style="display:block;color:inherit;">Sextener Rundweg</a>
+<a href="/it/trails/siror.html" style="display:block;color:inherit;">Siror</a>
+<a href="/it/trails/sissiweg-sentiero-sissi.html" style="display:block;color:inherit;">Sissiweg - Sentiero Sissi</a>
+<a href="/it/trails/siusi-geological-mile.html" style="display:block;color:inherit;">Il miglio geologico di Siusi</a>
+<a href="/it/trails/unterstell-farms-loop-naturns.html" style="display:block;color:inherit;">Anello dei masi del Sonnenberg da Unterstell, Naturns</a>
+<a href="/it/trails/sonnenberger-panoramaweg-sentiero.html" style="display:block;color:inherit;">Sonnenberger Panoramaweg - Sentiero</a>
+<a href="/it/trails/sonnenrundweg-stuls.html" style="display:block;color:inherit;">Anello del Sonnenrundweg a Stuls</a>
+<a href="/it/trails/sorafurcia-plan-de-corones.html" style="display:block;color:inherit;">Da Sorafurcia a Plan de Corones, andata e ritorno</a>
+<a href="/it/trails/st-agatha-rundweg.html" style="display:block;color:inherit;">St. Agatha Rundweg</a>
+<a href="/it/trails/stabnerwaal-staben-to-tschars.html" style="display:block;color:inherit;">Stabnerwaal, da Staben a Tschars</a>
+<a href="/it/trails/steger-buhel-runde.html" style="display:block;color:inherit;">Steger-Bühel-Runde</a>
+<a href="/it/trails/steine-erzahlen.html" style="display:block;color:inherit;">Steine erzählen</a>
+<a href="/it/trails/steinegg-osservatorio-winter.html" style="display:block;color:inherit;">Da Steinegg all’osservatorio di Gummer d’inverno</a>
+<a href="/it/trails/steinegger-hohenweg.html" style="display:block;color:inherit;">Steinegger Höhenweg</a>
+<a href="/it/trails/steinhaus-panoramic-path.html" style="display:block;color:inherit;">Sentiero panoramico di Steinhaus</a>
+<a href="/it/trails/steinmeile-valdaora.html" style="display:block;color:inherit;">Sentiero tematico “Steinmeile” a Valdaora di Sotto</a>
+<a href="/it/trails/sui-pascoli-di-malga-vernera.html" style="display:block;color:inherit;">Sui Pascoli di Malga Vernera</a>
+<a href="/it/trails/antichi-pastori-erranti-vigo.html" style="display:block;color:inherit;">Sulla via degli antichi pastori erranti</a>
+<a href="/it/trails/giotto-della-val-di-fassa-mazzin-pera.html" style="display:block;color:inherit;">Sulle tracce dei dipinti del Giotto della Val di Fassa</a>
+<a href="/it/trails/val-freida-san-pellegrino.html" style="display:block;color:inherit;">Sulle tracce dei pastori all'imbocco della Val Freida</a>
+<a href="/it/trails/talrundweg.html" style="display:block;color:inherit;">Talrundweg</a>
+<a href="/it/trails/taser-hoehenweg-haashof-schenna.html" style="display:block;color:inherit;">Taser Höhenweg fino all’Haashof, Schenna</a>
+<a href="/it/trails/aschbach-st-vigil-terrainkur-1.html" style="display:block;color:inherit;">Sentiero Terrainkur 1, da Aschbach a St. Vigil</a>
+<a href="/it/trails/gais-waalweg-loop.html" style="display:block;color:inherit;">Anello del sentiero della roggia di Gais</a>
+<a href="/it/trails/kienberg-legends-loop.html" style="display:block;color:inherit;">Anello delle leggende del Kienberg</a>
+<a href="/it/trails/anello-tre-rifugi-ra-stua.html" style="display:block;color:inherit;">Anello dei tre rifugi da Malga Ra Stua</a>
+<a href="/it/trails/timpfler-rundweg.html" style="display:block;color:inherit;">Timpfler Rundweg</a>
+<a href="/it/trails/tione-bolbeno-madonna-del-lares.html" style="display:block;color:inherit;">Tione – Bolbeno – Madonna del Lares</a>
+<a href="/it/trails/toblach-lago-di-dobbiaco.html" style="display:block;color:inherit;">Toblach – Lago di Dobbiaco</a>
+<a href="/it/trails/toblacher-hohenweg.html" style="display:block;color:inherit;">Toblacher Höhenweg</a>
+<a href="/it/trails/tonadico.html" style="display:block;color:inherit;">Tonadico</a>
+<a href="/it/trails/torggeleweg.html" style="display:block;color:inherit;">Törggeleweg</a>
+<a href="/it/trails/transacqua.html" style="display:block;color:inherit;">Transacqua</a>
+<a href="/it/trails/tre-cime-di-lavaredo-classic-circuit.html" style="display:block;color:inherit;">Il giro classico delle Tre Cime di Lavaredo</a>
+<a href="/it/trails/monte-pana-troi-unika.html" style="display:block;color:inherit;">Troi Unika, sentiero d’arte sul Monte Pana</a>
+<a href="/it/trails/tru-di-artisc.html" style="display:block;color:inherit;">Tru di artisć</a>
+<a href="/it/trails/tru-di-lec.html" style="display:block;color:inherit;">Tru di Lëc</a>
+<a href="/it/trails/tru-dles-liondes.html" style="display:block;color:inherit;">Tru dles Liondes</a>
+<a href="/it/trails/tru-dles-viles.html" style="display:block;color:inherit;">Tru dles Viles</a>
+<a href="/it/trails/uciei-de-freines.html" style="display:block;color:inherit;">Uciei de Frëines</a>
+<a href="/it/trails/umes-hofer-alpl-malga-tuff.html" style="display:block;color:inherit;">Anello di Umes, Hofer Alpl e Malga Tuff</a>
+<a href="/it/trails/umser-rundweg-ums.html" style="display:block;color:inherit;">Sentiero circolare di Umes</a>
+<a href="/it/trails/val-d-anna.html" style="display:block;color:inherit;">Val d’Anna</a>
+<a href="/it/trails/val-di-funes-panorama-trail.html" style="display:block;color:inherit;">Sentiero panoramico della Val di Funes</a>
+<a href="/it/trails/val-san-nicolo-cascate-jonta.html" style="display:block;color:inherit;">Val San Nicolò fino alle cascate di Jonta, andata e ritorno</a>
+<a href="/it/trails/oberolang-alte-goste.html" style="display:block;color:inherit;">Da Valdaora di Sopra all’Alte Goste</a>
+<a href="/it/trails/niederolang-bad-bergfall.html" style="display:block;color:inherit;">Da Valdaora di Sotto a Bad Bergfall</a>
+<a href="/it/trails/valina-amola-segantini-cornisello.html" style="display:block;color:inherit;">Valina d’Amola – Segantini – Cornisello</a>
+<a href="/it/trails/vallunga.html" style="display:block;color:inherit;">Vallunga</a>
+<a href="/it/trails/valser-rundweg.html" style="display:block;color:inherit;">Valser Rundweg</a>
+<a href="/it/trails/via-crucis-santa-cristina.html" style="display:block;color:inherit;">Via Crucis, Santa Cristina</a>
+<a href="/it/trails/vigo-borgo-dei-patins.html" style="display:block;color:inherit;">Vigo, borgo dei patins</a>
+<a href="/it/trails/vogelweider-rundweg.html" style="display:block;color:inherit;">Vogelweider Rundweg</a>
+<a href="/it/trails/voels-voelser-weiher-winter.html" style="display:block;color:inherit;">Da Völs al Völser Weiher d’inverno</a>
+<a href="/it/trails/voeran-to-hafling.html" style="display:block;color:inherit;">Da Vöran a Hafling passando per lo stagno di Bruggen</a>
+<a href="/it/trails/walderlebnispfad-aschbach.html" style="display:block;color:inherit;">Walderlebnispfad Aschbach</a>
+<a href="/it/trails/passeggiata-intorno-al-colle-santa-lucia.html" style="display:block;color:inherit;">Passeggiata intorno al Colle di Santa Lucia</a>
+<a href="/it/trails/wallburgweg.html" style="display:block;color:inherit;">Wallburgweg</a>
+<a href="/it/trails/waltner-rundweg-12-sentiero-circolare-di-valtina-12.html" style="display:block;color:inherit;">Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12</a>
+<a href="/it/trails/waltner-rundweg-18.html" style="display:block;color:inherit;">Waltner Rundweg 18</a>
+<a href="/it/trails/wildbad-innichen.html" style="display:block;color:inherit;">Wildbad Innichen</a>
+<a href="/it/trails/percorso-della-fauna-val-di-peio.html" style="display:block;color:inherit;">Percorso della fauna in Val di Peio</a>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Savoia, Francia</p>
+<a href="/it/trails/albanne.html" style="display:block;color:inherit;">Albanne</a>
+<a href="/it/trails/albannette-petite-boucle.html" style="display:block;color:inherit;">Albannette petite boucle</a>
+<a href="/it/trails/au-fil-de-l-arvan.html" style="display:block;color:inherit;">Au fil de l'Arvan</a>
+<a href="/it/trails/au-pied-du-roc-d-enfer.html" style="display:block;color:inherit;">Au pied du Roc d'Enfer</a>
+<a href="/it/trails/balade-du-plateau-d-assy-au-lac-vert.html" style="display:block;color:inherit;">Balade du Plateau d'Assy au Lac Vert</a>
+<a href="/it/trails/beaumollard.html" style="display:block;color:inherit;">Beaumollard</a>
+<a href="/it/trails/belavoine-cernix-to-paravy.html" style="display:block;color:inherit;">Strada di Bel’Avoine, da Le Cernix a Paravy</a>
+<a href="/it/trails/boucle-des-cascades.html" style="display:block;color:inherit;">Boucle des cascades</a>
+<a href="/it/trails/boucle-du-lac-de-la-thuile.html" style="display:block;color:inherit;">Boucle du Lac de la Thuile</a>
+<a href="/it/trails/boucle-du-lac-vert.html" style="display:block;color:inherit;">Boucle du Lac Vert</a>
+<a href="/it/trails/boucle-du-marais-des-chassettes.html" style="display:block;color:inherit;">Boucle du Marais des Chassettes</a>
+<a href="/it/trails/boucle-du-moulin-de-cornet.html" style="display:block;color:inherit;">Boucle du Moulin de Cornet</a>
+<a href="/it/trails/boucle-du-taillefer.html" style="display:block;color:inherit;">Boucle du Taillefer</a>
+<a href="/it/trails/chalets-brules-crest-voland.html" style="display:block;color:inherit;">Pista d’alpeggio dei Chalets Brûlés, Crest-Voland</a>
+<a href="/it/trails/chemin-des-diligences.html" style="display:block;color:inherit;">Chemin des Diligences</a>
+<a href="/it/trails/circuit-beatrice-de-savoie.html" style="display:block;color:inherit;">Circuit Béatrice de Savoie</a>
+<a href="/it/trails/circuit-de-la-comtesse-cecile.html" style="display:block;color:inherit;">Circuit de la Comtesse Cécile</a>
+<a href="/it/trails/circuit-des-demoiselles-coiffees.html" style="display:block;color:inherit;">Circuit des Demoiselles Coiffées</a>
+<a href="/it/trails/circuit-des-escaliers.html" style="display:block;color:inherit;">Circuit des escaliers</a>
+<a href="/it/trails/circuit-des-sallanches.html" style="display:block;color:inherit;">Circuit des Sallanches</a>
+<a href="/it/trails/circuit-du-ragairon.html" style="display:block;color:inherit;">Circuit du Ragairon</a>
+<a href="/it/trails/cret-de-la-parenche.html" style="display:block;color:inherit;">Crêt de la Parenche</a>
+<a href="/it/trails/cret-de-taliere.html" style="display:block;color:inherit;">Crêt de Talière</a>
+<a href="/it/trails/croix-de-pralognan.html" style="display:block;color:inherit;">Croix de Pralognan</a>
+<a href="/it/trails/croix-du-berger-from-lac-des-fees.html" style="display:block;color:inherit;">Croix du Berger dal Lac des Fées</a>
+<a href="/it/trails/fornet-waterfall-loop-val-disere.html" style="display:block;color:inherit;">Anello della cascata del Fornet da Le Fornet</a>
+<a href="/it/trails/itineraire-de-decouverte-historique.html" style="display:block;color:inherit;">Itinéraire de découverte historique</a>
+<a href="/it/trails/itineraire-decouverte-de-la-nature.html" style="display:block;color:inherit;">Itinéraire découverte de la nature</a>
+<a href="/it/trails/la-croix-des-salles.html" style="display:block;color:inherit;">La Croix des Salles</a>
+<a href="/it/trails/la-galoppaz-par-la-combe-servenne.html" style="display:block;color:inherit;">La Galoppaz par la Combe Servenne</a>
+<a href="/it/trails/grande-berge-from-plan-de-la-lai.html" style="display:block;color:inherit;">La Grande Berge dal Plan de la Lai</a>
+<a href="/it/trails/la-maitaz.html" style="display:block;color:inherit;">La Maïtaz</a>
+<a href="/it/trails/la-plagne.html" style="display:block;color:inherit;">La Plagne</a>
+<a href="/it/trails/lac-blanc.html" style="display:block;color:inherit;">Lac Blanc</a>
+<a href="/it/trails/lac-de-darbon.html" style="display:block;color:inherit;">Lac de Darbon</a>
+<a href="/it/trails/lac-de-pramol.html" style="display:block;color:inherit;">Lac de Pramol</a>
+<a href="/it/trails/lac-de-saint-guerin-shore-path.html" style="display:block;color:inherit;">Sentiero sulla riva del Lac de Saint-Guérin</a>
+<a href="/it/trails/lacs-du-chardonnet.html" style="display:block;color:inherit;">Lacs du Chardonnet</a>
+<a href="/it/trails/le-balcon-des-plagnes.html" style="display:block;color:inherit;">Le Balcon des Plagnes</a>
+<a href="/it/trails/le-belvedere-saint-pierre-d-albigny.html" style="display:block;color:inherit;">Le Belvédère (Saint-Pierre-d'Albigny)</a>
+<a href="/it/trails/le-lac-vert.html" style="display:block;color:inherit;">Le Lac Vert</a>
+<a href="/it/trails/le-marais-de-pre-lombard.html" style="display:block;color:inherit;">Le Marais de Pré Lombard</a>
+<a href="/it/trails/le-mont-d-arbois-mont-joux.html" style="display:block;color:inherit;">Le Mont d'Arbois - Mont Joux</a>
+<a href="/it/trails/le-mont-jovet.html" style="display:block;color:inherit;">Le Mont Jovet</a>
+<a href="/it/trails/le-terroir-de-serpoliere.html" style="display:block;color:inherit;">Le terroir de Serpolière</a>
+<a href="/it/trails/le-tour-de-l-armelaz.html" style="display:block;color:inherit;">Le tour de l'Armélaz</a>
+<a href="/it/trails/le-tour-des-hameaux-de-montandre-champessuit-et-grenis.html" style="display:block;color:inherit;">Le tour des hameaux de Montandré, Champessuit et Grenis</a>
+<a href="/it/trails/les-marais-d-albens.html" style="display:block;color:inherit;">Les Marais d'Albens</a>
+<a href="/it/trails/marmottes.html" style="display:block;color:inherit;">Marmottes</a>
+<a href="/it/trails/ombres-sur-l-alpage.html" style="display:block;color:inherit;">Ombres sur l'Alpage</a>
+<a href="/it/trails/route-du-lac.html" style="display:block;color:inherit;">Route du Lac</a>
+<a href="/it/trails/saint-pierre-dentremont-corbel-loop.html" style="display:block;color:inherit;">Anello da Saint-Pierre-d’Entremont a Corbel</a>
+<a href="/it/trails/sentier-des-buis.html" style="display:block;color:inherit;">Sentier des Buis</a>
+<a href="/it/trails/sentier-des-ecureuils.html" style="display:block;color:inherit;">Sentier des Écureuils</a>
+<a href="/it/trails/sentier-des-patriotes.html" style="display:block;color:inherit;">Sentier des Patriotes</a>
+<a href="/it/trails/sentier-du-four.html" style="display:block;color:inherit;">Sentier du Four</a>
+<a href="/it/trails/sentier-eco-sylve-de-poingt-ravier.html" style="display:block;color:inherit;">Sentier éco-sylve de Poingt-Ravier</a>
+<a href="/it/trails/sentier-pedestre-des-graniteurs.html" style="display:block;color:inherit;">Sentier pédestre des Graniteurs</a>
+<a href="/it/trails/val-pelouse-crest-path-perriere-refuge.html" style="display:block;color:inherit;">Sentiero di cresta di Val Pelouse e rifugio della Perrière</a>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">French Alps, France</p>
+<a href="/it/trails/alpage-des-cloutons-loop-saint-honore-1500.html" style="display:block;color:inherit;">Anello dell’Alpage des Cloutons da Saint-Honoré 1500</a>
+<a href="/it/trails/clelles-canal-loop.html" style="display:block;color:inherit;">Anello del canale di Clelles</a>
+<a href="/it/trails/couzon-loop-saint-pierre-de-chartreuse.html" style="display:block;color:inherit;">Anello del Couzon da Saint-Pierre-de-Chartreuse</a>
+<a href="/it/trails/fort-du-murier-loop-gieres.html" style="display:block;color:inherit;">Anello del Fort du Murier sopra Gières</a>
+<a href="/it/trails/gresse-valley-loop-miribel-lanchatre.html" style="display:block;color:inherit;">Anello della valle della Gresse da Miribel-Lanchâtre</a>
+<a href="/it/trails/moliere-plateau-loop-autrans.html" style="display:block;color:inherit;">Anello dell’altopiano di Molière sopra Autrans</a>
+<a href="/it/trails/tour-de-chichilianne-loop.html" style="display:block;color:inherit;">Tour de Chichilianne</a>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Lombardia, Italia</p>
+<a href="/it/trails/arnoga-rifugio-federico-val-viola.html" style="display:block;color:inherit;">Arnoga – Rifugio Federico, Val Viola</a>
+<a href="/it/trails/brogno-nuvolone-viewpoint.html" style="display:block;color:inherit;">Da Brogno al belvedere del Nuvolone</a>
+<a href="/it/trails/brunate-churches-loop.html" style="display:block;color:inherit;">Anello delle chiese di Brunate</a>
+<a href="/it/trails/campo-moro-passo-di-campagneda.html" style="display:block;color:inherit;">Da Campo Moro al Passo di Campagneda</a>
+<a href="/it/trails/caglio-campoe-cassina-enco.html" style="display:block;color:inherit;">Da Campoè a Cassina Enco</a>
+<a href="/it/trails/caslino-derba-and-the-lambro.html" style="display:block;color:inherit;">Caslino d’Erba e il Lambro</a>
+<a href="/it/trails/chiareggio-rifugi-porro-ventina.html" style="display:block;color:inherit;">Da Chiareggio ai rifugi Porro e Ventina</a>
+<a href="/it/trails/eupilio-madonna-della-neve.html" style="display:block;color:inherit;">Eupilio e la Madonna della Neve</a>
+<a href="/it/trails/isola-laghi-del-baldiscio.html" style="display:block;color:inherit;">Da Isola ai laghi del Baldiscio</a>
+<a href="/it/trails/lasnigo-barni-crezzo-lake.html" style="display:block;color:inherit;">Lasnigo, Barni e il lago di Crezzo</a>
+<a href="/it/trails/monte-scioscia-viewpoint-loop.html" style="display:block;color:inherit;">Anello del belvedere del Monte Scioscia</a>
+<a href="/it/trails/passo-del-giovo-rifugio-sommafiume.html" style="display:block;color:inherit;">Dal Passo del Giovo al Rifugio Sommafiume</a>
+<a href="/it/trails/pognana-lario-sculpture-walk.html" style="display:block;color:inherit;">Passeggiata delle sculture di Pognana Lario</a>
+<a href="/it/trails/sentiero-del-viandante-varenna-bellano.html" style="display:block;color:inherit;">Sentiero del Viandante: Varenna – Bellano</a>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Friuli Venezia Giulia, Italia</p>
+<a href="/it/trails/anello-casera-vas-monte-buoi.html" style="display:block;color:inherit;">Anello Casera Vas - Casera Monte Buoi</a>
+<a href="/it/trails/anello-lago-di-verzegnis.html" style="display:block;color:inherit;">Anello del Lago di Verzegnis</a>
+<a href="/it/trails/raunis-cascate-belepeit.html" style="display:block;color:inherit;">Borgo Raunis e le cascate del rio Belepeit</a>
+<a href="/it/trails/col-dei-piais-claut.html" style="display:block;color:inherit;">Col dei Piais</a>
+<a href="/it/trails/monte-rest-da-passo-rest.html" style="display:block;color:inherit;">Dal Passo Rest al Monte Rest</a>
+<a href="/it/trails/fontanon-di-goriuda.html" style="display:block;color:inherit;">Fontanon di Goriuda</a>
+<a href="/it/trails/faggi-di-pustot-dordolla.html" style="display:block;color:inherit;">I faggi secolari di Pustot a Dordolla</a>
+<a href="/it/trails/stavoli-di-moggio.html" style="display:block;color:inherit;">Il borgo isolato di Stavoli di Moggio</a>
+<a href="/it/trails/laghetto-di-sella-sompdogna.html" style="display:block;color:inherit;">Il laghetto di sella Sompdogna</a>
+<a href="/it/trails/anello-malga-confin-ungarina.html" style="display:block;color:inherit;">L'anello di malga Confin e malga Ungarina</a>
+<a href="/it/trails/laghi-di-fusine.html" style="display:block;color:inherit;">Laghi di Fusine</a>
+<a href="/it/trails/mirabila-sentiero-bila-pec.html" style="display:block;color:inherit;">MIRABILA - Sentiero botanico del Bila Pec</a>
+<a href="/it/trails/monte-talm-piani-di-vas.html" style="display:block;color:inherit;">Monte Talm dai Piani di Vas</a>
+<a href="/it/trails/sappada-rifugio-calvi.html" style="display:block;color:inherit;">Rifugio Calvi</a>
+<a href="/it/trails/salita-casera-canin.html" style="display:block;color:inherit;">Salita a Casera Canin: balcone panoramico sulla val Resia</a>
+<a href="/it/trails/venzone-anello-delle-chiesette.html" style="display:block;color:inherit;">Sentiero Natura - Anello delle chiesette di Venzone</a>
+<a href="/it/trails/ta-lipa-pot-stolvizza.html" style="display:block;color:inherit;">Ta Lipa Pot - Percorso breve</a>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Valle d'Aosta, Italia</p>
+<a href="/it/trails/alpenzu-walser-villages.html" style="display:block;color:inherit;">Alpenzù Piccolo e Alpenzù Grande</a>
+<a href="/it/trails/champoluc-mascognaz-waterfall.html" style="display:block;color:inherit;">Champoluc – cascata di Mascognaz</a>
+<a href="/it/trails/periasc-antagnod.html" style="display:block;color:inherit;">Périasc – Antagnod</a>
+<a href="/it/trails/ru-courtaud-ayas.html" style="display:block;color:inherit;">Rû Courtaud</a>
+<a href="/it/trails/sentiero-della-regina-gressoney.html" style="display:block;color:inherit;">Sentiero della Regina</a>
+<a href="/it/trails/strada-lombarda-gressoney.html" style="display:block;color:inherit;">Strada Lombarda</a>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Piedmont, Italy</p>
+<a href="/it/trails/gta-campello-monti-rimella.html" style="display:block;color:inherit;">Da Campello Monti a Rimella per la Bocchetta</a>
+<a href="/it/trails/campello-monti-alpe-fornale.html" style="display:block;color:inherit;">Da Campello Monti all’Alpe Fornale di Sopra</a>
+<a href="/it/trails/campello-monti-colle-usciolo.html" style="display:block;color:inherit;">Da Campello Monti al Colle dell’Usciolo</a>
+<a href="/it/trails/campello-monti-lago-capezzone.html" style="display:block;color:inherit;">Da Campello Monti al Lago del Capezzone</a>
+<a href="/it/trails/cervatto-madonna-del-balmone.html" style="display:block;color:inherit;">Da Cervatto alla Madonna del Balmone</a>
+<a href="/it/trails/giro-del-ginepro-carcoforo.html" style="display:block;color:inherit;">Giro del Ginepro da Carcoforo</a>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Tirolo e Carinzia, Austria</p>
+<a href="/it/trails/alpine-cheese-walk-sonnenalpe-nassfeld.html" style="display:block;color:inherit;">Passeggiata dei formaggi d’alpeggio, Sonnenalpe Nassfeld</a>
+<a href="/it/trails/auernig-ridge-walk-nassfeld.html" style="display:block;color:inherit;">Passeggiata in cresta sull’Auernig, Nassfeld</a>
+<a href="/it/trails/kals-childrens-nature-trail.html" style="display:block;color:inherit;">Sentiero natura per bambini, Kals</a>
+<a href="/it/trails/naggler-alm-climb-weissensee.html" style="display:block;color:inherit;">Salita alla Naggler Alm, Weissensee</a>
+<a href="/it/trails/franz-josephs-hoehe-loop-weissensee.html" style="display:block;color:inherit;">Anello della Franz-Josephs-Höhe, Weissensee</a>
+<a href="/it/trails/gailweg-maria-luggau.html" style="display:block;color:inherit;">Passeggiata lungo il Gail, Maria Luggau</a>
+<a href="/it/trails/genoesns-bruendl-loop-weissensee.html" style="display:block;color:inherit;">Anello del Genösn’s Bründl, Weissensee</a>
+<a href="/it/trails/koednitz-culture-walk-kals.html" style="display:block;color:inherit;">Passeggiata culturale di Ködnitz, Kals</a>
+<a href="/it/trails/kreuzweg-klaunz-matrei.html" style="display:block;color:inherit;">Kreuzweg fino a Klaunz, Matrei</a>
+<a href="/it/trails/kreuzweg-maria-schnee-virgen.html" style="display:block;color:inherit;">Kreuzweg fino a Maria Schnee, Virgen</a>
+<a href="/it/trails/neusach-east-shore-lakeside-walk-weissensee.html" style="display:block;color:inherit;">Da Neusach alla sponda est per la Kleine Steinwand, Weissensee</a>
+<a href="/it/trails/obersee-staller-sattel-loop.html" style="display:block;color:inherit;">Anello dell’Obersee allo Staller Sattel</a>
+<a href="/it/trails/rothns-bichl-loop-weissensee.html" style="display:block;color:inherit;">Anello del Rothn’s Bichl, Weissensee</a>
+<a href="/it/trails/schloss-weissenstein-matrei.html" style="display:block;color:inherit;">Anello dello Schloss Weißenstein, Matrei</a>
+<a href="/it/trails/slow-trail-weissensee.html" style="display:block;color:inherit;">Slow Trail Weissensee</a>
+<a href="/it/trails/st-nikolaus-church-walk-matrei.html" style="display:block;color:inherit;">Passeggiata alla chiesa di St. Nikolaus, Matrei</a>
+<a href="/it/trails/techendorf-kreuzwirt-walk-weissensee.html" style="display:block;color:inherit;">Da Techendorf al Kreuzwirt, Weissensee</a>
+<a href="/it/trails/tuffbad-loop-lesachtal.html" style="display:block;color:inherit;">Anello del Tuffbad, Lesachtal</a>
+<a href="/it/trails/umbal-falls-nature-walk.html" style="display:block;color:inherit;">Sentiero natura delle cascate dell’Umbal</a>
+<a href="/it/trails/urschitz-loop-weissensee.html" style="display:block;color:inherit;">Anello dell’Urschitz, Weissensee</a>
+<a href="/it/trails/wasserleben-nature-trail-weissensee.html" style="display:block;color:inherit;">Sentiero natura Was(s)erleben, sponda est del Weissensee</a>
+<a href="/it/trails/water-trail-st-jakob-defereggen.html" style="display:block;color:inherit;">Sentiero dell’acqua, St. Jakob in Defereggen</a>
+<a href="/it/trails/weg-der-sinne-virgen.html" style="display:block;color:inherit;">Weg der Sinne, Virgen</a>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Svizzera</p>
+<a href="/it/trails/alp-grum-to-cavaglia-via-lagh-da-palu.html" style="display:block;color:inherit;">Da Alp Grüm a Cavaglia per il Lagh da Palü</a>
+<a href="/it/trails/alp-grum-to-cavaglia-via-stablini.html" style="display:block;color:inherit;">Da Alp Grüm a Cavaglia per Stablini</a>
+<a href="/it/trails/chaste-peninsula-loop-sils.html" style="display:block;color:inherit;">Anello della penisola di Chastè da Sils</a>
+<a href="/it/trails/eulalia-gian-plaiv-trail-zuoz.html" style="display:block;color:inherit;">Sentiero Eulalia e Gian Plaiv, Zuoz</a>
+<a href="/it/trails/fuorcla-surlej-from-murtel.html" style="display:block;color:inherit;">Fuorcla Surlej da Murtèl</a>
+<a href="/it/trails/guarda-to-ardez.html" style="display:block;color:inherit;">Da Guarda ad Ardez</a>
+<a href="/it/trails/hahnensee-from-murtel-to-st-moritz.html" style="display:block;color:inherit;">Hahnensee, da Murtèl a St. Moritz</a>
+<a href="/it/trails/la-senda-nature-trail-samedan.html" style="display:block;color:inherit;">Sentiero natura La Senda, Samedan</a>
+<a href="/it/trails/lago-bianco-loop-from-ospizio-bernina.html" style="display:block;color:inherit;">Anello del Lago Bianco dall’Ospizio Bernina</a>
+<a href="/it/trails/lago-di-poschiavo-loop-from-le-prese.html" style="display:block;color:inherit;">Anello del Lago di Poschiavo da Le Prese</a>
+<a href="/it/trails/lake-st-moritz-shore-loop.html" style="display:block;color:inherit;">Anello sulla riva del Lago di St. Moritz</a>
+<a href="/it/trails/morteratsch-glacier-path.html" style="display:block;color:inherit;">Sentiero del ghiacciaio del Morteratsch</a>
+<a href="/it/trails/murtel-to-surlej-via-alpetta.html" style="display:block;color:inherit;">Da Murtèl a Surlej per Alpetta</a>
+<a href="/it/trails/s-charl-to-alp-sesvenna-and-back.html" style="display:block;color:inherit;">Da S-charl all’Alp Sesvenna, andata e ritorno</a>
+<a href="/it/trails/sass-queder-from-diavolezza.html" style="display:block;color:inherit;">Sass Queder dalla Diavolezza</a>
+<a href="/it/trails/scuol-to-ftan.html" style="display:block;color:inherit;">Da Scuol a Ftan</a>
+<a href="/it/trails/surlej-waterfall-lake-silvaplana-loop.html" style="display:block;color:inherit;">Anello della cascata di Surlej e del Lago di Silvaplana</a>
+<a href="/it/trails/val-susauna-from-chapella.html" style="display:block;color:inherit;">Val Susauna da Chapella</a>
+<a href="/it/trails/vna-to-ramosch-on-the-old-path.html" style="display:block;color:inherit;">Da Vnà a Ramosch sul sentiero antico</a>
+<a href="/it/trails/vna-to-val-sinestra.html" style="display:block;color:inherit;">Da Vnà alla Val Sinestra</a>
+<a href="/it/trails/zernez-to-brail.html" style="display:block;color:inherit;">Da Zernez a Brail</a>
+<!-- TRAIL-INDEX-END -->
+    </div>
+  </details>
+</main>
+
+<footer class="site-footer hp-footer">
+  <div class="hp-footer-grid">
+    <div>
+      <div class="hp-footer-brand"><img src="/logo.svg?v=5" alt=""><span>ORMA</span></div>
+      <p class="hp-footer-blurb">La guida ai sentieri personalizzata per i cani e i loro umani, perché ogni impronta lasciata in montagna sia sicura.</p>
+      <div class="hp-footer-get">
+        <div class="hp-footer-h">Scarica l’app</div>
+        <div class="hp-footer-apps">
+          <button type="button" class="hp-footer-install" data-orma-install hidden>Aggiungi ORMA alla schermata Home</button>
+        </div>
+        <p class="hp-footer-appnote">Aggiungi ORMA alla schermata Home dal menu del browser per avere la mappa a schermo intero.</p>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Sentieri</div>
+      <div class="hp-footer-links">
+        <a href="/it/browse-trails.html">Tutti i sentieri</a>
+        <a href="/collections.html">Raccolte</a>
+        <a href="/compare.html">Confronta sentieri</a>
+        <a href="/it/how-scoring-works.html">Come funziona il punteggio</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Prendersi cura del cane</div>
+      <div class="hp-footer-links">
+        <a href="/it/guides/heat-overheating.html">Il caldo e il tuo cane</a>
+        <a href="/it/guides/paw-protection.html">Proteggere le zampe</a>
+        <a href="/it/guides/breed-group-caveats.html">Razza e corporatura del tuo cane</a>
+        <a href="/it/guides/alpine-plants-for-dogs.html">Il tuo cane e le piante alpine</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Le tue passeggiate</div>
+      <div class="hp-footer-links">
+        <a href="/journal.html">Il mio diario delle passeggiate</a>
+        <a href="/saved.html">Sentieri salvati</a>
+        <a href="/downloads.html">Sentieri scaricati</a>
+        <a href="/walk.html">Registra una passeggiata</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Azienda</div>
+      <div class="hp-footer-links">
+        <a href="/it/about.html">Chi siamo</a>
+        <a href="/it/contact.html">Contatti</a>
+        <a href="/it/privacy.html">Privacy</a>
+        <a href="/it/terms.html">Termini</a>
+      </div>
+    </div>
+  </div>
+  <div class="hp-footer-connect">
+    <div class="hp-footer-connect-main">
+      <span class="hp-footer-h">Seguici</span>
+      <div class="hp-footer-social-row">
+        <a href="https://www.instagram.com/app.orma/" target="_blank" rel="noopener" aria-label="ORMA su Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="hp-footer-base">
+    <span>© 2026 ORMA · Con radici nelle Dolomiti italiane</span>
+  </div>
+</footer>
+
+<script src="mobile-nav.js?v=20261030-1"></script>
+<script src="i18n.js?v=20261113-1"></script>
+<script src="trust/evidence-v1.js?v=20261006-2"></script>
+<script src="trail-trust.js?v=20261005-1"></script>
+<script src="scoring/recommendation-v1.js?v=20260917-1"></script>
+<script src="scoring/recommendation-adapters-v1.js?v=20260917-1"></script>
+<script src="scoring-conditions.js?v=1"></script>
+<script src="route-return.js?v=20261106-2"></script>
+<script src="scoring.js?v=20260815-4"></script>
+<script type="module" src="firebase-init.js?v=20261107-1"></script>
+<script src="icon-system.js?v=20260815-4" defer></script>
+<script src="trail-card-visual.js?v=20260902-1" defer></script>
+<script src="regions-runtime-manifest.js?v=20261007-1"></script>
+<script src="regional-trails-loader.js?v=20261104-1" data-default-region="all"></script>
+<script src="regions-config.js"></script>
+<script src="guest-context.js?v=20261030-1" defer></script>
+<script src="auth-ui.js?v=20261030-1" defer></script>
+<script src="discovery-state.js?v=20261007-1" defer></script>
+<script src="trail-season-words.js?v=20261112-1" defer></script>
+<script src="discovery-filters.js?v=20261108-1" defer></script>
+<script src="comparison-state.js?v=20260815-4" defer></script>
+<script src="area-dropdown.js?v=20260823-2"></script>
+<script src="map-runtime.js?v=20260908-2"></script>
+<script src="match-verdict.js?v=20261002-1"></script>
+<script src="map-style.js?v=20261029-2"></script>
+<script src="browse-map.js?v=20261111-1"></script>
+<script>
+  // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
+  function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
+  window.addEventListener('DOMContentLoaded', () => {
+    // Guest bar mirrors the homepage: members never see it.
+    const guestBar = document.getElementById('browseGuestBar');
+    function syncGuestBar(){
+      let authed = false;
+      try { authed = !!JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); } catch(e){}
+      if(guestBar) guestBar.hidden = authed;
+    }
+    syncGuestBar();
+    window.addEventListener('dolopaws-auth-changed', syncGuestBar);
+
+    const list = document.getElementById('simpleTrailsList');
+    if(!list || typeof trails === 'undefined') return;
+    if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
+    const search = document.getElementById('browseSearch');
+    const countrySelect = document.getElementById('browseCountrySelect');
+    const regionSelect = document.getElementById('browseRegionSelect');
+    const valleySelect = document.getElementById('browseValleySelect');
+    const searchButton = document.getElementById('browseSearchBtn');
+    const searchAreaButton = document.getElementById('browseSearchArea');
+    const explorer = document.getElementById('browseExplorer');
+    const breadcrumb = document.getElementById('browseLocationBreadcrumb');
+    const countryDropdown = window.OrmaAreaDropdown.enhance(countrySelect);
+    const regionDropdown = window.OrmaAreaDropdown.enhance(regionSelect);
+
+    function primeTrailLink(link){
+      if(!link || !window.DoloPawsRegionalData || typeof window.DoloPawsRegionalData.primeTrailDetail !== 'function') return;
+      const id = new URL(link.href, window.location.href).searchParams.get('id');
+      const trail = id && trails.find(item => item.id === id);
+      if(trail) window.DoloPawsRegionalData.primeTrailDetail(trail);
+    }
+
+    // Mobile taps usually navigate straight from a list card. Prime the one
+    // selected public trail before navigation so the detail page does not
+    // need another network round trip before it can paint.
+    document.addEventListener('pointerdown', event => {
+      const link = event.target.closest('a[href*="trail.html?id="]');
+      if(link) primeTrailLink(link);
+    }, { capture:true, passive:true });
+    const valleyDropdown = window.OrmaAreaDropdown.enhance(valleySelect);
+    const risk = document.getElementById('browseRisk');
+    const distance = document.getElementById('browseDistance');
+    const terrain = document.getElementById('browseTerrain');
+    const heat = document.getElementById('browseHeat');
+    const exposure = document.getElementById('browseExposure');
+    const access = document.getElementById('browseAccess');
+    const waterBtn = document.getElementById('browseWater');
+    const shadeBtn = document.getElementById('browseQuickShade');
+    const multiDayBtn = document.getElementById('browseMultiDay');
+    const chairliftsBtn = document.getElementById('browseChairlifts');
+    const savedOnlyBtn = document.getElementById('browseSavedOnly');
+    const savedCount = document.getElementById('browseSavedCount');
+    const filtersBtn = document.getElementById('browseFiltersBtn');
+    const filtersCount = document.getElementById('browseFiltersCount');
+    const toolsWrap = document.getElementById('browseTools');
+    const resultCount = document.getElementById('browseResultCount');
+    const clear = document.getElementById('browseClear');
+    const compareApi = window.DoloPawsComparisonState;
+    let compareIds = compareApi
+      ? compareApi.load(localStorage, trails.map(trail => trail.id))
+      : [];
+    // The season at a glance (trail-season-words.js): "Out of season" this
+    // month, and the walk's best months. Nothing for a walk without a record.
+    function seasonTags(trail){
+      const words = window.DoloPawsTrailSeasonWords;
+      if(!words) return '';
+      const best = words.bestTime(trail.season, true);
+      if(!best) return '';
+      const outLabel = words.outOfSeasonTag(trail.season, new Date().getMonth() + 1, true);
+      const out = outLabel
+        ? `<span class="browse-season browse-season--out">${esc(outLabel)}</span>` : '';
+      // Seasonal risks to dogs, only in the months they apply.
+      const dog = (words.dogSeasonsNow ? words.dogSeasonsNow(trail.season, new Date().getMonth() + 1) : [])
+        .map(risk => `<span class="browse-season browse-season--dog">${esc(risk.label)}</span>`).join('');
+      return `${out}<span class="browse-season browse-season--best">${esc(best)}</span>${dog}`;
+    }
+    const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, char => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;',
+    })[char]);
+    let countryValue = 'all';
+    let regionValue = 'all';
+    let valleyValue = 'all';
+    let waterOnly = false;
+    let durationValue = 'day';
+    let liftsValue = '';
+    let difficultyValue = '';
+    let minMatchValue = '';
+    let dogValue = 'medium';
+    let savedOnly = false;
+    let currentFavorites = {};
+    let mapBoundsFilter = null;
+    let selectedTrailId = '';
+
+    const browseMap = window.DoloPawsBrowseMap && window.DoloPawsBrowseMap.create({
+      containerId:'browseMap',
+      searchAreaButtonId:'browseSearchArea',
+      scoreFor:matchScore,
+      verdictFor:matchVerdict,
+      subjectLabel:scoredSubjectLabel,
+      savedFor:trail => !!currentFavorites[trail.id],
+      onSelect(id){
+        selectedTrailId = String(id || '');
+        const pool = currentTrailPool();
+        const index = pool.findIndex(trail => String(trail.id) === selectedTrailId);
+        if(index >= 0) page = Math.floor(index / PER_PAGE) + 1;
+        renderPage(null, { fitMap:false });
+        requestAnimationFrame(() => {
+          const card = Array.from(list.querySelectorAll('[data-trail-id]'))
+            .find(item => item.dataset.trailId === selectedTrailId);
+          if(card) card.scrollIntoView({ behavior:'smooth', block:'center' });
+        });
+      },
+    });
+
+    document.querySelectorAll('[data-browse-view]').forEach(button => {
+      button.addEventListener('click', () => {
+        const view = button.dataset.browseView;
+        if(explorer) explorer.dataset.mobileView = view;
+        document.querySelectorAll('[data-browse-view]').forEach(item => {
+          const on = item === button;
+          item.classList.toggle('on', on);
+          item.setAttribute('aria-pressed', String(on));
+        });
+        if(view === 'map' && browseMap) requestAnimationFrame(() => browseMap.resize());
+      });
+    });
+
+    if(searchAreaButton) searchAreaButton.addEventListener('click', () => {
+      mapBoundsFilter = browseMap && browseMap.bounds();
+      page = 1;
+      searchAreaButton.hidden = true;
+      renderPage(null);
+    });
+
+    if(searchButton) searchButton.addEventListener('click', () => {
+      mapBoundsFilter = null;
+      page = 1;
+      renderPage('push');
+    });
+    search.addEventListener('keydown', event => {
+      if(event.key !== 'Enter') return;
+      event.preventDefault();
+      if(searchButton) searchButton.click();
+    });
+
+    // A trail rating is a word with a definition. Each chip opens How our
+    // scoring works at that rating, already explained (see its #rating-*
+    // handler). Unknown ratings stay plain text.
+    const RATING_ANCHORS = { 'low-risk':'rating-low-risk', moderate:'rating-moderate', caution:'rating-caution' };
+    function ratingLink(level, badge, label){
+      const anchor = RATING_ANCHORS[level];
+      if(!anchor) return badge;
+      return `<a class="browse-rating-link" href="how-scoring-works.html#${anchor}" aria-label="${esc(bt('browse.card.ratingLink', '{label}: what this rating means', { label }))}" title="${esc(bt('browse.card.ratingMeans', 'What {label} means', { label }))}">${badge}</a>`;
+    }
+
+    const SAFETY = {
+      'low-risk': [window.t('legend.low'), '#E4EADF', '#2C5C34'],
+      'moderate': [window.t('legend.moderate'), '#F6EAD5', '#8A5A16'],
+      'caution':  [window.t('legend.caution'), '#FBEAE6', '#9C3A25'],
+    };
+
+    // The full catalog and every trail page are open to everyone.
+    // What stays personal (match %, saving, reporting) prompts login on
+    // the trail page itself, at the moment it's actually wanted.
+    const PER_PAGE = 15;
+    const allowedCountries = ['all', 'italy', 'france', 'austria', 'switzerland'];
+    const allowedRegions = ['all', 'dolomites', 'savoy', 'frenchalps', 'lombardy', 'friuli', 'aosta', 'tyrol', 'switzerland'];
+    // A trail's country comes from its region's row in regions-config.js.
+    const COUNTRY_VALUE = { IT:'italy', FR:'france', AT:'austria', CH:'switzerland' };
+    function trailCountry(trail){
+      const code = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
+        ? window.DoloPawsRegions.countryForRegion(trail.region)
+        : (trail.region === 'savoy' ? 'FR' : 'IT');
+      return COUNTRY_VALUE[code] || 'italy';
+    }
+    const allowedRisks = ['all', 'low-risk', 'moderate', 'caution'];
+    const allowedDistances = ['all', '3', '5', '6', '10', '20', 'u5', '5to10', '10p'];
+    let page = 1;
+
+    // Curated collections, same predicates as the homepage "Featured this
+    // week" themes, so a collection means the same thing everywhere.
+    const filterApi = window.DoloPawsDiscoveryFilters;
+    const canonicalParts = t => filterApi.normalizedTrail(t);
+    const categoryReviewed = (parts, category) => parts.verification
+      && parts.verification.categories
+      && parts.verification.categories[category] === 'verified';
+    // Dictionary lookup with the English literal as fallback; i18n.js is loaded
+    // before this script, so a translated page gets its words here too.
+    const bt = (key, fallback, vars) => {
+      let s = (typeof window.t === 'function') ? window.t(key, vars) : key;
+      if(s === key){ s = fallback; if(vars) for(const k in vars) s = s.split('{' + k + '}').join(vars[k]); }
+      return s;
+    };
+    // A number as the reader writes it (6,7 km in Italian); English is unchanged.
+    function num(value){ const i18n = typeof window!=='undefined' && window.DoloPawsI18n; return i18n && typeof i18n.num==='function' ? i18n.num(value) : value; }
+    const COLLECTIONS = {
+      'shady': { title: bt('browse.coll.shady.title', 'Shady routes'), blurb: bt('browse.coll.shady.blurb', 'Shade and a water point are listed'),
+        filter: t => filterApi.matches(t, { heat:'shade-reviewed', water:true }) },
+      'water': { title: bt('browse.coll.water.title', 'Routes with water'), blurb: bt('browse.coll.water.blurb', 'A water point is listed'),
+        filter: t => filterApi.matches(t, { water:true }) },
+      'meadow': { title: bt('browse.coll.meadow.title', 'Open meadow strolls'), blurb: bt('browse.coll.meadow.blurb', 'Open ground and gentle or mixed terrain'),
+        filter: t => {
+          const parts = canonicalParts(t);
+          return categoryReviewed(parts, 'heat')
+            && Number.isFinite(parts.suitability.shadePercent)
+            && parts.suitability.shadePercent < 30
+            && Number.isFinite(parts.suitability.terrainRank)
+            && parts.suitability.terrainRank <= 1;
+        } },
+      'gentle': { title: bt('browse.coll.gentle.title', 'Gentle short loops'), blurb: bt('browse.coll.gentle.blurb', 'Easy, low-climb walks under 4 km'),
+        filter: t => {
+          const parts = canonicalParts(t);
+          return Number.isFinite(parts.metrics.distanceKm)
+            && parts.metrics.distanceKm <= 4
+            && Number.isFinite(parts.suitability.terrainRank)
+            && parts.suitability.terrainRank <= 1;
+        } },
+    };
+    let collectionKey = 'all';
+    const collectionsGrid = document.getElementById('browseCollections');
+
+    function applyBrowseUrl(){
+      const urlParams = new URLSearchParams(window.location.search);
+      const canonical = window.DoloPawsDiscoveryState
+        ? window.DoloPawsDiscoveryState.normalize(urlParams)
+        : {};
+      search.value = canonical.search || '';
+      countryValue = allowedCountries.includes(canonical.country) ? canonical.country : 'all';
+      regionValue = allowedRegions.includes(canonical.region) ? canonical.region : 'all';
+      valleyValue = canonical.valley || 'all';
+      if(regionValue !== 'all') countryValue = trailCountry({ region: regionValue });
+      risk.value = allowedRisks.includes(canonical.risk) ? canonical.risk : 'all';
+      distance.value = allowedDistances.includes(canonical.distance) ? canonical.distance : 'all';
+      durationValue = canonical.duration === 'multi' ? 'multi' : 'day';
+      liftsValue = canonical.lifts === 'include' ? 'include' : '';
+      waterOnly = canonical.water === true;
+      collectionKey = COLLECTIONS[canonical.collection] ? canonical.collection : 'all';
+      difficultyValue = canonical.difficulty || '';
+      terrain.value = canonical.terrain || '';
+      heat.value = canonical.heat || (canonical.shade ? 'shade-reviewed' : '');
+      exposure.value = canonical.exposure || '';
+      access.value = canonical.access || '';
+      minMatchValue = canonical.minMatch || '';
+      // A guest's dog lives on the device. Unless the URL names a dog (the
+      // preset chips and the homepage search do), score for that dog, the way
+      // the homepage and the trail pages already do; otherwise the banner
+      // offers to save Pip while the list is ranked for a medium dog.
+      dogValue = urlParams.has('dog') ? (canonical.dog || 'medium') : (deviceDogProfile() ? 'custom' : 'medium');
+      page = canonical.page || 1;
+    }
+    applyBrowseUrl();
+
+    function browseStateTarget(){
+      const state = {
+        search: search.value,
+        country: countryValue === 'all' ? '' : countryValue,
+        region: regionValue === 'all' ? '' : regionValue,
+        valley: valleyValue === 'all' ? '' : valleyValue,
+        risk: risk.value === 'all' ? '' : risk.value,
+        distance: distance.value === 'all' ? '' : distance.value,
+        duration: durationValue,
+        lifts: liftsValue,
+        water: waterOnly,
+        collection: collectionKey === 'all' ? '' : collectionKey,
+        difficulty: difficultyValue,
+        terrain: terrain.value,
+        heat: heat.value,
+        exposure: exposure.value,
+        access: access.value,
+        minMatch: minMatchValue,
+        dog: dogValue,
+        page,
+      };
+      return window.DoloPawsDiscoveryState
+        ? window.DoloPawsDiscoveryState.browseHref(state)
+        : 'browse-trails.html';
+    }
+
+    function syncBrowseUrl(mode){
+      const target = browseStateTarget();
+      const current = window.location.pathname.split('/').pop() + window.location.search;
+      if(target === current) return;
+      if(mode === 'push') window.history.pushState(null, '', target);
+      else window.history.replaceState(null, '', target);
+    }
+
+    function renderCompareTray(){
+      if(!compareApi) return;
+      let tray = document.getElementById('compareTray');
+      if(!tray){
+        tray = document.createElement('aside');
+        tray.id = 'compareTray';
+        tray.className = 'compare-tray';
+        tray.setAttribute('aria-label', bt('browse.compare.aria', 'Selected trails to compare'));
+        document.body.appendChild(tray);
+      }
+      tray.hidden = compareIds.length === 0;
+      if(!compareIds.length) return;
+      const selected = compareIds.map(id => trails.find(trail => trail.id === id)).filter(Boolean);
+      const ready = selected.length >= 2;
+      const compareHref = compareApi.compareHref(compareIds, {
+        dog:dogValue,
+        from:browseStateTarget(),
+      });
+      tray.innerHTML =
+        '<div class="compare-tray__copy">' +
+          `<strong>${esc(bt('browse.compare.count', '{n} of 3 selected', { n: selected.length }))}</strong>` +
+          `<span class="compare-tray__names">${esc(selected.map(trail => trailDisplayName(trail)).join(' · '))}</span>` +
+        '</div>' +
+        '<div class="compare-tray__actions">' +
+          `<button type="button" class="compare-tray__clear">${esc(bt('browse.compare.clear', 'Clear'))}</button>` +
+          `<a class="compare-tray__go" href="${esc(compareHref)}" aria-disabled="${ready ? 'false' : 'true'}">` +
+            esc(ready ? bt('browse.compare.go', 'Compare trails') : bt('browse.compare.chooseMore', 'Choose 1 more')) +
+          '</a>' +
+        '</div>';
+      tray.querySelector('.compare-tray__clear').addEventListener('click', () => {
+        compareIds = compareApi.save(localStorage, []);
+        renderPage(null);
+      });
+    }
+
+    function deviceDogProfile(){
+      try {
+        const profile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile') || 'null');
+        return profile && typeof profile.name === 'string' && profile.name.trim() ? profile : null;
+      } catch(e){ return null; }
+    }
+
+    function activeDogProfile(){
+      const profiles = {
+        medium: { name:'Medium dog', fitness:'moderate', conditions:[], weightBand:'15-20' },
+        rufus: { name:'Rufus', fitness:'moderate', conditions:['heat'], weightBand:'30-40' },
+        bella: { name:'Bella', fitness:'low', conditions:[], weightBand:'5-10' },
+        milo: { name:'Milo', fitness:'high', conditions:[], weightBand:'15-20' },
+      };
+      let dogProfile = profiles[dogValue] || profiles.medium;
+      if(dogValue === 'custom') dogProfile = deviceDogProfile() || dogProfile;
+      return dogProfile;
+    }
+
+    // Whose verdict this is. The card used to say "FOR YOUR DOG" whatever was
+    // scoring -- including the guest default, which is a claim of
+    // personalisation that did not happen, on the one line the reader is meant
+    // to trust. A real dog keeps its name; the default says what it is, in the
+    // same words recommendation-decision.js and the trail page already use.
+    function scoredSubjectLabel(){
+      const dog = dogValue === 'custom' ? deviceDogProfile() : null;
+      if(dog && dog.name) return bt('browse.card.forDog', 'For {name}', { name: dog.name });
+      return bt('browse.card.forDog', 'For {name}', { name: window.t ? window.t('recommendation.subject.guest') : 'a medium dog' });
+    }
+
+    function matchScore(trail){
+      return matchVerdict(trail).score || 0;
+    }
+
+    // The engine's own verdict, not one rebuilt from the score. recommendTrail
+    // downgrades a strong option where a category that matters is unreviewed,
+    // and the score alone does not carry that.
+    function matchVerdict(trail){
+      const verdict=window.OrmaMatchVerdict;
+      try {
+        const recommendation=window.DoloPawsScoring.recommendTrail(
+          trail, effectiveOverrides(activeDogProfile(), null),
+          window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(trail));
+        return verdict ? verdict.verdictFor(recommendation)
+          : { score:recommendation.score, label:'', color:'', tone:'check' };
+      } catch(e){
+        return verdict ? verdict.verdictFor(0) : { score:0, label:'', color:'', tone:'check' };
+      }
+    }
+
+    function currentFilterState(){
+      return {
+        search: search.value,
+        country: countryValue === 'all' ? '' : countryValue,
+        region: regionValue === 'all' ? '' : regionValue,
+        valley: valleyValue === 'all' ? '' : valleyValue,
+        risk: risk.value === 'all' ? '' : risk.value,
+        distance: distance.value === 'all' ? '' : distance.value,
+        duration: durationValue,
+        lifts: liftsValue,
+        water: waterOnly,
+        collection: collectionKey === 'all' ? '' : collectionKey,
+        difficulty: difficultyValue,
+        terrain: terrain.value,
+        heat: heat.value,
+        exposure: exposure.value,
+        access: access.value,
+        minMatch: minMatchValue,
+        dog: dogValue,
+        page,
+      };
+    }
+
+    function filterOptions(){
+      // Chairlift-assisted routes stay hidden unless the dog the list is
+      // ranked for is declared safe on one and light enough to be held, or
+      // the visitor opts in with the chip.
+      const adapters = window.DoloPawsRecommendationAdaptersV1;
+      return {
+        collections: Object.fromEntries(
+          Object.entries(COLLECTIONS).map(([key, collection]) => [key, collection.filter])
+        ),
+        score: matchScore,
+        chairliftSafe: !!(adapters && typeof adapters.chairliftSafe === 'function' && adapters.chairliftSafe(activeDogProfile())),
+      };
+    }
+
+    function filteredTrails(){
+      // Saved walks show whatever the season: the reader chose them.
+      const filtered = filterApi.filter(trails, currentFilterState(), { ...filterOptions(), includeOutOfSeason: savedOnly });
+      return savedOnly ? filtered.filter(trail => currentFavorites[trail.id]) : filtered;
+    }
+
+    function currentTrailPool(){
+      let pool = filteredTrails();
+      if(distance.value === '5') pool = pool.filter(trail => Number(trail.distance) < 5);
+      if(distance.value === '10') pool = pool.filter(trail => Number(trail.distance) >= 5);
+      if(mapBoundsFilter && window.DoloPawsBrowseMap){
+        pool = pool.filter(trail => window.DoloPawsBrowseMap.withinBounds(trail, mapBoundsFilter));
+      }
+      return rankByMatch(pool);
+    }
+
+    // Every card says how well the trail suits the dog the list is scored
+    // for, so the list leads with the best of them. The wizard's "See all
+    // matches" lands here, and a catalogue-order list put "Not recommended"
+    // trails above its 100% match. The verdict ranks first because the engine
+    // can declare one the score alone does not carry; ties keep catalogue order.
+    const VERDICT_RANK = { 'strong-option':0, 'possible-with-cautions':1, 'not-recommended':2 };
+    function rankByMatch(pool){
+      const ranked = pool
+        .map((trail, index) => {
+          const verdict = matchVerdict(trail);
+          return { trail, index, rank: VERDICT_RANK[verdict.category] ?? 2, score: verdict.score || 0 };
+        })
+        .sort((a, b) => (a.rank - b.rank) || (b.score - a.score) || (a.index - b.index))
+        .map(item => item.trail);
+      // The walks to go on now come first; those out of season this month
+      // follow, in the same order (trail-season-words.js inSeasonFirst).
+      const words = window.DoloPawsTrailSeasonWords;
+      return words ? words.inSeasonFirst(ranked, trail => trail.season, new Date().getMonth() + 1) : ranked;
+    }
+
+    const COUNTRIES = [
+      { value:'all', label:bt('browse.geo.allCountries', 'All countries'), match:() => true },
+      { value:'italy', label:bt('browse.geo.italy', 'Italy'), match:t => trailCountry(t) === 'italy' },
+      { value:'france', label:bt('browse.geo.france', 'France'), match:t => trailCountry(t) === 'france' },
+      { value:'austria', label:bt('browse.geo.austria', 'Austria'), match:t => trailCountry(t) === 'austria' },
+      { value:'switzerland', label:bt('browse.geo.switzerland', 'Switzerland'), match:t => trailCountry(t) === 'switzerland' },
+    ];
+    const REGIONS = [
+      { value: 'all', label: bt('browse.geo.allRegions', 'All regions'), country:'all', match: () => true },
+      { value: 'dolomites', label: bt('browse.geo.dolomites', 'Dolomites'), country:'italy', match: t => t.region === 'dolomites' },
+      { value: 'savoy', label: bt('browse.geo.savoy', 'Savoy'), country:'france', match: t => t.region === 'savoy' },
+      { value: 'frenchalps', label: bt('browse.geo.frenchalps', 'French Alps'), country:'france', match: t => t.region === 'frenchalps' },
+      { value: 'lombardy', label: bt('browse.geo.lombardy', 'Lombardy'), country:'italy', match: t => t.region === 'lombardy' },
+      { value: 'friuli', label: bt('browse.geo.friuli', 'Friuli Venezia Giulia'), country:'italy', match: t => t.region === 'friuli' },
+      { value: 'aosta', label: bt('browse.geo.aosta', 'Valle d’Aosta'), country:'italy', match: t => t.region === 'aosta' },
+      { value: 'tyrol', label: bt('browse.geo.tyrol', 'Tyrol & Carinthia'), country:'austria', match: t => t.region === 'tyrol' },
+      { value: 'switzerland', label: bt('browse.geo.swissRegion', 'Switzerland'), country:'switzerland', match: t => t.region === 'switzerland' },
+    ];
+    function renderBreadcrumb(){
+      if(!breadcrumb) return;
+      const parts = [];
+      const country = COUNTRIES.find(item => item.value === countryValue);
+      const region = REGIONS.find(item => item.value === regionValue);
+      if(country && country.value !== 'all') parts.push(country.label);
+      if(region && region.value !== 'all') parts.push(region.label);
+      if(valleyValue !== 'all') parts.push(valleyValue);
+      breadcrumb.textContent = parts.join('  ›  ');
+    }
+    function option(item, count){
+      const el = document.createElement('option');
+      el.value = item.value;
+      el.textContent = item.label + ' (' + count + ')';
+      return el;
+    }
+    function compactAreaTrigger(select){
+      const label = select && select.closest('.area-select-shell')?.querySelector('.area-select-trigger__label');
+      const selected = select && select.options[select.selectedIndex];
+      if(label && selected) label.textContent = selected.textContent.replace(/\s+\(\d+\)$/, '');
+    }
+    function renderCountrySelect(){
+      if(!countrySelect) return;
+      countrySelect.replaceChildren(...COUNTRIES.map(item => option(item, trails.filter(item.match).length)));
+      countrySelect.value = countryValue;
+      countryDropdown.refresh();
+      compactAreaTrigger(countrySelect);
+    }
+    // Region remains a separate choice so the model scales when ORMA adds
+    // more regions within a country.
+    // A region opens before its first walk is published; the manifest says
+    // when it has one. Without a manifest every region is offered.
+    const regionPublished = item => {
+      const regions = window.DoloPawsRegionManifest && window.DoloPawsRegionManifest.regions;
+      return !regions || !regions[item.value] || regions[item.value].trailCount > 0 || item.value === regionValue;
+    };
+    const regionOptions = () => REGIONS.filter(item => item.value === 'all'
+      || ((countryValue === 'all' || item.country === countryValue) && regionPublished(item)));
+    function renderRegionSelect(){
+      if(!regionSelect) return;
+      regionSelect.replaceChildren(...regionOptions().map(item => {
+        const count = item.value === 'all'
+          ? trails.filter(t => countryValue === 'all'
+            || trailCountry(t) === countryValue).length
+          : trails.filter(item.match).length;
+        return option(item, count);
+      }));
+      regionSelect.value = regionValue;
+      regionDropdown.refresh();
+      compactAreaTrigger(regionSelect);
+    }
+    function valleyEntries(){
+      const scoped = trails.filter(trail => {
+        if(regionValue !== 'all') return trail.region === regionValue;
+        if(countryValue !== 'all') return trailCountry(trail) === countryValue;
+        return true;
+      });
+      const counts = new Map();
+      scoped.forEach(trail => {
+        if(trail.valley) counts.set(trail.valley, (counts.get(trail.valley) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    }
+    function renderValleySelect(){
+      if(!valleySelect) return;
+      const entries = valleyEntries();
+      if(valleyValue !== 'all' && !entries.some(([valley]) => valley === valleyValue)) valleyValue = 'all';
+      const total = entries.reduce((sum, [, count]) => sum + count, 0);
+      const items = [option({ value:'all', label:bt('browse.geo.allValleys', 'All valleys') }, total)]
+        .concat(entries.map(([valley, count]) => option({ value:valley, label:valley }, count)));
+      valleySelect.replaceChildren(...items);
+      valleySelect.value = valleyValue;
+      valleyDropdown.refresh();
+      compactAreaTrigger(valleySelect);
+    }
+
+    // Phone-width: rating / distance / water condense behind one Filters chip.
+    function syncFiltersChip(){
+      if(waterBtn) waterBtn.setAttribute('aria-pressed', String(waterOnly));
+      if(shadeBtn) shadeBtn.setAttribute('aria-pressed', String(heat.value === 'shade-60'));
+      if(multiDayBtn) multiDayBtn.setAttribute('aria-pressed', String(durationValue === 'multi'));
+      if(chairliftsBtn) chairliftsBtn.setAttribute('aria-pressed', String(liftsValue === 'include'));
+      if(savedOnlyBtn){
+        savedOnlyBtn.setAttribute('aria-pressed', String(savedOnly));
+        savedOnlyBtn.setAttribute('aria-label', savedOnly ? bt('browse.saved.showAll', 'Show all trails') : bt('browse.saved.onlySaved', 'Show saved trails only'));
+      }
+      if(savedCount) savedCount.textContent = String(Object.keys(currentFavorites).length);
+      if(!filtersBtn) return;
+      // Shade, water, chairlift and multi-day live inside Filters now, so
+      // they count; the place, the search and a collection do not.
+      const n = filterApi.active(currentFilterState())
+        .filter(item => !['search','country','region','valley','collection'].includes(item.key)).length;
+      if(filtersCount) filtersCount.textContent = n > 0 ? ' (' + n + ')' : '';
+      filtersBtn.classList.toggle('on', n > 0);
+    }
+    // Consolidated Filters panel, the homepage's segmented panel, driving
+    // the same hidden selects the filter engine already reads.
+    const filtersMenu = document.getElementById('browseFiltersMenu');
+    function brSeg(elId, opts, cur, pick){
+      const el = document.getElementById(elId);
+      if(!el) return;
+      el.innerHTML = '';
+      opts.forEach(o => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'li-segbtn' + (String(cur) === String(o.v) ? ' on' : '');
+        b.textContent = o.label;
+        b.addEventListener('click', () => { pick(o.v); page = 1; renderPage('push'); buildFilterPanel(); });
+        el.appendChild(b);
+      });
+    }
+    function buildFilterPanel(){
+      if(!filtersMenu) return;
+      brSeg('brDistSeg', [
+        { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.under5', 'Under 5 km'), v:'u5' }, { label:bt('hp.filters.5to10', '5–10 km'), v:'5to10' }, { label:bt('hp.filters.10plus', '10 km+'), v:'10p' },
+      ], distance.value, v => { distance.value = v; });
+      brSeg('brRiskSeg', [
+        { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.lowRisk', 'Low risk'), v:'low-risk' }, { label:bt('hp.filters.moderate', 'Moderate'), v:'moderate' }, { label:bt('hp.filters.caution', 'Caution'), v:'caution' },
+      ], risk.value, v => { risk.value = v; });
+      brSeg('brTerrainSeg', [
+        { label:bt('hp.filters.any', 'Any'), v:'' }, { label:bt('hp.filters.gentle', 'Gentle only'), v:'soft' }, { label:bt('hp.filters.mixed', 'Up to mixed'), v:'mixed' }, { label:bt('hp.filters.rocky', 'Rocky is okay'), v:'rocky' },
+      ], terrain.value, v => { terrain.value = v; });
+      brSeg('brMatchSeg', [
+        { label:bt('hp.filters.any', 'Any'), v:'' }, { label:'60%+', v:'60' }, { label:'75%+', v:'75' }, { label:'85%+', v:'85' },
+      ], minMatchValue, v => { minMatchValue = v; });
+    }
+    const filtersReset = document.getElementById('browseFiltersReset');
+    if(filtersReset) filtersReset.addEventListener('click', () => {
+      distance.value = 'all'; risk.value = 'all'; terrain.value = ''; heat.value = '';
+      exposure.value = ''; access.value = '';
+      minMatchValue = ''; waterOnly = false;
+      page = 1; renderPage('push'); buildFilterPanel();
+    });
+    const filtersApply = document.getElementById('browseFiltersApply');
+    if(filtersApply) filtersApply.addEventListener('click', () => {
+      if(filtersMenu) filtersMenu.hidden = true;
+      if(filtersBtn) filtersBtn.setAttribute('aria-expanded', 'false');
+    });
+    const areaWrap = document.getElementById('browseAreaWrap');
+    const areaBtn = document.getElementById('browseAreaBtn');
+    const areaPanel = document.getElementById('browseAreaPanel');
+    const setAreaOpen = open => {
+      if(!areaPanel || !areaBtn) return;
+      areaPanel.hidden = !open;
+      areaBtn.setAttribute('aria-expanded', String(open));
+    };
+    if(areaBtn){
+      areaBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = areaPanel.hidden;
+        if(open && filtersMenu){ filtersMenu.hidden = true; if(filtersBtn) filtersBtn.setAttribute('aria-expanded', 'false'); }
+        setAreaOpen(open);
+      });
+      document.addEventListener('click', (e) => { if(areaWrap && !areaWrap.contains(e.target)) setAreaOpen(false); });
+      document.addEventListener('keydown', (e) => { if(e.key === 'Escape') setAreaOpen(false); });
+    }
+    if(filtersBtn){
+      filtersBtn.addEventListener('click', () => setAreaOpen(false));
+      filtersBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = filtersMenu ? filtersMenu.hidden : false;
+        if(filtersMenu){ filtersMenu.hidden = !open; buildFilterPanel(); }
+        filtersBtn.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', (e) => {
+        if(!toolsWrap.contains(e.target)){
+          if(filtersMenu) filtersMenu.hidden = true;
+          filtersBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape'){
+          toolsWrap.classList.remove('filters-open');
+          filtersBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    function renderCollections(){
+      if(!collectionsGrid) return;
+      collectionsGrid.innerHTML = '';
+      Object.keys(COLLECTIONS).forEach(key => {
+        const c = COLLECTIONS[key];
+        const count = trails.filter(c.filter).length;
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'browse-coll-card' + (collectionKey === key ? ' active' : '');
+        card.setAttribute('aria-pressed', collectionKey === key ? 'true' : 'false');
+        card.innerHTML = '<b>' + c.title + '</b><span>' + c.blurb + '</span>' +
+          '<em>' + count + ' trail' + (count === 1 ? '' : 's') + '</em>';
+        card.addEventListener('click', () => {
+          collectionKey = collectionKey === key ? 'all' : key;
+          page = 1;
+          renderPage('push');
+          if(collectionKey !== 'all') list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        collectionsGrid.appendChild(card);
+      });
+    }
+
+    // The Area button names the place in one phrase: the region (or the
+    // country, when no region is picked) and the valley.
+    function renderAreaLabel(){
+      const label = document.getElementById('browseAreaLabel');
+      if(!label) return;
+      const picked = id => {
+        const select = document.getElementById(id);
+        const option = select && select.selectedOptions && select.selectedOptions[0];
+        // Options read "Dolomites (121)"; the count belongs in the list, not the label.
+        return option && select.value && select.value !== 'all' ? option.textContent.replace(/\s*\(\d+\)\s*$/, '').trim() : '';
+      };
+      const place = picked('browseRegionSelect') || picked('browseCountrySelect');
+      label.textContent = [place, picked('browseValleySelect')].filter(Boolean).join(' › ')
+        || bt('browse.area.all', 'All areas');
+    }
+
+    // Every filter that is on, as a chip that takes it off. The place is left
+    // out: the Area button already says it.
+    const PLACE_KEYS = new Set(['country', 'region', 'valley']);
+    function renderActiveChips(activeFilters, hasFilters){
+      const host = document.getElementById('browseActiveChips');
+      if(!host) return;
+      const chips = activeFilters.filter(item => !PLACE_KEYS.has(item.key));
+      host.hidden = !chips.length;
+      host.innerHTML = chips.map(item =>
+        `<button type="button" class="browse-active-chip" data-remove-filter="${esc(item.key)}" aria-label="${esc(bt('browse.chips.remove', 'Remove {label}', { label: item.label }))}">${esc(item.label)}<span aria-hidden="true">×</span></button>`
+      ).join('') + (chips.length && hasFilters
+        ? `<button type="button" class="browse-active-clear" data-clear-filters>${esc(bt('browse.chips.clear', 'Clear all'))}</button>`
+        : '');
+      host.querySelectorAll('[data-remove-filter]').forEach(button => {
+        button.addEventListener('click', () => {
+          const next = filterApi.without(currentFilterState(), button.dataset.removeFilter);
+          window.history.pushState(null, '', window.DoloPawsDiscoveryState.browseHref({ ...next, page:1 }));
+          applyBrowseUrl();
+          renderPage(null);
+          buildFilterPanel();
+        });
+      });
+      const clearAll = host.querySelector('[data-clear-filters]');
+      if(clearAll) clearAll.addEventListener('click', () => clear.click());
+    }
+
+    function renderPage(historyMode, renderOptions){
+      const h1 = document.getElementById('trailCountHeading');
+      const sub = document.querySelector('.browse-design-head .sub');
+      if(h1) h1.innerHTML = window.t('browse.h1');
+      if(sub) sub.innerHTML = window.t('browse.sub');
+
+      renderCountrySelect();
+      renderRegionSelect();
+      renderValleySelect();
+      renderBreadcrumb();
+      syncFiltersChip();
+      renderCollections();
+      let pool = currentTrailPool();
+      const activeFilters = filterApi.active(currentFilterState());
+      const hasFilters = activeFilters.length > 0 || savedOnly || !!mapBoundsFilter;
+      const poolCount = bt(pool.length === 1 ? 'hp.count.one' : 'hp.count.many', pool.length === 1 ? '{n} trail' : '{n} trails', { n: pool.length });
+      if(filtersApply) filtersApply.textContent = bt('browse.filters.showCount', 'Show {count}', { count: poolCount });
+      resultCount.innerHTML = `<span class="browse-result-accessible">${esc(bt('browse.results.foundAria', '{count} found.', { count: poolCount }))} </span>${esc(bt('browse.results.ofTotal', '{n} of {total} trails', { n: pool.length, total: trails.length }))}${mapBoundsFilter ? esc(bt('browse.results.inMapArea', ' in this map area')) : ''}`;
+      clear.hidden = !hasFilters;
+      renderAreaLabel();
+      renderActiveChips(activeFilters, hasFilters);
+      const totalPages = Math.max(1, Math.ceil(pool.length / PER_PAGE));
+      if(page > totalPages) page = totalPages;
+      if(historyMode) syncBrowseUrl(historyMode);
+      const pageTrails = pool.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+      const emptyIcon = window.DoloPawsIcons
+        ? window.DoloPawsIcons.renderIconSvg('routes', { mode:'inline', color:'currentColor', size:21 })
+        : '';
+      let recovery = null;
+      let emptyHtml = '';
+      if(!pageTrails.length && savedOnly){
+        emptyHtml = '<div class="browse-empty empty-state">' +
+          '<div class="empty-state__icon" aria-hidden="true">' + emptyIcon + '</div>' +
+          `<p class="empty-state__title">${esc(bt('browse.empty.savedTitle', 'No saved trails match these choices'))}</p>` +
+          `<p class="empty-state__copy">${esc(bt('browse.empty.savedCopy', 'Turn off Saved or adjust the visible filters to return to the full trail catalogue.'))}</p>` +
+          `<div class="browse-recovery"><button type="button" data-show-all>${esc(bt('browse.saved.showAll', 'Show all trails'))}</button></div></div>`;
+      } else if(!pageTrails.length){
+        recovery = filterApi.diagnoseZero(trails, currentFilterState(), filterOptions());
+        const chips = activeFilters.map(item =>
+          `<span class="browse-empty__filter">${esc(item.label)}</span>`
+        ).join('');
+        const safeActions = recovery.broadenings.slice(0, 3).map((item, index) =>
+          `<button type="button" class="safe" data-safe-recovery="${index}">${esc(bt('browse.empty.show', '{label} · show {count}', { label: item.label, count: item.count }))}</button>`
+        ).join('');
+        const removeActions = recovery.restrictive.slice(0, 3).map((item, index) =>
+          `<button type="button" data-remove-recovery="${index}">${esc(bt('browse.empty.remove', 'Remove {label} · show {count}', { label: item.label, count: item.countWithout }))}</button>`
+        ).join('');
+        emptyHtml = '<div class="browse-empty empty-state">' +
+          '<div class="empty-state__icon" aria-hidden="true">' + emptyIcon + '</div>' +
+          `<p class="empty-state__title">${esc(bt('browse.empty.title', 'No trails match this combination'))}</p>` +
+          `<p class="empty-state__copy">${esc(bt('browse.empty.copy', 'The highlighted choices are being applied together. Reviewed filters never assume that missing safety data is positive.'))}</p>` +
+          '<div class="browse-empty__filters">' + chips + '</div>' +
+          '<div class="browse-recovery">' + safeActions + removeActions +
+            `<button type="button" data-clear-empty>${esc(bt('browse.empty.resetAll', 'Reset every filter'))}</button>` +
+          '</div></div>';
+      }
+
+      list.innerHTML = pageTrails.length ? pageTrails.map(t => {
+        const thumb = window.DoloPawsTrailVisual
+          ? window.DoloPawsTrailVisual.render(t, { className:'photo' })
+          : `<div class="trail-visual trail-visual--placeholder photo" role="img" aria-label="${esc(bt('browse.card.photoSoonAria', '{name}: photo coming soon', { name: trailDisplayName(t) }))}"><span class="trail-visual-placeholder-label">${esc(bt('browse.card.photoSoon', 'Photo coming soon'))}</span></div>`;
+        const s = SAFETY[t.safetyLevel] || SAFETY['moderate'];
+        const icons = window.DoloPawsIcons;
+        const trust = window.DoloPawsTrailTrust;
+        const provenanceLabel = trust ? trust.tierLabel(t) : window.t(t.curated === false ? 'badge.importedS' : 'badge.verifiedS');
+        const provStyle = trust ? trust.tierBadgeStyle(t) : (t.curated === false ? 'imported' : 'verified');
+        const ratingLabel = trust ? trust.riskLabel(t, s[0]) : s[0];
+        const provenance = icons
+          ? icons.badgeHtml(provStyle, provenanceLabel)
+          : `<span class="badge-pill badge-${provStyle}">${provenanceLabel}</span>`;
+        // A one-way walk is shown, and scored, there and back, so nobody
+        // plans 3.5 km for a 7 km day (route-return.js).
+        const routeReturn = window.ORMARouteReturn;
+        const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+        const back = shown !== t;
+        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : `${num(shown.distance)} km`) : null, shown.elevation != null ? bt('card.climb', '{m} m climb', { m: shown.elevation }) : null, shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null, t.area]
+          .filter(Boolean).join(' · ');
+        const verdict = matchVerdict(t);
+        const tier = verdict.label;
+        const tierClass = verdict.tone;
+        const reasonIsWater = !!(t.waterSources && t.waterSources.length);
+        const reason = reasonIsWater
+          ? (t.waterSources.length === 1 ? bt('browse.card.waterOne', 'Water access listed at one point') : bt('browse.card.waterMany', 'Water access listed at {n} points', { n: t.waterSources.length }))
+          : (t.shadeCoverage >= 50 ? bt('browse.card.shade', '{pct}% shade along the route', { pct: t.shadeCoverage }) : '');
+        const openHref = `trail.html?id=${encodeURIComponent(t.id)}&from=${encodeURIComponent(browseStateTarget())}`;
+        const isCompared = compareIds.includes(t.id);
+        const compareDisabled = !isCompared && compareIds.length >= compareApi.MAX_TRAILS;
+        return `
+        <article class="simple-card${String(t.id) === selectedTrailId ? ' is-map-selected' : ''}" data-trail-id="${esc(t.id)}">
+          ${thumb}
+          <a class="simple-card__main" href="${openHref}">
+            <div class="name">${trailDisplayName(t)}</div>
+            <div class="simple-card__meta">${meta}</div>
+          </a>
+          <div class="simple-card__facts">
+            ${ratingLink(t.safetyLevel, icons
+              ? icons.badgeHtml(t.safetyLevel, ratingLabel)
+              : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${ratingLabel}</span>`, ratingLabel)}
+            ${provenance}
+            ${seasonTags(t)}
+          </div>
+          <div class="simple-card__match simple-card__match--${tierClass}">
+            <div class="simple-card__score">
+              <small>${esc(scoredSubjectLabel())}</small>
+              <strong>${tier}</strong>
+              ${reason ? `<p class="simple-card__match-reason">${esc(reason)}</p>` : ''}
+            </div>
+            <div class="simple-card__match-actions">
+              <div class="browse-card-actions">
+                <a class="browse-card-open" href="${openHref}">${esc(bt('browse.card.view', 'View trail'))} <span aria-hidden="true">→</span></a>
+                <button type="button" class="browse-card-compare" data-compare-id="${esc(t.id)}"
+                  aria-pressed="${isCompared ? 'true' : 'false'}" ${compareDisabled ? 'disabled' : ''}>
+                  ${esc(bt('browse.compare.add', 'Compare'))}
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>`;
+      }).join('') : emptyHtml;
+
+      const emptyClear = list.querySelector('[data-clear-empty]');
+      if(emptyClear) emptyClear.addEventListener('click', () => clear.click());
+      const showAll = list.querySelector('[data-show-all]');
+      if(showAll) showAll.addEventListener('click', () => { savedOnly = false; page = 1; renderPage(null); });
+      list.querySelectorAll('[data-compare-id]').forEach(button => {
+        button.addEventListener('click', () => {
+          compareIds = compareApi.toggle(compareIds, button.dataset.compareId);
+          compareApi.save(localStorage, compareIds);
+          renderPage(null);
+        });
+      });
+      list.querySelectorAll('.simple-card__main,.browse-card-open').forEach(link => {
+        link.addEventListener('click', () => {
+          primeTrailLink(link);
+        });
+      });
+      list.querySelectorAll('[data-trail-id]').forEach(card => {
+        const id = card.dataset.trailId;
+        card.addEventListener('pointerenter', () => {
+          if(browseMap) browseMap.select(id, { popup:false });
+        });
+        card.addEventListener('focusin', () => {
+          if(browseMap) browseMap.select(id, { popup:false });
+        });
+      });
+      if(selectedTrailId && !pool.some(trail => String(trail.id) === selectedTrailId)) selectedTrailId = '';
+      const mapKeyTitle = document.getElementById('browseMapKeyTitle');
+      // The colours are for this dog, so the key says which dog.
+      if(mapKeyTitle) mapKeyTitle.textContent = scoredSubjectLabel();
+      // The verdicts' own words, from the one module that spells them.
+      if(window.OrmaMatchVerdict) document.querySelectorAll('.browse-map-key [data-category]').forEach(label => {
+        label.textContent = window.OrmaMatchVerdict.categoryLabel(label.dataset.category, window.t);
+      });
+      // The pins' own palette, so the key cannot drift from the map.
+      if(window.ORMAMapStyle) document.querySelectorAll('.browse-map-key__dot[data-fit]').forEach(dot => {
+        dot.style.background = window.ORMAMapStyle.MATCH_COLOURS[dot.dataset.fit] || '';
+      });
+      if(browseMap){
+        browseMap.update(pool, { fit:!mapBoundsFilter && (!renderOptions || renderOptions.fitMap !== false) });
+        if(selectedTrailId) browseMap.select(selectedTrailId, { popup:false });
+      }
+      const applyRecoveryState = nextState => {
+        const target = window.DoloPawsDiscoveryState.browseHref({ ...nextState, page:1 });
+        window.history.pushState(null, '', target);
+        applyBrowseUrl();
+        renderPage(null);
+        list.scrollIntoView({ behavior:'smooth', block:'start' });
+      };
+      list.querySelectorAll('[data-safe-recovery]').forEach(button => {
+        button.addEventListener('click', () => {
+          const item = recovery.broadenings[Number(button.dataset.safeRecovery)];
+          if(item) applyRecoveryState(item.state);
+        });
+      });
+      list.querySelectorAll('[data-remove-recovery]').forEach(button => {
+        button.addEventListener('click', () => {
+          const item = recovery.restrictive[Number(button.dataset.removeRecovery)];
+          if(item) applyRecoveryState(item.state);
+        });
+      });
+      renderCompareTray();
+
+      if(totalPages > 1){
+        const nav = document.createElement('div');
+        nav.style.cssText = 'grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:14px;margin-top:10px;';
+        const mkBtn = (label, disabled, delta) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.textContent = label;
+          b.disabled = disabled;
+          b.className = 'page-btn';
+          if(!disabled) b.addEventListener('click', () => {
+            page += delta;
+            renderPage('push');
+            list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+          return b;
+        };
+        nav.appendChild(mkBtn(t('page.prev'), page === 1, -1));
+        const info = document.createElement('span');
+        info.className = 'page-info';
+        info.textContent = t('page.of', {a: page, b: totalPages});
+        nav.appendChild(info);
+        nav.appendChild(mkBtn(t('page.next'), page === totalPages, 1));
+        list.appendChild(nav);
+      }
+    }
+
+    [search, risk, distance, terrain, heat, exposure, access].forEach(control => {
+      control.addEventListener(control === search ? 'input' : 'change', () => {
+        page = 1;
+        renderPage(control === search ? 'replace' : 'push');
+      });
+    });
+    countrySelect.addEventListener('change', () => {
+      countryValue = countrySelect.value;
+      const selectedRegion = REGIONS.find(item => item.value === regionValue);
+      if(selectedRegion && selectedRegion.country !== 'all' && selectedRegion.country !== countryValue) regionValue = 'all';
+      valleyValue = 'all';
+      mapBoundsFilter = null;
+      page = 1;
+      renderPage('push');
+    });
+    regionSelect.addEventListener('change', () => {
+      regionValue = regionSelect.value;
+      const selectedRegion = REGIONS.find(item => item.value === regionValue);
+      if(selectedRegion && selectedRegion.country !== 'all') countryValue = selectedRegion.country;
+      valleyValue = 'all';
+      mapBoundsFilter = null;
+      page = 1;
+      renderPage('push');
+    });
+    valleySelect.addEventListener('change', () => {
+      valleyValue = valleySelect.value;
+      mapBoundsFilter = null;
+      page = 1;
+      renderPage('push');
+    });
+    if(waterBtn) waterBtn.addEventListener('click', () => {
+      waterOnly = !waterOnly;
+      waterBtn.setAttribute('aria-pressed', String(waterOnly));
+      page = 1;
+      renderPage('push');
+    });
+    if(shadeBtn) shadeBtn.addEventListener('click', () => {
+      heat.value = heat.value === 'shade-60' ? '' : 'shade-60';
+      page = 1;
+      renderPage('push');
+    });
+    if(multiDayBtn) multiDayBtn.addEventListener('click', () => {
+      durationValue = durationValue === 'multi' ? 'day' : 'multi';
+      multiDayBtn.setAttribute('aria-pressed', String(durationValue === 'multi'));
+      page = 1;
+      renderPage('push');
+    });
+    if(chairliftsBtn) chairliftsBtn.addEventListener('click', () => {
+      liftsValue = liftsValue === 'include' ? '' : 'include';
+      chairliftsBtn.setAttribute('aria-pressed', String(liftsValue === 'include'));
+      page = 1;
+      renderPage('push');
+    });
+    if(savedOnlyBtn) savedOnlyBtn.addEventListener('click', () => {
+      if(!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser){
+        window.location.href = 'saved.html';
+        return;
+      }
+      savedOnly = !savedOnly;
+      page = 1;
+      renderPage(null);
+    });
+    clear.addEventListener('click', () => {
+      search.value = '';
+      risk.value = distance.value = 'all';
+      countryValue = 'all';
+      regionValue = 'all';
+      valleyValue = 'all';
+      waterOnly = false;
+      if(waterBtn) waterBtn.setAttribute('aria-pressed', 'false');
+      durationValue = 'day';
+      if(multiDayBtn) multiDayBtn.setAttribute('aria-pressed', 'false');
+      liftsValue = '';
+      if(chairliftsBtn) chairliftsBtn.setAttribute('aria-pressed', 'false');
+      collectionKey = 'all';
+      difficultyValue = '';
+      terrain.value = '';
+      heat.value = '';
+      exposure.value = '';
+      access.value = '';
+      minMatchValue = '';
+      savedOnly = false;
+      mapBoundsFilter = null;
+      selectedTrailId = '';
+      if(searchAreaButton) searchAreaButton.hidden = true;
+      page = 1;
+      renderPage('push');
+      search.focus();
+    });
+
+    window.addEventListener('popstate', () => {
+      applyBrowseUrl();
+      renderPage(null);
+    });
+
+    async function loadSavedTrails(){
+      if(!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser){
+        currentFavorites = {};
+      } else {
+        try { currentFavorites = await window.DoloPawsAuth.getFavorites() || {}; }
+        catch(error){ currentFavorites = {}; }
+      }
+      renderPage(null);
+    }
+    window.addEventListener('dolopaws-auth-ready', loadSavedTrails, { once:true });
+    window.addEventListener('dolopaws-auth-changed', loadSavedTrails);
+    renderPage('replace');
+    if(window.DoloPawsAuth) loadSavedTrails();
+  });
+</script>
+</body>
+</html>
