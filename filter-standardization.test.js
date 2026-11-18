@@ -39,7 +39,7 @@ describe('shared trail-filter experience', () => {
       expect((html.match(/geo-filter-control/g) || [])).toHaveLength(3);
     });
     expect(geoStyles).toContain('width:205px');
-    expect(geoStyles).toContain('height:46px');
+    expect(geoStyles).toContain('height:42px');
     expect(geoStyles).toContain('border-radius:999px');
     expect(geoStyles).toContain('color:#3E7A91');
     expect(geoStyles).toContain('border-right:2.5px solid #66776C');
@@ -96,7 +96,7 @@ describe('shared trail-filter experience', () => {
   test('shows a live result count on every apply action', () => {
     expect(read('homepage-search.js')).toContain("el.filtersApply.textContent = tr('hp.filters.showCount', 'Show {count}', { count: countText(n) })");
     expect(read('browse-trails.html')).toContain("filtersApply.textContent = bt('browse.filters.showCount', 'Show {count}', { count: poolCount })");
-    expect(read('script.js')).toContain('applyBtn.textContent = `Show ${displayList.length}');
+    expect(read('script.js')).toContain("applyBtn.textContent = displayList.length === 1 ? tx('Show 1 trail') : tx('Show {count} trails', { count: displayList.length })");
   });
 
   test('keeps both trail toolbars usable at the narrow-tablet breakpoint', () => {
@@ -109,7 +109,7 @@ describe('shared trail-filter experience', () => {
     // phone the search takes its own line and the other three share the next.
     expect(browse).toContain('#browseTools{display:flex;flex-wrap:nowrap;align-items:center;gap:8px;}');
     expect(browse).toMatch(/@media\(max-width:760px\)\{\s*#browseTools\{flex-wrap:wrap;\}\s*#browseTools>\.browse-search-group\{flex:1 1 100%;\}/);
-    expect(browse).toContain('overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;');
+    expect(read('discovery-filters.css')).toContain('overflow-y:auto;\n  overscroll-behavior:contain;');
   });
 
   test('routes the guest homepage through the one shared discovery filter', () => {
@@ -183,5 +183,40 @@ describe('shared trail-filter experience', () => {
     expect(read('script.js')).toContain('water: liFilters.water,');
     expect(read('homepage-search.js')).toContain('water: state.hasWater,');
     expect(read('browse-trails.html')).toContain('water: waterOnly,');
+  });
+
+  test('styles every Filters panel from one shared stylesheet, with SVG icons only', () => {
+    const shared = read('discovery-filters.css');
+    const panelOf = (html, id) => {
+      const start = html.indexOf(`id="${id}"`);
+      return html.slice(start, html.indexOf('</button>\n', html.indexOf('Show trails</button>', start)));
+    };
+    const panels = [
+      panelOf(read('browse-trails.html'), 'browseFiltersMenu'),
+      panelOf(read('index.html'), 'hpFiltersPanel'),
+      panelOf(read('index.html'), 'liFiltersMenu'),
+    ];
+    ['browse-trails.html', 'index.html'].forEach(file => {
+      expect(read(file)).toContain('<link rel="stylesheet" href="discovery-filters.css">');
+    });
+    expect(read('pages-public-manifest.json')).toContain('"discovery-filters.css"');
+    panels.forEach(panel => {
+      expect(panel).not.toMatch(/[\u{1F300}-\u{1FAFF}☀-➿]/u);
+      (panel.match(/data-dp-icon-size="\d+"/g) || []).forEach(size => expect(size).toBe('data-dp-icon-size="20"'));
+    });
+    // One heading style and one pill for options and quick filters alike.
+    expect(shared).toContain(':is(.li-fsec,.hp-fsec,.browse-filter-group__title)');
+    expect(shared).toContain(':is(.li-segbtn,.hp-segbtn,.li-quick-filter,.browse-quick-filter){');
+    expect(shared).toContain('min-height:var(--filter-chip-h);');
+    expect(read('browse-trails.html')).not.toContain('class="browse-filter-group__title"');
+    expect(read('index.html')).toContain('<div class="li-fsec" data-i18n="browse.filters.quick">Quick filters</div>');
+  });
+
+  test('Reset all clears the Trails quick filters and a chosen option keeps the panel open', () => {
+    const browse = read('browse-trails.html');
+    const reset = browse.slice(browse.indexOf("filtersReset.addEventListener('click'"), browse.indexOf("const filtersApply"));
+    expect(reset).toContain("durationValue = 'day'; liftsValue = '';");
+    expect(reset).toContain('waterOnly = false;');
+    expect(browse).toContain('if(!e.target.isConnected) return;');
   });
 });

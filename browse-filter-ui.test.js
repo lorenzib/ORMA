@@ -285,16 +285,20 @@ describe('Browse filter UI', () => {
     expect(html).toContain('#browseTools>.browse-area-wrap{flex:1 1 0;min-width:0;}');
     expect(html).toContain('#browseTools>.browse-saved-only [data-i18n="browse.quick.saved"]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}');
     expect(html).toContain('#browseTools #browseFiltersBtn .li-caret{display:none;}');
-    expect(html).toMatch(/#browseFiltersMenu\{[^}]*position:fixed;[^}]*bottom:max\(8px,env\(safe-area-inset-bottom\)\);[^}]*overflow-y:auto;/);
+    // Filters opens as a sheet along the bottom of a phone, from the
+    // stylesheet the home page shares.
+    const shared = source('discovery-filters.css');
+    expect(html).toContain('<link rel="stylesheet" href="discovery-filters.css">');
+    expect(shared).toMatch(/@media \(max-width:700px\)\{\s*:is\(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel\)\{\s*position:fixed;top:auto;left:8px;right:8px;bottom:max\(8px,env\(safe-area-inset-bottom,0px\)\);/);
   });
 
-  test('optically aligns the Water control with Saved', () => {
+  test('gives Saved the same 42px height as Area and Filters', () => {
     const html = source('browse-trails.html');
 
-    expect(html).toContain("height:40px;min-height:40px;box-sizing:border-box;padding:0 13px");
+    expect(html).toContain("height:42px;min-height:42px;box-sizing:border-box;padding:0 13px");
     expect(html).toContain('#browseWater .dp-icon-svg{transform:translateY(1px);}');
     expect(html).toContain('#browseWater>span:last-child,.browse-saved-only>span:nth-child(2){display:inline-flex;align-items:center;min-height:21px;line-height:1;}');
-    expect(html).toContain('data-dp-icon="water" data-dp-icon-size="22"');
+    expect(html).toContain('data-dp-icon="water" data-dp-icon-size="20"');
   });
 
   test('uses the same labelled white pill treatment for browse area controls', () => {
@@ -305,7 +309,7 @@ describe('Browse filter UI', () => {
     expect(html).toContain('data-control-kicker="Region"');
     expect(html).toContain('data-control-kicker="Valley"');
     expect(html.match(/data-kicker-until-selected/g)).toHaveLength(3);
-    expect(html).toContain('id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26"');
+    expect(html).toContain('id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20"');
     expect(html).toContain('.area-select-trigger__kicker');
     expect(dropdown).toContain("const controlKicker = select.dataset.controlKicker;");
   });
