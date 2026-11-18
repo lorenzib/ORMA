@@ -418,7 +418,7 @@
   function segHtml(opts, cur, kind) {
     return opts.map(function (o) {
       var sel = String(cur) === String(o.v) ? ' sel' : '';
-      return '<button type="button" class="hp-segbtn' + sel + '" data-seg="' + kind + '" data-val="' + o.v + '">' + esc(o.label) + '</button>';
+      return '<button type="button" class="hp-segbtn' + sel + '" aria-pressed="' + (sel ? 'true' : 'false') + '" data-seg="' + kind + '" data-val="' + o.v + '">' + esc(o.label) + '</button>';
     }).join('');
   }
 
