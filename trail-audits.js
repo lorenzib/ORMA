@@ -70218,6 +70218,259 @@
         ],
         "date": "2026-11-17"
       }
+    },
+    'osm-6823031': {
+      // Hand audit 2026-11-18. Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // The OSM relation's loop (3.5 km) lies wholly on the register's 'Naturlehrpfad' (routes-hikingtrails.11425672, CC0, 5,127 m); the register adds
+      // 1.5 km along the Rienz from Oberragen in Bruneck. Commune: Bruneck (2008 dog regulation, amended 2010). No park, Natura 2000 site or natural
+      // monument on the line. The SS49 passes overhead on a viaduct at km 0.4 (no crossing).
+      "area": "Rienz woods, Bruneck",
+      "distance": 3.5,
+      "elevation": 100,
+      "hours": "1.1",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 857
+        },
+        {
+          "km": 0.2,
+          "elev": 865
+        },
+        {
+          "km": 0.5,
+          "elev": 881
+        },
+        {
+          "km": 0.7,
+          "elev": 895
+        },
+        {
+          "km": 0.9,
+          "elev": 900
+        },
+        {
+          "km": 1.1,
+          "elev": 886
+        },
+        {
+          "km": 1.4,
+          "elev": 899
+        },
+        {
+          "km": 1.6,
+          "elev": 924
+        },
+        {
+          "km": 1.8,
+          "elev": 933
+        },
+        {
+          "km": 2,
+          "elev": 932
+        },
+        {
+          "km": 2.3,
+          "elev": 929
+        },
+        {
+          "km": 2.5,
+          "elev": 931
+        },
+        {
+          "km": 2.7,
+          "elev": 911
+        },
+        {
+          "km": 2.9,
+          "elev": 915
+        },
+        {
+          "km": 3.2,
+          "elev": 901
+        },
+        {
+          "km": 3.4,
+          "elev": 865
+        },
+        {
+          "km": 3.5,
+          "elev": 857
+        }
+      ],
+      "waterSources": [
+        {
+          "km": 0.1,
+          "lat": 46.79064,
+          "lng": 11.950433,
+          "osmId": "node/6557058891",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 50
+        },
+        {
+          "km": 0.4,
+          "lat": 46.7879711,
+          "lng": 11.9502,
+          "osmId": "node/7780549236",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 20
+        },
+        {
+          "km": 1.6,
+          "lat": 46.7815855,
+          "lng": 11.9600891,
+          "osmId": "node/11111274005",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 31
+        }
+      ],
+      "routeShape": "loop",
+      "routeShapeNote": "A forest loop on the waymarked Naturlehrpfad along the Rienz east of Bruneck, as the province trail register maps it, from the Sternwaldile lane by the Rienz stadium; the register adds 1.5 km from Oberragen in Bruneck. Climb and time are measured by ORMA, not published by the register.",
+      "startPoint": {
+        "lat": 46.7905507,
+        "lng": 11.9491702,
+        "label": "The car park by the Rienz stadium in Bruneck, where the Sternwaldile lane starts the nature trail"
+      },
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the car park by the Rienz stadium in Bruneck, at the head of the Sternwaldile lane; the loop is signed “Naturlehrpfad”. From Oberragen in Bruneck the register’s signed link along the Rienz reaches it in about 1.5 km.",
+        "sequence": "Follow the Sternwaldile lane and then the track on path 14 along the Rienz, under the main-road viaduct, for about 1.5 km. Near the covered Lamprechtsburg bridge, stay on the Naturlehrpfad path (with path 14B, then on its own) through the forest for about a kilometre. Return on the track and footpath of path 17 to the start.",
+        "switches": "The Sternwaldile lane; path 14 along the Rienz under the viaduct; the Naturlehrpfad path through the forest near the Lamprechtsburg bridge; path 17 back to the start.",
+        "steps": [
+          {
+            "text": "The car park by the Rienz stadium and the Sternwaldile lane",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 14 along the Rienz, under the main-road viaduct",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Naturlehrpfad path through the forest near the covered Lamprechtsburg bridge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 17 back to the start",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Naturlehrpfad (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425672",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-18"
+          }
+        ]
+      },
+      "shadeCoverage": 86,
+      "heatRisk": "low",
+      "exposure": false,
+      "surfaceHazards": [
+        "The Rienz runs fast beside the track: keep your dog out of the river",
+        "Cyclists share the track on path 14",
+        "A barbecue area by the stadium at the start"
+      ],
+      "terrainType": "Gravel tracks and forest paths",
+      "terrainDescription": "A gentle forest loop at 860–940 m along the Rienz east of Bruneck, on gravel tracks and the nature-trail path.",
+      "shadeDescription": "Almost all in forest along the river.",
+      "waterDescription": "Drinking water near the start (km 0.1 and 0.4) and at about km 1.6.",
+      "dogNotes": "Bruneck requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs off farmed meadows and fields.",
+      "tips": "An easy 3.5 km forest loop with about 100 m of up and down, a little over an hour. Shady and cool on a summer day. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Bruneck requires, and keep it out of the river.",
+      "desc": "A gentle forest loop on the nature trail along the Rienz east of Bruneck, near the Lamprechtsburg castle. It is about 3.5 km with some 100 m of up and down, as measured by ORMA (the province register gives only the length).",
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Naturlehrpfad (Open Data Hub)",
+          "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425672"
+        },
+        {
+          "label": "Stadtgemeinde Bruneck, dog regulation (2008, amended 2010)",
+          "url": "https://www.gemeinde.bruneck.bz.it/system/web/GetDocument.ashx?cts=1740139932&fileId=971388"
+        },
+        {
+          "label": "OpenStreetMap relation 6823031",
+          "url": "https://www.openstreetmap.org/relation/6823031"
+        }
+      ],
+      "imageIcon": "images/trails/osm-6823031-forest-path.jpg",
+      "heroImage": "images/trails/osm-6823031-forest-path.jpg",
+      "imageCredit": "The nature trail in the Rienz woods, Bruneck",
+      "imageCreditText": "The nature trail in the Rienz woods, Bruneck by voschix",
+      "imageSourcePage": "https://www.mapillary.com/app/?pKey=467138304371784",
+      "imageCreator": "voschix",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "imageAlt": "A wide gravel path with a wooden rail on one side and a steep green bank on the other, running into spruce and broadleaf forest",
+      "imageSourceType": "licensed-source",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-11-18",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "The gravel path with its wooden rail through the forest on the nature trail, in September 2017 (voschix on Mapillary, CC BY-SA 4.0), 6 m from the line.",
+        "route": "Register 'Naturlehrpfad' (routes-hikingtrails.11425672, 5.12 km, of which 1.5 km lead along the Rienz from Oberragen to the loop); the stored line is the OSM relation's loop, 3.54 km, every part of it within 25 m of the register line.",
+        "routeNumbers": "Signed “Naturlehrpfad”: the Sternwaldile lane, path 14 along the Rienz, the nature-trail path with 14B through the forest, then path 17.",
+        "mapPoints": "Start at the car park by the Rienz stadium; drinking water at km 0.1, 0.4 and 1.6 (OSM nodes 6557058891, 7780549236, 11111274005).",
+        "elevation": "No official figure. Measured by ORMA from the map: 3.54 km, about 100 m up and down between 857 and 939 m, 1 h 08 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Naturlehrpfad', line routes-hikingtrails.11425672, 5,127 m",
+          "Stadtgemeinde Bruneck / Città di Brunico, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat Nr. 65, 24.11.2008, amended Nr. 4, 25.01.2010), Art. 4: a lead of at most 1.5 m on all public ground, except marked dog areas, and a muzzle carried; no dogs on farmed meadows and fields",
+          "Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; most lies in a landscape zone along the Rienz, whose rules protect the land and set no rule on dogs",
+          "OpenStreetMap relation 6823031 and the ways along it, road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        "date": "2026-11-18"
+      }
     }
   };
 
