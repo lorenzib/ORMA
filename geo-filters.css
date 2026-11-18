@@ -68,6 +68,10 @@
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+/* Until a place is chosen a picker says only what it picks ("COUNTRY");
+   once chosen it says only the choice ("Italy"). Same on every page. */
+.geo-filter-control .area-select-trigger--kicker-until-selected:not(.area-select-trigger--has-selection) .area-select-trigger__label{display:none;}
+.geo-filter-control .area-select-trigger--kicker-until-selected.area-select-trigger--has-selection .area-select-trigger__kicker{display:none;}
 .geo-filter-control .area-select-trigger svg{
   width:18px;
   height:18px;

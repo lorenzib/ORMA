@@ -20792,10 +20792,15 @@ if(document.querySelector('.td2')){
 
     // The trail page's rows (see ROW_TOPICS): what stops the walk, then what
     // cost points, most first, then notes, then everything that fits.
+    // The pill says what a factor does in words; the points themselves sit in
+    // the closed "How the score adds up" list, so a row never reads as a sum.
+    const rowPoints = entry => entry.kind === 'stop'
+      ? tr('recommendation.breakdown.stop', 'Stop')
+      : entry.impact < 0 ? `\u2212${Math.abs(entry.impact)}` : '0';
     const rowStatus = entry => entry.kind === 'stop'
       ? { status:tr('recommendation.breakdown.stop', 'Stop'), tone:'stop' }
       : entry.impact < 0
-        ? { status:`\u2212${Math.abs(entry.impact)}`, tone:'cost' }
+        ? { status:tr('recommendation.row.lowers', tx('Lowers score')), tone:'cost' }
         : entry.kind === 'positive'
           ? { status:tr('recommendation.row.fits', tx('Fits')), tone:'ok' }
           : { status:tr('recommendation.breakdown.note', 'Note'), tone:'note' };
@@ -20811,7 +20816,7 @@ if(document.querySelector('.td2')){
       .map((entry, index) => {
         const source = allFactors.find(factor => factor.code === entry.code) || entry;
         return { topic:rowTopic(entry.code), detail:rowDetail(entry, source), code:entry.code,
-          impact:entry.impact, index, ...rowStatus(entry) };
+          impact:entry.impact, points:rowPoints(entry), index, ...rowStatus(entry) };
       })
       .sort((a, b) => toneOrder[a.tone] - toneOrder[b.tone]
         || (a.tone === 'cost' ? a.impact - b.impact : 0) || a.index - b.index)
@@ -21075,11 +21080,19 @@ if(document.querySelector('.td2')){
     const title = view.score === null
       ? tr('recommendation.breakdown.titleNoScore', 'Why this score for {name}', { name:view.breakdownFor })
       : tr('recommendation.breakdown.title', 'Why {score}% for {name}', { score:view.score, name:view.breakdownFor });
+    // The points stay one tap away for anyone who wants the arithmetic.
+    const pointRows = (view.factorRows || []).map(row =>
+      `<li><span class="recommendation-points-topic">${esc(row.topic)}</span>` +
+        `<span class="recommendation-points-value is-${esc(row.tone)}">${esc(row.points)}</span></li>`).join('');
+    const points = pointRows
+      ? `<details class="recommendation-points"><summary>${esc(tr('recommendation.breakdown.points', 'How the score adds up'))}</summary>` +
+        `<ol>${pointRows}</ol></details>`
+      : '';
     const howLink = `<a class="recommendation-how" href="${esc(tr('recommendation.breakdown.howHref', 'how-scoring-works.html#steepness'))}">${esc(tr('recommendation.breakdown.how', 'How ORMA scores a walk'))}</a>`;
     return `<section class="recommendation-breakdown">` +
       `<h3>${esc(title)}</h3>` +
       (rows ? `<ol class="recommendation-factors">${rows}</ol>` : '') +
-      note + unchecked + howLink + `</section>`;
+      note + unchecked + points + howLink + `</section>`;
   }
 
   function sections(entries){

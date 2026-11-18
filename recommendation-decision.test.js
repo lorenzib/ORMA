@@ -233,12 +233,24 @@ describe('the trail page breakdown, one row per factor', () => {
 
   test('costs lead, the larger first, then what fits', () => {
     expect(view.factorRows.map(row => [row.topic, row.status])).toEqual([
-      ['Drops', '−30'],
-      ['Climb', '−8'],
+      ['Drops', 'Lowers score'],
+      ['Climb', 'Lowers score'],
       ['Season', 'Fits'],
       ['Steepness', 'Fits'],
       ['Distance', 'Fits'],
       ['Water', 'Fits'],
+    ]);
+  });
+
+  test('the pills say it in words; the points ride along for the closed list', () => {
+    expect(view.factorRows.some(row => /\d/.test(row.status))).toBe(false);
+    expect(view.factorRows.map(row => [row.topic, row.points])).toEqual([
+      ['Drops', '−30'],
+      ['Climb', '−8'],
+      ['Season', '0'],
+      ['Steepness', '0'],
+      ['Distance', '0'],
+      ['Water', '0'],
     ]);
   });
 
