@@ -126,6 +126,17 @@
   });
   document.getElementById('profileFitness').addEventListener('click',e=>{const b=e.target.closest('[data-fitness]');if(!b)return;fitness=b.dataset.fitness;document.querySelectorAll('[data-fitness]').forEach(x=>x.classList.toggle('on',x===b));updateImpact();});
   document.getElementById('profileConditions').addEventListener('change',updateImpact);
+  age.addEventListener('change',updateImpact);
+  weight.addEventListener('change',updateImpact);
+  // Same rule as the score (scoring/recommendation-v1.js), fed from this form.
+  const AGE_MID={u1:0.5,'1-2':1.5,'3-4':3.5,'5-6':5.5,'7-8':7.5,'9-10':9.5,'11-12':11.5,'13plus':14};
+  const WEIGHT_MID={u5:4,'5-10':7.5,'10-15':12.5,'15-20':17.5,'20-30':25,'30-40':35,'40-55':47.5,'55plus':60};
+  function steepnessLimit(){
+    const engine=window.DoloPawsRecommendationV1;
+    const conditions=[...root.querySelectorAll('#profileConditions input:checked')].map(input=>CONDITION_CODES[input.value]).filter(Boolean);
+    if(!engine||typeof engine.steepnessLimit!=='function')return fitness==='low'?0:conditions.length?1:2;
+    return engine.steepnessLimit({fitness,ageYears:AGE_MID[age.value]??null,weightKg:WEIGHT_MID[weight.value]??null,conditions});
+  }
   function updateImpact(){
     const joint=!!root.querySelector('input[value="Joint or hip issues"]:checked'),heat=!!root.querySelector('input[value="Heat sensitivity"]:checked');
     const base=fitness==='low'?5:fitness==='moderate'?10:null;
@@ -134,12 +145,14 @@
     document.getElementById('profileDistanceReason').textContent=joint
       ? t('account.impact.distanceJoint','{fitness} fitness{distance} × joint issues (0.75).',{fitness:fitnessLabel,distance:base?' ('+base+' km)':''})
       : t('account.impact.distance','{fitness} fitness{distance}.',{fitness:fitnessLabel,distance:base?' ('+base+' km)':''});
-    document.getElementById('profileTerrain').textContent=fitness==='high'&&!joint
-      ? t('account.impact.terrainRocky','rocky and below')
-      : fitness==='low'||joint?t('account.impact.terrainGravel','gravel and below'):t('account.impact.terrainMixed','mixed and below');
-    document.getElementById('profileTerrainReason').textContent=joint
-      ? t('account.impact.terrainHealth','Health conditions lower the terrain tolerance by one level.')
-      : t('account.impact.terrainStandard','No health modifier lowers the selected fitness tolerance.');
+    const steep=steepnessLimit();
+    document.getElementById('profileTerrain').textContent=steep>=2
+      ? t('account.impact.steepNone','no limit')
+      : steep===1?t('account.impact.steepModerate','up to moderately steep'):t('account.impact.steepGentle','gentle slopes only');
+    document.getElementById('profileTerrainReason').textContent=steep>=2
+      ? t('account.impact.steepNoneReason','Steep paths cost no points for a fit, healthy adult dog.')
+      : steep===1?t('account.impact.steepModerateReason','Age or a health condition: paths of 18% or more cost 10 points.')
+      : t('account.impact.steepGentleReason','Low fitness or more than one limit: each step steeper than gentle (10% or more) costs 10 points.');
     document.getElementById('profileHeat').textContent=heat?t('account.impact.extraCautious','extra cautious'):t('account.impact.standard','standard');
     document.getElementById('profileHeatReason').textContent=heat
       ? t('account.impact.heatDeclared','Heat sensitivity is declared and always outranks breed assumptions.')

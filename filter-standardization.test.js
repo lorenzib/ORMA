@@ -7,7 +7,7 @@ describe('shared trail-filter experience', () => {
   const vocabulary = [
     'Under 5 km', '5–10 km', '10 km+',
     'Low risk', 'Moderate', 'Caution',
-    'Gentle only', 'Up to mixed', 'Rocky is okay',
+    'Gentle only', 'Up to moderate', 'Steep is okay',
     '60%+', '75%+', '85%+',
   ];
 
@@ -75,7 +75,7 @@ describe('shared trail-filter experience', () => {
     const homepage = read('index.html');
     const browse = read('browse-trails.html');
 
-    ['Distance', 'Trail rating', 'Terrain underfoot', 'Minimum match']
+    ['Distance', 'Trail rating', 'Steepness', 'Minimum match']
       .forEach(label => {
         expect(homepage).toContain(label);
         expect(browse).toContain(label);

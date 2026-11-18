@@ -70,7 +70,7 @@
   var DURATION_SEG = [{ label: t('hp.filters.dayHikes', 'Day hikes'), v: 'day' }, { label: t('hp.filters.multiDay', 'Multi-day'), v: 'multi' }];
   var DIST_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.under5', 'Under 5 km'), v: 'u5' }, { label: t('hp.filters.5to10', '5–10 km'), v: '5to10' }, { label: t('hp.filters.10plus', '10 km+'), v: '10p' }];
   var DIFF_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.lowRisk', 'Low risk'), v: 'low-risk' }, { label: t('hp.filters.moderate', 'Moderate'), v: 'moderate' }, { label: t('hp.filters.caution', 'Caution'), v: 'caution' }];
-  var TERRAIN_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.gentle', 'Gentle only'), v: 'soft' }, { label: t('hp.filters.mixed', 'Up to mixed'), v: 'mixed' }, { label: t('hp.filters.rocky', 'Rocky is okay'), v: 'rocky' }];
+  var TERRAIN_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.gentle', 'Gentle only'), v: 'soft' }, { label: t('hp.filters.mixed', 'Up to moderate'), v: 'mixed' }, { label: t('hp.filters.rocky', 'Steep is okay'), v: 'rocky' }];
   var MATCH_SEG = [{ label: t('hp.filters.any', 'Any'), v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 }];
 
   var POPULAR = [

@@ -387,7 +387,7 @@
             <div class="li-seg" id="brMatchSeg"></div>
           </div>
           <div class="browse-filter-group">
-            <div class="li-fsec" data-i18n="browse.filters.terrain">Terrain underfoot</div>
+            <div class="li-fsec" data-i18n="browse.filters.terrain">Steepness</div>
             <div class="li-seg" id="brTerrainSeg"></div>
           </div>
           <button type="button" class="li-apply" id="browseFiltersApply" data-i18n="browse.filters.show">Show trails</button>
@@ -418,12 +418,12 @@
           <option value="caution">Caution</option>
         </select>
       </label>
-      <label class="browse-field browse-field--advanced"><span data-i18n="account.profile.terrainTolerance">Terrain tolerance</span>
-        <select id="browseTerrain" aria-label="Filter by terrain tolerance" data-i18n-aria-label="browse.filters.filterTerrain">
-          <option value="">Any terrain</option>
-          <option value="soft">Gentle surfaces only</option>
-          <option value="mixed">Up to mixed terrain</option>
-          <option value="rocky">Rocky terrain is okay</option>
+      <label class="browse-field browse-field--advanced"><span data-i18n="browse.filters.terrain">Steepness</span>
+        <select id="browseTerrain" aria-label="Filter by steepness" data-i18n-aria-label="browse.filters.filterTerrain">
+          <option value="" data-i18n="browse.filters.anySteepness">Any steepness</option>
+          <option value="soft" data-i18n="filters.chip.terrainSoft">Gentle slopes only</option>
+          <option value="mixed" data-i18n="filters.chip.terrainMixed">Up to moderately steep</option>
+          <option value="rocky" data-i18n="filters.chip.terrainRocky">Steep slopes are okay</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.shadeHeat">Shade &amp; heat</span>
@@ -1714,7 +1714,7 @@
         { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.lowRisk', 'Low risk'), v:'low-risk' }, { label:bt('hp.filters.moderate', 'Moderate'), v:'moderate' }, { label:bt('hp.filters.caution', 'Caution'), v:'caution' },
       ], risk.value, v => { risk.value = v; });
       brSeg('brTerrainSeg', [
-        { label:bt('hp.filters.any', 'Any'), v:'' }, { label:bt('hp.filters.gentle', 'Gentle only'), v:'soft' }, { label:bt('hp.filters.mixed', 'Up to mixed'), v:'mixed' }, { label:bt('hp.filters.rocky', 'Rocky is okay'), v:'rocky' },
+        { label:bt('hp.filters.any', 'Any'), v:'' }, { label:bt('hp.filters.gentle', 'Gentle only'), v:'soft' }, { label:bt('hp.filters.mixed', 'Up to moderate'), v:'mixed' }, { label:bt('hp.filters.rocky', 'Steep is okay'), v:'rocky' },
       ], terrain.value, v => { terrain.value = v; });
       brSeg('brMatchSeg', [
         { label:bt('hp.filters.any', 'Any'), v:'' }, { label:'60%+', v:'60' }, { label:'75%+', v:'75' }, { label:'85%+', v:'85' },
