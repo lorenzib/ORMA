@@ -128,12 +128,12 @@ describe('Browse filter UI', () => {
     expect(window.document.querySelector('.simple-card')).not.toBeNull();
   });
 
-  test('keeps valley in Area, shade and water in Filters, and Saved in the row', () => {
+  test('keeps valley beside search, shade and water in Filters, and Saved in the row', () => {
     const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
     const tools = window.document.getElementById('browseTools');
     const filters = window.document.getElementById('browseFiltersMenu');
 
-    expect(window.document.getElementById('browseAreaPanel').querySelector('#browseValleySelect')).not.toBeNull();
+    expect(tools.querySelector(':scope > #browseAreaControls #browseValleySelect')).not.toBeNull();
     expect(filters.querySelector('#browseQuickShade')).not.toBeNull();
     expect(filters.querySelector('#browseWater')).not.toBeNull();
     expect(tools.querySelector(':scope > #browseSavedOnly')).not.toBeNull();
@@ -166,18 +166,16 @@ describe('Browse filter UI', () => {
     expect(window.document.getElementById('browseFiltersCount').textContent).toBe(' (1)');
   });
 
-  test('the place is named on the Area button, not repeated as a chip', () => {
+  test('the place shows on the visible pickers, not repeated as a chip', () => {
     const window = setup('https://www.app-orma.com/browse-trails.html?country=italy&region=dolomites&valley=Val%20d%E2%80%99Ega');
 
-    expect(window.document.getElementById('browseAreaLabel').textContent).toBe('Dolomites › Val d’Ega');
+    expect(window.document.getElementById('browseCountrySelect').value).toBe('italy');
+    expect(window.document.getElementById('browseRegionSelect').value).toBe('dolomites');
+    expect(window.document.getElementById('browseValleySelect').value).toBe('Val d’Ega');
     expect(window.document.querySelector('#browseActiveChips [data-remove-filter="valley"]')).toBeNull();
-
-    const button = window.document.getElementById('browseAreaBtn');
-    button.click();
-    expect(window.document.getElementById('browseAreaPanel').hidden).toBe(false);
-    expect(button.getAttribute('aria-expanded')).toBe('true');
-    window.document.body.click();
-    expect(window.document.getElementById('browseAreaPanel').hidden).toBe(true);
+    // No Area button hides them any more.
+    expect(window.document.getElementById('browseAreaBtn')).toBeNull();
+    expect(window.document.getElementById('browseAreaPanel')).toBeNull();
   });
 
   test('a card leads with View trail; Compare is a tick box', () => {
@@ -278,11 +276,11 @@ describe('Browse filter UI', () => {
   test('mobile discovery controls wrap inside the phone canvas', () => {
     const html = source('browse-trails.html');
 
-    // Search on its own line, then Area, Filters and Saved sharing the next:
-    // Area takes what is left, Saved keeps its heart and count, Filters drops
+    // Search on its own line, then Country, Region and Valley on the next,
+    // then Filters and Saved: Saved keeps its heart and count, Filters drops
     // its caret.
     expect(html).toMatch(/@media\(max-width:760px\)\{\s*#browseTools\{flex-wrap:wrap;\}/);
-    expect(html).toContain('#browseTools>.browse-area-wrap{flex:1 1 0;min-width:0;}');
+    expect(html).toMatch(/#browseTools>\.browse-area-controls\{flex:1 1 100%;[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
     expect(html).toContain('#browseTools>.browse-saved-only [data-i18n="browse.quick.saved"]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}');
     expect(html).toContain('#browseTools #browseFiltersBtn .li-caret{display:none;}');
     // Filters opens as a sheet along the bottom of a phone, from the
@@ -314,17 +312,18 @@ describe('Browse filter UI', () => {
     expect(dropdown).toContain("const controlKicker = select.dataset.controlKicker;");
   });
 
-  test('country, region and valley open inside one Area control', () => {
+  test('country, region and valley sit visibly beside search', () => {
     const html = source('browse-trails.html');
-    const panel = html.slice(html.indexOf('id="browseAreaPanel"'), html.indexOf('id="browseFiltersWrap"'));
+    const group = html.slice(html.indexOf('id="browseAreaControls"'), html.indexOf('id="browseFiltersWrap"'));
 
     ['browseCountrySelect', 'browseRegionSelect', 'browseValleySelect'].forEach(id => {
-      expect(panel).toContain(`id="${id}"`);
+      expect(group).toContain(`id="${id}"`);
     });
-    expect(html).toContain('<button type="button" id="browseAreaBtn" class="browse-area-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="browseAreaPanel">');
-    // The heading above each picker names it, so the picker shows its value.
-    expect(html).toContain('#browseAreaPanel .area-select-trigger__kicker{display:none;}');
-    expect(html).toContain('#browseAreaPanel .browse-geo-label{position:static;');
+    expect(group.match(/geo-filter-control/g)).toHaveLength(3);
+    expect(html).not.toContain('id="browseAreaBtn"');
+    expect(html).not.toContain('id="browseAreaPanel"');
+    // Each picker names itself until a choice is made, like Collections.
+    expect(html.match(/data-kicker-until-selected/g)).toHaveLength(3);
   });
 
   test('keeps one row of controls instead of three equal rows', () => {

@@ -51,7 +51,7 @@ describe('the homepage card says its cautions plainly', () => {
     useLanguage('en');
     const view = decision.present(fusine(), { dogName:'Teo' });
     expect(view.cardCautions).toEqual([
-      'The path is rougher than Teo is used to.',
+      'Steeper than Teo is up to: Teo is best on moderate slopes.',
       'Boardwalks and roots along the lakeshore are slippery when wet. The trail page has 2 more.',
       'We know of no water on the way. Bring all Teo needs.',
     ]);
@@ -117,7 +117,7 @@ describe('the trail page breakdown says the same things plainly', () => {
       },
     });
   }
-  const rows = view => view.breakdownRows.map(row => row.message);
+  const rows = view => view.factorRows.map(row => row.detail);
 
   test('no grade or tolerance, and every caution kept under a plain heading', () => {
     useLanguage('en');
@@ -125,7 +125,7 @@ describe('the trail page breakdown says the same things plainly', () => {
     const view = decision.present(recommendation, { dogName:'Teo' });
     expect(rows(view)).toEqual(expect.arrayContaining([
       'Parts of the path run beside steep drops.',
-      'The path is rougher than Teo is used to.',
+      'Steeper than Teo is up to: Teo is best on moderate slopes.',
       'Watch out for: Steep rock steps where a dog may need a hand; A short, fairly exposed ledge with no cable.',
     ]));
     expect(rows(view).join(' ')).not.toMatch(/grade|tolerance|Recorded route/);

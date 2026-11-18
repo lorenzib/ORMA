@@ -343,6 +343,7 @@ function liShownPlaceLabel(label){
     'The Dolomites':tx('The Dolomites'), 'Dolomites':tx('Dolomites'), 'Savoy':tx('Savoy'),
     'Lombardy':tx('Lombardy'), 'Tyrol & Carinthia':tx('Tyrol & Carinthia'),
     'Italy':tx('Italy'), 'France':tx('France'), 'Austria':tx('Austria'),
+    'Switzerland':tx('Switzerland'), 'French Alps':tx('French Alps'), 'Piedmont':tx('Piedmont'),
   };
   return Object.prototype.hasOwnProperty.call(own, value) ? own[value] : value;
 }
@@ -1102,6 +1103,140 @@ function liRenderRegionChoices(){
   });
 }
 
+// Country, Region and Valley beside the search, as on Trails and Collections.
+// They show the area in use and choosing one sets it. Near you, a town or the
+// map view are not one of these areas, so the pickers then read "All".
+const LI_PICKER_COUNTRIES = Object.freeze([
+  { code:'IT', label:'Italy' }, { code:'FR', label:'France' },
+  { code:'AT', label:'Austria' }, { code:'CH', label:'Switzerland' },
+]);
+let liAreaDropdowns = null;
+
+function liAreaPickerSelects(){
+  const ids = ['liCountrySelect', 'liRegionSelect', 'liValleySelect'];
+  const selects = ids.map(id => document.getElementById(id));
+  return selects.every(Boolean) ? selects : null;
+}
+
+// The region's name as Trails and Collections write it ("Dolomites").
+function liPickerRegionLabel(id){
+  const i18n = window.DoloPawsI18n;
+  const key = 'browse.geo.' + (id === 'switzerland' ? 'swissRegion' : id);
+  const named = i18n && typeof i18n.t === 'function' ? i18n.t(key) : key;
+  if(named && named !== key) return named;
+  const configs = liRegionConfigs();
+  return liShownPlaceLabel(LI_REGION_LABELS[id] || (configs[id] && configs[id].label) || id);
+}
+
+function liPickerOption(value, label, count){
+  const option = document.createElement('option');
+  option.value = value;
+  option.textContent = count == null ? label : `${label} (${count})`;
+  return option;
+}
+
+function liRenderAreaPickers(){
+  const selects = liAreaPickerSelects();
+  if(!selects) return;
+  const [countrySelect, regionSelect, valleySelect] = selects;
+  const list = liCatalogueTrails();
+  const configs = liRegionConfigs();
+  let context = liLocationContext && liLocationContext.kind === 'area' ? liLocationContext : null;
+  // The map view is named by the place that holds it (the headline does the
+  // same), so the pickers say that place too.
+  if(liLocationContext && liLocationContext.kind === 'map'){
+    const inView = liTrailsInBounds(liLocationContext.bounds).filter(trail => trail.region);
+    const regions = new Set(inView.map(trail => trail.region));
+    if(regions.size === 1){
+      const valleys = new Set(inView.map(trail => trail.valley || ''));
+      const only = inView[0];
+      context = { region:only.region, valley:valleys.size === 1 && only.valley ? only.valley : 'all' };
+    }
+  }
+  const region = context ? (context.region || 'all') : 'all';
+  const country = context ? (context.country && context.country !== 'all' ? context.country : liCountryForRegion(region)) : 'all';
+  const valley = context ? (context.valley || 'all') : 'all';
+  const published = id => {
+    const regions = window.DoloPawsRegionManifest && window.DoloPawsRegionManifest.regions;
+    return !regions || !regions[id] || regions[id].trailCount > 0 || id === region;
+  };
+  const inCountry = code => trail => code === 'all' || liCountryForRegion(trail.region) === code;
+
+  countrySelect.replaceChildren(
+    liPickerOption('all', tx('All countries'), list.length),
+    ...LI_PICKER_COUNTRIES
+      .filter(item => list.some(inCountry(item.code)) || item.code === country)
+      .map(item => liPickerOption(item.code, liShownPlaceLabel(item.label), list.filter(inCountry(item.code)).length)),
+  );
+  countrySelect.value = country;
+
+  const regionIds = Object.keys(configs).filter(id => (country === 'all' || configs[id].countryCode === country) && published(id));
+  regionSelect.replaceChildren(
+    liPickerOption('all', tx('All regions'), list.filter(inCountry(country)).length),
+    ...regionIds.map(id => liPickerOption(id, liPickerRegionLabel(id), list.filter(trail => trail.region === id).length)),
+  );
+  regionSelect.value = region;
+
+  const scoped = list.filter(trail => region !== 'all' ? trail.region === region : inCountry(country)(trail));
+  const counts = new Map();
+  scoped.forEach(trail => { if(trail.valley) counts.set(trail.valley, (counts.get(trail.valley) || 0) + 1); });
+  const valleys = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  valleySelect.replaceChildren(
+    liPickerOption('all', tx('All valleys'), scoped.length),
+    ...valleys.map(([name, count]) => liPickerOption(name, liShownPlaceLabel(name), count)),
+  );
+  valleySelect.value = valleys.some(([name]) => name === valley) ? valley : 'all';
+
+  if(!liAreaDropdowns && window.OrmaAreaDropdown){
+    liAreaDropdowns = selects.map(select => window.OrmaAreaDropdown.enhance(select));
+  }
+  if(liAreaDropdowns) liAreaDropdowns.forEach(dropdown => dropdown && dropdown.refresh());
+  // The trigger names the choice without its count.
+  selects.forEach(select => {
+    const label = select.closest('.area-select-shell')?.querySelector('.area-select-trigger__label');
+    const chosen = select.options[select.selectedIndex];
+    if(label && chosen) label.textContent = chosen.textContent.replace(/\s+\(\d+\)$/, '');
+  });
+}
+
+// What the pickers say, as a location context: the narrowest choice names it.
+function liAreaContextFromPickers(changed){
+  const selects = liAreaPickerSelects();
+  if(!selects) return null;
+  let [country, region, valley] = selects.map(select => select.value || 'all');
+  if(changed === 'country'){ region = 'all'; valley = 'all'; }
+  if(changed === 'region'){
+    valley = 'all';
+    if(region !== 'all') country = liCountryForRegion(region);
+  }
+  if(changed === 'valley' && valley !== 'all'){
+    const trail = liCatalogueTrails().find(item => item.valley === valley
+      && (region === 'all' || item.region === region));
+    if(trail){ region = trail.region; country = liCountryForRegion(region); }
+  }
+  const configs = liRegionConfigs();
+  const countryLabel = (LI_PICKER_COUNTRIES.find(item => item.code === country) || {}).label;
+  const label = valley !== 'all' ? valley
+    : region !== 'all' ? (LI_REGION_LABELS[region] || (configs[region] && configs[region].label) || region)
+    : country !== 'all' ? countryLabel || country
+    : LI_ALL_TRAILS_CONTEXT.label;
+  const context = { kind:'area', country, region, valley, label };
+  // The whole catalogue is not kept as the area to reopen on.
+  if(country === 'all') context.transient = true;
+  return context;
+}
+
+function liWireAreaPickers(){
+  const selects = liAreaPickerSelects();
+  if(!selects) return;
+  ['country', 'region', 'valley'].forEach((kind, index) => {
+    selects[index].addEventListener('change', () => {
+      const context = liAreaContextFromPickers(kind);
+      if(context) liSetLocationContext(context);
+    });
+  });
+}
+
 function liRenderLocationContext(profile){
   const toolbar = document.getElementById('liToolbar');
   const workspace = document.querySelector('#returningCustomerHomepage .li-body');
@@ -1131,6 +1266,7 @@ function liRenderLocationContext(profile){
     }
   }
   liRenderRegionChoices();
+  liRenderAreaPickers();
   liSyncWalkDateInputs();
   liRenderLocationNudge();
 }
@@ -2875,9 +3011,15 @@ function liRenderHeadline(profile, locationPhrase, dayLabel){
     button.textContent = text;
     return button;
   };
+  // The place is chosen with Country, Region and Valley beside the search,
+  // so in the headline it is plain words; only the day is pressed here.
+  const place = document.createElement('span');
+  place.className = 'li-head-place';
+  place.dataset.liHead = 'area';
+  place.textContent = locationPhrase || tx('across all trails');
   host.textContent = `${profile && profile.name ? tx('Best walk for {name}', { name:profile.name }) : tx('Best walk')} `;
   host.append(
-    token('area', locationPhrase || tx('across all trails')),
+    place,
     ' ',
     token('day', dayLabel),
   );
@@ -3504,7 +3646,7 @@ function initLoggedInShell(){
   // they are wired once here rather than on each button.
   const toolbarEl = document.getElementById('liToolbar');
   if(toolbarEl) toolbarEl.addEventListener('click', (e) => {
-    const head = e.target.closest('[data-li-head]');
+    const head = e.target.closest('button[data-li-head]');
     if(head){
       e.stopPropagation();
       liToggleHeadMenu(head);
@@ -3522,6 +3664,7 @@ function initLoggedInShell(){
       if(!e.target.closest('[data-li-day]')) e.stopPropagation();
     });
   });
+  liWireAreaPickers();
   const changeLocation = document.getElementById('liChangeLocationBtn');
   if(changeLocation) changeLocation.addEventListener('click', liFocusSearchForPlace);
   document.querySelectorAll('[data-li-region]').forEach(button => {
@@ -4089,54 +4232,26 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   const view = liRecommendationView(trail, profile);
   if(!view) return '';
   const dogName = liScoredSubject(profile);
-  const items = entries => entries.map(entry => `<li>${liPersonalisationText(entry)}</li>`).join('');
-  // The folded phrases carry the positives that cost nothing; a positive with
-  // no short form of its own keeps a row, so nothing is dropped silently. With
-  // nothing folded the ranked reasons stand on their own and cannot repeat it.
-  const standalone = (view.breakdownRows || [])
-    .filter(row => row && row.kind === 'positive' && row.message)
-    .map(row => row.message);
-  const bullets = (standalone.length ? standalone : view.fits.length ? [] : view.reasons).slice(0, 2);
-  // Both halves of this card say the same kind of thing in the same way.
-  //
-  // "What to know today" has always been short sentences in a list. This side
-  // used the adapter's fold-line instead -- the phrases joined into one
-  // sentence with the "Fine for Eddie:" prefix dropped, because the heading
-  // already names the dog. With seven positives that is a seven-item fragment
-  // with no verb in it, set beside two plain sentences, and it reads as two
-  // voices on one card.
-  //
-  // It also *looked* different, for a reason no test could see: the paragraph
-  // carried `li-answer-fine`, a class with no rule anywhere in the stylesheet,
-  // so it inherited the card's base size while the list beside it is set to
-  // 11px. Listing these fixes the size as a side effect, because they now use
-  // the same rule.
-  //
-  // Four at most. Seen at full length on the live card, seven reasons against
-  // two cautions is lopsided, and on a card about whether a walk suits a dog
-  // the cautions are the half worth reading. The engine emits the positives in
-  // its own order and they all cost nothing, so there is no "most important"
-  // four to pick -- this is the first four, and the trail page still carries
-  // the complete line for anyone who wants all of them.
-  const FIT_LIMIT = 4;
-  const fitList = view.fits.slice(0, FIT_LIMIT);
-  const fitBody = [
-    fitList.length ? `<ul>${items(fitList)}</ul>` : '',
-    bullets.length ? `<ul>${items(bullets)}</ul>` : '',
-  ].join('');
-  const fit = fitBody
-    ? `<div><b>${liIsNotRecommended(trail) ? tx('Not the problem here') : tx('Why it fits {name}', { name:liPersonalisationText(dogName) })}</b>${fitBody}</div>`
+  // One verdict line and the cautions under it. The card used to list "Why
+  // it fits" beside "What to know today": five bullets of equal weight on one
+  // side ("The terrain is manageable.") and, as often as not, a single line on
+  // the other that had nothing to do with today. A card is skimmed in a list
+  // of a dozen, so it now says the verdict in one sentence -- "Good for Teo:
+  // 9.6 km, a gentle 170 m climb and water on the way." -- and the one or two
+  // things to check. The trail page keeps the full row-by-row breakdown.
+  const verdict = view.cardVerdict
+    ? `<p class="li-answer-verdict"><span><b>${liPersonalisationText(view.cardVerdict.lead)}:</b> ${liPersonalisationText(view.cardVerdict.facts)}.</span></p>`
     : '';
   // Cautions first (hard stops already lead them), then what is simply not
   // known, which is a different kind of statement and belongs after. Only
   // trail unknowns: a missing profile field becomes the prompt below, and
-  // saying the same thing twice on one card reads as two problems. The card
-  // says them in plain words (cardCautions), not in the engine's own terms.
-  const concerns = view.cardCautions.slice(0, 3);
-  if(concerns.length < 2) concerns.push(...view.cardTrailUnknowns.slice(0, 2 - concerns.length));
-  const know = concerns.length
-    ? `<div><b>${liWalkDate === liDateOffsetIso(0) ? tx('What to know today') : tx('What to know for this day')}</b><ul>${items(concerns)}</ul></div>`
-    : '';
+  // saying the same thing twice on one card reads as two problems. A strong
+  // option says one; any other verdict says why it is not one, so two.
+  const limit = recommendation && recommendation.category === 'strong-option' ? 1 : 2;
+  const concerns = view.cardCautions.slice(0, limit);
+  if(concerns.length < limit) concerns.push(...view.cardTrailUnknowns.slice(0, limit - concerns.length));
+  const know = concerns
+    .map(entry => `<p class="li-answer-check">${liPersonalisationText(entry)}</p>`).join('');
   const fresh = isNew
     ? `<p class="li-answer-new"><b>${tx('New for {name}.', { name:liPersonalisationText(dogName) })}</b> ${liNewForMeaning(profile)}</p>`
     : '';
@@ -4154,7 +4269,7 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   // every card also has: two of the same button on one card is one too many.
   const panelId = `li-why-${encodeURIComponent(trail.id)}`;
   return `<div class="li-answer-explanation" id="${panelId}"${open ? '' : ' hidden'}>
-    ${fresh}${fit}${know}${gap}
+    ${fresh}${verdict}${know}${gap}
     <div class="li-answer-actions">
       <a class="li-answer-open" href="${liTrailHref(trail.id)}">${tx('View trail details')}</a>
     </div>

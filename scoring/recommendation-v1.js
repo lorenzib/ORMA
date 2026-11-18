@@ -406,6 +406,8 @@
     }
 
     const terrain = numberOrNull(suitability.terrainRank);
+    // Shown with the level on the trail page; never scored on its own.
+    const steepest = numberOrNull(suitability.steepestPercent);
     if(terrain === null){
       unknowns.push(item('trail.terrain.unknown', 'Terrain difficulty is unknown.'));
     }else if(terrain > dog.terrain){
@@ -414,10 +416,10 @@
       const penalty = (terrain - dog.terrain) * 10;
       penalise(penalty, item('trail.terrain.above-tolerance',
         `Terrain is above this dog's effective tolerance (${terrain} versus ${dog.terrain}).`,
-        { terrain, tolerance:dog.terrain }));
+        { terrain, tolerance:dog.terrain, steepest }));
     }else{
       positives.push(item('trail.terrain.within-tolerance',
-        'Terrain is within this dog’s effective tolerance.'));
+        'Terrain is within this dog’s effective tolerance.', { terrain, tolerance:dog.terrain, steepest }));
     }
 
     const distance = numberOrNull(metrics.distanceKm);
