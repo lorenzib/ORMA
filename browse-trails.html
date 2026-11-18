@@ -87,26 +87,15 @@
   .browse-water{min-height:38px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
   .browse-water[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
   .browse-quick-filters{display:flex;align-items:center;gap:8px;}
-  .browse-quick-filter,.browse-saved-only{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:40px;min-height:40px;box-sizing:border-box;padding:0 13px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:var(--card);color:var(--ink);font:600 12.5px/1 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
+  .browse-quick-filter,.browse-saved-only{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:42px;min-height:42px;box-sizing:border-box;padding:0 13px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:var(--card);color:var(--ink);font:700 12.5px/1 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
   #browseWater .dp-icon-svg{transform:translateY(1px);}
   #browseWater>span:last-child,.browse-saved-only>span:nth-child(2){display:inline-flex;align-items:center;min-height:21px;line-height:1;}
   .browse-quick-filter[aria-pressed="true"],.browse-saved-only[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;color:#24462E;font-weight:700;}
   .browse-saved-count{display:inline-flex;align-items:center;justify-content:center;min-width:21px;height:21px;padding:0 6px;border-radius:999px;background:#EDF0E8;font-size:11px;}
   .browse-filter-controls{display:none!important;}
-  .browse-filter-group{padding:2px 0 11px;}
-  .browse-filter-group+.browse-filter-group{border-top:1px solid var(--divider);padding-top:12px;}
-  .browse-filter-group__title{font:700 10px/1 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
   #browseFiltersBtn.on{border-color:#9FC4B0;font-weight:700;}
+  /* The panel itself is styled in discovery-filters.css, shared with home. */
   #browseFiltersMenu{left:auto;right:0;}
-  @media(max-width:700px){
-    #browseFiltersMenu{
-      position:fixed;top:auto;right:8px;bottom:max(8px,env(safe-area-inset-bottom));left:8px;
-      width:auto;max-height:calc(100dvh - 16px - env(safe-area-inset-bottom));
-      overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
-    }
-    #browseFiltersMenu .li-fhead{position:sticky;top:-16px;z-index:2;margin:-16px -16px 0;padding:16px;background:var(--card);}
-    #browseFiltersApply{position:sticky;bottom:-16px;z-index:2;margin:16px -16px -16px;width:calc(100% + 32px);border-radius:0 0 14px 14px;}
-  }
   .browse-results-meta .browse-result-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
   @media(max-width:760px){
     .browse-design-head{padding-left:18px;padding-right:18px;}
@@ -266,8 +255,6 @@
      shows its value ("All countries") rather than repeating its name. */
   #browseAreaPanel .area-select-trigger__kicker{display:none;}
   #browseAreaPanel .area-select-trigger__label{display:inline;}
-  #browseFiltersMenu .browse-quick-filters{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:4px 8px 2px;padding:0;border:0;}
-  #browseFiltersMenu .browse-quick-filter{width:100%;min-width:0;height:38px;min-height:38px;padding:0 10px;font-size:12px;}
   .browse-active-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px;}
   .browse-active-chips[hidden]{display:none;}
   .browse-active-chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px 0 12px;border:1px solid #A9C5AE;border-radius:999px;background:#E1ECE2;color:#24462E;font:700 12px 'Inter',sans-serif;cursor:pointer;}
@@ -307,6 +294,7 @@
   }
 </style>
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
+<link rel="stylesheet" href="discovery-filters.css">
 </head>
 <body>
 
@@ -379,16 +367,15 @@
             <button type="button" id="browseFiltersReset" data-i18n="browse.filters.resetAll">Reset all</button>
           </div>
           <div class="browse-filter-group">
-            <div class="browse-filter-group__title" data-i18n="browse.filters.quick">Quick filters</div>
+            <div class="li-fsec" data-i18n="browse.filters.quick">Quick filters</div>
             <div class="browse-quick-filters" aria-label="Quick dog filters" data-i18n-aria-label="browse.quick.aria">
-              <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span data-i18n="browse.quick.shade">High shade</span></button>
-              <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="22" aria-hidden="true"></span><span data-i18n="browse.quick.water">Water</span></button>
-              <button type="button" class="browse-quick-filter" id="browseChairlifts" aria-pressed="false" data-audit-label="Chairlift-assisted routes" title="Routes that ride an open chairlift are hidden by default: they can be fatal for a dog not used to one" data-i18n-title="browse.chairlifts.title"><span aria-hidden="true">⚠</span><span data-i18n="browse.chairlifts.label">Include chairlift routes</span></button>
-              <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)" data-i18n-title="browse.quick.multiDayTitle"><span aria-hidden="true">🏕️</span><span data-i18n="browse.quick.multiDay">Multi-day</span></button>
+              <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.quick.shade">High shade</span></button>
+              <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.quick.water">Water</span></button>
+              <button type="button" class="browse-quick-filter" id="browseChairlifts" aria-pressed="false" data-audit-label="Chairlift-assisted routes" title="Routes that ride an open chairlift are hidden by default: they can be fatal for a dog not used to one" data-i18n-title="browse.chairlifts.title"><span data-dp-icon="lifts" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.chairlifts.label">Include chairlift routes</span></button>
+              <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)" data-i18n-title="browse.quick.multiDayTitle"><span data-dp-icon="hut" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.quick.multiDay">Multi-day</span></button>
             </div>
           </div>
           <div class="browse-filter-group">
-            <div class="browse-filter-group__title" data-i18n="browse.filters.essentials">Route essentials</div>
             <div class="li-fsec" data-i18n="browse.filters.distance">Distance</div>
             <div class="li-seg" id="brDistSeg"></div>
             <div class="li-fsec" data-i18n="browse.filters.rating">Trail rating</div>
@@ -397,7 +384,6 @@
             <div class="li-seg" id="brMatchSeg"></div>
           </div>
           <div class="browse-filter-group">
-            <div class="browse-filter-group__title" data-i18n="browse.filters.conditions">Terrain &amp; trail conditions</div>
             <div class="li-fsec" data-i18n="browse.filters.terrain">Terrain underfoot</div>
             <div class="li-seg" id="brTerrainSeg"></div>
           </div>
@@ -1710,6 +1696,7 @@
         const b = document.createElement('button');
         b.type = 'button';
         b.className = 'li-segbtn' + (String(cur) === String(o.v) ? ' on' : '');
+        b.setAttribute('aria-pressed', String(String(cur) === String(o.v)));
         b.textContent = o.label;
         b.addEventListener('click', () => { pick(o.v); page = 1; renderPage('push'); buildFilterPanel(); });
         el.appendChild(b);
@@ -1735,6 +1722,8 @@
       distance.value = 'all'; risk.value = 'all'; terrain.value = ''; heat.value = '';
       exposure.value = ''; access.value = '';
       minMatchValue = ''; waterOnly = false;
+      // Reset all means every switch in the panel, the quick filters too.
+      durationValue = 'day'; liftsValue = '';
       page = 1; renderPage('push'); buildFilterPanel();
     });
     const filtersApply = document.getElementById('browseFiltersApply');
@@ -1769,6 +1758,9 @@
         filtersBtn.setAttribute('aria-expanded', String(open));
       });
       document.addEventListener('click', (e) => {
+        // A chosen option is rebuilt by its own click, so its button is no
+        // longer in the page by now; that is a click inside, not outside.
+        if(!e.target.isConnected) return;
         if(!toolsWrap.contains(e.target)){
           if(filtersMenu) filtersMenu.hidden = true;
           filtersBtn.setAttribute('aria-expanded', 'false');
@@ -1777,6 +1769,10 @@
       document.addEventListener('keydown', (e) => {
         if(e.key === 'Escape'){
           toolsWrap.classList.remove('filters-open');
+          if(filtersMenu && !filtersMenu.hidden){
+            filtersMenu.hidden = true;
+            filtersBtn.focus();
+          }
           filtersBtn.setAttribute('aria-expanded', 'false');
         }
       });
