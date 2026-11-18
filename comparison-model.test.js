@@ -112,7 +112,7 @@ describe('comparison presentation model', () => {
     });
     expect(result.cells.reasons.kind).toBe('known');
     expect(result.cells.reasons.text)
-      .toBe('The terrain, the 7.5 km distance and the 150 m climb.');
+      .toBe('The steepness, the 7.5 km distance and the 150 m climb.');
   });
 
   test('a Not recommended trail never lists what fits', () => {
