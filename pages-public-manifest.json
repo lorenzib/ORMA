@@ -53,6 +53,7 @@
     "contact.html",
     "detail-pois.js",
     "device-handoff.js",
+    "discovery-filters.css",
     "discovery-filters.js",
     "discovery-state.js",
     "dog-friendly-routes-savoy.geojson",
