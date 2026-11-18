@@ -6739,6 +6739,14 @@ function breedInsights(name){
     if(/dogs?.{0,30}(?:must|stay|keep).{0,20}(?:on (?:a )?lead|leash)|leash (?:is )?required/i.test(text)){
       return { status: 'leash-required', notes: 'The trail record states that a leash is required.' };
     }
+    // The walk's dog rules (trail.dogNotes) are the commune's or park's rule,
+    // sourced: "Villnöss requires dogs on a lead of at most 1.5 m on all public
+    // paths…". A lead rule there means dogs are allowed on a lead. The bans
+    // these notes name are partial (hay meadows, a Kneipp pool, playgrounds),
+    // so they never make the whole walk prohibited.
+    if(/\b(?:lead|leash)\b/i.test(String(trail && trail.dogNotes || ''))){
+      return { status: 'leash-required', notes: 'The walk\'s dog rules require a lead.' };
+    }
     return { status: 'unknown', notes: null };
   }
 
@@ -20365,7 +20373,7 @@ if(document.querySelector('.td2')){
     'trail.water.none-reviewed': () => tx('We know of no water on the way. Bring all {name} needs.'),
     'trail.season.outside': () => tx('It’s not the season for this walk.'),
     'evidence.critical.capped': () => tx('We haven’t checked this trail’s safety details yet.'),
-    'trail.dog-access.unknown': () => tx('We don’t know the local rules for dogs. Check before you go.'),
+    'trail.dog-access.unknown': () => tx('We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.'),
     'trail.terrain.unknown': () => tx('We don’t know how rough the path is.'),
     'trail.distance.unknown': () => tx('We don’t know how long it is.'),
     'trail.ascent.unknown': () => tx('We don’t know how much climbing there is.'),

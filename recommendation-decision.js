@@ -157,7 +157,7 @@
     'trail.water.none-reviewed': () => tx('We know of no water on the way. Bring all {name} needs.'),
     'trail.season.outside': () => tx('It’s not the season for this walk.'),
     'evidence.critical.capped': () => tx('We haven’t checked this trail’s safety details yet.'),
-    'trail.dog-access.unknown': () => tx('We don’t know the local rules for dogs. Check before you go.'),
+    'trail.dog-access.unknown': () => tx('We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.'),
     'trail.terrain.unknown': () => tx('We don’t know how rough the path is.'),
     'trail.distance.unknown': () => tx('We don’t know how long it is.'),
     'trail.ascent.unknown': () => tx('We don’t know how much climbing there is.'),
