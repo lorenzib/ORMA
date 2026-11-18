@@ -3181,6 +3181,7 @@ function renderLiControls(){
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'li-segbtn' + (o.v === cur ? ' on' : '');
+      b.setAttribute('aria-pressed', String(o.v === cur));
       b.textContent = o.label;
       b.addEventListener('click', () => { pick(o.v); renderReturningHomepage(currentProfileForAdjust); });
       el.appendChild(b);
@@ -4453,7 +4454,7 @@ async function renderReturningHomepage(profile, options = {}){
 
   // "Show N trails", the apply button doubles as the live result count.
   const applyBtn = document.getElementById('liFiltersApply');
-  if(applyBtn) applyBtn.textContent = `Show ${displayList.length} ${displayList.length === 1 ? 'trail' : 'trails'}`;
+  if(applyBtn) applyBtn.textContent = displayList.length === 1 ? tx('Show 1 trail') : tx('Show {count} trails', { count: displayList.length });
 
   if(!showingSavedOnly && displayList.length && !displayList.some(trail => trail.id === selectedTrailId)){
     selectedTrailId = displayList[0].id;

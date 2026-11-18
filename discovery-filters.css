@@ -1,0 +1,129 @@
+/* One trail-filter panel for every trail list: Trails, the guest home page
+   and the signed-in home page ("Best walk …"). Each page keeps its own markup
+   classes (li-*, hp-*, browse-*); this file gives them one look. It loads
+   after the page styles. The three panel ids give these rules enough weight
+   over the older page rules without !important. Placement (which side the
+   panel opens on) stays with each page. The app shell (html.orma-app) keeps
+   its own larger question cards.
+
+   One style everywhere:
+   - title: Bricolage 16px; one section-heading style (grey caps, 10.5px)
+   - every option and quick filter is the same pill: 36px, Inter 13px/600
+   - icons are the site's SVG glyphs (icon-system.js) at 20px, never emoji
+   - desktop: a drop-down above the page that fits the screen, with a sticky
+     title row and a sticky Show button; phones: a sheet along the bottom */
+
+:root{
+  --filter-chip-h:36px;
+  --filter-chip-font:600 13px/1.2 'Inter',sans-serif;
+  --filter-chip-border:var(--paper-line,#E3DFD2);
+  --filter-on-bg:#EAF3EC;
+  --filter-on-border:#7EAD91;
+  --filter-on-ink:#24462E;
+  --filter-heading:#66756A;
+  --filter-control-h:42px;
+}
+
+/* ---------- toolbar controls next to the search ---------- */
+.discovery-filter-trigger{min-height:var(--filter-control-h);font:700 12.5px 'Inter',sans-serif;}
+
+/* ---------- the panel ---------- */
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel){
+  z-index:70;
+  width:360px;
+  max-width:calc(100vw - 32px);
+  /* --dfp-max is set by discovery-filters.js to the room left below the
+     button, so the panel never runs off the bottom of the screen. */
+  max-height:var(--dfp-max,min(640px,calc(100vh - 120px)));
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-gutter:auto;
+  box-sizing:border-box;
+  padding:0 16px 14px;
+  border:1px solid var(--paper-line,#E3DFD2);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 24px 54px -18px rgba(23,42,28,.48),0 4px 12px rgba(23,42,28,.08);
+  text-align:left;
+  min-width:0;
+}
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel)[hidden]{display:none;}
+
+/* Title row: "Filter trails" and Reset all, kept in view while scrolling. */
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-fhead,.hp-fpanel-head){
+  position:sticky;top:0;z-index:2;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin:0 -16px;padding:16px 16px 8px;
+  background:#fff;
+}
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-fhead > span,.hp-fpanel-title){
+  font:700 16px/1.2 'Bricolage Grotesque',sans-serif;letter-spacing:0;text-transform:none;color:var(--ink);
+}
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-fhead button,#hpFiltersReset){
+  padding:4px 0;border:0;background:none;color:var(--accent);font:700 12.5px 'Inter',sans-serif;cursor:pointer;
+}
+
+/* One section-heading style. */
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-fsec,.hp-fsec,.browse-filter-group__title){
+  display:block;margin:16px 0 8px;padding:0;
+  font:700 10.5px/1.2 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--filter-heading);
+}
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) .hp-fsec.first{margin-top:8px;}
+#browseFiltersMenu .browse-filter-group{padding:0;border:0;}
+
+/* Options and quick filters: one pill, sized to its words. */
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-seg,.hp-seg,.li-quick-filters,.browse-quick-filters){
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+  width:auto;margin:0;padding:0;border:0;overflow:visible;
+}
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-segbtn,.hp-segbtn,.li-quick-filter,.browse-quick-filter){
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  flex:0 1 auto;width:auto;min-width:0;max-width:100%;height:auto;min-height:var(--filter-chip-h);
+  margin:0;padding:6px 14px;box-sizing:border-box;
+  border:1.5px solid var(--filter-chip-border);border-radius:999px;
+  background:#fff;color:var(--ink);
+  font:var(--filter-chip-font);text-align:left;white-space:normal;
+  cursor:pointer;box-shadow:none;
+}
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-quick-filter,.browse-quick-filter){padding-left:11px;}
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-segbtn,.hp-segbtn,.li-quick-filter,.browse-quick-filter):hover{
+  border-color:#9FC4B0;background:#F7FAF8;color:var(--ink);
+}
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-segbtn.on,.hp-segbtn.sel,.li-quick-filter[aria-pressed="true"],.browse-quick-filter[aria-pressed="true"]){
+  border-color:var(--filter-on-border);background:var(--filter-on-bg);color:var(--filter-on-ink);font-weight:700;
+}
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-segbtn,.hp-segbtn,.li-quick-filter,.browse-quick-filter,.li-apply,.hp-fapply,.li-fhead button,#hpFiltersReset):focus-visible{
+  outline:2px solid var(--accent);outline-offset:2px;
+}
+/* The site's SVG glyphs, one size. */
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-quick-filter,.browse-quick-filter) [data-dp-icon]{
+  display:inline-grid;place-items:center;flex:none;width:20px;height:20px;
+}
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-quick-filter,.browse-quick-filter) [data-dp-icon] svg{width:20px;height:20px;transform:none;}
+
+/* Water on route (guest home) is a switch row; same text size as the pills. */
+#hpFiltersPanel .hp-frow{margin-top:16px;padding:12px 0 0;border-top:1px solid #EDE9DD;}
+#hpFiltersPanel .hp-frow-lab{font:600 13px 'Inter',sans-serif;color:var(--ink);}
+
+/* Show trails: stays at the foot of the panel while it scrolls. The white
+   ring covers the options passing underneath it. */
+:is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel) :is(.li-apply,.hp-fapply){
+  position:sticky;bottom:14px;z-index:2;
+  display:block;width:100%;min-height:44px;margin:18px 0 0;padding:12px 16px;
+  border:0;border-radius:12px;background:var(--ink);color:#fff;
+  font:700 14px 'Inter',sans-serif;cursor:pointer;
+  /* Covers the 14px around it and the strip below, so nothing shows
+     through under the button while the options scroll. */
+  box-shadow:0 0 0 14px #fff,0 24px 0 14px #fff;
+}
+
+/* ---------- phones: a sheet along the bottom of the screen ---------- */
+@media (max-width:700px){
+  :is(#browseFiltersMenu,#liFiltersMenu,#hpFiltersPanel){
+    position:fixed;top:auto;left:8px;right:8px;bottom:max(8px,env(safe-area-inset-bottom,0px));
+    width:auto;max-width:none;max-height:min(85dvh,calc(100dvh - 24px));
+    z-index:90;border-radius:18px;
+    /* Dims the page behind the sheet. */
+    box-shadow:0 0 0 100vmax rgba(23,32,26,.32),0 -8px 30px rgba(23,42,28,.18);
+  }
+}

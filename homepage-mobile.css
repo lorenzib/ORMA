@@ -74,8 +74,6 @@
   /* Match the compact collection controls: same 42px rhythm and 12.5px label. */
   body.mhome-active .li-new,
   body.mhome-active .li-filt{width:100%;flex:none;height:42px;padding:0 10px;gap:6px;font-size:12.5px;}
-  body.mhome-active .li-quick-filter{flex:1;min-width:0;height:42px;padding:0 12px;border:1.5px solid var(--paper-line);border-radius:999px;background:#fff;gap:7px;font-size:13px;white-space:nowrap;justify-content:center;}
-  body.mhome-active .li-quick-filter [data-dp-icon]{display:grid;place-items:center;}
   body.mhome-active .li-new{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;border:1.5px solid var(--accent);background:var(--accent);color:#fff;font-weight:800;gap:6px;}
   body.mhome-active .li-new .li-caret{opacity:.85;}
   body.mhome-active .orma-saved-heart{font-family:Arial,sans-serif;font-size:19px;}
@@ -238,9 +236,7 @@
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-new-wrap{grid-area:auto;grid-column:9/13;grid-row:1;width:100%;}
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-mobile-actions{display:contents;}
   body[data-homepage-view="returning"] #returningCustomerHomepage #liFiltersWrap{grid-area:auto;grid-column:9/13;grid-row:2;width:100%;display:block;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-quick-filters{grid-area:auto;grid-column:1/9;grid-row:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:6px;padding:0;border:0;overflow:visible;}
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-filt,
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-quick-filter,
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-new{height:36px;min-width:0;padding-inline:9px;font-size:11px;}
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-body{width:100vw;max-width:none;flex:1;height:auto;min-height:0;}
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-map{width:100%;height:100%;min-height:0;}
@@ -264,6 +260,5 @@
   body.mhome-active .li-quick-filters{grid-column:1/9;grid-row:2;display:flex;gap:6px;}
   body.mhome-active #liFiltersWrap{grid-column:9/13;grid-row:2;display:block;width:100%;}
   body.mhome-active .li-filt,
-  body.mhome-active .li-quick-filter,
   body.mhome-active .li-new{height:36px;padding-inline:8px;font-size:11px;}
 }

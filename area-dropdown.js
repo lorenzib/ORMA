@@ -32,7 +32,11 @@
         trigger.classList.add('area-select-trigger--kicker-until-selected');
       }
       trigger.innerHTML = '<span class="area-select-trigger__copy"><span class="area-select-trigger__kicker"></span><span class="area-select-trigger__label"></span></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      trigger.querySelector('.area-select-trigger__kicker').textContent = controlKicker;
+      // Country / Region / Valley say the same word as the Trails area panel.
+      const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+      const kickerKey = 'browse.geo.' + String(controlKicker).toLowerCase();
+      const translated = i18n && typeof i18n.t === 'function' ? i18n.t(kickerKey) : kickerKey;
+      trigger.querySelector('.area-select-trigger__kicker').textContent = translated !== kickerKey ? translated : tx(controlKicker);
     }else{
       trigger.innerHTML = '<span class="area-select-trigger__label"></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     }
