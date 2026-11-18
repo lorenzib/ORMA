@@ -14,6 +14,8 @@ const safetyPages = [
   'paw-protection.html',
   'water-for-dogs-on-trail.html',
   'winter-walks-with-your-dog.html',
+  'dog-rules-dolomites.html',
+  'wildlife-on-the-trail.html',
 ];
 
 function readPage(name) {
