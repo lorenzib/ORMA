@@ -4238,8 +4238,15 @@ function liPickStrength(trail, profile){
   return strength;
 }
 
+// A pick is a recommendation, so a "Low match" is never one: fewer cards, or
+// none, says more than padding the row with a walk ORMA would not suggest.
+function liIsGoodMatch(trail, profile){
+  return liRecommendationPresentation(trail, profile).category !== 'not-recommended';
+}
+
 function liTodaysPicks(list, profile, count = LI_PICK_COUNT){
   return (list || [])
+    .filter(trail => liIsGoodMatch(trail, profile))
     .map((trail, index) => ({ trail, index, strength:liPickStrength(trail, profile) }))
     .sort((a, b) => b.strength - a.strength || a.index - b.index)
     .slice(0, count)
@@ -4305,7 +4312,17 @@ function liRenderTodaysPicks(displayList, profile){
     if(reset) reset.addEventListener('click', empty.action);
     return;
   }
-  host.innerHTML = liTodaysPicks(list, profile).map(trail => liPickCardHtml(trail, profile)).join('');
+  const picks = liTodaysPicks(list, profile);
+  if(!picks.length){
+    const name = profile && profile.name ? profile.name : '';
+    host.innerHTML = `
+      <div class="li-empty">
+        <div class="li-empty-title">${name ? tx('No good matches for {name} here today', { name:liEscapeHtml(name) }) : tx('No good matches here today')}</div>
+        <p>${tx('The walks here are low matches. See them all on the map, or search another town or valley.')}</p>
+      </div>`;
+    return;
+  }
+  host.innerHTML = picks.map(trail => liPickCardHtml(trail, profile)).join('');
   host.querySelectorAll('.li-pick').forEach(card => {
     card.addEventListener('click', () => {
       warmTrailDetail(trails.find(item => item.id === card.dataset.id));

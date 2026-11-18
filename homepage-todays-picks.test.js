@@ -214,6 +214,28 @@ describe('Today\'s picks', () => {
     expect(pickIds()).toEqual(['x', 'y']);
   });
 
+  test('never picks a low match: fewer cards, or a plain message', async () => {
+    const context = loadHomepage([
+      trail('low-top', 99, { category: 'not-recommended' }),
+      trail('good', 80),
+      trail('care', 70, { category: 'possible-with-cautions' }),
+      trail('low-2', 60, { category: 'not-recommended' }),
+    ]);
+    await render(context);
+    expect(pickIds()).toEqual(['good', 'care']);
+    // The list still has all four, one press away.
+    expect(document.getElementById('liSeeAllWalks').textContent).toBe('See all 4 walks on the map');
+
+    const none = loadHomepage([
+      trail('low-a', 50, { category: 'not-recommended' }),
+      trail('low-b', 40, { category: 'not-recommended' }),
+    ]);
+    await render(none);
+    expect(pickIds()).toEqual([]);
+    expect(document.querySelector('#liPicksList .li-empty-title').textContent).toMatch(/^No good matches/);
+    expect(document.getElementById('liSeeAllWalks').hidden).toBe(false);
+  });
+
   test('the button counts the walks the list shows', async () => {
     const trails = [trail('a', 95), trail('b', 92), trail('c', 90), trail('d', 88), trail('e', 86, { name: 'Lago walk' })];
     const context = loadHomepage(trails);
