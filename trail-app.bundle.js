@@ -5844,7 +5844,10 @@ function breedInsights(name){
     if(age === null) unknowns.push(item('dog.age.unknown', 'Age is missing, so life-stage adjustments are not applied.'));
     if(weight === null) unknowns.push(item('dog.weight.unknown', 'Weight is missing, so size adjustments are not applied.'));
 
-    const conditions = new Set(Array.isArray(dog.conditions) ? dog.conditions : []);
+    // 'injury' is what the account page saved for "Recovering from injury"
+    // before Nov 2026; the dog wizard always saved 'recovering'.
+    const conditions = new Set((Array.isArray(dog.conditions) ? dog.conditions : [])
+      .map(code => code === 'injury' ? 'recovering' : code));
     const traits = dog.traits || {};
     const puppy = age !== null && age < 1;
     const senior = age !== null && age >= 8;
@@ -7073,7 +7076,8 @@ function dogWeightKg(profile){
 }
 
 function dogConditions(profile){
-  if(Array.isArray(profile.conditions)) return profile.conditions;
+  // 'injury' is the account page's pre-Nov 2026 code for "Recovering from injury".
+  if(Array.isArray(profile.conditions)) return profile.conditions.map(code => code === 'injury' ? 'recovering' : code);
   // Legacy profiles: two booleans instead of the conditions list.
   return [profile.jointIssues && 'joints', profile.heatIssues && 'heat'].filter(Boolean);
 }

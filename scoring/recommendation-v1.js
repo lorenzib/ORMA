@@ -237,7 +237,10 @@
     if(age === null) unknowns.push(item('dog.age.unknown', 'Age is missing, so life-stage adjustments are not applied.'));
     if(weight === null) unknowns.push(item('dog.weight.unknown', 'Weight is missing, so size adjustments are not applied.'));
 
-    const conditions = new Set(Array.isArray(dog.conditions) ? dog.conditions : []);
+    // 'injury' is what the account page saved for "Recovering from injury"
+    // before Nov 2026; the dog wizard always saved 'recovering'.
+    const conditions = new Set((Array.isArray(dog.conditions) ? dog.conditions : [])
+      .map(code => code === 'injury' ? 'recovering' : code));
     const traits = dog.traits || {};
     const puppy = age !== null && age < 1;
     const senior = age !== null && age >= 8;

@@ -26,3 +26,17 @@ describe('account page steepness limit follows the score', () => {
     expect(design).not.toMatch(/rocky and below|gravel and below|mixed and below/);
   });
 });
+
+describe('"Recovering from injury" reaches the score', () => {
+  test('the account page saves the code the score reads', () => {
+    const design = read('profile-design.js');
+    expect(design).toContain("'Recovering from injury':'recovering'");
+    expect(design).not.toContain("'Recovering from injury':'injury'");
+  });
+
+  test('the old account-page code counts too, so saved profiles keep working', () => {
+    const base = { ...adult, fitness:'moderate' };
+    expect(engine.steepnessLimit({ ...base, conditions:['recovering'] })).toBe(1);
+    expect(engine.steepnessLimit({ ...base, conditions:['injury'] })).toBe(1);
+  });
+});

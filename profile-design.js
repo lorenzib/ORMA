@@ -23,7 +23,7 @@
   let fitness='moderate';
   const CONDITION_CODES={
     'Joint or hip issues':'joints','Back / disc history':'back','Heart condition':'cardiac',
-    'Overweight':'overweight','Recovering from injury':'injury','Impaired vision':'vision',
+    'Overweight':'overweight','Recovering from injury':'recovering','Impaired vision':'vision',
     'Heat sensitivity':'heat'
   };
   function canonicalBreeds(){return typeof DOG_BREEDS!=='undefined'?DOG_BREEDS:[];}
@@ -120,7 +120,8 @@
     if(p.weightBand)weight.value=p.weightBand;
     fitness=p.fitness||'moderate';
     document.querySelectorAll('[data-fitness]').forEach(x=>x.classList.toggle('on',x.dataset.fitness===fitness));
-    const conditions=Array.isArray(p.conditions)?p.conditions:[];
+    // Before Nov 2026 this page saved "Recovering from injury" as 'injury'.
+    const conditions=(Array.isArray(p.conditions)?p.conditions:[]).map(code=>code==='injury'?'recovering':code);
     root.querySelectorAll('#profileConditions input').forEach(input=>{input.checked=conditions.includes(CONDITION_CODES[input.value]);});
     updateImpact();
   });
