@@ -14,6 +14,8 @@ const guideFiles = [
   'paw-protection.html',
   'water-for-dogs-on-trail.html',
   'winter-walks-with-your-dog.html',
+  'dog-rules-dolomites.html',
+  'wildlife-on-the-trail.html',
 ];
 
 const systemCss = fs.readFileSync(path.join(__dirname, 'guides', 'safety-guide-system.css'), 'utf8');
