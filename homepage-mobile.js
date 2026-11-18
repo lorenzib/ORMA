@@ -217,6 +217,19 @@
     }, 0);
   });
 
+  // Today's picks <-> the map and the list (script.js liSetMapRevealed). The
+  // picks scroll like a page; the map is the fixed app layout again, measured
+  // from the top.
+  window.addEventListener('dolopaws-home-map-reveal-changed', function(){
+    setTimeout(function(){
+      update();
+      if(!active) return;
+      window.scrollTo(0, 0);
+      measure();
+      setSheet(sheetPct);
+    }, 0);
+  });
+
   window.addEventListener('resize', function(){
     // Some environments never fire MediaQueryList 'change' on viewport
     // resize, so re-evaluate activation here as well.
