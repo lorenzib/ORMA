@@ -47,6 +47,8 @@
   .sc-card{background:var(--card,#fff);border:1px solid var(--paper-line,#E5DECF);border-radius:18px;padding:20px;box-shadow:0 12px 34px rgba(46,64,52,.055);}
   .sc-card h4{margin:0 0 8px;font:700 13.5px 'Inter',sans-serif;color:var(--ink,#22312A);}
   .sc-card p{margin:8px 0 0;font-size:13px;line-height:1.55;color:var(--ink-soft,#6b6350);}
+  .sc-subhead{margin:26px 0 8px;font:700 19px/1.2 'Bricolage Grotesque',sans-serif;color:#22312A;scroll-margin-top:150px;}
+  .sc-steepness{max-width:460px;margin:12px 0 14px;padding:10px 18px;}
   .sc-stat{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:5px 0;border-bottom:1px dashed var(--paper-line,#E5DECF);}
   .sc-stat:last-of-type{border-bottom:none;}
   .sc-stat b{color:var(--ink,#22312A);}
@@ -218,19 +220,19 @@
       <div class="sc-cards">
         <div class="sc-card">
           <h4>Low fitness</h4>
-          <div class="sc-stat"><span>Ground</span><b>Easy paths</b></div>
+          <div class="sc-stat"><span>Steepness</span><b>Gentle slopes</b></div>
           <div class="sc-stat"><span>Distance</span><b>Up to 5 km</b></div>
           <div class="sc-stat"><span>Climb</span><b>Up to 250 m</b></div>
         </div>
         <div class="sc-card">
           <h4>Moderate fitness</h4>
-          <div class="sc-stat"><span>Ground</span><b>Steep paths fine</b></div>
+          <div class="sc-stat"><span>Steepness</span><b>Steep paths fine</b></div>
           <div class="sc-stat"><span>Distance</span><b>Up to 10 km</b></div>
           <div class="sc-stat"><span>Climb</span><b>Up to 600 m</b></div>
         </div>
         <div class="sc-card">
           <h4>High fitness</h4>
-          <div class="sc-stat"><span>Ground</span><b>Steep paths fine</b></div>
+          <div class="sc-stat"><span>Steepness</span><b>Steep paths fine</b></div>
           <div class="sc-stat"><span>Distance</span><b>Up to 18 km</b></div>
           <div class="sc-stat"><span>Climb</span><b>Up to 1200 m</b></div>
         </div>
@@ -238,6 +240,15 @@
 
       <p>Fitness answers how far and how much climbing. For a healthy adult dog a steep path is not a limit in itself: what can stop it, an exposed ledge or loose scree, is called out on the trail. Steepness still counts for low fitness, puppies, seniors, joint or back trouble, short legs and very large dogs. One of those limits makes steep paths harder, not off-limits: only low fitness, or two limits together, rule them out. And a path counts as steep only where the steep part lasts 300 m or more, not for one short step. Behaviour answers where. You can also tell us about recall, reactivity, prey drive, how your dog is around livestock, traffic and crowds, heat tolerance, and the walk length you prefer.</p>
       <p>These questions work differently from the rest of the profile. Leave one blank and we say nothing about it in either direction: no penalty, and no reassurance either. Telling you a route suits a dog whose recall we never asked about is the one mistake worth avoiding.</p>
+
+      <h4 class="sc-subhead" id="steepness">How steep is steep</h4>
+      <p>We read each walk’s height profile and find its steepest stretch that lasts at least 300 m. That stretch, not one short step, sets the walk’s steepness:</p>
+      <div class="sc-card sc-steepness">
+        <div class="sc-stat"><span>Gentle</span><b>under 10%</b></div>
+        <div class="sc-stat"><span>Moderately steep</span><b>10–18%</b></div>
+        <div class="sc-stat"><span>Steep, like most mountain paths</span><b>18% or more</b></div>
+      </div>
+      <p>A 10% slope rises 10 m for every 100 m you walk. Each dog gets a limit on the same three steps. When a walk is a step steeper than your dog’s limit, the trail page says so with the figure, for example “the steepest stretch is about 15%, and Teo is best on gentle slopes”, and the match drops by 10 points for each step.</p>
 
       <h3>Step 3 · We explain the match</h3>
       <p>Same trail, two dogs, two scores.</p>
@@ -369,19 +380,19 @@
       <div class="sc-cards">
         <div class="sc-card">
           <h4>Forma bassa</h4>
-          <div class="sc-stat"><span>Terreno</span><b>Sentieri facili</b></div>
+          <div class="sc-stat"><span>Pendenza</span><b>Pendenze dolci</b></div>
           <div class="sc-stat"><span>Distanza</span><b>Fino a 5 km</b></div>
           <div class="sc-stat"><span>Dislivello</span><b>Fino a 250 m</b></div>
         </div>
         <div class="sc-card">
           <h4>Forma moderata</h4>
-          <div class="sc-stat"><span>Terreno</span><b>Sentieri ripidi ok</b></div>
+          <div class="sc-stat"><span>Pendenza</span><b>Sentieri ripidi ok</b></div>
           <div class="sc-stat"><span>Distanza</span><b>Fino a 10 km</b></div>
           <div class="sc-stat"><span>Dislivello</span><b>Fino a 600 m</b></div>
         </div>
         <div class="sc-card">
           <h4>Forma alta</h4>
-          <div class="sc-stat"><span>Terreno</span><b>Sentieri ripidi ok</b></div>
+          <div class="sc-stat"><span>Pendenza</span><b>Sentieri ripidi ok</b></div>
           <div class="sc-stat"><span>Distanza</span><b>Fino a 18 km</b></div>
           <div class="sc-stat"><span>Dislivello</span><b>Fino a 1200 m</b></div>
         </div>
@@ -389,6 +400,15 @@
 
       <p>La forma fisica risponde a quanto lontano e quanto dislivello. Per un cane adulto in salute un sentiero ripido non è un limite in sé: ciò che può fermarlo, una cengia esposta o un ghiaione, è segnalato sul sentiero. La pendenza conta ancora per la forma bassa, i cuccioli, i cani anziani, con problemi di articolazioni o schiena, a zampe corte e molto grandi. Uno di questi limiti rende i sentieri ripidi più faticosi, non vietati: solo la forma bassa, o due limiti insieme, li escludono. E un sentiero conta come ripido solo dove il tratto ripido dura 300 m o più, non per un breve gradino. Il comportamento risponde a dove. Puoi raccontarci anche del richiamo, della reattività, dell'istinto predatorio, di come sta il tuo cane con bestiame, traffico e folla, della tolleranza al caldo e della durata di passeggiata che preferisci.</p>
       <p>Queste domande funzionano diversamente dal resto del profilo. Se ne lasci una in bianco non diciamo nulla al riguardo, in nessuna delle due direzioni: nessuna penalità e nemmeno una rassicurazione. Dire che un percorso va bene per un cane di cui non abbiamo mai chiesto il richiamo è l'errore da evitare davvero.</p>
+
+      <h4 class="sc-subhead" id="pendenza">Quanto è ripido un sentiero</h4>
+      <p>Leggiamo il profilo altimetrico di ogni passeggiata e cerchiamo il tratto più ripido che dura almeno 300 m. È quel tratto, non un breve gradino, a dare la pendenza della passeggiata:</p>
+      <div class="sc-card sc-steepness">
+        <div class="sc-stat"><span>Dolce</span><b>meno del 10%</b></div>
+        <div class="sc-stat"><span>Abbastanza ripida</span><b>10–18%</b></div>
+        <div class="sc-stat"><span>Ripida, come la maggior parte dei sentieri di montagna</span><b>18% o più</b></div>
+      </div>
+      <p>Una pendenza del 10% sale di 10 m ogni 100 m di cammino. Ogni cane ha un limite sugli stessi tre gradini. Quando una passeggiata è un gradino più ripida del limite del tuo cane, la pagina del sentiero lo dice con la cifra, per esempio “il tratto più ripido è di circa il 15%, e Teo sta meglio su pendenze dolci”, e la compatibilità scende di 10 punti per gradino.</p>
 
       <h3>Passo 3 · Spieghiamo la compatibilità</h3>
       <p>Stesso sentiero, due cani, due punteggi.</p>
@@ -609,6 +629,14 @@ document.documentElement.classList.add('sc-js');
         panels[itemIndex].hidden = !active;
       });
       if (focus) buttons[index].focus();
+    }
+    // A link to something inside a step (the trail page's "How ORMA scores a
+    // walk" goes to #steepness) opens that step, or it would land on step 1.
+    var target = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    var holding = target ? panels.findIndex(function(panel){ return panel.contains(target); }) : -1;
+    if (holding > 0) {
+      show(holding, false);
+      requestAnimationFrame(function(){ target.scrollIntoView({ block:'start' }); });
     }
     buttons.forEach(function(button, index){
       button.addEventListener('click', function(){ show(index, false); });
