@@ -1028,7 +1028,7 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liRecommendationDate').value).toBe(vm.runInContext('liDateOffsetIso(1)', context));
   });
 
-  test('offers location in place, asks only on tap, and explains a refusal without blocking the list', async () => {
+  test('asks for location once on a first visit, and explains a refusal without blocking the list', async () => {
     const context = loadHomepageContext(sampleTrails);
     const getCurrentPosition = jest.fn();
     context.navigator.geolocation = { getCurrentPosition };
@@ -1036,31 +1036,62 @@ describe('returning homepage region + valley filters', () => {
     await new Promise(resolve => setTimeout(resolve, 0));
     await vm.runInContext('renderReturningHomepage(null);', context);
 
-    // No permissions API here (Safari): the offer shows, nothing is requested.
-    expect(getCurrentPosition).not.toHaveBeenCalled();
-    const nudge = document.getElementById('liLocationNudge');
-    expect(nudge.hidden).toBe(false);
-    expect(document.getElementById('liLocationNudgeTitle').textContent).toBe('See trails near you');
-    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
-
-    document.getElementById('liLocationNudgeBtn').click();
+    // The homepage follows where the reader is: with nothing chosen, a first
+    // visit asks once, and the list is there while the browser waits.
     expect(getCurrentPosition).toHaveBeenCalledTimes(1);
-    const onError = getCurrentPosition.mock.calls[0][1];
-    onError({ code:1 });
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
+    const nudge = document.getElementById('liLocationNudge');
+    getCurrentPosition.mock.calls[0][1]({ code:1 });
     expect(nudge.hidden).toBe(false);
     expect(document.getElementById('liLocationNudgeTitle').textContent).toContain('Location is off');
     expect(document.getElementById('liLocationNudgeBtn').hidden).toBe(true);
     expect(document.getElementById('liToolbar').hidden).toBe(false);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
 
+    // Not again in the same visit.
+    await vm.runInContext('liProbeLocationPermission();', context);
+    expect(getCurrentPosition).toHaveBeenCalledTimes(1);
+
     // A granted position narrows the list and retires the offer.
-    // Near me moved from the Explore menu to the location summary,
-    // beside Change and Show all. The behaviour is unchanged.
     document.getElementById('liNearMeBtn').click();
     const onSuccess = getCurrentPosition.mock.calls[1][0];
     onSuccess({ coords:{ latitude:46.57, longitude:11.67 } });
     await new Promise(resolve => setTimeout(resolve, 0));
     expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Your location · within 25 km');
+    expect(nudge.hidden).toBe(true);
+  });
+
+  test('somewhere ORMA does not cover keeps the Dolomites and says how far the nearest walk is', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    const getCurrentPosition = jest.fn();
+    context.navigator.geolocation = { getCurrentPosition };
+    vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    const rowsBefore = document.querySelectorAll('#returningTrailList .li-row').length;
+
+    // London: nothing within reach.
+    getCurrentPosition.mock.calls[0][0]({ coords:{ latitude:51.5, longitude:-0.12 } });
+    await new Promise(resolve => setTimeout(resolve, 0));
+    const nudge = document.getElementById('liLocationNudge');
+    expect(nudge.hidden).toBe(false);
+    expect(nudge.dataset.state).toBe('out-of-range');
+    expect(document.getElementById('liLocationNudgeTitle').textContent).toBe('ORMA isn’t in your area yet');
+    expect(document.getElementById('liLocationNudgeDetail').textContent).toMatch(/^The nearest ORMA walk is [\d,.]+ km away\./);
+    expect(document.getElementById('liLocationNudgeBtn').hidden).toBe(true);
+    expect(vm.runInContext('liLocationContext.kind', context)).toBe('area');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(rowsBefore);
+
+    // Near me from there does not empty the list either.
+    document.getElementById('liNearMeBtn').click();
+    getCurrentPosition.mock.calls[1][0]({ coords:{ latitude:51.5, longitude:-0.12 } });
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(vm.runInContext('liLocationContext.kind', context)).toBe('area');
+    expect(nudge.dataset.state).toBe('out-of-range');
+
+    // Picking a place answers it.
+    vm.runInContext('liSetLocationContext({ kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" });', context);
+    await new Promise(resolve => setTimeout(resolve, 0));
     expect(nudge.hidden).toBe(true);
   });
 
