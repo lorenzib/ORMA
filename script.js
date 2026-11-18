@@ -343,6 +343,7 @@ function liShownPlaceLabel(label){
     'The Dolomites':tx('The Dolomites'), 'Dolomites':tx('Dolomites'), 'Savoy':tx('Savoy'),
     'Lombardy':tx('Lombardy'), 'Tyrol & Carinthia':tx('Tyrol & Carinthia'),
     'Italy':tx('Italy'), 'France':tx('France'), 'Austria':tx('Austria'),
+    'Switzerland':tx('Switzerland'), 'French Alps':tx('French Alps'), 'Piedmont':tx('Piedmont'),
   };
   return Object.prototype.hasOwnProperty.call(own, value) ? own[value] : value;
 }
@@ -1034,6 +1035,140 @@ function liRenderRegionChoices(){
   });
 }
 
+// Country, Region and Valley beside the search, as on Trails and Collections.
+// They show the area in use and choosing one sets it. Near you, a town or the
+// map view are not one of these areas, so the pickers then read "All".
+const LI_PICKER_COUNTRIES = Object.freeze([
+  { code:'IT', label:'Italy' }, { code:'FR', label:'France' },
+  { code:'AT', label:'Austria' }, { code:'CH', label:'Switzerland' },
+]);
+let liAreaDropdowns = null;
+
+function liAreaPickerSelects(){
+  const ids = ['liCountrySelect', 'liRegionSelect', 'liValleySelect'];
+  const selects = ids.map(id => document.getElementById(id));
+  return selects.every(Boolean) ? selects : null;
+}
+
+// The region's name as Trails and Collections write it ("Dolomites").
+function liPickerRegionLabel(id){
+  const i18n = window.DoloPawsI18n;
+  const key = 'browse.geo.' + (id === 'switzerland' ? 'swissRegion' : id);
+  const named = i18n && typeof i18n.t === 'function' ? i18n.t(key) : key;
+  if(named && named !== key) return named;
+  const configs = liRegionConfigs();
+  return liShownPlaceLabel(LI_REGION_LABELS[id] || (configs[id] && configs[id].label) || id);
+}
+
+function liPickerOption(value, label, count){
+  const option = document.createElement('option');
+  option.value = value;
+  option.textContent = count == null ? label : `${label} (${count})`;
+  return option;
+}
+
+function liRenderAreaPickers(){
+  const selects = liAreaPickerSelects();
+  if(!selects) return;
+  const [countrySelect, regionSelect, valleySelect] = selects;
+  const list = liCatalogueTrails();
+  const configs = liRegionConfigs();
+  let context = liLocationContext && liLocationContext.kind === 'area' ? liLocationContext : null;
+  // The map view is named by the place that holds it (the headline does the
+  // same), so the pickers say that place too.
+  if(liLocationContext && liLocationContext.kind === 'map'){
+    const inView = liTrailsInBounds(liLocationContext.bounds).filter(trail => trail.region);
+    const regions = new Set(inView.map(trail => trail.region));
+    if(regions.size === 1){
+      const valleys = new Set(inView.map(trail => trail.valley || ''));
+      const only = inView[0];
+      context = { region:only.region, valley:valleys.size === 1 && only.valley ? only.valley : 'all' };
+    }
+  }
+  const region = context ? (context.region || 'all') : 'all';
+  const country = context ? (context.country && context.country !== 'all' ? context.country : liCountryForRegion(region)) : 'all';
+  const valley = context ? (context.valley || 'all') : 'all';
+  const published = id => {
+    const regions = window.DoloPawsRegionManifest && window.DoloPawsRegionManifest.regions;
+    return !regions || !regions[id] || regions[id].trailCount > 0 || id === region;
+  };
+  const inCountry = code => trail => code === 'all' || liCountryForRegion(trail.region) === code;
+
+  countrySelect.replaceChildren(
+    liPickerOption('all', tx('All countries'), list.length),
+    ...LI_PICKER_COUNTRIES
+      .filter(item => list.some(inCountry(item.code)) || item.code === country)
+      .map(item => liPickerOption(item.code, liShownPlaceLabel(item.label), list.filter(inCountry(item.code)).length)),
+  );
+  countrySelect.value = country;
+
+  const regionIds = Object.keys(configs).filter(id => (country === 'all' || configs[id].countryCode === country) && published(id));
+  regionSelect.replaceChildren(
+    liPickerOption('all', tx('All regions'), list.filter(inCountry(country)).length),
+    ...regionIds.map(id => liPickerOption(id, liPickerRegionLabel(id), list.filter(trail => trail.region === id).length)),
+  );
+  regionSelect.value = region;
+
+  const scoped = list.filter(trail => region !== 'all' ? trail.region === region : inCountry(country)(trail));
+  const counts = new Map();
+  scoped.forEach(trail => { if(trail.valley) counts.set(trail.valley, (counts.get(trail.valley) || 0) + 1); });
+  const valleys = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  valleySelect.replaceChildren(
+    liPickerOption('all', tx('All valleys'), scoped.length),
+    ...valleys.map(([name, count]) => liPickerOption(name, liShownPlaceLabel(name), count)),
+  );
+  valleySelect.value = valleys.some(([name]) => name === valley) ? valley : 'all';
+
+  if(!liAreaDropdowns && window.OrmaAreaDropdown){
+    liAreaDropdowns = selects.map(select => window.OrmaAreaDropdown.enhance(select));
+  }
+  if(liAreaDropdowns) liAreaDropdowns.forEach(dropdown => dropdown && dropdown.refresh());
+  // The trigger names the choice without its count.
+  selects.forEach(select => {
+    const label = select.closest('.area-select-shell')?.querySelector('.area-select-trigger__label');
+    const chosen = select.options[select.selectedIndex];
+    if(label && chosen) label.textContent = chosen.textContent.replace(/\s+\(\d+\)$/, '');
+  });
+}
+
+// What the pickers say, as a location context: the narrowest choice names it.
+function liAreaContextFromPickers(changed){
+  const selects = liAreaPickerSelects();
+  if(!selects) return null;
+  let [country, region, valley] = selects.map(select => select.value || 'all');
+  if(changed === 'country'){ region = 'all'; valley = 'all'; }
+  if(changed === 'region'){
+    valley = 'all';
+    if(region !== 'all') country = liCountryForRegion(region);
+  }
+  if(changed === 'valley' && valley !== 'all'){
+    const trail = liCatalogueTrails().find(item => item.valley === valley
+      && (region === 'all' || item.region === region));
+    if(trail){ region = trail.region; country = liCountryForRegion(region); }
+  }
+  const configs = liRegionConfigs();
+  const countryLabel = (LI_PICKER_COUNTRIES.find(item => item.code === country) || {}).label;
+  const label = valley !== 'all' ? valley
+    : region !== 'all' ? (LI_REGION_LABELS[region] || (configs[region] && configs[region].label) || region)
+    : country !== 'all' ? countryLabel || country
+    : LI_ALL_TRAILS_CONTEXT.label;
+  const context = { kind:'area', country, region, valley, label };
+  // The whole catalogue is not kept as the area to reopen on.
+  if(country === 'all') context.transient = true;
+  return context;
+}
+
+function liWireAreaPickers(){
+  const selects = liAreaPickerSelects();
+  if(!selects) return;
+  ['country', 'region', 'valley'].forEach((kind, index) => {
+    selects[index].addEventListener('change', () => {
+      const context = liAreaContextFromPickers(kind);
+      if(context) liSetLocationContext(context);
+    });
+  });
+}
+
 function liRenderLocationContext(profile){
   const toolbar = document.getElementById('liToolbar');
   const workspace = document.querySelector('#returningCustomerHomepage .li-body');
@@ -1062,6 +1197,7 @@ function liRenderLocationContext(profile){
     }
   }
   liRenderRegionChoices();
+  liRenderAreaPickers();
   liSyncWalkDateInputs();
   liRenderLocationNudge();
 }
@@ -2790,9 +2926,15 @@ function liRenderHeadline(profile, locationPhrase, dayLabel){
     button.textContent = text;
     return button;
   };
+  // The place is chosen with Country, Region and Valley beside the search,
+  // so in the headline it is plain words; only the day is pressed here.
+  const place = document.createElement('span');
+  place.className = 'li-head-place';
+  place.dataset.liHead = 'area';
+  place.textContent = locationPhrase || tx('across all trails');
   host.textContent = `${profile && profile.name ? tx('Best walk for {name}', { name:profile.name }) : tx('Best walk')} `;
   host.append(
-    token('area', locationPhrase || tx('across all trails')),
+    place,
     ' ',
     token('day', dayLabel),
   );
@@ -3419,7 +3561,7 @@ function initLoggedInShell(){
   // they are wired once here rather than on each button.
   const toolbarEl = document.getElementById('liToolbar');
   if(toolbarEl) toolbarEl.addEventListener('click', (e) => {
-    const head = e.target.closest('[data-li-head]');
+    const head = e.target.closest('button[data-li-head]');
     if(head){
       e.stopPropagation();
       liToggleHeadMenu(head);
@@ -3437,6 +3579,7 @@ function initLoggedInShell(){
       if(!e.target.closest('[data-li-day]')) e.stopPropagation();
     });
   });
+  liWireAreaPickers();
   const changeLocation = document.getElementById('liChangeLocationBtn');
   if(changeLocation) changeLocation.addEventListener('click', liFocusSearchForPlace);
   document.querySelectorAll('[data-li-region]').forEach(button => {

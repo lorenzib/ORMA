@@ -49,6 +49,7 @@ function loadHomepageContext(testTrails){
     </div>
     <div class="li-body"></div>
     <div class="li-search"><input id="liSearch"><div id="liSearchSuggest" hidden></div></div>
+    <div id="liAreaPickers"><select id="liCountrySelect"></select><select id="liRegionSelect"></select><select id="liValleySelect"></select></div>
     <div id="liChips"></div>
     <div class="li-new-wrap"><button id="liNewBtn"></button>
       <div id="liNewMenu" hidden>
@@ -776,6 +777,38 @@ describe('returning homepage region + valley filters', () => {
     expect(vm.runInContext('activeRegion', nextVisit)).toBe('savoy');
   });
 
+  // Country, Region and Valley sit beside the search, as on Trails and
+  // Collections; the headline only reads the place they set.
+  test('the visible pickers set the place, and All countries shows every trail', async () => {
+    const context = loadPage(new Map(), new Map());
+    const country = document.getElementById('liCountrySelect');
+    const region = document.getElementById('liRegionSelect');
+    const valley = document.getElementById('liValleySelect');
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    expect([country.value, region.value, valley.value]).toEqual(['IT', 'dolomites', 'all']);
+
+    // Regions follow the country: Savoy is offered once France is chosen.
+    expect([...region.options].map(option => option.value)).not.toContain('savoy');
+    country.value = 'FR';
+    country.dispatchEvent(new window.Event('change'));
+    expect(vm.runInContext('activeRegion', context)).toBe('all');
+    region.value = 'savoy';
+    region.dispatchEvent(new window.Event('change'));
+    expect(vm.runInContext('activeRegion', context)).toBe('savoy');
+    expect(country.value).toBe('FR');
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    const place = document.querySelector('#liToolbarGreeting [data-li-head="area"]');
+    expect(place.tagName).toBe('SPAN');
+    expect(place.textContent).toBe('in Savoy');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
+
+    country.value = 'all';
+    country.dispatchEvent(new window.Event('change'));
+    expect([region.value, valley.value]).toEqual(['all', 'all']);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
+  });
+
   test('a valley chosen during the visit is kept, and a reset goes back to the Dolomites', () => {
     const local = new Map();
     const session = new Map();
@@ -1338,8 +1371,8 @@ describe('map-first returning homepage layout contract', () => {
     expect(mobileCss).toContain('body.mhome-active .li-new-wrap{grid-column:5/7;grid-row:3;');
     expect(mobileCss).toContain('body.mhome-active .li-quick-filters{grid-column:1/5;grid-row:4;');
     expect(mobileCss).toContain('body.mhome-active #liFiltersWrap{grid-column:5/7;grid-row:4;');
-    // The three geography dropdowns are gone from the markup entirely.
-    expect(html).not.toContain('geo-filter-control');
+    // Country, Region and Valley sit on their own row under search.
+    expect((html.match(/geo-filter-control/g) || [])).toHaveLength(3);
     expect(html).not.toContain('id="liValleyWrap"');
     expect(mobileCss).toContain('body.mhome-active .li-saved-count{display:grid;');
     expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');

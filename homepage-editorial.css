@@ -14,8 +14,8 @@
    layout ahead of all of them instead of undoing them one by one. */
 #returningCustomerHomepage #liToolbar{
   display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  grid-template-areas:"greet greet" "today today" "nudge nudge" "search filters";
+  grid-template-columns:minmax(0,1fr) auto auto;
+  grid-template-areas:"greet greet greet" "today today today" "nudge nudge nudge" "search areas filters";
   grid-template-rows:none;
   align-items:center;
   gap:10px;
@@ -35,6 +35,20 @@
   grid-column:auto;grid-row:auto;grid-area:search;display:flex;width:100%;max-width:none;min-width:0;
 }
 #returningCustomerHomepage #liToolbar .li-mobile-actions{display:contents;}
+/* Country, Region and Valley, beside the search as on Trails and Collections. */
+#returningCustomerHomepage #liToolbar .li-area-pickers{grid-area:areas;display:grid;grid-template-columns:repeat(3,minmax(0,190px));gap:8px;min-width:0;}
+#returningCustomerHomepage #liToolbar .li-area-picker{display:block;width:auto;min-width:0;flex:none;}
+#returningCustomerHomepage #liToolbar .li-area-picker .area-select-shell,
+#returningCustomerHomepage #liToolbar .li-area-picker .area-select-trigger{width:100%;}
+/* The place in the headline is read, not pressed: it follows the pickers. */
+.li-head-place{color:var(--accent);}
+@media (max-width:1180px){
+  #returningCustomerHomepage #liToolbar{
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:"greet greet" "today today" "nudge nudge" "search filters" "areas areas";
+  }
+  #returningCustomerHomepage #liToolbar .li-area-pickers{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
 #returningCustomerHomepage #liToolbar #liFiltersWrap{grid-column:auto;grid-row:auto;grid-area:filters;display:block;width:auto;}
 #returningCustomerHomepage #liToolbar .li-chiprow{display:none;}
 
@@ -89,7 +103,7 @@
      width, and Record a walk joins search and Filters on the row under it. */
   body.mhome-active #returningCustomerHomepage #liToolbar{
     grid-template-columns:minmax(0,1fr) auto auto;
-    grid-template-areas:"greet greet greet" "today today today" "search filters new" "nudge nudge nudge";
+    grid-template-areas:"greet greet greet" "today today today" "search filters new" "areas areas areas" "nudge nudge nudge";
     gap:8px 6px;
   }
   body.mhome-active #returningCustomerHomepage #liToolbar .li-toolbar-greet{display:contents;}
