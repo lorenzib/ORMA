@@ -933,22 +933,21 @@
       };
     }
     return {
-      // Two thin white edges, not a white band: the gap is the corridor's own
-      // width, so nothing white is painted under the walk and the path,
-      // contours and terrain inside the corridor keep their colours.
+      // A thin solid line in the match colour on a slightly wider white edge.
+      // The wide pale corridor it replaces (#1190, #1194) relied on the dashed
+      // waymarked path showing down its middle; most walks follow no numbered
+      // route, so the band read as a blob and bends and out-and-back legs were
+      // hard to follow. The line still sits under the dashed network, so a
+      // waymarked path and its numbers draw over it where there is one.
       casing: {
         'line-color': config.casingColor || '#FFFFFF',
-        'line-opacity': 0.9,
-        'line-width': widthRamp(1.5, 2, 2.5, 3, scale),
-        'line-gap-width': widthRamp(7, 12, 18, 26, scale),
+        'line-opacity': 0.95,
+        'line-width': widthRamp(4, 5.5, 7, 9, scale),
       },
-      // Solid and pale on purpose: it sits under the contours and the dashed
-      // path, so they read through it, and a solid line has no darker knots
-      // where the walk overlaps itself.
       line: {
-        'line-color': paleColour(color),
+        'line-color': color,
         'line-opacity': 1,
-        'line-width': widthRamp(7, 12, 18, 26, scale),
+        'line-width': widthRamp(2, 2.75, 3.75, 5, scale),
       },
     };
   }
@@ -979,10 +978,9 @@
     return { casing: id + '-casing', line: id };
   }
 
-  // On satellite the photo itself shows the path, so the white casing goes
-  // and the corridor becomes a light tint: still clearly "your walk", but
-  // the real track shows through it.
-  const ROUTE_LINE_ON_IMAGERY = { casing: 0, line: 0.3 };
+  // On satellite the white edge goes and the thin line stays solid: it is
+  // narrow enough that the track in the photo still shows beside it.
+  const ROUTE_LINE_ON_IMAGERY = { casing: 0, line: 1 };
 
   /**
    * Fade the walk (a line made by addRouteLine) and our hiking routes over
@@ -7000,7 +6998,12 @@ function scoreTrail(trail, subject, currentConditions){
 // The profile a visitor is scored against before they add a dog. The site
 // already tells them so ("Scores use a medium-dog profile"), so guest maps can
 // colour by match honestly rather than falling back to a different meaning.
-const GUEST_SUBJECT = Object.freeze({ terrain:'1', distance:'10', heatSensitive:false });
+// It is the same subject the trail page's planning view scores ("Why 92% for
+// a medium dog"): no overrides, so the engine's own moderate-fitness default
+// applies. The old { terrain:'1', distance:'10' } override capped steepness
+// tolerance at 1, which scoring 1.9.0 no longer applies to a healthy dog, so
+// maps coloured walks amber that the page beside them called a strong option.
+const GUEST_SUBJECT = Object.freeze({});
 
 window.DoloPawsScoring = Object.freeze({
   VERSION: SCORING_VERSION,
@@ -7747,7 +7750,7 @@ function effectiveOverrides(profile, adjustOverride){
     // valley to every trail that fell through to them.
     ['Bolzano / Bozen', 46.4983, 11.3548, 'Conca di Bolzano', 'dolomites', 'alto-adige'],
     ['Collalbo / Klobenstein (Renon / Ritten)', 46.5397, 11.4597, 'Conca di Bolzano', 'dolomites', 'alto-adige'],
-    ['Brunico / Bruneck', 46.7966, 11.9376, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
+    ['Brunico / Bruneck', 46.7966, 11.9376, 'Val Pusteria – Pustertal', 'dolomites', 'alto-adige'],
     ['Vipiteno / Sterzing', 46.8977, 11.4331, 'Valle Isarco – Eisacktal', 'dolomites', 'alto-adige'],
     ['Madonna di Campiglio', 46.2295, 10.8269, 'Brenta', 'dolomites', 'trentino'],
 
@@ -16042,7 +16045,7 @@ function applyDetailRouteColor(color){
   window._dolopawsTrailRouteColor = color;
   const map = window._dolopawsTrailMap;
   if(!map || !map.isStyleLoaded || !map.isStyleLoaded()) return;
-  if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', window.ORMAMapStyle.paleColour(color));
+  if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', color);
   if(map.getLayer('single-trail-direction-arrows')) map.setPaintProperty('single-trail-direction-arrows', 'text-halo-color', color);
 }
 

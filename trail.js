@@ -53,7 +53,7 @@ function applyDetailRouteColor(color){
   window._dolopawsTrailRouteColor = color;
   const map = window._dolopawsTrailMap;
   if(!map || !map.isStyleLoaded || !map.isStyleLoaded()) return;
-  if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', window.ORMAMapStyle.paleColour(color));
+  if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', color);
   if(map.getLayer('single-trail-direction-arrows')) map.setPaintProperty('single-trail-direction-arrows', 'text-halo-color', color);
 }
 

@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ORMA | Dog Trails &amp; Terrain Guide</title>
 <meta name="description" content="ORMA ranks every Dolomites route by paw safety, shade, water access, and terrain risk, matched to your dog.">
+<link rel="alternate" hreflang="en" href="https://www.app-orma.com/">
+<link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/">
+<link rel="alternate" hreflang="x-default" href="https://www.app-orma.com/">
 <meta name="theme-color" content="#2E4034">
 <link rel="canonical" href="https://www.app-orma.com/">
 <script>/* GitHub Pages serves index.html as the homepage but cannot declare a
@@ -29,6 +32,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <link rel="stylesheet" href="homepage-mobile.css?v=20260916-1">
   <link rel="stylesheet" href="homepage-editorial.css?v=20261107-1">
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
+<link rel="stylesheet" href="discovery-filters.css">
 </head>
 <body>
 
@@ -329,7 +333,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <span data-i18n="browse.filters.title">Filter trails</span>
           <button type="button" id="liFiltersReset" data-i18n="browse.filters.resetAll">Reset all</button>
         </div>
-        <div class="li-fsec" data-i18n="journal.conditions">Conditions</div>
+        <div class="li-fsec" data-i18n="browse.filters.quick">Quick filters</div>
         <div class="li-quick-filters" aria-label="Quick dog filters" data-i18n-aria-label="browse.quick.aria">
           <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.quick.shade">High shade</span></button>
           <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="chips.fountains">Water</span></button>
@@ -351,8 +355,18 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     <div class="li-chiprow" id="liChips"></div>
   </div>
 
+  <!-- ================= TODAY'S PICKS ================= -->
+  <!-- The answer first: three walks from the ranked list, for the same dog,
+       place and day. The map and the full list wait behind the link below
+       (liSetMapRevealed), kept open or closed for the session. -->
+  <section class="li-picks" id="liTodaysPicks" aria-labelledby="liPicksTitle">
+    <h2 class="li-picks-title" id="liPicksTitle" data-i18n="page.index.todaysPicks">Today’s picks</h2>
+    <div class="li-picks-list" id="liPicksList"></div>
+    <button type="button" class="li-picks-more" id="liSeeAllWalks" aria-expanded="false" aria-controls="liMapList" hidden></button>
+  </section>
+
   <!-- ================= BODY: MAP + LIST ================= -->
-  <div class="li-body">
+  <div class="li-body" id="liMapList" hidden>
 
     <div class="li-map" id="trailMapWrap">
       <div id="trailMap" role="region" aria-label="Trail map. Numbered markers correspond to the ranked shortlist; other trails are grey." data-i18n-aria-label="page.index.trailMapNumberedMarkersCorrespond"></div>
@@ -418,6 +432,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
            view. "New for <dog>" lives on the card it is about, with what it
            means; Browse all trails sits at the foot of the list. -->
       <div class="li-list-head">
+        <button type="button" class="li-picks-back" id="liBackToPicks" data-i18n="page.index.backToTodaysPicks">← Back to today’s picks</button>
         <div class="li-list-title-row">
           <h2 class="li-list-title" id="companionListTitle" data-i18n="account.nav.browse">Trails</h2>
           <span class="li-list-count" id="companionListCount"></span>

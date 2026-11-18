@@ -336,7 +336,42 @@
     return { restrictive, broadenings: safeBroadenings(trails, state, options) };
   }
 
+  // The Filters drop-down is tall. On a desktop it opens under its button
+  // and gets only the room left on screen (min 320px), so its title and its
+  // Show button stay in view and the options scroll between them. If there
+  // is less than that room, the page scrolls the button up first. Phones
+  // get a sheet from discovery-filters.css and are left alone.
+  const FILTER_PANEL_IDS = ['browseFiltersMenu', 'liFiltersMenu', 'hpFiltersPanel'];
+  const MIN_PANEL_ROOM = 320;
+  function fitFilterPanel(panel, win){
+    const w = win || root;
+    if(!panel || panel.hidden || !w || !w.getComputedStyle) return;
+    panel.style.removeProperty('--dfp-max');
+    if(w.getComputedStyle(panel).position === 'fixed') return;
+    let room = w.innerHeight - panel.getBoundingClientRect().top - 12;
+    if(room < MIN_PANEL_ROOM && typeof w.scrollBy === 'function'){
+      w.scrollBy(0, MIN_PANEL_ROOM - room + 24);
+      room = w.innerHeight - panel.getBoundingClientRect().top - 12;
+    }
+    panel.style.setProperty('--dfp-max', Math.max(MIN_PANEL_ROOM, Math.min(680, Math.round(room))) + 'px');
+  }
+  function watchFilterPanels(doc){
+    if(!doc || !root || typeof root.MutationObserver !== 'function') return;
+    const panels = FILTER_PANEL_IDS.map(id => doc.getElementById(id)).filter(Boolean);
+    if(!panels.length) return;
+    const observer = new root.MutationObserver(records => {
+      records.forEach(record => fitFilterPanel(record.target));
+    });
+    panels.forEach(panel => observer.observe(panel, { attributes:true, attributeFilter:['hidden'] }));
+    root.addEventListener('resize', () => panels.forEach(panel => fitFilterPanel(panel)));
+  }
+  if(root && root.document && typeof root.document.getElementById === 'function'){
+    if(root.document.readyState === 'loading') root.document.addEventListener('DOMContentLoaded', () => watchFilterPanels(root.document));
+    else watchFilterPanels(root.document);
+  }
+
   return Object.freeze({
     DISTANCES, MULTI_DAY_MIN_KM, normalizedTrail, matches, filter, active, without, diagnoseZero, safeBroadenings, ridesOpenChairlift,
+    fitFilterPanel,
   });
 });
