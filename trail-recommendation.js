@@ -49,11 +49,19 @@
     const title = view.score === null
       ? tr('recommendation.breakdown.titleNoScore', 'Why this score for {name}', { name:view.breakdownFor })
       : tr('recommendation.breakdown.title', 'Why {score}% for {name}', { score:view.score, name:view.breakdownFor });
+    // The points stay one tap away for anyone who wants the arithmetic.
+    const pointRows = (view.factorRows || []).map(row =>
+      `<li><span class="recommendation-points-topic">${esc(row.topic)}</span>` +
+        `<span class="recommendation-points-value is-${esc(row.tone)}">${esc(row.points)}</span></li>`).join('');
+    const points = pointRows
+      ? `<details class="recommendation-points"><summary>${esc(tr('recommendation.breakdown.points', 'How the score adds up'))}</summary>` +
+        `<ol>${pointRows}</ol></details>`
+      : '';
     const howLink = `<a class="recommendation-how" href="${esc(tr('recommendation.breakdown.howHref', 'how-scoring-works.html#steepness'))}">${esc(tr('recommendation.breakdown.how', 'How ORMA scores a walk'))}</a>`;
     return `<section class="recommendation-breakdown">` +
       `<h3>${esc(title)}</h3>` +
       (rows ? `<ol class="recommendation-factors">${rows}</ol>` : '') +
-      note + unchecked + howLink + `</section>`;
+      note + unchecked + points + howLink + `</section>`;
   }
 
   function sections(entries){

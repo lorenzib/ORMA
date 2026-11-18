@@ -30,11 +30,9 @@ describe('shared trail-filter experience', () => {
     const collections = read('collections.html');
     const geoStyles = read('geo-filters.css');
 
-    // The logged-in homepage no longer uses dropdown geography controls: the
-    // unified search and the map are its geography. Browse and Collections keep
-    // the shared geo-filter treatment.
-    expect((homepage.match(/geo-filter-control/g) || [])).toHaveLength(0);
-    [browse, collections].forEach(html => {
+    // The signed-in homepage, Trails and Collections all show Country, Region
+    // and Valley beside the search, in the shared geo-filter treatment.
+    [homepage, browse, collections].forEach(html => {
       expect(html).toContain('geo-filters.css?v=20260904-1');
       expect((html.match(/geo-filter-control/g) || [])).toHaveLength(3);
     });
