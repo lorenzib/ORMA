@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-16T17:16:39.461Z",
+  "generatedAt": "2026-11-17T16:06:06.269Z",
   "regions": {
     "dolomites": {
       "trailCount": 379,
-      "trails": "data/regions/dolomites-trails.js?v=7720b30249b8",
+      "trails": "data/regions/dolomites-trails.js?v=f9472903fc60",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=27d6277ba004",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -57,7 +57,7 @@
         "osm-9651462": "data/trail-details/osm-9651462.js?v=13ee6e39b05f",
         "osm-9675994": "data/trail-details/osm-9675994.js?v=9a5026c419bb",
         "osm-11764094": "data/trail-details/osm-11764094.js?v=b932ed5b5f99",
-        "osm-11774783": "data/trail-details/osm-11774783.js?v=61c415217223",
+        "osm-11774783": "data/trail-details/osm-11774783.js?v=42a4ae920327",
         "osm-11775760": "data/trail-details/osm-11775760.js?v=f61e5ffceadb",
         "osm-11780502": "data/trail-details/osm-11780502.js?v=6a98d52ea7d5",
         "osm-11790553": "data/trail-details/osm-11790553.js?v=da7a83ea6508",
@@ -67,7 +67,7 @@
         "osm-11814834": "data/trail-details/osm-11814834.js?v=9ae43646f294",
         "osm-11814895": "data/trail-details/osm-11814895.js?v=d257bf201a22",
         "osm-11815025": "data/trail-details/osm-11815025.js?v=ee9c57d2b417",
-        "osm-11816373": "data/trail-details/osm-11816373.js?v=5d5ddc7a56eb",
+        "osm-11816373": "data/trail-details/osm-11816373.js?v=816d90a06bce",
         "osm-11828233": "data/trail-details/osm-11828233.js?v=f1a5a388f862",
         "osm-11832013": "data/trail-details/osm-11832013.js?v=b7e6091ffc94",
         "osm-11839597": "data/trail-details/osm-11839597.js?v=3c7aceff98a3",
@@ -77,7 +77,7 @@
         "osm-12018939": "data/trail-details/osm-12018939.js?v=818941520838",
         "osm-12025052": "data/trail-details/osm-12025052.js?v=8715df9b89eb",
         "osm-12044077": "data/trail-details/osm-12044077.js?v=fffc2869eb7d",
-        "osm-12047303": "data/trail-details/osm-12047303.js?v=60b94fbf5a56",
+        "osm-12047303": "data/trail-details/osm-12047303.js?v=4b2eb13e17f1",
         "osm-12132169": "data/trail-details/osm-12132169.js?v=fde28f613a24",
         "osm-12142337": "data/trail-details/osm-12142337.js?v=f2dcbcbe7797",
         "osm-12150790": "data/trail-details/osm-12150790.js?v=512446053e4c",
@@ -86,7 +86,7 @@
         "osm-12172440": "data/trail-details/osm-12172440.js?v=da30c8a7348b",
         "osm-12173965": "data/trail-details/osm-12173965.js?v=72435bf32f19",
         "osm-12173984": "data/trail-details/osm-12173984.js?v=c943b6e97bb0",
-        "osm-12174210": "data/trail-details/osm-12174210.js?v=05c8d659981e",
+        "osm-12174210": "data/trail-details/osm-12174210.js?v=9af788f5cca0",
         "osm-12182516": "data/trail-details/osm-12182516.js?v=08b406b1448b",
         "osm-12182895": "data/trail-details/osm-12182895.js?v=8ea7d5399741",
         "osm-12182936": "data/trail-details/osm-12182936.js?v=fa201674cdce",

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-11816373",
+  "generatedAt": "2026-11-17T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.2,
+    "ascentM": 129,
+    "highestPointM": 999,
+    "expectedDuration": "1 h 30 min",
+    "difficulty": "Moderate",
+    "shadePercent": 41
+  },
+  "trailhead": {
+    "lat": 46.77124,
+    "lng": 11.860109,
+    "label": "By the church of St. Margareth in Montal, where the Bunkerweg leaves the village road (free car park at the church)"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.771556,
+      "lng": 11.859081,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 1.4 km on quiet lanes in and around Montal, where a car or tractor may pass: keep your dog on a short lead there.",
+    "One crossing of the Onach road (SP125) at about km 2.3: cross with care.",
+    "Farmed meadows line the lanes: St. Lorenzen keeps dogs off them in the growing season.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-17",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "By the church of St. Margareth in Montal, where the Bunkerweg leaves the village road (free car park at the church)": "Vicino alla chiesa di Santa Margherita a Mantana, dove il Bunkerweg lascia la strada del paese (parcheggio gratuito alla chiesa)",
+    "About 1.4 km on quiet lanes in and around Montal, where a car or tractor may pass: keep your dog on a short lead there.": "Circa 1,4 km su stradine tranquille dentro e intorno a Mantana, dove può passare un’auto o un trattore: lì tieni il cane al guinzaglio corto.",
+    "One crossing of the Onach road (SP125) at about km 2.3: cross with care.": "Un attraversamento della strada per Onies (SP125) verso il km 2,3: attraversa con attenzione.",
+    "Farmed meadows line the lanes: St. Lorenzen keeps dogs off them in the growing season.": "Le stradine costeggiano prati coltivati: San Lorenzo di Sebato vieta ai cani di entrarci nella stagione vegetativa."
+  }
+}

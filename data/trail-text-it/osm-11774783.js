@@ -1,14 +1,21 @@
 // osm-11774783 in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
 window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
   "the Rafeil circular walk": "il giro ad anello di Rafeil",
-  "A 1.7 km loop near Val di Funes / Villnöss, imported from the OpenStreetMap hiking network (trail 1). Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).": "Un anello di 1,7 km vicino a Val di Funes / Villnöss, importato dalla rete escursionistica di OpenStreetMap (sentiero 1). Ha superato il controllo automatico di idoneità per i cani: nessuna via ferrata, scala o tratto di grado alpinistico (T3+) registrato. Il senso indicato è quello con la salita più graduale (calcolato dai dati altimetrici).",
-  "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.": "Percorso importato: quota, distanza, fontane e rifugi segnati sulla mappa provengono dai dati di OpenStreetMap. Questo sentiero non è stato verificato sul campo da ORMA; esposizione, ombra, bestiame e condizioni attuali restano sconosciuti. Informati sulle condizioni sul posto.",
-  "Surface not yet field-verified": "Fondo non ancora verificato sul campo",
-  "Start here — Bus stop Gufidaun - Gudon, 12 m from the route (OSM-verified access point)": "Partenza qui — Fermata dell'autobus Gufidaun - Gudon, a 12 m dal percorso (punto di accesso verificato su OSM)",
-  "Santa Maddalena in Val di Funes below the Odle peaks": "Santa Maddalena in Val di Funes sotto le Odle",
+  "A short loop on waymark 1 round the wooded Rafeil hill above Gufidaun, past the Ansitz Koburg and the Trattermandl fountain. It is about 1.4 km with some 60 m of up and down, as measured by ORMA (the province register gives only the length).": "Un breve anello sul segnavia 1 intorno al colle boscoso di Rafeil sopra Gudon, oltre la residenza Koburg e la fontana del Trattermandl. Sono circa 1,4 km con circa 60 m di salita e discesa, misurati da ORMA (il catasto provinciale dei sentieri indica solo la lunghezza).",
+  "A short 1.4 km loop round the Rafeil hill with about 60 m of up and down, half an hour of walking. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at the Trattermandl fountain and the picnic area.": "Un breve anello di 1,4 km intorno al colle di Rafeil con circa 60 m di salita e discesa, mezz’ora di cammino. Tieni il cane al guinzaglio di al massimo 1,5 m e porta con te la museruola. Acqua alla fontana del Trattermandl e all’area picnic.",
+  "Two short flights of steps near the start": "Due brevi rampe di scale vicino alla partenza",
+  "About 200 m on the lanes of the upper village, where cars may pass": "Circa 200 m sulle stradine della parte alta del paese, dove possono passare auto",
+  "A playground lies just off the path: Klausen keeps dogs out of playgrounds": "Un parco giochi è appena fuori dal sentiero: Chiusa vieta ai cani i parchi giochi",
+  "Forest paths, a farm track and short village lanes": "Sentieri nel bosco, una strada di campagna e brevi stradine di paese",
+  "At the waymark-1 signpost below the Rafeil hill in Gufidaun, a short walk up from the fire station and the bus stop": "Al cartello del segnavia 1 sotto il colle di Rafeil a Gudon, poco sopra la caserma dei vigili del fuoco e la fermata dell’autobus",
+  "A grassy path between mossy rock knolls and young trees on the Rafeil hill above Gufidaun": "Un sentiero erboso tra cupole di roccia muschiose e giovani alberi sul colle di Rafeil sopra Gudon",
   "The village of Gufidaun on its hillside": "Il paese di Gudon sul suo pendio",
   "Säben monastery on its rock above the valley": "Il monastero di Sabiona sulla sua rupe sopra la valle",
-  "Drinking water": "Acqua potabile",
+  "Mostly shaded: about two thirds runs through woods.": "Per lo più all’ombra: circa due terzi passano nel bosco.",
+  "Start at the waymark-1 signpost below the Rafeil hill in Gufidaun, a few minutes up the steps from the fire station and the bus stop.": "Parti dal cartello del segnavia 1 sotto il colle di Rafeil a Gudon, a pochi minuti di scale dalla caserma dei vigili del fuoco e dalla fermata dell’autobus.",
+  "Follow waymark 1 (“Rafeil-Rundweg”) up two short flights of steps, then the lanes of the upper village on path 1A. Take the Putzen track past the Trattermandl fountain and the Ansitz Koburg, then the path on round the wooded Rafeil hill, past the picnic area, back to the start.": "Segui il segnavia 1 (“Rafeil-Rundweg”) su per due brevi rampe di scale, poi le stradine della parte alta del paese sul sentiero 1A. Prendi la strada di campagna Putzen oltre la fontana del Trattermandl e la residenza Koburg, poi il sentiero intorno al colle boscoso di Rafeil, oltre l’area picnic, fino alla partenza.",
+  "Waymark 1 up the steps; path 1A on the village lanes; the Putzen track past the Trattermandl fountain; waymark 1 on the path round the hill back to the start.": "Segnavia 1 su per le scale; sentiero 1A sulle stradine del paese; la strada di campagna Putzen oltre la fontana del Trattermandl; segnavia 1 sul sentiero intorno al colle fino alla partenza.",
   "Trattermandl": "Trattermandl",
-  "Villnoess St Magdalena 1": "Villnoess St Magdalena 1"
+  "Drinking water": "Acqua potabile",
+  "The Rafeil knolls, Gufidaun": "Le cupole di roccia di Rafeil, Gudon"
 });
