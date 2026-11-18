@@ -212,202 +212,131 @@ describe('canonical recommendation decision presentation', () => {
   });
 });
 
-describe('the positives as sentences, for a card that lists them', () => {
-  // The homepage shows "Why it fits Teo" beside "What to know today". The
-  // second column has always been short sentences; this side used the
-  // fold-line, which with seven positives is a seven-item fragment with no
-  // verb in it. Same facts, same order -- a different voice.
-  // A factor only folds when its code is also a positive reason, which is how
-  // the engine emits them: the reason says it is good, the factor says what it
-  // cost. Both are needed or nothing is classified positive at all.
-  const positives = [
-    { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
-    { code:'trail.distance.within-range', message:'Distance is within range.', impact:0, vars:{ distance:'3.6' } },
-    { code:'trail.ascent.within-range', message:'Ascent is within range.', impact:0, vars:{ ascent:'39' } },
-  ];
-  const withPositives = factors => ({
-    ...recommendation, factors,
-    positiveReasons:factors.map(factor => ({ code:factor.code, message:factor.message })),
-  });
-
-  test('every folded positive also has a whole sentence', () => {
-    const view = decision.present(withPositives(positives), { dogName:'Teo' });
-    expect(view.fits).toEqual([
-      'The terrain is manageable.',
-      'The 3.6 km distance is comfortable.',
-      'The 39 m climb is gentle.',
-    ]);
-    // Same positives, same order, so the two lists cannot disagree about what
-    // the score was made of.
-    expect(view.fits).toHaveLength(view.fine.length);
-  });
-
-  test('no sentence names the dog, because the heading already does', () => {
-    const view = decision.present(withPositives(positives), { dogName:'Teo' });
-    expect(view.fits.some(sentence => sentence.includes('Teo'))).toBe(false);
-  });
-
-  test('a positive with a phrase but no sentence keeps the phrase', () => {
-    // It must not vanish from a card that renders sentences. Both lists are
-    // filled in the same pass so a new phrase cannot silently drop a reason.
-    const view = decision.present(
-      withPositives([{ code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 }]),
-      { dogName:'Teo' });
-    expect(view.fits).toHaveLength(view.fine.length);
-  });
-
-  test('a mapped absence stays a recorded absence', () => {
-    // "No surface hazards are recorded" is not "there are no surface hazards".
-    // Mapped absence of a hazard is never, by itself, evidence it is absent,
-    // and turning a phrase into a sentence must not upgrade the claim.
-    const view = decision.present(withPositives([
-      { code:'trail.surface-hazards.none-known', message:'No recorded hazards.', impact:0 },
-      { code:'trail.exposure.none-known', message:'No exposed section.', impact:0 },
-    ]), { dogName:'Teo' });
-    expect(view.fits).toEqual(['No surface hazards are recorded.', 'No exposed sections are recorded.']);
-  });
-
-  test('fineLine is untouched for a strong option, so the trail page reads as it did', () => {
-    const view = decision.present({ ...withPositives(positives), category:'strong-option' }, { dogName:'Teo' });
-    expect(view.fineLine).toBe('Fine for Teo: the terrain, the 3.6 km distance and the 39 m climb.');
-  });
-});
-
-describe('what the card leads with when it cannot show them all', () => {
-  // The card shows four. The engine emits positives in calculation order and
-  // every one costs nothing, so that order ranks nothing and the first four
-  // were an arbitrary four. VERIFICATION.md states the rule this follows:
-  // "a long or hot route with no mapped water is the single interaction that
-  // most often harms dogs".
-  const mixed = [
-    { code:'trail.dog-access.leash', message:'Leashed.', impact:0 },
-    { code:'trail.livestock.none', message:'No livestock.', impact:0 },
-    { code:'trail.distance.within-range', message:'Distance.', impact:0, vars:{ distance:'3.6' } },
-    { code:'trail.water.reviewed', message:'Water.', impact:0 },
-    { code:'trail.exposure.none-known', message:'No exposure.', impact:0 },
-    { code:'conditions.heat.low', message:'Cool.', impact:0 },
-    { code:'trail.terrain.within-tolerance', message:'Terrain.', impact:0 },
-  ];
-  const withPositives = factors => ({
-    ...recommendation, factors,
-    positiveReasons:factors.map(factor => ({ code:factor.code, message:factor.message })),
-  });
-
-  test('water and heat come first, then what the owner asked for',()=>{
-    const view = decision.present(withPositives(mixed), { dogName:'Teo' });
-    expect(view.fits.slice(0, 4)).toEqual([
-      'There is water on the route.',
-      'Today is cool enough.',
-      'The 3.6 km distance is comfortable.',
-      'The terrain is manageable.',
-    ]);
-  });
-
-  test('it orders, it never selects',()=>{
-    // Nothing is added or dropped by ranking; the card does its own capping.
-    const view = decision.present(withPositives(mixed), { dogName:'Teo' });
-    expect([...view.fits].sort()).toEqual([
-      'Dogs are allowed on a leash.',
-      'No exposed sections are recorded.',
-      'No livestock is recorded.',
-      'The 3.6 km distance is comfortable.',
-      'The terrain is manageable.',
-      'There is water on the route.',
-      'Today is cool enough.',
-    ]);
-  });
-
-  test('the heat and water cluster takes two of the lead, not all of it',()=>{
-    // A cool, shaded, watered route has three cluster positives, and they
-    // filled every slot the card shows -- three ways of saying the walk will
-    // not overheat the dog, and nothing about how far or how steep it is.
-    const cool = [
-      { code:'trail.water.reviewed', message:'Water.', impact:0 },
-      { code:'trail.shade.good', message:'Shade.', impact:0 },
-      { code:'conditions.heat.low', message:'Cool.', impact:0 },
-      { code:'trail.distance.within-range', message:'Distance.', impact:0, vars:{ distance:'3.6' } },
-      { code:'trail.terrain.within-tolerance', message:'Terrain.', impact:0 },
-    ];
-    const view = decision.present(withPositives(cool), { dogName:'Teo' });
-    expect(view.fits.slice(0, 4)).toEqual([
-      'There is water on the route.',
-      'There is good shade.',
-      'The 3.6 km distance is comfortable.',
-      'The terrain is manageable.',
-    ]);
-    // Demoted, never dropped: the card still carries every positive.
-    expect(view.fits).toHaveLength(cool.length);
-    expect(view.fits[view.fits.length - 1]).toBe('Today is cool enough.');
-  });
-
-  test('a cluster of two or fewer is left where it is',()=>{
-    const view = decision.present(withPositives([
-      { code:'trail.water.reviewed', message:'Water.', impact:0 },
-      { code:'conditions.heat.low', message:'Cool.', impact:0 },
-      { code:'trail.terrain.within-tolerance', message:'Terrain.', impact:0 },
-    ]), { dogName:'Teo' });
-    expect(view.fits).toEqual([
-      'There is water on the route.',
-      'Today is cool enough.',
-      'The terrain is manageable.',
-    ]);
-  });
-
-  test('ties keep the engine\'s own order',()=>{
-    // Two in the same tier are not reshuffled against each other.
-    const view = decision.present(withPositives([
-      { code:'trail.shade.good', message:'Shade.', impact:0 },
-      { code:'trail.water.reviewed', message:'Water.', impact:0 },
-    ]), { dogName:'Teo' });
-    expect(view.fits).toEqual(['There is good shade.', 'There is water on the route.']);
-  });
-
-  test('fine keeps the engine order, so the trail page sentence is unchanged',()=>{
-    // fits is ordered for a card that shows four; fineLine is prose on the
-    // trail page, and reordering it would rewrite that page's wording.
-    const view = decision.present({ ...withPositives(mixed), category:'strong-option' }, { dogName:'Teo' });
-    expect(view.fine[0]).toBe('dog access on a leash');
-    expect(view.fineLine.startsWith('Fine for Teo: dog access on a leash,')).toBe(true);
-  });
-});
-
-describe('the fine line never contradicts the verdict', () => {
-  // The trail page said "Low match 49%", listed four costs, then closed
-  // with a green tick: "Fine for Teo: the terrain, the 454 m climb ...". That
-  // reads as reassurance under a verdict that says no.
+describe('the trail page breakdown, one row per factor', () => {
+  // It used to list the costs, then "Fine for Teo: the terrain, the 9.6 km
+  // distance, ..." as one line, and a positive with no short form stood alone
+  // under a bare "fine" chip. Each factor is now a row: what it is, what this
+  // walk has, and what that meant.
   const factors = [
-    { code:'trail.heat.high', message:'Runs warm.', impact:-10 },
-    { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
-    { code:'trail.ascent.within-range', message:'Ascent is within range.', impact:0, vars:{ ascent:'454' } },
+    { code:'trail.season.inside', message:'In season.', impact:0, vars:{ month:11 } },
+    { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0, vars:{ terrain:1, tolerance:2, steepest:14 } },
+    { code:'trail.distance.within-range', message:'Distance.', impact:0, vars:{ distance:9.6 } },
+    { code:'trail.ascent.above-range', message:'Too much climb.', impact:-8, vars:{ ascent:820, range:600 } },
+    { code:'trail.water.reviewed', messageKey:'trail.water.reviewed.many', message:'Water.', impact:0, vars:{ count:2 } },
+    { code:'trail.exposure.present', message:'Drops.', impact:-30 },
   ];
-  const withVerdict = (category, score) => ({
-    ...recommendation, category, score, factors,
-    positiveReasons:factors.filter(f => f.impact === 0).map(f => ({ code:f.code, message:f.message })),
+  const view = decision.present({
+    ...recommendation, category:'possible-with-cautions', score:62, factors,
+    positiveReasons:factors.filter(f => f.impact === 0).map(f => ({ code:f.code, message:f.message, vars:f.vars })),
+    cautions:factors.filter(f => f.impact < 0),
+  }, { dogName:'Teo' });
+
+  test('costs lead, the larger first, then what fits', () => {
+    expect(view.factorRows.map(row => [row.topic, row.status])).toEqual([
+      ['Drops', 'Lowers score'],
+      ['Climb', 'Lowers score'],
+      ['Season', 'Fits'],
+      ['Steepness', 'Fits'],
+      ['Distance', 'Fits'],
+      ['Water', 'Fits'],
+    ]);
   });
 
-  test('Low match never says "Fine for", and says these do not outweigh the reasons', () => {
-    const view = decision.present(withVerdict('not-recommended', 49), { dogName:'Teo' });
-    expect(view.fineLine).not.toMatch(/fine for/i);
-    expect(view.fineLine).toBe('Not the problem here: the terrain and the 454 m climb. These do not outweigh the reasons above.');
-    expect(view.fineTone).toBe('neutral');
+  test('the pills say it in words; the points ride along for the closed list', () => {
+    expect(view.factorRows.some(row => /\d/.test(row.status))).toBe(false);
+    expect(view.factorRows.map(row => [row.topic, row.points])).toEqual([
+      ['Drops', '−30'],
+      ['Climb', '−8'],
+      ['Season', '0'],
+      ['Steepness', '0'],
+      ['Distance', '0'],
+      ['Water', '0'],
+    ]);
   });
 
-  test('Good with care keeps the cautions in charge', () => {
-    const view = decision.present(withVerdict('possible-with-cautions', 72), { dogName:'Teo' });
-    expect(view.fineLine).not.toMatch(/fine for/i);
-    expect(view.fineLine).toBe('Not a concern for Teo: the terrain and the 454 m climb. The reasons above still apply.');
-    expect(view.fineTone).toBe('neutral');
+  test('a row that fits states the fact, not a verdict', () => {
+    const detail = topic => view.factorRows.find(row => row.topic === topic).detail;
+    expect(detail('Distance')).toBe('9.6 km');
+    expect(detail('Water')).toBe('At 2 points on the way');
+    expect(detail('Season')).toBe('In season this month');
+    expect(detail('Steepness')).toBe('Moderately steep, steepest stretch about 14%');
+    // Nothing is labelled with a bare "fine" any more.
+    expect(view.factorRows.some(row => /^fine$/i.test(row.status))).toBe(false);
   });
 
-  test('only a strong option keeps the reassuring tick', () => {
-    const view = decision.present(withVerdict('strong-option', 90), { dogName:'Teo' });
-    expect(view.fineLine).toBe('Fine for Teo: the terrain and the 454 m climb.');
-    expect(view.fineTone).toBe('reassure');
+  test('a cost row keeps its plain sentence', () => {
+    expect(view.factorRows.find(row => row.topic === 'Climb').detail).toBe('820 m of climbing is a lot for Teo.');
   });
 
-  test('the Italian lines follow the verdict too', () => {
-    const source = require('fs').readFileSync(require('path').join(__dirname, 'i18n.js'), 'utf8');
-    expect(source).toContain("'recommendation.fine.line.not-recommended': 'Non è questo il problema: {items}. Non compensano i motivi qui sopra.'");
-    expect(source).toContain("'recommendation.fine.line.possible-with-cautions': 'Nessuna preoccupazione per {name}: {items}. I motivi qui sopra restano validi.'");
+  test('what the score could not look at is kept apart from the rows', () => {
+    const unknown = decision.present({
+      ...recommendation, factors:[],
+      unknowns:[{ code:'trail.dog-access.unknown', message:'Unknown.' }, { code:'dog.weight.unknown', message:'Weight.' }],
+    }, { dogName:'Teo' });
+    expect(unknown.factorRows).toEqual([]);
+    // A dog gap becomes the profile prompt instead, so it is not listed here.
+    expect(unknown.notChecked).toEqual(['We don’t know the local rules for dogs. Check before you go.']);
+  });
+});
+
+describe('steepness said in words, never as a grade', () => {
+  const steep = vars => decision.present({
+    ...recommendation,
+    factors:[{ code:'trail.terrain.above-tolerance', message:'Terrain is above tolerance (2 versus 0).', impact:-20, vars }],
+    cautions:[{ code:'trail.terrain.above-tolerance', message:'x', vars }],
+  }, { dogName:'Teo' });
+
+  test('with the figure when the profile gives one', () => {
+    const view = steep({ terrain:2, tolerance:0, steepest:22 });
+    expect(view.factorRows[0].detail)
+      .toBe('Steeper than Teo is up to: the steepest stretch is about 22%, and Teo is best on gentle slopes.');
+    expect(view.cardCautions[0]).toBe(view.factorRows[0].detail);
+  });
+
+  test('and without it when there is none', () => {
+    expect(steep({ terrain:2, tolerance:1, steepest:null }).factorRows[0].detail)
+      .toBe('Steeper than Teo is up to: Teo is best on moderate slopes.');
+  });
+
+  test('no grade or tolerance number reaches the reader', () => {
+    const view = steep({ terrain:2, tolerance:1, steepest:20 });
+    expect(JSON.stringify(view.factorRows.map(({ topic, detail, status }) => [topic, detail, status]))).not.toMatch(/grade|tolerance/i);
+  });
+});
+
+describe('the homepage card verdict line', () => {
+  const positives = [
+    { code:'trail.exposure.none-known', message:'No drops.' },
+    { code:'trail.water.reviewed', message:'Water.', vars:{ count:1 } },
+    { code:'trail.ascent.within-range', message:'Climb.', vars:{ ascent:170 } },
+    { code:'trail.distance.within-range', message:'Distance.', vars:{ distance:9.6 } },
+  ];
+  const card = category => decision.present({ ...recommendation, category, positiveReasons:positives }, { dogName:'Teo' }).cardVerdict;
+
+  test('three facts an owner plans around, in a fixed order', () => {
+    expect(card('strong-option')).toEqual({ lead:'Good for Teo', facts:'9.6 km, a gentle 170 m climb and water on the way' });
+  });
+
+  test('good with care says so', () => {
+    expect(card('possible-with-cautions').lead).toBe('Mostly fine for Teo');
+  });
+
+  test('a low match has no verdict line, only its reasons', () => {
+    expect(card('not-recommended')).toBeNull();
+  });
+
+  test('nothing to say means no line', () => {
+    expect(decision.present({ ...recommendation, category:'strong-option', positiveReasons:[] }, { dogName:'Teo' }).cardVerdict).toBeNull();
+  });
+});
+
+describe('the comparison page keeps its "what fits" phrases', () => {
+  test('in the engine order', () => {
+    const factors = [
+      { code:'trail.terrain.within-tolerance', message:'T.', impact:0 },
+      { code:'trail.distance.within-range', message:'D.', impact:0, vars:{ distance:'3.6' } },
+    ];
+    const view = decision.present({ ...recommendation, factors, positiveReasons:factors }, { dogName:'Teo' });
+    expect(view.fine).toEqual(['the steepness', 'the 3.6 km distance']);
   });
 });

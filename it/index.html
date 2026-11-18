@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="it" data-orma-lang="it">
+<head>
+<meta charset="UTF-8">
+<base href="/">
+<link rel="canonical" href="https://www.app-orma.com/it/">
+<link rel="alternate" hreflang="en" href="https://www.app-orma.com/">
+<link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/">
+<link rel="alternate" hreflang="x-default" href="https://www.app-orma.com/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ORMA | Sentieri delle Dolomiti a misura di cane</title>
+<meta name="description" content="ORMA valuta ogni sentiero delle Dolomiti per la sicurezza delle zampe, l’ombra, l’acqua e il terreno, su misura per il tuo cane.">
+<meta name="theme-color" content="#2E4034">
+<script>/* GitHub Pages serves index.html as the homepage but cannot declare a
+   server-side redirect. Keep the public address canonical while preserving
+   deep-link query parameters and fragments. */
+if(location.protocol !== 'file:' && location.pathname === '/index.html'){
+  location.replace('/' + location.search + location.hash);
+}</script>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>/* Pre-auth boot: the cached member summary picks the right homepage
+   before first paint, so members never flash the guest page while
+   Firebase resolves. The homepage controller clears the class once real
+   auth answers. */
+try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=20260917-4">
+<link rel="stylesheet" href="/homepage-mobile.css?v=20260916-1">
+  <link rel="stylesheet" href="/homepage-editorial.css?v=20261107-1">
+<link rel="stylesheet" href="/geo-filters.css?v=20260904-1">
+<link rel="stylesheet" href="/discovery-filters.css">
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="/it/" aria-label="ORMA | Guida a sentieri e terreni per cani" data-i18n-aria-label="page.index.ormaDogTrailsTerrainGuide"><img src="/logo.svg?v=5" alt="">ORMA</a>
+  <div class="links">
+    <a href="/it/browse-trails.html" data-i18n="account.nav.browse">Sentieri</a>
+    <a href="/collections.html" data-i18n="account.nav.collections">Raccolte</a>
+    <a href="/it/safety-guide.html" data-i18n="account.nav.safety">Guide di sicurezza</a>
+    <a href="/journal.html" data-i18n="account.nav.journal">Il mio diario delle passeggiate</a>
+    <button id="accountBtn" class="account-btn" data-i18n="nav.login">Accedi</button>
+  </div>
+</div>
+
+<!-- Login / sign-up modal, split-image header, order: Google → email → guest -->
+<!-- NEW-VISITOR HOMEPAGE (default; hidden once logged in), search-first redesign -->
+<div id="newCustomerHomepage" class="hp">
+
+  <!-- GUEST BAR -->
+  <div class="hp-guestbar hp-guestbar--homepage">
+    <div class="hp-guestbar-copy">
+      <span class="hp-guestbar-kicker" data-i18n="hp.guest.kicker">Modalità ospite</span>
+      <b id="hpGuestTitle" data-i18n="hp.guest.medium.title">I punteggi usano il profilo di un cane di taglia media.</b>
+      <span id="hpGuestSub" data-i18n="hp.guest.medium.sub">Aggiungi il tuo cane per abbinamenti personalizzati. Crea un account gratuito solo quando decidi di salvare.</span>
+    </div>
+    <button type="button" class="hp-guestbar-cta hp-dog-profile-cta" id="hpGuestCta">
+      <span id="hpGuestCtaLabel" data-i18n="hp.guest.addDog">Aggiungi il tuo cane</span>
+    </button>
+  </div>
+
+  <!-- SEARCH HERO -->
+  <div class="hp-hero">
+    <picture>
+      <source srcset="/images/orma-mission-forest-960.jpg?v=20260820-2 960w, /images/orma-mission-forest.jpg?v=20260820-2 2400w" sizes="100vw">
+      <img src="/images/orma-mission-forest.jpg?v=20260820-2" alt="" class="hp-hero-img" id="hpHeroImage" loading="lazy" fetchpriority="auto" decoding="async" width="2400" height="1800">
+    </picture>
+    <script>/* Do not spend a signed-in phone's startup bandwidth on the hidden
+       guest hero. Genuine guest visits still promote it immediately as LCP. */
+    try{if(!document.documentElement.classList.contains('early-member')){
+      const hero=document.getElementById('hpHeroImage');
+      if(hero){hero.loading='eager';hero.fetchPriority='high';}
+    }}catch(e){}</script>
+    <div class="hp-hero-shade"></div>
+    <div class="hp-hero-inner">
+      <h1 data-i18n="hero.h1">Dove andiamo oggi?</h1>
+      <p class="hp-hero-sub" data-i18n="hero.sub">Cerca per luogo, terreno e condizioni. Ogni sentiero spiega cosa può essere adatto al tuo cane e cosa richiede più attenzione.</p>
+
+      <div class="hp-searchcard">
+        <div class="hp-search-row">
+          <svg class="hp-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="hpSearch" type="text" placeholder="Cerca una valle, un lago o un sentiero, es. Braies, Carezza" data-i18n-ph="hp.search.ph" aria-label="Cerca sentieri" data-i18n-aria-label="hp.search.aria" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="hpSuggest" autocomplete="off">
+          <div class="hp-menuwrap">
+            <button type="button" id="hpDogPill" class="hp-dogpill" aria-haspopup="true" aria-expanded="false"><span class="hp-dog-emoji">🐾</span><span id="hpDogLabel" data-i18n="hp.preset.medium.name">Cane di taglia media</span> ▾</button>
+            <div class="hp-menu hp-menu-right" id="hpDogMenu" hidden>
+              <div class="hp-menu-head" data-i18n="hp.search.previewAs">Anteprima come</div>
+              <div id="hpDogOptions"></div>
+            </div>
+          </div>
+        </div>
+        <div class="hp-filter-row">
+          <div class="hp-menuwrap hp-filt-wrap">
+            <button type="button" class="hp-filt discovery-filter-trigger" id="hpFiltersBtn" aria-haspopup="true" aria-expanded="false"><span class="hp-filt-lab"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg><span data-i18n="hp.filters.button">Filtra sentieri</span><span id="hpFiltersBadge"></span></span><span class="hp-filt-caret">▾</span></button>
+            <div class="hp-menu hp-fpanel discovery-filter-panel" id="hpFiltersPanel" hidden>
+              <div class="hp-fpanel-head">
+                <span class="hp-fpanel-title" data-i18n="hp.filters.title">Filtra sentieri</span>
+                <button type="button" id="hpFiltersReset" data-i18n="hp.filters.resetAll">Azzera tutto</button>
+              </div>
+              <div class="hp-fsec first" data-i18n="hp.filters.duration">Durata</div>
+              <div class="hp-seg" id="hpDurationSeg"></div>
+              <div class="hp-fsec" data-i18n="hp.filters.distance">Distanza</div>
+              <div class="hp-seg" id="hpDistSeg"></div>
+              <div class="hp-fsec" data-i18n="hp.filters.rating">Valutazione del sentiero</div>
+              <div class="hp-seg" id="hpDiffSeg"></div>
+              <div class="hp-fsec" data-i18n="hp.filters.terrain">Terreno</div>
+              <div class="hp-seg" id="hpTerrainSeg"></div>
+              <div class="hp-fsec" id="hpMatchLabel" data-i18n="hp.filters.minMatch">Abbinamento minimo</div>
+              <div class="hp-seg" id="hpMatchSeg"></div>
+              <div class="hp-frow">
+                <div class="hp-frow-lab" data-i18n="hp.filters.water">Acqua lungo il percorso</div>
+                <button type="button" class="hp-switch" id="hpWaterToggle" role="switch" aria-checked="false" aria-label="Acqua lungo il percorso" data-i18n-aria-label="hp.filters.water"><span class="hp-knob"></span></button>
+              </div>
+              <button type="button" class="hp-fapply" id="hpFiltersApply" data-i18n="hp.filters.show">Mostra sentieri</button>
+            </div>
+          </div>
+          <button type="button" class="hp-search-btn" id="hpSearchBtn" data-i18n="hp.search.go">Cerca →</button>
+        </div>
+        <div class="hp-suggest" id="hpSuggest" role="listbox" aria-label="Suggerimenti di sentieri" data-i18n-aria-label="hp.search.suggestionsAria" hidden></div>
+        <span id="hpSearchStatus" class="sr-only" role="status" aria-live="polite"></span>
+      </div>
+
+      <div class="hp-popular">
+        <span class="hp-popular-label" data-i18n="hp.popular.label">Popolari:</span>
+        <span id="hpPopular"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT: results OR collections -->
+  <div class="hp-content" id="hpContent"></div>
+</div>
+
+  <!-- RETURNING-VISITOR HOMEPAGE (shown once logged in), map-first app shell:
+       dark site header, compact greeting/search/filter toolbar, then the
+       full-height MapLibre map beside the ranked list. -->
+<div id="returningCustomerHomepage" hidden>
+
+  <!-- ================= DARK APP HEADER ================= -->
+  <header class="li-top">
+    <a class="li-brand" href="/it/" aria-label="ORMA | Guida a sentieri e terreni per cani" data-i18n-aria-label="page.index.ormaDogTrailsTerrainGuide"><img src="/logo.svg?v=5" alt="">ORMA</a>
+    <nav class="li-nav" aria-label="Sito" data-i18n-aria-label="page.index.site">
+      <a href="/it/browse-trails.html" data-i18n="account.nav.browse">Sentieri</a>
+      <a href="/collections.html" data-i18n="account.nav.collections">Raccolte</a>
+      <a href="/it/safety-guide.html" data-i18n="account.nav.safety">Guide di sicurezza</a>
+      <a href="/journal.html" data-i18n="account.nav.journal">Il mio diario delle passeggiate</a>
+    </nav>
+    <div class="li-top-spacer"></div>
+    <div class="li-top-actions">
+      <!-- What's-new bell (design TopNav notifications) -->
+      <div class="li-menuwrap" id="liBellWrap">
+        <button type="button" id="liBellBtn" class="li-bell" aria-haspopup="true" aria-expanded="false" aria-label="Novità" data-i18n-aria-label="page.index.whatsNew">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10.5a6 6 0 1 1 12 0c0 3 1 4.8 2 6H4c1-1.2 2-3 2-6Z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg>
+          <span class="li-bell-dot" id="liBellDot" hidden></span>
+        </button>
+        <div class="li-menu" id="liBellMenu" hidden>
+          <div class="li-menu-kick" data-i18n="page.index.whatsNew2">Novità</div>
+        </div>
+      </div>
+      <!-- Dog pill, the shared switcher pattern (TopNav dog pill): avatar +
+           dog name opens the Switch dog panel. Account utilities sit below a
+           separator; site links live in the nav row. -->
+      <div class="li-menuwrap" id="liAccountWrap">
+        <button type="button" id="liAccountBtn" class="li-account" aria-haspopup="true" aria-expanded="false">
+          <span class="li-avatar" id="liAccountAvatar" aria-hidden="true"></span>
+          <span class="li-account-name" id="liAccountName" data-i18n="account.yourDog">Il tuo cane</span>
+          <span class="li-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="li-menu li-account-menu" id="liAccountMenu" hidden>
+          <div class="li-menu-kick" data-i18n="mobile.switchDog">Cambia cane</div>
+          <div id="liDogList"></div>
+          <button type="button" class="li-menu-item" id="liAddDogBtn" data-i18n="mobile.addDog">＋ Aggiungi un altro cane</button>
+          <a class="li-menu-item" id="liManageLink" href="/account.html?next=%2F" hidden data-i18n="page.index.setUpYourDogsProfile">Configura il profilo del tuo cane</a>
+          <div class="li-menu-div" role="separator"></div>
+          <a class="li-menu-item" href="/saved.html" data-i18n="mobile.savedTrails">Sentieri salvati</a>
+          <a class="li-menu-item" href="/downloads.html" data-i18n="mobile.downloads">Sentieri scaricati</a>
+          <!-- The last trails opened, where the rest of this dog's things are.
+               Empty until one is, and it says so rather than showing nothing. -->
+          <div class="li-menu-kick" data-i18n="mobile.recentlyViewed">Visti di recente</div>
+          <div id="liRecentList"><span class="li-menu-note" data-i18n="page.index.trailsYouOpenWillAppear">I sentieri che apri appariranno qui.</span></div>
+          <div class="li-menu-div" role="separator"></div>
+          <a class="li-menu-item" href="/settings.html" data-i18n="mobile.settings">Impostazioni account</a>
+          <div class="li-menu-div" role="separator"></div>
+          <button type="button" class="li-menu-item li-logout" id="liLogoutBtn" data-i18n="mobile.logout">Esci</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Dog-switching data remains available to the controller, while the
+       visible greeting is integrated into the compact discovery toolbar. -->
+  <div class="li-greetbar">
+    <div class="li-dog-row">
+      <!-- The avatar is the dog switcher (design: greeting avatar + caret
+           opens the Switch dog panel; no separate Edit button) -->
+      <div class="li-menuwrap li-greetswitch" id="liGreetSwitchWrap">
+        <button type="button" class="li-greetswitch-btn" id="liGreetSwitchBtn" aria-haspopup="true" aria-expanded="false" aria-label="Cambia cane" data-i18n-aria-label="mobile.switchDog">
+          <span class="li-dogavatar" id="companionDogAvatar"><span data-dp-icon="dog" data-dp-icon-size="24" aria-hidden="true"></span></span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="li-menu li-greetswitch-menu" id="liGreetSwitchMenu" hidden>
+          <div class="li-menu-kick" data-i18n="mobile.switchDog">Cambia cane</div>
+          <div id="liGreetDogList"></div>
+          <button type="button" class="li-menu-item" id="liGreetAddDogBtn" data-i18n="mobile.addDog">＋ Aggiungi un altro cane</button>
+          <a class="li-menu-item" id="liGreetManageLink" href="/account.html?next=%2F" hidden data-i18n="page.index.setUpYourDogsProfile">Configura il profilo del tuo cane</a>
+        </div>
+      </div>
+      <div class="li-dog-copy">
+        <h1 class="li-greet" id="returningHeading" data-i18n="home.bubble">Dove andiamo oggi?</h1>
+        <div class="li-chips-row">
+          <span class="li-dogname" id="companionDogName" data-i18n="account.yourDog">Il tuo cane</span>
+          <span class="li-pchip" id="companionDogMeta"></span>
+          <span class="li-chips" id="companionDogChips"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TOOLBAR: CONTEXT + SEARCH + FILTERS ================= -->
+  <div class="li-toolbar" id="liToolbar">
+    <!-- Static trail-personalisation context. Dog switching remains in the
+         main navigation's dog control instead of being duplicated here. -->
+    <div class="li-dogctx-wrap" id="liDogCtxWrap">
+      <div class="li-dogctx-static">
+        <span class="li-avatar li-dogctx-avatar" id="liDogCtxAvatar" aria-hidden="true">🐾</span>
+        <span class="li-dogctx-copy">
+          <span class="li-control-kicker" data-i18n="page.index.tailoredTo">Su misura per</span>
+          <span class="li-dogctx-name"><span id="liDogCtxName" data-i18n="account.yourDog">Il tuo cane</span><span id="liDogCtxBreedSep" hidden>, </span><a id="liDogCtxBreed" href="/it/guides/breed-group-caveats.html" hidden></a></span>
+        </span>
+      </div>
+    </div>
+    <!-- The headline is the control. It is assembled from the dog, the place
+         and the day, and the place and the day in it are buttons: pressing
+         "in Alta Pusteria" or "today" is how you change them. Search, Filters
+         and Record a walk are always on screen; shade and water live inside
+         Filters with the rest of the narrowing. -->
+    <div class="li-toolbar-greet">
+      <span class="li-avatar li-greet-avatar" id="liGreetAvatar" aria-hidden="true">🐾</span>
+      <span class="li-toolbar-greet-copy">
+        <strong id="liToolbarGreeting" data-i18n="hero.h1">Dove andiamo oggi?</strong>
+      </span>
+      <!-- Create actions are not filters, so they sit out of the refine zone.
+           Recording is the one you do standing on the trail, so it is the
+           button; drafting a loop is still one press away under the caret. -->
+      <div class="li-menuwrap li-new-wrap" id="liNewWrap">
+        <a class="li-new li-new-main" id="liRecordBtn" href="/walk.html">
+          <span class="li-rec-dot" aria-hidden="true"></span>
+          <span class="li-new-label" data-i18n="page.index.recordAWalk">Registra<span class="li-new-label-rest"> una passeggiata</span></span>
+        </a>
+        <button type="button" id="liNewBtn" class="li-new li-new-more" aria-haspopup="true" aria-expanded="false" aria-label="Altri modi per creare" data-i18n-aria-label="page.index.moreWaysToCreate">
+          <span class="li-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="li-menu li-new-menu" id="liNewMenu" hidden>
+          <div class="li-menu-kick" data-i18n="page.index.create">Crea</div>
+          <a class="li-menu-item li-plan-route" href="/route-planner.html"><span class="li-menu-title" data-i18n="page.index.drawYourOwnRouteNew">Disegna il tuo percorso <span class="li-menu-badge">Nuovo</span></span><small data-i18n="page.index.loopOnewayOrOutAnd">Anello, solo andata o andata e ritorno · sperimentale</small></a>
+        </div>
+        <!-- Said once: what is new and where it lives. Closing it, trying it,
+             or opening the menu above puts it away for good on this browser. -->
+        <div class="li-new-callout" id="liNewCallout" role="status" hidden>
+          <div class="li-new-callout-head">
+            <span class="li-menu-badge" data-i18n="page.index.new">Nuovo</span>
+            <strong data-i18n="page.index.drawYourOwnRoute">Disegna il tuo percorso</strong>
+            <button type="button" class="li-new-callout-close" id="liNewCalloutClose" aria-label="Chiudi" data-i18n-aria-label="page.index.dismiss">×</button>
+          </div>
+          <p data-i18n="page.index.loopOnewayOrOutAnd2">Anello, solo andata o andata e ritorno, lungo i sentieri mappati. È ancora sperimentale.</p>
+          <div class="li-new-callout-actions">
+            <a class="li-new-callout-try" id="liNewCalloutTry" href="/route-planner.html" data-i18n="page.index.tryIt">Provalo</a>
+            <span data-i18n="page.index.alsoUnderTheArrowBeside">Lo trovi anche sotto la freccia accanto a Registra una passeggiata</span>
+          </div>
+        </div>
+      </div>
+      <!-- Opened from "in Alta Pusteria" in the headline. -->
+      <div class="li-menu li-head-menu" id="liAreaMenu" role="dialog" aria-label="Dove cercare" hidden data-i18n-aria-label="page.index.whereToLook">
+        <span class="li-location-summary" id="liLocationSummary" hidden>
+          <span><small id="liLocationSummaryKick" data-i18n="page.index.lookingNear">Cerco vicino a</small><strong id="liLocationSummaryLabel"></strong></span>
+        </span>
+        <!-- One region at a time: a walk is planned in one place, never in
+             the Dolomites and Savoy at once. -->
+        <div class="li-head-kick" data-i18n="browse.geo.region">Regione</div>
+        <button type="button" class="li-head-option li-head-region" data-li-region="dolomites" aria-pressed="false">Dolomiti<small data-li-region-count></small></button>
+        <button type="button" class="li-head-option li-head-region" data-li-region="savoy" aria-pressed="false">Savoia<small data-li-region-count></small></button>
+        <button type="button" class="li-head-option li-head-region" data-li-region="frenchalps" aria-pressed="false">Alpi francesi<small data-li-region-count></small></button>
+        <button type="button" class="li-head-option li-head-region" data-li-region="lombardy" aria-pressed="false">Lombardia<small data-li-region-count></small></button>
+        <button type="button" class="li-head-option li-head-region" data-li-region="friuli" aria-pressed="false">Friuli Venezia Giulia<small data-li-region-count></small></button>
+        <button type="button" class="li-head-option li-head-region" data-li-region="aosta" aria-pressed="false">Valle d’Aosta<small data-li-region-count></small></button>
+        <button type="button" class="li-head-option li-head-region" data-li-region="piedmont" aria-pressed="false">Piemonte<small data-li-region-count></small></button>
+        <button type="button" class="li-head-option li-head-region" data-li-region="tyrol" aria-pressed="false">Tirolo e Carinzia<small data-li-region-count></small></button>
+        <button type="button" class="li-head-option li-head-region" data-li-region="switzerland" aria-pressed="false">Svizzera<small data-li-region-count></small></button>
+        <div class="li-head-sep" role="separator"></div>
+        <button type="button" class="li-head-option" id="liNearMeBtn" data-i18n="page.index.nearMe">Vicino a me</button>
+        <button type="button" class="li-head-option" id="liChangeLocationBtn" data-i18n="page.index.searchAValleyOrTown">Cerca una valle o un paese</button>
+      </div>
+      <!-- Opened from "today" in the headline. -->
+      <div class="li-menu li-head-menu" id="liDayMenu" role="dialog" aria-label="Quando cammini" hidden data-i18n-aria-label="page.index.whenYouAreWalking">
+        <button type="button" class="li-head-option" data-li-day="0" data-i18n="page.index.today">Oggi</button>
+        <button type="button" class="li-head-option" data-li-day="1" data-i18n="page.index.tomorrow">Domani</button>
+        <label class="li-date-summary"><small data-i18n="page.index.anotherDay">Un altro giorno</small><input id="liRecommendationDate" type="date" aria-label="Data del consiglio" data-i18n-aria-label="page.index.recommendationDate"></label>
+      </div>
+    </div>
+    <!-- Today, for this area. Hidden until a forecast actually arrives: an
+         empty band is better than a confident one with nothing behind it. -->
+    <div class="li-today" id="liToday" hidden>
+      <strong id="liTodayTitle"></strong>
+      <span id="liTodayDetail"></span>
+    </div>
+    <!-- Location, asked in place instead of by a gate: the list is already
+         there. Hidden once the list follows the owner's position, and for the
+         session once dismissed; Near me in the headline still works either way. -->
+    <div class="li-location-nudge" id="liLocationNudge" hidden>
+      <span class="li-location-nudge-pin" aria-hidden="true">⌖</span>
+      <span class="li-location-nudge-copy"><strong id="liLocationNudgeTitle" data-i18n="page.index.seeTrailsNearYou">Vedi i sentieri vicino a te</strong><small id="liLocationNudgeDetail" data-i18n="page.index.yourPositionStaysInThis">La tua posizione resta in questa sessione del browser e non viene aggiunta al tuo profilo.</small></span>
+      <button type="button" class="li-location-nudge-action" id="liLocationNudgeBtn" data-i18n="page.index.turnOnLocation">Attiva la posizione</button>
+      <button type="button" class="li-location-nudge-dismiss" id="liLocationNudgeDismiss" aria-label="Chiudi" data-i18n-aria-label="page.index.dismiss">×</button>
+    </div>
+    <div class="li-search">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="liSearch" type="search" placeholder="Cerca per sentiero, zona o valle" aria-label="Cerca per sentiero, zona o valle" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="liSearchSuggest" autocomplete="off" data-i18n-aria-label="page.index.searchByTrailAreaOr" data-i18n-ph="page.index.searchByTrailAreaOr">
+      <kbd class="li-search-shortcut" aria-hidden="true">⌘K</kbd>
+      <div class="li-search-suggest" id="liSearchSuggest" role="listbox" aria-label="Percorsi consigliati" hidden data-i18n-aria-label="page.index.recommendedRoutes"></div>
+    </div>
+    <div class="li-mobile-actions" aria-label="Azioni sul sentiero" data-i18n-aria-label="page.index.trailActions">
+    <div class="li-menuwrap" id="liFiltersWrap">
+      <button type="button" id="liFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
+        <span class="li-filt-label" data-i18n="browse.filters.button">Filtri</span><span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
+      </button>
+      <div class="li-menu li-filters-menu discovery-filter-panel" id="liFiltersMenu" hidden>
+        <div class="li-fhead">
+          <span data-i18n="browse.filters.title">Filtra sentieri</span>
+          <button type="button" id="liFiltersReset" data-i18n="browse.filters.resetAll">Azzera tutto</button>
+        </div>
+        <div class="li-fsec" data-i18n="browse.filters.quick">Filtri rapidi</div>
+        <div class="li-quick-filters" aria-label="Filtri rapidi per il cane" data-i18n-aria-label="browse.quick.aria">
+          <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.quick.shade">Molta ombra</span></button>
+          <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="chips.fountains">Acqua</span></button>
+        </div>
+        <div class="li-fsec" data-i18n="browse.filters.distance">Distanza</div>
+        <div class="li-seg" id="liDistSeg"></div>
+        <div class="li-fsec" data-i18n="browse.filters.rating">Valutazione del sentiero</div>
+        <div class="li-seg" id="liRiskSeg"></div>
+        <div class="li-fsec" data-i18n="browse.filters.terrain">Terreno</div>
+        <div class="li-seg" id="liTerrainSeg"></div>
+        <div class="li-fsec" id="liMatchSecLabel" data-i18n="browse.filters.minMatch">Abbinamento minimo</div>
+        <div class="li-seg" id="liMatchSeg"></div>
+        <button type="button" class="li-apply" id="liFiltersApply" data-i18n="browse.filters.show">Mostra sentieri</button>
+      </div>
+    </div>
+    </div>
+    <!-- Kept as a rendering target for the controller. Detailed discovery
+         filters live on Browse All Trails; this toolbar keeps the core actions. -->
+    <div class="li-chiprow" id="liChips"></div>
+  </div>
+
+  <!-- ================= TODAY'S PICKS ================= -->
+  <!-- The answer first: three walks from the ranked list, for the same dog,
+       place and day. The map and the full list wait behind the link below
+       (liSetMapRevealed), kept open or closed for the session. -->
+  <section class="li-picks" id="liTodaysPicks" aria-labelledby="liPicksTitle">
+    <h2 class="li-picks-title" id="liPicksTitle" data-i18n="page.index.todaysPicks">Le scelte di oggi</h2>
+    <div class="li-picks-list" id="liPicksList"></div>
+    <button type="button" class="li-picks-more" id="liSeeAllWalks" aria-expanded="false" aria-controls="liMapList" hidden></button>
+  </section>
+
+  <!-- ================= BODY: MAP + LIST ================= -->
+  <div class="li-body" id="liMapList" hidden>
+
+    <div class="li-map" id="trailMapWrap">
+      <div id="trailMap" role="region" aria-label="Mappa dei sentieri. I segnaposto numerati corrispondono alla classifica; gli altri sentieri sono in grigio." data-i18n-aria-label="page.index.trailMapNumberedMarkersCorrespond"></div>
+      <!-- The map doubles as the geography control: pan/zoom, then refilter the
+           list to the visible area. Hidden until the view actually moves. -->
+      <button id="liSearchThisArea" type="button" class="li-search-area" hidden data-i18n="browse.map.searchArea">Cerca in questa zona</button>
+      <!-- The route planner, opened on the area on screen. It sits on the map
+           because the map is where a route is drawn; the link follows the
+           view as it moves. -->
+      <a id="homeMapDrawBtn" class="li-map-draw" href="/route-planner.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H16"/></svg><span data-i18n="page.index.drawARouteHere">Disegna un percorso qui</span></a>
+      <button id="homeMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Ingrandisci la mappa" aria-expanded="false" data-i18n-aria-label="page.index.expandMap"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span data-i18n="page.index.expandMap">Ingrandisci la mappa</span></button>
+      <div class="li-rank-map-key" aria-label="Legenda" data-i18n-aria-label="page.index.mapKey">
+        <span data-i18n="page.index.1MatchesList"><i class="is-ranked">1</i>In classifica</span>
+        <span data-i18n="page.index.strong"><i class="is-strong"></i>Ottima scelta</span>
+        <span data-i18n="page.index.cautions"><i class="is-caution"></i>Con attenzione</span>
+        <span data-i18n="page.index.notRecommended"><i class="is-stop"></i>Poco adatta</span>
+        <span data-i18n="page.index.otherTrails"><i class="is-other"></i>Altri sentieri</span>
+      </div>
+      <!-- Dog conditions card, real profile-derived readings, no invented weather -->
+      <div class="li-cond" id="liConditionsCard" hidden>
+        <div class="li-cond-head">
+          <span class="li-avatar li-avatar-lg" id="liCondAvatar" aria-hidden="true"></span>
+          <div>
+            <div class="li-cond-title" id="liCondTitle" data-i18n="journal.conditions">Condizioni</div>
+            <div class="li-cond-sub" id="liCondSub"></div>
+          </div>
+        </div>
+        <div class="li-cond-tiles" id="liCondTiles"></div>
+      </div>
+
+      <!-- Selected-trail preview, the design's TrailPreview card, docked at
+           the foot of the map: kicker · name · meta + provenance · trail
+           rating · Open trail → / Save, with the match column mid-right. -->
+      <div id="mapCallout" class="map-callout" aria-live="polite" hidden>
+        <a class="map-callout-thumb" id="mapCalloutThumb" href="/it/#"></a>
+        <div class="map-callout-body">
+          <div class="map-callout-kick" id="mapCalloutKick"></div>
+          <a class="li-row-name" id="mapCalloutName" href="/it/#"></a>
+          <div class="li-row-meta" id="mapCalloutMeta"></div>
+          <div class="map-callout-info-row">
+            <div class="li-rating-row"><span class="li-rating-kick" data-i18n="browse.filters.rating">Valutazione del sentiero</span><span id="mapCalloutRating"></span></div>
+          </div>
+          <div class="map-callout-actions">
+            <a class="map-callout-open" id="mapCalloutOpen" href="/it/#" data-i18n="page.index.openTrail">Apri il sentiero →</a>
+            <div class="li-dir-wrap">
+              <button type="button" class="map-callout-directions" id="mapCalloutDirections" aria-haspopup="true" aria-expanded="false" data-i18n="readiness.action.directions">Indicazioni</button>
+              <div class="li-dir-menu" id="mapCalloutDirMenu" hidden>
+                <a id="mapCalloutDirApple" target="_blank" rel="noopener" data-i18n="page.index.appleMaps">Apple Maps</a>
+                <a id="mapCalloutDirGoogle" target="_blank" rel="noopener" data-i18n="page.index.googleMaps">Google Maps</a>
+              </div>
+            </div>
+            <button type="button" class="map-callout-save" id="mapCalloutSave" data-i18n="page.index.save">♡ Salva</button>
+          </div>
+        </div>
+        <span id="mapCalloutMatch"></span>
+        <span class="close" id="mapCalloutClose" role="button" tabindex="0" aria-label="Annulla selezione" data-i18n-aria-label="page.index.clearSelection">&times;</span>
+      </div>
+    </div>
+
+    <!-- ================= LIST ================= -->
+    <aside class="li-list" aria-label="Consiglio personalizzato di sentieri" data-i18n-aria-label="page.index.personalisedTrailRecommendation">
+      <!-- One line: what this is, how many, and the two ways to change the
+           view. "New for <dog>" lives on the card it is about, with what it
+           means; Browse all trails sits at the foot of the list. -->
+      <div class="li-list-head">
+        <button type="button" class="li-picks-back" id="liBackToPicks" data-i18n="page.index.backToTodaysPicks">← Torna alle scelte di oggi</button>
+        <div class="li-list-title-row">
+          <h2 class="li-list-title" id="companionListTitle" data-i18n="account.nav.browse">Sentieri</h2>
+          <span class="li-list-count" id="companionListCount"></span>
+          <!-- Out of the area and filters into the whole catalogue, still ranked
+               for the dog; once there it offers the way back. -->
+          <button type="button" class="li-list-showall" id="liShowAllTrails" hidden data-i18n="browse.saved.showAll">Mostra tutti i sentieri</button>
+          <div class="li-list-tools">
+            <!-- ORMA's own menu, like Filters and the headline's: a native
+                 select opened the system's grey popup inside a pill. -->
+            <div class="li-menuwrap li-sort-wrap">
+              <button type="button" id="liSortBtn" class="li-sort-pill" aria-haspopup="menu" aria-expanded="false" aria-controls="liSortMenu"><span class="li-sort-label" data-i18n="page.index.sort">Ordina:</span><span id="liSortValue" data-i18n="page.index.bestFit">Più adatti</span></button>
+              <div class="li-menu li-sort-menu" id="liSortMenu" role="menu" aria-label="Ordina i sentieri" hidden data-i18n-aria-label="page.index.sortTrails">
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="match" aria-checked="true" data-i18n="page.index.bestFit">Più adatti</button>
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="distance" aria-checked="false" data-i18n="page.index.shortest">Più corti</button>
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="effort" aria-checked="false" data-i18n="page.index.leastClimb">Meno dislivello</button>
+                <button type="button" class="li-head-option li-sort-option" role="menuitemradio" data-li-sort="today" aria-checked="false" data-i18n="page.index.forToday">Per oggi</button>
+              </div>
+            </div>
+            <button type="button" id="liReasonsToggle" class="li-saved-toggle li-reasons-toggle" aria-pressed="false"><span class="li-reasons-word" data-i18n="page.index.hideReasons">Nascondi i motivi</span></button>
+            <button type="button" id="liViewSaved" class="li-saved-toggle" aria-pressed="false" aria-label="Sentieri salvati" data-i18n-aria-label="mobile.savedTrails"><span class="orma-saved-heart" aria-hidden="true">♥</span><span class="li-saved-word" data-i18n="card.saved">Salvato</span><span class="li-saved-count" id="liSavedOnlyCount">0</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="li-rows" id="returningTrailList"></div>
+      <a class="li-list-foot" href="/it/browse-trails.html" data-i18n="page.index.browseAllTrails">Vedi tutti i sentieri →</a>
+    </aside>
+
+    <button type="button" id="liCollapseTrailsBtn" class="li-trails-toggle" aria-expanded="true" aria-label="Comprimi il pannello della classifica" title="Nascondi l’elenco dei sentieri" data-i18n-title="page.index.hideTheTrailList" data-i18n-aria-label="page.index.collapseRankedTrailsPanel">⇥</button>
+
+  </div>
+</div>
+
+
+<!-- DOG PROFILE WIZARD (opened by the hero CTA; works for guests) -->
+<div id="dogWizard" class="dw-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="dwTitle">
+  <div class="dw-modal">
+    <button id="dwCloseBtn" class="dw-close" aria-label="Chiudi" data-i18n-aria-label="journal.close">&times;</button>
+    <h2 id="dwTitle" class="dw-title" data-i18n="page.index.addADog">Aggiungi un cane</h2>
+    <div id="dwStepCount" class="dw-stepcount" hidden></div>
+    <p id="dwSubtitle" class="dw-subtitle"></p>
+    <div id="dwStepper" class="dw-stepper" role="list"></div>
+    <div id="dwProgress" class="dw-progress" hidden aria-hidden="true"><span></span></div>
+    <div id="dwBody" class="dw-body"></div>
+    <div id="dwFooter" class="dw-footer">
+      <button id="dwBackBtn" type="button" class="dw-btn-ghost" data-i18n="page.index.back">&larr; Indietro</button>
+      <button id="dwNextBtn" type="button" class="dw-btn-primary" data-i18n="page.index.next">Avanti &rarr;</button>
+    </div>
+  </div>
+</div>
+<div id="dwToast" class="dw-toast" hidden role="status" aria-live="polite"></div>
+
+<!-- DOG-PROFILE MINI-WIZARD (search hero → guest bar CTA) -->
+<div id="hpWizard" class="hp-wiz-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="hpWizTitle">
+  <div class="hp-wiz-modal">
+    <div class="hp-wiz-head">
+      <button type="button" id="hpWizClose" class="hp-wiz-close" aria-label="Chiudi" data-i18n-aria-label="hp.wizard.close">&times;</button>
+      <div class="hp-wiz-step" id="hpWizStepLabel" role="status" aria-live="polite" data-i18n="page.index.step1Of3">Passo 1 di 3</div>
+      <h2 id="hpWizTitle" data-i18n="hp.wizard.title">Parlaci del tuo cane</h2>
+      <div class="hp-wiz-bars"><span id="hpWizBar1"></span><span id="hpWizBar2"></span><span id="hpWizBar3"></span></div>
+    </div>
+    <div class="hp-wiz-body" id="hpWizBody"></div>
+    <div class="hp-wiz-foot">
+      <button type="button" id="hpWizBack" class="hp-wiz-back" data-i18n="hp.wizard.cancel">Annulla</button>
+      <button type="button" id="hpWizNext" class="hp-search-btn" data-i18n="hp.wizard.next">Avanti →</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer hp-footer">
+  <div class="hp-footer-grid">
+    <div>
+      <div class="hp-footer-brand"><img src="/logo.svg?v=5" alt=""><span>ORMA</span></div>
+      <p class="hp-footer-blurb">La guida ai sentieri personalizzata per i cani e i loro umani, perché ogni impronta lasciata in montagna sia sicura.</p>
+      <div class="hp-footer-get">
+        <div class="hp-footer-h">Scarica l’app</div>
+        <div class="hp-footer-apps">
+          <button type="button" class="hp-footer-install" data-orma-install hidden>Aggiungi ORMA alla schermata Home</button>
+        </div>
+        <p class="hp-footer-appnote">Aggiungi ORMA alla schermata Home dal menu del browser per avere la mappa a schermo intero.</p>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Sentieri</div>
+      <div class="hp-footer-links">
+        <a href="/it/browse-trails.html">Tutti i sentieri</a>
+        <a href="/collections.html">Raccolte</a>
+        <a href="/compare.html">Confronta sentieri</a>
+        <a href="/it/how-scoring-works.html">Come funziona il punteggio</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Prendersi cura del cane</div>
+      <div class="hp-footer-links">
+        <a href="/it/guides/heat-overheating.html">Il caldo e il tuo cane</a>
+        <a href="/it/guides/paw-protection.html">Proteggere le zampe</a>
+        <a href="/it/guides/breed-group-caveats.html">Razza e corporatura del tuo cane</a>
+        <a href="/it/guides/alpine-plants-for-dogs.html">Il tuo cane e le piante alpine</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Le tue passeggiate</div>
+      <div class="hp-footer-links">
+        <a href="/journal.html">Il mio diario delle passeggiate</a>
+        <a href="/saved.html">Sentieri salvati</a>
+        <a href="/downloads.html">Sentieri scaricati</a>
+        <a href="/walk.html">Registra una passeggiata</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Azienda</div>
+      <div class="hp-footer-links">
+        <a href="/it/about.html">Chi siamo</a>
+        <a href="/it/contact.html">Contatti</a>
+        <a href="/it/privacy.html">Privacy</a>
+        <a href="/it/terms.html">Termini</a>
+      </div>
+    </div>
+  </div>
+  <div class="hp-footer-connect">
+    <div class="hp-footer-connect-main">
+      <span class="hp-footer-h">Seguici</span>
+      <div class="hp-footer-social-row">
+        <a href="https://www.instagram.com/app.orma/" target="_blank" rel="noopener" aria-label="ORMA su Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="hp-footer-base">
+    <span>© 2026 ORMA · Con radici nelle Dolomiti italiane</span>
+  </div>
+</footer>
+
+<script src="/mobile-nav.js?v=20261030-1"></script>
+<script src="/accessibility-runtime.js?v=20260815-4" defer></script>
+<script src="/i18n.js?v=20261113-1"></script>
+<script type="module" src="/firebase-init.js?v=20261107-1"></script>
+<script src="/icon-system.js?v=20260901-1" defer></script>
+<script src="/trail-card-visual.js?v=20260902-1" defer></script>
+<script src="/breeds-data.js?v=20260815-4" defer></script>
+<script src="/trust/evidence-v1.js?v=20261006-2" defer></script>
+<script src="/scoring/recommendation-v1.js?v=20260917-1" defer></script>
+<script src="/scoring/recommendation-adapters-v1.js?v=20260917-1" defer></script>
+<script src="/scoring-conditions.js?v=1" defer></script>
+<script src="/route-return.js?v=20261106-2" defer></script>
+<script src="/scoring.js?v=20260815-4" defer></script>
+<!-- Translates each scored factor by its code and folds the costless positives
+     into one line, so a card says "Fine for Eddie: the terrain, the 3.6 km
+     distance and the 462 m climb" rather than one templated sentence each. -->
+<script src="/match-verdict.js?v=20261002-1" defer></script>
+<script src="/recommendation-decision.js?v=20260917-1" defer></script>
+<script src="/trail-trust.js?v=20261005-1" defer></script>
+<!-- Shared discovery filter, so the guest homepage filters through the same
+     logic and thresholds as Browse and the logged-in map. -->
+<script src="/trail-season-words.js?v=20261112-1" defer></script>
+<script src="/discovery-filters.js?v=20261108-1" defer></script>
+<script src="/regions-runtime-manifest.js?v=20261007-1"></script>
+<script src="/regional-trails-loader.js?v=20261104-1" data-default-region="all"></script>
+<script src="/notifications-feed.js?v=20261023-1" defer></script>
+<script src="/regions-config.js?v=20261110-1" defer></script>
+<script src="/guest-context.js?v=20261030-1" defer></script>
+<script src="/auth-ui.js?v=20261030-1" defer></script>
+<script src="/discovery-state.js?v=20261007-1" defer></script>
+<script src="/map-runtime.js?v=20260826-1" defer></script>
+<script src="/map-style.js?v=20261029-2" defer></script>
+<script src="/basemap-poi-click.js" defer></script>
+<script src="/dog-routes-layer.js?v=20260826-1" defer></script>
+<script src="/trail-access-directions.js?v=20260815-4" defer></script>
+<script src="/trail-route-refs.js?v=20260903-1" defer></script>
+<script src="/script.js?v=20261111-1" defer></script>
+<script src="/dog-wizard.js?v=20260917-1" defer></script>
+<script src="/collections-data.js?v=20260909-1" defer></script>
+<script src="/trail-weather-window.js?v=20261106-2"></script><script src="/homepage-conditions.js?v=20260908-2"></script><script src="/homepage-search.js?v=20261110-2" defer></script>
+<script src="/homepage-mobile.js?v=20260909-1" defer></script>
+</body>
+</html>

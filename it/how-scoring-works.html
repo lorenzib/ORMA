@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="it" data-orma-lang="it">
+<head>
+<meta charset="UTF-8">
+<base href="/">
+<link rel="canonical" href="https://www.app-orma.com/it/how-scoring-works.html">
+<link rel="alternate" hreflang="en" href="https://www.app-orma.com/how-scoring-works.html">
+<link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/how-scoring-works.html">
+<link rel="alternate" hreflang="x-default" href="https://www.app-orma.com/how-scoring-works.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Come funziona il nostro punteggio | ORMA</title>
+<meta name="description" content="Come ORMA valuta i sentieri per il tuo cane: i due giudizi separati, il punteggio passo per passo, le prove su cui si basa e i suoi limiti.">
+<meta name="theme-color" content="#2E4034">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=20260916-5">
+<style>
+  .sc-inline-score{width:100%;max-width:none;margin:16px 0 20px;padding:13px 15px;border:1px solid #DED8CA;border-radius:15px;background:#F8F5EC;display:grid;grid-template-columns:auto minmax(220px,1fr);column-gap:20px;align-items:center;}
+  .sc-inline-score>span{grid-column:1;display:block;font:700 10px/1.2 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#5F665E;}
+  .sc-inline-score .sc-score-options{grid-column:1;margin-top:8px;}
+  .sc-inline-score .scoring-card-copy{grid-column:2;grid-row:2;align-self:center;transform:translateY(4px);max-width:100%;margin:0!important;white-space:normal!important;overflow-wrap:break-word;font-size:11.5px!important;line-height:1.45!important;color:#607266!important;}
+  .sc-score-options{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;}
+  .sc-score-option{appearance:none;cursor:pointer;border:1px solid transparent;border-radius:999px;padding:7px 11px;font:700 10.5px/1 'Inter',sans-serif;transition:transform .15s,box-shadow .15s;}
+  .sc-score-option:hover,.sc-score-option:focus-visible{transform:translateY(-1px);outline:none;box-shadow:0 4px 12px rgba(34,49,42,.15);}
+  .sc-score-option[aria-pressed="true"]{box-shadow:0 0 0 2px #22312A;}
+  .sc-score-option--low{color:#2C5C34;background:#DCEBDD;}
+  .sc-score-option--moderate{color:#8A5A16;background:#F5E4C6;}
+  .sc-score-option--caution{color:#9C3A25;background:#F3D9D2;}
+  .sc-js .sc-score-primer{display:none;}
+  .sc-band-chip{justify-self:start;border-radius:999px;padding:6px 10px;font:700 10.5px/1 'Inter',sans-serif;white-space:nowrap;}
+  .sc-band-chip--great{color:#2C5C34;background:#DCEBDD;}
+  .sc-band-chip--good{color:#8A5A16;background:#F5E4C6;}
+  .sc-band-chip--check{color:#9C3A25;background:#F3D9D2;}
+  .scoring-article{max-width:var(--wrap);margin:18px auto 0;padding-left:var(--wrap-gutter);padding-right:var(--wrap-gutter);}
+  /* Intro copy runs the full width of the cards it introduces. */
+  .scoring-article .guide-section > p{max-width:none;}
+  .sc-note{font-size:13px;color:var(--ink-soft,#6b6350);}
+  .sc-sources{margin:20px 0 0;font-size:12.5px;color:var(--ink-soft,#8a8168);}
+  .sc-sources summary{cursor:pointer;font:600 12.5px 'Inter',sans-serif;color:var(--ink-soft,#8a8168);}
+  .sc-sources summary:hover{color:var(--ink,#22312A);}
+  .sc-sources p{margin:8px 0 0;line-height:1.55;}
+  .sc-sources a{color:inherit;}
+  /* Card grids reusing the catalogue's colour system */
+  .scoring-article [data-lang-block]>.guide-section{padding-top:18px;}
+  .scoring-article h2{font-size:clamp(26px,2.7vw,34px);line-height:1.08;letter-spacing:-.03em;}
+  .sc-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;}
+  .sc-card{background:var(--card,#fff);border:1px solid var(--paper-line,#E5DECF);border-radius:18px;padding:20px;box-shadow:0 12px 34px rgba(46,64,52,.055);}
+  .sc-card h4{margin:0 0 8px;font:700 13.5px 'Inter',sans-serif;color:var(--ink,#22312A);}
+  .sc-card p{margin:8px 0 0;font-size:13px;line-height:1.55;color:var(--ink-soft,#6b6350);}
+  .sc-subhead{margin:26px 0 8px;font:700 19px/1.2 'Bricolage Grotesque',sans-serif;color:#22312A;scroll-margin-top:150px;}
+  .sc-steepness{max-width:460px;margin:12px 0 14px;padding:10px 18px;}
+  .sc-stat{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:5px 0;border-bottom:1px dashed var(--paper-line,#E5DECF);}
+  .sc-stat:last-of-type{border-bottom:none;}
+  .sc-stat b{color:var(--ink,#22312A);}
+  .sc-pills{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin:10px 0 2px;}
+  .sc-pill{font:700 11px 'Inter',sans-serif;padding:4px 10px;border-radius:999px;white-space:nowrap;}
+  /* Worked example: same trail, two dogs, switchable */
+  .sc-trailfacts{margin:4px 0 0;font-size:13px;color:var(--ink-soft,#6b6350);font-variant-numeric:tabular-nums;}
+  .sc-dogs{margin:16px 0 0;padding:16px;border-radius:22px;background:#E8EFE6;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .sc-dogcard{min-width:0;background:#FDFBF5;border:1px solid var(--paper-line,#E5DECF);border-radius:16px;padding:14px 16px;}
+  .sc-doghead{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .sc-dogface{flex:none;width:46px;height:46px;border-radius:50%;object-fit:cover;}
+  .sc-dogname{display:block;min-width:0;font:700 14px 'Inter',sans-serif;color:var(--ink,#22312A);}
+  .sc-dogname small{display:block;margin-top:2px;font:500 12px/1.4 'Inter',sans-serif;color:var(--ink-soft,#6b6350);}
+  .sc-sum{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:6px 0;border-bottom:1px dashed #E0D8C6;font-size:13px;color:var(--ink-soft,#6b6350);font-variant-numeric:tabular-nums;}
+  .sc-sum b{font:700 13px 'Inter',sans-serif;color:var(--ink,#22312A);white-space:nowrap;}
+  .sc-sum--total{flex-wrap:wrap;align-items:center;border-bottom:none;padding-top:10px;}
+  .sc-sum--total b{font-size:19px;color:#C98A2E;}
+  .sc-sum--total .sc-band-chip{white-space:normal;line-height:1.25;}
+  .sc-legend{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;}
+  .sc-ledger-disclosure{margin:20px 0 0;border:1px solid #D4CCBA;border-radius:16px;background:#fff;overflow:hidden;}
+  .sc-ledger-disclosure summary{cursor:pointer;list-style:none;padding:17px 20px;font:700 13px 'Inter',sans-serif;color:var(--ink,#22312A);display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .sc-ledger-disclosure summary::-webkit-details-marker{display:none;}
+  .sc-ledger-disclosure summary:after{content:"+";font-size:22px;font-weight:400;}
+  .sc-ledger-disclosure[open] summary:after{content:"−";}
+  .sc-ledger{border-top:1px solid var(--paper-line,#E5DECF);padding:4px 20px;}
+  .sc-mathrow{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dashed var(--paper-line,#E5DECF);font-size:12.5px;color:var(--ink-soft,#6b6350);}
+  .sc-mathrow:last-of-type{border-bottom:none;}
+  .sc-mathrow b{font-weight:700;color:var(--ink,#22312A);white-space:nowrap;}
+  .sc-stepper{margin:0;padding-top:8px;}
+  .sc-stepnav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 0 10px;background:transparent;border-bottom:1px solid #E2DDD1;border-radius:0;position:sticky;top:80px;z-index:5;box-shadow:none;}
+  .sc-stepnav button{appearance:none;border:1px solid transparent;border-radius:11px;background:transparent;padding:14px;cursor:pointer;text-align:left;font:700 12px/1.25 'Inter',sans-serif;color:#6B6350;transition:background .15s,border-color .15s;}
+  .sc-stepnav button:hover{background:#F4F2EB;border-color:#E2DDD1;}
+  .sc-stepnav button.is-on{background:#DCE8D9;border-color:#B8CCB8;color:#22312A;box-shadow:none;}
+  .sc-steppanel{padding:24px 0 18px;animation:sc-in .25s ease;}
+  .sc-js .sc-steppanel[hidden]{display:none;}
+  .sc-steppanel h3{font:700 clamp(24px,2.6vw,32px)/1.1 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em;margin:0 0 12px!important;}
+  @keyframes sc-in{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .sc-terrain-figure{display:grid;grid-template-columns:minmax(240px,.72fr) 1fr;gap:18px;align-items:start;margin:24px 0 0;}
+  .sc-terrain-figure img{width:100%;height:360px;min-height:0;object-fit:cover;border-radius:18px;display:block;}
+  .sc-terrain-figure .sc-cards{grid-template-columns:1fr;gap:10px;}
+  .sc-terrain-figure .sc-card{padding:16px 18px;}
+  .sc-terrain-figure figcaption{grid-column:1/-1;font-size:11px;color:var(--ink-soft,#6b6350);margin-top:3px;}
+  /* One vertical rhythm for the whole section */
+  .guide-section h3{margin:40px 0 8px;}
+  .guide-section h3 + p{margin:0 0 4px;}
+  .sc-cards{margin:12px 0 0;}
+  .sc-note{margin:10px 0 0;}
+  /* The closing explanation resolves into one quiet editorial card. */
+  .sc-panel{margin:30px 0 20px;padding:22px 24px;background:#fff;color:#22312A;border:1px solid #DED8CA;border-radius:20px;box-shadow:0 12px 32px rgba(46,64,52,.05);}
+  .sc-panel > .guide-section{margin:0;padding:0;background:none;border:0;border-radius:0;}
+  .sc-panel h2:first-child{margin-top:0;}
+  .sc-panel h2{color:#22312A;font-size:26px;}
+  .sc-panel .sc-card{background:#F8F5EC;border-color:#C8D6C5;box-shadow:none;}
+  .sc-panel .sc-note{color:#52665A;}
+  .sc-panel > .guide-section > .sc-note{margin-top:14px!important;}
+  .sc-trust-title{margin:0 0 12px;font:700 18px/1.2 'Bricolage Grotesque',sans-serif;color:#22312A;}
+  .sc-trust{display:grid;gap:10px;}
+  .sc-trust-row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center;}
+  .sc-trust-row .badge-pill{justify-self:start;}
+  .sc-trust-row p{margin:0;font-size:13px;line-height:1.5;color:#52665A;}
+  .sc-panel .sc-sources,.sc-panel .sc-sources summary{color:#52665A;}
+  .sc-panel .sc-sources summary:hover{color:#22312A;}
+  .sc-panel .sc-sources p{font-size:11.5px;line-height:1.65;color:#607266;font-weight:400;}
+  .sc-panel > .guide-section:last-child > .sc-note{font-size:12px;line-height:1.65;color:#52665A;}
+  .badge-reviewed{color:var(--ink-soft);background:var(--sage-dim);}
+  .sc-limits{margin:18px 2px 30px;padding-top:16px;border-top:1px solid #D9D3C6;font-size:12px;line-height:1.7;color:#607266;}
+  @media(max-width:900px){
+    .sc-terrain-figure{grid-template-columns:1fr;}
+    .sc-terrain-figure img{height:300px;}
+  }
+  @media(max-width:700px){
+    .scoring-article{padding-left:16px;padding-right:16px;}
+    .scoring-article [data-lang-block]>.guide-section{padding-top:14px;}
+    .sc-inline-score{grid-template-columns:1fr;row-gap:8px;}
+    .sc-inline-score .scoring-card-copy{grid-column:1;grid-row:auto;transform:none;}
+    .sc-stepnav{top:64px;}
+    .sc-stepnav button{padding:11px 4px;font-size:11px;}
+    .sc-steppanel{padding-top:18px;}
+    .sc-panel{padding:18px 16px;}
+    .sc-trust-row{grid-template-columns:1fr;gap:4px;}
+    .sc-dogs{padding:10px;gap:8px;}
+    .sc-dogcard{padding:12px;}
+    .sc-dogface{width:36px;height:36px;}
+  }
+  @media(max-width:480px){
+    .sc-doghead{flex-direction:column;align-items:flex-start;gap:6px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="/it/"><img src="/logo.svg?v=5" alt="">ORMA</a><span class="topnav-page" data-i18n="account.footer.scoring">Come funziona il punteggio</span>
+  <div class="links">
+    <a href="/it/browse-trails.html" data-i18n="account.nav.browse">Sentieri</a>
+    <a href="/collections.html" data-i18n="account.nav.collections">Raccolte</a>
+    <a href="/it/safety-guide.html" data-i18n="account.nav.safety">Guide di sicurezza</a>
+    <a href="/journal.html" data-i18n="account.nav.journal">Il mio diario delle passeggiate</a>
+    <button id="accountBtn" class="account-btn" data-i18n="nav.login">Accedi</button>
+  </div>
+</div>
+
+<header class="scoring-intro section-page-head">
+  <h1 data-i18n="page.howScoringWorks.howOurScoringWorks">Come funziona il nostro punteggio</h1>
+  <p class="section-page-subtitle" data-i18n="page.howScoringWorks.aClearRatingForEvery">Una valutazione chiara per ogni sentiero. Una compatibilità personale per il tuo cane.</p>
+</header>
+
+<div class="guide-article scoring-article" id="how-scoring-works">
+  <div data-lang-block="it">
+
+    <section class="guide-section">
+      <div class="sc-score-primer">
+      <h2>I due punteggi che vedi</h2>
+      <p>Ogni sentiero porta con sé due giudizi separati, e non li mescoliamo mai.</p>
+      <div class="sc-cards">
+        <div class="sc-card">
+          <h4>Classificazione · la montagna</h4>
+          <p>Terreno, esposizione, pericoli. Uguale per tutti i cani.</p>
+          <div class="sc-pills">
+            <span class="sc-pill" style="color:#2C5C34;background:#2C5C341f;">Basso rischio</span>
+            <span class="sc-pill" style="color:#8A5A16;background:#8A5A161f;">Moderato</span>
+            <span class="sc-pill" style="color:#9C3A25;background:#9C3A251f;">Attenzione</span>
+          </div>
+        </div>
+        <div class="sc-card">
+          <h4>Compatibilità % · il tuo cane</h4>
+          <p>Questo sentiero rispetto a forma, età, salute e corporatura del tuo cane.</p>
+          <div class="sc-pills">
+            <span class="sc-pill" style="color:#4A7856;background:#4A78561f;">85%+ Ottima scelta</span>
+            <span class="sc-pill" style="color:#C98A2E;background:#C98A2E1f;">60–84% Con attenzione</span>
+            <span class="sc-pill" style="color:#9C3A25;background:#9C3A251f;">&lt;60% Poco adatta</span>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <h3>Passo 1 · Valutiamo il sentiero</h3>
+      <p>Prima descriviamo la montagna, senza ancora considerare nessun cane. È questo che diventa la classificazione del sentiero, ed è identica per un chihuahua e per un husky.</p>
+      <div class="sc-inline-score" data-score-card>
+        <span>Classificazione del sentiero</span>
+        <div class="sc-score-options" aria-label="Possibili classificazioni del sentiero">
+          <button type="button" class="sc-score-option sc-score-option--low" data-score-option data-explanation="Rischio oggettivo più basso, con meno fattori impegnativi legati a terreno, esposizione o pericoli." aria-pressed="false">Basso rischio</button>
+          <button type="button" class="sc-score-option sc-score-option--moderate" data-score-option data-explanation="Alcuni fattori di terreno, esposizione o pericolo richiedono più preparazione e attenzione." aria-pressed="false">Moderato</button>
+          <button type="button" class="sc-score-option sc-score-option--caution" data-score-option data-explanation="Sono presenti rischi importanti. Controlla con attenzione i dati del sentiero prima di decidere." aria-pressed="false">Attenzione</button>
+        </div>
+        <p class="scoring-card-copy" data-score-explanation aria-live="polite">Scegli una classificazione per scoprirne il significato.</p>
+      </div>
+      <figure class="sc-terrain-figure">
+        <img src="/images/editorial/scoring-step-trail.jpg?v=20260821-1" alt="Un sentiero roccioso nel bosco che scende tra le Dolomiti" loading="lazy">
+        <div class="sc-cards">
+        <div class="sc-card">
+          <h4>Il terreno</h4>
+          <p>Il fondo sotto le zampe, cenge esposte e salti di roccia, ghiaioni, scale e cavi, e tutto ciò che può tagliare o ustionare un polpastrello.</p>
+        </div>
+        <div class="sc-card">
+          <h4>Lo sforzo</h4>
+          <p>Distanza, quanto si sale e quanto si ridiscende, perché le lunghe discese sono una fatica a sé.</p>
+        </div>
+        <div class="sc-card">
+          <h4>Le condizioni</h4>
+          <p>Quanta ombra offre il percorso, quanto scalda in stagione, l'acqua lungo il cammino e se i cani sono ammessi.</p>
+        </div>
+        </div>
+        <figcaption>Prima viene il sentiero: terreno, sforzo e condizioni vengono valutati prima di aggiungere il cane.</figcaption>
+      </figure>
+
+      <h3>Passo 2 · Aggiungi il tuo cane</h3>
+      <p>La forma fisica del tuo cane stabilisce tre limiti comodi. Cuccioli, cani anziani, problemi di salute e corporature estreme li abbassano. Se lasci in bianco un campo della forma fisica, riceve un valore neutro, mai una supposizione.</p>
+      <div class="sc-cards">
+        <div class="sc-card">
+          <h4>Forma bassa</h4>
+          <div class="sc-stat"><span>Pendenza</span><b>Pendenze dolci</b></div>
+          <div class="sc-stat"><span>Distanza</span><b>Fino a 5 km</b></div>
+          <div class="sc-stat"><span>Dislivello</span><b>Fino a 250 m</b></div>
+        </div>
+        <div class="sc-card">
+          <h4>Forma moderata</h4>
+          <div class="sc-stat"><span>Pendenza</span><b>Sentieri ripidi ok</b></div>
+          <div class="sc-stat"><span>Distanza</span><b>Fino a 10 km</b></div>
+          <div class="sc-stat"><span>Dislivello</span><b>Fino a 600 m</b></div>
+        </div>
+        <div class="sc-card">
+          <h4>Forma alta</h4>
+          <div class="sc-stat"><span>Pendenza</span><b>Sentieri ripidi ok</b></div>
+          <div class="sc-stat"><span>Distanza</span><b>Fino a 18 km</b></div>
+          <div class="sc-stat"><span>Dislivello</span><b>Fino a 1200 m</b></div>
+        </div>
+      </div>
+
+      <p>La forma fisica risponde a quanto lontano e quanto dislivello. Per un cane adulto in salute un sentiero ripido non è un limite in sé: ciò che può fermarlo, una cengia esposta o un ghiaione, è segnalato sul sentiero. La pendenza conta ancora per la forma bassa, i cuccioli, i cani anziani, con problemi di articolazioni o schiena, a zampe corte e molto grandi. Uno di questi limiti rende i sentieri ripidi più faticosi, non vietati: solo la forma bassa, o due limiti insieme, li escludono. E un sentiero conta come ripido solo dove il tratto ripido dura 300 m o più, non per un breve gradino. Il comportamento risponde a dove. Puoi raccontarci anche del richiamo, della reattività, dell'istinto predatorio, di come sta il tuo cane con bestiame, traffico e folla, della tolleranza al caldo e della durata di passeggiata che preferisci.</p>
+      <p>Queste domande funzionano diversamente dal resto del profilo. Se ne lasci una in bianco non diciamo nulla al riguardo, in nessuna delle due direzioni: nessuna penalità e nemmeno una rassicurazione. Dire che un percorso va bene per un cane di cui non abbiamo mai chiesto il richiamo è l'errore da evitare davvero.</p>
+
+      <h4 class="sc-subhead" id="pendenza">Quanto è ripido un sentiero</h4>
+      <p>Leggiamo il profilo altimetrico di ogni passeggiata e cerchiamo il tratto più ripido che dura almeno 300 m. È quel tratto, non un breve gradino, a dare la pendenza della passeggiata:</p>
+      <div class="sc-card sc-steepness">
+        <div class="sc-stat"><span>Dolce</span><b>meno del 10%</b></div>
+        <div class="sc-stat"><span>Abbastanza ripida</span><b>10–18%</b></div>
+        <div class="sc-stat"><span>Ripida, come la maggior parte dei sentieri di montagna</span><b>18% o più</b></div>
+      </div>
+      <p>Una pendenza del 10% sale di 10 m ogni 100 m di cammino. Ogni cane ha un limite sugli stessi tre gradini. Quando una passeggiata è un gradino più ripida del limite del tuo cane, la pagina del sentiero lo dice con la cifra, per esempio “il tratto più ripido è di circa il 15%, e Teo sta meglio su pendenze dolci”, e la compatibilità scende di 10 punti per gradino.</p>
+
+      <h3>Passo 3 · Spieghiamo la compatibilità</h3>
+      <p>Stesso sentiero, due cani, due punteggi.</p>
+      <p class="sc-trailfacts">12 km · 700 m di dislivello · terreno misto · 30% d'ombra</p>
+      <div class="sc-dogs" role="group" aria-label="Due cani sullo stesso sentiero">
+        <div class="sc-dogcard" data-dog="bruna">
+          <div class="sc-doghead"><img class="sc-dogface" src="/images/editorial/scoring-dogs/bruna-labrador.png" width="46" height="46" alt="Bruna, una labrador dal mantello giallo"><span class="sc-dogname">Bruna<small>6 anni, labrador, soffre il caldo</small></span></div>
+          <div class="sc-sum"><span>Si parte da</span><b>100%</b></div>
+          <div class="sc-sum"><span>Distanza</span><b>−10</b></div>
+          <div class="sc-sum"><span>Dislivello</span><b>−4</b></div>
+          <div class="sc-sum"><span>Caldo o ombra, il più alto</span><b>−10</b></div>
+          <div class="sc-sum sc-sum--total"><span class="sc-band-chip sc-band-chip--good">Con attenzione</span><b style="color:#C98A2E;">76%</b></div>
+        </div>
+        <div class="sc-dogcard" data-dog="luna">
+          <div class="sc-doghead"><img class="sc-dogface" src="/images/editorial/scoring-dogs/luna-border-collie.png" width="46" height="46" alt="Luna, una giovane border collie bianca e nera"><span class="sc-dogname">Luna<small>3 anni, border collie, molto in forma</small></span></div>
+          <div class="sc-sum"><span>Si parte da</span><b>100%</b></div>
+          <div class="sc-sum"><span>Distanza</span><b>0</b></div>
+          <div class="sc-sum"><span>Dislivello</span><b>0</b></div>
+          <div class="sc-sum"><span>Caldo o ombra, il più alto</span><b>−5</b></div>
+          <div class="sc-sum sc-sum--total"><span class="sc-band-chip sc-band-chip--great">Ottima scelta</span><b style="color:#4A7856;">95%</b></div>
+        </div>
+      </div>
+      <div class="sc-legend">
+        <span class="sc-band-chip sc-band-chip--great">85%+ Ottima scelta</span>
+        <span class="sc-band-chip sc-band-chip--good">60–84% Con attenzione</span>
+        <span class="sc-band-chip sc-band-chip--check">Sotto il 60% Poco adatta</span>
+      </div>
+      <details class="sc-ledger-disclosure">
+        <summary>Vedi tutte le regole e quanto costano</summary>
+        <div class="sc-ledger">
+        <div class="sc-mathrow"><span>Ogni grado di pendenza oltre quanto il cane regga, per forma bassa, cuccioli, cani anziani, con problemi di articolazioni o schiena, a zampe corte e molto grandi</span><b>−10</b></div>
+        <div class="sc-mathrow"><span>Ogni chilometro oltre la distanza comoda del cane</span><b>−5, fino a −35</b></div>
+        <div class="sc-mathrow"><span>Ogni 100 m di dislivello in più</span><b>−4, fino a −20</b></div>
+        <div class="sc-mathrow"><span>Discese lunghe oltre 400 m, per cani anziani, molto grandi o con articolazioni delicate</span><b>fino a −20</b></div>
+        <div class="sc-mathrow"><span>Cenge esposte e salti di roccia, di più per cani anziani o che vedono poco</span><b>da −30 a −40</b></div>
+        <div class="sc-mathrow"><span>Caldo sul percorso, di più per cani brachicefali e dal pelo folto</span><b>da −4 a −25</b></div>
+        <div class="sc-mathrow"><span>Sotto il 40% di ombra, sotto il 20%. Caldo e ombra sono un solo pericolo, quindi conta solo il più alto dei due</span><b>−5, −10</b></div>
+        <div class="sc-mathrow"><span>Il caldo di oggi, quando abbiamo una previsione</span><b>da −4 a −25</b></div>
+        <div class="sc-mathrow"><span>Ogni avvertenza registrata sul percorso, come roccia tagliente, ghiaione o un attraversamento stradale</span><b>−4, fino a −10</b></div>
+        <div class="sc-mathrow"><span>Un tratto che segnaliamo da evitare</span><b>−20</b></div>
+        <div class="sc-mathrow"><span>Regole stagionali di accesso, finché non verifichi la data</span><b>trattenuto a 84</b></div>
+        <div class="sc-mathrow"><span>Percorso, esposizione, fondo o regole per i cani non ancora controllati</span><b>trattenuto a 80, mai un'Ottima scelta</b></div>
+        <div class="sc-mathrow"><span>Cani vietati sul percorso</span><b>mai consigliato</b></div>
+        <div class="sc-mathrow"><span>Una seggiovia aperta da cui dipende il percorso</span><b>mai consigliato</b></div>
+        <div class="sc-mathrow"><span>La stessa seggiovia, per un cane fino a 8 kg che hai detto di tenere in braccio</span><b>−20, mai un'Ottima scelta</b></div>
+        <div class="sc-mathrow"><span>Bestiame al pascolo, pesato su richiamo, istinto predatorio e disinvoltura con gli animali</span><b>fino a −38</b></div>
+        <div class="sc-mathrow"><span>Fauna selvatica sul percorso, per un cane che insegue</span><b>fino a −20</b></div>
+        <div class="sc-mathrow"><span>Terreno chiuso, dove non riesci a tenere il cane a vista</span><b>fino a −10</b></div>
+        <div class="sc-mathrow"><span>Strade e traffico, per un cane che non se ne fida</span><b>fino a −22</b></div>
+        <div class="sc-mathrow"><span>Sentieri affollati, per un cane che ha bisogno di spazio</span><b>fino a −16</b></div>
+        <div class="sc-mathrow"><span>Un percorso ben oltre la durata che preferisci</span><b>fino a −10</b></div>
+        <div class="sc-mathrow"><span>Tutto il comportamento insieme, qualunque sia il totale</span><b>tetto a −45</b></div>
+        </div>
+      </details>
+    </section>
+
+    <div class="sc-panel">
+      <section class="guide-section">
+        <div class="sc-trust-title">Quanto conosciamo il sentiero</div>
+        <div class="sc-trust">
+          <div class="sc-trust-row"><span class="badge-pill badge-verified">VERIFICATO DA ORMA</span><p>Controllato su fonti ufficiali, come l'ente turistico o il parco, con indicazioni che puoi seguire.</p></div>
+          <div class="sc-trust-row"><span class="badge-pill badge-reviewed">REVISIONATO DA ORMA</span><p>Lo abbiamo controllato, ma manca ancora qualcosa. La pagina del sentiero dice cosa.</p></div>
+          <div class="sc-trust-row"><span class="badge-pill badge-imported">IMPORTATO</span><p>Da OpenStreetMap. Non ancora controllato da noi.</p></div>
+        </div>
+      </section>
+    </div>
+    <p class="sc-limits">Il punteggio è una guida, non una garanzia. Nel dubbio, scegli il sentiero più gentile: il tuo veterinario conosce il tuo cane meglio di tutti.</p>
+  </div>
+</div>
+
+<footer class="site-footer hp-footer">
+  <div class="hp-footer-grid">
+    <div>
+      <div class="hp-footer-brand"><img src="/logo.svg?v=5" alt=""><span>ORMA</span></div>
+      <p class="hp-footer-blurb">La guida ai sentieri personalizzata per i cani e i loro umani, perché ogni impronta lasciata in montagna sia sicura.</p>
+      <div class="hp-footer-get">
+        <div class="hp-footer-h">Scarica l’app</div>
+        <div class="hp-footer-apps">
+          <button type="button" class="hp-footer-install" data-orma-install hidden>Aggiungi ORMA alla schermata Home</button>
+        </div>
+        <p class="hp-footer-appnote">Aggiungi ORMA alla schermata Home dal menu del browser per avere la mappa a schermo intero.</p>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Sentieri</div>
+      <div class="hp-footer-links">
+        <a href="/it/browse-trails.html">Tutti i sentieri</a>
+        <a href="/collections.html">Raccolte</a>
+        <a href="/compare.html">Confronta sentieri</a>
+        <a href="/it/how-scoring-works.html">Come funziona il punteggio</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Prendersi cura del cane</div>
+      <div class="hp-footer-links">
+        <a href="/it/guides/heat-overheating.html">Il caldo e il tuo cane</a>
+        <a href="/it/guides/paw-protection.html">Proteggere le zampe</a>
+        <a href="/it/guides/breed-group-caveats.html">Razza e corporatura del tuo cane</a>
+        <a href="/it/guides/alpine-plants-for-dogs.html">Il tuo cane e le piante alpine</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Le tue passeggiate</div>
+      <div class="hp-footer-links">
+        <a href="/journal.html">Il mio diario delle passeggiate</a>
+        <a href="/saved.html">Sentieri salvati</a>
+        <a href="/downloads.html">Sentieri scaricati</a>
+        <a href="/walk.html">Registra una passeggiata</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Azienda</div>
+      <div class="hp-footer-links">
+        <a href="/it/about.html">Chi siamo</a>
+        <a href="/it/contact.html">Contatti</a>
+        <a href="/it/privacy.html">Privacy</a>
+        <a href="/it/terms.html">Termini</a>
+      </div>
+    </div>
+  </div>
+  <div class="hp-footer-connect">
+    <div class="hp-footer-connect-main">
+      <span class="hp-footer-h">Seguici</span>
+      <div class="hp-footer-social-row">
+        <a href="https://www.instagram.com/app.orma/" target="_blank" rel="noopener" aria-label="ORMA su Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="hp-footer-base">
+    <span>© 2026 ORMA · Con radici nelle Dolomiti italiane</span>
+  </div>
+</footer>
+
+<script src="/mobile-nav.js?v=20261030-1"></script>
+<script src="/i18n.js"></script>
+<script type="module" src="/firebase-init.js"></script>
+<script src="/auth-ui.js?v=20261030-1" defer></script>
+<script src="/guide-navigation.js?v=20260815-3"></script>
+<script>
+document.documentElement.classList.add('sc-js');
+
+/* Each headline scale can be explored without implying a fixed example. */
+(function(){
+  document.querySelectorAll('.sc-score-options').forEach(function(group){
+    group.querySelectorAll('[data-score-option]').forEach(function(option){
+      option.addEventListener('click', function(){
+        group.querySelectorAll('[data-score-option]').forEach(function(item){
+          item.setAttribute('aria-pressed', item === option ? 'true' : 'false');
+        });
+        var scoreCard = group.closest('[data-score-card]');
+        var explanation = scoreCard && scoreCard.querySelector('[data-score-explanation]');
+        if (explanation) explanation.textContent = option.dataset.explanation;
+      });
+    });
+  });
+})();
+
+/* Turn the three explanatory stages into a compact, keyboard-accessible
+   walkthrough. The source remains fully readable when JavaScript is absent. */
+(function(){
+  document.querySelectorAll('[data-lang-block]').forEach(function(langBlock, blockIndex){
+    var section = langBlock.querySelector('.guide-section');
+    var allHeadings = Array.from(section.querySelectorAll(':scope > h3'));
+    var headings = allHeadings.slice(0, 3);
+    if (headings.length !== 3) return;
+
+    var italian = langBlock.dataset.langBlock === 'it';
+    var labels = italian
+      ? ['Passo 1 · Il sentiero', 'Passo 2 · Il tuo cane', 'Passo 3 · La compatibilità']
+      : ['Step 1 · The Trail', 'Step 2 · Your Dog', 'Step 3 · The Match'];
+    var stepper = document.createElement('div');
+    stepper.className = 'sc-stepper';
+    var nav = document.createElement('div');
+    nav.className = 'sc-stepnav';
+    nav.setAttribute('role', 'tablist');
+    nav.setAttribute('aria-label', italian ? 'Passaggi del punteggio' : 'Scoring steps');
+    stepper.appendChild(nav);
+    section.insertBefore(stepper, headings[0]);
+
+    var buttons = [];
+    var panels = [];
+    headings.forEach(function(heading, index){
+      var panel = document.createElement('div');
+      var panelId = 'sc-step-' + blockIndex + '-' + (index + 1);
+      panel.className = 'sc-steppanel';
+      panel.id = panelId;
+      panel.setAttribute('role', 'tabpanel');
+      panel.tabIndex = 0;
+      panel.hidden = index !== 0;
+      var stop = index === headings.length - 1 ? null : allHeadings[index + 1];
+      var node = heading;
+      while (node && node !== stop) {
+        var next = node.nextSibling;
+        panel.appendChild(node);
+        node = next;
+      }
+      stepper.appendChild(panel);
+      panels.push(panel);
+
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = labels[index];
+      button.setAttribute('role', 'tab');
+      button.setAttribute('aria-controls', panelId);
+      button.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+      button.tabIndex = index === 0 ? 0 : -1;
+      button.className = index === 0 ? 'is-on' : '';
+      nav.appendChild(button);
+      buttons.push(button);
+    });
+
+    function show(index, focus){
+      buttons.forEach(function(button, itemIndex){
+        var active = itemIndex === index;
+        button.classList.toggle('is-on', active);
+        button.setAttribute('aria-selected', active ? 'true' : 'false');
+        button.tabIndex = active ? 0 : -1;
+        panels[itemIndex].hidden = !active;
+      });
+      if (focus) buttons[index].focus();
+    }
+    // A link to something inside a step (the trail page's "How ORMA scores a
+    // walk" goes to #steepness) opens that step, or it would land on step 1.
+    var target = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    var holding = target ? panels.findIndex(function(panel){ return panel.contains(target); }) : -1;
+    if (holding > 0) {
+      show(holding, false);
+      requestAnimationFrame(function(){ target.scrollIntoView({ block:'start' }); });
+    }
+    buttons.forEach(function(button, index){
+      button.addEventListener('click', function(){ show(index, false); });
+      button.addEventListener('keydown', function(event){
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        show((index + (event.key === 'ArrowRight' ? 1 : 2)) % 3, true);
+      });
+    });
+  });
+})();
+
+
+/* A trail rating linked from elsewhere (#rating-low-risk, #rating-moderate,
+   #rating-caution) opens here already explained: that rating is pressed in
+   the trail-rating picker of each language, and the visible one is brought
+   into view. */
+(function(){
+  var RATINGS = { 'rating-low-risk':'low', 'rating-moderate':'moderate', 'rating-caution':'caution' };
+  function showRating(){
+    var level = RATINGS[(location.hash || '').slice(1)];
+    if(!level) return;
+    var shown = null;
+    document.querySelectorAll('[data-lang-block]').forEach(function(block){
+      var option = block.querySelector('.sc-score-option--' + level);
+      if(!option) return;
+      option.click();
+      if(!block.hidden) shown = option.closest('[data-score-card]');
+    });
+    if(shown) shown.scrollIntoView({ block:'center' });
+  }
+  window.addEventListener('hashchange', showRating);
+  // After i18n has picked which language block is visible.
+  window.addEventListener('load', showRating);
+})();
+</script>
+</body>
+</html>

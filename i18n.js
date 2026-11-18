@@ -948,6 +948,22 @@
     'browse.filters.terrain': 'Terrain underfoot',
     'browse.filters.show': 'Show trails',
     'browse.filters.showCount': 'Show {count}',
+    'browse.filters.filterDistance': 'Filter by distance',
+    'browse.filters.filterRating': 'Filter by trail rating',
+    'browse.filters.filterTerrain': 'Filter by terrain tolerance',
+    'browse.filters.filterHeat': 'Filter by reviewed shade or heat',
+    'browse.filters.filterExposure': 'Filter by reviewed exposure',
+    'browse.filters.filterAccess': 'Filter by reviewed dog access',
+    'browse.filters.filterCountry': 'Filter trails by country',
+    'browse.filters.filterRegion': 'Filter trails by region',
+    'browse.filters.filterValley': 'Filter trails by valley',
+    'browse.filters.anyHeat': 'Any shade or heat data',
+    'browse.filters.shade30': 'At least 30% shade',
+    'browse.filters.anyExposure': 'Any exposure data',
+    'browse.filters.anyAccess': 'Any dog-access status',
+    'browse.filters.upTo3': 'Up to 3 km',
+    'browse.filters.upTo6': 'Up to 6 km',
+    'browse.filters.upTo20': 'Up to 20 km',
     'browse.quick.aria': 'Quick dog filters',
     'browse.quick.shade': 'High shade',
     'browse.quick.water': 'Water',
@@ -1484,15 +1500,16 @@
     'recommendation.subject.guest': 'a medium dog',
     'recommendation.breakdown.title': 'Why {score}% for {name}',
     'recommendation.breakdown.titleNoScore': 'Why this score for {name}',
-    'recommendation.breakdown.noCost': 'fine',
     'recommendation.breakdown.note': 'note',
+    'recommendation.breakdown.points': 'How the score adds up',
     'recommendation.breakdown.stop': 'stop',
-    'recommendation.fine.line': 'Fine for {name}: {items}.',
-    'recommendation.fine.line.possible-with-cautions': 'Not a concern for {name}: {items}. The reasons above still apply.',
-    'recommendation.fine.line.not-recommended': 'Not the problem here: {items}. These do not outweigh the reasons above.',
+    'recommendation.breakdown.how': 'How ORMA scores a walk',
+    'recommendation.breakdown.howHref': 'how-scoring-works.html#steepness',
+    'recommendation.unchecked.title': 'Not checked yet',
+    'recommendation.unchecked.lead': 'These aren’t in the score, so check them yourself.',
     'recommendation.fine.trail.distance.within-range': 'the {distance} km distance',
     'recommendation.fine.trail.ascent.within-range': 'the {ascent} m climb',
-    'recommendation.fine.trail.terrain.within-tolerance': 'the terrain',
+    'recommendation.fine.trail.terrain.within-tolerance': 'the steepness',
     'recommendation.fine.trail.duration.within-preference': 'the walking time',
     'recommendation.fine.conditions.heat.low': 'today’s temperatures',
     'recommendation.fine.trail.heat.low': 'heat exposure',
@@ -1523,9 +1540,9 @@
     'recommendation.reason.dog.fitness.unknown': 'Fitness is missing, so moderate fitness is used as a neutral planning default.',
     'recommendation.reason.dog.age.unknown': 'Age is missing, so life-stage adjustments are not applied.',
     'recommendation.reason.dog.weight.unknown': 'Weight is missing, so size adjustments are not applied.',
-    'recommendation.reason.trail.terrain.unknown': 'Terrain difficulty is unknown.',
-    'recommendation.reason.trail.terrain.above-tolerance': 'The terrain is harder than {name} is up to (grade {terrain}, tolerance {tolerance}).',
-    'recommendation.reason.trail.terrain.within-tolerance': 'The terrain suits {name}.',
+    'recommendation.reason.trail.terrain.unknown': 'We don’t know how steep the path is.',
+    'recommendation.reason.trail.terrain.above-tolerance': 'The path is steeper than {name} is up to.',
+    'recommendation.reason.trail.terrain.within-tolerance': 'The slopes suit {name}.',
     'recommendation.reason.trail.distance.unknown': 'Route distance is unknown.',
     'recommendation.reason.trail.distance.above-range': '{distance} km is more than {name}’s {range} km range.',
     'recommendation.reason.trail.distance.within-range': '{distance} km is within {name}’s range.',
@@ -1753,6 +1770,8 @@
     'page.index.trailActions': 'Trail actions',
     'page.index.trailMapNumberedMarkersCorrespond': 'Trail map. Numbered markers correspond to the ranked shortlist; other trails are grey.',
     'page.index.drawARouteHere': 'Draw a route here',
+    'page.index.todaysPicks': 'Today’s picks',
+    'page.index.backToTodaysPicks': '← Back to today’s picks',
     'page.index.expandMap': 'Expand map',
     'page.index.mapKey': 'Map key',
     'page.index.1MatchesList': '<i class="is-ranked">1</i>Matches list',
@@ -2930,6 +2949,22 @@
     'browse.filters.terrain': 'Terreno',
     'browse.filters.show': 'Mostra sentieri',
     'browse.filters.showCount': 'Mostra {count}',
+    'browse.filters.filterDistance': 'Filtra per distanza',
+    'browse.filters.filterRating': 'Filtra per valutazione del sentiero',
+    'browse.filters.filterTerrain': 'Filtra per tolleranza al terreno',
+    'browse.filters.filterHeat': 'Filtra per ombra o caldo verificati',
+    'browse.filters.filterExposure': 'Filtra per esposizione verificata',
+    'browse.filters.filterAccess': 'Filtra per accesso dei cani verificato',
+    'browse.filters.filterCountry': 'Filtra i sentieri per paese',
+    'browse.filters.filterRegion': 'Filtra i sentieri per regione',
+    'browse.filters.filterValley': 'Filtra i sentieri per valle',
+    'browse.filters.anyHeat': 'Qualsiasi dato su ombra o caldo',
+    'browse.filters.shade30': 'Almeno il 30% di ombra',
+    'browse.filters.anyExposure': 'Qualsiasi dato sull’esposizione',
+    'browse.filters.anyAccess': 'Qualsiasi regola di accesso per i cani',
+    'browse.filters.upTo3': 'Fino a 3 km',
+    'browse.filters.upTo6': 'Fino a 6 km',
+    'browse.filters.upTo20': 'Fino a 20 km',
     'browse.quick.aria': 'Filtri rapidi per il cane',
     'browse.quick.shade': 'Molta ombra',
     'browse.quick.water': 'Acqua',
@@ -3466,15 +3501,16 @@
     'recommendation.subject.guest': 'un cane di taglia media',
     'recommendation.breakdown.title': 'Perché {score}% per {name}',
     'recommendation.breakdown.titleNoScore': 'Perché questo punteggio per {name}',
-    'recommendation.breakdown.noCost': 'ok',
     'recommendation.breakdown.note': 'nota',
+    'recommendation.breakdown.points': 'Come si arriva al punteggio',
     'recommendation.breakdown.stop': 'stop',
-    'recommendation.fine.line': 'Nessun problema per {name}: {items}.',
-    'recommendation.fine.line.possible-with-cautions': 'Nessuna preoccupazione per {name}: {items}. I motivi qui sopra restano validi.',
-    'recommendation.fine.line.not-recommended': 'Non è questo il problema: {items}. Non compensano i motivi qui sopra.',
+    'recommendation.breakdown.how': 'Come ORMA valuta una passeggiata',
+    'recommendation.breakdown.howHref': 'how-scoring-works.html#pendenza',
+    'recommendation.unchecked.title': 'Non ancora verificato',
+    'recommendation.unchecked.lead': 'Non rientrano nel punteggio: verificali tu.',
     'recommendation.fine.trail.distance.within-range': 'la distanza di {distance} km',
     'recommendation.fine.trail.ascent.within-range': 'la salita di {ascent} m',
-    'recommendation.fine.trail.terrain.within-tolerance': 'il terreno',
+    'recommendation.fine.trail.terrain.within-tolerance': 'la pendenza',
     'recommendation.fine.trail.duration.within-preference': 'la durata',
     'recommendation.fine.conditions.heat.low': 'le temperature di oggi',
     'recommendation.fine.trail.heat.low': 'l’esposizione al caldo',
@@ -3505,9 +3541,9 @@
     'recommendation.reason.dog.fitness.unknown': 'Manca il livello di forma fisica, quindi viene usato un livello moderato come valore neutro di pianificazione.',
     'recommendation.reason.dog.age.unknown': 'Manca l’età, quindi non vengono applicati adattamenti per la fase di vita.',
     'recommendation.reason.dog.weight.unknown': 'Manca il peso, quindi non vengono applicati adattamenti per la taglia.',
-    'recommendation.reason.trail.terrain.unknown': 'La difficoltà del terreno è sconosciuta.',
-    'recommendation.reason.trail.terrain.above-tolerance': 'Il terreno è più impegnativo di quanto {name} regga (grado {terrain}, tolleranza {tolerance}).',
-    'recommendation.reason.trail.terrain.within-tolerance': 'Il terreno è adatto a {name}.',
+    'recommendation.reason.trail.terrain.unknown': 'Non si sa quanto sia ripido il sentiero.',
+    'recommendation.reason.trail.terrain.above-tolerance': 'Il sentiero è più ripido di quanto {name} regga.',
+    'recommendation.reason.trail.terrain.within-tolerance': 'Le pendenze sono adatte a {name}.',
     'recommendation.reason.trail.distance.unknown': 'La distanza del percorso è sconosciuta.',
     'recommendation.reason.trail.distance.above-range': '{distance} km superano i {range} km alla portata di {name}.',
     'recommendation.reason.trail.distance.within-range': '{distance} km sono alla portata di {name}.',
@@ -3735,6 +3771,8 @@
     'page.index.trailActions': 'Azioni sul sentiero',
     'page.index.trailMapNumberedMarkersCorrespond': 'Mappa dei sentieri. I segnaposto numerati corrispondono alla classifica; gli altri sentieri sono in grigio.',
     'page.index.drawARouteHere': 'Disegna un percorso qui',
+    'page.index.todaysPicks': 'Le scelte di oggi',
+    'page.index.backToTodaysPicks': '← Torna alle scelte di oggi',
     'page.index.expandMap': 'Ingrandisci la mappa',
     'page.index.mapKey': 'Legenda',
     'page.index.1MatchesList': '<i class="is-ranked">1</i>In classifica',
@@ -3992,6 +4030,7 @@
   try {
     lang = localStorage.getItem(STORAGE_KEY);
   } catch (e) { lang = null; }
+  const chosen = lang === 'en' || lang === 'it';
   if (lang !== 'en' && lang !== 'it') {
     lang = (navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
   }
@@ -3999,6 +4038,12 @@
   // its menus and footer follow it whatever the saved choice is.
   const fixedLang = document.documentElement.getAttribute('data-orma-lang');
   if (fixedLang === 'en' || fixedLang === 'it') lang = fixedLang;
+  // Somebody who arrives on an Italian copy (from a search, say) and has never
+  // picked a language keeps Italian as they move on to the app's pages, which
+  // otherwise follow the browser. A saved choice is never overwritten.
+  if (fixedLang === 'it' && !chosen) {
+    try { localStorage.setItem(STORAGE_KEY, 'it'); } catch (e) { /* storage blocked: this page stays Italian */ }
+  }
   document.documentElement.lang = lang;
 
   // Wording that scripts write on the page uses the English sentence as its own
@@ -4008,7 +4053,7 @@
   if (lang === 'it' && !window.ORMA_PHRASES_IT && document.readyState === 'loading') {
     const here = document.currentScript && document.currentScript.src;
     const base = here ? here.replace(/[^/]*$/, '') : '';
-    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261113-1"><\/script>');
+    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261118-1"><\/script>');
     document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261111-1"><\/script>');
   }
 
@@ -4218,10 +4263,11 @@
     links.appendChild(wrap);
   }
 
-  // Guides, the safety library and the legal pages have Italian copies under
-  // /it/. Italian readers following a link to one get the copy. Links built
-  // later by scripts are caught when they are clicked.
-  const ITALIAN_COPY = /^\/((?:guides\/[\w-]+|safety-guide|privacy|terms)\.html)$/;
+  // Guides, the safety library, the legal pages and the main pages (home,
+  // browse, about, scoring, contact) have Italian copies under /it/. Italian
+  // readers following a link to one get the copy. Links built later by scripts
+  // are caught when they are clicked.
+  const ITALIAN_COPY = /^\/((?:guides\/[\w-]+|safety-guide|privacy|terms|browse-trails|about|how-scoring-works|contact)\.html|index\.html|)$/;
   function italianCopyOf(anchor){
     if (lang !== 'it' || !anchor || !anchor.href) return null;
     let url;
@@ -4229,7 +4275,7 @@
     if (url.origin !== location.origin) return null;
     const match = ITALIAN_COPY.exec(url.pathname);
     if (!match) return null;
-    url.pathname = '/it/' + match[1];
+    url.pathname = '/it/' + match[1].replace(/^index\.html$/, '');
     return url.href;
   }
   function routeToItalianCopies(){
