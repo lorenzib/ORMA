@@ -200,3 +200,9 @@ describe('the trail page breakdown keeps the points one tap away', () => {
     expect(points).toContain('−4');
   });
 });
+
+test('a breakdown pill capitalises its first letter only, so "Lowers score" stays as written', () => {
+  const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+  expect(html).toContain('.recommendation-factor-status::first-letter{text-transform:uppercase;}');
+  expect(html).not.toMatch(/\.recommendation-factor-status\{[^}]*capitalize/);
+});
