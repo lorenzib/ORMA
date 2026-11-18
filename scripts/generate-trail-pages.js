@@ -21,6 +21,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const { ITALIAN_COPY_BANNER } = require('./italian-copy-banner');
+const { writeItalianMainPages } = require('./italian-main-pages');
 const evidenceContract = require('../trust/evidence-v1.js');
 const recommendationContract = require('../scoring/recommendation-v1.js');
 const photoProvenance = require('../trail-photo-provenance.js');
@@ -1458,6 +1459,14 @@ function main() {
 
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap([...urls, ...italianUrls]), 'utf8');
   updateBrowseIndex(indexEntries);
+  // The Italian copies of the main pages, browse included, read the pages just
+  // written (scripts/italian-main-pages.js). The walk list names each walk as
+  // its Italian page does.
+  const italianNames = new Map();
+  LANG = 'it';
+  for (const { t, slug } of entries) italianNames.set(slug, nm(t));
+  LANG = 'en';
+  writeItalianMainPages(ROOT, { italianNames });
 
   // Remove stale pages for trails that no longer exist in the datasets
   // (renamed, or pulled entirely, e.g. routes where dogs turned out to be
