@@ -106,16 +106,15 @@ describe('shared map quality profile', () => {
 
   test('the selected route highlights the marked path from underneath', () => {
     const style = read('map-style.js');
-    // A solid line ON TOP buries Waymarked's own route line and its numbered
-    // shields, which is why we used to reprint the numbers ourselves. The
-    // route goes below the raster as a pale corridor instead, solid so it
-    // has no darker knots where the walk overlaps itself.
-    expect(style).toContain("'line-color': paleColour(color),\n        'line-opacity': 1,");
-    // The casing is two thin edges around the corridor, not a white band
-    // under it, so the path inside the corridor is not washed out.
-    expect(style).toContain('widthRamp(1.5, 2, 2.5, 3, scale)');
-    expect(style).toContain("'line-gap-width': widthRamp(7, 12, 18, 26, scale)");
-    expect(style).toContain('widthRamp(7, 12, 18, 26, scale)');
+    // A line ON TOP buries Waymarked's own route line and its numbered
+    // shields, so the walk still goes below the marked network. It is a thin
+    // solid line in the match colour on a slightly wider white edge: the wide
+    // pale corridor it replaced read as a blob on the many walks that follow
+    // no numbered route, so their bends were hard to follow.
+    expect(style).toContain("'line-color': color,\n        'line-opacity': 1,");
+    expect(style).toContain('widthRamp(4, 5.5, 7, 9, scale)');
+    expect(style).toContain('widthRamp(2, 2.75, 3.75, 5, scale)');
+    expect(style).not.toContain("'line-gap-width': widthRamp(7, 12, 18, 26, scale)");
     // Default insertion point: under the contours and the marked network
     // (our dashed routes, or Waymarked's raster), so both draw over it.
     expect(style).toContain('const fallbackBefore = walkCorridorBeforeId(map);');
@@ -237,7 +236,8 @@ describe('shared map quality profile', () => {
     // script.js is also evaluated without the scoring stack, so the accessor
     // tolerates a missing engine rather than taking the homepage down.
     expect(script).toMatch(/return \(scoring && scoring\.GUEST_SUBJECT\) \|\|/);
-    expect(read('scoring.js')).toContain("GUEST_SUBJECT = Object.freeze({ terrain:'1', distance:'10', heatSensitive:false })");
+    // The same empty subject the planning view scores, so map and page agree.
+    expect(read('scoring.js')).toContain('GUEST_SUBJECT = Object.freeze({});');
   });
 
   test('the browse map shows the path network, the collection map waits for zoom', () => {
