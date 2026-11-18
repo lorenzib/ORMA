@@ -156,11 +156,32 @@ describe('Important for your dog', () => {
     expect(trust.surfaceAssessment(TRAIL)).toBeNull();
   });
 
-  test('the surface row says what is underfoot, then each caution', () => {
+  test('the ground row says what is underfoot, then each rough spot', () => {
     const rough = { ...TRAIL, terrainRank:1, terrainType:'Rocky path: roots and scree', surfaceHazards:['Loose scree below the col', 'Village streets with traffic'] };
     const surface = trust.surfaceAssessment(rough);
-    expect(surface.detail).toBe('Underfoot: rocky path, roots and scree. Check pads at breaks.');
+    expect(surface.detail).toBe('Rocky path, roots and scree. Check paws at breaks.');
     expect(surface.items).toEqual(['Loose scree below the col']);
+  });
+
+  test('mapped surface tags read as plain words, without the data source', () => {
+    expect(trust.plainGround('Sparsely mapped: unpaved (50%), compacted gravel (50%), from OSM surface data')).toBe('Mostly dirt and gravel');
+    expect(trust.plainGround('Partially mapped: natural ground (36%), paved (29%), gravel (21%), from OSM surface data')).toBe('Mostly dirt, tarmac and gravel');
+    expect(trust.plainGround('Sparsely mapped: paved (83%), grass (17%), metal walkway (0%), from OSM surface data')).toBe('Mostly tarmac');
+    expect(trust.plainGround('Surface not yet field-verified')).toBe('Mixed ground');
+  });
+
+  test('each recorded note sits under the card it is about', () => {
+    const colli = { ...TRAIL, terrainRank:2, surfaceHazards:[
+      'Unpaved military tracks open to farm and forestry vehicles',
+      'WWI trenches, caverns and ruins beside the path; tunnel roofs are unsafe',
+      'Small stream crossings without bridges',
+      'Cows graze on the Plätzwiese',
+    ] };
+    expect(trust.trafficAssessment(colli).items).toEqual(['Unpaved military tracks open to farm and forestry vehicles']);
+    expect(trust.surfaceAssessment(colli).items).toEqual(['Small stream crossings without bridges']);
+    expect(trust.livestockAssessment(colli, '').items).toEqual(['Cows graze on the Plätzwiese']);
+    expect(trust.livestockAssessment(colli, '').detail).not.toMatch(/guardian/i);
+    expect(trust.alongTheWayAssessment(colli).items).toEqual(['WWI trenches, caverns and ruins beside the path; tunnel roofs are unsafe']);
   });
 });
 

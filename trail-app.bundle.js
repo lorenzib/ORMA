@@ -7544,16 +7544,16 @@ function effectiveOverrides(profile, adjustOverride){
   function waterAssessment(trail) {
     const mapped = Array.isArray(trail.waterSources) && trail.waterSources.length > 0;
     if (!categoryVerified(trail, 'water')) {
-      return { ok: false, title: tx('Bring your own water'), detail: tx('Do not rely on potential water locations being available or drinkable. Carry enough for the full walk.') };
+      return { ok: false, title: tx('Bring your own water'), detail: tx('Don’t count on water along the way. Carry enough for the whole walk.') };
     }
     if (imported(trail)) {
       return mapped
-        ? { ok: false, title: tx('Bring backup water'), detail: tx('A potential water point appears on the map, but availability can change. Carry enough for the full walk.') }
-        : { ok: false, title: tx('Bring your own water'), detail: tx('No water point appears on the route map. Carry enough for the full walk.') };
+        ? { ok: false, title: tx('Bring backup water'), detail: tx('A water point is on the map, but it may be dry. Carry enough for the whole walk.') }
+        : { ok: false, title: tx('Bring your own water'), detail: tx('No water on the map. Carry enough for the whole walk.') };
     }
     return mapped
       ? { ok: true, title: tx('Water'), detail: tx('A reviewed water point is listed on this route. Seasonal availability can change, so bring a backup supply.') }
-      : { ok: false, title: tx('Water'), detail: tx('No water source is listed for this route. Carry enough for the dog, roughly 0.5 l per 10 kg on a warm day.') };
+      : { ok: false, title: tx('Water'), detail: tx('No water on the way. Carry about 0.5 l per 10 kg of dog on a warm day.') };
   }
 
   // The walk-day forecast, read by the same rule the score uses, so this
@@ -7567,7 +7567,10 @@ function effectiveOverrides(profile, adjustOverride){
   // Recorded cautions arrive as one list. Cars and bikes are not something a
   // dog walks on, so they are told apart from what is underfoot, and a caution
   // that is only about heat ("Hot tarmac") belongs with heat.
-  const TRAFFIC_HAZARD = /\b(?:roads?|crossings?|traffic|cars?|vehicles?|cycl\w*|bikes?|streets?|zebra|SS\d+|SP\d+|km\/h)\b/i;
+  // A bare "crossing" is not traffic: "stream crossings" are underfoot.
+  const TRAFFIC_HAZARD = /\b(?:roads?|traffic|cars?|vehicles?|tractors?|cycl\w*|bikes?|streets?|zebra|SS\d+|SP\d+|km\/h)\b/i;
+  const LIVESTOCK_HAZARD = /\b(?:livestock|cattle|cows?|herds?|graz\w*|sheep|goats?|pastures?|alpage|patou|guardian dogs?)\b/i;
+  const GROUND_HAZARD = /\b(?:scree|roots?|rock\w*|stony|stones|boulders?|slipp\w*|uneven|loose|mud\w*|steps|ladders?|grid|tarmac|stream crossings?|unbridged|without bridges|wet)\b/i;
   function recordedHazards(trail) {
     const tidy = hazard => String(hazard || '').trim().replace(/[.;]+$/, '');
     const all = (Array.isArray(trail && trail.surfaceHazards) ? trail.surfaceHazards : [])
@@ -7576,10 +7579,15 @@ function effectiveOverrides(profile, adjustOverride){
     const heat = all.filter(hazard => heatOnly(hazard.en));
     const rest = all.filter(hazard => !heat.includes(hazard));
     const shown = list => list.map(hazard => hazard.shown);
+    const traffic = rest.filter(hazard => TRAFFIC_HAZARD.test(hazard.en));
+    const livestock = rest.filter(hazard => !traffic.includes(hazard) && LIVESTOCK_HAZARD.test(hazard.en));
+    const left = rest.filter(hazard => !traffic.includes(hazard) && !livestock.includes(hazard));
     return {
       heat: shown(heat),
-      traffic: shown(rest.filter(hazard => TRAFFIC_HAZARD.test(hazard.en))),
-      underfoot: shown(rest.filter(hazard => !TRAFFIC_HAZARD.test(hazard.en))),
+      traffic: shown(traffic),
+      livestock: shown(livestock),
+      underfoot: shown(left.filter(hazard => GROUND_HAZARD.test(hazard.en))),
+      other: shown(left.filter(hazard => !GROUND_HAZARD.test(hazard.en))),
     };
   }
 
@@ -7588,7 +7596,7 @@ function effectiveOverrides(profile, adjustOverride){
     // A cool day makes the route's sun exposure irrelevant; a cold one turns
     // the advice the other way.
     if (coldDay(conditions)) {
-      return { ok: false, title: tx('Cold day'), guide: null, detail: tx('The forecast stays cold, up to {temp} °C. Keep rests short, dry your dog after wet stretches, and bring a coat for a small or short-coated dog.', { temp: conditions.dayMaxC }) };
+      return { ok: false, title: tx('Cold day'), guide: null, detail: tx('Up to {temp} °C today. Keep rests short, dry your dog off, and bring a coat for a small or short-haired dog.', { temp: conditions.dayMaxC }) };
     }
     if (coolDay(conditions)) {
       return { ok: true, title: tx('Heat & shade'), detail: tx('The forecast stays cool, up to {temp} °C, so sun and shade do not matter for this walk.', { temp: conditions.dayMaxC }) };
@@ -7600,61 +7608,100 @@ function effectiveOverrides(profile, adjustOverride){
 
   function summerHeat(trail, shade) {
     if (!categoryVerified(trail, 'heat')) {
-      return { ok: false, title: tx('Plan for limited shade'), detail: tx('Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.') };
+      return { ok: false, title: tx('Plan for limited shade'), detail: tx('Expect little shade. Walk in the cool part of the day.') };
     }
     if (imported(trail) && shade === null && !trail.heatRisk && trail.shadeDescription) {
-      return { ok: false, title: tx('Mixed shade'), detail: `${trailWords(trail.shadeDescription)} ${tx('Use the live forecast and plan exposed sections for a cool window.')}` };
+      return { ok: false, title: tx('Mixed shade'), detail: `${trailWords(trail.shadeDescription)} ${tx('Walk the open stretches in the cool part of the day.')}` };
     }
     if (imported(trail) && shade === null && !trail.heatRisk) {
-      return { ok: false, title: tx('Plan for limited shade'), detail: tx('Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.') };
+      return { ok: false, title: tx('Plan for limited shade'), detail: tx('Expect little shade. Walk in the cool part of the day.') };
     }
     if (shade === null && !trail.heatRisk) return null;
     const shadeText = shade === null ? '' : tx('{n}% shade', { n: shade });
     const highHeat = trail.heatRisk === 'high' || (shade !== null && shade < 25);
     const lowHeat = trail.heatRisk === 'low' && (shade === null || shade >= 40);
     const detail = highHeat
-      ? `${shadeText ? shadeText + '. ' : ''}${tx('The route is heat-exposed; use the live forecast to choose an early, cool window.')}`
+      ? `${shadeText ? shadeText + '. ' : ''}${tx('Little shade. Go early on warm days.')}`
       : lowHeat
         ? `${shadeText ? shadeText + '. ' : ''}${tx('The route has relatively favourable heat exposure.')}`
-        : `${shadeText ? shadeText + '. ' : ''}${tx('Plan rests and use the live forecast to choose a cooler window.')}`;
+        : `${shadeText ? shadeText + '. ' : ''}${tx('Plan rests and pick a cool time of day.')}`;
     return { ok: !highHeat, title: tx('Heat & shade'), detail };
   }
 
   function exposureAssessment(trail) {
     if (trail.exposure === true) {
-      return { ok: false, title: tx('Exposed sections'), detail: tx('Narrow ledges or unprotected drop-offs occur on parts of the route. Keep the dog leashed and on the inside.') };
+      return { ok: false, title: tx('Exposed sections'), detail: tx('Narrow ledges and drops in places. Keep your dog on a lead, on the inside.') };
     }
     return null;
   }
 
+  // Grazing animals: one lead line; guardian dogs only when the walk says so.
   function livestockAssessment(trail, combinedText) {
-    const noted = /livestock|patou|guardian|cattle|herd|pasture|alpage|graz/.test(combinedText || '');
-    if (noted) {
-      return { ok: false, title: tx('Livestock & leash'), detail: tx('Grazing animals, possibly with guardian dogs, are reported on or near this route. Leash through pastures and give herds a wide berth.') };
-    }
-    return null;
+    const text = combinedText || '';
+    const items = recordedHazards(trail).livestock;
+    if (!items.length && !/livestock|patou|guardian|cattle|herd|pasture|alpage|graz/.test(text)) return null;
+    const guardians = /patou|guardian/i.test(text);
+    const detail = tx('Keep your dog on a lead near herds and give them space.')
+      + (guardians ? ' ' + tx('Watch for guardian dogs.') : '');
+    return { ok: false, title: tx('Grazing animals'), detail, items };
   }
 
-  // What is underfoot, said first, then each recorded caution as its own item.
+  // OSM surface tags in plain words. Several tags read the same to a walker
+  // (unpaved, dirt, natural ground), so they are added together.
+  const SURFACE_WORDS = [
+    [/^(?:paved|asphalt|concrete|paving stones)$/, 'tarmac'],
+    [/^(?:stone setts|sett|cobblestone)$/, 'cobbles'],
+    [/gravel|pebblestone|compacted/, 'gravel'],
+    [/^(?:unpaved|dirt|earth|ground|natural ground|mud)$/, 'dirt'],
+    [/^grass$/, 'grass'],
+    [/^(?:rock|rocky)$/, 'rock'],
+    [/^sand$/, 'sand'],
+  ];
+  function listWords(words) {
+    if (words.length < 2) return words[0] || '';
+    return tx('{list} and {last}', { list: words.slice(0, -1).join(', '), last: words[words.length - 1] });
+  }
+  function plainGround(terrainType) {
+    const raw = String(terrainType || '').trim();
+    if (!raw || /not yet field-verified/i.test(raw)) return tx('Mixed ground');
+    if (/from OSM surface data/i.test(raw)) {
+      const shares = new Map();
+      for (const [, tag, pct] of raw.matchAll(/([a-z][a-z ]*?)\s*\((\d+)%\)/gi)) {
+        const hit = SURFACE_WORDS.find(([test]) => test.test(tag.trim().toLowerCase()));
+        if (hit) shares.set(hit[1], (shares.get(hit[1]) || 0) + Number(pct));
+      }
+      const ranked = [...shares].sort((a, b) => b[1] - a[1]);
+      const kept = ranked.filter(([, pct], index) => index === 0 || pct >= 20).map(([word]) => tx(word));
+      return kept.length ? tx('Mostly {ground}', { ground: listWords(kept) }) : tx('Mixed ground');
+    }
+    const shown = String(trailWords(raw)).trim().replace(/[.;]+$/, '').replace(/:\s+/, ', ');
+    return shown.charAt(0).toUpperCase() + shown.slice(1);
+  }
+
+  // What is underfoot in plain words, then any rough spots the walk records.
   // Pad advice fits the ground: rough ground cuts pads, smooth ground does not.
   function surfaceAssessment(trail) {
     const underfoot = recordedHazards(trail).underfoot;
     if (Number(trail.terrainRank) === 0 && !underfoot.length) return null;
-    const ground = String(trail.terrainType || 'Variable mountain terrain').trim().replace(/[.;]+$/, '').replace(/:\s+/, ', ');
+    const ground = String(trail.terrainType || '');
     const rough = Number(trail.terrainRank) > 0 || /rock|scree|stony|stones|boulder|roots/i.test(ground);
-    const shownGround = trail.terrainType
-      ? String(trailWords(trail.terrainType)).trim().replace(/[.;]+$/, '').replace(/:\s+/, ', ')
-      : tx('Variable mountain terrain');
-    const detail = tx('Underfoot: {ground}.', { ground: `${shownGround.charAt(0).toLowerCase()}${shownGround.slice(1)}` })
-      + (rough ? ' ' + tx('Check pads at breaks.') : '');
-    return { ok: false, title: tx('Surface & footing'), detail, items: underfoot };
+    const detail = `${plainGround(trail.terrainType)}.` + (rough ? ' ' + tx('Check paws at breaks.') : '');
+    return { ok: false, title: tx('Ground'), detail, items: underfoot };
   }
 
-  // Roads, crossings and bikes: a lead question, not a paw question.
+  // Roads, tractors and bikes: a lead question, not a paw question.
   function trafficAssessment(trail) {
     const traffic = recordedHazards(trail).traffic;
     if (!traffic.length) return null;
-    return { ok: false, title: tx('Roads & traffic'), detail: tx('Keep your dog on a short lead in these places:'), items: traffic };
+    return { ok: false, title: tx('Traffic'), detail: tx('Short lead where vehicles pass.'), items: traffic };
+  }
+
+  // Anything else the walk records (ruins, snow, a lift to check) as its own
+  // card, rather than filed under the ground.
+  function alongTheWayAssessment(trail) {
+    const other = recordedHazards(trail).other;
+    if (!other.length) return null;
+    return { ok: false, title: tx('Also watch for'), detail: '', guide: null, items: other };
   }
 
   function assessmentNote(trail) {
@@ -7684,6 +7731,8 @@ function effectiveOverrides(profile, adjustOverride){
     livestockAssessment,
     surfaceAssessment,
     trafficAssessment,
+    alongTheWayAssessment,
+    plainGround,
     assessmentNote,
   });
 })(window);
@@ -19475,6 +19524,7 @@ if(document.querySelector('.td2')){
       ? { ok: false, title: tx('Surface hazards'), detail: tx('{surface}. Check pads at breaks; consider booties for tender paws.', { surface: trailWords(t.terrainType) || tx('Gravel and mixed rock') }) }
       : null), 'paws');
     addAssessment(trust ? trust.trafficAssessment(t) : null, null);
+    addAssessment(trust && trust.alongTheWayAssessment ? trust.alongTheWayAssessment(t) : null, null);
     addAssessment(trust ? trust.heatAssessment(t, conditions) : null, 'heat');
     addAssessment(trust ? trust.waterAssessment(t) : (hasWater
       ? { ok: true, title: tx('Water'), detail: tx('A water source is mapped on this route. Bring a bowl.') }
@@ -19489,7 +19539,7 @@ if(document.querySelector('.td2')){
       const basis = t.season.recommended ? words.line : (t.season.snow ? tx('An estimate from the walk’s high point.') : '');
       caution(tx('Season'), [seasonWords.nowNote(t.season, month), basis].filter(Boolean).join(' '), 'altitude');
     } else if (maxAlt >= 1800) {
-      caution(tx('Season & altitude'), tx('Tops out around {alt} m. Snow lingers into early summer and weather turns quickly.', { alt: maxAlt }), 'altitude');
+      caution(tx('High ground'), tx('Up to {alt} m. Snow can last into early summer and the weather changes fast.', { alt: isItalian() ? num(maxAlt) : Number(maxAlt).toLocaleString('en-GB') }), 'altitude');
     }
     // Seasonal risks to dogs that apply this month (data/dog-seasons.json),
     // each with the months and where they come from.
@@ -19506,12 +19556,19 @@ if(document.querySelector('.td2')){
       box.innerHTML = '<p class="safety-clear">' + tx('No additional route cautions are highlighted. Continue to check live weather and local signs.') + '</p>';
       return;
     }
+    // One short paragraph per card: the advice, then the walk's own notes as
+    // sentences. No bullet lists, so every card reads the same way.
+    const sentence = text => {
+      const clean = String(text || '').trim();
+      if (!clean) return '';
+      const capital = clean.charAt(0).toUpperCase() + clean.slice(1);
+      return /[.!?]$/.test(capital) ? capital : capital + '.';
+    };
+    const rowText = r => [r.sub, ...r.items].map(sentence).filter(Boolean).join(' ');
     const rowMarkup = r => `
       <div class="safety-row is-caution"${r.guideId ? ` data-guide-id="${esc(r.guideId)}"` : ''}>
         <span class="pill">${tx('Caution')}</span>
-        <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small>${r.items.length
-          ? `<ul class="safety-row-items">${r.items.map(entry => `<li>${esc(entry)}</li>`).join('')}</ul>`
-          : ''}</span>
+        <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(rowText(r))}</small></span>
       </div>`;
     box.innerHTML = rows.map(rowMarkup).join('');
     // A repaint drops the guide links trail-recommendation.js added; it adds
