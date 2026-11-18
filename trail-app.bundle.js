@@ -5824,6 +5824,12 @@ function breedInsights(name){
     return { ...ranks, preferredDurationMin, declaredCount };
   }
 
+  // The dog's steepness limit on the trail scale: 0 gentle slopes only,
+  // 1 up to moderately steep, 2 no limit. Shown on the account page.
+  function steepnessLimit(dog){
+    return deriveDog(dog, []).terrain;
+  }
+
   function deriveDog(dog, unknowns){
     dog = dog || {};
     const fitnessKnown = Object.prototype.hasOwnProperty.call(FITNESS, dog.fitness);
@@ -6599,6 +6605,7 @@ function breedInsights(name){
     isColdDay,
     isHeatOnlyHazard,
     CHAIRLIFT_MAX_KG,
+    steepnessLimit,
     calculateRecommendation,
   };
 });
