@@ -62,7 +62,7 @@ function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && wi
     const ov = profile && typeof effectiveOverrides === 'function'
       // eslint-disable-next-line no-undef
       ? effectiveOverrides(profile, null)
-      : { terrain:'1', distance:'10', heatSensitive:false };
+      : ((window.DoloPawsScoring && window.DoloPawsScoring.GUEST_SUBJECT) || {});
     const words = window.DoloPawsTrailSeasonWords;
     const verdicts = window.OrmaMatchVerdict;
     const decision = window.DoloPawsRecommendationDecision;
