@@ -67590,6 +67590,2634 @@
       ],
       startPoint: { lat: 46.540481, lng: 12.464579, label: "The start of path 18 at Cella (Villapiccola), just above the chapel of Santa Caterina d’Alessandria, the board’s start" },
       desc: "An easy woodland walk from the Santa Caterina chapel above Lake Auronzo on path 18, past a giant bench and old hay barns, to Pian di Barco, and back the same way. The board lists 1.9 km one way, about 45 minutes; there and back it is 3.8 km with 184 m up and down."
+    },
+    'osm-11816373': {
+      // Hand audit 2026-11-17. Line rebuilt on 22 OSM ways along the province trail register's 'Bunkerweg' (routes-hikingtrails.11427150, CC0);
+      // the register's first 56 m on the village road are the start of the loop walked twice, so the stored loop begins where they meet.
+      // Official figures from the Bruneck tourist board's 'Bunker Trail' page: 3.0 km, 129 m up, 126 m down, 1 h 30, 868–997 m.
+      // Commune corrected from Kiens to St. Lorenzen (Montal): its dog regulation (Gemeinderat Nr. 25, 2009) applies. No park, Natura 2000 site,
+      // biotope or natural monument on the line. Roads: village lanes in Montal and one crossing of the Onach road (SP125).
+      "area": "Montal / Mantana, St. Lorenzen",
+      "path": [
+        [
+          46.77124,
+          11.860109
+        ],
+        [
+          46.771252,
+          11.859993
+        ],
+        [
+          46.771293,
+          11.859828
+        ],
+        [
+          46.771319,
+          11.859694
+        ],
+        [
+          46.771332,
+          11.859589
+        ],
+        [
+          46.771339,
+          11.859436
+        ],
+        [
+          46.77133,
+          11.85933
+        ],
+        [
+          46.771306,
+          11.859215
+        ],
+        [
+          46.771284,
+          11.859113
+        ],
+        [
+          46.771249,
+          11.858971
+        ],
+        [
+          46.771203,
+          11.858817
+        ],
+        [
+          46.771161,
+          11.858697
+        ],
+        [
+          46.771101,
+          11.858571
+        ],
+        [
+          46.771025,
+          11.858441
+        ],
+        [
+          46.770957,
+          11.858333
+        ],
+        [
+          46.770875,
+          11.858212
+        ],
+        [
+          46.770792,
+          11.858144
+        ],
+        [
+          46.77071,
+          11.858035
+        ],
+        [
+          46.770636,
+          11.857922
+        ],
+        [
+          46.770592,
+          11.857856
+        ],
+        [
+          46.770571,
+          11.85779
+        ],
+        [
+          46.770562,
+          11.857714
+        ],
+        [
+          46.770571,
+          11.857652
+        ],
+        [
+          46.770575,
+          11.857628
+        ],
+        [
+          46.770593,
+          11.857575
+        ],
+        [
+          46.770603,
+          11.857549
+        ],
+        [
+          46.770641,
+          11.857472
+        ],
+        [
+          46.770665,
+          11.857426
+        ],
+        [
+          46.770689,
+          11.857347
+        ],
+        [
+          46.770704,
+          11.857204
+        ],
+        [
+          46.770711,
+          11.857084
+        ],
+        [
+          46.770708,
+          11.856937
+        ],
+        [
+          46.770707,
+          11.856836
+        ],
+        [
+          46.770729,
+          11.856732
+        ],
+        [
+          46.770751,
+          11.856636
+        ],
+        [
+          46.770781,
+          11.856546
+        ],
+        [
+          46.770814,
+          11.856468
+        ],
+        [
+          46.770858,
+          11.856365
+        ],
+        [
+          46.770897,
+          11.856283
+        ],
+        [
+          46.770933,
+          11.856196
+        ],
+        [
+          46.770961,
+          11.856123
+        ],
+        [
+          46.770982,
+          11.856041
+        ],
+        [
+          46.770992,
+          11.855907
+        ],
+        [
+          46.771008,
+          11.855769
+        ],
+        [
+          46.771018,
+          11.855593
+        ],
+        [
+          46.771044,
+          11.85541
+        ],
+        [
+          46.771102,
+          11.855234
+        ],
+        [
+          46.771191,
+          11.855042
+        ],
+        [
+          46.771255,
+          11.854811
+        ],
+        [
+          46.771266,
+          11.854699
+        ],
+        [
+          46.771276,
+          11.854534
+        ],
+        [
+          46.771291,
+          11.85428
+        ],
+        [
+          46.771312,
+          11.853996
+        ],
+        [
+          46.771342,
+          11.853846
+        ],
+        [
+          46.771305,
+          11.853737
+        ],
+        [
+          46.771256,
+          11.853722
+        ],
+        [
+          46.771141,
+          11.853729
+        ],
+        [
+          46.770808,
+          11.85384
+        ],
+        [
+          46.770641,
+          11.853855
+        ],
+        [
+          46.77045,
+          11.853838
+        ],
+        [
+          46.770293,
+          11.853831
+        ],
+        [
+          46.769856,
+          11.853956
+        ],
+        [
+          46.769776,
+          11.854009
+        ],
+        [
+          46.769727,
+          11.854075
+        ],
+        [
+          46.769693,
+          11.854086
+        ],
+        [
+          46.76931,
+          11.853794
+        ],
+        [
+          46.769252,
+          11.853774
+        ],
+        [
+          46.768995,
+          11.853857
+        ],
+        [
+          46.768905,
+          11.853851
+        ],
+        [
+          46.768716,
+          11.85375
+        ],
+        [
+          46.768854,
+          11.853532
+        ],
+        [
+          46.768877,
+          11.853456
+        ],
+        [
+          46.768785,
+          11.853501
+        ],
+        [
+          46.768713,
+          11.853539
+        ],
+        [
+          46.768651,
+          11.853554
+        ],
+        [
+          46.768615,
+          11.853554
+        ],
+        [
+          46.768574,
+          11.853532
+        ],
+        [
+          46.768543,
+          11.853494
+        ],
+        [
+          46.768533,
+          11.853457
+        ],
+        [
+          46.768528,
+          11.853389
+        ],
+        [
+          46.768559,
+          11.853329
+        ],
+        [
+          46.768595,
+          11.853285
+        ],
+        [
+          46.768641,
+          11.853225
+        ],
+        [
+          46.768692,
+          11.85318
+        ],
+        [
+          46.768733,
+          11.85312
+        ],
+        [
+          46.768759,
+          11.853082
+        ],
+        [
+          46.768774,
+          11.853038
+        ],
+        [
+          46.768784,
+          11.853
+        ],
+        [
+          46.768764,
+          11.85294
+        ],
+        [
+          46.768723,
+          11.852888
+        ],
+        [
+          46.768672,
+          11.852843
+        ],
+        [
+          46.768584,
+          11.852835
+        ],
+        [
+          46.768241,
+          11.852925
+        ],
+        [
+          46.767821,
+          11.853067
+        ],
+        [
+          46.767759,
+          11.85309
+        ],
+        [
+          46.767713,
+          11.853082
+        ],
+        [
+          46.767687,
+          11.85306
+        ],
+        [
+          46.767667,
+          11.853023
+        ],
+        [
+          46.767656,
+          11.85299
+        ],
+        [
+          46.767538,
+          11.853129
+        ],
+        [
+          46.767438,
+          11.853282
+        ],
+        [
+          46.767328,
+          11.853466
+        ],
+        [
+          46.767213,
+          11.853581
+        ],
+        [
+          46.767106,
+          11.853647
+        ],
+        [
+          46.767024,
+          11.853689
+        ],
+        [
+          46.766944,
+          11.853694
+        ],
+        [
+          46.766875,
+          11.853667
+        ],
+        [
+          46.766679,
+          11.853551
+        ],
+        [
+          46.766574,
+          11.853479
+        ],
+        [
+          46.766422,
+          11.853453
+        ],
+        [
+          46.76629,
+          11.853556
+        ],
+        [
+          46.766152,
+          11.853675
+        ],
+        [
+          46.765914,
+          11.853935
+        ],
+        [
+          46.765742,
+          11.854175
+        ],
+        [
+          46.765568,
+          11.854377
+        ],
+        [
+          46.765449,
+          11.854616
+        ],
+        [
+          46.765418,
+          11.85477
+        ],
+        [
+          46.765424,
+          11.854904
+        ],
+        [
+          46.765449,
+          11.855054
+        ],
+        [
+          46.76548,
+          11.85525
+        ],
+        [
+          46.765483,
+          11.85545
+        ],
+        [
+          46.765566,
+          11.855662
+        ],
+        [
+          46.765605,
+          11.855747
+        ],
+        [
+          46.765539,
+          11.85582
+        ],
+        [
+          46.765485,
+          11.855841
+        ],
+        [
+          46.765421,
+          11.855905
+        ],
+        [
+          46.765379,
+          11.855918
+        ],
+        [
+          46.765312,
+          11.855992
+        ],
+        [
+          46.765227,
+          11.856039
+        ],
+        [
+          46.765175,
+          11.856049
+        ],
+        [
+          46.764915,
+          11.855998
+        ],
+        [
+          46.764798,
+          11.855957
+        ],
+        [
+          46.764774,
+          11.856084
+        ],
+        [
+          46.764752,
+          11.856152
+        ],
+        [
+          46.764667,
+          11.856307
+        ],
+        [
+          46.764567,
+          11.856508
+        ],
+        [
+          46.764503,
+          11.856709
+        ],
+        [
+          46.764471,
+          11.856863
+        ],
+        [
+          46.764429,
+          11.857049
+        ],
+        [
+          46.764413,
+          11.857358
+        ],
+        [
+          46.764381,
+          11.857597
+        ],
+        [
+          46.764355,
+          11.857945
+        ],
+        [
+          46.76435,
+          11.858169
+        ],
+        [
+          46.764355,
+          11.858293
+        ],
+        [
+          46.764355,
+          11.858331
+        ],
+        [
+          46.76436,
+          11.85837
+        ],
+        [
+          46.764365,
+          11.858378
+        ],
+        [
+          46.764381,
+          11.85844
+        ],
+        [
+          46.764413,
+          11.858456
+        ],
+        [
+          46.764442,
+          11.858462
+        ],
+        [
+          46.764483,
+          11.85842
+        ],
+        [
+          46.764504,
+          11.858353
+        ],
+        [
+          46.764533,
+          11.858251
+        ],
+        [
+          46.764595,
+          11.858112
+        ],
+        [
+          46.764675,
+          11.858001
+        ],
+        [
+          46.76476,
+          11.857877
+        ],
+        [
+          46.764865,
+          11.857791
+        ],
+        [
+          46.764826,
+          11.85803
+        ],
+        [
+          46.764773,
+          11.858138
+        ],
+        [
+          46.764699,
+          11.85827
+        ],
+        [
+          46.764635,
+          11.858409
+        ],
+        [
+          46.764625,
+          11.858563
+        ],
+        [
+          46.764625,
+          11.858702
+        ],
+        [
+          46.764588,
+          11.858818
+        ],
+        [
+          46.76453,
+          11.85905
+        ],
+        [
+          46.764461,
+          11.85922
+        ],
+        [
+          46.764408,
+          11.859305
+        ],
+        [
+          46.764339,
+          11.859375
+        ],
+        [
+          46.76418,
+          11.859591
+        ],
+        [
+          46.764048,
+          11.859746
+        ],
+        [
+          46.76391,
+          11.859854
+        ],
+        [
+          46.763841,
+          11.859939
+        ],
+        [
+          46.763783,
+          11.859947
+        ],
+        [
+          46.76372,
+          11.859947
+        ],
+        [
+          46.763672,
+          11.85997
+        ],
+        [
+          46.763576,
+          11.859972
+        ],
+        [
+          46.763565,
+          11.860022
+        ],
+        [
+          46.763577,
+          11.860089
+        ],
+        [
+          46.763615,
+          11.860153
+        ],
+        [
+          46.763683,
+          11.860215
+        ],
+        [
+          46.763726,
+          11.860284
+        ],
+        [
+          46.763753,
+          11.86039
+        ],
+        [
+          46.763822,
+          11.860535
+        ],
+        [
+          46.763921,
+          11.860682
+        ],
+        [
+          46.764069,
+          11.860934
+        ],
+        [
+          46.764164,
+          11.861044
+        ],
+        [
+          46.764214,
+          11.861082
+        ],
+        [
+          46.764296,
+          11.861111
+        ],
+        [
+          46.764458,
+          11.861118
+        ],
+        [
+          46.764651,
+          11.861129
+        ],
+        [
+          46.764778,
+          11.861083
+        ],
+        [
+          46.764906,
+          11.861061
+        ],
+        [
+          46.764913,
+          11.861122
+        ],
+        [
+          46.764941,
+          11.861182
+        ],
+        [
+          46.765004,
+          11.861237
+        ],
+        [
+          46.765126,
+          11.861292
+        ],
+        [
+          46.765174,
+          11.861161
+        ],
+        [
+          46.765215,
+          11.861097
+        ],
+        [
+          46.765487,
+          11.860776
+        ],
+        [
+          46.765955,
+          11.860238
+        ],
+        [
+          46.76633,
+          11.859752
+        ],
+        [
+          46.76646,
+          11.859602
+        ],
+        [
+          46.766657,
+          11.859395
+        ],
+        [
+          46.76688,
+          11.859188
+        ],
+        [
+          46.767041,
+          11.859061
+        ],
+        [
+          46.767147,
+          11.859025
+        ],
+        [
+          46.767231,
+          11.859033
+        ],
+        [
+          46.767302,
+          11.859061
+        ],
+        [
+          46.767356,
+          11.859105
+        ],
+        [
+          46.767394,
+          11.859152
+        ],
+        [
+          46.767473,
+          11.859311
+        ],
+        [
+          46.767541,
+          11.859465
+        ],
+        [
+          46.767685,
+          11.859679
+        ],
+        [
+          46.767755,
+          11.85977
+        ],
+        [
+          46.767804,
+          11.859818
+        ],
+        [
+          46.767843,
+          11.859855
+        ],
+        [
+          46.767913,
+          11.860009
+        ],
+        [
+          46.768016,
+          11.86019
+        ],
+        [
+          46.768115,
+          11.860388
+        ],
+        [
+          46.768248,
+          11.86067
+        ],
+        [
+          46.768393,
+          11.860961
+        ],
+        [
+          46.768526,
+          11.861226
+        ],
+        [
+          46.76865,
+          11.861508
+        ],
+        [
+          46.768713,
+          11.861688
+        ],
+        [
+          46.768758,
+          11.861785
+        ],
+        [
+          46.768806,
+          11.861819
+        ],
+        [
+          46.768828,
+          11.861858
+        ],
+        [
+          46.769086,
+          11.861602
+        ],
+        [
+          46.769383,
+          11.861349
+        ],
+        [
+          46.76966,
+          11.861109
+        ],
+        [
+          46.76991,
+          11.860856
+        ],
+        [
+          46.770129,
+          11.860632
+        ],
+        [
+          46.770183,
+          11.86058
+        ],
+        [
+          46.770231,
+          11.860532
+        ],
+        [
+          46.770338,
+          11.860427
+        ],
+        [
+          46.770378,
+          11.86039
+        ],
+        [
+          46.770451,
+          11.860323
+        ],
+        [
+          46.77053,
+          11.860263
+        ],
+        [
+          46.770588,
+          11.860223
+        ],
+        [
+          46.770659,
+          11.860187
+        ],
+        [
+          46.770701,
+          11.860228
+        ],
+        [
+          46.770729,
+          11.860266
+        ],
+        [
+          46.770771,
+          11.860313
+        ],
+        [
+          46.770839,
+          11.860357
+        ],
+        [
+          46.770883,
+          11.860362
+        ],
+        [
+          46.771189,
+          11.860094
+        ],
+        [
+          46.771252,
+          11.859993
+        ],
+        [
+          46.77124,
+          11.860109
+        ]
+      ],
+      "lat": 46.77124,
+      "lng": 11.860109,
+      "distance": 3.2,
+      "elevation": 129,
+      "hours": "1.5",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 870
+        },
+        {
+          "km": 0.2,
+          "elev": 878
+        },
+        {
+          "km": 0.4,
+          "elev": 900
+        },
+        {
+          "km": 0.6,
+          "elev": 913
+        },
+        {
+          "km": 0.8,
+          "elev": 944
+        },
+        {
+          "km": 1,
+          "elev": 975
+        },
+        {
+          "km": 1.2,
+          "elev": 977
+        },
+        {
+          "km": 1.4,
+          "elev": 999
+        },
+        {
+          "km": 1.7,
+          "elev": 991
+        },
+        {
+          "km": 1.9,
+          "elev": 962
+        },
+        {
+          "km": 2.1,
+          "elev": 965
+        },
+        {
+          "km": 2.3,
+          "elev": 895
+        },
+        {
+          "km": 2.5,
+          "elev": 897
+        },
+        {
+          "km": 2.7,
+          "elev": 881
+        },
+        {
+          "km": 2.9,
+          "elev": 862
+        },
+        {
+          "km": 3.1,
+          "elev": 866
+        },
+        {
+          "km": 3.2,
+          "elev": 870
+        }
+      ],
+      "waterSources": [
+        {
+          "km": 0.1,
+          "lat": 46.771556,
+          "lng": 11.859081,
+          "osmId": "node/7597838085",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 30
+        }
+      ],
+      "routeShape": "loop",
+      "routeShapeNote": "A loop from the church in Montal on the waymarked Bunkerweg, as the province trail register maps it: out of the hamlet on path 10, along lanes, forest tracks and paths past the Second World War bunkers, across the Onach road and back down into Montal. 3.2 km.",
+      "startPoint": {
+        "lat": 46.77124,
+        "lng": 11.860109,
+        "label": "By the church of St. Margareth in Montal, where the Bunkerweg leaves the village road (free car park at the church)"
+      },
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start by the church of St. Margareth in the hamlet of Montal, above St. Lorenzen; the free car park is at the church. The loop is signed “Bunkerweg” all the way.",
+        "sequence": "Leave Montal on path 10 along the village lanes. After about 500 m take the Bunkerweg path into the woods, then lanes and forest tracks past the bunker complex (about km 1). Carry on along tracks and a forest path, cross the Onach road (SP125) at about km 2.3, and follow tracks and a lane back down into Montal.",
+        "switches": "Path 10 out of Montal; the Bunkerweg path into the woods after about 500 m; lanes and tracks past the bunkers; across the Onach road at about km 2.3; tracks and a lane back down to the church.",
+        "steps": [
+          {
+            "text": "By the church of St. Margareth in Montal",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 10 along the village lanes out of Montal",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Bunkerweg path into the woods, then lanes and tracks past the bunkers",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Across the Onach road, then forest tracks",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "A lane back down into Montal and the church",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Bunkerweg (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427150",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-17"
+          },
+          {
+            "label": "Bunker Trail",
+            "url": "https://bruneck.com/en/activity/bunker-trail_5180",
+            "authority": "Tourismusverein Bruneck",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-17"
+          }
+        ]
+      },
+      "routeNumberSource": {
+        "provider": "Autonome Provinz Bozen – Südtirol, hiking-trail register (via Open Data Hub)",
+        "name": "Bunkerweg",
+        "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427150"
+      },
+      "shadeCoverage": 41,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 1.4 km on quiet lanes in and around Montal, where a car or tractor may pass: keep your dog on a short lead there",
+        "One crossing of the Onach road (SP125) at about km 2.3: cross with care",
+        "Farmed meadows line the lanes: St. Lorenzen keeps dogs off them in the growing season",
+        "The bunker itself is private and can be visited only on a guided tour"
+      ],
+      "terrainType": "Village lanes, forest tracks and paths",
+      "terrainDescription": "A short loop at 860–1,000 m above St. Lorenzen, from the hamlet of Montal through meadows and woodland to the Second World War bunkers and back, on lanes, tracks and forest paths.",
+      "shadeDescription": "Partly shaded: about two fifths runs through woods; the lanes round Montal are open.",
+      "waterDescription": "Drinking water by the church in Montal at the start. None on the loop itself, so carry some on a warm day.",
+      "dogNotes": "St. Lorenzen requires a lead of at most 1.5 m and a muzzle carried, and keeps dogs off farmed meadows and fields in the growing season, out of playgrounds and cemeteries, and out of the village fountains.",
+      "tips": "An easy 3 km loop from the church in Montal with about 130 m of up and down, an hour and a half by the tourist board’s time. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as St. Lorenzen requires, and keep off the meadows. Fill up at the fountain by the church before you go.",
+      "desc": "A short loop from the hamlet of Montal above St. Lorenzen, through meadows and woodland to the Second World War bunkers and back, on the waymarked Bunkerweg. The Bruneck tourist board gives 3.0 km, 129 m of up and down and an hour and a half.",
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Bunkerweg (Open Data Hub)",
+          "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11427150"
+        },
+        {
+          "label": "Tourismusverein Bruneck, Bunker Trail",
+          "url": "https://bruneck.com/en/activity/bunker-trail_5180"
+        },
+        {
+          "label": "Marktgemeinde St. Lorenzen, dog regulation (2009)",
+          "url": "https://www.gemeinde.stlorenzen.bz.it/system/web/GetDocument.ashx?cts=1434451081&fileId=884603"
+        },
+        {
+          "label": "OpenStreetMap contributors",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "imageIcon": "images/trails/osm-11816373-montal-church.jpg",
+      "heroImage": "images/trails/osm-11816373-montal-church.jpg",
+      "imageCredit": "St. Margareth's church, Montal",
+      "imageCreditText": "St. Margareth's church, Montal by Alletto",
+      "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pfarrkirche_St._Margareth_in_St._Lorenzen.JPG",
+      "imageCreator": "Alletto",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "imageAlt": "The stone bell tower with its red spire and the steep shingled roof of St. Margareth's church in Montal, village houses beside it and a forested slope behind",
+      "imageSourceType": "licensed-source",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-11-17",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "St. Margareth’s church, Montal, at the start (Alletto on Wikimedia Commons, CC BY-SA 3.0), 10 July 2012, 17 m from the line; cropped to landscape.",
+        "route": "Register loop 'Bunkerweg' (routes-hikingtrails.11427150, 3.35 km) from the church in Montal; the stored line is drawn on 22 OSM ways along the register line, 3.23 km, with 98% of the register line within 25 m of it and 99% of it within 25 m of the register line.",
+        "routeNumbers": "Signed “Bunkerweg”: path 10 out of Montal, the Bunkerweg path and tracks past the bunkers, across the Onach road (SP125) and back down to the church.",
+        "mapPoints": "Start by the church of St. Margareth in Montal, where the tourist board’s walk starts; drinking water by the church at km 0.1 (OSM node 7597838085).",
+        "elevation": "Official 3.0 km, 129 m up and 126 m down, 1 h 30, between 868 and 997 m (Bruneck tourist board, Bunker Trail). The stored line measures 3.23 km."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Bunkerweg', line routes-hikingtrails.11427150, 3,346 m",
+          "Tourismusverein Bruneck, 'Bunker Trail': 3.0 km, 129 m up, 126 m down, 1 h 30, highest point 997 m, lowest 868 m; start at the church car park in Montal (St. Lorenzen)",
+          "Marktgemeinde St. Lorenzen / Comune di San Lorenzo di Sebato, Gemeindeverordnung über die Haltung und Führung von Hunden (Beschluss des Gemeinderates Nr. 25, 29.12.2009): a lead of at most 1.5 m on public ground and a muzzle carried; no dogs in cemeteries, playgrounds or school yards, or on farmed meadows and fields in the growing season; no bathing in the village fountains",
+          "Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; parts lie in landscape zones and an ensemble-protection area round the church, whose rules cover building and set no rule on dogs",
+          "OpenStreetMap ways along the register line (22 ways), road, surface, woodland and water data"
+        ],
+        "date": "2026-11-17"
+      }
+    },
+    'osm-11774783': {
+      // Hand audit 2026-11-17. Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // Line rebuilt on 13 OSM ways along the register's 'Rafeil-Rundweg' (routes-hikingtrails.11425838, CC0, 1,444 m); the register begins with 100 m
+      // from the village that the loop's end walks again, so the stored loop is the 1.35 km circuit of the Rafeil hill. Commune corrected from Villnöss to
+      // Klausen (Gufidaun). Klausen police regulation Art. 29: dogs on a lead. About a third crosses the Rafeil natural monument (province landscape plan),
+      // which protects the hill and sets no rule on dogs. No park or Natura 2000 site.
+      "area": "Gufidaun / Gudon, Klausen",
+      "path": [
+        [
+          46.648348,
+          11.597087
+        ],
+        [
+          46.648399,
+          11.597216
+        ],
+        [
+          46.648436,
+          11.597373
+        ],
+        [
+          46.648465,
+          11.597547
+        ],
+        [
+          46.648483,
+          11.597594
+        ],
+        [
+          46.648512,
+          11.597623
+        ],
+        [
+          46.648547,
+          11.597636
+        ],
+        [
+          46.648653,
+          11.597787
+        ],
+        [
+          46.648653,
+          11.597824
+        ],
+        [
+          46.648636,
+          11.597894
+        ],
+        [
+          46.648625,
+          11.597967
+        ],
+        [
+          46.648655,
+          11.598103
+        ],
+        [
+          46.648707,
+          11.598216
+        ],
+        [
+          46.648761,
+          11.598311
+        ],
+        [
+          46.6488,
+          11.59843
+        ],
+        [
+          46.648822,
+          11.598523
+        ],
+        [
+          46.648846,
+          11.598578
+        ],
+        [
+          46.648872,
+          11.598598
+        ],
+        [
+          46.648911,
+          11.598612
+        ],
+        [
+          46.648972,
+          11.598604
+        ],
+        [
+          46.649024,
+          11.598619
+        ],
+        [
+          46.649071,
+          11.598663
+        ],
+        [
+          46.649102,
+          11.598717
+        ],
+        [
+          46.649143,
+          11.598811
+        ],
+        [
+          46.649227,
+          11.599001
+        ],
+        [
+          46.64925,
+          11.59906
+        ],
+        [
+          46.649246,
+          11.599292
+        ],
+        [
+          46.64925,
+          11.599497
+        ],
+        [
+          46.649228,
+          11.599702
+        ],
+        [
+          46.649218,
+          11.599909
+        ],
+        [
+          46.649282,
+          11.599881
+        ],
+        [
+          46.649383,
+          11.599863
+        ],
+        [
+          46.649455,
+          11.599861
+        ],
+        [
+          46.649502,
+          11.599866
+        ],
+        [
+          46.649571,
+          11.599885
+        ],
+        [
+          46.649647,
+          11.599909
+        ],
+        [
+          46.649822,
+          11.599979
+        ],
+        [
+          46.649972,
+          11.600028
+        ],
+        [
+          46.650066,
+          11.600057
+        ],
+        [
+          46.650099,
+          11.600058
+        ],
+        [
+          46.650124,
+          11.60004
+        ],
+        [
+          46.65015,
+          11.599995
+        ],
+        [
+          46.650183,
+          11.599908
+        ],
+        [
+          46.650206,
+          11.599805
+        ],
+        [
+          46.65025,
+          11.599645
+        ],
+        [
+          46.650289,
+          11.599466
+        ],
+        [
+          46.650314,
+          11.599263
+        ],
+        [
+          46.650382,
+          11.59911
+        ],
+        [
+          46.650482,
+          11.598989
+        ],
+        [
+          46.650596,
+          11.598862
+        ],
+        [
+          46.650659,
+          11.598839
+        ],
+        [
+          46.650705,
+          11.598768
+        ],
+        [
+          46.650742,
+          11.598543
+        ],
+        [
+          46.650788,
+          11.598202
+        ],
+        [
+          46.650821,
+          11.598062
+        ],
+        [
+          46.650819,
+          11.597992
+        ],
+        [
+          46.650802,
+          11.597915
+        ],
+        [
+          46.650808,
+          11.597818
+        ],
+        [
+          46.650847,
+          11.597713
+        ],
+        [
+          46.650953,
+          11.597563
+        ],
+        [
+          46.650964,
+          11.597459
+        ],
+        [
+          46.65095,
+          11.597131
+        ],
+        [
+          46.651001,
+          11.597027
+        ],
+        [
+          46.651034,
+          11.596981
+        ],
+        [
+          46.651097,
+          11.596863
+        ],
+        [
+          46.651125,
+          11.596732
+        ],
+        [
+          46.651086,
+          11.596549
+        ],
+        [
+          46.651003,
+          11.596383
+        ],
+        [
+          46.650975,
+          11.596303
+        ],
+        [
+          46.651005,
+          11.596214
+        ],
+        [
+          46.651045,
+          11.596134
+        ],
+        [
+          46.651033,
+          11.596077
+        ],
+        [
+          46.651003,
+          11.596051
+        ],
+        [
+          46.650979,
+          11.595992
+        ],
+        [
+          46.651003,
+          11.595925
+        ],
+        [
+          46.651073,
+          11.595822
+        ],
+        [
+          46.651146,
+          11.59576
+        ],
+        [
+          46.651249,
+          11.595711
+        ],
+        [
+          46.651211,
+          11.595651
+        ],
+        [
+          46.651185,
+          11.595588
+        ],
+        [
+          46.651174,
+          11.595522
+        ],
+        [
+          46.651206,
+          11.595506
+        ],
+        [
+          46.651265,
+          11.595511
+        ],
+        [
+          46.651217,
+          11.595412
+        ],
+        [
+          46.651178,
+          11.595278
+        ],
+        [
+          46.651106,
+          11.595168
+        ],
+        [
+          46.651009,
+          11.595031
+        ],
+        [
+          46.650902,
+          11.594919
+        ],
+        [
+          46.650856,
+          11.594836
+        ],
+        [
+          46.650777,
+          11.594715
+        ],
+        [
+          46.650642,
+          11.594567
+        ],
+        [
+          46.650565,
+          11.594497
+        ],
+        [
+          46.650491,
+          11.594428
+        ],
+        [
+          46.650278,
+          11.59432
+        ],
+        [
+          46.650239,
+          11.594299
+        ],
+        [
+          46.650213,
+          11.594323
+        ],
+        [
+          46.650217,
+          11.594361
+        ],
+        [
+          46.650243,
+          11.594361
+        ],
+        [
+          46.650279,
+          11.594388
+        ],
+        [
+          46.650326,
+          11.594414
+        ],
+        [
+          46.650388,
+          11.594479
+        ],
+        [
+          46.650456,
+          11.594581
+        ],
+        [
+          46.650502,
+          11.594615
+        ],
+        [
+          46.650526,
+          11.594653
+        ],
+        [
+          46.650545,
+          11.594694
+        ],
+        [
+          46.650545,
+          11.594747
+        ],
+        [
+          46.650513,
+          11.594803
+        ],
+        [
+          46.65044,
+          11.59483
+        ],
+        [
+          46.650368,
+          11.594825
+        ],
+        [
+          46.650301,
+          11.594797
+        ],
+        [
+          46.650289,
+          11.594834
+        ],
+        [
+          46.650327,
+          11.594886
+        ],
+        [
+          46.650307,
+          11.594938
+        ],
+        [
+          46.650255,
+          11.594883
+        ],
+        [
+          46.650189,
+          11.5949
+        ],
+        [
+          46.650142,
+          11.595
+        ],
+        [
+          46.650088,
+          11.595031
+        ],
+        [
+          46.650029,
+          11.595082
+        ],
+        [
+          46.649976,
+          11.595085
+        ],
+        [
+          46.649928,
+          11.59505
+        ],
+        [
+          46.649878,
+          11.595064
+        ],
+        [
+          46.64985,
+          11.595114
+        ],
+        [
+          46.649817,
+          11.595149
+        ],
+        [
+          46.649771,
+          11.595173
+        ],
+        [
+          46.649694,
+          11.5952
+        ],
+        [
+          46.649659,
+          11.595187
+        ],
+        [
+          46.649609,
+          11.595189
+        ],
+        [
+          46.649567,
+          11.595218
+        ],
+        [
+          46.649514,
+          11.595273
+        ],
+        [
+          46.64941,
+          11.595353
+        ],
+        [
+          46.649313,
+          11.595385
+        ],
+        [
+          46.649276,
+          11.595417
+        ],
+        [
+          46.649241,
+          11.595474
+        ],
+        [
+          46.649101,
+          11.595581
+        ],
+        [
+          46.649037,
+          11.595611
+        ],
+        [
+          46.648891,
+          11.595627
+        ],
+        [
+          46.648795,
+          11.59568
+        ],
+        [
+          46.648737,
+          11.59575
+        ],
+        [
+          46.648705,
+          11.595881
+        ],
+        [
+          46.648644,
+          11.596026
+        ],
+        [
+          46.648609,
+          11.596069
+        ],
+        [
+          46.648511,
+          11.596173
+        ],
+        [
+          46.648471,
+          11.596233
+        ],
+        [
+          46.648438,
+          11.596275
+        ],
+        [
+          46.648422,
+          11.596335
+        ],
+        [
+          46.648392,
+          11.596488
+        ],
+        [
+          46.648363,
+          11.596568
+        ],
+        [
+          46.648361,
+          11.596651
+        ],
+        [
+          46.648352,
+          11.59678
+        ],
+        [
+          46.648343,
+          11.596826
+        ],
+        [
+          46.648324,
+          11.596918
+        ],
+        [
+          46.648327,
+          11.597009
+        ],
+        [
+          46.648348,
+          11.597087
+        ]
+      ],
+      "lat": 46.648348,
+      "lng": 11.597087,
+      "distance": 1.4,
+      "elevation": 60,
+      "hours": "0.5",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 714
+        },
+        {
+          "km": 0.1,
+          "elev": 720
+        },
+        {
+          "km": 0.2,
+          "elev": 725
+        },
+        {
+          "km": 0.3,
+          "elev": 727
+        },
+        {
+          "km": 0.4,
+          "elev": 723
+        },
+        {
+          "km": 0.4,
+          "elev": 723
+        },
+        {
+          "km": 0.5,
+          "elev": 719
+        },
+        {
+          "km": 0.6,
+          "elev": 713
+        },
+        {
+          "km": 0.7,
+          "elev": 693
+        },
+        {
+          "km": 0.8,
+          "elev": 665
+        },
+        {
+          "km": 0.9,
+          "elev": 662
+        },
+        {
+          "km": 1,
+          "elev": 668
+        },
+        {
+          "km": 1.1,
+          "elev": 690
+        },
+        {
+          "km": 1.1,
+          "elev": 690
+        },
+        {
+          "km": 1.2,
+          "elev": 700
+        },
+        {
+          "km": 1.3,
+          "elev": 706
+        },
+        {
+          "km": 1.4,
+          "elev": 714
+        }
+      ],
+      "waterSources": [
+        {
+          "km": 0.2,
+          "lat": 46.6492655,
+          "lng": 11.5997674,
+          "osmId": "node/9456264436",
+          "label": "Trattermandl",
+          "_d": 7
+        },
+        {
+          "km": 1.3,
+          "lat": 46.6485816,
+          "lng": 11.5960305,
+          "osmId": "node/9456264500",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 4
+        }
+      ],
+      "routeShape": "loop",
+      "routeShapeNote": "A loop round the Rafeil hill above Gufidaun on waymark 1, as the province trail register maps it, without the 100 m the register adds from the village below. Climb and time are measured by ORMA, not published by the register.",
+      "startPoint": {
+        "lat": 46.648348,
+        "lng": 11.597087,
+        "label": "At the waymark-1 signpost below the Rafeil hill in Gufidaun, a short walk up from the fire station and the bus stop"
+      },
+      "routeNumberGuidance": {
+        "mode": "numbered",
+        "start": "Start at the waymark-1 signpost below the Rafeil hill in Gufidaun, a few minutes up the steps from the fire station and the bus stop.",
+        "sequence": "Follow waymark 1 (“Rafeil-Rundweg”) up two short flights of steps, then the lanes of the upper village on path 1A. Take the Putzen track past the Trattermandl fountain and the Ansitz Koburg, then the path on round the wooded Rafeil hill, past the picnic area, back to the start.",
+        "switches": "Waymark 1 up the steps; path 1A on the village lanes; the Putzen track past the Trattermandl fountain; waymark 1 on the path round the hill back to the start.",
+        "sources": [
+          {
+            "label": "Rafeil-Rundweg, waymark 1 (province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425838",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-17"
+          }
+        ]
+      },
+      "shadeCoverage": 65,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "Two short flights of steps near the start",
+        "About 200 m on the lanes of the upper village, where cars may pass",
+        "A playground lies just off the path: Klausen keeps dogs out of playgrounds"
+      ],
+      "terrainType": "Forest paths, a farm track and short village lanes",
+      "terrainDescription": "A short loop at 660–730 m round the wooded Rafeil hill above Gufidaun, on paths, the Putzen track and a few village lanes, with two flights of steps.",
+      "shadeDescription": "Mostly shaded: about two thirds runs through woods.",
+      "waterDescription": "Drinking water at the Trattermandl fountain (km 0.2) and at the picnic area near the end (km 1.3).",
+      "dogNotes": "Klausen requires dogs on a lead on roads and in public places, and keeps them out of public gardens and playgrounds. The national rule also asks for a lead of at most 1.5 m and a muzzle carried.",
+      "tips": "A short 1.4 km loop round the Rafeil hill with about 60 m of up and down, half an hour of walking. Keep your dog on a lead of at most 1.5 m and carry a muzzle. Water at the Trattermandl fountain and the picnic area.",
+      "desc": "A short loop on waymark 1 round the wooded Rafeil hill above Gufidaun, past the Ansitz Koburg and the Trattermandl fountain. It is about 1.4 km with some 60 m of up and down, as measured by ORMA (the province register gives only the length).",
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Rafeil-Rundweg (Open Data Hub)",
+          "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425838"
+        },
+        {
+          "label": "Klausen, Gemeindepolizeiordnung",
+          "url": "https://www.klausen.eu/de/Verwaltung/Dokumente/Gemeindepolizeiordnung"
+        },
+        {
+          "label": "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)",
+          "url": "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315"
+        },
+        {
+          "label": "OpenStreetMap contributors",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "imageIcon": "images/trails/osm-11774783-rafeil-knolls.jpg",
+      "heroImage": "images/trails/osm-11774783-rafeil-knolls.jpg",
+      "imageCredit": "The Rafeil knolls, Gufidaun",
+      "imageCreditText": "The Rafeil knolls, Gufidaun by Wolfgang Moroder",
+      "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gufidaun_im_Eisacktal_Kuppelgel%C3%A4nde_Raffeil.jpg",
+      "imageCreator": "Wolfgang Moroder",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "imageAlt": "A grassy path between mossy rock knolls and young trees on the Rafeil hill above Gufidaun",
+      "imageSourceType": "licensed-source",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-11-17",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "The grassy path between the rock knolls of the Rafeil natural monument (Wolfgang Moroder on Wikimedia Commons, CC BY-SA 3.0), 13 August 2017, 37 m from the line.",
+        "route": "Register loop 'Rafeil-Rundweg' (routes-hikingtrails.11425838, 1.44 km); the stored line is drawn on 13 OSM ways along the register line, 1.35 km, every part of it within 25 m of the register line. The register's first 100 m, from the village up to the loop, are left out, so the line is a clean loop.",
+        "routeNumbers": "Waymark 1, “Rafeil-Rundweg”: up the steps, the village lanes on path 1A, the Putzen track and the path round the Rafeil hill.",
+        "mapPoints": "Start at the waymark-1 signpost below the hill; drinking water at the Trattermandl fountain, km 0.2, and at the picnic area, km 1.3 (OSM nodes 9456264436, 9456264500).",
+        "elevation": "No official figure. Measured by ORMA from the map: 1.35 km, about 60 m up and down between 662 and 727 m, 30 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Rafeil-Rundweg', line routes-hikingtrails.11425838, 1,444 m",
+          "Gemeinde Klausen / Comune di Chiusa, Gemeindepolizeiordnung (Gemeinderat Nr. 37, 23.06.2004), Art. 29: dogs on a lead on roads and in public places; no dogs in public green areas or on playgrounds",
+          "Ministero della Salute, Ordinanza 6 agosto 2013 on dog aggression, extended by the Ordinanza of 16 July 2026: a lead of at most 1.5 m and a muzzle carried in places open to the public",
+          "Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site or park on the line; about a third crosses the 'Rafeil' natural monument (2.7 ha) and the rest lies in landscape zones, whose rules protect the land and set no rule on dogs",
+          "OpenStreetMap ways along the register line (13 ways), road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        "date": "2026-11-17"
+      }
+    },
+    'osm-12174210': {
+      // Hand audit 2026-11-17. Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // The OSM relation's loop (9.3 km) lies wholly on the register's 'Rundweg Reischach' (routes-hikingtrails.11425635, CC0, 10,138 m); the register
+      // adds 720 m from the church in Reischach to the loop. Commune: Bruneck (2008 dog regulation, amended 2010). No park, Natura 2000 site or natural
+      // monument on the line. Roads: 200 m on the Reiperting road at the start and a crossing of the Reischacher Straße (SP66).
+      "distance": 9.3,
+      "elevation": 230,
+      "hours": "2.9",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 930
+        },
+        {
+          "km": 0.6,
+          "elev": 952
+        },
+        {
+          "km": 1.2,
+          "elev": 1030
+        },
+        {
+          "km": 1.8,
+          "elev": 1017
+        },
+        {
+          "km": 2.4,
+          "elev": 989
+        },
+        {
+          "km": 2.9,
+          "elev": 1024
+        },
+        {
+          "km": 3.5,
+          "elev": 1028
+        },
+        {
+          "km": 4.1,
+          "elev": 1000
+        },
+        {
+          "km": 4.7,
+          "elev": 948
+        },
+        {
+          "km": 5.3,
+          "elev": 913
+        },
+        {
+          "km": 5.9,
+          "elev": 913
+        },
+        {
+          "km": 6.5,
+          "elev": 912
+        },
+        {
+          "km": 7.1,
+          "elev": 913
+        },
+        {
+          "km": 7.6,
+          "elev": 913
+        },
+        {
+          "km": 8.2,
+          "elev": 930
+        },
+        {
+          "km": 8.8,
+          "elev": 927
+        },
+        {
+          "km": 9.3,
+          "elev": 930
+        }
+      ],
+      "waterSources": [
+        {
+          "km": 2.3,
+          "lat": 46.7722197,
+          "lng": 11.9497962,
+          "osmId": "node/7409859185",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 15
+        },
+        {
+          "km": 4.8,
+          "lat": 46.7830022,
+          "lng": 11.9654216,
+          "osmId": "node/7781001619",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 16
+        },
+        {
+          "km": 5.3,
+          "lat": 46.7815855,
+          "lng": 11.9600891,
+          "osmId": "node/11111274005",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 31
+        },
+        {
+          "km": 8,
+          "lat": 46.781181,
+          "lng": 11.9377756,
+          "osmId": "node/10845330300",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 16
+        },
+        {
+          "km": 8.9,
+          "lat": 46.777467,
+          "lng": 11.938238,
+          "osmId": "node/7413438885",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 46
+        }
+      ],
+      "routeShape": "loop",
+      "routeShapeNote": "A loop round Reischach on the waymarked Rundweg Reischach, as the province trail register maps it, from the sports zone on the Stefansdorfer Straße; the register adds 720 m from the church in Reischach. Climb and time are measured by ORMA, not published by the register.",
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start at the Stefansdorfer Straße bus stop by the sports zone below Reischach, where the loop meets the Reiperting road. From the church in Reischach the register’s signed link reaches the loop in about 700 m.",
+        "sequence": "Walk up the Reiperting road for about 200 m, then lanes and tracks onto the Panoramaweg (paths 7 and 15) past the art objects of the Reischach art trail and the Reischach barbecue area. Carry on along the Wiesenweg and path 14 to the Lamprechtsburg castle and chapel, cross the Rienz on the covered Lamprechtsburg bridge, and follow the nature trail along the river. Paths 17 and 17B and the Feldweg bring you to the Reischacher Straße; cross it and take path 21 past the Harrasserstraße back to the start.",
+        "switches": "The Reiperting road for 200 m; the Panoramaweg past the art trail; the Wiesenweg and path 14 to the Lamprechtsburg; across the covered bridge onto the nature trail; paths 17 and 17B; across the Reischacher Straße onto path 21 back to the start.",
+        "steps": [
+          {
+            "text": "The Stefansdorfer Straße bus stop by the sports zone",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Up the Reiperting road, then the Panoramaweg past the art trail and the barbecue area",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Wiesenweg and path 14 to the Lamprechtsburg castle and chapel",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The covered Lamprechtsburg bridge over the Rienz and the nature trail along the river",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Paths 17 and 17B, across the Reischacher Straße, then path 21 back to the start",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Rundweg Reischach (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425635",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-17"
+          }
+        ]
+      },
+      "shadeCoverage": 46,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 200 m on the Reiperting road at the start and short stretches of village lanes: keep your dog on a short lead there",
+        "One crossing of the Reischacher Straße (SP66) at about km 7.6: cross with care",
+        "The track crosses a ski slope near km 1.2; snow cannons stand by the way",
+        "Farmed meadows line much of the loop: Bruneck keeps dogs off them"
+      ],
+      "terrainType": "Forest tracks and paths, about 2 km on lanes and roads",
+      "terrainDescription": "A long loop at 910–1,050 m round Reischach below the Kronplatz, on the Panoramaweg, meadow tracks and the nature trail along the Rienz, past the Lamprechtsburg castle and its covered wooden bridge.",
+      "shadeDescription": "About half in woods; the Panoramaweg and the meadow tracks are open.",
+      "waterDescription": "Plenty of drinking water: fountains at about km 2.3, 4.8 (by the Lamprechtsburg), 5.3, 8.0 and 8.9.",
+      "dogNotes": "Bruneck requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs off farmed meadows and fields.",
+      "tips": "A 9.3 km loop round Reischach with about 230 m of up and down, roughly three hours. Water at several fountains on the way. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Bruneck requires, and keep off the meadows.",
+      "desc": "A long loop round Reischach below the Kronplatz, along the Panoramaweg past the art trail, down to the Lamprechtsburg castle and its covered bridge over the Rienz, and back through meadows. It is about 9.3 km with some 230 m of up and down, as measured by ORMA (the province register gives only the length).",
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Rundweg Reischach (Open Data Hub)",
+          "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11425635"
+        },
+        {
+          "label": "Stadtgemeinde Bruneck, dog regulation (2008, amended 2010)",
+          "url": "https://www.gemeinde.bruneck.bz.it/system/web/GetDocument.ashx?cts=1740139932&fileId=971388"
+        },
+        {
+          "label": "OpenStreetMap relation 12174210",
+          "url": "https://www.openstreetmap.org/relation/12174210"
+        }
+      ],
+      "imageIcon": "images/trails/osm-12174210-lamprechtsburg.jpg",
+      "heroImage": "images/trails/osm-12174210-lamprechtsburg.jpg",
+      "imageCredit": "The Lamprechtsburg, Reischach",
+      "imageCreditText": "The Lamprechtsburg, Reischach by CinziaB",
+      "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castel_Lamberto_Riscone_-_Brunico_03.jpg",
+      "imageCreator": "CinziaB",
+      "imageLicence": "CC BY-SA 4.0",
+      "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "imageAlt": "The Lamprechtsburg castle tower, its chapel and walls on a wooded knoll above a green meadow and a gravel path, under a blue sky with white clouds",
+      "imageSourceType": "licensed-source",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-11-17",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "The Lamprechtsburg castle and chapel (CinziaB on Wikimedia Commons, CC BY-SA 4.0), 17 September 2022, 52 m from the line, from the meadow path the loop takes.",
+        "route": "Register loop 'Rundweg Reischach' (routes-hikingtrails.11425635, 10.12 km, of which 720 m lead from the church in Reischach to the loop); the stored line is the OSM relation's loop, 9.30 km, every part of it within 25 m of the register line, and 94.5% of the register within 25 m of it (all of the rest is that link).",
+        "routeNumbers": "Signed “Rundweg Reischach”: the Panoramaweg (paths 7 and 15), the Wiesenweg and path 14, the nature trail across the covered Lamprechtsburg bridge, paths 17 and 17B, then path 21.",
+        "mapPoints": "Start at the Stefansdorfer Straße bus stop by the sports zone; drinking water at km 2.3, 4.8, 5.3, 8.0 and 8.9 (OSM nodes 7409859185, 7781001619, 11111274005, 10845330300, 7413438885).",
+        "elevation": "No official figure. Measured by ORMA from the map: 9.30 km, about 230 m up and down between 907 and 1,048 m, 2 h 57 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Rundweg Reischach', line routes-hikingtrails.11425635, 10,138 m",
+          "Stadtgemeinde Bruneck / Città di Brunico, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat Nr. 65, 24.11.2008, amended Nr. 4, 25.01.2010), Art. 4: a lead of at most 1.5 m on all public ground, except marked dog areas, and a muzzle carried; no dogs on farmed meadows and fields",
+          "Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; about a quarter lies in landscape zones, whose rules protect the land and set no rule on dogs",
+          "OpenStreetMap relation 12174210 and the ways along it, road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        "date": "2026-11-17"
+      }
+    },
+    'osm-12047303': {
+      // Hand audit 2026-11-17. Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // The OSM relation's loop (2.8 km) lies wholly on the register's 'Lang-Erl-Weg' (routes-hikingtrails.11429497, CC0, 3,768 m); the register also
+      // draws a 440 m spur out and back from the Langerl track to the Schatteleweg, which the stored loop leaves out so it stays a clean loop.
+      // Commune: Niederdorf (2010 dog regulation). No park, Natura 2000 site or natural monument on the line. Roads: about 1.6 km on village streets
+      // and one crossing of the Pustertaler Straße (SS49) on the Maistattweg.
+      "area": "Niederdorf / Villabassa",
+      "distance": 2.8,
+      "elevation": 70,
+      "hours": "0.9",
+      "elevationProfile": [
+        {
+          "km": 0,
+          "elev": 1150
+        },
+        {
+          "km": 0.2,
+          "elev": 1151
+        },
+        {
+          "km": 0.4,
+          "elev": 1149
+        },
+        {
+          "km": 0.5,
+          "elev": 1147
+        },
+        {
+          "km": 0.7,
+          "elev": 1150
+        },
+        {
+          "km": 0.9,
+          "elev": 1155
+        },
+        {
+          "km": 1.1,
+          "elev": 1181
+        },
+        {
+          "km": 1.3,
+          "elev": 1215
+        },
+        {
+          "km": 1.5,
+          "elev": 1216
+        },
+        {
+          "km": 1.6,
+          "elev": 1216
+        },
+        {
+          "km": 1.8,
+          "elev": 1193
+        },
+        {
+          "km": 2,
+          "elev": 1188
+        },
+        {
+          "km": 2.2,
+          "elev": 1169
+        },
+        {
+          "km": 2.4,
+          "elev": 1160
+        },
+        {
+          "km": 2.5,
+          "elev": 1154
+        },
+        {
+          "km": 2.7,
+          "elev": 1153
+        },
+        {
+          "km": 2.8,
+          "elev": 1150
+        }
+      ],
+      "waterSources": [
+        {
+          "km": 0.2,
+          "lat": 46.7366483,
+          "lng": 12.1674328,
+          "osmId": "node/7868892286",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 19
+        },
+        {
+          "km": 0.2,
+          "lat": 46.7366692,
+          "lng": 12.1667727,
+          "osmId": "node/7868938985",
+          "label": "Drinking water (OSM-verified location)",
+          "_d": 39
+        },
+        {
+          "km": 2.5,
+          "lat": 46.7370346,
+          "lng": 12.1720272,
+          "osmId": "node/7871471485",
+          "label": "Schneider",
+          "_d": 34
+        }
+      ],
+      "routeShape": "loop",
+      "routeShapeNote": "A loop from the village square of Niederdorf on the waymarked Lang-Erl-Weg, as the province trail register maps it, out past the station and back along the Langerl meadows and the Maistattweg. The register also draws a 440 m spur out and back to the Schatteleweg, left out here. Climb and time are measured by ORMA, not published by the register.",
+      "startPoint": {
+        "lat": 46.7379459,
+        "lng": 12.1687099,
+        "label": "The Von-Kurz-Platz, the village square of Niederdorf"
+      },
+      "routeNumberGuidance": {
+        "mode": "landmarks",
+        "start": "Start on the Von-Kurz-Platz, the village square of Niederdorf; the loop is signed “Lang-Erl-Weg”.",
+        "sequence": "Walk down the Bahnhofstraße (path 1) to Niederdorf station, where there is a fountain. Turn onto the Schatteleweg and follow it out of the village to the Langerl track. Follow the Langerlweg across the meadows, through several gates, to the “Stein sein” viewpoint. Return on the Maistattweg, crossing the Pustertaler Straße (SS49), and through the Johann-Jaeger-Straße and the Jakob-Traunsteiner-Straße back to the square.",
+        "switches": "Bahnhofstraße to the station; the Schatteleweg; the Langerl track across the meadows; the Maistattweg across the SS49; the Johann-Jaeger-Straße and Jakob-Traunsteiner-Straße back to the square.",
+        "steps": [
+          {
+            "text": "The Von-Kurz-Platz in Niederdorf",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Bahnhofstraße down to the station",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Schatteleweg out of the village",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Langerl track across the meadows to the “Stein sein” viewpoint",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Maistattweg across the Pustertaler Straße and the village streets back to the square",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Lang-Erl-Weg (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429497",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-17"
+          }
+        ]
+      },
+      "shadeCoverage": 28,
+      "heatRisk": "moderate",
+      "exposure": false,
+      "surfaceHazards": [
+        "About 1.6 km on village streets and lanes in Niederdorf, where cars come and go: keep your dog on a short lead",
+        "One crossing of the busy Pustertaler Straße (SS49) on the Maistattweg at about km 2.3: cross with great care",
+        "Several gates on the Langerl track across the meadows: close them behind you",
+        "Niederdorf keeps dogs off farmed land from April to October: stay on the track"
+      ],
+      "terrainType": "Village streets and a meadow track",
+      "terrainDescription": "A short, nearly level loop at 1,150–1,220 m from the village square of Niederdorf past the station and across the Langerl meadows, half on village streets and half on a farm track.",
+      "shadeDescription": "Mostly open: about a quarter runs past trees.",
+      "waterDescription": "Drinking water at the fountains by the station (km 0.2) and near the end (km 2.5), and in the village.",
+      "dogNotes": "Niederdorf requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs off farmed land from 1 April to 31 October and out of the spa park.",
+      "tips": "An easy 2.8 km loop from the village square with about 70 m of up and down, under an hour. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Niederdorf requires, stay on the track across the meadows and close the gates. Cross the main road with care.",
+      "desc": "A short, nearly level loop from the village square of Niederdorf, out past the station and back across the Langerl meadows. It is about 2.8 km with some 70 m of up and down, as measured by ORMA (the province register gives only the length).",
+      "sourceLinks": [
+        {
+          "label": "South Tyrol trail register, Lang-Erl-Weg (Open Data Hub)",
+          "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11429497"
+        },
+        {
+          "label": "Gemeinde Niederdorf, dog regulation (2010)",
+          "url": "https://www.gemeinde.niederdorf.bz.it/de/Verwaltung/Dokumente/Gemeindeverordnung_ueber_die_Haltung_und_das_Fuehren_von_Hunden"
+        },
+        {
+          "label": "OpenStreetMap relation 12047303",
+          "url": "https://www.openstreetmap.org/relation/12047303"
+        }
+      ],
+      "imageIcon": "images/trails/osm-12047303-trinity-church.jpg",
+      "heroImage": "images/trails/osm-12047303-trinity-church.jpg",
+      "imageCredit": "Holy Trinity church by the Rienz, Niederdorf",
+      "imageCreditText": "Holy Trinity church by the Rienz, Niederdorf by Mattana",
+      "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villabassa-Niederdorf_001.JPG",
+      "imageCreator": "Mattana",
+      "imageLicence": "CC BY-SA 3.0",
+      "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "imageAlt": "A yellow church with an onion-domed bell tower beside the fast-flowing Rienz in Niederdorf, trees along the bank and wooded hills behind under grey cloud",
+      "imageSourceType": "licensed-source",
+      "curated": true,
+      "tier": "route-audited",
+      "reviewedAt": "2026-11-17",
+      "reviewedBy": "ORMA route audit",
+      "routeAudit": {
+        "photo": "Holy Trinity church by the Rienz in Niederdorf, near the start (Mattana on Wikimedia Commons, CC BY-SA 3.0), 30 July 2011, 52 m from the line.",
+        "route": "Register loop 'Lang-Erl-Weg' (routes-hikingtrails.11429497, 3.77 km, which includes a 440 m spur drawn out and back to the Schatteleweg); the stored line is the OSM relation's loop, 2.83 km, every part of it within 25 m of the register line, and all of the register within 25 m of it except that spur.",
+        "routeNumbers": "Signed “Lang-Erl-Weg”: the Bahnhofstraße (path 1), the Schatteleweg, the Langerl track, the Maistattweg (paths 15 and 27), then the village streets.",
+        "mapPoints": "Start on the village square; drinking water at km 0.2 (by the station) and km 2.5 (OSM nodes 7868892286, 7868938985, 7871471485).",
+        "elevation": "No official figure. Measured by ORMA from the map: 2.83 km, about 70 m up and down between 1,147 and 1,218 m, 53 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      "graduation": {
+        "status": "verified",
+        "required": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "completed": [
+          "photo",
+          "route",
+          "routeNumbers",
+          "mapPoints",
+          "elevation",
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "blockers": {}
+      },
+      "verified": {
+        "categories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ],
+        "sources": [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Lang-Erl-Weg', line routes-hikingtrails.11429497, 3,768 m",
+          "Gemeinde Niederdorf, Verordnung über die Haltung und das Führen von Hunden (resolution 3/R/10 of 21 January 2010), Art. 5 and 9: a lead of at most 1.5 m on all public ground, a muzzle carried, no dogs on farmed land from 1 April to 31 October and none in the spa park",
+          "Province of Bolzano landscape-plan layers (p_bz-TerritorialPlans: Natura2000, NationalAndNaturalParks, ProtectedAreas, NaturalMonuments): no Natura 2000 site, park or natural monument on the line; parts lie in landscape zones and the ensemble-protection area of the village, whose rules cover building and set no rule on dogs",
+          "OpenStreetMap relation 12047303 and the ways along it, road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        "date": "2026-11-17"
+      }
     }
   };
 

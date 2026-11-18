@@ -164,7 +164,7 @@ describe('a walk verified or re-lined by hand is not republished by the pipeline
   });
 
   test('an official line set by hand is not replaced, verified or not',()=>{
-    const trail=record('osm-12174210');
+    const trail=record('osm-12165590');
     expect(trail.graduation?.status).not.toBe('verified');
     const line={id:trail.id,verificationScope:'routeLine',
       sources:[{url:'https://example.test/official',reviewedAt:'2026-10-23'}],

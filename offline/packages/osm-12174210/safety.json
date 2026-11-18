@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-12174210",
+  "generatedAt": "2026-11-17T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 9.3,
+    "ascentM": 230,
+    "highestPointM": 1030,
+    "expectedDuration": "2 h 55 min",
+    "difficulty": "Moderate",
+    "shadePercent": 46
+  },
+  "trailhead": {
+    "lat": 46.7743398,
+    "lng": 11.9382983,
+    "label": "Start here — Bus stop Stefansdorfer Straße, Sportzone - Via Santo Stefano, zona sportiva, 9 m from the route"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7722197,
+      "lng": 11.9497962,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7830022,
+      "lng": 11.9654216,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7815855,
+      "lng": 11.9600891,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.781181,
+      "lng": 11.9377756,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.777467,
+      "lng": 11.938238,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 200 m on the Reiperting road at the start and short stretches of village lanes: keep your dog on a short lead there.",
+    "One crossing of the Reischacher Straße (SP66) at about km 7.6: cross with care.",
+    "The track crosses a ski slope near km 1.2; snow cannons stand by the way.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-17"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-17",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Start here — Bus stop Stefansdorfer Straße, Sportzone - Via Santo Stefano, zona sportiva, 9 m from the route": "Parti da qui — Fermata dell'autobus Stefansdorfer Straße, Sportzone - Via Santo Stefano, zona sportiva, a 9 m dal percorso",
+    "About 200 m on the Reiperting road at the start and short stretches of village lanes: keep your dog on a short lead there.": "Circa 200 m sulla strada di Reiperting alla partenza e brevi tratti di stradine di paese: lì tieni il cane al guinzaglio corto.",
+    "One crossing of the Reischacher Straße (SP66) at about km 7.6: cross with care.": "Un attraversamento della Via Riscone (SP66) verso il km 7,6: attraversa con attenzione.",
+    "The track crosses a ski slope near km 1.2; snow cannons stand by the way.": "La strada attraversa una pista da sci vicino al km 1,2; lungo il percorso ci sono cannoni da neve."
+  }
+}

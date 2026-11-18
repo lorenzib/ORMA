@@ -3692,7 +3692,7 @@
       }
     },
     "osm-11774783": {
-      "highPoint": 735,
+      "highPoint": 727,
       "snow": {
         "months": [
           1,
@@ -3700,7 +3700,7 @@
           12
         ],
         "likelihood": "possible",
-        "highPoint": 735
+        "highPoint": 727
       }
     },
     "osm-11775760": {
@@ -3864,15 +3864,22 @@
       }
     },
     "osm-11816373": {
-      "highPoint": 997,
-      "snow": {
+      "highPoint": 999,
+      "recommended": {
         "months": [
-          1,
-          2,
-          12
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
-        "likelihood": "possible",
-        "highPoint": 997
+        "source": {
+          "label": "bruneck.com",
+          "url": "https://bruneck.com/en/activity/bunker-trail_5180",
+          "accessedAt": "2026-11-17"
+        }
       }
     },
     "osm-11828233": {
@@ -4010,7 +4017,7 @@
       }
     },
     "osm-12047303": {
-      "highPoint": 1215,
+      "highPoint": 1216,
       "snow": {
         "months": [
           1,
@@ -4018,7 +4025,7 @@
           12
         ],
         "likelihood": "possible",
-        "highPoint": 1215
+        "highPoint": 1216
       }
     },
     "osm-12118490": {
@@ -4239,7 +4246,7 @@
       ]
     },
     "osm-12174210": {
-      "highPoint": 1026,
+      "highPoint": 1030,
       "snow": {
         "months": [
           1,
@@ -4247,7 +4254,7 @@
           12
         ],
         "likelihood": "possible",
-        "highPoint": 1026
+        "highPoint": 1030
       }
     },
     "osm-12182516": {
