@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "auronzo-pian-di-barco",
+  "distanceKm": 3.7,
+  "ascentM": 184,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 836
+    },
+    {
+      "km": 0.3,
+      "elev": 844
+    },
+    {
+      "km": 0.6,
+      "elev": 941
+    },
+    {
+      "km": 0.8,
+      "elev": 964
+    },
+    {
+      "km": 1.1,
+      "elev": 975
+    },
+    {
+      "km": 1.4,
+      "elev": 988
+    },
+    {
+      "km": 1.7,
+      "elev": 984
+    },
+    {
+      "km": 2,
+      "elev": 984
+    },
+    {
+      "km": 2.2,
+      "elev": 988
+    },
+    {
+      "km": 2.5,
+      "elev": 975
+    },
+    {
+      "km": 2.8,
+      "elev": 990
+    },
+    {
+      "km": 3.1,
+      "elev": 967
+    },
+    {
+      "km": 3.3,
+      "elev": 854
+    },
+    {
+      "km": 3.6,
+      "elev": 833
+    },
+    {
+      "km": 3.7,
+      "elev": 836
+    }
+  ]
+}

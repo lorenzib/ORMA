@@ -67521,6 +67521,76 @@
       startPoint: { lat: 46.475974, lng: 11.513007, label: "On the Völsegger Weg below the Ansitz Velseck, Tiers" },
       desc: "A shady forest loop below the Völsegg above Tiers, on the waymarked Promenadenweg and path 6, ending past the Ansitz Velseck manor. It is about 3.7 km with some 230 m of up and down, as measured by ORMA (the province register gives only the length)."
     },
+    'auronzo-pian-di-barco': {
+      // Hand audit: 18 November 2026, verified on arrival (Dolomites walks whose page only suggests another way back, owner rule of 16 November 2026).
+      // “18 - Pian di Barco”, published by Consorzio Turistico Tre Cime Dolomiti one way (its only return is a suggested different path), drawn there and back on 5 OSM ways along the
+      // line it publishes (data/board-line-routes.geojson). Distance and climb are the board’s one-way figures doubled
+      // (climb = its up plus its down); the time is measured by ORMA (DIN 33466), as the board times one way only.
+      // Commune: Auronzo di Cadore (no dog rule found online: national rule). Natura 2000 ZPS IT3230089 Dolomiti del Cadore e del Comelico on most of the line (EEA, 8 of 9 points); Veneto’s alpine measures (DGR 786/2016 Art. 99) only restate the national rule. No main road on or beside the line (OSM): grass and earth tracks and a path. The page’s author tip suggests going on by path 20 to Pian de Namos and down paths 19 and 17 (the Namos ring); owner rule of 16 November 2026: a suggested other way back does not block the walk, which ORMA walks back on the same path.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Cella (Villapiccola) – Pian di Barco, Auronzo di Cadore",
+      distance: 3.8,
+      elevation: 184,
+      hours: '1.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The board publishes path 18 one way, from the Santa Caterina chapel at Cella to Pian di Barco (1.9 km, 166 m up and 18 m down, 0:45 h), and suggests going on by paths 20, 19 and 17 instead of coming back. ORMA walks it there and back on the same path: 3.8 km with 184 m up and down. The time, about 1 h 30, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in the hamlet of Cella (Villapiccola), by the chapel of Santa Caterina d’Alessandria near the Lake Santa Caterina dam. The board suggests parking near the dam on the SR48 and walking up to the chapel.",
+        "sequence": "Take path 17 for a few metres, then turn right onto path 18. Soon you reach a giant bench; from there the wide path climbs gently through spruce, fir and beech woods and past small clearings with old hay barns to the junction with path 20 at Pian di Barco. The board suggests going on by path 20 to Pian de Namos and down paths 19 and 17; ORMA’s walk turns at the junction and goes back the same way on path 18.",
+        "switches": "Path 17 for a few metres from the chapel, then right onto path 18; past the giant bench, gently up through the woods to the junction with path 20 at Pian di Barco; back the same way on path 18.",
+        "sources": [
+          {
+            "label": "Consorzio Turistico Tre Cime Dolomiti, 18 - Pian di Barco (route description)",
+            "url": "https://www.outdooractive.com/it/r/812604569",
+            "authority": "Consorzio Turistico Tre Cime Dolomiti",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-18"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-18',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Lake Santa Caterina from the dam at Cella, by the start (Salvador Escriva on Wikimedia Commons, CC BY-SA 4.0), 16 August 2019, 73 m from the line.",
+        route: "Official one-way walk of 1.9 km from The start of path 18 at Cella (Villapiccola), just above the chapel of Santa Caterina d’Alessandria, as Consorzio Turistico Tre Cime Dolomiti publishes it; the page only suggests a different way down, and ORMA walks it there and back on the same path (owner rules of 12 and 16 November 2026). The stored line is drawn on 5 OSM ways along the board’s published line out and back, 3.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 17 and 18: from the Santa Caterina chapel at Cella a few metres on path 17, then right on path 18 up to its junction with path 20 at Pian di Barco; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 1.9 km, 166 m up and 18 m down, 0:45 h, highest point 1,006 m, lowest 840 m (Consorzio Turistico Tre Cime Dolomiti, Outdooractive). There and back on the same path: 3.8 km, 184 m up and 184 m down; about 1 h 30 measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Consorzio Turistico Tre Cime Dolomiti, 18 - Pian di Barco (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Auronzo di Cadore (its site lists documents only through a script), so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Natura 2000: ZPS IT3230089 Dolomiti del Cadore e del Comelico on most of the line (EEA); Veneto’s alpine conservation measures (DGR 786/2016 Allegato A, Art. 99) only restate the national dog rule",
+          "OpenStreetMap ways along the board’s line (5 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-18'
+      },
+      shadeCoverage: 93,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["Grass and earth tracks that can be muddy after rain: take care on the way down","Old hay barns and their meadows: keep your dog on the path and close","Forest tracks open to forestry vehicles in places: keep your dog close if one comes"],
+      terrainType: "Woodland path and grassy forest tracks",
+      shadeDescription: "Almost all in spruce, fir and beech woods; only the small clearings with the old barns are open.",
+      terrainDescription: "An easy, gentle climb from the chapel of Santa Caterina above Lake Auronzo on path 18, past a giant bench and old hay barns in small clearings, through mixed spruce, fir and beech woods to Pian di Barco, and back the same way.",
+      waterDescription: "No drinking water is mapped on the walk; a fountain is mapped in Cella, about 200 m from the start (OSM). Carry enough for you and your dog.",
+      dogNotes: "Auronzo has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried. Most of the walk is in a Natura 2000 bird area: keep your dog on the path and close.",
+      tips: "Start at the Santa Caterina chapel by the lake: about 45 minutes up to Pian di Barco, as the board lists, and the same way back. An easy, shady walk for most dogs; the giant bench near the start makes a good photo stop.",
+      sourceLinks: [
+        { label: "Consorzio Turistico Tre Cime Dolomiti, 18 - Pian di Barco", url: "https://www.outdooractive.com/it/r/812604569" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Veneto, DGR 786/2016 Allegato A, Natura 2000 conservation measures, alpine region (Art. 99, dogs)", url: "https://download.mase.gov.it/Natura2000/Materiale%20Designazione%20ZSC/Veneto/04_Misure%20di%20Conservazione/DGR%20786_27_05_2016-%20Allegato%20A%20MdC%20Alpina.pdf" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.540481, lng: 12.464579, label: "The start of path 18 at Cella (Villapiccola), just above the chapel of Santa Caterina d’Alessandria, the board’s start" },
+      desc: "An easy woodland walk from the Santa Caterina chapel above Lake Auronzo on path 18, past a giant bench and old hay barns, to Pian di Barco, and back the same way. The board lists 1.9 km one way, about 45 minutes; there and back it is 3.8 km with 184 m up and down."
+    },
     'osm-11816373': {
       // Hand audit 2026-11-17. Line rebuilt on 22 OSM ways along the province trail register's 'Bunkerweg' (routes-hikingtrails.11427150, CC0);
       // the register's first 56 m on the village road are the start of the loop walked twice, so the stored loop begins where they meet.

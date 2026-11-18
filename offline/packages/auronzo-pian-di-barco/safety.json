@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "auronzo-pian-di-barco",
+  "generatedAt": "2026-11-18T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.8,
+    "ascentM": 184,
+    "highestPointM": 990,
+    "expectedDuration": "1 h 30 min",
+    "difficulty": "Moderate",
+    "shadePercent": 93
+  },
+  "trailhead": {
+    "lat": 46.540481,
+    "lng": 12.464579,
+    "label": "The start of path 18 at Cella (Villapiccola), just above the chapel of Santa Caterina d’Alessandria, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Grass and earth tracks that can be muddy after rain: take care on the way down.",
+    "Old hay barns and their meadows: keep your dog on the path and close.",
+    "Forest tracks open to forestry vehicles in places: keep your dog close if one comes.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-18"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-18",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Santa Caterina to Pian di Barco": "Da Santa Caterina a Pian di Barco, andata e ritorno",
+    "The start of path 18 at Cella (Villapiccola), just above the chapel of Santa Caterina d’Alessandria, the board’s start": "L’inizio del sentiero 18 a Cella (Villapiccola), appena sopra la chiesetta di Santa Caterina d’Alessandria, la partenza indicata dal consorzio",
+    "Grass and earth tracks that can be muddy after rain: take care on the way down.": "Strade forestali erbose e in terra che dopo la pioggia possono essere fangose: attenzione in discesa.",
+    "Old hay barns and their meadows: keep your dog on the path and close.": "Vecchi fienili e i loro prati: tenete il cane sul sentiero e vicino a voi.",
+    "Forest tracks open to forestry vehicles in places: keep your dog close if one comes.": "Strade forestali aperte in alcuni tratti ai mezzi forestali: tenete il cane vicino se ne arriva uno."
+  }
+}

@@ -3953,6 +3953,14 @@
       "quote": "CODE_NAME 'Promenadenweg' (provincial hiking-trail register, routes-hikingtrails.11425959, 3,358 m; Tiers)",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-16T18:00:00.000Z"
+    },
+    "auronzo-pian-di-barco": {
+      "url": "https://www.outdooractive.com/it/r/812604569",
+      "publisher": "Consorzio Turistico Tre Cime Dolomiti (Outdooractive)",
+      "name": "18 - Pian di Barco",
+      "quote": "Facile · Distanza 1,9 km · Durata 0:45 h · Salita 166 m · Discesa 18 m · “Dalla Chiesetta di Santa Caterina d’Alessandria, nella borgata “Cella” di Villapiccola, si percorre un breve tratto del sentiero n.° 17 per voltare quasi subito sulla destra e prendere il sentiero n.° 18”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-18T12:00:00.000Z"
     }
   }
 }

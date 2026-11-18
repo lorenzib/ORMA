@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-17T16:06:06.269Z",
+  "generatedAt": "2026-11-18T09:29:26.814Z",
   "regions": {
     "dolomites": {
-      "trailCount": 379,
-      "trails": "data/regions/dolomites-trails.js?v=f9472903fc60",
+      "trailCount": 380,
+      "trails": "data/regions/dolomites-trails.js?v=bce3c3784b4c",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=27d6277ba004",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -384,6 +384,7 @@
         "dolomitiunesco-lavaze-malga-costa": "data/trail-details/dolomitiunesco-lavaze-malga-costa.js?v=0ab25ac49dcd",
         "seiseralm-umser-rundweg": "data/trail-details/seiseralm-umser-rundweg.js?v=bb1082871a50",
         "seiseralm-promenadenweg-tiers": "data/trail-details/seiseralm-promenadenweg-tiers.js?v=a4f0e7db0484",
+        "auronzo-pian-di-barco": "data/trail-details/auronzo-pian-di-barco.js?v=cec1ee180099",
         "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=d5f08b9de225"
       },
       "water": "data/regions/dolomites-water.geojson",
@@ -1004,6 +1005,7 @@
     "dolomitiunesco-lavaze-malga-costa": "dolomites",
     "seiseralm-umser-rundweg": "dolomites",
     "seiseralm-promenadenweg-tiers": "dolomites",
+    "auronzo-pian-di-barco": "dolomites",
     "cinque-torri-assisted": "dolomites",
     "osm-3982382": "savoy",
     "osm-6250300": "savoy",
@@ -1691,6 +1693,7 @@
     "dolomitiunesco-lavaze-malga-costa": "malga-costa-passo-lavaze",
     "seiseralm-umser-rundweg": "umser-rundweg-ums",
     "seiseralm-promenadenweg-tiers": "promenadenweg-tiers",
+    "auronzo-pian-di-barco": "pian-di-barco-auronzo",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2225,6 +2228,7 @@
     "malga-costa-passo-lavaze": "dolomitiunesco-lavaze-malga-costa",
     "umser-rundweg-ums": "seiseralm-umser-rundweg",
     "promenadenweg-tiers": "seiseralm-promenadenweg-tiers",
+    "pian-di-barco-auronzo": "auronzo-pian-di-barco",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
