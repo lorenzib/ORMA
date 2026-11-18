@@ -34,6 +34,13 @@
   const shapeButtons = Array.from(document.querySelectorAll('[data-planner-shape]'));
   const ascent = document.getElementById('plannerAscent');
   const finishButton = document.getElementById('plannerFinish');
+  // "Adjust this walk": the planner opened from one of ORMA's walks
+  // (route-adjust.js has the rules).
+  const adjust = window.ORMARouteAdjust;
+  const adjustBox = document.getElementById('plannerAdjust');
+  const adjustShare = document.getElementById('plannerAdjustShare');
+  const adjustScore = document.getElementById('plannerAdjustScore');
+  const plannerTitle = document.getElementById('plannerTitle');
   const MIN_LOOP_POINTS = 3;
   const MAX_POINTS = 25;
   const MAX_ROUTE_DISTANCE_M = 30000;
@@ -80,6 +87,16 @@
   let calculationVersion = 0;
   let editingId = null;
   let finished = false;
+  // The ORMA walk being adjusted, and how the current line compares with it.
+  let basedOn = null;
+  let comparison = null;
+  // Whom the adjusted walk is scored for (the guest's medium dog until the
+  // reader's own dog is known).
+  let dogProfile = null;
+  // The reader asked for a finished route, and still wants one if that
+  // attempt failed: the next move of a point finishes it again, rather than
+  // leaving a closed loop open because one drag landed off the paths.
+  let finishWanted = false;
 
   function shapeConfig(){ return SHAPES[shape] || SHAPES.loop; }
   function minPoints(){ return shapeConfig().minPoints; }
@@ -174,8 +191,12 @@
     const element = document.createElement('span');
     const isStart = index === 0;
     const isEnd = !wantsLoop() && total > 1 && index === total - 1;
-    element.className = `planner-marker${isStart ? ' planner-marker--start' : ''}${isEnd ? ' planner-marker--end' : ''}${index === selectedIndex ? ' is-selected' : ''}`;
-    element.textContent = isStart ? 'S' : isEnd ? 'F' : String(index + 1);
+    // An adjusted walk starts with a point every 400 m or so; numbered, they
+    // covered the walk in counters. Its middle points are small plain dots,
+    // still dragged and tapped the same way.
+    const dot = Boolean(basedOn) && !isStart && !isEnd;
+    element.className = `planner-marker${isStart ? ' planner-marker--start' : ''}${isEnd ? ' planner-marker--end' : ''}${dot ? ' planner-marker--dot' : ''}${index === selectedIndex ? ' is-selected' : ''}`;
+    element.textContent = isStart ? 'S' : isEnd ? 'F' : dot ? '' : String(index + 1);
     element.title = tx('Click to remove · drag to move');
     element.setAttribute('aria-hidden', 'true');
     return element;
@@ -208,8 +229,11 @@
         const moved = marker.getLngLat();
         points[index] = { lat:moved.lat, lng:moved.lng };
         if(index === 0) selectedCoverage = coverageFor(points[0]);
+        // Moving a point of a finished route keeps it finished: the loop
+        // stays closed and the way back stays walked, as before the drag.
+        const keepFinished = finished || finishWanted;
         preview = null;
-        recalculate(false);
+        recalculate(keepFinished);
       });
       return marker;
     });
@@ -260,17 +284,19 @@
   }
 
   // Shared by the map menu, the key and the list beside the map. Removing a
-  // point from a finished route reopens it, as Undo does.
+  // point from a finished route keeps it finished while enough points are
+  // left for its shape: that is how a corner is cut from a walk.
   function removePoint(index){
     if(busy || index < 0 || index >= points.length) return;
     clearSelection();
+    const keepFinished = (finished || finishWanted) && points.length - 1 >= minPoints();
     points.splice(index, 1);
     finished = false;
     preview = null;
     selectedCoverage = points[0] ? coverageFor(points[0]) : null;
     drawMarkers();
     drawPath([]);
-    recalculate(false);
+    recalculate(keepFinished);
   }
 
   // A loop has no fixed start, so any point can become it; the order around
@@ -343,25 +369,32 @@
     return style && Array.isArray(style.layers) ? style.layers.find(layer => layer.type === 'symbol') : null;
   }
 
+  let latestPath = [];
   function drawPath(path){
+    latestPath = path;
     const data = path && path.length > 1 ? {
       type:'Feature', properties:{ draft:true },
       geometry:{ type:'LineString', coordinates:path.map(point => [point.lng, point.lat]) },
     } : emptyGeoJson();
-    if(!map.isStyleLoaded()){
-      map.once('load', () => drawPath(path));
-      return;
-    }
     const source = map.getSource('draft-route');
     if(source){ source.setData(data); return; }
+    // The map reports itself not ready while any of its sources is still
+    // loading, and 'load' has fired by then, so waiting for it never ended:
+    // a reopened draft's line was never drawn. Draw once the map settles.
+    if(!map.isStyleLoaded()){
+      map.once('idle', () => drawPath(latestPath));
+      return;
+    }
     const label = firstLabelLayer();
     // The draft goes over the dashed routes but under their numbers: while
     // you are drawing, the numbers of the paths you are snapping to have to
     // stay visible, or you are tracing blind.
     const under = window.ORMAMapStyle ? window.ORMAMapStyle.walkLineBeforeId(map) : (label && label.id);
     map.addSource('draft-route', { type:'geojson', data });
-    map.addLayer({ id:'draft-route-case', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#fff','line-width':['interpolate',['linear'],['zoom'],8,10,12,16,14,23,17,33],'line-opacity':.9} }, under);
-    map.addLayer({ id:'draft-route-line', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#2E684F','line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26],'line-opacity':.55} }, under);
+    // A thin line on a white edge, as the walk is drawn on its trail page,
+    // so the paths under it stay readable.
+    map.addLayer({ id:'draft-route-case', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#fff','line-width':['interpolate',['linear'],['zoom'],8,4,12,5.5,14,7,17,9],'line-opacity':.95} }, under);
+    map.addLayer({ id:'draft-route-line', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#2E684F','line-width':['interpolate',['linear'],['zoom'],8,2,12,2.75,14,3.75,17,5],'line-opacity':1} }, under);
   }
 
   function addPlannerMapContext(){
@@ -428,8 +461,8 @@
       layout:{ 'line-join':'round', 'line-cap':'round' },
       paint:{
         'line-color':'#FFFDF7',
-        'line-width':['interpolate',['linear'],['zoom'],7,5,10,8,13,10],
-        'line-opacity':.92,
+        'line-width':['interpolate',['linear'],['zoom'],7,2,10,3,13,4.5],
+        'line-opacity':.7,
       },
     }, beforeId);
     map.addLayer({
@@ -438,10 +471,12 @@
       source:'planner-orma-trails',
       minzoom:7,
       layout:{ 'line-join':'round', 'line-cap':'round' },
+      // ORMA's walks in grey, like the marked network: the route being drawn
+      // is the only coloured line on the map.
       paint:{
-        'line-color':'#3E7A91',
-        'line-width':['interpolate',['linear'],['zoom'],7,2,10,4.5,13,6],
-        'line-opacity':.94,
+        'line-color':'#7D847C',
+        'line-width':['interpolate',['linear'],['zoom'],7,1,10,1.6,13,2.4],
+        'line-opacity':.85,
       },
     }, beforeId);
   }
@@ -705,6 +740,7 @@
   async function recalculate(finishRequested){
     const version = ++calculationVersion;
     const config = shapeConfig();
+    finishWanted = Boolean(finishRequested);
     if(points.length < 2){
       preview = null;
       finished = false;
@@ -717,6 +753,7 @@
     busy = true;
     status.textContent = finishRequested ? tx('Finishing the draft on mapped walking paths…') : tx('Connecting your selected points…');
     render();
+    updateAdjust();
 
     const closeLoop = finishRequested && wantsLoop();
     const outAndBack = finishRequested && shape === 'out-and-back';
@@ -748,6 +785,7 @@
             : tx('{count} points selected, press {finish} when the shape looks right.', { count:MAX_POINTS, finish:config.finishLabel.toLowerCase() }))
       : failureMessage(routeFailure);
     render();
+    updateAdjust();
   }
 
   function reset(){
@@ -758,6 +796,11 @@
     selectedCoverage = null;
     editingId = null;
     busy = false;
+    // Start again is a blank page, not the walk it was opened from.
+    if(basedOn) setTitle(tx('Draw a route'));
+    basedOn = null;
+    comparison = null;
+    updateAdjust();
     drawMarkers();
     drawPath([]);
     status.textContent = startAdvice();
@@ -777,6 +820,7 @@
       path:record.path.map(point => ({ lat:point[0], lng:point[1] })),
       closed:shape !== 'point-to-point',
       shape,
+      heights:Array.isArray(record.heights) ? record.heights : null,
       source:record.source,
     };
     drawMarkers();
@@ -786,13 +830,30 @@
     map.fitBounds(bounds, { padding:70, maxZoom:15 });
     status.textContent = tx('Saved draft reopened. Check signs, access and current conditions before using it.');
     render();
+    if(record.basedOn) findTrail(record.basedOn.id).then(trail => {
+      if(!trail || editingId !== record.id) return;
+      basedOn = trail;
+      drawMarkers();
+      updateAdjust();
+    });
   }
 
   map.on('click', event => {
     // With a point's menu open, a click on the map just closes it.
     if(selectedIndex >= 0){ clearSelection(); return; }
-    if(busy || finished || points.length >= MAX_POINTS) return;
+    if(busy || points.length >= MAX_POINTS) return;
     const point = { lat:event.lngLat.lat, lng:event.lngLat.lng };
+    // A finished route can still be bent: a click on its line adds a point
+    // there and the route stays finished. Anywhere else, nothing happens.
+    if(finished){
+      const onLine = map.getLayer('draft-route-line')
+        && map.queryRenderedFeatures(event.point, { layers:['draft-route-line'] }).length > 0;
+      if(onLine && insertPointNearest(point)){
+        drawMarkers();
+        recalculate(true);
+      }
+      return;
+    }
     if(!points.length){
       selectedCoverage = coverageFor(point);
       points.push(point);
@@ -807,7 +868,7 @@
     recalculate(false);
   });
   map.on('mousemove', event => {
-    if(busy || finished || points.length < 2) return;
+    if(busy || points.length < 2) return;
     const onLine = map.getLayer('draft-route-line')
       && map.queryRenderedFeatures(event.point, { layers:['draft-route-line'] }).length > 0;
     map.getCanvas().style.cursor = onLine ? 'copy' : 'crosshair';
@@ -841,7 +902,12 @@
     const now = new Date().toISOString();
     const record = drafts.save({
       id:editingId || `${shape}-${Date.now()}`,
-      name:`Draft ${shapeConfig().label.toLowerCase()} · ${formatDistance(preview.distanceM)}`,
+      name:basedOn
+        ? `${tx('Your version of {name}', { name:trailDisplayName(basedOn) })} · ${formatDistance(preview.distanceM)}`
+        : `Draft ${shapeConfig().label.toLowerCase()} · ${formatDistance(preview.distanceM)}`,
+      basedOn:basedOn ? { id:basedOn.id, name:basedOn.name } : null,
+      onLineShare:comparison ? Math.round(comparison.share * 100) / 100 : null,
+      heights:Array.isArray(preview.heights) ? preview.heights : null,
       createdAt:now,
       updatedAt:now,
       graphUrl:selectedCoverage ? selectedCoverage.graphUrl : '',
@@ -913,14 +979,201 @@
     guide.querySelectorAll('[data-verb]').forEach(verb => { verb.textContent = touch ? tx('Tap') : tx('Click'); });
   }
 
+  // ---- Adjust this walk -------------------------------------------------
+
+  // A walk from any region: the page loads one region up front, the walk's own
+  // region is fetched when it is another.
+  function findTrail(value){
+    const regional = window.DoloPawsRegionalData;
+    const id = regional && regional.resolveTrailId ? regional.resolveTrailId(value) : value;
+    const lookup = () => (Array.isArray(window.trails) ? window.trails : []).find(trail => trail && trail.id === id) || null;
+    const found = lookup();
+    if(found || !regional) return Promise.resolve(found);
+    const region = regional.regionForTrail(id);
+    if(!region) return Promise.resolve(null);
+    return regional.loadRegion(region).then(lookup, () => null);
+  }
+
+  function startFromTrail(trail){
+    const seeded = adjust.seed(trail);
+    if(!seeded){
+      status.textContent = tx('That walk has no line to start from. Tap the map to draw your own route.');
+      return;
+    }
+    basedOn = trail;
+    editingId = null;
+    shape = seeded.shape;
+    points = seeded.points;
+    selectedCoverage = coverageFor(points[0]);
+    const bounds = new maplibregl.LngLatBounds();
+    seeded.line.forEach(point => bounds.extend([point.lng, point.lat]));
+    // Room at the top for the guide over the map, which sits lower and
+    // wraps to two lines on a phone.
+    const phone = window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
+    map.fitBounds(bounds, { padding:{ top:phone ? 125 : 90, bottom:phone ? 60 : 50, left:40, right:phone ? 60 : 50 }, maxZoom:15, duration:0 });
+    // Back goes to the walk it came from, not to Explore.
+    const back = document.querySelector('.planner-back');
+    const regional = window.DoloPawsRegionalData;
+    if(back){
+      back.removeAttribute('data-i18n');
+      back.href = regional && regional.trailHref ? regional.trailHref(trail) : `trail.html?id=${encodeURIComponent(regional && regional.slugFor ? regional.slugFor(trail) : trail.id)}`;
+      back.textContent = tx('← Back to the walk');
+    }
+    saveButton.removeAttribute('data-i18n');
+    saveButton.textContent = tx('Save my version');
+    const intro = document.querySelector('.planner-intro');
+    if(intro){ intro.removeAttribute('data-i18n'); intro.textContent = tx('This is the walk as ORMA checked it. Drag a point to move it, tap the line to add one, or remove one to cut a corner. Then save your version.'); }
+    drawMarkers();
+    recalculate(true);
+  }
+
+  // The map says it is not ready while it is still drawing the new route
+  // line, so the stretches are drawn once it settles; only the latest count.
+  let offLineToDraw = [];
+  let offLineWaiting = false;
+  function drawOffLine(lines){
+    offLineToDraw = lines || [];
+    const source = map.getSource('adjust-off-line');
+    const data = () => ({ type:'FeatureCollection', features:offLineToDraw.map(line => ({
+      type:'Feature', properties:{},
+      geometry:{ type:'LineString', coordinates:line.map(point => [point[1], point[0]]) },
+    })) });
+    if(source){ source.setData(data()); return; }
+    if(!offLineToDraw.length) return;
+    if(!map.getLayer('draft-route-line') || !map.isStyleLoaded()){
+      if(!offLineWaiting){
+        offLineWaiting = true;
+        map.once('idle', () => { offLineWaiting = false; drawOffLine(offLineToDraw); });
+      }
+      return;
+    }
+    map.addSource('adjust-off-line', { type:'geojson', data:data() });
+    // Over the draft, in the hazard orange, dashed: the stretches nobody checked.
+    map.addLayer({ id:'adjust-off-line', type:'line', source:'adjust-off-line',
+      layout:{ 'line-cap':'round', 'line-join':'round' },
+      paint:{ 'line-color':'#C98A2E', 'line-width':['interpolate',['linear'],['zoom'],8,2,12,2.75,14,3.75,17,5], 'line-dasharray':[2, 1.4] },
+    });
+  }
+
+  function loadDog(){
+    const device = () => {
+      try {
+        const profile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile') || 'null');
+        return profile && typeof profile.name === 'string' && profile.name.trim() ? profile : null;
+      } catch(error){ return null; }
+    };
+    const resolve = () => {
+      const auth = window.DoloPawsAuth;
+      if(auth && auth.currentUser && typeof auth.getDogProfile === 'function'){
+        auth.getDogProfile().then(profile => {
+          if(profile){ dogProfile = profile; updateAdjust(); }
+        }).catch(() => {});
+        return;
+      }
+      const profile = device();
+      if(profile){ dogProfile = profile; updateAdjust(); }
+    };
+    resolve();
+    if(typeof window.addEventListener === 'function'){
+      window.addEventListener('dolopaws-auth-ready', resolve);
+      window.addEventListener('dolopaws-auth-changed', resolve);
+    }
+  }
+
+  function esc(value){
+    return String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
+  }
+
+  // The score for the adjusted walk, from the engine, or why there is none.
+  function scoreHtml(walkName){
+    if(!finished) return `<p class="planner-adjust-note">${esc(tx('Finish the route to see how it suits your dog.'))}</p>`;
+    const record = adjust.scoringRecord(basedOn, { ...preview, shape }, comparison);
+    if(!record){
+      return `<p class="planner-adjust-note">${esc(tx('Not scored: less than half of this route follows {walk}, so its facts no longer describe it.', { walk:walkName }))}</p>`;
+    }
+    // eslint-disable-next-line no-undef
+    if(typeof recommendTrail !== 'function') return '';
+    // eslint-disable-next-line no-undef
+    const subject = dogProfile && typeof effectiveOverrides === 'function' ? effectiveOverrides(dogProfile, null)
+      : ((window.DoloPawsScoring && window.DoloPawsScoring.GUEST_SUBJECT) || {});
+    const conditions = window.ORMAScoringConditions ? window.ORMAScoringConditions.forTrail(basedOn) : undefined;
+    // eslint-disable-next-line no-undef
+    const rec = recommendTrail(record, subject, conditions);
+    const declared = rec.category === 'recommended' ? 'strong-option' : rec.category;
+    const verdict = window.OrmaMatchVerdict
+      ? window.OrmaMatchVerdict.verdictFor({ score:rec.score, category:declared })
+      : { label:'', color:'inherit' };
+    const guest = typeof window.t === 'function' ? window.t('recommendation.subject.guest') : '';
+    const name = (dogProfile && String(dogProfile.name || '').trim())
+      || (guest && guest !== 'recommendation.subject.guest' ? guest : tx('a medium dog'));
+    const decision = window.DoloPawsRecommendationDecision;
+    const reason = (rec.hardStops || [])[0] || (rec.cautions || [])[0];
+    const reasonText = reason
+      ? String(decision ? decision.translatedMessage(reason, window.t, { name }) : reason.message).split('{name}').join(name)
+      : '';
+    return `<p class="planner-adjust-fit"><span>${esc(tx('For {name}', { name }))}</span>` +
+        `<strong style="color:${esc(verdict.color)}">${esc(num(rec.score))} · ${esc(verdict.label)}</strong></p>` +
+      (reasonText ? `<p class="planner-adjust-reason">${esc(reasonText)}</p>` : '') +
+      `<p class="planner-adjust-note">${esc(tx('Distance and climb are measured on your line. Heat, surfaces and dog rules come from {walk} and were not checked on the new parts.', { walk:walkName }))}` +
+      // The trail page knows today's forecast and this page does not, so its
+      // number can differ by the day's weather; said rather than left to look
+      // like a disagreement.
+      (conditions ? '' : ` ${esc(tx('Today’s weather is not included.'))}`) + '</p>';
+  }
+
+  // The title is translated from its data-i18n key when the page's language
+  // is applied, which would put "Draw a route" back over the walk's name.
+  function setTitle(text){
+    if(!plannerTitle) return;
+    plannerTitle.removeAttribute('data-i18n');
+    plannerTitle.textContent = text;
+  }
+
+  function updateAdjust(){
+    if(!adjustBox) return;
+    if(!basedOn || !adjust){
+      adjustBox.hidden = true;
+      drawOffLine([]);
+      return;
+    }
+    const walkName = trailDisplayName(basedOn);
+    setTitle(tx('Adjust {walk}', { walk:walkName }));
+    adjustBox.hidden = false;
+    comparison = preview && preview.path ? adjust.compare(preview.path, basedOn.path) : null;
+    drawOffLine(comparison ? comparison.offLines : []);
+    const percent = comparison ? Math.round(comparison.share * 100) : null;
+    adjustShare.innerHTML = percent === null ? (busy ? esc(tx('Working out the route…')) : '')
+      : `<strong>${esc(num(percent))}%</strong> ${esc(tx('on the checked line of {walk}', { walk:walkName }))}` +
+        (comparison.offLines.length ? `<span class="planner-adjust-key">${esc(tx('Orange dashes: not checked by ORMA. Look for signs and local dog rules there.'))}</span>` : '');
+    adjustScore.innerHTML = preview ? scoreHtml(walkName) : '';
+  }
+
+  // Opened from a walk: say so at once, before the map has loaded.
+  const startParams = new URLSearchParams(location.search);
+  const trailRequest = !startParams.get('route') && startParams.get('trail') && adjust
+    ? findTrail(startParams.get('trail')) : null;
+  if(trailRequest){
+    status.textContent = tx('Loading the walk…');
+    trailRequest.then(trail => {
+      if(trail && !basedOn) setTitle(tx('Adjust {walk}', { walk:trailDisplayName(trail) }));
+    });
+  }
+  loadDog();
+
   map.on('load', () => {
     addPlannerMapContext();
     buildMapStyleSwitch();
     collapseAttribution();
     map.getCanvas().style.cursor = 'crosshair';
-    const id = new URLSearchParams(location.search).get('route');
+    const id = startParams.get('route');
     const record = id ? drafts.find(id) : null;
     if(record) restore(record);
-    else render();
+    else if(trailRequest){
+      render();
+      trailRequest.then(trail => {
+        if(trail) startFromTrail(trail);
+        else status.textContent = tx('That walk could not be found. Tap the map to draw your own route.');
+      });
+    }else render();
   });
 })();
