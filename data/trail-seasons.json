@@ -5646,7 +5646,7 @@
       }
     },
     "osm-6823031": {
-      "highPoint": 941,
+      "highPoint": 933,
       "snow": {
         "months": [
           1,
@@ -5654,7 +5654,7 @@
           12
         ],
         "likelihood": "possible",
-        "highPoint": 941
+        "highPoint": 933
       }
     },
     "osm-7045225": {

@@ -279,6 +279,7 @@
     'osm-6410700': "Dolomitenblickrunde",
     'osm-6453504': "Walderlebnispfad Aschbach",
     'osm-6601608': "Naturerlebnispfad Sand in Taufers",
+    'osm-6823031': "Naturlehrpfad",
     'osm-7045225': "Giro del Fausior",
     'osm-7388748': "Anello dei Colli",
     'osm-7424683': "Marlinger Waalweg",
