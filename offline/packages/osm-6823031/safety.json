@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "trailId": "osm-6823031",
+  "generatedAt": "2026-11-18T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.5,
+    "ascentM": 100,
+    "highestPointM": 933,
+    "expectedDuration": "1 h 5 min",
+    "difficulty": "Moderate",
+    "shadePercent": 86
+  },
+  "trailhead": {
+    "lat": 46.7905507,
+    "lng": 11.9491702,
+    "label": "The car park by the Rienz stadium in Bruneck, where the Sternwaldile lane starts the nature trail"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.79064,
+      "lng": 11.950433,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7879711,
+      "lng": 11.9502,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 46.7815855,
+      "lng": 11.9600891,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The Rienz runs fast beside the track: keep your dog out of the river.",
+    "Cyclists share the track on path 14.",
+    "A barbecue area by the stadium at the start.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-18"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-18",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "The car park by the Rienz stadium in Bruneck, where the Sternwaldile lane starts the nature trail": "Il parcheggio vicino allo stadio della Rienza a Brunico, dove la stradina Sternwaldile dà inizio al sentiero natura",
+    "The Rienz runs fast beside the track: keep your dog out of the river.": "La Rienza scorre veloce accanto alla strada: tieni il cane fuori dal fiume.",
+    "Cyclists share the track on path 14.": "Sul sentiero 14 la strada è condivisa con i ciclisti.",
+    "A barbecue area by the stadium at the start.": "Un’area barbecue vicino allo stadio alla partenza."
+  }
+}
