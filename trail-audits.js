@@ -15094,6 +15094,7 @@
       ]
     },
     'osm-2179746': {
+      // Shape corrected 18 November 2026: filed as one-way, but the walk comes back close to its start (the line ends 217 m from it), so it is a loop and the page no longer offers to walk it there and back.
       // Seal restored 7 November 2026 on the owner's decision: no authority publishes this walk's climb or time (the only official
       // figures are for the 6.1 km Genießertour of Südtirols Süden, of which this is a part), so both are measured by ORMA from the
       // map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
@@ -15947,7 +15948,7 @@
       },
       "desc": "The nature trail over Castelfeder, the low porphyry hill between Montan and Auer, signed on the ground as the Naturerlebnisweg Castelfeder. It climbs from the sports-zone car park through woodland onto the open, rocky hilltop with its ruins and the 'Heidenrutsche' rock, and comes down on the far side by the youth hostel, about 1.7 km, 45 m up and 55 m down in about half an hour, as measured by ORMA (no official figure).\n\nThe whole hill is the Castelfeder biotope, a Natura 2000 site, where dogs may not run free. Montan's dog regulation requires a lead of at most 1.5 m on all public ground, and owners must carry a muzzle; dogs are not allowed on farmed meadows during the growing season. The hill is grazed, so expect livestock and a cattle grid on the path.",
       "tips": "Keep your dog on a short lead (1.5 m at most) the whole way and carry a muzzle: this is a protected biotope, and Montan requires it. Stay on the path, as the hill is grazed and the meadows are off limits to dogs. Lift or guide your dog over the cattle grid. It is low, rocky and sunny, so avoid hot middays; taps are mapped near the start and by the ruins.",
-      "routeShape": "point-to-point",
+      "routeShape": "loop",
       "curated": true,
       "tier": "route-audited",
       "reviewedAt": "2026-11-07",
@@ -45140,6 +45141,7 @@
       desc: 'A short, flat loop round the Lago Santo, a small lake in the woods above Cembra, with a dog-bathing area of its own. The APT lists 1.1 km and 10 m of ascent.'
     },
     'cembra-pietra-del-futuro': {
+      // Shape corrected 18 November 2026: filed as one-way, but the walk comes back close to its start (the line ends 374 m from it), so it is a loop and the page no longer offers to walk it there and back.
       // Seal restored 2 November 2026 by the owner's decision: since 30 October the page prints the audit's route sentence under "How to follow this route", and it passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
       // APT Fiemme Cembra’s walk “La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases”. The line is drawn on 39 OSM ways
@@ -45150,16 +45152,16 @@
       distance: 2.7,
       elevation: 61,
       hours: '1',
-      routeShape: 'point-to-point',
-      routeShapeNote: 'One way: from the village of Lases down Via Lago to the lake and along the path on its shore, with an audio guide recorded by the children of the Lona-Lases primary school.',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the village of Lases down Via Lago to the lake, along the path on its east shore to the far end and back up the west side, ending by the lake about 370 m below the start, with an audio guide recorded by the children of the Lona-Lases primary school.',
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-27',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The Lago di Lases seen from its north shore on the walk, in July (Matteo Ianeselli, CC BY-SA 3.0), 10 m from the line.',
-        route: 'Official one-way walk 2.7 km from Lases village, as APT Fiemme Cembra publishes it; the stored line is drawn on 39 OSM ways along the APT’s published line, 2.6 km, with 100% of the APT line within 25 m of it.',
-        routeNumbers: 'No route number: from the centre of Lases along Via Principale and down Via Lago to the lake, then the Sentiero Lago Lases along the shore, with stone and wooden steps in places, past the bathing meadow to the far end of the lake. One way: return the same way or by the lake road.',
+        route: 'Official walk 2.7 km from Lases village, as APT Fiemme Cembra publishes it; the stored line is drawn on 39 OSM ways along the APT’s published line, 2.6 km, with 100% of the APT line within 25 m of it.',
+        routeNumbers: 'No route number: from the centre of Lases along Via Principale and down Via Lago to the lake, then the Sentiero Lago Lases along the shore, with stone and wooden steps in places, past the bathing meadow to the far end of the lake, and back up the west side to the north end of the lake, about 370 m below the start in Lases.',
         mapPoints: 'Start at Lases village, the APT’s start; drinking water at km 0.2 (OSM nodes 3657358746).',
         elevation: 'Official 2.7 km, 61 m up and 63 m down, 50 min, highest point 687 m, lowest 631 m (APT Fiemme Cembra).'
       },
@@ -45184,7 +45186,7 @@
       terrainDescription: 'A short, gentle walk at 630–690 m from the porphyry village of Lases to its lake, on the lakeside path through the Lona-Lases nature reserve.',
       waterDescription: 'Drinking fountain at km 0.2; bars and cafés at the start.',
       dogNotes: 'Lona-Lases publishes no dog rule, so the Italian national rule applies: a lead of at most 1.5 m on public ground and a muzzle carried. Around the lake you are in the Lona-Lases provincial nature reserve, where dogs must never be left to roam.',
-      tips: 'Start in the centre of Lases: 2.7 km one way, about 60 m of climbing, under an hour. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried; the lake is a nature reserve, so never let your dog roam. A few steps on the lake path. Fountains in Lases.',
+      tips: 'Start in the centre of Lases: 2.7 km round the lake, about 60 m of climbing, under an hour. The Italian rule applies: a lead of at most 1.5 m and a muzzle carried; the lake is a nature reserve, so never let your dog roam. A few steps on the lake path. Fountains in Lases.',
       sourceLinks: [
         { label: 'APT Fiemme Cembra, La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases', url: 'https://www.visitfiemme.it/it/activity/la-pietra-del-futuro-percorso-con-audioguida-dei-ragazzi-della-scuola-elementare-di-lona-lases_35376' },
         { label: 'Outdooractive, La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases (APT Fiemme Cembra)', url: 'https://www.outdooractive.com/it/r/806536848' },
@@ -45199,7 +45201,7 @@
       rifugi: [
         { km: 0, lat: 46.14403, lng: 11.21914, osmId: 'way/126261128', name: 'La Locanda del Professore' }
       ],
-      desc: 'A short walk from the porphyry village of Lases down to its lake and along the shore, with an audio guide recorded by the village schoolchildren. The APT lists 2.7 km and 61 m of ascent, one way.'
+      desc: 'A short walk from the porphyry village of Lases down to its lake and along the shore, with an audio guide recorded by the village schoolchildren. The APT lists 2.7 km and 61 m of ascent for the round.'
     },
     'cembra-lago-lases-buse-giaz': {
       // Hand audit: 27 October 2026, verified on arrival (Val di Cembra batch 1).
@@ -48129,6 +48131,7 @@
       desc: 'A short climb from Tione along the Arnò stream to Bolbeno and up through the woods to the Madonna del Lares, a chapel in a quiet clearing. The APT lists 3.1 km and 238 m of ascent, one way.'
     },
     'giudicarie-san-martino-bosco-scolpito': {
+      // Shape corrected 18 November 2026: filed as one-way, but the walk comes back close to its start (the line ends 266 m from it), so it is a loop and the page no longer offers to walk it there and back.
       // Seal restored 30 October 2026: the turns at km 3.23 are side trips the board describes, declared in sideTrips, so the line passes the board-walk bar.
       // Hand audit: 27 October 2026, verified on arrival (west Trentino batch 1).
       // APT Madonna di Campiglio’s walk “San Martino e il sentiero del bosco scolpito”, drawn on 19 OSM ways along the line it publishes
@@ -48138,8 +48141,8 @@
       distance: 4.4,
       elevation: 250,
       hours: '1.8',
-      routeShape: 'point-to-point',
-      routeShapeNote: 'One way from the car park by the information office below Cologna up through the woods past carved wooden sculptures and a picnic glade to the ruined church of San Martino, then down a steep, narrow path towards the village.',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the car park by the information office below Cologna up through the woods past carved wooden sculptures and a picnic glade to the ruined church of San Martino, then down a steep, narrow path back into Cologna; it ends in the village about 270 m from the car park.',
       sideTrips: [{ km: 3.23, note: 'Out to the ruined chapel of San Martino and its view over the Valle del Chiese, and back, as the board describes.' }],
       curated: true,
       tier: 'route-audited',
@@ -48147,7 +48150,7 @@
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The lane by the start in Pieve di Bono-Prezzo, looking into the Valle del Chiese, in September (zonta72 on Mapillary, CC BY-SA 4.0), 1 m from the line.',
-        route: 'Official one-way walk 4.4 km from the car park below Cologna, as APT Madonna di Campiglio publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 4.4 km, with 100% of the APT’s line within 25 m of it.',
+        route: 'Official walk 4.4 km from the car park below Cologna, as APT Madonna di Campiglio publishes it; the stored line is drawn on 19 OSM ways along the APT’s published line, 4.4 km, with 100% of the APT’s line within 25 m of it.',
         routeNumbers: 'Not a numbered route: from the car park by the information office below Cologna, a first part all uphill (about 250 m) on lanes and forest paths lined with wooden sculptures of animals and fantastic figures by local carvers; a wide glade in open woodland with a carved wooden fountain, benches and tables; on to the ruins of the church of San Martino, with a view over the Valle del Chiese to Castel Romano; then all downhill, steep and narrow for a stretch just after the church.',
         mapPoints: 'Start at the APT’s start below Cologna; drinking water at km 3, at km 3.9 and at km 4.1 (OSM nodes 2568331930, 2568332294, 2568332356).',
         elevation: 'Official 4.4 km, 250 m up and 216 m down, 1 h 45 min, highest point 730 m, lowest 497 m (Madonna di Campiglio Azienda per il Turismo); the stored profile runs 496–718 m.'
@@ -48194,7 +48197,7 @@
         { km: 4.1, lat: 45.9312656, lng: 10.6390109, osmId: 'node/2568332356', label: 'Drinking fountain' }
       ],
       rifugi: [],
-      desc: 'A walk above Pieve di Bono-Prezzo through woods full of carved wooden sculptures to the ruined church of San Martino, with a view over the Valle del Chiese. The APT lists 4.4 km and 250 m of ascent, one way.'
+      desc: 'A walk above Pieve di Bono-Prezzo through woods full of carved wooden sculptures to the ruined church of San Martino, with a view over the Valle del Chiese. The APT lists 4.4 km and 250 m of ascent; the walk comes back down into Cologna, about 270 m from the car park.'
     },
     'giudicarie-san-vigilio-senter-dei-cavai': {
       // Seal restored 2 November 2026: the APT's line is a loop on a stem from the church; its start is walked both ways, so it is a lollipop; where the loop crosses its own path for a few metres that is a crossing, not a stretch walked twice, and it passes the board-walk bar.
@@ -54257,6 +54260,7 @@
       desc: 'A high pasture walk from the top of the Spinale gondola past the Lago Spinale to the Rifugio Graffer, between the Brenta Dolomites and the Adamello glaciers. The APT lists 7.5 km and 300 m of ascent.'
     },
     'campiglio-carisolo-centro-storico': {
+      // Shape corrected 18 November 2026: filed as one-way, but the walk comes back close to its start (the line ends 151 m from it), so it is a loop and the page no longer offers to walk it there and back.
       // Seal restored 6 November 2026: the route sentence is rewritten from the board's own Outdooractive directions so it says where to start, and now ends where the board's does, along Via Negrelli back into the village.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 4).
       // APT Madonna di Campiglio’s walk “Carisolo - centro storico”, drawn on 22 OSM ways along the line it publishes
@@ -54268,8 +54272,8 @@
       distance: 3.5,
       elevation: 88,
       hours: '1.5',
-      routeShape: 'point-to-point',
-      routeShapeNote: 'A short walk from Carisolo town hall through the old village to the church of San Nicolò, up the road into the Val Genova to the old chestnut grove, along the cobbled Way of the Cross to the frescoed chapel of Santo Stefano, and down through the woods to the old glassworks.',
+      routeShape: 'loop',
+      routeShapeNote: 'A short loop from Carisolo town hall through the old village to the church of San Nicolò, up the road into the Val Genova to the old chestnut grove, along the cobbled Way of the Cross to the frescoed chapel of Santo Stefano, and down through the woods past the old glassworks back into the village; it ends about 150 m from the town hall.',
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-10-28',
@@ -62827,6 +62831,7 @@
       desc: 'A short art and nature loop on Monte Pana above Santa Cristina, past wooden sculptures by Val Gardena carvers, with the Sassolungo above. The board lists 1.6 km, 54 m up and half an hour.'
     },
     'valgardena-cudan-dumat': {
+      // Shape corrected 18 November 2026: filed as one-way, but the walk comes back close to its start (the line ends 318 m from it), so it is a loop and the page no longer offers to walk it there and back.
       // Hand audit: 4 November 2026, verified on arrival (new-trail Dolomites batch 1).
       // “Passeggiata Cudan-Dumat”, published by the Tourist board of Ortisei (Val Gardena), drawn on 22 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Figures from the board’s Outdooractive tour. Communes: St. Ulrich in Gröden (its 2019 dog regulation: lead ≤1.5 m, muzzle carried, no dogs on farmed meadows).
@@ -62836,8 +62841,8 @@
       distance: 3.5,
       elevation: 110,
       hours: '1',
-      routeShape: 'point-to-point',
-      routeShapeNote: 'From the Resciesa funicular valley station up past the Solaria and Cudan houses, along path 8A over a meadow and through woods to the Dumat farm, then down Via Mureda and Via Mëisules into the centre of Ortisei, about 300 m from the start.',
+      routeShape: 'loop',
+      routeShapeNote: 'A loop from the Resciesa funicular valley station up past the Solaria and Cudan houses, along path 8A over a meadow and through woods to the Dumat farm, then down Via Mureda and Via Mëisules into the centre of Ortisei, about 300 m from the start.',
       routeNumberGuidance: {
         "mode": "numbered",
         "start": "Start at the valley station of the Resciesa funicular in Ortisei, the board’s start.",
@@ -62858,7 +62863,7 @@
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Ortisei below the Sassolungo, seen from the slope the walk climbs, on 29 September 2008 (József Kovács on Wikimedia Commons, CC BY-SA 3.0), 12 m from the line.',
-        route: 'Official one-way walk 3.5 km from the Resciesa funicular valley station in Ortisei, as the Tourist board of Ortisei (Val Gardena) publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 3.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
+        route: 'Official walk 3.5 km from the Resciesa funicular valley station in Ortisei, as the Tourist board of Ortisei (Val Gardena) publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 3.5 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.',
         routeNumbers: 'From the Resciesa funicular valley station up Via Resciesa to the Solaria house, left to the Cudan house where path 8A begins; path 8A across a meadow above Ortisei and through conifer woods to the Dumat farm; back down Via Mureda for about 700 m, then left at the junction into Via Mëisules to the centre of Ortisei.',
         mapPoints: 'Start at the board’s start; drinking water at km 0.8, km 1.5, km 3.3 and km 3.4 (OSM nodes 7831831585, 7831774186, 7831539385, 12070294715, 7831444285, 7831500785, 7831511185, 12001148483).',
         elevation: 'Official 3.5 km, 110 m up and 133 m down, 1:01 h, highest point 1,356 m, lowest 1,229 m (Tourist board of Ortisei (Val Gardena), Outdooractive). The stored line follows the board’s own Outdooractive tour.'

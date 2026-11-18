@@ -47,7 +47,7 @@ function trailCardVisual(trail, options = {}){
 // scoring stack), and a missing engine must not take the homepage down.
 function guestOverrides(){
   const scoring = window.DoloPawsScoring;
-  return (scoring && scoring.GUEST_SUBJECT) || { terrain:'1', distance:'10', heatSensitive:false };
+  return (scoring && scoring.GUEST_SUBJECT) || {};
 }
 
 // Scores a trail against the medium-dog guest profile, for surfaces shown
@@ -1951,8 +1951,8 @@ function initTrailMap(){
     trailMapInstance.addSource('trail-selected-route', {
       type:'geojson', data:{ type:'FeatureCollection', features:[] },
     });
-    // The chosen walk matches the detail page: thin white edges and a pale
-    // match-colour corridor under the contours and the dashed routes, and the
+    // The chosen walk matches the detail page: a thin match-colour line on a
+    // white edge, under the contours and the dashed routes, and the
     // routes it follows numbered beside it (setSelectedTrailRoute).
     // The catalogue rails above remain subdued; the selected route is the
     // only corridor that should read as the walk the owner has chosen.
@@ -1961,17 +1961,16 @@ function initTrailMap(){
       id:'trail-selected-route-casing', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
       paint:{
-        'line-color':'#FFFFFF', 'line-opacity':0.9,
-        'line-width':['interpolate',['linear'],['zoom'],8,1.5,12,2,14,2.5,17,3],
-        'line-gap-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26],
+        'line-color':'#FFFFFF', 'line-opacity':0.95,
+        'line-width':['interpolate',['linear'],['zoom'],8,4,12,5.5,14,7,17,9],
       },
     }, corridorBeforeId);
     trailMapInstance.addLayer({
       id:'trail-selected-route-line', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
       paint:{
-        'line-color':['coalesce',['get','routeColorPale'],window.ORMAMapStyle.paleColour('#4A7856')],
-        'line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26], 'line-opacity':1,
+        'line-color':['coalesce',['get','routeColor'],'#4A7856'],
+        'line-width':['interpolate',['linear'],['zoom'],8,2,12,2.75,14,3.75,17,5], 'line-opacity':1,
       },
     }, corridorBeforeId);
     trailMapInstance.addLayer({
@@ -2377,7 +2376,7 @@ function setSelectedTrailRoute(trail, options){
     type:'FeatureCollection',
     features:visible ? [{
       type:'Feature',
-      properties:{ id:trail.id, routeColor, routeColorPale:window.ORMAMapStyle.paleColour(routeColor) },
+      properties:{ id:trail.id, routeColor },
       geometry:{ type:'LineString', coordinates:route.map(([lat, lng]) => [lng, lat]) },
     }] : [],
   });

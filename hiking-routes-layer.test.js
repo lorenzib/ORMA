@@ -238,7 +238,7 @@ describe('the walk lets the satellite path show through', () => {
     };
   };
 
-  test('satellite fades the casing and corridor, and switching back restores them', () => {
+  test('satellite drops the white edge and keeps the thin line, and switching back restores them', () => {
     const map = paintMap();
     style.addRouteLine(map, { id: 'walk', source: 'walk', color: '#c80', beforeId: null });
     const before = { casing: map.layers['walk-casing'].paint['line-opacity'], line: map.layers.walk.paint['line-opacity'] };
@@ -247,7 +247,8 @@ describe('the walk lets the satellite path show through', () => {
     expect(map.layers['walk-casing'].paint['line-opacity']).toBe(style.ROUTE_LINE_ON_IMAGERY.casing);
     expect(map.layers.walk.paint['line-opacity']).toBe(style.ROUTE_LINE_ON_IMAGERY.line);
     expect(style.ROUTE_LINE_ON_IMAGERY.casing).toBeLessThan(before.casing);
-    expect(style.ROUTE_LINE_ON_IMAGERY.line).toBeLessThan(before.line);
+    // The line is thin enough that the track in the photo shows beside it.
+    expect(style.ROUTE_LINE_ON_IMAGERY.line).toBe(1);
 
     expect(map.layers['walk-casing'].paint['line-opacity']).toBe(0);
 
@@ -256,14 +257,15 @@ describe('the walk lets the satellite path show through', () => {
     expect(map.layers.walk.paint['line-opacity']).toBe(before.line);
   });
 
-  test('the corridor is one solid pale colour, so overlaps leave no darker knots', () => {
+  test('the walk is a solid line in the match colour itself', () => {
     expect(style.paleColour('#000000')).toBe('#9e9e9e');
     expect(style.paleColour('#ffffff')).toBe('#ffffff');
     expect(style.paleColour('#4A7856', 0)).toBe('#4a7856');
     expect(style.paleColour(['get', 'colour'])).toEqual(['get', 'colour']);
     const map = paintMap();
     style.addRouteLine(map, { id: 'walk', source: 'walk', color: '#c80000', beforeId: null });
-    expect(map.layers.walk.paint['line-color']).toBe(style.paleColour('#c80000'));
+    expect(map.layers.walk.paint['line-color']).toBe('#c80000');
+    expect(map.layers['walk-casing'].paint['line-gap-width']).toBeUndefined();
     expect(map.layers.walk.paint['line-opacity']).toBe(1);
   });
 
