@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trails, ORMA</title>
 <meta name="description" content="Every dog-friendly trail in ORMA, Dolomites and Savoy, browsable without an account, each scored for paw safety, shade, water and terrain.">
+<link rel="alternate" hreflang="en" href="https://www.app-orma.com/browse-trails.html">
+<link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/browse-trails.html">
+<link rel="alternate" hreflang="x-default" href="https://www.app-orma.com/browse-trails.html">
 <meta name="theme-color" content="#2E4034">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -355,15 +358,15 @@
         <div class="browse-area-controls" aria-label="Choose trail area" data-i18n-aria-label="page.browseTrails.chooseTrailArea">
           <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
             <span class="browse-geo-label" data-i18n="browse.geo.country">Country</span>
-            <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filter trails by country"></select></span>
+            <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filter trails by country" data-i18n-aria-label="browse.filters.filterCountry"></select></span>
           </label>
           <label class="browse-geo-group geo-filter-control" for="browseRegionSelect">
             <span class="browse-geo-label" data-i18n="browse.geo.region">Region</span>
-            <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-kicker-until-selected data-control-kicker="Region" aria-label="Filter trails by region"></select></span>
+            <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-kicker-until-selected data-control-kicker="Region" aria-label="Filter trails by region" data-i18n-aria-label="browse.filters.filterRegion"></select></span>
           </label>
           <label class="browse-geo-group browse-geo-group--valley geo-filter-control" for="browseValleySelect">
             <span class="browse-geo-label" data-i18n="browse.geo.valley">Valley</span>
-            <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filter trails by valley"></select></span>
+            <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filter trails by valley" data-i18n-aria-label="browse.filters.filterValley"></select></span>
           </label>
         </div>
       </div>
@@ -409,28 +412,28 @@
       </button>
     <div class="browse-filter-controls" id="browseFilterControls" hidden>
       <label class="browse-field"><span data-i18n="browse.filters.distance">Distance</span>
-        <select id="browseDistance" aria-label="Filter by distance">
+        <select id="browseDistance" aria-label="Filter by distance" data-i18n-aria-label="browse.filters.filterDistance">
           <option value="all">Distance</option>
-          <option value="3" hidden>Up to 3 km</option>
+          <option value="3" hidden data-i18n="browse.filters.upTo3">Up to 3 km</option>
           <option value="5">Under 5 km</option>
-          <option value="6" hidden>Up to 6 km</option>
+          <option value="6" hidden data-i18n="browse.filters.upTo6">Up to 6 km</option>
           <option value="10">5–10 km</option>
-          <option value="20" hidden>Up to 20 km</option>
+          <option value="20" hidden data-i18n="browse.filters.upTo20">Up to 20 km</option>
           <option value="u5" hidden>Under 5 km</option>
           <option value="5to10" hidden>5–10 km</option>
           <option value="10p" hidden>10 km+</option>
         </select>
       </label>
       <label class="browse-field"><span data-i18n="browse.filters.rating">Trail rating</span>
-        <select id="browseRisk" aria-label="Filter by trail rating">
+        <select id="browseRisk" aria-label="Filter by trail rating" data-i18n-aria-label="browse.filters.filterRating">
           <option value="all">Trail rating</option>
           <option value="low-risk">Low risk</option>
-          <option value="moderate">Moderate</option>
+          <option value="moderate" data-i18n="hp.difficulty.moderate">Moderate</option>
           <option value="caution">Caution</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="account.profile.terrainTolerance">Terrain tolerance</span>
-        <select id="browseTerrain" aria-label="Filter by terrain tolerance">
+        <select id="browseTerrain" aria-label="Filter by terrain tolerance" data-i18n-aria-label="browse.filters.filterTerrain">
           <option value="">Any terrain</option>
           <option value="soft">Gentle surfaces only</option>
           <option value="mixed">Up to mixed terrain</option>
@@ -438,22 +441,22 @@
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.shadeHeat">Shade &amp; heat</span>
-        <select id="browseHeat" aria-label="Filter by reviewed shade or heat">
-          <option value="">Any shade or heat data</option>
-          <option value="shade-reviewed">At least 30% shade</option>
+        <select id="browseHeat" aria-label="Filter by reviewed shade or heat" data-i18n-aria-label="browse.filters.filterHeat">
+          <option value="" data-i18n="browse.filters.anyHeat">Any shade or heat data</option>
+          <option value="shade-reviewed" data-i18n="browse.filters.shade30">At least 30% shade</option>
           <option value="shade-40" hidden>Over 40% shade</option>
           <option value="shade-60" hidden>Over 60% shade</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.exposure">Exposure</span>
-        <select id="browseExposure" aria-label="Filter by reviewed exposure">
-          <option value="">Any exposure data</option>
+        <select id="browseExposure" aria-label="Filter by reviewed exposure" data-i18n-aria-label="browse.filters.filterExposure">
+          <option value="" data-i18n="browse.filters.anyExposure">Any exposure data</option>
           <option value="none-reviewed">No reported exposure</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.dogRestrictions">Dog restrictions</span>
-        <select id="browseAccess" aria-label="Filter by reviewed dog access">
-          <option value="">Any dog-access status</option>
+        <select id="browseAccess" aria-label="Filter by reviewed dog access" data-i18n-aria-label="browse.filters.filterAccess">
+          <option value="" data-i18n="browse.filters.anyAccess">Any dog-access status</option>
           <option value="allowed-reviewed">Dogs permitted</option>
         </select>
       </label>
