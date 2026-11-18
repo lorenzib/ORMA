@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-18T20:16:36.515Z",
+  "generatedAt": "2026-11-18T23:14:02.175Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -14,10 +14,10 @@
       "sourceLabel": "MeteoAlarm France",
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/683815ae-76a0-4527-abcd-b44e3736eb39",
       "identifier": "2.49.0.0.250.0.FR.20261118160038.979028",
-      "effectiveAt": "2026-11-17T15:00:00+00:00",
+      "effectiveAt": "2026-11-18T15:00:00+00:00",
       "expiresAt": "2026-11-19T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-18T20:16:36.515Z",
+      "lastSeenAt": "2026-11-18T23:14:02.175Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -65,10 +65,10 @@
       "sourceLabel": "MeteoAlarm France",
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/683815ae-76a0-4527-abcd-b44e3736eb39",
       "identifier": "2.49.0.0.250.0.FR.20261118160038.979028",
-      "effectiveAt": "2026-11-17T15:00:00+00:00",
+      "effectiveAt": "2026-11-18T15:00:00+00:00",
       "expiresAt": "2026-11-19T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-18T20:16:36.515Z",
+      "lastSeenAt": "2026-11-18T23:14:02.175Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -102,10 +102,10 @@
       "sourceLabel": "MeteoAlarm France",
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/683815ae-76a0-4527-abcd-b44e3736eb39",
       "identifier": "2.49.0.0.250.0.FR.20261118160038.979028",
-      "effectiveAt": "2026-11-17T15:00:00+00:00",
+      "effectiveAt": "2026-11-18T15:00:00+00:00",
       "expiresAt": "2026-11-19T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-18T20:16:36.515Z",
+      "lastSeenAt": "2026-11-18T23:14:02.175Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -204,43 +204,6 @@
       "sourceStatus": "available"
     },
     {
-      "id": "meteoalarm-france:flooding:is-re",
-      "state": "active",
-      "severity": "moderate",
-      "event": "Moderate flooding warning",
-      "area": "Isère",
-      "title": "flooding warning for Isère",
-      "message": "An official moderate flooding warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
-      "sourceKey": "meteoalarm-france",
-      "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/df35eafa-3f18-4b34-8219-24e31c571fe6",
-      "identifier": "2.49.0.0.250.1.FR.20261117160208.467024",
-      "effectiveAt": "2026-11-17T15:00:00+00:00",
-      "expiresAt": "2026-11-17T23:00:00+00:00",
-      "firstPublishedAt": "2026-11-17T17:15:29.951Z",
-      "lastSeenAt": "2026-11-18T20:16:36.515Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "isere-circuit-pedestre-alpage-des-cloutons",
-        "isere-la-vallee-de-la-gresse",
-        "isere-le-canal-de-clelles",
-        "isere-tour-de-chichilianne",
-        "isere-boucle-du-couzon",
-        "isere-le-plateau-de-la-moliere",
-        "isere-le-fort-du-murier"
-      ],
-      "trailNames": [
-        "Alpage des Cloutons loop from Saint-Honoré 1500",
-        "Gresse valley loop from Miribel-Lanchâtre",
-        "Clelles canal loop",
-        "Tour de Chichilianne",
-        "Couzon loop from Saint-Pierre-de-Chartreuse",
-        "Molière plateau loop above Autrans",
-        "Fort du Murier loop above Gières"
-      ],
-      "sourceStatus": "available"
-    },
-    {
       "id": "meteoalarm-france:rain-flood:haute-savoie",
       "state": "active",
       "severity": "moderate",
@@ -252,10 +215,10 @@
       "sourceLabel": "MeteoAlarm France",
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/78c57fbd-816d-4257-a5d6-263fe3471a24",
       "identifier": "2.49.0.0.250.0.FR.20261118160034.764022",
-      "effectiveAt": "2026-11-17T15:00:00+00:00",
+      "effectiveAt": "2026-11-18T23:00:00+00:00",
       "expiresAt": "2026-11-19T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-18T20:16:36.515Z",
+      "lastSeenAt": "2026-11-18T23:14:02.175Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -292,43 +255,6 @@
       "sourceStatus": "available"
     },
     {
-      "id": "meteoalarm-france:rain-flood:is-re",
-      "state": "active",
-      "severity": "moderate",
-      "event": "Moderate rain-flood warning",
-      "area": "Isère",
-      "title": "rain-flood warning for Isère",
-      "message": "An official moderate rain-flood warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
-      "sourceKey": "meteoalarm-france",
-      "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/1fff322d-0def-4a9f-ae1c-b35cb8daefd7",
-      "identifier": "2.49.0.0.250.0.FR.20261117160204.401022",
-      "effectiveAt": "2026-11-17T15:00:00+00:00",
-      "expiresAt": "2026-11-17T23:00:00+00:00",
-      "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-18T20:16:36.515Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "isere-circuit-pedestre-alpage-des-cloutons",
-        "isere-la-vallee-de-la-gresse",
-        "isere-le-canal-de-clelles",
-        "isere-tour-de-chichilianne",
-        "isere-boucle-du-couzon",
-        "isere-le-plateau-de-la-moliere",
-        "isere-le-fort-du-murier"
-      ],
-      "trailNames": [
-        "Alpage des Cloutons loop from Saint-Honoré 1500",
-        "Gresse valley loop from Miribel-Lanchâtre",
-        "Clelles canal loop",
-        "Tour de Chichilianne",
-        "Couzon loop from Saint-Pierre-de-Chartreuse",
-        "Molière plateau loop above Autrans",
-        "Fort du Murier loop above Gières"
-      ],
-      "sourceStatus": "available"
-    },
-    {
       "id": "meteoalarm-france:rain-flood:savoie",
       "state": "active",
       "severity": "moderate",
@@ -340,10 +266,10 @@
       "sourceLabel": "MeteoAlarm France",
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/78c57fbd-816d-4257-a5d6-263fe3471a24",
       "identifier": "2.49.0.0.250.0.FR.20261118160034.764022",
-      "effectiveAt": "2026-11-17T15:00:00+00:00",
+      "effectiveAt": "2026-11-18T23:00:00+00:00",
       "expiresAt": "2026-11-19T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-18T20:16:36.515Z",
+      "lastSeenAt": "2026-11-18T23:14:02.175Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -456,7 +382,7 @@
       "effectiveAt": "2026-11-19T07:00:00+00:00",
       "expiresAt": "2026-11-19T18:59:00+00:00",
       "firstPublishedAt": "2026-11-17T11:14:27.427Z",
-      "lastSeenAt": "2026-11-18T20:16:36.515Z",
+      "lastSeenAt": "2026-11-18T23:14:02.175Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -499,7 +425,7 @@
       "effectiveAt": "2026-11-19T07:00:00+00:00",
       "expiresAt": "2026-11-19T12:59:00+00:00",
       "firstPublishedAt": "2026-11-18T11:14:50.832Z",
-      "lastSeenAt": "2026-11-18T20:16:36.515Z",
+      "lastSeenAt": "2026-11-18T23:14:02.175Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
