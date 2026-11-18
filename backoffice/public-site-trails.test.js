@@ -266,8 +266,10 @@ describe('the existing-site verification boundary',()=>{
     // Passo Lavazè to Malga Costa.
     // Then 532 and 530 with two South Tyrol trail-register loops, climb and
     // time measured by ORMA: the Umser Rundweg and the Promenadenweg at Tiers.
-    expect(catalogue).toHaveLength(532);
-    expect(currentSiteTrails(catalogue)).toHaveLength(530);
+    // Then 533 and 531 with Pian di Barco above Auronzo, whose page only
+    // suggests another way on (owner rule of 16 November 2026).
+    expect(catalogue).toHaveLength(533);
+    expect(currentSiteTrails(catalogue)).toHaveLength(531);
   });
 
   test('requires the artwork the public trail page needs',()=>{

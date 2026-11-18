@@ -394,6 +394,23 @@
       }
     },
     {
+      "id": "auronzo-pian-di-barco",
+      "approvedReviewId": "commons-auronzo-pian-di-barco-on-route",
+      "approvedAt": "2026-11-18T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/auronzo-pian-di-barco-lake-from-dam.jpg",
+        "heroImage": "images/trails/auronzo-pian-di-barco-lake-from-dam.jpg",
+        "imageAlt": "A turquoise lake seen from a concrete dam with a railing and a lifebuoy, wooded slopes on both sides and the village of Auronzo with its church dome below jagged grey peaks under summer clouds",
+        "imageCredit": "Lake Santa Caterina from the dam at Cella, by the start",
+        "imageCreditText": "Lake Santa Caterina from the dam at Cella, by the start by Salvador Escriva",
+        "imageCreator": "Salvador Escriva",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Santa_Caterina.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "auronzo-proazei",
       "approvedReviewId": "commons-auronzo-proazei-on-route",
       "approvedAt": "2026-11-12T21:00:00.000Z",
