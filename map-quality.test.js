@@ -116,10 +116,11 @@ describe('shared map quality profile', () => {
     expect(style).toContain('widthRamp(1.5, 2, 2.5, 3, scale)');
     expect(style).toContain("'line-gap-width': widthRamp(7, 12, 18, 26, scale)");
     expect(style).toContain('widthRamp(7, 12, 18, 26, scale)');
-    // Default insertion point: under the contours and the marked network
-    // (our dashed routes, or Waymarked's raster), so both draw over it.
+    // Default insertion point: under the contours and the walk's own dashed
+    // route (or Waymarked's raster), so both draw over it, but over the other
+    // marked routes, which pass under the walk.
     expect(style).toContain('const fallbackBefore = walkCorridorBeforeId(map);');
-    expect(style).toMatch(/function walkCorridorBeforeId\(map\) \{\s*if \(map && map.getLayer\(CONTOUR_LINE_LAYER\)\) return CONTOUR_LINE_LAYER;\s*return networkLayerId\(map\);/);
+    expect(style).toMatch(/function walkCorridorBeforeId\(map\) \{\s*if \(map && map.getLayer\(CONTOUR_LINE_LAYER\)\) return CONTOUR_LINE_LAYER;\s*if \(map && map.getLayer\(HIKING_WALK_LINE_LAYER\)\) return HIKING_WALK_LINE_LAYER;\s*return networkLayerId\(map\);/);
     expect(style).toMatch(/function walkLineBeforeId\(map\) \{\s*if \(map && map.getLayer\(HIKING_REF_LAYER\)\) return HIKING_REF_LAYER;\s*if \(map && map.getLayer\(WAYMARKED_LAYER\)\) return WAYMARKED_LAYER;/);
     // The opaque-on-top treatment stays available for maps with no raster.
     expect(style).toContain("config.mode === 'overlay'");
