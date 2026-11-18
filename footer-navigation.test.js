@@ -86,7 +86,7 @@ describe('footer navigation', () => {
     ].filter(file => footerOf(file));
     expect(pages.length).toBeGreaterThan(0);
     pages.forEach(file => {
-      const links = [...footerOf(file).matchAll(/<a\s[^>]*href="(?:\.\.\/)*guides\/([^"]+)"[^>]*>([^<]+)<\/a>/g)]
+      const links = [...footerOf(file).matchAll(/<a\s[^>]*href="(?:\.\.\/|\/it\/)*guides\/([^"]+)"[^>]*>([^<]+)<\/a>/g)]
         .map(([, href, label]) => [href, label.trim()]);
       expect(links).toEqual([
         ['heat-overheating.html', 'Il caldo e il tuo cane'],
