@@ -48,7 +48,12 @@ function scoreTrail(trail, subject, currentConditions){
 // The profile a visitor is scored against before they add a dog. The site
 // already tells them so ("Scores use a medium-dog profile"), so guest maps can
 // colour by match honestly rather than falling back to a different meaning.
-const GUEST_SUBJECT = Object.freeze({ terrain:'1', distance:'10', heatSensitive:false });
+// It is the same subject the trail page's planning view scores ("Why 92% for
+// a medium dog"): no overrides, so the engine's own moderate-fitness default
+// applies. The old { terrain:'1', distance:'10' } override capped steepness
+// tolerance at 1, which scoring 1.9.0 no longer applies to a healthy dog, so
+// maps coloured walks amber that the page beside them called a strong option.
+const GUEST_SUBJECT = Object.freeze({});
 
 window.DoloPawsScoring = Object.freeze({
   VERSION: SCORING_VERSION,
