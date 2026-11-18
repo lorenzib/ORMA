@@ -76,12 +76,13 @@ describe('Italian copies of the main pages', () => {
     expect(italianLink('journal.html')).toBeNull();
     const html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>x</title>' +
       '<meta name="description" content="x"></head><body><a href="about.html">About</a>' +
-      '<a href="journal.html">J</a><img src="logo.svg"><a href="#top">Top</a>' +
+      '<a href="journal.html">J</a><img src="logo.svg"><a href="#top">Top</a><script src="nav.js?v=1"></script>' +
       '<script>el.innerHTML = \'<a href="\' + url + \'">x</a>\';</script></body></html>';
     const copy = italianCopy(html, 'about.html');
     expect(copy).toContain('<a href="/it/about.html">');
     expect(copy).toContain('<a href="/journal.html">');
     expect(copy).toContain('<img src="/logo.svg">');
+    expect(copy).toContain('<script src="/nav.js?v=1"></script>');
     expect(copy).toContain('<a href="/it/about.html#top">');
     expect(copy).toContain('el.innerHTML = \'<a href="\' + url + \'">x</a>\';');
   });

@@ -259,13 +259,15 @@ function rewriteAddresses(html, italianUrl){
 }
 
 // Markup only: an address or a data-i18n inside a <script> or <style> is code,
-// which the page runs as it is (its addresses resolve through <base>).
+// which the page runs as it is (its addresses resolve through <base>). The
+// opening tag itself is markup: <script src="x.js"> becomes /x.js, so the
+// site build can find the file and stamp its content hash.
 function outsideCode(html, transform){
-  const parts = html.split(/(<(script|style)\b[^>]*>[\s\S]*?<\/\2>)/i);
+  const parts = html.split(/(<(?:script|style)\b[^>]*>)([\s\S]*?)(<\/(?:script|style)>)/i);
   let output = '';
-  for(let index = 0; index < parts.length; index += 3){
+  for(let index = 0; index < parts.length; index += 4){
     output += transform(parts[index]);
-    if(index + 1 < parts.length) output += parts[index + 1];
+    if(index + 1 < parts.length) output += transform(parts[index + 1]) + parts[index + 2] + parts[index + 3];
   }
   return output;
 }
