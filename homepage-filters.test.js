@@ -924,8 +924,9 @@ describe('returning homepage region + valley filters', () => {
     expect(toggles[0].textContent).toContain('Hide the reasons');
     expect(toggles[3].textContent).toContain('Why it fits Teo');
     expect(toggles[3].getAttribute('aria-controls')).toBe(panels[3].id);
-    expect(panels[0].textContent).toContain('Why it fits Teo');
-    expect(panels[0].textContent).toContain('What to know today');
+    // The panel is a verdict line and what to check, not two headed columns.
+    expect(panels[0].querySelector('.li-answer-verdict, .li-answer-check')).not.toBeNull();
+    expect(panels[0].textContent).not.toContain('What to know today');
     expect(document.querySelector('.li-answer-open').textContent).toBe('View trail details');
     // "See on map" is in the bar every card now has, so the panel does not
     // repeat it.
@@ -959,75 +960,19 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelector('.li-row--answer').textContent).not.toContain('86%');
   });
 
-  test('both halves of the answer card are written and set the same way', async () => {
-    // "Why it fits Teo" used the adapter's fold-line: the positives joined
-    // into one sentence. With seven of them that is a verbless list sitting
-    // beside two plain sentences, which is what made the card read as two
-    // voices. It also rendered larger, because the paragraph carried
-    // `li-answer-fine` -- a class with no rule in any stylesheet -- while the
-    // column beside it is set to 11px.
+  // The card used to set "Why it fits Teo" (five bullets of equal weight)
+  // beside "What to know today" (often one line that was not about today). It
+  // is skimmed in a list of a dozen, so it now says one verdict line and the
+  // one or two things to check; the trail page has the row-by-row breakdown.
+  const answerCard = async recommendation => {
     const context = loadHomepageContext(sampleTrails);
-    context.recommendTrail.mockImplementation(() => ({
-      scoringVersion:'1.6.0', score:86, category:'recommended', confidence:'high',
-      positiveReasons:[
-        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.' },
-        { code:'trail.distance.within-range', message:'Distance is within range.' },
-        { code:'trail.exposure.none-known', message:'No exposed section.' },
-      ],
-      factors:[
-        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
-        { code:'trail.distance.within-range', message:'Distance is within range.', impact:0, vars:{ distance:'3.6' } },
-        { code:'trail.exposure.none-known', message:'No exposed section.', impact:0 },
-      ],
-      cautions:[{ message:'No confirmed water on the route, so carry it all.' }],
-      hardStops:[], unknowns:[],
-    }));
+    context.recommendTrail.mockImplementation(() => recommendation);
     vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liApplyLocationGeography();', context);
     await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    return document.querySelector('.li-answer-explanation');
+  };
 
-    const panel = document.querySelector('.li-answer-explanation');
-    expect(panel.textContent).toContain('Why it fits Teo');
-    expect(panel.textContent).toContain('What to know today');
-    // The class that was never styled is gone, so neither column can inherit a
-    // different size from the other.
-    expect(panel.querySelector('.li-answer-fine')).toBeNull();
-    // Both columns are lists, so one CSS rule sets both.
-    const columns = [...panel.querySelectorAll('div')].filter(div => div.querySelector('ul'));
-    expect(columns).toHaveLength(2);
-    // And every reason is a whole sentence, like the column beside it.
-    const fitItems = [...columns[0].querySelectorAll('li')].map(item => item.textContent);
-    expect(fitItems.length).toBeGreaterThan(0);
-    expect(fitItems.every(text => /^[A-Z].*\.$/.test(text.trim()))).toBe(true);
-    expect(fitItems).toContain('The 3.6 km distance is comfortable.');
-  });
-
-  test('a Not recommended card asks why not, and never says it fits', async () => {
-    const context = loadHomepageContext(sampleTrails);
-    context.recommendTrail.mockImplementation(() => ({
-      scoringVersion:'1.6.0', score:49, category:'not-recommended', confidence:'high',
-      positiveReasons:[{ code:'trail.terrain.within-tolerance', message:'Terrain is fine.' }],
-      factors:[
-        { code:'trail.heat.high', message:'Runs warm.', impact:-10 },
-        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
-      ],
-      cautions:[{ message:'This route runs warm.' }],
-      hardStops:[], unknowns:[],
-    }));
-    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liApplyLocationGeography();', context);
-    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
-
-    const list = document.querySelector('#returningCustomerHomepage') || document.body;
-    expect(list.textContent).not.toContain('Why it fits Teo');
-    expect(document.querySelector('.li-answer-explanation').textContent).toContain('Not the problem here');
-    // The first card starts open; closing it shows the question it asks.
-    const toggle = document.querySelector('[data-why-toggle]');
-    toggle.click();
-    expect(toggle.textContent).toContain('Why not for Teo');
-  });
-
-  test('the reasons stop at four, so the cautions are not buried', async () => {
-    // Seven reasons against two cautions is lopsided, and on a card about
-    // whether a walk suits a dog the cautions are the half worth reading.
+  test('a strong option says one verdict line and one thing to check', async () => {
     const positives = [
       { code:'trail.terrain.within-tolerance', message:'Terrain is fine.' },
       { code:'trail.distance.within-range', message:'Distance is within range.', vars:{ distance:'3.6' } },
@@ -1037,30 +982,40 @@ describe('returning homepage region + valley filters', () => {
       { code:'trail.dog-access.leash', message:'Dogs allowed on a leash.' },
       { code:'conditions.heat.low', message:'Temperatures are low today.' },
     ];
-    const context = loadHomepageContext(sampleTrails);
-    context.recommendTrail.mockImplementation(() => ({
-      scoringVersion:'1.6.0', score:86, category:'recommended', confidence:'high',
-      positiveReasons:positives,
-      factors:positives.map(entry => ({ ...entry, impact:0 })),
-      cautions:[{ message:'No confirmed water on the route, so carry it all.' }],
+    const panel = await answerCard({
+      scoringVersion:'1.6.0', score:86, category:'strong-option', confidence:'high',
+      positiveReasons:positives, factors:positives.map(entry => ({ ...entry, impact:0 })),
+      cautions:[{ message:'No confirmed water on the route, so carry it all.' }, { message:'Busy at weekends.' }],
       hardStops:[], unknowns:[],
-    }));
-    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liApplyLocationGeography();', context);
-    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    });
+    // Three facts at most, however many positives there are.
+    expect(panel.querySelector('.li-answer-verdict').textContent)
+      .toBe('Good for Teo: 3.6 km, a gentle 39 m climb and no slopes too steep.');
+    expect([...panel.querySelectorAll('.li-answer-check')].map(line => line.textContent))
+      .toEqual(['No confirmed water on the route, so carry it all.']);
+    expect(panel.querySelector('ul')).toBeNull();
+  });
 
-    const panel = document.querySelector('.li-answer-explanation');
-    const columns = [...panel.querySelectorAll('div')].filter(div => div.querySelector('ul'));
-    expect(columns[0].querySelectorAll('li')).toHaveLength(4);
-    // Heat leads, then what the owner asked for. This fixture has no water
-    // positive, so the heat half of the pair is what comes first.
-    expect([...columns[0].querySelectorAll('li')].map(item => item.textContent)).toEqual([
-      'Today is cool enough.',
-      'The terrain is manageable.',
-      'The 3.6 km distance is comfortable.',
-      'The 39 m climb is gentle.',
-    ]);
-    // Fewer than four is left alone, rather than padded from somewhere else.
-    expect(columns[1].querySelectorAll('li')).toHaveLength(1);
+  test('a Not recommended card asks why not, and never says it fits', async () => {
+    const panel = await answerCard({
+      scoringVersion:'1.6.0', score:49, category:'not-recommended', confidence:'high',
+      positiveReasons:[{ code:'trail.terrain.within-tolerance', message:'Terrain is fine.' }],
+      factors:[
+        { code:'trail.heat.high', message:'Runs warm.', impact:-10 },
+        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
+      ],
+      cautions:[{ message:'This route runs warm.' }],
+      hardStops:[], unknowns:[{ code:'trail.shade.unknown', message:'Shade unknown.' }],
+    });
+    // No verdict line under a verdict that says no: its reasons are the cautions.
+    expect(panel.querySelector('.li-answer-verdict')).toBeNull();
+    expect([...panel.querySelectorAll('.li-answer-check')].map(line => line.textContent))
+      .toEqual(['This route runs warm.', 'We don’t know how much shade there is.']);
+    expect(document.body.textContent).not.toContain('Why it fits Teo');
+    // The first card starts open; closing it shows the question it asks.
+    const toggle = document.querySelector('[data-why-toggle]');
+    toggle.click();
+    expect(toggle.textContent).toContain('Why not for Teo');
   });
 
   test('a future date is reflected in the recommendation instead of being labelled today', async () => {
