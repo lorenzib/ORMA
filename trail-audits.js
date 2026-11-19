@@ -16117,7 +16117,7 @@
         photo: 'Schloss Welsperg in summer, 11 m from the line (Montepiana, CC0).',
         route: 'Stored line 1.86 km, closed; province register line 1.88 km, closed, within 30 m; the official 2.3 km includes the walk to and from the tourist office.',
         routeNumbers: 'No number: from the school centre follow the “Schlossrunde” waymarks up to Schloss Welsperg, down the castle hill to the bridge over the Gsieser Bach, and back along the old Gsiesertal road.',
-        mapPoints: 'Start at the Welsberg tourist office (official start), 180 m from the loop; drinking fountains OSM nodes 9006242959 (25 m off), 10916470437 (main square) and 5167581904 (tourist office).',
+        mapPoints: 'Start at the Welsberg tourist office (official start), about 250 m on foot from the loop; drinking fountains OSM nodes 9006242959 (25 m off), 10916470437 (main square) and 5167581904 (tourist office).',
         elevation: 'Official 2.3 km, 78 m up and down, 0:39 h, 1,085–1,163 m.'
       },
       graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
@@ -16148,7 +16148,7 @@
         { label: 'Welsberg-Taisten, Mayor’s ordinance 03/2023', url: 'https://www.gemeinde.welsberg-taisten.bz.it/de/Neuigkeiten/News/Anordnung_des_Buergermeisters_fuer_das_Verhalten_von_Hundebesitzern' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12173965' }
       ],
-      startPoint: { lat: 46.75574, lng: 12.10566, label: 'Welsberg tourist office (official start), 180 m from the loop via the main square' },
+      startPoint: { lat: 46.75574, lng: 12.10566, label: 'Welsberg tourist office (official start), about 250 m on foot from the loop via the main square' },
       waterSources: [
         { km: 0, lat: 46.7560017, lng: 12.105435, osmId: 'node/5167581904', label: 'Fountain at the tourist office' },
         { km: 0.2, lat: 46.7579497, lng: 12.1053116, osmId: 'node/9006242959', label: 'Village fountain' },
@@ -16205,7 +16205,7 @@
         { label: 'Welsberg-Taisten, Mayor’s ordinance 03/2023', url: 'https://www.gemeinde.welsberg-taisten.bz.it/de/Neuigkeiten/News/Anordnung_des_Buergermeisters_fuer_das_Verhalten_von_Hundebesitzern' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12173984' }
       ],
-      startPoint: { lat: 46.75574, lng: 12.10566, label: 'Welsberg tourist office (official start), 180 m from the loop via the main square' },
+      startPoint: { lat: 46.75574, lng: 12.10566, label: 'Welsberg tourist office (official start), about 250 m on foot from the loop via the main square' },
       waterSources: [
         { km: 0, lat: 46.7560017, lng: 12.105435, osmId: 'node/5167581904', label: 'Fountain at the tourist office' },
         { km: 3.9, lat: 46.765271, lng: 12.118358, osmId: 'way/507522282', label: 'Taistner Bach (stream crossing)' },

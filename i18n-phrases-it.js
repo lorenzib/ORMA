@@ -259,6 +259,8 @@ window.ORMA_PHRASES_IT = {
   "City": "Città",
   "Clear all filters": "Azzera tutti i filtri",
   "Cleared winter paths": "Sentieri invernali sgomberati",
+  "Dashed line: about {metres} m on foot from the start flag to the walk. Not part of the walk’s distance.": "Linea tratteggiata: circa {metres} m a piedi dalla bandierina al percorso. Non inclusi nella distanza del percorso.",
+  "Dashed line: on foot from the start flag to the walk. Not part of the walk’s distance.": "Linea tratteggiata: a piedi dalla bandierina al percorso. Non inclusa nella distanza del percorso.",
   "Cleared winter paths in the Dolomites": "Sentieri invernali sgomberati nelle Dolomiti",
   "Compact walks with modest recorded climb": "Passeggiate brevi con un dislivello registrato contenuto",
   "High-level options with a lift near the start": "Proposte in quota con un impianto vicino alla partenza",

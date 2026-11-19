@@ -2178,6 +2178,15 @@ function initTrailMap(){
         'line-width':['interpolate',['linear'],['zoom'],8,2,12,2.75,14,3.75,17,5], 'line-opacity':1,
       },
     }, corridorBeforeId);
+    // The chosen walk's walk-in from its start flag (trail.accessPath): thin
+    // and dashed under the walk, as on the trail page (map-style.js).
+    trailMapInstance.addSource('trail-selected-access', {
+      type:'geojson', data:{ type:'FeatureCollection', features:[] },
+    });
+    window.ORMAMapStyle.addAccessLine(trailMapInstance, {
+      id:'trail-selected-access-line', source:'trail-selected-access',
+      color:['coalesce',['get','routeColor'],'#4A7856'], beforeId:'trail-selected-route-casing',
+    });
     trailMapInstance.addLayer({
       id:'trail-selected-route-arrows', type:'symbol', source:'trail-selected-route',
       layout:{
@@ -2597,6 +2606,18 @@ function setSelectedTrailRoute(trail, options){
   ['trail-selected-route-casing','trail-selected-route-line'].forEach(layerId => {
     if(trailMapInstance.getLayer(layerId)) trailMapInstance.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
   });
+  const access = visible && trail.accessPath && Array.isArray(trail.accessPath.path) && trail.accessPath.path.length > 1
+    ? trail.accessPath.path : null;
+  if(trailMapInstance.getSource('trail-selected-access')){
+    trailMapInstance.getSource('trail-selected-access').setData({
+      type:'FeatureCollection',
+      features:access ? [{
+        type:'Feature',
+        properties:{ id:trail.id, routeColor },
+        geometry:{ type:'LineString', coordinates:access.map(([lat, lng]) => [lng, lat]) },
+      }] : [],
+    });
+  }
   window.ORMAMapStyle.setHikingWalk(trailMapInstance, visible ? route.map(([lat, lng]) => [lng, lat]) : null);
   const isLoop = visible && liRouteDistanceMeters(route[0], route[route.length - 1]) <= 75;
   if(trailMapInstance.getLayer('trail-selected-route-arrows')){
@@ -2604,7 +2625,7 @@ function setSelectedTrailRoute(trail, options){
   }
   if(visible && config.fit !== false){
     const bounds = new maplibregl.LngLatBounds();
-    route.forEach(([lat, lng]) => bounds.extend([lng, lat]));
+    route.concat(access || []).forEach(([lat, lng]) => bounds.extend([lng, lat]));
     trailMapInstance.fitBounds(bounds, { padding:window.innerWidth < 720 ? 44 : 64, maxZoom:17, duration:420 });
   }
 }
