@@ -4227,6 +4227,18 @@ function liWhyLabel(trail, dogName){
   return liIsNotRecommended(trail) ? tx('Why not for {name}', { name:dogName }) : tx('Why it fits {name}', { name:dogName });
 }
 
+// "In season now: best March to November." beside "Good for Teo", from the
+// same rule as the "Out of season" tag (trail-season-words.js seasonFit).
+function liSeasonFitHtml(trail){
+  const words = window.DoloPawsTrailSeasonWords;
+  const fit = words && typeof words.seasonFit === 'function' && trail && trail.season
+    ? words.seasonFit(trail.season, new Date().getMonth() + 1)
+    : null;
+  if(!fit) return '';
+  const risks = fit.risks ? ` ${liEscapeHtml(fit.risks)}.` : '';
+  return `<p class="li-answer-season${fit.out ? ' is-out' : ''}"><span><b>${liEscapeHtml(fit.lead)}:</b> ${liEscapeHtml(fit.facts)}.${risks}</span></p>`;
+}
+
 function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   const recommendation = trail && trail.recommendation;
   const view = liRecommendationView(trail, profile);
@@ -4247,11 +4259,20 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   // trail unknowns: a missing profile field becomes the prompt below, and
   // saying the same thing twice on one card reads as two problems. A strong
   // option says one; any other verdict says why it is not one, so two.
+  // The season has its own line below the verdict, so the engine's "not the
+  // season" caution would say it twice. A dog rule ORMA has not found is not
+  // a warning about the walk: it is a quiet note under the rest (owner, 19 Nov).
   const limit = recommendation && recommendation.category === 'strong-option' ? 1 : 2;
-  const concerns = view.cardCautions.slice(0, limit);
-  if(concerns.length < limit) concerns.push(...view.cardTrailUnknowns.slice(0, limit - concerns.length));
+  const SAID_ELSEWHERE = new Set(['trail.season.outside', 'trail.dog-access.unknown']);
+  const ownLine = entry => !SAID_ELSEWHERE.has(entry.code);
+  const concerns = (view.cardCautionItems || []).filter(ownLine).slice(0, limit);
+  if(concerns.length < limit) concerns.push(...(view.cardTrailUnknownItems || []).filter(ownLine).slice(0, limit - concerns.length));
   const know = concerns
-    .map(entry => `<p class="li-answer-check">${liPersonalisationText(entry)}</p>`).join('');
+    .map(entry => `<p class="li-answer-check">${liPersonalisationText(entry.text)}</p>`).join('');
+  const season = liSeasonFitHtml(trail);
+  const noDogRule = (view.cardTrailUnknownItems || []).some(entry => entry.code === 'trail.dog-access.unknown')
+    ? `<p class="li-answer-note">${tx('No dog rule on record here. Check local signs.')}</p>`
+    : '';
   const fresh = isNew
     ? `<p class="li-answer-new"><b>${tx('New for {name}.', { name:liPersonalisationText(dogName) })}</b> ${liNewForMeaning(profile)}</p>`
     : '';
@@ -4269,7 +4290,7 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   // every card also has: two of the same button on one card is one too many.
   const panelId = `li-why-${encodeURIComponent(trail.id)}`;
   return `<div class="li-answer-explanation" id="${panelId}"${open ? '' : ' hidden'}>
-    ${fresh}${verdict}${know}${gap}
+    ${fresh}${verdict}${season}${know}${noDogRule}${gap}
     <div class="li-answer-actions">
       <a class="li-answer-open" href="${liTrailHref(trail.id)}">${tx('View trail details')}</a>
     </div>
