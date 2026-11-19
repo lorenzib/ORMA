@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-foresto-sentiero-ginepri",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.4,
+    "ascentM": 337,
+    "highestPointM": 743,
+    "expectedDuration": "2 h",
+    "difficulty": "Hard",
+    "shadePercent": 22
+  },
+  "trailhead": {
+    "lat": 45.14108,
+    "lng": 7.116229,
+    "label": "The church square, Foresto, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "Path 536B goes down a steep, stony slope with rock steps (T2): keep your dog on a short lead and take it slowly.",
+    "A dry, open slope with little shade: the board suggests the cooler months; avoid summer heat.",
+    "Inside the reserve dogs must stay on a lead.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Juniper Trail, Foresto": "Sentiero dei Ginepri a Foresto",
+    "The church square, Foresto, the board’s start": "Il piazzale della chiesa, Foresto, la partenza ufficiale",
+    "Path 536B goes down a steep, stony slope with rock steps (T2): keep your dog on a short lead and take it slowly.": "Il sentiero 536B scende lungo un pendio ripido e sassoso con balzi di roccia (T2): tieni il cane al guinzaglio corto e procedi piano.",
+    "A dry, open slope with little shade: the board suggests the cooler months; avoid summer heat.": "Un versante secco e aperto, con poca ombra: il sito consiglia i mesi freschi; evita il caldo estivo.",
+    "Inside the reserve dogs must stay on a lead.": "Nella riserva i cani devono stare al guinzaglio."
+  }
+}

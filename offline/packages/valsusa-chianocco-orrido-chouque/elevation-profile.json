@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-chianocco-orrido-chouque",
+  "distanceKm": 8.3,
+  "ascentM": 559,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 546
+    },
+    {
+      "km": 0.6,
+      "elev": 638
+    },
+    {
+      "km": 1.3,
+      "elev": 762
+    },
+    {
+      "km": 1.9,
+      "elev": 953
+    },
+    {
+      "km": 2.5,
+      "elev": 1038
+    },
+    {
+      "km": 3.2,
+      "elev": 1098
+    },
+    {
+      "km": 3.8,
+      "elev": 1044
+    },
+    {
+      "km": 4.4,
+      "elev": 1062
+    },
+    {
+      "km": 5.1,
+      "elev": 978
+    },
+    {
+      "km": 5.7,
+      "elev": 975
+    },
+    {
+      "km": 6.3,
+      "elev": 926
+    },
+    {
+      "km": 6.9,
+      "elev": 802
+    },
+    {
+      "km": 7.6,
+      "elev": 687
+    },
+    {
+      "km": 8.2,
+      "elev": 566
+    },
+    {
+      "km": 8.3,
+      "elev": 546
+    }
+  ]
+}

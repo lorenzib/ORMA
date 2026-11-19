@@ -1,0 +1,21 @@
+// valsusa-venaus-sentiero-gufi-basso in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "an easy track through owl woods to a viewpoint chapel, there and back": "una facile sterrata nei boschi dei gufi fino a una cappella panoramica, andata e ritorno",
+  "An easy walk from Venaus on a gravel track through owl woods, with boards about the wildlife, up to a viewpoint by the Chirabò chapel and back the same way. The board lists 6.1 km and 294 m up.": "Una passeggiata facile da Venaus su una sterrata nei boschi dei gufi, con pannelli sulla fauna, fino a un belvedere accanto alla cappella Chirabò e ritorno per la stessa via. Il sito ufficiale indica 6,1 km e 294 m di salita.",
+  "Start at the Sentiero dei Gufi board in Via Roma, Venaus: 6.1 km there and back and 294 m up, about 2 hours, as the board lists. An easy walk for families and dogs of most ages.": "Parti dal pannello del Sentiero dei Gufi in via Roma, a Venaus: 6,1 km andata e ritorno e 294 m di salita, circa 2 ore, come indica il sito ufficiale. Una passeggiata facile per famiglie e per cani di quasi tutte le età.",
+  "A short road crossing by the cemetery: keep your dog on a short lead there": "Un breve attraversamento di strada vicino al cimitero: lì tieni il cane al guinzaglio corto",
+  "The upper part is a mountain path (T2) for a short way: watch your dog’s footing on loose stones": "La parte alta è per un breve tratto un sentiero di montagna (T2): attenzione all’appoggio del cane sui sassi smossi",
+  "Gravel track and woodland path": "Sterrata e sentiero nel bosco",
+  "The Sentiero dei Gufi board, Via Roma, Venaus, the board’s start": "Il pannello del Sentiero dei Gufi, via Roma, Venaus, la partenza ufficiale",
+  "A small pink-plastered chapel with a stone side wall and a wooden door at the top of a stony path, under fresh green trees, with a wooden signpost": "Una piccola cappella intonacata di rosa con un fianco in pietra e una porta in legno in cima a un sentiero sassoso, sotto alberi di un verde fresco, con un cartello in legno",
+  "Mostly in woods; the viewpoint at the top is open.": "Per lo più nel bosco; il belvedere in cima è aperto.",
+  "Start at the first houses of Venaus: turn left into Via Roma and, a little further on the left, find the Sentiero dei Gufi information board (path 586), the board’s start.": "Parti dalle prime case di Venaus: svolta a sinistra in via Roma e poco oltre, sempre a sinistra, trovi il pannello del Sentiero dei Gufi (segnavia 586), la partenza ufficiale.",
+  "Follow the gravel track along the edge of the wood above the village, cross a road by the cemetery and carry on up the easy track at a steady, moderate gradient, past the owl boards and the Roccia dei Partigiani, to the viewpoint with benches by the Chirabò chapel. Come back the same way.": "Segui la sterrata che costeggia il paese sul limitare del bosco, attraversa una strada vicino al cimitero e continua sulla facile sterrata con pendenza costante e moderata, accanto ai pannelli sui gufi e alla Roccia dei Partigiani, fino al poggio panoramico attrezzato vicino alla cappella Chirabò. Torna per la stessa via.",
+  "Via Roma to the Sentiero dei Gufi board; gravel track along the edge of the wood; across the road by the cemetery; steady climb past the Roccia dei Partigiani; viewpoint by the Chirabò chapel; back the same way.": "Via Roma fino al pannello del Sentiero dei Gufi; sterrata sul limitare del bosco; attraversamento della strada vicino al cimitero; salita costante accanto alla Roccia dei Partigiani; belvedere vicino alla cappella Chirabò; ritorno per la stessa via.",
+  "The Sentiero dei Gufi board in Via Roma, Venaus": "Il pannello del Sentiero dei Gufi in via Roma, Venaus",
+  "Along the edge of the wood and across the road by the cemetery": "Lungo il limitare del bosco e attraverso la strada vicino al cimitero",
+  "Steady climb past the Roccia dei Partigiani": "Salita costante accanto alla Roccia dei Partigiani",
+  "The viewpoint by the Chirabò chapel": "Il belvedere vicino alla cappella Chirabò",
+  "Back the same way to Venaus": "Ritorno per la stessa via fino a Venaus",
+  "The chapel of the Martirio di San Giovanni above Venaus": "La cappella del Martirio di San Giovanni sopra Venaus"
+});
