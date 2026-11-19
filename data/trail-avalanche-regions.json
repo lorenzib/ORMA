@@ -984,6 +984,13 @@
       ],
       "highPoint": 1935
     },
+    "lanzo-anello-mulino-turcin": {
+      "regions": [
+        "IT-21-TO-03",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 749
+    },
     "lario-alla-ricerca-di-un-panorama-unico": {
       "regions": [
         "IT-25-CO-01",
@@ -2302,6 +2309,20 @@
       ],
       "highPoint": 983
     },
+    "talucco-ecomuseo-carbonaie": {
+      "regions": [
+        "IT-21-TO-02",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1095
+    },
+    "traversella-sentiero-delle-anime": {
+      "regions": [
+        "IT-21-TO-03",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1379
+    },
     "tre-cime": {
       "regions": [
         "IT-32-BZ-20",
@@ -2487,6 +2508,13 @@
         "IT-25-SO-01"
       ],
       "highPoint": 2316
+    },
+    "valchiusella-fondo-tissone-tallorno": {
+      "regions": [
+        "IT-21-TO-03",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1340
     },
     "valdisole-bivacco-malga-baselga": {
       "regions": [

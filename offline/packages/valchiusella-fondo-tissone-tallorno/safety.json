@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valchiusella-fondo-tissone-tallorno",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5,
+    "ascentM": 319,
+    "highestPointM": 1340,
+    "expectedDuration": "2 h",
+    "difficulty": "Hard",
+    "shadePercent": 42
+  },
+  "trailhead": {
+    "lat": 45.531333,
+    "lng": 7.686096,
+    "label": "The stone bridge at Fondo, Traversella, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.5317313,
+      "lng": 7.6859581,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.5313559,
+      "lng": 7.6848849,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.5321136,
+      "lng": 7.6829242,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.5347356,
+      "lng": 7.6800932,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.5351087,
+      "lng": 7.6798613,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.5374988,
+      "lng": 7.6659304,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.5308028,
+      "lng": 7.6804329,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The zigzag climb to Tissone is steady: take it slowly with an older dog.",
+    "The stream and the waterfall pool near Tallorno are fast and cold: keep your dog out of the current.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Fondo, Tissone and Tallorno Loop, Valchiusella": "Anello Fondo, Tissone e Tallorno in Valchiusella",
+    "The stone bridge at Fondo, Traversella, the board’s start": "Il ponte in pietra di Fondo, Traversella, la partenza ufficiale",
+    "The zigzag climb to Tissone is steady: take it slowly with an older dog.": "La salita a tornanti fino a Tissone è costante: vai piano con un cane anziano.",
+    "The stream and the waterfall pool near Tallorno are fast and cold: keep your dog out of the current.": "Il torrente e la pozza sotto la cascata vicino a Tallorno sono rapidi e freddi: tieni il cane fuori dalla corrente."
+  }
+}

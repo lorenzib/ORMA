@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-19T15:14:17.452Z",
+  "generatedAt": "2026-11-19T19:52:03.622Z",
   "regions": {
     "dolomites": {
       "trailCount": 383,
@@ -553,15 +553,19 @@
       "optional": []
     },
     "piedmont": {
-      "trailCount": 6,
-      "trails": "data/regions/piedmont-trails.js?v=a1b16610c41f",
+      "trailCount": 10,
+      "trails": "data/regions/piedmont-trails.js?v=68ad9982e020",
       "details": {
         "valsesia-gta-tappa-21-campello-monti-rimella": "data/trail-details/valsesia-gta-tappa-21-campello-monti-rimella.js?v=7ad0c44a1326",
         "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "data/trail-details/valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo.js?v=0bab2b4505b2",
         "valsesia-cervatto-madonna-del-balmone": "data/trail-details/valsesia-cervatto-madonna-del-balmone.js?v=bd450431c1b0",
         "valsesia-campello-monti-alpe-fornale-di-sopra": "data/trail-details/valsesia-campello-monti-alpe-fornale-di-sopra.js?v=23dec6c41ef1",
         "valsesia-campello-monti-colle-dell-usciolo": "data/trail-details/valsesia-campello-monti-colle-dell-usciolo.js?v=51f9e82d2f50",
-        "valsesia-campello-monti-lago-del-capezzone": "data/trail-details/valsesia-campello-monti-lago-del-capezzone.js?v=8deca43496be"
+        "valsesia-campello-monti-lago-del-capezzone": "data/trail-details/valsesia-campello-monti-lago-del-capezzone.js?v=8deca43496be",
+        "lanzo-anello-mulino-turcin": "data/trail-details/lanzo-anello-mulino-turcin.js?v=a8748fc2ff8a",
+        "talucco-ecomuseo-carbonaie": "data/trail-details/talucco-ecomuseo-carbonaie.js?v=58daa76cdf00",
+        "traversella-sentiero-delle-anime": "data/trail-details/traversella-sentiero-delle-anime.js?v=79b7fb5515b2",
+        "valchiusella-fondo-tissone-tallorno": "data/trail-details/valchiusella-fondo-tissone-tallorno.js?v=190c738614ec"
       },
       "water": "data/regions/piedmont-water.geojson",
       "hutsBars": "data/regions/piedmont-huts-bars.geojson",
@@ -1130,6 +1134,10 @@
     "valsesia-campello-monti-alpe-fornale-di-sopra": "piedmont",
     "valsesia-campello-monti-colle-dell-usciolo": "piedmont",
     "valsesia-campello-monti-lago-del-capezzone": "piedmont",
+    "lanzo-anello-mulino-turcin": "piedmont",
+    "talucco-ecomuseo-carbonaie": "piedmont",
+    "traversella-sentiero-delle-anime": "piedmont",
+    "valchiusella-fondo-tissone-tallorno": "piedmont",
     "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
     "osttirol-naturkraftweg-umbalfaelle": "tyrol",
     "osttirol-kulturweg-koednitz": "tyrol",
@@ -1715,6 +1723,10 @@
     "lombardia-reggetto-piani-di-artavaggio": "piani-di-artavaggio-reggetto",
     "lario-asso-funghi-di-terra": "funghi-di-terra-asso-rezzago",
     "lombardia-bergamo-colle-maresana": "colle-della-maresana-bergamo",
+    "lanzo-anello-mulino-turcin": "mulino-turcin-loop-lanzo",
+    "talucco-ecomuseo-carbonaie": "carbonaie-path-talucco",
+    "traversella-sentiero-delle-anime": "sentiero-delle-anime-traversella",
+    "valchiusella-fondo-tissone-tallorno": "fondo-tissone-tallorno-loop",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2257,6 +2269,10 @@
     "piani-di-artavaggio-reggetto": "lombardia-reggetto-piani-di-artavaggio",
     "funghi-di-terra-asso-rezzago": "lario-asso-funghi-di-terra",
     "colle-della-maresana-bergamo": "lombardia-bergamo-colle-maresana",
+    "mulino-turcin-loop-lanzo": "lanzo-anello-mulino-turcin",
+    "carbonaie-path-talucco": "talucco-ecomuseo-carbonaie",
+    "sentiero-delle-anime-traversella": "traversella-sentiero-delle-anime",
+    "fondo-tissone-tallorno-loop": "valchiusella-fondo-tissone-tallorno",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

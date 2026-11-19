@@ -278,8 +278,12 @@ describe('the existing-site verification boundary',()=>{
     // in-Lombardia portal (owner decision of 18 November 2026): Reggetto to the
     // Piani di Artavaggio, the Colle della Maresana above Bergamo (both there
     // and back) and the earth-pyramid loop from Asso.
-    expect(catalogue).toHaveLength(540);
-    expect(currentSiteTrails(catalogue)).toHaveLength(538);
+    // Then 544 and 542 with the first Turin valleys walks from Turismo Torino
+    // e Provincia (owner decision of 19 November 2026): the Mulino Turcin loop
+    // at Lanzo, the Carbonaie path at Talucco, the Sentiero delle Anime at
+    // Traversella and the Fondo, Tissone and Tallorno loop.
+    expect(catalogue).toHaveLength(544);
+    expect(currentSiteTrails(catalogue)).toHaveLength(542);
   });
 
   test('requires the artwork the public trail page needs',()=>{

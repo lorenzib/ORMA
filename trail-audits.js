@@ -71114,6 +71114,407 @@
       ],
       startPoint: { lat: 45.721252, lng: 9.679477, label: "The foot of the steps on via Quintino Alto, Bergamo, the published start" },
       desc: "A short climb from the northern edge of Bergamo on path CAI 533 through chestnut woods to the Colle della Maresana, a green balcony over the city and the plain with the old church of San Marco, and back the same way. The portal lists 1.4 km and 210 m up one way; there and back it is 2.8 km with 210 m up and down, about 1 h 30."
+    },
+    'lanzo-anello-mulino-turcin': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 2, Turin valleys).
+      // “Anello del Mulino Turcin”, published by Turismo Torino e Provincia, drawn on 60 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Communes: Lanzo Torinese and Coassolo Torinese (no dog rule found online for either: national rule). No park or Natura 2000 site. Roads: about 2.8 km of hamlet lanes (27%, under half); the SP26 and SP729 are only crossed (about 60 m).
+      // The stored line follows the board’s own line, 99% each way. A 46 m stub up a farm track and back at km 6.08 of the board’s line, which leads nowhere, was cut from the stored line.
+      area: "Lanzo Torinese – Mulino Turcin – San Pietro di Coassolo (Valli di Lanzo)",
+      distance: 10.3,
+      elevation: 260,
+      hours: '3.25',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from Cates in Lanzo up the Tessuolo stream through broadleaf woods, over the Casassa stone bridge to the Mulino Turcin and its stone bridge, across the meadows and fields of San Pietro di Coassolo, and back down through the hamlets to Lanzo, as the board publishes it (10.3 km, 260 m up, 3:15 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the little square in Cates, Lanzo Torinese, by the information board, the board’s start; path 420.",
+        "sequence": "Follow path 420 across the meadows and into the wood along the stream; at the bridge turn right, signed Mulino Turcin, and climb to Case Magnetti. Turn left, cross the road and follow the lane beside the irrigation channel, then the path to the Casassa stone bridge. Cross it, go a few metres down the road and take the path up on the left; at the fork turn right to the Mulino Turcin. Cross its bridge, go up the lane to the road, then right and left at the fork to the football pitch and back into the wood. Turn right on the road into San Pietro, go left at the junction above the school and take path 426 down on the right by the shrine. Follow the lanes and paths down through the hamlets and the meadows back to Lanzo and along the flat last stretch to Cates.",
+        "switches": "Path 420 from Cates; right at the bridge for the Mulino Turcin; Case Magnetti; lane beside the irrigation channel; Casassa stone bridge; right at the fork to the Mulino Turcin; up to the road and the football pitch; right on the road into San Pietro; path 426 down by the shrine; lanes and meadows back to Lanzo and Cates.",
+        "steps": [
+          {
+            "text": "Cates, Lanzo Torinese, on path 420",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Up the Tessuolo stream to Case Magnetti and the Casassa stone bridge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Mulino Turcin and its stone bridge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "San Pietro di Coassolo, then path 426 down by the shrine",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down through the hamlets and meadows back to Cates",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Turismo Torino e Provincia, Anello del Mulino Turcin (route description)",
+            "url": "https://www.outdooractive.com/it/r/804987381",
+            "authority": "Turismo Torino e Provincia",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Wayside shrine on the path near Coassolo (Jrachi on Wikimedia Commons, CC BY-SA 4.0), 7 May 2017, 4 m from the line.",
+        route: "Official loop of 10.3 km from Cates, Lanzo Torinese, as Turismo Torino e Provincia publishes it; the stored line is drawn on 60 OSM ways along the board’s published line, 10.2 km, with 99% of the board’s line within 25 m of it and 99% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 420 and 426. From the square in Cates, Lanzo Torinese, follow path 420 up the Tessuolo stream past Case Magnetti and over the Casassa stone bridge to the Mulino Turcin, then up to San Pietro di Coassolo; take path 426 down from the shrine above the school and follow the lanes back through the hamlets to Cates.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 10.3 km, 260 m up and 261 m down, 3:15 h (Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Turismo Torino e Provincia, Anello del Mulino Turcin (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Lanzo Torinese or the Comune di Coassolo Torinese, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (60 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 52,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The path can be very wet and slippery after heavy rain, as the board warns","Short stretches on hamlet lanes and two crossings of the provincial roads: keep your dog on a short lead there","A short cobbled stretch and steps near the Mulino Turcin"],
+      terrainType: "Woodland paths and hamlet lanes",
+      shadeDescription: "About half in broadleaf woods along the stream; the meadows and fields around San Pietro are open.",
+      terrainDescription: "A low-level loop above Lanzo along the Tessuolo stream, over two old stone bridges to the Mulino Turcin, an old mill that is now a restaurant, and back across the meadows of San Pietro di Coassolo.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. The stream runs beside the path for the first part, and the Mulino Turcin restaurant is halfway.",
+      dogNotes: "Lanzo Torinese and Coassolo Torinese publish no dog rule of their own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the square in Cates, Lanzo Torinese: 10.3 km and 260 m up, about 3 hours 15 minutes, as the board lists. The Mulino Turcin restaurant is halfway. Avoid it after heavy rain, when the path gets slippery.",
+      sourceLinks: [
+        { label: "Turismo Torino e Provincia, Anello del Mulino Turcin", url: "https://www.outdooractive.com/it/r/804987381" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.286125, lng: 7.473396, label: "Cates, Lanzo Torinese, the board’s start" },
+      desc: "A woodland loop from Lanzo up the Tessuolo stream, over two old stone bridges to the Mulino Turcin mill, and back across the meadows of San Pietro di Coassolo. The board lists 10.3 km and 260 m up."
+    },
+    'talucco-ecomuseo-carbonaie': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 2, Turin valleys).
+      // “Sentiero "Ecomuseo delle Carbonaie"”, published by Turismo Torino e Provincia, drawn on 34 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Communes: Pinerolo and Frossasco (no dog rule found online for either: national rule). No park or Natura 2000 site. Roads: about 100 m of the SP167 at the start in Talucco and 330 m of lane past Case Borgogna; the rest is path and track. About 1.2 km of path 060A is T2 (OSM mountain_hiking): caution line. Lollipop with the board’s own 140 m turn-back at the hut, declared in sideTrips (#1507 rule).
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Talucco – Colle Ciardonet – Rifugio Melano-Casa Canada (Val Lemina, Pinerolo)",
+      distance: 7.4,
+      elevation: 448,
+      hours: '3',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop on a stem from the hamlet of Talucco: up path 049 through the Bosco dell’Impero to the Colle Eremita, on to the Colle Ciardonet and down track 060 to the Rifugio Melano-Casa Canada, then back by the “sentiero del vallone” (060A) under the Rocca Laubert cliffs to the Colle Eremita and down the same path to Talucco. The stem from Talucco to the Colle Eremita is walked both ways, as the board publishes it (7.4 km, 448 m up, 2:55 h).",
+      sideTrips: [{"km":4.1,"note":"About 140 m back from the Rifugio Melano-Casa Canada on path 060 to the start of path 060A: the board’s directions say to go back 150 m on path 060, and its own line does."}],
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the hamlet of Talucco (Pinerolo), the board’s start, with free public parking.",
+        "sequence": "From Talucco go a few metres towards the Crò and take the first narrow lane on the right past Case Borgogna, where path 049, the Sentiero Ecomuseo delle Carbonaie, begins. Follow it through the Bosco dell’Impero to the Colle Eremita, then right, always on the Carbonaie signs, up to the Colle Ciardonet. Go down right on track 060 to the Rifugio Melano-Casa Canada. Go back 150 m on path 060 and take path 060A on the left, steeper at first, across the Noce valley under the Rocca Laubert cliffs, back to the outward path near the Colle Eremita, and down the same way to Talucco.",
+        "switches": "Narrow lane past Case Borgogna to path 049; Bosco dell’Impero; Colle Eremita, then right on the Carbonaie signs; Colle Ciardonet; track 060 down to the Rifugio Melano-Casa Canada; 150 m back, then path 060A on the left under the Rocca Laubert; back to the Colle Eremita and down path 049 to Talucco.",
+        "steps": [
+          {
+            "text": "Talucco, then path 049 past Case Borgogna",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Through the Bosco dell’Impero to the Colle Eremita",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Up to the Colle Ciardonet, then track 060 to the Rifugio Melano-Casa Canada",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 060A across the Noce valley under the Rocca Laubert cliffs",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back to the Colle Eremita and down the same path to Talucco",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Turismo Torino e Provincia, Sentiero \"Ecomuseo delle Carbonaie\" (route description)",
+            "url": "https://www.outdooractive.com/it/r/804474829",
+            "authority": "Turismo Torino e Provincia",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Rifugio Melano-Casa Canada under the Rocca Sbarua (Francofranco56 on Wikimedia Commons, CC BY-SA 4.0), 21 April 2017, 14 m from the line.",
+        route: "Official loop of 7.4 km from Talucco (Pinerolo), as Turismo Torino e Provincia publishes it; the stored line is drawn on 34 OSM ways along the board’s published line, 7.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 049, 060 and 060A. From Talucco take path 049 past Case Borgogna and through the Bosco dell’Impero to the Colle Eremita and the Colle Ciardonet, then track 060 down to the Rifugio Melano-Casa Canada; back 150 m, then path 060A under the Rocca Laubert cliffs to the Colle Eremita and down path 049 the same way to Talucco.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 7.4 km, 448 m up and 449 m down, 2:55 h (Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Turismo Torino e Provincia, Sentiero \"Ecomuseo delle Carbonaie\" (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Pinerolo or the Comune di Frossasco, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (34 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 100,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["Path 060A under the Rocca Laubert is steeper and rougher at first, a mountain path (T2): take it slowly and keep your dog close","Climbing crags above path 060A: watch for falling stones and climbers’ gear","The first 100 m are on the provincial road through Talucco: keep your dog on a short lead there"],
+      terrainType: "Forest paths and tracks",
+      shadeDescription: "Almost all in woods: the path climbs through the Bosco dell’Impero.",
+      terrainDescription: "A forest loop above Talucco in the Val Lemina, past the sites where charcoal was once burned, each with a board showing how a kiln was built, up to the Colle Ciardonet and the CAI hut at Casa Canada under the Rocca Sbarua cliffs.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. The Rifugio Melano-Casa Canada is about halfway.",
+      dogNotes: "Pinerolo and Frossasco publish no dog rule of their own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start in Talucco, with free parking: 7.4 km and 448 m up, about 3 hours, as the board lists. The Rifugio Melano-Casa Canada is about halfway. In snow the board advises snowshoes and extra care on the steep slopes of path 060A.",
+      sourceLinks: [
+        { label: "Turismo Torino e Provincia, Sentiero \"Ecomuseo delle Carbonaie\"", url: "https://www.outdooractive.com/it/r/804474829" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 44.948567, lng: 7.290615, label: "Talucco (Pinerolo), the board’s start" },
+      desc: "A forest loop from Talucco past the old charcoal-burning sites of the Val Lemina to the Rifugio Melano-Casa Canada under the Rocca Sbarua, back by a wilder path under the Rocca Laubert cliffs. The board lists 7.4 km and 448 m up."
+    },
+    'traversella-sentiero-delle-anime': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 2, Turin valleys).
+      // “Sentiero delle Anime e della Transumanza”, published by Turismo Torino e Provincia, drawn on 37 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Traversella (no dog rule found online: national rule). No park or Natura 2000 site (outside the Gran Paradiso). Roads: about 600 m of village lanes and squares in Traversella; the rest is path. About 6.8 km is T2 (OSM mountain_hiking), and the board’s directions name a short stretch with handholds at the Rio di Chiara: caution lines. Lollipop, about a quarter walked both ways.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Traversella – Cappia – Piani di Cappia – Rifugio Bruno Piazza (Valchiusella)",
+      distance: 10,
+      elevation: 549,
+      hours: '4.5',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop on a stem from the mines car park in Traversella: through the village and up Via Monte Marzo into the wood, on the Sentiero della Transumanza (730) to the hamlet of Cappia, up the GTA to the Piani di Cappia, then down the Sentiero delle Anime (729) past the rock carvings to the Rifugio Bruno Piazza, and back down the outward path to Traversella. The stem from Traversella into the wood is walked both ways, as the board publishes it (10 km, 549 m up, 4:25 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the mines car park by the bridge in Traversella, the board’s start.",
+        "sequence": "From the car park cross the bridge and take the level lane into the village, down to the main road and Piazza Cavour with its fountain. Climb Via Monte Marzo from the square, signed, steeply into the wood to the first carvings, then turn left at the fork onto path 730. Pass the turn for the Rifugio Piazza and carry on, ignoring the paths down to the left, to the hamlet of Cappia. Climb the GTA path to the Piani di Cappia; above the huts take the Sentiero delle Anime (729) on the right, cross the Rio di Chiara on a short stretch with handholds, and go down past the climbing crags to the Rifugio Piazza. From the hut go down to the outward path and back to Traversella.",
+        "switches": "Bridge and lane into Traversella; Piazza Cavour; Via Monte Marzo up into the wood; left on path 730; past the Rifugio Piazza turn to Cappia; GTA up to the Piani di Cappia; right on path 729, the Sentiero delle Anime; across the Rio di Chiara; down to the Rifugio Piazza; back down the outward path.",
+        "steps": [
+          {
+            "text": "Mines car park and Piazza Cavour, Traversella",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Via Monte Marzo into the wood, then left on path 730",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The hamlet of Cappia, then the GTA up to the Piani di Cappia",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Sentiero delle Anime (729) past the rock carvings and across the Rio di Chiara",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Rifugio Bruno Piazza, then down the outward path to Traversella",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Turismo Torino e Provincia, Sentiero delle Anime e della Transumanza (route description)",
+            "url": "https://www.outdooractive.com/it/r/804493440",
+            "authority": "Turismo Torino e Provincia",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The troll at the Rifugio Bruno Piazza, Traversella (Pier B. on Wikimedia Commons, CC BY-SA 3.0), 20 June 2013, 6 m from the line.",
+        route: "Official loop of 10 km from The mines car park, Traversella, as Turismo Torino e Provincia publishes it; the stored line is drawn on 37 OSM ways along the board’s published line, 9.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 723, 719, 730, 707 (GTA) and 729. From the mines car park in Traversella go through Piazza Cavour and up Via Monte Marzo onto path 730 to Cappia, the GTA (707) up to the Piani di Cappia, then path 729, the Sentiero delle Anime, down past the carvings to the Rifugio Bruno Piazza and back along path 719 to Traversella.",
+        mapPoints: "Start at the board’s start; drinking water at km 0.5, km 0.6, km 0.7, km 1.5 (OSM nodes 2528688263, 2392459451, 2392459450, 2528688306).",
+        elevation: "Official 10 km, 549 m up and 549 m down, 4:25 h (Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Turismo Torino e Provincia, Sentiero delle Anime e della Transumanza (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Traversella, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (37 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 66,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["Most of the walk is on mountain paths (T2), with steady climbs and uneven ground: for fit dogs used to mountain paths","A short stretch with handholds where the path crosses the Rio di Chiara: keep your dog on a short lead and help it across","Climbing crags around the Rifugio Piazza: watch for falling stones and climbers’ gear"],
+      terrainType: "Mountain paths and village lanes",
+      shadeDescription: "About two thirds in chestnut and birch woods; the Piani di Cappia pastures are open.",
+      terrainDescription: "A mountain loop above Traversella in the Valchiusella, on the old transhumance path through chestnut and birch woods to the stone hamlet of Cappia and the Piani di Cappia pastures, then down the Sentiero delle Anime past rock carvings, each with an explanation board, to the Rifugio Bruno Piazza.",
+      waterDescription: "Drinking water at the fountains in Traversella, at the start of the walk; none higher up. Carry enough for you and your dog.",
+      dogNotes: "Traversella publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the mines car park in Traversella: 10 km and 549 m up, about 4 hours 25 minutes, as the board lists. Fill up at the village fountains: there is no water higher up. The Rifugio Bruno Piazza is near the end.",
+      sourceLinks: [
+        { label: "Turismo Torino e Provincia, Sentiero delle Anime e della Transumanza", url: "https://www.outdooractive.com/it/r/804493440" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.510375, lng: 7.755985, label: "The mines car park, Traversella, the board’s start" },
+      desc: "A mountain loop from Traversella through chestnut woods to the stone hamlet of Cappia and the Piani di Cappia, then down the Sentiero delle Anime past old rock carvings to the Rifugio Bruno Piazza. The board lists 10 km and 549 m up."
+    },
+    'valchiusella-fondo-tissone-tallorno': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 2, Turin valleys).
+      // “Anello Fondo - Tissone - Tallorno”, published by Turismo Torino e Provincia, drawn on 26 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Traversella (no dog rule found online: national rule). No park or Natura 2000 site. Roads: about 50 m of lane in Fondo; the rest is path and gravel track. No T2 on the line.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Fondo – Tissone – Tallorno (Traversella, Valchiusella)",
+      distance: 5,
+      elevation: 319,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the stone bridge at Fondo: up the zigzags to the sunny hamlet of Tissone, down to the valley path and along the Chiusella to Tallorno, then back on the track on the other bank past the old bridge and the waterfall to Fondo, as the board publishes it (5 km, 319 m up, 2:05 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the stone bridge in Fondo, Traversella, by the Trattoria del Ponte, the board’s start.",
+        "sequence": "Cross the humpbacked stone bridge and turn left. After a few hundred metres take the path up on the right, which zigzags up to Tissone. Leave the mouflon path, pass a few huts on the left and take the path that crosses a stream and goes down to the valley path between Fondo and Tallorno. Turn right to Tallorno, go on through the houses and over the bridge on the left, past the Madonna della Neve chapel and out of the hamlet. Take the track on the left back to Fondo, past the old bridge and the waterfall.",
+        "switches": "Stone bridge at Fondo, then left; path up on the right to Tissone; past the huts and across a stream down to the valley path; right to Tallorno; bridge on the left and the Madonna della Neve chapel; track on the left back to Fondo past the old bridge and the waterfall.",
+        "steps": [
+          {
+            "text": "The stone bridge at Fondo",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Zigzag path up to Tissone and its church of San Rocco",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down to the valley path and right to Tallorno",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Over the bridge past the Madonna della Neve chapel",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The track back past the old bridge and the waterfall to Fondo",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Turismo Torino e Provincia, Anello Fondo - Tissone - Tallorno (route description)",
+            "url": "https://www.outdooractive.com/it/r/804976410",
+            "authority": "Turismo Torino e Provincia",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The stone bridge at Fondo, Valchiusella (Nicola Suozzo on Wikimedia Commons, CC BY 3.0), 20 May 2009, 9 m from the line.",
+        route: "Official loop of 5 km from The stone bridge at Fondo, Traversella, as Turismo Torino e Provincia publishes it; the stored line is drawn on 26 OSM ways along the board’s published line, 5.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 708 (GTA), 713, 750 and 718. From the stone bridge at Fondo take path 708 and then 713 up to Tissone, down to the valley path 708 to Tallorno, then track 750 and path 718 back down the other bank past the old bridge to Fondo.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 0.2, km 0.8, km 0.9 (OSM nodes 3202716282, 13876533599, 3202716283, 3202716284).",
+        elevation: "Official 5 km, 319 m up and 319 m down, 2:05 h (Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Turismo Torino e Provincia, Anello Fondo - Tissone - Tallorno (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Traversella, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (26 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 42,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The zigzag climb to Tissone is steady: take it slowly with an older dog","The stream and the waterfall pool near Tallorno are fast and cold: keep your dog out of the current"],
+      terrainType: "Mountain paths and gravel track",
+      shadeDescription: "Partly in woods on the climb to Tissone; the hamlets and the valley track are mostly open.",
+      terrainDescription: "A short loop at the head of the Valchiusella linking three old hamlets of stone and wood, Fondo, Tissone and Tallorno, with a humpbacked stone bridge from 1727, the church of San Rocco and an old bridge below a waterfall.",
+      waterDescription: "Drinking water at the fountains in Fondo at the start and at several fountains along the way, by the hamlets and on the track back.",
+      dogNotes: "Traversella publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the stone bridge in Fondo, by the Trattoria del Ponte: 5 km and 319 m up, about 2 hours, as the board lists. For an easier walk the board suggests staying on the valley path from Fondo to Tallorno and skipping the climb to Tissone.",
+      sourceLinks: [
+        { label: "Turismo Torino e Provincia, Anello Fondo - Tissone - Tallorno", url: "https://www.outdooractive.com/it/r/804976410" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.531333, lng: 7.686096, label: "The stone bridge at Fondo, Traversella, the board’s start" },
+      desc: "A short loop at the head of the Valchiusella between three stone hamlets, from the humpbacked bridge at Fondo up to sunny Tissone, along the river to Tallorno and back past an old bridge and a waterfall. The board lists 5 km and 319 m up."
     }
   };
 
