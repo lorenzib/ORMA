@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-19T10:38:59.601Z",
+  "generatedAt": "2026-11-19T10:51:48.866Z",
   "regions": {
     "dolomites": {
       "trailCount": 383,
-      "trails": "data/regions/dolomites-trails.js?v=70e19f5af508",
+      "trails": "data/regions/dolomites-trails.js?v=cdadac7203c0",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -257,7 +257,7 @@
         "valdisole-ortise-malga-stabli": "data/trail-details/valdisole-ortise-malga-stabli.js?v=45d252e7328c",
         "paganella-andalo-tana-ermellino": "data/trail-details/paganella-andalo-tana-ermellino.js?v=2890ed97abcd",
         "paganella-giro-della-toresela": "data/trail-details/paganella-giro-della-toresela.js?v=89fea332cc43",
-        "paganella-sette-passi-sette-ville": "data/trail-details/paganella-sette-passi-sette-ville.js?v=9c0bcd1d9cc3",
+        "paganella-sette-passi-sette-ville": "data/trail-details/paganella-sette-passi-sette-ville.js?v=9ca0732af11d",
         "trecime-villabassa-lanaweg": "data/trail-details/trecime-villabassa-lanaweg.js?v=a41b3e68926a",
         "trecime-giro-delle-baite-lago-di-braies": "data/trail-details/trecime-giro-delle-baite-lago-di-braies.js?v=cf99a5b741bf",
         "valgardena-arte-e-storia": "data/trail-details/valgardena-arte-e-storia.js?v=8565baf31daf",
