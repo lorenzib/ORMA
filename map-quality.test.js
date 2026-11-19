@@ -30,7 +30,7 @@ describe('shared map quality profile', () => {
     pages.forEach(([page, mapScript]) => {
       const html = read(page);
       if(page === 'trail.html'){
-        expect(html).toContain('trail-app.bundle.js?v=20261119-2');
+        expect(html).toContain('trail-app.bundle.js?v=20261119-5');
         expect(html).not.toContain('<script src="map-runtime.js');
         return;
       }
@@ -303,8 +303,8 @@ describe('shared map quality profile', () => {
     // white smear with nothing inside it.
     const homepage = read('script.js');
     expect(homepage).toContain('function rankWidth(top, other)');
-    expect(homepage).toContain('rankWidth([8, 14, 20, 26], [2.5, 4, 5.5, 6.5])');
-    expect(homepage).toContain('rankWidth([5, 10, 15, 20], [1.2, 1.8, 2.4, 3])');
+    expect(homepage).toContain('rankWidth([3, 4.5, 5.5, 7], [1.5, 2.5, 3.5, 4.5])');
+    expect(homepage).toContain('rankWidth([1.5, 2, 2.5, 3.5], [0.8, 1.2, 1.6, 2])');
     // The zoom ramp has to stay at the top of the paint property. An
     // `interpolate` on ["zoom"] nested inside a `case` is not evaluated per
     // zoom: it silently cost the matched trails their corridor at trail zoom

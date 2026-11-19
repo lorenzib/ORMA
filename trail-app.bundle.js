@@ -15325,7 +15325,7 @@ function initTrailReports(map, trail){
 
   // Printed under the sentence by both renderers, so the app and the page
   // say the same thing about where it came from.
-  const AUDIT_DIRECTIONS_NOTE = 'From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.';
+  const AUDIT_DIRECTIONS_NOTE = 'We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.';
 
   const api = {
     forTrail,
@@ -19797,7 +19797,7 @@ if(document.querySelector('.td2')){
       ? window.DoloPawsTrailRouteRefs.writtenDirections(t)
       : { written:false };
     // Same sentence as DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE, written out so it can be translated.
-    const auditDirectionsMarkup = `<div class="s"><p><b>${tx('Directions:')}</b> ${esc(trailWords(auditDirections.text || ''))}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? tx('From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.') : '')}</p></div>`;
+    const auditDirectionsMarkup = `<div class="s"><p><b>${tx('Directions:')}</b> ${esc(trailWords(auditDirections.text || ''))}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? tx('We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.') : '')}</p></div>`;
     const noRouteNumbers = '<div class="s"><p><b>' + tx('Trail numbers:') + '</b> ' + tx('No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.') + '</p></div>';
     // The guidance labels are compared and passed on in English; they are
     // translated only where they are printed.
