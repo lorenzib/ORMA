@@ -20390,8 +20390,8 @@ if(document.querySelector('.td2')){
    */
   const CARD_SENTENCES = Object.freeze({
     'trail.terrain.above-tolerance': vars => (vars.steepest
-      ? tx('Steeper than {name} is up to: the steepest stretch is about {steepest}%, and {name} is best on {limit}.')
-      : tx('Steeper than {name} is up to: {name} is best on {limit}.')),
+      ? tx('Steeper than {name} likes, up to {steepest}% in places.')
+      : tx('Steeper than {name} likes.')),
     'trail.distance.above-range': () => tx('{distance} km is a long way for {name}.'),
     'trail.ascent.above-range': () => tx('{ascent} m of climbing is a lot for {name}.'),
     'trail.descent.joint-load': () => tx('The long way down is hard on {name}’s joints.'),
@@ -20417,8 +20417,8 @@ if(document.querySelector('.td2')){
     'score.floor': () => tx('This walk asks too much of {name}, so the score stays at its lowest.'),
   });
 
-  // A list of route cautions becomes the first one, as the board wrote it, and
-  // a count of the rest: the trail page has them all. The caution is the
+  // A list of route cautions becomes the first one, as the board wrote it:
+  // the trail page has them all. The caution is the
   // trail's own English, so an Italian reader gets it only where the trail's
   // Italian text is loaded; otherwise the card counts them, rather than drop an
   // English sentence into an Italian card.
@@ -20434,13 +20434,9 @@ if(document.querySelector('.td2')){
         ? tr('recommendation.card.surface-hazards.count.one', tx('There’s one thing to watch for on this route. The trail page says what.'), extra)
         : tr('recommendation.card.surface-hazards.count.many', tx('There are {count} things to watch for on this route. The trail page lists them.'), { ...extra, count });
     }
-    const more = count - 1;
-    const lead = `${local.replace(/[.;:]+$/, '')}.`;
-    if(more < 1) return lead;
-    const tail = more === 1
-      ? tr('recommendation.card.surface-hazards.more.one', tx('The trail page has one more.'), extra)
-      : tr('recommendation.card.surface-hazards.more.many', tx('The trail page has {more} more.'), { ...extra, more });
-    return `${lead} ${tail}`;
+    // The card links to the trail page, which lists the rest, so the card no
+    // longer counts them ("The trail page has one more.").
+    return `${local.replace(/[.;:]+$/, '')}.`;
   }
 
   // The trail page lists every caution, so it keeps the whole list and only
@@ -20450,7 +20446,7 @@ if(document.querySelector('.td2')){
     const hazards = cautionWords(String(vars.hazards || '').trim());
     if(!hazards) return translatedMessage(item, null, extra);
     if(Number(vars.count) === 1) return `${hazards.replace(/[.;:]+$/, '')}.`;
-    return tr('recommendation.breakdown.surface-hazards.many', tx('Watch out for: {hazards}.'), { ...extra, hazards });
+    return `${hazards.replace(/[.;:]+$/, '')}.`;
   }
 
   // forPage 'card' (the homepage card) or 'trail' (the trail page breakdown).
@@ -20551,6 +20547,43 @@ if(document.querySelector('.td2')){
     'trail.crowding.quiet': () => tx('Usually quiet'),
     'trail.sightlines.open': () => tx('Open, you can see ahead'),
   });
+
+  // The trail page says what fits in one line of short chips ("6 km",
+  // "330 m climb", "No drops") rather than a row each: the reader needs to see
+  // that it fits, not read why. A fit with no chip falls back to its topic.
+  const FIT_CHIPS = Object.freeze({
+    'trail.distance.within-range': () => tx('{distance} km'),
+    'trail.ascent.within-range': () => tx('{ascent} m climb'),
+    'trail.duration.within-preference': () => tx('Fits your time'),
+    'trail.exposure.none-known': () => tx('No drops'),
+    'trail.surface-hazards.none-known': () => tx('Easy underfoot'),
+    'trail.water.reviewed': () => tx('Water on the way'),
+    'trail.heat.low': () => tx('Stays cool'),
+    'trail.shade.good': () => tx('Plenty of shade'),
+    'conditions.heat.low': () => tx('Cool today'),
+    'trail.season.inside': () => tx('In season'),
+    'trail.dog-access.allowed': () => tx('Dogs allowed'),
+    'trail.dog-access.leash': () => tx('Dogs on a lead'),
+    'trail.livestock.none': () => tx('No livestock'),
+    'trail.wildlife.low': () => tx('Little wildlife'),
+    'trail.road.none': () => tx('No roads'),
+    'trail.crowding.quiet': () => tx('Usually quiet'),
+    'trail.sightlines.open': () => tx('Clear views ahead'),
+  });
+  function fitChip(entry, source, tr, extra){
+    const vars = { ...extra, ...(source.vars || {}) };
+    if(entry.code === 'trail.terrain.within-tolerance'){
+      const level = steepnessLevel(source.vars && source.vars.terrain);
+      if(level) return level;
+    }
+    const key = Object.keys(FIT_CHIPS).find(code => entry.code === code || entry.code.startsWith(`${code}.`));
+    if(!key) return rowTopic(entry.code);
+    return tr(`recommendation.chip.${key}`, FIT_CHIPS[key](), vars);
+  }
+  // Of everything the score could not look at, only these change what an
+  // owner does before setting out. The rest ("route details are based on map
+  // data") is what the safety notes further down the page already say.
+  const ACTIONABLE_UNKNOWNS = Object.freeze(['trail.dog-access.unknown']);
 
   function steepnessFact(vars){
     const level = steepnessLevel(vars && vars.terrain);
@@ -20750,6 +20783,17 @@ if(document.querySelector('.td2')){
     // What the score could not look at, said apart from the rows: an unknown
     // costs nothing, so a row for it would sit beside a 100% as if it agreed.
     const notChecked = cardTrailUnknowns.slice(0, 5);
+    // The short version the trail page and card now show: the reasons that
+    // lower the score (or stop it), in the order above, then the one or two
+    // unknowns an owner acts on; and what fits, as chips.
+    const actionableUnknowns = cardMessages(rawUnknowns.filter(item =>
+      ACTIONABLE_UNKNOWNS.includes(item.messageKey || item.code)));
+    const shortReasons = factorRows.filter(row => row.tone !== 'ok').map(row => ({ text:row.detail, tone:row.tone }))
+      .concat(actionableUnknowns.map(text => ({ text, tone:'note' })));
+    const fitChips = breakdownFactors
+      .filter(entry => entry.kind === 'positive')
+      .map(entry => fitChip(entry, allFactors.find(factor => factor.code === entry.code) || entry, tr, extra))
+      .filter((chip, index, all) => chip && all.indexOf(chip) === index);
 
     // The card's verdict line (VERDICT_PHRASES). A low match gets none: its
     // reasons are the cautions, and a list of what is fine would contradict it.
@@ -20770,6 +20814,9 @@ if(document.querySelector('.td2')){
     return {
       factorRows,
       notChecked,
+      shortReasons,
+      fitChips,
+      actionableUnknowns,
       cardVerdict,
       confidenceLabel:confidenceWords(recommendation.confidence, translate) || null,
       dogGapFields,
@@ -20981,44 +21028,38 @@ if(document.querySelector('.td2')){
     return `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
   }
 
-  // The breakdown sits directly under the Match %, headed in the dog's name:
-  // one row per thing the score looked at (what it is, what this walk has,
-  // and what that meant), then what it could not look at, kept apart so an
-  // unknown never sits beside a 100% as if it agreed with it.
+  // P0-1 still holds: every factor behind the score is listed, under the
+  // points link. What shows is short: the reasons that lower the score, one
+  // line each, then what fits as a row of chips. The long "not checked yet"
+  // list is gone; the unknowns an owner acts on (dog rules) are reasons.
   function breakdown(view, tr){
-    if(!view.breakdown.length && !(view.notChecked || []).length) return '';
-    const rows = (view.factorRows || []).map(row =>
-      `<li class="is-${esc(row.tone)}">` +
-        `<span class="recommendation-factor-topic">${esc(row.topic)}</span>` +
-        `<span class="recommendation-factor-reason">${esc(row.detail)}</span>` +
-        `<span class="recommendation-factor-status is-${esc(row.tone)}">${esc(row.status)}</span>` +
-      '</li>').join('');
-    const note = view.breakdownNote
-      ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
-      : '';
-    const unchecked = (view.notChecked || []).length
-      ? '<div class="recommendation-unchecked">' +
-          `<strong>${esc(tr('recommendation.unchecked.title', 'Not checked yet'))}</strong>` +
-          `<p>${esc(tr('recommendation.unchecked.lead', 'These aren’t in the score, so check them yourself.'))}</p>` +
-          `<ul>${view.notChecked.map(item => `<li>${esc(item)}</li>`).join('')}</ul>` +
-        '</div>'
-      : '';
+    const reasons = view.shortReasons || [];
+    const chips = view.fitChips || [];
+    if(!view.breakdown.length && !reasons.length) return '';
     const title = view.score === null
       ? tr('recommendation.breakdown.titleNoScore', 'Why this score for {name}', { name:view.breakdownFor })
       : tr('recommendation.breakdown.title', 'Why {score}% for {name}', { score:view.score, name:view.breakdownFor });
-    // The points stay one tap away for anyone who wants the arithmetic.
+    const reasonList = reasons.length
+      ? `<ul class="recommendation-reasons">${reasons.map(reason =>
+          `<li class="is-${esc(reason.tone)}">${esc(reason.text)}</li>`).join('')}</ul>`
+      : '';
+    const fits = chips.length
+      ? `<div class="recommendation-fits"><strong>${esc(tr('recommendation.fits.title', 'Fits {name}', { name:view.breakdownFor }))}</strong>` +
+        `<ul>${chips.map(chip => `<li>${esc(chip)}</li>`).join('')}</ul></div>`
+      : '';
+    const note = view.breakdownNote
+      ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
+      : '';
     const pointRows = (view.factorRows || []).map(row =>
       `<li><span class="recommendation-points-topic">${esc(row.topic)}</span>` +
         `<span class="recommendation-points-value is-${esc(row.tone)}">${esc(row.points)}</span></li>`).join('');
+    const howLink = `<a class="recommendation-how" href="${esc(tr('recommendation.breakdown.howHref', 'how-scoring-works.html#steepness'))}">${esc(tr('recommendation.breakdown.how', 'How ORMA scores a walk'))}</a>`;
     const points = pointRows
       ? `<details class="recommendation-points"><summary>${esc(tr('recommendation.breakdown.points', 'How the score adds up'))}</summary>` +
-        `<ol>${pointRows}</ol></details>`
-      : '';
-    const howLink = `<a class="recommendation-how" href="${esc(tr('recommendation.breakdown.howHref', 'how-scoring-works.html#steepness'))}">${esc(tr('recommendation.breakdown.how', 'How ORMA scores a walk'))}</a>`;
+        `<ol>${pointRows}</ol>${howLink}</details>`
+      : howLink;
     return `<section class="recommendation-breakdown">` +
-      `<h3>${esc(title)}</h3>` +
-      (rows ? `<ol class="recommendation-factors">${rows}</ol>` : '') +
-      note + unchecked + points + howLink + `</section>`;
+      `<h3>${esc(title)}</h3>` + reasonList + fits + note + points + `</section>`;
   }
 
   function sections(entries){
