@@ -314,6 +314,7 @@
     'paganella-giro-del-lago-di-molveno': "Lago di Molveno loop",
     'paganella-giro-della-toresela': "Giro della Toresela",
     'paganella-passeggiata-del-ciclamino': "Passeggiata del Ciclamino",
+    'paganella-sette-passi-sette-ville': "Sette passi per sette Ville",
     'prato-piazza': "Prato Piazza (Plätzwiese)",
     'primiero-anello-di-valpiana': "Anello di Valpiana",
     'primiero-anello-molaren-via-nova-marine': "Anello Molaren - Via Nova - Marine",
