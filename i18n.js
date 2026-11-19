@@ -4325,6 +4325,7 @@
         'saved.html': 'Sentieri salvati | ORMA',
         'my-trails.html': 'I miei sentieri | ORMA',
         'about.html': 'Chi siamo | ORMA',
+        'collections.html': 'Raccolte di sentieri | ORMA',
       };
       const page = (location.pathname.split('/').pop() || '');
       if (TITLES[page]) document.title = TITLES[page];
