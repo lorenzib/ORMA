@@ -2025,6 +2025,11 @@
       "name": "Santa Caterina to Pian di Barco",
       "slug": "pian-di-barco-auronzo",
       "gloss": "an easy woodland path past old hay barns to Pian di Barco and back"
+    },
+    "fvg-sappada-rifugio-siera-longrone": {
+      "name": "Cima Sappada to Rifugio Siera through the Longrone forest",
+      "slug": "rifugio-siera-longrone-sappada",
+      "gloss": "a nature trail up through the Longrone spruce forest to the Rifugio Siera and back"
     }
   }
 }
