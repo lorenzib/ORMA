@@ -426,7 +426,7 @@ window.ORMA_PHRASES_IT = {
   "French Alps": "Alpi francesi",
   "Freshness unknown": "Aggiornamento sconosciuto",
   "Friuli Venezia Giulia, Italy": "Friuli Venezia Giulia, Italia",
-  "From ORMA's route audit of the official route description. Follow the mapped ORMA line and local signs.": "Dalla verifica ORMA della descrizione ufficiale del percorso. Segui la traccia ORMA sulla mappa e i cartelli sul posto.",
+  "We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.": "Abbiamo scritto queste indicazioni dalle informazioni ufficiali sul percorso e le abbiamo controllate sulla mappa. Durante il cammino, segui la linea sulla mappa e i cartelli sul posto.",
   "Fully shaded": "Tutto all’ombra",
   "GPS signal is too weak, move outdoors and try again": "Il segnale GPS è troppo debole, spostati all'aperto e riprova",
   "GPS signal is weak, walk on, it will catch up": "Segnale GPS debole, continua a camminare, si aggiornerà",

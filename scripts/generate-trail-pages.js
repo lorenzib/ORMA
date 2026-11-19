@@ -527,8 +527,8 @@ function directionsSection(t) {
 // Italian while the sentence is the one translated.
 function auditDirectionsNote() {
   const english = routeRefs.AUDIT_DIRECTIONS_NOTE;
-  return english === 'From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.'
-    ? L('From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.')
+  return english === 'We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.'
+    ? L('We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.')
     : english;
 }
 
