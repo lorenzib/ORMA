@@ -747,19 +747,28 @@ body{background:#EFECE2;}
 .recommendation-columns{display:grid;grid-template-columns:1fr;gap:16px;margin-top:20px;}
 .recommendation-breakdown{margin-top:18px;padding:16px 17px;border-radius:12px;background:#F7F5EE;}
 .recommendation-breakdown h3{margin:0 0 10px;font:800 12px 'Inter',sans-serif;color:#2E4034;}
-.recommendation-factors{list-style:none;margin:0;padding:0;display:grid;gap:7px;}
-.recommendation-factors li{display:flex;align-items:baseline;gap:10px;}
-/* Fixed column so the numbers line up and the reasons read as a column of
-   sentences rather than ragged text. */
-.recommendation-factor-impact{flex:0 0 46px;text-align:right;font:800 12px 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#8A6A1F;}
-.recommendation-factor-impact.is-clear{color:#6B7A6E;font-weight:700;}
-.recommendation-factor-reason{flex:1;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
+.recommendation-factors{list-style:none;margin:0;padding:0;display:grid;}
+/* One row per factor: the topic with its verdict beside it, so the verdicts
+   line up in one column a reader can scan down, and what this walk has under
+   them. The card is a narrow side column, too narrow for three across. */
+.recommendation-factors li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:baseline;padding:8px 0;border-top:1px solid #E5E2D8;}
+.recommendation-factors .recommendation-factor-reason{grid-column:1/-1;grid-row:2;}
+.recommendation-factors li:first-child{border-top:0;padding-top:0;}
+.recommendation-factor-topic{color:#2E4034;font:700 12.5px/1.5 'Inter',sans-serif;}
+.recommendation-factor-reason{color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
+.recommendation-factor-status{justify-self:end;text-transform:capitalize;padding:2px 8px;border-radius:999px;font:800 11.5px/1.4 'Inter',sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.recommendation-factor-status.is-ok{background:#E3EEE3;color:#3B6A47;}
+.recommendation-factor-status.is-cost{background:#F6ECD6;color:#7A5A12;}
+.recommendation-factor-status.is-note{background:#EEEDE6;color:#5E635D;}
+.recommendation-factor-status.is-stop{background:#F6DEDA;color:#8E2F24;}
 .recommendation-breakdown-note{margin:10px 0 0;color:#6B7A6E;font:600 12px/1.5 'Inter',sans-serif;}
-.recommendation-fine{display:flex;gap:8px;align-items:baseline;margin:10px 0 0;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
-.recommendation-fine::before{content:'✓';flex:none;color:#4A7856;font-weight:900;}
-/* Under a cautious or Not recommended verdict the line is information, not reassurance: no green tick. */
-.recommendation-fine.is-neutral::before{content:none;}
-.recommendation-factors+.recommendation-fine{padding-top:9px;border-top:1px solid #E5E2D8;}
+.recommendation-unchecked{margin-top:12px;padding:11px 13px;border-radius:10px;background:#FBF3DF;color:#6A4E10;font:500 12.5px/1.5 'Inter',sans-serif;}
+.recommendation-unchecked strong{display:block;font-weight:800;}
+.recommendation-unchecked p{margin:2px 0 6px;}
+.recommendation-unchecked ul{margin:0;padding-left:18px;}
+.recommendation-unchecked li+li{margin-top:4px;}
+.recommendation-how{display:inline-block;margin-top:10px;color:#3E7A91;font:700 12px 'Inter',sans-serif;text-decoration:none;}
+.recommendation-how:hover{text-decoration:underline;}
 .recommendation-add-dog{appearance:none;border:0;background:none;padding:0;cursor:pointer;color:#3E7A91;font:700 12.5px 'Inter',sans-serif;text-align:left;}
 .recommendation-add-dog:hover{text-decoration:underline;}
 /* One pass, so the reader sees the score change rather than finding a

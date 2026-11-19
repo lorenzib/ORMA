@@ -24,40 +24,36 @@
     return `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
   }
 
-  // P0-1: the breakdown sits directly under the Match %, headed in the dog's
-  // name, and lists every factor the score was computed from in descending
-  // order of impact. Each cost row carries both the points and the reason, so
-  // no factor ever reads as a bare label or a bare number. What cost nothing
-  // is folded into one closing line rather than listed sentence by sentence.
+  // The breakdown sits directly under the Match %, headed in the dog's name:
+  // one row per thing the score looked at (what it is, what this walk has,
+  // and what that meant), then what it could not look at, kept apart so an
+  // unknown never sits beside a 100% as if it agreed with it.
   function breakdown(view, tr){
-    if(!view.breakdown.length) return '';
-    const rows = (view.breakdownRows || view.breakdown).map(factor => {
-      const points = factor.impact < 0
-        ? `\u2212${Math.abs(factor.impact)}`
-        : factor.impact > 0
-          ? `+${factor.impact}`
-          : factor.kind === 'stop'
-            ? tr('recommendation.breakdown.stop', 'stop')
-            : factor.kind === 'caution'
-              ? tr('recommendation.breakdown.note', 'note')
-              : tr('recommendation.breakdown.noCost', 'fine');
-      const tone = factor.impact < 0 || factor.kind === 'stop' ? 'cost' : 'clear';
-      return `<li><span class="recommendation-factor-impact is-${tone}">${esc(points)}</span>` +
-        `<span class="recommendation-factor-reason">${esc(factor.message)}</span></li>`;
-    }).join('');
-    const fine = view.fineLine
-      ? `<p class="recommendation-fine${view.fineTone === 'reassure' ? '' : ' is-neutral'}">${esc(view.fineLine)}</p>`
-      : '';
+    if(!view.breakdown.length && !(view.notChecked || []).length) return '';
+    const rows = (view.factorRows || []).map(row =>
+      `<li class="is-${esc(row.tone)}">` +
+        `<span class="recommendation-factor-topic">${esc(row.topic)}</span>` +
+        `<span class="recommendation-factor-reason">${esc(row.detail)}</span>` +
+        `<span class="recommendation-factor-status is-${esc(row.tone)}">${esc(row.status)}</span>` +
+      '</li>').join('');
     const note = view.breakdownNote
       ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
+      : '';
+    const unchecked = (view.notChecked || []).length
+      ? '<div class="recommendation-unchecked">' +
+          `<strong>${esc(tr('recommendation.unchecked.title', 'Not checked yet'))}</strong>` +
+          `<p>${esc(tr('recommendation.unchecked.lead', 'These aren’t in the score, so check them yourself.'))}</p>` +
+          `<ul>${view.notChecked.map(item => `<li>${esc(item)}</li>`).join('')}</ul>` +
+        '</div>'
       : '';
     const title = view.score === null
       ? tr('recommendation.breakdown.titleNoScore', 'Why this score for {name}', { name:view.breakdownFor })
       : tr('recommendation.breakdown.title', 'Why {score}% for {name}', { score:view.score, name:view.breakdownFor });
+    const howLink = `<a class="recommendation-how" href="${esc(tr('recommendation.breakdown.howHref', 'how-scoring-works.html#steepness'))}">${esc(tr('recommendation.breakdown.how', 'How ORMA scores a walk'))}</a>`;
     return `<section class="recommendation-breakdown">` +
       `<h3>${esc(title)}</h3>` +
       (rows ? `<ol class="recommendation-factors">${rows}</ol>` : '') +
-      fine + note + `</section>`;
+      note + unchecked + howLink + `</section>`;
   }
 
   function sections(entries){
