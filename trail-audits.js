@@ -51701,8 +51701,9 @@
       desc: 'A short loop above Mezzolombardo through its oldest quarter and over a long suspension bridge to the Toresela watchtower. The APT lists 1.4 km and 66 m of ascent.'
     },
     'paganella-sette-passi-sette-ville': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 0.35 (77 m), km 2.75 (61 m), km 3.72 (97 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 18 November 2026 by the owner's decision: at three places the APT's line loops round a short
+      // path OpenStreetMap does not have (about 100 m each), so ours goes there and back on the mapped path instead.
+      // Declared as sideTrips (km 0.35, 2.75, 3.72). Cutting them left only 88% of the APT's line within 25 m.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 3).
       // APT Dolomiti Paganella’s walk “Sette passi per sette Ville”, drawn on 50 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Commune: San Lorenzo Dorsino (San Lorenzo in Banale animal rules, Art. 10).
@@ -51713,18 +51714,23 @@
       hours: '1.2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the upper part of San Lorenzo in Banale through its old hamlets, Berghi, Pergnano, Senaso and Dolaso, past small churches, old fountains, kitchen gardens and woods.',
+      sideTrips: [
+        { km: 0.35, note: 'About 80 m there and back in the lanes: the APT’s line loops round a short path here that OpenStreetMap does not have (owner’s decision, 18 November 2026).' },
+        { km: 2.75, note: 'About 60 m there and back in the lanes: the APT’s line loops round a short path here that OpenStreetMap does not have (owner’s decision, 18 November 2026).' },
+        { km: 3.72, note: 'About 100 m there and back in the lanes: the APT’s line loops round a short path here that OpenStreetMap does not have (owner’s decision, 18 November 2026).' },
+      ],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Stone houses round a courtyard in one of the hamlets, on the loop, in July (napo on Mapillary, CC BY-SA 4.0), 0 m from the line.',
-        route: 'Official loop 3.8 km from San Lorenzo in Banale, as Visit Paganella publishes it; the stored line is drawn on 50 OSM ways along the APT’s published line, 3.9 km, with 96% of the APT’s line within 25 m of it.',
+        route: 'Official loop 3.8 km from San Lorenzo in Banale, as Visit Paganella publishes it; the stored line is drawn on 50 OSM ways along the APT’s published line, 3.9 km, with 96% of the APT’s line within 25 m of it. At three places in the lanes, where the APT’s line loops round a short path OpenStreetMap does not have, ours goes 60 to 100 m there and back instead.',
         routeNumbers: 'Not a numbered route: from the upper part of San Lorenzo in Banale, where the old rural village is best kept, through the hamlets of Berghi, Pergnano, Senaso and Dolaso with their small churches and old fountains, between stone-and-wood houses, kitchen gardens and woods, and back. A short passage under a building and a few steps in the lanes.',
         mapPoints: 'Start at the APT’s start in San Lorenzo in Banale; drinking water at the start, at km 0.2, at km 0.3, at km 0.7, at km 0.9, at km 1, at km 1.4, at km 1.7, at km 2.6, at km 3.1 and at km 3.2 (OSM nodes 2987321200, 7083031141, 5401506452, 7083031144, 5401506481, 9945990649, 2378275793, 12094825180, 7082786812, 7090793282, 2378275764, 5401506447, 11032315704, 11032337905, 835951070).',
         elevation: 'Official 3.8 km, 107 m up and 108 m down, 1 h 10 min, highest point 797 m, lowest 709 m (Visit Paganella).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 0.35 (77 m), km 2.75 (61 m), km 3.72 (97 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'] },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [

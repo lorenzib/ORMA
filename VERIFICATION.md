@@ -178,7 +178,8 @@ hazards and dog access, which aren't currently individually broken out.
   on record passes. Populate `surfaceHazards` only with hazards a source
   actually names; do not invent footing detail to fill the gap. Roads,
   crossings and shared cycle paths may be recorded here too; the trail page
-  shows them as their own "Roads & traffic" note, not as footing.
+  sorts each note under the card it is about ("Traffic", "Grazing animals",
+  "Ground" or "Also watch for"), not all under footing.
 - **Dog access / leash rules** — is there an explicit rule (leash required,
   seasonal restriction, banned outright)? A protected-area or no-dogs
   finding is a **removal**, not a downgrade — see the `BANNED`/`REMOVED`

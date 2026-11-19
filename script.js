@@ -2098,7 +2098,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#F8F6F0',
-        'line-width': rankWidth([3.5, 8, 10, 10], [1.6, 3, 5, 7]),
+        'line-width': rankWidth([3, 4.5, 5.5, 7], [1.2, 2, 3, 4]),
         'line-opacity': 0.9,
       },
     }, railsBeforeId);
@@ -2110,7 +2110,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#858D88',
-        'line-width': rankWidth([2, 5, 6, 6], [0.8, 1.6, 2.8, 3.6]),
+        'line-width': rankWidth([1.5, 2, 2.5, 3.5], [0.6, 1, 1.6, 2]),
       },
     }, railsBeforeId);
     // Catalogue rails, same treatment as the detail map: a white casing and a
@@ -2131,7 +2131,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#FFFFFF',
-        'line-width': rankWidth([8, 14, 20, 26], [2.5, 4, 5.5, 6.5]),
+        'line-width': rankWidth([3, 4.5, 5.5, 7], [1.5, 2.5, 3.5, 4.5]),
         'line-opacity': ['case', TOP_MATCH_TEST, 0.9, 0.5],
       },
     }, railsBeforeId);
@@ -2143,10 +2143,11 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': ['case', TOP_MATCH_TEST, catalogueMatchColour, '#9AA19C'],
-        'line-width': rankWidth([5, 10, 15, 20], [1.2, 1.8, 2.4, 3]),
-        // A hairline can afford to be seen; it was 0.12 because a 10px band of
-        // it could not.
-        'line-opacity': 0.5,
+        'line-width': rankWidth([1.5, 2, 2.5, 3.5], [0.8, 1.2, 1.6, 2]),
+        // Owner, 19 Nov: the 15-20 px translucent bands read as blobs. Top
+        // matches are now a thin solid line on a white edge, the same as the
+        // chosen walk and the trail page; other trails stay faint hairlines.
+        'line-opacity': ['case', TOP_MATCH_TEST, 1, 0.5],
       },
     }, railsBeforeId);
     // Once a visitor chooses a trail, give it the same clear, route-first
