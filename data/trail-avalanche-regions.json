@@ -1048,6 +1048,13 @@
       ],
       "highPoint": 657
     },
+    "luesen-panoramaweg": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 1258
+    },
     "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
       "regions": [
         "IT-32-BZ-08",
@@ -2268,6 +2275,13 @@
       ],
       "highPoint": 1954
     },
+    "steinegg-pyramidenrundweg": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18"
+      ],
+      "highPoint": 983
+    },
     "tre-cime": {
       "regions": [
         "IT-32-BZ-20",
@@ -2683,6 +2697,13 @@
         "IT-32-BZ-18-02"
       ],
       "highPoint": 2075
+    },
+    "valgardena-troi-da-la-tambres": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1506
     },
     "valgardena-troi-unika": {
       "regions": [

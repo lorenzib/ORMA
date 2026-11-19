@@ -35,6 +35,15 @@
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
+  .sp-route-view{margin:18px 0 26px;}
+  .sp-route-view .sp-facts{margin:12px 0 8px;}
+  .sp-view-btn{display:inline-block;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid #9AA79C;color:#2E4034;cursor:pointer;}
+  .sp-view-btn:first-of-type{border-radius:999px 0 0 999px;}
+  .sp-view-btn + .sp-view-input + .sp-view-btn{border-left:none;border-radius:0 999px 999px 0;}
+  .sp-view-input:checked + .sp-view-btn{background:#2E4034;border-color:#2E4034;color:#fff;}
+  .sp-view-input:focus-visible + .sp-view-btn{outline:2px solid #2C5C34;outline-offset:2px;}
+  #spViewOneWay:not(:checked) ~ .sp-facts--one-way,#spViewOneWay:not(:checked) ~ .sp-view-note--one-way,
+  #spViewBack:not(:checked) ~ .sp-facts--back,#spViewBack:not(:checked) ~ .sp-view-note--back{display:none;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
@@ -176,7 +185,18 @@
   
   <p>An easy family walk from the Via Nigra below the Gasthaus Jolanda on a forest road to the Baita Messnerjoch under the Catinaccio, and back. The board lists 4 km, 152 m up and an hour and ten minutes.</p>
 
-  <div class="sp-facts">
+  <div class="sp-route-view" role="radiogroup" aria-label="Show the figures for">
+    <input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="spViewOneWay" value="one-way"><label class="sp-view-btn" for="spViewOneWay">One way</label><input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="spViewBack" value="out-and-back" checked><label class="sp-view-btn" for="spViewBack">There and back</label>
+    <div class="sp-facts sp-facts--one-way">
+      <div class="sp-fact"><div class="sp-fact-k">Distance</div><div class="sp-fact-v">2 km</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Elevation gain</div><div class="sp-fact-v">≈ 133 m</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Highest point</div><div class="sp-fact-v">1897 m</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Duration</div><div class="sp-fact-v">Not given</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Terrain</div><div class="sp-fact-v">Forest road and path, suitable for pushchairs</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Trail rating</div><div class="sp-fact-v">Caution terrain</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Area</div><div class="sp-fact-v">Via Nigra – Baita Messnerjoch, Nova Levante / Welschnofen · Dolomites, Italy</div></div>
+    </div>
+    <div class="sp-facts sp-facts--back">
       <div class="sp-fact"><div class="sp-fact-k">Distance</div><div class="sp-fact-v">4 km</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Elevation gain</div><div class="sp-fact-v">152 m</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Highest point</div><div class="sp-fact-v">1897 m</div></div>
@@ -184,6 +204,9 @@
       <div class="sp-fact"><div class="sp-fact-k">Terrain</div><div class="sp-fact-v">Forest road and path, suitable for pushchairs</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Trail rating</div><div class="sp-fact-v">Caution terrain</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Area</div><div class="sp-fact-v">Via Nigra – Baita Messnerjoch, Nova Levante / Welschnofen · Dolomites, Italy</div></div>
+    </div>
+    <p class="sp-src sp-view-note sp-view-note--one-way">Ends away from the start: plan a lift, bus or second car back.</p>
+    <p class="sp-src sp-view-note sp-view-note--back">Back the same way on the same path.</p>
   </div>
 
   <a class="sp-cta" href="../trail.html?id=jolanda-baita-messnerjoch">Open the full trail guide →</a>

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valgardena-troi-da-la-tambres",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.3,
+    "ascentM": 108,
+    "highestPointM": 1506,
+    "expectedDuration": "1 h 5 min",
+    "difficulty": "Moderate",
+    "shadePercent": 53
+  },
+  "trailhead": {
+    "lat": 46.583083,
+    "lng": 11.687574,
+    "label": "At the Martin farm on the Streda Cuca above Ortisei"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.583627,
+      "lng": 11.687334,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 300 m each way of narrower mountain path (T2) beyond the La Tambres farm: keep your dog close and watch its footing.",
+    "About 590 m each way on asphalt lanes; the Streda Cuca carries the Ortisei–Costamula bus: keep your dog on a short lead there.",
+    "Farmed meadows line the path: Ortisei keeps dogs off them.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-18"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Troi da la Tambres, Ortisei": "Troi da la Tambres sopra Ortisei, andata e ritorno",
+    "At the Martin farm on the Streda Cuca above Ortisei": "Al maso Martin sulla Streda Cuca sopra Ortisei",
+    "About 300 m each way of narrower mountain path (T2) beyond the La Tambres farm: keep your dog close and watch its footing.": "Circa 300 m per tratta di sentiero di montagna più stretto (T2) oltre il maso La Tambres: tieni il cane vicino e fai attenzione a dove mette le zampe.",
+    "About 590 m each way on asphalt lanes; the Streda Cuca carries the Ortisei–Costamula bus: keep your dog on a short lead there.": "Circa 590 m per tratta su stradine asfaltate; sulla Streda Cuca passa l’autobus Ortisei–Costamula: lì tieni il cane al guinzaglio corto.",
+    "Farmed meadows line the path: Ortisei keeps dogs off them.": "Il sentiero costeggia prati coltivati: Ortisei vieta ai cani di entrarci."
+  }
+}
