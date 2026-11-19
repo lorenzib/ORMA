@@ -3961,6 +3961,30 @@
       "quote": "Facile · Distanza 1,9 km · Durata 0:45 h · Salita 166 m · Discesa 18 m · “Dalla Chiesetta di Santa Caterina d’Alessandria, nella borgata “Cella” di Villapiccola, si percorre un breve tratto del sentiero n.° 17 per voltare quasi subito sulla destra e prendere il sentiero n.° 18”",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-18T12:00:00.000Z"
+    },
+    "steinegg-pyramidenrundweg": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428309",
+      "publisher": "Autonome Provinz Bozen, hiking-trail register (via Open Data Hub)",
+      "name": "Pyramidenrundweg",
+      "quote": "CODE_NAME 'Pyramidenrundweg' (provincial hiking-trail register, routes-hikingtrails.11428309, 4,216 m; Steinegg, Karneid)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-18T23:00:00.000Z"
+    },
+    "luesen-panoramaweg": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428248",
+      "publisher": "Autonome Provinz Bozen, hiking-trail register (via Open Data Hub)",
+      "name": "Panoramaweg (Lüsen)",
+      "quote": "CODE_NAME 'Panoramaweg' (provincial hiking-trail register, routes-hikingtrails.11428248, 5,647 m; Lüsen)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-18T23:00:00.000Z"
+    },
+    "valgardena-troi-da-la-tambres": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426545",
+      "publisher": "Autonome Provinz Bozen, hiking-trail register (via Open Data Hub)",
+      "name": "10A Troi da la Tambres",
+      "quote": "CODE_NAME '10A Troi da la Tambres' (provincial hiking-trail register, routes-hikingtrails.11426545, 1,646 m one way; St. Ulrich in Gröden)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-18T23:00:00.000Z"
     }
   }
 }

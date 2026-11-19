@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "luesen-panoramaweg",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.6,
+    "ascentM": 214,
+    "highestPointM": 1258,
+    "expectedDuration": "2 h",
+    "difficulty": "Moderate",
+    "shadePercent": 49
+  },
+  "trailhead": {
+    "lat": 46.736365,
+    "lng": 11.769549,
+    "label": "On the Unterrungger Straße at the hamlet of Rader, below Lüsen"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.7458338,
+      "lng": 11.7609992,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About 2.5 km of mountain path (T2) across the slope: narrow and uneven in places, so keep your dog close and watch its footing.",
+    "About 1.45 km on quiet asphalt lanes (the Unterrungger Straße and the Berger Straße), where a car may pass: keep your dog on a short lead.",
+    "160 m on the Lüsener Straße through the village and a crossing of the Petschieder Straße: keep your dog close.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-18"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Panoramaweg, Lüsen": "Sentiero panoramico di Luson",
+    "On the Unterrungger Straße at the hamlet of Rader, below Lüsen": "Sulla Via Unterrungg presso la frazione di Rader, sotto Luson",
+    "About 2.5 km of mountain path (T2) across the slope: narrow and uneven in places, so keep your dog close and watch its footing.": "Circa 2,5 km di sentiero di montagna (T2) lungo il pendio: stretto e irregolare in alcuni punti, quindi tieni il cane vicino e fai attenzione a dove mette le zampe.",
+    "About 1.45 km on quiet asphalt lanes (the Unterrungger Straße and the Berger Straße), where a car may pass: keep your dog on a short lead.": "Circa 1,45 km su stradine asfaltate tranquille (Via Unterrungg e Via Berg), dove può passare un’auto: tieni il cane al guinzaglio corto.",
+    "160 m on the Lüsener Straße through the village and a crossing of the Petschieder Straße: keep your dog close.": "160 m sulla Via Luson in paese e un attraversamento della Via Petschied: tieni il cane vicino."
+  }
+}

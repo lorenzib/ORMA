@@ -2025,6 +2025,21 @@
       "name": "Santa Caterina to Pian di Barco",
       "slug": "pian-di-barco-auronzo",
       "gloss": "an easy woodland path past old hay barns to Pian di Barco and back"
+    },
+    "steinegg-pyramidenrundweg": {
+      "name": "Pyramidenrundweg, Steinegg",
+      "slug": "pyramidenrundweg-steinegg",
+      "gloss": "a loop past the earth pyramids below Steinegg"
+    },
+    "luesen-panoramaweg": {
+      "name": "Panoramaweg, Lüsen",
+      "slug": "panoramaweg-luesen",
+      "gloss": "a panoramic loop on the slopes above Lüsen"
+    },
+    "valgardena-troi-da-la-tambres": {
+      "name": "Troi da la Tambres, Ortisei",
+      "slug": "troi-da-la-tambres-ortisei",
+      "gloss": "a meadow and forest path to the La Tambres farm above Ortisei and back"
     }
   }
 }

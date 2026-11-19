@@ -70476,6 +70476,310 @@
         ],
         "date": "2026-11-18"
       }
+    },
+    'steinegg-pyramidenrundweg': {
+      // Hand audit: 18 November 2026, verified on arrival (new-trail Dolomites batch 15).
+      // Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // “Pyramidenrundweg” (routes-hikingtrails.11428309), drawn on 18 OSM ways along the register line (data/board-line-routes.geojson).
+      // Commune: Karneid (2015 dog regulation). Natural monument Erdpyramiden Steinegg on the edge of the line; no park or Natura 2000 site. Roads: 180 m of the Hauptstraße (LS/SP132) through Mariahilf, and about 1.4 km on quiet lanes (Pyramidenstraße 1,030 m, Rosengartenstraße 140 m, service roads 240 m), which the owner accepted on 18 Nov 2026 (lanes up to half the walk). About 300 m of narrower, steeper path by the pyramids (OSM sac_scale mountain_hiking).
+      area: "Steinegg / Collepietra, Karneid",
+      distance: 4.2,
+      elevation: 174,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: "A loop below the village of Steinegg on the waymarked Pyramidenrundweg, as the province trail register maps it (4.2 km): along the paved Pyramidenweg footpath, briefly through Mariahilf on the Hauptstraße, down path 2 past the Glirg farm to the earth pyramids, then back up on the Pyramidenstraße lane and a path past the Heigler bench. Climb and time are measured by ORMA, not published by the register.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start on the lane by the Raffein farm below Steinegg, where the Pyramidenweg footpath begins; the loop is waymarked “Pyramidenrundweg” all the way.",
+        "sequence": "Follow the paved Pyramidenweg footpath (no cars) for about 1.3 km to the Weißenbilder farm. Take the Bühlweg up to the Hauptstraße and walk it for about 180 m through Mariahilf, past the Maria-Hilf chapel. Turn off onto path 2, a path and then a track, past the Glirg farm, cross the Rosengartenstraße and go on along path 2 to the earth pyramids. The path by the pyramids is narrow and steeper for about 300 m. Join path 2A, then walk up the Pyramidenstraße lane for about 260 m, take a short service road and the path past the Heigler bench, and follow the Pyramidenstraße lane past the Höller farm back to the start.",
+        "switches": "The Pyramidenweg footpath; the Bühlweg and 180 m of the Hauptstraße through Mariahilf; path 2 past the Glirg farm, across the Rosengartenstraße; the narrow path by the earth pyramids; path 2A and the Pyramidenstraße lane; the path past the Heigler bench; the Pyramidenstraße back to the start.",
+        "steps": [
+          {
+            "text": "The lane by the Raffein farm, where the Pyramidenweg footpath begins",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The paved Pyramidenweg footpath to the Weißenbilder farm",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Bühlweg and 180 m of the Hauptstraße through Mariahilf, past the Maria-Hilf chapel",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 2 past the Glirg farm and across the Rosengartenstraße to the earth pyramids",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 2A, the Pyramidenstraße lane and the path past the Heigler bench",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Pyramidenstraße past the Höller farm back to the start",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Pyramidenrundweg (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428309",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-18"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-18',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Maria-Hilf chapel at Weißes Bild, Steinegg (Plentn on Wikimedia Commons, CC0), 26 June 2021, 18 m from the line.",
+        route: "Register loop 'Pyramidenrundweg' (routes-hikingtrails.11428309, 4.22 km) from On the lane by the Raffein farm below Steinegg, where the Pyramidenweg begins; the stored line is drawn on 18 OSM ways along the register line, 4.2 km, with 98% of the guide line within 25 m of it and 99% of it within 25 m of the guide line.",
+        routeNumbers: "Waymarked “Pyramidenrundweg”: the Pyramidenweg footpath, the Bühlweg and the Hauptstraße through Mariahilf, path 2 past the Glirg farm to the earth pyramids, path 2A, then the Pyramidenstraße lane and the path past the Heigler bench back to the start.",
+        mapPoints: "Start where the register loop leaves the lane; no drinking water mapped on the line.",
+        elevation: "No official figure. Measured by ORMA from the map: 4.20 km, about 174 m up and down between 833 and 997 m, 1 h 31 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Pyramidenrundweg', line routes-hikingtrails.11428309, 4,216 m",
+          "Gemeinde Karneid, Verordnung über die Haltung und Führung von Hunden (in force 13 Sep 2015): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields; no bathing in fountains or troughs), Art. 12 (applies outside built-up areas)",
+          "Natural monument “Erdpyramiden Steinegg” (Karneid landscape plan, 031_G01): the path runs along its edge for about 300 m; stay on the path. No park, reserve or Natura 2000 site on the line (EEA)",
+          "OpenStreetMap ways along the register line (18 ways), road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        date: '2026-11-18'
+      },
+      shadeCoverage: 70,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["180 m on the Hauptstraße through Mariahilf, a village road with traffic: keep your dog on a short lead","About 1.4 km on quiet lanes (mostly the Pyramidenstraße), where a car may pass: keep your dog close","About 300 m of narrower, steeper path by the earth pyramids: keep your dog close and stay on the path","Farmed meadows line parts of the loop: Karneid keeps dogs off them"],
+      terrainType: "Paved footpath, forest paths and quiet lanes",
+      shadeDescription: "Mostly shaded: about two thirds runs through woods; the lanes and the Mariahilf stretch are open.",
+      terrainDescription: "A loop at 830–1,000 m below Steinegg, past farms, the Maria-Hilf chapel and the earth pyramids, on a paved footpath, forest paths, a short narrow path and quiet lanes.",
+      waterDescription: "No drinking water is mapped on the loop: bring water for you both.",
+      dogNotes: "Karneid requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs off farmed meadows and out of fountains and troughs.",
+      tips: "A 4.2 km loop with about 174 m of up and down, roughly an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Karneid requires, and keep off the meadows. Take care on the short Hauptstraße stretch and on the narrow path by the earth pyramids. No mapped water, so bring some.",
+      sourceLinks: [
+        { label: "South Tyrol trail register, Pyramidenrundweg (Open Data Hub)", url: "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428309" },
+        { label: "Gemeinde Karneid, dog regulation", url: "https://www.gemeinde.karneid.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.48387, lng: 11.471322, label: "On the lane by the Raffein farm below Steinegg, where the Pyramidenweg begins" },
+      desc: "A loop below Steinegg past farms, the Maria-Hilf chapel and the Steinegg earth pyramids, on the waymarked Pyramidenrundweg. It is about 4.2 km with some 174 m of up and down, as measured by ORMA (the province register gives only the length)."
+    },
+    'luesen-panoramaweg': {
+      // Hand audit: 18 November 2026, verified on arrival (new-trail Dolomites batch 15).
+      // Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // “Panoramaweg (Lüsen)” (routes-hikingtrails.11428248), drawn on 35 OSM ways along the register line (data/board-line-routes.geojson).
+      // Commune: Lüsen (no dog regulation of its own found online: national rule). No park, natural monument or Natura 2000 site. Roads: 160 m of the Lüsener Straße (LS/SP30) in the village and about 1.45 km on quiet lanes (Berger Straße 770 m, Unterrungger Straße 500 m, short service lanes), which the owner accepted on 18 Nov 2026. About 2.5 km is mountain path (OSM sac_scale mountain_hiking, T2), allowed with a caution by the owner on 18 Nov 2026.
+      area: "Lüsen / Luson, Eisacktal",
+      distance: 5.6,
+      elevation: 214,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: "A loop on the slopes above Lüsen on the waymarked Panoramaweg, as the province trail register maps it (5.6 km): from the hamlet of Rader up a mountain path to the Rungg farms, along the panoramic path to path 3, down the Berger Straße lane past the bathing pond into Lüsen, and back on the Joseph-Gargitter-Weg (path 1). Climb and time are measured by ORMA, not published by the register.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start on the Unterrungger Straße at the hamlet of Rader, below Lüsen; the loop is waymarked “Panoramaweg” all the way.",
+        "sequence": "Walk up the Unterrungger Straße lane for about 450 m and cross the Petschieder Straße. Take the mountain path up for about 900 m to the Alter Rungger Weg, then a short lane and track (path 11). Join the Lüsner Panoramaweg, a mountain path, for about 1.2 km across the slope, then a gravel track (path 3) down to the Berger Straße. Follow the Berger Straße lane (path 3) for about 800 m past the bathing pond into Lüsen, by the fire station. Walk about 160 m along the Lüsener Straße through the village, then take the Joseph-Gargitter-Weg (path 1), a track, back down to the start.",
+        "switches": "The Unterrungger Straße lane; across the Petschieder Straße onto the mountain path; the Alter Rungger Weg and path 11; the Lüsner Panoramaweg across the slope; path 3 down to the Berger Straße; the Berger Straße past the bathing pond into Lüsen; 160 m of the Lüsener Straße; the Joseph-Gargitter-Weg (path 1) back to the start.",
+        "steps": [
+          {
+            "text": "The Unterrungger Straße at the hamlet of Rader",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Across the Petschieder Straße and up the mountain path to the Alter Rungger Weg",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 11, then the Lüsner Panoramaweg across the slope",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 3 down to the Berger Straße and past the bathing pond into Lüsen",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "160 m of the Lüsener Straße, then the Joseph-Gargitter-Weg (path 1) back to the start",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Panoramaweg (Lüsen) (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428248",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-18"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-18',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The bathing pond by the Berger Straße, Lüsen (0idee on Mapillary, CC BY-SA 4.0), 2 July 2022, 56 m from the line.",
+        route: "Register loop 'Panoramaweg (Lüsen)' (routes-hikingtrails.11428248, 5.65 km) from On the Unterrungger Straße at the hamlet of Rader, below Lüsen; the stored line is drawn on 35 OSM ways along the register line, 5.6 km, with 100% of the guide line within 25 m of it and 100% of it within 25 m of the guide line.",
+        routeNumbers: "Waymarked “Panoramaweg”: the Unterrungger Straße, a mountain path up to the Alter Rungger Weg, path 11, the Lüsner Panoramaweg, path 3 and the Berger Straße down into Lüsen, then the Joseph-Gargitter-Weg (path 1) back to the start.",
+        mapPoints: "Start at the start of the register line; drinking water at km 4.1 (OSM nodes 7318188899).",
+        elevation: "No official figure. Measured by ORMA from the map: 5.57 km, about 214 m up and 224 m down between 973 and 1,206 m, 1 h 58 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Panoramaweg (Lüsen)', line routes-hikingtrails.11428248, 5,647 m",
+          "Gemeinde Lüsen / Comune di Luson: no dog regulation of its own found online (searched again 18 Nov 2026), so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve, natural monument or Natura 2000 site on the line (EEA; South Tyrol landscape plan)",
+          "OpenStreetMap ways along the register line (35 ways), road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        date: '2026-11-18'
+      },
+      shadeCoverage: 49,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 2.5 km of mountain path (T2) across the slope: narrow and uneven in places, so keep your dog close and watch its footing","About 1.45 km on quiet asphalt lanes (the Unterrungger Straße and the Berger Straße), where a car may pass: keep your dog on a short lead","160 m on the Lüsener Straße through the village and a crossing of the Petschieder Straße: keep your dog close","Keep your dog out of the bathing pond by the Berger Straße"],
+      terrainType: "Mountain paths, tracks and quiet lanes",
+      shadeDescription: "About half shaded, in the woods on the mountain paths; the lanes and the stretch through the village are open.",
+      terrainDescription: "A loop at 970–1,210 m on the slopes above Lüsen, on mountain paths, gravel tracks and quiet lanes, with a short stretch through the village.",
+      waterDescription: "Drinking water is mapped in Lüsen, around km 4.1, by the fire station.",
+      dogNotes: "Lüsen has no dog regulation of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried. Keep your dog off the farmed meadows and out of the bathing pond.",
+      tips: "A 5.6 km loop with about 214 m up and 224 m down, roughly two hours. About 2.5 km is mountain path, narrow and uneven in places: keep your dog close there. Keep it on a short lead on the lanes and in the village. Water in Lüsen, by the fire station, about three quarters of the way round.",
+      sourceLinks: [
+        { label: "South Tyrol trail register, Panoramaweg (Lüsen) (Open Data Hub)", url: "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428248" },
+        { label: "Gemeinde Lüsen (commune website; no dog regulation listed)", url: "https://www.gemeinde.luesen.bz.it/de/suche.aspx?search=Hunde" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.736365, lng: 11.769549, label: "On the Unterrungger Straße at the hamlet of Rader, below Lüsen" },
+      desc: "A loop on the slopes above Lüsen, on the waymarked Panoramaweg: up a mountain path to the Rungg farms, across the slope on the panoramic path and down past the bathing pond into the village. It is about 5.6 km with some 214 m of climb, as measured by ORMA (the province register gives only the length)."
+    },
+    'valgardena-troi-da-la-tambres': {
+      // Hand audit: 18 November 2026, verified on arrival (new-trail Dolomites batch 15).
+      // Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // “10A Troi da la Tambres” (routes-hikingtrails.11426545), drawn on 7 OSM ways along the register line (data/board-line-routes.geojson).
+      // Commune: Ortisei (2019 dog regulation). No park, natural monument or Natura 2000 site (part is in a landscape no-build zone, which sets no dog rule). Roads: about 590 m each way on residential lanes (Streda Cuca 260 m, which the Ortisei–Costamula bus uses, and Streda Costes 330 m), which the owner accepted on 18 Nov 2026. About 300 m each way of mountain path (OSM sac_scale mountain_hiking, T2), allowed with a caution by the owner on 18 Nov 2026.
+      area: "Costes – La Tambres, Ortisei / St. Ulrich",
+      distance: 3.3,
+      elevation: 108,
+      hours: '1.1',
+      routeShape: 'out-and-back',
+      routeShapeNote: "Path 10A, the Troi da la Tambres, as the province trail register maps it one way (1.6 km), from the Streda Cuca above Ortisei past the Costes farms and the La Tambres farm to where it meets path 10. The register gives no way back, so ORMA walks it there and back on the same path (owner rule of 12 November 2026): 3.3 km in all. Climb and time are measured by ORMA.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Martin farm on the Streda Cuca above Ortisei, by the bus stop on the Ortisei–Costamula line; path 10A is waymarked from here.",
+        "sequence": "Follow the Streda Cuca lane (paths 5 and 10A) for about 250 m, then turn onto the Streda Costes lane for about 330 m, past the Ronch, Raineles and Còsta farms to La Mauta. There path 10A, the Troi da la Tambres, leaves the lane: follow it for about 700 m through meadows and forest to the La Tambres farmhouse. The last 300 m beyond the farm is a narrower mountain path. Turn around where it meets the cobbled path 10, and come back the same way.",
+        "switches": "The Streda Cuca lane; the Streda Costes lane past the Costes farms to La Mauta; path 10A through meadows and forest to the La Tambres farm; the narrower mountain path to path 10; back the same way.",
+        "steps": [
+          {
+            "text": "The Martin farm on the Streda Cuca, by the bus stop",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Streda Costes lane past the Ronch, Raineles and Còsta farms to La Mauta",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 10A, the Troi da la Tambres, through meadows and forest to the La Tambres farm",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The narrower mountain path to the junction with path 10, then back the same way",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "10A Troi da la Tambres (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426545",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-18"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-18',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The La Tambres farmhouse below the Langkofel, Ortisei (Wolfgang Moroder on Wikimedia Commons, CC BY-SA 4.0), 15 April 2020, 11 m from the line.",
+        route: "Register walk there and back '10A Troi da la Tambres' (routes-hikingtrails.11426545, 1.65 km) from At the Martin farm on the Streda Cuca above Ortisei; the stored line is drawn on 7 OSM ways along the register line, 3.3 km, with 100% of the guide line within 25 m of it and 100% of it within 25 m of the guide line.",
+        routeNumbers: "From the Martin farm on the Streda Cuca, path 10A, the waymarked Troi da la Tambres: the Streda Cuca and Streda Costes lanes to La Mauta, then the path past the La Tambres farm to path 10, and back the same way.",
+        mapPoints: "Start at the start of the register line; drinking water at the start (OSM nodes 7831877685).",
+        elevation: "No official figure. Measured by ORMA from the map: 3.28 km, about 110 m up and down between 1,411 and 1,484 m, 1 h 07 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): '10A Troi da la Tambres', line routes-hikingtrails.11426545, 1,646 m",
+          "Gemeinde St. Ulrich / Comune di Ortisei, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat Nr. 28, 06.08.2019), Art. 4 and 6: a lead of at most 1.5 m on all public ground, a muzzle carried (worn in public premises and on public transport), no dogs on farmed land",
+          "No park, reserve, natural monument or Natura 2000 site on the line (EEA; South Tyrol landscape plan)",
+          "OpenStreetMap ways along the register line (7 ways), road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        date: '2026-11-18'
+      },
+      shadeCoverage: 53,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 300 m each way of narrower mountain path (T2) beyond the La Tambres farm: keep your dog close and watch its footing","About 590 m each way on asphalt lanes; the Streda Cuca carries the Ortisei–Costamula bus: keep your dog on a short lead there","Farmed meadows line the path: Ortisei keeps dogs off them"],
+      terrainType: "Lanes, a meadow and forest path and a short mountain path",
+      shadeDescription: "About half shaded, in the forest on path 10A; the lanes and meadows are open.",
+      terrainDescription: "An easy walk there and back at 1,410–1,490 m above Ortisei, on two farm lanes and path 10A through meadows and forest past the La Tambres farm, ending on a short, narrower mountain path.",
+      waterDescription: "No drinking water is mapped on the walk: bring water for you both.",
+      dogNotes: "Ortisei requires a lead of at most 1.5 m on all public ground and a muzzle carried (worn on the bus), and keeps dogs off farmed land.",
+      tips: "An easy 3.3 km there and back with about 110 m of up and down, roughly an hour. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Ortisei requires, and stay off the meadows. The last 300 m before the turn is a narrower mountain path: keep your dog close. No mapped water, so bring some.",
+      sourceLinks: [
+        { label: "South Tyrol trail register, 10A Troi da la Tambres (Open Data Hub)", url: "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426545" },
+        { label: "St. Ulrich / Ortisei, dog regulation (2019)", url: "https://www.comune.ortisei.bz.it/system/web/GetDocument.ashx?fileId=1093922&cts=1565705929" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.583083, lng: 11.687574, label: "At the Martin farm on the Streda Cuca above Ortisei" },
+      desc: "An easy walk above Ortisei on path 10A, the Troi da la Tambres: along two farm lanes past the Costes farms, then through meadows and forest to the old La Tambres farmhouse below the Langkofel, and back the same way. It is about 3.3 km with some 110 m of up and down, as measured by ORMA (the province register gives only the length)."
     }
   };
 

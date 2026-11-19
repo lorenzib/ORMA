@@ -268,8 +268,12 @@ describe('the existing-site verification boundary',()=>{
     // time measured by ORMA: the Umser Rundweg and the Promenadenweg at Tiers.
     // Then 533 and 531 with Pian di Barco above Auronzo, whose page only
     // suggests another way on (owner rule of 16 November 2026).
-    expect(catalogue).toHaveLength(533);
-    expect(currentSiteTrails(catalogue)).toHaveLength(531);
+    // Then 536 and 534 with three South Tyrol register walks on quiet hamlet
+    // lanes and short mountain-path stretches (owner rules of 18 November
+    // 2026): the Pyramidenrundweg at Steinegg, the Panoramaweg at Lüsen and
+    // the Troi da la Tambres above Ortisei, walked there and back.
+    expect(catalogue).toHaveLength(536);
+    expect(currentSiteTrails(catalogue)).toHaveLength(534);
   });
 
   test('requires the artwork the public trail page needs',()=>{
