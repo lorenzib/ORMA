@@ -1398,7 +1398,7 @@ function main() {
     `${BASE_URL}/guides/dogs-at-rifugi.html`,
     `${BASE_URL}/guides/alpine-plants-for-dogs.html`,
     `${BASE_URL}/guides/winter-walks-with-your-dog.html`,
-    `${BASE_URL}/guides/dog-rules-dolomites.html`,
+    `${BASE_URL}/guides/dog-rules-in-the-mountains.html`,
     `${BASE_URL}/guides/wildlife-on-the-trail.html`,
   ];
 

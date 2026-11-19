@@ -244,20 +244,10 @@
   #browseTools{display:flex;flex-wrap:nowrap;align-items:center;gap:8px;}
   #browseTools>.browse-search-group{flex:1 1 320px;min-width:0;}
   #browseTools .browse-search-shell{max-width:none;}
-  #browseTools>.browse-area-wrap,#browseTools>#browseFiltersWrap,#browseTools>.browse-saved-only{flex:none;width:auto;}
-  .browse-area-btn{display:inline-flex;align-items:center;gap:7px;height:42px;max-width:300px;box-sizing:border-box;padding:0 14px;border:1.5px solid var(--paper-line);border-radius:999px;background:#fff;color:var(--ink);font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
-  .browse-area-btn svg{flex:none;color:var(--accent);}
-  .browse-area-btn #browseAreaLabel{overflow:hidden;text-overflow:ellipsis;}
-  .browse-area-btn:hover,.browse-area-btn[aria-expanded="true"]{border-color:#9FC4B0;}
-  #browseAreaPanel{position:absolute;top:calc(100% + 8px);left:0;z-index:60;width:300px;box-sizing:border-box;padding:12px;border:1px solid var(--paper-line);border-radius:14px;background:#fff;box-shadow:0 14px 34px -12px rgba(23,42,28,.4);}
-  #browseAreaPanel[hidden]{display:none;}
-  #browseAreaPanel .browse-area-controls{display:grid;grid-template-columns:1fr;gap:10px;}
-  #browseAreaPanel .browse-geo-group{display:flex;flex-direction:column;gap:5px;width:100%;}
-  #browseAreaPanel .browse-geo-label{position:static;width:auto;height:auto;overflow:visible;clip:auto;color:#8A9689;font:700 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
-  /* Inside the panel the heading above names the picker, so the picker
-     shows its value ("All countries") rather than repeating its name. */
-  #browseAreaPanel .area-select-trigger__kicker{display:none;}
-  #browseAreaPanel .area-select-trigger__label{display:inline;}
+  #browseTools>#browseFiltersWrap,#browseTools>.browse-saved-only{flex:none;width:auto;}
+  /* Country, Region and Valley in the row: equal shares of what is left. */
+  #browseTools>.browse-area-controls{flex:0 1 570px;min-width:0;}
+  #browseTools .browse-geo-group{flex:1 1 0;width:auto;min-width:0;}
   .browse-active-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px;}
   .browse-active-chips[hidden]{display:none;}
   .browse-active-chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px 0 12px;border:1px solid #A9C5AE;border-radius:999px;background:#E1ECE2;color:#24462E;font:700 12px 'Inter',sans-serif;cursor:pointer;}
@@ -285,15 +275,18 @@
   @media(max-width:760px){
     #browseTools{flex-wrap:wrap;}
     #browseTools>.browse-search-group{flex:1 1 100%;}
-    #browseTools>.browse-area-wrap{flex:1 1 0;min-width:0;}
-    #browseTools .browse-area-btn{width:100%;max-width:none;}
-    #browseAreaPanel{width:min(300px,calc(100vw - 32px));}
-    /* Saved shrinks to its heart and count so the second row holds all three. */
+    /* Country, Region and Valley share the second row, as on Collections;
+       Filters and Saved share the third. */
+    #browseTools>.browse-area-controls{flex:1 1 100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;}
+    #browseTools .browse-geo-group .area-select-trigger{padding:0 8px 0 11px;gap:4px;}
+    #browseTools .browse-geo-group .area-select-trigger svg{width:16px;height:16px;}
+    #browseTools>#browseFiltersWrap{flex:1 1 0;}
+    #browseTools>#browseFiltersWrap #browseFiltersBtn{width:100%;justify-content:center;}
+    /* Saved shrinks to its heart and count. */
     #browseTools>.browse-saved-only{padding-inline:11px;gap:6px;}
     #browseTools>.browse-saved-only [data-i18n="browse.quick.saved"]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
     #browseTools #browseFiltersBtn{width:auto;padding-inline:12px;}
     #browseTools #browseFiltersBtn .li-caret{display:none;}
-    #browseTools .browse-area-btn{padding-inline:12px;}
   }
 </style>
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
@@ -335,29 +328,21 @@
       </label>
       <button type="button" id="browseSearchBtn" class="browse-search-submit" data-i18n="browse.search.go">Search</button>
     </div>
-    <!-- One "Area" control in the row; Country, Region and Valley open
-         inside it and still drive the same selects. -->
-    <div class="li-menuwrap browse-area-wrap" id="browseAreaWrap">
-      <button type="button" id="browseAreaBtn" class="browse-area-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="browseAreaPanel">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
-        <span id="browseAreaLabel" data-i18n="areas.all">All areas</span> <span class="li-caret" aria-hidden="true">▾</span>
-      </button>
-      <div class="browse-area-panel" id="browseAreaPanel" role="dialog" aria-label="Choose an area" hidden data-i18n-aria-label="page.browseTrails.chooseAnArea">
-        <div class="browse-area-controls" aria-label="Choose trail area" data-i18n-aria-label="page.browseTrails.chooseTrailArea">
-          <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
-            <span class="browse-geo-label" data-i18n="browse.geo.country">Country</span>
-            <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filter trails by country" data-i18n-aria-label="browse.filters.filterCountry"></select></span>
-          </label>
-          <label class="browse-geo-group geo-filter-control" for="browseRegionSelect">
-            <span class="browse-geo-label" data-i18n="browse.geo.region">Region</span>
-            <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-kicker-until-selected data-control-kicker="Region" aria-label="Filter trails by region" data-i18n-aria-label="browse.filters.filterRegion"></select></span>
-          </label>
-          <label class="browse-geo-group browse-geo-group--valley geo-filter-control" for="browseValleySelect">
-            <span class="browse-geo-label" data-i18n="browse.geo.valley">Valley</span>
-            <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filter trails by valley" data-i18n-aria-label="browse.filters.filterValley"></select></span>
-          </label>
-        </div>
-      </div>
+    <!-- Country, Region and Valley sit in the row, as on Collections and the
+         signed-in home page; the rest of the narrowing is inside Filters. -->
+    <div class="browse-area-controls" id="browseAreaControls" role="group" aria-label="Choose trail area" data-i18n-aria-label="page.browseTrails.chooseTrailArea">
+      <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
+        <span class="browse-geo-label" data-i18n="browse.geo.country">Country</span>
+        <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filter trails by country" data-i18n-aria-label="browse.filters.filterCountry"></select></span>
+      </label>
+      <label class="browse-geo-group geo-filter-control" for="browseRegionSelect">
+        <span class="browse-geo-label" data-i18n="browse.geo.region">Region</span>
+        <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-kicker-until-selected data-control-kicker="Region" aria-label="Filter trails by region" data-i18n-aria-label="browse.filters.filterRegion"></select></span>
+      </label>
+      <label class="browse-geo-group browse-geo-group--valley geo-filter-control" for="browseValleySelect">
+        <span class="browse-geo-label" data-i18n="browse.geo.valley">Valley</span>
+        <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filter trails by valley" data-i18n-aria-label="browse.filters.filterValley"></select></span>
+      </label>
     </div>
     <div class="li-menuwrap" id="browseFiltersWrap">
         <button type="button" id="browseFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">

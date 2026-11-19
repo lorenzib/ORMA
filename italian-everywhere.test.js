@@ -98,7 +98,9 @@ describe("each trail's own words", () => {
 
 describe('guides and legal pages', () => {
   const documents = ['safety-guide.html', 'privacy.html', 'terms.html',
-    ...fs.readdirSync(path.join(__dirname, 'guides')).filter(file => file.endsWith('.html')).map(file => `guides/${file}`)];
+    ...fs.readdirSync(path.join(__dirname, 'guides')).filter(file => file.endsWith('.html')).map(file => `guides/${file}`)]
+    // A moved guide leaves a redirect at its old address; that is not a guide.
+    .filter(page => !/http-equiv="refresh"/.test(read(page)));
 
   test.each(documents)('%s has an Italian copy linked both ways', page => {
     const italian = read(`it/${page}`);
