@@ -201,7 +201,7 @@ describe('trail page map controls', () => {
     // that used to be visible must be reachable, not merely gone.
     expect([...panel.querySelectorAll('button')].map(button => button.id)).toEqual([
       'routesToggle', 'fountainsToggle', 'hutsToggle', 'foodToggle',
-      'placesToggle', 'liftsToggle', 'nearbyToggle',
+      'placesToggle', 'liftsToggle', 'contoursToggle', 'nearbyToggle',
     ]);
     expect(document.getElementById('fountainsToggle').getAttribute('aria-pressed')).toBe('true');
     expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('true');

@@ -22,7 +22,7 @@
   }, { once:true });
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="styles.css?v=20260916-5">
+<link rel="stylesheet" href="styles.css?v=20261119-1">
 <link rel="stylesheet" href="trail-mobile.css?v=20260904-3">
 <link rel="stylesheet" href="pre-hike-readiness.css?v=20260815-4">
 <style>
@@ -1321,6 +1321,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
           <button id="foodToggle" type="button" class="map-chip" aria-pressed="false" data-i18n="page.trail.foodDrink">Food &amp; drink</button>
           <button id="placesToggle" type="button" class="map-chip" aria-pressed="false" data-i18n="page.trail.pointsOfInterest">Points of interest</button>
           <button id="liftsToggle" type="button" class="map-chip" aria-pressed="false" data-i18n="page.trail.liftStations">Lift stations</button>
+          <button id="contoursToggle" type="button" class="map-chip" aria-pressed="false" hidden data-i18n="page.trail.contourLines">Contour lines</button>
           <button id="nearbyToggle" type="button" class="map-chip" aria-pressed="false" hidden data-i18n="trail.nearbyTitle">Nearby trails</button>
         </div>
         <button id="addReportBtn" type="button" class="map-hazard-report-btn">
@@ -1520,7 +1521,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 
 <script src="device-handoff.js?v=20260904-1"></script>
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261113-1"></script>
+<script src="i18n.js?v=20261119-1"></script>
 <script>
   // Account services are useful after the page is interactive, but loading
   // the Firebase app/auth/Firestore graph during navigation keeps mobile
@@ -1606,6 +1607,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20261116-1" defer></script>
+<script src="trail-app.bundle.js?v=20261119-1" defer></script>
 </body>
 </html>

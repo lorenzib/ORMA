@@ -1953,6 +1953,7 @@
     'page.trail.foodDrink': 'Food &amp; drink',
     'page.trail.pointsOfInterest': 'Points of interest',
     'page.trail.liftStations': 'Lift stations',
+    'page.trail.contourLines': 'Contour lines',
     'page.trail.youAreHereLive': '<span class="dot"></span>You are here · live',
     'page.trail.routeSteps': 'Route steps',
     'page.trail.getDirectionsToTrail': 'Get directions to trail',
@@ -3952,6 +3953,7 @@
     'page.trail.foodDrink': 'Cibo e bevande',
     'page.trail.pointsOfInterest': 'Punti di interesse',
     'page.trail.liftStations': 'Stazioni degli impianti',
+    'page.trail.contourLines': 'Curve di livello',
     'page.trail.youAreHereLive': '<span class="dot"></span>Sei qui · in tempo reale',
     'page.trail.routeSteps': 'Tappe del percorso',
     'page.trail.getDirectionsToTrail': 'Indicazioni per il sentiero',
@@ -4049,7 +4051,7 @@
   if (lang === 'it' && !window.ORMA_PHRASES_IT && document.readyState === 'loading') {
     const here = document.currentScript && document.currentScript.src;
     const base = here ? here.replace(/[^/]*$/, '') : '';
-    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261118-1"><\/script>');
+    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261119-1"><\/script>');
     document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261111-1"><\/script>');
   }
 

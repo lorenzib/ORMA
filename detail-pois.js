@@ -114,21 +114,10 @@ function initDetailPois(map, trail){
       type: 'geojson',
       data: { type: 'FeatureCollection', features },
     });
-    map.addLayer({
-      id: sourceId + '-layer-lowzoom',
-      type: 'circle',
-      source: sourceId,
-      filter: ['!', ['has', 'point_count']],
-      maxzoom: iconMinZoom,
-      layout: { visibility: DEFAULT_VISIBLE_GROUPS.has(group) ? 'visible' : 'none' },
-      paint: {
-        'circle-radius': 4,
-        'circle-color': circleColor,
-        'circle-opacity': 0.7,
-        'circle-stroke-width': 1.25,
-        'circle-stroke-color': '#fff',
-      },
-    });
+    // No small unlabelled dots below the icon zoom: the homepage map has none,
+    // and on the trail page a row of blue, green and brown dots said nothing
+    // a reader could use (owner, 19 Nov). The icons and names come in at
+    // iconMinZoom, as they do on the homepage map.
     map.addLayer({
       id: sourceId + '-layer',
       type: 'symbol',
@@ -161,11 +150,11 @@ function initDetailPois(map, trail){
         'text-halo-width': 2,
       },
     });
-    [sourceId + '-layer', sourceId + '-layer-lowzoom'].forEach((layerId) => {
+    [sourceId + '-layer'].forEach((layerId) => {
       map.on('mouseenter', layerId, () => { map.getCanvas().style.cursor = 'pointer'; });
       map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
     });
-    [sourceId + '-layer', sourceId + '-layer-lowzoom'].forEach((layerId) => map.on('click', layerId, (e) => {
+    [sourceId + '-layer'].forEach((layerId) => map.on('click', layerId, (e) => {
       const f = e.features[0];
       new maplibregl.Popup({ offset: 10, maxWidth: '220px' })
         .setLngLat(f.geometry.coordinates)
