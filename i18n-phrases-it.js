@@ -1951,4 +1951,5 @@ window.ORMA_PHRASES_IT = {
   "Pointe Percée from the Mont d'Arbois": "La Pointe Percée dal Mont d'Arbois",
   "Lac d'Annecy from the Taillefer de Duingt": "Il Lac d'Annecy dal Taillefer de Duingt",
   "The alpage track above Combloux": "La strada d'alpeggio sopra Combloux",
+  "{level}, fine for {name}": "{level}, va bene per {name}",
 };

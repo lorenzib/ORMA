@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-chianocco-orrido-chouque",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.5,
+    "ascentM": 559,
+    "highestPointM": 1098,
+    "expectedDuration": "3 h 30 min",
+    "difficulty": "Hard",
+    "shadePercent": 57
+  },
+  "trailhead": {
+    "lat": 45.148216,
+    "lng": 7.16907,
+    "label": "The square by the town hall, Chianocco, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "The board advises against the hottest months: the slope is sunny; go in autumn, winter or spring.",
+    "Path 541 is steep at the start and parts are mountain paths (T2): take it slowly with an older dog.",
+    "Stretches on hamlet lanes between Margrit and Molè: keep your dog on a short lead there.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Orrido and Chouqué di Margrit, Chianocco": "L’Orrido e il Chouqué di Margrit a Chianocco",
+    "The square by the town hall, Chianocco, the board’s start": "La piazza del municipio, Chianocco, la partenza ufficiale",
+    "The board advises against the hottest months: the slope is sunny; go in autumn, winter or spring.": "Il sito lo sconsiglia nei mesi più caldi: il versante è soleggiato; vai in autunno, inverno o primavera.",
+    "Path 541 is steep at the start and parts are mountain paths (T2): take it slowly with an older dog.": "Il sentiero 541 è ripido all’inizio e alcuni tratti sono sentieri di montagna (T2): vai piano con un cane anziano.",
+    "Stretches on hamlet lanes between Margrit and Molè: keep your dog on a short lead there.": "Tratti sulle stradine delle borgate tra Margrit e Molè: lì tieni il cane al guinzaglio corto."
+  }
+}
