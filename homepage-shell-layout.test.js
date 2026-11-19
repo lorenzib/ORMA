@@ -8,10 +8,12 @@ describe('logged-in discovery workspace layout', () => {
     expect(html).toContain('class="li-toolbar-greet"');
     expect(html).not.toContain('id="liToolbarSummary"');
     expect(html).toContain('id="liRecommendationDate"');
-    // The place and the day are words in the headline, each opening its own
-    // menu; nothing waits behind "Adjust recommendation" any more.
+    // The day is a word in the headline that opens its menu; the place is
+    // chosen with the Country, Region and Valley pickers beside the search.
+    // Nothing waits behind "Adjust recommendation" any more.
     expect(html).not.toContain('liAdjustRecommendationBtn');
-    expect(html).toContain('id="liAreaMenu"');
+    expect(html).not.toContain('id="liAreaMenu"');
+    expect(html).toContain('id="liAreaPickers"');
     expect(html).toContain('id="liDayMenu"');
     expect(css).toMatch(/\.li-toolbar-greet\s*\{[^}]*display:flex;/s);
   });
@@ -27,18 +29,19 @@ describe('logged-in discovery workspace layout', () => {
     expect(html.indexOf('id="liLocationNudge"')).toBeLessThan(html.indexOf('id="liSearch"'));
     expect(html).toContain('id="liLocationNudgeBtn"');
     expect(html).toContain('Your position stays in this browser session and is not added to your profile.');
-    expect(html).toContain('id="liChangeLocationBtn"');
-    // One region at a time: the place menu offers the two regions, never "All".
+    // Scope lives in one place: Country, Region and Valley sit together under
+    // the search, as on Trails and Collections, instead of a menu in the
+    // headline or behind an Explore button.
     expect(html).not.toContain('id="liShowAllBtn"');
-    expect(html).toContain('data-li-region="dolomites"');
-    expect(html).toContain('data-li-region="savoy"');
-    // Scope lives in one place: the three controls sit together on the location
-    // summary rather than half there and half behind an Explore menu.
+    expect(html).not.toContain('data-li-region=');
+    expect(html).not.toContain('id="liNearMeBtn"');
+    expect(html).not.toContain('id="liChangeLocationBtn"');
     expect(html).not.toContain('id="liExploreBtn"');
     expect(html).not.toContain('id="liExploreMenu"');
-    expect(html).toContain('id="liNearMeBtn"');
-    expect(html.indexOf('data-li-region="savoy"')).toBeLessThan(html.indexOf('id="liNearMeBtn"'));
-    expect(html.indexOf('id="liNearMeBtn"')).toBeLessThan(html.indexOf('id="liChangeLocationBtn"'));
+    const pickers = html.slice(html.indexOf('id="liAreaPickers"'), html.indexOf('id="liFiltersWrap"'));
+    ['liCountrySelect', 'liRegionSelect', 'liValleySelect'].forEach(id => expect(pickers).toContain(`id="${id}"`));
+    expect(pickers.match(/data-kicker-until-selected/g)).toHaveLength(3);
+    expect(html.indexOf('id="liSearch"')).toBeLessThan(html.indexOf('id="liAreaPickers"'));
     expect(css).toContain('.li-toolbar[hidden],.li-body[hidden]{display:none!important;}');
     expect(css).not.toContain('.li-location-gate');
   });
@@ -103,8 +106,8 @@ describe('logged-in discovery workspace layout', () => {
     // Record a walk sits beside the headline, inside the greeting row.
     const greet = html.slice(html.indexOf('class="li-toolbar-greet"'), html.indexOf('id="liToday"'));
     expect(greet).toContain('id="liRecordBtn"');
-    expect(greet).toContain('id="liAreaMenu"');
     expect(greet).toContain('id="liDayMenu"');
+    expect(greet).not.toContain('id="liAreaPickers"');
     // Shade and water are inside Filters, with the rest of the narrowing.
     const filters = html.slice(html.indexOf('id="liFiltersMenu"'), html.indexOf('id="liFiltersApply"'));
     expect(filters).toContain('id="liQuickShade"');
@@ -116,7 +119,7 @@ describe('logged-in discovery workspace layout', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
     const source = fs.readFileSync('script.js', 'utf8');
     // Hidden until the script decides it has not been seen.
-    const wrap = html.slice(html.indexOf('id="liNewWrap"'), html.indexOf('id="liAreaMenu"'));
+    const wrap = html.slice(html.indexOf('id="liNewWrap"'), html.indexOf('id="liDayMenu"'));
     expect(wrap).toContain('<div class="li-new-callout" id="liNewCallout" role="status" hidden>');
     expect(wrap).toContain('id="liNewCalloutTry" href="route-planner.html"');
     expect(wrap).toContain('id="liNewCalloutClose" aria-label="Dismiss"');
@@ -132,9 +135,12 @@ describe('logged-in discovery workspace layout', () => {
 
   test('lays the toolbar out the same way at every width', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
-    expect(editorialCss).toContain('grid-template-areas:"greet greet" "today today" "nudge nudge" "search filters";');
-    // Phones: headline on its own row, then search, Filters and Record.
-    expect(editorialCss).toContain('grid-template-areas:"greet greet greet" "today today today" "search filters new" "nudge nudge nudge";');
+    // Wide: search, the three pickers and Filters on one row.
+    expect(editorialCss).toContain('grid-template-areas:"greet greet greet" "today today today" "nudge nudge nudge" "search areas filters";');
+    // Narrower: the pickers take their own row under search and Filters.
+    expect(editorialCss).toContain('grid-template-areas:"greet greet" "today today" "nudge nudge" "search filters" "areas areas";');
+    // Phones: headline, then search, Filters and Record, then the pickers.
+    expect(editorialCss).toContain('grid-template-areas:"greet greet greet" "today today today" "search filters new" "areas areas areas" "nudge nudge nudge";');
   });
 
   test('contains the quick shade and water filters in white outlined controls', () => {

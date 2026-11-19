@@ -13,7 +13,7 @@ const pages = [
   ['dogs-at-rifugi.html', 'dogs-at-rifugi.jpg'],
   ['water-for-dogs-on-trail.html', 'dog-hydration-lake-unbranded-v1.jpg'],
   ['winter-walks-with-your-dog.html', 'winter-walks-snowy-dog-v1.jpg'],
-  ['dog-rules-dolomites.html', 'dog-rules-val-san-nicolo-v1.jpg'],
+  ['dog-rules-in-the-mountains.html', 'dog-rules-val-san-nicolo-v1.jpg'],
   ['wildlife-on-the-trail.html', 'wildlife-marmot-cortina-v1.jpg'],
 ];
 

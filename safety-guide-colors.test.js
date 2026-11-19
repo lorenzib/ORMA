@@ -12,7 +12,7 @@ const GUIDE_FILES = [
   'paw-protection.html',
   'water-for-dogs-on-trail.html',
   'winter-walks-with-your-dog.html',
-  'dog-rules-dolomites.html',
+  'dog-rules-in-the-mountains.html',
   'wildlife-on-the-trail.html',
 ];
 
