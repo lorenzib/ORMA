@@ -275,7 +275,7 @@ describe('the trail page breakdown, one row per factor', () => {
     }, { dogName:'Teo' });
     expect(unknown.factorRows).toEqual([]);
     // A dog gap becomes the profile prompt instead, so it is not listed here.
-    expect(unknown.notChecked).toEqual(['We don’t know the local rules for dogs. Check before you go.']);
+    expect(unknown.notChecked).toEqual(['We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.']);
   });
 });
 
