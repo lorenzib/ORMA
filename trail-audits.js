@@ -70482,6 +70482,79 @@
         ],
         "date": "2026-11-18"
       }
+    },
+    'fvg-sappada-rifugio-siera-longrone': {
+      // Hand audit: 18 November 2026, verified on arrival (Friulian Dolomites, owner decision of 18 November 2026; one-way walk sealed there and back, owner rule of 12 November 2026).
+      // “06 Rifugio Siera per sentiero naturalistico Longrone - Sappada”, published by PromoTurismoFVG one way with a same-path return, drawn there and back on 11 OSM ways along the
+      // line it publishes (data/board-line-routes.geojson). Distance and climb are the board’s one-way figures doubled
+      // (climb = its up plus its down); the time is the sheet’s own up-and-down total.
+      // Commune: Sappada, Regolamento di Polizia Rurale (DCC 12/2015) Art. 12-bis: dogs on a lead, a muzzle where they could cause danger or disturbance. FVG LR 20/2012 art. 21 and the national rule add a lead of at most 1.5 m on public ground. The whole line is in ZPS IT3230089 Dolomiti del Cadore e del Comelico (EEA; FVG SITI_PROT), coded to the Veneto, whose 2016 alpine measures (DGR 786/2016, Art. 99) only restate the national dog ordinance. No park, reserve or biotope (FVG SITI_PROT). No main road on the line; the start is beside the SR355 at Cima Sappada. The Monte Siera chairlift is optional.
+      // The stored line follows the board’s own line (100% / 99%).
+      area: "Cima Sappada – Longrone forest – Rifugio Siera, Sappada",
+      distance: 4.2,
+      elevation: 364,
+      hours: '1.9',
+      routeShape: 'out-and-back',
+      routeShapeNote: "PromoTurismoFVG publishes the walk one way, from Cima Sappada to the Rifugio Siera (2.1 km, 344 m up and 20 m down, 1:15 h), and its sheet times the return on the same path. ORMA walks it there and back: 4.2 km with 364 m up and down, 1 h 30 to 1 h 55 in all, as the sheet gives.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park by the valley station of the Monte Siera chairlift at Borgata Cima Sappada, on the SR355, the board’s start.",
+        "sequence": "Take path 319, then follow the red-and-yellow dots of the Longrone nature trail (N1) up through the great spruce forest of the Longrone. The second half is sunnier, with views over Sappada, the Val Sesis and the Peralba group, up to the Rifugio Siera on the northern edge of the Pian dei Larici, beside the top of the chairlift. Come back the same way.",
+        "switches": "Path 319 from the Monte Siera chairlift car park at Cima Sappada, then the red-and-yellow N1 dots of the Longrone nature trail up through the forest to the Rifugio Siera; back the same way.",
+        "sources": [
+          {
+            "label": "PromoTurismoFVG, 06 Rifugio Siera per sentiero naturalistico Longrone - Sappada (route description)",
+            "url": "https://www.outdooractive.com/it/r/13977360",
+            "authority": "PromoTurismoFVG",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-18"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-18',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The forest track through the Longrone above Cima Sappada (igorzo on Mapillary, CC BY-SA 4.0), 21 August 2020, 3 m from the line.",
+        route: "Official one-way walk of 2.1 km from The car park by the Monte Siera chairlift at Cima Sappada, as PromoTurismoFVG publishes it, and its sheet times the same-path return; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 11 OSM ways along the board’s published line out and back, 4.5 km, with 100% of the board’s line within 25 m of it and 99% of it within 25 m of the board’s line.",
+        routeNumbers: "Path 319, then the red-and-yellow N1 dots of the Longrone nature trail: from the Monte Siera chairlift car park at Cima Sappada up through the Longrone forest to the Rifugio Siera; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 2.1 km, 344 m up and 20 m down, 1:15 h, highest point 1,626 m, lowest 1,282 m (PromoTurismoFVG, sheet by Giovanni Borella, CAI Sappada). The sheet times it at 1:00–1:15 up and 0:30–0:40 down, 1:30–1:55 in all. There and back on the same path: 4.2 km, 364 m up and 364 m down."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "PromoTurismoFVG, 06 Rifugio Siera per sentiero naturalistico Longrone - Sappada (its Outdooractive tour)",
+          "Comune di Sappada, Regolamento di Polizia Rurale (council resolution 12 of 30 April 2015), Art. 12-bis: dogs on a lead, with a muzzle where they could cause danger, damage or disturbance; bags carried",
+          "Regione Friuli Venezia Giulia, LR 20/2012 art. 21: a lead in urban areas and places open to the public",
+          "Regione Friuli Venezia Giulia protected-area layers (SITI_PROT WFS: regional parks, regional and state reserves, biotopes, communal parks, SIC/ZSC and ZPS): no park, reserve or biotope; inside ZPS IT3230089 Dolomiti del Cadore e del Comelico (also EEA). Regione del Veneto, conservation measures of the alpine Natura 2000 sites (DGR 786/2016, annex A), Art. 99: they restate the national dog ordinance (a lead of at most 1.5 m, a muzzle carried)",
+          "OpenStreetMap ways along the board’s line (11 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-18'
+      },
+      shadeCoverage: 95,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The start is beside the SR355 at Cima Sappada: keep your dog on a short lead at the car park","The walk starts and ends near the Monte Siera chairlift and its ski runs: keep your dog close there","A steady climb on forest track and path, a little tiring in places: take it slowly with an older dog","The forest is a Natura 2000 bird area, home to capercaillie and black grouse: keep your dog on the path and on a lead"],
+      terrainType: "Forest track, then woodland path",
+      shadeDescription: undefined,
+      terrainDescription: undefined,
+      waterDescription: undefined,
+      dogNotes: "Sappada’s rural police bylaw (Art. 12-bis) requires dogs on a lead, with a muzzle where they could cause danger, damage or disturbance, and bags carried; the national rule adds a lead of at most 1.5 m on public ground. The forest is a Natura 2000 bird area: keep your dog on the path.",
+      tips: "Start at the Monte Siera chairlift car park at Cima Sappada: 2.1 km and 344 m up to the Rifugio Siera, about 1 h 15, and 30 to 40 minutes back down the same way, as the CAI Sappada sheet gives. Shady almost all the way, so good on a warm day. Keep your dog on a lead and carry a muzzle.",
+      sourceLinks: [
+        { label: "PromoTurismoFVG, 06 Rifugio Siera per sentiero naturalistico Longrone - Sappada", url: "https://www.outdooractive.com/it/r/13977360" },
+        { label: "Comune di Sappada, Regolamento di Polizia Rurale (Art. 12-bis)", url: "https://www.comune.sappada.ud.it/media/files/030189/attachment/Reg_Polizia_Rurale.pdf" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Friuli Venezia Giulia, Cani: guinzaglio sì o no (LR 20/2012)", url: "https://www.regione.fvg.it/rafvg/cms/RAFVG/salute-sociale/igiene-urbana-veterinaria/FOGLIA11/" },
+        { label: "Regione Friuli Venezia Giulia, protected areas (SITI_PROT geoservice)", url: "https://serviziogc.regione.fvg.it/geoserver/SITI_PROT/wfs?service=WFS&request=GetCapabilities" },
+        { label: "Regione del Veneto, DGR 786/2016 annex A (alpine Natura 2000 measures)", url: "https://download.mase.gov.it/Natura2000/Materiale%20Designazione%20ZSC/Veneto/04_Misure%20di%20Conservazione/DGR%20786_27_05_2016-%20Allegato%20A%20MdC%20Alpina.pdf" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.566045, lng: 12.719855, label: "The car park by the Monte Siera chairlift at Cima Sappada, the board’s start" },
+      desc: "A nature trail from Cima Sappada up through the Longrone spruce forest to the Rifugio Siera on the edge of the Pian dei Larici, with views over Sappada and the Peralba group, and back the same way. The sheet lists 2.1 km and 344 m up one way; there and back it is 4.2 km with 364 m up and down, 1 h 30 to 1 h 55."
     }
   };
 

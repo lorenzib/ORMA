@@ -33,6 +33,7 @@ describe('reading a board\'s month grid', () => {
 describe('the snow estimate', () => {
   test('goes by the walk\'s high point', () => {
     expect(snowEstimate(2326)).toEqual({ months: [1, 2, 3, 4, 5, 11, 12], likelihood: 'likely', highPoint: 2326 });
+    expect(snowEstimate(1864).months).toEqual([1, 2, 3, 4, 11, 12]);
     expect(snowEstimate(1700).months).toEqual([1, 2, 3, 4, 12]);
     expect(snowEstimate(900)).toMatchObject({ months: [1, 2, 12], likelihood: 'possible' });
     expect(snowEstimate(0)).toBeNull();

@@ -91,7 +91,8 @@ function dogWeightKg(profile){
 }
 
 function dogConditions(profile){
-  if(Array.isArray(profile.conditions)) return profile.conditions;
+  // 'injury' is the account page's pre-Nov 2026 code for "Recovering from injury".
+  if(Array.isArray(profile.conditions)) return profile.conditions.map(code => code === 'injury' ? 'recovering' : code);
   // Legacy profiles: two booleans instead of the conditions list.
   return [profile.jointIssues && 'joints', profile.heatIssues && 'heat'].filter(Boolean);
 }

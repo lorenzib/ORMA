@@ -33,6 +33,21 @@
       coverageId:String(record.coverageId || record.sourceTrailId || ''),
       source:String(record.source || 'openstreetmap'),
       distanceM:Number.isFinite(Number(record.distanceM)) ? Math.round(Number(record.distanceM)) : 0,
+      // The planner reopens a draft in its own shape and with its climb; both
+      // were dropped here, so every reopened draft came back a loop with no
+      // ascent.
+      shape:['loop', 'point-to-point', 'out-and-back'].includes(record.shape) ? record.shape : 'loop',
+      ascentM:Number.isFinite(Number(record.ascentM)) && record.ascentM !== null ? Math.round(Number(record.ascentM)) : null,
+      // An adjusted walk: which ORMA walk it started from, and how much of it
+      // still follows that walk's checked line.
+      basedOn:record.basedOn && record.basedOn.id
+        ? { id:String(record.basedOn.id), name:String(record.basedOn.name || '') }
+        : null,
+      onLineShare:Number.isFinite(Number(record.onLineShare)) && record.onLineShare !== null
+        ? Math.max(0, Math.min(1, Number(record.onLineShare))) : null,
+      heights:Array.isArray(record.heights) && record.heights.length === path.length
+        && record.heights.every(value => Number.isFinite(Number(value)))
+        ? record.heights.map(value => Math.round(Number(value))) : null,
       points,
       path,
     };
