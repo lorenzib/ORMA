@@ -521,7 +521,10 @@ describe('drawing interactions', () => {
 
   test('a walk can be adjusted from its trail page, and the copy is never Verified', () => {
     // The trail page opens the planner on the walk itself.
-    expect(detailHtml).toContain('<a id="adjustWalkBtn" class="td2-textlink" href="route-planner.html" data-i18n="page.trail.adjustWalk">Adjust walk</a>');
+    // An Edit button beside Save, not a text link.
+    expect(detailHtml).toMatch(/<a id="adjustWalkBtn" class="td2-btn-g" href="route-planner\.html"[^>]*><svg[^>]*>.*<\/svg><span data-i18n="page\.trail\.adjustWalk">Edit<\/span><\/a>/);
+    expect(detailHtml.indexOf('id="adjustWalkBtn"')).toBeGreaterThan(detailHtml.indexOf('id="detailSaveBtn"'));
+    expect(detailHtml.indexOf('id="adjustWalkBtn"')).toBeLessThan(detailHtml.indexOf('id="getDirectionsBtn"'));
     expect(detailSource).toContain('adjustWalkBtn.href = `route-planner.html?trail=${encodeURIComponent(t.id)}`;');
     // The planner loads the rules, and the score engine to score the copy.
     ['route-adjust.js', 'scoring/recommendation-v1.js', 'scoring/recommendation-adapters-v1.js', 'scoring.js', 'match-verdict.js', 'firebase-init.js']

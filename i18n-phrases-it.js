@@ -1841,7 +1841,7 @@ window.ORMA_PHRASES_IT = {
   "Not scored: less than half of this route follows {walk}, so its facts no longer describe it.": "Nessun punteggio: meno di metà di questo percorso segue {walk}, quindi i suoi dati non lo descrivono più.",
   "a medium dog": "un cane di taglia media",
   "Distance and climb are measured on your line. Heat, surfaces and dog rules come from {walk} and were not checked on the new parts.": "Distanza e dislivello sono misurati sulla tua traccia. Caldo, fondo e regole per i cani vengono da {walk} e non sono stati verificati sui tratti nuovi.",
-  "Adjust {walk}": "Modifica {walk}",
+  "Edit {walk}": "Modifica {walk}",
   "Working out the route…": "Calcolo del percorso…",
   "on the checked line of {walk}": "sulla traccia verificata di {walk}",
   "Orange dashes: not checked by ORMA. Look for signs and local dog rules there.": "Tratteggio arancione: non verificato da ORMA. Lì controlla i cartelli e le regole locali per i cani.",

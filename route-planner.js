@@ -1137,7 +1137,7 @@
       return;
     }
     const walkName = trailDisplayName(basedOn);
-    setTitle(tx('Adjust {walk}', { walk:walkName }));
+    setTitle(tx('Edit {walk}', { walk:walkName }));
     adjustBox.hidden = false;
     comparison = preview && preview.path ? adjust.compare(preview.path, basedOn.path) : null;
     drawOffLine(comparison ? comparison.offLines : []);
@@ -1155,7 +1155,7 @@
   if(trailRequest){
     status.textContent = tx('Loading the walk…');
     trailRequest.then(trail => {
-      if(trail && !basedOn) setTitle(tx('Adjust {walk}', { walk:trailDisplayName(trail) }));
+      if(trail && !basedOn) setTitle(tx('Edit {walk}', { walk:trailDisplayName(trail) }));
     });
   }
   loadDog();
