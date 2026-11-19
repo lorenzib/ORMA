@@ -172,6 +172,22 @@ describe('returning homepage region + valley filters', () => {
     expect(html).not.toContain('Under review');
   });
 
+  // Italian names a plural range with its article: "nelle Dolomiti", not
+  // "in Dolomiti". Countries, regions and valleys keep a bare "in".
+  test('the Italian headline says nelle Dolomiti, and in for a valley', () => {
+    const context = loadHomepageContext(sampleTrails);
+    const it = { 'The Dolomites':'Dolomiti', 'Dolomites':'Dolomiti', 'French Alps':'Alpi francesi', 'Italy':'Italia', 'in {place}':'in {place}' };
+    context.DoloPawsI18n = { lang:'it', phrase:(text, vars) => String(it[text] || text).replace(/\{(\w+)\}/g, (m, k) => (vars && k in vars ? vars[k] : m)) };
+    const phrase = label => vm.runInContext(`liInPlacePhrase(${JSON.stringify(label)})`, context);
+    expect(phrase('The Dolomites')).toBe('nelle Dolomiti');
+    expect(phrase('Dolomites')).toBe('nelle Dolomiti');
+    expect(phrase('French Alps')).toBe('nelle Alpi francesi');
+    expect(phrase('Italy')).toBe('in Italia');
+    expect(phrase('Alta Pusteria')).toBe('in Alta Pusteria');
+    context.DoloPawsI18n = { lang:'en', phrase:(text, vars) => (vars ? text.replace('{place}', vars.place) : text) };
+    expect(phrase('The Dolomites')).toBe('in the Dolomites');
+  });
+
   test('the search box narrows the ranked list by trail name', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeCountry = "all"; activeRegion = "all"; activeValley = "all"; liQuery = "chamonix";', context);
@@ -1005,7 +1021,7 @@ describe('returning homepage region + valley filters', () => {
     return document.querySelector('.li-answer-explanation');
   };
 
-  test('a strong option says one verdict line and one thing to check', async () => {
+  test('a strong option says one "Fits" line and one "Watch" line', async () => {
     const positives = [
       { code:'trail.terrain.within-tolerance', message:'Terrain is fine.' },
       { code:'trail.distance.within-range', message:'Distance is within range.', vars:{ distance:'3.6' } },
@@ -1023,9 +1039,10 @@ describe('returning homepage region + valley filters', () => {
     });
     // Three facts at most, however many positives there are.
     expect(panel.querySelector('.li-answer-verdict').textContent)
-      .toBe('Good for Teo: 3.6 km, a gentle 39 m climb and no slopes too steep.');
+      .toBe('Fits3.6 km, a gentle 39 m climb and no slopes too steep');
+    expect(panel.querySelector('.li-answer-verdict .li-answer-tag.is-fit').textContent).toBe('Fits');
     expect([...panel.querySelectorAll('.li-answer-check')].map(line => line.textContent))
-      .toEqual(['No confirmed water on the route, so carry it all.']);
+      .toEqual(['WatchNo confirmed water on the route, so carry it all.']);
     expect(panel.querySelector('ul')).toBeNull();
   });
 
@@ -1038,12 +1055,16 @@ describe('returning homepage region + valley filters', () => {
         { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
       ],
       cautions:[{ message:'This route runs warm.' }],
-      hardStops:[], unknowns:[{ code:'trail.shade.unknown', message:'Shade unknown.' }],
+      hardStops:[], unknowns:[
+        { code:'trail.shade.unknown', message:'Shade unknown.' },
+        { code:'trail.dog-access.unknown', message:'Dog access unknown.' },
+      ],
     });
     // No verdict line under a verdict that says no: its reasons are the cautions.
     expect(panel.querySelector('.li-answer-verdict')).toBeNull();
+    // Two watch lines; of the unknowns only the dog rules are worth one.
     expect([...panel.querySelectorAll('.li-answer-check')].map(line => line.textContent))
-      .toEqual(['This route runs warm.', 'We don’t know how much shade there is.']);
+      .toEqual(['WatchThis route runs warm.', 'WatchWe haven’t found this area’s dog rules yet. Ask the local tourist office before you go.']);
     expect(document.body.textContent).not.toContain('Why it fits Teo');
     // The first card starts open; closing it shows the question it asks.
     const toggle = document.querySelector('[data-why-toggle]');

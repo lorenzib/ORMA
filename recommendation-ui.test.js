@@ -31,11 +31,11 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).toContain('root.dataset.scoringVersion = view.scoringVersion');
   });
 
-  test('each breakdown row carries a status chip, and unknowns sit apart', () => {
-    expect(controller).toContain('recommendation-factor-status is-${esc(row.tone)}');
-    expect(html).toContain('.recommendation-factor-status.is-ok{');
-    expect(html).toContain('.recommendation-factor-status.is-cost{');
-    expect(controller).toContain('recommendation-unchecked');
+  test('the breakdown shows short reasons and fit chips, with no "not checked" list', () => {
+    expect(controller).toContain('view.shortReasons');
+    expect(controller).toContain('view.fitChips');
+    expect(html).toContain('.recommendation-fits li{');
+    expect(controller).not.toContain('recommendation-unchecked');
     // The fold line and its bare "fine" chip are gone.
     expect(controller).not.toContain('recommendation-fine');
   });
@@ -119,7 +119,7 @@ describe('UX-04 canonical recommendation journey', () => {
       positiveReasons:[{ message:'Distance is within range.' }],
       cautions:[{ code:'trail.shade.low', message:'Shade is limited.' }],
       hardStops:[],
-      unknowns:[{ message:'Access is not reviewed.' }],
+      unknowns:[{ code:'trail.dog-access.unknown', message:'Access is not reviewed.' }],
     }));
     window.DoloPawsAuthReady = true;
     window.DoloPawsOffline = null;
@@ -156,16 +156,18 @@ describe('UX-04 canonical recommendation journey', () => {
     // Internal unknown-count and scoring language stay out of customer copy.
     expect(document.body.textContent).not.toContain('trail fact not yet verified');
     expect(document.body.textContent).not.toContain('Canonical scoring');
-    // What the score could not check is said apart, under its own heading.
-    expect(block.querySelector('.recommendation-unchecked').textContent).toContain('Access is not reviewed.');
-    expect(block.querySelector('.recommendation-factors')).toBeNull();
+    // An unknown an owner acts on (dog rules) is one of the reasons; there is
+    // no separate "not checked yet" list any more.
+    expect(block.querySelector('.recommendation-reasons').textContent)
+      .toContain('We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.');
+    expect(block.querySelector('.recommendation-unchecked')).toBeNull();
     expect(document.getElementById('heroVerdict').textContent)
       .toBe('Good with care in an unpersonalized planning view.');
     expect(window.recommendTrail).toHaveBeenCalledTimes(1);
   });
 });
 
-describe('the trail page breakdown keeps the points one tap away', () => {
+describe('the trail page breakdown: short reasons, fit chips, points one tap away', () => {
   const controller = fs.readFileSync(path.join(__dirname, 'trail-recommendation.js'), 'utf8');
   const slice = (start, end) => controller.slice(controller.indexOf(start), controller.indexOf(end));
   // eslint-disable-next-line no-new-func
@@ -175,34 +177,40 @@ describe('the trail page breakdown keeps the points one tap away', () => {
   const tr = (key, fallback, vars) => Object.keys(vars || {})
     .reduce((out, name) => out.split(`{${name}}`).join(vars[name]), fallback);
   const view = {
-    score:48, breakdownFor:'Teo', breakdown:[{}, {}, {}], notChecked:[],
+    score:82, breakdownFor:'Teo', breakdown:[{}, {}, {}],
+    shortReasons:[
+      { text:'Steeper than Teo likes, up to 26% in places.', tone:'cost' },
+      { text:'We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.', tone:'note' },
+    ],
+    fitChips:['6 km', '330 m climb', 'No drops'],
     factorRows:[
-      { topic:'Drops', detail:'Parts of the path run beside steep drops.', status:'Lowers score', tone:'cost', points:'−30' },
-      { topic:'Climb', detail:'662 m of climbing is a lot for Teo.', status:'Lowers score', tone:'cost', points:'−4' },
-      { topic:'Season', detail:'In season this month', status:'Fits', tone:'ok', points:'0' },
+      { topic:'Steepness', tone:'cost', points:'−10' },
+      { topic:'Distance', tone:'ok', points:'0' },
+      { topic:'Climb', tone:'ok', points:'0' },
+      { topic:'Drops', tone:'ok', points:'0' },
     ],
   };
 
-  test('the rows carry reasons and word pills, never a number of points', () => {
+  test('the reasons are one line each, with no points beside them', () => {
     const html = breakdown(view, tr);
-    const rows = html.slice(html.indexOf('<ol class="recommendation-factors">'), html.indexOf('</ol>'));
-    for(const row of view.factorRows) expect(rows).toContain(row.detail);
-    expect(rows).toContain('>Lowers score<');
-    expect(rows).not.toMatch(/−\d/);
+    const reasons = html.slice(html.indexOf('<ul class="recommendation-reasons">'), html.indexOf('</ul>'));
+    for(const reason of view.shortReasons) expect(reasons).toContain(reason.text.replace('’', '’'));
+    expect(reasons).toContain('class="is-note"');
+    expect(reasons).not.toMatch(/−\d/);
   });
 
-  test('a closed "How the score adds up" list holds every row\'s points', () => {
+  test('what fits is one row of chips under "Fits Teo"', () => {
+    const html = breakdown(view, tr);
+    const fits = html.slice(html.indexOf('<div class="recommendation-fits">'));
+    expect(fits).toMatch(/^<div class="recommendation-fits"><strong>Fits Teo<\/strong><ul><li>6 km<\/li><li>330 m climb<\/li><li>No drops<\/li><\/ul>/);
+  });
+
+  test('a closed "How the score adds up" list still holds every factor', () => {
     const html = breakdown(view, tr);
     const points = html.slice(html.indexOf('<details class="recommendation-points">'));
     expect(points).toMatch(/^<details class="recommendation-points"><summary>How the score adds up<\/summary>/);
-    expect(points.match(/<li>/g)).toHaveLength(3);
-    expect(points).toContain('−30');
-    expect(points).toContain('−4');
+    expect(points.match(/<li>/g)).toHaveLength(4);
+    expect(points).toContain('−10');
+    expect(points).toContain('How ORMA scores a walk');
   });
-});
-
-test('a breakdown pill capitalises its first letter only, so "Lowers score" stays as written', () => {
-  const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
-  expect(html).toContain('.recommendation-factor-status::first-letter{text-transform:uppercase;}');
-  expect(html).not.toMatch(/\.recommendation-factor-status\{[^}]*capitalize/);
 });

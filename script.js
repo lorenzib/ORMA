@@ -689,10 +689,19 @@ function liRecommendationLocationPhrase(){
   if(liLocationContext.kind === 'town') return tx('near {place}', { place:liLocationContext.label });
   if(liLocationContext.kind === 'map'){
     const place = liPlaceInView();
-    return place ? tx('in {place}', { place:liShownPlaceLabel(place.label).replace(/^The /, 'the ') }) : tx('in the map view');
+    return place ? liInPlacePhrase(place.label) : tx('in the map view');
   }
-  // "in the Dolomites", not "in The Dolomites".
-  return tx('in {place}', { place:liShownPlaceLabel(liLocationContext.label).replace(/^The /, 'the ') });
+  return liInPlacePhrase(liLocationContext.label);
+}
+
+// "in the Dolomites", not "in The Dolomites". Italian names plural mountain
+// ranges with an article ("nelle Dolomiti", "nelle Alpi francesi") but not
+// countries, regions or valleys ("in Italia", "in Alta Pusteria").
+function liInPlacePhrase(label){
+  const shown = liShownPlaceLabel(label).replace(/^The /, 'the ');
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if(i18n && i18n.lang === 'it' && /^(Dolomiti|Alpi|Prealpi)\b/.test(shown)) return `nelle ${shown}`;
+  return tx('in {place}', { place:shown });
 }
 
 /**
@@ -4227,8 +4236,9 @@ function liWhyLabel(trail, dogName){
   return liIsNotRecommended(trail) ? tx('Why not for {name}', { name:dogName }) : tx('Why it fits {name}', { name:dogName });
 }
 
-// "In season now: best March to November." beside "Good for Teo", from the
-// same rule as the "Out of season" tag (trail-season-words.js seasonFit).
+// The card's season line, tagged like its "Fits" and "Watch" lines: "In
+// season" Best March to November, or "Out of season" Back in June. The same
+// rule as the "Out of season" tag (trail-season-words.js seasonFit).
 function liSeasonFitHtml(trail){
   const words = window.DoloPawsTrailSeasonWords;
   const fit = words && typeof words.seasonFit === 'function' && trail && trail.season
@@ -4236,10 +4246,12 @@ function liSeasonFitHtml(trail){
     : null;
   if(!fit) return '';
   const risks = fit.risks ? ` ${liEscapeHtml(fit.risks)}.` : '';
-  return `<p class="li-answer-season${fit.out ? ' is-out' : ''}"><span><b>${liEscapeHtml(fit.lead)}:</b> ${liEscapeHtml(fit.facts)}.${risks}</span></p>`;
+  const tone = fit.out ? 'is-watch' : 'is-fit';
+  const text = fit.facts.charAt(0).toUpperCase() + fit.facts.slice(1);
+  return `<p class="li-answer-season"><span class="li-answer-tag ${tone}">${liEscapeHtml(fit.out ? tx('Out of season') : tx('In season'))}</span><span>${liEscapeHtml(text)}.${risks}</span></p>`;
 }
 
-function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
+function liRecommendationExplanationHtml(trail, profile, open, isNew = false, showGap = true){
   const recommendation = trail && trail.recommendation;
   const view = liRecommendationView(trail, profile);
   if(!view) return '';
@@ -4251,24 +4263,30 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   // of a dozen, so it now says the verdict in one sentence -- "Good for Teo:
   // 9.6 km, a gentle 170 m climb and water on the way." -- and the one or two
   // things to check. The trail page keeps the full row-by-row breakdown.
-  const verdict = view.cardVerdict
-    ? `<p class="li-answer-verdict"><span><b>${liPersonalisationText(view.cardVerdict.lead)}:</b> ${liPersonalisationText(view.cardVerdict.facts)}.</span></p>`
+  // Two short lines: what fits, tagged "Fits", and the one thing to watch,
+  // tagged "Watch". The trail page has the rest, so the card no longer counts
+  // what it left out ("The trail page has one more").
+  const facts = view.cardVerdict ? String(view.cardVerdict.facts || '') : '';
+  const verdict = facts
+    ? `<p class="li-answer-verdict"><span class="li-answer-tag is-fit">${tx('Fits')}</span><span>${liPersonalisationText(facts.charAt(0).toUpperCase() + facts.slice(1))}</span></p>`
     : '';
   // Cautions first (hard stops already lead them), then what is simply not
   // known, which is a different kind of statement and belongs after. Only
   // trail unknowns: a missing profile field becomes the prompt below, and
   // saying the same thing twice on one card reads as two problems. A strong
   // option says one; any other verdict says why it is not one, so two.
-  // The season has its own line below the verdict, so the engine's "not the
-  // season" caution would say it twice. A dog rule ORMA has not found is not
-  // a warning about the walk: it is a quiet note under the rest (owner, 19 Nov).
-  const limit = recommendation && recommendation.category === 'strong-option' ? 1 : 2;
+  // One thing to watch; a low match, which has no "Fits" line, says two. Only
+  // the unknowns an owner acts on (dog rules) count: "route details are based
+  // on map data" is true of every walk and is not worth a line.
+  // The season has its own line, so the engine's "not the season" caution
+  // would say it twice. A dog rule ORMA has not found is not a warning about
+  // the walk: it is a quiet note under the rest (owner, 19 Nov).
+  const limit = recommendation && recommendation.category === 'not-recommended' ? 2 : 1;
   const SAID_ELSEWHERE = new Set(['trail.season.outside', 'trail.dog-access.unknown']);
   const ownLine = entry => !SAID_ELSEWHERE.has(entry.code);
-  const concerns = (view.cardCautionItems || []).filter(ownLine).slice(0, limit);
-  if(concerns.length < limit) concerns.push(...(view.cardTrailUnknownItems || []).filter(ownLine).slice(0, limit - concerns.length));
+  const concerns = (view.cardCautionItems || []).filter(ownLine).map(entry => entry.text).slice(0, limit);
   const know = concerns
-    .map(entry => `<p class="li-answer-check">${liPersonalisationText(entry.text)}</p>`).join('');
+    .map(entry => `<p class="li-answer-check"><span class="li-answer-tag is-watch">${tx('Watch')}</span><span>${liPersonalisationText(entry)}</span></p>`).join('');
   const season = liSeasonFitHtml(trail);
   const noDogRule = (view.cardTrailUnknownItems || []).some(entry => entry.code === 'trail.dog-access.unknown')
     ? `<p class="li-answer-note">${tx('No dog rule on record here. Check local signs.')}</p>`
@@ -4278,7 +4296,8 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
     : '';
   // Opens the wizard on the dog it is talking about, rather than sending the
   // reader to the account page to find it themselves.
-  const gapFields = profile && profile.name ? liDogGapFields(recommendation) : [];
+  // Said once, on the first card, rather than as a third line on every card.
+  const gapFields = showGap && profile && profile.name ? liDogGapFields(recommendation) : [];
   const gap = gapFields.length
     ? `<p class="li-answer-gap"><button type="button" class="li-answer-gap-btn" data-complete-dog>${
         liPersonalisationText(liT('recommendation.gap.fields', 'Add {name}\u2019s {fields} to sharpen this score \u2192', {
@@ -4666,7 +4685,7 @@ async function renderReturningHomepage(profile, options = {}){
     // are the answer the page was asked for -- unless the reader has hidden
     // reasons with the switch in the list header.
     const startsOpen = isPrimary && !liReasonsHidden;
-    const explanation = liRecommendationExplanationHtml(t, profile, startsOpen, isNew);
+    const explanation = liRecommendationExplanationHtml(t, profile, startsOpen, isNew, index === 0);
     return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>${tx('Other options for {name}', { name:liPersonalisationText(liScoredSubject(profile)) })}</span><a href="browse-trails.html">${tx('See the full catalogue →')}</a></div>` : ''}
     <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}${explanation && startsOpen ? ' is-why-open' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="${tx('Rank {rank}: {name}', { rank, name:liPersonalisationText(t.name) })}"${dim ? ' style="opacity:.55;"' : ''}>
       <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
