@@ -1747,7 +1747,7 @@ window.ORMA_PHRASES_IT = {
   "We know of no water on the way. Bring all {name} needs.": "Non conosciamo fontane lungo il percorso: porta tu tutta l’acqua per {name}.",
   "It’s not the season for this walk.": "Non è la stagione giusta per questo giro.",
   "We haven’t checked this trail’s safety details yet.": "Non abbiamo ancora verificato la sicurezza di questo sentiero.",
-  "We don’t know the local rules for dogs. Check before you go.": "Non conosciamo le regole locali per i cani: informati prima di partire.",
+  "We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.": "Non abbiamo ancora trovato le regole per i cani in questa zona: chiedi all’ufficio turistico prima di partire.",
   "We don’t know how rough the path is.": "Non sappiamo quanto sia impegnativo il sentiero.",
   "We don’t know how long it is.": "Non sappiamo quanto sia lungo.",
   "We don’t know how much climbing there is.": "Non sappiamo quanta salita ci sia.",
