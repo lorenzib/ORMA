@@ -473,13 +473,13 @@
     if(!credit) return '';
     if(credit.text){
       const whole = credit.sourcePage
-        ? `<a href="${esc(credit.sourcePage)}" rel="noopener nofollow">${esc(credit.text)}</a>`
-        : esc(credit.text);
+        ? `<a href="${esc(credit.sourcePage)}" rel="noopener nofollow">${esc(tx(credit.text))}</a>`
+        : esc(tx(credit.text));
       return `<p class="collection-list-card__credit">${tx('Cover: {credit}', { credit:whole })}</p>`;
     }
     const title = credit.sourcePage
-      ? `<a href="${esc(credit.sourcePage)}" rel="noopener nofollow">${esc(credit.title)}</a>`
-      : esc(credit.title);
+      ? `<a href="${esc(credit.sourcePage)}" rel="noopener nofollow">${esc(tx(credit.title))}</a>`
+      : esc(tx(credit.title));
     const licence = credit.licenceUrl
       ? `<a href="${esc(credit.licenceUrl)}" rel="license noopener">${esc(credit.licence)}</a>`
       : esc(credit.licence);
