@@ -49,6 +49,7 @@ function loadHomepageContext(testTrails){
     </div>
     <div class="li-body"></div>
     <div class="li-search"><input id="liSearch"><div id="liSearchSuggest" hidden></div></div>
+    <div id="liAreaPickers"><select id="liCountrySelect"></select><select id="liRegionSelect"></select><select id="liValleySelect"></select></div>
     <div id="liChips"></div>
     <div class="li-new-wrap"><button id="liNewBtn"></button>
       <div id="liNewMenu" hidden>
@@ -169,6 +170,22 @@ describe('returning homepage region + valley filters', () => {
     expect(script).not.toContain('data-prov');
     expect(html).not.toContain('id="areaFilterRow"');
     expect(html).not.toContain('Under review');
+  });
+
+  // Italian names a plural range with its article: "nelle Dolomiti", not
+  // "in Dolomiti". Countries, regions and valleys keep a bare "in".
+  test('the Italian headline says nelle Dolomiti, and in for a valley', () => {
+    const context = loadHomepageContext(sampleTrails);
+    const it = { 'The Dolomites':'Dolomiti', 'Dolomites':'Dolomiti', 'French Alps':'Alpi francesi', 'Italy':'Italia', 'in {place}':'in {place}' };
+    context.DoloPawsI18n = { lang:'it', phrase:(text, vars) => String(it[text] || text).replace(/\{(\w+)\}/g, (m, k) => (vars && k in vars ? vars[k] : m)) };
+    const phrase = label => vm.runInContext(`liInPlacePhrase(${JSON.stringify(label)})`, context);
+    expect(phrase('The Dolomites')).toBe('nelle Dolomiti');
+    expect(phrase('Dolomites')).toBe('nelle Dolomiti');
+    expect(phrase('French Alps')).toBe('nelle Alpi francesi');
+    expect(phrase('Italy')).toBe('in Italia');
+    expect(phrase('Alta Pusteria')).toBe('in Alta Pusteria');
+    context.DoloPawsI18n = { lang:'en', phrase:(text, vars) => (vars ? text.replace('{place}', vars.place) : text) };
+    expect(phrase('The Dolomites')).toBe('in the Dolomites');
   });
 
   test('the search box narrows the ranked list by trail name', async () => {
@@ -776,6 +793,38 @@ describe('returning homepage region + valley filters', () => {
     expect(vm.runInContext('activeRegion', nextVisit)).toBe('savoy');
   });
 
+  // Country, Region and Valley sit beside the search, as on Trails and
+  // Collections; the headline only reads the place they set.
+  test('the visible pickers set the place, and All countries shows every trail', async () => {
+    const context = loadPage(new Map(), new Map());
+    const country = document.getElementById('liCountrySelect');
+    const region = document.getElementById('liRegionSelect');
+    const valley = document.getElementById('liValleySelect');
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    expect([country.value, region.value, valley.value]).toEqual(['IT', 'dolomites', 'all']);
+
+    // Regions follow the country: Savoy is offered once France is chosen.
+    expect([...region.options].map(option => option.value)).not.toContain('savoy');
+    country.value = 'FR';
+    country.dispatchEvent(new window.Event('change'));
+    expect(vm.runInContext('activeRegion', context)).toBe('all');
+    region.value = 'savoy';
+    region.dispatchEvent(new window.Event('change'));
+    expect(vm.runInContext('activeRegion', context)).toBe('savoy');
+    expect(country.value).toBe('FR');
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    const place = document.querySelector('#liToolbarGreeting [data-li-head="area"]');
+    expect(place.tagName).toBe('SPAN');
+    expect(place.textContent).toBe('in Savoy');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
+
+    country.value = 'all';
+    country.dispatchEvent(new window.Event('change'));
+    expect([region.value, valley.value]).toEqual(['all', 'all']);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
+  });
+
   test('a valley chosen during the visit is kept, and a reset goes back to the Dolomites', () => {
     const local = new Map();
     const session = new Map();
@@ -924,8 +973,9 @@ describe('returning homepage region + valley filters', () => {
     expect(toggles[0].textContent).toContain('Hide the reasons');
     expect(toggles[3].textContent).toContain('Why it fits Teo');
     expect(toggles[3].getAttribute('aria-controls')).toBe(panels[3].id);
-    expect(panels[0].textContent).toContain('Why it fits Teo');
-    expect(panels[0].textContent).toContain('What to know today');
+    // The panel is a verdict line and what to check, not two headed columns.
+    expect(panels[0].querySelector('.li-answer-verdict, .li-answer-check')).not.toBeNull();
+    expect(panels[0].textContent).not.toContain('What to know today');
     expect(document.querySelector('.li-answer-open').textContent).toBe('View trail details');
     // "See on map" is in the bar every card now has, so the panel does not
     // repeat it.
@@ -959,75 +1009,19 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelector('.li-row--answer').textContent).not.toContain('86%');
   });
 
-  test('both halves of the answer card are written and set the same way', async () => {
-    // "Why it fits Teo" used the adapter's fold-line: the positives joined
-    // into one sentence. With seven of them that is a verbless list sitting
-    // beside two plain sentences, which is what made the card read as two
-    // voices. It also rendered larger, because the paragraph carried
-    // `li-answer-fine` -- a class with no rule in any stylesheet -- while the
-    // column beside it is set to 11px.
+  // The card used to set "Why it fits Teo" (five bullets of equal weight)
+  // beside "What to know today" (often one line that was not about today). It
+  // is skimmed in a list of a dozen, so it now says one verdict line and the
+  // one or two things to check; the trail page has the row-by-row breakdown.
+  const answerCard = async recommendation => {
     const context = loadHomepageContext(sampleTrails);
-    context.recommendTrail.mockImplementation(() => ({
-      scoringVersion:'1.6.0', score:86, category:'recommended', confidence:'high',
-      positiveReasons:[
-        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.' },
-        { code:'trail.distance.within-range', message:'Distance is within range.' },
-        { code:'trail.exposure.none-known', message:'No exposed section.' },
-      ],
-      factors:[
-        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
-        { code:'trail.distance.within-range', message:'Distance is within range.', impact:0, vars:{ distance:'3.6' } },
-        { code:'trail.exposure.none-known', message:'No exposed section.', impact:0 },
-      ],
-      cautions:[{ message:'No confirmed water on the route, so carry it all.' }],
-      hardStops:[], unknowns:[],
-    }));
+    context.recommendTrail.mockImplementation(() => recommendation);
     vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liApplyLocationGeography();', context);
     await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    return document.querySelector('.li-answer-explanation');
+  };
 
-    const panel = document.querySelector('.li-answer-explanation');
-    expect(panel.textContent).toContain('Why it fits Teo');
-    expect(panel.textContent).toContain('What to know today');
-    // The class that was never styled is gone, so neither column can inherit a
-    // different size from the other.
-    expect(panel.querySelector('.li-answer-fine')).toBeNull();
-    // Both columns are lists, so one CSS rule sets both.
-    const columns = [...panel.querySelectorAll('div')].filter(div => div.querySelector('ul'));
-    expect(columns).toHaveLength(2);
-    // And every reason is a whole sentence, like the column beside it.
-    const fitItems = [...columns[0].querySelectorAll('li')].map(item => item.textContent);
-    expect(fitItems.length).toBeGreaterThan(0);
-    expect(fitItems.every(text => /^[A-Z].*\.$/.test(text.trim()))).toBe(true);
-    expect(fitItems).toContain('The 3.6 km distance is comfortable.');
-  });
-
-  test('a Not recommended card asks why not, and never says it fits', async () => {
-    const context = loadHomepageContext(sampleTrails);
-    context.recommendTrail.mockImplementation(() => ({
-      scoringVersion:'1.6.0', score:49, category:'not-recommended', confidence:'high',
-      positiveReasons:[{ code:'trail.terrain.within-tolerance', message:'Terrain is fine.' }],
-      factors:[
-        { code:'trail.heat.high', message:'Runs warm.', impact:-10 },
-        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
-      ],
-      cautions:[{ message:'This route runs warm.' }],
-      hardStops:[], unknowns:[],
-    }));
-    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liApplyLocationGeography();', context);
-    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
-
-    const list = document.querySelector('#returningCustomerHomepage') || document.body;
-    expect(list.textContent).not.toContain('Why it fits Teo');
-    expect(document.querySelector('.li-answer-explanation').textContent).toContain('Not the problem here');
-    // The first card starts open; closing it shows the question it asks.
-    const toggle = document.querySelector('[data-why-toggle]');
-    toggle.click();
-    expect(toggle.textContent).toContain('Why not for Teo');
-  });
-
-  test('the reasons stop at four, so the cautions are not buried', async () => {
-    // Seven reasons against two cautions is lopsided, and on a card about
-    // whether a walk suits a dog the cautions are the half worth reading.
+  test('a strong option says one "Fits" line and one "Watch" line', async () => {
     const positives = [
       { code:'trail.terrain.within-tolerance', message:'Terrain is fine.' },
       { code:'trail.distance.within-range', message:'Distance is within range.', vars:{ distance:'3.6' } },
@@ -1037,30 +1031,45 @@ describe('returning homepage region + valley filters', () => {
       { code:'trail.dog-access.leash', message:'Dogs allowed on a leash.' },
       { code:'conditions.heat.low', message:'Temperatures are low today.' },
     ];
-    const context = loadHomepageContext(sampleTrails);
-    context.recommendTrail.mockImplementation(() => ({
-      scoringVersion:'1.6.0', score:86, category:'recommended', confidence:'high',
-      positiveReasons:positives,
-      factors:positives.map(entry => ({ ...entry, impact:0 })),
-      cautions:[{ message:'No confirmed water on the route, so carry it all.' }],
+    const panel = await answerCard({
+      scoringVersion:'1.6.0', score:86, category:'strong-option', confidence:'high',
+      positiveReasons:positives, factors:positives.map(entry => ({ ...entry, impact:0 })),
+      cautions:[{ message:'No confirmed water on the route, so carry it all.' }, { message:'Busy at weekends.' }],
       hardStops:[], unknowns:[],
-    }));
-    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liApplyLocationGeography();', context);
-    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+    });
+    // Three facts at most, however many positives there are.
+    expect(panel.querySelector('.li-answer-verdict').textContent)
+      .toBe('Fits3.6 km, a gentle 39 m climb and no slopes too steep');
+    expect(panel.querySelector('.li-answer-verdict .li-answer-tag.is-fit').textContent).toBe('Fits');
+    expect([...panel.querySelectorAll('.li-answer-check')].map(line => line.textContent))
+      .toEqual(['WatchNo confirmed water on the route, so carry it all.']);
+    expect(panel.querySelector('ul')).toBeNull();
+  });
 
-    const panel = document.querySelector('.li-answer-explanation');
-    const columns = [...panel.querySelectorAll('div')].filter(div => div.querySelector('ul'));
-    expect(columns[0].querySelectorAll('li')).toHaveLength(4);
-    // Heat leads, then what the owner asked for. This fixture has no water
-    // positive, so the heat half of the pair is what comes first.
-    expect([...columns[0].querySelectorAll('li')].map(item => item.textContent)).toEqual([
-      'Today is cool enough.',
-      'The terrain is manageable.',
-      'The 3.6 km distance is comfortable.',
-      'The 39 m climb is gentle.',
-    ]);
-    // Fewer than four is left alone, rather than padded from somewhere else.
-    expect(columns[1].querySelectorAll('li')).toHaveLength(1);
+  test('a Not recommended card asks why not, and never says it fits', async () => {
+    const panel = await answerCard({
+      scoringVersion:'1.6.0', score:49, category:'not-recommended', confidence:'high',
+      positiveReasons:[{ code:'trail.terrain.within-tolerance', message:'Terrain is fine.' }],
+      factors:[
+        { code:'trail.heat.high', message:'Runs warm.', impact:-10 },
+        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.', impact:0 },
+      ],
+      cautions:[{ message:'This route runs warm.' }],
+      hardStops:[], unknowns:[
+        { code:'trail.shade.unknown', message:'Shade unknown.' },
+        { code:'trail.dog-access.unknown', message:'Dog access unknown.' },
+      ],
+    });
+    // No verdict line under a verdict that says no: its reasons are the cautions.
+    expect(panel.querySelector('.li-answer-verdict')).toBeNull();
+    // Two watch lines; of the unknowns only the dog rules are worth one.
+    expect([...panel.querySelectorAll('.li-answer-check')].map(line => line.textContent))
+      .toEqual(['WatchThis route runs warm.', 'WatchWe haven’t found this area’s dog rules yet. Ask the local tourist office before you go.']);
+    expect(document.body.textContent).not.toContain('Why it fits Teo');
+    // The first card starts open; closing it shows the question it asks.
+    const toggle = document.querySelector('[data-why-toggle]');
+    toggle.click();
+    expect(toggle.textContent).toContain('Why not for Teo');
   });
 
   test('a future date is reflected in the recommendation instead of being labelled today', async () => {
@@ -1073,7 +1082,7 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liRecommendationDate').value).toBe(vm.runInContext('liDateOffsetIso(1)', context));
   });
 
-  test('offers location in place, asks only on tap, and explains a refusal without blocking the list', async () => {
+  test('asks for location once on a first visit, and explains a refusal without blocking the list', async () => {
     const context = loadHomepageContext(sampleTrails);
     const getCurrentPosition = jest.fn();
     context.navigator.geolocation = { getCurrentPosition };
@@ -1081,31 +1090,62 @@ describe('returning homepage region + valley filters', () => {
     await new Promise(resolve => setTimeout(resolve, 0));
     await vm.runInContext('renderReturningHomepage(null);', context);
 
-    // No permissions API here (Safari): the offer shows, nothing is requested.
-    expect(getCurrentPosition).not.toHaveBeenCalled();
-    const nudge = document.getElementById('liLocationNudge');
-    expect(nudge.hidden).toBe(false);
-    expect(document.getElementById('liLocationNudgeTitle').textContent).toBe('See trails near you');
-    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
-
-    document.getElementById('liLocationNudgeBtn').click();
+    // The homepage follows where the reader is: with nothing chosen, a first
+    // visit asks once, and the list is there while the browser waits.
     expect(getCurrentPosition).toHaveBeenCalledTimes(1);
-    const onError = getCurrentPosition.mock.calls[0][1];
-    onError({ code:1 });
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
+    const nudge = document.getElementById('liLocationNudge');
+    getCurrentPosition.mock.calls[0][1]({ code:1 });
     expect(nudge.hidden).toBe(false);
     expect(document.getElementById('liLocationNudgeTitle').textContent).toContain('Location is off');
     expect(document.getElementById('liLocationNudgeBtn').hidden).toBe(true);
     expect(document.getElementById('liToolbar').hidden).toBe(false);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
 
+    // Not again in the same visit.
+    await vm.runInContext('liProbeLocationPermission();', context);
+    expect(getCurrentPosition).toHaveBeenCalledTimes(1);
+
     // A granted position narrows the list and retires the offer.
-    // Near me moved from the Explore menu to the location summary,
-    // beside Change and Show all. The behaviour is unchanged.
     document.getElementById('liNearMeBtn').click();
     const onSuccess = getCurrentPosition.mock.calls[1][0];
     onSuccess({ coords:{ latitude:46.57, longitude:11.67 } });
     await new Promise(resolve => setTimeout(resolve, 0));
     expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Your location · within 25 km');
+    expect(nudge.hidden).toBe(true);
+  });
+
+  test('somewhere ORMA does not cover keeps the Dolomites and says how far the nearest walk is', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    const getCurrentPosition = jest.fn();
+    context.navigator.geolocation = { getCurrentPosition };
+    vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    const rowsBefore = document.querySelectorAll('#returningTrailList .li-row').length;
+
+    // London: nothing within reach.
+    getCurrentPosition.mock.calls[0][0]({ coords:{ latitude:51.5, longitude:-0.12 } });
+    await new Promise(resolve => setTimeout(resolve, 0));
+    const nudge = document.getElementById('liLocationNudge');
+    expect(nudge.hidden).toBe(false);
+    expect(nudge.dataset.state).toBe('out-of-range');
+    expect(document.getElementById('liLocationNudgeTitle').textContent).toBe('ORMA isn’t in your area yet');
+    expect(document.getElementById('liLocationNudgeDetail').textContent).toMatch(/^The nearest ORMA walk is [\d,.]+ km away\./);
+    expect(document.getElementById('liLocationNudgeBtn').hidden).toBe(true);
+    expect(vm.runInContext('liLocationContext.kind', context)).toBe('area');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(rowsBefore);
+
+    // Near me from there does not empty the list either.
+    document.getElementById('liNearMeBtn').click();
+    getCurrentPosition.mock.calls[1][0]({ coords:{ latitude:51.5, longitude:-0.12 } });
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(vm.runInContext('liLocationContext.kind', context)).toBe('area');
+    expect(nudge.dataset.state).toBe('out-of-range');
+
+    // Picking a place answers it.
+    vm.runInContext('liSetLocationContext({ kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" });', context);
+    await new Promise(resolve => setTimeout(resolve, 0));
     expect(nudge.hidden).toBe(true);
   });
 
@@ -1338,8 +1378,8 @@ describe('map-first returning homepage layout contract', () => {
     expect(mobileCss).toContain('body.mhome-active .li-new-wrap{grid-column:5/7;grid-row:3;');
     expect(mobileCss).toContain('body.mhome-active .li-quick-filters{grid-column:1/5;grid-row:4;');
     expect(mobileCss).toContain('body.mhome-active #liFiltersWrap{grid-column:5/7;grid-row:4;');
-    // The three geography dropdowns are gone from the markup entirely.
-    expect(html).not.toContain('geo-filter-control');
+    // Country, Region and Valley sit on their own row under search.
+    expect((html.match(/geo-filter-control/g) || [])).toHaveLength(3);
     expect(html).not.toContain('id="liValleyWrap"');
     expect(mobileCss).toContain('body.mhome-active .li-saved-count{display:grid;');
     expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');

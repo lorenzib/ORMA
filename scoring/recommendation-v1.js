@@ -217,6 +217,12 @@
     return { ...ranks, preferredDurationMin, declaredCount };
   }
 
+  // The dog's steepness limit on the trail scale: 0 gentle slopes only,
+  // 1 up to moderately steep, 2 no limit. Shown on the account page.
+  function steepnessLimit(dog){
+    return deriveDog(dog, []).terrain;
+  }
+
   function deriveDog(dog, unknowns){
     dog = dog || {};
     const fitnessKnown = Object.prototype.hasOwnProperty.call(FITNESS, dog.fitness);
@@ -231,7 +237,10 @@
     if(age === null) unknowns.push(item('dog.age.unknown', 'Age is missing, so life-stage adjustments are not applied.'));
     if(weight === null) unknowns.push(item('dog.weight.unknown', 'Weight is missing, so size adjustments are not applied.'));
 
-    const conditions = new Set(Array.isArray(dog.conditions) ? dog.conditions : []);
+    // 'injury' is what the account page saved for "Recovering from injury"
+    // before Nov 2026; the dog wizard always saved 'recovering'.
+    const conditions = new Set((Array.isArray(dog.conditions) ? dog.conditions : [])
+      .map(code => code === 'injury' ? 'recovering' : code));
     const traits = dog.traits || {};
     const puppy = age !== null && age < 1;
     const senior = age !== null && age >= 8;
@@ -300,6 +309,11 @@
     const limits = [puppy, senior, orthopedic, conditions.has('cardiac'), conditions.has('overweight')]
       .filter(Boolean).length;
     if(base !== FITNESS.low && limits <= 1) terrain = Math.max(terrain, FITNESS.moderate.terrain);
+    // The owner's own answer (homepage wizard: "How steep can they go?"):
+    // 0 gentle slopes only, 1 up to moderately steep. It can only lower the
+    // limit, never raise it past what age and health allow.
+    const ownerLimit = numberOrNull(dog.steepnessLimit);
+    if(ownerLimit === 0 || ownerLimit === 1) terrain = Math.min(terrain, ownerLimit);
 
     return {
       terrain: Math.max(0, terrain),
@@ -406,6 +420,8 @@
     }
 
     const terrain = numberOrNull(suitability.terrainRank);
+    // Shown with the level on the trail page; never scored on its own.
+    const steepest = numberOrNull(suitability.steepestPercent);
     if(terrain === null){
       unknowns.push(item('trail.terrain.unknown', 'Terrain difficulty is unknown.'));
     }else if(terrain > dog.terrain){
@@ -414,10 +430,10 @@
       const penalty = (terrain - dog.terrain) * 10;
       penalise(penalty, item('trail.terrain.above-tolerance',
         `Terrain is above this dog's effective tolerance (${terrain} versus ${dog.terrain}).`,
-        { terrain, tolerance:dog.terrain }));
+        { terrain, tolerance:dog.terrain, steepest }));
     }else{
       positives.push(item('trail.terrain.within-tolerance',
-        'Terrain is within this dog’s effective tolerance.'));
+        'Terrain is within this dog’s effective tolerance.', { terrain, tolerance:dog.terrain, steepest }));
     }
 
     const distance = numberOrNull(metrics.distanceKm);
@@ -990,6 +1006,7 @@
     isColdDay,
     isHeatOnlyHazard,
     CHAIRLIFT_MAX_KG,
+    steepnessLimit,
     calculateRecommendation,
   };
 });

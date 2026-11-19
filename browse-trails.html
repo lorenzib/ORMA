@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trails, ORMA</title>
 <meta name="description" content="Every dog-friendly trail in ORMA, Dolomites and Savoy, browsable without an account, each scored for paw safety, shade, water and terrain.">
+<link rel="alternate" hreflang="en" href="https://www.app-orma.com/browse-trails.html">
+<link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/browse-trails.html">
+<link rel="alternate" hreflang="x-default" href="https://www.app-orma.com/browse-trails.html">
 <meta name="theme-color" content="#2E4034">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -87,26 +90,15 @@
   .browse-water{min-height:38px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
   .browse-water[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
   .browse-quick-filters{display:flex;align-items:center;gap:8px;}
-  .browse-quick-filter,.browse-saved-only{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:40px;min-height:40px;box-sizing:border-box;padding:0 13px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:var(--card);color:var(--ink);font:600 12.5px/1 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
+  .browse-quick-filter,.browse-saved-only{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:42px;min-height:42px;box-sizing:border-box;padding:0 13px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:var(--card);color:var(--ink);font:700 12.5px/1 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
   #browseWater .dp-icon-svg{transform:translateY(1px);}
   #browseWater>span:last-child,.browse-saved-only>span:nth-child(2){display:inline-flex;align-items:center;min-height:21px;line-height:1;}
   .browse-quick-filter[aria-pressed="true"],.browse-saved-only[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;color:#24462E;font-weight:700;}
   .browse-saved-count{display:inline-flex;align-items:center;justify-content:center;min-width:21px;height:21px;padding:0 6px;border-radius:999px;background:#EDF0E8;font-size:11px;}
   .browse-filter-controls{display:none!important;}
-  .browse-filter-group{padding:2px 0 11px;}
-  .browse-filter-group+.browse-filter-group{border-top:1px solid var(--divider);padding-top:12px;}
-  .browse-filter-group__title{font:700 10px/1 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
   #browseFiltersBtn.on{border-color:#9FC4B0;font-weight:700;}
+  /* The panel itself is styled in discovery-filters.css, shared with home. */
   #browseFiltersMenu{left:auto;right:0;}
-  @media(max-width:700px){
-    #browseFiltersMenu{
-      position:fixed;top:auto;right:8px;bottom:max(8px,env(safe-area-inset-bottom));left:8px;
-      width:auto;max-height:calc(100dvh - 16px - env(safe-area-inset-bottom));
-      overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
-    }
-    #browseFiltersMenu .li-fhead{position:sticky;top:-16px;z-index:2;margin:-16px -16px 0;padding:16px;background:var(--card);}
-    #browseFiltersApply{position:sticky;bottom:-16px;z-index:2;margin:16px -16px -16px;width:calc(100% + 32px);border-radius:0 0 14px 14px;}
-  }
   .browse-results-meta .browse-result-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
   @media(max-width:760px){
     .browse-design-head{padding-left:18px;padding-right:18px;}
@@ -252,22 +244,10 @@
   #browseTools{display:flex;flex-wrap:nowrap;align-items:center;gap:8px;}
   #browseTools>.browse-search-group{flex:1 1 320px;min-width:0;}
   #browseTools .browse-search-shell{max-width:none;}
-  #browseTools>.browse-area-wrap,#browseTools>#browseFiltersWrap,#browseTools>.browse-saved-only{flex:none;width:auto;}
-  .browse-area-btn{display:inline-flex;align-items:center;gap:7px;height:42px;max-width:300px;box-sizing:border-box;padding:0 14px;border:1.5px solid var(--paper-line);border-radius:999px;background:#fff;color:var(--ink);font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
-  .browse-area-btn svg{flex:none;color:var(--accent);}
-  .browse-area-btn #browseAreaLabel{overflow:hidden;text-overflow:ellipsis;}
-  .browse-area-btn:hover,.browse-area-btn[aria-expanded="true"]{border-color:#9FC4B0;}
-  #browseAreaPanel{position:absolute;top:calc(100% + 8px);left:0;z-index:60;width:300px;box-sizing:border-box;padding:12px;border:1px solid var(--paper-line);border-radius:14px;background:#fff;box-shadow:0 14px 34px -12px rgba(23,42,28,.4);}
-  #browseAreaPanel[hidden]{display:none;}
-  #browseAreaPanel .browse-area-controls{display:grid;grid-template-columns:1fr;gap:10px;}
-  #browseAreaPanel .browse-geo-group{display:flex;flex-direction:column;gap:5px;width:100%;}
-  #browseAreaPanel .browse-geo-label{position:static;width:auto;height:auto;overflow:visible;clip:auto;color:#8A9689;font:700 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
-  /* Inside the panel the heading above names the picker, so the picker
-     shows its value ("All countries") rather than repeating its name. */
-  #browseAreaPanel .area-select-trigger__kicker{display:none;}
-  #browseAreaPanel .area-select-trigger__label{display:inline;}
-  #browseFiltersMenu .browse-quick-filters{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:4px 8px 2px;padding:0;border:0;}
-  #browseFiltersMenu .browse-quick-filter{width:100%;min-width:0;height:38px;min-height:38px;padding:0 10px;font-size:12px;}
+  #browseTools>#browseFiltersWrap,#browseTools>.browse-saved-only{flex:none;width:auto;}
+  /* Country, Region and Valley in the row: equal shares of what is left. */
+  #browseTools>.browse-area-controls{flex:0 1 570px;min-width:0;}
+  #browseTools .browse-geo-group{flex:1 1 0;width:auto;min-width:0;}
   .browse-active-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px;}
   .browse-active-chips[hidden]{display:none;}
   .browse-active-chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px 0 12px;border:1px solid #A9C5AE;border-radius:999px;background:#E1ECE2;color:#24462E;font:700 12px 'Inter',sans-serif;cursor:pointer;}
@@ -295,18 +275,22 @@
   @media(max-width:760px){
     #browseTools{flex-wrap:wrap;}
     #browseTools>.browse-search-group{flex:1 1 100%;}
-    #browseTools>.browse-area-wrap{flex:1 1 0;min-width:0;}
-    #browseTools .browse-area-btn{width:100%;max-width:none;}
-    #browseAreaPanel{width:min(300px,calc(100vw - 32px));}
-    /* Saved shrinks to its heart and count so the second row holds all three. */
+    /* Country, Region and Valley share the second row, as on Collections;
+       Filters and Saved share the third. */
+    #browseTools>.browse-area-controls{flex:1 1 100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;}
+    #browseTools .browse-geo-group .area-select-trigger{padding:0 8px 0 11px;gap:4px;}
+    #browseTools .browse-geo-group .area-select-trigger svg{width:16px;height:16px;}
+    #browseTools>#browseFiltersWrap{flex:1 1 0;}
+    #browseTools>#browseFiltersWrap #browseFiltersBtn{width:100%;justify-content:center;}
+    /* Saved shrinks to its heart and count. */
     #browseTools>.browse-saved-only{padding-inline:11px;gap:6px;}
     #browseTools>.browse-saved-only [data-i18n="browse.quick.saved"]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
     #browseTools #browseFiltersBtn{width:auto;padding-inline:12px;}
     #browseTools #browseFiltersBtn .li-caret{display:none;}
-    #browseTools .browse-area-btn{padding-inline:12px;}
   }
 </style>
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
+<link rel="stylesheet" href="discovery-filters.css">
 </head>
 <body>
 
@@ -344,29 +328,21 @@
       </label>
       <button type="button" id="browseSearchBtn" class="browse-search-submit" data-i18n="browse.search.go">Search</button>
     </div>
-    <!-- One "Area" control in the row; Country, Region and Valley open
-         inside it and still drive the same selects. -->
-    <div class="li-menuwrap browse-area-wrap" id="browseAreaWrap">
-      <button type="button" id="browseAreaBtn" class="browse-area-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="browseAreaPanel">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
-        <span id="browseAreaLabel" data-i18n="areas.all">All areas</span> <span class="li-caret" aria-hidden="true">▾</span>
-      </button>
-      <div class="browse-area-panel" id="browseAreaPanel" role="dialog" aria-label="Choose an area" hidden data-i18n-aria-label="page.browseTrails.chooseAnArea">
-        <div class="browse-area-controls" aria-label="Choose trail area" data-i18n-aria-label="page.browseTrails.chooseTrailArea">
-          <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
-            <span class="browse-geo-label" data-i18n="browse.geo.country">Country</span>
-            <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filter trails by country"></select></span>
-          </label>
-          <label class="browse-geo-group geo-filter-control" for="browseRegionSelect">
-            <span class="browse-geo-label" data-i18n="browse.geo.region">Region</span>
-            <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-kicker-until-selected data-control-kicker="Region" aria-label="Filter trails by region"></select></span>
-          </label>
-          <label class="browse-geo-group browse-geo-group--valley geo-filter-control" for="browseValleySelect">
-            <span class="browse-geo-label" data-i18n="browse.geo.valley">Valley</span>
-            <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filter trails by valley"></select></span>
-          </label>
-        </div>
-      </div>
+    <!-- Country, Region and Valley sit in the row, as on Collections and the
+         signed-in home page; the rest of the narrowing is inside Filters. -->
+    <div class="browse-area-controls" id="browseAreaControls" role="group" aria-label="Choose trail area" data-i18n-aria-label="page.browseTrails.chooseTrailArea">
+      <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
+        <span class="browse-geo-label" data-i18n="browse.geo.country">Country</span>
+        <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filter trails by country" data-i18n-aria-label="browse.filters.filterCountry"></select></span>
+      </label>
+      <label class="browse-geo-group geo-filter-control" for="browseRegionSelect">
+        <span class="browse-geo-label" data-i18n="browse.geo.region">Region</span>
+        <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-kicker-until-selected data-control-kicker="Region" aria-label="Filter trails by region" data-i18n-aria-label="browse.filters.filterRegion"></select></span>
+      </label>
+      <label class="browse-geo-group browse-geo-group--valley geo-filter-control" for="browseValleySelect">
+        <span class="browse-geo-label" data-i18n="browse.geo.valley">Valley</span>
+        <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filter trails by valley" data-i18n-aria-label="browse.filters.filterValley"></select></span>
+      </label>
     </div>
     <div class="li-menuwrap" id="browseFiltersWrap">
         <button type="button" id="browseFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
@@ -379,16 +355,15 @@
             <button type="button" id="browseFiltersReset" data-i18n="browse.filters.resetAll">Reset all</button>
           </div>
           <div class="browse-filter-group">
-            <div class="browse-filter-group__title" data-i18n="browse.filters.quick">Quick filters</div>
+            <div class="li-fsec" data-i18n="browse.filters.quick">Quick filters</div>
             <div class="browse-quick-filters" aria-label="Quick dog filters" data-i18n-aria-label="browse.quick.aria">
-              <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span data-i18n="browse.quick.shade">High shade</span></button>
-              <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="22" aria-hidden="true"></span><span data-i18n="browse.quick.water">Water</span></button>
-              <button type="button" class="browse-quick-filter" id="browseChairlifts" aria-pressed="false" data-audit-label="Chairlift-assisted routes" title="Routes that ride an open chairlift are hidden by default: they can be fatal for a dog not used to one" data-i18n-title="browse.chairlifts.title"><span aria-hidden="true">⚠</span><span data-i18n="browse.chairlifts.label">Include chairlift routes</span></button>
-              <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)" data-i18n-title="browse.quick.multiDayTitle"><span aria-hidden="true">🏕️</span><span data-i18n="browse.quick.multiDay">Multi-day</span></button>
+              <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.quick.shade">High shade</span></button>
+              <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.quick.water">Water</span></button>
+              <button type="button" class="browse-quick-filter" id="browseChairlifts" aria-pressed="false" data-audit-label="Chairlift-assisted routes" title="Routes that ride an open chairlift are hidden by default: they can be fatal for a dog not used to one" data-i18n-title="browse.chairlifts.title"><span data-dp-icon="lifts" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.chairlifts.label">Include chairlift routes</span></button>
+              <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)" data-i18n-title="browse.quick.multiDayTitle"><span data-dp-icon="hut" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.quick.multiDay">Multi-day</span></button>
             </div>
           </div>
           <div class="browse-filter-group">
-            <div class="browse-filter-group__title" data-i18n="browse.filters.essentials">Route essentials</div>
             <div class="li-fsec" data-i18n="browse.filters.distance">Distance</div>
             <div class="li-seg" id="brDistSeg"></div>
             <div class="li-fsec" data-i18n="browse.filters.rating">Trail rating</div>
@@ -397,8 +372,7 @@
             <div class="li-seg" id="brMatchSeg"></div>
           </div>
           <div class="browse-filter-group">
-            <div class="browse-filter-group__title" data-i18n="browse.filters.conditions">Terrain &amp; trail conditions</div>
-            <div class="li-fsec" data-i18n="browse.filters.terrain">Terrain underfoot</div>
+            <div class="li-fsec" data-i18n="browse.filters.terrain">Steepness</div>
             <div class="li-seg" id="brTerrainSeg"></div>
           </div>
           <button type="button" class="li-apply" id="browseFiltersApply" data-i18n="browse.filters.show">Show trails</button>
@@ -409,51 +383,51 @@
       </button>
     <div class="browse-filter-controls" id="browseFilterControls" hidden>
       <label class="browse-field"><span data-i18n="browse.filters.distance">Distance</span>
-        <select id="browseDistance" aria-label="Filter by distance">
+        <select id="browseDistance" aria-label="Filter by distance" data-i18n-aria-label="browse.filters.filterDistance">
           <option value="all">Distance</option>
-          <option value="3" hidden>Up to 3 km</option>
+          <option value="3" hidden data-i18n="browse.filters.upTo3">Up to 3 km</option>
           <option value="5">Under 5 km</option>
-          <option value="6" hidden>Up to 6 km</option>
+          <option value="6" hidden data-i18n="browse.filters.upTo6">Up to 6 km</option>
           <option value="10">5–10 km</option>
-          <option value="20" hidden>Up to 20 km</option>
+          <option value="20" hidden data-i18n="browse.filters.upTo20">Up to 20 km</option>
           <option value="u5" hidden>Under 5 km</option>
           <option value="5to10" hidden>5–10 km</option>
           <option value="10p" hidden>10 km+</option>
         </select>
       </label>
       <label class="browse-field"><span data-i18n="browse.filters.rating">Trail rating</span>
-        <select id="browseRisk" aria-label="Filter by trail rating">
+        <select id="browseRisk" aria-label="Filter by trail rating" data-i18n-aria-label="browse.filters.filterRating">
           <option value="all">Trail rating</option>
           <option value="low-risk">Low risk</option>
-          <option value="moderate">Moderate</option>
+          <option value="moderate" data-i18n="hp.difficulty.moderate">Moderate</option>
           <option value="caution">Caution</option>
         </select>
       </label>
-      <label class="browse-field browse-field--advanced"><span data-i18n="account.profile.terrainTolerance">Terrain tolerance</span>
-        <select id="browseTerrain" aria-label="Filter by terrain tolerance">
-          <option value="">Any terrain</option>
-          <option value="soft">Gentle surfaces only</option>
-          <option value="mixed">Up to mixed terrain</option>
-          <option value="rocky">Rocky terrain is okay</option>
+      <label class="browse-field browse-field--advanced"><span data-i18n="browse.filters.terrain">Steepness</span>
+        <select id="browseTerrain" aria-label="Filter by steepness" data-i18n-aria-label="browse.filters.filterTerrain">
+          <option value="" data-i18n="browse.filters.anySteepness">Any steepness</option>
+          <option value="soft" data-i18n="filters.chip.terrainSoft">Gentle slopes only</option>
+          <option value="mixed" data-i18n="filters.chip.terrainMixed">Up to moderately steep</option>
+          <option value="rocky" data-i18n="filters.chip.terrainRocky">Steep slopes are okay</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.shadeHeat">Shade &amp; heat</span>
-        <select id="browseHeat" aria-label="Filter by reviewed shade or heat">
-          <option value="">Any shade or heat data</option>
-          <option value="shade-reviewed">At least 30% shade</option>
+        <select id="browseHeat" aria-label="Filter by reviewed shade or heat" data-i18n-aria-label="browse.filters.filterHeat">
+          <option value="" data-i18n="browse.filters.anyHeat">Any shade or heat data</option>
+          <option value="shade-reviewed" data-i18n="browse.filters.shade30">At least 30% shade</option>
           <option value="shade-40" hidden>Over 40% shade</option>
           <option value="shade-60" hidden>Over 60% shade</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.exposure">Exposure</span>
-        <select id="browseExposure" aria-label="Filter by reviewed exposure">
-          <option value="">Any exposure data</option>
+        <select id="browseExposure" aria-label="Filter by reviewed exposure" data-i18n-aria-label="browse.filters.filterExposure">
+          <option value="" data-i18n="browse.filters.anyExposure">Any exposure data</option>
           <option value="none-reviewed">No reported exposure</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.dogRestrictions">Dog restrictions</span>
-        <select id="browseAccess" aria-label="Filter by reviewed dog access">
-          <option value="">Any dog-access status</option>
+        <select id="browseAccess" aria-label="Filter by reviewed dog access" data-i18n-aria-label="browse.filters.filterAccess">
+          <option value="" data-i18n="browse.filters.anyAccess">Any dog-access status</option>
           <option value="allowed-reviewed">Dogs permitted</option>
         </select>
       </label>
@@ -971,6 +945,7 @@
 <a href="trail.html?id=anello-casera-vas-monte-buoi" style="display:block;color:inherit;">Anello Casera Vas - Casera Monte Buoi</a>
 <a href="trail.html?id=anello-lago-di-verzegnis" style="display:block;color:inherit;">Anello del Lago di Verzegnis</a>
 <a href="trail.html?id=raunis-cascate-belepeit" style="display:block;color:inherit;">Borgo Raunis e le cascate del rio Belepeit</a>
+<a href="trail.html?id=rifugio-siera-longrone-sappada" style="display:block;color:inherit;">Cima Sappada to Rifugio Siera through the Longrone forest</a>
 <a href="trail.html?id=col-dei-piais-claut" style="display:block;color:inherit;">Col dei Piais</a>
 <a href="trail.html?id=monte-rest-da-passo-rest" style="display:block;color:inherit;">Dal Passo Rest al Monte Rest</a>
 <a href="trail.html?id=fontanon-di-goriuda" style="display:block;color:inherit;">Fontanon di Goriuda</a>
@@ -1114,7 +1089,7 @@
 </footer>
 
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261118-1"></script>
+<script src="i18n.js?v=20261119-2"></script>
 <script src="trust/evidence-v1.js?v=20261006-2"></script>
 <script src="trail-trust.js?v=20261118-1"></script>
 <script src="scoring/recommendation-v1.js?v=20260917-1"></script>
@@ -1710,6 +1685,7 @@
         const b = document.createElement('button');
         b.type = 'button';
         b.className = 'li-segbtn' + (String(cur) === String(o.v) ? ' on' : '');
+        b.setAttribute('aria-pressed', String(String(cur) === String(o.v)));
         b.textContent = o.label;
         b.addEventListener('click', () => { pick(o.v); page = 1; renderPage('push'); buildFilterPanel(); });
         el.appendChild(b);
@@ -1724,7 +1700,7 @@
         { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.lowRisk', 'Low risk'), v:'low-risk' }, { label:bt('hp.filters.moderate', 'Moderate'), v:'moderate' }, { label:bt('hp.filters.caution', 'Caution'), v:'caution' },
       ], risk.value, v => { risk.value = v; });
       brSeg('brTerrainSeg', [
-        { label:bt('hp.filters.any', 'Any'), v:'' }, { label:bt('hp.filters.gentle', 'Gentle only'), v:'soft' }, { label:bt('hp.filters.mixed', 'Up to mixed'), v:'mixed' }, { label:bt('hp.filters.rocky', 'Rocky is okay'), v:'rocky' },
+        { label:bt('hp.filters.any', 'Any'), v:'' }, { label:bt('hp.filters.gentle', 'Gentle only'), v:'soft' }, { label:bt('hp.filters.mixed', 'Up to moderate'), v:'mixed' }, { label:bt('hp.filters.rocky', 'Steep is okay'), v:'rocky' },
       ], terrain.value, v => { terrain.value = v; });
       brSeg('brMatchSeg', [
         { label:bt('hp.filters.any', 'Any'), v:'' }, { label:'60%+', v:'60' }, { label:'75%+', v:'75' }, { label:'85%+', v:'85' },
@@ -1735,6 +1711,8 @@
       distance.value = 'all'; risk.value = 'all'; terrain.value = ''; heat.value = '';
       exposure.value = ''; access.value = '';
       minMatchValue = ''; waterOnly = false;
+      // Reset all means every switch in the panel, the quick filters too.
+      durationValue = 'day'; liftsValue = '';
       page = 1; renderPage('push'); buildFilterPanel();
     });
     const filtersApply = document.getElementById('browseFiltersApply');
@@ -1769,6 +1747,9 @@
         filtersBtn.setAttribute('aria-expanded', String(open));
       });
       document.addEventListener('click', (e) => {
+        // A chosen option is rebuilt by its own click, so its button is no
+        // longer in the page by now; that is a click inside, not outside.
+        if(!e.target.isConnected) return;
         if(!toolsWrap.contains(e.target)){
           if(filtersMenu) filtersMenu.hidden = true;
           filtersBtn.setAttribute('aria-expanded', 'false');
@@ -1777,6 +1758,10 @@
       document.addEventListener('keydown', (e) => {
         if(e.key === 'Escape'){
           toolsWrap.classList.remove('filters-open');
+          if(filtersMenu && !filtersMenu.hidden){
+            filtersMenu.hidden = true;
+            filtersBtn.focus();
+          }
           filtersBtn.setAttribute('aria-expanded', 'false');
         }
       });

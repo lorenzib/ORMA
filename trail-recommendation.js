@@ -24,40 +24,38 @@
     return `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
   }
 
-  // P0-1: the breakdown sits directly under the Match %, headed in the dog's
-  // name, and lists every factor the score was computed from in descending
-  // order of impact. Each cost row carries both the points and the reason, so
-  // no factor ever reads as a bare label or a bare number. What cost nothing
-  // is folded into one closing line rather than listed sentence by sentence.
+  // P0-1 still holds: every factor behind the score is listed, under the
+  // points link. What shows is short: the reasons that lower the score, one
+  // line each, then what fits as a row of chips. The long "not checked yet"
+  // list is gone; the unknowns an owner acts on (dog rules) are reasons.
   function breakdown(view, tr){
-    if(!view.breakdown.length) return '';
-    const rows = (view.breakdownRows || view.breakdown).map(factor => {
-      const points = factor.impact < 0
-        ? `\u2212${Math.abs(factor.impact)}`
-        : factor.impact > 0
-          ? `+${factor.impact}`
-          : factor.kind === 'stop'
-            ? tr('recommendation.breakdown.stop', 'stop')
-            : factor.kind === 'caution'
-              ? tr('recommendation.breakdown.note', 'note')
-              : tr('recommendation.breakdown.noCost', 'fine');
-      const tone = factor.impact < 0 || factor.kind === 'stop' ? 'cost' : 'clear';
-      return `<li><span class="recommendation-factor-impact is-${tone}">${esc(points)}</span>` +
-        `<span class="recommendation-factor-reason">${esc(factor.message)}</span></li>`;
-    }).join('');
-    const fine = view.fineLine
-      ? `<p class="recommendation-fine${view.fineTone === 'reassure' ? '' : ' is-neutral'}">${esc(view.fineLine)}</p>`
+    const reasons = view.shortReasons || [];
+    const chips = view.fitChips || [];
+    if(!view.breakdown.length && !reasons.length) return '';
+    const title = view.score === null
+      ? tr('recommendation.breakdown.titleNoScore', 'Why this score for {name}', { name:view.breakdownFor })
+      : tr('recommendation.breakdown.title', 'Why {score}% for {name}', { score:view.score, name:view.breakdownFor });
+    const reasonList = reasons.length
+      ? `<ul class="recommendation-reasons">${reasons.map(reason =>
+          `<li class="is-${esc(reason.tone)}">${esc(reason.text)}</li>`).join('')}</ul>`
+      : '';
+    const fits = chips.length
+      ? `<div class="recommendation-fits"><strong>${esc(tr('recommendation.fits.title', 'Fits {name}', { name:view.breakdownFor }))}</strong>` +
+        `<ul>${chips.map(chip => `<li>${esc(chip)}</li>`).join('')}</ul></div>`
       : '';
     const note = view.breakdownNote
       ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
       : '';
-    const title = view.score === null
-      ? tr('recommendation.breakdown.titleNoScore', 'Why this score for {name}', { name:view.breakdownFor })
-      : tr('recommendation.breakdown.title', 'Why {score}% for {name}', { score:view.score, name:view.breakdownFor });
+    const pointRows = (view.factorRows || []).map(row =>
+      `<li><span class="recommendation-points-topic">${esc(row.topic)}</span>` +
+        `<span class="recommendation-points-value is-${esc(row.tone)}">${esc(row.points)}</span></li>`).join('');
+    const howLink = `<a class="recommendation-how" href="${esc(tr('recommendation.breakdown.howHref', 'how-scoring-works.html#steepness'))}">${esc(tr('recommendation.breakdown.how', 'How ORMA scores a walk'))}</a>`;
+    const points = pointRows
+      ? `<details class="recommendation-points"><summary>${esc(tr('recommendation.breakdown.points', 'How the score adds up'))}</summary>` +
+        `<ol>${pointRows}</ol>${howLink}</details>`
+      : howLink;
     return `<section class="recommendation-breakdown">` +
-      `<h3>${esc(title)}</h3>` +
-      (rows ? `<ol class="recommendation-factors">${rows}</ol>` : '') +
-      fine + note + `</section>`;
+      `<h3>${esc(title)}</h3>` + reasonList + fits + note + points + `</section>`;
   }
 
   function sections(entries){

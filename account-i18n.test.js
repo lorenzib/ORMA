@@ -51,7 +51,7 @@ describe('account-management translation boundary', () => {
     [
       'account.impact.noCap',
       'account.impact.distanceJoint',
-      'account.impact.terrainHealth',
+      'account.impact.steepModerateReason',
       'account.impact.heatDeclared',
       'account.dogAddedSuccess',
       'account.profileSaved',

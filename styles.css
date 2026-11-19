@@ -1156,11 +1156,11 @@ html[lang="it"] .topnav .brand::after{content:'| Sentieri e terreni per cani';}
 .simple-card__match small{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;color:var(--ink-soft);white-space:nowrap;text-align:center;}
 .simple-card__match-actions{display:flex;align-items:center;gap:7px;}
 .collection-discovery{position:relative;display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:4px 0 16px;}
-.collection-search{display:flex;align-items:center;gap:9px;min-height:46px;box-sizing:border-box;flex:1 1 300px;padding:0 15px;border:1.5px solid var(--paper-line);border-radius:var(--radius-pill);background:var(--card);color:var(--ink-soft);}
+.collection-search{display:flex;align-items:center;gap:9px;min-height:42px;box-sizing:border-box;flex:1 1 300px;padding:0 15px;border:1.5px solid var(--paper-line);border-radius:var(--radius-pill);background:var(--card);color:var(--ink-soft);}
 .collection-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:500 13.5px var(--font-sans);}
 .collection-area-filters{display:flex;align-items:center;gap:9px;flex:none;}
 .collection-area-filters .collection-area-filter{display:block;width:205px;min-width:0;}
-.collection-area-filters .area-select-trigger{min-height:46px;border-radius:var(--radius-pill);padding-inline:15px;background:var(--card);font-size:12.5px;}
+.collection-area-filters .area-select-trigger{min-height:42px;border-radius:var(--radius-pill);padding-inline:15px;background:var(--card);font-size:12.5px;}
 .collection-area-filters .area-select-trigger__copy{display:inline-flex;align-items:baseline;gap:7px;min-width:0;}
 .collection-area-filters .area-select-trigger__kicker{flex:none;color:var(--accent);font:800 9px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;}
 .collection-area-filters .area-select-trigger__label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -1168,7 +1168,7 @@ html[lang="it"] .topnav .brand::after{content:'| Sentieri e terreni per cani';}
 .collection-area-filters .area-select-trigger--kicker-until-selected.area-select-trigger--has-selection .area-select-trigger__kicker{display:none;}
 .collection-area-filters .area-select-menu{min-width:240px;}
 .collection-theme-choices{display:flex;align-items:center;gap:8px;flex:none;}
-.collection-theme-choices button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:46px;padding:9px 14px;border:1.5px solid var(--paper-line);border-radius:var(--radius-pill);background:var(--card);color:var(--ink);font:700 12.5px var(--font-sans);white-space:nowrap;cursor:pointer;}
+.collection-theme-choices button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:0 14px;border:1.5px solid var(--paper-line);border-radius:var(--radius-pill);background:var(--card);color:var(--ink);font:700 12.5px var(--font-sans);white-space:nowrap;cursor:pointer;}
 .collection-theme-choices button:hover{border-color:#9FC4B0;background:#F7FAF8;}
 .collection-theme-choices button[aria-pressed="true"]{border-color:#9FC4B0;background:#EAF3EC;color:#24462E;}
 .area-select-shell{position:relative;display:block;min-width:0;z-index:2;}
@@ -1364,7 +1364,7 @@ html[lang="it"] .topnav .brand::after{content:'| Sentieri e terreni per cani';}
   .collection-area-filters .collection-area-filter{width:100%;min-width:0;}
   .collection-area-filters .collection-area-filter:last-child{grid-column:auto;}
   .collection-theme-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;overflow:visible;padding-bottom:2px;}
-  .collection-theme-choices button{width:100%;min-width:0;padding-inline:7px;font-size:11.5px;}
+  .collection-theme-choices button{width:100%;min-width:0;padding-inline:7px;gap:5px;font-size:11.5px;line-height:1.15;white-space:normal;text-align:center;}
   .simple-card{grid-template-columns:84px minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:12px;row-gap:12px;padding:12px;}
   .simple-card .photo{grid-column:1;grid-row:1;width:84px;height:76px;align-self:start;}
   .simple-card__main{grid-column:2;grid-row:1;align-self:center;}
@@ -2512,13 +2512,10 @@ body.map-fs-open{overflow:hidden;}
 .hp-fapply{width:100%;margin-top:14px;border:none;border-radius:11px;padding:12px;background:var(--ink);color:#fff;font-family:'Inter',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;}
 
 /* Shared discovery-filter treatment across guest home, Browse All Trails and
-   the logged-in map. Page-specific classes still own placement only. */
-.discovery-filter-trigger{min-height:42px;border-radius:var(--radius-pill);font:600 12.5px 'Inter',sans-serif;}
+   the logged-in map. The panel's look (headings, option pills, icons, sheet
+   on phones) lives in discovery-filters.css; page classes own placement. */
+.discovery-filter-trigger{min-height:42px;border-radius:var(--radius-pill);font:700 12.5px 'Inter',sans-serif;}
 .discovery-filter-trigger[aria-expanded="true"]{border-color:var(--accent);background:#F7FAF8;}
-.discovery-filter-panel{width:340px;max-width:calc(100vw - 32px);padding:16px;box-sizing:border-box;border-radius:14px;box-shadow:0 18px 44px -14px rgba(23,42,28,.42);}
-.discovery-filter-panel .hp-fsec,.discovery-filter-panel .li-fsec{margin-top:15px;}
-.discovery-filter-panel .hp-segbtn,.discovery-filter-panel .li-segbtn{min-height:32px;}
-.discovery-filter-panel .hp-fapply,.discovery-filter-panel .li-apply{min-height:42px;margin-top:16px;}
 
 /* --- live search suggestions --- */
 .hp-suggest{position:absolute;top:calc(100% + 10px);left:0;right:0;z-index:41;background:#fff;border:1px solid var(--paper-line);border-radius:16px;box-shadow:0 22px 50px -16px rgba(23,42,28,.55);padding:8px;text-align:left;}
@@ -4230,10 +4227,17 @@ html.early-member .topnav{display:none;}
 .li-body{grid-template-columns:minmax(0,1.05fr) minmax(480px,.95fr);}
 .li-list-title-row{padding-right:142px;}
 .li-row--answer{border:2px solid #8FB89F;background:#fff;box-shadow:0 14px 30px -20px rgba(32,55,40,.6);cursor:default;}
-.li-answer-explanation{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px;padding:15px 16px;border-radius:12px;background:#EEF3EC;color:var(--ink);}
+.li-answer-explanation{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:15px 16px;border-radius:12px;background:#EEF3EC;color:var(--ink);}
 .li-answer-explanation b{font:800 11px 'Inter',sans-serif;letter-spacing:.02em;}
-.li-answer-explanation ul{margin:7px 0 0;padding-left:17px;color:var(--ink-soft);font:600 11px/1.45 'Inter',sans-serif;}
-.li-answer-explanation li+li{margin-top:4px;}
+/* One verdict line, then the one or two things to check, each with its mark. */
+.li-answer-verdict,.li-answer-check{display:flex;gap:8px;align-items:baseline;margin:0;font:600 12.5px/1.5 'Inter',sans-serif;}
+.li-answer-verdict{color:var(--ink);}
+.li-answer-explanation .li-answer-verdict b{font:800 12.5px/1.5 'Inter',sans-serif;letter-spacing:0;}
+.li-answer-check{color:var(--ink);}
+.li-answer-tag{flex:none;padding:1px 8px;border-radius:999px;font:800 11px/1.5 'Inter',sans-serif;}
+.li-answer-tag.is-fit{background:#E3EEE3;color:#3B6A47;}
+.li-answer-tag.is-watch{background:#F6ECD6;color:#7A5A12;}
+.li-answer-actions{margin-top:4px;}
 /* The one gap on the card the reader can close themselves. Spans both columns
    so it reads as an invitation under the findings, not a third finding. */
 .li-answer-gap{grid-column:1/-1;margin:0;}

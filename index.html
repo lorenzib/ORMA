@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ORMA | Dog Trails &amp; Terrain Guide</title>
 <meta name="description" content="ORMA ranks every Dolomites route by paw safety, shade, water access, and terrain risk, matched to your dog.">
+<link rel="alternate" hreflang="en" href="https://www.app-orma.com/">
+<link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/">
+<link rel="alternate" hreflang="x-default" href="https://www.app-orma.com/">
 <meta name="theme-color" content="#2E4034">
 <link rel="canonical" href="https://www.app-orma.com/">
 <script>/* GitHub Pages serves index.html as the homepage but cannot declare a
@@ -29,6 +32,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <link rel="stylesheet" href="homepage-mobile.css?v=20260916-1">
   <link rel="stylesheet" href="homepage-editorial.css?v=20261107-1">
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
+<link rel="stylesheet" href="discovery-filters.css">
 </head>
 <body>
 
@@ -102,7 +106,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
               <div class="hp-seg" id="hpDistSeg"></div>
               <div class="hp-fsec" data-i18n="hp.filters.rating">Trail rating</div>
               <div class="hp-seg" id="hpDiffSeg"></div>
-              <div class="hp-fsec" data-i18n="hp.filters.terrain">Terrain underfoot</div>
+              <div class="hp-fsec" data-i18n="hp.filters.terrain">Steepness</div>
               <div class="hp-seg" id="hpTerrainSeg"></div>
               <div class="hp-fsec" id="hpMatchLabel" data-i18n="hp.filters.minMatch">Minimum match</div>
               <div class="hp-seg" id="hpMatchSeg"></div>
@@ -269,27 +273,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           </div>
         </div>
       </div>
-      <!-- Opened from "in Alta Pusteria" in the headline. -->
-      <div class="li-menu li-head-menu" id="liAreaMenu" role="dialog" aria-label="Where to look" hidden data-i18n-aria-label="page.index.whereToLook">
-        <span class="li-location-summary" id="liLocationSummary" hidden>
-          <span><small id="liLocationSummaryKick" data-i18n="page.index.lookingNear">Looking near</small><strong id="liLocationSummaryLabel"></strong></span>
-        </span>
-        <!-- One region at a time: a walk is planned in one place, never in
-             the Dolomites and Savoy at once. -->
-        <div class="li-head-kick" data-i18n="browse.geo.region">Region</div>
-        <button type="button" class="li-head-option li-head-region" data-li-region="dolomites" aria-pressed="false">The Dolomites<small data-li-region-count></small></button>
-        <button type="button" class="li-head-option li-head-region" data-li-region="savoy" aria-pressed="false">Savoy<small data-li-region-count></small></button>
-        <button type="button" class="li-head-option li-head-region" data-li-region="frenchalps" aria-pressed="false">French Alps<small data-li-region-count></small></button>
-        <button type="button" class="li-head-option li-head-region" data-li-region="lombardy" aria-pressed="false">Lombardy<small data-li-region-count></small></button>
-        <button type="button" class="li-head-option li-head-region" data-li-region="friuli" aria-pressed="false">Friuli Venezia Giulia<small data-li-region-count></small></button>
-        <button type="button" class="li-head-option li-head-region" data-li-region="aosta" aria-pressed="false">Valle d’Aosta<small data-li-region-count></small></button>
-        <button type="button" class="li-head-option li-head-region" data-li-region="piedmont" aria-pressed="false">Piedmont<small data-li-region-count></small></button>
-        <button type="button" class="li-head-option li-head-region" data-li-region="tyrol" aria-pressed="false">Tyrol &amp; Carinthia<small data-li-region-count></small></button>
-        <button type="button" class="li-head-option li-head-region" data-li-region="switzerland" aria-pressed="false">Switzerland<small data-li-region-count></small></button>
-        <div class="li-head-sep" role="separator"></div>
-        <button type="button" class="li-head-option" id="liNearMeBtn" data-i18n="page.index.nearMe">Near me</button>
-        <button type="button" class="li-head-option" id="liChangeLocationBtn" data-i18n="page.index.searchAValleyOrTown">Search a valley or town</button>
-      </div>
       <!-- Opened from "today" in the headline. -->
       <div class="li-menu li-head-menu" id="liDayMenu" role="dialog" aria-label="When you are walking" hidden data-i18n-aria-label="page.index.whenYouAreWalking">
         <button type="button" class="li-head-option" data-li-day="0" data-i18n="page.index.today">Today</button>
@@ -318,6 +301,13 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <kbd class="li-search-shortcut" aria-hidden="true">⌘K</kbd>
       <div class="li-search-suggest" id="liSearchSuggest" role="listbox" aria-label="Recommended routes" hidden data-i18n-aria-label="page.index.recommendedRoutes"></div>
     </div>
+    <!-- Where to look: the same Country, Region and Valley pickers as Trails
+         and Collections. The headline reads the place they set. -->
+    <div class="li-area-pickers" id="liAreaPickers" role="group" aria-label="Where to look" data-i18n-aria-label="page.index.whereToLook">
+      <span class="li-area-picker area-select-shell geo-filter-control"><select id="liCountrySelect" data-compact-label data-control-kicker="Country" data-kicker-until-selected aria-label="Country" data-i18n-aria-label="browse.geo.country"></select></span>
+      <span class="li-area-picker area-select-shell geo-filter-control"><select id="liRegionSelect" data-compact-label data-control-kicker="Region" data-kicker-until-selected aria-label="Region" data-i18n-aria-label="browse.geo.region"></select></span>
+      <span class="li-area-picker area-select-shell geo-filter-control"><select id="liValleySelect" data-compact-label data-control-kicker="Valley" data-kicker-until-selected aria-label="Valley" data-i18n-aria-label="browse.geo.valley"></select></span>
+    </div>
     <div class="li-mobile-actions" aria-label="Trail actions" data-i18n-aria-label="page.index.trailActions">
     <div class="li-menuwrap" id="liFiltersWrap">
       <button type="button" id="liFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false">
@@ -329,7 +319,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <span data-i18n="browse.filters.title">Filter trails</span>
           <button type="button" id="liFiltersReset" data-i18n="browse.filters.resetAll">Reset all</button>
         </div>
-        <div class="li-fsec" data-i18n="journal.conditions">Conditions</div>
+        <div class="li-fsec" data-i18n="browse.filters.quick">Quick filters</div>
         <div class="li-quick-filters" aria-label="Quick dog filters" data-i18n-aria-label="browse.quick.aria">
           <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="browse.quick.shade">High shade</span></button>
           <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span data-i18n="chips.fountains">Water</span></button>
@@ -338,7 +328,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <div class="li-seg" id="liDistSeg"></div>
         <div class="li-fsec" data-i18n="browse.filters.rating">Trail rating</div>
         <div class="li-seg" id="liRiskSeg"></div>
-        <div class="li-fsec" data-i18n="browse.filters.terrain">Terrain underfoot</div>
+        <div class="li-fsec" data-i18n="browse.filters.terrain">Steepness</div>
         <div class="li-seg" id="liTerrainSeg"></div>
         <div class="li-fsec" id="liMatchSecLabel" data-i18n="browse.filters.minMatch">Minimum match</div>
         <div class="li-seg" id="liMatchSeg"></div>
@@ -351,8 +341,18 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     <div class="li-chiprow" id="liChips"></div>
   </div>
 
+  <!-- ================= TODAY'S PICKS ================= -->
+  <!-- The answer first: three walks from the ranked list, for the same dog,
+       place and day. The map and the full list wait behind the link below
+       (liSetMapRevealed), kept open or closed for the session. -->
+  <section class="li-picks" id="liTodaysPicks" aria-labelledby="liPicksTitle">
+    <h2 class="li-picks-title" id="liPicksTitle" data-i18n="page.index.todaysPicks">Today’s picks</h2>
+    <div class="li-picks-list" id="liPicksList"></div>
+    <button type="button" class="li-picks-more" id="liSeeAllWalks" aria-expanded="false" aria-controls="liMapList" hidden></button>
+  </section>
+
   <!-- ================= BODY: MAP + LIST ================= -->
-  <div class="li-body">
+  <div class="li-body" id="liMapList" hidden>
 
     <div class="li-map" id="trailMapWrap">
       <div id="trailMap" role="region" aria-label="Trail map. Numbered markers correspond to the ranked shortlist; other trails are grey." data-i18n-aria-label="page.index.trailMapNumberedMarkersCorrespond"></div>
@@ -418,6 +418,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
            view. "New for <dog>" lives on the card it is about, with what it
            means; Browse all trails sits at the foot of the list. -->
       <div class="li-list-head">
+        <button type="button" class="li-picks-back" id="liBackToPicks" data-i18n="page.index.backToTodaysPicks">← Back to today’s picks</button>
         <div class="li-list-title-row">
           <h2 class="li-list-title" id="companionListTitle" data-i18n="account.nav.browse">Trails</h2>
           <span class="li-list-count" id="companionListCount"></span>
@@ -551,7 +552,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
 <script src="mobile-nav.js?v=20261030-1"></script>
 <script src="accessibility-runtime.js?v=20260815-4" defer></script>
-<script src="i18n.js?v=20261118-1"></script>
+<script src="i18n.js?v=20261119-2"></script>
 <script type="module" src="firebase-init.js?v=20261107-1"></script>
 <script src="icon-system.js?v=20260901-1" defer></script>
 <script src="trail-card-visual.js?v=20260902-1" defer></script>
@@ -585,6 +586,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="dog-routes-layer.js?v=20260826-1" defer></script>
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
 <script src="trail-route-refs.js?v=20260903-1" defer></script>
+<script src="area-dropdown.js" defer></script>
 <script src="script.js?v=20261111-1" defer></script>
 <script src="dog-wizard.js?v=20260917-1" defer></script>
 <script src="collections-data.js?v=20260909-1" defer></script>

@@ -47,12 +47,12 @@ function useLanguage(lang, phrases = {}, trailText = {}){
 afterEach(() => { delete window.DoloPawsI18n; });
 
 describe('the homepage card says its cautions plainly', () => {
-  test('Fusine for Teo: no grade or tolerance, one caution quoted and the rest counted', () => {
+  test('Fusine for Teo: no grade or tolerance, and one caution quoted', () => {
     useLanguage('en');
     const view = decision.present(fusine(), { dogName:'Teo' });
     expect(view.cardCautions).toEqual([
-      'The path is rougher than Teo is used to.',
-      'Boardwalks and roots along the lakeshore are slippery when wet. The trail page has 2 more.',
+      'Steeper than Teo likes.',
+      'Boardwalks and roots along the lakeshore are slippery when wet.',
       'We know of no water on the way. Bring all Teo needs.',
     ]);
     expect(view.cardTrailUnknowns).toEqual(['We don’t know yet if there are steep drops.']);
@@ -64,12 +64,12 @@ describe('the homepage card says its cautions plainly', () => {
     expect(view.cautions[1]).toBe(`Recorded route cautions: ${FUSINE_HAZARDS.join('; ')}.`);
   });
 
-  test('one caution is quoted alone, two say "one more"', () => {
+  test('the card quotes the first caution and leaves the count to the trail page', () => {
     useLanguage('en');
     expect(decision.present(fusine(FUSINE_HAZARDS.slice(0, 1)), { dogName:'Teo' }).cardCautions[1])
       .toBe('Boardwalks and roots along the lakeshore are slippery when wet.');
     expect(decision.present(fusine(FUSINE_HAZARDS.slice(0, 2)), { dogName:'Teo' }).cardCautions[1])
-      .toBe('Boardwalks and roots along the lakeshore are slippery when wet. The trail page has one more.');
+      .toBe('Boardwalks and roots along the lakeshore are slippery when wet.');
   });
 
   test('an Italian card never quotes a caution it only has in English', () => {
@@ -82,10 +82,10 @@ describe('the homepage card says its cautions plainly', () => {
   });
 
   test('an Italian card quotes the caution once its Italian is loaded', () => {
-    useLanguage('it', { 'The trail page has {more} more.':'La pagina del sentiero ne elenca altre {more}.' },
+    useLanguage('it', {},
       { [FUSINE_HAZARDS[0]]:'Passerelle e radici lungo la riva sono scivolose quando sono bagnate' });
     expect(decision.present(fusine(), { dogName:'Teo' }).cardCautions[1])
-      .toBe('Passerelle e radici lungo la riva sono scivolose quando sono bagnate. La pagina del sentiero ne elenca altre 2.');
+      .toBe('Passerelle e radici lungo la riva sono scivolose quando sono bagnate.');
   });
 
   test('every card sentence has an Italian phrase', () => {
@@ -93,8 +93,11 @@ describe('the homepage card says its cautions plainly', () => {
     const source = fs.readFileSync(require.resolve('./recommendation-decision.js'), 'utf8');
     const start = source.indexOf('const CARD_SENTENCES');
     const end = source.indexOf('function cardMessage(');
-    const english = [...source.slice(start, end).matchAll(/tx\('([^']+)'\)/g)].map(m => m[1]);
-    expect(english.length).toBeGreaterThan(20);
+    const chipStart = source.indexOf('const FIT_CHIPS');
+    const chipEnd = source.indexOf('function fitChip(');
+    const english = [...source.slice(start, end).matchAll(/tx\('([^']+)'\)/g)]
+      .concat([...source.slice(chipStart, chipEnd).matchAll(/tx\('([^']+)'\)/g)]).map(m => m[1]);
+    expect(english.length).toBeGreaterThan(35);
     require('./i18n-phrases-it.js');
     const missing = english.filter(text => !window.ORMA_PHRASES_IT[text]);
     expect(missing).toEqual([]);
@@ -117,7 +120,7 @@ describe('the trail page breakdown says the same things plainly', () => {
       },
     });
   }
-  const rows = view => view.breakdownRows.map(row => row.message);
+  const rows = view => view.factorRows.map(row => row.detail);
 
   test('no grade or tolerance, and every caution kept under a plain heading', () => {
     useLanguage('en');
@@ -125,8 +128,8 @@ describe('the trail page breakdown says the same things plainly', () => {
     const view = decision.present(recommendation, { dogName:'Teo' });
     expect(rows(view)).toEqual(expect.arrayContaining([
       'Parts of the path run beside steep drops.',
-      'The path is rougher than Teo is used to.',
-      'Watch out for: Steep rock steps where a dog may need a hand; A short, fairly exposed ledge with no cable.',
+      'Steeper than Teo likes.',
+      'Steep rock steps where a dog may need a hand; A short, fairly exposed ledge with no cable.',
     ]));
     expect(rows(view).join(' ')).not.toMatch(/grade|tolerance|Recorded route/);
     // The engine's own sentence is still there for anything that audits it.
@@ -147,5 +150,44 @@ describe('the trail page breakdown says the same things plainly', () => {
       factors:[{ code:'score.floor', impact:5, message:'The demands above already exceed what this dog can comfortably take, so the score rests at its floor.' }],
     }, { dogName:'Teo' });
     expect(view.breakdownNote).toBe('This walk asks too much of Teo, so the score stays at its lowest.');
+  });
+});
+
+describe('the trail page says it short', () => {
+  const engine = require('./scoring/recommendation-v1.js');
+  const verified = Object.fromEntries(['route', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access']
+    .map(key => [key, 'verified']));
+  const ortisei = access => engine.calculateRecommendation({
+    dog:{ fitness:'moderate', ageYears:4, weightKg:14 },
+    effectiveLimits:{ terrainRank:1 },
+    trail:{
+      metrics:{ distanceKm:6, ascentM:330, descentM:330 },
+      suitability:{ terrainRank:2, exposure:false, heatRisk:'low', shadePercent:60,
+        surfaceHazards:['Forest path with roots and a steady climb', 'Village streets in Ortisei: keep your dog close'],
+        dogAccess:access },
+      verification:{ categories:verified },
+    },
+  });
+
+  test('reasons are what lowers the score; what fits becomes chips', () => {
+    useLanguage('en');
+    const view = decision.present(ortisei({ status:'allowed' }), { dogName:'Teo' });
+    expect(view.shortReasons.map(reason => reason.text)).toEqual([
+      'Steeper than Teo likes.',
+      'Forest path with roots and a steady climb; Village streets in Ortisei: keep your dog close.',
+      // The fixture records no water, which lowers the score too.
+      'We know of no water on the way. Bring all Teo needs.',
+    ]);
+    expect(view.fitChips).toEqual(expect.arrayContaining(['6 km', '330 m climb', 'No drops', 'Dogs allowed']));
+    // Every factor is still listed for the points link.
+    expect(view.factorRows.length).toBe(view.breakdown.length);
+  });
+
+  test('unknown dog rules are a reason; other unknowns are not listed', () => {
+    useLanguage('en');
+    const view = decision.present(ortisei({ status:'unknown' }), { dogName:'Teo' });
+    expect(view.shortReasons.map(reason => reason.text))
+      .toContain('We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.');
+    expect(view.actionableUnknowns).toEqual(['We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.']);
   });
 });

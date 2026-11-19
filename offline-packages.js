@@ -133,6 +133,7 @@
     'fvg-lago-di-sella-sompdogna': "Il laghetto di sella Sompdogna",
     'fvg-monte-rest-da-passo-rest': "Dal Passo Rest al Monte Rest",
     'fvg-sappada-rifugio-calvi': "Rifugio Calvi",
+    'fvg-sappada-rifugio-siera-longrone': "Cima Sappada to Rifugio Siera through the Longrone forest",
     'giro-del-bulacia': "Giro della Bullaccia",
     'giro-del-sasso-lungo': "Giro del Sasso Lungo",
     'giudicarie-san-martino-bosco-scolpito': "San Martino – Bosco Scolpito",
