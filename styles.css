@@ -3144,6 +3144,14 @@ html[lang="it"] .li-brand::after{content:'| Sentieri e terreni per cani';}
 .li-new-more{border-radius:0 var(--radius-pill) var(--radius-pill) 0;padding:0 13px;box-shadow:none;}
 .li-new-more::before{content:'';width:1px;height:18px;margin-right:9px;background:rgba(255,255,255,.34);}
 .li-new-menu{left:auto;right:0;top:calc(100% + 8px);width:250px;}
+/* Draw a route: its own button beside Record, outlined in the same colour so
+   recording stays the main action. */
+.li-draw-route{
+  display:inline-flex;align-items:center;gap:7px;height:42px;box-sizing:border-box;margin-right:10px;
+  padding:0 15px;border:1.5px solid var(--accent);border-radius:var(--radius-pill);background:#fff;
+  color:var(--accent);font:800 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;
+}
+.li-draw-route:hover{background:var(--accent);color:#fff;}
 /* The two create links keep their identity as menu rows, not their old toolbar
    pills, so reset the inherited plan/record button styling. */
 .li-new-menu .li-menu-item{display:flex;flex-direction:column;align-items:flex-start;gap:2px;height:auto;margin:0;padding:10px 12px;background:none;box-shadow:none;text-decoration:none;color:var(--ink);font:800 13px 'Inter',sans-serif;border-radius:11px;white-space:normal;}
