@@ -19564,7 +19564,7 @@ if(document.querySelector('.td2')){
       <a class="near-card" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(o.id) : (o.id)))}" data-near-id="${esc(o.id)}">
         <div class="ph"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="pct near-pct" hidden></span></div>
         <div class="bd">
-          <div class="nm">${esc(o.name)}</div>
+          <div class="nm">${esc(trailDisplayName(o))}</div>
           <div class="mt">${esc(o.valley || o.area || '')} · ${num(o.distance)} km · ${esc(trust ? trust.riskLabel(o, safetyLabel(o.safetyLevel)) : safetyLabel(o.safetyLevel))}</div>
         </div>
       </a>`).join('');

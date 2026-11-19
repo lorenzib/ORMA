@@ -1943,4 +1943,12 @@ window.ORMA_PHRASES_IT = {
   "There and back": "Andata e ritorno",
   "Ends away from the start: plan a lift, bus or second car back.": "Finisce lontano dalla partenza: prevedi un impianto, un autobus o una seconda auto per tornare.",
   "Back the same way on the same path.": "Ritorno per la stessa via, sullo stesso sentiero.",
+  // Collection cover captions: the same Italian as each walk's own page
+  // (data/trail-text-it). collections-data.test.js keeps the two in step.
+  "ORMA original": "Foto originale ORMA",
+  "A snowy path by the Völser Weiher, in March": "Un sentiero innevato presso il Völser Weiher, a marzo",
+  "The Guiers from the bridge at Les Échelles": "Il Guiers dal ponte di Les Échelles",
+  "Pointe Percée from the Mont d'Arbois": "La Pointe Percée dal Mont d'Arbois",
+  "Lac d'Annecy from the Taillefer de Duingt": "Il Lac d'Annecy dal Taillefer de Duingt",
+  "The alpage track above Combloux": "La strada d'alpeggio sopra Combloux",
 };

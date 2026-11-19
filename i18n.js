@@ -1340,6 +1340,7 @@
     'qa.todayHeatHint': 'exposed route, start early',
     'qa.todayShadeHint': 'some exposed stretches',
     'qa.accessTitle': 'Getting there',
+    'trail.gettingAround': 'Getting around',
     'qa.decisionScored': '{score} for {name}, enjoy the trail',
     'qa.decisionGuest': 'Would this suit your dog? Find out in 2 minutes.',
     'qa.decisionGuestCta': 'Create a free profile',
@@ -3350,6 +3351,7 @@
     'qa.todayHeatHint': 'percorso esposto, parti presto',
     'qa.todayShadeHint': 'alcuni tratti esposti',
     'qa.accessTitle': 'Come arrivare',
+    'trail.gettingAround': 'Come muoversi',
     'qa.decisionScored': '{score} per {name}, buon sentiero',
     'qa.decisionGuest': 'Andrebbe bene per il tuo cane? Scoprilo in 2 minuti.',
     'qa.decisionGuestCta': 'Crea un profilo gratuito',
@@ -4071,7 +4073,7 @@
   if (lang === 'it' && !window.ORMA_PHRASES_IT && document.readyState === 'loading') {
     const here = document.currentScript && document.currentScript.src;
     const base = here ? here.replace(/[^/]*$/, '') : '';
-    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261119-8"><\/script>');
+    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261119-9"><\/script>');
     document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261111-1"><\/script>');
   }
 
