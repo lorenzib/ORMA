@@ -70859,6 +70859,261 @@
       ],
       startPoint: { lat: 46.583083, lng: 11.687574, label: "At the Martin farm on the Streda Cuca above Ortisei" },
       desc: "An easy walk above Ortisei on path 10A, the Troi da la Tambres: along two farm lanes past the Costes farms, then through meadows and forest to the old La Tambres farmhouse below the Langkofel, and back the same way. It is about 3.3 km with some 110 m of up and down, as measured by ORMA (the province register gives only the length)."
+    },
+    'lombardia-reggetto-piani-di-artavaggio': {
+      // Hand audit: 19 November 2026, verified on arrival (Lombardy mountains batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Da Reggetto ai Piani di Artavaggio” by Ecomuseo Val Taleggio, drawn there and back on 43 OSM ways along its published GPX (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Communes: Vedeseta (start) and Moggio (Piani di Artavaggio): no dog rule found online, so the national rule applies. Parco delle Orobie Bergamasche: no dog regulation found online. ZPS IT2060401 (EEA). No road on the line; no lift used (the Moggio cable car on the far side is not part of the walk).
+      // The stored line follows the published GPX, 100% each way.
+      area: "Reggetto (Vedeseta) – Cantoldo – Traversino – Piani di Artavaggio",
+      distance: 10.7,
+      elevation: 700,
+      hours: '5',
+      routeShape: 'out-and-back',
+      routeShapeNote: "in-Lombardia publishes the walk one way, from Reggetto to the Piani di Artavaggio (5.35 km, 700 m up, 2 h 45), and gives no return. ORMA walks it there and back on the same path: 10.7 km with 700 m up and down. The time, about 5 h, is measured by ORMA (DIN 33466), not the portal’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the small stone hamlet of Reggetto (962 m), above Vedeseta in the upper Val Taleggio, beside the oratory of Sant’Antonio di Padova, the published start.",
+        "sequence": "Follow path CAI 150 up towards Rocca, then across the summer pastures of Cantoldo (1,246 m) and Traversino (1,426 m) and through beech woods, to the grassy plateau of the Piani di Artavaggio above 1,600 m, in the commune of Moggio, with its huts. Come back the same way.",
+        "switches": "Path CAI 150 all the way from Reggetto past Rocca and the Cantoldo and Traversino pastures to the Piani di Artavaggio; back the same way.",
+        "sources": [
+          {
+            "label": "in-Lombardia, Da Reggetto ai Piani di Artavaggio (itinerary by Ecomuseo Val Taleggio)",
+            "url": "https://www.in-lombardia.it/itinerari/da-reggetto-ai-piani-di-artavaggio",
+            "authority": "Regione Lombardia (in-Lombardia)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The gravel track up to the Albergo Sciatori on the Piani di Artavaggio, at the top of the walk (kaitu on Mapillary, CC BY-SA 4.0), 15 June 2019, 18 m from the line.",
+        route: "Official one-way walk of 5.35 km from The oratory of Sant’Antonio di Padova at Reggetto, Vedeseta, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 43 OSM ways along the published GPX out and back, 10.6 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Path CAI 150 all the way, from Reggetto past Rocca and the Cantoldo and Traversino pastures to the Piani di Artavaggio; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 5.35 km, 700 m up, 2 h 45 (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Ecomuseo Val Taleggio), from 962 m at Reggetto to over 1,600 m on the Piani di Artavaggio. There and back on the same path: 10.7 km, 700 m up and 700 m down; about 5 h measured by ORMA (DIN 33466), since the portal times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "in-Lombardia, the official tourism portal of Regione Lombardia, “Da Reggetto ai Piani di Artavaggio” (itinerary by Ecomuseo Val Taleggio, with its GPX)",
+          "Comune di Vedeseta and Comune di Moggio publish no dog regulation online (searched their sites and Amministrazione Trasparente), so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Parco delle Orobie Bergamasche: no visitor regulation with a dog clause published online, so no park rule beyond the national one",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco delle Orobie Bergamasche on the line; European Environment Agency Natura 2000 service: ZPS IT2060401 Parco Regionale Orobie Bergamasche",
+          "OpenStreetMap ways along the board’s line (43 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 17,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["A long steady climb of 700 m: take it slowly with an older or unfit dog","Summer pastures at Cantoldo and Traversino with cows: keep your dog on a lead and give the herds room","The upper pastures and the Piani di Artavaggio are open and sunny: on a hot day go early and bring plenty of water","In winter the path needs snowshoes and safe snow, as the portal says"],
+      terrainType: "Mountain path and pasture tracks",
+      shadeDescription: "About a sixth shaded: beech woods on the way up; the Cantoldo and Traversino pastures and the Piani di Artavaggio are open.",
+      terrainDescription: "A steady climb on path CAI 150 from the stone hamlet of Reggetto through beech woods and the Cantoldo and Traversino summer pastures to the Piani di Artavaggio, a grassy plateau above 1,600 m among limestone peaks, with huts, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The huts on the Piani di Artavaggio serve food and drink when open. Bring water and a bowl for your dog.",
+      dogNotes: "Vedeseta and Moggio publish no dog rule online, so the national rule applies: a lead of at most 1.5 m in places open to the public and a muzzle carried. The route crosses the Orobie Bergamasche regional park, a Natura 2000 bird area, and summer cow pastures: keep your dog on a lead and on the path.",
+      tips: "Start at the oratory in Reggetto, above Vedeseta: 5.4 km and 700 m up on path CAI 150 to the Piani di Artavaggio, about 2 h 45 as the portal gives, and the same way back down, about 5 h in all by ORMA’s DIN 33466 estimate. Go early on a hot day, keep your dog on a lead through the pastures, and carry a muzzle.",
+      sourceLinks: [
+        { label: "in-Lombardia, Da Reggetto ai Piani di Artavaggio", url: "https://www.in-lombardia.it/itinerari/da-reggetto-ai-piani-di-artavaggio" },
+        { label: "in-Lombardia, Da Reggetto ai Piani di Artavaggio: GPX", url: "https://www.in-lombardia.it/sites/default/files/itinerari/gpx/425972/Vedeseta_Reggetto-Piani-di-Artavaggio_ProLocoPizzino.gpx" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Parco delle Orobie Bergamasche", url: "https://www.parcorobie.it/" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.897707, lng: 9.552545, label: "The oratory of Sant’Antonio di Padova at Reggetto, Vedeseta, the published start" },
+      desc: "A steady climb from the stone hamlet of Reggetto in the upper Val Taleggio, on path CAI 150 through beech woods and the Cantoldo and Traversino summer pastures, to the grassy Piani di Artavaggio above 1,600 m, and back the same way. The portal lists 5.35 km and 700 m up one way; there and back it is 10.7 km with 700 m up and down, about 5 h."
+    },
+    'lario-asso-funghi-di-terra': {
+      // Hand audit: 19 November 2026, verified on arrival (Lombardy mountains batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Alla ricerca dei funghi di terra” by Lago di Como GAL, drawn on 33 OSM ways along its published GPX (data/board-line-routes.geojson).
+      // Communes: Asso (Polizia Urbana 1963, Art. 74: dogs without a muzzle on a lead) and Rezzago (Polizia Urbana 1966, Art. 74: the same). Lanes: 1.96 km of residential lanes (23%), no tertiary road (hamlet-lanes rule of 18 November 2026). No Natura 2000 site (EEA), park, reserve or PLIS (Regione Lombardia geoportal).
+      // The stored line follows the published GPX, 100% each way.
+      area: "Scarenna (Asso) – Enco – Rezzago – Ponte Oscuro",
+      distance: 8.77,
+      elevation: 687,
+      hours: '3.5',
+      routeShape: 'lollipop',
+      routeShapeNote: "A lollipop loop, as the portal describes it: from Scarenna to Ponte Oscuro, a ring through Fiorana, Enco, the chestnut wood of Rezzago and the earth pyramids, and back the same way from Ponte Oscuro.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the via Pietro Valsecchi car park in Scarenna, across the Lambro from Asso, the published start; it has a drinking fountain. From Asso station, cross the bridge over the Lambro and take via Gramsci to the car park.",
+        "sequence": "Go up via Valsecchi, which becomes a paved cycle-footpath, to the oratory of Santi Giovanni e Paolo and on to Ponte Oscuro. Turn left up the paved forest road of via Roncaglia into the woods and keep left at the Cassina Enco fork towards Fiorana. Past Casa Fiorana, take the path left up to the clearing of Piazza Dorella with its two radio masts, then the path right, down to Enco. Follow the road right into the old chestnut wood of Rezzago, then turn right past a last huge chestnut and up the steps to the first earth pyramid; go down the path to the second pyramid and the little church of the Madonna dei Morti beside a great boulder. Without crossing the footbridge, climb gently through the woods, keep left at the fork and drop back to the forest road, then return the same way to Ponte Oscuro and Scarenna.",
+        "switches": "From the via Pietro Valsecchi car park at Scarenna up the paved cycle-footpath to the oratory of Santi Giovanni e Paolo and Ponte Oscuro; Left up the paved forest road of via Roncaglia into the woods; at the Cassina Enco fork keep left towards Fiorana; Past Casa Fiorana, left on the path up to the clearing of Piazza Dorella with its two radio masts, then right on the path down to Enco; Right along the road into the old chestnut wood of Rezzago; Right past a last huge chestnut and up the steps to the first earth pyramid; down to the second pyramid and the little church of the Madonna dei Morti; Without crossing the footbridge, up gently through the woods, left at the fork and down to the forest road; back the same way to Ponte Oscuro and Scarenna.",
+        "steps": [
+          {
+            "text": "From the via Pietro Valsecchi car park at Scarenna up the paved cycle-footpath to the oratory of Santi Giovanni e Paolo and Ponte Oscuro",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Left up the paved forest road of via Roncaglia into the woods; at the Cassina Enco fork keep left towards Fiorana",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past Casa Fiorana, left on the path up to the clearing of Piazza Dorella with its two radio masts, then right on the path down to Enco",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Right along the road into the old chestnut wood of Rezzago",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Right past a last huge chestnut and up the steps to the first earth pyramid; down to the second pyramid and the little church of the Madonna dei Morti",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Without crossing the footbridge, up gently through the woods, left at the fork and down to the forest road; back the same way to Ponte Oscuro and Scarenna",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "in-Lombardia, Alla ricerca dei funghi di terra (itinerary by Lago di Como GAL)",
+            "url": "https://www.in-lombardia.it/itinerari/alla-ricerca-dei-funghi-di-terra",
+            "authority": "Regione Lombardia (in-Lombardia)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "An old chestnut in the wood of Rezzago, on the loop (Marco binda on Wikimedia Commons, CC BY-SA 4.0), 14 October 2020, 2 m from the line.",
+        route: "Official loop of 8.77 km from The via Pietro Valsecchi car park at Scarenna, Asso, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 33 OSM ways along the published GPX, 8.5 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "No path numbers on the page: from Scarenna by the cycle-footpath to the oratory of Santi Giovanni e Paolo and Ponte Oscuro, up via Roncaglia to Fiorana, Piazza Dorella and Enco, through the chestnut wood of Rezzago to the earth pyramids and the Madonna dei Morti church, and back through the woods to Ponte Oscuro and the same way to Scarenna.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 8.77 km, 687 m up, 3 h 30 (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL), 23% on asphalt, 26% on mule tracks and 51% on paths. The stored line follows the published GPX."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "in-Lombardia, the official tourism portal of Regione Lombardia, “Alla ricerca dei funghi di terra” (itinerary by Lago di Como GAL, with its GPX)",
+          "Comune di Asso, Regolamento di Polizia Urbana (1963), Art. 74: dogs without a muzzle must always be on a lead in public places",
+          "Comune di Rezzago, Regolamento di Polizia Urbana (1966), Art. 74: dogs on a lead unless muzzled",
+          "Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): no park, reserve, PLIS or natural monument on the line; European Environment Agency Natura 2000 service: no site on the line",
+          "OpenStreetMap ways along the board’s line (33 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 47,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About a quarter on village lanes and paved forest roads with some cars: keep your dog close there","Steps and steep earth paths near the earth pyramids, slippery after rain","The earth pyramids are fragile: keep your dog off them and on the path","Almost 700 m of climbing in all: take it slowly with an older dog"],
+      terrainType: "Paths, mule tracks and paved lanes",
+      shadeDescription: "About half shaded: the chestnut wood of Rezzago and the woods above Asso; the lanes and clearings are open.",
+      terrainDescription: "A loop from Scarenna, below Asso in the Triangolo Lariano, up through woods to the Piazza Dorella clearing and Enco, through the old chestnut wood of Rezzago, where trees still carry family marks, to the earth pyramids (“funghi di terra”) and the little church of the Madonna dei Morti beside a great boulder.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The portal mentions a drinking fountain at the Scarenna car park and another at Ponte Oscuro, and places to eat on the way at Enco. Bring water and a bowl for your dog.",
+      dogNotes: "Asso’s and Rezzago’s urban police rules (Art. 74) require a dog without a muzzle to be on a lead in public places; the national rule adds a lead of at most 1.5 m and a muzzle carried. Keep your dog off the fragile earth pyramids.",
+      tips: "Start at the via Pietro Valsecchi car park in Scarenna (Asso station is close): 8.8 km and 690 m of climbing, about 3 h 30 as the portal gives. Fill up at the fountain by the car park; there is food at Enco. Lovely in autumn among the chestnuts. Keep your dog on a lead and carry a muzzle.",
+      sourceLinks: [
+        { label: "in-Lombardia, Alla ricerca dei funghi di terra", url: "https://www.in-lombardia.it/itinerari/alla-ricerca-dei-funghi-di-terra" },
+        { label: "in-Lombardia, Alla ricerca dei funghi di terra: GPX", url: "https://www.in-lombardia.it/sites/default/files/itinerari/gpx/238705/anello_asso_rezzago.gpx" },
+        { label: "Comune di Asso, Regolamento di Polizia Urbana", url: "https://www.comune.asso.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_122.html" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.856904, lng: 9.264758, label: "The via Pietro Valsecchi car park at Scarenna, Asso, the published start" },
+      desc: "A loop from Scarenna below Asso up through the woods to Enco and the old chestnut wood of Rezzago, to the curious earth pyramids (“funghi di terra”) and the little church of the Madonna dei Morti, and back. The portal lists 8.77 km and 687 m of ascent, about 3 h 30."
+    },
+    'lombardia-bergamo-colle-maresana': {
+      // Hand audit: 19 November 2026, verified on arrival (Lombardy mountains batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Al Colle della Maresana” by VisitBergamo.net, drawn there and back on 7 OSM ways along its published GPX (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Communes: Bergamo (Regolamento per il benessere e la tutela degli animali, n. 78, DCC 24 July 2017, Art. 14 c.5: lead ≤1.5 m, muzzle carried); Ponteranica at the top: no rule found online, national rule. Parco dei Colli di Bergamo: its cycle-pedestrian network regulation asks for dogs on a lead and at heel; no ban. No Natura 2000 site (EEA). 48 m of unclassified lane at the start; no main road.
+      // The stored line follows the published GPX, 100% each way.
+      area: "Via Quintino Alto (Bergamo) – Colle della Maresana, Ponteranica",
+      distance: 2.8,
+      elevation: 210,
+      hours: '1.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: "in-Lombardia publishes the walk one way, from via Quintino Alto to the Colle della Maresana (1.4 km, 210 m up, 45 min), and gives no return. ORMA walks it there and back on the same path: 2.8 km with 210 m up and down. The time, about 1 h 30, is measured by ORMA (DIN 33466), not the portal’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start on via Quintino Alto in Bergamo, at the foot of the first flight of steps between the parks of two private villas, where the white-and-red CAI 533 sign marks the path, the published start.",
+        "sequence": "Follow path CAI 533 up through chestnut woods, with some rocky stretches and a slope of about 15%, to the Colle della Maresana (546 m) and the church of San Marco, with the Ca’ Matta park and a view over Bergamo and the plain. Come back the same way.",
+        "switches": "Path CAI 533 from via Quintino Alto up to the Colle della Maresana and the church of San Marco; back the same way.",
+        "sources": [
+          {
+            "label": "in-Lombardia, Al Colle della Maresana (itinerary by VisitBergamo.net)",
+            "url": "https://www.in-lombardia.it/itinerari/al-colle-della-maresana",
+            "authority": "Regione Lombardia (in-Lombardia)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The CAI 533 signpost for the Colle della Maresana at the start, on via Quintino Alto (Amadvance on Wikimedia Commons, CC BY-SA 4.0), 7 November 2020, with no snow, 3 m from the line.",
+        route: "Official one-way walk of 1.4 km from The foot of the steps on via Quintino Alto, Bergamo, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 7 OSM ways along the published GPX out and back, 2.7 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Path CAI 533 from via Quintino Alto up to the Colle della Maresana and the church of San Marco; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 1.4 km, 210 m up, 45 min (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by VisitBergamo.net), up to the Colle della Maresana at 546 m. There and back on the same path: 2.8 km, 210 m up and 210 m down; about 1 h 30 measured by ORMA (DIN 33466), since the portal times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "in-Lombardia, the official tourism portal of Regione Lombardia, “Al Colle della Maresana” (itinerary by VisitBergamo.net, with its GPX)",
+          "Comune di Bergamo, Regolamento per il benessere e la tutela degli animali (n. 78, DCC 24 July 2017), Art. 14 c.5: a lead of at most 1.5 m and a muzzle carried",
+          "Comune di Ponteranica publishes no dog regulation online, so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Parco dei Colli di Bergamo, Regolamento per l’uso della rete ciclo-pedonale (PTC, DGR XI/7067 of 10 October 2022, Art. 34), Art. 3: dogs on a lead and at heel; no ban",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco dei Colli di Bergamo on the line; European Environment Agency Natura 2000 service: no site on the line",
+          "OpenStreetMap ways along the board’s line (7 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 90,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["Rocky stretches on a slope of about 15%: take care on the way down, especially after rain","A popular path close to the city, with runners and families: keep your dog close","The start is on a residential street: keep your dog on a short lead there"],
+      terrainType: "Woodland path with rocky stretches",
+      shadeDescription: "Almost all in chestnut woods; the top of the hill by the church is open.",
+      terrainDescription: "A short, steady climb on path CAI 533 from the northern edge of Bergamo through chestnut woods to the Colle della Maresana (546 m), a green balcony over the city and the plain, with the church of San Marco and the Ca’ Matta park, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM); there is a restaurant at the top by the church. Bring water and a bowl for your dog.",
+      dogNotes: "Bergamo’s animal welfare rules (Regolamento 78/2017, Art. 14) require a lead of at most 1.5 m and a muzzle carried in public places, and the Colli di Bergamo park asks for dogs on a lead and at heel on its paths. Ponteranica, at the top, publishes no rule of its own.",
+      tips: "Start at the steps on via Quintino Alto in Bergamo: 1.4 km and 210 m up on path CAI 533 to the Colle della Maresana, about 45 minutes as the portal gives, and the same way back, about 1 h 30 in all by ORMA’s DIN 33466 estimate. Good shoes help on the rocky bits. Keep your dog on a lead of at most 1.5 m and carry a muzzle.",
+      sourceLinks: [
+        { label: "in-Lombardia, Al Colle della Maresana", url: "https://www.in-lombardia.it/itinerari/al-colle-della-maresana" },
+        { label: "in-Lombardia, Al Colle della Maresana: GPX", url: "https://www.in-lombardia.it/sites/default/files/itinerari/gpx/246098/10_monterosso_maresana.gpx" },
+        { label: "Comune di Bergamo, Regolamento n. 78 (benessere e tutela degli animali)", url: "https://www.comune.bergamo.it/sites/default/files/Atti/comune-bergamo-regolamento-078.pdf" },
+        { label: "Parco dei Colli di Bergamo, regolamento della rete ciclo-pedonale", url: "https://www.parcocollibergamo.it/File/Documenti/199/regolamento_ciclopedonale.pdf" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.721252, lng: 9.679477, label: "The foot of the steps on via Quintino Alto, Bergamo, the published start" },
+      desc: "A short climb from the northern edge of Bergamo on path CAI 533 through chestnut woods to the Colle della Maresana, a green balcony over the city and the plain with the old church of San Marco, and back the same way. The portal lists 1.4 km and 210 m up one way; there and back it is 2.8 km with 210 m up and down, about 1 h 30."
     }
   };
 

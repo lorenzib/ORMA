@@ -3993,6 +3993,30 @@
       "quote": "CODE_NAME '10A Troi da la Tambres' (provincial hiking-trail register, routes-hikingtrails.11426545, 1,646 m one way; St. Ulrich in Gröden)",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-18T23:00:00.000Z"
+    },
+    "lombardia-reggetto-piani-di-artavaggio": {
+      "url": "https://www.in-lombardia.it/itinerari/da-reggetto-ai-piani-di-artavaggio",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Ecomuseo Val Taleggio)",
+      "name": "Da Reggetto ai Piani di Artavaggio",
+      "quote": "Durata/Lunghezza 2h e 45min 5.35km · Dislivello Salita: 700m · “Segnavia: CAI 150 … Numeri: 5,4 km solo andata, circa 700 m di dislivello, 2 ore e 45 minuti”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "lario-asso-funghi-di-terra": {
+      "url": "https://www.in-lombardia.it/itinerari/alla-ricerca-dei-funghi-di-terra",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Alla ricerca dei funghi di terra",
+      "quote": "Durata/Lunghezza 3h e 30min 8.77km - 5 Stages · Dislivello Salita: 687m · “23% asfaltato, 26% costituito da mulattiera e 51% sentiero”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "lombardia-bergamo-colle-maresana": {
+      "url": "https://www.in-lombardia.it/itinerari/al-colle-della-maresana",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by VisitBergamo.net)",
+      "name": "Al Colle della Maresana",
+      "quote": "Durata/Lunghezza 45 min 1.40km · Dislivello Salita: 210m · “la bandiera bianca e rossa con il numero 533 a segnalare il sentiero CAI”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
     }
   }
 }

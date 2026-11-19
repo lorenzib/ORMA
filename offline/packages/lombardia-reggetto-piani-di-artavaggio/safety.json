@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lombardia-reggetto-piani-di-artavaggio",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 10.7,
+    "ascentM": 700,
+    "highestPointM": 1585,
+    "expectedDuration": "5 h",
+    "difficulty": "Hard",
+    "shadePercent": 17
+  },
+  "trailhead": {
+    "lat": 45.897707,
+    "lng": 9.552545,
+    "label": "The oratory of Sant’Antonio di Padova at Reggetto, Vedeseta, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A long steady climb of 700 m: take it slowly with an older or unfit dog.",
+    "Summer pastures at Cantoldo and Traversino with cows: keep your dog on a lead and give the herds room.",
+    "The upper pastures and the Piani di Artavaggio are open and sunny: on a hot day go early and bring plenty of water.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Reggetto to the Piani di Artavaggio": "Da Reggetto ai Piani di Artavaggio, andata e ritorno",
+    "The oratory of Sant’Antonio di Padova at Reggetto, Vedeseta, the published start": "L’oratorio di Sant’Antonio di Padova a Reggetto, Vedeseta, la partenza indicata dal portale",
+    "A long steady climb of 700 m: take it slowly with an older or unfit dog.": "Una lunga salita costante di 700 m: con un cane anziano o poco allenato andate piano.",
+    "Summer pastures at Cantoldo and Traversino with cows: keep your dog on a lead and give the herds room.": "Alpeggi di Cantoldo e Traversino con mucche d’estate: tenete il cane al guinzaglio e lasciate spazio alle mandrie.",
+    "The upper pastures and the Piani di Artavaggio are open and sunny: on a hot day go early and bring plenty of water.": "Gli alpeggi alti e i Piani di Artavaggio sono aperti e soleggiati: nelle giornate calde partite presto e portate molta acqua."
+  }
+}

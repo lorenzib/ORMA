@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lombardia-reggetto-piani-di-artavaggio",
+  "distanceKm": 10.6,
+  "ascentM": 700,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 964
+    },
+    {
+      "km": 0.8,
+      "elev": 1041
+    },
+    {
+      "km": 1.6,
+      "elev": 1112
+    },
+    {
+      "km": 2.4,
+      "elev": 1208
+    },
+    {
+      "km": 3.2,
+      "elev": 1327
+    },
+    {
+      "km": 4,
+      "elev": 1431
+    },
+    {
+      "km": 4.9,
+      "elev": 1572
+    },
+    {
+      "km": 5.7,
+      "elev": 1585
+    },
+    {
+      "km": 6.5,
+      "elev": 1480
+    },
+    {
+      "km": 7.3,
+      "elev": 1345
+    },
+    {
+      "km": 8.1,
+      "elev": 1210
+    },
+    {
+      "km": 8.9,
+      "elev": 1108
+    },
+    {
+      "km": 9.7,
+      "elev": 1042
+    },
+    {
+      "km": 10.5,
+      "elev": 995
+    },
+    {
+      "km": 10.6,
+      "elev": 964
+    }
+  ]
+}
