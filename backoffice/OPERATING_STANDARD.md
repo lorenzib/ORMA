@@ -1139,6 +1139,11 @@ and the rest of the hand audit:
   decision, 6 November 2026): declare each pass as
   `walkedTwice: [{ from, to, note }]` (km along the drawn line), and say it in
   the route sentence. A turn-back the board's line does not make is still cut.
+  *Exception, owner's decision of 18 November 2026:* Sette passi per sette
+  Ville, where the board's line loops round three short paths OpenStreetMap
+  does not have and cutting the turn-backs leaves only 88% of it within 25 m;
+  ours goes there and back on the mapped path, declared as `sideTrips` and said
+  in the route sentence. The rule stands for other walks.
   A line that is an
   out-and-back while the page calls it a loop fails until the label is right.
 - **It has directions.** The audit's route sentence says where to start and
