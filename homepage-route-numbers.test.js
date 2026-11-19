@@ -21,16 +21,17 @@ describe('logged-in homepage mapped-route hierarchy', () => {
     expect(fs.readFileSync(path.join(root, 'map-style.js'), 'utf8'))
       .toContain("MATCH_COLOURS = Object.freeze({ good: '#4A7856', fair: '#C98A2E', poor: '#9C3A25' })");
     expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?catalogueMatchColour, '#9AA19C'/);
-    // What separates the shortlist from the rest is width now, not a dimmed
-    // colour: the shortlist keeps the full corridor and the other trails are
-    // hairlines, so the colour each one carries stays readable at 0.5.
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': rankWidth\(\[5, 10, 15, 20\], \[1\.2, 1\.8, 2\.4, 3\]\)/);
+    // The shortlist is a thin solid match-colour line on a white edge (owner,
+    // 19 Nov: the old 15-20 px translucent bands read as blobs); the other
+    // trails are fainter hairlines at 0.5.
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': rankWidth\(\[1\.5, 2, 2\.5, 3\.5\], \[0\.8, 1\.2, 1\.6, 2\]\)/);
     expect(script).not.toContain("id: 'trail-paths-mapped-casing'");
     expect(script).not.toContain("id: 'trail-paths-mapped-line'");
-    // The widths the shortlist keeps, now expressed per rank rather than as a
-    // bare zoom ramp.
-    expect(script).toContain('rankWidth([8, 14, 20, 26]');
-    expect(script).toContain('rankWidth([5, 10, 15, 20]');
+    // Thin lines, expressed per rank rather than as a bare zoom ramp.
+    expect(script).toContain('rankWidth([3, 4.5, 5.5, 7], [1.5, 2.5, 3.5, 4.5])');
+    expect(script).toContain('rankWidth([1.5, 2, 2.5, 3.5], [0.8, 1.2, 1.6, 2])');
+    expect(script).toContain("'line-opacity': ['case', TOP_MATCH_TEST, 1, 0.5]");
+    expect(script).not.toContain('rankWidth([5, 10, 15, 20]');
   });
 
   test('leaves route numbers to the hiking network', () => {
