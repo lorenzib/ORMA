@@ -31,7 +31,7 @@ describe('shared website content canvas', () => {
     ['guides/paw-protection.html', '.paw2-shell'],
     ['guides/water-for-dogs-on-trail.html', '.gp-body'],
     ['guides/winter-walks-with-your-dog.html', '.gp-body'],
-    ['guides/dog-rules-dolomites.html', '.gp-body'],
+    ['guides/dog-rules-in-the-mountains.html', '.gp-body'],
     ['guides/wildlife-on-the-trail.html', '.gp-body'],
   ])('%s applies the shared canvas to its main content', (file, selector) => {
     document.body.innerHTML = read(file);
