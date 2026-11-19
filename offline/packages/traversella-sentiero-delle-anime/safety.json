@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "trailId": "traversella-sentiero-delle-anime",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 10,
+    "ascentM": 549,
+    "highestPointM": 1379,
+    "expectedDuration": "4 h 30 min",
+    "difficulty": "Hard",
+    "shadePercent": 66
+  },
+  "trailhead": {
+    "lat": 45.510375,
+    "lng": 7.755985,
+    "label": "The mines car park, Traversella, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.5100891,
+      "lng": 7.7494063,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.5096712,
+      "lng": 7.7487344,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.509491,
+      "lng": 7.7466355,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.5135657,
+      "lng": 7.7399659,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "Most of the walk is on mountain paths (T2), with steady climbs and uneven ground: for fit dogs used to mountain paths.",
+    "A short stretch with handholds where the path crosses the Rio di Chiara: keep your dog on a short lead and help it across.",
+    "Climbing crags around the Rifugio Piazza: watch for falling stones and climbers’ gear.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Sentiero delle Anime, Traversella": "Sentiero delle Anime a Traversella",
+    "The mines car park, Traversella, the board’s start": "Il parcheggio delle miniere, Traversella, la partenza ufficiale",
+    "Most of the walk is on mountain paths (T2), with steady climbs and uneven ground: for fit dogs used to mountain paths.": "Gran parte del giro è su sentieri di montagna (T2), con salite costanti e fondo irregolare: per cani in forma e abituati ai sentieri di montagna.",
+    "A short stretch with handholds where the path crosses the Rio di Chiara: keep your dog on a short lead and help it across.": "Un breve tratto con protezioni dove il sentiero attraversa il rio di Chiara: tieni il cane al guinzaglio corto e aiutalo a passare.",
+    "Climbing crags around the Rifugio Piazza: watch for falling stones and climbers’ gear.": "Pareti di arrampicata intorno al Rifugio Piazza: attenzione a sassi che cadono e all’attrezzatura degli arrampicatori."
+  }
+}

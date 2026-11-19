@@ -2909,6 +2909,23 @@
       }
     },
     {
+      "id": "lanzo-anello-mulino-turcin",
+      "approvedReviewId": "commons-lanzo-anello-mulino-turcin-on-route",
+      "approvedAt": "2026-11-19T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lanzo-mulino-turcin-wayside-shrine.jpg",
+        "heroImage": "images/trails/lanzo-mulino-turcin-wayside-shrine.jpg",
+        "imageAlt": "A small stone wayside shrine with a painted Madonna and flowers in its niche, in a bright spring wood of young trees with green ground cover",
+        "imageCredit": "Wayside shrine on the path near Coassolo",
+        "imageCreditText": "Wayside shrine on the path near Coassolo by Jrachi",
+        "imageCreator": "Jrachi",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:PV_Coassolo_018.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "lario-alla-ricerca-di-un-panorama-unico",
       "approvedReviewId": "commons-lario-alla-ricerca-di-un-panorama-unico-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",
@@ -7166,6 +7183,40 @@
       }
     },
     {
+      "id": "talucco-ecomuseo-carbonaie",
+      "approvedReviewId": "commons-talucco-ecomuseo-carbonaie-on-route",
+      "approvedAt": "2026-11-19T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/talucco-casa-canada-rocca-sbarua.jpg",
+        "heroImage": "images/trails/talucco-casa-canada-rocca-sbarua.jpg",
+        "imageAlt": "A log-built mountain hut with a grey roof and wooden balconies under a tall pale rock spire against a deep blue sky, with fresh green trees around",
+        "imageCredit": "The Rifugio Melano-Casa Canada under the Rocca Sbarua",
+        "imageCreditText": "The Rifugio Melano-Casa Canada under the Rocca Sbarua by Francofranco56",
+        "imageCreator": "Francofranco56",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Casa_Canada_e_Rocca_Sbarua.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "traversella-sentiero-delle-anime",
+      "approvedReviewId": "commons-traversella-sentiero-delle-anime-on-route",
+      "approvedAt": "2026-11-19T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/traversella-rifugio-piazza-troll.jpg",
+        "heroImage": "images/trails/traversella-rifugio-piazza-troll.jpg",
+        "imageAlt": "A giant smiling troll statue in green dungarees sitting in front of a stone mountain hut with red shutters, on a grassy terrace by a dry-stone wall",
+        "imageCredit": "The troll at the Rifugio Bruno Piazza, Traversella",
+        "imageCreditText": "The troll at the Rifugio Bruno Piazza, Traversella by Pier B.",
+        "imageCreator": "Pier B.",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Troll_del_rif.Piazza_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-bagni-di-san-candido",
       "approvedReviewId": "commons-trecime-bagni-di-san-candido-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -7740,6 +7791,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Larix_trees_and_wooden_bridge_over_ravine_Febbraro_(1487_m.a.s.l.)_-_in_Valchiavenna,_Province_of_Sondrio,_Lombardy,_Italy_-_2017-10-15.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valchiusella-fondo-tissone-tallorno",
+      "approvedReviewId": "commons-valchiusella-fondo-tissone-tallorno-on-route",
+      "approvedAt": "2026-11-19T21:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valchiusella-ponte-di-fondo.jpg",
+        "heroImage": "images/trails/valchiusella-ponte-di-fondo.jpg",
+        "imageAlt": "A tall humpbacked stone bridge over a fast clear mountain stream, with stone houses with slate roofs and a wooded slope behind",
+        "imageCredit": "The stone bridge at Fondo, Valchiusella",
+        "imageCreditText": "The stone bridge at Fondo, Valchiusella by Nicola Suozzo",
+        "imageCreator": "Nicola Suozzo",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ponte_di_Fondo_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },

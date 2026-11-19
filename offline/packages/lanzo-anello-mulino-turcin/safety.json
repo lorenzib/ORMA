@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lanzo-anello-mulino-turcin",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 10.3,
+    "ascentM": 260,
+    "highestPointM": 749,
+    "expectedDuration": "3 h 15 min",
+    "difficulty": "Moderate",
+    "shadePercent": 52
+  },
+  "trailhead": {
+    "lat": 45.286125,
+    "lng": 7.473396,
+    "label": "Cates, Lanzo Torinese, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The path can be very wet and slippery after heavy rain, as the board warns.",
+    "Short stretches on hamlet lanes and two crossings of the provincial roads: keep your dog on a short lead there.",
+    "A short cobbled stretch and steps near the Mulino Turcin.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Mulino Turcin Loop, Lanzo Torinese": "Anello del Mulino Turcin a Lanzo Torinese",
+    "Cates, Lanzo Torinese, the board’s start": "Cates, Lanzo Torinese, la partenza ufficiale",
+    "The path can be very wet and slippery after heavy rain, as the board warns.": "Dopo forti piogge il sentiero può essere molto umido e scivoloso, come avverte il sito ufficiale.",
+    "Short stretches on hamlet lanes and two crossings of the provincial roads: keep your dog on a short lead there.": "Brevi tratti sulle stradine delle borgate e due attraversamenti delle strade provinciali: lì tieni il cane al guinzaglio corto.",
+    "A short cobbled stretch and steps near the Mulino Turcin.": "Un breve tratto acciottolato e alcuni gradini vicino al Mulino Turcin."
+  }
+}
