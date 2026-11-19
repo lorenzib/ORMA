@@ -226,6 +226,8 @@ window.ORMA_PHRASES_IT = {
   "City": "Città",
   "Clear all filters": "Azzera tutti i filtri",
   "Cleared winter paths": "Sentieri invernali sgomberati",
+  "Dashed line: about {metres} m on foot from the start flag to the walk. Not part of the walk’s distance.": "Linea tratteggiata: circa {metres} m a piedi dalla bandierina al percorso. Non inclusi nella distanza del percorso.",
+  "Dashed line: on foot from the start flag to the walk. Not part of the walk’s distance.": "Linea tratteggiata: a piedi dalla bandierina al percorso. Non inclusa nella distanza del percorso.",
   "Five cleared winter paths in the Dolomites": "Cinque sentieri invernali sgomberati nelle Dolomiti",
   "Off ski runs and ski tracks": "Lontano da piste da sci e da fondo",
   "Try fewer filters. If you don’t know a plant, keep your dog away from it.": "Prova con meno filtri. Se non conosci una pianta, tieni il cane lontano.",

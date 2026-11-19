@@ -40,13 +40,15 @@ describe('the offline-package workflow runs without anyone remembering (OFF-07)'
       ...DEFAULT_FILES,
       'data/verified-trail-overrides.json',
       'data/lift-access.json',
+      // The walk-in drawn on the offline map (start-access-paths.js).
+      'data/start-access-paths.json',
       'data/trail-slug-overrides.json',
       'trust/evidence-v1.js',
       'scripts/load-production-trails.js',
       'scripts/build-offline-packages.js',
     ];
     const loader = fs.readFileSync(path.join(root, 'scripts', 'load-production-trails.js'), 'utf8');
-    ['verified-trail-overrides.json', 'lift-access.json'].forEach(file => expect(loader).toContain(file));
+    ['verified-trail-overrides.json', 'lift-access.json', 'start-access-paths'].forEach(file => expect(loader).toContain(file));
     expect(on.push.paths.sort()).toEqual(sources.sort());
   });
 

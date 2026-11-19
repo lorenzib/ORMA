@@ -1161,6 +1161,23 @@ function fetchNearbyParking(path){
   }).filter(Boolean));
 }
 
+// The walk-in (trail.accessPath, data/start-access-paths.json): the mapped way
+// from a start flag that sits off the line to the walk itself.
+function accessPathLine(trail){
+  const access = trail && trail.accessPath;
+  return access && Array.isArray(access.path) && access.path.length > 1 &&
+    access.path.every(p => Array.isArray(p) && Number.isFinite(p[0]) && Number.isFinite(p[1]))
+    ? access.path : null;
+}
+
+function accessPathWords(trail){
+  const lengthM = Number(trail && trail.accessPath && trail.accessPath.lengthM);
+  const metres = Number.isFinite(lengthM) ? Math.max(10, Math.round(lengthM / 10) * 10) : null;
+  return metres
+    ? tx('Dashed line: about {metres} m on foot from the start flag to the walk. Not part of the walk’s distance.', { metres })
+    : tx('Dashed line: on foot from the start flag to the walk. Not part of the walk’s distance.');
+}
+
 function nearestPathIndex(path, pt){
   let best = 0, bestD = Infinity;
   for(let i = 0; i < path.length; i++){
@@ -1188,6 +1205,8 @@ function applyLoopRotation(trail, rot){
   };
   trail.lat = trail.path[0][0];
   trail.lng = trail.path[0][1];
+  // The start is now on the line, so the walk-in from the old flag no longer applies.
+  delete trail.accessPath;
 }
 
 function improveLoopStart(trail, options){
@@ -2503,6 +2522,32 @@ function renderTrail(t){
           window.ORMAMapStyle.setLinesOnImagery(map, 'single-trail-path-line', true);
         }
 
+        // The walk-in from the start flag to the walk, where the flag sits off
+        // the line (a car park or bus stop): thin and dashed, under the walk,
+        // and never counted in its distance, climb or time.
+        const accessLine = accessPathLine(t);
+        if(accessLine){
+          map.addSource('single-trail-access', {
+            type: 'geojson',
+            data: { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: accessLine.map(([lat, lng]) => [lng, lat]) } },
+          });
+          window.ORMAMapStyle.addAccessLine(map, {
+            id: 'single-trail-access-line',
+            source: 'single-trail-access',
+            color: selectedRouteColor,
+            beforeId: 'single-trail-path-line-casing',
+          });
+          // A wide, invisible twin so a fingertip finds the thin dashed line.
+          map.addLayer({
+            id: 'single-trail-access-hit', type: 'line', source: 'single-trail-access',
+            paint: { 'line-color': '#000', 'line-opacity': 0, 'line-width': 18 },
+          }, 'single-trail-path-line-casing');
+          const accessPopup = () => new maplibregl.Popup({ offset: 8 }).setHTML(itinEsc(accessPathWords(t)));
+          map.on('click', 'single-trail-access-hit', event => accessPopup().setLngLat(event.lngLat).addTo(map));
+          map.on('mouseenter', 'single-trail-access-hit', () => { map.getCanvas().style.cursor = 'pointer'; });
+          map.on('mouseleave', 'single-trail-access-hit', () => { map.getCanvas().style.cursor = ''; });
+        }
+
         // Closed loops are intentionally direction-neutral: hikers can join
         // anywhere and walk clockwise or anticlockwise. Keep arrows only for
         // routes whose start and end are genuinely different.
@@ -2536,7 +2581,7 @@ function renderTrail(t){
         // The reference list still renders as text in the trail details column
         // via trail-blueprint.js.
         const bounds = new maplibregl.LngLatBounds();
-        t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
+        t.path.concat(accessLine || []).forEach(([lat, lng]) => bounds.extend([lng, lat]));
         map.fitBounds(bounds, { padding: 60, maxZoom: 17 });
 
         setupElevationProfile(map, t);
@@ -2588,7 +2633,7 @@ function renderTrail(t){
         if(t.startPoint){
           new maplibregl.Marker({ element: makeIconEl('start', '#2E4034'), offset: [-14, -14] })
             .setLngLat([t.startPoint.lng, t.startPoint.lat])
-            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>${trLabel(trustedStartLabel(t, t.startPoint.label))}</b>`))
+            .setPopup(new maplibregl.Popup({ offset: 16 }).setHTML(`<b>${trLabel(trustedStartLabel(t, t.startPoint.label))}</b>${accessLine ? '<br>' + itinEsc(accessPathWords(t)) : ''}`))
             .addTo(map);
         }
       } else {

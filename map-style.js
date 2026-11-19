@@ -755,6 +755,47 @@
     return { casing: id + '-casing', line: id };
   }
 
+  /**
+   * The walk-in from the start flag to the walk (trail.accessPath): thinner
+   * than the walk and dashed, in the same colour on a narrow white edge, and
+   * drawn under it, so it reads as the way to the walk, not part of it.
+   * Pass beforeId as the walk's casing layer to keep it underneath.
+   */
+  function accessLinePaint(color, scale) {
+    const s = scale || 1;
+    return {
+      casing: {
+        'line-color': '#FFFFFF',
+        'line-opacity': 0.9,
+        'line-width': widthRamp(2.5, 3.5, 4.5, 6, s),
+      },
+      line: {
+        'line-color': color,
+        'line-opacity': 0.95,
+        'line-width': widthRamp(1.25, 1.75, 2.25, 3, s),
+        'line-dasharray': [1.6, 1.4],
+      },
+    };
+  }
+
+  function addAccessLine(map, options) {
+    const config = options || {};
+    const source = config.source;
+    const id = config.id;
+    if (!map || !source || !id || map.getLayer(id)) return null;
+    const paint = accessLinePaint(config.color || '#2E4034', config.scale);
+    const beforeId = config.beforeId && map.getLayer(config.beforeId) ? config.beforeId : undefined;
+    map.addLayer({
+      id: id + '-casing', type: 'line', source,
+      layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: paint.casing,
+    }, beforeId);
+    map.addLayer({
+      id, type: 'line', source,
+      layout: { 'line-join': 'round', 'line-cap': 'butt' }, paint: paint.line,
+    }, beforeId);
+    return { casing: id + '-casing', line: id };
+  }
+
   // On satellite the white edge goes and the thin line stays solid: it is
   // narrow enough that the track in the photo still shows beside it.
   const ROUTE_LINE_ON_IMAGERY = { casing: 0, line: 1 };
@@ -901,6 +942,8 @@
     calmBasemap,
     routeLinePaint,
     addRouteLine,
+    addAccessLine,
+    accessLinePaint,
     setLinesOnImagery,
     ROUTE_LINE_ON_IMAGERY,
     HIKING_LINE_OPACITY,
