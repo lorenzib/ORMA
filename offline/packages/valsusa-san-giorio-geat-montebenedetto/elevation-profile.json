@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-san-giorio-geat-montebenedetto",
+  "distanceKm": 7,
+  "ascentM": 361,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1138
+    },
+    {
+      "km": 0.5,
+      "elev": 1263
+    },
+    {
+      "km": 1.1,
+      "elev": 1332
+    },
+    {
+      "km": 1.7,
+      "elev": 1371
+    },
+    {
+      "km": 2.2,
+      "elev": 1357
+    },
+    {
+      "km": 2.7,
+      "elev": 1368
+    },
+    {
+      "km": 3.2,
+      "elev": 1364
+    },
+    {
+      "km": 3.8,
+      "elev": 1317
+    },
+    {
+      "km": 4.3,
+      "elev": 1243
+    },
+    {
+      "km": 4.8,
+      "elev": 1196
+    },
+    {
+      "km": 5.3,
+      "elev": 1193
+    },
+    {
+      "km": 5.9,
+      "elev": 1206
+    },
+    {
+      "km": 6.4,
+      "elev": 1188
+    },
+    {
+      "km": 6.9,
+      "elev": 1157
+    },
+    {
+      "km": 7,
+      "elev": 1138
+    }
+  ]
+}

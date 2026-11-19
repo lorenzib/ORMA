@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-san-giorio-geat-montebenedetto",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.2,
+    "ascentM": 361,
+    "highestPointM": 1371,
+    "expectedDuration": "2 h 45 min",
+    "difficulty": "Hard",
+    "shadePercent": 91
+  },
+  "trailhead": {
+    "lat": 45.105342,
+    "lng": 7.187053,
+    "label": "Borgata Adret, San Giorio di Susa, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A steep stretch at the start and a short steep climb after the refuge, on mountain paths (T2): take it slowly with an older dog.",
+    "In winter the board says snowshoes, microspikes and avalanche gear may be needed: walk it only when it is clear of snow and ice.",
+    "Inside the park dogs must stay on a lead.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Rifugio GEAT and Certosa di Montebenedetto Loop, San Giorio": "Anello del Rifugio GEAT e della Certosa di Montebenedetto",
+    "Borgata Adret, San Giorio di Susa, the board’s start": "Borgata Adret, San Giorio di Susa, la partenza ufficiale",
+    "A steep stretch at the start and a short steep climb after the refuge, on mountain paths (T2): take it slowly with an older dog.": "Un tratto ripido all’inizio e una breve salita ripida dopo il rifugio, su sentieri di montagna (T2): vai piano con un cane anziano.",
+    "In winter the board says snowshoes, microspikes and avalanche gear may be needed: walk it only when it is clear of snow and ice.": "D’inverno il sito indica che possono servire ciaspole, ramponcini e kit di autosoccorso in valanga: percorrilo solo senza neve e ghiaccio.",
+    "Inside the park dogs must stay on a lead.": "Nel parco i cani devono stare al guinzaglio."
+  }
+}
