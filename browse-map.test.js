@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { coordinateFor, withinBounds, trailFeature } = require('./browse-map.js');
+const { coordinateFor, withinBounds, trailFeature, trailLineFeature, LINE_MIN_ZOOM } = require('./browse-map.js');
 
 describe('Trails page map', () => {
   test('uses a declared trailhead before the legacy coordinate', () => {
@@ -37,6 +37,30 @@ describe('Trails page map', () => {
     expect(source).not.toContain('getClusterExpansionZoom');
     expect(source).toContain("id:'browse-trails-individual'");
     expect(source).toContain("fitColourExpression('fit', 'score')");
+  });
+
+  test('from region zoom a walk is its line, not a dot', () => {
+    // Owner, 19 Nov: "show the lines instead of the dots".
+    const walk={ id:'w', lat:46.6, lng:11.7, path:[[46.6, 11.7], [46.61, 11.72]] };
+    const line=trailLineFeature(walk, { score:70, fit:'good' });
+    expect(line.geometry).toEqual({ type:'LineString', coordinates:[[11.7, 46.6], [11.72, 46.61]] });
+    expect(line.properties).toEqual(expect.objectContaining({ id:'w', fit:'good', score:70 }));
+    expect(trailLineFeature({ id:'n', lat:46.6, lng:11.7 })).toBeNull();
+    expect(trailFeature(walk).properties.line).toBe(1);
+    expect(trailFeature({ id:'n', lat:46.6, lng:11.7 }).properties.line).toBe(0);
+    expect(LINE_MIN_ZOOM).toBe(9);
+
+    const source=fs.readFileSync('browse-map.js','utf8');
+    const layer=id => { const at=source.indexOf(`id:'${id}'`); return source.slice(at, source.indexOf('});', at)); };
+    // Lines in the match colour from LINE_MIN_ZOOM, thin on a white edge.
+    expect(layer('browse-trail-lines')).toContain('minzoom:LINE_MIN_ZOOM');
+    expect(layer('browse-trail-lines')).toContain("'line-color':fitColour");
+    expect(layer('browse-trail-lines-casing')).toContain("'line-color':'#fff'");
+    // Dots for line walks only below that zoom; walks with no line keep theirs.
+    expect(layer('browse-trails-overview')).toContain("['get', 'line'], 0], 1], maxzoom:LINE_MIN_ZOOM");
+    expect(layer('browse-trails-individual')).toContain("['get', 'line'], 0], 0]");
+    // A tap on the line picks the walk.
+    expect(source).toContain("'browse-trail-lines-hit'];");
   });
 
   test('a pin carries its verdict tier, so it is the colour of its card', () => {
@@ -82,7 +106,7 @@ describe('Trails page map', () => {
     expect(html).toContain('id="browseSearchArea"');
     expect(html).toContain('data-browse-view="list"');
     expect(html).toContain('data-browse-view="map"');
-    expect(html).toContain('src="browse-map.js?v=20261111-1"');
+    expect(html).toContain('src="browse-map.js?v=20261119-1"');
     expect(html).toContain('scoreFor:matchScore');
     expect(html).toContain('savedFor:trail => !!currentFavorites[trail.id]');
   });
