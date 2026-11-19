@@ -153,4 +153,14 @@ describe('every collection cover can be credited', () => {
       .map(item => `${item.id} -> ${item.coverImage}`);
     expect(orphans).toEqual([]);
   });
+  test('no subtitle or chip promises a number of walks', () => {
+    // The card counts the walks it shows; walks out of season this month sit
+    // out with a "6 more back in June" note. A spelled-out count went stale in
+    // November, when "Seven high-level options" showed one walk.
+    const NUMBER = /\b(one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b(?![\s-]*(?:day|days|km|m)\b)/i;
+    const counted = collections.all()
+      .flatMap(item => [item.subtitle, ...item.chips].map(text => `${item.id}: ${text}`))
+      .filter(text => NUMBER.test(text.split(': ')[1]) && !/^\w[\w-]*: Up to \d+ m climb$|Under \d+ km/.test(text));
+    expect(counted).toEqual([]);
+  });
 });
