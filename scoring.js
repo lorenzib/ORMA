@@ -171,6 +171,8 @@ function effectiveOverrides(profile, adjustOverride){
   if(adjustOverride){
     const base = effectiveOverrides(profile, null);
     const adjusted = { ...base, ...adjustOverride, _profile: profile };
+    // Only a hand-changed steepness overrides the engine's own rule.
+    adjusted._steepnessAdjusted = String(adjusted.terrain) !== String(base.terrain);
     if(adjusted.energy === 'low') adjusted.distance = String(Math.min(5, Number(adjusted.distance) || 5));
     if(adjusted.energy === 'high') adjusted.distance = '18';
     return adjusted;

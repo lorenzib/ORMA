@@ -4017,6 +4017,38 @@
       "quote": "Durata/Lunghezza 45 min 1.40km · Dislivello Salita: 210m · “la bandiera bianca e rossa con il numero 533 a segnalare il sentiero CAI”",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "lanzo-anello-mulino-turcin": {
+      "url": "https://www.outdooractive.com/it/r/804987381",
+      "publisher": "Turismo Torino e Provincia (Outdooractive)",
+      "name": "Anello del Mulino Turcin",
+      "quote": "Distanza 10,3 km · Durata 3:15 h · Salita 260 m · Discesa 261 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T21:00:00.000Z"
+    },
+    "talucco-ecomuseo-carbonaie": {
+      "url": "https://www.outdooractive.com/it/r/804474829",
+      "publisher": "Turismo Torino e Provincia (Outdooractive)",
+      "name": "Sentiero \"Ecomuseo delle Carbonaie\"",
+      "quote": "Distanza 7,4 km · Durata 2:55 h · Salita 448 m · Discesa 449 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T21:00:00.000Z"
+    },
+    "traversella-sentiero-delle-anime": {
+      "url": "https://www.outdooractive.com/it/r/804493440",
+      "publisher": "Turismo Torino e Provincia (Outdooractive)",
+      "name": "Sentiero delle Anime e della Transumanza",
+      "quote": "Distanza 10 km · Durata 4:25 h · Salita 549 m · Discesa 549 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T21:00:00.000Z"
+    },
+    "valchiusella-fondo-tissone-tallorno": {
+      "url": "https://www.outdooractive.com/it/r/804976410",
+      "publisher": "Turismo Torino e Provincia (Outdooractive)",
+      "name": "Anello Fondo - Tissone - Tallorno",
+      "quote": "Distanza 5 km · Durata 2:05 h · Salita 319 m · Discesa 319 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T21:00:00.000Z"
     }
   }
 }
