@@ -2,17 +2,17 @@
   "schemaVersion": 1,
   "trailId": "osm-7549783",
   "name": "Anello del Troi de le Ciaure",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.447Z",
+  "version": "2026.11.19-beta.8",
+  "generatedAt": "2026-11-19T15:38:11.261Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 534704,
+  "packageBytes": 549942,
   "packageBudgetBytes": 5242880,
   "bounds": {
-    "south": 46.48829,
-    "west": 12.43636,
+    "south": 46.48794,
+    "west": 12.43617,
     "north": 46.51038,
-    "east": 12.46043
+    "east": 12.46062
   },
   "image": {
     "width": 1200,
@@ -28,8 +28,8 @@
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 1946,
-    "edgeCount": 1969,
+    "nodeCount": 1993,
+    "edgeCount": 2018,
     "trailNodeCount": 225,
     "maxRejoinRouteM": 1500
   },
@@ -200,24 +200,24 @@
       "required": true,
       "label": "Anello del Troi de le Ciaure OSM offline map",
       "url": "map.svg",
-      "bytes": 309968,
-      "sha256": "ffb8d2f55046c84f4ed50e88bb7d6b2068e1d0d2245f5af048abc9c9b383bf83"
+      "bytes": 321967,
+      "sha256": "a3e98fb99c58d1b7d300593171620f151ef575ab71aa1250cc1a5239c05fc1dc"
     },
     {
       "role": "route",
       "required": true,
       "label": "Anello del Troi de le Ciaure route",
       "url": "route.geojson",
-      "bytes": 6096,
-      "sha256": "8f6f748fea3306dddc8cb6b1f7a3d23b6ce28ed435e31394715da80468b4ead8"
+      "bytes": 6805,
+      "sha256": "dd49e2192049e5fbe4a3453206ee4a8d50d34486f95418b6c9ba55d29eb61469"
     },
     {
       "role": "footpath-network",
       "required": true,
       "label": "Anello del Troi de le Ciaure routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 94429,
-      "sha256": "9034e2a27ff65530f4eb5547cde28718c885a1324c3551e1ee6e607975b07fd1"
+      "bytes": 96959,
+      "sha256": "1c93ad522bd2d620a0dbdee8628f56c289fda92d4eaeb77a6e0b9cd48a55e57e"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Anello del Troi de le Ciaure safety information",
       "url": "safety.json",
       "bytes": 2088,
-      "sha256": "d6e48710f263eb8b3afe6c1426017e93fc1d0d0c93dd0fe9e8baac6c595112b2"
+      "sha256": "534f8265875814b2c3933197a2e6e934ac696de5d7bb132ce51d2fb2330d44ae"
     }
   ]
 }

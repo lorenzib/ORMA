@@ -349,6 +349,44 @@
           ]
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "osm-7549783-access",
+      "properties": {
+        "kind": "access",
+        "lengthM": 40,
+        "source": "OpenStreetMap walking network"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.44934,
+            46.49153
+          ],
+          [
+            12.449351,
+            46.491531
+          ],
+          [
+            12.44933,
+            46.491616
+          ],
+          [
+            12.449332,
+            46.491746
+          ],
+          [
+            12.449349,
+            46.491812
+          ],
+          [
+            12.44937,
+            46.49188
+          ]
+        ]
+      }
     }
   ]
 }

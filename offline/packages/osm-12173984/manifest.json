@@ -2,21 +2,21 @@
   "schemaVersion": 1,
   "trailId": "osm-12173984",
   "name": "Große Schlossrunde",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.238Z",
+  "version": "2026.11.19-beta.4",
+  "generatedAt": "2026-11-19T15:41:18.448Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 759568,
+  "packageBytes": 806895,
   "packageBudgetBytes": 5242880,
   "bounds": {
-    "south": 46.75363,
-    "west": 12.10024,
-    "north": 46.76991,
-    "east": 12.13922
+    "south": 46.75214,
+    "west": 12.10005,
+    "north": 46.76992,
+    "east": 12.13921
   },
   "image": {
     "width": 1200,
-    "height": 732
+    "height": 795
   },
   "mapCorridor": {
     "strategy": "fixed-bounds-svg-v1",
@@ -24,12 +24,12 @@
       1
     ],
     "width": 1200,
-    "height": 732
+    "height": 795
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 3363,
-    "edgeCount": 3417,
+    "nodeCount": 3809,
+    "edgeCount": 3880,
     "trailNodeCount": 355,
     "maxRejoinRouteM": 1500
   },
@@ -200,24 +200,24 @@
       "required": true,
       "label": "Große Schlossrunde OSM offline map",
       "url": "map.svg",
-      "bytes": 458754,
-      "sha256": "cf1d424badb183c012683d420e1c4c24f537265128eb15712c260bfd7012a594"
+      "bytes": 481523,
+      "sha256": "c0024e723fb8dd1e6e8a37c60b28582790ba0bf282eb43721cb1bd3751f9c839"
     },
     {
       "role": "route",
       "required": true,
       "label": "Große Schlossrunde route",
       "url": "route.geojson",
-      "bytes": 5889,
-      "sha256": "5d2f122c1343e4aef30af0af6136dde095fe1c71a3e24af4feab78b889770ea2"
+      "bytes": 7229,
+      "sha256": "de749f134f4c280cd08f7a79d96187127a4bc539306eac37a2977a86c15b3e32"
     },
     {
       "role": "footpath-network",
       "required": true,
       "label": "Große Schlossrunde routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 170303,
-      "sha256": "4bb4fa892a8115eeef4af78951c217843b82af2a8899cb8030ae8fc65c7361cc"
+      "bytes": 193479,
+      "sha256": "ae889b8610f3b8a30891857b549889172fd4c57a6a674009a9789e440b87be79"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Große Schlossrunde safety information",
       "url": "safety.json",
-      "bytes": 2538,
-      "sha256": "c53a5bcb5f3946df4f8e8def13912e823922e3aeebd7b7002633f658b7bf5e31"
+      "bytes": 2580,
+      "sha256": "9208d79542781b999eba13b1cc1887a16b98c6ac6576a8b71103090e0c0e93dd"
     }
   ]
 }

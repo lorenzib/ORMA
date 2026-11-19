@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11828233",
   "name": "Valser Rundweg",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.199Z",
+  "version": "2026.11.19-beta.5",
+  "generatedAt": "2026-11-19T15:38:45.793Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 581394,
+  "packageBytes": 583097,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.83137,
@@ -200,16 +200,16 @@
       "required": true,
       "label": "Valser Rundweg OSM offline map",
       "url": "map.svg",
-      "bytes": 324990,
-      "sha256": "4e568e84cea03188a98775a88e7a7c13bb987d8a26d221fe7f8e4e8dff2ead54"
+      "bytes": 325772,
+      "sha256": "c18aa76baffd690e13d319b05989387de45a3f0444fed7d21d1e2b5028c5d953"
     },
     {
       "role": "route",
       "required": true,
       "label": "Valser Rundweg route",
       "url": "route.geojson",
-      "bytes": 23352,
-      "sha256": "e5915b0a11a6d28cde586ca1efad94b0762a3626bda54d24ca82dbb02b3f8a68"
+      "bytes": 24273,
+      "sha256": "16a9bacd740baa970c530521b013cc47e388745ff904835688f0d3355f9704d8"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "Valser Rundweg routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 108855,
-      "sha256": "4a406407ca2c8a39f1f16d9f04737219c5177fb4fa2dccc7fe07de2a1bf11e08"
+      "sha256": "f23123bda138a5701ea02ccdb8ceb49741a14848db5d07aeb4dcb7c200abf22c"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Valser Rundweg safety information",
       "url": "safety.json",
       "bytes": 2113,
-      "sha256": "e6bcee2362028427244fb795603a1d4994fff7b886c5a5db3674d2a25e877256"
+      "sha256": "03f65bf7a4608244e5e572a6af477ab5bf828395d5f5523c2e91835ae0ff8198"
     }
   ]
 }
