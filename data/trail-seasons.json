@@ -3030,6 +3030,30 @@
         "highPoint": 1935
       }
     },
+    "lanzo-anello-mulino-turcin": {
+      "highPoint": 749,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804987381",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
     "lario-alla-ricerca-di-un-panorama-unico": {
       "highPoint": 1049,
       "snow": {
@@ -7215,6 +7239,50 @@
         "highPoint": 983
       }
     },
+    "talucco-ecomuseo-carbonaie": {
+      "highPoint": 1095,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804474829",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "traversella-sentiero-delle-anime": {
+      "highPoint": 1379,
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804493440",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
     "tre-cime": {
       "highPoint": 2454,
       "snow": {
@@ -7963,6 +8031,27 @@
           "label": "Outdooractive",
           "url": "https://www.outdooractive.com/it/r/812014696",
           "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "valchiusella-fondo-tissone-tallorno": {
+      "highPoint": 1340,
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804976410",
+          "accessedAt": "2026-11-19"
         }
       }
     },

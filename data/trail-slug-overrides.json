@@ -2060,6 +2060,26 @@
       "name": "Bergamo to the Colle della Maresana",
       "slug": "colle-della-maresana-bergamo",
       "gloss": "path CAI 533 up through chestnut woods to the Maresana viewpoint above Bergamo and back"
+    },
+    "lanzo-anello-mulino-turcin": {
+      "name": "Mulino Turcin Loop, Lanzo Torinese",
+      "slug": "mulino-turcin-loop-lanzo",
+      "gloss": "a woodland loop over two stone bridges to an old mill"
+    },
+    "talucco-ecomuseo-carbonaie": {
+      "name": "Charcoal Kilns Path, Talucco",
+      "slug": "carbonaie-path-talucco",
+      "gloss": "a forest loop past old charcoal-burning sites to the Casa Canada hut"
+    },
+    "traversella-sentiero-delle-anime": {
+      "name": "Sentiero delle Anime, Traversella",
+      "slug": "sentiero-delle-anime-traversella",
+      "gloss": "a mountain loop past rock carvings to the Piani di Cappia"
+    },
+    "valchiusella-fondo-tissone-tallorno": {
+      "name": "Fondo, Tissone and Tallorno Loop, Valchiusella",
+      "slug": "fondo-tissone-tallorno-loop",
+      "gloss": "a loop between three stone hamlets and two old bridges"
     }
   }
 }

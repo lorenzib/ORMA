@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lanzo-anello-mulino-turcin",
+  "distanceKm": 10.2,
+  "ascentM": 260,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 526
+    },
+    {
+      "km": 0.8,
+      "elev": 590
+    },
+    {
+      "km": 1.6,
+      "elev": 622
+    },
+    {
+      "km": 2.3,
+      "elev": 620
+    },
+    {
+      "km": 3.1,
+      "elev": 618
+    },
+    {
+      "km": 3.9,
+      "elev": 698
+    },
+    {
+      "km": 4.7,
+      "elev": 720
+    },
+    {
+      "km": 5.5,
+      "elev": 749
+    },
+    {
+      "km": 6.2,
+      "elev": 707
+    },
+    {
+      "km": 7,
+      "elev": 637
+    },
+    {
+      "km": 7.8,
+      "elev": 577
+    },
+    {
+      "km": 8.5,
+      "elev": 511
+    },
+    {
+      "km": 9.3,
+      "elev": 513
+    },
+    {
+      "km": 10.1,
+      "elev": 517
+    },
+    {
+      "km": 10.2,
+      "elev": 526
+    }
+  ]
+}
