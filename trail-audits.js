@@ -71515,6 +71515,514 @@
       ],
       startPoint: { lat: 45.531333, lng: 7.686096, label: "The stone bridge at Fondo, Traversella, the board’s start" },
       desc: "A short loop at the head of the Valchiusella between three stone hamlets, from the humpbacked bridge at Fondo up to sunny Tissone, along the river to Tallorno and back past an old bridge and a waterfall. The board lists 5 km and 319 m up."
+    },
+    'valsusa-giaglione-vigne-mandorli': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 3, Val Susa).
+      // “GIAGLIONE – Le alture delle viti e dei mandorli”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 41 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Giaglione (no dog rule found online: national rule). No park or Natura 2000 site. Roads: about 1.7 km of hamlet lanes (30%, under half) and about 160 m on the SP211 branch through the hamlets; the rest is vineyard track and path. About 540 m of T2 (OSM mountain_hiking): caution line.
+      // The stored line follows the board’s own line, 99% and 100%; it runs the board’s two lobes in the order of the board’s line, which joins them at San Lorenzo.
+      area: "San Giuseppe – San Rocco – San Martino – San Lorenzo – San Gregorio, Giaglione (Val di Susa)",
+      distance: 5.8,
+      elevation: 241,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the fountain at San Giuseppe in Giaglione through the vineyard hamlets of Creusa, San Rocco, San Martino, San Giovanni and San Lorenzo, then past the Casaforte di Menate and the Piëra Tsarva viewpoint over the Dora gorges to San Gregorio and back to San Giuseppe, as the board’s line runs (5.8 km, 241 m up, 1:55 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the fountain in the hamlet of San Giuseppe, Giaglione, the board’s start.",
+        "sequence": "From the fountain climb the lane to Creusa and on past the wayside shrine to San Rocco, with a wide view of the valley. Follow the vineyard track along the slope and down through chestnuts and vines to the chapel of San Martino, then on through the hamlets of San Giovanni and San Lorenzo. From San Lorenzo go past the school to the Casaforte di Menate, the old castle house, and along the panoramic track over the Dora gorges past the Piëra Tsarva viewpoint. At the fork go down left to the track to San Gregorio, then climb the other side on the path back to San Giuseppe.",
+        "switches": "Lane up to Creusa and San Rocco; vineyard track along the slope; chapel of San Martino; San Giovanni and San Lorenzo; past the school to the Casaforte di Menate; panoramic track past the Piëra Tsarva; down left at the fork to San Gregorio; path back up to San Giuseppe.",
+        "steps": [
+          {
+            "text": "The fountain at San Giuseppe, Giaglione",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Up through Creusa to San Rocco",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The vineyard track to the chapel of San Martino, San Giovanni and San Lorenzo",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Casaforte di Menate and the Piëra Tsarva viewpoint over the Dora gorges",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down to San Gregorio and back up to San Giuseppe",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), GIAGLIONE – Le alture delle viti e dei mandorli (route description)",
+            "url": "https://www.outdooractive.com/it/r/809858459",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The chapel of San Martino, Giaglione (Martj9 on Wikimedia Commons, CC BY-SA 4.0), 1 May 2022, 1 m from the line.",
+        route: "Official loop of 5.8 km from The fountain at San Giuseppe, Giaglione, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 41 OSM ways along the board’s published line, 5.6 km, with 99% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Signed as the AVM vineyard route, partly on the Sentiero Italia. From the fountain at San Giuseppe in Giaglione go up through Creusa to San Rocco, along the vineyard track past San Martino, San Giovanni and San Lorenzo, then past the Casaforte di Menate and the Piëra Tsarva to San Gregorio and back up to San Giuseppe.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 5.8 km, 241 m up and 241 m down, 1:55 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), GIAGLIONE – Le alture delle viti e dei mandorli (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Giaglione, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (41 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 31,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ["A sunny, open slope with little shade: avoid hot afternoons and carry water for your dog","Stretches on hamlet lanes and a short one on the provincial road through the hamlets: keep your dog on a short lead there","The path back up to San Giuseppe is steep and stony for a short way"],
+      terrainType: "Hamlet lanes, vineyard tracks and paths",
+      shadeDescription: "Mostly open: about a third under chestnuts, the rest among vineyards and hamlets.",
+      terrainDescription: "A loop on the sunny slope of Giaglione, whose mild climate lets local vines and almond trees grow, through old stone hamlets and chapels and out to a viewpoint over the gorges of the Dora Riparia.",
+      waterDescription: "Fountains in the hamlets, at the start in San Giuseppe and by the school in San Lorenzo; carry water for your dog on the open slope.",
+      dogNotes: "Giaglione publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the fountain in San Giuseppe, Giaglione: 5.8 km and 241 m up, about 2 hours, as the board lists. Go in spring or autumn: the slope is open and hot in summer.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), GIAGLIONE – Le alture delle viti e dei mandorli", url: "https://www.outdooractive.com/it/r/809858459" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.140928, lng: 7.012507, label: "The fountain at San Giuseppe, Giaglione, the board’s start" },
+      desc: "A sunny loop above Giaglione through vineyards, almond trees and old stone hamlets with their chapels, out to a viewpoint over the gorges of the Dora Riparia. The board lists 5.8 km and 241 m up."
+    },
+    'valsusa-venaus-sentiero-gufi-basso': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 3, Val Susa).
+      // “VENAUS – Il Sentiero dei Gufi basso”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 33 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Venaus (no dog rule found online: national rule). No park or Natura 2000 site. Roads: about 510 m of lanes; the rest is gravel track and path. About 640 m of T2 (OSM mountain_hiking): caution line. Out-and-back, as the board publishes it (6.1 km is the whole walk).
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Venaus – Chirabò chapel (Val Cenischia)",
+      distance: 6.1,
+      elevation: 294,
+      hours: '2',
+      routeShape: 'out-and-back',
+      routeShapeNote: "There and back the same way from the first houses of Venaus on the Sentiero dei Gufi (586), along the edge of the wood past the cemetery and up a steady, easy track to the viewpoint by the Chirabò chapel, as the board publishes it (6.1 km in all, 294 m up, 2:05 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the first houses of Venaus: turn left into Via Roma and, a little further on the left, find the Sentiero dei Gufi information board (path 586), the board’s start.",
+        "sequence": "Follow the gravel track along the edge of the wood above the village, cross a road by the cemetery and carry on up the easy track at a steady, moderate gradient, past the owl boards and the Roccia dei Partigiani, to the viewpoint with benches by the Chirabò chapel. Come back the same way.",
+        "switches": "Via Roma to the Sentiero dei Gufi board; gravel track along the edge of the wood; across the road by the cemetery; steady climb past the Roccia dei Partigiani; viewpoint by the Chirabò chapel; back the same way.",
+        "steps": [
+          {
+            "text": "The Sentiero dei Gufi board in Via Roma, Venaus",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Along the edge of the wood and across the road by the cemetery",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Steady climb past the Roccia dei Partigiani",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The viewpoint by the Chirabò chapel",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back the same way to Venaus",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), VENAUS – Il Sentiero dei Gufi basso (route description)",
+            "url": "https://www.outdooractive.com/it/r/809943711",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The chapel of the Martirio di San Giovanni above Venaus (Martj9 on Wikimedia Commons, CC BY-SA 4.0), 5 May 2024, 14 m from the line.",
+        route: "Official 6.1 km there and back from The Sentiero dei Gufi board, Via Roma, Venaus, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 33 OSM ways along the board’s published line, 6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Path 586, the Sentiero dei Gufi. From the information board in Via Roma, Venaus, follow path 586 along the edge of the wood past the cemetery and up the gravel track to the viewpoint by the Chirabò chapel, then back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 6.1 km there and back, 294 m up and 294 m down, 2:05 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), VENAUS – Il Sentiero dei Gufi basso (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Venaus, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (33 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 75,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["A short road crossing by the cemetery: keep your dog on a short lead there","The upper part is a mountain path (T2) for a short way: watch your dog’s footing on loose stones"],
+      terrainType: "Gravel track and woodland path",
+      shadeDescription: "Mostly in woods; the viewpoint at the top is open.",
+      terrainDescription: "An easy climb from Venaus along the edge of the woods where tawny owls, eagle owls and little owls live, with boards about the local wildlife, up to a viewpoint with benches by the Chirabò chapel.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. Venaus has fountains in the village.",
+      dogNotes: "Venaus publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the Sentiero dei Gufi board in Via Roma, Venaus: 6.1 km there and back and 294 m up, about 2 hours, as the board lists. An easy walk for families and dogs of most ages.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), VENAUS – Il Sentiero dei Gufi basso", url: "https://www.outdooractive.com/it/r/809943711" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.151336, lng: 7.015962, label: "The Sentiero dei Gufi board, Via Roma, Venaus, the board’s start" },
+      desc: "An easy walk from Venaus on a gravel track through owl woods, with boards about the wildlife, up to a viewpoint by the Chirabò chapel and back the same way. The board lists 6.1 km and 294 m up."
+    },
+    'valsusa-foresto-sentiero-ginepri': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 3, Val Susa).
+      // “FORESTO – Il Sentiero dei Ginepri”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 13 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Bussoleno (Foresto); no commune dog rule found online. Inside the Orrido di Foresto natural reserve and ZSC IT1110030 for most of the line: Alpi Cozie regulation art. 23, dogs on a lead. Roads: about 870 m of village lanes (20%). About 1 km of T2 (OSM mountain_hiking), and the board names a steep slope and rock steps: caution lines.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Foresto – Orrido di Foresto reserve – la Cota (Bussoleno, Val di Susa)",
+      distance: 4.4,
+      elevation: 337,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the church of Foresto up the path cut into the limestone cliffs (536) past an old lime kiln and terraces, down the steep juniper slope (536B), on along the edge of the reserve to the mule track to the hamlet of la Cota, and back on the lanes to Foresto, as the board publishes it (4.4 km, 337 m up, 1:55 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the church square in Foresto, Bussoleno, the board’s start.",
+        "sequence": "From the church follow the signs for the Orrido; at the end of the lane take the path cut into the limestone cliff (path 536), past an old lime kiln and old terraced fields among the junipers. Follow the signs for the Sentiero dei Ginepri: leave the path to Ambruna and go down left on path 536B, a steep slope, to a knoll with a lone juniper. Carry on among limestone cliffs, grassy slopes and rock steps to the edge of the reserve, then take the wide mule track to the hamlet of la Cota and the lanes back to the school square in Foresto.",
+        "switches": "Signs for the Orrido from the church; path 536 cut into the cliff; past the lime kiln; left on path 536B down the juniper slope; the knoll with the lone juniper; along the edge of the reserve; mule track to la Cota; lanes back to Foresto.",
+        "steps": [
+          {
+            "text": "The church square in Foresto",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 536 cut into the limestone cliff, past the old lime kiln",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down path 536B to the knoll with the lone juniper",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Along the edge of the reserve to the mule track and la Cota",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The lanes back to Foresto",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), FORESTO – Il Sentiero dei Ginepri (route description)",
+            "url": "https://www.outdooractive.com/it/r/809935419",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The juniper path in the Orrido di Foresto reserve (Sbaluf on Wikimedia Commons, CC BY-SA 4.0), 7 May 2006, 46 m from the line.",
+        route: "Official loop of 4.4 km from The church square, Foresto, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 13 OSM ways along the board’s published line, 4.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 536 and 536B, signed Sentiero dei Ginepri. From the church in Foresto follow the signs for the Orrido onto path 536 along the cliff, then down path 536B over the juniper slope, along the edge of the reserve to the mule track to la Cota and back on the lanes to Foresto.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 4.4 km, 337 m up and 337 m down, 1:55 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), FORESTO – Il Sentiero dei Ginepri (its Outdooractive tour)",
+          "The Orrido di Foresto natural reserve is run by the Alpi Cozie protected-areas authority, whose regulation (art. 23) allows dogs of any breed only on a lead",
+          "No dog rule found online for the Comune di Bussoleno, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Riserva naturale dell’Orrido di Foresto and ZSC IT1110030 Oasi xerotermiche della Val di Susa on most of the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (13 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 22,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ["Path 536B goes down a steep, stony slope with rock steps (T2): keep your dog on a short lead and take it slowly","A dry, open slope with little shade: the board suggests the cooler months; avoid summer heat","Inside the reserve dogs must stay on a lead"],
+      terrainType: "Rocky paths and village lanes",
+      shadeDescription: "Mostly open: a dry, sunny slope with scattered junipers.",
+      terrainDescription: "A short, rocky loop on the dry, sunny mountain above Foresto, known for its tall, slender prickly junipers, past an old lime kiln and terraced fields, with views over meadows where wild orchids flower in May and June.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog, as the slope is dry and hot.",
+      dogNotes: "Dogs must stay on a lead in the Orrido di Foresto reserve, by the Alpi Cozie parks regulation. Outside it Bussoleno has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the church square in Foresto: 4.4 km and 337 m up, about 2 hours, as the board lists. The board recommends it for the cooler seasons; wild orchids flower in May and June.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), FORESTO – Il Sentiero dei Ginepri", url: "https://www.outdooractive.com/it/r/809935419" },
+        { label: "Ente di gestione delle aree protette delle Alpi Cozie, Regolamento delle aree protette (art. 23, dogs on a lead)", url: "https://www.servizipubblicaamministrazione.it/venere_storico_2/prcrsr597/Data/Allegati/PRAS-2021-00024-A1.PDF" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.14108, lng: 7.116229, label: "The church square, Foresto, the board’s start" },
+      desc: "A short, rocky loop above Foresto in the Orrido di Foresto reserve, past an old lime kiln and tall junipers on a dry, sunny slope with wide views over the valley. The board lists 4.4 km and 337 m up."
+    },
+    'valsusa-chianocco-orrido-chouque': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 3, Val Susa).
+      // “CHIANOCCO – L'Orrido e il Chouqué di Margrit”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 44 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Chianocco (no commune dog rule found online). Part of the line is in the Orrido di Chianocco natural reserve and ZSC IT1110030: Alpi Cozie regulation art. 23, dogs on a lead. Roads: about 2.2 km of hamlet lanes (26%). About 3.9 km of T2 (OSM mountain_hiking): caution line. The board advises against the hottest months.
+      // The stored line follows the board’s own line, 100% each way. A 60 m stub up a track and back at km 2.64 of the board’s line, which the directions do not mention, was cut from the stored line.
+      area: "Chianocco – Pavaglione – Margrit – Goitroce – Molè (Val di Susa)",
+      distance: 8.5,
+      elevation: 559,
+      hours: '3.5',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the square in Chianocco up path 541 to Pavaglione, along the gravel road to the hamlet of Margrit with a short climb to see the Chouqué di Margrit rock tower, then on the lane to the hamlets of Goitroce and Molè and down path 565 through the reserve back to Chianocco, as the board publishes it (8.5 km, 559 m up, 3:35 h).",
+      sideTrips: [{"km":4.4,"note":"Up the steep meadow above the hamlet of Margrit to see the Chouqué di Margrit and back down to Margrit, as the board’s directions say (“risalendo il ripido pendio prativo… si ridiscende a borgata Margrit”) and its own line does."}],
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the square by the town hall in Chianocco, the board’s start.",
+        "sequence": "Walk a short way up the road to Combette, then take path 541 on the left, steep at first and then gentler, up to Pavaglione. Go left on the path that soon joins the easy gravel road to the hamlet of Margrit. Climb a few tens of metres up the steep meadow to see the Chouqué di Margrit, a tall tower of layered glacial debris, and come back down to Margrit. Climb to the lane to the hamlets of Goitroce and Molè, with the eroded gullies of the Calanchi del Molè, then go down path 565 back to Chianocco.",
+        "switches": "Road towards Combette, then path 541 on the left; Pavaglione; left onto the gravel road to Margrit; up the meadow to see the Chouqué and back; lane to Goitroce and Molè; path 565 down to Chianocco.",
+        "steps": [
+          {
+            "text": "The square by the town hall, Chianocco",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 541 up to Pavaglione",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The gravel road to Margrit and the Chouqué di Margrit",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The lane to Goitroce and Molè, past the Calanchi del Molè",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 565 down through the reserve to Chianocco",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), CHIANOCCO – L'Orrido e il Chouqué di Margrit (route description)",
+            "url": "https://www.outdooractive.com/it/r/806650088",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Chouqué di Margrit above Chianocco (Sbaluf on Wikimedia Commons, CC BY-SA 4.0), 12 June 2006, 43 m from the line.",
+        route: "Official loop of 8.5 km from The square by the town hall, Chianocco, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 44 OSM ways along the board’s published line, 8.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 541, 542 and 565. From the square in Chianocco take path 541 up to Pavaglione and the gravel road to Margrit and the Chouqué di Margrit, then the lane to Goitroce and Molè and path 565 back down through the reserve to Chianocco.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 8.5 km, 559 m up and 559 m down, 3:35 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), CHIANOCCO – L'Orrido e il Chouqué di Margrit (its Outdooractive tour)",
+          "The Orrido di Chianocco natural reserve is run by the Alpi Cozie protected-areas authority, whose regulation (art. 23) allows dogs of any breed only on a lead",
+          "No dog rule found online for the Comune di Chianocco, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Riserva naturale dell’Orrido di Chianocco and ZSC IT1110030 Oasi xerotermiche della Val di Susa on part of the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (44 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 57,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ["The board advises against the hottest months: the slope is sunny; go in autumn, winter or spring","Path 541 is steep at the start and parts are mountain paths (T2): take it slowly with an older dog","Stretches on hamlet lanes between Margrit and Molè: keep your dog on a short lead there","Inside the reserve dogs must stay on a lead"],
+      terrainType: "Mountain paths, gravel road and hamlet lanes",
+      shadeDescription: "About half in woods; the meadows and hamlets are open and sunny.",
+      terrainDescription: "A loop on the sunny slopes above Chianocco, in and around the Orrido di Chianocco reserve, to the Chouqué di Margrit, a tower of layered glacial debris shaped by erosion, and the steep eroded gullies of the Calanchi del Molè.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog.",
+      dogNotes: "Dogs must stay on a lead in the Orrido di Chianocco reserve, by the Alpi Cozie parks regulation. Outside it Chianocco has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the square by the town hall in Chianocco: 8.5 km and 559 m up, about 3 hours 35 minutes, as the board lists. Best in autumn, winter and spring: the board warns it is too hot in high summer.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), CHIANOCCO – L'Orrido e il Chouqué di Margrit", url: "https://www.outdooractive.com/it/r/806650088" },
+        { label: "Ente di gestione delle aree protette delle Alpi Cozie, Regolamento delle aree protette (art. 23, dogs on a lead)", url: "https://www.servizipubblicaamministrazione.it/venere_storico_2/prcrsr597/Data/Allegati/PRAS-2021-00024-A1.PDF" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.148216, lng: 7.16907, label: "The square by the town hall, Chianocco, the board’s start" },
+      desc: "A loop on the sunny slopes above Chianocco, partly in the Orrido di Chianocco reserve, to the Chouqué di Margrit, a tall tower of eroded glacial debris, and the gullies of the Calanchi del Molè. The board lists 8.5 km and 559 m up."
+    },
+    'valsusa-san-giorio-geat-montebenedetto': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 3, Val Susa).
+      // “SAN GIORIO DI SUSA – Anello del Rifugio GEAT e della Certosa di Montebenedetto”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Communes: San Giorio di Susa and Villar Focchiardo (no commune dog rule found online). Part of the line is in the Orsiera-Rocciavrè natural park and its ZSC/ZPS: Alpi Cozie regulation art. 23, dogs on a lead. Roads: about 310 m of lane; the rest is path and track. About 3.2 km of T2 (OSM mountain_hiking): caution line. Loop with the board’s own turn at the Certosa, declared in sideTrips.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Borgata Adret – Rifugio GEAT Val Gravio – Certosa di Montebenedetto (San Giorio di Susa)",
+      distance: 7.2,
+      elevation: 361,
+      hours: '2.75',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from Borgata Adret up path 512 through chestnut and beech woods to the Rifugio GEAT Val Gravio, across the stream to path 506, past the Prà du Sap altar and down to the Certosa di Montebenedetto, then by the Grange di Montebenedetto down path 524 to Adret, as the board publishes it (7.2 km, 361 m up, 2:45 h).",
+      sideTrips: [{"km":5.05,"note":"Down to the Certosa di Montebenedetto and back to the track to the Grange: the board’s directions go down to the Certosa and on from there, and its own line turns at the Certosa."}],
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Borgata Adret, San Giorio di Susa, the board’s start.",
+        "sequence": "From Borgata Adret take path 512 up to the Rifugio GEAT Val Gravio: steeper at first through chestnut woods, then gentler through chestnuts and beeches, with larches near the refuge. At the refuge take the path across the stream, steep for a few tens of metres, up to path 506. Follow the signs for the Certosa di Montebenedetto on the well-marked path past Prà du Sap and down to the Certosa. From there go on to the Grange di Montebenedetto and take path 524 back down to Borgata Adret.",
+        "switches": "Path 512 from Adret to the Rifugio GEAT Val Gravio; across the stream and up to path 506; signs for the Certosa past Prà du Sap; down to the Certosa di Montebenedetto; on to the Grange; path 524 down to Adret.",
+        "steps": [
+          {
+            "text": "Borgata Adret, San Giorio di Susa",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 512 up through chestnut and beech woods to the Rifugio GEAT Val Gravio",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Across the stream to path 506 and past Prà du Sap",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Certosa di Montebenedetto and its stone bridge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Grange di Montebenedetto and path 524 down to Adret",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), SAN GIORIO DI SUSA – Anello del Rifugio GEAT e della Certosa di Montebenedetto (route description)",
+            "url": "https://www.outdooractive.com/it/r/809188687",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The stone bridge by the Certosa di Montebenedetto (Martj9 on Wikimedia Commons, CC BY-SA 4.0), 17 September 2023, 14 m from the line.",
+        route: "Official loop of 7.2 km from Borgata Adret, San Giorio di Susa, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 512, 506 and 524. From Borgata Adret take path 512 up to the Rifugio GEAT Val Gravio, cross the stream to path 506 and follow the signs past Prà du Sap down to the Certosa di Montebenedetto, then by the Grange di Montebenedetto down path 524 to Adret.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 7.2 km, 361 m up and 361 m down, 2:45 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), SAN GIORIO DI SUSA – Anello del Rifugio GEAT e della Certosa di Montebenedetto (its Outdooractive tour)",
+          "The Orsiera-Rocciavrè natural park is run by the Alpi Cozie protected-areas authority, whose regulation (art. 23) allows dogs of any breed only on a lead",
+          "No dog rule found online for the Comune di San Giorio di Susa or the Comune di Villar Focchiardo, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Parco naturale Orsiera-Rocciavrè and its ZSC/ZPS on part of the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 91,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["A steep stretch at the start and a short steep climb after the refuge, on mountain paths (T2): take it slowly with an older dog","In winter the board says snowshoes, microspikes and avalanche gear may be needed: walk it only when it is clear of snow and ice","Inside the park dogs must stay on a lead"],
+      terrainType: "Forest paths and tracks",
+      shadeDescription: "Almost all in chestnut, beech and larch woods.",
+      terrainDescription: "A forest loop on the edge of the Orsiera-Rocciavrè park, from the hamlet of Adret through chestnut and beech woods to the Rifugio GEAT Val Gravio and the Certosa di Montebenedetto, an old Carthusian charterhouse with a mossy stone bridge.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. The Rifugio GEAT Val Gravio is about halfway up.",
+      dogNotes: "Dogs must stay on a lead in the Orsiera-Rocciavrè park, by the Alpi Cozie parks regulation. Outside it San Giorio di Susa has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at Borgata Adret above San Giorio di Susa: 7.2 km and 361 m up, about 2 hours 45 minutes, as the board lists. Shady all the way, so good in summer; in winter it needs snow gear.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), SAN GIORIO DI SUSA – Anello del Rifugio GEAT e della Certosa di Montebenedetto", url: "https://www.outdooractive.com/it/r/809188687" },
+        { label: "Ente di gestione delle aree protette delle Alpi Cozie, Regolamento delle aree protette (art. 23, dogs on a lead)", url: "https://www.servizipubblicaamministrazione.it/venere_storico_2/prcrsr597/Data/Allegati/PRAS-2021-00024-A1.PDF" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.105342, lng: 7.187053, label: "Borgata Adret, San Giorio di Susa, the board’s start" },
+      desc: "A shady forest loop from Borgata Adret through chestnut and beech woods to the Rifugio GEAT Val Gravio and the old Certosa di Montebenedetto, on the edge of the Orsiera-Rocciavrè park. The board lists 7.2 km and 361 m up."
     }
   };
 

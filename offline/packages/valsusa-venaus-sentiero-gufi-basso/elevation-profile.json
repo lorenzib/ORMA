@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-venaus-sentiero-gufi-basso",
+  "distanceKm": 6,
+  "ascentM": 294,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 580
+    },
+    {
+      "km": 0.5,
+      "elev": 586
+    },
+    {
+      "km": 0.9,
+      "elev": 628
+    },
+    {
+      "km": 1.4,
+      "elev": 688
+    },
+    {
+      "km": 1.8,
+      "elev": 788
+    },
+    {
+      "km": 2.3,
+      "elev": 788
+    },
+    {
+      "km": 2.8,
+      "elev": 877
+    },
+    {
+      "km": 3.2,
+      "elev": 849
+    },
+    {
+      "km": 3.7,
+      "elev": 829
+    },
+    {
+      "km": 4.1,
+      "elev": 748
+    },
+    {
+      "km": 4.6,
+      "elev": 688
+    },
+    {
+      "km": 5.1,
+      "elev": 628
+    },
+    {
+      "km": 5.5,
+      "elev": 592
+    },
+    {
+      "km": 6,
+      "elev": 579
+    }
+  ]
+}
