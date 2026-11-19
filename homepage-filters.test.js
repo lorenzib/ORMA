@@ -1062,9 +1062,11 @@ describe('returning homepage region + valley filters', () => {
     });
     // No verdict line under a verdict that says no: its reasons are the cautions.
     expect(panel.querySelector('.li-answer-verdict')).toBeNull();
-    // Two watch lines; of the unknowns only the dog rules are worth one.
+    // The watch line; a dog rule ORMA has not found is a quiet note instead
+    // of a warning (owner, 19 Nov).
     expect([...panel.querySelectorAll('.li-answer-check')].map(line => line.textContent))
-      .toEqual(['WatchThis route runs warm.', 'WatchWe haven’t found this area’s dog rules yet. Ask the local tourist office before you go.']);
+      .toEqual(['WatchThis route runs warm.']);
+    expect(panel.querySelector('.li-answer-note').textContent).toBe('No dog rule on record here. Check local signs.');
     expect(document.body.textContent).not.toContain('Why it fits Teo');
     // The first card starts open; closing it shows the question it asks.
     const toggle = document.querySelector('[data-why-toggle]');
