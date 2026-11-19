@@ -35,6 +35,15 @@
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
+  .sp-route-view{margin:18px 0 26px;}
+  .sp-route-view .sp-facts{margin:12px 0 8px;}
+  .sp-view-btn{display:inline-block;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid #9AA79C;color:#2E4034;cursor:pointer;}
+  .sp-view-btn:first-of-type{border-radius:999px 0 0 999px;}
+  .sp-view-btn + .sp-view-input + .sp-view-btn{border-left:none;border-radius:0 999px 999px 0;}
+  .sp-view-input:checked + .sp-view-btn{background:#2E4034;border-color:#2E4034;color:#fff;}
+  .sp-view-input:focus-visible + .sp-view-btn{outline:2px solid #2C5C34;outline-offset:2px;}
+  #spViewOneWay:not(:checked) ~ .sp-facts--one-way,#spViewOneWay:not(:checked) ~ .sp-view-note--one-way,
+  #spViewBack:not(:checked) ~ .sp-facts--back,#spViewBack:not(:checked) ~ .sp-view-note--back{display:none;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
@@ -177,7 +186,9 @@
   
   <p>Una breve salita tra 1.500 e 1.680 m dalla frazione di Périasc nel fondovalle, per una vecchia mulattiera, fino al paese di Antagnod e alla sua chiesa. Il catasto regionale dei sentieri indica 1 km e 176 m di dislivello in salita, solo andata.</p>
 
-  <div class="sp-facts">
+  <div class="sp-route-view" role="radiogroup" aria-label="Mostra i dati per">
+    <input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="spViewOneWay" value="one-way" checked><label class="sp-view-btn" for="spViewOneWay">Solo andata</label><input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="spViewBack" value="out-and-back"><label class="sp-view-btn" for="spViewBack">Andata e ritorno</label>
+    <div class="sp-facts sp-facts--one-way">
       <div class="sp-fact"><div class="sp-fact-k">Distanza</div><div class="sp-fact-v">1 km</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Dislivello in salita</div><div class="sp-fact-v">176 m</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Punto più alto</div><div class="sp-fact-v">1699 m</div></div>
@@ -185,6 +196,18 @@
       <div class="sp-fact"><div class="sp-fact-k">Terreno</div><div class="sp-fact-v">Vecchia mulattiera e strade di paese</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Valutazione del sentiero</div><div class="sp-fact-v">Terreno impegnativo</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Zona</div><div class="sp-fact-v">Périasc – Antagnod, Ayas · Valle d'Aosta, Italia</div></div>
+    </div>
+    <div class="sp-facts sp-facts--back">
+      <div class="sp-fact"><div class="sp-fact-k">Distanza</div><div class="sp-fact-v">2 km</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Salita, uguale discesa</div><div class="sp-fact-v">176 m</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Punto più alto</div><div class="sp-fact-v">1699 m</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Durata</div><div class="sp-fact-v">≈ 1 h</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Terreno</div><div class="sp-fact-v">Vecchia mulattiera e strade di paese</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Valutazione del sentiero</div><div class="sp-fact-v">Terreno impegnativo</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Zona</div><div class="sp-fact-v">Périasc – Antagnod, Ayas · Valle d'Aosta, Italia</div></div>
+    </div>
+    <p class="sp-src sp-view-note sp-view-note--one-way">Finisce lontano dalla partenza: prevedi un impianto, un autobus o una seconda auto per tornare.</p>
+    <p class="sp-src sp-view-note sp-view-note--back">Ritorno per la stessa via, sullo stesso sentiero.</p>
   </div>
 
   <a class="sp-cta" href="../../trail.html?id=periasc-antagnod">Apri la guida completa del sentiero →</a>

@@ -1563,6 +1563,14 @@ function renderTrail(t){
     const journalReturn = encodeURIComponent(`trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))}`);
     logWalkBtn.href = `journal.html?trail=${encodeURIComponent(t.id)}&from=${journalReturn}`;
   }
+  // Adjust this walk: the route planner, started from this walk's line
+  // (route-adjust.js). The copy is the reader's own and is never Verified.
+  const adjustWalkBtn = document.getElementById('adjustWalkBtn');
+  if(adjustWalkBtn){
+    const hasLine = Array.isArray(t.path) && t.path.length > 1;
+    adjustWalkBtn.hidden = !hasLine;
+    adjustWalkBtn.href = `route-planner.html?trail=${encodeURIComponent(t.id)}`;
+  }
   // Do not reserve an empty elevation panel for routes without profile data.
   const elevationCard = document.getElementById('tdElevationPanel');
   const hasElevationProfile = Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1;
@@ -1753,20 +1761,32 @@ function renderTrail(t){
   (function(){
     const factsEl = document.getElementById('trailFacts');
     if(!factsEl) return;
-    // A one-way walk gets a switch to see it walked there and back: the facts,
-    // the Match cell and the verdict card all follow it (route-return.js).
+    // A walk that is not a loop gets a switch between one way and there and
+    // back. It opens on the version its source describes; the facts, the
+    // elevation figures, the Match cell and the verdict card all follow it
+    // (route-return.js).
     const routeReturn = window.ORMARouteReturn;
-    const oneWay = !!(routeReturn && routeReturn.isOneWay(t));
-    if(oneWay) renderRouteSwitch(factsEl, routeReturn);
+    const oneWay = !!(routeReturn && routeReturn.hasChoice && routeReturn.hasChoice(t));
+    if(oneWay) renderRouteSwitch(factsEl, routeReturn, t);
     let statMatch, statMatchLink, statMatchVal, statMatchSub;
     function renderFacts(){
     const shown = oneWay ? routeReturn.forView(t) : t;
-    const back = shown !== t;
+    // Worked out from the published figures rather than published: the walk
+    // back of a one-way walk (returnLeg), or the out leg of an out-and-back
+    // walk (oneWayOf), whose climb is split by the profile and whose time no
+    // source gives.
+    const back = !!(shown !== t && shown.returnLeg);
+    const leg = !!(shown !== t && shown.oneWayOf);
     const facts = [
       [`${num(shown.distance)} km`, window.t('trail.fact.distance')],
-      [`${num(shown.elevation)} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
-      [shown.hours ? `${back ? '≈ ' : ''}${routeReturn.formatDuration(shown.hours)}` : null, window.t('trail.fact.duration')],
+      [shown.elevation == null ? null : `${leg ? '≈ ' : ''}${num(shown.elevation)} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
+      [leg ? tx('Not given') : (shown.hours ? `${back ? '≈ ' : ''}${routeReturn.formatDuration(shown.hours)}` : null), window.t('trail.fact.duration')],
     ].filter(([val]) => !/null|undefined/.test(val)); // hide facts the data honestly lacks
+    // The elevation card's climb follows the view too.
+    const climbReadout = document.getElementById('tdElevClimb');
+    if(oneWay && climbReadout && shown.elevation != null){
+      climbReadout.textContent = `${leg ? '≈ ' : ''}+${num(shown.elevation)} m`;
+    }
     if(Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1){
       facts.splice(2, 0, [`${num(Math.max(...t.elevationProfile.map(p => p.elev)))} m`, window.t('trail.fact.high')]);
     }
@@ -1860,7 +1880,8 @@ function renderTrail(t){
     // never keeps the guest teaser (and vice versa after logout).
     window.addEventListener('dolopaws-auth-changed', paintMatch);
     if(oneWay){
-      window.addEventListener('orma-route-view-changed', () => {
+      window.addEventListener('orma-route-view-changed', event => {
+        if(event.detail && event.detail.id && event.detail.id !== String(t.id)) return;
         renderFacts();
         if(window.DoloPawsAuth) paintMatch();
       });
@@ -1873,8 +1894,9 @@ function renderTrail(t){
   }
 
   // Two buttons, one pressed, above the facts strip. The walk opens on the
-  // authority's own one-way figures.
-  function renderRouteSwitch(factsEl, routeReturn){
+  // version its source describes: one way for a one-way walk, there and back
+  // for an out-and-back walk.
+  function renderRouteSwitch(factsEl, routeReturn, t){
     if(document.getElementById('routeViewSwitch')) return;
     const wrap = document.createElement('div');
     wrap.id = 'routeViewSwitch';
@@ -1882,18 +1904,18 @@ function renderTrail(t){
     wrap.setAttribute('role', 'group');
     wrap.setAttribute('aria-label', routeLabel('trail.routeView.label', 'Show the figures for'));
     const views = [
-      [routeReturn.VIEWS.OUT_AND_BACK, routeLabel('trail.routeView.outAndBack', 'Out and back')],
       [routeReturn.VIEWS.ONE_WAY, routeLabel('trail.routeView.oneWay', 'One way')],
+      [routeReturn.VIEWS.OUT_AND_BACK, routeLabel('trail.routeView.outAndBack', 'There and back')],
     ];
     const note = document.createElement('span');
     note.className = 'td2-route-switch-note';
     const paint = () => {
       wrap.querySelectorAll('button').forEach(button => {
-        const on = button.dataset.routeView === routeReturn.view();
+        const on = button.dataset.routeView === routeReturn.view(t);
         button.classList.toggle('is-on', on);
         button.setAttribute('aria-pressed', String(on));
       });
-      note.textContent = routeReturn.view() === routeReturn.VIEWS.OUT_AND_BACK
+      note.textContent = routeReturn.view(t) === routeReturn.VIEWS.OUT_AND_BACK
         ? routeLabel('trail.routeView.noteBack', 'Walking back the same way')
         : routeLabel('trail.routeView.noteOneWay', 'Ends away from the start');
     };
@@ -1902,7 +1924,7 @@ function renderTrail(t){
       button.type = 'button';
       button.dataset.routeView = value;
       button.textContent = label;
-      button.addEventListener('click', () => { routeReturn.setView(value); paint(); });
+      button.addEventListener('click', () => { routeReturn.setView(value, t); paint(); });
       wrap.appendChild(button);
     });
     wrap.appendChild(note);

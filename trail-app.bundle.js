@@ -5825,6 +5825,12 @@ function breedInsights(name){
     return { ...ranks, preferredDurationMin, declaredCount };
   }
 
+  // The dog's steepness limit on the trail scale: 0 gentle slopes only,
+  // 1 up to moderately steep, 2 no limit. Shown on the account page.
+  function steepnessLimit(dog){
+    return deriveDog(dog, []).terrain;
+  }
+
   function deriveDog(dog, unknowns){
     dog = dog || {};
     const fitnessKnown = Object.prototype.hasOwnProperty.call(FITNESS, dog.fitness);
@@ -5839,7 +5845,10 @@ function breedInsights(name){
     if(age === null) unknowns.push(item('dog.age.unknown', 'Age is missing, so life-stage adjustments are not applied.'));
     if(weight === null) unknowns.push(item('dog.weight.unknown', 'Weight is missing, so size adjustments are not applied.'));
 
-    const conditions = new Set(Array.isArray(dog.conditions) ? dog.conditions : []);
+    // 'injury' is what the account page saved for "Recovering from injury"
+    // before Nov 2026; the dog wizard always saved 'recovering'.
+    const conditions = new Set((Array.isArray(dog.conditions) ? dog.conditions : [])
+      .map(code => code === 'injury' ? 'recovering' : code));
     const traits = dog.traits || {};
     const puppy = age !== null && age < 1;
     const senior = age !== null && age >= 8;
@@ -5908,6 +5917,11 @@ function breedInsights(name){
     const limits = [puppy, senior, orthopedic, conditions.has('cardiac'), conditions.has('overweight')]
       .filter(Boolean).length;
     if(base !== FITNESS.low && limits <= 1) terrain = Math.max(terrain, FITNESS.moderate.terrain);
+    // The owner's own answer (homepage wizard: "How steep can they go?"):
+    // 0 gentle slopes only, 1 up to moderately steep. It can only lower the
+    // limit, never raise it past what age and health allow.
+    const ownerLimit = numberOrNull(dog.steepnessLimit);
+    if(ownerLimit === 0 || ownerLimit === 1) terrain = Math.min(terrain, ownerLimit);
 
     return {
       terrain: Math.max(0, terrain),
@@ -6600,6 +6614,7 @@ function breedInsights(name){
     isColdDay,
     isHeatOnlyHazard,
     CHAIRLIFT_MAX_KG,
+    steepnessLimit,
     calculateRecommendation,
   };
 });
@@ -6729,6 +6744,8 @@ function breedInsights(name){
       conditions: conditions(profile),
       traits: traits(profile),
       behaviour: behaviour(profile),
+      steepnessLimit: profile.steepnessLimit === 0 || profile.steepnessLimit === 1
+        ? profile.steepnessLimit : null,
     };
   }
 
@@ -7075,7 +7092,8 @@ function dogWeightKg(profile){
 }
 
 function dogConditions(profile){
-  if(Array.isArray(profile.conditions)) return profile.conditions;
+  // 'injury' is the account page's pre-Nov 2026 code for "Recovering from injury".
+  if(Array.isArray(profile.conditions)) return profile.conditions.map(code => code === 'injury' ? 'recovering' : code);
   // Legacy profiles: two booleans instead of the conditions list.
   return [profile.jointIssues && 'joints', profile.heatIssues && 'heat'].filter(Boolean);
 }
@@ -15493,8 +15511,21 @@ function initTrailReports(map, trail){
   const VIEWS=Object.freeze({ONE_WAY:'one-way',OUT_AND_BACK:'out-and-back'});
 
   function isOneWay(trail){
-    return Boolean(trail&&trail.routeShape==='point-to-point'
+    return Boolean(trail&&trail.routeShape==='point-to-point'&&!trail.oneWayOf
       &&Number.isFinite(Number(trail.distance))&&Number(trail.distance)>0);
+  }
+
+  // An out-and-back walk's published figures are the whole round trip: the
+  // board's km and climb cover going and coming back on the same path. A copy
+  // made by outAndBack() below is not one of these: it has a returnLeg.
+  function isThereAndBack(trail){
+    return Boolean(trail&&trail.routeShape==='out-and-back'&&!trail.returnLeg
+      &&Number.isFinite(Number(trail.distance))&&Number(trail.distance)>0);
+  }
+
+  // Walks a reader can see either way: every walk that is not a loop.
+  function hasChoice(trail){
+    return isOneWay(trail)||isThereAndBack(trail);
   }
 
   // Net height gained from start to finish, or null when the profile is too
@@ -15576,23 +15607,97 @@ function initTrailReports(map, trail){
     };
   }
 
-  // The view the reader picked on this page. Not remembered between pages: a
-  // one-way walk opens there and back, the way most people walk it without a
-  // bus or lift home, and the reader can switch to the authority's one-way
-  // figures. Every list and card reads the same default (scoring.js).
-  let current=VIEWS.OUT_AND_BACK;
-  function view(){return current;}
-  function setView(next){
+  // The out leg of an out-and-back walk: from the start to where it turns
+  // round, for a reader with a lift, a bus or a second car to get back. The
+  // distance is exactly half the round trip. The climb is the board's round
+  // trip climb split by the profile: going out climbs what the profile climbs
+  // before the turn, coming back climbs what it drops, so the share is an
+  // estimate. No board publishes a one-way time for these walks, so there is
+  // none: hours is left empty rather than halved.
+  function profileClimb(points){
+    let up=0,down=0;
+    for(let i=1;i<points.length;i+=1){
+      const step=Number(points[i].elev)-Number(points[i-1].elev);
+      if(!Number.isFinite(step))continue;
+      if(step>0)up+=step;else down-=step;
+    }
+    return {up,down};
+  }
+  function outLeg(trail){
+    const profile=Array.isArray(trail.elevationProfile)?trail.elevationProfile:[];
+    if(profile.length<2)return [];
+    const total=Number(trail.distance);
+    const last=Number(profile[profile.length-1].km);
+    // A profile drawn one way only (the line stops at the turn) is the out
+    // leg already; a round-trip profile turns at half the distance.
+    if(!(last>total*0.75))return profile;
+    const turn=last/2;
+    const leg=profile.filter(point=>Number(point.km)<=turn+1e-9);
+    const next=profile.find(point=>Number(point.km)>turn+1e-9);
+    if(next&&leg.length&&Number(leg[leg.length-1].km)<turn-0.05)leg.push(next);
+    return leg;
+  }
+  function oneWayLeg(trail){
+    if(!isThereAndBack(trail))return null;
+    const roundKm=Number(trail.distance);
+    const roundClimb=Number.isFinite(Number(trail.elevation))?Math.max(0,Number(trail.elevation)):null;
+    const leg=outLeg(trail);
+    const {up:legUp,down:legDown}=profileClimb(leg);
+    let up=null,down=null;
+    if(roundClimb!==null){
+      const share=legUp+legDown>0?legUp/(legUp+legDown):0.5;
+      up=Math.round(roundClimb*share);
+      down=Math.round(roundClimb-up);
+    }
+    return {
+      ...trail,
+      distance:Math.round(roundKm/2*10)/10,
+      elevation:up,
+      descent:down,
+      hours:null,
+      elevationProfile:leg.length>1?leg:trail.elevationProfile,
+      routeShape:'point-to-point',
+      oneWayOf:{
+        roundTripDistance:roundKm,
+        roundTripClimb:roundClimb,
+        roundTripHours:trail.hours==null?null:trail.hours,
+        climbEstimated:true,
+        hoursPublished:false,
+      },
+    };
+  }
+
+  // The view a walk opens on is the one its source describes: a one-way
+  // walk one way, an out-and-back walk there and back. The reader can switch
+  // on the trail page; the choice holds for that walk while the page is open
+  // (not remembered between pages), and every score on the page follows it
+  // (scoring.js).
+  function sourceView(trail){
+    return isThereAndBack(trail)?VIEWS.OUT_AND_BACK:VIEWS.ONE_WAY;
+  }
+  const chosen=new Map();
+  function keyOf(trail){
+    return trail&&trail.id!=null?String(trail.id):'';
+  }
+  function view(trail){
+    return chosen.get(keyOf(trail))||sourceView(trail);
+  }
+  function setView(next,trail){
     const value=next===VIEWS.ONE_WAY?VIEWS.ONE_WAY:VIEWS.OUT_AND_BACK;
-    if(value===current)return;
-    current=value;
+    if(!trail||value===view(trail))return;
+    if(value===sourceView(trail))chosen.delete(keyOf(trail));
+    else chosen.set(keyOf(trail),value);
     if(typeof window!=='undefined'&&typeof window.dispatchEvent==='function'&&typeof CustomEvent==='function'){
-      window.dispatchEvent(new CustomEvent('orma-route-view-changed',{detail:{view:value}}));
+      window.dispatchEvent(new CustomEvent('orma-route-view-changed',{detail:{view:value,id:keyOf(trail)}}));
     }
   }
   // The trail as the page should show and score it right now.
   function forView(trail){
-    return current===VIEWS.OUT_AND_BACK&&isOneWay(trail)?outAndBack(trail):trail;
+    if(!hasChoice(trail))return trail;
+    const wanted=view(trail);
+    if(wanted===VIEWS.OUT_AND_BACK&&isOneWay(trail))return outAndBack(trail);
+    if(wanted===VIEWS.ONE_WAY&&isThereAndBack(trail))return oneWayLeg(trail);
+    return trail;
   }
 
   // Hours as a reader says them: "3.9" is "3 h 55 min", not 3 h 9 min.
@@ -15617,7 +15722,7 @@ function initTrailReports(map, trail){
     return texts.join(' – ');
   }
 
-  return {VIEWS,isOneWay,netGain,parseHoursRange,formatHours,formatDuration,ruleHours,outAndBack,view,setView,forView};
+  return {VIEWS,isOneWay,isThereAndBack,hasChoice,sourceView,netGain,parseHoursRange,formatHours,formatDuration,ruleHours,outAndBack,oneWayLeg,view,setView,forView};
 });
 ;
 
@@ -17589,6 +17694,14 @@ function renderTrail(t){
     const journalReturn = encodeURIComponent(`trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))}`);
     logWalkBtn.href = `journal.html?trail=${encodeURIComponent(t.id)}&from=${journalReturn}`;
   }
+  // Adjust this walk: the route planner, started from this walk's line
+  // (route-adjust.js). The copy is the reader's own and is never Verified.
+  const adjustWalkBtn = document.getElementById('adjustWalkBtn');
+  if(adjustWalkBtn){
+    const hasLine = Array.isArray(t.path) && t.path.length > 1;
+    adjustWalkBtn.hidden = !hasLine;
+    adjustWalkBtn.href = `route-planner.html?trail=${encodeURIComponent(t.id)}`;
+  }
   // Do not reserve an empty elevation panel for routes without profile data.
   const elevationCard = document.getElementById('tdElevationPanel');
   const hasElevationProfile = Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1;
@@ -17779,20 +17892,32 @@ function renderTrail(t){
   (function(){
     const factsEl = document.getElementById('trailFacts');
     if(!factsEl) return;
-    // A one-way walk gets a switch to see it walked there and back: the facts,
-    // the Match cell and the verdict card all follow it (route-return.js).
+    // A walk that is not a loop gets a switch between one way and there and
+    // back. It opens on the version its source describes; the facts, the
+    // elevation figures, the Match cell and the verdict card all follow it
+    // (route-return.js).
     const routeReturn = window.ORMARouteReturn;
-    const oneWay = !!(routeReturn && routeReturn.isOneWay(t));
-    if(oneWay) renderRouteSwitch(factsEl, routeReturn);
+    const oneWay = !!(routeReturn && routeReturn.hasChoice && routeReturn.hasChoice(t));
+    if(oneWay) renderRouteSwitch(factsEl, routeReturn, t);
     let statMatch, statMatchLink, statMatchVal, statMatchSub;
     function renderFacts(){
     const shown = oneWay ? routeReturn.forView(t) : t;
-    const back = shown !== t;
+    // Worked out from the published figures rather than published: the walk
+    // back of a one-way walk (returnLeg), or the out leg of an out-and-back
+    // walk (oneWayOf), whose climb is split by the profile and whose time no
+    // source gives.
+    const back = !!(shown !== t && shown.returnLeg);
+    const leg = !!(shown !== t && shown.oneWayOf);
     const facts = [
       [`${num(shown.distance)} km`, window.t('trail.fact.distance')],
-      [`${num(shown.elevation)} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
-      [shown.hours ? `${back ? '≈ ' : ''}${routeReturn.formatDuration(shown.hours)}` : null, window.t('trail.fact.duration')],
+      [shown.elevation == null ? null : `${leg ? '≈ ' : ''}${num(shown.elevation)} m`, back ? routeLabel('trail.fact.ascentBack', 'Up, same down') : window.t('trail.fact.ascent')],
+      [leg ? tx('Not given') : (shown.hours ? `${back ? '≈ ' : ''}${routeReturn.formatDuration(shown.hours)}` : null), window.t('trail.fact.duration')],
     ].filter(([val]) => !/null|undefined/.test(val)); // hide facts the data honestly lacks
+    // The elevation card's climb follows the view too.
+    const climbReadout = document.getElementById('tdElevClimb');
+    if(oneWay && climbReadout && shown.elevation != null){
+      climbReadout.textContent = `${leg ? '≈ ' : ''}+${num(shown.elevation)} m`;
+    }
     if(Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1){
       facts.splice(2, 0, [`${num(Math.max(...t.elevationProfile.map(p => p.elev)))} m`, window.t('trail.fact.high')]);
     }
@@ -17886,7 +18011,8 @@ function renderTrail(t){
     // never keeps the guest teaser (and vice versa after logout).
     window.addEventListener('dolopaws-auth-changed', paintMatch);
     if(oneWay){
-      window.addEventListener('orma-route-view-changed', () => {
+      window.addEventListener('orma-route-view-changed', event => {
+        if(event.detail && event.detail.id && event.detail.id !== String(t.id)) return;
         renderFacts();
         if(window.DoloPawsAuth) paintMatch();
       });
@@ -17899,8 +18025,9 @@ function renderTrail(t){
   }
 
   // Two buttons, one pressed, above the facts strip. The walk opens on the
-  // authority's own one-way figures.
-  function renderRouteSwitch(factsEl, routeReturn){
+  // version its source describes: one way for a one-way walk, there and back
+  // for an out-and-back walk.
+  function renderRouteSwitch(factsEl, routeReturn, t){
     if(document.getElementById('routeViewSwitch')) return;
     const wrap = document.createElement('div');
     wrap.id = 'routeViewSwitch';
@@ -17908,18 +18035,18 @@ function renderTrail(t){
     wrap.setAttribute('role', 'group');
     wrap.setAttribute('aria-label', routeLabel('trail.routeView.label', 'Show the figures for'));
     const views = [
-      [routeReturn.VIEWS.OUT_AND_BACK, routeLabel('trail.routeView.outAndBack', 'Out and back')],
       [routeReturn.VIEWS.ONE_WAY, routeLabel('trail.routeView.oneWay', 'One way')],
+      [routeReturn.VIEWS.OUT_AND_BACK, routeLabel('trail.routeView.outAndBack', 'There and back')],
     ];
     const note = document.createElement('span');
     note.className = 'td2-route-switch-note';
     const paint = () => {
       wrap.querySelectorAll('button').forEach(button => {
-        const on = button.dataset.routeView === routeReturn.view();
+        const on = button.dataset.routeView === routeReturn.view(t);
         button.classList.toggle('is-on', on);
         button.setAttribute('aria-pressed', String(on));
       });
-      note.textContent = routeReturn.view() === routeReturn.VIEWS.OUT_AND_BACK
+      note.textContent = routeReturn.view(t) === routeReturn.VIEWS.OUT_AND_BACK
         ? routeLabel('trail.routeView.noteBack', 'Walking back the same way')
         : routeLabel('trail.routeView.noteOneWay', 'Ends away from the start');
     };
@@ -17928,7 +18055,7 @@ function renderTrail(t){
       button.type = 'button';
       button.dataset.routeView = value;
       button.textContent = label;
-      button.addEventListener('click', () => { routeReturn.setView(value); paint(); });
+      button.addEventListener('click', () => { routeReturn.setView(value, t); paint(); });
       wrap.appendChild(button);
     });
     wrap.appendChild(note);
@@ -20372,8 +20499,8 @@ if(document.querySelector('.td2')){
    */
   const CARD_SENTENCES = Object.freeze({
     'trail.terrain.above-tolerance': vars => (vars.steepest
-      ? tx('Steeper than {name} is up to: the steepest stretch is about {steepest}%, and {name} is best on {limit}.')
-      : tx('Steeper than {name} is up to: {name} is best on {limit}.')),
+      ? tx('Steeper than {name} likes, up to {steepest}% in places.')
+      : tx('Steeper than {name} likes.')),
     'trail.distance.above-range': () => tx('{distance} km is a long way for {name}.'),
     'trail.ascent.above-range': () => tx('{ascent} m of climbing is a lot for {name}.'),
     'trail.descent.joint-load': () => tx('The long way down is hard on {name}’s joints.'),
@@ -20399,8 +20526,8 @@ if(document.querySelector('.td2')){
     'score.floor': () => tx('This walk asks too much of {name}, so the score stays at its lowest.'),
   });
 
-  // A list of route cautions becomes the first one, as the board wrote it, and
-  // a count of the rest: the trail page has them all. The caution is the
+  // A list of route cautions becomes the first one, as the board wrote it:
+  // the trail page has them all. The caution is the
   // trail's own English, so an Italian reader gets it only where the trail's
   // Italian text is loaded; otherwise the card counts them, rather than drop an
   // English sentence into an Italian card.
@@ -20416,13 +20543,9 @@ if(document.querySelector('.td2')){
         ? tr('recommendation.card.surface-hazards.count.one', tx('There’s one thing to watch for on this route. The trail page says what.'), extra)
         : tr('recommendation.card.surface-hazards.count.many', tx('There are {count} things to watch for on this route. The trail page lists them.'), { ...extra, count });
     }
-    const more = count - 1;
-    const lead = `${local.replace(/[.;:]+$/, '')}.`;
-    if(more < 1) return lead;
-    const tail = more === 1
-      ? tr('recommendation.card.surface-hazards.more.one', tx('The trail page has one more.'), extra)
-      : tr('recommendation.card.surface-hazards.more.many', tx('The trail page has {more} more.'), { ...extra, more });
-    return `${lead} ${tail}`;
+    // The card links to the trail page, which lists the rest, so the card no
+    // longer counts them ("The trail page has one more.").
+    return `${local.replace(/[.;:]+$/, '')}.`;
   }
 
   // The trail page lists every caution, so it keeps the whole list and only
@@ -20432,7 +20555,7 @@ if(document.querySelector('.td2')){
     const hazards = cautionWords(String(vars.hazards || '').trim());
     if(!hazards) return translatedMessage(item, null, extra);
     if(Number(vars.count) === 1) return `${hazards.replace(/[.;:]+$/, '')}.`;
-    return tr('recommendation.breakdown.surface-hazards.many', tx('Watch out for: {hazards}.'), { ...extra, hazards });
+    return `${hazards.replace(/[.;:]+$/, '')}.`;
   }
 
   // forPage 'card' (the homepage card) or 'trail' (the trail page breakdown).
@@ -20533,6 +20656,43 @@ if(document.querySelector('.td2')){
     'trail.crowding.quiet': () => tx('Usually quiet'),
     'trail.sightlines.open': () => tx('Open, you can see ahead'),
   });
+
+  // The trail page says what fits in one line of short chips ("6 km",
+  // "330 m climb", "No drops") rather than a row each: the reader needs to see
+  // that it fits, not read why. A fit with no chip falls back to its topic.
+  const FIT_CHIPS = Object.freeze({
+    'trail.distance.within-range': () => tx('{distance} km'),
+    'trail.ascent.within-range': () => tx('{ascent} m climb'),
+    'trail.duration.within-preference': () => tx('Fits your time'),
+    'trail.exposure.none-known': () => tx('No drops'),
+    'trail.surface-hazards.none-known': () => tx('Easy underfoot'),
+    'trail.water.reviewed': () => tx('Water on the way'),
+    'trail.heat.low': () => tx('Stays cool'),
+    'trail.shade.good': () => tx('Plenty of shade'),
+    'conditions.heat.low': () => tx('Cool today'),
+    'trail.season.inside': () => tx('In season'),
+    'trail.dog-access.allowed': () => tx('Dogs allowed'),
+    'trail.dog-access.leash': () => tx('Dogs on a lead'),
+    'trail.livestock.none': () => tx('No livestock'),
+    'trail.wildlife.low': () => tx('Little wildlife'),
+    'trail.road.none': () => tx('No roads'),
+    'trail.crowding.quiet': () => tx('Usually quiet'),
+    'trail.sightlines.open': () => tx('Clear views ahead'),
+  });
+  function fitChip(entry, source, tr, extra){
+    const vars = { ...extra, ...(source.vars || {}) };
+    if(entry.code === 'trail.terrain.within-tolerance'){
+      const level = steepnessLevel(source.vars && source.vars.terrain);
+      if(level) return level;
+    }
+    const key = Object.keys(FIT_CHIPS).find(code => entry.code === code || entry.code.startsWith(`${code}.`));
+    if(!key) return rowTopic(entry.code);
+    return tr(`recommendation.chip.${key}`, FIT_CHIPS[key](), vars);
+  }
+  // Of everything the score could not look at, only these change what an
+  // owner does before setting out. The rest ("route details are based on map
+  // data") is what the safety notes further down the page already say.
+  const ACTIONABLE_UNKNOWNS = Object.freeze(['trail.dog-access.unknown']);
 
   function steepnessFact(vars){
     const level = steepnessLevel(vars && vars.terrain);
@@ -20732,6 +20892,17 @@ if(document.querySelector('.td2')){
     // What the score could not look at, said apart from the rows: an unknown
     // costs nothing, so a row for it would sit beside a 100% as if it agreed.
     const notChecked = cardTrailUnknowns.slice(0, 5);
+    // The short version the trail page and card now show: the reasons that
+    // lower the score (or stop it), in the order above, then the one or two
+    // unknowns an owner acts on; and what fits, as chips.
+    const actionableUnknowns = cardMessages(rawUnknowns.filter(item =>
+      ACTIONABLE_UNKNOWNS.includes(item.messageKey || item.code)));
+    const shortReasons = factorRows.filter(row => row.tone !== 'ok').map(row => ({ text:row.detail, tone:row.tone }))
+      .concat(actionableUnknowns.map(text => ({ text, tone:'note' })));
+    const fitChips = breakdownFactors
+      .filter(entry => entry.kind === 'positive')
+      .map(entry => fitChip(entry, allFactors.find(factor => factor.code === entry.code) || entry, tr, extra))
+      .filter((chip, index, all) => chip && all.indexOf(chip) === index);
 
     // The card's verdict line (VERDICT_PHRASES). A low match gets none: its
     // reasons are the cautions, and a list of what is fine would contradict it.
@@ -20752,6 +20923,9 @@ if(document.querySelector('.td2')){
     return {
       factorRows,
       notChecked,
+      shortReasons,
+      fitChips,
+      actionableUnknowns,
       cardVerdict,
       confidenceLabel:confidenceWords(recommendation.confidence, translate) || null,
       dogGapFields,
@@ -20963,44 +21137,38 @@ if(document.querySelector('.td2')){
     return `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
   }
 
-  // The breakdown sits directly under the Match %, headed in the dog's name:
-  // one row per thing the score looked at (what it is, what this walk has,
-  // and what that meant), then what it could not look at, kept apart so an
-  // unknown never sits beside a 100% as if it agreed with it.
+  // P0-1 still holds: every factor behind the score is listed, under the
+  // points link. What shows is short: the reasons that lower the score, one
+  // line each, then what fits as a row of chips. The long "not checked yet"
+  // list is gone; the unknowns an owner acts on (dog rules) are reasons.
   function breakdown(view, tr){
-    if(!view.breakdown.length && !(view.notChecked || []).length) return '';
-    const rows = (view.factorRows || []).map(row =>
-      `<li class="is-${esc(row.tone)}">` +
-        `<span class="recommendation-factor-topic">${esc(row.topic)}</span>` +
-        `<span class="recommendation-factor-reason">${esc(row.detail)}</span>` +
-        `<span class="recommendation-factor-status is-${esc(row.tone)}">${esc(row.status)}</span>` +
-      '</li>').join('');
-    const note = view.breakdownNote
-      ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
-      : '';
-    const unchecked = (view.notChecked || []).length
-      ? '<div class="recommendation-unchecked">' +
-          `<strong>${esc(tr('recommendation.unchecked.title', 'Not checked yet'))}</strong>` +
-          `<p>${esc(tr('recommendation.unchecked.lead', 'These aren’t in the score, so check them yourself.'))}</p>` +
-          `<ul>${view.notChecked.map(item => `<li>${esc(item)}</li>`).join('')}</ul>` +
-        '</div>'
-      : '';
+    const reasons = view.shortReasons || [];
+    const chips = view.fitChips || [];
+    if(!view.breakdown.length && !reasons.length) return '';
     const title = view.score === null
       ? tr('recommendation.breakdown.titleNoScore', 'Why this score for {name}', { name:view.breakdownFor })
       : tr('recommendation.breakdown.title', 'Why {score}% for {name}', { score:view.score, name:view.breakdownFor });
-    // The points stay one tap away for anyone who wants the arithmetic.
+    const reasonList = reasons.length
+      ? `<ul class="recommendation-reasons">${reasons.map(reason =>
+          `<li class="is-${esc(reason.tone)}">${esc(reason.text)}</li>`).join('')}</ul>`
+      : '';
+    const fits = chips.length
+      ? `<div class="recommendation-fits"><strong>${esc(tr('recommendation.fits.title', 'Fits {name}', { name:view.breakdownFor }))}</strong>` +
+        `<ul>${chips.map(chip => `<li>${esc(chip)}</li>`).join('')}</ul></div>`
+      : '';
+    const note = view.breakdownNote
+      ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
+      : '';
     const pointRows = (view.factorRows || []).map(row =>
       `<li><span class="recommendation-points-topic">${esc(row.topic)}</span>` +
         `<span class="recommendation-points-value is-${esc(row.tone)}">${esc(row.points)}</span></li>`).join('');
+    const howLink = `<a class="recommendation-how" href="${esc(tr('recommendation.breakdown.howHref', 'how-scoring-works.html#steepness'))}">${esc(tr('recommendation.breakdown.how', 'How ORMA scores a walk'))}</a>`;
     const points = pointRows
       ? `<details class="recommendation-points"><summary>${esc(tr('recommendation.breakdown.points', 'How the score adds up'))}</summary>` +
-        `<ol>${pointRows}</ol></details>`
-      : '';
-    const howLink = `<a class="recommendation-how" href="${esc(tr('recommendation.breakdown.howHref', 'how-scoring-works.html#steepness'))}">${esc(tr('recommendation.breakdown.how', 'How ORMA scores a walk'))}</a>`;
+        `<ol>${pointRows}</ol>${howLink}</details>`
+      : howLink;
     return `<section class="recommendation-breakdown">` +
-      `<h3>${esc(title)}</h3>` +
-      (rows ? `<ol class="recommendation-factors">${rows}</ol>` : '') +
-      note + unchecked + points + howLink + `</section>`;
+      `<h3>${esc(title)}</h3>` + reasonList + fits + note + points + `</section>`;
   }
 
   function sections(entries){
@@ -21071,16 +21239,21 @@ if(document.querySelector('.td2')){
     const conditions = window.DoloPawsCurrentConditions || warnings.length
       ? { status:'not-provided', ...(window.DoloPawsCurrentConditions || {}), warnings }
       : undefined;
-    // A one-way walk is scored as the reader chose to see it: one way, or
-    // there and back on the same paths (route-return.js).
+    // A walk that is not a loop is scored as the reader chose to see it: one
+    // way, or there and back on the same paths (route-return.js).
     const routeReturn = window.ORMARouteReturn;
-    const oneWay = !!(routeReturn && routeReturn.isOneWay(trail));
+    const oneWay = !!(routeReturn && routeReturn.hasChoice && routeReturn.hasChoice(trail));
     const scored = oneWay ? routeReturn.forView(trail) : trail;
     const recommendation = recommendTrail(scored, subjectFor(profile), conditions);
-    const routeNote = !oneWay ? ''
-      : `<p class="recommendation-route-view">${esc(scored !== trail
+    const routeNoteText = !oneWay ? ''
+      : scored.returnLeg
         ? tr('recommendation.routeView.back', 'Scored for walking there and back: {km} km, about {climb} m up and the same down. The time is an estimate.', { km:scored.distance, climb:scored.elevation })
-        : tr('recommendation.routeView.oneWay', 'Scored for one way. This walk ends away from its start, so plan how you will get back.'))}</p>`;
+      : scored.oneWayOf
+        ? tr('recommendation.routeView.leg', 'Scored for one way: {km} km and about {climb} m up. No one-way time is given, so plan how you will get back.', { km:scored.distance, climb:scored.elevation })
+      : routeReturn.isThereAndBack(trail)
+        ? tr('recommendation.routeView.roundTrip', 'Scored for there and back on the same path, as the source gives it.')
+        : tr('recommendation.routeView.oneWay', 'Scored for one way. This walk ends away from its start, so plan how you will get back.');
+    const routeNote = routeNoteText ? `<p class="recommendation-route-view">${esc(routeNoteText)}</p>` : '';
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
       translate:window.t,

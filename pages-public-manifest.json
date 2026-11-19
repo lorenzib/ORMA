@@ -141,6 +141,7 @@
     "reviews-page.js",
     "reviews.html",
     "robots.txt",
+    "route-adjust.js",
     "route-drafts.js",
     "route-guidance-sources.js",
     "route-operational-facts.js",
