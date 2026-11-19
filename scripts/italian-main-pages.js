@@ -142,13 +142,15 @@ function translateKeys(html){
     return en.has(key) || it.has(key) ? say(key) : inner;
   });
   // Attributes.
-  html = html.replace(/<[a-z][\w-]*\b[^>]*\sdata-i18n-(?:ph|title|aria-label)="[^"]*"[^>]*>/gi, tag => {
+  html = html.replace(/<[a-z][\w-]*\b[^>]*\sdata-i18n-(?:ph|title|aria-label|alt)="[^"]*"[^>]*>/gi, tag => {
     const ph = attribute(tag, 'data-i18n-ph');
     const title = attribute(tag, 'data-i18n-title');
     const label = attribute(tag, 'data-i18n-aria-label');
     if(ph) tag = setAttribute(tag, 'placeholder', say(ph));
     if(title) tag = setAttribute(tag, 'title', say(title));
     if(label) tag = setAttribute(tag, 'aria-label', say(label));
+    const alt = attribute(tag, 'data-i18n-alt');
+    if(alt) tag = setAttribute(tag, 'alt', say(alt));
     return tag;
   });
   if(missing.size) throw new Error(`No Italian for ${[...missing].join(', ')}`);
