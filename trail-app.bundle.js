@@ -6753,9 +6753,19 @@ function breedInsights(name){
     };
   }
 
+  // Places a commune or park keeps dogs out of without closing the path
+  // through or beside them.
+  const PARTIAL_BAN_PLACES = /\b(?:meadows?|fields?|farm(?:ed|land)?|land|pastures?|orchards?|vineyards?|(?<!national )parks?|green areas?|playgrounds?|schools?|church(?:es|yards?)?|cemeter(?:y|ies)|fountains?|troughs?|lakes?|water|lidos?|bathing|beach(?:es)?|pools?|spa)\b/i;
+
   function legacyDogAccess(trail){
     const text = `${trail && trail.desc || ''} ${trail && trail.tips || ''}`;
-    if(/\bdogs?\s+(?:are\s+)?not\s+(?:allowed|permitted)|\bdog\s*=\s*no\b/i.test(text)){
+    // A ban on the walk itself, not on the land beside it. "Dogs are not
+    // allowed on farmed meadows" or "in public parks" keeps a dog off the
+    // fields, playgrounds or lake next to the path; it does not close the
+    // path. Read as a ban on the route, it capped 15 walks at the lowest score.
+    const sentences = text.split(/(?<=[.!?])\s+/);
+    if(sentences.some(sentence => /\bdogs?\s+(?:are\s+)?not\s+(?:allowed|permitted)|\bdog\s*=\s*no\b/i.test(sentence)
+      && !PARTIAL_BAN_PLACES.test(sentence))){
       return { status: 'prohibited', notes: 'The trail record states that dogs are prohibited.' };
     }
     if(/dogs?.{0,30}(?:must|stay|keep).{0,20}(?:on (?:a )?lead|leash)|leash (?:is )?required/i.test(text)){
@@ -20732,7 +20742,6 @@ if(document.querySelector('.td2')){
     'trail.shade.good': () => tx('Plenty of shade'),
     'conditions.heat.low': () => tx('Cool today'),
     'trail.season.inside': () => tx('In season'),
-    'trail.dog-access.allowed': () => tx('Dogs allowed'),
     'trail.dog-access.leash': () => tx('Dogs on a lead'),
     'trail.livestock.none': () => tx('No livestock'),
     'trail.wildlife.low': () => tx('Little wildlife'),
@@ -20750,10 +20759,11 @@ if(document.querySelector('.td2')){
     if(!key) return rowTopic(entry.code);
     return tr(`recommendation.chip.${key}`, FIT_CHIPS[key](), vars);
   }
-  // Of everything the score could not look at, only these change what an
-  // owner does before setting out. The rest ("route details are based on map
-  // data") is what the safety notes further down the page already say.
-  const ACTIONABLE_UNKNOWNS = Object.freeze(['trail.dog-access.unknown']);
+  // Dog rules are said only when they restrict the walk: a ban (a hard stop),
+  // seasonal limits (a caution) or a lead (a chip). "Dogs allowed" says
+  // nothing on a site where every walk takes dogs, and an unknown rule is not
+  // said at all (owner, 19 Nov).
+  const SILENT_FITS = Object.freeze(['trail.dog-access.allowed']);
 
   function steepnessFact(vars){
     const level = steepnessLevel(vars && vars.terrain);
@@ -20954,14 +20964,11 @@ if(document.querySelector('.td2')){
     // costs nothing, so a row for it would sit beside a 100% as if it agreed.
     const notChecked = cardTrailUnknowns.slice(0, 5);
     // The short version the trail page and card now show: the reasons that
-    // lower the score (or stop it), in the order above, then the one or two
-    // unknowns an owner acts on; and what fits, as chips.
-    const actionableUnknowns = cardMessages(rawUnknowns.filter(item =>
-      ACTIONABLE_UNKNOWNS.includes(item.messageKey || item.code)));
-    const shortReasons = factorRows.filter(row => row.tone !== 'ok').map(row => ({ text:row.detail, tone:row.tone }))
-      .concat(actionableUnknowns.map(text => ({ text, tone:'note' })));
+    // lower the score (or stop it), in the order above, and what fits, as
+    // chips. Unknowns are not listed: none of them is worth a line.
+    const shortReasons = factorRows.filter(row => row.tone !== 'ok').map(row => ({ text:row.detail, tone:row.tone }));
     const fitChips = breakdownFactors
-      .filter(entry => entry.kind === 'positive')
+      .filter(entry => entry.kind === 'positive' && !SILENT_FITS.includes(entry.code))
       .map(entry => fitChip(entry, allFactors.find(factor => factor.code === entry.code) || entry, tr, extra))
       .filter((chip, index, all) => chip && all.indexOf(chip) === index);
 
@@ -20986,7 +20993,6 @@ if(document.querySelector('.td2')){
       notChecked,
       shortReasons,
       fitChips,
-      actionableUnknowns,
       cardVerdict,
       confidenceLabel:confidenceWords(recommendation.confidence, translate) || null,
       dogGapFields,
