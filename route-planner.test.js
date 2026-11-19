@@ -518,4 +518,33 @@ describe('drawing interactions', () => {
     options = planner.context.DoloPawsRoutePlannerRouting.route.mock.calls.at(-1)[1];
     expect(options).toMatchObject({ closeLoop:true, outAndBack:false });
   });
+
+  test('a walk can be adjusted from its trail page, and the copy is never Verified', () => {
+    // The trail page opens the planner on the walk itself.
+    // An Edit button beside Save, not a text link.
+    expect(detailHtml).toMatch(/<a id="adjustWalkBtn" class="td2-btn-g" href="route-planner\.html"[^>]*><svg[^>]*>.*<\/svg><span data-i18n="page\.trail\.adjustWalk">Edit<\/span><\/a>/);
+    expect(detailHtml.indexOf('id="adjustWalkBtn"')).toBeGreaterThan(detailHtml.indexOf('id="detailSaveBtn"'));
+    expect(detailHtml.indexOf('id="adjustWalkBtn"')).toBeLessThan(detailHtml.indexOf('id="getDirectionsBtn"'));
+    expect(detailSource).toContain('adjustWalkBtn.href = `route-planner.html?trail=${encodeURIComponent(t.id)}`;');
+    // The planner loads the rules, and the score engine to score the copy.
+    ['route-adjust.js', 'scoring/recommendation-v1.js', 'scoring/recommendation-adapters-v1.js', 'scoring.js', 'match-verdict.js', 'firebase-init.js']
+      .forEach(file => expect(plannerHtml).toContain(`src="${file}`));
+    expect(plannerHtml.indexOf('route-adjust.js')).toBeLessThan(plannerHtml.indexOf('src="route-planner.js'));
+    expect(plannerSource).toContain('adjust.seed(trail)');
+    expect(plannerSource).toContain('adjust.compare(preview.path, basedOn.path)');
+    expect(plannerSource).toContain('adjust.scoringRecord(basedOn, { ...preview, shape }, comparison)');
+    // Saved under its own name, with the walk it came from.
+    expect(plannerSource).toContain("tx('Your version of {name}', { name:trailDisplayName(basedOn) })");
+    expect(plannerSource).toContain('basedOn:basedOn ? { id:basedOn.id, name:basedOn.name } : null');
+    expect(plannerHtml).toContain('Your version · not Verified');
+  });
+
+  test('keeps the height of every point the router returns', async () => {
+    const fetch = jest.fn(() => Promise.resolve({ ok:true, json:() => Promise.resolve({ features:[{
+      geometry:{ type:'LineString', coordinates:[[11.8, 46.5, 1500], [11.81, 46.5, 1530.5], [11.82, 46.5, 1510]] },
+      properties:{ 'track-length':'1500', 'filtered ascend':'31' },
+    }] }) }));
+    const result = await plannerRouting.route([{ lat:46.5, lng:11.8 }, { lat:46.5, lng:11.82 }], { fetch });
+    expect(result.heights).toEqual([1500, 1530.5, 1510]);
+  });
 });

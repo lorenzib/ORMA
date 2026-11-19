@@ -36,4 +36,27 @@ describe('route draft storage', () => {
     expect(record.points).toHaveLength(2);
     expect(store.find('point-to-point-1').distanceM).toBe(15700);
   });
+
+  test('keeps the shape and climb of a draft, so it reopens as it was drawn', () => {
+    const store = window.DoloPawsRouteDrafts;
+    store.save({
+      id:'oab-1', name:'Draft out & back · 4 km', shape:'out-and-back', distanceM:4000, ascentM:212.4,
+      points:[{lat:46.6,lng:11.9},{lat:46.62,lng:12.05}],
+      path:[[46.6,11.9],[46.62,12.05],[46.6,11.9]],
+    });
+    expect(store.find('oab-1')).toMatchObject({ shape:'out-and-back', ascentM:212 });
+  });
+
+  test('an adjusted walk keeps the walk it came from, its share on that line and its heights', () => {
+    const store = window.DoloPawsRouteDrafts;
+    store.save({
+      id:'loop-2', name:'Your version of Lago di Braies · 4 km', shape:'loop', distanceM:4000,
+      basedOn:{ id:'lago-braies', name:'Lago di Braies' }, onLineShare:0.82, heights:[1496, 1501.6, 1496],
+      points:[{lat:46.6,lng:11.9},{lat:46.61,lng:11.95},{lat:46.62,lng:12.05}],
+      path:[[46.6,11.9],[46.61,11.95],[46.6,11.9]],
+    });
+    expect(store.find('loop-2')).toMatchObject({
+      basedOn:{ id:'lago-braies', name:'Lago di Braies' }, onLineShare:0.82, heights:[1496, 1502, 1496],
+    });
+  });
 });
