@@ -117,6 +117,24 @@
       ],
       "highPoint": 1626
     },
+    "altogarda-nasce-formaggio-tombea": {
+      "regions": [
+        "IT-25-BS-02"
+      ],
+      "highPoint": 1339
+    },
+    "altogarda-santuario-montecastello": {
+      "regions": [
+        "IT-25-BS-02"
+      ],
+      "highPoint": 731
+    },
+    "altogarda-valle-cartiere": {
+      "regions": [
+        "IT-25-BS-02"
+      ],
+      "highPoint": 182
+    },
     "aosta-champoluc-cascata-mascognaz": {
       "regions": [
         "IT-23-AO-07"
@@ -873,6 +891,12 @@
         "IT-32-TN-18"
       ],
       "highPoint": 790
+    },
+    "iseo-colmi": {
+      "regions": [
+        "IT-25-BS-02"
+      ],
+      "highPoint": 967
     },
     "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": {
       "regions": [

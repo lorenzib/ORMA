@@ -282,8 +282,12 @@ describe('the existing-site verification boundary',()=>{
     // e Provincia (owner decision of 19 November 2026): the Mulino Turcin loop
     // at Lanzo, the Carbonaie path at Talucco, the Sentiero delle Anime at
     // Traversella and the Fondo, Tissone and Tallorno loop.
-    expect(catalogue).toHaveLength(544);
-    expect(currentSiteTrails(catalogue)).toHaveLength(542);
+    // Then 548 and 546 with the first Lake Iseo and Alto Garda walks (owner
+    // decision of 18 November 2026): I Colmi above Sulzano, the Montecastello
+    // sanctuary loop at Tignale, the Valle delle Cartiere and Cima Rest (the
+    // one-way walks there and back).
+    expect(catalogue).toHaveLength(548);
+    expect(currentSiteTrails(catalogue)).toHaveLength(546);
   });
 
   test('requires the artwork the public trail page needs',()=>{
