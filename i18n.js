@@ -1217,10 +1217,10 @@
     'trail.routeView.outAndBack': 'There and back',
     'trail.routeView.noteOneWay': 'Ends away from the start',
     'trail.routeView.noteBack': 'Walking back the same way',
-    'recommendation.routeView.oneWay': 'Scored for one way. This walk ends away from its start, so plan how you will get back.',
-    'recommendation.routeView.back': 'Scored for walking there and back: {km} km, about {climb} m up and the same down. The time is an estimate.',
-    'recommendation.routeView.leg': 'Scored for one way: {km} km and about {climb} m up. No one-way time is given, so plan how you will get back.',
-    'recommendation.routeView.roundTrip': 'Scored for there and back on the same path, as the source gives it.',
+    'recommendation.routeView.oneWay': 'Scored one way. Plan your way back.',
+    'recommendation.routeView.back': 'Scored there and back: {km} km, about {climb} m up and the same down.',
+    'recommendation.routeView.leg': 'Scored one way: {km} km, about {climb} m up. Plan your way back.',
+    'recommendation.routeView.roundTrip': 'Scored there and back on the same path.',
     'card.oneWay': 'One way',
     'card.thereAndBack': '{km} km there and back',
     'card.oneWay': '{km} km one way',
@@ -1340,6 +1340,7 @@
     'qa.todayHeatHint': 'exposed route, start early',
     'qa.todayShadeHint': 'some exposed stretches',
     'qa.accessTitle': 'Getting there',
+    'trail.gettingAround': 'Getting around',
     'qa.decisionScored': '{score} for {name}, enjoy the trail',
     'qa.decisionGuest': 'Would this suit your dog? Find out in 2 minutes.',
     'qa.decisionGuestCta': 'Create a free profile',
@@ -1508,6 +1509,7 @@
     'recommendation.breakdown.titleNoScore': 'Why this score for {name}',
     'recommendation.breakdown.note': 'note',
     'recommendation.breakdown.points': 'How the score adds up',
+    'recommendation.breakdown.rest': 'Everything else',
     'recommendation.fits.title': 'Fits {name}',
     'recommendation.breakdown.stop': 'stop',
     'recommendation.breakdown.how': 'How ORMA scores a walk',
@@ -3226,10 +3228,10 @@
     'trail.routeView.outAndBack': 'Andata e ritorno',
     'trail.routeView.noteOneWay': 'Finisce lontano dalla partenza',
     'trail.routeView.noteBack': 'Ritorno per la stessa via',
-    'recommendation.routeView.oneWay': 'Punteggio per la sola andata. Questo percorso finisce lontano dalla partenza: pensa a come tornare.',
-    'recommendation.routeView.back': 'Punteggio per andata e ritorno: {km} km, circa {climb} m di salita e altrettanti di discesa. Il tempo è una stima.',
-    'recommendation.routeView.leg': 'Punteggio per la sola andata: {km} km e circa {climb} m di salita. Il tempo di sola andata non è indicato: pensa a come tornare.',
-    'recommendation.routeView.roundTrip': 'Punteggio per andata e ritorno sullo stesso sentiero, come lo indica la fonte.',
+    'recommendation.routeView.oneWay': 'Punteggio per la sola andata. Pensa a come tornare.',
+    'recommendation.routeView.back': 'Punteggio per andata e ritorno: {km} km, circa {climb} m di salita e altrettanti di discesa.',
+    'recommendation.routeView.leg': 'Punteggio per la sola andata: {km} km, circa {climb} m di salita. Pensa a come tornare.',
+    'recommendation.routeView.roundTrip': 'Punteggio per andata e ritorno sullo stesso sentiero.',
     'card.oneWay': 'Solo andata',
     'card.thereAndBack': '{km} km andata e ritorno',
     'card.oneWay': '{km} km solo andata',
@@ -3349,6 +3351,7 @@
     'qa.todayHeatHint': 'percorso esposto, parti presto',
     'qa.todayShadeHint': 'alcuni tratti esposti',
     'qa.accessTitle': 'Come arrivare',
+    'trail.gettingAround': 'Come muoversi',
     'qa.decisionScored': '{score} per {name}, buon sentiero',
     'qa.decisionGuest': 'Andrebbe bene per il tuo cane? Scoprilo in 2 minuti.',
     'qa.decisionGuestCta': 'Crea un profilo gratuito',
@@ -3517,6 +3520,7 @@
     'recommendation.breakdown.titleNoScore': 'Perché questo punteggio per {name}',
     'recommendation.breakdown.note': 'nota',
     'recommendation.breakdown.points': 'Come si arriva al punteggio',
+    'recommendation.breakdown.rest': 'Tutto il resto',
     'recommendation.fits.title': 'Va bene per {name}',
     'recommendation.breakdown.stop': 'stop',
     'recommendation.breakdown.how': 'Come ORMA valuta una passeggiata',
@@ -4069,7 +4073,7 @@
   if (lang === 'it' && !window.ORMA_PHRASES_IT && document.readyState === 'loading') {
     const here = document.currentScript && document.currentScript.src;
     const base = here ? here.replace(/[^/]*$/, '') : '';
-    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261119-8"><\/script>');
+    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261119-9"><\/script>');
     document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261111-1"><\/script>');
   }
 
