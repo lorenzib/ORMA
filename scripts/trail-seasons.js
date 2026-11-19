@@ -30,9 +30,12 @@ const WINTER_WALK_PREFIX = 'winter-';
 
 // Snow by the walk's highest point. A rule of thumb for the Dolomites, not a
 // forecast, and the page says so: it is what the line's altitude suggests when
-// nobody has published the walk's season.
+// nobody has published the walk's season. From 1,800 m November counts as
+// snowy too: by late November a plateau like Pian dei Buoi (1,864 m) is
+// usually under snow or ice, so "in season" would promise too much.
 const SNOW_BANDS = [
   { minAlt: 2000, months: [11, 12, 1, 2, 3, 4, 5], likelihood: 'likely' },
+  { minAlt: 1800, months: [11, 12, 1, 2, 3, 4], likelihood: 'likely' },
   { minAlt: 1600, months: [12, 1, 2, 3, 4], likelihood: 'likely' },
   { minAlt: -Infinity, months: [12, 1, 2], likelihood: 'possible' },
 ];
