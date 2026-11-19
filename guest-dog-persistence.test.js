@@ -113,7 +113,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     expect(browse).toContain('data-browse-view="list" aria-pressed="true" data-i18n="browse.view.list">List</button>');
     expect(browse).toContain("bt('browse.compare.count', '{n} of 3 selected', { n: selected.length })");
     expect(browse).toContain("bt('browse.results.ofTotal', '{n} of {total} trails', { n: pool.length, total: trails.length })");
-    expect(browse).toContain("bt('browse.card.forDog', 'For {name}', { name: dog.name })");
+    expect(browse).toContain("bt('browse.card.forDog', 'For {name}', { name: scoredSubjectName() })");
     // Segment options reuse the homepage vocabulary keys so both panels say the same thing.
     expect(browse).toContain("{ label:bt('hp.filters.rocky', 'Steep is okay'), v:'rocky' }");
   });
