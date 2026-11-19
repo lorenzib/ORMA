@@ -92,7 +92,7 @@ describe('completing a dog from the homepage', () => {
     // And the card reads the split one rather than the whole list.
     const block = script.slice(script.indexOf('function liRecommendationExplanationHtml('),
       script.indexOf('function liScheduleNewMatchSync('));
-    expect(block).toContain('view.cardTrailUnknowns.slice(0, 2 - concerns.length)');
+    expect(block).toContain('(view.actionableUnknowns || []).slice(0, limit - concerns.length)');
     expect(block).not.toContain('view.unknowns');
   });
 

@@ -1293,6 +1293,22 @@ ${it ? `<script src="${up}i18n.js"></script>\n` : ''}<script src="${up}mobile-na
 // ---------------------------------------------------------------
 // 4. Sitemap
 // ---------------------------------------------------------------
+// Every guide a search engine may index, read from the guides folder so a new
+// guide cannot be left out (four were, until Nov 2026). A guide that says
+// noindex, or names another page as canonical, stays out.
+function sitemapGuides() {
+  return fs.readdirSync(path.join(ROOT, 'guides'))
+    .filter(file => file.endsWith('.html'))
+    .sort()
+    .map(file => `guides/${file}`)
+    .filter(page => {
+      const html = fs.readFileSync(path.join(ROOT, page), 'utf8');
+      if (/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html)) return false;
+      const canonical = html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i);
+      return !canonical || canonical[1] === `${BASE_URL}/${page}`;
+    });
+}
+
 function sitemap(urls) {
   // Filesystem mtimes change when CI copies the repository, so they cannot
   // produce a reproducible sitemap. Trail-data releases carry one explicit,
@@ -1390,16 +1406,7 @@ function main() {
     `${BASE_URL}/contact.html`,
     `${BASE_URL}/privacy.html`,
     `${BASE_URL}/terms.html`,
-    `${BASE_URL}/guides/dogs-on-cable-cars.html`,
-    `${BASE_URL}/guides/livestock-guard-dogs.html`,
-    `${BASE_URL}/guides/dog-friendly-hikes-val-gardena.html`,
-    `${BASE_URL}/guides/dog-friendly-hikes-lago-di-braies.html`,
-    `${BASE_URL}/guides/water-for-dogs-on-trail.html`,
-    `${BASE_URL}/guides/dogs-at-rifugi.html`,
-    `${BASE_URL}/guides/alpine-plants-for-dogs.html`,
-    `${BASE_URL}/guides/winter-walks-with-your-dog.html`,
-    `${BASE_URL}/guides/dog-rules-dolomites.html`,
-    `${BASE_URL}/guides/wildlife-on-the-trail.html`,
+    ...sitemapGuides().map(page => `${BASE_URL}/${page}`),
   ];
 
   // Pass 1: assign slugs so every page can link to its neighbours.

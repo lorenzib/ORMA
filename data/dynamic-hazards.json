@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-18T23:14:02.175Z",
+  "generatedAt": "2026-11-19T02:20:32.729Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-18T15:00:00+00:00",
       "expiresAt": "2026-11-19T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-18T23:14:02.175Z",
+      "lastSeenAt": "2026-11-19T02:20:32.729Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -68,7 +68,7 @@
       "effectiveAt": "2026-11-18T15:00:00+00:00",
       "expiresAt": "2026-11-19T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-18T23:14:02.175Z",
+      "lastSeenAt": "2026-11-19T02:20:32.729Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -105,7 +105,7 @@
       "effectiveAt": "2026-11-18T15:00:00+00:00",
       "expiresAt": "2026-11-19T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-18T23:14:02.175Z",
+      "lastSeenAt": "2026-11-19T02:20:32.729Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -218,7 +218,7 @@
       "effectiveAt": "2026-11-18T23:00:00+00:00",
       "expiresAt": "2026-11-19T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-18T23:14:02.175Z",
+      "lastSeenAt": "2026-11-19T02:20:32.729Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -269,7 +269,7 @@
       "effectiveAt": "2026-11-18T23:00:00+00:00",
       "expiresAt": "2026-11-19T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-18T23:14:02.175Z",
+      "lastSeenAt": "2026-11-19T02:20:32.729Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -382,7 +382,7 @@
       "effectiveAt": "2026-11-19T07:00:00+00:00",
       "expiresAt": "2026-11-19T18:59:00+00:00",
       "firstPublishedAt": "2026-11-17T11:14:27.427Z",
-      "lastSeenAt": "2026-11-18T23:14:02.175Z",
+      "lastSeenAt": "2026-11-19T02:20:32.729Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -425,7 +425,7 @@
       "effectiveAt": "2026-11-19T07:00:00+00:00",
       "expiresAt": "2026-11-19T12:59:00+00:00",
       "firstPublishedAt": "2026-11-18T11:14:50.832Z",
-      "lastSeenAt": "2026-11-18T23:14:02.175Z",
+      "lastSeenAt": "2026-11-19T02:20:32.729Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",

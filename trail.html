@@ -747,19 +747,31 @@ body{background:#EFECE2;}
 .recommendation-columns{display:grid;grid-template-columns:1fr;gap:16px;margin-top:20px;}
 .recommendation-breakdown{margin-top:18px;padding:16px 17px;border-radius:12px;background:#F7F5EE;}
 .recommendation-breakdown h3{margin:0 0 10px;font:800 12px 'Inter',sans-serif;color:#2E4034;}
-.recommendation-factors{list-style:none;margin:0;padding:0;display:grid;gap:7px;}
-.recommendation-factors li{display:flex;align-items:baseline;gap:10px;}
-/* Fixed column so the numbers line up and the reasons read as a column of
-   sentences rather than ragged text. */
-.recommendation-factor-impact{flex:0 0 46px;text-align:right;font:800 12px 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#8A6A1F;}
-.recommendation-factor-impact.is-clear{color:#6B7A6E;font-weight:700;}
-.recommendation-factor-reason{flex:1;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
+/* One row per factor: the topic with its verdict beside it, so the verdicts
+   line up in one column a reader can scan down, and what this walk has under
+   them. The card is a narrow side column, too narrow for three across. */
+.recommendation-reasons{list-style:none;margin:0;padding:0;display:grid;gap:6px;}
+.recommendation-reasons li{position:relative;padding-left:16px;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
+.recommendation-reasons li::before{content:'';position:absolute;left:2px;top:.6em;width:7px;height:7px;border-radius:50%;background:#C69A3A;}
+.recommendation-reasons li.is-stop::before{background:#B5473A;}
+.recommendation-reasons li.is-note::before{background:#9AA79D;}
+.recommendation-fits{margin-top:12px;}
+.recommendation-reasons+.recommendation-fits{padding-top:10px;border-top:1px solid #E5E2D8;}
+.recommendation-fits strong{display:block;margin-bottom:6px;color:#2E4034;font:700 12.5px/1.4 'Inter',sans-serif;}
+.recommendation-fits ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;}
+.recommendation-fits li{padding:2px 9px;border-radius:999px;background:#E3EEE3;color:#3B6A47;font:700 11.5px/1.5 'Inter',sans-serif;}
+.recommendation-points{margin-top:12px;}
+.recommendation-points .recommendation-how{margin-top:8px;}
+.recommendation-points summary{cursor:pointer;width:max-content;max-width:100%;color:#3E7A91;font:700 12px 'Inter',sans-serif;}
+.recommendation-points summary:hover{text-decoration:underline;}
+.recommendation-points ol{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px;max-width:260px;}
+.recommendation-points li{display:flex;justify-content:space-between;gap:12px;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
+.recommendation-points-value{font-weight:800;font-variant-numeric:tabular-nums;color:#6B7A6E;}
+.recommendation-points-value.is-cost{color:#7A5A12;}
+.recommendation-points-value.is-stop{color:#8E2F24;}
 .recommendation-breakdown-note{margin:10px 0 0;color:#6B7A6E;font:600 12px/1.5 'Inter',sans-serif;}
-.recommendation-fine{display:flex;gap:8px;align-items:baseline;margin:10px 0 0;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
-.recommendation-fine::before{content:'✓';flex:none;color:#4A7856;font-weight:900;}
-/* Under a cautious or Not recommended verdict the line is information, not reassurance: no green tick. */
-.recommendation-fine.is-neutral::before{content:none;}
-.recommendation-factors+.recommendation-fine{padding-top:9px;border-top:1px solid #E5E2D8;}
+.recommendation-how{display:inline-block;margin-top:10px;color:#3E7A91;font:700 12px 'Inter',sans-serif;text-decoration:none;}
+.recommendation-how:hover{text-decoration:underline;}
 .recommendation-add-dog{appearance:none;border:0;background:none;padding:0;cursor:pointer;color:#3E7A91;font:700 12.5px 'Inter',sans-serif;text-align:left;}
 .recommendation-add-dog:hover{text-decoration:underline;}
 /* One pass, so the reader sees the score change rather than finding a
@@ -1502,7 +1514,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 
 <script src="device-handoff.js?v=20260904-1"></script>
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261113-1"></script>
+<script src="i18n.js?v=20261118-1"></script>
 <script>
   // Account services are useful after the page is interactive, but loading
   // the Firebase app/auth/Firestore graph during navigation keeps mobile
@@ -1588,6 +1600,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20261116-1" defer></script>
+<script src="trail-app.bundle.js?v=20261118-1" defer></script>
 </body>
 </html>
