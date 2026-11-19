@@ -2030,6 +2030,21 @@
       "name": "Cima Sappada to Rifugio Siera through the Longrone forest",
       "slug": "rifugio-siera-longrone-sappada",
       "gloss": "a nature trail up through the Longrone spruce forest to the Rifugio Siera and back"
+    },
+    "steinegg-pyramidenrundweg": {
+      "name": "Pyramidenrundweg, Steinegg",
+      "slug": "pyramidenrundweg-steinegg",
+      "gloss": "a loop past the earth pyramids below Steinegg"
+    },
+    "luesen-panoramaweg": {
+      "name": "Panoramaweg, Lüsen",
+      "slug": "panoramaweg-luesen",
+      "gloss": "a panoramic loop on the slopes above Lüsen"
+    },
+    "valgardena-troi-da-la-tambres": {
+      "name": "Troi da la Tambres, Ortisei",
+      "slug": "troi-da-la-tambres-ortisei",
+      "gloss": "a meadow and forest path to the La Tambres farm above Ortisei and back"
     }
   }
 }
