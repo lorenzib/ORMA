@@ -172,6 +172,22 @@ describe('returning homepage region + valley filters', () => {
     expect(html).not.toContain('Under review');
   });
 
+  // Italian names a plural range with its article: "nelle Dolomiti", not
+  // "in Dolomiti". Countries, regions and valleys keep a bare "in".
+  test('the Italian headline says nelle Dolomiti, and in for a valley', () => {
+    const context = loadHomepageContext(sampleTrails);
+    const it = { 'The Dolomites':'Dolomiti', 'Dolomites':'Dolomiti', 'French Alps':'Alpi francesi', 'Italy':'Italia', 'in {place}':'in {place}' };
+    context.DoloPawsI18n = { lang:'it', phrase:(text, vars) => String(it[text] || text).replace(/\{(\w+)\}/g, (m, k) => (vars && k in vars ? vars[k] : m)) };
+    const phrase = label => vm.runInContext(`liInPlacePhrase(${JSON.stringify(label)})`, context);
+    expect(phrase('The Dolomites')).toBe('nelle Dolomiti');
+    expect(phrase('Dolomites')).toBe('nelle Dolomiti');
+    expect(phrase('French Alps')).toBe('nelle Alpi francesi');
+    expect(phrase('Italy')).toBe('in Italia');
+    expect(phrase('Alta Pusteria')).toBe('in Alta Pusteria');
+    context.DoloPawsI18n = { lang:'en', phrase:(text, vars) => (vars ? text.replace('{place}', vars.place) : text) };
+    expect(phrase('The Dolomites')).toBe('in the Dolomites');
+  });
+
   test('the search box narrows the ranked list by trail name', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeCountry = "all"; activeRegion = "all"; activeValley = "all"; liQuery = "chamonix";', context);
