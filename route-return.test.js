@@ -67,20 +67,81 @@ describe('a one-way walk seen there and back', () => {
     expect(routeReturn.outAndBack({ ...level, routeShape:'loop' })).toBeNull();
   });
 
-  test('a one-way walk opens there and back, and one way is the choice', () => {
-    // Most readers walk back to the car, so the default is the walk back.
-    expect(routeReturn.view()).toBe(routeReturn.VIEWS.OUT_AND_BACK);
+  test('a one-way walk opens one way, as its source gives it, and there and back is the choice', () => {
+    expect(routeReturn.view(level)).toBe(routeReturn.VIEWS.ONE_WAY);
+    expect(routeReturn.forView(level)).toBe(level);
+    routeReturn.setView(routeReturn.VIEWS.OUT_AND_BACK, level);
     expect(routeReturn.forView(level).distance).toBe(5.2);
     expect(level.distance).toBe(2.6);
-    routeReturn.setView(routeReturn.VIEWS.ONE_WAY);
+    // The choice is this walk's only.
+    expect(routeReturn.forView(downhill)).toBe(downhill);
+    routeReturn.setView(routeReturn.VIEWS.ONE_WAY, level);
     expect(routeReturn.forView(level)).toBe(level);
-    routeReturn.setView(routeReturn.VIEWS.OUT_AND_BACK);
-    expect(routeReturn.forView(level).distance).toBe(5.2);
   });
 
   test('a copy already worked out is not doubled again', () => {
-    const copy = routeReturn.forView(level);
+    const copy = routeReturn.outAndBack(level);
     expect(routeReturn.forView(copy)).toBe(copy);
+  });
+});
+
+// San Giacomo from Ortisei, as the board gives it: 6 km and 330 m there and
+// back, 2 h. The profile turns at the church, 3 km out.
+const sanGiacomo = {
+  id:'san-giacomo', routeShape:'out-and-back', distance:6, elevation:330, hours:'2',
+  elevationProfile:[
+    { km:0, elev:1241 }, { km:0.9, elev:1256 }, { km:2.2, elev:1492 }, { km:3.1, elev:1578 },
+    { km:3.9, elev:1469 }, { km:5.2, elev:1275 }, { km:5.7, elev:1239 },
+  ],
+};
+
+describe('an out-and-back walk seen one way', () => {
+  test('opens there and back, as its source gives it', () => {
+    expect(routeReturn.isThereAndBack(sanGiacomo)).toBe(true);
+    expect(routeReturn.hasChoice(sanGiacomo)).toBe(true);
+    expect(routeReturn.view(sanGiacomo)).toBe(routeReturn.VIEWS.OUT_AND_BACK);
+    expect(routeReturn.forView(sanGiacomo)).toBe(sanGiacomo);
+  });
+
+  test('halves the distance and splits the climb by the profile', () => {
+    const leg = routeReturn.oneWayLeg(sanGiacomo);
+    expect(leg.distance).toBe(3);
+    // Going out climbs 1241 → 1578 with one small dip: most of the 330 m.
+    expect(leg.elevation + leg.descent).toBe(330);
+    expect(leg.elevation).toBeGreaterThan(300);
+    expect(leg.elevationProfile[leg.elevationProfile.length - 1].km).toBeCloseTo(3.1, 5);
+  });
+
+  test('never invents a one-way time', () => {
+    const leg = routeReturn.oneWayLeg(sanGiacomo);
+    expect(leg.hours).toBeNull();
+    expect(leg.oneWayOf).toEqual(expect.objectContaining({ roundTripDistance:6, roundTripHours:'2', hoursPublished:false }));
+  });
+
+  test('reads a profile drawn one way only as the out leg', () => {
+    // Le Buet to Barberine: 8.6 km there and back, line and profile one way.
+    const buet = { id:'buet', routeShape:'out-and-back', distance:8.6, elevation:220, hours:'3.5',
+      elevationProfile:[{ km:0, elev:1341 }, { km:2, elev:1364 }, { km:4.2, elev:1177 }] };
+    const leg = routeReturn.oneWayLeg(buet);
+    expect(leg.distance).toBe(4.3);
+    expect(leg.elevationProfile).toHaveLength(3);
+    expect(leg.elevation).toBeLessThan(leg.descent);
+  });
+
+  test('switches to one way and back, and a worked-out copy passes through', () => {
+    routeReturn.setView(routeReturn.VIEWS.ONE_WAY, sanGiacomo);
+    const leg = routeReturn.forView(sanGiacomo);
+    expect(leg.distance).toBe(3);
+    expect(routeReturn.forView(leg)).toBe(leg);
+    expect(routeReturn.isOneWay(leg)).toBe(false);
+    routeReturn.setView(routeReturn.VIEWS.OUT_AND_BACK, sanGiacomo);
+    expect(routeReturn.forView(sanGiacomo)).toBe(sanGiacomo);
+  });
+
+  test('leaves loops and lollipops alone', () => {
+    expect(routeReturn.hasChoice({ ...sanGiacomo, routeShape:'loop' })).toBe(false);
+    expect(routeReturn.hasChoice({ ...sanGiacomo, routeShape:'lollipop' })).toBe(false);
+    expect(routeReturn.oneWayLeg({ ...sanGiacomo, routeShape:'lollipop' })).toBeNull();
   });
 });
 
