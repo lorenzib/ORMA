@@ -140,6 +140,7 @@ window.ORMA_TRAIL_NAMES_IT = {
   "fvg-raunis-cascate-belepeit": "Borgo Raunis e le cascate del rio Belepeit",
   "fvg-salita-casera-canin": "Salita a Casera Canin: balcone panoramico sulla val Resia",
   "fvg-sappada-rifugio-calvi": "Rifugio Calvi",
+  "fvg-sappada-rifugio-siera-longrone": "Da Cima Sappada al Rifugio Siera per il bosco del Longrone, andata e ritorno",
   "fvg-ta-lipa-pot-corto": "Ta Lipa Pot - Percorso breve",
   "fvg-venzone-anello-delle-chiesette": "Sentiero Natura - Anello delle chiesette di Venzone",
   "gailtal-almkaese-sonnenalpe": "Passeggiata dei formaggi d’alpeggio, Sonnenalpe Nassfeld",
