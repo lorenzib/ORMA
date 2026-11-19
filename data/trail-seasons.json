@@ -9707,6 +9707,24 @@
           "accessedAt": "2026-11-18"
         }
       }
+    },
+    "fvg-sappada-rifugio-siera-longrone": {
+      "highPoint": 1594,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/13977360",
+          "accessedAt": "2026-11-18"
+        }
+      }
     }
   }
 }

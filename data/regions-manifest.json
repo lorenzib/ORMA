@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-18T23:34:06.735Z",
+  "generatedAt": "2026-11-19T00:55:01.658Z",
   "regions": {
     "dolomites": {
       "trailCount": 380,
@@ -503,8 +503,8 @@
       "optional": []
     },
     "friuli": {
-      "trailCount": 17,
-      "trails": "data/regions/friuli-trails.js?v=76e78c71e149",
+      "trailCount": 18,
+      "trails": "data/regions/friuli-trails.js?v=0d7918eecc6a",
       "details": {
         "fvg-laghi-di-fusine": "data/trail-details/fvg-laghi-di-fusine.js?v=db01c5d9fd9f",
         "fvg-ta-lipa-pot-corto": "data/trail-details/fvg-ta-lipa-pot-corto.js?v=f150f56b4f63",
@@ -522,7 +522,8 @@
         "fvg-monte-talm-da-piani-di-vas": "data/trail-details/fvg-monte-talm-da-piani-di-vas.js?v=7833d75d3b1c",
         "fvg-anello-casera-vas-monte-buoi": "data/trail-details/fvg-anello-casera-vas-monte-buoi.js?v=49a93b4bb5ab",
         "fvg-monte-rest-da-passo-rest": "data/trail-details/fvg-monte-rest-da-passo-rest.js?v=e432a52510b5",
-        "fvg-mirabila-sentiero-botanico-bila-pec": "data/trail-details/fvg-mirabila-sentiero-botanico-bila-pec.js?v=c1cd85ca5bbc"
+        "fvg-mirabila-sentiero-botanico-bila-pec": "data/trail-details/fvg-mirabila-sentiero-botanico-bila-pec.js?v=c1cd85ca5bbc",
+        "fvg-sappada-rifugio-siera-longrone": "data/trail-details/fvg-sappada-rifugio-siera-longrone.js?v=9af8b6bb1da1"
       },
       "water": "data/regions/friuli-water.geojson",
       "hutsBars": "data/regions/friuli-huts-bars.geojson",
@@ -1104,6 +1105,7 @@
     "fvg-anello-casera-vas-monte-buoi": "friuli",
     "fvg-monte-rest-da-passo-rest": "friuli",
     "fvg-mirabila-sentiero-botanico-bila-pec": "friuli",
+    "fvg-sappada-rifugio-siera-longrone": "friuli",
     "aosta-ru-courtaud": "aosta",
     "aosta-champoluc-cascata-mascognaz": "aosta",
     "aosta-periasc-antagnod": "aosta",
@@ -1694,6 +1696,7 @@
     "seiseralm-umser-rundweg": "umser-rundweg-ums",
     "seiseralm-promenadenweg-tiers": "promenadenweg-tiers",
     "auronzo-pian-di-barco": "pian-di-barco-auronzo",
+    "fvg-sappada-rifugio-siera-longrone": "rifugio-siera-longrone-sappada",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2229,6 +2232,7 @@
     "umser-rundweg-ums": "seiseralm-umser-rundweg",
     "promenadenweg-tiers": "seiseralm-promenadenweg-tiers",
     "pian-di-barco-auronzo": "auronzo-pian-di-barco",
+    "rifugio-siera-longrone-sappada": "fvg-sappada-rifugio-siera-longrone",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
