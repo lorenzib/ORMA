@@ -121,6 +121,8 @@
       conditions: conditions(profile),
       traits: traits(profile),
       behaviour: behaviour(profile),
+      steepnessLimit: profile.steepnessLimit === 0 || profile.steepnessLimit === 1
+        ? profile.steepnessLimit : null,
     };
   }
 

@@ -40,3 +40,32 @@ describe('"Recovering from injury" reaches the score', () => {
     expect(engine.steepnessLimit({ ...base, conditions:['injury'] })).toBe(1);
   });
 });
+
+describe('the homepage wizard\'s steepness answer counts', () => {
+  const adapters = require('./scoring/recommendation-adapters-v1.js');
+  const wizard = read('homepage-search.js');
+
+  test('asks about steepness and saves the answer on the profile', () => {
+    expect(wizard).toContain("t('hp.wizard.terrain', 'How steep can they go?')");
+    expect(wizard).toContain("var STEEPNESS_LIMIT = { soft: 0, gravel: 1 };");
+    expect(wizard).toMatch(/steepnessLimit: STEEPNESS_LIMIT\.hasOwnProperty\(w\.terrainTol\)/);
+    // No answer yet means no cap, as before the question counted.
+    expect(wizard).toContain("terrainTol: 'any', heat: false");
+    expect(wizard).not.toMatch(/paws handle|Soft ground only|including rock/);
+  });
+
+  test('the answer reaches the engine and can only lower the limit', () => {
+    const profile = { fitness:'moderate', ageBand:'3-4', weightBand:'20-30', conditions:[] };
+    const limit = steepness => engine.steepnessLimit(adapters.normalizeDog({ ...profile, steepnessLimit:steepness }));
+    expect(limit(undefined)).toBe(2);
+    expect(limit(null)).toBe(2);
+    expect(limit(1)).toBe(1);
+    expect(limit(0)).toBe(0);
+    expect(limit(2)).toBe(2);
+    expect(limit('0')).toBe(2);
+    // A senior is already limited to moderately steep: "Steep is fine" can't lift that.
+    const senior = { ...profile, ageBand:'9-10' };
+    expect(engine.steepnessLimit(adapters.normalizeDog(senior))).toBe(1);
+    expect(engine.steepnessLimit(adapters.normalizeDog({ ...senior, steepnessLimit:0 }))).toBe(0);
+  });
+});
