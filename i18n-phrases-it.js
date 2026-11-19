@@ -1234,6 +1234,8 @@ window.ORMA_PHRASES_IT = {
   "Unsure, wary or over-interested": "Incerto, diffidente o troppo interessato",
   "Up to 200 m climb": "Fino a 200 m di salita",
   "Up to mixed": "Fino a misto",
+  "Up to moderate": "Fino a moderata",
+  "Steep is okay": "Anche ripida",
   "Update": "Aggiorna",
   "Update your dog's profile.": "Aggiorna il profilo del tuo cane.",
   "Urgent action": "Intervento urgente",

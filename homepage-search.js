@@ -58,7 +58,7 @@
     duration: 'day', dist: 'any', diff: 'any', terrain: 'any', shade: 'any', minMatch: 0, hasWater: false,
     searched: false, focused: false, menu: null, custom: null, activeSuggest: -1,
     wizOpen: false, wizStep: 0,
-    wiz: { name: '', size: 'medium', energy: 'medium', terrainTol: 'gravel', heat: false, chairlift: '' },
+    wiz: { name: '', size: 'medium', energy: 'medium', terrainTol: 'any', heat: false, chairlift: '' },
   };
 
   // Shared discovery vocabulary: these labels and thresholds match Browse All
@@ -70,7 +70,7 @@
   var DURATION_SEG = [{ label: t('hp.filters.dayHikes', 'Day hikes'), v: 'day' }, { label: t('hp.filters.multiDay', 'Multi-day'), v: 'multi' }];
   var DIST_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.under5', 'Under 5 km'), v: 'u5' }, { label: t('hp.filters.5to10', '5–10 km'), v: '5to10' }, { label: t('hp.filters.10plus', '10 km+'), v: '10p' }];
   var DIFF_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.lowRisk', 'Low risk'), v: 'low-risk' }, { label: t('hp.filters.moderate', 'Moderate'), v: 'moderate' }, { label: t('hp.filters.caution', 'Caution'), v: 'caution' }];
-  var TERRAIN_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.gentle', 'Gentle only'), v: 'soft' }, { label: t('hp.filters.mixed', 'Up to mixed'), v: 'mixed' }, { label: t('hp.filters.rocky', 'Rocky is okay'), v: 'rocky' }];
+  var TERRAIN_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.gentle', 'Gentle only'), v: 'soft' }, { label: t('hp.filters.mixed', 'Up to moderate'), v: 'mixed' }, { label: t('hp.filters.rocky', 'Steep is okay'), v: 'rocky' }];
   var MATCH_SEG = [{ label: t('hp.filters.any', 'Any'), v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 }];
 
   var POPULAR = [
@@ -731,14 +731,16 @@
     return [{ label: t('hp.wizard.energy.low', 'Low'), v: 'low' }, { label: t('hp.wizard.energy.medium', 'Medium'), v: 'medium' }, { label: t('hp.wizard.energy.high', 'High'), v: 'high' }];
   }
   function terrainOpts() {
-    return [{ label: t('hp.wizard.terrain.soft', 'Soft ground only'), v: 'soft' }, { label: t('hp.wizard.terrain.gravel', 'Some gravel is fine'), v: 'gravel' }, { label: t('hp.wizard.terrain.any', 'Anything, including rock'), v: 'any' }];
+    return [{ label: t('hp.wizard.terrain.soft', 'Gentle slopes only'), v: 'soft' }, { label: t('hp.wizard.terrain.gravel', 'Moderately steep is fine'), v: 'gravel' }, { label: t('hp.wizard.terrain.any', 'Steep is fine'), v: 'any' }];
   }
   function heatOpts() {
     return [{ label: t('hp.wizard.heat.yes', 'Yes, gets hot easily'), v: true }, { label: t('hp.wizard.heat.no', 'No, handles heat fine'), v: false }];
   }
   var SIZE_FALLBACK = { small: 'Small', medium: 'Medium', large: 'Large' };
   var ENERGY_SUMMARY_FALLBACK = { low: 'Low energy', medium: 'Medium energy', high: 'High energy' };
-  var TERRAIN_SUMMARY_FALLBACK = { soft: 'Soft ground only', gravel: 'Some gravel OK', any: 'Any terrain' };
+  var TERRAIN_SUMMARY_FALLBACK = { soft: 'Gentle slopes only', gravel: 'Up to moderately steep', any: 'Any steepness' };
+  // The wizard's steepness answer as the profile's steepnessLimit (scoring/recommendation-v1.js).
+  var STEEPNESS_LIMIT = { soft: 0, gravel: 1 };
   function sizeLabel(size) { return t('hp.wizard.size.' + size, SIZE_FALLBACK[size] || cap(size)); }
   function energySummary(energy) { return t('hp.wizard.summary.energy.' + energy, ENERGY_SUMMARY_FALLBACK[energy] || cap(energy) + ' energy'); }
   function terrainSummary(tol) { return t('hp.wizard.summary.terrain.' + tol, TERRAIN_SUMMARY_FALLBACK[tol] || ''); }
@@ -812,7 +814,7 @@
         '<div class="hp-wiz-q">' + esc(t('hp.wizard.size', 'How big are they?')) + '</div>' + optBtns(sizeOpts(), w.size, 'size', false);
     } else if (state.wizStep === 1) {
       body = '<div class="hp-wiz-q">' + esc(t('hp.wizard.energy', 'Energy level')) + '</div>' + optBtns(energyOpts(), w.energy, 'energy', false) +
-        '<div class="hp-wiz-q">' + esc(t('hp.wizard.terrain', 'What can their paws handle?')) + '</div>' + optBtns(terrainOpts(), w.terrainTol, 'terrainTol', true);
+        '<div class="hp-wiz-q">' + esc(t('hp.wizard.terrain', 'How steep can they go?')) + '</div>' + optBtns(terrainOpts(), w.terrainTol, 'terrainTol', true);
     } else {
       body = '<div class="hp-wiz-q">' + esc(t('hp.wizard.heat', 'Do they struggle in the heat?')) + '</div>' + optBtns(heatOpts(), w.heat, 'heat', true) +
         (asksChairlift(w)
@@ -824,7 +826,7 @@
         summaryRow(t('hp.wizard.summary.name', 'Name'), (w.name || '').trim() || yourDog()) +
         summaryRow(t('hp.wizard.summary.size', 'Size'), sizeLabel(w.size)) +
         summaryRow(t('hp.wizard.summary.energy', 'Energy'), energySummary(w.energy)) +
-        summaryRow(t('hp.wizard.summary.terrain', 'Terrain'), terrainSummary(w.terrainTol)) +
+        summaryRow(t('hp.wizard.summary.terrain', 'Steepness'), terrainSummary(w.terrainTol)) +
         summaryRow(t('hp.wizard.summary.heat', 'Heat'), w.heat ? t('hp.wizard.summary.heat.yes', 'Heat-sensitive') : t('hp.wizard.summary.heat.no', 'Handles heat fine')) +
         (asksChairlift(w) ? summaryRow(t('hp.wizard.chairlift.summary', 'Chairlifts'), { ok: t('hp.wizard.chairlift.ridesOk', 'Rides calmly on a lap'), never: t('hp.wizard.chairlift.notForUs', 'Not for us') }[w.chairlift] || t('hp.wizard.chairlift.unanswered', 'Not answered')) : '') +
         '</div>';
@@ -895,7 +897,7 @@
     var energy = profile.fitness === 'low' ? 'low' : profile.fitness === 'high' ? 'high' : 'medium';
     var heat = (Array.isArray(profile.conditions) && profile.conditions.indexOf('heat') !== -1) || !!profile.heatIssues;
     var chairlift = profile.behaviour && (profile.behaviour.chairlift === 'ok' || profile.behaviour.chairlift === 'never') ? profile.behaviour.chairlift : '';
-    state.wiz = { name: name, size: size, energy: energy, terrainTol: state.wiz.terrainTol, heat: heat, chairlift: chairlift };
+    state.wiz = { name: name, size: size, energy: energy, terrainTol: profile.steepnessLimit === 0 ? 'soft' : profile.steepnessLimit === 1 ? 'gravel' : 'any', heat: heat, chairlift: chairlift };
     state.custom = { profile: profile, meta: customMeta(name, size, energy, heat) };
     state.dog = 'custom';
     return true;
@@ -917,6 +919,7 @@
       jointIssues: false,
       heatIssues: w.heat,
       behaviour: behaviour,
+      steepnessLimit: STEEPNESS_LIMIT.hasOwnProperty(w.terrainTol) ? STEEPNESS_LIMIT[w.terrainTol] : null,
     };
   }
 

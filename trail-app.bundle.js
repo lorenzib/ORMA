@@ -5825,6 +5825,12 @@ function breedInsights(name){
     return { ...ranks, preferredDurationMin, declaredCount };
   }
 
+  // The dog's steepness limit on the trail scale: 0 gentle slopes only,
+  // 1 up to moderately steep, 2 no limit. Shown on the account page.
+  function steepnessLimit(dog){
+    return deriveDog(dog, []).terrain;
+  }
+
   function deriveDog(dog, unknowns){
     dog = dog || {};
     const fitnessKnown = Object.prototype.hasOwnProperty.call(FITNESS, dog.fitness);
@@ -5839,7 +5845,10 @@ function breedInsights(name){
     if(age === null) unknowns.push(item('dog.age.unknown', 'Age is missing, so life-stage adjustments are not applied.'));
     if(weight === null) unknowns.push(item('dog.weight.unknown', 'Weight is missing, so size adjustments are not applied.'));
 
-    const conditions = new Set(Array.isArray(dog.conditions) ? dog.conditions : []);
+    // 'injury' is what the account page saved for "Recovering from injury"
+    // before Nov 2026; the dog wizard always saved 'recovering'.
+    const conditions = new Set((Array.isArray(dog.conditions) ? dog.conditions : [])
+      .map(code => code === 'injury' ? 'recovering' : code));
     const traits = dog.traits || {};
     const puppy = age !== null && age < 1;
     const senior = age !== null && age >= 8;
@@ -5908,6 +5917,11 @@ function breedInsights(name){
     const limits = [puppy, senior, orthopedic, conditions.has('cardiac'), conditions.has('overweight')]
       .filter(Boolean).length;
     if(base !== FITNESS.low && limits <= 1) terrain = Math.max(terrain, FITNESS.moderate.terrain);
+    // The owner's own answer (homepage wizard: "How steep can they go?"):
+    // 0 gentle slopes only, 1 up to moderately steep. It can only lower the
+    // limit, never raise it past what age and health allow.
+    const ownerLimit = numberOrNull(dog.steepnessLimit);
+    if(ownerLimit === 0 || ownerLimit === 1) terrain = Math.min(terrain, ownerLimit);
 
     return {
       terrain: Math.max(0, terrain),
@@ -6600,6 +6614,7 @@ function breedInsights(name){
     isColdDay,
     isHeatOnlyHazard,
     CHAIRLIFT_MAX_KG,
+    steepnessLimit,
     calculateRecommendation,
   };
 });
@@ -6729,6 +6744,8 @@ function breedInsights(name){
       conditions: conditions(profile),
       traits: traits(profile),
       behaviour: behaviour(profile),
+      steepnessLimit: profile.steepnessLimit === 0 || profile.steepnessLimit === 1
+        ? profile.steepnessLimit : null,
     };
   }
 
@@ -7075,7 +7092,8 @@ function dogWeightKg(profile){
 }
 
 function dogConditions(profile){
-  if(Array.isArray(profile.conditions)) return profile.conditions;
+  // 'injury' is the account page's pre-Nov 2026 code for "Recovering from injury".
+  if(Array.isArray(profile.conditions)) return profile.conditions.map(code => code === 'injury' ? 'recovering' : code);
   // Legacy profiles: two booleans instead of the conditions list.
   return [profile.jointIssues && 'joints', profile.heatIssues && 'heat'].filter(Boolean);
 }
