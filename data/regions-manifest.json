@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-19T10:38:59.601Z",
+  "generatedAt": "2026-11-19T11:17:23.138Z",
   "regions": {
     "dolomites": {
       "trailCount": 383,
-      "trails": "data/regions/dolomites-trails.js?v=70e19f5af508",
+      "trails": "data/regions/dolomites-trails.js?v=d1559ac6ac1e",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -482,8 +482,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 14,
-      "trails": "data/regions/lombardy-trails.js?v=134fd19e4855",
+      "trailCount": 17,
+      "trails": "data/regions/lombardy-trails.js?v=02ac4bec6d2f",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=ba72cffa8ee5",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=1549bacc0a6c",
@@ -498,7 +498,10 @@
         "valtellina-passo-di-campagneda": "data/trail-details/valtellina-passo-di-campagneda.js?v=06d8feba617c",
         "valchiavenna-ai-laghi-del-baldiscio": "data/trail-details/valchiavenna-ai-laghi-del-baldiscio.js?v=5dc16ea054d3",
         "lario-nel-cuore-del-triangolo-lariano": "data/trail-details/lario-nel-cuore-del-triangolo-lariano.js?v=1607cf727288",
-        "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "data/trail-details/lario-dal-passo-del-giovo-al-rifugio-sommafiume.js?v=58054bb2867a"
+        "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "data/trail-details/lario-dal-passo-del-giovo-al-rifugio-sommafiume.js?v=58054bb2867a",
+        "lombardia-reggetto-piani-di-artavaggio": "data/trail-details/lombardia-reggetto-piani-di-artavaggio.js?v=3e85eb42bb68",
+        "lario-asso-funghi-di-terra": "data/trail-details/lario-asso-funghi-di-terra.js?v=b7e59cd2c93d",
+        "lombardia-bergamo-colle-maresana": "data/trail-details/lombardia-bergamo-colle-maresana.js?v=b7f3a5074d9b"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -600,7 +603,7 @@
     },
     "switzerland": {
       "trailCount": 21,
-      "trails": "data/regions/switzerland-trails.js?v=59d190ff553b",
+      "trails": "data/regions/switzerland-trails.js?v=8da6e0f31496",
       "details": {
         "engadin-around-lake-st-moritz": "data/trail-details/engadin-around-lake-st-moritz.js?v=fd2ed5887e82",
         "engadin-sils-chaste-peninsula-sils": "data/trail-details/engadin-sils-chaste-peninsula-sils.js?v=b6df69008cd3",
@@ -1094,6 +1097,9 @@
     "valchiavenna-ai-laghi-del-baldiscio": "lombardy",
     "lario-nel-cuore-del-triangolo-lariano": "lombardy",
     "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "lombardy",
+    "lombardia-reggetto-piani-di-artavaggio": "lombardy",
+    "lario-asso-funghi-di-terra": "lombardy",
+    "lombardia-bergamo-colle-maresana": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1706,6 +1712,9 @@
     "steinegg-pyramidenrundweg": "pyramidenrundweg-steinegg",
     "luesen-panoramaweg": "panoramaweg-luesen",
     "valgardena-troi-da-la-tambres": "troi-da-la-tambres-ortisei",
+    "lombardia-reggetto-piani-di-artavaggio": "piani-di-artavaggio-reggetto",
+    "lario-asso-funghi-di-terra": "funghi-di-terra-asso-rezzago",
+    "lombardia-bergamo-colle-maresana": "colle-della-maresana-bergamo",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2245,6 +2254,9 @@
     "pyramidenrundweg-steinegg": "steinegg-pyramidenrundweg",
     "panoramaweg-luesen": "luesen-panoramaweg",
     "troi-da-la-tambres-ortisei": "valgardena-troi-da-la-tambres",
+    "piani-di-artavaggio-reggetto": "lombardia-reggetto-piani-di-artavaggio",
+    "funghi-di-terra-asso-rezzago": "lario-asso-funghi-di-terra",
+    "colle-della-maresana-bergamo": "lombardia-bergamo-colle-maresana",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

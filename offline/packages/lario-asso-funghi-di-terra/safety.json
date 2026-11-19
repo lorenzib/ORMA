@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lario-asso-funghi-di-terra",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.77,
+    "ascentM": 687,
+    "highestPointM": 844,
+    "expectedDuration": "3 h 30 min",
+    "difficulty": "Hard",
+    "shadePercent": 47
+  },
+  "trailhead": {
+    "lat": 45.856904,
+    "lng": 9.264758,
+    "label": "The via Pietro Valsecchi car park at Scarenna, Asso, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About a quarter on village lanes and paved forest roads with some cars: keep your dog close there.",
+    "Steps and steep earth paths near the earth pyramids, slippery after rain.",
+    "The earth pyramids are fragile: keep your dog off them and on the path.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Asso to the earth pyramids of Rezzago": "Da Asso ai funghi di terra di Rezzago",
+    "The via Pietro Valsecchi car park at Scarenna, Asso, the published start": "Il parcheggio di via Pietro Valsecchi a Scarenna, Asso, la partenza indicata dal portale",
+    "About a quarter on village lanes and paved forest roads with some cars: keep your dog close there.": "Circa un quarto su stradine di paese e strade forestali asfaltate con qualche auto: lì tenete il cane vicino.",
+    "Steps and steep earth paths near the earth pyramids, slippery after rain.": "Gradini e sentieri di terra ripidi vicino ai funghi di terra, scivolosi dopo la pioggia.",
+    "The earth pyramids are fragile: keep your dog off them and on the path.": "I funghi di terra sono fragili: tenete il cane lontano da essi e sul sentiero."
+  }
+}

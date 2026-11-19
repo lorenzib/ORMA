@@ -274,8 +274,12 @@ describe('the existing-site verification boundary',()=>{
     // lanes and short mountain-path stretches (owner rules of 18 November
     // 2026): the Pyramidenrundweg at Steinegg, the Panoramaweg at Lüsen and
     // the Troi da la Tambres above Ortisei, walked there and back.
-    expect(catalogue).toHaveLength(537);
-    expect(currentSiteTrails(catalogue)).toHaveLength(535);
+    // Then 540 and 538 with the first Lombardy mountain walks from the
+    // in-Lombardia portal (owner decision of 18 November 2026): Reggetto to the
+    // Piani di Artavaggio, the Colle della Maresana above Bergamo (both there
+    // and back) and the earth-pyramid loop from Asso.
+    expect(catalogue).toHaveLength(540);
+    expect(currentSiteTrails(catalogue)).toHaveLength(538);
   });
 
   test('requires the artwork the public trail page needs',()=>{
