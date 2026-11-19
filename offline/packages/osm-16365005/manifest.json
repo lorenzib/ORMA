@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-16365005",
   "name": "La Galoppaz par la Combe Servenne",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.314Z",
+  "version": "2026.11.19-beta.8",
+  "generatedAt": "2026-11-19T15:37:39.512Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 633294,
+  "packageBytes": 638040,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.5581,
@@ -200,16 +200,16 @@
       "required": true,
       "label": "La Galoppaz par la Combe Servenne OSM offline map",
       "url": "map.svg",
-      "bytes": 344966,
-      "sha256": "daff5428100c46beaff0e7c1f4d58d9b7cfe4f7eb5b4b28ae05da2e9ee975245"
+      "bytes": 349006,
+      "sha256": "7b986848649382989b58f4cf2752de5c4ea8f4e354f7f3ffa64705e889e93389"
     },
     {
       "role": "route",
       "required": true,
       "label": "La Galoppaz par la Combe Servenne route",
       "url": "route.geojson",
-      "bytes": 39743,
-      "sha256": "3976fb668ee4e9adf2a37f6353a7ae60da1efd6c2c92c5cc85186754d443ffb8"
+      "bytes": 40449,
+      "sha256": "edce52de2890cc2a836994a25b88512d58ac1115d94ebc611ba5a6205bad1088"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "La Galoppaz par la Combe Servenne routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 123464,
-      "sha256": "189ddcb32fa34f2e6e01bc024f9deda6497e78b7f9c0c653e4f6f63f7ebea08a"
+      "sha256": "9c4a7cfabac83ef2edca08775c0cd3be02159a2eae89f475e959f17c86fca174"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "La Galoppaz par la Combe Servenne safety information",
       "url": "safety.json",
       "bytes": 2986,
-      "sha256": "47e940aa4a0159eacc72befd52c3ee1ba6865a225a9768730c752aadf49e9975"
+      "sha256": "b24ce439fcfbea2140c9a5278d59bff96b5d95dc8ce218ef8b2ef41d975fca57"
     }
   ]
 }

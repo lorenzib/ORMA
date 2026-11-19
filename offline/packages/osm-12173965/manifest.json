@@ -2,21 +2,21 @@
   "schemaVersion": 1,
   "trailId": "osm-12173965",
   "name": "Kleine Schlossrunde",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.235Z",
+  "version": "2026.11.19-beta.5",
+  "generatedAt": "2026-11-19T15:40:30.301Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 489888,
+  "packageBytes": 521179,
   "packageBudgetBytes": 5242880,
   "bounds": {
-    "south": 46.75363,
-    "west": 12.10025,
+    "south": 46.75215,
+    "west": 12.10005,
     "north": 46.76438,
     "east": 12.11973
   },
   "image": {
     "width": 1200,
-    "height": 968
+    "height": 1089
   },
   "mapCorridor": {
     "strategy": "fixed-bounds-svg-v1",
@@ -24,12 +24,12 @@
       1
     ],
     "width": 1200,
-    "height": 968
+    "height": 1089
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 1386,
-    "edgeCount": 1426,
+    "nodeCount": 1624,
+    "edgeCount": 1676,
     "trailNodeCount": 145,
     "maxRejoinRouteM": 1500
   },
@@ -200,24 +200,24 @@
       "required": true,
       "label": "Kleine Schlossrunde OSM offline map",
       "url": "map.svg",
-      "bytes": 292076,
-      "sha256": "5cf4ec784ca4394c4ef00c1d9692d41b181f678d0d5f58e8b4695d7af92c365a"
+      "bytes": 309602,
+      "sha256": "3bb9f48d7477d2acc388b5d1a0f7ac5dfbf4aeafd6147cbe76e70bcc47b749d6"
     },
     {
       "role": "route",
       "required": true,
       "label": "Kleine Schlossrunde route",
       "url": "route.geojson",
-      "bytes": 3042,
-      "sha256": "b8b3ef137d9057bb93874a1b9b3bcd9a30045153ee8ee997395f9b17ba84a539"
+      "bytes": 4382,
+      "sha256": "4577b56ddbb71cdbd419ee9612e9ee201b210095450b36b35c2022ddb449b17e"
     },
     {
       "role": "footpath-network",
       "required": true,
       "label": "Kleine Schlossrunde routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 70451,
-      "sha256": "69fccfae153f0e0a842a14d51487682b402cdc4dffe19874088e8692f6bc3985"
+      "bytes": 82834,
+      "sha256": "07f60ce6801ba424965f6c3584562f00559da3cb5a360f34a81d33bdec0f3637"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Kleine Schlossrunde safety information",
       "url": "safety.json",
-      "bytes": 2236,
-      "sha256": "58fa0de7e1a459b1a8d36dfcc8cb7edbf576953ede68d79104cc052dd7ed218b"
+      "bytes": 2278,
+      "sha256": "c78ccde71a008b24164d5d943d9693ca7f283eb21e3119fa952640bfe4e42610"
     }
   ]
 }
