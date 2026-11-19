@@ -1064,7 +1064,7 @@ describe('returning homepage region + valley filters', () => {
     expect(panel.querySelector('.li-answer-verdict')).toBeNull();
     // Two watch lines; of the unknowns only the dog rules are worth one.
     expect([...panel.querySelectorAll('.li-answer-check')].map(line => line.textContent))
-      .toEqual(['WatchThis route runs warm.', 'WatchWe don’t know the local rules for dogs. Check before you go.']);
+      .toEqual(['WatchThis route runs warm.', 'WatchWe haven’t found this area’s dog rules yet. Ask the local tourist office before you go.']);
     expect(document.body.textContent).not.toContain('Why it fits Teo');
     // The first card starts open; closing it shows the question it asks.
     const toggle = document.querySelector('[data-why-toggle]');

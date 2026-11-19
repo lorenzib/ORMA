@@ -159,7 +159,7 @@ describe('UX-04 canonical recommendation journey', () => {
     // An unknown an owner acts on (dog rules) is one of the reasons; there is
     // no separate "not checked yet" list any more.
     expect(block.querySelector('.recommendation-reasons').textContent)
-      .toContain('We don’t know the local rules for dogs. Check before you go.');
+      .toContain('We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.');
     expect(block.querySelector('.recommendation-unchecked')).toBeNull();
     expect(document.getElementById('heroVerdict').textContent)
       .toBe('Good with care in an unpersonalized planning view.');
@@ -180,7 +180,7 @@ describe('the trail page breakdown: short reasons, fit chips, points one tap awa
     score:82, breakdownFor:'Teo', breakdown:[{}, {}, {}],
     shortReasons:[
       { text:'Steeper than Teo likes, up to 26% in places.', tone:'cost' },
-      { text:'We don’t know the local rules for dogs. Check before you go.', tone:'note' },
+      { text:'We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.', tone:'note' },
     ],
     fitChips:['6 km', '330 m climb', 'No drops'],
     factorRows:[

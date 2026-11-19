@@ -187,7 +187,7 @@ describe('the trail page says it short', () => {
     useLanguage('en');
     const view = decision.present(ortisei({ status:'unknown' }), { dogName:'Teo' });
     expect(view.shortReasons.map(reason => reason.text))
-      .toContain('We don’t know the local rules for dogs. Check before you go.');
-    expect(view.actionableUnknowns).toEqual(['We don’t know the local rules for dogs. Check before you go.']);
+      .toContain('We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.');
+    expect(view.actionableUnknowns).toEqual(['We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.']);
   });
 });
