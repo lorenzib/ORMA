@@ -220,16 +220,7 @@
 .hp-coll-rank-row{display:flex;align-items:center;flex-wrap:wrap;column-gap:8px;row-gap:8px;margin:7px 0 0;color:var(--ink);font-size:12.5px;line-height:1.45;}
 .hp-coll-rank-row strong{font-weight:800;}
 .hp-coll-profile-cta{width:auto;min-height:36px;padding:7px 13px;border-radius:10px;font-size:12px;}
-.hp-featured .hp-ccard{container-type:inline-size;}
 .hp-ccard-img{height:178px;}
-.hp-featured .hp-ccard-footer{flex-wrap:wrap;row-gap:10px;}
-.hp-featured .hp-ccard-rating{min-width:max-content;}
-.hp-featured .hp-ccard-match{margin-left:auto;}
-
-@container (max-width:340px){
-  .hp-featured .hp-ccard-footer{align-items:flex-start;flex-direction:column;}
-  .hp-featured .hp-ccard-match{align-self:flex-end;margin-left:0;}
-}
 
 .hp-mission h2,.hp-how h2,.hp-featured h2{scroll-margin-top:86px;}
 
