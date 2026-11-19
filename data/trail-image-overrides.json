@@ -2298,6 +2298,23 @@
       }
     },
     {
+      "id": "fvg-sappada-rifugio-siera-longrone",
+      "approvedReviewId": "mapillary-fvg-sappada-rifugio-siera-longrone-on-route",
+      "approvedAt": "2026-11-18T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/fvg-sappada-rifugio-siera-longrone-forest-track.jpg",
+        "heroImage": "images/trails/fvg-sappada-rifugio-siera-longrone-forest-track.jpg",
+        "imageAlt": "A walker with poles comes down a wide gravel track through tall spruce forest, with sunlit ferns and undergrowth on both sides",
+        "imageCredit": "The forest track through the Longrone above Cima Sappada",
+        "imageCreditText": "The forest track through the Longrone above Cima Sappada by igorzo",
+        "imageCreator": "igorzo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=167533668649828",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "fvg-ta-lipa-pot-corto",
       "approvedReviewId": "commons-fvg-ta-lipa-pot-corto-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",

@@ -24,44 +24,38 @@
     return `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
   }
 
-  // The breakdown sits directly under the Match %, headed in the dog's name:
-  // one row per thing the score looked at (what it is, what this walk has,
-  // and what that meant), then what it could not look at, kept apart so an
-  // unknown never sits beside a 100% as if it agreed with it.
+  // P0-1 still holds: every factor behind the score is listed, under the
+  // points link. What shows is short: the reasons that lower the score, one
+  // line each, then what fits as a row of chips. The long "not checked yet"
+  // list is gone; the unknowns an owner acts on (dog rules) are reasons.
   function breakdown(view, tr){
-    if(!view.breakdown.length && !(view.notChecked || []).length) return '';
-    const rows = (view.factorRows || []).map(row =>
-      `<li class="is-${esc(row.tone)}">` +
-        `<span class="recommendation-factor-topic">${esc(row.topic)}</span>` +
-        `<span class="recommendation-factor-reason">${esc(row.detail)}</span>` +
-        `<span class="recommendation-factor-status is-${esc(row.tone)}">${esc(row.status)}</span>` +
-      '</li>').join('');
-    const note = view.breakdownNote
-      ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
-      : '';
-    const unchecked = (view.notChecked || []).length
-      ? '<div class="recommendation-unchecked">' +
-          `<strong>${esc(tr('recommendation.unchecked.title', 'Not checked yet'))}</strong>` +
-          `<p>${esc(tr('recommendation.unchecked.lead', 'These aren’t in the score, so check them yourself.'))}</p>` +
-          `<ul>${view.notChecked.map(item => `<li>${esc(item)}</li>`).join('')}</ul>` +
-        '</div>'
-      : '';
+    const reasons = view.shortReasons || [];
+    const chips = view.fitChips || [];
+    if(!view.breakdown.length && !reasons.length) return '';
     const title = view.score === null
       ? tr('recommendation.breakdown.titleNoScore', 'Why this score for {name}', { name:view.breakdownFor })
       : tr('recommendation.breakdown.title', 'Why {score}% for {name}', { score:view.score, name:view.breakdownFor });
-    // The points stay one tap away for anyone who wants the arithmetic.
+    const reasonList = reasons.length
+      ? `<ul class="recommendation-reasons">${reasons.map(reason =>
+          `<li class="is-${esc(reason.tone)}">${esc(reason.text)}</li>`).join('')}</ul>`
+      : '';
+    const fits = chips.length
+      ? `<div class="recommendation-fits"><strong>${esc(tr('recommendation.fits.title', 'Fits {name}', { name:view.breakdownFor }))}</strong>` +
+        `<ul>${chips.map(chip => `<li>${esc(chip)}</li>`).join('')}</ul></div>`
+      : '';
+    const note = view.breakdownNote
+      ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
+      : '';
     const pointRows = (view.factorRows || []).map(row =>
       `<li><span class="recommendation-points-topic">${esc(row.topic)}</span>` +
         `<span class="recommendation-points-value is-${esc(row.tone)}">${esc(row.points)}</span></li>`).join('');
+    const howLink = `<a class="recommendation-how" href="${esc(tr('recommendation.breakdown.howHref', 'how-scoring-works.html#steepness'))}">${esc(tr('recommendation.breakdown.how', 'How ORMA scores a walk'))}</a>`;
     const points = pointRows
       ? `<details class="recommendation-points"><summary>${esc(tr('recommendation.breakdown.points', 'How the score adds up'))}</summary>` +
-        `<ol>${pointRows}</ol></details>`
-      : '';
-    const howLink = `<a class="recommendation-how" href="${esc(tr('recommendation.breakdown.howHref', 'how-scoring-works.html#steepness'))}">${esc(tr('recommendation.breakdown.how', 'How ORMA scores a walk'))}</a>`;
+        `<ol>${pointRows}</ol>${howLink}</details>`
+      : howLink;
     return `<section class="recommendation-breakdown">` +
-      `<h3>${esc(title)}</h3>` +
-      (rows ? `<ol class="recommendation-factors">${rows}</ol>` : '') +
-      note + unchecked + points + howLink + `</section>`;
+      `<h3>${esc(title)}</h3>` + reasonList + fits + note + points + `</section>`;
   }
 
   function sections(entries){
@@ -132,16 +126,21 @@
     const conditions = window.DoloPawsCurrentConditions || warnings.length
       ? { status:'not-provided', ...(window.DoloPawsCurrentConditions || {}), warnings }
       : undefined;
-    // A one-way walk is scored as the reader chose to see it: one way, or
-    // there and back on the same paths (route-return.js).
+    // A walk that is not a loop is scored as the reader chose to see it: one
+    // way, or there and back on the same paths (route-return.js).
     const routeReturn = window.ORMARouteReturn;
-    const oneWay = !!(routeReturn && routeReturn.isOneWay(trail));
+    const oneWay = !!(routeReturn && routeReturn.hasChoice && routeReturn.hasChoice(trail));
     const scored = oneWay ? routeReturn.forView(trail) : trail;
     const recommendation = recommendTrail(scored, subjectFor(profile), conditions);
-    const routeNote = !oneWay ? ''
-      : `<p class="recommendation-route-view">${esc(scored !== trail
+    const routeNoteText = !oneWay ? ''
+      : scored.returnLeg
         ? tr('recommendation.routeView.back', 'Scored for walking there and back: {km} km, about {climb} m up and the same down. The time is an estimate.', { km:scored.distance, climb:scored.elevation })
-        : tr('recommendation.routeView.oneWay', 'Scored for one way. This walk ends away from its start, so plan how you will get back.'))}</p>`;
+      : scored.oneWayOf
+        ? tr('recommendation.routeView.leg', 'Scored for one way: {km} km and about {climb} m up. No one-way time is given, so plan how you will get back.', { km:scored.distance, climb:scored.elevation })
+      : routeReturn.isThereAndBack(trail)
+        ? tr('recommendation.routeView.roundTrip', 'Scored for there and back on the same path, as the source gives it.')
+        : tr('recommendation.routeView.oneWay', 'Scored for one way. This walk ends away from its start, so plan how you will get back.');
+    const routeNote = routeNoteText ? `<p class="recommendation-route-view">${esc(routeNoteText)}</p>` : '';
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
       translate:window.t,

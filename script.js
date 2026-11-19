@@ -3350,7 +3350,7 @@ function renderLiControls(){
       { label: tx('Any'), v: 'any' }, { label: tx('Low risk'), v: 'low-risk' }, { label: tx('Moderate'), v: 'moderate' }, { label: tx('Caution'), v: 'caution' },
     ], liFilters.risk, v => { liFilters.risk = v; });
     seg('liTerrainSeg', [
-      { label: tx('Any'), v: 'any' }, { label: tx('Gentle only'), v: 'soft' }, { label: tx('Up to mixed'), v: 'mixed' }, { label: tx('Rocky is okay'), v: 'rocky' },
+      { label: tx('Any'), v: 'any' }, { label: tx('Gentle only'), v: 'soft' }, { label: tx('Up to moderate'), v: 'mixed' }, { label: tx('Steep is okay'), v: 'rocky' },
     ], liFilters.terrain, v => { liFilters.terrain = v; });
     seg('liMatchSeg', [
       { label: tx('Any'), v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 },
@@ -3389,7 +3389,7 @@ function renderLiChips(){
   if(!wrap || typeof trails === 'undefined') return;
 
   const DIST_OPTS = [['any',tx('Any')], ['u5',tx('Under 5 km')], ['5to10','5–10 km'], ['10p','10 km+']];
-  const TERRAIN_OPTS = [['any',tx('Any')], ['soft',tx('Gentle only')], ['mixed',tx('Up to mixed')], ['rocky',tx('Rocky is okay')]];
+  const TERRAIN_OPTS = [['any',tx('Any')], ['soft',tx('Gentle only')], ['mixed',tx('Up to moderate')], ['rocky',tx('Steep is okay')]];
   const SHADE_OPTS = [['any',tx('Any')], ['40',tx('Over 40%')], ['60',tx('Over 60%')]];
   const RISK_OPTS = [['any',tx('Any')], ['low-risk',tx('Low risk')], ['moderate',tx('Moderate')], ['caution',tx('Caution')]];
   const MATCH_OPTS = [[0,tx('Any')], [60,'60%+'], [75,'75%+'], [85,'85%+']];
@@ -4028,12 +4028,15 @@ function liExposureLabel(exposure){
 // Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · little shade"
 // Cautions follow the measured facts, gravest first.
 function liRowMeta(t){
-  // A one-way walk is shown, and scored, there and back (route-return.js).
+  // A one-way walk is shown, and scored, the way its source gives it: one way,
+  // and says so, unless the reader picked there and back (route-return.js).
   const routeReturn = window.ORMARouteReturn;
-  const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+  const oneWayWalk = !!(routeReturn && routeReturn.isOneWay(t));
+  const shown = oneWayWalk ? routeReturn.forView(t) : t;
   const back = shown !== t;
-  const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:shown.distance }) : ''; return v && v !== key ? v : fallback; };
-  const parts = [back ? tr('card.thereAndBack', `${localNum(shown.distance)} km there and back`) : `${localNum(t.distance)} km`];
+  const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:localNum(shown.distance) }) : ''; return v && v !== key ? v : fallback; };
+  const parts = [back ? tr('card.thereAndBack', `${localNum(shown.distance)} km there and back`)
+    : oneWayWalk ? tr('card.oneWay', `${localNum(t.distance)} km one way`) : `${localNum(t.distance)} km`];
   if(Number.isFinite(shown.elevation)) parts.push(tx('{m} m climb', { m:shown.elevation }));
   if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? localNum(routeReturn.formatDuration(shown.hours)) : `${localNum(shown.hours)} h`}`);
   const exposure = liExposureLabel(t.exposure);
@@ -4237,7 +4240,7 @@ function liWhyLabel(trail, dogName){
   return liIsNotRecommended(trail) ? tx('Why not for {name}', { name:dogName }) : tx('Why it fits {name}', { name:dogName });
 }
 
-function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
+function liRecommendationExplanationHtml(trail, profile, open, isNew = false, showGap = true){
   const recommendation = trail && trail.recommendation;
   const view = liRecommendationView(trail, profile);
   if(!view) return '';
@@ -4249,25 +4252,33 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false){
   // of a dozen, so it now says the verdict in one sentence -- "Good for Teo:
   // 9.6 km, a gentle 170 m climb and water on the way." -- and the one or two
   // things to check. The trail page keeps the full row-by-row breakdown.
-  const verdict = view.cardVerdict
-    ? `<p class="li-answer-verdict"><span><b>${liPersonalisationText(view.cardVerdict.lead)}:</b> ${liPersonalisationText(view.cardVerdict.facts)}.</span></p>`
+  // Two short lines: what fits, tagged "Fits", and the one thing to watch,
+  // tagged "Watch". The trail page has the rest, so the card no longer counts
+  // what it left out ("The trail page has one more").
+  const facts = view.cardVerdict ? String(view.cardVerdict.facts || '') : '';
+  const verdict = facts
+    ? `<p class="li-answer-verdict"><span class="li-answer-tag is-fit">${tx('Fits')}</span><span>${liPersonalisationText(facts.charAt(0).toUpperCase() + facts.slice(1))}</span></p>`
     : '';
   // Cautions first (hard stops already lead them), then what is simply not
   // known, which is a different kind of statement and belongs after. Only
   // trail unknowns: a missing profile field becomes the prompt below, and
   // saying the same thing twice on one card reads as two problems. A strong
   // option says one; any other verdict says why it is not one, so two.
-  const limit = recommendation && recommendation.category === 'strong-option' ? 1 : 2;
+  // One thing to watch; a low match, which has no "Fits" line, says two. Only
+  // the unknowns an owner acts on (dog rules) count: "route details are based
+  // on map data" is true of every walk and is not worth a line.
+  const limit = recommendation && recommendation.category === 'not-recommended' ? 2 : 1;
   const concerns = view.cardCautions.slice(0, limit);
-  if(concerns.length < limit) concerns.push(...view.cardTrailUnknowns.slice(0, limit - concerns.length));
+  if(concerns.length < limit) concerns.push(...(view.actionableUnknowns || []).slice(0, limit - concerns.length));
   const know = concerns
-    .map(entry => `<p class="li-answer-check">${liPersonalisationText(entry)}</p>`).join('');
+    .map(entry => `<p class="li-answer-check"><span class="li-answer-tag is-watch">${tx('Watch')}</span><span>${liPersonalisationText(entry)}</span></p>`).join('');
   const fresh = isNew
     ? `<p class="li-answer-new"><b>${tx('New for {name}.', { name:liPersonalisationText(dogName) })}</b> ${liNewForMeaning(profile)}</p>`
     : '';
   // Opens the wizard on the dog it is talking about, rather than sending the
   // reader to the account page to find it themselves.
-  const gapFields = profile && profile.name ? liDogGapFields(recommendation) : [];
+  // Said once, on the first card, rather than as a third line on every card.
+  const gapFields = showGap && profile && profile.name ? liDogGapFields(recommendation) : [];
   const gap = gapFields.length
     ? `<p class="li-answer-gap"><button type="button" class="li-answer-gap-btn" data-complete-dog>${
         liPersonalisationText(liT('recommendation.gap.fields', 'Add {name}\u2019s {fields} to sharpen this score \u2192', {
@@ -4655,7 +4666,7 @@ async function renderReturningHomepage(profile, options = {}){
     // are the answer the page was asked for -- unless the reader has hidden
     // reasons with the switch in the list header.
     const startsOpen = isPrimary && !liReasonsHidden;
-    const explanation = liRecommendationExplanationHtml(t, profile, startsOpen, isNew);
+    const explanation = liRecommendationExplanationHtml(t, profile, startsOpen, isNew, index === 0);
     return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>${tx('Other options for {name}', { name:liPersonalisationText(liScoredSubject(profile)) })}</span><a href="browse-trails.html">${tx('See the full catalogue →')}</a></div>` : ''}
     <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}${explanation && startsOpen ? ' is-why-open' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="${tx('Rank {rank}: {name}', { rank, name:liPersonalisationText(t.name) })}"${dim ? ' style="opacity:.55;"' : ''}>
       <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
