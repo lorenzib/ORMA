@@ -205,12 +205,15 @@ describe('the trail page breakdown: short reasons, fit chips, points one tap awa
     expect(fits).toMatch(/^<div class="recommendation-fits"><strong>Fits Teo<\/strong><ul><li>6 km<\/li><li>330 m climb<\/li><li>No drops<\/li><\/ul>/);
   });
 
-  test('a closed "How the score adds up" list still holds every factor', () => {
+  test('a closed "How the score adds up" list still holds every factor, without a column of zeros', () => {
     const html = breakdown(view, tr);
     const points = html.slice(html.indexOf('<details class="recommendation-points">'));
     expect(points).toMatch(/^<details class="recommendation-points"><summary>How the score adds up<\/summary>/);
-    expect(points.match(/<li>/g)).toHaveLength(4);
+    // One row for what costs points, one line naming everything else.
+    expect(points.match(/<li[ >]/g)).toHaveLength(2);
     expect(points).toContain('−10');
+    expect(points).toContain('Everything else<small>Distance · Climb · Drops</small>');
+    expect(points.match(/>0</g)).toHaveLength(1);
     expect(points).toContain('How ORMA scores a walk');
   });
 });
