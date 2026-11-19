@@ -309,7 +309,11 @@
   function fitChip(entry, source, tr, extra){
     const vars = { ...extra, ...(source.vars || {}) };
     if(entry.code === 'trail.terrain.within-tolerance'){
-      const level = steepnessLevel(source.vars && source.vars.terrain);
+      // A steep walk that fits says why it is listed as a fit: "Steep" alone
+      // under "Fits Teo" reads like a mistake.
+      const rank = source.vars && source.vars.terrain;
+      const level = steepnessLevel(rank);
+      if(level && rank > 0 && vars.name) return tr('recommendation.chip.steepFits', tx('{level}, fine for {name}'), { ...vars, level });
       if(level) return level;
     }
     const key = Object.keys(FIT_CHIPS).find(code => entry.code === code || entry.code.startsWith(`${code}.`));
