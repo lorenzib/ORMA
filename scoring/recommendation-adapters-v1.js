@@ -331,7 +331,12 @@
 
   function effectiveLimits(subject){
     if(!subject || (subject.terrain === undefined && subject.distance === undefined)) return null;
-    const terrain = Number(subject.terrain);
+    // A real dog (subject._profile) gets its steepness limit from the engine's
+    // own rule (age, health, the owner's steepness answer). The older limit
+    // effectiveOverrides() works out from fitness alone only applies when
+    // someone changed it by hand, or for a dog with no profile behind it.
+    const steepnessFromEngine = !!subject._profile && !subject._steepnessAdjusted;
+    const terrain = steepnessFromEngine ? NaN : Number(subject.terrain);
     const distance = Number(subject.distance);
     return {
       terrainRank: Number.isFinite(terrain) ? Math.max(0, Math.min(2, terrain)) : undefined,
