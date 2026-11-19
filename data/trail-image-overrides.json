@@ -2943,6 +2943,23 @@
       }
     },
     {
+      "id": "lario-asso-funghi-di-terra",
+      "approvedReviewId": "commons-lario-asso-funghi-di-terra-on-route",
+      "approvedAt": "2026-11-19T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lario-asso-funghi-di-terra-chestnut.jpg",
+        "heroImage": "images/trails/lario-asso-funghi-di-terra-chestnut.jpg",
+        "imageAlt": "A huge old chestnut tree with a broad yellow-green autumn crown lit by low sun against a blue sky, with more chestnuts behind",
+        "imageCredit": "An old chestnut in the wood of Rezzago, on the loop",
+        "imageCreditText": "An old chestnut in the wood of Rezzago, on the loop by Marco binda",
+        "imageCreator": "Marco binda",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castagno_secolare_a_Rezzago.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "lario-brunate-e-le-sue-chiese",
       "approvedReviewId": "commons-lario-brunate-e-le-sue-chiese-on-route",
       "approvedAt": "2026-10-27T23:00:00.000Z",
@@ -3109,6 +3126,57 @@
         "imageLicence": "CC BY-SA 3.0 AT",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lesachtal_Tuffbad_23052007_03.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lombardia-bergamo-colle-maresana",
+      "approvedReviewId": "commons-lombardia-bergamo-colle-maresana-on-route",
+      "approvedAt": "2026-11-19T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lombardia-bergamo-colle-maresana-signpost.jpg",
+        "heroImage": "images/trails/lombardia-bergamo-colle-maresana-signpost.jpg",
+        "imageAlt": "Red-and-white CAI path signs on a pole among ivy by a stone gate pillar point to Colle Maresana, Canto Basso, Monte di Nese, Salmezza and Selvino on path 533, with autumn trees and a palm behind a fence",
+        "imageCredit": "The CAI 533 signpost for the Colle della Maresana at the start, on via Quintino Alto",
+        "imageCreditText": "The CAI 533 signpost for the Colle della Maresana at the start, on via Quintino Alto by Amadvance",
+        "imageCreator": "Amadvance",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:20201107-monterosso-20.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "lombardia-reggetto-piani-di-artavaggio",
+      "approvedReviewId": "mapillary-lombardia-reggetto-piani-di-artavaggio-on-route",
+      "approvedAt": "2026-11-19T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/lombardia-reggetto-piani-di-artavaggio-track.jpg",
+        "heroImage": "images/trails/lombardia-reggetto-piani-di-artavaggio-track.jpg",
+        "imageAlt": "A wide gravel track climbs across green grass to a large ochre four-storey building with a terrace and lamp posts, with a grassy hill and a small hut on the left under a pale sky",
+        "imageCredit": "The gravel track up to the Albergo Sciatori on the Piani di Artavaggio, at the top of the walk",
+        "imageCreditText": "The gravel track up to the Albergo Sciatori on the Piani di Artavaggio, at the top of the walk by kaitu",
+        "imageCreator": "kaitu",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=318325856323750",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "luesen-panoramaweg",
+      "approvedReviewId": "mapillary-luesen-panoramaweg-on-route",
+      "approvedAt": "2026-11-18T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/luesen-panoramaweg-badeteich.jpg",
+        "heroImage": "images/trails/luesen-panoramaweg-badeteich.jpg",
+        "imageAlt": "A green natural bathing pond fringed with reeds, with a wooden sun deck on the right, trees and steep green meadows behind on a sunny summer day",
+        "imageCredit": "The bathing pond by the Berger Straße, Lüsen",
+        "imageCreditText": "The bathing pond by the Berger Straße, Lüsen by 0idee",
+        "imageCreator": "0idee",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1020735675298906",
         "imageSourceType": "licensed-source"
       }
     },
@@ -7081,6 +7149,23 @@
       }
     },
     {
+      "id": "steinegg-pyramidenrundweg",
+      "approvedReviewId": "commons-steinegg-pyramidenrundweg-on-route",
+      "approvedAt": "2026-11-18T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/steinegg-pyramidenrundweg-weisses-bild.jpg",
+        "heroImage": "images/trails/steinegg-pyramidenrundweg-weisses-bild.jpg",
+        "imageAlt": "A small white chapel with a shingle roof and a little bell turret beside a road, with houses, green meadows and wooded mountains with pink cliffs behind under a blue sky",
+        "imageCredit": "The Maria-Hilf chapel at Weißes Bild, Steinegg",
+        "imageCreditText": "The Maria-Hilf chapel at Weißes Bild, Steinegg by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kapelle_und_Bildstock_Weißes_Bild.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "trecime-bagni-di-san-candido",
       "approvedReviewId": "commons-trecime-bagni-di-san-candido-on-route",
       "approvedAt": "2026-10-28T00:00:00.000Z",
@@ -8250,6 +8335,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=1245395036599629",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valgardena-troi-da-la-tambres",
+      "approvedReviewId": "commons-valgardena-troi-da-la-tambres-on-route",
+      "approvedAt": "2026-11-18T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/valgardena-troi-da-la-tambres-farm.jpg",
+        "heroImage": "images/trails/valgardena-troi-da-la-tambres-farm.jpg",
+        "imageAlt": "An old wooden farmhouse with a shingle roof on a bright green meadow, framed by spruce trees, with the jagged Langkofel peak rising behind under a blue sky",
+        "imageCredit": "The La Tambres farmhouse below the Langkofel, Ortisei",
+        "imageCreditText": "The La Tambres farmhouse below the Langkofel, Ortisei by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:La_Tambres_cun_pra_y_Saslonch_a_Urtijëi.jpg",
         "imageSourceType": "licensed-source"
       }
     },

@@ -998,6 +998,13 @@
       ],
       "highPoint": 878
     },
+    "lario-asso-funghi-di-terra": {
+      "regions": [
+        "IT-25-CO-01",
+        "IT-25-LC-01"
+      ],
+      "highPoint": 844
+    },
     "lario-brunate-e-le-sue-chiese": {
       "regions": [
         "IT-25-LC-01"
@@ -1047,6 +1054,26 @@
         "IT-25-LC-01"
       ],
       "highPoint": 657
+    },
+    "lombardia-bergamo-colle-maresana": {
+      "regions": [
+        "IT-25-BG-02"
+      ],
+      "highPoint": 544
+    },
+    "lombardia-reggetto-piani-di-artavaggio": {
+      "regions": [
+        "IT-25-BG-02",
+        "IT-25-LC-01"
+      ],
+      "highPoint": 1585
+    },
+    "luesen-panoramaweg": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-01"
+      ],
+      "highPoint": 1258
     },
     "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
       "regions": [
@@ -2268,6 +2295,13 @@
       ],
       "highPoint": 1954
     },
+    "steinegg-pyramidenrundweg": {
+      "regions": [
+        "IT-32-BZ-17",
+        "IT-32-BZ-18"
+      ],
+      "highPoint": 983
+    },
     "tre-cime": {
       "regions": [
         "IT-32-BZ-20",
@@ -2683,6 +2717,13 @@
         "IT-32-BZ-18-02"
       ],
       "highPoint": 2075
+    },
+    "valgardena-troi-da-la-tambres": {
+      "regions": [
+        "IT-32-BZ-18",
+        "IT-32-BZ-18-02"
+      ],
+      "highPoint": 1506
     },
     "valgardena-troi-unika": {
       "regions": [

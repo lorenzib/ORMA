@@ -527,8 +527,8 @@ function directionsSection(t) {
 // Italian while the sentence is the one translated.
 function auditDirectionsNote() {
   const english = routeRefs.AUDIT_DIRECTIONS_NOTE;
-  return english === 'From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.'
-    ? L('From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.')
+  return english === 'We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.'
+    ? L('We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.')
     : english;
 }
 
@@ -764,6 +764,29 @@ function isLoop(t) {
   return Math.sqrt(dLat * dLat + dLng * dLng) < 120;
 }
 
+// The one way / there and back switch on a static page: two radio buttons,
+// then one facts grid for each version; CSS shows the grid whose button is
+// checked, so it works without scripts. Checked first is the version the
+// source describes.
+function routeViewFactsHtml(t, factsFor) {
+  const VIEWS = routeReturn.VIEWS;
+  const source = routeReturn.sourceView(t);
+  const oneWay = source === VIEWS.ONE_WAY ? t : routeReturn.oneWayLeg(t);
+  const back = source === VIEWS.OUT_AND_BACK ? t : routeReturn.outAndBack(t);
+  const radio = (id, view, label) => `<input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="${id}" value="${view}"${view === source ? ' checked' : ''}><label class="sp-view-btn" for="${id}">${label}</label>`;
+  return `<div class="sp-route-view" role="radiogroup" aria-label="${escapeHtml(L('Show the figures for'))}">
+    ${radio('spViewOneWay', VIEWS.ONE_WAY, L('One way'))}${radio('spViewBack', VIEWS.OUT_AND_BACK, L('There and back'))}
+    <div class="sp-facts sp-facts--one-way">
+      ${factsFor(oneWay)}
+    </div>
+    <div class="sp-facts sp-facts--back">
+      ${factsFor(back)}
+    </div>
+    <p class="sp-src sp-view-note sp-view-note--one-way">${L('Ends away from the start: plan a lift, bus or second car back.')}</p>
+    <p class="sp-src sp-view-note sp-view-note--back">${L('Back the same way on the same path.')}</p>
+  </div>`;
+}
+
 // A short, factual "at a glance" paragraph for imported trails, so the 147
 // OSM pages read differently from one another. Every clause is computed
 // from the trail's own data; sentence choice is keyed to the data, not random.
@@ -932,21 +955,34 @@ function renderTrailPage(t, slug, all) {
     : tr(t.terrainType);
 
   const highest = highestPoint(t);
-  const facts = [
-    [L('Distance'), L('{km} km', { km: num(t.distance) })],
-    [L('Elevation gain'), t.elevation != null ? L('{m} m', { m: num(t.elevation) }) : null],
-    [L('Highest point'), highest !== null ? L('{m} m', { m: num(highest) }) : null],
-    [L('Duration'), routeReturn.formatDuration(t.hours) || null],
-    [L('Terrain'), terrain],
-    [L('Trail rating'), displaySafetyLabel(t)],
-    [L('Area'), `${t.area} · ${regionLabel}`],
-  ]
-    .filter(([, v]) => v != null && v !== '')
-    .map(
-      ([k, v]) =>
-        `<div class="sp-fact"><div class="sp-fact-k">${escapeHtml(k)}</div><div class="sp-fact-v">${escapeHtml(v)}</div></div>`
-    )
-    .join('\n      ');
+  // A walk that is not a loop can be read one way or there and back
+  // (route-return.js). The page carries both sets of figures and two radio
+  // buttons pick one with CSS alone; it opens on the version the source
+  // describes. Worked-out figures carry "≈", and an out-and-back walk's one-way
+  // time is never published, so it says so rather than halving the time.
+  const factsFor = (shown) => {
+    const back = !!(shown !== t && shown.returnLeg);
+    const leg = !!(shown !== t && shown.oneWayOf);
+    const hours = routeReturn.formatDuration(shown.hours);
+    return [
+      [L('Distance'), L('{km} km', { km: num(shown.distance) })],
+      [back ? L('Up, same down') : L('Elevation gain'), shown.elevation != null ? `${leg ? '≈ ' : ''}${L('{m} m', { m: num(shown.elevation) })}` : null],
+      [L('Highest point'), highest !== null ? L('{m} m', { m: num(highest) }) : null],
+      [L('Duration'), leg ? L('Not given') : hours ? `${back ? '≈ ' : ''}${hours}` : null],
+      [L('Terrain'), terrain],
+      [L('Trail rating'), displaySafetyLabel(t)],
+      [L('Area'), `${t.area} · ${regionLabel}`],
+    ]
+      .filter(([, v]) => v != null && v !== '')
+      .map(
+        ([k, v]) =>
+          `<div class="sp-fact"><div class="sp-fact-k">${escapeHtml(k)}</div><div class="sp-fact-v">${escapeHtml(v)}</div></div>`
+      )
+      .join('\n      ');
+  };
+  const facts = routeReturn.hasChoice(t) ? routeViewFactsHtml(t, factsFor) : `<div class="sp-facts">
+      ${factsFor(t)}
+  </div>`;
 
   const waterHtml = !categoryVerified(t, 'water')
     ? `<h2>${L('Bring your own water')}</h2><p>${L('Do not rely on potential water locations being available or drinkable. Carry enough for the full walk.')}</p>`
@@ -1066,6 +1102,15 @@ ${it ? '' : ITALIAN_COPY_BANNER + '\n'}<title>${escapeHtml(title)}</title>
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
+  .sp-route-view{margin:18px 0 26px;}
+  .sp-route-view .sp-facts{margin:12px 0 8px;}
+  .sp-view-btn{display:inline-block;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid #9AA79C;color:#2E4034;cursor:pointer;}
+  .sp-view-btn:first-of-type{border-radius:999px 0 0 999px;}
+  .sp-view-btn + .sp-view-input + .sp-view-btn{border-left:none;border-radius:0 999px 999px 0;}
+  .sp-view-input:checked + .sp-view-btn{background:#2E4034;border-color:#2E4034;color:#fff;}
+  .sp-view-input:focus-visible + .sp-view-btn{outline:2px solid #2C5C34;outline-offset:2px;}
+  #spViewOneWay:not(:checked) ~ .sp-facts--one-way,#spViewOneWay:not(:checked) ~ .sp-view-note--one-way,
+  #spViewBack:not(:checked) ~ .sp-facts--back,#spViewBack:not(:checked) ~ .sp-view-note--back{display:none;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
@@ -1162,9 +1207,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
   ${!t.imageIcon && t.imagePlaceholder ? `<p class="sp-src" style="display:flex;align-items:center;gap:8px;margin:-6px 0 14px;"><img src="${up}logo.svg" alt="" width="22" height="22" style="flex:none;"> ${L('We\'re working on adding photos of this trail.')}</p>` : ''}
   ${paragraphs(pageDesc)}
 
-  <div class="sp-facts">
-      ${facts}
-  </div>
+  ${facts}
 
   <a class="sp-cta" href="${up}trail.html?id=${encodeURIComponent(slug)}">${L('Open the full trail guide →')}</a>
 

@@ -248,7 +248,7 @@
 
   // Printed under the sentence by both renderers, so the app and the page
   // say the same thing about where it came from.
-  const AUDIT_DIRECTIONS_NOTE = 'From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.';
+  const AUDIT_DIRECTIONS_NOTE = 'We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.';
 
   const api = {
     forTrail,

@@ -270,8 +270,16 @@ describe('the existing-site verification boundary',()=>{
     // suggests another way on (owner rule of 16 November 2026).
     // Then 534 and 532 with the first Friulian Dolomites walk (owner decision
     // of 18 November 2026): Cima Sappada to the Rifugio Siera, there and back.
-    expect(catalogue).toHaveLength(534);
-    expect(currentSiteTrails(catalogue)).toHaveLength(532);
+    // Then 537 and 535 with three South Tyrol register walks on quiet hamlet
+    // lanes and short mountain-path stretches (owner rules of 18 November
+    // 2026): the Pyramidenrundweg at Steinegg, the Panoramaweg at Lüsen and
+    // the Troi da la Tambres above Ortisei, walked there and back.
+    // Then 540 and 538 with the first Lombardy mountain walks from the
+    // in-Lombardia portal (owner decision of 18 November 2026): Reggetto to the
+    // Piani di Artavaggio, the Colle della Maresana above Bergamo (both there
+    // and back) and the earth-pyramid loop from Asso.
+    expect(catalogue).toHaveLength(540);
+    expect(currentSiteTrails(catalogue)).toHaveLength(538);
   });
 
   test('requires the artwork the public trail page needs',()=>{

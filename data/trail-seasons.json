@@ -3177,6 +3177,18 @@
         "highPoint": 1409
       }
     },
+    "luesen-panoramaweg": {
+      "highPoint": 1258,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1258
+      }
+    },
     "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
       "highPoint": 1561,
       "recommended": {
@@ -7191,6 +7203,18 @@
         "highPoint": 1954
       }
     },
+    "steinegg-pyramidenrundweg": {
+      "highPoint": 983,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 983
+      }
+    },
     "tre-cime": {
       "highPoint": 2454,
       "snow": {
@@ -8574,6 +8598,18 @@
         }
       ]
     },
+    "valgardena-troi-da-la-tambres": {
+      "highPoint": 1506,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1506
+      }
+    },
     "valgardena-troi-unika": {
       "highPoint": 1689,
       "recommended": {
@@ -9724,6 +9760,42 @@
           "url": "https://www.outdooractive.com/it/r/13977360",
           "accessedAt": "2026-11-18"
         }
+      }
+    },
+    "lombardia-reggetto-piani-di-artavaggio": {
+      "highPoint": 1585,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1585
+      }
+    },
+    "lario-asso-funghi-di-terra": {
+      "highPoint": 844,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 844
+      }
+    },
+    "lombardia-bergamo-colle-maresana": {
+      "highPoint": 544,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 544
       }
     }
   }

@@ -24,3 +24,26 @@ describe('dog rules from the walk’s dog notes', () => {
     expect(access({ desc: 'Dogs are not allowed in the reserve.', dogNotes: 'A lead is required.' })).toBe('prohibited');
   });
 });
+
+describe('a ban beside the path is not a ban on the walk', () => {
+  const adapters = require('./scoring/recommendation-adapters-v1.js');
+  const access = trail => adapters.normalizeTrail(trail).suitability.dogAccess.status;
+
+  test.each([
+    'Dogs are not allowed on farmed meadows, so keep to the path where it crosses them.',
+    'From 1 April to 31 October dogs are not allowed on meadows and fields, even where there is no sign.',
+    'Where signs say so, dogs are not allowed in public parks and green areas.',
+    'Keep your dog on a short lead on the track through the vineyards, where dogs are not allowed.',
+    'Dogs are not allowed on farmed land during the growing season, so keep your dog out of the vineyards.',
+  ])('"%s" leaves the walk open', tips => {
+    expect(access({ tips })).not.toBe('prohibited');
+  });
+
+  test.each([
+    'Dogs are not allowed on this trail.',
+    'Dogs are not permitted anywhere in the reserve.',
+    'Dogs are not allowed in the national park, which the walk crosses.',
+  ])('"%s" still closes it', tips => {
+    expect(access({ tips })).toBe('prohibited');
+  });
+});

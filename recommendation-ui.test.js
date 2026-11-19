@@ -156,10 +156,10 @@ describe('UX-04 canonical recommendation journey', () => {
     // Internal unknown-count and scoring language stay out of customer copy.
     expect(document.body.textContent).not.toContain('trail fact not yet verified');
     expect(document.body.textContent).not.toContain('Canonical scoring');
-    // An unknown an owner acts on (dog rules) is one of the reasons; there is
-    // no separate "not checked yet" list any more.
-    expect(block.querySelector('.recommendation-reasons').textContent)
-      .toContain('We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.');
+    // Unknown dog rules are not said at all, and there is no separate
+    // "not checked yet" list any more.
+    expect(block.textContent).not.toContain('dog rules');
+    expect(block.textContent).not.toContain('Access is not reviewed.');
     expect(block.querySelector('.recommendation-unchecked')).toBeNull();
     expect(document.getElementById('heroVerdict').textContent)
       .toBe('Good with care in an unpersonalized planning view.');

@@ -35,6 +35,15 @@
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
+  .sp-route-view{margin:18px 0 26px;}
+  .sp-route-view .sp-facts{margin:12px 0 8px;}
+  .sp-view-btn{display:inline-block;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid #9AA79C;color:#2E4034;cursor:pointer;}
+  .sp-view-btn:first-of-type{border-radius:999px 0 0 999px;}
+  .sp-view-btn + .sp-view-input + .sp-view-btn{border-left:none;border-radius:0 999px 999px 0;}
+  .sp-view-input:checked + .sp-view-btn{background:#2E4034;border-color:#2E4034;color:#fff;}
+  .sp-view-input:focus-visible + .sp-view-btn{outline:2px solid #2C5C34;outline-offset:2px;}
+  #spViewOneWay:not(:checked) ~ .sp-facts--one-way,#spViewOneWay:not(:checked) ~ .sp-view-note--one-way,
+  #spViewBack:not(:checked) ~ .sp-facts--back,#spViewBack:not(:checked) ~ .sp-view-note--back{display:none;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
@@ -232,7 +241,7 @@
     <p>Cimitero di Carella, via Ceresuola, Eupilio, la partenza indicata</p>
     <h2>Come seguire questo percorso</h2>
     <p><b>Indicazioni:</b> Dal cimitero di Carella in via Ceresuola (autobus C90) lungo la strada verso il Cornizzolo, prima asfaltata poi sterrata, per circa 1 km fino alla croce di legno sui ruderi della cappella della Madonna Bianca; a sinistra sali per la via crucis fino al santuario della Madonna della Neve (fontana, area picnic); superalo, a sinistra sali per una mulattiera fino alla strada sterrata, di nuovo a sinistra ed entra nel bosco al tornante su un sentiero più accidentato fino a via Cornizzolo; sali per la strada fino al parcheggio della Trattoria Brianzola, poi sul sentiero sopra l'edificio, attraversa la strada e su sterrato fino agli animali nel recinto della Trattoria Alpe Carella. Torna al parcheggio, poi a destra scendi per una ripida stradina che diventa una mulattiera acciottolata, giù per via Cornizzolo fino a Mariaga, per la stretta mulattiera tra i muri, lungo via del Conte oltre la chiesa di San Cristoforo, via Diaz, via IV Novembre e ritorno per via Ceresuola.</p>
-    <p class="sp-route-source">Dalla verifica ORMA della descrizione ufficiale del percorso. Segui la traccia ORMA sulla mappa e i cartelli sul posto.</p>
+    <p class="sp-route-source">Abbiamo scritto queste indicazioni dalle informazioni ufficiali sul percorso e le abbiamo controllate sulla mappa. Durante il cammino, segui la linea sulla mappa e i cartelli sul posto.</p>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> Acqua sul sentiero</h2>
     <ul><li>km 1,7 · Fontanella</li><li>km 4,9 · Fontanella</li></ul>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M4 11l8-7 8 7" fill="none" stroke="#8A5A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 10v9h12v-9" fill="#D6A038" stroke="#8A5A16" stroke-width="1.6" stroke-linejoin="round"></path><path d="M10 19v-5h4v5" fill="#8A5A16"></path></svg> Rifugi e ristoro</h2>

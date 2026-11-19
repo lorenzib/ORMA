@@ -205,6 +205,8 @@
     ['Capo di Ponte', 46.0310, 10.3450, 'Val Camonica', 'lombardy', 'brescia'],
     ['Edolo', 46.1780, 10.3330, 'Val Camonica', 'lombardy', 'brescia'],
     ['Ponte di Legno', 46.2590, 10.5100, 'Val Camonica', 'lombardy', 'brescia'],
+    ['Vedeseta / Val Taleggio', 45.8920, 9.5390, 'Val Taleggio', 'lombardy', 'bergamo'],
+    ['Bergamo', 45.6983, 9.6773, 'Bergamo hills', 'lombardy', 'bergamo'],
     // ---- Friuli Venezia Giulia ----
     // Carnia, Sappada, the Tarvisio and Julian Alps valleys, the Friulian
     // Dolomites and Piancavallo.

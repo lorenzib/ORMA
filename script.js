@@ -2098,7 +2098,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#F8F6F0',
-        'line-width': rankWidth([3.5, 8, 10, 10], [1.6, 3, 5, 7]),
+        'line-width': rankWidth([3, 4.5, 5.5, 7], [1.2, 2, 3, 4]),
         'line-opacity': 0.9,
       },
     }, railsBeforeId);
@@ -2110,7 +2110,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#858D88',
-        'line-width': rankWidth([2, 5, 6, 6], [0.8, 1.6, 2.8, 3.6]),
+        'line-width': rankWidth([1.5, 2, 2.5, 3.5], [0.6, 1, 1.6, 2]),
       },
     }, railsBeforeId);
     // Catalogue rails, same treatment as the detail map: a white casing and a
@@ -2131,7 +2131,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#FFFFFF',
-        'line-width': rankWidth([8, 14, 20, 26], [2.5, 4, 5.5, 6.5]),
+        'line-width': rankWidth([3, 4.5, 5.5, 7], [1.5, 2.5, 3.5, 4.5]),
         'line-opacity': ['case', TOP_MATCH_TEST, 0.9, 0.5],
       },
     }, railsBeforeId);
@@ -2143,10 +2143,11 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': ['case', TOP_MATCH_TEST, catalogueMatchColour, '#9AA19C'],
-        'line-width': rankWidth([5, 10, 15, 20], [1.2, 1.8, 2.4, 3]),
-        // A hairline can afford to be seen; it was 0.12 because a 10px band of
-        // it could not.
-        'line-opacity': 0.5,
+        'line-width': rankWidth([1.5, 2, 2.5, 3.5], [0.8, 1.2, 1.6, 2]),
+        // Owner, 19 Nov: the 15-20 px translucent bands read as blobs. Top
+        // matches are now a thin solid line on a white edge, the same as the
+        // chosen walk and the trail page; other trails stay faint hairlines.
+        'line-opacity': ['case', TOP_MATCH_TEST, 1, 0.5],
       },
     }, railsBeforeId);
     // Once a visitor chooses a trail, give it the same clear, route-first
@@ -4027,12 +4028,15 @@ function liExposureLabel(exposure){
 // Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · little shade"
 // Cautions follow the measured facts, gravest first.
 function liRowMeta(t){
-  // A one-way walk is shown, and scored, there and back (route-return.js).
+  // A one-way walk is shown, and scored, the way its source gives it: one way,
+  // and says so, unless the reader picked there and back (route-return.js).
   const routeReturn = window.ORMARouteReturn;
-  const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+  const oneWayWalk = !!(routeReturn && routeReturn.isOneWay(t));
+  const shown = oneWayWalk ? routeReturn.forView(t) : t;
   const back = shown !== t;
-  const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:shown.distance }) : ''; return v && v !== key ? v : fallback; };
-  const parts = [back ? tr('card.thereAndBack', `${localNum(shown.distance)} km there and back`) : `${localNum(t.distance)} km`];
+  const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:localNum(shown.distance) }) : ''; return v && v !== key ? v : fallback; };
+  const parts = [back ? tr('card.thereAndBack', `${localNum(shown.distance)} km there and back`)
+    : oneWayWalk ? tr('card.oneWay', `${localNum(t.distance)} km one way`) : `${localNum(t.distance)} km`];
   if(Number.isFinite(shown.elevation)) parts.push(tx('{m} m climb', { m:shown.elevation }));
   if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? localNum(routeReturn.formatDuration(shown.hours)) : `${localNum(shown.hours)} h`}`);
   const exposure = liExposureLabel(t.exposure);
@@ -4260,12 +4264,11 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false, sh
   // trail unknowns: a missing profile field becomes the prompt below, and
   // saying the same thing twice on one card reads as two problems. A strong
   // option says one; any other verdict says why it is not one, so two.
-  // One thing to watch; a low match, which has no "Fits" line, says two. Only
-  // the unknowns an owner acts on (dog rules) count: "route details are based
-  // on map data" is true of every walk and is not worth a line.
+  // One thing to watch; a low match, which has no "Fits" line, says two.
+  // Unknowns are not watch lines: "we haven't found the dog rules" on a site
+  // where every walk takes dogs only adds doubt (owner, 19 Nov).
   const limit = recommendation && recommendation.category === 'not-recommended' ? 2 : 1;
   const concerns = view.cardCautions.slice(0, limit);
-  if(concerns.length < limit) concerns.push(...(view.actionableUnknowns || []).slice(0, limit - concerns.length));
   const know = concerns
     .map(entry => `<p class="li-answer-check"><span class="li-answer-tag is-watch">${tx('Watch')}</span><span>${liPersonalisationText(entry)}</span></p>`).join('');
   const fresh = isNew

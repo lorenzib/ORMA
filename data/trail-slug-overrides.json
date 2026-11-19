@@ -2030,6 +2030,36 @@
       "name": "Cima Sappada to Rifugio Siera through the Longrone forest",
       "slug": "rifugio-siera-longrone-sappada",
       "gloss": "a nature trail up through the Longrone spruce forest to the Rifugio Siera and back"
+    },
+    "steinegg-pyramidenrundweg": {
+      "name": "Pyramidenrundweg, Steinegg",
+      "slug": "pyramidenrundweg-steinegg",
+      "gloss": "a loop past the earth pyramids below Steinegg"
+    },
+    "luesen-panoramaweg": {
+      "name": "Panoramaweg, Lüsen",
+      "slug": "panoramaweg-luesen",
+      "gloss": "a panoramic loop on the slopes above Lüsen"
+    },
+    "valgardena-troi-da-la-tambres": {
+      "name": "Troi da la Tambres, Ortisei",
+      "slug": "troi-da-la-tambres-ortisei",
+      "gloss": "a meadow and forest path to the La Tambres farm above Ortisei and back"
+    },
+    "lombardia-reggetto-piani-di-artavaggio": {
+      "name": "Reggetto to the Piani di Artavaggio",
+      "slug": "piani-di-artavaggio-reggetto",
+      "gloss": "path CAI 150 up through summer pastures to the Piani di Artavaggio and back"
+    },
+    "lario-asso-funghi-di-terra": {
+      "name": "Asso to the earth pyramids of Rezzago",
+      "slug": "funghi-di-terra-asso-rezzago",
+      "gloss": "a loop through the old chestnut wood of Rezzago to the earth pyramids"
+    },
+    "lombardia-bergamo-colle-maresana": {
+      "name": "Bergamo to the Colle della Maresana",
+      "slug": "colle-della-maresana-bergamo",
+      "gloss": "path CAI 533 up through chestnut woods to the Maresana viewpoint above Bergamo and back"
     }
   }
 }
