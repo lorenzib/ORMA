@@ -270,8 +270,12 @@ describe('the existing-site verification boundary',()=>{
     // suggests another way on (owner rule of 16 November 2026).
     // Then 534 and 532 with the first Friulian Dolomites walk (owner decision
     // of 18 November 2026): Cima Sappada to the Rifugio Siera, there and back.
-    expect(catalogue).toHaveLength(534);
-    expect(currentSiteTrails(catalogue)).toHaveLength(532);
+    // Then 537 and 535 with three South Tyrol register walks on quiet hamlet
+    // lanes and short mountain-path stretches (owner rules of 18 November
+    // 2026): the Pyramidenrundweg at Steinegg, the Panoramaweg at Lüsen and
+    // the Troi da la Tambres above Ortisei, walked there and back.
+    expect(catalogue).toHaveLength(537);
+    expect(currentSiteTrails(catalogue)).toHaveLength(535);
   });
 
   test('requires the artwork the public trail page needs',()=>{

@@ -87,7 +87,7 @@ describe('trail data trust states', () => {
     expect(trust.waterAssessment(partial).title).toBe('Bring your own water');
     expect(trust.heatAssessment(partial).title).toBe('Plan for limited shade');
     expect(trust.exposureAssessment(partial).title).toBe('Exposed sections');
-    expect(trust.surfaceAssessment(partial).title).toBe('Surface & footing');
+    expect(trust.surfaceAssessment(partial).title).toBe('Ground');
     expect(trust.livestockAssessment(partial, '')).toBeNull();
   });
 
