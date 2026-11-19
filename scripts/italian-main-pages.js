@@ -50,7 +50,7 @@ const PAGES = Object.freeze({
   'contact.html': {
     url: '/contact.html',
     italianUrl: '/it/contact.html',
-    title: 'Contatta ORMA | ORMA',
+    title: 'Contatti | ORMA',
     description: 'Domande, correzioni o un sentiero che il tuo cane adora e che dovremmo aggiungere? Ecco come contattare ORMA.',
   },
 });
