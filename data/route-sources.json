@@ -4050,6 +4050,46 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-19T21:00:00.000Z"
     },
+    "valsusa-giaglione-vigne-mandorli": {
+      "url": "https://www.outdooractive.com/it/r/809858459",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "GIAGLIONE – Le alture delle viti e dei mandorli",
+      "quote": "Distanza 5,8 km · Durata 1:55 h · Salita 241 m · Discesa 241 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T22:00:00.000Z"
+    },
+    "valsusa-venaus-sentiero-gufi-basso": {
+      "url": "https://www.outdooractive.com/it/r/809943711",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "VENAUS – Il Sentiero dei Gufi basso",
+      "quote": "Distanza 6,1 km · Durata 2:05 h · Salita 294 m · Discesa 294 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T22:00:00.000Z"
+    },
+    "valsusa-foresto-sentiero-ginepri": {
+      "url": "https://www.outdooractive.com/it/r/809935419",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "FORESTO – Il Sentiero dei Ginepri",
+      "quote": "Distanza 4,4 km · Durata 1:55 h · Salita 337 m · Discesa 337 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T22:00:00.000Z"
+    },
+    "valsusa-chianocco-orrido-chouque": {
+      "url": "https://www.outdooractive.com/it/r/806650088",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "CHIANOCCO – L'Orrido e il Chouqué di Margrit",
+      "quote": "Distanza 8,5 km · Durata 3:35 h · Salita 559 m · Discesa 559 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T22:00:00.000Z"
+    },
+    "valsusa-san-giorio-geat-montebenedetto": {
+      "url": "https://www.outdooractive.com/it/r/809188687",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "SAN GIORIO DI SUSA – Anello del Rifugio GEAT e della Certosa di Montebenedetto",
+      "quote": "Distanza 7,2 km · Durata 2:45 h · Salita 361 m · Discesa 361 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T22:00:00.000Z"
+    },
     "iseo-colmi": {
       "url": "https://www.outdooractive.com/it/r/800088421",
       "publisher": "Visit Lake Iseo (Outdooractive)",

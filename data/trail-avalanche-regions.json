@@ -2841,6 +2841,41 @@
       ],
       "highPoint": 1919
     },
+    "valsusa-chianocco-orrido-chouque": {
+      "regions": [
+        "IT-21-TO-02",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1098
+    },
+    "valsusa-foresto-sentiero-ginepri": {
+      "regions": [
+        "IT-21-TO-02",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 743
+    },
+    "valsusa-giaglione-vigne-mandorli": {
+      "regions": [
+        "IT-21-TO-03",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 821
+    },
+    "valsusa-san-giorio-geat-montebenedetto": {
+      "regions": [
+        "IT-21-TO-02",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1371
+    },
+    "valsusa-venaus-sentiero-gufi-basso": {
+      "regions": [
+        "IT-21-TO-02",
+        "IT-21-TO-03"
+      ],
+      "highPoint": 877
+    },
     "valtellina-passo-di-campagneda": {
       "regions": [
         "IT-25-SO-02"

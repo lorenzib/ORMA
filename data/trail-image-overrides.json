@@ -8730,6 +8730,91 @@
       }
     },
     {
+      "id": "valsusa-chianocco-orrido-chouque",
+      "approvedReviewId": "commons-valsusa-chianocco-orrido-chouque-on-route",
+      "approvedAt": "2026-11-19T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/chianocco-chouque-di-margrit.jpg",
+        "heroImage": "images/trails/chianocco-chouque-di-margrit.jpg",
+        "imageAlt": "A tall pale tower of eroded rock and gravel with a cap stone on top, standing among dense green pine and broadleaf woods on a steep slope",
+        "imageCredit": "The Chouqué di Margrit above Chianocco",
+        "imageCreditText": "The Chouqué di Margrit above Chianocco by Sbaluf",
+        "imageCreator": "Sbaluf",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ciuché_a_Margrit_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsusa-foresto-sentiero-ginepri",
+      "approvedReviewId": "commons-valsusa-foresto-sentiero-ginepri-on-route",
+      "approvedAt": "2026-11-19T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/foresto-sentiero-dei-ginepri.jpg",
+        "heroImage": "images/trails/foresto-sentiero-dei-ginepri.jpg",
+        "imageAlt": "A rocky stone path along a dry grassy slope with dark green junipers and limestone outcrops, with fields and a farmhouse in the valley below",
+        "imageCredit": "The juniper path in the Orrido di Foresto reserve",
+        "imageCreditText": "The juniper path in the Orrido di Foresto reserve by Sbaluf",
+        "imageCreator": "Sbaluf",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ginepri_e_sentiero_02.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsusa-giaglione-vigne-mandorli",
+      "approvedReviewId": "commons-valsusa-giaglione-vigne-mandorli-on-route",
+      "approvedAt": "2026-11-19T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giaglione-cappella-san-martino.jpg",
+        "heroImage": "images/trails/giaglione-cappella-san-martino.jpg",
+        "imageAlt": "A small stone chapel with a wooden roof, an arched porch and an iron gate, beside dry-stone walls on a green slope",
+        "imageCredit": "The chapel of San Martino, Giaglione",
+        "imageCreditText": "The chapel of San Martino, Giaglione by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cappella_San_Martino_-_Giaglione.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsusa-san-giorio-geat-montebenedetto",
+      "approvedReviewId": "commons-valsusa-san-giorio-geat-montebenedetto-on-route",
+      "approvedAt": "2026-11-19T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/san-giorio-ponte-montebenedetto.jpg",
+        "heroImage": "images/trails/san-giorio-ponte-montebenedetto.jpg",
+        "imageAlt": "A mossy old stone arch bridge over a small stream in a dense, shady beech and chestnut wood",
+        "imageCredit": "The stone bridge by the Certosa di Montebenedetto",
+        "imageCreditText": "The stone bridge by the Certosa di Montebenedetto by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ponte_Montebenedetto.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsusa-venaus-sentiero-gufi-basso",
+      "approvedReviewId": "commons-valsusa-venaus-sentiero-gufi-basso-on-route",
+      "approvedAt": "2026-11-19T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/venaus-cappella-martirio-san-giovanni.jpg",
+        "heroImage": "images/trails/venaus-cappella-martirio-san-giovanni.jpg",
+        "imageAlt": "A small pink-plastered chapel with a stone side wall and a wooden door at the top of a stony path, under fresh green trees, with a wooden signpost",
+        "imageCredit": "The chapel of the Martirio di San Giovanni above Venaus",
+        "imageCreditText": "The chapel of the Martirio di San Giovanni above Venaus by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cappella_del_Martirio_di_San_Giovanni.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valtellina-passo-di-campagneda",
       "approvedReviewId": "mapillary-valtellina-passo-di-campagneda-on-route",
       "approvedAt": "2026-11-03T12:00:00.000Z",

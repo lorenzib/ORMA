@@ -8918,6 +8918,124 @@
         "highPoint": 1919
       }
     },
+    "valsusa-giaglione-vigne-mandorli": {
+      "highPoint": 821,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809858459",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-venaus-sentiero-gufi-basso": {
+      "highPoint": 877,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809943711",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-foresto-sentiero-ginepri": {
+      "highPoint": 743,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809935419",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-chianocco-orrido-chouque": {
+      "highPoint": 1098,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806650088",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-san-giorio-geat-montebenedetto": {
+      "highPoint": 1371,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809188687",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
     "valtellina-passo-di-campagneda": {
       "highPoint": 2595,
       "recommended": {
