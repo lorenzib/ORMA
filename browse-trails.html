@@ -688,6 +688,7 @@
 <a href="trail.html?id=panoramarundweg-concordia-360" style="display:block;color:inherit;">Panoramarundweg Concordia 360°</a>
 <a href="trail.html?id=panoramaweg-in-feldthurns" style="display:block;color:inherit;">Panoramaweg in Feldthurns</a>
 <a href="trail.html?id=panoramaweg-burgraviato-merano" style="display:block;color:inherit;">Panoramaweg, Burgraviato – Merano</a>
+<a href="trail.html?id=panoramaweg-luesen" style="display:block;color:inherit;">Panoramaweg, Lüsen</a>
 <a href="trail.html?id=panoramaweg-oltradige-bassa-atesina" style="display:block;color:inherit;">Panoramaweg, Oltradige – Bassa Atesina</a>
 <a href="trail.html?id=olang-bruneck-panoramic-path" style="display:block;color:inherit;">Panoramic path from Olang to Bruneck</a>
 <a href="trail.html?id=monte-vederna" style="display:block;color:inherit;">Passeggiata a Monte Vederna – Croce degli Alpini</a>
@@ -726,6 +727,7 @@
 <a href="trail.html?id=prato-piazza-platzwiese" style="display:block;color:inherit;">Prato Piazza (Plätzwiese)</a>
 <a href="trail.html?id=proazei-auronzo" style="display:block;color:inherit;">Proazei loop above Lake Auronzo</a>
 <a href="trail.html?id=promenadenweg-tiers" style="display:block;color:inherit;">Promenadenweg, Tiers</a>
+<a href="trail.html?id=pyramidenrundweg-steinegg" style="display:block;color:inherit;">Pyramidenrundweg, Steinegg</a>
 <a href="trail.html?id=rafeil-rundweg" style="display:block;color:inherit;">Rafeil-Rundweg</a>
 <a href="trail.html?id=raida-dl-luech" style="display:block;color:inherit;">Raida dl luech</a>
 <a href="trail.html?id=ranui-to-zannes" style="display:block;color:inherit;">Ranui to Zannes</a>
@@ -830,6 +832,7 @@
 <a href="trail.html?id=torggeleweg" style="display:block;color:inherit;">Törggeleweg</a>
 <a href="trail.html?id=transacqua" style="display:block;color:inherit;">Transacqua</a>
 <a href="trail.html?id=tre-cime-di-lavaredo-classic-circuit" style="display:block;color:inherit;">Tre Cime di Lavaredo classic circuit</a>
+<a href="trail.html?id=troi-da-la-tambres-ortisei" style="display:block;color:inherit;">Troi da la Tambres, Ortisei</a>
 <a href="trail.html?id=monte-pana-troi-unika" style="display:block;color:inherit;">Troi Unika art trail on Monte Pana</a>
 <a href="trail.html?id=tru-di-artisc" style="display:block;color:inherit;">Tru di artisć</a>
 <a href="trail.html?id=tru-di-lec" style="display:block;color:inherit;">Tru di Lëc</a>
@@ -1089,9 +1092,9 @@
 </footer>
 
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261119-1"></script>
+<script src="i18n.js?v=20261119-2"></script>
 <script src="trust/evidence-v1.js?v=20261006-2"></script>
-<script src="trail-trust.js?v=20261005-1"></script>
+<script src="trail-trust.js?v=20261118-1"></script>
 <script src="scoring/recommendation-v1.js?v=20260917-1"></script>
 <script src="scoring/recommendation-adapters-v1.js?v=20260917-1"></script>
 <script src="scoring-conditions.js?v=1"></script>
@@ -1902,12 +1905,13 @@
         const provenance = icons
           ? icons.badgeHtml(provStyle, provenanceLabel)
           : `<span class="badge-pill badge-${provStyle}">${provenanceLabel}</span>`;
-        // A one-way walk is shown, and scored, there and back, so nobody
-        // plans 3.5 km for a 7 km day (route-return.js).
+        // A one-way walk is shown, and scored, one way as its source gives it,
+        // and says so, so nobody plans 3.5 km for a 7 km day (route-return.js).
         const routeReturn = window.ORMARouteReturn;
-        const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+        const oneWayWalk = !!(routeReturn && routeReturn.isOneWay(t));
+        const shown = oneWayWalk ? routeReturn.forView(t) : t;
         const back = shown !== t;
-        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : `${num(shown.distance)} km`) : null, shown.elevation != null ? bt('card.climb', '{m} m climb', { m: shown.elevation }) : null, shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null, t.area]
+        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : oneWayWalk ? bt('card.oneWay', '{km} km one way', { km: num(shown.distance) }) : `${num(shown.distance)} km`) : null, shown.elevation != null ? bt('card.climb', '{m} m climb', { m: shown.elevation }) : null, shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null, t.area]
           .filter(Boolean).join(' · ');
         const verdict = matchVerdict(t);
         const tier = verdict.label;

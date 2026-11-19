@@ -19,8 +19,21 @@
   const VIEWS=Object.freeze({ONE_WAY:'one-way',OUT_AND_BACK:'out-and-back'});
 
   function isOneWay(trail){
-    return Boolean(trail&&trail.routeShape==='point-to-point'
+    return Boolean(trail&&trail.routeShape==='point-to-point'&&!trail.oneWayOf
       &&Number.isFinite(Number(trail.distance))&&Number(trail.distance)>0);
+  }
+
+  // An out-and-back walk's published figures are the whole round trip: the
+  // board's km and climb cover going and coming back on the same path. A copy
+  // made by outAndBack() below is not one of these: it has a returnLeg.
+  function isThereAndBack(trail){
+    return Boolean(trail&&trail.routeShape==='out-and-back'&&!trail.returnLeg
+      &&Number.isFinite(Number(trail.distance))&&Number(trail.distance)>0);
+  }
+
+  // Walks a reader can see either way: every walk that is not a loop.
+  function hasChoice(trail){
+    return isOneWay(trail)||isThereAndBack(trail);
   }
 
   // Net height gained from start to finish, or null when the profile is too
@@ -102,23 +115,97 @@
     };
   }
 
-  // The view the reader picked on this page. Not remembered between pages: a
-  // one-way walk opens there and back, the way most people walk it without a
-  // bus or lift home, and the reader can switch to the authority's one-way
-  // figures. Every list and card reads the same default (scoring.js).
-  let current=VIEWS.OUT_AND_BACK;
-  function view(){return current;}
-  function setView(next){
+  // The out leg of an out-and-back walk: from the start to where it turns
+  // round, for a reader with a lift, a bus or a second car to get back. The
+  // distance is exactly half the round trip. The climb is the board's round
+  // trip climb split by the profile: going out climbs what the profile climbs
+  // before the turn, coming back climbs what it drops, so the share is an
+  // estimate. No board publishes a one-way time for these walks, so there is
+  // none: hours is left empty rather than halved.
+  function profileClimb(points){
+    let up=0,down=0;
+    for(let i=1;i<points.length;i+=1){
+      const step=Number(points[i].elev)-Number(points[i-1].elev);
+      if(!Number.isFinite(step))continue;
+      if(step>0)up+=step;else down-=step;
+    }
+    return {up,down};
+  }
+  function outLeg(trail){
+    const profile=Array.isArray(trail.elevationProfile)?trail.elevationProfile:[];
+    if(profile.length<2)return [];
+    const total=Number(trail.distance);
+    const last=Number(profile[profile.length-1].km);
+    // A profile drawn one way only (the line stops at the turn) is the out
+    // leg already; a round-trip profile turns at half the distance.
+    if(!(last>total*0.75))return profile;
+    const turn=last/2;
+    const leg=profile.filter(point=>Number(point.km)<=turn+1e-9);
+    const next=profile.find(point=>Number(point.km)>turn+1e-9);
+    if(next&&leg.length&&Number(leg[leg.length-1].km)<turn-0.05)leg.push(next);
+    return leg;
+  }
+  function oneWayLeg(trail){
+    if(!isThereAndBack(trail))return null;
+    const roundKm=Number(trail.distance);
+    const roundClimb=Number.isFinite(Number(trail.elevation))?Math.max(0,Number(trail.elevation)):null;
+    const leg=outLeg(trail);
+    const {up:legUp,down:legDown}=profileClimb(leg);
+    let up=null,down=null;
+    if(roundClimb!==null){
+      const share=legUp+legDown>0?legUp/(legUp+legDown):0.5;
+      up=Math.round(roundClimb*share);
+      down=Math.round(roundClimb-up);
+    }
+    return {
+      ...trail,
+      distance:Math.round(roundKm/2*10)/10,
+      elevation:up,
+      descent:down,
+      hours:null,
+      elevationProfile:leg.length>1?leg:trail.elevationProfile,
+      routeShape:'point-to-point',
+      oneWayOf:{
+        roundTripDistance:roundKm,
+        roundTripClimb:roundClimb,
+        roundTripHours:trail.hours==null?null:trail.hours,
+        climbEstimated:true,
+        hoursPublished:false,
+      },
+    };
+  }
+
+  // The view a walk opens on is the one its source describes: a one-way
+  // walk one way, an out-and-back walk there and back. The reader can switch
+  // on the trail page; the choice holds for that walk while the page is open
+  // (not remembered between pages), and every score on the page follows it
+  // (scoring.js).
+  function sourceView(trail){
+    return isThereAndBack(trail)?VIEWS.OUT_AND_BACK:VIEWS.ONE_WAY;
+  }
+  const chosen=new Map();
+  function keyOf(trail){
+    return trail&&trail.id!=null?String(trail.id):'';
+  }
+  function view(trail){
+    return chosen.get(keyOf(trail))||sourceView(trail);
+  }
+  function setView(next,trail){
     const value=next===VIEWS.ONE_WAY?VIEWS.ONE_WAY:VIEWS.OUT_AND_BACK;
-    if(value===current)return;
-    current=value;
+    if(!trail||value===view(trail))return;
+    if(value===sourceView(trail))chosen.delete(keyOf(trail));
+    else chosen.set(keyOf(trail),value);
     if(typeof window!=='undefined'&&typeof window.dispatchEvent==='function'&&typeof CustomEvent==='function'){
-      window.dispatchEvent(new CustomEvent('orma-route-view-changed',{detail:{view:value}}));
+      window.dispatchEvent(new CustomEvent('orma-route-view-changed',{detail:{view:value,id:keyOf(trail)}}));
     }
   }
   // The trail as the page should show and score it right now.
   function forView(trail){
-    return current===VIEWS.OUT_AND_BACK&&isOneWay(trail)?outAndBack(trail):trail;
+    if(!hasChoice(trail))return trail;
+    const wanted=view(trail);
+    if(wanted===VIEWS.OUT_AND_BACK&&isOneWay(trail))return outAndBack(trail);
+    if(wanted===VIEWS.ONE_WAY&&isThereAndBack(trail))return oneWayLeg(trail);
+    return trail;
   }
 
   // Hours as a reader says them: "3.9" is "3 h 55 min", not 3 h 9 min.
@@ -143,5 +230,5 @@
     return texts.join(' – ');
   }
 
-  return {VIEWS,isOneWay,netGain,parseHoursRange,formatHours,formatDuration,ruleHours,outAndBack,view,setView,forView};
+  return {VIEWS,isOneWay,isThereAndBack,hasChoice,sourceView,netGain,parseHoursRange,formatHours,formatDuration,ruleHours,outAndBack,oneWayLeg,view,setView,forView};
 });

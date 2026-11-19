@@ -3969,6 +3969,30 @@
       "quote": "Distanza 2,1 km · Durata 1:15 h · Salita 344 m · Discesa 20 m · “Ore: salita 1,00-1,15 discesa 0,30-0,40 totale 1,30-1,55 SEGNAVIA: 319, poi bollini rossi e gialli N1”",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-18T12:00:00.000Z"
+    },
+    "steinegg-pyramidenrundweg": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428309",
+      "publisher": "Autonome Provinz Bozen, hiking-trail register (via Open Data Hub)",
+      "name": "Pyramidenrundweg",
+      "quote": "CODE_NAME 'Pyramidenrundweg' (provincial hiking-trail register, routes-hikingtrails.11428309, 4,216 m; Steinegg, Karneid)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-18T23:00:00.000Z"
+    },
+    "luesen-panoramaweg": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428248",
+      "publisher": "Autonome Provinz Bozen, hiking-trail register (via Open Data Hub)",
+      "name": "Panoramaweg (Lüsen)",
+      "quote": "CODE_NAME 'Panoramaweg' (provincial hiking-trail register, routes-hikingtrails.11428248, 5,647 m; Lüsen)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-18T23:00:00.000Z"
+    },
+    "valgardena-troi-da-la-tambres": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426545",
+      "publisher": "Autonome Provinz Bozen, hiking-trail register (via Open Data Hub)",
+      "name": "10A Troi da la Tambres",
+      "quote": "CODE_NAME '10A Troi da la Tambres' (provincial hiking-trail register, routes-hikingtrails.11426545, 1,646 m one way; St. Ulrich in Gröden)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-18T23:00:00.000Z"
     }
   }
 }
