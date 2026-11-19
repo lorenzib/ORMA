@@ -178,16 +178,23 @@ describe('the trail page says it short', () => {
       // The fixture records no water, which lowers the score too.
       'We know of no water on the way. Bring all Teo needs.',
     ]);
-    expect(view.fitChips).toEqual(expect.arrayContaining(['6 km', '330 m climb', 'No drops', 'Dogs allowed']));
+    expect(view.fitChips).toEqual(expect.arrayContaining(['6 km', '330 m climb', 'No drops']));
+    // "Dogs allowed" says nothing on a site where every walk takes dogs.
+    expect(view.fitChips).not.toContain('Dogs allowed');
+    expect(view.fitChips).not.toContain('Dog rules');
     // Every factor is still listed for the points link.
     expect(view.factorRows.length).toBe(view.breakdown.length);
   });
 
-  test('unknown dog rules are a reason; other unknowns are not listed', () => {
+  test('dog rules are said only when they restrict the walk', () => {
     useLanguage('en');
-    const view = decision.present(ortisei({ status:'unknown' }), { dogName:'Teo' });
-    expect(view.shortReasons.map(reason => reason.text))
-      .toContain('We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.');
-    expect(view.actionableUnknowns).toEqual(['We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.']);
+    const said = view => view.shortReasons.map(reason => reason.text).concat(view.fitChips).join(' | ');
+    // Unknown: nothing.
+    expect(said(decision.present(ortisei({ status:'unknown' }), { dogName:'Teo' }))).not.toMatch(/dog rules|tourist office|Dogs allowed/i);
+    // A lead: one chip.
+    expect(decision.present(ortisei({ status:'leash-required' }), { dogName:'Teo' }).fitChips).toContain('Dogs on a lead');
+    // A ban: a reason, and the walk is stopped.
+    const banned = decision.present(ortisei({ status:'prohibited' }), { dogName:'Teo' });
+    expect(banned.shortReasons[0].tone).toBe('stop');
   });
 });

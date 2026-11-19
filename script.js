@@ -4260,12 +4260,11 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false, sh
   // trail unknowns: a missing profile field becomes the prompt below, and
   // saying the same thing twice on one card reads as two problems. A strong
   // option says one; any other verdict says why it is not one, so two.
-  // One thing to watch; a low match, which has no "Fits" line, says two. Only
-  // the unknowns an owner acts on (dog rules) count: "route details are based
-  // on map data" is true of every walk and is not worth a line.
+  // One thing to watch; a low match, which has no "Fits" line, says two.
+  // Unknowns are not watch lines: "we haven't found the dog rules" on a site
+  // where every walk takes dogs only adds doubt (owner, 19 Nov).
   const limit = recommendation && recommendation.category === 'not-recommended' ? 2 : 1;
   const concerns = view.cardCautions.slice(0, limit);
-  if(concerns.length < limit) concerns.push(...(view.actionableUnknowns || []).slice(0, limit - concerns.length));
   const know = concerns
     .map(entry => `<p class="li-answer-check"><span class="li-answer-tag is-watch">${tx('Watch')}</span><span>${liPersonalisationText(entry)}</span></p>`).join('');
   const fresh = isNew

@@ -126,9 +126,19 @@
     };
   }
 
+  // Places a commune or park keeps dogs out of without closing the path
+  // through or beside them.
+  const PARTIAL_BAN_PLACES = /\b(?:meadows?|fields?|farm(?:ed|land)?|land|pastures?|orchards?|vineyards?|(?<!national )parks?|green areas?|playgrounds?|schools?|church(?:es|yards?)?|cemeter(?:y|ies)|fountains?|troughs?|lakes?|water|lidos?|bathing|beach(?:es)?|pools?|spa)\b/i;
+
   function legacyDogAccess(trail){
     const text = `${trail && trail.desc || ''} ${trail && trail.tips || ''}`;
-    if(/\bdogs?\s+(?:are\s+)?not\s+(?:allowed|permitted)|\bdog\s*=\s*no\b/i.test(text)){
+    // A ban on the walk itself, not on the land beside it. "Dogs are not
+    // allowed on farmed meadows" or "in public parks" keeps a dog off the
+    // fields, playgrounds or lake next to the path; it does not close the
+    // path. Read as a ban on the route, it capped 15 walks at the lowest score.
+    const sentences = text.split(/(?<=[.!?])\s+/);
+    if(sentences.some(sentence => /\bdogs?\s+(?:are\s+)?not\s+(?:allowed|permitted)|\bdog\s*=\s*no\b/i.test(sentence)
+      && !PARTIAL_BAN_PLACES.test(sentence))){
       return { status: 'prohibited', notes: 'The trail record states that dogs are prohibited.' };
     }
     if(/dogs?.{0,30}(?:must|stay|keep).{0,20}(?:on (?:a )?lead|leash)|leash (?:is )?required/i.test(text)){
