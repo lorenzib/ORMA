@@ -689,10 +689,19 @@ function liRecommendationLocationPhrase(){
   if(liLocationContext.kind === 'town') return tx('near {place}', { place:liLocationContext.label });
   if(liLocationContext.kind === 'map'){
     const place = liPlaceInView();
-    return place ? tx('in {place}', { place:liShownPlaceLabel(place.label).replace(/^The /, 'the ') }) : tx('in the map view');
+    return place ? liInPlacePhrase(place.label) : tx('in the map view');
   }
-  // "in the Dolomites", not "in The Dolomites".
-  return tx('in {place}', { place:liShownPlaceLabel(liLocationContext.label).replace(/^The /, 'the ') });
+  return liInPlacePhrase(liLocationContext.label);
+}
+
+// "in the Dolomites", not "in The Dolomites". Italian names plural mountain
+// ranges with an article ("nelle Dolomiti", "nelle Alpi francesi") but not
+// countries, regions or valleys ("in Italia", "in Alta Pusteria").
+function liInPlacePhrase(label){
+  const shown = liShownPlaceLabel(label).replace(/^The /, 'the ');
+  const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+  if(i18n && i18n.lang === 'it' && /^(Dolomiti|Alpi|Prealpi)\b/.test(shown)) return `nelle ${shown}`;
+  return tx('in {place}', { place:shown });
 }
 
 /**
