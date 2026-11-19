@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "steinegg-pyramidenrundweg",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.2,
+    "ascentM": 174,
+    "highestPointM": 983,
+    "expectedDuration": "1 h 30 min",
+    "difficulty": "Moderate",
+    "shadePercent": 70
+  },
+  "trailhead": {
+    "lat": 46.48387,
+    "lng": 11.471322,
+    "label": "On the lane by the Raffein farm below Steinegg, where the Pyramidenweg begins"
+  },
+  "waypoints": [],
+  "cautions": [
+    "180 m on the Hauptstraße through Mariahilf, a village road with traffic: keep your dog on a short lead.",
+    "About 1.4 km on quiet lanes (mostly the Pyramidenstraße), where a car may pass: keep your dog close.",
+    "About 300 m of narrower, steeper path by the earth pyramids: keep your dog close and stay on the path.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-18"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Pyramidenrundweg, Steinegg": "Giro delle piramidi di terra a Collepietra",
+    "On the lane by the Raffein farm below Steinegg, where the Pyramidenweg begins": "Sulla stradina vicino al maso Raffein sotto Collepietra, dove inizia il Pyramidenweg",
+    "180 m on the Hauptstraße through Mariahilf, a village road with traffic: keep your dog on a short lead.": "180 m sulla Via Principale a Mariahilf, una strada di paese con traffico: tieni il cane al guinzaglio corto.",
+    "About 1.4 km on quiet lanes (mostly the Pyramidenstraße), where a car may pass: keep your dog close.": "Circa 1,4 km su stradine tranquille (soprattutto la Via delle Piramidi), dove può passare un’auto: tieni il cane vicino.",
+    "About 300 m of narrower, steeper path by the earth pyramids: keep your dog close and stay on the path.": "Circa 300 m di sentiero più stretto e ripido vicino alle piramidi di terra: tieni il cane vicino e resta sul sentiero."
+  }
+}
