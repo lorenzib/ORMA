@@ -254,6 +254,16 @@ describe('the trail page breakdown, one row per factor', () => {
     ]);
   });
 
+  test('a steep walk that fits says so in its chip, not "Steep" alone under "Fits Teo"', () => {
+    expect(view.fitChips).toContain('Moderately steep, fine for Teo');
+    const gentle = decision.present({
+      ...recommendation, category:'strong-option', score:100,
+      factors:[{ code:'trail.terrain.within-tolerance', message:'Fine.', impact:0, vars:{ terrain:0, tolerance:2 } }],
+      positiveReasons:[{ code:'trail.terrain.within-tolerance', message:'Fine.', vars:{ terrain:0, tolerance:2 } }],
+    }, { dogName:'Teo' });
+    expect(gentle.fitChips).toContain('Gentle');
+  });
+
   test('a row that fits states the fact, not a verdict', () => {
     const detail = topic => view.factorRows.find(row => row.topic === topic).detail;
     expect(detail('Distance')).toBe('9.6 km');
