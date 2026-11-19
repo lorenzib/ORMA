@@ -1062,9 +1062,10 @@ describe('returning homepage region + valley filters', () => {
     });
     // No verdict line under a verdict that says no: its reasons are the cautions.
     expect(panel.querySelector('.li-answer-verdict')).toBeNull();
-    // Two watch lines; of the unknowns only the dog rules are worth one.
+    // Cautions only: no unknown is a watch line, the dog rules included.
     expect([...panel.querySelectorAll('.li-answer-check')].map(line => line.textContent))
-      .toEqual(['WatchThis route runs warm.', 'WatchWe haven’t found this area’s dog rules yet. Ask the local tourist office before you go.']);
+      .toEqual(['WatchThis route runs warm.']);
+    expect(panel.textContent).not.toMatch(/dog rules/i);
     expect(document.body.textContent).not.toContain('Why it fits Teo');
     // The first card starts open; closing it shows the question it asks.
     const toggle = document.querySelector('[data-why-toggle]');
@@ -1440,14 +1441,14 @@ describe('map-first returning homepage layout contract', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
     expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, railsBeforeId\);/);
-    expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': rankWidth\(\[3\.5, 8, 10, 10\][\s\S]*?\}, railsBeforeId\);/);
+    expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': rankWidth\(\[3, 4\.5, 5\.5, 7\][\s\S]*?\}, railsBeforeId\);/);
     // Halo is a white casing beneath the route numbers, not a cream halo above them.
     expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFFFF'[\s\S]*?\}, railsBeforeId\);/);
     // The corridor is the shortlist's, not every trail's. An unmatched walk
     // used to get the same 14px white halo and 10px band with its colour
     // dropped to 0.12 -- a wide white smear with nothing inside it. It is a
     // hairline now, and a hairline can afford to be seen at 0.5.
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': rankWidth\(\[5, 10, 15, 20\], \[1\.2, 1\.8, 2\.4, 3\]\)[\s\S]*?\}, railsBeforeId\);/);
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': rankWidth\(\[1\.5, 2, 2\.5, 3\.5\], \[0\.8, 1\.2, 1\.6, 2\]\)[\s\S]*?\}, railsBeforeId\);/);
     expect(script).not.toContain('0.5, 0.12');
     expect(script).not.toContain("id: 'trail-paths-match-outline'");
     // The guest map is coloured by match score against the medium-dog profile,
