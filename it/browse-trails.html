@@ -1477,10 +1477,37 @@
     // personalisation that did not happen, on the one line the reader is meant
     // to trust. A real dog keeps its name; the default says what it is, in the
     // same words recommendation-decision.js and the trail page already use.
-    function scoredSubjectLabel(){
+    function scoredSubjectName(){
       const dog = dogValue === 'custom' ? deviceDogProfile() : null;
-      if(dog && dog.name) return bt('browse.card.forDog', 'For {name}', { name: dog.name });
-      return bt('browse.card.forDog', 'For {name}', { name: window.t ? window.t('recommendation.subject.guest') : 'a medium dog' });
+      if(dog && dog.name) return dog.name;
+      return window.t ? window.t('recommendation.subject.guest') : 'a medium dog';
+    }
+
+    function scoredSubjectLabel(){
+      return bt('browse.card.forDog', 'For {name}', { name: scoredSubjectName() });
+    }
+
+    // The steepness caution, when it is part of what lowered the match. A
+    // gentle-only dog moves a third of the walks down a band, and a card that
+    // then only says "Water access listed at 2 points" gives no reason for it.
+    function steepnessCaution(recommendation){
+      const cautions = recommendation && Array.isArray(recommendation.cautions) ? recommendation.cautions : [];
+      const entry = cautions.find(item => item && item.code === 'trail.terrain.above-tolerance');
+      if(!entry) return null;
+      const steepest = Number(entry.vars && entry.vars.steepest);
+      return { steepest: Number.isFinite(steepest) && steepest > 0 ? Math.round(steepest) : null };
+    }
+
+    // Said in the trail page's words (recommendation-decision.js), which the
+    // Italian phrase file already carries.
+    function steepnessReason(steepness){
+      const phrase = window.DoloPawsI18n && typeof window.DoloPawsI18n.phrase === 'function'
+        ? window.DoloPawsI18n.phrase
+        : (text, vars) => String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m));
+      const name = scoredSubjectName();
+      return steepness.steepest
+        ? phrase('Steeper than {name} likes, up to {steepest}% in places.', { name, steepest: steepness.steepest })
+        : phrase('Steeper than {name} likes.', { name });
     }
 
     function matchScore(trail){
@@ -1496,8 +1523,9 @@
         const recommendation=window.DoloPawsScoring.recommendTrail(
           trail, effectiveOverrides(activeDogProfile(), null),
           window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(trail));
-        return verdict ? verdict.verdictFor(recommendation)
+        const result = verdict ? verdict.verdictFor(recommendation)
           : { score:recommendation.score, label:'', color:'', tone:'check' };
+        return { ...result, steepness:steepnessCaution(recommendation) };
       } catch(e){
         return verdict ? verdict.verdictFor(0) : { score:0, label:'', color:'', tone:'check' };
       }
@@ -1930,7 +1958,9 @@
         const tier = verdict.label;
         const tierClass = verdict.tone;
         const reasonIsWater = !!(t.waterSources && t.waterSources.length);
-        const reason = reasonIsWater
+        // A strong option keeps its water or shade line: "Steeper than Teo likes"
+        // under "Strong option" reads as a contradiction.
+        const reason = verdict.steepness && verdict.category !== 'strong-option' ? steepnessReason(verdict.steepness) : reasonIsWater
           ? (t.waterSources.length === 1 ? bt('browse.card.waterOne', 'Water access listed at one point') : bt('browse.card.waterMany', 'Water access listed at {n} points', { n: t.waterSources.length }))
           : (t.shadeCoverage >= 50 ? bt('browse.card.shade', '{pct}% shade along the route', { pct: t.shadeCoverage }) : '');
         const openHref = `trail.html?id=${encodeURIComponent(t.id)}&from=${encodeURIComponent(browseStateTarget())}`;
