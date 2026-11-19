@@ -62,6 +62,11 @@ function startGapM(trail){
   return nearestOnLine(trail.startPoint, trail.path).distanceM;
 }
 
+// "about 2.1 km" or "about 450 m": the walk-in's length as the start line says it.
+function accessDistanceWords(lengthM){
+  return lengthM >= 1000 ? { value:Math.round(lengthM / 100) / 10, unit:'km' } : { value:Math.round(lengthM / 10) * 10, unit:'m' };
+}
+
 function applyStartAccessPaths(trails, data){
   const paths = (data && data.paths) || {};
   return trails.map(trail => {
@@ -69,7 +74,10 @@ function applyStartAccessPaths(trails, data){
     if(!record || !trail.startPoint) return trail;
     const routedFrom = { lat:record.start[0], lng:record.start[1] };
     if(metres(routedFrom, trail.startPoint) > START_MATCH_M) return trail;
-    return { ...trail, accessPath:{ path:record.path, lengthM:record.lengthM } };
+    const accessPath = { path:record.path, lengthM:record.lengthM };
+    // Named under "Where to start" (owner's call per walk, data.overCap).
+    if(record.startLine && Number.isFinite(record.climbM)) Object.assign(accessPath, { climbM:record.climbM, startLine:true });
+    return { ...trail, accessPath };
   });
 }
 
@@ -83,4 +91,5 @@ module.exports = {
   lineLength,
   startGapM,
   applyStartAccessPaths,
+  accessDistanceWords,
 };

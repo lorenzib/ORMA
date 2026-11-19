@@ -21,6 +21,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const { ITALIAN_COPY_BANNER } = require('./italian-copy-banner');
+const { accessDistanceWords } = require('./start-access-paths');
 const { writeItalianMainPages } = require('./italian-main-pages');
 const evidenceContract = require('../trust/evidence-v1.js');
 const recommendationContract = require('../scoring/recommendation-v1.js');
@@ -125,6 +126,15 @@ function trailTextIt(id) {
 function fillVars(text, vars) {
   if (!vars) return text;
   return String(text).replace(/\{(\w+)\}/g, (match, key) => (hasOwn(vars, key) ? String(vars[key]) : match));
+}
+
+/** The walk-in from the start to the walk, when the owner asked for it to be
+ *  named under Where to start (data/start-access-paths.json, overCap). */
+function accessStartLine(t) {
+  const access = t.accessPath;
+  if (!access || !access.startLine || !Number.isFinite(access.lengthM) || !Number.isFinite(access.climbM)) return '';
+  const d = accessDistanceWords(access.lengthM);
+  return `\n    <p>${L('From the start it’s about {distance} on foot and {climb} m up to the walk. This is not included in the walk’s figures.', { distance: `${num(d.value)} ${d.unit}`, climb: Math.round(access.climbM / 10) * 10 })}</p>`;
 }
 
 /** Fixed wording in the page's language. The English sentence is the key. */
@@ -1010,7 +1020,7 @@ function renderTrailPage(t, slug, all) {
   const startHtml =
     t.startPoint && t.startPoint.label
       ? `<h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> ${L('Where to start')}</h2>
-    <p>${escapeHtml(displayStartLabel(t, t.startPoint.label))}</p>`
+    <p>${escapeHtml(displayStartLabel(t, t.startPoint.label))}</p>${accessStartLine(t)}`
       : '';
 
   const insightsHtml =
