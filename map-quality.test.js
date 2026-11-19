@@ -30,7 +30,7 @@ describe('shared map quality profile', () => {
     pages.forEach(([page, mapScript]) => {
       const html = read(page);
       if(page === 'trail.html'){
-        expect(html).toContain('trail-app.bundle.js?v=20261116-1');
+        expect(html).toContain('trail-app.bundle.js?v=20261119-8');
         expect(html).not.toContain('<script src="map-runtime.js');
         return;
       }
@@ -106,16 +106,15 @@ describe('shared map quality profile', () => {
 
   test('the selected route highlights the marked path from underneath', () => {
     const style = read('map-style.js');
-    // A solid line ON TOP buries Waymarked's own route line and its numbered
-    // shields, which is why we used to reprint the numbers ourselves. The
-    // route goes below the raster as a pale corridor instead, solid so it
-    // has no darker knots where the walk overlaps itself.
-    expect(style).toContain("'line-color': paleColour(color),\n        'line-opacity': 1,");
-    // The casing is two thin edges around the corridor, not a white band
-    // under it, so the path inside the corridor is not washed out.
-    expect(style).toContain('widthRamp(1.5, 2, 2.5, 3, scale)');
-    expect(style).toContain("'line-gap-width': widthRamp(7, 12, 18, 26, scale)");
-    expect(style).toContain('widthRamp(7, 12, 18, 26, scale)');
+    // A line ON TOP buries Waymarked's own route line and its numbered
+    // shields, so the walk still goes below the marked network. It is a thin
+    // solid line in the match colour on a slightly wider white edge: the wide
+    // pale corridor it replaced read as a blob on the many walks that follow
+    // no numbered route, so their bends were hard to follow.
+    expect(style).toContain("'line-color': color,\n        'line-opacity': 1,");
+    expect(style).toContain('widthRamp(4, 5.5, 7, 9, scale)');
+    expect(style).toContain('widthRamp(2, 2.75, 3.75, 5, scale)');
+    expect(style).not.toContain("'line-gap-width': widthRamp(7, 12, 18, 26, scale)");
     // Default insertion point: under the contours and the walk's own dashed
     // route (or Waymarked's raster), so both draw over it, but over the other
     // marked routes, which pass under the walk.
@@ -238,7 +237,8 @@ describe('shared map quality profile', () => {
     // script.js is also evaluated without the scoring stack, so the accessor
     // tolerates a missing engine rather than taking the homepage down.
     expect(script).toMatch(/return \(scoring && scoring\.GUEST_SUBJECT\) \|\|/);
-    expect(read('scoring.js')).toContain("GUEST_SUBJECT = Object.freeze({ terrain:'1', distance:'10', heatSensitive:false })");
+    // The same empty subject the planning view scores, so map and page agree.
+    expect(read('scoring.js')).toContain('GUEST_SUBJECT = Object.freeze({});');
   });
 
   test('the browse map shows the path network, the collection map waits for zoom', () => {
@@ -304,8 +304,8 @@ describe('shared map quality profile', () => {
     // white smear with nothing inside it.
     const homepage = read('script.js');
     expect(homepage).toContain('function rankWidth(top, other)');
-    expect(homepage).toContain('rankWidth([8, 14, 20, 26], [2.5, 4, 5.5, 6.5])');
-    expect(homepage).toContain('rankWidth([5, 10, 15, 20], [1.2, 1.8, 2.4, 3])');
+    expect(homepage).toContain('rankWidth([3, 4.5, 5.5, 7], [1.5, 2.5, 3.5, 4.5])');
+    expect(homepage).toContain('rankWidth([1.5, 2, 2.5, 3.5], [0.8, 1.2, 1.6, 2])');
     // The zoom ramp has to stay at the top of the paint property. An
     // `interpolate` on ["zoom"] nested inside a `case` is not evaluated per
     // zoom: it silently cost the matched trails their corridor at trail zoom

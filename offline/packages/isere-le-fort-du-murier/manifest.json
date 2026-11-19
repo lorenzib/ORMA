@@ -2,21 +2,21 @@
   "schemaVersion": 1,
   "trailId": "isere-le-fort-du-murier",
   "name": "Fort du Murier loop above Gières",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.039Z",
+  "version": "2026.11.19-beta.4",
+  "generatedAt": "2026-11-19T15:45:36.578Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 401595,
+  "packageBytes": 451406,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.15839,
     "west": 5.77242,
-    "north": 45.17515,
+    "north": 45.17719,
     "east": 5.79324
   },
   "image": {
     "width": 1200,
-    "height": 1371
+    "height": 1537
   },
   "mapCorridor": {
     "strategy": "fixed-bounds-svg-v1",
@@ -24,12 +24,12 @@
       1
     ],
     "width": 1200,
-    "height": 1371
+    "height": 1537
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 1816,
-    "edgeCount": 1820,
+    "nodeCount": 2114,
+    "edgeCount": 2102,
     "trailNodeCount": 433,
     "maxRejoinRouteM": 1500
   },
@@ -200,24 +200,24 @@
       "required": true,
       "label": "Fort du Murier loop above Gières OSM offline map",
       "url": "map.svg",
-      "bytes": 167290,
-      "sha256": "39dbf211bb74dd7274ed41cb56354bbd68a8debb638051c641e8a623d5cdd75e"
+      "bytes": 200924,
+      "sha256": "d23af94bb4bf544881f629b8bfed29a6c32f987ec6a43de5a7624cb4379df985"
     },
     {
       "role": "route",
       "required": true,
       "label": "Fort du Murier loop above Gières route",
       "url": "route.geojson",
-      "bytes": 23072,
-      "sha256": "e6cc15861aba5ec477ec5949adcc8112f6363d2d31d60f28d165ee6aa9cde31b"
+      "bytes": 25512,
+      "sha256": "b42c159b442f35d1f5feea5899a42442475c4dc731abcb4407afe9f90874fce2"
     },
     {
       "role": "footpath-network",
       "required": true,
       "label": "Fort du Murier loop above Gières routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 86995,
-      "sha256": "354d3187e167a1f313eb09d4700199342b7528fce8d48c5abca3b439b92ad3be"
+      "bytes": 100732,
+      "sha256": "c3b23b10e372d1b000a2fbfd2d77c26c071435a209ecf6fcb748ee656ec56771"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Fort du Murier loop above Gières safety information",
       "url": "safety.json",
       "bytes": 2159,
-      "sha256": "d66bc9e25b8e83b0031b00e6be5b783656fcb1b467b9765ec6eaf08aa10c445f"
+      "sha256": "86c995cd92b68f459eb6b091296351efc3099377a37ce3ca96b9da0a230d669c"
     }
   ]
 }

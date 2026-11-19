@@ -35,6 +35,15 @@
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
+  .sp-route-view{margin:18px 0 26px;}
+  .sp-route-view .sp-facts{margin:12px 0 8px;}
+  .sp-view-btn{display:inline-block;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid #9AA79C;color:#2E4034;cursor:pointer;}
+  .sp-view-btn:first-of-type{border-radius:999px 0 0 999px;}
+  .sp-view-btn + .sp-view-input + .sp-view-btn{border-left:none;border-radius:0 999px 999px 0;}
+  .sp-view-input:checked + .sp-view-btn{background:#2E4034;border-color:#2E4034;color:#fff;}
+  .sp-view-input:focus-visible + .sp-view-btn{outline:2px solid #2C5C34;outline-offset:2px;}
+  #spViewOneWay:not(:checked) ~ .sp-facts--one-way,#spViewOneWay:not(:checked) ~ .sp-view-note--one-way,
+  #spViewBack:not(:checked) ~ .sp-facts--back,#spViewBack:not(:checked) ~ .sp-view-note--back{display:none;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
@@ -124,13 +133,13 @@
    "@type": "ListItem",
    "position": 1,
    "name": "Tutti i sentieri",
-   "item": "https://www.app-orma.com/browse-trails.html"
+   "item": "https://www.app-orma.com/it/browse-trails.html"
   },
   {
    "@type": "ListItem",
    "position": 2,
    "name": "Dolomiti, Italia",
-   "item": "https://www.app-orma.com/browse-trails.html"
+   "item": "https://www.app-orma.com/it/browse-trails.html"
   },
   {
    "@type": "ListItem",
@@ -147,8 +156,8 @@
 <div class="topnav">
   <a class="brand" href="/"><img src="../../logo.svg?v=3" alt="Logo ORMA">ORMA</a>
   <div class="links">
-    <a href="../../browse-trails.html" class="active">Sentieri</a>
-    <a href="../../browse-trails.html#collections">Raccolte</a>
+    <a href="../browse-trails.html" class="active">Sentieri</a>
+    <a href="../browse-trails.html#collections">Raccolte</a>
     <a href="../safety-guide.html">Guide di sicurezza</a>
     <a href="../../journal.html">Il mio diario delle passeggiate</a>
     <a class="account-btn" href="/?view=login&amp;next=it/trails/lago-ritorto.html" data-i18n="nav.login">Accedi</a>
@@ -156,7 +165,7 @@
 </div>
 
 <div class="wrap sp-hero">
-  <div class="sp-breadcrumb"><a href="../../browse-trails.html">Tutti i sentieri</a> › Dolomiti, Italia › Brenta</div>
+  <div class="sp-breadcrumb"><a href="../browse-trails.html">Tutti i sentieri</a> › Dolomiti, Italia › Brenta</div>
   <h1>Lago Ritorto</h1>
   <p class="sp-gloss">la salita da Patascoss al lago Ritort</p>
   <div class="sp-badges">
@@ -178,7 +187,9 @@
   
   <p>Una salita da Patascoss oltre Malga Ritorto e attraverso il selvaggio Pian dei Mughi fino al Lago Ritorto, di fronte alle Dolomiti di Brenta, nel Parco Naturale Adamello Brenta. L'APT indica 5,4 km e 339 m di dislivello in salita, solo andata.</p>
 
-  <div class="sp-facts">
+  <div class="sp-route-view" role="radiogroup" aria-label="Mostra i dati per">
+    <input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="spViewOneWay" value="one-way" checked><label class="sp-view-btn" for="spViewOneWay">Solo andata</label><input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="spViewBack" value="out-and-back"><label class="sp-view-btn" for="spViewBack">Andata e ritorno</label>
+    <div class="sp-facts sp-facts--one-way">
       <div class="sp-fact"><div class="sp-fact-k">Distanza</div><div class="sp-fact-v">5,4 km</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Dislivello in salita</div><div class="sp-fact-v">339 m</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Punto più alto</div><div class="sp-fact-v">2060 m</div></div>
@@ -186,6 +197,18 @@
       <div class="sp-fact"><div class="sp-fact-k">Terreno</div><div class="sp-fact-v">Strada asfaltata, strada sterrata e sentiero di montagna</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Valutazione del sentiero</div><div class="sp-fact-v">Terreno impegnativo</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Zona</div><div class="sp-fact-v">Patascoss – Malga Ritorto – Lago Ritorto, Val Rendena · Dolomiti, Italia</div></div>
+    </div>
+    <div class="sp-facts sp-facts--back">
+      <div class="sp-fact"><div class="sp-fact-k">Distanza</div><div class="sp-fact-v">10,8 km</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Salita, uguale discesa</div><div class="sp-fact-v">345 m</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Punto più alto</div><div class="sp-fact-v">2060 m</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Durata</div><div class="sp-fact-v">≈ 4 h 45 min</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Terreno</div><div class="sp-fact-v">Strada asfaltata, strada sterrata e sentiero di montagna</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Valutazione del sentiero</div><div class="sp-fact-v">Terreno impegnativo</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Zona</div><div class="sp-fact-v">Patascoss – Malga Ritorto – Lago Ritorto, Val Rendena · Dolomiti, Italia</div></div>
+    </div>
+    <p class="sp-src sp-view-note sp-view-note--one-way">Finisce lontano dalla partenza: prevedi un impianto, un autobus o una seconda auto per tornare.</p>
+    <p class="sp-src sp-view-note sp-view-note--back">Ritorno per la stessa via, sullo stesso sentiero.</p>
   </div>
 
   <a class="sp-cta" href="../../trail.html?id=lago-ritorto">Apri la guida completa del sentiero →</a>
@@ -237,7 +260,7 @@
     <p>Patascoss, la partenza indicata dall'APT</p>
     <h2>Come seguire questo percorso</h2>
     <p><b>Indicazioni:</b> Sentiero SAT 277 per la parte alta: da Patascoss, un paio di chilometri a nord di Madonna di Campiglio, sali dolcemente per una stradina asfaltata e poi una carrareccia tra radure e boschi di abete rosso fino a Malga Ritorto (ristorante, ampia vista sul Brenta); poi il SAT 277 attraverso il Pian dei Mughi, dove si vedono spesso camosci e caprioli, oltre i ruderi di Malga della Pozza dei Garzoni, fino al Lago Ritorto (2.055 m). Ritorno per la stessa strada.</p>
-    <p class="sp-route-source">Dalla verifica ORMA della descrizione ufficiale del percorso. Segui la traccia ORMA sulla mappa e i cartelli sul posto.</p>
+    <p class="sp-route-source">Abbiamo scritto queste indicazioni dalle informazioni ufficiali sul percorso e le abbiamo controllate sulla mappa. Durante il cammino, segui la linea sulla mappa e i cartelli sul posto.</p>
     
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M4 11l8-7 8 7" fill="none" stroke="#8A5A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 10v9h12v-9" fill="#D6A038" stroke="#8A5A16" stroke-width="1.6" stroke-linejoin="round"></path><path d="M10 19v-5h4v5" fill="#8A5A16"></path></svg> Rifugi e ristoro</h2>
     <ul><li>km 0 · Rifugio Patascoss</li><li>km 2,1 · Bar Ristorante Malga Ritorto</li></ul>
@@ -315,10 +338,10 @@
     <div>
       <div class="hp-footer-h">Sentieri</div>
       <div class="hp-footer-links">
-        <a href="../../browse-trails.html">Sfoglia tutti i sentieri</a>
+        <a href="../browse-trails.html">Sfoglia tutti i sentieri</a>
         <a href="../../collections.html">Raccolte</a>
         <a href="../../compare.html">Confronta sentieri</a>
-        <a href="../../how-scoring-works.html">Come funziona il punteggio</a>
+        <a href="../how-scoring-works.html">Come funziona il punteggio</a>
       </div>
     </div>
     <div>
@@ -342,8 +365,8 @@
     <div>
       <div class="hp-footer-h">Azienda</div>
       <div class="hp-footer-links">
-        <a href="../../about.html">Chi siamo</a>
-        <a href="../../contact.html">Contatti</a>
+        <a href="../about.html">Chi siamo</a>
+        <a href="../contact.html">Contatti</a>
         <a href="../privacy.html">Privacy</a>
         <a href="../terms.html">Termini</a>
       </div>

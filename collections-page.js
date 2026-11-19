@@ -144,6 +144,20 @@
   const month = new Date().getMonth() + 1;
   const offeredNow = trail => !(seasonWords && trail.season && seasonWords.hiddenThisMonth(trail.season, month));
   const trailsFor = collection => api.trailsFor(collection, trails).filter(offeredNow);
+  // The walks of a collection sitting out this month, said after the count so
+  // the card never promises more walks than it shows: "6 more back in June".
+  const laterNote = collection => {
+    const later = api.trailsFor(collection, trails).filter(trail => !offeredNow(trail));
+    if(!later.length) return '';
+    const n = later.length;
+    const backs = later.map(trail => seasonWords.backInSeason(trail.season, month));
+    if(backs.some(back => !back)) return n === 1 ? tx('1 more out of season') : tx('{n} more out of season', { n });
+    const after = back => (back - month + 12) % 12;
+    const first = backs.reduce((a, b) => after(b) < after(a) ? b : a);
+    const name = seasonWords.monthName(first);
+    if(n === 1) return tx('1 more back in {month}', { month:name });
+    return backs.every(back => back === first) ? tx('{n} more back in {month}', { n, month:name }) : tx('{n} more back from {month}', { n, month:name });
+  };
   const regionCountry = region => (REGIONS.find(item => item.value === region) || { countryCode:'IT' }).countryCode;
   const trailInArea = trail => (country === 'all' || regionCountry(trail.region) === country)
     && (region === 'all' || trail.region === region);
@@ -481,7 +495,7 @@
       <div class="photo collection-list-card__photo" style="background-image:url('${esc(collection.coverImage)}')" aria-hidden="true"></div>
       <div class="simple-card__main">
         <div class="name">${esc(collection.title)}</div>
-        <div class="simple-card__meta">${esc(collection.regionLabel)} · ${esc(collection.country)} · ${count === 1 ? tx('{n} trail', { n:count }) : tx('{n} trails', { n:count })}</div>
+        <div class="simple-card__meta">${esc(collection.regionLabel)} · ${esc(collection.country)} · ${count === 1 ? tx('{n} trail', { n:count }) : tx('{n} trails', { n:count })}${laterNote(collection) ? ` · ${esc(laterNote(collection))}` : ''}</div>
       </div>
       <p class="collection-list-card__summary">${esc(collection.subtitle)}</p>
       ${coverCreditHtml(collection)}

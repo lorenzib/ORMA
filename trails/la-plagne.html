@@ -35,6 +35,15 @@
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
+  .sp-route-view{margin:18px 0 26px;}
+  .sp-route-view .sp-facts{margin:12px 0 8px;}
+  .sp-view-btn{display:inline-block;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid #9AA79C;color:#2E4034;cursor:pointer;}
+  .sp-view-btn:first-of-type{border-radius:999px 0 0 999px;}
+  .sp-view-btn + .sp-view-input + .sp-view-btn{border-left:none;border-radius:0 999px 999px 0;}
+  .sp-view-input:checked + .sp-view-btn{background:#2E4034;border-color:#2E4034;color:#fff;}
+  .sp-view-input:focus-visible + .sp-view-btn{outline:2px solid #2C5C34;outline-offset:2px;}
+  #spViewOneWay:not(:checked) ~ .sp-facts--one-way,#spViewOneWay:not(:checked) ~ .sp-view-note--one-way,
+  #spViewBack:not(:checked) ~ .sp-facts--back,#spViewBack:not(:checked) ~ .sp-view-note--back{display:none;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
@@ -159,8 +168,8 @@
   <h1>La Plagne</h1>
   
   <div class="sp-badges">
-    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111100000001" hidden><span>Out of season · back in May</span></span>
-    <span class="dp-badge sp-tag sp-tag--best"><span>Best time: May to November</span></span>
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111100000011" hidden><span>Out of season · back in May</span></span>
+    <span class="dp-badge sp-tag sp-tag--best"><span>Best time: May to October</span></span>
     
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Caution terrain</span></span>
@@ -201,12 +210,12 @@
     </svg>
     <figcaption class="sp-src">Elevation profile: lowest 1605 m, highest 1984 m.</figcaption>
   </figure>
-    <section class="sp-season" id="season" data-season-notes="[&quot;In January snow is likely on this walk. In January, parts of it are likely to be ski runs or tracks.&quot;,&quot;In February snow is likely on this walk. In February, parts of it are likely to be ski runs or tracks.&quot;,&quot;In March snow is likely on this walk. In March, parts of it are likely to be ski runs or tracks.&quot;,&quot;In April snow is likely on this walk. In April, parts of it are likely to be ski runs or tracks.&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;In December snow is likely on this walk. In December, parts of it are likely to be ski runs or tracks.&quot;]" data-season-warn="111100000001">
+    <section class="sp-season" id="season" data-season-notes="[&quot;In January snow is likely on this walk. In January, parts of it are likely to be ski runs or tracks.&quot;,&quot;In February snow is likely on this walk. In February, parts of it are likely to be ski runs or tracks.&quot;,&quot;In March snow is likely on this walk. In March, parts of it are likely to be ski runs or tracks.&quot;,&quot;In April snow is likely on this walk. In April, parts of it are likely to be ski runs or tracks.&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;In November snow is likely on this walk.&quot;,&quot;In December snow is likely on this walk. In December, parts of it are likely to be ski runs or tracks.&quot;]" data-season-warn="111100000011">
     <h2>When to go</h2>
     <p class="sp-season-now" hidden></p>
-    <ol class="sp-months" aria-label="Months of the year"><li class="sp-month sp-month--snow" data-month="1"><span aria-hidden="true">J</span><span class="sp-vh">January: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">February: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">March: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">April: Snow likely</span></li><li class="sp-month sp-month--good" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">May: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">J</span><span class="sp-vh">June: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">J</span><span class="sp-vh">July: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">August: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">September: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">October: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">November: Usually snow-free</span></li><li class="sp-month sp-month--snow" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">December: Snow likely</span></li></ol>
+    <ol class="sp-months" aria-label="Months of the year"><li class="sp-month sp-month--snow" data-month="1"><span aria-hidden="true">J</span><span class="sp-vh">January: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">February: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">March: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">April: Snow likely</span></li><li class="sp-month sp-month--good" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">May: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">J</span><span class="sp-vh">June: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">J</span><span class="sp-vh">July: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">August: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">September: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">October: Usually snow-free</span></li><li class="sp-month sp-month--snow" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">November: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">December: Snow likely</span></li></ol>
     <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Usually snow-free <span class="sp-key sp-key--snow"></span>Snow likely</p>
-    <p>Snow is likely here from December to April.</p>
+    <p>Snow is likely here from November to April.</p>
     <p class="sp-src">Estimated from the walk’s high point (1984 m). No tourist board publishes this walk’s season, and every winter is different.</p>
     
     <p>In winter, 3.3 km of this walk is a ski run (Lac, Ponsonnière, Combe de la Rama). Expect skiers there while the runs are open, usually from December to April (an estimate).</p>

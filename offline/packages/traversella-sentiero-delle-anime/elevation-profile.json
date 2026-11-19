@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "traversella-sentiero-delle-anime",
+  "distanceKm": 9.9,
+  "ascentM": 549,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 837
+    },
+    {
+      "km": 0.8,
+      "elev": 863
+    },
+    {
+      "km": 1.5,
+      "elev": 982
+    },
+    {
+      "km": 2.3,
+      "elev": 987
+    },
+    {
+      "km": 3,
+      "elev": 1007
+    },
+    {
+      "km": 3.8,
+      "elev": 1099
+    },
+    {
+      "km": 4.5,
+      "elev": 1247
+    },
+    {
+      "km": 5.3,
+      "elev": 1379
+    },
+    {
+      "km": 6,
+      "elev": 1341
+    },
+    {
+      "km": 6.8,
+      "elev": 1168
+    },
+    {
+      "km": 7.5,
+      "elev": 1048
+    },
+    {
+      "km": 8.3,
+      "elev": 1040
+    },
+    {
+      "km": 9,
+      "elev": 878
+    },
+    {
+      "km": 9.8,
+      "elev": 864
+    },
+    {
+      "km": 9.9,
+      "elev": 837
+    }
+  ]
+}

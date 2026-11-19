@@ -35,6 +35,15 @@
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
+  .sp-route-view{margin:18px 0 26px;}
+  .sp-route-view .sp-facts{margin:12px 0 8px;}
+  .sp-view-btn{display:inline-block;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid #9AA79C;color:#2E4034;cursor:pointer;}
+  .sp-view-btn:first-of-type{border-radius:999px 0 0 999px;}
+  .sp-view-btn + .sp-view-input + .sp-view-btn{border-left:none;border-radius:0 999px 999px 0;}
+  .sp-view-input:checked + .sp-view-btn{background:#2E4034;border-color:#2E4034;color:#fff;}
+  .sp-view-input:focus-visible + .sp-view-btn{outline:2px solid #2C5C34;outline-offset:2px;}
+  #spViewOneWay:not(:checked) ~ .sp-facts--one-way,#spViewOneWay:not(:checked) ~ .sp-view-note--one-way,
+  #spViewBack:not(:checked) ~ .sp-facts--back,#spViewBack:not(:checked) ~ .sp-view-note--back{display:none;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
@@ -159,8 +168,8 @@
   <h1>Champoluc – Mascognaz waterfall</h1>
   <p class="sp-gloss">the short climb from Champoluc to the Mascognaz waterfall</p>
   <div class="sp-badges">
-    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111100000001" hidden><span>Out of season · back in May</span></span>
-    <span class="dp-badge sp-tag sp-tag--best"><span>Best time: May to November</span></span>
+    <span class="dp-badge sp-tag sp-tag--out" data-season-out="111100000011" hidden><span>Out of season · back in May</span></span>
+    <span class="dp-badge sp-tag sp-tag--best"><span>Best time: May to October</span></span>
     
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Caution terrain</span></span>
@@ -176,7 +185,9 @@
   
   <p>A short, steady climb at 1,560–1,810 m from the centre of Champoluc up a forest path to the Mascognaz waterfall. The regional path register lists 1.6 km and 255 m of ascent, one way.</p>
 
-  <div class="sp-facts">
+  <div class="sp-route-view" role="radiogroup" aria-label="Show the figures for">
+    <input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="spViewOneWay" value="one-way" checked><label class="sp-view-btn" for="spViewOneWay">One way</label><input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="spViewBack" value="out-and-back"><label class="sp-view-btn" for="spViewBack">There and back</label>
+    <div class="sp-facts sp-facts--one-way">
       <div class="sp-fact"><div class="sp-fact-k">Distance</div><div class="sp-fact-v">1.6 km</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Elevation gain</div><div class="sp-fact-v">255 m</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Highest point</div><div class="sp-fact-v">1814 m</div></div>
@@ -184,6 +195,18 @@
       <div class="sp-fact"><div class="sp-fact-k">Terrain</div><div class="sp-fact-v">Village streets, then a forest path</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Trail rating</div><div class="sp-fact-v">Caution terrain</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Area</div><div class="sp-fact-v">Champoluc – Mascognaz waterfall, Ayas · Valle d'Aosta, Italy</div></div>
+    </div>
+    <div class="sp-facts sp-facts--back">
+      <div class="sp-fact"><div class="sp-fact-k">Distance</div><div class="sp-fact-v">3.2 km</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Up, same down</div><div class="sp-fact-v">261 m</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Highest point</div><div class="sp-fact-v">1814 m</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Duration</div><div class="sp-fact-v">≈ 1 h 15 min</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Terrain</div><div class="sp-fact-v">Village streets, then a forest path</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Trail rating</div><div class="sp-fact-v">Caution terrain</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Area</div><div class="sp-fact-v">Champoluc – Mascognaz waterfall, Ayas · Valle d'Aosta, Italy</div></div>
+    </div>
+    <p class="sp-src sp-view-note sp-view-note--one-way">Ends away from the start: plan a lift, bus or second car back.</p>
+    <p class="sp-src sp-view-note sp-view-note--back">Back the same way on the same path.</p>
   </div>
 
   <a class="sp-cta" href="../trail.html?id=champoluc-mascognaz-waterfall">Open the full trail guide →</a>
@@ -200,12 +223,12 @@
     </svg>
     <figcaption class="sp-src">Elevation profile: lowest 1560 m, highest 1814 m.</figcaption>
   </figure>
-    <section class="sp-season" id="season" data-season-notes="[&quot;In January snow is likely on this walk.&quot;,&quot;In February snow is likely on this walk.&quot;,&quot;In March snow is likely on this walk.&quot;,&quot;In April snow is likely on this walk.&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;In December snow is likely on this walk.&quot;]" data-season-warn="111100000001">
+    <section class="sp-season" id="season" data-season-notes="[&quot;In January snow is likely on this walk.&quot;,&quot;In February snow is likely on this walk.&quot;,&quot;In March snow is likely on this walk.&quot;,&quot;In April snow is likely on this walk.&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;In November snow is likely on this walk.&quot;,&quot;In December snow is likely on this walk.&quot;]" data-season-warn="111100000011">
     <h2>When to go</h2>
     <p class="sp-season-now" hidden></p>
-    <ol class="sp-months" aria-label="Months of the year"><li class="sp-month sp-month--snow" data-month="1"><span aria-hidden="true">J</span><span class="sp-vh">January: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">February: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">March: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">April: Snow likely</span></li><li class="sp-month sp-month--good" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">May: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">J</span><span class="sp-vh">June: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">J</span><span class="sp-vh">July: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">August: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">September: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">October: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">November: Usually snow-free</span></li><li class="sp-month sp-month--snow" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">December: Snow likely</span></li></ol>
+    <ol class="sp-months" aria-label="Months of the year"><li class="sp-month sp-month--snow" data-month="1"><span aria-hidden="true">J</span><span class="sp-vh">January: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">February: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">March: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">April: Snow likely</span></li><li class="sp-month sp-month--good" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">May: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">J</span><span class="sp-vh">June: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">J</span><span class="sp-vh">July: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">August: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">September: Usually snow-free</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">October: Usually snow-free</span></li><li class="sp-month sp-month--snow" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">November: Snow likely</span></li><li class="sp-month sp-month--snow" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">December: Snow likely</span></li></ol>
     <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Usually snow-free <span class="sp-key sp-key--snow"></span>Snow likely</p>
-    <p>Snow is likely here from December to April.</p>
+    <p>Snow is likely here from November to April.</p>
     <p class="sp-src">Estimated from the walk’s high point (1814 m). No tourist board publishes this walk’s season, and every winter is different.</p>
     
     
@@ -231,7 +254,7 @@
     <p>Champoluc, the register’s start</p>
     <h2>How to follow this route</h2>
     <p><b>Directions:</b> Path 14D: from the centre of Champoluc on the village road to the start of path 14D, then up the forest path to the Mascognaz waterfall, where it meets path 13A. Back the same way.</p>
-    <p class="sp-route-source">From ORMA's route audit of the official route description. Follow the mapped ORMA line and local signs.</p>
+    <p class="sp-route-source">We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.</p>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> Water on trail</h2>
     <ul><li>km 0 · Drinking water at the start</li><li>km 1.4 · Drinking water</li></ul>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M4 11l8-7 8 7" fill="none" stroke="#8A5A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 10v9h12v-9" fill="#D6A038" stroke="#8A5A16" stroke-width="1.6" stroke-linejoin="round"></path><path d="M10 19v-5h4v5" fill="#8A5A16"></path></svg> Rifugi &amp; refreshment</h2>

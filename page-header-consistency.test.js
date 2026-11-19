@@ -27,6 +27,8 @@ const editorialPages = [
   'guides/paw-protection.html',
   'guides/water-for-dogs-on-trail.html',
   'guides/winter-walks-with-your-dog.html',
+  'guides/dog-rules-in-the-mountains.html',
+  'guides/wildlife-on-the-trail.html',
 ];
 
 describe('primary section page headers', () => {

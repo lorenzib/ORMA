@@ -268,8 +268,22 @@ describe('the existing-site verification boundary',()=>{
     // time measured by ORMA: the Umser Rundweg and the Promenadenweg at Tiers.
     // Then 533 and 531 with Pian di Barco above Auronzo, whose page only
     // suggests another way on (owner rule of 16 November 2026).
-    expect(catalogue).toHaveLength(533);
-    expect(currentSiteTrails(catalogue)).toHaveLength(531);
+    // Then 534 and 532 with the first Friulian Dolomites walk (owner decision
+    // of 18 November 2026): Cima Sappada to the Rifugio Siera, there and back.
+    // Then 537 and 535 with three South Tyrol register walks on quiet hamlet
+    // lanes and short mountain-path stretches (owner rules of 18 November
+    // 2026): the Pyramidenrundweg at Steinegg, the Panoramaweg at Lüsen and
+    // the Troi da la Tambres above Ortisei, walked there and back.
+    // Then 540 and 538 with the first Lombardy mountain walks from the
+    // in-Lombardia portal (owner decision of 18 November 2026): Reggetto to the
+    // Piani di Artavaggio, the Colle della Maresana above Bergamo (both there
+    // and back) and the earth-pyramid loop from Asso.
+    // Then 544 and 542 with the first Turin valleys walks from Turismo Torino
+    // e Provincia (owner decision of 19 November 2026): the Mulino Turcin loop
+    // at Lanzo, the Carbonaie path at Talucco, the Sentiero delle Anime at
+    // Traversella and the Fondo, Tissone and Tallorno loop.
+    expect(catalogue).toHaveLength(544);
+    expect(currentSiteTrails(catalogue)).toHaveLength(542);
   });
 
   test('requires the artwork the public trail page needs',()=>{

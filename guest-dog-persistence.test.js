@@ -115,7 +115,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     expect(browse).toContain("bt('browse.results.ofTotal', '{n} of {total} trails', { n: pool.length, total: trails.length })");
     expect(browse).toContain("bt('browse.card.forDog', 'For {name}', { name: dog.name })");
     // Segment options reuse the homepage vocabulary keys so both panels say the same thing.
-    expect(browse).toContain("{ label:bt('hp.filters.rocky', 'Rocky is okay'), v:'rocky' }");
+    expect(browse).toContain("{ label:bt('hp.filters.rocky', 'Steep is okay'), v:'rocky' }");
   });
 
   test('a declared small dog sees chairlift-assisted routes on the guest homepage', () => {

@@ -48,7 +48,12 @@ function scoreTrail(trail, subject, currentConditions){
 // The profile a visitor is scored against before they add a dog. The site
 // already tells them so ("Scores use a medium-dog profile"), so guest maps can
 // colour by match honestly rather than falling back to a different meaning.
-const GUEST_SUBJECT = Object.freeze({ terrain:'1', distance:'10', heatSensitive:false });
+// It is the same subject the trail page's planning view scores ("Why 92% for
+// a medium dog"): no overrides, so the engine's own moderate-fitness default
+// applies. The old { terrain:'1', distance:'10' } override capped steepness
+// tolerance at 1, which scoring 1.9.0 no longer applies to a healthy dog, so
+// maps coloured walks amber that the page beside them called a strong option.
+const GUEST_SUBJECT = Object.freeze({});
 
 window.DoloPawsScoring = Object.freeze({
   VERSION: SCORING_VERSION,
@@ -86,7 +91,8 @@ function dogWeightKg(profile){
 }
 
 function dogConditions(profile){
-  if(Array.isArray(profile.conditions)) return profile.conditions;
+  // 'injury' is the account page's pre-Nov 2026 code for "Recovering from injury".
+  if(Array.isArray(profile.conditions)) return profile.conditions.map(code => code === 'injury' ? 'recovering' : code);
   // Legacy profiles: two booleans instead of the conditions list.
   return [profile.jointIssues && 'joints', profile.heatIssues && 'heat'].filter(Boolean);
 }
@@ -165,6 +171,8 @@ function effectiveOverrides(profile, adjustOverride){
   if(adjustOverride){
     const base = effectiveOverrides(profile, null);
     const adjusted = { ...base, ...adjustOverride, _profile: profile };
+    // Only a hand-changed steepness overrides the engine's own rule.
+    adjusted._steepnessAdjusted = String(adjusted.terrain) !== String(base.terrain);
     if(adjusted.energy === 'low') adjusted.distance = String(Math.min(5, Number(adjusted.distance) || 5));
     if(adjusted.energy === 'high') adjusted.distance = '18';
     return adjusted;

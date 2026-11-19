@@ -121,16 +121,36 @@
       conditions: conditions(profile),
       traits: traits(profile),
       behaviour: behaviour(profile),
+      steepnessLimit: profile.steepnessLimit === 0 || profile.steepnessLimit === 1
+        ? profile.steepnessLimit : null,
     };
   }
 
+  // Places a commune or park keeps dogs out of without closing the path
+  // through or beside them.
+  const PARTIAL_BAN_PLACES = /\b(?:meadows?|fields?|farm(?:ed|land)?|land|pastures?|orchards?|vineyards?|(?<!national )parks?|green areas?|playgrounds?|schools?|church(?:es|yards?)?|cemeter(?:y|ies)|fountains?|troughs?|lakes?|water|lidos?|bathing|beach(?:es)?|pools?|spa)\b/i;
+
   function legacyDogAccess(trail){
     const text = `${trail && trail.desc || ''} ${trail && trail.tips || ''}`;
-    if(/\bdogs?\s+(?:are\s+)?not\s+(?:allowed|permitted)|\bdog\s*=\s*no\b/i.test(text)){
+    // A ban on the walk itself, not on the land beside it. "Dogs are not
+    // allowed on farmed meadows" or "in public parks" keeps a dog off the
+    // fields, playgrounds or lake next to the path; it does not close the
+    // path. Read as a ban on the route, it capped 15 walks at the lowest score.
+    const sentences = text.split(/(?<=[.!?])\s+/);
+    if(sentences.some(sentence => /\bdogs?\s+(?:are\s+)?not\s+(?:allowed|permitted)|\bdog\s*=\s*no\b/i.test(sentence)
+      && !PARTIAL_BAN_PLACES.test(sentence))){
       return { status: 'prohibited', notes: 'The trail record states that dogs are prohibited.' };
     }
     if(/dogs?.{0,30}(?:must|stay|keep).{0,20}(?:on (?:a )?lead|leash)|leash (?:is )?required/i.test(text)){
       return { status: 'leash-required', notes: 'The trail record states that a leash is required.' };
+    }
+    // The walk's dog rules (trail.dogNotes) are the commune's or park's rule,
+    // sourced: "Villnöss requires dogs on a lead of at most 1.5 m on all public
+    // paths…". A lead rule there means dogs are allowed on a lead. The bans
+    // these notes name are partial (hay meadows, a Kneipp pool, playgrounds),
+    // so they never make the whole walk prohibited.
+    if(/\b(?:lead|leash)\b/i.test(String(trail && trail.dogNotes || ''))){
+      return { status: 'leash-required', notes: 'The walk\'s dog rules require a lead.' };
     }
     return { status: 'unknown', notes: null };
   }
@@ -204,10 +224,11 @@
   // counts when it holds over a stretch of 300 m or more. The stored rank is
   // kept when it is lower, or when there is no usable profile (v1.10.0).
   const SUSTAINED_STRETCH_KM = 0.3;
-  function sustainedTerrainRank(trail){
-    const rank = Number.isFinite(trail.terrainRank) ? trail.terrainRank : null;
+  // The steepest pitch that holds for SUSTAINED_STRETCH_KM, as a fraction
+  // (0.14 is 14%), or null with no usable profile. Readers are shown it as a
+  // percentage beside the steepness level, so "steep" has a number behind it.
+  function steepestSustained(trail){
     const profile = Array.isArray(trail.elevationProfile) ? trail.elevationProfile : [];
-    if(rank === null || profile.length < 2) return rank;
     let steepest = 0;
     let measured = false;
     for(let i = 1; i < profile.length; i++){
@@ -217,9 +238,29 @@
       measured = true;
       steepest = Math.max(steepest, Math.abs(rise) / (km * 1000));
     }
-    if(!measured) return rank;
+    return measured ? steepest : null;
+  }
+
+  function sustainedTerrainRank(trail){
+    const rank = Number.isFinite(trail.terrainRank) ? trail.terrainRank : null;
+    const steepest = steepestSustained(trail);
+    if(rank === null || steepest === null) return rank;
     const sustained = steepest < 0.10 ? 0 : steepest < 0.18 ? 1 : 2;
     return Math.min(rank, sustained);
+  }
+
+  // The figure shown with the level. Only where it agrees with the level: a
+  // stored rank lower than the profile reads (a board's own grade) wins, and
+  // a percentage from a steeper band beside it would contradict it.
+  function steepestPercent(trail){
+    const steepest = steepestSustained(trail);
+    const rank = sustainedTerrainRank(trail);
+    if(steepest === null || rank === null) return null;
+    const band = steepest < 0.10 ? 0 : steepest < 0.18 ? 1 : 2;
+    if(band !== rank) return null;
+    // Rounded inside its band, so 9.6% beside "Gentle" does not read as 10%.
+    const percent = Math.round(steepest * 100);
+    return band === 0 ? Math.min(percent, 9) : band === 1 ? Math.max(10, Math.min(percent, 17)) : Math.max(18, percent);
   }
 
   function normalizeTrail(trail){
@@ -229,6 +270,7 @@
       safetyLevel: ['low-risk', 'moderate', 'caution'].includes(trail.safetyLevel)
         ? trail.safetyLevel : 'unknown',
       terrainRank: sustainedTerrainRank(trail),
+      steepestPercent: steepestPercent(trail),
       shadePercent: Number.isFinite(trail.shadeCoverage) ? trail.shadeCoverage : null,
       heatRisk: ['low', 'moderate', 'high'].includes(trail.heatRisk)
         ? trail.heatRisk : 'unknown',
@@ -289,7 +331,12 @@
 
   function effectiveLimits(subject){
     if(!subject || (subject.terrain === undefined && subject.distance === undefined)) return null;
-    const terrain = Number(subject.terrain);
+    // A real dog (subject._profile) gets its steepness limit from the engine's
+    // own rule (age, health, the owner's steepness answer). The older limit
+    // effectiveOverrides() works out from fitness alone only applies when
+    // someone changed it by hand, or for a dog with no profile behind it.
+    const steepnessFromEngine = !!subject._profile && !subject._steepnessAdjusted;
+    const terrain = steepnessFromEngine ? NaN : Number(subject.terrain);
     const distance = Number(subject.distance);
     return {
       terrainRank: Number.isFinite(terrain) ? Math.max(0, Math.min(2, terrain)) : undefined,
@@ -332,6 +379,7 @@
     behaviour,
     normalizeDog,
     sustainedTerrainRank,
+    steepestPercent,
     normalizeTrail,
     effectiveLimits,
     recommendLegacyTrail,

@@ -92,6 +92,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -330,6 +331,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -398,6 +400,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -2476,6 +2479,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -3019,10 +3023,35 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
         "highPoint": 1935
+      }
+    },
+    "lanzo-anello-mulino-turcin": {
+      "highPoint": 749,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804987381",
+          "accessedAt": "2026-11-19"
+        }
       }
     },
     "lario-alla-ricerca-di-un-panorama-unico": {
@@ -3081,6 +3110,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -3169,6 +3199,18 @@
         ],
         "likelihood": "possible",
         "highPoint": 1409
+      }
+    },
+    "luesen-panoramaweg": {
+      "highPoint": 1258,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1258
       }
     },
     "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
@@ -3590,6 +3632,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -4492,6 +4535,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -4506,6 +4550,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -4796,6 +4841,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -4881,6 +4927,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -5056,6 +5103,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -5239,6 +5287,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -5693,6 +5742,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -5767,6 +5817,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -7169,10 +7220,67 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
         "highPoint": 1954
+      }
+    },
+    "steinegg-pyramidenrundweg": {
+      "highPoint": 983,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 983
+      }
+    },
+    "talucco-ecomuseo-carbonaie": {
+      "highPoint": 1095,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804474829",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "traversella-sentiero-delle-anime": {
+      "highPoint": 1379,
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804493440",
+          "accessedAt": "2026-11-19"
+        }
       }
     },
     "tre-cime": {
@@ -7926,6 +8034,27 @@
         }
       }
     },
+    "valchiusella-fondo-tissone-tallorno": {
+      "highPoint": 1340,
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804976410",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
     "valdisole-bivacco-malga-baselga": {
       "highPoint": 1932,
       "recommended": {
@@ -8558,6 +8687,18 @@
         }
       ]
     },
+    "valgardena-troi-da-la-tambres": {
+      "highPoint": 1506,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1506
+      }
+    },
     "valgardena-troi-unika": {
       "highPoint": 1689,
       "recommended": {
@@ -8696,6 +8837,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -8742,6 +8884,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -8768,6 +8911,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -9616,6 +9760,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -9630,6 +9775,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -9655,6 +9801,7 @@
           2,
           3,
           4,
+          11,
           12
         ],
         "likelihood": "likely",
@@ -9684,6 +9831,60 @@
           "url": "https://www.outdooractive.com/it/r/812604569",
           "accessedAt": "2026-11-18"
         }
+      }
+    },
+    "fvg-sappada-rifugio-siera-longrone": {
+      "highPoint": 1594,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/13977360",
+          "accessedAt": "2026-11-18"
+        }
+      }
+    },
+    "lombardia-reggetto-piani-di-artavaggio": {
+      "highPoint": 1585,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1585
+      }
+    },
+    "lario-asso-funghi-di-terra": {
+      "highPoint": 844,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 844
+      }
+    },
+    "lombardia-bergamo-colle-maresana": {
+      "highPoint": 544,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 544
       }
     }
   }

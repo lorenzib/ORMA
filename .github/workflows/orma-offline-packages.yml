@@ -26,6 +26,7 @@ on:
       - regions-config.js
       - data/verified-trail-overrides.json
       - data/lift-access.json
+      - data/start-access-paths.json
       - data/trail-slug-overrides.json
       - trust/evidence-v1.js
       - scripts/load-production-trails.js

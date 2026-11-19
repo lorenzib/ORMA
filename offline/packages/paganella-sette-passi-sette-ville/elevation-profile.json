@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "paganella-sette-passi-sette-ville",
+  "distanceKm": 3.9,
+  "ascentM": 107,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 745
+    },
+    {
+      "km": 0.3,
+      "elev": 769
+    },
+    {
+      "km": 0.6,
+      "elev": 791
+    },
+    {
+      "km": 0.9,
+      "elev": 785
+    },
+    {
+      "km": 1.2,
+      "elev": 832
+    },
+    {
+      "km": 1.5,
+      "elev": 782
+    },
+    {
+      "km": 1.8,
+      "elev": 736
+    },
+    {
+      "km": 2.1,
+      "elev": 743
+    },
+    {
+      "km": 2.4,
+      "elev": 744
+    },
+    {
+      "km": 2.7,
+      "elev": 715
+    },
+    {
+      "km": 3,
+      "elev": 732
+    },
+    {
+      "km": 3.3,
+      "elev": 742
+    },
+    {
+      "km": 3.6,
+      "elev": 753
+    },
+    {
+      "km": 3.9,
+      "elev": 742
+    }
+  ]
+}

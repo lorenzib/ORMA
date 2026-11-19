@@ -692,6 +692,7 @@
       ? { ok: false, title: tx('Surface hazards'), detail: tx('{surface}. Check pads at breaks; consider booties for tender paws.', { surface: trailWords(t.terrainType) || tx('Gravel and mixed rock') }) }
       : null), 'paws');
     addAssessment(trust ? trust.trafficAssessment(t) : null, null);
+    addAssessment(trust && trust.alongTheWayAssessment ? trust.alongTheWayAssessment(t) : null, null);
     addAssessment(trust ? trust.heatAssessment(t, conditions) : null, 'heat');
     addAssessment(trust ? trust.waterAssessment(t) : (hasWater
       ? { ok: true, title: tx('Water'), detail: tx('A water source is mapped on this route. Bring a bowl.') }
@@ -706,7 +707,7 @@
       const basis = t.season.recommended ? words.line : (t.season.snow ? tx('An estimate from the walk’s high point.') : '');
       caution(tx('Season'), [seasonWords.nowNote(t.season, month), basis].filter(Boolean).join(' '), 'altitude');
     } else if (maxAlt >= 1800) {
-      caution(tx('Season & altitude'), tx('Tops out around {alt} m. Snow lingers into early summer and weather turns quickly.', { alt: maxAlt }), 'altitude');
+      caution(tx('High ground'), tx('Up to {alt} m. Snow can last into early summer and the weather changes fast.', { alt: isItalian() ? num(maxAlt) : Number(maxAlt).toLocaleString('en-GB') }), 'altitude');
     }
     // Seasonal risks to dogs that apply this month (data/dog-seasons.json),
     // each with the months and where they come from.
@@ -723,12 +724,19 @@
       box.innerHTML = '<p class="safety-clear">' + tx('No additional route cautions are highlighted. Continue to check live weather and local signs.') + '</p>';
       return;
     }
+    // One short paragraph per card: the advice, then the walk's own notes as
+    // sentences. No bullet lists, so every card reads the same way.
+    const sentence = text => {
+      const clean = String(text || '').trim();
+      if (!clean) return '';
+      const capital = clean.charAt(0).toUpperCase() + clean.slice(1);
+      return /[.!?]$/.test(capital) ? capital : capital + '.';
+    };
+    const rowText = r => [r.sub, ...r.items].map(sentence).filter(Boolean).join(' ');
     const rowMarkup = r => `
       <div class="safety-row is-caution"${r.guideId ? ` data-guide-id="${esc(r.guideId)}"` : ''}>
         <span class="pill">${tx('Caution')}</span>
-        <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small>${r.items.length
-          ? `<ul class="safety-row-items">${r.items.map(entry => `<li>${esc(entry)}</li>`).join('')}</ul>`
-          : ''}</span>
+        <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(rowText(r))}</small></span>
       </div>`;
     box.innerHTML = rows.map(rowMarkup).join('');
     // A repaint drops the guide links trail-recommendation.js added; it adds
@@ -789,7 +797,7 @@
       ? window.DoloPawsTrailRouteRefs.writtenDirections(t)
       : { written:false };
     // Same sentence as DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE, written out so it can be translated.
-    const auditDirectionsMarkup = `<div class="s"><p><b>${tx('Directions:')}</b> ${esc(trailWords(auditDirections.text || ''))}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? tx('From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.') : '')}</p></div>`;
+    const auditDirectionsMarkup = `<div class="s"><p><b>${tx('Directions:')}</b> ${esc(trailWords(auditDirections.text || ''))}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? tx('We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.') : '')}</p></div>`;
     const noRouteNumbers = '<div class="s"><p><b>' + tx('Trail numbers:') + '</b> ' + tx('No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.') + '</p></div>';
     // The guidance labels are compared and passed on in English; they are
     // translated only where they are printed.

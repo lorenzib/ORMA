@@ -156,11 +156,32 @@ describe('Important for your dog', () => {
     expect(trust.surfaceAssessment(TRAIL)).toBeNull();
   });
 
-  test('the surface row says what is underfoot, then each caution', () => {
+  test('the ground row says what is underfoot, then each rough spot', () => {
     const rough = { ...TRAIL, terrainRank:1, terrainType:'Rocky path: roots and scree', surfaceHazards:['Loose scree below the col', 'Village streets with traffic'] };
     const surface = trust.surfaceAssessment(rough);
-    expect(surface.detail).toBe('Underfoot: rocky path, roots and scree. Check pads at breaks.');
+    expect(surface.detail).toBe('Rocky path, roots and scree. Check paws at breaks.');
     expect(surface.items).toEqual(['Loose scree below the col']);
+  });
+
+  test('mapped surface tags read as plain words, without the data source', () => {
+    expect(trust.plainGround('Sparsely mapped: unpaved (50%), compacted gravel (50%), from OSM surface data')).toBe('Mostly dirt and gravel');
+    expect(trust.plainGround('Partially mapped: natural ground (36%), paved (29%), gravel (21%), from OSM surface data')).toBe('Mostly dirt, tarmac and gravel');
+    expect(trust.plainGround('Sparsely mapped: paved (83%), grass (17%), metal walkway (0%), from OSM surface data')).toBe('Mostly tarmac');
+    expect(trust.plainGround('Surface not yet field-verified')).toBe('Mixed ground');
+  });
+
+  test('each recorded note sits under the card it is about', () => {
+    const colli = { ...TRAIL, terrainRank:2, surfaceHazards:[
+      'Unpaved military tracks open to farm and forestry vehicles',
+      'WWI trenches, caverns and ruins beside the path; tunnel roofs are unsafe',
+      'Small stream crossings without bridges',
+      'Cows graze on the Plätzwiese',
+    ] };
+    expect(trust.trafficAssessment(colli).items).toEqual(['Unpaved military tracks open to farm and forestry vehicles']);
+    expect(trust.surfaceAssessment(colli).items).toEqual(['Small stream crossings without bridges']);
+    expect(trust.livestockAssessment(colli, '').items).toEqual(['Cows graze on the Plätzwiese']);
+    expect(trust.livestockAssessment(colli, '').detail).not.toMatch(/guardian/i);
+    expect(trust.alongTheWayAssessment(colli).items).toEqual(['WWI trenches, caverns and ruins beside the path; tunnel roofs are unsafe']);
   });
 });
 
@@ -176,7 +197,7 @@ describe('"Today is cool enough" only when heat was a question', () => {
   const SENSITIVE = { ...ORDINARY, traits:{ heatSensitive:true } };
   const run = (dog, conditions) => engine.calculateRecommendation({ dog, trail:BRAIES, currentConditions:conditions });
   const shown = result => result.positiveReasons.map(entry => entry.code).includes('conditions.heat.low');
-  const fits = result => decision.present(result, { dogName:'Teo' }).fits;
+  const fits = result => decision.present(result, { dogName:'Teo' }).factorRows.filter(row => row.tone === 'ok').map(row => row.detail);
 
   test('the snapshot carries the walk day at the trailhead', () => {
     expect(day([8, 9], '2026-10-30T09:00').date).toBe('2026-10-30');
@@ -192,7 +213,7 @@ describe('"Today is cool enough" only when heat was a question', () => {
     const october = run(ORDINARY, day([4, 6, 8, 9, 9, 8], '2026-10-30T09:00'));
     expect(shown(october)).toBe(false);
     expect(october.positiveReasons.map(entry => entry.code)).not.toContain('trail.heat.low');
-    expect(fits(october)).not.toContain('Today is cool enough.');
+    expect(fits(october)).not.toContain('Cool enough today');
   });
 
   test('autumn and winter never list it, even on a mild day', () => {
@@ -203,7 +224,7 @@ describe('"Today is cool enough" only when heat was a question', () => {
   test('summer lists it whenever the day stays cool, for any dog', () => {
     const july = run(ORDINARY, day([10, 12, 14, 15, 14], '2026-07-15T08:00'));
     expect(shown(july)).toBe(true);
-    expect(fits(july)).toContain('Today is cool enough.');
+    expect(fits(july)).toContain('Cool enough today');
   });
 
   test('a warm spring day just under a heat-sensitive dog\'s line still lists it', () => {
@@ -211,7 +232,7 @@ describe('"Today is cool enough" only when heat was a question', () => {
     expect(warm.dayMaxC).toBeLessThan(engine.COOL_DAY_MAX_C);
     const result = run(SENSITIVE, warm);
     expect(shown(result)).toBe(true);
-    expect(fits(result)).toContain('Today is cool enough.');
+    expect(fits(result)).toContain('Cool enough today');
   });
 
   test('an ordinary spring day does not, and the score does not move', () => {

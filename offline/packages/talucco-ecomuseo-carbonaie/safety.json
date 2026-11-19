@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "talucco-ecomuseo-carbonaie",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.4,
+    "ascentM": 448,
+    "highestPointM": 1095,
+    "expectedDuration": "3 h",
+    "difficulty": "Hard",
+    "shadePercent": 100
+  },
+  "trailhead": {
+    "lat": 44.948567,
+    "lng": 7.290615,
+    "label": "Talucco (Pinerolo), the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Path 060A under the Rocca Laubert is steeper and rougher at first, a mountain path (T2): take it slowly and keep your dog close.",
+    "Climbing crags above path 060A: watch for falling stones and climbers’ gear.",
+    "The first 100 m are on the provincial road through Talucco: keep your dog on a short lead there.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Charcoal Kilns Path, Talucco": "Sentiero delle Carbonaie al Talucco",
+    "Talucco (Pinerolo), the board’s start": "Talucco (Pinerolo), la partenza ufficiale",
+    "Path 060A under the Rocca Laubert is steeper and rougher at first, a mountain path (T2): take it slowly and keep your dog close.": "Il sentiero 060A sotto la Rocca Laubert è all’inizio più ripido e sconnesso, un sentiero di montagna (T2): procedi piano e tieni il cane vicino.",
+    "Climbing crags above path 060A: watch for falling stones and climbers’ gear.": "Pareti di arrampicata sopra il sentiero 060A: attenzione a sassi che cadono e all’attrezzatura degli arrampicatori.",
+    "The first 100 m are on the provincial road through Talucco: keep your dog on a short lead there.": "I primi 100 m sono sulla strada provinciale al Talucco: lì tieni il cane al guinzaglio corto."
+  }
+}

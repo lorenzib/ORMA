@@ -43,14 +43,16 @@ function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && wi
   }
 
   // "7.5 km · 150 m climb · 2 h", as on Explore's cards. A one-way walk is
-  // shown there and back (route-return.js).
+  // shown one way, as its source gives it, and says so (route-return.js).
   function meta(t){
     const routeReturn = window.ORMARouteReturn;
-    const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+    const oneWayWalk = !!(routeReturn && routeReturn.isOneWay(t));
+    const shown = oneWayWalk ? routeReturn.forView(t) : t;
     const back = shown !== t;
     // One decimal: some trails carry 9.528.
     const km = value => Math.round(Number(value) * 10) / 10;
-    const parts = [back ? tx('{km} km there and back', { km:km(shown.distance) }) : `${num(km(t.distance))} km`];
+    const parts = [back ? tx('{km} km there and back', { km:km(shown.distance) })
+      : oneWayWalk ? tx('{km} km one way', { km:num(km(t.distance)) }) : `${num(km(t.distance))} km`];
     if(Number.isFinite(shown.elevation)) parts.push(tx('{m} m climb', { m:shown.elevation }));
     if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? num(routeReturn.formatDuration(shown.hours)) : `${num(shown.hours)} h`}`);
     return parts.join(' · ');
@@ -62,7 +64,7 @@ function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && wi
     const ov = profile && typeof effectiveOverrides === 'function'
       // eslint-disable-next-line no-undef
       ? effectiveOverrides(profile, null)
-      : { terrain:'1', distance:'10', heatSensitive:false };
+      : ((window.DoloPawsScoring && window.DoloPawsScoring.GUEST_SUBJECT) || {});
     const words = window.DoloPawsTrailSeasonWords;
     const verdicts = window.OrmaMatchVerdict;
     const decision = window.DoloPawsRecommendationDecision;

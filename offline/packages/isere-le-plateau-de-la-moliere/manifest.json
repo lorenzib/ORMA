@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "isere-le-plateau-de-la-moliere",
   "name": "Molière plateau loop above Autrans",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.041Z",
+  "version": "2026.11.19-beta.4",
+  "generatedAt": "2026-11-19T15:44:52.586Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 375820,
+  "packageBytes": 377942,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.17589,
@@ -200,16 +200,16 @@
       "required": true,
       "label": "Molière plateau loop above Autrans OSM offline map",
       "url": "map.svg",
-      "bytes": 115035,
-      "sha256": "dfec0fe3c9df6eee6b7b77300da01366ff088ece6b244d3d2b916c5d541d0526"
+      "bytes": 115951,
+      "sha256": "096bbee160ca71c340f0898e4bbb681c5932799fc669566c8b6f12b305754b7c"
     },
     {
       "role": "route",
       "required": true,
       "label": "Molière plateau loop above Autrans route",
       "url": "route.geojson",
-      "bytes": 30814,
-      "sha256": "bca81f85f312341b96676b0fad0dd263139ac62abfb8aa4c0c5255b54bae659e"
+      "bytes": 32020,
+      "sha256": "282a2727d9e851672ba6cef0f79e801f855d807939d231e0dbbad15264a1e562"
     },
     {
       "role": "footpath-network",
@@ -217,7 +217,7 @@
       "label": "Molière plateau loop above Autrans routable footpath corridor",
       "url": "footpath-network.json",
       "bytes": 105004,
-      "sha256": "b5ed3aad380b5a46d27182e2972e5ac8ebdd06a57fa69af41f9b5cf1fae79113"
+      "sha256": "8ba1361fc194ac84a10b435f5a56d1bbc19b0b645ab92288c9ee45fc1f4c92f0"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Molière plateau loop above Autrans safety information",
       "url": "safety.json",
       "bytes": 2816,
-      "sha256": "b9334965b9b21ec7a7d55078f614563c5aaf8ec586b84bd1c594c7f3d2959262"
+      "sha256": "44f21e80848c46ee143b199957582d7e2070bb642e86909afa7136c425a1d5d2"
     }
   ]
 }

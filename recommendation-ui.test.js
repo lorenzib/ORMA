@@ -31,9 +31,13 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).toContain('root.dataset.scoringVersion = view.scoringVersion');
   });
 
-  test('only a strong option gets the green tick on the fine line', () => {
-    expect(controller).toContain("view.fineTone === 'reassure' ? '' : ' is-neutral'");
-    expect(html).toContain('.recommendation-fine.is-neutral::before{content:none;}');
+  test('the breakdown shows short reasons and fit chips, with no "not checked" list', () => {
+    expect(controller).toContain('view.shortReasons');
+    expect(controller).toContain('view.fitChips');
+    expect(html).toContain('.recommendation-fits li{');
+    expect(controller).not.toContain('recommendation-unchecked');
+    // The fold line and its bare "fine" chip are gone.
+    expect(controller).not.toContain('recommendation-fine');
   });
 
   test('conclusion, reasons, cautions, and unknowns come from one presentation', () => {
@@ -115,7 +119,7 @@ describe('UX-04 canonical recommendation journey', () => {
       positiveReasons:[{ message:'Distance is within range.' }],
       cautions:[{ code:'trail.shade.low', message:'Shade is limited.' }],
       hardStops:[],
-      unknowns:[{ message:'Access is not reviewed.' }],
+      unknowns:[{ code:'trail.dog-access.unknown', message:'Access is not reviewed.' }],
     }));
     window.DoloPawsAuthReady = true;
     window.DoloPawsOffline = null;
@@ -152,9 +156,61 @@ describe('UX-04 canonical recommendation journey', () => {
     // Internal unknown-count and scoring language stay out of customer copy.
     expect(document.body.textContent).not.toContain('trail fact not yet verified');
     expect(document.body.textContent).not.toContain('Canonical scoring');
+    // Unknown dog rules are not said at all, and there is no separate
+    // "not checked yet" list any more.
+    expect(block.textContent).not.toContain('dog rules');
     expect(block.textContent).not.toContain('Access is not reviewed.');
+    expect(block.querySelector('.recommendation-unchecked')).toBeNull();
     expect(document.getElementById('heroVerdict').textContent)
       .toBe('Good with care in an unpersonalized planning view.');
     expect(window.recommendTrail).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('the trail page breakdown: short reasons, fit chips, points one tap away', () => {
+  const controller = fs.readFileSync(path.join(__dirname, 'trail-recommendation.js'), 'utf8');
+  const slice = (start, end) => controller.slice(controller.indexOf(start), controller.indexOf(end));
+  // eslint-disable-next-line no-new-func
+  const breakdown = new Function(
+    `${slice('  function esc(', '  function tr(')}\n${slice('  function breakdown(', '  function sections(')}\nreturn breakdown;`
+  )();
+  const tr = (key, fallback, vars) => Object.keys(vars || {})
+    .reduce((out, name) => out.split(`{${name}}`).join(vars[name]), fallback);
+  const view = {
+    score:82, breakdownFor:'Teo', breakdown:[{}, {}, {}],
+    shortReasons:[
+      { text:'Steeper than Teo likes, up to 26% in places.', tone:'cost' },
+      { text:'We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.', tone:'note' },
+    ],
+    fitChips:['6 km', '330 m climb', 'No drops'],
+    factorRows:[
+      { topic:'Steepness', tone:'cost', points:'−10' },
+      { topic:'Distance', tone:'ok', points:'0' },
+      { topic:'Climb', tone:'ok', points:'0' },
+      { topic:'Drops', tone:'ok', points:'0' },
+    ],
+  };
+
+  test('the reasons are one line each, with no points beside them', () => {
+    const html = breakdown(view, tr);
+    const reasons = html.slice(html.indexOf('<ul class="recommendation-reasons">'), html.indexOf('</ul>'));
+    for(const reason of view.shortReasons) expect(reasons).toContain(reason.text.replace('’', '’'));
+    expect(reasons).toContain('class="is-note"');
+    expect(reasons).not.toMatch(/−\d/);
+  });
+
+  test('what fits is one row of chips under "Fits Teo"', () => {
+    const html = breakdown(view, tr);
+    const fits = html.slice(html.indexOf('<div class="recommendation-fits">'));
+    expect(fits).toMatch(/^<div class="recommendation-fits"><strong>Fits Teo<\/strong><ul><li>6 km<\/li><li>330 m climb<\/li><li>No drops<\/li><\/ul>/);
+  });
+
+  test('a closed "How the score adds up" list still holds every factor', () => {
+    const html = breakdown(view, tr);
+    const points = html.slice(html.indexOf('<details class="recommendation-points">'));
+    expect(points).toMatch(/^<details class="recommendation-points"><summary>How the score adds up<\/summary>/);
+    expect(points.match(/<li>/g)).toHaveLength(4);
+    expect(points).toContain('−10');
+    expect(points).toContain('How ORMA scores a walk');
   });
 });

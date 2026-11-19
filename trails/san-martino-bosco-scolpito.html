@@ -35,6 +35,15 @@
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
+  .sp-route-view{margin:18px 0 26px;}
+  .sp-route-view .sp-facts{margin:12px 0 8px;}
+  .sp-view-btn{display:inline-block;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid #9AA79C;color:#2E4034;cursor:pointer;}
+  .sp-view-btn:first-of-type{border-radius:999px 0 0 999px;}
+  .sp-view-btn + .sp-view-input + .sp-view-btn{border-left:none;border-radius:0 999px 999px 0;}
+  .sp-view-input:checked + .sp-view-btn{background:#2E4034;border-color:#2E4034;color:#fff;}
+  .sp-view-input:focus-visible + .sp-view-btn{outline:2px solid #2C5C34;outline-offset:2px;}
+  #spViewOneWay:not(:checked) ~ .sp-facts--one-way,#spViewOneWay:not(:checked) ~ .sp-view-note--one-way,
+  #spViewBack:not(:checked) ~ .sp-facts--back,#spViewBack:not(:checked) ~ .sp-view-note--back{display:none;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
@@ -176,7 +185,7 @@
       <div class="sp-photo-credit__body"><a href="https://www.mapillary.com/app/?pKey=1109854742824287" rel="noopener nofollow">The lane by the start in Pieve di Bono-Prezzo</a> by zonta72 <span aria-hidden="true">·</span> <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noopener">CC BY-SA 4.0</a> <span aria-hidden="true">·</span> Cropped for display.</div>
     </details></figure>
   
-  <p>A walk above Pieve di Bono-Prezzo through woods full of carved wooden sculptures to the ruined church of San Martino, with a view over the Valle del Chiese. The APT lists 4.4 km and 250 m of ascent, one way.</p>
+  <p>A walk above Pieve di Bono-Prezzo through woods full of carved wooden sculptures to the ruined church of San Martino, with a view over the Valle del Chiese. The APT lists 4.4 km and 250 m of ascent; the walk comes back down into Cologna, about 270 m from the car park.</p>
 
   <div class="sp-facts">
       <div class="sp-fact"><div class="sp-fact-k">Distance</div><div class="sp-fact-v">4.4 km</div></div>
@@ -239,7 +248,7 @@
     <p>Car park by the information office below Cologna, the APT’s start</p>
     <h2>How to follow this route</h2>
     <p><b>Directions:</b> Not a numbered route: from the car park by the information office below Cologna, a first part all uphill (about 250 m) on lanes and forest paths lined with wooden sculptures of animals and fantastic figures by local carvers; a wide glade in open woodland with a carved wooden fountain, benches and tables; on to the ruins of the church of San Martino, with a view over the Valle del Chiese to Castel Romano; then all downhill, steep and narrow for a stretch just after the church.</p>
-    <p class="sp-route-source">From ORMA's route audit of the official route description. Follow the mapped ORMA line and local signs.</p>
+    <p class="sp-route-source">We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.</p>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> Water on trail</h2>
     <ul><li>km 3 · Drinking fountain</li><li>km 3.9 · Drinking fountain</li><li>km 4.1 · Drinking fountain</li></ul>
     

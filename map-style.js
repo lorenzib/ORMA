@@ -764,22 +764,21 @@
       };
     }
     return {
-      // Two thin white edges, not a white band: the gap is the corridor's own
-      // width, so nothing white is painted under the walk and the path,
-      // contours and terrain inside the corridor keep their colours.
+      // A thin solid line in the match colour on a slightly wider white edge.
+      // The wide pale corridor it replaces (#1190, #1194) relied on the dashed
+      // waymarked path showing down its middle; most walks follow no numbered
+      // route, so the band read as a blob and bends and out-and-back legs were
+      // hard to follow. The line still sits under the dashed network, so a
+      // waymarked path and its numbers draw over it where there is one.
       casing: {
         'line-color': config.casingColor || '#FFFFFF',
-        'line-opacity': 0.9,
-        'line-width': widthRamp(1.5, 2, 2.5, 3, scale),
-        'line-gap-width': widthRamp(7, 12, 18, 26, scale),
+        'line-opacity': 0.95,
+        'line-width': widthRamp(4, 5.5, 7, 9, scale),
       },
-      // Solid and pale on purpose: it sits under the contours and the dashed
-      // path, so they read through it, and a solid line has no darker knots
-      // where the walk overlaps itself.
       line: {
-        'line-color': paleColour(color),
+        'line-color': color,
         'line-opacity': 1,
-        'line-width': widthRamp(7, 12, 18, 26, scale),
+        'line-width': widthRamp(2, 2.75, 3.75, 5, scale),
       },
     };
   }
@@ -810,10 +809,50 @@
     return { casing: id + '-casing', line: id };
   }
 
-  // On satellite the photo itself shows the path, so the white casing goes
-  // and the corridor becomes a light tint: still clearly "your walk", but
-  // the real track shows through it.
-  const ROUTE_LINE_ON_IMAGERY = { casing: 0, line: 0.3 };
+  /**
+   * The walk-in from the start flag to the walk (trail.accessPath): thinner
+   * than the walk and dashed, in the same colour on a narrow white edge, and
+   * drawn under it, so it reads as the way to the walk, not part of it.
+   * Pass beforeId as the walk's casing layer to keep it underneath.
+   */
+  function accessLinePaint(color, scale) {
+    const s = scale || 1;
+    return {
+      casing: {
+        'line-color': '#FFFFFF',
+        'line-opacity': 0.9,
+        'line-width': widthRamp(2.5, 3.5, 4.5, 6, s),
+      },
+      line: {
+        'line-color': color,
+        'line-opacity': 0.95,
+        'line-width': widthRamp(1.25, 1.75, 2.25, 3, s),
+        'line-dasharray': [1.6, 1.4],
+      },
+    };
+  }
+
+  function addAccessLine(map, options) {
+    const config = options || {};
+    const source = config.source;
+    const id = config.id;
+    if (!map || !source || !id || map.getLayer(id)) return null;
+    const paint = accessLinePaint(config.color || '#2E4034', config.scale);
+    const beforeId = config.beforeId && map.getLayer(config.beforeId) ? config.beforeId : undefined;
+    map.addLayer({
+      id: id + '-casing', type: 'line', source,
+      layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: paint.casing,
+    }, beforeId);
+    map.addLayer({
+      id, type: 'line', source,
+      layout: { 'line-join': 'round', 'line-cap': 'butt' }, paint: paint.line,
+    }, beforeId);
+    return { casing: id + '-casing', line: id };
+  }
+
+  // On satellite the white edge goes and the thin line stays solid: it is
+  // narrow enough that the track in the photo still shows beside it.
+  const ROUTE_LINE_ON_IMAGERY = { casing: 0, line: 1 };
 
   /**
    * Fade the walk (a line made by addRouteLine) and our hiking routes over
@@ -967,6 +1006,8 @@
     calmBasemap,
     routeLinePaint,
     addRouteLine,
+    addAccessLine,
+    accessLinePaint,
     setLinesOnImagery,
     ROUTE_LINE_ON_IMAGERY,
     HIKING_LINE_OPACITY,

@@ -16,8 +16,8 @@
 .geo-filter-control .li-region-btn,
 .geo-filter-control .area-select-trigger{
   width:100%;
-  height:46px;
-  min-height:46px;
+  height:42px;
+  min-height:42px;
   box-sizing:border-box;
   display:flex;
   align-items:center;
@@ -68,6 +68,10 @@
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+/* Until a place is chosen a picker says only what it picks ("COUNTRY");
+   once chosen it says only the choice ("Italy"). Same on every page. */
+.geo-filter-control .area-select-trigger--kicker-until-selected:not(.area-select-trigger--has-selection) .area-select-trigger__label{display:none;}
+.geo-filter-control .area-select-trigger--kicker-until-selected.area-select-trigger--has-selection .area-select-trigger__kicker{display:none;}
 .geo-filter-control .area-select-trigger svg{
   width:18px;
   height:18px;
