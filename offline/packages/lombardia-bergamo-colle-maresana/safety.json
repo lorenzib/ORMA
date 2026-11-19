@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lombardia-bergamo-colle-maresana",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.8,
+    "ascentM": 210,
+    "highestPointM": 544,
+    "expectedDuration": "1 h 30 min",
+    "difficulty": "Moderate",
+    "shadePercent": 90
+  },
+  "trailhead": {
+    "lat": 45.721252,
+    "lng": 9.679477,
+    "label": "The foot of the steps on via Quintino Alto, Bergamo, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Rocky stretches on a slope of about 15%: take care on the way down, especially after rain.",
+    "A popular path close to the city, with runners and families: keep your dog close.",
+    "The start is on a residential street: keep your dog on a short lead there.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Bergamo to the Colle della Maresana": "Da Bergamo al Colle della Maresana, andata e ritorno",
+    "The foot of the steps on via Quintino Alto, Bergamo, the published start": "La base della scalinata in via Quintino Alto, Bergamo, la partenza indicata dal portale",
+    "Rocky stretches on a slope of about 15%: take care on the way down, especially after rain.": "Tratti rocciosi con una pendenza di circa il 15%: attenzione in discesa, soprattutto dopo la pioggia.",
+    "A popular path close to the city, with runners and families: keep your dog close.": "Un sentiero frequentato vicino alla città, con podisti e famiglie: tenete il cane vicino.",
+    "The start is on a residential street: keep your dog on a short lead there.": "La partenza è su una strada residenziale: lì tenete il cane al guinzaglio corto."
+  }
+}

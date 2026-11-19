@@ -9761,6 +9761,42 @@
           "accessedAt": "2026-11-18"
         }
       }
+    },
+    "lombardia-reggetto-piani-di-artavaggio": {
+      "highPoint": 1585,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1585
+      }
+    },
+    "lario-asso-funghi-di-terra": {
+      "highPoint": 844,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 844
+      }
+    },
+    "lombardia-bergamo-colle-maresana": {
+      "highPoint": 544,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 544
+      }
     }
   }
 }

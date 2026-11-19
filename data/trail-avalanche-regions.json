@@ -998,6 +998,13 @@
       ],
       "highPoint": 878
     },
+    "lario-asso-funghi-di-terra": {
+      "regions": [
+        "IT-25-CO-01",
+        "IT-25-LC-01"
+      ],
+      "highPoint": 844
+    },
     "lario-brunate-e-le-sue-chiese": {
       "regions": [
         "IT-25-LC-01"
@@ -1047,6 +1054,19 @@
         "IT-25-LC-01"
       ],
       "highPoint": 657
+    },
+    "lombardia-bergamo-colle-maresana": {
+      "regions": [
+        "IT-25-BG-02"
+      ],
+      "highPoint": 544
+    },
+    "lombardia-reggetto-piani-di-artavaggio": {
+      "regions": [
+        "IT-25-BG-02",
+        "IT-25-LC-01"
+      ],
+      "highPoint": 1585
     },
     "luesen-panoramaweg": {
       "regions": [
