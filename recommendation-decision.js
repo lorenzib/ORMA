@@ -127,8 +127,8 @@
    */
   const CARD_SENTENCES = Object.freeze({
     'trail.terrain.above-tolerance': vars => (vars.steepest
-      ? tx('Steeper than {name} is up to: the steepest stretch is about {steepest}%, and {name} is best on {limit}.')
-      : tx('Steeper than {name} is up to: {name} is best on {limit}.')),
+      ? tx('Steeper than {name} likes, up to {steepest}% in places.')
+      : tx('Steeper than {name} likes.')),
     'trail.distance.above-range': () => tx('{distance} km is a long way for {name}.'),
     'trail.ascent.above-range': () => tx('{ascent} m of climbing is a lot for {name}.'),
     'trail.descent.joint-load': () => tx('The long way down is hard on {name}’s joints.'),
@@ -154,8 +154,8 @@
     'score.floor': () => tx('This walk asks too much of {name}, so the score stays at its lowest.'),
   });
 
-  // A list of route cautions becomes the first one, as the board wrote it, and
-  // a count of the rest: the trail page has them all. The caution is the
+  // A list of route cautions becomes the first one, as the board wrote it:
+  // the trail page has them all. The caution is the
   // trail's own English, so an Italian reader gets it only where the trail's
   // Italian text is loaded; otherwise the card counts them, rather than drop an
   // English sentence into an Italian card.
@@ -171,13 +171,9 @@
         ? tr('recommendation.card.surface-hazards.count.one', tx('There’s one thing to watch for on this route. The trail page says what.'), extra)
         : tr('recommendation.card.surface-hazards.count.many', tx('There are {count} things to watch for on this route. The trail page lists them.'), { ...extra, count });
     }
-    const more = count - 1;
-    const lead = `${local.replace(/[.;:]+$/, '')}.`;
-    if(more < 1) return lead;
-    const tail = more === 1
-      ? tr('recommendation.card.surface-hazards.more.one', tx('The trail page has one more.'), extra)
-      : tr('recommendation.card.surface-hazards.more.many', tx('The trail page has {more} more.'), { ...extra, more });
-    return `${lead} ${tail}`;
+    // The card links to the trail page, which lists the rest, so the card no
+    // longer counts them ("The trail page has one more.").
+    return `${local.replace(/[.;:]+$/, '')}.`;
   }
 
   // The trail page lists every caution, so it keeps the whole list and only
@@ -187,7 +183,7 @@
     const hazards = cautionWords(String(vars.hazards || '').trim());
     if(!hazards) return translatedMessage(item, null, extra);
     if(Number(vars.count) === 1) return `${hazards.replace(/[.;:]+$/, '')}.`;
-    return tr('recommendation.breakdown.surface-hazards.many', tx('Watch out for: {hazards}.'), { ...extra, hazards });
+    return `${hazards.replace(/[.;:]+$/, '')}.`;
   }
 
   // forPage 'card' (the homepage card) or 'trail' (the trail page breakdown).
@@ -288,6 +284,43 @@
     'trail.crowding.quiet': () => tx('Usually quiet'),
     'trail.sightlines.open': () => tx('Open, you can see ahead'),
   });
+
+  // The trail page says what fits in one line of short chips ("6 km",
+  // "330 m climb", "No drops") rather than a row each: the reader needs to see
+  // that it fits, not read why. A fit with no chip falls back to its topic.
+  const FIT_CHIPS = Object.freeze({
+    'trail.distance.within-range': () => tx('{distance} km'),
+    'trail.ascent.within-range': () => tx('{ascent} m climb'),
+    'trail.duration.within-preference': () => tx('Fits your time'),
+    'trail.exposure.none-known': () => tx('No drops'),
+    'trail.surface-hazards.none-known': () => tx('Easy underfoot'),
+    'trail.water.reviewed': () => tx('Water on the way'),
+    'trail.heat.low': () => tx('Stays cool'),
+    'trail.shade.good': () => tx('Plenty of shade'),
+    'conditions.heat.low': () => tx('Cool today'),
+    'trail.season.inside': () => tx('In season'),
+    'trail.dog-access.allowed': () => tx('Dogs allowed'),
+    'trail.dog-access.leash': () => tx('Dogs on a lead'),
+    'trail.livestock.none': () => tx('No livestock'),
+    'trail.wildlife.low': () => tx('Little wildlife'),
+    'trail.road.none': () => tx('No roads'),
+    'trail.crowding.quiet': () => tx('Usually quiet'),
+    'trail.sightlines.open': () => tx('Clear views ahead'),
+  });
+  function fitChip(entry, source, tr, extra){
+    const vars = { ...extra, ...(source.vars || {}) };
+    if(entry.code === 'trail.terrain.within-tolerance'){
+      const level = steepnessLevel(source.vars && source.vars.terrain);
+      if(level) return level;
+    }
+    const key = Object.keys(FIT_CHIPS).find(code => entry.code === code || entry.code.startsWith(`${code}.`));
+    if(!key) return rowTopic(entry.code);
+    return tr(`recommendation.chip.${key}`, FIT_CHIPS[key](), vars);
+  }
+  // Of everything the score could not look at, only these change what an
+  // owner does before setting out. The rest ("route details are based on map
+  // data") is what the safety notes further down the page already say.
+  const ACTIONABLE_UNKNOWNS = Object.freeze(['trail.dog-access.unknown']);
 
   function steepnessFact(vars){
     const level = steepnessLevel(vars && vars.terrain);
@@ -487,6 +520,17 @@
     // What the score could not look at, said apart from the rows: an unknown
     // costs nothing, so a row for it would sit beside a 100% as if it agreed.
     const notChecked = cardTrailUnknowns.slice(0, 5);
+    // The short version the trail page and card now show: the reasons that
+    // lower the score (or stop it), in the order above, then the one or two
+    // unknowns an owner acts on; and what fits, as chips.
+    const actionableUnknowns = cardMessages(rawUnknowns.filter(item =>
+      ACTIONABLE_UNKNOWNS.includes(item.messageKey || item.code)));
+    const shortReasons = factorRows.filter(row => row.tone !== 'ok').map(row => ({ text:row.detail, tone:row.tone }))
+      .concat(actionableUnknowns.map(text => ({ text, tone:'note' })));
+    const fitChips = breakdownFactors
+      .filter(entry => entry.kind === 'positive')
+      .map(entry => fitChip(entry, allFactors.find(factor => factor.code === entry.code) || entry, tr, extra))
+      .filter((chip, index, all) => chip && all.indexOf(chip) === index);
 
     // The card's verdict line (VERDICT_PHRASES). A low match gets none: its
     // reasons are the cautions, and a list of what is fine would contradict it.
@@ -507,6 +551,9 @@
     return {
       factorRows,
       notChecked,
+      shortReasons,
+      fitChips,
+      actionableUnknowns,
       cardVerdict,
       confidenceLabel:confidenceWords(recommendation.confidence, translate) || null,
       dogGapFields,

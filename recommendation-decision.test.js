@@ -289,13 +289,13 @@ describe('steepness said in words, never as a grade', () => {
   test('with the figure when the profile gives one', () => {
     const view = steep({ terrain:2, tolerance:0, steepest:22 });
     expect(view.factorRows[0].detail)
-      .toBe('Steeper than Teo is up to: the steepest stretch is about 22%, and Teo is best on gentle slopes.');
+      .toBe('Steeper than Teo likes, up to 22% in places.');
     expect(view.cardCautions[0]).toBe(view.factorRows[0].detail);
   });
 
   test('and without it when there is none', () => {
     expect(steep({ terrain:2, tolerance:1, steepest:null }).factorRows[0].detail)
-      .toBe('Steeper than Teo is up to: Teo is best on moderate slopes.');
+      .toBe('Steeper than Teo likes.');
   });
 
   test('no grade or tolerance number reaches the reader', () => {
