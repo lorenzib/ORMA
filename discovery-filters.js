@@ -259,9 +259,9 @@
         : tr('filters.chip.upTo', 'Up to {km} km', { km: state.distance }),
       difficulty: tr('filters.chip.difficulty', '{difficulty} route', { difficulty: state.difficulty }),
       terrain: {
-        soft: tr('filters.chip.terrainSoft', 'Gentle surfaces only'),
-        mixed: tr('filters.chip.terrainMixed', 'Up to mixed terrain'),
-        rocky: tr('filters.chip.terrainRocky', 'Rocky terrain is okay'),
+        soft: tr('filters.chip.terrainSoft', 'Gentle slopes only'),
+        mixed: tr('filters.chip.terrainMixed', 'Up to moderately steep'),
+        rocky: tr('filters.chip.terrainRocky', 'Steep slopes are okay'),
       }[state.terrain],
       water: tr('filters.chip.water', 'Water point listed'),
       heat: state.heat === 'low-reviewed' ? tr('filters.chip.heatLow', 'Lower heat exposure')
@@ -311,13 +311,13 @@
     if(state && state.terrain === 'soft'){
       candidates.push({
         key:'terrain',
-        label: tr('filters.recover.allowMixed', 'Allow mixed terrain'),
+        label: tr('filters.recover.allowMixed', 'Allow moderately steep walks'),
         state:{ ...state, terrain:'mixed', page:1 },
       });
     }else if(state && state.terrain === 'mixed'){
       candidates.push({
         key:'terrain',
-        label: tr('filters.recover.allowRocky', 'Allow known rocky terrain'),
+        label: tr('filters.recover.allowRocky', 'Allow steep walks'),
         state:{ ...state, terrain:'rocky', page:1 },
       });
     }

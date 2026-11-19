@@ -1563,6 +1563,14 @@ function renderTrail(t){
     const journalReturn = encodeURIComponent(`trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(t.id) : (t.id)))}`);
     logWalkBtn.href = `journal.html?trail=${encodeURIComponent(t.id)}&from=${journalReturn}`;
   }
+  // Adjust this walk: the route planner, started from this walk's line
+  // (route-adjust.js). The copy is the reader's own and is never Verified.
+  const adjustWalkBtn = document.getElementById('adjustWalkBtn');
+  if(adjustWalkBtn){
+    const hasLine = Array.isArray(t.path) && t.path.length > 1;
+    adjustWalkBtn.hidden = !hasLine;
+    adjustWalkBtn.href = `route-planner.html?trail=${encodeURIComponent(t.id)}`;
+  }
   // Do not reserve an empty elevation panel for routes without profile data.
   const elevationCard = document.getElementById('tdElevationPanel');
   const hasElevationProfile = Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1;

@@ -121,6 +121,8 @@
       conditions: conditions(profile),
       traits: traits(profile),
       behaviour: behaviour(profile),
+      steepnessLimit: profile.steepnessLimit === 0 || profile.steepnessLimit === 1
+        ? profile.steepnessLimit : null,
     };
   }
 
@@ -131,6 +133,14 @@
     }
     if(/dogs?.{0,30}(?:must|stay|keep).{0,20}(?:on (?:a )?lead|leash)|leash (?:is )?required/i.test(text)){
       return { status: 'leash-required', notes: 'The trail record states that a leash is required.' };
+    }
+    // The walk's dog rules (trail.dogNotes) are the commune's or park's rule,
+    // sourced: "Villnöss requires dogs on a lead of at most 1.5 m on all public
+    // paths…". A lead rule there means dogs are allowed on a lead. The bans
+    // these notes name are partial (hay meadows, a Kneipp pool, playgrounds),
+    // so they never make the whole walk prohibited.
+    if(/\b(?:lead|leash)\b/i.test(String(trail && trail.dogNotes || ''))){
+      return { status: 'leash-required', notes: 'The walk\'s dog rules require a lead.' };
     }
     return { status: 'unknown', notes: null };
   }
