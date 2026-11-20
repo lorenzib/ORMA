@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "iseo-colmi",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.2,
+    "ascentM": 252,
+    "highestPointM": 967,
+    "expectedDuration": "2 h 30 min",
+    "difficulty": "Hard",
+    "shadePercent": 10
+  },
+  "trailhead": {
+    "lat": 45.678319,
+    "lng": 10.135857,
+    "label": "Località Santa Maria del Giogo above Sulzano, by the bar-trattoria, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 1.4 km of the path each way is mountain path (T2): rough grass and stony ground, steeper near Punta dell’Orto; sure footing needed.",
+    "Open grassy ridge with little shade: on a hot day go early and bring plenty of water.",
+    "You cross a road by the closed Trattoria I Colmi: keep your dog on a short lead there.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Santa Maria del Giogo to I Colmi": "Da Santa Maria del Giogo ai Colmi, andata e ritorno",
+    "Località Santa Maria del Giogo above Sulzano, by the bar-trattoria, the published start": "Località Santa Maria del Giogo sopra Sulzano, vicino al bar-trattoria, la partenza indicata",
+    "About 1.4 km of the path each way is mountain path (T2): rough grass and stony ground, steeper near Punta dell’Orto; sure footing needed.": "Circa 1,4 km del sentiero, per ciascun senso, è sentiero di montagna (T2): erba e fondo sassoso, più ripido verso Punta dell’Orto; serve passo sicuro.",
+    "Open grassy ridge with little shade: on a hot day go early and bring plenty of water.": "Crinale erboso aperto con poca ombra: nelle giornate calde partite presto e portate molta acqua.",
+    "You cross a road by the closed Trattoria I Colmi: keep your dog on a short lead there.": "Si attraversa una strada vicino alla Trattoria I Colmi, chiusa: lì tenete il cane al guinzaglio corto."
+  }
+}

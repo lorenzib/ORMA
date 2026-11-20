@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-20T11:18:51.976Z",
+  "generatedAt": "2026-11-20T16:34:29.914Z",
   "regions": {
     "dolomites": {
       "trailCount": 383,
-      "trails": "data/regions/dolomites-trails.js?v=0db8ba4b9e67",
+      "trails": "data/regions/dolomites-trails.js?v=f712df7bba5d",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -71,7 +71,7 @@
         "osm-11828233": "data/trail-details/osm-11828233.js?v=a6940e90948b",
         "osm-11832013": "data/trail-details/osm-11832013.js?v=b7e6091ffc94",
         "osm-11839597": "data/trail-details/osm-11839597.js?v=f2fe7b6428cc",
-        "osm-11855879": "data/trail-details/osm-11855879.js?v=1e435fe2dce6",
+        "osm-11855879": "data/trail-details/osm-11855879.js?v=8926940d5d5a",
         "osm-11860429": "data/trail-details/osm-11860429.js?v=798de20dd136",
         "osm-11891581": "data/trail-details/osm-11891581.js?v=75f7a8c0c2ad",
         "osm-12018939": "data/trail-details/osm-12018939.js?v=2477cb407b78",
@@ -482,8 +482,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 17,
-      "trails": "data/regions/lombardy-trails.js?v=02ac4bec6d2f",
+      "trailCount": 21,
+      "trails": "data/regions/lombardy-trails.js?v=bc35ecbefa8c",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=ba72cffa8ee5",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=1549bacc0a6c",
@@ -501,7 +501,11 @@
         "lario-dal-passo-del-giovo-al-rifugio-sommafiume": "data/trail-details/lario-dal-passo-del-giovo-al-rifugio-sommafiume.js?v=58054bb2867a",
         "lombardia-reggetto-piani-di-artavaggio": "data/trail-details/lombardia-reggetto-piani-di-artavaggio.js?v=3e85eb42bb68",
         "lario-asso-funghi-di-terra": "data/trail-details/lario-asso-funghi-di-terra.js?v=b7e59cd2c93d",
-        "lombardia-bergamo-colle-maresana": "data/trail-details/lombardia-bergamo-colle-maresana.js?v=b7f3a5074d9b"
+        "lombardia-bergamo-colle-maresana": "data/trail-details/lombardia-bergamo-colle-maresana.js?v=b7f3a5074d9b",
+        "iseo-colmi": "data/trail-details/iseo-colmi.js?v=d32af3c00477",
+        "altogarda-santuario-montecastello": "data/trail-details/altogarda-santuario-montecastello.js?v=9aac3de26fc6",
+        "altogarda-valle-cartiere": "data/trail-details/altogarda-valle-cartiere.js?v=0859c9a6bff5",
+        "altogarda-nasce-formaggio-tombea": "data/trail-details/altogarda-nasce-formaggio-tombea.js?v=ebcd7810299f"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -612,7 +616,7 @@
     },
     "switzerland": {
       "trailCount": 21,
-      "trails": "data/regions/switzerland-trails.js?v=8da6e0f31496",
+      "trails": "data/regions/switzerland-trails.js?v=cf5df005703b",
       "details": {
         "engadin-around-lake-st-moritz": "data/trail-details/engadin-around-lake-st-moritz.js?v=fd2ed5887e82",
         "engadin-sils-chaste-peninsula-sils": "data/trail-details/engadin-sils-chaste-peninsula-sils.js?v=b6df69008cd3",
@@ -1109,6 +1113,10 @@
     "lombardia-reggetto-piani-di-artavaggio": "lombardy",
     "lario-asso-funghi-di-terra": "lombardy",
     "lombardia-bergamo-colle-maresana": "lombardy",
+    "iseo-colmi": "lombardy",
+    "altogarda-santuario-montecastello": "lombardy",
+    "altogarda-valle-cartiere": "lombardy",
+    "altogarda-nasce-formaggio-tombea": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1742,6 +1750,10 @@
     "valsusa-foresto-sentiero-ginepri": "juniper-trail-foresto",
     "valsusa-chianocco-orrido-chouque": "orrido-chouque-margrit-chianocco",
     "valsusa-san-giorio-geat-montebenedetto": "geat-montebenedetto-loop-san-giorio",
+    "iseo-colmi": "i-colmi-santa-maria-del-giogo",
+    "altogarda-santuario-montecastello": "santuario-di-montecastello-tignale",
+    "altogarda-valle-cartiere": "valle-delle-cartiere-toscolano-maderno",
+    "altogarda-nasce-formaggio-tombea": "cima-rest-formaggio-tombea-magasa",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2293,6 +2305,10 @@
     "juniper-trail-foresto": "valsusa-foresto-sentiero-ginepri",
     "orrido-chouque-margrit-chianocco": "valsusa-chianocco-orrido-chouque",
     "geat-montebenedetto-loop-san-giorio": "valsusa-san-giorio-geat-montebenedetto",
+    "i-colmi-santa-maria-del-giogo": "iseo-colmi",
+    "santuario-di-montecastello-tignale": "altogarda-santuario-montecastello",
+    "valle-delle-cartiere-toscolano-maderno": "altogarda-valle-cartiere",
+    "cima-rest-formaggio-tombea-magasa": "altogarda-nasce-formaggio-tombea",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

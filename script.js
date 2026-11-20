@@ -1955,6 +1955,9 @@ function initTrailMap(){
     const centre = trailMapInstance.getCenter();
     const view = `lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}`;
     drawLink.href = `route-planner.html?${view}`;
+    // The toolbar's Draw a route opens on the same place.
+    const toolbarDraw = document.getElementById('liDrawRouteBtn');
+    if(toolbarDraw) toolbarDraw.href = drawLink.href;
     // The app plans from the Record tab, which opens the planner here too.
     try{ sessionStorage.setItem('orma-explore-map-view', view); }catch(error){}
   };
@@ -3072,35 +3075,6 @@ function liToggleHeadMenu(button){
   button.setAttribute('aria-expanded', 'true');
 }
 
-// "New: Draw your own route", said once under Record a walk. Seen means any
-// of: closed it, tried it, opened the menu it points at, or used the map's
-// own "Draw a route here". localStorage, so it stays gone next visit.
-const LI_NEW_CALLOUT_KEY = 'orma-new-draw-route-callout-v1';
-
-function liWireNewFeatureCallout(){
-  const callout = document.getElementById('liNewCallout');
-  if(!callout) return;
-  let seen = false;
-  try{ seen = localStorage.getItem(LI_NEW_CALLOUT_KEY) === '1'; }catch(error){}
-  callout.hidden = seen;
-  const markSeen = () => {
-    callout.hidden = true;
-    try{ localStorage.setItem(LI_NEW_CALLOUT_KEY, '1'); }catch(error){}
-  };
-  const close = document.getElementById('liNewCalloutClose');
-  if(close) close.addEventListener('click', (e) => { e.stopPropagation(); markSeen(); });
-  // "Try it" opens the planner where the map is, like the map's own button.
-  const tryIt = document.getElementById('liNewCalloutTry');
-  if(tryIt) tryIt.addEventListener('click', () => {
-    const fromMap = document.getElementById('homeMapDrawBtn');
-    if(fromMap) tryIt.href = fromMap.href;
-    markSeen();
-  });
-  ['liNewBtn', 'homeMapDrawBtn'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el) el.addEventListener('click', markSeen);
-  });
-}
 
 function liCloseMenus(){
   ['liFiltersMenu', 'liNewMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu', 'liAreaMenu', 'liDayMenu', 'liSortMenu'].forEach(id => {
@@ -3740,7 +3714,6 @@ function initLoggedInShell(){
   const newBtn = document.getElementById('liNewBtn');
   const newMenu = document.getElementById('liNewMenu');
   if(newBtn && newMenu) wireMenu(newBtn, newMenu);
-  liWireNewFeatureCallout();
   // Recently viewed moved under the dog pill, so it is filled when that opens.
   const accountBtn = document.getElementById('liAccountBtn');
   wireMenu(accountBtn, document.getElementById('liAccountMenu'));
@@ -4380,7 +4353,7 @@ function liPickFacts(trail, profile){
     inSeason: !outOfSeason,
     // "We don't know the local rules for dogs" on the card.
     knownDogRules: !flags(recommendation.unknowns, 'trail.dog-access.unknown'),
-    // The card's trail rating: anything not low-risk or moderate reads "Caution terrain".
+    // The card's trail rating: anything not low-risk or moderate reads "Higher risk".
     notCaution: safetyClass(trail && trail.safetyLevel) !== 'safety-caution',
     strongOption: liRecommendationPresentation(trail, profile).category === 'strong-option',
   };

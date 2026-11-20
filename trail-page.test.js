@@ -265,6 +265,36 @@ describe('trail page map controls', () => {
     expect(result.map(item => item.trail.id)).toEqual(['nearby', 'farther']);
     expect(result[0].distanceKm).toBeLessThan(result[1].distanceKm);
     expect(result[0].mapPoint).toEqual(nearby.path[0]);
+    expect(result[0].startPoint).toEqual(nearby.path[0]);
+  });
+
+  test('held walks are never offered as a neighbour', () => {
+    const context = loadTrailScript();
+    const current = { id:'current', path:[[46.64, 11.72], [46.65, 11.73]] };
+    const open = { id:'open', distance:6, path:[[46.66, 11.74], [46.67, 11.75]] };
+    const withdrawn = { id:'withdrawn', distance:6, withdrawal:{ reason:'no-official-figures' }, path:[[46.66, 11.74], [46.67, 11.75]] };
+    const tooLong = { id:'too-long', distance:71.1, path:[[46.66, 11.74], [46.67, 11.75]] };
+    const result = context.nearbyTrailCandidates(current, [withdrawn, tooLong, open], 25, 5);
+    expect(result.map(item => item.trail.id)).toEqual(['open']);
+  });
+
+  test('nearby walks show on the map from the start and are listed under it', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    document.body.innerHTML = html;
+    const list = document.getElementById('nearbyWalks');
+    expect(list).not.toBeNull();
+    expect(list.hidden).toBe(true);
+    expect(list.closest('.td2-map-stack')).not.toBeNull();
+    expect(document.getElementById('nearbyWalksList')).not.toBeNull();
+    // Start pins and their names are visible without opening Layers.
+    expect(trail).toMatch(/id: 'nearby-trail-points-circle',[\s\S]*?layout: \{ visibility: 'visible' \}/);
+    expect(trail).toMatch(/id: 'nearby-trail-points-label',[\s\S]*?visibility: 'visible',/);
+    expect(trail).toContain("geometry: { type: 'Point', coordinates: [item.startPoint[1], item.startPoint[0]] },");
+    // The card carries the match and a way to the walk's page.
+    expect(trail).toContain('nearbyMatchText(match)');
+    expect(trail).toContain("tx('Open this trail')");
+    expect(trail).toContain('window._dolopawsNearbySubject = effectiveOverrides(profile, null);');
   });
 
   test('match, safety, risk, and live conditions each have one clear owner', () => {
@@ -307,8 +337,8 @@ describe('trail page map controls', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20261120-1');
-    expect(html).toContain('trail-app.bundle.js?v=20261120-2');
+    expect(html).toContain('i18n.js?v=20261123-2');
+    expect(html).toContain('trail-app.bundle.js?v=20261123-2');
     expect(html).toContain('trail-mobile.css?v=20260904-3');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -831,7 +861,10 @@ describe('trail page map controls', () => {
     expect(trail).toContain("id: 'single-trail-path-line',");
     expect(trail).toContain('color: selectedRouteColor,');
     expect(trail).toContain('beforeId: window.ORMAMapStyle.walkCorridorBeforeId(map),');
-    expect(trail).toContain("'line-color': '#858D88'");
+    // A neighbour's line is dashed in its own match colour, never the grey of
+    // the marked network.
+    expect(trail).toContain("'line-color': ['get', 'colour'],");
+    expect(trail).not.toContain("'line-color': '#858D88'");
     // No route-number shields on the detail map: the hiking network numbers
     // every route itself, and shields would only fight those for space.
     expect(trail).not.toContain("id:'single-trail-route-number'");

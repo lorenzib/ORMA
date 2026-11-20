@@ -39,7 +39,7 @@ describe('trail data trust states', () => {
 
   test('public rating labels stay simple while evidence remains internal', () => {
     const trust = loadTrust();
-    expect(trust.riskLabel(imported, 'Low-risk terrain')).toBe('Low-risk terrain');
+    expect(trust.riskLabel(imported, 'Low risk')).toBe('Low risk');
     expect(trust.provenanceLabel(imported)).toBe('Not yet verified');
     // A source-reviewed but not-yet-graduated listing is reviewed, not verified:
     // the seal is earned by graduation, never by curation or a source record.
@@ -123,7 +123,7 @@ describe('trail data trust states', () => {
     };
     expect(trust.provenanceLabel(graduating)).toBe('Not yet verified');
     expect(trust.graduationProgress(graduating).verified).toBe(false);
-    expect(trust.riskLabel(graduating, 'Moderate terrain')).toBe('Moderate terrain');
+    expect(trust.riskLabel(graduating, 'Moderate risk')).toBe('Moderate risk');
   });
 
   test('a record that names no required list needs all eleven checks, directions included', () => {

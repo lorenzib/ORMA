@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altogarda-santuario-montecastello",
+  "distanceKm": 4.8,
+  "ascentM": 283,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 640
+    },
+    {
+      "km": 0.4,
+      "elev": 664
+    },
+    {
+      "km": 0.7,
+      "elev": 715
+    },
+    {
+      "km": 1.2,
+      "elev": 731
+    },
+    {
+      "km": 1.5,
+      "elev": 616
+    },
+    {
+      "km": 1.9,
+      "elev": 563
+    },
+    {
+      "km": 2.2,
+      "elev": 519
+    },
+    {
+      "km": 2.6,
+      "elev": 509
+    },
+    {
+      "km": 3,
+      "elev": 514
+    },
+    {
+      "km": 3.4,
+      "elev": 534
+    },
+    {
+      "km": 3.7,
+      "elev": 548
+    },
+    {
+      "km": 4.1,
+      "elev": 564
+    },
+    {
+      "km": 4.4,
+      "elev": 588
+    },
+    {
+      "km": 4.8,
+      "elev": 640
+    }
+  ]
+}
