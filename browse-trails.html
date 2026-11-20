@@ -197,7 +197,8 @@
   .browse-map-key__title{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
   .browse-map-key__row{display:flex;align-items:center;gap:7px;}
   @media(max-width:760px){.browse-map-key{bottom:58px;}}
-  .browse-map-key__dot{width:10px;height:10px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(46,64,52,.18);}
+  /* A short line, since the map draws walks as lines (dots only zoomed far out). */
+  .browse-map-key__dot{width:16px;height:4px;border-radius:2px;border:1px solid #fff;box-shadow:0 0 0 1px rgba(46,64,52,.18);}
   .browse-map-popup a{color:#32697E;font-size:11.5px;font-weight:800;text-decoration:none;}
   .browse-map-pane .maplibregl-popup-content{border:1px solid rgba(46,64,52,.12);border-radius:13px;padding:11px 12px;box-shadow:0 10px 30px rgba(35,53,40,.18);}
   .browse-map-pane .maplibregl-ctrl-top-right{top:8px;right:8px;}
@@ -1128,7 +1129,7 @@
 <script src="map-runtime.js?v=20260908-2"></script>
 <script src="match-verdict.js?v=20261002-1"></script>
 <script src="map-style.js?v=20261120-2"></script>
-<script src="browse-map.js?v=20261111-1"></script>
+<script src="browse-map.js?v=20261119-1"></script>
 <script>
   // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
   function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }

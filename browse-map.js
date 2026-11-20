@@ -44,6 +44,9 @@
   // How strongly a pin out of season this month shows: still findable, but
   // quieter than the walks to go on now.
   const OUT_OF_SEASON_OPACITY = 0.35;
+  // From this zoom a walk is its line, not a dot. Below it (a whole region on
+  // screen) the lines are scribbles and the dots read better.
+  const LINE_MIN_ZOOM = 9;
 
   function trailFeature(trail, presentation){
     const coordinate = coordinateFor(trail);
@@ -69,6 +72,30 @@
         saved:view.saved ? 1 : 0,
         // Out of season this month (trail-season-words.js): the pin fades and
         // sits under the walks to go on now, the order the list is in.
+        out:outOfSeasonNow(trail) ? 1 : 0,
+        // Walks with a line show it from LINE_MIN_ZOOM up; the dot is for
+        // the zoomed-out overview and for walks with no line.
+        line:Array.isArray(trail.path) && trail.path.length > 1 ? 1 : 0,
+      },
+    };
+  }
+
+  // The walk's own line, for the map to draw instead of a dot (owner, 19 Nov:
+  // "show the lines instead of the dots"). Null when the walk has no path.
+  function trailLineFeature(trail, presentation){
+    if(!trail || !Array.isArray(trail.path) || trail.path.length < 2) return null;
+    const coordinates = trail.path.map(point => [Number(point[1]), Number(point[0])])
+      .filter(point => point.every(Number.isFinite));
+    if(coordinates.length < 2) return null;
+    const view = presentation || {};
+    const score = Number(view.score);
+    return {
+      type:'Feature',
+      geometry:{ type:'LineString', coordinates },
+      properties:{
+        id:String(trail.id || ''),
+        score:Number.isFinite(score) ? score : 0,
+        fit:String(view.fit || ''),
         out:outOfSeasonNow(trail) ? 1 : 0,
       },
     };
@@ -107,11 +134,22 @@
     function data(){
       return {
         type:'FeatureCollection',
-        features:trails.map(trail => trailFeature(trail, {
-          score:typeof settings.scoreFor === 'function' ? settings.scoreFor(trail) : trail.score,
-          fit:fitFor(trail),
-          saved:typeof settings.savedFor === 'function' ? settings.savedFor(trail) : trail.saved,
-        })).filter(Boolean),
+        features:trails.map(trail => trailFeature(trail, presentationFor(trail))).filter(Boolean),
+      };
+    }
+
+    function presentationFor(trail){
+      return {
+        score:typeof settings.scoreFor === 'function' ? settings.scoreFor(trail) : trail.score,
+        fit:fitFor(trail),
+        saved:typeof settings.savedFor === 'function' ? settings.savedFor(trail) : trail.saved,
+      };
+    }
+
+    function lineData(){
+      return {
+        type:'FeatureCollection',
+        features:trails.map(trail => trailLineFeature(trail, presentationFor(trail))).filter(Boolean),
       };
     }
 
@@ -206,6 +244,8 @@
       if(!loaded || !map) return;
       const source = map.getSource('browse-trails');
       if(source) source.setData(data());
+      const lines = map.getSource('browse-trail-lines');
+      if(lines) lines.setData(lineData());
       syncSelection();
       if(shouldFit) fitToTrails();
     }
@@ -259,8 +299,55 @@
       const fitColour = root.ORMAMapStyle
         ? root.ORMAMapStyle.fitColourExpression('fit', 'score')
         : '#3e7a91';
+      // Every walk as a thin line in its match colour on a white edge, the
+      // same look as the trail page. Out-of-season walks fade like their pins.
+      map.addSource('browse-trail-lines', { type:'geojson', data:lineData() });
+      const lineOpacity = ['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1];
+      map.addLayer({
+        id:'browse-trail-lines-casing', type:'line', source:'browse-trail-lines', minzoom:LINE_MIN_ZOOM,
+        layout:{ 'line-join':'round', 'line-cap':'round', 'line-sort-key':['-', 1, ['coalesce', ['get', 'out'], 0]] },
+        paint:{
+          'line-color':'#fff',
+          'line-width':['interpolate', ['linear'], ['zoom'], 9, 3, 12, 4.5, 15, 7],
+          'line-opacity':lineOpacity,
+        },
+      });
+      map.addLayer({
+        id:'browse-trail-lines', type:'line', source:'browse-trail-lines', minzoom:LINE_MIN_ZOOM,
+        layout:{ 'line-join':'round', 'line-cap':'round', 'line-sort-key':['-', 1, ['coalesce', ['get', 'out'], 0]] },
+        paint:{
+          'line-color':fitColour,
+          'line-width':['interpolate', ['linear'], ['zoom'], 9, 1.5, 12, 2.5, 15, 4],
+          'line-opacity':lineOpacity,
+        },
+      });
+      // A wide, near-invisible twin so a fingertip still hits a thin line.
+      map.addLayer({
+        id:'browse-trail-lines-hit', type:'line', source:'browse-trail-lines', minzoom:LINE_MIN_ZOOM,
+        layout:{ 'line-join':'round', 'line-cap':'round' },
+        paint:{ 'line-color':'#000', 'line-width':16, 'line-opacity':0.01 },
+      });
+      // Dots: walks with a line only below LINE_MIN_ZOOM, walks without one
+      // at every zoom.
       map.addLayer({
         id:'browse-trails-individual', type:'circle', source:'browse-trails',
+        filter:['==', ['coalesce', ['get', 'line'], 0], 0],
+        // Walks in season draw on top of those out of season this month.
+        layout:{ 'circle-sort-key':['-', 1, ['coalesce', ['get', 'out'], 0]] },
+        paint:{
+          'circle-color':fitColour,
+          'circle-radius':7,
+          'circle-opacity':['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1],
+          'circle-stroke-opacity':['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1],
+          'circle-stroke-width':2.5,
+          'circle-stroke-color':[
+            'case', ['==', ['coalesce', ['get', 'saved'], 0], 1], '#9C3A25', '#fff',
+          ],
+        },
+      });
+      map.addLayer({
+        id:'browse-trails-overview', type:'circle', source:'browse-trails',
+        filter:['==', ['coalesce', ['get', 'line'], 0], 1], maxzoom:LINE_MIN_ZOOM,
         // Walks in season draw on top of those out of season this month.
         layout:{ 'circle-sort-key':['-', 1, ['coalesce', ['get', 'out'], 0]] },
         paint:{
@@ -291,22 +378,23 @@
       map.addLayer({
         id:'browse-selected-route-casing', type:'line', source:'browse-selected-route',
         layout:{ 'line-join':'round', 'line-cap':'round' },
-        paint:{ 'line-color':'#fff', 'line-width':7, 'line-opacity':0.9 },
+        paint:{ 'line-color':'#fff', 'line-width':['interpolate', ['linear'], ['zoom'], 9, 5, 12, 6.5, 15, 9], 'line-opacity':0.95 },
       }, 'browse-trails-individual');
       map.addLayer({
         id:'browse-selected-route-line', type:'line', source:'browse-selected-route',
         layout:{ 'line-join':'round', 'line-cap':'round' },
-        paint:{ 'line-color':fitColour, 'line-width':4, 'line-opacity':0.95 },
+        paint:{ 'line-color':fitColour, 'line-width':['interpolate', ['linear'], ['zoom'], 9, 2.5, 12, 3.5, 15, 5], 'line-opacity':1 },
       }, 'browse-trails-individual');
 
-      map.on('click', 'browse-trails-individual', event => {
+      const clickable = ['browse-trails-individual', 'browse-trails-overview', 'browse-trail-lines-hit'];
+      clickable.forEach(layerId => map.on('click', layerId, event => {
         const feature = event.features && event.features[0];
         if(!feature) return;
         const id = feature.properties.id;
         select(id, { popup:true });
         if(typeof settings.onSelect === 'function') settings.onSelect(id);
-      });
-      ['browse-trails-individual'].forEach(layerId => {
+      }));
+      clickable.forEach(layerId => {
         map.on('mouseenter', layerId, () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
       });
@@ -383,7 +471,7 @@
     };
   }
 
-  const api = { create, coordinateFor, withinBounds, trailFeature };
+  const api = { create, coordinateFor, withinBounds, trailFeature, trailLineFeature, LINE_MIN_ZOOM };
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   if(root) root.DoloPawsBrowseMap = api;
 })(typeof window !== 'undefined' ? window : null);
