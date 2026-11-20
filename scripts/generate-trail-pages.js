@@ -275,9 +275,9 @@ function safetyClass(level) {
 }
 
 function safetyLabel(level) {
-  if (level === 'low-risk') return L('Low-risk terrain');
-  if (level === 'moderate') return L('Moderate terrain');
-  return L('Caution terrain');
+  if (level === 'low-risk') return L('Low risk');
+  if (level === 'moderate') return L('Moderate risk');
+  return L('Higher risk');
 }
 
 function displaySafetyLabel(t) {
@@ -1267,7 +1267,7 @@ ${reviewRecord}
   <div class="hp-footer-grid">
     <div>
       <div class="hp-footer-brand"><img src="${up}logo.svg?v=5" alt=""><span>ORMA</span></div>
-      <p class="hp-footer-blurb">${L('The personalised trail guide for dogs and their humans, so every footprint left on the mountain is a safe one.')}</p>
+      <p class="hp-footer-blurb">${L('The personalised trail guide for dogs and their humans: what each walk asks of your dog, so you can choose well.')}</p>
       <div class="hp-footer-get">
         <div class="hp-footer-h">${L('Get the app')}</div>
         <div class="hp-footer-apps">

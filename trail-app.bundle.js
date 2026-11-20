@@ -353,12 +353,25 @@
   // every route a thin dashed grey line with its number, so the walk is the
   // only coloured line on the map. Approved on renders, 26 Oct 2026.
   //
+  // 18 Nov 2026: the grey dashes looked like the basemap's own footpaths and
+  // the contours, so the other marked routes are now a solid muted plum line
+  // on a white edge, under the walk's corridor. Plum is not a match colour
+  // (green / amber / red), not water blue and not a contour brown. The walk
+  // keeps the old dark dashes down its middle, drawn only along the stretch
+  // it shares with a marked route (HIKING_WALK_LINE_LAYER).
+  //
   // Waymarked stays as the fallback: if the tiles are missing or fail to
   // load, the raster is put back in their place.
   const HIKING_SOURCE = 'orma-hiking-routes';
+  const HIKING_CASING_LAYER = 'orma-hiking-routes-casing';
   const HIKING_LINE_LAYER = 'orma-hiking-routes-line';
+  const HIKING_WALK_LINE_LAYER = 'orma-hiking-routes-line-walk';
   // Fainter over satellite, so the track in the photo is not painted over.
-  const HIKING_LINE_OPACITY = { map: 0.75, imagery: 0.55 };
+  const HIKING_LINE_OPACITY = { map: 0.9, imagery: 0.8 };
+  const HIKING_CASING_OPACITY = { map: 0.85, imagery: 0.35 };
+  // The walk's dashes turn white and stronger on satellite: dark dashes
+  // vanish into forest, and the walk has to stay the line that leads.
+  const HIKING_WALK_LINE_OPACITY = { map: 0.75, imagery: 0.9 };
   const HIKING_REF_LAYER = 'orma-hiking-routes-ref';
   const HIKING_WALK_SOURCE = 'orma-hiking-walk-refs';
   const HIKING_WALK_REF_LAYER = 'orma-hiking-routes-ref-walk';
@@ -371,13 +384,19 @@
   // The regions' padded extents together (REGIONS in build-hiking-routes.js),
   // so the map does not ask for tiles across the rest of Europe.
   const HIKING_BOUNDS = [5.25, 43.73, 12.66, 47.81];
-  const HIKING_LINE_COLOUR = '#5F665F';
-  const HIKING_REF_COLOUR = '#4D554E';
+  const HIKING_LINE_COLOUR = '#8E5A84';
+  const HIKING_REF_COLOUR = '#6E3F65';
+  // The walk's own stretch of route: the dark dashes the walk always had.
+  const HIKING_WALK_LINE_COLOUR = { map: '#4D554E', imagery: '#FFFFFF' };
   const HIKING_WALK_REF_COLOUR = '#2E4034';
   // How close (metres) the walk must run to a route to be walking on it.
   const WALK_ROUTE_TOLERANCE_M = 25;
   // Shorter shared stretches are crossings, not the walk following a route.
   const WALK_ROUTE_MIN_STRETCH_M = 120;
+  // Every layer of ours, bottom to top: the Layers chip toggles them together.
+  const HIKING_OWN_LAYERS = [
+    HIKING_CASING_LAYER, HIKING_LINE_LAYER, HIKING_WALK_LINE_LAYER, HIKING_REF_LAYER, HIKING_WALK_REF_LAYER,
+  ];
   // Every numbered route, before a walk takes its own routes' numbers.
   const ALL_ROUTE_NUMBERS = ['!=', ['get', 'ref'], ''];
 
@@ -504,7 +523,7 @@
     const visible = map.getLayoutProperty(HIKING_LINE_LAYER, 'visibility') !== 'none';
     const state = hikingState.get(map) || {};
     addWaymarkedHiking(map, { beforeId: HIKING_REF_LAYER, visible, minzoom: state.minzoom });
-    [HIKING_WALK_REF_LAYER, HIKING_REF_LAYER, HIKING_LINE_LAYER].forEach(id => {
+    [HIKING_WALK_REF_LAYER, HIKING_REF_LAYER, HIKING_WALK_LINE_LAYER, HIKING_LINE_LAYER, HIKING_CASING_LAYER].forEach(id => {
       if (map.getLayer(id)) map.removeLayer(id);
     });
     [HIKING_WALK_SOURCE, HIKING_SOURCE].forEach(id => {
@@ -513,7 +532,8 @@
   }
 
   /**
-   * Draw the hiking network from our own tiles: dashed grey lines, every
+   * Draw the hiking network from our own tiles: solid plum lines on a white
+   * edge, every
    * route's number from trail zoom (12) up, ranked international first when
    * they crowd. Pass `walk` ([[lng, lat], ...]) on a single-walk map and the
    * routes the walk follows get bigger, darker numbers beside the walk, only
@@ -537,14 +557,40 @@
       type: 'vector', tiles: [tiles], minzoom: 10, maxzoom: 14, bounds: HIKING_BOUNDS,
     });
     map.addSource(HIKING_WALK_SOURCE, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+    // A white edge lifts the line off the relief and the basemap's own
+    // white-dashed footpaths, the way a printed hiking map does it.
+    map.addLayer({
+      id: HIKING_CASING_LAYER, type: 'line', source: HIKING_SOURCE, 'source-layer': 'routes',
+      ...(minzoom !== undefined ? { minzoom } : {}),
+      layout: { visibility, 'line-join': 'round', 'line-cap': 'round' },
+      paint: {
+        'line-color': '#FFFFFF',
+        'line-opacity': HIKING_CASING_OPACITY.map,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 10, 1.2, 12, 2.4, 13, 3.6, 16, 5.6],
+      },
+    }, target);
+    // Solid and in a colour of its own, so a marked route never reads as a
+    // footpath, a track or a contour.
     map.addLayer({
       id: HIKING_LINE_LAYER, type: 'line', source: HIKING_SOURCE, 'source-layer': 'routes',
       ...(minzoom !== undefined ? { minzoom } : {}),
-      layout: { visibility, 'line-join': 'round', 'line-cap': 'butt' },
+      layout: { visibility, 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': HIKING_LINE_COLOUR,
         'line-opacity': HIKING_LINE_OPACITY.map,
-        // Dashed so a route never reads as a contour line.
+        // Hairline when zoomed out, where the network is a web over the valley.
+        'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.5, 12, 1, 13, 1.7, 16, 2.8],
+      },
+    }, target);
+    // The walk's corridor goes between the network and this: the stretch of
+    // marked route the walk follows, dashed down the middle of the corridor.
+    map.addLayer({
+      id: HIKING_WALK_LINE_LAYER, type: 'line', source: HIKING_WALK_SOURCE,
+      ...(minzoom !== undefined ? { minzoom } : {}),
+      layout: { visibility, 'line-join': 'round', 'line-cap': 'butt' },
+      paint: {
+        'line-color': HIKING_WALK_LINE_COLOUR.map,
+        'line-opacity': HIKING_WALK_LINE_OPACITY.map,
         'line-dasharray': [2, 1.6],
         'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.8, 13, 1.4, 16, 2.4],
       },
@@ -561,14 +607,14 @@
         'symbol-sort-key': ['get', 'rank'],
         'text-field': ['get', 'ref'],
         'text-font': FONT_BOLD,
-        'text-size': 11,
+        'text-size': ['interpolate', ['linear'], ['zoom'], 12, 11, 15, 12.5],
         'text-padding': 6,
         'text-rotation-alignment': 'viewport',
         'text-keep-upright': true,
       },
       paint: { 'text-color': HIKING_REF_COLOUR, 'text-halo-color': '#FFFFFF', 'text-halo-width': 2 },
     }, target);
-    // Above the grey numbers, so the walk's own win where they collide.
+    // Above the other routes' numbers, so the walk's own win where they collide.
     map.addLayer({
       id: HIKING_WALK_REF_LAYER, type: 'symbol', source: HIKING_WALK_SOURCE,
       minzoom: Math.max(12, minzoom || 0),
@@ -652,7 +698,7 @@
   function setHikingRoutesVisible(map, visible) {
     if (!map) return;
     const visibility = visible ? 'visible' : 'none';
-    [HIKING_LINE_LAYER, HIKING_REF_LAYER, HIKING_WALK_REF_LAYER].forEach(id => {
+    HIKING_OWN_LAYERS.forEach(id => {
       if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visibility);
     });
     setWaymarkedVisible(map, visible);
@@ -660,6 +706,7 @@
 
   /** The bottom of the hiking network: relief and neighbours go below this. */
   function networkLayerId(map) {
+    if (map && map.getLayer(HIKING_CASING_LAYER)) return HIKING_CASING_LAYER;
     if (map && map.getLayer(HIKING_LINE_LAYER)) return HIKING_LINE_LAYER;
     if (map && map.getLayer(WAYMARKED_LAYER)) return WAYMARKED_LAYER;
     return firstLabelLayerId(map);
@@ -676,13 +723,20 @@
   }
 
   /**
-   * Where a walk's corridor goes: under the relief and the whole marked
-   * network, so the contours and the dashed path the walker follows draw
-   * over it. Contours added later still land above it (they go just under
-   * the network).
+   * Where a walk's corridor goes: over the other marked routes, so they
+   * pass under it, but under the relief and the walk's own dashed route, so
+   * the contours and the path the walker follows draw over it. Contours
+   * added later still land above it (they go just under the walk's dashes).
    */
   function walkCorridorBeforeId(map) {
     if (map && map.getLayer(CONTOUR_LINE_LAYER)) return CONTOUR_LINE_LAYER;
+    if (map && map.getLayer(HIKING_WALK_LINE_LAYER)) return HIKING_WALK_LINE_LAYER;
+    return networkLayerId(map);
+  }
+
+  /** Where contours go: under the walk's dashes, else under the network. */
+  function contourBeforeId(map) {
+    if (map && map.getLayer(HIKING_WALK_LINE_LAYER)) return HIKING_WALK_LINE_LAYER;
     return networkLayerId(map);
   }
 
@@ -1029,9 +1083,16 @@
    */
   function setLinesOnImagery(map, walkId, onImagery) {
     if (!map) return;
-    if (map.getLayer(HIKING_LINE_LAYER)) {
-      map.setPaintProperty(HIKING_LINE_LAYER, 'line-opacity',
-        onImagery ? HIKING_LINE_OPACITY.imagery : HIKING_LINE_OPACITY.map);
+    [
+      [HIKING_CASING_LAYER, HIKING_CASING_OPACITY],
+      [HIKING_LINE_LAYER, HIKING_LINE_OPACITY],
+      [HIKING_WALK_LINE_LAYER, HIKING_WALK_LINE_OPACITY],
+    ].forEach(([id, opacity]) => {
+      if (map.getLayer(id)) map.setPaintProperty(id, 'line-opacity', onImagery ? opacity.imagery : opacity.map);
+    });
+    if (map.getLayer(HIKING_WALK_LINE_LAYER)) {
+      map.setPaintProperty(HIKING_WALK_LINE_LAYER, 'line-color',
+        onImagery ? HIKING_WALK_LINE_COLOUR.imagery : HIKING_WALK_LINE_COLOUR.map);
     }
     if (!walkId || !map.getLayer(walkId)) return;
     const normal = routeLinePaint('#000');
@@ -1084,10 +1145,11 @@
         });
       }
       const minzoom = Number.isFinite(config.minzoom) ? config.minzoom : 11;
-      // Lines sit UNDER the marked network. The waymarked raster is mostly
-      // transparent, so contours read everywhere except directly beneath a
-      // trail line -- which is the right order, the path draws over the relief.
-      const belowNetwork = networkLayerId(map);
+      // Lines sit UNDER the walk's dashed route, else under the marked
+      // network. The waymarked raster is mostly transparent, so contours read
+      // everywhere except directly beneath a trail line -- which is the right
+      // order, the path draws over the relief.
+      const belowNetwork = contourBeforeId(map);
       map.addLayer({
         id: CONTOUR_LINE_LAYER, type: 'line', source: CONTOUR_SOURCE, 'source-layer': 'contours',
         minzoom,
@@ -1149,10 +1211,12 @@
     addWaymarkedHiking,
     setWaymarkedVisible,
     HIKING_SOURCE,
+    HIKING_CASING_LAYER,
     HIKING_LINE_LAYER,
+    HIKING_WALK_LINE_LAYER,
     HIKING_REF_LAYER,
     HIKING_WALK_REF_LAYER,
-    HIKING_LAYER_IDS: [HIKING_LINE_LAYER, HIKING_REF_LAYER, HIKING_WALK_REF_LAYER, WAYMARKED_LAYER],
+    HIKING_LAYER_IDS: [...HIKING_OWN_LAYERS, WAYMARKED_LAYER],
     addHikingRoutes,
     setHikingWalk,
     setHikingRoutesVisible,
@@ -1170,6 +1234,9 @@
     setLinesOnImagery,
     ROUTE_LINE_ON_IMAGERY,
     HIKING_LINE_OPACITY,
+    HIKING_CASING_OPACITY,
+    HIKING_WALK_LINE_OPACITY,
+    HIKING_WALK_LINE_COLOUR,
     addContours,
     setContoursVisible,
     CONTOUR_SOURCE,
@@ -16952,11 +17019,21 @@ function sampledTrailPath(trail, maxPoints = 30){
   return sampled;
 }
 
+// A walk the site publishes. The runtime data still carries held walks (a
+// withdrawal pending review, or past the 50 km limit), which have no page a
+// reader could switch to, so they are never offered as a neighbour.
+function isPublicNearbyTrail(trail){
+  if(!trail || trail.withdrawal) return false;
+  const km = Number(trail.distance);
+  return !(Number.isFinite(km) && km > 50);
+}
+
 function nearbyTrailCandidates(currentTrail, allTrails, radiusKm = 25, limit = 5){
   const currentPath = sampledTrailPath(currentTrail);
   if(!currentPath.length) return [];
   return (allTrails || [])
     .filter(trail => trail && trail.id !== currentTrail.id && Array.isArray(trail.path) && trail.path.length > 1)
+    .filter(isPublicNearbyTrail)
     .map(trail => {
       const candidatePath = sampledTrailPath(trail);
       let distanceKm = Infinity;
@@ -16968,11 +17045,82 @@ function nearbyTrailCandidates(currentTrail, allTrails, radiusKm = 25, limit = 5
           mapPoint = candidatePoint;
         }
       }));
-      return { trail, distanceKm, mapPoint };
+      // The pin goes where the walk starts: that is where a reader would go.
+      return { trail, distanceKm, mapPoint, startPoint: trail.path[0] };
     })
     .filter(item => item.distanceKm <= radiusKm)
     .sort((a, b) => a.distanceKm - b.distanceKm)
     .slice(0, limit);
+}
+
+// How a neighbour suits the dog: the signed-in dog once its profile is in
+// (paintMatch sets the subject), else the medium-dog guest profile the page
+// already scores against. The engine's category, not a rebuilt one.
+function nearbyWalkMatch(trail){
+  if(typeof recommendTrail !== 'function') return null;
+  const subject = window._dolopawsNearbySubject
+    || (window.DoloPawsScoring && window.DoloPawsScoring.GUEST_SUBJECT) || {};
+  try{
+    const rec = recommendTrail(trail, subject,
+      window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(trail));
+    if(!rec || !Number.isFinite(rec.score)) return null;
+    const verdict = window.OrmaMatchVerdict
+      ? window.OrmaMatchVerdict.verdictFor({ score: rec.score, category: rec.category })
+      : { label: '' };
+    return {
+      score: rec.score,
+      approx: trail.curated === false,
+      colour: detailRouteColorForScore(rec.score),
+      label: verdict.label || '',
+    };
+  }catch(error){ return null; }
+}
+
+function nearbyWalkHref(id){
+  const slug = window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor
+    ? window.DoloPawsRegionalData.slugFor(id) : id;
+  return `trail.html?id=${encodeURIComponent(slug)}`;
+}
+
+function escapeNearbyHtml(value){
+  return String(value == null ? '' : value).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+}
+
+// "92% · Strong option", or nothing when no score could be made.
+function nearbyMatchText(match){
+  if(!match) return '';
+  const pct = `${match.approx ? '≈' : ''}${match.score}%`;
+  return match.label ? `${pct} · ${match.label}` : pct;
+}
+
+// The short list under the map: every walk the map pins, with its match and a
+// way to see it on the map or open it. Re-runnable, for the region's late
+// arrival and for a signed-in dog's scores.
+function renderNearbyWalkList(currentTrail){
+  const wrap = document.getElementById('nearbyWalks');
+  const list = document.getElementById('nearbyWalksList');
+  if(!wrap || !list || !currentTrail) return;
+  const items = nearbyTrailCandidates(currentTrail, typeof trails !== 'undefined' ? trails : []);
+  if(!items.length){ wrap.hidden = true; return; }
+  list.innerHTML = items.map(item => {
+    const trail = item.trail;
+    const match = nearbyWalkMatch(trail);
+    const away = Math.round(item.distanceKm * 10) / 10;
+    const facts = away < 0.1
+      ? tx('{km} km · starts close by', { km: num(trail.distance) })
+      : tx('{km} km · {away} km away', { km: num(trail.distance), away: num(away) });
+    return `<li class="td2-nearby-walk">
+      <a class="td2-nearby-walk-link" href="${nearbyWalkHref(trail.id)}">
+        <span class="td2-nearby-walk-dot" style="background:${match ? match.colour : '#8A938D'}" aria-hidden="true"></span>
+        <span class="td2-nearby-walk-text">
+          <span class="td2-nearby-walk-name">${escapeNearbyHtml(trailDisplayName(trail))}</span>
+          <span class="td2-nearby-walk-meta">${escapeNearbyHtml(facts)}${match ? ` · <strong style="color:${match.colour}">${escapeNearbyHtml(nearbyMatchText(match))}</strong>` : ''}</span>
+        </span>
+      </a>
+      <button type="button" class="td2-nearby-walk-show" data-nearby-show="${escapeNearbyHtml(trail.id)}">${escapeNearbyHtml(tx('Show on map'))}</button>
+    </li>`;
+  }).join('');
+  wrap.hidden = false;
 }
 
 // Finds the real point along an actual GPS path at a given fraction of its
@@ -18127,6 +18275,10 @@ function renderTrail(t){
           window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(t));
         const n = recommendation.score;
         applyDetailRouteColor(detailRouteColorForScore(n));
+        // The walks nearby are matched to the same dog.
+        window._dolopawsNearbySubject = effectiveOverrides(profile, null);
+        renderNearbyWalkList(t);
+        if(typeof window._dolopawsRefreshNearbyMatches === 'function') window._dolopawsRefreshNearbyMatches();
         const actions = document.querySelector('.td-actions');
         if(actions) actions.classList.remove('guest-actions');
         const name = profile.name || window.t('trail.yourDog');
@@ -18612,6 +18764,14 @@ function renderTrail(t){
         const nearbyTrails = nearbyTrailCandidates(t, typeof trails !== 'undefined' ? trails : []);
         const otherTrails = nearbyTrails.map(item => item.trail);
         const nearbyToggleBtn = document.getElementById('nearbyToggle');
+        const nearbyMapBtn = document.getElementById('nearbyMapBtn');
+        const nearbyMapLabel = on => on
+          ? tx('Back to this walk')
+          : tx('Walks nearby ({n})', { n: nearbyTrails.length });
+        if(nearbyMapBtn){
+          nearbyMapBtn.hidden = nearbyTrails.length === 0;
+          if(nearbyTrails.length) nearbyMapBtn.textContent = nearbyMapLabel(false);
+        }
         if(nearbyToggleBtn){
           nearbyToggleBtn.hidden = nearbyTrails.length === 0;
           if(nearbyTrails.length){
@@ -18623,28 +18783,42 @@ function renderTrail(t){
           // the style refuses them.
           nearbyLayersAdded = true;
           try {
+          const nearbyMatches = new Map(nearbyTrails.map(item => [item.trail.id, nearbyWalkMatch(item.trail)]));
+          const matchColour = id => (nearbyMatches.get(id) || {}).colour || '#8A938D';
+          const nearbySourceData = {};
           map.addSource('other-trails', {
             type: 'geojson',
-            data: {
+            data: nearbySourceData['other-trails'] = {
               type: 'FeatureCollection',
               features: otherTrails.map(x => ({
                 type: 'Feature',
-                properties: { id: x.id, name: trailDisplayName(x), safetyLevel: x.safetyLevel, distance: x.distance },
+                properties: { id: x.id, name: trailDisplayName(x), safetyLevel: x.safetyLevel, distance: x.distance, colour: matchColour(x.id) },
                 geometry: { type: 'LineString', coordinates: x.path.map(([lat, lng]) => [lng, lat]) },
               })),
             },
           });
+          // A neighbour's line shows only when asked for: the one a reader
+          // tapped, or all of them in the overview. Dashed in its own match
+          // colour on a white edge, so it never reads as the walk on this page.
+          map.addLayer({
+            id: 'other-trails-casing',
+            type: 'line',
+            source: 'other-trails',
+            minzoom: 9,
+            layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
+            paint: { 'line-color': '#FFFFFF', 'line-width': 6, 'line-opacity': 0.85 },
+          }, window.ORMAMapStyle.networkLayerId(map));
           map.addLayer({
             id: 'other-trails-line',
             type: 'line',
             source: 'other-trails',
             minzoom: 9,
-            layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
+            layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'butt' },
             paint: {
-              'line-color': '#858D88',
-              'line-width': 3.5,
-              'line-opacity': 0.52,
-              'line-dasharray': [1.5, 1.25],
+              'line-color': ['get', 'colour'],
+              'line-width': 3,
+              'line-opacity': 0.9,
+              'line-dasharray': [1.6, 1.1],
             },
           }, window.ORMAMapStyle.networkLayerId(map));
           // Wide invisible twin so the thin neighbour lines are easy to hit.
@@ -18658,7 +18832,7 @@ function renderTrail(t){
           }, window.ORMAMapStyle.networkLayerId(map));
           map.addSource('nearby-trail-points', {
             type: 'geojson',
-            data: {
+            data: nearbySourceData['nearby-trail-points'] = {
               type: 'FeatureCollection',
               features: nearbyTrails.map(item => ({
                 type: 'Feature',
@@ -18668,43 +18842,117 @@ function renderTrail(t){
                   safetyLevel: item.trail.safetyLevel,
                   distance: item.trail.distance,
                   awayKm: Math.round(item.distanceKm * 10) / 10,
+                  colour: matchColour(item.trail.id),
                 },
-                geometry: { type: 'Point', coordinates: [item.mapPoint[1], item.mapPoint[0]] },
+                geometry: { type: 'Point', coordinates: [item.startPoint[1], item.startPoint[0]] },
               })),
             },
           });
+          // Every neighbour's start, on from the first paint so a reader sees
+          // there are other walks here: a small dot in its match colour, named
+          // once the map is close enough for names to fit.
           map.addLayer({
             id: 'nearby-trail-points-circle',
             type: 'circle',
             source: 'nearby-trail-points',
-            layout: { visibility: 'none' },
+            layout: { visibility: 'visible' },
             paint: {
-              'circle-radius': 6,
-              'circle-color': '#929A95',
+              'circle-radius': ['interpolate', ['linear'], ['zoom'], 9, 5, 14, 7.5],
+              'circle-color': ['get', 'colour'],
               'circle-stroke-color': '#ffffff',
-              'circle-stroke-width': 2,
+              'circle-stroke-width': 2.5,
             },
           });
           map.addLayer({
             id: 'nearby-trail-points-label',
             type: 'symbol',
             source: 'nearby-trail-points',
-            minzoom: 8,
+            minzoom: 11,
             layout: {
-              visibility: 'none',
+              visibility: 'visible',
               'text-field': ['get', 'name'],
-              'text-size': 11,
-              'text-font': ['Noto Sans Regular'],
-              'text-offset': [0, 1.25],
+              'text-size': 11.5,
+              'text-font': ['Noto Sans Bold'],
+              'text-offset': [0, 1.05],
               'text-anchor': 'top',
+              'text-max-width': 9,
+              'text-optional': true,
             },
             paint: {
-              'text-color': '#59615C',
+              'text-color': '#2E4034',
               'text-halo-color': '#ffffff',
               'text-halo-width': 2,
             },
           });
-          const escName = s => String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+          const NEIGHBOUR_LINES = ['other-trails-casing', 'other-trails-line', 'other-trails-hit'];
+          let showingNearbyOverview = false;
+          let nearbyPopup = null;
+          const showNeighbourLines = id => {
+            const filter = id ? ['==', ['get', 'id'], id] : null;
+            NEIGHBOUR_LINES.forEach(layer => {
+              if(!map.getLayer(layer)) return;
+              map.setFilter(layer, filter);
+              map.setLayoutProperty(layer, 'visibility', id || showingNearbyOverview ? 'visible' : 'none');
+            });
+          };
+          const popupHtml = item => {
+            const trail = item.trail;
+            const match = nearbyMatches.get(trail.id);
+            const away = Math.round(item.distanceKm * 10) / 10;
+            const facts = tx('{km} km trail · {away} km away', { km: num(trail.distance), away: num(away) });
+            return `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${escapeNearbyHtml(trailDisplayName(trail))}</div>` +
+              `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${escapeNearbyHtml(facts)}</div>` +
+              (match ? `<div style="font:700 12px 'Inter',sans-serif;color:${match.colour};margin-top:5px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${match.colour};margin-right:6px;"></span>${escapeNearbyHtml(nearbyMatchText(match))}</div>` : '') +
+              `<a href="${nearbyWalkHref(trail.id)}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">${tx('Open this trail')} →</a>`;
+          };
+          // Show one neighbour: its line, its card at its start, and (from the
+          // list under the map) a view that holds both walks.
+          const focusNearbyWalk = (id, options) => {
+            const item = nearbyTrails.find(entry => entry.trail.id === id);
+            if(!item) return false;
+            const opts = options || {};
+            // Close the last card first: its close handler hides the lines.
+            if(nearbyPopup) nearbyPopup.remove();
+            showNeighbourLines(id);
+            const at = opts.lngLat || [item.startPoint[1], item.startPoint[0]];
+            const popup = new maplibregl.Popup({ offset: 12, maxWidth: '260px' })
+              .setLngLat(at)
+              .setHTML(popupHtml(item))
+              .addTo(map);
+            nearbyPopup = popup;
+            popup.on('close', () => {
+              if(nearbyPopup !== popup) return;
+              nearbyPopup = null;
+              showNeighbourLines(null);
+            });
+            if(opts.fit){
+              const bounds = new maplibregl.LngLatBounds();
+              t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
+              item.trail.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
+              map.fitBounds(bounds, { padding: { top: 120, bottom: 96, left: 48, right: 64 }, maxZoom: 14 });
+            }
+            return true;
+          };
+          window._dolopawsFocusNearbyWalk = id => focusNearbyWalk(id, { fit: true });
+          if(window._dolopawsPendingNearbyFocus){
+            const pending = window._dolopawsPendingNearbyFocus;
+            window._dolopawsPendingNearbyFocus = null;
+            // After this tick: the page's own first fit to the walk follows
+            // these layers, and would otherwise undo this view.
+            setTimeout(() => focusNearbyWalk(pending, { fit: true }), 0);
+          }
+          // A signed-in dog's profile arrives after the paint: re-colour the
+          // pins and lines for that dog.
+          window._dolopawsRefreshNearbyMatches = () => {
+            nearbyTrails.forEach(item => nearbyMatches.set(item.trail.id, nearbyWalkMatch(item.trail)));
+            ['other-trails', 'nearby-trail-points'].forEach(sourceId => {
+              const source = map.getSource(sourceId);
+              const data = nearbySourceData[sourceId];
+              if(!source || !data) return;
+              data.features.forEach(feature => { feature.properties.colour = matchColour(feature.properties.id); });
+              source.setData(data);
+            });
+          };
           const openNearbyPopup = (e) => {
             // If this click also lands on the current trail's own route,
             // let the main route win, no neighbour popup on top of it.
@@ -18714,15 +18962,8 @@ function renderTrail(t){
             }
             const f = e.features && e.features[0];
             if(!f) return;
-            const p = f.properties;
-            new maplibregl.Popup({ offset: 12, maxWidth: '260px' })
-              .setLngLat(e.lngLat)
-              .setHTML(
-                `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${escName(p.name)}</div>` +
-                `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${p.awayKm != null ? tx('{km} km trail · {away} km away', { km: escName(String(p.distance)), away: escName(String(p.awayKm)) }) : tx('{km} km trail', { km: escName(String(p.distance)) })}</div>` +
-                `<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(p.id) : (p.id)))}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">${tx('Open this trail')} →</a>`
-              )
-              .addTo(map);
+            const onLine = f.geometry.type === 'LineString';
+            focusNearbyWalk(f.properties.id, { lngLat: onLine ? e.lngLat : f.geometry.coordinates });
           };
           map.on('click', 'other-trails-hit', openNearbyPopup);
           map.on('click', 'nearby-trail-points-circle', openNearbyPopup);
@@ -18731,21 +18972,31 @@ function renderTrail(t){
           map.on('mouseenter', 'nearby-trail-points-circle', () => { map.getCanvas().style.cursor = 'pointer'; });
           map.on('mouseleave', 'nearby-trail-points-circle', () => { map.getCanvas().style.cursor = ''; });
 
+          // The map's own button does what the Layers chip does.
+          if(nearbyMapBtn && nearbyToggleBtn){
+            nearbyMapBtn.addEventListener('click', event => {
+              event.stopPropagation();
+              nearbyToggleBtn.click();
+            });
+          }
           if(nearbyToggleBtn){
-            let showingNearbyOverview = false;
             nearbyToggleBtn.addEventListener('click', () => {
               showingNearbyOverview = !showingNearbyOverview;
               nearbyToggleBtn.classList.toggle('on', showingNearbyOverview);
               nearbyToggleBtn.setAttribute('aria-pressed', showingNearbyOverview ? 'true' : 'false');
-              ['other-trails-line', 'other-trails-hit', 'nearby-trail-points-circle', 'nearby-trail-points-label'].forEach(id => {
-                if(map.getLayer(id)) map.setLayoutProperty(id, 'visibility', showingNearbyOverview ? 'visible' : 'none');
-              });
+              if(nearbyPopup) nearbyPopup.remove();
+              showNeighbourLines(null);
               const bounds = new maplibregl.LngLatBounds();
               t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
+              if(nearbyMapBtn){
+                nearbyMapBtn.textContent = nearbyMapLabel(showingNearbyOverview);
+                nearbyMapBtn.setAttribute('aria-pressed', showingNearbyOverview ? 'true' : 'false');
+              }
               if(showingNearbyOverview){
                 otherTrails.forEach(trail => trail.path.forEach(([lat, lng]) => bounds.extend([lng, lat])));
                 setLayerChipLabel(nearbyToggleBtn, 'routes', tx('Focus this trail'));
-                map.fitBounds(bounds, { padding: 54, maxZoom: 13 });
+                // Extra room at the top and bottom, where the map's buttons sit.
+                map.fitBounds(bounds, { padding: { top: 64, bottom: 96, left: 48, right: 64 }, maxZoom: 13 });
               } else {
                 setLayerChipLabel(nearbyToggleBtn, 'nearby', tx('Nearby trails ({n})', { n: nearbyTrails.length }));
                 map.fitBounds(bounds, { padding: 60, maxZoom: 17 });
@@ -18758,7 +19009,7 @@ function renderTrail(t){
             // thing that can fail, and a partial add is cleaned up by removing
             // whatever went in before the throw.
             nearbyLayersAdded = false;
-            ['other-trails-line', 'other-trails-hit', 'nearby-trail-points-circle', 'nearby-trail-points-label']
+            ['other-trails-casing', 'other-trails-line', 'other-trails-hit', 'nearby-trail-points-circle', 'nearby-trail-points-label']
               .forEach(id => { if(map.getLayer(id)) map.removeLayer(id); });
             ['other-trails', 'nearby-trail-points']
               .forEach(id => { if(map.getSource(id)) map.removeSource(id); });
@@ -18979,6 +19230,29 @@ function renderTrail(t){
   } else {
     window.DoloPawsStartTrailMap = () => Promise.resolve(initDetailMap());
     initDetailMap();
+  }
+
+  // The walks pinned on the map, listed under it so a reader who would rather
+  // walk somewhere else nearby can see the choice without hunting the map.
+  renderNearbyWalkList(t);
+  window.addEventListener('dolopaws-region-loaded', () => renderNearbyWalkList(t));
+  const nearbyWalksList = document.getElementById('nearbyWalksList');
+  if(nearbyWalksList){
+    nearbyWalksList.addEventListener('click', async event => {
+      const button = event.target.closest('[data-nearby-show]');
+      if(!button) return;
+      const id = button.getAttribute('data-nearby-show');
+      const box = document.getElementById('trailMapBox');
+      if(box) box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if(!window._dolopawsTrailMap && window.DoloPawsStartTrailMap) await window.DoloPawsStartTrailMap();
+      // The map and its neighbour layers can still be on their way (a cold
+      // map, or the region landing late): leave the walk waiting, and the map
+      // shows it as soon as its neighbour layers are in.
+      window._dolopawsPendingNearbyFocus = id;
+      if(typeof window._dolopawsFocusNearbyWalk === 'function' && window._dolopawsFocusNearbyWalk(id)){
+        window._dolopawsPendingNearbyFocus = null;
+      }
+    });
   }
 
   // Save button, reflects and updates real account state, same pattern as the trail cards.
@@ -19426,7 +19700,7 @@ if(document.querySelector('.td2')){
     // Safety rating as the same coloured pill the browse cards use.
     const riskLine = $('tdRiskLine');
     if (riskLine && t.safetyLevel) {
-      const labels = { 'low-risk': tx('Low-risk terrain'), 'moderate': tx('Moderate terrain'), 'caution': tx('Caution terrain') };
+      const labels = { 'low-risk': tx('Low risk'), 'moderate': tx('Moderate risk'), 'caution': tx('Higher risk') };
       const baseRisk = labels[t.safetyLevel] || '';
       const riskText = trust ? trust.riskLabel(t, baseRisk) : baseRisk;
       riskLine.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
@@ -20894,6 +21168,7 @@ if(document.querySelector('.td2')){
   // nothing on a site where every walk takes dogs, and an unknown rule is not
   // said at all (owner, 19 Nov).
   const SILENT_FITS = Object.freeze(['trail.dog-access.allowed']);
+  const SILENT_UNKNOWNS = Object.freeze(['trail.dog-access.unknown']);
 
   function steepnessFact(vars){
     const level = steepnessLevel(vars && vars.terrain);
@@ -21039,8 +21314,10 @@ if(document.querySelector('.td2')){
     // Hard stops always lead: nothing below them changes the decision.
     const cautions = messages(recommendation.hardStops, translate, extra)
       .concat(messages(rankedCautions, translate, extra));
+    // Every ORMA walk should take dogs (owner, 19 Nov 2026): a dog rule is
+    // said only when it restricts the walk, never "we haven't found it".
     const rawUnknowns = (Array.isArray(recommendation.unknowns) ? recommendation.unknowns : [])
-      .filter(Boolean);
+      .filter(item => item && !SILENT_UNKNOWNS.includes(item.code));
     const unknowns = messages(rawUnknowns, translate, extra);
     // The unknown codes encode their owner: dog.* gaps are fixable by the
     // user right now (profile fields); everything else is trail data.

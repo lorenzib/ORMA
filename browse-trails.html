@@ -1044,7 +1044,7 @@
   <div class="hp-footer-grid">
     <div>
       <div class="hp-footer-brand"><img src="logo.svg?v=5" alt=""><span>ORMA</span></div>
-      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans, so every footprint left on the mountain is a safe one.</p>
+      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans: what each walk asks of your dog, so you can choose well.</p>
       <div class="hp-footer-get">
         <div class="hp-footer-h">Get the app</div>
         <div class="hp-footer-apps">
@@ -1104,7 +1104,7 @@
 </footer>
 
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261120-1"></script>
+<script src="i18n.js?v=20261120-7"></script>
 <script src="trust/evidence-v1.js?v=20261006-2"></script>
 <script src="trail-trust.js?v=20261118-1"></script>
 <script src="scoring/recommendation-v1.js?v=20260917-1"></script>
@@ -1127,7 +1127,7 @@
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
 <script src="match-verdict.js?v=20261002-1"></script>
-<script src="map-style.js?v=20261119-8"></script>
+<script src="map-style.js?v=20261120-2"></script>
 <script src="browse-map.js?v=20261111-1"></script>
 <script>
   // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
@@ -1298,7 +1298,7 @@
     // the trail page itself, at the moment it's actually wanted.
     const PER_PAGE = 15;
     const allowedCountries = ['all', 'italy', 'france', 'austria', 'switzerland'];
-    const allowedRegions = ['all', 'dolomites', 'savoy', 'frenchalps', 'lombardy', 'friuli', 'aosta', 'tyrol', 'switzerland'];
+    const allowedRegions = ['all', 'dolomites', 'savoy', 'frenchalps', 'lombardy', 'friuli', 'aosta', 'piedmont', 'tyrol', 'switzerland'];
     // A trail's country comes from its region's row in regions-config.js.
     const COUNTRY_VALUE = { IT:'italy', FR:'france', AT:'austria', CH:'switzerland' };
     function trailCountry(trail){
@@ -1619,6 +1619,7 @@
       { value: 'lombardy', label: bt('browse.geo.lombardy', 'Lombardy'), country:'italy', match: t => t.region === 'lombardy' },
       { value: 'friuli', label: bt('browse.geo.friuli', 'Friuli Venezia Giulia'), country:'italy', match: t => t.region === 'friuli' },
       { value: 'aosta', label: bt('browse.geo.aosta', 'Valle d’Aosta'), country:'italy', match: t => t.region === 'aosta' },
+      { value: 'piedmont', label: bt('browse.geo.piedmont', 'Piedmont'), country:'italy', match: t => t.region === 'piedmont' },
       { value: 'tyrol', label: bt('browse.geo.tyrol', 'Tyrol & Carinthia'), country:'austria', match: t => t.region === 'tyrol' },
       { value: 'switzerland', label: bt('browse.geo.swissRegion', 'Switzerland'), country:'switzerland', match: t => t.region === 'switzerland' },
     ];
