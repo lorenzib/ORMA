@@ -154,9 +154,9 @@ describe('canonical recommendation decision presentation', () => {
   test('labels guest output as unpersonalized', () => {
     const result = decision.present(recommendation);
 
-    expect(result.contextLabel).toBe('Unpersonalized planning view');
+    expect(result.contextLabel).toBe('General view: no dog added');
     expect(result.dogName).toBeNull();
-    expect(result.heroSummary).toContain('unpersonalized');
+    expect(result.heroSummary).toContain('Add your dog for a personal match');
   });
 
   test('translates conclusions and coded reasons without changing the score', () => {

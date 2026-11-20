@@ -9,7 +9,7 @@
       "generatedAt": "2026-08-20T09:37:12.448Z",
       "fields": {
         "name": "Cinque Torri three-refuges assisted circuit",
-        "desc": "This chairlift-assisted circuit begins at Bai de Dones, rises on the 5 Torri lift and returns on foot through the Cinque Torri open-air museum, refuge area and forest. The approved track contains 1.37 km of lift transport followed by approximately 3.95 km of predominantly downhill walking, with about two hours allowed for the itinerary.\n\nDogs of any size may use the 5 Torri lift free of charge, but both leash and muzzle are required. The upper museum and refuge area is open alpine terrain, while the lower return enters forest. Seasonal sheep grazing is documented in the wider area, so keep dogs close even though an encounter on the exact circuit is variable.",
+        "desc": "This chairlift-assisted circuit begins at Bai de Dones, rises on the 5 Torri lift and returns on foot through the Cinque Torri open-air museum, refuge area and forest. The approved track contains 1.37 km of lift transport followed by approximately 3.95 km of predominantly downhill walking, with about two hours allowed for the itinerary.\n\nDogs of any size may use the 5 Torri lift free of charge, but both a lead and a muzzle are required. The upper museum and refuge area is open alpine terrain, while the lower return enters forest. Seasonal sheep grazing is documented in the wider area, so keep dogs close even though an encounter on the exact circuit is variable.",
         "tips": "This itinerary depends on the 5 Torri chairlift operating. The published 2026 season is 6 June to 11 October, subject to weather and snow. Use the approved Bai de Dones parking pin. Carry water: the three refuges are possible service stops, but no freely accessible potable dog-water point has been verified.",
         "imageIcon": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cinque_Torri_01.jpg",
         "imageCredit": "Cinque Torri 01, Clemens Stockner, CC BY-SA 4.0, via Wikimedia Commons",
@@ -52015,7 +52015,7 @@
         "routeNumberGuidance": {
           "mode": "numbered",
           "start": "Start where the route begins, marked on the map. No car park or bus stop has been confirmed nearby. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.",
-          "status": "The mapped route carries trail numbers 17, 24; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
+          "status": "This route follows trails 17, 24. Look for those numbers at junctions; ORMA has not checked how they are shown on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
           "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails 17, 24 and then 17, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.",
           "switches": "The mapped route runs along numbered trails 17 and 24 and 17 throughout, with no change of number recorded along it. Read off the map (OpenStreetMap), not from directions the trail’s operator published.",
           "establishedBy": {
@@ -57153,7 +57153,7 @@
         "routeNumberGuidance": {
           "mode": "numbered",
           "start": "Start at the car park, 166 m from the route, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.",
-          "status": "The mapped route carries trail number 3; look for it at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
+          "status": "This route follows trail 3. Look for that number at junctions; ORMA has not checked how it is shown on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
           "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trail 3. Read off the map (OpenStreetMap), not from directions the trail’s operator published.",
           "switches": "The mapped route runs along numbered trail 3 throughout, with no change of number recorded along it. Read off the map (OpenStreetMap), not from directions the trail’s operator published.",
           "establishedBy": {
@@ -58536,14 +58536,14 @@
       "fields": {
         "name": "Sentier du Four",
         "desc": "A country loop around Arbusigny on the Plateau des Bornes, known locally as the Chemin des Fours: it strings together the commune's hamlets past old communal bread ovens and mission crosses, with wide views over the Saleve, the Voirons, the Bornes and the Faucigny. Part of the route follows the historic Chemin du Sel, the old salt road, on a mix of farm tracks and quiet lanes at around 830 m.",
-        "tips": "Imported route, not yet field-reviewed by ORMA. No published dog-access rule could be found for this circuit, so treat that as unconfirmed: it crosses working farmland and hamlets, and a leash is the safe default, especially near livestock and along the road stretches. Paths turn muddy after rain. The mapped line has a short disconnected piece along the D278 where the source data is broken; on the ground, simply follow the yellow waymarks.",
+        "tips": "Imported route, not yet field-reviewed by ORMA. No published dog-access rule could be found for this circuit, so treat that as unconfirmed: it crosses working farmland and hamlets, and a lead is the safe default, especially near livestock and along the road stretches. Paths turn muddy after rain. The mapped line has a short disconnected piece along the D278 where the source data is broken; on the ground, simply follow the yellow waymarks.",
         "ormaVerified": false,
         "routeNumberGuidance": {
           "mode": "landmarks",
           "start": "Start at Arbusigny chef-lieu, route du Col du Parc, by the bus stop, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.",
-          "status": "No trail numbers are recorded for this walk. Follow the mapped ORMA line and local destination signs rather than looking for a number. This is ORMA’s suggestion, not one published by the trail’s operator.",
-          "sequence": "This walk carries no route number and no numbered route runs along it. ORMA has no landmark sequence recorded for it: follow the walk’s name on local signs and the mapped ORMA line on this page. This is ORMA’s suggestion, not one published by the trail’s operator.",
-          "switches": "This walk carries no route number, so no number changes along it. ORMA has no landmark sequence recorded for it: follow the walk’s name on local signs and the mapped ORMA line on this page. This is ORMA’s suggestion, not one published by the trail’s operator.",
+          "status": "No trail numbers are recorded for this walk. Follow the ORMA line on the map and local destination signs rather than looking for a number. This is ORMA’s suggestion, not one published by the trail’s operator.",
+          "sequence": "This walk carries no route number and no numbered route runs along it. ORMA has no landmark sequence recorded for it: follow the walk’s name on local signs and the ORMA line on this page’s map. This is ORMA’s suggestion, not one published by the trail’s operator.",
+          "switches": "This walk carries no route number, so no number changes along it. ORMA has no landmark sequence recorded for it: follow the walk’s name on local signs and the ORMA line on this page’s map. This is ORMA’s suggestion, not one published by the trail’s operator.",
           "establishedBy": {
             "start": "orma-record",
             "status": "orma-record",
@@ -61137,7 +61137,7 @@
         "routeNumberGuidance": {
           "mode": "numbered",
           "start": "Start at the bus stop Sankt Sigmund - San Sigismondo, 26 m from the route, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.",
-          "status": "The mapped route carries trail numbers 6, 2, 7; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
+          "status": "This route follows trails 6, 2, 7. Look for those numbers at junctions; ORMA has not checked how they are shown on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
           "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails 6, 2 and then 7, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.",
           "switches": "On the mapped route, trail 6 gives way to trail 2 about 1.1 km from the start; trail 2 gives way to trail 7 about 2.3 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.",
           "establishedBy": {
@@ -62535,7 +62535,7 @@
         "routeNumberGuidance": {
           "mode": "numbered",
           "start": "Start at Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172), by Hotel Pinei Nature & Spirit, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.",
-          "status": "The mapped route carries trail numbers 3A, 24; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
+          "status": "This route follows trails 3A, 24. Look for those numbers at junctions; ORMA has not checked how they are shown on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
           "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails 3A, 24 and then 3A, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.",
           "switches": "On the mapped route, trail 3A gives way to trail 24 about 2.9 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.",
           "establishedBy": {
@@ -63254,7 +63254,7 @@
         "routeNumberGuidance": {
           "mode": "numbered",
           "start": "Start at Egger Moos craft zone, Steinegg: bus stop and car park (official start), marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.",
-          "status": "The mapped route carries trail numbers 3, 5, 4; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
+          "status": "This route follows trails 3, 5, 4. Look for those numbers at junctions; ORMA has not checked how they are shown on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.",
           "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails 3, 5 and then 4, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.",
           "switches": "On the mapped route, trail 5 gives way to trail 4 about 6.2 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.",
           "establishedBy": {

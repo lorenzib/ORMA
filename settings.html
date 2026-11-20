@@ -127,7 +127,7 @@
             <p class="st-hint" id="stEmailHint" data-i18n="page.settings.usedForTheLoginLink">Used for the login link and nothing else.</p>
           </div>
           <div class="st-divider-row">
-            <span id="stProviderLine" data-i18n="page.settings.checkingHowYouSignIn">Checking how you sign in…</span>
+            <span id="stProviderLine" data-i18n="page.settings.checkingHowYouSignIn">Checking how you log in…</span>
             <button type="button" class="st-btn" id="stPasswordBtn" data-i18n="page.settings.setAPassword">Set a password</button>
           </div>
           <p class="st-status" id="stPasswordStatus" hidden></p>
@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', function(){
       $('stPasswordBtn').hidden = true;
       $('stEmail').readOnly = true;
       $('stEmailBtn').hidden = true;
-      $('stEmailHint').textContent = tx('You sign in with Google, so your login email is managed by your Google account.');
+      $('stEmailHint').textContent = tx('You log in with Google, so your login email is managed by your Google account.');
     } else {
       $('stProviderLine').textContent = tx('Signed in with email and password');
       $('stPasswordBtn').hidden = false;

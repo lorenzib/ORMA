@@ -270,7 +270,7 @@
         : state.heat === 'shade-60' ? tr('filters.chip.shade60', 'Over 60% shade')
         : tr('filters.chip.shade', 'Shade listed'),
       exposure: tr('filters.chip.exposure', 'No reported exposure'),
-      access: state.access === 'allowed-reviewed' ? tr('filters.chip.accessPermitted', 'Dogs permitted') : tr('filters.chip.accessLeash', 'Dogs allowed, leash is okay'),
+      access: state.access === 'allowed-reviewed' ? tr('filters.chip.accessPermitted', 'Dogs permitted') : tr('filters.chip.accessLeash', 'Dogs allowed, lead is okay'),
       duration: tr('filters.chip.multiDay', 'Multi-day routes'),
       collection: tr('filters.chip.collection', '{collection} collection', { collection: state.collection }),
       minMatch: tr('filters.chip.minMatch', '{pct}%+ dog match', { pct: state.minMatch }),

@@ -135,7 +135,7 @@ describe('UX-04 canonical recommendation journey', () => {
 
     const block = document.getElementById('recommendationDecision');
     expect(block.hidden).toBe(false);
-    expect(block.textContent).toContain('Unpersonalized planning view');
+    expect(block.textContent).toContain('General view: no dog added');
     expect(block.textContent).toContain('Good with care');
     expect(block.textContent).toContain('Distance is within range.');
     expect(block.textContent).toContain('Shade is limited.');
@@ -162,7 +162,7 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(block.textContent).not.toContain('Access is not reviewed.');
     expect(block.querySelector('.recommendation-unchecked')).toBeNull();
     expect(document.getElementById('heroVerdict').textContent)
-      .toBe('Good with care in an unpersonalized planning view.');
+      .toBe('Good with care for a typical dog. Add your dog for a personal match.');
     expect(window.recommendTrail).toHaveBeenCalledTimes(1);
   });
 });

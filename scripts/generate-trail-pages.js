@@ -352,7 +352,7 @@ function displayStartLabel(t, label) {
     return L('Suggested start, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
   }
   if (!trailImported(t)) return tr(withoutOsmTag(tr(label)));
-  return L('Mapped start suggestion, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
+  return L('Suggested start from map data, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
 }
 
 const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', frenchalps: 'French Alps, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', aosta: 'Valle d\'Aosta, Italy', piedmont: 'Piedmont, Italy', veneto: 'Veneto, Italy', tyrol: 'Tyrol & Carinthia, Austria', switzerland: 'Switzerland' };
@@ -393,7 +393,7 @@ function regionLabelText(region) {
 const TIER_BADGE = Object.freeze({
   verified: { label: 'Verified by ORMA', style: 'verified', icon: 'verified' },
   reviewed: { label: 'Reviewed by ORMA', style: 'neutral', icon: null },
-  imported: { label: 'Imported trail', style: 'imported', icon: 'imported' },
+  imported: { label: 'Not yet verified', style: 'imported', icon: 'imported' },
 });
 
 /**
@@ -414,7 +414,7 @@ function badgeForTrail(t) {
 function tierLabelText(tier) {
   if (tier === TIER_BADGE.verified) return L('Verified by ORMA');
   if (tier === TIER_BADGE.reviewed) return L('Reviewed by ORMA');
-  return L('Imported trail');
+  return L('Not yet verified');
 }
 
 const REVIEW_CATEGORIES = ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'];
@@ -1215,7 +1215,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     ${t.paid ? `<span class="dp-badge dp-badge--neutral"><span>${L('Paid access')}</span></span>` : ''}
     ${openChairlift ? `<span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>${L('Chairlift-assisted · not for most dogs')}</span></span>` : ''}
   </div>
-  ${openChairlift ? `<p class="sp-lift-warning">${L('<strong>This route depends on an open chairlift{lift}.</strong> A dog that is not used to one can panic and fall, which can be fatal. ORMA recommends it only for a dog of 8 kg or under that rides calmly held on a lap, harnessed and leashed; for every other dog it is graded as not recommended.', { lift: t.liftAccess.name ? ` (${escapeHtml(t.liftAccess.name)})` : '' })}</p>` : ''}
+  ${openChairlift ? `<p class="sp-lift-warning">${L('<strong>This route depends on an open chairlift{lift}.</strong> A dog that is not used to one can panic and fall, which can be fatal. ORMA recommends it only for a dog of 8 kg or under that rides calmly held on a lap, harnessed and on a lead; for every other dog it is graded as not recommended.', { lift: t.liftAccess.name ? ` (${escapeHtml(t.liftAccess.name)})` : '' })}</p>` : ''}
   ${t.imageIcon ? `<figure class="sp-photo">${photoHtml(t)}${photoCreditHtml(t)}</figure>` : routeHtml}
   ${!t.imageIcon && t.imagePlaceholder ? `<p class="sp-src" style="display:flex;align-items:center;gap:8px;margin:-6px 0 14px;"><img src="${up}logo.svg" alt="" width="22" height="22" style="flex:none;"> ${L('We\'re working on adding photos of this trail.')}</p>` : ''}
   ${paragraphs(pageDesc)}

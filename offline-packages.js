@@ -1168,7 +1168,7 @@
         availability.reason === 'imported'
           ? tr(
             'offlinePanel.unavailable.imported',
-            'Offline map download is not enabled yet for imported trails.'
+            'Offline map download is not available yet for trails ORMA has not verified.'
           )
           : tr(
             'offlinePanel.unavailable.verified',

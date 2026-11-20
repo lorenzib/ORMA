@@ -93,7 +93,7 @@
         heroBtn.dataset.hikeUiState = nextState;
         heroBtn.innerHTML = rec
           ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg> ' + tx('End · {time}', { time: '<span class="hike-elapsed">' + fmtElapsed() + '</span>' })
-          : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> ' + tx('Start the hike');
+          : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> ' + tx('Record this walk');
       }
     }
     if (liveBanner) liveBanner.hidden = !rec;

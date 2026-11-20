@@ -399,9 +399,9 @@
       <label class="browse-field"><span data-i18n="browse.filters.rating">Trail rating</span>
         <select id="browseRisk" aria-label="Filter by trail rating" data-i18n-aria-label="browse.filters.filterRating">
           <option value="all">Trail rating</option>
-          <option value="low-risk">Low risk</option>
-          <option value="moderate" data-i18n="hp.difficulty.moderate">Moderate</option>
-          <option value="caution">Caution</option>
+          <option value="low-risk" data-i18n="hp.filters.lowRisk">Low risk</option>
+          <option value="moderate" data-i18n="hp.filters.moderate">Moderate risk</option>
+          <option value="caution" data-i18n="hp.filters.caution">Higher risk</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="browse.filters.terrain">Steepness</span>
@@ -469,7 +469,7 @@
       </aside>
       <div class="browse-results-meta">
         <span id="browseResultCount" aria-live="polite"></span>
-        <span class="browse-result-accessible" data-i18n="browse.trustNote">Trail information combines mapped route data and available ORMA sources.</span>
+        <span class="browse-result-accessible" data-i18n="browse.trustNote">Trail information comes from map data and ORMA’s own sources.</span>
         <button type="button" id="browseClear" class="browse-clear" hidden data-i18n="browse.clearFilters">Clear filters</button>
       </div>
       <div class="simple-grid" id="simpleTrailsList"></div>
@@ -1749,7 +1749,7 @@
         { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.under5', 'Under 5 km'), v:'u5' }, { label:bt('hp.filters.5to10', '5–10 km'), v:'5to10' }, { label:bt('hp.filters.10plus', '10 km+'), v:'10p' },
       ], distance.value, v => { distance.value = v; });
       brSeg('brRiskSeg', [
-        { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.lowRisk', 'Low risk'), v:'low-risk' }, { label:bt('hp.filters.moderate', 'Moderate'), v:'moderate' }, { label:bt('hp.filters.caution', 'Caution'), v:'caution' },
+        { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.lowRisk', 'Low risk'), v:'low-risk' }, { label:bt('hp.filters.moderate', 'Moderate risk'), v:'moderate' }, { label:bt('hp.filters.caution', 'Higher risk'), v:'caution' },
       ], risk.value, v => { risk.value = v; });
       brSeg('brTerrainSeg', [
         { label:bt('hp.filters.any', 'Any'), v:'' }, { label:bt('hp.filters.gentle', 'Gentle only'), v:'soft' }, { label:bt('hp.filters.mixed', 'Up to moderate'), v:'mixed' }, { label:bt('hp.filters.rocky', 'Steep is okay'), v:'rocky' },

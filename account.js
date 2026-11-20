@@ -71,8 +71,8 @@
       : null;
     const code = error && String(error.code || '');
     if(code === 'dog-limit') return tKey('account.maximumDogs', 'An ORMA account can store up to five dogs.');
-    if(code === 'not-signed-in') return tKey('account.saveSignedOut', 'Your session ended. Sign in again, then save this dog.');
-    if(code.includes('permission-denied')) return tKey('account.savePermission', 'ORMA could not save this profile. Refresh the page, sign in again and retry.');
+    if(code === 'not-signed-in') return tKey('account.saveSignedOut', 'Your session ended. Log in again, then save this dog.');
+    if(code.includes('permission-denied')) return tKey('account.savePermission', 'ORMA could not save this profile. Refresh the page, log in again and retry.');
     if(code.includes('unavailable') || code.includes('network')) return tKey('account.saveOffline', 'ORMA could not reach the server. Check your connection and try again.');
     return tKey('account.saveError', 'Something went wrong, please try again.');
   }
