@@ -130,12 +130,25 @@
   // every route a thin dashed grey line with its number, so the walk is the
   // only coloured line on the map. Approved on renders, 26 Oct 2026.
   //
+  // 18 Nov 2026: the grey dashes looked like the basemap's own footpaths and
+  // the contours, so the other marked routes are now a solid muted plum line
+  // on a white edge, under the walk's corridor. Plum is not a match colour
+  // (green / amber / red), not water blue and not a contour brown. The walk
+  // keeps the old dark dashes down its middle, drawn only along the stretch
+  // it shares with a marked route (HIKING_WALK_LINE_LAYER).
+  //
   // Waymarked stays as the fallback: if the tiles are missing or fail to
   // load, the raster is put back in their place.
   const HIKING_SOURCE = 'orma-hiking-routes';
+  const HIKING_CASING_LAYER = 'orma-hiking-routes-casing';
   const HIKING_LINE_LAYER = 'orma-hiking-routes-line';
+  const HIKING_WALK_LINE_LAYER = 'orma-hiking-routes-line-walk';
   // Fainter over satellite, so the track in the photo is not painted over.
-  const HIKING_LINE_OPACITY = { map: 0.75, imagery: 0.55 };
+  const HIKING_LINE_OPACITY = { map: 0.9, imagery: 0.8 };
+  const HIKING_CASING_OPACITY = { map: 0.85, imagery: 0.35 };
+  // The walk's dashes turn white and stronger on satellite: dark dashes
+  // vanish into forest, and the walk has to stay the line that leads.
+  const HIKING_WALK_LINE_OPACITY = { map: 0.75, imagery: 0.9 };
   const HIKING_REF_LAYER = 'orma-hiking-routes-ref';
   const HIKING_WALK_SOURCE = 'orma-hiking-walk-refs';
   const HIKING_WALK_REF_LAYER = 'orma-hiking-routes-ref-walk';
@@ -148,13 +161,19 @@
   // The regions' padded extents together (REGIONS in build-hiking-routes.js),
   // so the map does not ask for tiles across the rest of Europe.
   const HIKING_BOUNDS = [5.25, 43.73, 12.66, 47.81];
-  const HIKING_LINE_COLOUR = '#5F665F';
-  const HIKING_REF_COLOUR = '#4D554E';
+  const HIKING_LINE_COLOUR = '#8E5A84';
+  const HIKING_REF_COLOUR = '#6E3F65';
+  // The walk's own stretch of route: the dark dashes the walk always had.
+  const HIKING_WALK_LINE_COLOUR = { map: '#4D554E', imagery: '#FFFFFF' };
   const HIKING_WALK_REF_COLOUR = '#2E4034';
   // How close (metres) the walk must run to a route to be walking on it.
   const WALK_ROUTE_TOLERANCE_M = 25;
   // Shorter shared stretches are crossings, not the walk following a route.
   const WALK_ROUTE_MIN_STRETCH_M = 120;
+  // Every layer of ours, bottom to top: the Layers chip toggles them together.
+  const HIKING_OWN_LAYERS = [
+    HIKING_CASING_LAYER, HIKING_LINE_LAYER, HIKING_WALK_LINE_LAYER, HIKING_REF_LAYER, HIKING_WALK_REF_LAYER,
+  ];
   // Every numbered route, before a walk takes its own routes' numbers.
   const ALL_ROUTE_NUMBERS = ['!=', ['get', 'ref'], ''];
 
@@ -281,7 +300,7 @@
     const visible = map.getLayoutProperty(HIKING_LINE_LAYER, 'visibility') !== 'none';
     const state = hikingState.get(map) || {};
     addWaymarkedHiking(map, { beforeId: HIKING_REF_LAYER, visible, minzoom: state.minzoom });
-    [HIKING_WALK_REF_LAYER, HIKING_REF_LAYER, HIKING_LINE_LAYER].forEach(id => {
+    [HIKING_WALK_REF_LAYER, HIKING_REF_LAYER, HIKING_WALK_LINE_LAYER, HIKING_LINE_LAYER, HIKING_CASING_LAYER].forEach(id => {
       if (map.getLayer(id)) map.removeLayer(id);
     });
     [HIKING_WALK_SOURCE, HIKING_SOURCE].forEach(id => {
@@ -290,7 +309,8 @@
   }
 
   /**
-   * Draw the hiking network from our own tiles: dashed grey lines, every
+   * Draw the hiking network from our own tiles: solid plum lines on a white
+   * edge, every
    * route's number from trail zoom (12) up, ranked international first when
    * they crowd. Pass `walk` ([[lng, lat], ...]) on a single-walk map and the
    * routes the walk follows get bigger, darker numbers beside the walk, only
@@ -314,14 +334,40 @@
       type: 'vector', tiles: [tiles], minzoom: 10, maxzoom: 14, bounds: HIKING_BOUNDS,
     });
     map.addSource(HIKING_WALK_SOURCE, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+    // A white edge lifts the line off the relief and the basemap's own
+    // white-dashed footpaths, the way a printed hiking map does it.
+    map.addLayer({
+      id: HIKING_CASING_LAYER, type: 'line', source: HIKING_SOURCE, 'source-layer': 'routes',
+      ...(minzoom !== undefined ? { minzoom } : {}),
+      layout: { visibility, 'line-join': 'round', 'line-cap': 'round' },
+      paint: {
+        'line-color': '#FFFFFF',
+        'line-opacity': HIKING_CASING_OPACITY.map,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 10, 1.2, 12, 2.4, 13, 3.6, 16, 5.6],
+      },
+    }, target);
+    // Solid and in a colour of its own, so a marked route never reads as a
+    // footpath, a track or a contour.
     map.addLayer({
       id: HIKING_LINE_LAYER, type: 'line', source: HIKING_SOURCE, 'source-layer': 'routes',
       ...(minzoom !== undefined ? { minzoom } : {}),
-      layout: { visibility, 'line-join': 'round', 'line-cap': 'butt' },
+      layout: { visibility, 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': HIKING_LINE_COLOUR,
         'line-opacity': HIKING_LINE_OPACITY.map,
-        // Dashed so a route never reads as a contour line.
+        // Hairline when zoomed out, where the network is a web over the valley.
+        'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.5, 12, 1, 13, 1.7, 16, 2.8],
+      },
+    }, target);
+    // The walk's corridor goes between the network and this: the stretch of
+    // marked route the walk follows, dashed down the middle of the corridor.
+    map.addLayer({
+      id: HIKING_WALK_LINE_LAYER, type: 'line', source: HIKING_WALK_SOURCE,
+      ...(minzoom !== undefined ? { minzoom } : {}),
+      layout: { visibility, 'line-join': 'round', 'line-cap': 'butt' },
+      paint: {
+        'line-color': HIKING_WALK_LINE_COLOUR.map,
+        'line-opacity': HIKING_WALK_LINE_OPACITY.map,
         'line-dasharray': [2, 1.6],
         'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.8, 13, 1.4, 16, 2.4],
       },
@@ -338,14 +384,14 @@
         'symbol-sort-key': ['get', 'rank'],
         'text-field': ['get', 'ref'],
         'text-font': FONT_BOLD,
-        'text-size': 11,
+        'text-size': ['interpolate', ['linear'], ['zoom'], 12, 11, 15, 12.5],
         'text-padding': 6,
         'text-rotation-alignment': 'viewport',
         'text-keep-upright': true,
       },
       paint: { 'text-color': HIKING_REF_COLOUR, 'text-halo-color': '#FFFFFF', 'text-halo-width': 2 },
     }, target);
-    // Above the grey numbers, so the walk's own win where they collide.
+    // Above the other routes' numbers, so the walk's own win where they collide.
     map.addLayer({
       id: HIKING_WALK_REF_LAYER, type: 'symbol', source: HIKING_WALK_SOURCE,
       minzoom: Math.max(12, minzoom || 0),
@@ -429,7 +475,7 @@
   function setHikingRoutesVisible(map, visible) {
     if (!map) return;
     const visibility = visible ? 'visible' : 'none';
-    [HIKING_LINE_LAYER, HIKING_REF_LAYER, HIKING_WALK_REF_LAYER].forEach(id => {
+    HIKING_OWN_LAYERS.forEach(id => {
       if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visibility);
     });
     setWaymarkedVisible(map, visible);
@@ -437,6 +483,7 @@
 
   /** The bottom of the hiking network: relief and neighbours go below this. */
   function networkLayerId(map) {
+    if (map && map.getLayer(HIKING_CASING_LAYER)) return HIKING_CASING_LAYER;
     if (map && map.getLayer(HIKING_LINE_LAYER)) return HIKING_LINE_LAYER;
     if (map && map.getLayer(WAYMARKED_LAYER)) return WAYMARKED_LAYER;
     return firstLabelLayerId(map);
@@ -453,13 +500,20 @@
   }
 
   /**
-   * Where a walk's corridor goes: under the relief and the whole marked
-   * network, so the contours and the dashed path the walker follows draw
-   * over it. Contours added later still land above it (they go just under
-   * the network).
+   * Where a walk's corridor goes: over the other marked routes, so they
+   * pass under it, but under the relief and the walk's own dashed route, so
+   * the contours and the path the walker follows draw over it. Contours
+   * added later still land above it (they go just under the walk's dashes).
    */
   function walkCorridorBeforeId(map) {
     if (map && map.getLayer(CONTOUR_LINE_LAYER)) return CONTOUR_LINE_LAYER;
+    if (map && map.getLayer(HIKING_WALK_LINE_LAYER)) return HIKING_WALK_LINE_LAYER;
+    return networkLayerId(map);
+  }
+
+  /** Where contours go: under the walk's dashes, else under the network. */
+  function contourBeforeId(map) {
+    if (map && map.getLayer(HIKING_WALK_LINE_LAYER)) return HIKING_WALK_LINE_LAYER;
     return networkLayerId(map);
   }
 
@@ -806,9 +860,16 @@
    */
   function setLinesOnImagery(map, walkId, onImagery) {
     if (!map) return;
-    if (map.getLayer(HIKING_LINE_LAYER)) {
-      map.setPaintProperty(HIKING_LINE_LAYER, 'line-opacity',
-        onImagery ? HIKING_LINE_OPACITY.imagery : HIKING_LINE_OPACITY.map);
+    [
+      [HIKING_CASING_LAYER, HIKING_CASING_OPACITY],
+      [HIKING_LINE_LAYER, HIKING_LINE_OPACITY],
+      [HIKING_WALK_LINE_LAYER, HIKING_WALK_LINE_OPACITY],
+    ].forEach(([id, opacity]) => {
+      if (map.getLayer(id)) map.setPaintProperty(id, 'line-opacity', onImagery ? opacity.imagery : opacity.map);
+    });
+    if (map.getLayer(HIKING_WALK_LINE_LAYER)) {
+      map.setPaintProperty(HIKING_WALK_LINE_LAYER, 'line-color',
+        onImagery ? HIKING_WALK_LINE_COLOUR.imagery : HIKING_WALK_LINE_COLOUR.map);
     }
     if (!walkId || !map.getLayer(walkId)) return;
     const normal = routeLinePaint('#000');
@@ -861,10 +922,11 @@
         });
       }
       const minzoom = Number.isFinite(config.minzoom) ? config.minzoom : 11;
-      // Lines sit UNDER the marked network. The waymarked raster is mostly
-      // transparent, so contours read everywhere except directly beneath a
-      // trail line -- which is the right order, the path draws over the relief.
-      const belowNetwork = networkLayerId(map);
+      // Lines sit UNDER the walk's dashed route, else under the marked
+      // network. The waymarked raster is mostly transparent, so contours read
+      // everywhere except directly beneath a trail line -- which is the right
+      // order, the path draws over the relief.
+      const belowNetwork = contourBeforeId(map);
       map.addLayer({
         id: CONTOUR_LINE_LAYER, type: 'line', source: CONTOUR_SOURCE, 'source-layer': 'contours',
         minzoom,
@@ -926,10 +988,12 @@
     addWaymarkedHiking,
     setWaymarkedVisible,
     HIKING_SOURCE,
+    HIKING_CASING_LAYER,
     HIKING_LINE_LAYER,
+    HIKING_WALK_LINE_LAYER,
     HIKING_REF_LAYER,
     HIKING_WALK_REF_LAYER,
-    HIKING_LAYER_IDS: [HIKING_LINE_LAYER, HIKING_REF_LAYER, HIKING_WALK_REF_LAYER, WAYMARKED_LAYER],
+    HIKING_LAYER_IDS: [...HIKING_OWN_LAYERS, WAYMARKED_LAYER],
     addHikingRoutes,
     setHikingWalk,
     setHikingRoutesVisible,
@@ -947,6 +1011,9 @@
     setLinesOnImagery,
     ROUTE_LINE_ON_IMAGERY,
     HIKING_LINE_OPACITY,
+    HIKING_CASING_OPACITY,
+    HIKING_WALK_LINE_OPACITY,
+    HIKING_WALK_LINE_COLOUR,
     addContours,
     setContoursVisible,
     CONTOUR_SOURCE,
