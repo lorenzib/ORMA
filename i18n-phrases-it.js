@@ -4,6 +4,7 @@
 window.ORMA_PHRASES_IT = {
   "Don’t count on water along the way. Carry enough for the whole walk.": "Non contare sull’acqua lungo il percorso. Portane abbastanza per tutta la passeggiata.",
   "A water point is on the map, but it may be dry. Carry enough for the whole walk.": "Sulla mappa c’è un punto acqua, ma potrebbe essere asciutto. Portane abbastanza per tutta la passeggiata.",
+  "From the start it’s about {distance} on foot and {climb} m up to the walk. This is not included in the walk’s figures.": "Dalla partenza al percorso sono circa {distance} a piedi e {climb} m di salita. Non sono inclusi nei dati del percorso.",
   "No water on the map. Carry enough for the whole walk.": "Nessun punto acqua sulla mappa. Portane abbastanza per tutta la passeggiata.",
   "No water on the way. Carry about 0.5 l per 10 kg of dog on a warm day.": "Niente acqua lungo il percorso. Porta circa 0,5 l ogni 10 kg di cane nelle giornate calde.",
   "Up to {temp} °C today. Keep rests short, dry your dog off, and bring a coat for a small or short-haired dog.": "Oggi fino a {temp} °C. Fai soste brevi, asciuga il cane e porta un cappottino se è piccolo o a pelo corto.",
@@ -258,7 +259,7 @@ window.ORMA_PHRASES_IT = {
   "City": "Città",
   "Clear all filters": "Azzera tutti i filtri",
   "Cleared winter paths": "Sentieri invernali sgomberati",
-  "Dashed line: about {metres} m on foot from the start flag to the walk. Not part of the walk’s distance.": "Linea tratteggiata: circa {metres} m a piedi dalla bandierina al percorso. Non inclusi nella distanza del percorso.",
+  "Dashed line: about {distance} on foot from the start flag to the walk. Not part of the walk’s distance.": "Linea tratteggiata: circa {distance} a piedi dalla bandierina al percorso. Non inclusi nella distanza del percorso.",
   "Dashed line: on foot from the start flag to the walk. Not part of the walk’s distance.": "Linea tratteggiata: a piedi dalla bandierina al percorso. Non inclusa nella distanza del percorso.",
   "Cleared winter paths in the Dolomites": "Sentieri invernali sgomberati nelle Dolomiti",
   "Compact walks with modest recorded climb": "Passeggiate brevi con un dislivello registrato contenuto",

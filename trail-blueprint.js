@@ -904,10 +904,19 @@
       card.hidden = false;
       return;
     }
+    // The walk-in, when the owner asked for it to be named here
+    // (data/start-access-paths.json, overCap): how far and how far up.
+    const access = t.accessPath;
+    const accessLine = access && access.startLine && Number.isFinite(access.lengthM) && Number.isFinite(access.climbM)
+      ? ' ' + tx('From the start it’s about {distance} on foot and {climb} m up to the walk. This is not included in the walk’s figures.', {
+        distance: access.lengthM >= 1000 ? `${num(Math.round(access.lengthM / 100) / 10)} km` : `${Math.round(access.lengthM / 10) * 10} m`,
+        climb: Math.round(access.climbM / 10) * 10,
+      })
+      : '';
     const cards = [{
       ic:pin,
       t:'Recommended starting point',
-      s:tx('Head to {place}. Use the directions link to navigate to the route start.', { place: esc(startLabel) }),
+      s:tx('Head to {place}. Use the directions link to navigate to the route start.', { place: esc(startLabel) }) + esc(accessLine),
     }];
     grid.innerHTML = renderCards(cards);
     if (maps) maps.hidden = false;
