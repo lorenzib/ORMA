@@ -605,7 +605,7 @@ body{background:#EFECE2;}
      over; the detailed status shows above the panel only when it has
      something to say (.hk-routine means it would only repeat the panel). */
   .td2 .trail-map-box.map-fs:has(.hk-live){--hk-dock:calc(168px + env(safe-area-inset-bottom));}
-  .td2 .trail-map-box.map-fs:has(.hk-live) :is(#detailLayersBtn,.map-panel,.maplibregl-ctrl-top-right,#mapExpandBtn,.td2-elev,.td-layer-switch,.map-nearest-directions,.map-nearest-directions-panel,.mobile-map-hike-slot,#mapPauseHikeBtn,#mapStartHikeBtn,.td-live-pill){display:none!important;}
+  .td2 .trail-map-box.map-fs:has(.hk-live) :is(#detailLayersBtn,#nearbyMapBtn,.map-panel,.maplibregl-ctrl-top-right,#mapExpandBtn,.td2-elev,.td-layer-switch,.map-nearest-directions,.map-nearest-directions-panel,.mobile-map-hike-slot,#mapPauseHikeBtn,#mapStartHikeBtn,.td-live-pill){display:none!important;}
   .td2 .trail-map-box.map-fs:has(.hk-live) .map-hazard-report-btn{top:max(12px,env(safe-area-inset-top))!important;right:12px!important;bottom:auto!important;}
   .td2 .trail-map-box.map-fs:has(.hk-live) #mapHikeDock:not([hidden]){display:block;}
   .td2 .trail-map-box.map-fs:has(.hk-live.hk-routine) #mapHikeStatus{display:none!important;}
@@ -976,6 +976,29 @@ body{background:#EFECE2;}
 .td2-fit-shell .td2-safety-card>.td2-kick{margin-bottom:8px;}
 .td2-fit-shell .dog-safety-rows{grid-template-columns:1fr;}
 .td2-map-stack>.td2-elev{padding:18px 20px;border-top:0;}
+/* The way into the other walks from the map itself: beside Layers, on from
+   the first paint, because their pins usually start outside the first view. */
+.td2 .map-nearby-btn{position:absolute;top:12px;left:96px;z-index:6;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:none;border-radius:9px;font:700 11.5px 'Inter',sans-serif;color:#2E4034;background:rgba(255,255,255,.95);box-shadow:0 2px 8px rgba(23,42,28,.16);cursor:pointer;white-space:nowrap;}
+.td2 .map-nearby-btn[hidden]{display:none;}
+.td2 .map-nearby-btn::before{content:"";width:9px;height:9px;border-radius:50%;background:#4A7856;box-shadow:0 0 0 2px #fff,0 0 0 3px rgba(46,64,52,.25);}
+.td2 .map-nearby-btn[aria-pressed="true"]{background:#2E4034;color:#fff;}
+.td2 .map-nearby-btn[aria-pressed="true"]::before{display:none;}
+.td2 .trail-map-box.map-fs .map-nearby-btn{top:max(12px,env(safe-area-inset-top));}
+/* Walks nearby: the neighbours pinned on the map, one line each. */
+.td2-nearby-walks{padding:16px 20px 10px;}
+.td2-nearby-walks[hidden]{display:none!important;}
+.td2-nearby-walks h2{margin:0 0 6px;}
+.td2-nearby-walks-list{list-style:none;margin:0;padding:0;}
+.td2-nearby-walk{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid #ECE8DF;}
+.td2-nearby-walk:first-child{border-top:0;}
+.td2-nearby-walk-link{display:flex;align-items:flex-start;gap:10px;flex:1;min-width:0;text-decoration:none;color:inherit;}
+.td2-nearby-walk-dot{flex:none;width:11px;height:11px;border-radius:50%;margin-top:4px;box-shadow:0 0 0 2px #fff,0 0 0 3px rgba(46,64,52,.18);}
+.td2-nearby-walk-text{display:flex;flex-direction:column;min-width:0;}
+.td2-nearby-walk-name{font-weight:700;font-size:14px;color:#2E4034;line-height:1.3;}
+.td2-nearby-walk-link:hover .td2-nearby-walk-name{text-decoration:underline;}
+.td2-nearby-walk-meta{font-size:12.5px;color:#6B7A6E;margin-top:2px;}
+.td2-nearby-walk-show{flex:none;font:700 12px 'Inter',sans-serif;color:#2E4034;background:#F2EFE8;border:1px solid #E2DDD2;border-radius:999px;padding:6px 12px;cursor:pointer;}
+.td2-nearby-walk-show:hover{background:#E9E5DB;}
 .td2-map-stack #elevProf{height:128px;}
 .td2-map-stack .td2-elev-figs{justify-content:space-between;gap:10px;}
 
@@ -1310,6 +1333,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
         <button id="mobileMapLoadBtn" type="button" class="mobile-map-load" data-i18n="page.trail.loadInteractiveMap">Load interactive map</button>
         <p id="routeDataNotice" class="route-data-notice" hidden></p>
         <button id="detailLayersBtn" type="button" class="map-btn" aria-expanded="false" data-i18n="map.layers">Layers</button>
+        <button id="nearbyMapBtn" type="button" class="map-nearby-btn" aria-pressed="false" hidden>Walks nearby</button>
         <div id="detailLayersPanel" class="map-panel">
           <button id="routesToggle" type="button" class="map-chip on" aria-pressed="true" data-i18n="chips.routes">Trail routes</button>
           <button id="fountainsToggle" type="button" class="map-chip on" aria-pressed="true" data-i18n="legend.water">Drinking water</button>
@@ -1355,6 +1379,11 @@ body.trail-photo-viewer-open{overflow:hidden;}
         </div>
       </div>
     </div>
+
+    <section class="td2-card td2-nearby-walks" id="nearbyWalks" aria-labelledby="nearbyWalksTitle" hidden>
+      <h2 class="td2-kick" id="nearbyWalksTitle" data-i18n="page.trail.walksNearby">Walks nearby</h2>
+      <ul class="td2-nearby-walks-list" id="nearbyWalksList"></ul>
+    </section>
 
     <div id="mobileWeatherSlot" aria-label="Trail weather" data-i18n-aria-label="page.trail.trailWeather"></div>
     </div>
@@ -1516,7 +1545,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 
 <script src="device-handoff.js?v=20260904-1"></script>
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261120-1"></script>
+<script src="i18n.js?v=20261120-7"></script>
 <script>
   // Account services are useful after the page is interactive, but loading
   // the Firebase app/auth/Firestore graph during navigation keeps mobile
