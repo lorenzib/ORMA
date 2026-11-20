@@ -22,8 +22,8 @@
   }, { once:true });
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="styles.css?v=20260916-5">
-<link rel="stylesheet" href="trail-mobile.css?v=20260904-3">
+<link rel="stylesheet" href="styles.css?v=20261120-2">
+<link rel="stylesheet" href="trail-mobile.css?v=20261120-1">
 <link rel="stylesheet" href="pre-hike-readiness.css?v=20260815-4">
 <style>
 /* ---- Companion reference tokens, trail detail (design-handoff fidelity) ---- */
@@ -203,12 +203,6 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
 .td-similar .head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;}
 .td-similar h3{font:500 23px 'Bricolage Grotesque',sans-serif;margin:0;}
 .near-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.near-card{display:block;background:#fbfaf4;border:1px solid rgba(27,31,25,.09);border-radius:16px;overflow:hidden;text-decoration:none;}
-.near-card .ph{position:relative;height:156px;background:repeating-linear-gradient(45deg,#e2ddcb 0 11px,#e9e4d4 11px 22px);background-size:cover;background-position:center;}
-.near-card .pct{position:absolute;right:12px;top:12px;font:600 13px 'Inter',sans-serif;background:#fbfaf4;color:#4a7c59;padding:4px 11px;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,.12);}
-.near-card .bd{padding:15px 17px;}
-.near-card .nm{font:500 17px 'Bricolage Grotesque',sans-serif;color:#1b1f19;line-height:1.15;}
-.near-card .mt{font-size:12.5px;color:#767a6d;margin-top:5px;}
 
 @media (max-width:960px){
   .td-grid{grid-template-columns:1fr;}
@@ -512,12 +506,6 @@ body{background:#EFECE2;}
 
 
 /* Similar trails → white prototype photo cards with % badge */
-.td2 .near-card{background:#fff;border:1px solid #E4E0D3;border-radius:14px;transition:box-shadow .2s,transform .2s;}
-.td2 .near-card:hover{box-shadow:0 12px 30px -14px rgba(46,64,52,.4);transform:translateY(-2px);}
-.td2 .near-card .ph{height:130px;}
-.td2 .near-card .pct{background:#4A7856;color:#fff;border-radius:999px;box-shadow:none;font-weight:800;}
-.td2 .near-card .nm{font:700 15px 'Bricolage Grotesque',sans-serif;color:#2E4034;}
-.td2 .near-card .mt{font-size:11.5px;color:#6B7A6E;}
 .td2-nearby h3{font:700 21px 'Bricolage Grotesque',sans-serif;}
 
 /* Hazards / read-before-you-go chips spacing */
@@ -1602,6 +1590,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20261120-2" defer></script>
+<script src="trail-app.bundle.js?v=20261120-3" defer></script>
 </body>
 </html>
