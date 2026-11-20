@@ -9,9 +9,9 @@ const { evaluateInto } = require('./test-support/page-runtime');
 // it, and a scoring stub whose answer each trail carries.
 
 function tForTests(key, params = {}){
-  if(key === 'safety.low') return 'Low-risk terrain';
-  if(key === 'safety.moderate') return 'Moderate terrain';
-  if(key === 'safety.caution') return 'Caution terrain';
+  if(key === 'safety.low') return 'Low risk';
+  if(key === 'safety.moderate') return 'Moderate risk';
+  if(key === 'safety.caution') return 'Higher risk';
   if(key === 'home.noTrailsValley') return `No trails in ${params.label}`;
   if(key === 'home.noSaved') return 'No saved trails';
   return key;
