@@ -4392,7 +4392,7 @@ function liEmptyStateHtml(buttonId){
     : (liQuery.trim() || liActiveFilterCount() > 0)
       ? tx('Try widening your search or filters.')
       : liLocationContext && liLocationContext.kind === 'current'
-        ? tx('No ORMA trails are mapped within {km} km yet.', { km:liLocationContext.radiusKm })
+        ? tx('No ORMA trails within {km} km yet.', { km:liLocationContext.radiusKm })
         : t('home.noTrailsValley', {label});
   return {
     html: `
@@ -5736,7 +5736,7 @@ async function updateRegionalMapData(map, regionSelection) {
 function placeDogPolicyLabel(policy) {
   return {
     welcome: tx('Dogs welcome'),
-    leashed: tx('Dogs welcome on leash'),
+    leashed: tx('Dogs welcome on a lead'),
     'not-allowed': tx('Dogs not allowed'),
   }[policy] || tx('Dog policy recorded');
 }
@@ -5758,7 +5758,7 @@ function ensurePlaceDogVerificationDialog() {
         <fieldset>
           <legend>${tx('Dog policy')}</legend>
           <label><input type="radio" name="policy" value="welcome" required> ${tx('Dogs welcome')}</label>
-          <label><input type="radio" name="policy" value="leashed"> ${tx('Dogs welcome on leash')}</label>
+          <label><input type="radio" name="policy" value="leashed"> ${tx('Dogs welcome on a lead')}</label>
           <label><input type="radio" name="policy" value="not-allowed"> ${tx('Dogs not allowed')}</label>
         </fieldset>
         <label class="place-dog-field">${tx('How do you know?')}
@@ -5852,7 +5852,7 @@ async function hydratePlaceDogVerification(host, place) {
   }
   if(!host.isConnected) return;
   host.innerHTML = verified
-    ? `<span class="orma-verified-badge">${productIcon('dog')} ${tx('ORMA verified')}</span><span class="orma-verified-policy">${placeDogPolicyLabel(verified.policy)}</span><button type="button" class="orma-place-verify-btn">${tx('Report a change')}</button>`
+    ? `<span class="orma-verified-badge">${productIcon('dog')} ${tx('Verified by ORMA')}</span><span class="orma-verified-policy">${placeDogPolicyLabel(verified.policy)}</span><button type="button" class="orma-place-verify-btn">${tx('Report a change')}</button>`
     : `<span class="orma-place-prompt">${tx('Know if dogs are welcome here?')}</span><button type="button" class="orma-place-verify-btn">${tx('Help ORMA verify')}</button>`;
   host.querySelector('.orma-place-verify-btn').addEventListener('click', () => {
     openPlaceDogVerification(place, () => {
@@ -5969,7 +5969,7 @@ function addPoiLayerSet(map, sourceId, prefix, circleColor, clusterColor, iconGr
       content += `<br>🔗 <a href="${url}" target="_blank" rel="noopener">${tx('Website')}</a>`;
     }
     if (props.dog === 'yes') content += `<br><span class="dp-inline-status">${productIcon('dog')}<span>${tx('Dogs welcome')}</span></span>`;
-    else if (props.dog === 'leashed') content += `<br>🦮 ${tx('Dogs on leash')}`;
+    else if (props.dog === 'leashed') content += `<br>🦮 ${tx('Dogs on a lead')}`;
     else if (props.dog === 'no') content += `<br>🚫 ${tx('No dogs')}`;
     if (props.outdoor_seating && props.outdoor_seating !== 'no') content += `<br>🪑 ${tx('Outdoor seating')}`;
     const coordinates = feature.geometry.coordinates.slice(0, 2);

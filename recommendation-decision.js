@@ -75,7 +75,7 @@
     'trail.surface-hazards.none-known': 'no recorded surface hazards',
     'trail.water.reviewed': 'water on the route',
     'trail.dog-access.allowed': 'dog access',
-    'trail.dog-access.leash': 'dog access on a leash',
+    'trail.dog-access.leash': 'dog access on a lead',
     'trail.livestock.none': 'no livestock recorded',
     'trail.wildlife.low': 'low wildlife activity',
     'trail.road.none': 'no road sections',
@@ -103,7 +103,7 @@
     'trail.surface-hazards.none-known': () => tx('No surface hazards are recorded.'),
     'trail.water.reviewed': () => tx('There is water on the route.'),
     'trail.dog-access.allowed': () => tx('Dogs are allowed.'),
-    'trail.dog-access.leash': () => tx('Dogs are allowed on a leash.'),
+    'trail.dog-access.leash': () => tx('Dogs are allowed on a lead.'),
     'trail.livestock.none': () => tx('No livestock is recorded.'),
     'trail.wildlife.low': () => tx('Wildlife activity is low.'),
     'trail.road.none': () => tx('There are no road sections.'),
@@ -569,7 +569,7 @@
       evidenceTier:recommendation.evidenceTier || 'unknown',
       contextLabel:dogName
         ? tr('recommendation.context.dog', 'Recommendation for {name}', { name:dogName })
-        : tr('recommendation.context.guest', 'Unpersonalized planning view'),
+        : tr('recommendation.context.guest', 'General view: no dog added'),
       dogName:dogName || null,
       reasons:reasons.slice(0, 4),
       cautions:cautions.slice(0, 4),
@@ -594,7 +594,7 @@
           conclusion:tr(`recommendation.category.${recommendation.category || 'unavailable'}`, category.label),
           name:dogName,
         })
-        : tr('recommendation.hero.guest', '{conclusion} in an unpersonalized planning view.', {
+        : tr('recommendation.hero.guest', '{conclusion} for a typical dog. Add your dog for a personal match.', {
           conclusion:tr(`recommendation.category.${recommendation.category || 'unavailable'}`, category.label),
         }),
     };

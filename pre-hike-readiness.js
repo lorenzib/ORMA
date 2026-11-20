@@ -143,7 +143,7 @@
         'gps',
         'blocker',
         tr('readiness.gps.unavailable.title', 'GPS is unavailable'),
-        tr('readiness.gps.unavailable.detail', 'This browser cannot provide a live position for hike mode.')
+        tr('readiness.gps.unavailable.detail', 'This browser cannot provide a live position for recording a walk.')
       ));
     }else if(gps.permission === 'denied'){
       items.push(item(
@@ -268,7 +268,7 @@
           `<p class="pre-hike-boundary"><strong>${escapeHtml(tr('readiness.boundary.title', 'ORMA is a planning companion, not an emergency-navigation service.'))}</strong> ${escapeHtml(tr('readiness.boundary.detail', 'Offline maps and GPS do not replace waymarks, judgment, adequate equipment, or emergency preparation.'))}</p>` +
           '<div class="pre-hike-footer">' +
             `<button type="button" class="pre-hike-secondary" data-readiness-action="close">${escapeHtml(tr('readiness.notYet', 'Not yet'))}</button>` +
-            `<button type="button" class="pre-hike-primary" data-readiness-action="continue">${escapeHtml(tr('readiness.start', 'Start hike'))}</button>` +
+            `<button type="button" class="pre-hike-primary" data-readiness-action="continue">${escapeHtml(tr('readiness.start', 'Record this walk'))}</button>` +
           '</div>' +
         '</section>';
       win.document.body.appendChild(modal);
@@ -336,7 +336,7 @@
         : tr('readiness.notYet', 'Not yet');
       proceed.disabled = !result.canStart;
       proceed.textContent = result.canStart
-        ? tr('readiness.start', 'Start hike')
+        ? tr('readiness.start', 'Record this walk')
         : tr('readiness.completeChecks', 'Complete required checks');
     }
 

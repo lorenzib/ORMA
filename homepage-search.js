@@ -645,7 +645,7 @@
       image2x: 'images/orma-how-add-dog-1920.jpg?v=20260821-1',
       focus: 'dog',
       alt: tx('A dog standing on a forest trail in the mountains'),
-      text: tx('Your dog’s fitness, life stage, health and build set comfortable limits. Anything you leave blank stays neutral.') },
+      text: tx('Your dog’s fitness, life stage, health and build set comfortable limits. Anything you leave blank doesn’t count for or against a trail.') },
     { title: tx('3 · We explain the match'),
       image: 'images/orma-how-match.jpg?v=20260821-4',
       image2x: 'images/orma-how-match-1920.jpg?v=20260821-4',
@@ -830,7 +830,7 @@
   function chairliftOpts() {
     return [
       { label: t('hp.wizard.chairlift.never', 'Not for us, or never tried'), v: 'never' },
-      { label: t('hp.wizard.chairlift.ok', 'Yes, held on my lap with harness and leash'), v: 'ok' },
+      { label: t('hp.wizard.chairlift.ok', 'Yes, held on my lap with harness and lead'), v: 'ok' },
     ];
   }
   function asksChairlift(w) { return w.size === 'small'; }
