@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altogarda-santuario-montecastello",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.9,
+    "ascentM": 283,
+    "highestPointM": 731,
+    "expectedDuration": "1 h 55 min",
+    "difficulty": "Hard",
+    "shadePercent": 53
+  },
+  "trailhead": {
+    "lat": 45.741714,
+    "lng": 10.733015,
+    "label": "The centre of Gardola, Tignale, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 0.5 km of mountain path (T2) on the climb to the sanctuary: stony and steeper in places; sure footing needed.",
+    "About a third on village lanes and cobbled streets in Gardola, with a crossing of the SP38: keep your dog on a short lead there.",
+    "The sanctuary sits on a rocky spur with drops beside the terraces: keep your dog close at the top.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Tignale to the Montecastello sanctuary": "Anello del santuario di Montecastello, Tignale",
+    "The centre of Gardola, Tignale, the published start": "Il centro di Gardola, Tignale, la partenza indicata",
+    "About 0.5 km of mountain path (T2) on the climb to the sanctuary: stony and steeper in places; sure footing needed.": "Circa 0,5 km di sentiero di montagna (T2) nella salita al santuario: sassoso e a tratti più ripido; serve passo sicuro.",
+    "About a third on village lanes and cobbled streets in Gardola, with a crossing of the SP38: keep your dog on a short lead there.": "Circa un terzo su stradine di paese e vie acciottolate a Gardola, con un attraversamento della SP38: lì tenete il cane al guinzaglio corto.",
+    "The sanctuary sits on a rocky spur with drops beside the terraces: keep your dog close at the top.": "Il santuario sorge su uno sperone di roccia con salti accanto alle terrazze: in cima tenete il cane vicino."
+  }
+}

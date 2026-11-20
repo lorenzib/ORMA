@@ -287,11 +287,15 @@ describe('the existing-site verification boundary',()=>{
     // November 2026): Giaglione's vineyards, the Sentiero dei Gufi at Venaus,
     // the Sentiero dei Ginepri at Foresto, the Orrido di Chianocco and the
     // Certosa di Montebenedetto loop from San Giorio.
-    // Then 551 and 549 with the first Veneto walks from UM.PASUBIO (owner
+    // Then 553 and 551 with the first Lake Iseo and Alto Garda walks (owner
+    // decision of 18 November 2026): I Colmi above Sulzano, the Montecastello
+    // sanctuary loop at Tignale, the Valle delle Cartiere and Cima Rest (the
+    // one-way walks there and back).
+    // Then 555 and 553 with the first Veneto walks from UM.PASUBIO (owner
     // decision of 19 November 2026): the Archeovia from the Campetto to Cima
     // Marana (there and back) and the Mucciòn loop above Valdagno.
-    expect(catalogue).toHaveLength(551);
-    expect(currentSiteTrails(catalogue)).toHaveLength(549);
+    expect(catalogue).toHaveLength(555);
+    expect(currentSiteTrails(catalogue)).toHaveLength(553);
   });
 
   test('requires the artwork the public trail page needs',()=>{

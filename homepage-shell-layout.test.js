@@ -73,6 +73,11 @@ describe('logged-in discovery workspace layout', () => {
     const createMenu = html.slice(html.indexOf('id="liNewMenu"'), html.indexOf('id="liNewMenu"') + 500);
     expect(createMenu).toContain('li-plan-route');
     expect(createMenu).not.toContain('Record a walk');
+    // Owner, 19 Nov: drawing a route is a visible button too, beside Record,
+    // not only under the caret.
+    expect(html).toContain('id="liDrawRouteBtn" href="route-planner.html"');
+    expect(html).toContain('>Draw<span class="li-new-label-rest"> a route</span><');
+    expect(html.indexOf('id="liDrawRouteBtn"')).toBeLessThan(html.indexOf('id="liRecordBtn"'));
     // The list header is one line: title, count, a Sort dropdown and a Saved
     // toggle. The kicker, the news line and the fold-out of tabs are gone.
     const head = html.slice(html.indexOf('class="li-list-head"'), html.indexOf('id="returningTrailList"'));
@@ -115,19 +120,15 @@ describe('logged-in discovery workspace layout', () => {
     expect(html).toContain('<span class="li-filt-label" data-i18n="browse.filters.button">Filters</span>');
   });
 
-  test('announces Draw your own route once, under Record a walk', () => {
+  test('Draw a route is a button, so the one-time hint about it is gone', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
     const source = fs.readFileSync('script.js', 'utf8');
-    // Hidden until the script decides it has not been seen.
-    const wrap = html.slice(html.indexOf('id="liNewWrap"'), html.indexOf('id="liDayMenu"'));
-    expect(wrap).toContain('<div class="li-new-callout" id="liNewCallout" role="status" hidden>');
-    expect(wrap).toContain('id="liNewCalloutTry" href="route-planner.html"');
-    expect(wrap).toContain('id="liNewCalloutClose" aria-label="Dismiss"');
-    // Seen for good once closed, tried, or once either way in is used.
-    expect(source).toContain("const LI_NEW_CALLOUT_KEY = 'orma-new-draw-route-callout-v1';");
-    expect(source).toContain("['liNewBtn', 'homeMapDrawBtn'].forEach(id => {");
-    // Wider screens give it room instead of laying it over Filters.
-    expect(editorialCss).toContain('#returningCustomerHomepage #liToolbar .li-new-callout{position:relative;');
+    // Owner, 19 Nov: the hint pointed at the caret; the button replaces it.
+    expect(html).not.toContain('id="liNewCallout"');
+    expect(source).not.toContain('LI_NEW_CALLOUT_KEY');
+    expect(editorialCss).not.toContain('.li-new-callout');
+    // The toolbar's button opens the planner where the map is.
+    expect(source).toContain("const toolbarDraw = document.getElementById('liDrawRouteBtn');");
     // The menu entry is a plain row with the tag on its title line.
     expect(html).toContain('<span class="li-menu-title" data-i18n="page.index.drawYourOwnRouteNew">Draw your own route <span class="li-menu-badge">New</span></span>');
     expect(editorialCss).toContain('.li-new-menu .li-menu-item.li-plan-route{display:flex;height:auto;margin:0;border:0;');

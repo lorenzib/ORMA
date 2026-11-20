@@ -45,9 +45,9 @@
   let renderGeneration = 0;
   const themes = new Set();
   const difficultyLabel = value => ({
-    'low-risk':tx('Low-risk terrain'),
-    moderate:tx('Moderate terrain'),
-    caution:tx('Caution terrain'),
+    'low-risk':tx('Low risk'),
+    moderate:tx('Moderate risk'),
+    caution:tx('Higher risk'),
   })[value] || tx('Difficulty not rated');
   // Route colour answers "how well does this walk suit the dog", never "how
   // hard is this trail", the same question, palette and thresholds as the

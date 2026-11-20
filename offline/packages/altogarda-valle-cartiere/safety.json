@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altogarda-valle-cartiere",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 4.2,
+    "ascentM": 67,
+    "highestPointM": 182,
+    "expectedDuration": "1 h 15 min",
+    "difficulty": "Moderate",
+    "shadePercent": 87
+  },
+  "trailhead": {
+    "lat": 45.64258,
+    "lng": 10.609018,
+    "label": "The old bridge in Toscolano, Toscolano Maderno, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The first half is the asphalt Via Valle delle Cartiere, open to cars going to the museum: keep your dog on a short lead there.",
+    "The ruins of the mills are fragile and the stream runs beside the path: keep your dog out of the ruins and away from the water after rain.",
+    "A low valley by Lake Garda: in high summer go early, though the gorge is mostly shaded.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Valle delle Cartiere, the paper-mill valley": "Nella Valle delle Cartiere, Toscolano Maderno, andata e ritorno",
+    "The old bridge in Toscolano, Toscolano Maderno, the published start": "Il ponte vecchio di Toscolano, Toscolano Maderno, la partenza indicata",
+    "The first half is the asphalt Via Valle delle Cartiere, open to cars going to the museum: keep your dog on a short lead there.": "La prima metà è la via Valle delle Cartiere asfaltata, aperta alle auto dirette al museo: lì tenete il cane al guinzaglio corto.",
+    "The ruins of the mills are fragile and the stream runs beside the path: keep your dog out of the ruins and away from the water after rain.": "I ruderi delle cartiere sono fragili e il torrente scorre accanto al sentiero: tenete il cane fuori dai ruderi e lontano dall’acqua dopo la pioggia.",
+    "A low valley by Lake Garda: in high summer go early, though the gorge is mostly shaded.": "Una valle bassa vicino al Lago di Garda: in piena estate partite presto, anche se la gola è quasi tutta all’ombra."
+  }
+}

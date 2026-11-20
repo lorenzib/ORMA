@@ -337,7 +337,10 @@ function renderOfflineMap({ trailId, xml, route, height, scaleMeters = 100, simp
   const accessSvgPath = accessFeature
     ? pathData(accessFeature.geometry.coordinates.map(([lng, lat]) => project(bounds, lat, lng, HEIGHT)), false)
     : '';
-  const accessMetres = accessFeature ? Math.max(10, Math.round(Number(accessFeature.properties.lengthM) / 10) * 10) : 0;
+  const accessLengthM = accessFeature ? Number(accessFeature.properties.lengthM) : 0;
+  const accessMetres = accessLengthM >= 1000
+    ? `${(Math.round(accessLengthM / 100) / 10).toFixed(1)} km`
+    : `${Math.max(10, Math.round(accessLengthM / 10) * 10)} m`;
   const carezzaLabel = trailId === 'lago-carezza'
     ? (() => {
       const [x, y] = project(bounds, 46.40925, 11.57515, HEIGHT);
@@ -374,12 +377,12 @@ function renderOfflineMap({ trailId, xml, route, height, scaleMeters = 100, simp
   <g id="barriers">${barriers.join('')}</g>
   <g id="labels">${labels.join('')}</g>
   ${carezzaLabel}
-  ${accessSvgPath ? `<path class="access-casing" d="${accessSvgPath}"/><path class="access" d="${accessSvgPath}"><title>Walk-in from the start flag to the walk, about ${accessMetres} m</title></path>` : ''}
+  ${accessSvgPath ? `<path class="access-casing" d="${accessSvgPath}"/><path class="access" d="${accessSvgPath}"><title>Walk-in from the start flag to the walk, about ${accessMetres}</title></path>` : ''}
   <path class="route-casing" d="${routeSvgPath}"/><path class="route" d="${routeSvgPath}"/>
   <g transform="translate(${startX.toFixed(1)} ${startY.toFixed(1)})"><circle r="22" fill="#294239" stroke="#fff" stroke-width="6"/><path d="M0-11 7 7 0 3-7 7Z" fill="#fff"/></g>
   <g class="map-text" transform="translate(1125 82)" text-anchor="middle"><path d="M0-45 16 8 0-2-16 8Z" fill="#294239"/><text class="north" y="34">N</text></g>
   <g class="map-text" transform="translate(55 ${HEIGHT - 80})"><path d="M0 0H${scaleWidth.toFixed(1)}M0-8V8M${scaleWidth.toFixed(1)}-8V8" fill="none" stroke="#294239" stroke-width="5"/><text class="scale" x="${(scaleWidth / 2).toFixed(1)}" y="27" text-anchor="middle">${scaleText(scaleMetres)}</text></g>
-  ${accessSvgPath ? `<g class="map-text" transform="translate(55 ${HEIGHT - 135})"><rect x="-14" y="-26" width="470" height="40" rx="8" fill="#fff" opacity=".9"/><path class="access" d="M0 0H52"/><text class="small" x="66" y="6">Walk-in to the start · Avvicinamento, ~${accessMetres} m</text></g>` : ''}
+  ${accessSvgPath ? `<g class="map-text" transform="translate(55 ${HEIGHT - 135})"><rect x="-14" y="-26" width="470" height="40" rx="8" fill="#fff" opacity=".9"/><path class="access" d="M0 0H52"/><text class="small" x="66" y="6">Walk-in to the start · Avvicinamento, ~${accessMetres}</text></g>` : ''}
   <rect x="670" y="${HEIGHT - 56}" width="510" height="42" rx="10" fill="#294239" opacity=".94"/>
   <text class="map-text attribution" x="1160" y="${HEIGHT - 29}" text-anchor="end">© OpenStreetMap contributors · ODbL</text>
 </svg>

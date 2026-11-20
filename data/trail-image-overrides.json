@@ -258,6 +258,57 @@
       }
     },
     {
+      "id": "altogarda-nasce-formaggio-tombea",
+      "approvedReviewId": "mapillary-altogarda-nasce-formaggio-tombea-on-route",
+      "approvedAt": "2026-11-19T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altogarda-nasce-formaggio-tombea-cima-rest.jpg",
+        "heroImage": "images/trails/altogarda-nasce-formaggio-tombea-cima-rest.jpg",
+        "imageAlt": "A grassy gravel track runs between a hedge with a wooden fence and old stone barns with steep thatched roofs, towards green pastures and woods under a blue sky with white clouds",
+        "imageCredit": "The track past the thatched barns of Cima Rest at the start",
+        "imageCreditText": "The track past the thatched barns of Cima Rest at the start by zonta72",
+        "imageCreator": "zonta72",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1997632357041653",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "altogarda-santuario-montecastello",
+      "approvedReviewId": "commons-altogarda-santuario-montecastello-on-route",
+      "approvedAt": "2026-11-19T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altogarda-santuario-montecastello-sanctuary.jpg",
+        "heroImage": "images/trails/altogarda-santuario-montecastello-sanctuary.jpg",
+        "imageAlt": "A pale yellow sanctuary building with a tall arched entrance, brown shutters and a small dome behind rises above stone walls and a flight of steps, with a wide gravel forecourt, a parked green car and dark conifers under a blue sky",
+        "imageCredit": "The forecourt of the Montecastello sanctuary, at the top of the walk",
+        "imageCreditText": "The forecourt of the Montecastello sanctuary, at the top of the walk by Jürgen Schneider",
+        "imageCreator": "Jürgen Schneider",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Montecastello_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "altogarda-valle-cartiere",
+      "approvedReviewId": "mapillary-altogarda-valle-cartiere-on-route",
+      "approvedAt": "2026-11-19T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/altogarda-valle-cartiere-maina.jpg",
+        "heroImage": "images/trails/altogarda-valle-cartiere-maina.jpg",
+        "imageAlt": "A gravel path with a wooden railing climbs past the low ruined stone walls of an old mill, with dense green woods and a steep rocky mountainside under a grey sky",
+        "imageCredit": "The path past the ruined paper mills of Maina in the Valle delle Cartiere",
+        "imageCreditText": "The path past the ruined paper mills of Maina in the Valle delle Cartiere by maists115",
+        "imageCreator": "maists115",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=3911659482454632",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "aosta-champoluc-cascata-mascognaz",
       "approvedReviewId": "commons-aosta-champoluc-cascata-mascognaz-on-route",
       "approvedAt": "2026-10-27T22:00:00.000Z",
@@ -2498,6 +2549,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=838669567007655",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "iseo-colmi",
+      "approvedReviewId": "mapillary-iseo-colmi-on-route",
+      "approvedAt": "2026-11-19T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/iseo-colmi-meadow.jpg",
+        "heroImage": "images/trails/iseo-colmi-meadow.jpg",
+        "imageAlt": "A green meadow with a leafy tree and a stone trough on the right looks down over wooded hills to Monte Isola, a large green island in the blue lake, with hazy mountains under a cloudy sky",
+        "imageCredit": "Monte Isola and Lake Iseo from the meadows at I Colmi, on the walk",
+        "imageCreditText": "Monte Isola and Lake Iseo from the meadows at I Colmi, on the walk by xlyz",
+        "imageCreator": "xlyz",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1404804143532934",
         "imageSourceType": "licensed-source"
       }
     },

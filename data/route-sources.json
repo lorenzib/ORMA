@@ -4090,6 +4090,38 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-19T22:00:00.000Z"
     },
+    "iseo-colmi": {
+      "url": "https://www.outdooractive.com/it/r/800088421",
+      "publisher": "Visit Lake Iseo (Outdooractive)",
+      "name": "Passeggiata tra I Colmi",
+      "quote": "Distanza 3,6 km · Durata 1:10 h · Salita 150 m · Discesa 102 m · Punto più alto 974 m · Punto più basso 871 m · “seguire le indicazioni bianco/azzurre 3V”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "altogarda-santuario-montecastello": {
+      "url": "https://www.outdooractive.com/it/r/806982564",
+      "publisher": "Comunità Montana Parco Alto Garda Bresciano (Outdooractive)",
+      "name": "Il Santuario di Montecastello",
+      "quote": "Distanza 4,9 km · Durata 1:55 h · Salita 283 m · Discesa 283 m · Punto più alto 773 m · Punto più basso 503 m · Difficoltà T2",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "altogarda-valle-cartiere": {
+      "url": "https://www.outdooractive.com/it/r/806981779",
+      "publisher": "Comunità Montana Parco Alto Garda Bresciano (Outdooractive)",
+      "name": "Nella Valle delle Cartiere",
+      "quote": "Distanza 2,1 km · Durata 0:40 h · Salita 62 m · Discesa 5 m · Punto più alto 146 m · Punto più basso 85 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "altogarda-nasce-formaggio-tombea": {
+      "url": "https://www.outdooractive.com/it/r/806982416",
+      "publisher": "Comunità Montana Parco Alto Garda Bresciano (Outdooractive)",
+      "name": "Dove nasce il formaggio di Tombea",
+      "quote": "Distanza 1,8 km · Durata 0:45 h · Salita 139 m · Discesa 0 m · Punto più alto 1.326 m · Punto più basso 1.187 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
     "veneto-archeovia-campetto-cima-marana": {
       "url": "https://www.outdooractive.com/it/r/809255432",
       "publisher": "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino) (Outdooractive)",

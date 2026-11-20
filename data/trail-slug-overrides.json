@@ -2106,6 +2106,26 @@
       "slug": "geat-montebenedetto-loop-san-giorio",
       "gloss": "a forest loop to a refuge and an old charterhouse in the Orsiera-Rocciavrè park"
     },
+    "iseo-colmi": {
+      "name": "Santa Maria del Giogo to I Colmi",
+      "slug": "i-colmi-santa-maria-del-giogo",
+      "gloss": "a grassy balcony path above Lake Iseo from Santa Maria del Giogo to the I Colmi viewpoint and Punta dell’Orto, and back"
+    },
+    "altogarda-santuario-montecastello": {
+      "name": "Tignale to the Montecastello sanctuary",
+      "slug": "santuario-di-montecastello-tignale",
+      "gloss": "a loop from Gardola up to the Montecastello sanctuary on its rock above Lake Garda"
+    },
+    "altogarda-valle-cartiere": {
+      "name": "Valle delle Cartiere, the paper-mill valley",
+      "slug": "valle-delle-cartiere-toscolano-maderno",
+      "gloss": "up the Toscolano gorge past the Paper Museum to the ruined mills of Maina, and back"
+    },
+    "altogarda-nasce-formaggio-tombea": {
+      "name": "Cima Rest, where Tombea cheese is made",
+      "slug": "cima-rest-formaggio-tombea-magasa",
+      "gloss": "from the thatched barns of Cima Rest through pastures and beech woods towards Malga Alvezza, and back"
+    },
     "veneto-archeovia-campetto-cima-marana": {
       "name": "Archeovia Campetto to Cima Marana",
       "slug": "archeovia-campetto-cima-marana",
