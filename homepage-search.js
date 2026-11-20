@@ -541,10 +541,9 @@
     '</button>';
   }
 
-  // The homepage card says what the Trails page card says, in the same words
-  // and chips: the walk's figures, its rating, how ORMA knows it, its season,
-  // and the verdict for the dog being browsed with. Only the shape differs:
-  // photo on top here, because these sit three to a row.
+  // The homepage card is the one trail card (styles.css .tcard): the
+  // verdict for the dog being browsed with on the photo, then the walk's
+  // figures, its rating and season. Same words as the Trails page card.
   function cardMetaLine(trail) {
     var routeReturn = window.ORMARouteReturn;
     var oneWayWalk = !!(routeReturn && routeReturn.isOneWay(trail));
@@ -567,8 +566,10 @@
     var riskWords = tr(RISK_KEYS[df.value], df.label);
     var risk = icons ? icons.badgeHtml(df.value, riskWords)
       : '<span class="dp-badge dp-badge--' + df.value + '"><span>' + esc(riskWords) + '</span></span>';
+    // An earned verification is the tick after the name (verifiedTick);
+    // a reviewed or imported walk still says so in a chip.
     var provenance = '';
-    if (trust) {
+    if (trust && trust.tierBadgeStyle(trail) !== 'verified') {
       provenance = icons ? icons.badgeHtml(trust.tierBadgeStyle(trail), trust.tierLabel(trail))
         : '<span class="badge-pill">' + esc(trust.tierLabel(trail)) + '</span>';
     }
@@ -604,32 +605,34 @@
     return tr('browse.card.forDog', 'For {name}', { name: name || tr('recommendation.subject.guest', 'a medium dog') });
   }
 
-  function cardReason(trail) {
-    if (hasWater(trail)) {
-      return trail.waterSources.length === 1 ? tr('browse.card.waterOne', 'Water access listed at one point')
-        : tr('browse.card.waterMany', 'Water access listed at {n} points', { n: trail.waterSources.length });
-    }
-    return trail.shadeCoverage >= 50 ? tr('browse.card.shade', '{pct}% shade along the route', { pct: trail.shadeCoverage }) : '';
+  function verifiedTick(trail) {
+    var trust = window.DoloPawsTrailTrust;
+    if (!trust || trust.tierBadgeStyle(trail) !== 'verified') return '';
+    var label = esc(trust.tierLabel(trail));
+    return '<svg class="tcard__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" ' +
+      'stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="' + label + '"><title>' + label + '</title>' +
+      '<circle cx="12" cy="12" r="9.5"/><path d="m8 12 3 3 5-6"/></svg>';
+  }
+
+  // "Strong option for a medium dog" on the photo: the verdict first, whose
+  // verdict it is after it, in small type.
+  function verdictPill(verdict) {
+    if (!verdict || !verdict.label) return '';
+    var who = subjectLabel();
+    who = who.charAt(0).toLowerCase() + who.slice(1);
+    return '<span class="tcard__verdict tcard__verdict--' + verdict.tone + '">' +
+      esc(verdict.label) + ' <small>' + esc(who) + '</small></span>';
   }
 
   function ccardHtml(entry) {
-    var trail = entry.t, verdict = verdictOf(trail);
-    var reason = cardReason(trail);
-    var match = verdict && verdict.label
-      ? '<span class="hp-ccard-match hp-ccard-match--' + verdict.tone + '">' +
-          '<small>' + esc(subjectLabel()) + '</small>' +
-          '<strong>' + esc(verdict.label) + '</strong>' +
-          (reason ? '<span class="hp-ccard-reason">' + esc(reason) + '</span>' : '') +
-        '</span>'
-      : '';
-    return '<button type="button" class="hp-ccard" data-href="' + esc(trailHref(trail)) + '">' +
-      '<span class="hp-ccard-img">' + thumb(trail) + '</span>' +
-      '<span class="hp-ccard-body">' +
-        '<span class="hp-ccard-name">' + esc(trailDisplayName(trail)) + '</span>' +
-        '<span class="hp-ccard-meta">' + esc(cardMetaLine(trail)) + '</span>' +
-        '<span class="hp-ccard-facts">' + cardFacts(trail) + '</span>' +
+    var trail = entry.t;
+    return '<button type="button" class="hp-ccard tcard" data-href="' + esc(trailHref(trail)) + '">' +
+      '<span class="tcard__photo">' + thumb(trail) + verdictPill(verdictOf(trail)) + '</span>' +
+      '<span class="tcard__body">' +
+        '<span class="tcard__name">' + esc(trailDisplayName(trail)) + verifiedTick(trail) + '</span>' +
+        '<span class="tcard__meta">' + esc(cardMetaLine(trail)) + '</span>' +
+        '<span class="tcard__chips">' + cardFacts(trail) + '</span>' +
       '</span>' +
-      match +
     '</button>';
   }
 
