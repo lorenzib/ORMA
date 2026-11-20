@@ -244,3 +244,18 @@ describe('the day the reader chose', () => {
     expect(weatherWindow.dayLabel('not-a-date')).toBe('not-a-date');
   });
 });
+
+// A one-way walk seen there and back takes longer, so the suggested start and
+// finish must follow the One way / There and back switch (route-return.js).
+describe('the trail page weather window and the route switch', () => {
+  const source = require('fs').readFileSync(require('path').join(__dirname, 'trail-blueprint.js'), 'utf8');
+
+  test('uses the time of the view the reader picked, the source time when that view has none', () => {
+    expect(source).toMatch(/const shown = routeReturn && routeReturn\.forView \? routeReturn\.forView\(t\) : t;/);
+    expect(source).toMatch(/durationHours:shown\.hours \|\| t\.hours/);
+  });
+
+  test('redraws when the reader switches', () => {
+    expect(source).toMatch(/addEventListener\('orma-route-view-changed'[\s\S]{0,200}paintWindow\(windowFor\(\)\)/);
+  });
+});

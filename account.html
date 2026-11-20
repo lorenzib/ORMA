@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260916-5">
+<link rel="stylesheet" href="styles.css?v=20261123-1">
 <style>
   /* Edit-profile screen, tabbed rail + panel layout */
   .acct-wrap{max-width:1000px;margin:0 auto;padding:30px 34px 60px;}
@@ -358,13 +358,13 @@
           <div><label class="lbl" for="publicVisibility" data-i18n="page.account.whoCanFollow">Who can follow</label><select class="fld" id="publicVisibility"><option value="public">Public profile · follow instantly</option><option value="private">Private profile · approve requests</option></select></div>
         </div>
         <label class="lbl" for="publicBio" data-i18n="page.account.publicBio">Public bio</label>
-        <textarea class="fld" id="publicBio" maxlength="240" rows="3" placeholder="The kind of trails you and your dog love…" style="resize:vertical;margin-bottom:18px;"></textarea>
+        <textarea class="fld" id="publicBio" maxlength="240" rows="3" data-i18n-ph="a11y.account.publicBioPh" placeholder="The kind of trails you and your dog love…" style="resize:vertical;margin-bottom:18px;"></textarea>
         <div class="acct-2col" style="margin-bottom:22px;">
           <div><label class="lbl" for="publicTagPermission" data-i18n="page.account.whoCanTagYou">Who can tag you</label><select class="fld" id="publicTagPermission"><option value="followers">Followers</option><option value="everyone">Everyone</option><option value="none">Nobody</option></select></div>
           <div style="background:#F4F7F1;border:1px solid #D9E3D6;border-radius:14px;padding:14px 15px;"><label style="display:flex;align-items:flex-start;gap:10px;margin:0;cursor:pointer;"><input type="checkbox" id="publicDogEnabled" style="width:18px;height:18px;flex:none;accent-color:#2E4034;"><span><b id="publicDogLabel" data-i18n="page.account.showMyDog">Show my dog</b><br><small style="color:#6B7A6E;" data-i18n="page.account.useTheActiveDogsName">Use the active dog's name and photo on their public profile and Trail Tale cards.</small></span></label></div>
         </div>
         <label class="lbl" for="publicDogBio" data-i18n="page.account.dogsPublicBio">Dog's public bio</label>
-        <textarea class="fld" id="publicDogBio" maxlength="180" rows="2" placeholder="Chief sniff inspector. Mud enthusiast." style="resize:vertical;margin-bottom:20px;"></textarea>
+        <textarea class="fld" id="publicDogBio" maxlength="180" rows="2" data-i18n-ph="a11y.account.dogBioPh" placeholder="Chief sniff inspector. Mud enthusiast." style="resize:vertical;margin-bottom:20px;"></textarea>
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid #EDE9DD;padding-top:20px;">
           <button type="button" class="btn-p" id="publicProfileSave" data-i18n="page.account.savePublicProfile">Save public profile</button>
           <a class="btn-g" id="publicProfileView" href="profile.html" hidden style="text-decoration:none;" data-i18n="page.account.viewProfile">View profile</a>
@@ -558,7 +558,7 @@
 </footer>
 
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261120-1"></script>
+<script src="i18n.js?v=20261123-2"></script>
 <script src="auth-watchdog.js?v=20261119-1"></script>
 <script src="offline-packages.js"></script>
 <script src="local-data.js?v=20260815-4"></script>

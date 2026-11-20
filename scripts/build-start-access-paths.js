@@ -159,7 +159,8 @@ class MinQueue {
 }
 
 // Shortest walk-in from the start to the line, or the reason there is none.
-function routeAccess(trail, osm){
+function routeAccess(trail, osm, options = {}){
+  const maxM = options.maxLengthM || MAX_LENGTH_M;
   const start = { lat:trail.startPoint.lat, lng:trail.startPoint.lng };
   const nodes = new Map();
   (osm.elements || []).forEach(el => { if(el.type === 'node') nodes.set(el.id, el); });
@@ -236,7 +237,7 @@ function routeAccess(trail, osm){
   while(queue.length){
     const [cost, id] = queue.shift();
     if(cost > best.get(id)) continue;
-    if(length.get(id) > MAX_LENGTH_M * 1.6) break;
+    if(length.get(id) > maxM * 1.6) break;
     if(id !== START && id !== SNAP && onWalkFor(id).distanceM <= JOIN_M){
       // On the walk: stop here, the walk itself carries on from this point.
       onWalkReached.push(id);
@@ -292,8 +293,38 @@ function routeAccess(trail, osm){
     .filter((p, i, all) => i === 0 || metres({ lat:p[0], lng:p[1] }, { lat:all[i - 1][0], lng:all[i - 1][1] }) >= 0.5);
   const lengthM = Math.round(lineLength(rounded));
   const joinsAtKm0 = atKm0(reached);
-  if(lengthM > MAX_LENGTH_M) return { reason:`the walk-in is about ${lengthM} m, over the ${MAX_LENGTH_M} m cap`, lengthM };
+  if(lengthM > maxM) return { reason:`the walk-in is about ${lengthM} m, over the ${maxM} m cap`, lengthM };
   return { path:rounded, lengthM, joinsAtKm0 };
+}
+
+// Climb and descent along a walk-in: ground heights from Open-Meteo
+// (Copernicus DEM) every ~25 m, counting a change only once it reaches 10 m,
+// so DEM noise does not add up.
+async function climbOf(line){
+  const points = [];
+  for(let i = 1; i < line.length; i += 1){
+    const a = { lat:line[i - 1][0], lng:line[i - 1][1] };
+    const b = { lat:line[i][0], lng:line[i][1] };
+    const steps = Math.max(1, Math.ceil(metres(a, b) / 25));
+    for(let k = 0; k < steps; k += 1) points.push([a.lat + (b.lat - a.lat) * k / steps, a.lng + (b.lng - a.lng) * k / steps]);
+  }
+  points.push(line[line.length - 1]);
+  const heights = [];
+  for(let i = 0; i < points.length; i += 90){
+    const chunk = points.slice(i, i + 90);
+    const url = `https://api.open-meteo.com/v1/elevation?latitude=${chunk.map(p => p[0].toFixed(6)).join(',')}&longitude=${chunk.map(p => p[1].toFixed(6)).join(',')}`;
+    const response = await fetch(url, { headers:{ 'User-Agent':'ORMA/1.0 (https://www.app-orma.com; start access builder)' } });
+    if(!response.ok) throw new Error(`Open-Meteo elevation HTTP ${response.status}`);
+    heights.push(...(await response.json()).elevation);
+  }
+  let up = 0;
+  let down = 0;
+  let ref = heights[0];
+  heights.forEach(h => {
+    if(h - ref >= 10){ up += h - ref; ref = h; }
+    else if(ref - h >= 10){ down += ref - h; ref = h; }
+  });
+  return { climbM:Math.round(up), descentM:Math.round(down), startElevM:Math.round(heights[0]), joinElevM:Math.round(heights[heights.length - 1]) };
 }
 
 function parseArguments(argv){
@@ -311,7 +342,10 @@ async function main(){
     .filter(trail => ids.length ? ids.includes(trail.id) : nearestOnLine(trail.startPoint, trail.path).distanceM > THRESHOLD_M);
   for(const trail of trails){
     const gapM = Math.round(nearestOnLine(trail.startPoint, trail.path).distanceM);
-    if(gapM > MAX_LENGTH_M){
+    // The owner can let one walk's walk-in run over the cap (data.overCap).
+    const overCap = (data.overCap || {})[trail.id];
+    const maxLengthM = overCap ? overCap.maxLengthM : MAX_LENGTH_M;
+    if(gapM > maxLengthM){
       delete data.paths[trail.id];
       if(!data.exceptions[trail.id] || data.exceptions[trail.id].auto){
         data.exceptions[trail.id] = { start:[trail.startPoint.lat, trail.startPoint.lng], gapM, reason:`the start is ${gapM} m from the line, over the ${MAX_LENGTH_M} m cap: a walk of its own`, auto:true };
@@ -323,17 +357,23 @@ async function main(){
     let osm;
     if(fs.existsSync(cacheFile)) osm = JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
     else{
-      osm = await fetchOsmApi(trail.startPoint).catch(error => {
+      osm = await fetchOsmApi(trail.startPoint, maxLengthM + 300).catch(error => {
         console.error(`  OSM API: ${error.message}; trying Overpass`);
         return fetchOverpass(queryAround(trail.startPoint));
       });
       fs.mkdirSync(path.dirname(cacheFile), { recursive:true });
       fs.writeFileSync(cacheFile, JSON.stringify(osm));
     }
-    const result = routeAccess(trail, osm);
+    const result = routeAccess(trail, osm, { maxLengthM });
     const start = [trail.startPoint.lat, trail.startPoint.lng];
     if(result.path){
-      data.paths[trail.id] = { start, lengthM:result.lengthM, joins:result.joinsAtKm0 ? 'km 0' : 'nearest point', retrievedAt:new Date().toISOString().slice(0, 10), path:result.path };
+      const record = { start, lengthM:result.lengthM, joins:result.joinsAtKm0 ? 'km 0' : 'nearest point', retrievedAt:new Date().toISOString().slice(0, 10), path:result.path };
+      // A walk-in long enough to be named under "Where to start" gets its
+      // climb measured too, so the line can say how far up it goes.
+      if(overCap && overCap.startLine){
+        Object.assign(record, await climbOf(result.path), { startLine:true });
+      }
+      data.paths[trail.id] = record;
       if(data.exceptions[trail.id] && data.exceptions[trail.id].auto) delete data.exceptions[trail.id];
       console.log(`${trail.id}  gap ${gapM} m  walk-in ${result.lengthM} m  joins ${result.joinsAtKm0 ? 'km 0' : 'nearest point'}`);
     }else{

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altogarda-valle-cartiere",
+  "distanceKm": 4.1,
+  "ascentM": 67,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 91
+    },
+    {
+      "km": 0.3,
+      "elev": 179
+    },
+    {
+      "km": 0.6,
+      "elev": 123
+    },
+    {
+      "km": 1,
+      "elev": 128
+    },
+    {
+      "km": 1.3,
+      "elev": 174
+    },
+    {
+      "km": 1.6,
+      "elev": 144
+    },
+    {
+      "km": 1.9,
+      "elev": 139
+    },
+    {
+      "km": 2.2,
+      "elev": 139
+    },
+    {
+      "km": 2.5,
+      "elev": 182
+    },
+    {
+      "km": 2.8,
+      "elev": 137
+    },
+    {
+      "km": 3.2,
+      "elev": 125
+    },
+    {
+      "km": 3.5,
+      "elev": 134
+    },
+    {
+      "km": 3.8,
+      "elev": 181
+    },
+    {
+      "km": 4.1,
+      "elev": 91
+    }
+  ]
+}

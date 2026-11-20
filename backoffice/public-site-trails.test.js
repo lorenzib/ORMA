@@ -287,8 +287,12 @@ describe('the existing-site verification boundary',()=>{
     // November 2026): Giaglione's vineyards, the Sentiero dei Gufi at Venaus,
     // the Sentiero dei Ginepri at Foresto, the Orrido di Chianocco and the
     // Certosa di Montebenedetto loop from San Giorio.
-    expect(catalogue).toHaveLength(549);
-    expect(currentSiteTrails(catalogue)).toHaveLength(547);
+    // Then 553 and 551 with the first Lake Iseo and Alto Garda walks (owner
+    // decision of 18 November 2026): I Colmi above Sulzano, the Montecastello
+    // sanctuary loop at Tignale, the Valle delle Cartiere and Cima Rest (the
+    // one-way walks there and back).
+    expect(catalogue).toHaveLength(553);
+    expect(currentSiteTrails(catalogue)).toHaveLength(551);
   });
 
   test('requires the artwork the public trail page needs',()=>{

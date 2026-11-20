@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-20T11:15:19.407Z",
+  "generatedAt": "2026-11-20T14:16:21.695Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -12,12 +12,12 @@
       "message": "An official moderate avalanches warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/7ecabacf-ed73-45b1-b413-0f069510de18",
-      "identifier": "2.49.0.0.250.0.FR.20261120060100.173028",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/5521c773-1c33-4ff2-8b0a-e74bf5f928ce",
+      "identifier": "2.49.0.0.250.0.FR.20261120140042.652028",
       "effectiveAt": "2026-11-19T21:00:00+00:00",
       "expiresAt": "2026-11-21T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-20T08:20:48.852Z",
+      "lastSeenAt": "2026-11-20T14:16:21.695Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -51,7 +51,7 @@
         "Ombres sur l'Alpage",
         "Sentier pédestre des Graniteurs"
       ],
-      "sourceStatus": "unavailable",
+      "sourceStatus": "available",
       "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
       "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     },
@@ -65,12 +65,12 @@
       "message": "An official moderate avalanches warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/7ecabacf-ed73-45b1-b413-0f069510de18",
-      "identifier": "2.49.0.0.250.0.FR.20261120060100.173028",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/5521c773-1c33-4ff2-8b0a-e74bf5f928ce",
+      "identifier": "2.49.0.0.250.0.FR.20261120140042.652028",
       "effectiveAt": "2026-11-19T21:00:00+00:00",
       "expiresAt": "2026-11-21T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-20T08:20:48.852Z",
+      "lastSeenAt": "2026-11-20T14:16:21.695Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -90,7 +90,7 @@
         "Molière plateau loop above Autrans",
         "Fort du Murier loop above Gières"
       ],
-      "sourceStatus": "unavailable",
+      "sourceStatus": "available",
       "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
       "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     },
@@ -104,12 +104,12 @@
       "message": "An official moderate avalanches warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/7ecabacf-ed73-45b1-b413-0f069510de18",
-      "identifier": "2.49.0.0.250.0.FR.20261120060100.173028",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/5521c773-1c33-4ff2-8b0a-e74bf5f928ce",
+      "identifier": "2.49.0.0.250.0.FR.20261120140042.652028",
       "effectiveAt": "2026-11-19T21:00:00+00:00",
       "expiresAt": "2026-11-21T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-20T08:20:48.852Z",
+      "lastSeenAt": "2026-11-20T14:16:21.695Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -205,7 +205,7 @@
         "Val Pelouse crest path and Perrière refuge",
         "Saint-Pierre-d’Entremont to Corbel loop"
       ],
-      "sourceStatus": "unavailable",
+      "sourceStatus": "available",
       "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
       "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     },
@@ -219,12 +219,12 @@
       "message": "An official moderate rain-flood warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/5b3cffd2-e42e-4ecb-a902-13bb08e7a6d2",
-      "identifier": "2.49.0.0.250.0.FR.20261120060050.164022",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/d8abd338-b81d-4dae-ac3e-c90b485136de",
+      "identifier": "2.49.0.0.250.0.FR.20261120140030.485022",
       "effectiveAt": "2026-11-19T21:00:00+00:00",
       "expiresAt": "2026-11-20T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-20T08:20:48.852Z",
+      "lastSeenAt": "2026-11-20T14:16:21.695Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -258,7 +258,7 @@
         "Ombres sur l'Alpage",
         "Sentier pédestre des Graniteurs"
       ],
-      "sourceStatus": "unavailable",
+      "sourceStatus": "available",
       "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
       "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     },
@@ -272,12 +272,12 @@
       "message": "An official moderate rain-flood warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/5b3cffd2-e42e-4ecb-a902-13bb08e7a6d2",
-      "identifier": "2.49.0.0.250.0.FR.20261120060050.164022",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/d8abd338-b81d-4dae-ac3e-c90b485136de",
+      "identifier": "2.49.0.0.250.0.FR.20261120140030.485022",
       "effectiveAt": "2026-11-19T21:00:00+00:00",
       "expiresAt": "2026-11-20T23:00:00+00:00",
       "firstPublishedAt": "2026-11-19T05:16:38.369Z",
-      "lastSeenAt": "2026-11-20T08:20:48.852Z",
+      "lastSeenAt": "2026-11-20T14:16:21.695Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -297,7 +297,7 @@
         "Molière plateau loop above Autrans",
         "Fort du Murier loop above Gières"
       ],
-      "sourceStatus": "unavailable",
+      "sourceStatus": "available",
       "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
       "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     },
@@ -311,12 +311,12 @@
       "message": "An official moderate rain-flood warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/5b3cffd2-e42e-4ecb-a902-13bb08e7a6d2",
-      "identifier": "2.49.0.0.250.0.FR.20261120060050.164022",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/d8abd338-b81d-4dae-ac3e-c90b485136de",
+      "identifier": "2.49.0.0.250.0.FR.20261120140030.485022",
       "effectiveAt": "2026-11-19T21:00:00+00:00",
       "expiresAt": "2026-11-20T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-20T08:20:48.852Z",
+      "lastSeenAt": "2026-11-20T14:16:21.695Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -412,7 +412,7 @@
         "Val Pelouse crest path and Perrière refuge",
         "Saint-Pierre-d’Entremont to Corbel loop"
       ],
-      "sourceStatus": "unavailable",
+      "sourceStatus": "available",
       "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
       "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     }
