@@ -19678,38 +19678,64 @@ if(document.querySelector('.td2')){
     const picks = sameValley.slice(0, 4);
     for (const o of sameRegion) { if (picks.length >= 4) break; picks.push(o); }
     if (!picks.length) return;
-    // Reference gallery card: photo, floating match % chip, serif name, meta.
+    // The one trail card (styles.css .tcard), small: photo, name with the
+    // verified tick, the walk's figures. The verdict pill on the photo is
+    // filled in for a signed-in dog below; a guest gets none, as on the rest
+    // of this page.
     const cardPhoto = source => ({
       'images/lago-di-braies.webp':'images/lago-di-braies-480.webp',
       'images/lago-di-carezza.webp':'images/lago-di-carezza-480.webp',
       'images/boucle-du-marais-des-chassettes.webp':'images/boucle-du-marais-des-chassettes-480.webp',
       'images/itineraire-decouverte-de-la-nature.webp':'images/itineraire-decouverte-de-la-nature-480.webp',
     }[source] || source);
+    const nearMeta = o => {
+      const routeReturn = window.ORMARouteReturn;
+      const oneWayWalk = !!(routeReturn && routeReturn.isOneWay(o));
+      const shown = oneWayWalk ? routeReturn.forView(o) : o;
+      const back = shown !== o;
+      return [
+        shown.distance ? (back ? tt('card.thereAndBack', { km: shown.distance }, '{km} km there and back')
+          : oneWayWalk ? tt('card.oneWay', { km: num(shown.distance) }, '{km} km one way')
+          : `${num(Math.round(Number(shown.distance) * 10) / 10)} km`) : null,
+        shown.elevation != null ? tt('card.climb', { m: shown.elevation }, '{m} m climb') : null,
+        shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null,
+      ].filter(Boolean).join(' · ');
+    };
+    const nearTick = o => {
+      if (!trust || trust.tierBadgeStyle(o) !== 'verified') return '';
+      const label = esc(trust.tierLabel(o));
+      return `<svg class="tcard__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${label}"><title>${label}</title><circle cx="12" cy="12" r="9.5"/><path d="m8 12 3 3 5-6"/></svg>`;
+    };
     grid.innerHTML = picks.map(o => `
-      <a class="near-card" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(o.id) : (o.id)))}" data-near-id="${esc(o.id)}">
-        <div class="ph"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="pct near-pct" hidden></span></div>
-        <div class="bd">
-          <div class="nm">${esc(trailDisplayName(o))}</div>
-          <div class="mt">${esc(o.valley || o.area || '')} · ${num(o.distance)} km · ${esc(trust ? trust.riskLabel(o, safetyLabel(o.safetyLevel)) : safetyLabel(o.safetyLevel))}</div>
-        </div>
+      <a class="tcard tcard--small near-card" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(o.id) : (o.id)))}" data-near-id="${esc(o.id)}">
+        <span class="tcard__photo"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="tcard__verdict near-verdict" hidden></span></span>
+        <span class="tcard__body">
+          <span class="tcard__name">${esc(trailDisplayName(o))}${nearTick(o)}</span>
+          <span class="tcard__meta">${esc(nearMeta(o))}</span>
+        </span>
       </a>`).join('');
     wrapEl.hidden = false;
     const seeAll = $('nearbySeeAll');
     if (seeAll && (t.valley || t.area)) seeAll.textContent = tx('See all in {place}', { place: t.valley || t.area }) + ' \u2192';
 
-    // Personalise: retitle the section and fill each pick's real match %
-    // chip, same scoreTrail() as everywhere else.
+    // Personalise: retitle the section and put each pick's verdict for this
+    // dog on its photo, in the words every other card uses, never a %.
     function personalise() {
-      if (typeof scoreTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
+      if (typeof recommendTrail !== 'function' || !window.OrmaMatchVerdict || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if (!profile) return;
         const heading = $('nearbyTitle');
         if (heading && profile.name) heading.textContent = tx('Nearby trails, ranked for {name}', { name: profile.name });
         const ov = (typeof effectiveOverrides === 'function') ? effectiveOverrides(profile, null) : profile;
+        const forDog = tt('browse.card.forDog', { name: profile.name || tx('your dog') }, 'For {name}');
+        const who = forDog.charAt(0).toLowerCase() + forDog.slice(1);
         for (const o of picks) {
-          const slot = grid.querySelector(`[data-near-id="${CSS.escape(o.id)}"] .near-pct`);
+          const slot = grid.querySelector(`[data-near-id="${CSS.escape(o.id)}"] .near-verdict`);
           if (!slot) continue;
-          slot.textContent = (o.curated === false ? '≈' : '') + scoreTrail(o, ov, conditionsForScoring(o)) + '%';
+          const verdict = window.OrmaMatchVerdict.verdictFor(recommendTrail(o, ov, conditionsForScoring(o)));
+          if (!verdict || !verdict.label) continue;
+          slot.className = `tcard__verdict tcard__verdict--${verdict.tone} near-verdict`;
+          slot.innerHTML = `${esc(verdict.label)} <small>${esc(who)}</small>`;
           slot.hidden = false;
         }
       }).catch(() => {});

@@ -134,5 +134,4 @@
   body.mtrail-active .near-grid > *{
     flex:none;width:200px;scroll-snap-align:start;
   }
-  body.mtrail-active .td2 .near-card .ph{height:118px;}
 }

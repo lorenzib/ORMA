@@ -93,7 +93,7 @@ describe('Browse filter UI', () => {
       win.DoloPawsScoring = { recommendTrail:trail => verdicts[trail.id] };
     });
 
-    expect(Array.from(window.document.querySelectorAll('.simple-card')).map(card => card.dataset.trailId))
+    expect(Array.from(window.document.querySelectorAll('.tcard')).map(card => card.dataset.trailId))
       .toEqual(['strong', 'cautions-a', 'cautions-b', 'declared-stop', 'weak']);
   });
 
@@ -113,7 +113,7 @@ describe('Browse filter UI', () => {
     expect(window.location.search).toContain('distance=5');
     expect(window.document.getElementById('browseResultCount').textContent)
       .toContain('1 trail found');
-    expect(window.document.querySelector('.simple-card')).not.toBeNull();
+    expect(window.document.querySelector('.tcard')).not.toBeNull();
   });
 
   test('dog-safety controls restore from canonical URL state', () => {
@@ -125,7 +125,7 @@ describe('Browse filter UI', () => {
     expect(window.document.getElementById('browseHeat').value).toBe('shade-reviewed');
     expect(window.document.getElementById('browseExposure').value).toBe('none-reviewed');
     expect(window.document.getElementById('browseAccess').value).toBe('allowed-reviewed');
-    expect(window.document.querySelector('.simple-card')).not.toBeNull();
+    expect(window.document.querySelector('.tcard')).not.toBeNull();
   });
 
   test('keeps valley beside search, shade and water in Filters, and Saved in the row', () => {
@@ -180,7 +180,7 @@ describe('Browse filter UI', () => {
 
   test('a card leads with View trail; Compare is a tick box', () => {
     const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
-    const card = window.document.querySelector('.simple-card');
+    const card = window.document.querySelector('.tcard');
     const open = card.querySelector('.browse-card-open');
 
     expect(open.textContent.trim()).toBe('View trail →');
@@ -201,7 +201,7 @@ describe('Browse filter UI', () => {
       ['caution', 'rating-caution', 'Higher risk'],
     ].forEach(([safetyLevel, anchor, label]) => {
       const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites', { safetyLevel });
-      const link = window.document.querySelector('.simple-card__facts .browse-rating-link');
+      const link = window.document.querySelector('.tcard__chips .browse-rating-link');
       expect(link.getAttribute('href')).toBe(`how-scoring-works.html#${anchor}`);
       expect(link.getAttribute('aria-label')).toBe(`${label}: what this rating means`);
       expect(link.textContent).toContain(label);
@@ -222,7 +222,7 @@ describe('Browse filter UI', () => {
 
     expect(window.document.getElementById('browseVerification')).toBeNull();
     expect(window.location.search).not.toContain('verification=');
-    expect(window.document.querySelector('.simple-card')).not.toBeNull();
+    expect(window.document.querySelector('.tcard')).not.toBeNull();
   });
 
   test('country, region and valley are visible, linked geographic controls', () => {
@@ -261,14 +261,16 @@ describe('Browse filter UI', () => {
       ['caution', 'Higher risk'],
     ].forEach(([safetyLevel, label]) => {
       const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites', { safetyLevel });
-      const card = window.document.querySelector('.simple-card');
-      expect(card.querySelector('.simple-card__facts').textContent).toContain(label);
+      const card = window.document.querySelector('.tcard');
+      expect(card.querySelector('.tcard__chips').textContent).toContain(label);
       expect(card.textContent).not.toContain('Trail rating');
-      expect(card.querySelector('.simple-card__score')).not.toBeNull();
-      expect(card.querySelector('.simple-card__match-actions')).not.toBeNull();
-      expect(card.querySelector('.simple-card__facts .simple-card__match-reason')).toBeNull();
-      expect(card.querySelector('.simple-card__match .simple-card__match-reason')).not.toBeNull();
-      expect(card.querySelector('.simple-card__score').firstElementChild.tagName).toBe('SMALL');
+      // Option C card: photo (the verdict sits on it when the engine gives
+      // one; this setup scores nothing), the reason under the chips, the
+      // actions in the foot.
+      expect(card.querySelector('.tcard__photo')).not.toBeNull();
+      expect(card.querySelector('.tcard__chips .tcard__reason')).toBeNull();
+      expect(card.querySelector('.tcard__body > .tcard__reason')).not.toBeNull();
+      expect(card.querySelector('.tcard__foot .browse-card-open')).not.toBeNull();
     });
     expect(html).not.toContain('terrainRatingLabel');
   });
