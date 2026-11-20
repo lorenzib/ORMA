@@ -309,7 +309,11 @@
   function fitChip(entry, source, tr, extra){
     const vars = { ...extra, ...(source.vars || {}) };
     if(entry.code === 'trail.terrain.within-tolerance'){
-      const level = steepnessLevel(source.vars && source.vars.terrain);
+      // A steep walk that fits says why it is listed as a fit: "Steep" alone
+      // under "Fits Teo" reads like a mistake.
+      const rank = source.vars && source.vars.terrain;
+      const level = steepnessLevel(rank);
+      if(level && rank > 0 && vars.name) return tr('recommendation.chip.steepFits', tx('{level}, fine for {name}'), { ...vars, level });
       if(level) return level;
     }
     const key = Object.keys(FIT_CHIPS).find(code => entry.code === code || entry.code.startsWith(`${code}.`));
@@ -321,6 +325,7 @@
   // nothing on a site where every walk takes dogs, and an unknown rule is not
   // said at all (owner, 19 Nov).
   const SILENT_FITS = Object.freeze(['trail.dog-access.allowed']);
+  const SILENT_UNKNOWNS = Object.freeze(['trail.dog-access.unknown']);
 
   function steepnessFact(vars){
     const level = steepnessLevel(vars && vars.terrain);
@@ -466,8 +471,10 @@
     // Hard stops always lead: nothing below them changes the decision.
     const cautions = messages(recommendation.hardStops, translate, extra)
       .concat(messages(rankedCautions, translate, extra));
+    // Every ORMA walk should take dogs (owner, 19 Nov 2026): a dog rule is
+    // said only when it restricts the walk, never "we haven't found it".
     const rawUnknowns = (Array.isArray(recommendation.unknowns) ? recommendation.unknowns : [])
-      .filter(Boolean);
+      .filter(item => item && !SILENT_UNKNOWNS.includes(item.code));
     const unknowns = messages(rawUnknowns, translate, extra);
     // The unknown codes encode their owner: dog.* gaps are fixable by the
     // user right now (profile fields); everything else is trail data.

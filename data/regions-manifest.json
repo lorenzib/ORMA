@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-19T19:52:03.622Z",
+  "generatedAt": "2026-11-20T12:34:58.239Z",
   "regions": {
     "dolomites": {
       "trailCount": 383,
-      "trails": "data/regions/dolomites-trails.js?v=d6699971dd6e",
+      "trails": "data/regions/dolomites-trails.js?v=487b3a4e7249",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -71,7 +71,7 @@
         "osm-11828233": "data/trail-details/osm-11828233.js?v=a6940e90948b",
         "osm-11832013": "data/trail-details/osm-11832013.js?v=b7e6091ffc94",
         "osm-11839597": "data/trail-details/osm-11839597.js?v=f2fe7b6428cc",
-        "osm-11855879": "data/trail-details/osm-11855879.js?v=ce37e5f3b954",
+        "osm-11855879": "data/trail-details/osm-11855879.js?v=64c82ef9c74f",
         "osm-11860429": "data/trail-details/osm-11860429.js?v=798de20dd136",
         "osm-11891581": "data/trail-details/osm-11891581.js?v=75f7a8c0c2ad",
         "osm-12018939": "data/trail-details/osm-12018939.js?v=818941520838",
@@ -553,8 +553,8 @@
       "optional": []
     },
     "piedmont": {
-      "trailCount": 10,
-      "trails": "data/regions/piedmont-trails.js?v=68ad9982e020",
+      "trailCount": 15,
+      "trails": "data/regions/piedmont-trails.js?v=199da42b7fb0",
       "details": {
         "valsesia-gta-tappa-21-campello-monti-rimella": "data/trail-details/valsesia-gta-tappa-21-campello-monti-rimella.js?v=7ad0c44a1326",
         "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "data/trail-details/valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo.js?v=0bab2b4505b2",
@@ -565,7 +565,12 @@
         "lanzo-anello-mulino-turcin": "data/trail-details/lanzo-anello-mulino-turcin.js?v=a8748fc2ff8a",
         "talucco-ecomuseo-carbonaie": "data/trail-details/talucco-ecomuseo-carbonaie.js?v=58daa76cdf00",
         "traversella-sentiero-delle-anime": "data/trail-details/traversella-sentiero-delle-anime.js?v=79b7fb5515b2",
-        "valchiusella-fondo-tissone-tallorno": "data/trail-details/valchiusella-fondo-tissone-tallorno.js?v=190c738614ec"
+        "valchiusella-fondo-tissone-tallorno": "data/trail-details/valchiusella-fondo-tissone-tallorno.js?v=190c738614ec",
+        "valsusa-giaglione-vigne-mandorli": "data/trail-details/valsusa-giaglione-vigne-mandorli.js?v=930cf221e4bd",
+        "valsusa-venaus-sentiero-gufi-basso": "data/trail-details/valsusa-venaus-sentiero-gufi-basso.js?v=d9f9442ec1b6",
+        "valsusa-foresto-sentiero-ginepri": "data/trail-details/valsusa-foresto-sentiero-ginepri.js?v=2104839e6520",
+        "valsusa-chianocco-orrido-chouque": "data/trail-details/valsusa-chianocco-orrido-chouque.js?v=73e903227c14",
+        "valsusa-san-giorio-geat-montebenedetto": "data/trail-details/valsusa-san-giorio-geat-montebenedetto.js?v=6f38e7254444"
       },
       "water": "data/regions/piedmont-water.geojson",
       "hutsBars": "data/regions/piedmont-huts-bars.geojson",
@@ -1138,6 +1143,11 @@
     "talucco-ecomuseo-carbonaie": "piedmont",
     "traversella-sentiero-delle-anime": "piedmont",
     "valchiusella-fondo-tissone-tallorno": "piedmont",
+    "valsusa-giaglione-vigne-mandorli": "piedmont",
+    "valsusa-venaus-sentiero-gufi-basso": "piedmont",
+    "valsusa-foresto-sentiero-ginepri": "piedmont",
+    "valsusa-chianocco-orrido-chouque": "piedmont",
+    "valsusa-san-giorio-geat-montebenedetto": "piedmont",
     "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
     "osttirol-naturkraftweg-umbalfaelle": "tyrol",
     "osttirol-kulturweg-koednitz": "tyrol",
@@ -1727,6 +1737,11 @@
     "talucco-ecomuseo-carbonaie": "carbonaie-path-talucco",
     "traversella-sentiero-delle-anime": "sentiero-delle-anime-traversella",
     "valchiusella-fondo-tissone-tallorno": "fondo-tissone-tallorno-loop",
+    "valsusa-giaglione-vigne-mandorli": "vineyards-almond-trees-loop-giaglione",
+    "valsusa-venaus-sentiero-gufi-basso": "lower-owl-trail-venaus",
+    "valsusa-foresto-sentiero-ginepri": "juniper-trail-foresto",
+    "valsusa-chianocco-orrido-chouque": "orrido-chouque-margrit-chianocco",
+    "valsusa-san-giorio-geat-montebenedetto": "geat-montebenedetto-loop-san-giorio",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2273,6 +2288,11 @@
     "carbonaie-path-talucco": "talucco-ecomuseo-carbonaie",
     "sentiero-delle-anime-traversella": "traversella-sentiero-delle-anime",
     "fondo-tissone-tallorno-loop": "valchiusella-fondo-tissone-tallorno",
+    "vineyards-almond-trees-loop-giaglione": "valsusa-giaglione-vigne-mandorli",
+    "lower-owl-trail-venaus": "valsusa-venaus-sentiero-gufi-basso",
+    "juniper-trail-foresto": "valsusa-foresto-sentiero-ginepri",
+    "orrido-chouque-margrit-chianocco": "valsusa-chianocco-orrido-chouque",
+    "geat-montebenedetto-loop-san-giorio": "valsusa-san-giorio-geat-montebenedetto",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
