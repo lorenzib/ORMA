@@ -60,7 +60,7 @@ describe('comparison presentation model', () => {
     // distinction a reader opens a comparison to see.
     expect(result.cells.verification.text).toBe('Verified by ORMA');
     expect(result.cells.water.text).toBe('1 reviewed water point');
-    expect(result.cells.restrictions.text).toBe('Dogs allowed on leash');
+    expect(result.cells.restrictions.text).toBe('Dogs allowed on a lead');
     expect(result.cells.duration.text).toBe('1 h 30 min');
     expect(model.build({ ...baseTrail, hours:'2–2.5' }, {
       normalizeTrail:value => value,
@@ -83,7 +83,7 @@ describe('comparison presentation model', () => {
       expect(result.cells[key].text).toMatch(/^Not listed/);
     });
     expect(result.cells.verification.kind).toBe('mapped');
-    expect(result.cells.verification.text).toBe('Imported map data');
+    expect(result.cells.verification.text).toBe('Map data, not verified');
   });
 
   // The row used to print the engine's own sentences, in the engine's order,

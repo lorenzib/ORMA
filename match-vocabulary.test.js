@@ -234,7 +234,7 @@ describe('the score says whose it is', () => {
   test('the canonical view names the default rather than the reader', () => {
     const guest=decision.present({category:'strong-option',score:90},{});
     expect(guest.breakdownFor).toBe('a medium dog');
-    expect(guest.contextLabel).toBe('Unpersonalized planning view');
+    expect(guest.contextLabel).toBe('General view: no dog added');
     expect(guest.dogName).toBeNull();
 
     const named=decision.present({category:'strong-option',score:90},{dogName:'Eddie'});
@@ -253,7 +253,7 @@ describe('the score says whose it is', () => {
 
   test('browse names the dog it actually scored', () => {
     expect(browse).toContain('function scoredSubjectLabel()');
-    expect(browse).toContain('${esc(scoredSubjectLabel())}');
+    expect(browse).toContain('const who = scoredSubjectLabel();');
     // The claim that was there before, made of whatever was in the scorer.
     expect(browse).not.toContain('<small>FOR YOUR DOG</small>');
   });
@@ -274,8 +274,8 @@ describe('how well a verdict is known, in one line', () => {
   });
 
   test('a caveat earns its place and is kept', () => {
-    expect(evidenceLine({provenance:'Imported map data',confidence:'low'}))
-      .toBe('Imported map data · Based on partial data');
+    expect(evidenceLine({provenance:'Map data, not verified',confidence:'low'}))
+      .toBe('Map data, not verified · Based on partial data');
     expect(evidenceLine({provenance:'Verified by ORMA',confidence:'medium'}))
       .toBe('Verified by ORMA · Based on available trail data');
   });
@@ -314,7 +314,7 @@ describe('the number is gone from browse', () => {
   const home=require('fs').readFileSync('script.js','utf8');
 
   test('the card leads with the verdict, not a percentage', () => {
-    expect(browse).toContain('<strong>${tier}</strong>');
+    expect(browse).toContain('<span class="tcard__verdict tcard__verdict--${tierClass}">${esc(tier)}');
     expect(browse).not.toContain('<strong>${match}<span>%</span></strong>');
     expect(browse).not.toContain('MATCH FOR YOUR DOG');
   });

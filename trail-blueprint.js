@@ -124,7 +124,7 @@
     const el = $('verifiedSeal');
     if (!el) return;
     const style = trust && trust.tierBadgeStyle ? trust.tierBadgeStyle(t) : (t.curated === false ? 'imported' : 'verified');
-    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? tx('Imported trail') : tx('Verified by ORMA'));
+    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? tx('Not yet verified') : tx('Verified by ORMA'));
     // Render the same pill the browse-trail cards use, not a bespoke inline seal.
     el.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
       ? window.DoloPawsIcons.badgeHtml(style, label)
@@ -147,7 +147,7 @@
     } else if (tier === 'route-reviewed') {
       meta.textContent = tx('Trail details prepared and reviewed by ORMA — not yet field-verified. Check local access rules and current conditions before setting out.');
     } else {
-      meta.textContent = tx('This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.');
+      meta.textContent = tx('ORMA has not verified or walked this trail yet. Check local access rules and current conditions before setting out.');
     }
   })();
 
@@ -232,38 +232,64 @@
     const picks = sameValley.slice(0, 4);
     for (const o of sameRegion) { if (picks.length >= 4) break; picks.push(o); }
     if (!picks.length) return;
-    // Reference gallery card: photo, floating match % chip, serif name, meta.
+    // The one trail card (styles.css .tcard), small: photo, name with the
+    // verified tick, the walk's figures. The verdict pill on the photo is
+    // filled in for a signed-in dog below; a guest gets none, as on the rest
+    // of this page.
     const cardPhoto = source => ({
       'images/lago-di-braies.webp':'images/lago-di-braies-480.webp',
       'images/lago-di-carezza.webp':'images/lago-di-carezza-480.webp',
       'images/boucle-du-marais-des-chassettes.webp':'images/boucle-du-marais-des-chassettes-480.webp',
       'images/itineraire-decouverte-de-la-nature.webp':'images/itineraire-decouverte-de-la-nature-480.webp',
     }[source] || source);
+    const nearMeta = o => {
+      const routeReturn = window.ORMARouteReturn;
+      const oneWayWalk = !!(routeReturn && routeReturn.isOneWay(o));
+      const shown = oneWayWalk ? routeReturn.forView(o) : o;
+      const back = shown !== o;
+      return [
+        shown.distance ? (back ? tt('card.thereAndBack', { km: shown.distance }, '{km} km there and back')
+          : oneWayWalk ? tt('card.oneWay', { km: num(shown.distance) }, '{km} km one way')
+          : `${num(Math.round(Number(shown.distance) * 10) / 10)} km`) : null,
+        shown.elevation != null ? tt('card.climb', { m: shown.elevation }, '{m} m climb') : null,
+        shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null,
+      ].filter(Boolean).join(' · ');
+    };
+    const nearTick = o => {
+      if (!trust || trust.tierBadgeStyle(o) !== 'verified') return '';
+      const label = esc(trust.tierLabel(o));
+      return `<svg class="tcard__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${label}"><title>${label}</title><circle cx="12" cy="12" r="9.5"/><path d="m8 12 3 3 5-6"/></svg>`;
+    };
     grid.innerHTML = picks.map(o => `
-      <a class="near-card" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(o.id) : (o.id)))}" data-near-id="${esc(o.id)}">
-        <div class="ph"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="pct near-pct" hidden></span></div>
-        <div class="bd">
-          <div class="nm">${esc(trailDisplayName(o))}</div>
-          <div class="mt">${esc(o.valley || o.area || '')} · ${num(o.distance)} km · ${esc(trust ? trust.riskLabel(o, safetyLabel(o.safetyLevel)) : safetyLabel(o.safetyLevel))}</div>
-        </div>
+      <a class="tcard tcard--small near-card" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(o.id) : (o.id)))}" data-near-id="${esc(o.id)}">
+        <span class="tcard__photo"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="tcard__verdict near-verdict" hidden></span></span>
+        <span class="tcard__body">
+          <span class="tcard__name">${esc(trailDisplayName(o))}${nearTick(o)}</span>
+          <span class="tcard__meta">${esc(nearMeta(o))}</span>
+        </span>
       </a>`).join('');
     wrapEl.hidden = false;
     const seeAll = $('nearbySeeAll');
     if (seeAll && (t.valley || t.area)) seeAll.textContent = tx('See all in {place}', { place: t.valley || t.area }) + ' \u2192';
 
-    // Personalise: retitle the section and fill each pick's real match %
-    // chip, same scoreTrail() as everywhere else.
+    // Personalise: retitle the section and put each pick's verdict for this
+    // dog on its photo, in the words every other card uses, never a %.
     function personalise() {
-      if (typeof scoreTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
+      if (typeof recommendTrail !== 'function' || !window.OrmaMatchVerdict || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if (!profile) return;
         const heading = $('nearbyTitle');
         if (heading && profile.name) heading.textContent = tx('Nearby trails, ranked for {name}', { name: profile.name });
         const ov = (typeof effectiveOverrides === 'function') ? effectiveOverrides(profile, null) : profile;
+        const forDog = tt('browse.card.forDog', { name: profile.name || tx('your dog') }, 'For {name}');
+        const who = forDog.charAt(0).toLowerCase() + forDog.slice(1);
         for (const o of picks) {
-          const slot = grid.querySelector(`[data-near-id="${CSS.escape(o.id)}"] .near-pct`);
+          const slot = grid.querySelector(`[data-near-id="${CSS.escape(o.id)}"] .near-verdict`);
           if (!slot) continue;
-          slot.textContent = (o.curated === false ? '≈' : '') + scoreTrail(o, ov, conditionsForScoring(o)) + '%';
+          const verdict = window.OrmaMatchVerdict.verdictFor(recommendTrail(o, ov, conditionsForScoring(o)));
+          if (!verdict || !verdict.label) continue;
+          slot.className = `tcard__verdict tcard__verdict--${verdict.tone} near-verdict`;
+          slot.innerHTML = `${esc(verdict.label)} <small>${esc(who)}</small>`;
           slot.hidden = false;
         }
       }).catch(() => {});
@@ -366,7 +392,7 @@
         ? tx('This route depends on an open chairlift ({lift}). Only for a dog of 8 kg or under that rides calmly held on a lap; a hard stop for every other dog.', { lift: lift.name })
         : tx('This route depends on an open chairlift. Only for a dog of 8 kg or under that rides calmly held on a lap; a hard stop for every other dog.'))
       : t.curated === false
-      ? tx('Automated estimate from mapped route data. Exposure, shade, livestock and current conditions are not field verified.')
+      ? tx('Automatic estimate from map data. Exposure, shade, livestock and current conditions are not field verified.')
       : lowRisk && easyTerrain
       ? tx('A gentle, low-risk choice for most dogs.')
       : t.safetyLevel === 'caution'
@@ -782,7 +808,7 @@
       ? `<ol class="td2-route-switch-list">
           <li>${tx('Begin the hike on trail <b>{trail}</b>.', { trail: esc(routeSwitches[0].from) })}</li>
           ${routeSwitches.map(item => {
-            const atKm = item.km == null ? tx('At the mapped junction') : tx('At approximately km {km}', { km: esc(item.km.toFixed(1).replace(/\.0$/, '')) });
+            const atKm = item.km == null ? tx('At the junction') : tx('At approximately km {km}', { km: esc(item.km.toFixed(1).replace(/\.0$/, '')) });
             const nearby = (Array.isArray(t.rifugi) ? t.rifugi : []).find(place =>
               Number.isFinite(Number(place && place.km)) && item.km != null && Math.abs(Number(place.km) - item.km) <= 0.15);
             const switchVars = { at: atKm, from: esc(item.from), to: esc(item.to) };
@@ -798,7 +824,7 @@
       : { written:false };
     // Same sentence as DoloPawsTrailRouteRefs.AUDIT_DIRECTIONS_NOTE, written out so it can be translated.
     const auditDirectionsMarkup = `<div class="s"><p><b>${tx('Directions:')}</b> ${esc(trailWords(auditDirections.text || ''))}</p><p class="td2-route-source">${esc(window.DoloPawsTrailRouteRefs ? tx('We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.') : '')}</p></div>`;
-    const noRouteNumbers = '<div class="s"><p><b>' + tx('Trail numbers:') + '</b> ' + tx('No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.') + '</p></div>';
+    const noRouteNumbers = '<div class="s"><p><b>' + tx('Trail numbers:') + '</b> ' + tx('No verified numbered sequence is currently recorded for this route. Follow the ORMA line on the map and local destination signs.') + '</p></div>';
     // The guidance labels are compared and passed on in English; they are
     // translated only where they are printed.
     const labelText = label => {
@@ -871,13 +897,13 @@
       : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
           ? (routeRefs.length === 1
-            ? tx('Trail {refs} is marked only on the verified section shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.', { refs: esc(routeSequence) })
-            : tx('Trails {refs} are marked only on the verified sections shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.', { refs: esc(routeSequence) }))
+            ? tx('Trail {refs} is marked only on the verified section shown on the map. Follow the ORMA line on the map for the full route and confirm destination names at junctions.', { refs: esc(routeSequence) })
+            : tx('Trails {refs} are marked only on the verified sections shown on the map. Follow the ORMA line on the map for the full route and confirm destination names at junctions.', { refs: esc(routeSequence) }))
           : routeRefs.length === 1
-            ? tx('Follow trail <b>{trail}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.', { trail: esc(routeRefs[0]) })
+            ? tx('Follow trail <b>{trail}</b> for the whole walk. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.', { trail: esc(routeRefs[0]) })
             : routeRefs.length > 2
-              ? tx('This hike uses trails {refs}, but the exact numbered switch points are still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.', { refs: esc(routeSequence) })
-              : tx('This hike uses trails {refs}, but the exact numbered switch point is still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.', { refs: esc(routeSequence) })}</div>`}`
+              ? tx('This hike uses trails {refs}, but the exact numbered switch points are still awaiting verification. Follow the ORMA line on the map and local destination signs; do not rely on the number sequence alone.', { refs: esc(routeSequence) })
+              : tx('This hike uses trails {refs}, but the exact numbered switch point is still awaiting verification. Follow the ORMA line on the map and local destination signs; do not rely on the number sequence alone.', { refs: esc(routeSequence) })}</div>`}`
       // Nothing sourced to say about following this route. This card used to
       // fall back to the first paragraph of t.desc, which "About this trail"
       // prints in full a few centimetres above: on 76 of 109 Dolomites trails

@@ -93,7 +93,7 @@ describe('trail presentation audits', () => {
     expect(trail.routeAudit.routeNumbers).toMatch(/sv\. 5/);
     expect(trail.verified.categories).toEqual(expect.arrayContaining(['livestock', 'access']));
     expect(trail.verified.sources.filter((source) => /Regolamento di Polizia Urbana/.test(source))).toHaveLength(2);
-    expect(trail.tips).toMatch(/leash/);
+    expect(trail.tips).toMatch(/\blead\b/);
     expect(trail.tips).toMatch(/Domegge/);
   });
 

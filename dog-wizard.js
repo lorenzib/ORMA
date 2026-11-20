@@ -143,7 +143,7 @@
     // under), keeps chairlift-assisted routes in the recommendations.
     ['chairlift', tx('Open chairlifts'), [
       ['never', tx('Not for us, or never tried')],
-      ['ok', tx('Rides calmly, held on my lap with harness and leash (8 kg or under)')],
+      ['ok', tx('Rides calmly, held on my lap with harness and lead (8 kg or under)')],
     ]],
   ];
   var DURATION_OPTIONS = [
@@ -1054,7 +1054,7 @@
     titleEl.textContent   = isEditing ? tx('Edit dog') : tx('Add a dog');
     subtitleEl.textContent = isEditing
       ? tx('Update your dog\'s profile.')
-      : tx('Tell us about your dog to personalize trail recommendations.');
+      : tx('Tell us about your dog to personalise trail recommendations.');
   }
 
   // ---- Open ----

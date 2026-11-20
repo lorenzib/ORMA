@@ -42,14 +42,14 @@
   // a card used the tier's internal name where the same trail's page said
   // "Verified by ORMA". The tier ids stay as they are.
   const TIER_LABELS = Object.freeze({
-    imported: 'Imported map data',
+    imported: 'Map data, not verified',
     mapped: 'Mapped route',
     'route-audited': 'Verified by ORMA',
     'field-verified': 'Verified and walked by ORMA',
   });
   const SOURCE_LABELS = Object.freeze({
-    unknown: 'Evidence unknown',
-    mapped: 'Mapped data',
+    unknown: 'Not checked yet',
+    mapped: 'From map data',
     'source-listed': 'Source listed, not reviewed',
     'source-reviewed': 'ORMA source-reviewed',
     'field-checked': 'ORMA field-checked',
@@ -117,7 +117,7 @@
       case 'mapped': return tx('Mapped route');
       case 'route-audited': return tx('Verified by ORMA');
       case 'field-verified': return tx('Verified and walked by ORMA');
-      default: return tx('Imported map data');
+      default: return tx('Map data, not verified');
     }
   }
 
@@ -125,11 +125,11 @@
   // FRESHNESS_LABELS), in the reader's language.
   function sourceLabel(state){
     switch(state){
-      case 'mapped': return tx('Mapped data');
+      case 'mapped': return tx('From map data');
       case 'source-listed': return tx('Source listed, not reviewed');
       case 'source-reviewed': return tx('ORMA source-reviewed');
       case 'field-checked': return tx('ORMA field-checked');
-      case 'unknown': return tx('Evidence unknown');
+      case 'unknown': return tx('Not checked yet');
       default: return SOURCE_LABELS[state];
     }
   }
