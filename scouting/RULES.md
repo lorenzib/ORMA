@@ -70,6 +70,11 @@ Only the owner changes these rules. If a walk doesn't fit them, hold it and list
 - Check these for every walk: the commune's police or animal regulation, park rules, and Natura 2000 measures. Give a source for each.
 - A ban on land beside the path (meadows, churchyards, lakes) is not a walk ban. Gardens are.
 
+## Winter quota (20 Nov)
+- At least 3 in 10 walks added in any 30 days must be good all winter: in season, and not hidden, in each of December, January and February. See `backoffice/OPERATING_STANDARD.md`.
+- While ORMA is under the quota (`npm run report:winter-mix`), prefer pools likely to give winter walks: lakes, the Ligurian hinterland, low valleys and basins.
+- The quota never relaxes a screening rule.
+
 ## Lifts
 - A walk where a lift is optional is fine.
 - A walk that needs a lift or a bus is held.

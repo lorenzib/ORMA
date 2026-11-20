@@ -108,7 +108,7 @@ Quote the rule with its source URL. Hold any walk with a route ban, and flag it.
 
 ## 7. Findings, PR, log
 Write `scouting/findings/$DATE-<pool-slug>.md`, in plain short English. It contains:
-1. **Funnel:** tours → in scope → drawn clean → pass roads/grade/variants → with photo.
+1. **Funnel:** tours → in scope → drawn clean → pass roads/grade/variants → with photo. Add how many of the ready walks are good all winter, and the current quota from `npm run report:winter-mix`.
 2. **Ready to build:** one block per walk. Give:
    - the OA id and link, and the title;
    - one-way or loop, and the km, climb and time used (board or measured);
@@ -116,7 +116,8 @@ Write `scouting/findings/$DATE-<pool-slug>.md`, in plain short English. It conta
    - Natura 2000 and park;
    - the dog rule with its source (or "nothing beyond the national rule", with sources);
    - the chosen photo with its credit;
-   - a 3–4 line directions sketch from the way sequence.
+   - a 3–4 line directions sketch from the way sequence;
+   - whether it is good all winter: `node scripts/winter-mix.js --candidate <high point m> [--months <board months>]`.
 3. **Held, photo only:** the walks that pass everything but the photo.
 4. **Held, other reasons:** one line each.
 5. **Owner calls:** each one a yes/no question.
