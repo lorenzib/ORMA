@@ -82,8 +82,10 @@ function recordedStatus(trail, measuredRefs){
   const catalogued = (Array.isArray(trail?.routeRefs) ? trail.routeRefs : []).filter(Boolean).map(String);
   const refs = [...new Set(measured.length ? measured : catalogued)];
   return refs.length
-    ? `The mapped route carries trail ${refs.length === 1 ? 'number' : 'numbers'} ${refs.join(', ')}; look for ${refs.length === 1 ? 'it' : 'them'} at junctions. ORMA has not confirmed how they appear on local signs.`
-    : 'No trail numbers are recorded for this walk. Follow the mapped ORMA line and local destination signs rather than looking for a number.';
+    ? (refs.length === 1
+      ? `This route follows trail ${refs[0]}. Look for that number at junctions; ORMA has not checked how it is shown on local signs.`
+      : `This route follows trails ${refs.join(', ')}. Look for those numbers at junctions; ORMA has not checked how they are shown on local signs.`)
+    : 'No trail numbers are recorded for this walk. Follow the ORMA line on the map and local destination signs rather than looking for a number.';
 }
 
 /**
@@ -160,7 +162,7 @@ function followedByLandmark(trail, claimId){
   // arguing with each other.
   return run
     ? `${noNumber} It is followed by name and by landmark: ${from} route passes ${run}.`
-    : `${noNumber} ORMA has no landmark sequence recorded for it: follow the walk’s name on local signs and the mapped ORMA line on this page.`;
+    : `${noNumber} ORMA has no landmark sequence recorded for it: follow the walk’s name on local signs and the ORMA line on this page’s map.`;
 }
 
 // The access point's kind, as a walker would say it.
@@ -182,6 +184,8 @@ function startSentence(start){
   return `Start at ${place}, marked on the map. ${ORMA_SUGGESTION} ${CHECK_ACCESS}`;
 }
 
+const LEGACY_STATUS = /The mapped route carries trail (number|numbers) ([^;]+); look for (?:it|them) at junctions\. ORMA has not confirmed how they appear on local signs\./;
+
 /**
  * Directions in today's wording, whenever they were approved.
  *
@@ -200,6 +204,12 @@ function inCurrentWording(guidance, startPoint){
   const next = { ...guidance };
   for(const field of ['start', 'status', 'sequence', 'switches']){
     if(typeof next[field] === 'string') next[field] = next[field].split(LEGACY_ORMA_SUGGESTION).join(ORMA_SUGGESTION);
+  }
+  // The trail-number line before 20 November 2026 said "look for it at
+  // junctions. ORMA has not confirmed how they appear", it and they for one
+  // number. A record approved then is published in recordedStatus's words.
+  if(typeof next.status === 'string'){
+    next.status = next.status.replace(LEGACY_STATUS, (line, many, refs) => recordedStatus({ routeRefs: refs.split(/,\s*/) }));
   }
   const fromRecord = guidance.establishedBy?.start === 'orma-record'
     || String(guidance.start || '').includes(LEGACY_ORMA_SUGGESTION);

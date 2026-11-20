@@ -72,7 +72,7 @@
   function setButtons(){
     var s = recorder.status;
     els.start.hidden = s !== 'idle' && s !== 'paused';
-    els.start.textContent = s === 'paused' ? tx('Resume') : tx('Start walk');
+    els.start.textContent = s === 'paused' ? tx('Resume') : tx('Start recording');
     els.pause.hidden = s !== 'recording';
     els.finish.hidden = s === 'idle';
     els.discard.hidden = s === 'idle';

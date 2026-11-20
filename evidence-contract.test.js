@@ -11,7 +11,7 @@ describe('TRUST-01 evidence and freshness contract', () => {
   });
 
   test.each([
-    ['imported', 'Imported map data'],
+    ['imported', 'Map data, not verified'],
     ['route-audited', 'Verified by ORMA'],
     ['field-verified', 'Verified and walked by ORMA'],
   ])('%s receives the canonical public label', (fixture, label) => {

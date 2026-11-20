@@ -69,7 +69,7 @@
   // literal as fallback; the values are the shared discovery vocabulary.
   var DURATION_SEG = [{ label: t('hp.filters.dayHikes', 'Day hikes'), v: 'day' }, { label: t('hp.filters.multiDay', 'Multi-day'), v: 'multi' }];
   var DIST_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.under5', 'Under 5 km'), v: 'u5' }, { label: t('hp.filters.5to10', '5–10 km'), v: '5to10' }, { label: t('hp.filters.10plus', '10 km+'), v: '10p' }];
-  var DIFF_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.lowRisk', 'Low risk'), v: 'low-risk' }, { label: t('hp.filters.moderate', 'Moderate'), v: 'moderate' }, { label: t('hp.filters.caution', 'Caution'), v: 'caution' }];
+  var DIFF_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.lowRisk', 'Low risk'), v: 'low-risk' }, { label: t('hp.filters.moderate', 'Moderate risk'), v: 'moderate' }, { label: t('hp.filters.caution', 'Higher risk'), v: 'caution' }];
   var TERRAIN_SEG = [{ label: t('hp.filters.any', 'Any'), v: 'any' }, { label: t('hp.filters.gentle', 'Gentle only'), v: 'soft' }, { label: t('hp.filters.mixed', 'Up to moderate'), v: 'mixed' }, { label: t('hp.filters.rocky', 'Steep is okay'), v: 'rocky' }];
   var MATCH_SEG = [{ label: t('hp.filters.any', 'Any'), v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 }];
 
@@ -214,9 +214,9 @@
     var level = t && ['low-risk', 'moderate', 'caution'].indexOf(t.safetyLevel) !== -1
       ? t.safetyLevel : 'moderate';
     var map = {
-      'low-risk': { label: tr('hp.difficulty.lowRisk', 'Low-risk'), dot: '#2C5C34' },
-      'moderate': { label: tr('hp.difficulty.moderate', 'Moderate'), dot: '#8A5A16' },
-      'caution': { label: tr('hp.difficulty.caution', 'Caution'), dot: '#9C3A25' },
+      'low-risk': { label: tr('hp.difficulty.lowRisk', 'Low risk'), dot: '#2C5C34' },
+      'moderate': { label: tr('hp.difficulty.moderate', 'Moderate risk'), dot: '#8A5A16' },
+      'caution': { label: tr('hp.difficulty.caution', 'Higher risk'), dot: '#9C3A25' },
     };
     return { value: level, label: map[level].label, dot: map[level].dot };
   }
@@ -541,21 +541,95 @@
     '</button>';
   }
 
-  function ccardHtml(entry, tags) {
-    var t = entry.t, s = entry.score, ti = tier(s), df = difficulty(t);
-    var riskBadge = window.DoloPawsIcons
-      ? window.DoloPawsIcons.badgeHtml(df.value, df.label)
-      : '<span class="dp-badge dp-badge--' + df.value + '"><span>' + esc(df.label) + '</span></span>';
-    return '<button type="button" class="hp-ccard" data-href="' + esc(trailHref(t)) + '">' +
-      '<span class="hp-ccard-img">' + thumb(t) + '</span>' +
+  // The homepage card says what the Trails page card says, in the same words
+  // and chips: the walk's figures, its rating, how ORMA knows it, its season,
+  // and the verdict for the dog being browsed with. Only the shape differs:
+  // photo on top here, because these sit three to a row.
+  function cardMetaLine(trail) {
+    var routeReturn = window.ORMARouteReturn;
+    var oneWayWalk = !!(routeReturn && routeReturn.isOneWay(trail));
+    var shown = oneWayWalk ? routeReturn.forView(trail) : trail;
+    var back = shown !== trail;
+    return [
+      shown.distance ? (back ? tr('card.thereAndBack', '{km} km there and back', { km: shown.distance })
+        : oneWayWalk ? tr('card.oneWay', '{km} km one way', { km: num(shown.distance) })
+        : num(shown.distance) + ' km') : null,
+      shown.elevation != null ? tr('card.climb', '{m} m climb', { m: shown.elevation }) : null,
+      shown.hours ? (back ? '≈ ' : '') + num(shown.hours) + ' h' : null,
+      trail.area || valleyOf(trail),
+    ].filter(Boolean).join(' · ');
+  }
+
+  var RISK_KEYS = { 'low-risk':'legend.low', 'moderate':'legend.moderate', 'caution':'legend.caution' };
+  function cardFacts(trail) {
+    var icons = window.DoloPawsIcons, trust = window.DoloPawsTrailTrust;
+    var df = difficulty(trail);
+    var riskWords = tr(RISK_KEYS[df.value], df.label);
+    var risk = icons ? icons.badgeHtml(df.value, riskWords)
+      : '<span class="dp-badge dp-badge--' + df.value + '"><span>' + esc(riskWords) + '</span></span>';
+    var provenance = '';
+    if (trust) {
+      provenance = icons ? icons.badgeHtml(trust.tierBadgeStyle(trail), trust.tierLabel(trail))
+        : '<span class="badge-pill">' + esc(trust.tierLabel(trail)) + '</span>';
+    }
+    var season = '';
+    var words = window.DoloPawsTrailSeasonWords;
+    var best = words ? words.bestTime(trail.season, true) : '';
+    if (best) {
+      var month = new Date().getMonth() + 1;
+      var outLabel = words.outOfSeasonTag(trail.season, month, true);
+      season = (outLabel ? '<span class="browse-season browse-season--out">' + esc(outLabel) + '</span>' : '') +
+        '<span class="browse-season browse-season--best">' + esc(best) + '</span>' +
+        (words.dogSeasonsNow ? words.dogSeasonsNow(trail.season, month) : []).map(function (r) {
+          return '<span class="browse-season browse-season--dog">' + esc(r.label) + '</span>';
+        }).join('');
+    }
+    return risk + provenance + season;
+  }
+
+  // The engine's own verdict, as the Trails page asks for it: a strong option
+  // with an unreviewed category that matters is downgraded, which a bare score
+  // cannot carry.
+  function verdictOf(trail) {
+    var shared = window.OrmaMatchVerdict;
+    if (!shared) return null;
+    try {
+      var rec = window.DoloPawsScoring.recommendTrail(trail, effectiveOverrides(activeProfile(), null), conditionsFor(trail));
+      return shared.verdictFor(rec);
+    } catch (e) { return shared.verdictFor(scoreOf(trail)); }
+  }
+
+  function subjectLabel() {
+    var name = state.dog === 'medium' ? tr('recommendation.subject.guest', 'a medium dog') : (dogMeta() || {}).name;
+    return tr('browse.card.forDog', 'For {name}', { name: name || tr('recommendation.subject.guest', 'a medium dog') });
+  }
+
+  function cardReason(trail) {
+    if (hasWater(trail)) {
+      return trail.waterSources.length === 1 ? tr('browse.card.waterOne', 'Water access listed at one point')
+        : tr('browse.card.waterMany', 'Water access listed at {n} points', { n: trail.waterSources.length });
+    }
+    return trail.shadeCoverage >= 50 ? tr('browse.card.shade', '{pct}% shade along the route', { pct: trail.shadeCoverage }) : '';
+  }
+
+  function ccardHtml(entry) {
+    var trail = entry.t, verdict = verdictOf(trail);
+    var reason = cardReason(trail);
+    var match = verdict && verdict.label
+      ? '<span class="hp-ccard-match hp-ccard-match--' + verdict.tone + '">' +
+          '<small>' + esc(subjectLabel()) + '</small>' +
+          '<strong>' + esc(verdict.label) + '</strong>' +
+          (reason ? '<span class="hp-ccard-reason">' + esc(reason) + '</span>' : '') +
+        '</span>'
+      : '';
+    return '<button type="button" class="hp-ccard" data-href="' + esc(trailHref(trail)) + '">' +
+      '<span class="hp-ccard-img">' + thumb(trail) + '</span>' +
       '<span class="hp-ccard-body">' +
-        '<span class="hp-ccard-name">' + esc(trailDisplayName(t)) + '</span>' +
-        '<span class="hp-ccard-meta">' + tags + '</span>' +
-        '<span class="hp-ccard-footer"><span class="hp-ccard-rating">' + riskBadge + '</span>' +
-          '<span class="hp-ccard-match hp-ccard-match--' + ti.kind + '">' +
-            '<span class="hp-ccard-score"><strong>' + s + '<span>%</span></strong><small>' + tx('MATCH FOR YOUR DOG') + '</small></span>' +
-          '</span></span>' +
+        '<span class="hp-ccard-name">' + esc(trailDisplayName(trail)) + '</span>' +
+        '<span class="hp-ccard-meta">' + esc(cardMetaLine(trail)) + '</span>' +
+        '<span class="hp-ccard-facts">' + cardFacts(trail) + '</span>' +
       '</span>' +
+      match +
     '</button>';
   }
 
@@ -571,7 +645,7 @@
       image2x: 'images/orma-how-add-dog-1920.jpg?v=20260821-1',
       focus: 'dog',
       alt: tx('A dog standing on a forest trail in the mountains'),
-      text: tx('Your dog’s fitness, life stage, health and build set comfortable limits. Anything you leave blank stays neutral.') },
+      text: tx('Your dog’s fitness, life stage, health and build set comfortable limits. Anything you leave blank doesn’t count for or against a trail.') },
     { title: tx('3 · We explain the match'),
       image: 'images/orma-how-match.jpg?v=20260821-4',
       image2x: 'images/orma-how-match-1920.jpg?v=20260821-4',
@@ -629,10 +703,7 @@
               '<div class="hp-kick hp-kick-left">' + esc(tx('In season now')) + '</div>' +
               '<h2 class="hp-feat-h2" id="hpGoodNowTitle">' + esc(tx('Good Dolomites walks for {month}', { month: now.month })) + '</h2>' +
               '<p class="hp-coll-sub">' + esc(tx('Dolomites walks whose best months include {month}, ranked for the dog you are browsing with.', { month: now.month })) + '</p></div></div>' +
-            '<div class="hp-coll-grid">' + now.list.map(function (entry) {
-              var words = window.DoloPawsTrailSeasonWords;
-              return ccardHtml(entry, esc(num(entry.t.distance)) + ' km · ' + esc(valleyOf(entry.t)) + ' · ' + esc(words.bestTime(entry.t.season, true)));
-            }).join('') + '</div>' +
+            '<div class="hp-coll-grid">' + now.list.map(ccardHtml).join('') + '</div>' +
             '<a class="hp-how-link hp-featured-collection-cta" href="browse-trails.html?region=' + GOOD_NOW_REGION + '">' + esc(tx('See the {count} Dolomites walks in season →', { count: now.count })) + '</a>' +
           '</section>'
         : '';
@@ -664,9 +735,7 @@
             '<h2 class="hp-feat-h2" id="hpFeaturedTitle">' + featTitleHtml + '</h2>' +
             '<p class="hp-coll-sub">' + esc(featSub) + '</p>' +
             '<p class="hp-coll-rank-row"><strong>' + esc(featRankLine) + '</strong> <button type="button" class="hp-coll-profile-cta hp-dog-profile-cta" data-action="create-dog-profile">' + esc(featProfileCta) + '</button></p></div></div>' +
-          '<div class="hp-coll-grid">' + feat.map(function (entry) {
-            return ccardHtml(entry, esc(num(entry.t.distance)) + ' km · ' + esc(valleyOf(entry.t)));
-          }).join('') + '</div>' +
+          '<div class="hp-coll-grid">' + feat.map(ccardHtml).join('') + '</div>' +
           '<a class="hp-how-link hp-featured-collection-cta" href="' + featCollectionHref + '">' + esc(featCollectionCta) + '</a>' +
         '</section>';
     }
@@ -761,7 +830,7 @@
   function chairliftOpts() {
     return [
       { label: t('hp.wizard.chairlift.never', 'Not for us, or never tried'), v: 'never' },
-      { label: t('hp.wizard.chairlift.ok', 'Yes, held on my lap with harness and leash'), v: 'ok' },
+      { label: t('hp.wizard.chairlift.ok', 'Yes, held on my lap with harness and lead'), v: 'ok' },
     ];
   }
   function asksChairlift(w) { return w.size === 'small'; }

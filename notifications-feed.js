@@ -73,10 +73,10 @@
   function auditLine(trail){
     if(!(trail && trail.graduation && trail.graduation.status === 'verified')) return tx('Reviewed by ORMA: trail details updated.');
     var count = officialSourceCount(trail);
-    if(!count) return tx('Now ORMA Verified.');
+    if(!count) return tx('Now verified by ORMA.');
     return count === 1
-      ? tx('Now ORMA Verified: checked against 1 official source.')
-      : tx('Now ORMA Verified: checked against {count} official sources.', { count: count });
+      ? tx('Now verified by ORMA: checked against 1 official source.')
+      : tx('Now verified by ORMA: checked against {count} official sources.', { count: count });
   }
 
   // → [{id, icon, alert, group:'today'|'earlier', timeLabel, title, body, href}]

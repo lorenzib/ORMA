@@ -101,14 +101,20 @@ describe('guest homepage editorial structure', () => {
     expect(read('homepage-search.js')).toContain('each published trail');
   });
 
-  test('wraps the featured match beneath the risk badge when a card narrows', () => {
-    const css = read('homepage-editorial.css');
+  test('homepage trail cards say what the Trails page card says', () => {
+    const css = read('styles.css');
+    const js = read('homepage-search.js');
 
-    expect(css).toContain('.hp-featured .hp-ccard-footer{flex-wrap:wrap;row-gap:10px;}');
-    expect(css).toContain('.hp-featured .hp-ccard-rating{min-width:max-content;}');
-    expect(css).toContain('.hp-featured .hp-ccard-match{margin-left:auto;}');
-    expect(css).toContain('@container (max-width:340px)');
-    expect(css).toContain('.hp-featured .hp-ccard-match{align-self:flex-end;margin-left:0;}');
+    // Same chips and verdict in words, no percentage.
+    expect(js).not.toContain('MATCH FOR YOUR DOG');
+    expect(js).toContain('hp-ccard-facts');
+    expect(js).toContain('browse-season--best');
+    expect(js).toContain("tr('browse.card.forDog', 'For {name}'");
+    expect(js).toContain('shared.verdictFor(rec)');
+    // The match band sits at the bottom of every card in a row.
+    expect(css).toContain('.hp-ccard{border:1px solid var(--paper-line)');
+    expect(css).toContain('display:flex;flex-direction:column;}');
+    expect(css).toContain('.hp-ccard-match--good{background:#FFF0D6;}');
   });
 
   test('keeps the method cards on the same three-column rhythm as featured trails', () => {
@@ -139,8 +145,8 @@ describe('guest homepage editorial structure', () => {
   test('uses the shared wider website canvas', () => {
     const css = read('homepage-editorial.css');
     expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
-    expect(read('index.html')).toContain('homepage-editorial.css?v=20261107-1');
-    expect(read('index.html')).toContain('homepage-search.js?v=20261110-2');
+    expect(read('index.html')).toContain('homepage-editorial.css?v=20261123-1');
+    expect(read('index.html')).toContain('homepage-search.js?v=20261123-1');
   });
   test('opens the phone filters as a full panel along the bottom, not a squashed drop-down', () => {
     const css = read('homepage-editorial.css');

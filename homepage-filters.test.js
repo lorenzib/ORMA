@@ -1456,7 +1456,10 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).not.toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
     // The selected route is now a zoom-scaled cased pair from map-style.js.
     expect(trailScript).toContain('ORMAMapStyle.addRouteLine(map, {');
-    expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, window\.ORMAMapStyle\.networkLayerId\(map\)\);/);
+    // Neighbour walks draw over the marked network (it would hide them) and
+    // under the walk on this page.
+    expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, neighbourLinesBeforeId\(\)\);/);
+    expect(trailScript).toContain("map.getLayer('single-trail-path-line-casing')");
     // Both maps share one hiking-network treatment from map-style.js instead
     // of hand-tuned raster blocks per map.
     expect(script).toContain('ORMAMapStyle.addHikingRoutes(trailMapInstance');

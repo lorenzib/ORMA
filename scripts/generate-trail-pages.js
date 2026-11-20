@@ -21,6 +21,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const { ITALIAN_COPY_BANNER } = require('./italian-copy-banner');
+const { accessDistanceWords } = require('./start-access-paths');
 const { writeItalianMainPages } = require('./italian-main-pages');
 const evidenceContract = require('../trust/evidence-v1.js');
 const recommendationContract = require('../scoring/recommendation-v1.js');
@@ -125,6 +126,15 @@ function trailTextIt(id) {
 function fillVars(text, vars) {
   if (!vars) return text;
   return String(text).replace(/\{(\w+)\}/g, (match, key) => (hasOwn(vars, key) ? String(vars[key]) : match));
+}
+
+/** The walk-in from the start to the walk, when the owner asked for it to be
+ *  named under Where to start (data/start-access-paths.json, overCap). */
+function accessStartLine(t) {
+  const access = t.accessPath;
+  if (!access || !access.startLine || !Number.isFinite(access.lengthM) || !Number.isFinite(access.climbM)) return '';
+  const d = accessDistanceWords(access.lengthM);
+  return `\n    <p>${L('From the start it’s about {distance} on foot and {climb} m up to the walk. This is not included in the walk’s figures.', { distance: `${num(d.value)} ${d.unit}`, climb: Math.round(access.climbM / 10) * 10 })}</p>`;
 }
 
 /** Fixed wording in the page's language. The English sentence is the key. */
@@ -275,9 +285,9 @@ function safetyClass(level) {
 }
 
 function safetyLabel(level) {
-  if (level === 'low-risk') return L('Low-risk terrain');
-  if (level === 'moderate') return L('Moderate terrain');
-  return L('Caution terrain');
+  if (level === 'low-risk') return L('Low risk');
+  if (level === 'moderate') return L('Moderate risk');
+  return L('Higher risk');
 }
 
 function displaySafetyLabel(t) {
@@ -342,7 +352,7 @@ function displayStartLabel(t, label) {
     return L('Suggested start, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
   }
   if (!trailImported(t)) return tr(withoutOsmTag(tr(label)));
-  return L('Mapped start suggestion, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
+  return L('Suggested start from map data, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
 }
 
 const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', frenchalps: 'French Alps, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', aosta: 'Valle d\'Aosta, Italy', piedmont: 'Piedmont, Italy', tyrol: 'Tyrol & Carinthia, Austria', switzerland: 'Switzerland' };
@@ -380,7 +390,7 @@ function regionLabelText(region) {
 const TIER_BADGE = Object.freeze({
   verified: { label: 'Verified by ORMA', style: 'verified', icon: 'verified' },
   reviewed: { label: 'Reviewed by ORMA', style: 'neutral', icon: null },
-  imported: { label: 'Imported trail', style: 'imported', icon: 'imported' },
+  imported: { label: 'Not yet verified', style: 'imported', icon: 'imported' },
 });
 
 /**
@@ -401,7 +411,7 @@ function badgeForTrail(t) {
 function tierLabelText(tier) {
   if (tier === TIER_BADGE.verified) return L('Verified by ORMA');
   if (tier === TIER_BADGE.reviewed) return L('Reviewed by ORMA');
-  return L('Imported trail');
+  return L('Not yet verified');
 }
 
 const REVIEW_CATEGORIES = ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'];
@@ -1010,7 +1020,7 @@ function renderTrailPage(t, slug, all) {
   const startHtml =
     t.startPoint && t.startPoint.label
       ? `<h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> ${L('Where to start')}</h2>
-    <p>${escapeHtml(displayStartLabel(t, t.startPoint.label))}</p>`
+    <p>${escapeHtml(displayStartLabel(t, t.startPoint.label))}</p>${accessStartLine(t)}`
       : '';
 
   const insightsHtml =
@@ -1090,7 +1100,7 @@ ${it ? '' : ITALIAN_COPY_BANNER + '\n'}<title>${escapeHtml(title)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${up}styles.css?v=20260916-5">
+<link rel="stylesheet" href="${up}styles.css?v=20261123-1">
 <style>
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
@@ -1202,7 +1212,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     ${t.paid ? `<span class="dp-badge dp-badge--neutral"><span>${L('Paid access')}</span></span>` : ''}
     ${openChairlift ? `<span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>${L('Chairlift-assisted · not for most dogs')}</span></span>` : ''}
   </div>
-  ${openChairlift ? `<p class="sp-lift-warning">${L('<strong>This route depends on an open chairlift{lift}.</strong> A dog that is not used to one can panic and fall, which can be fatal. ORMA recommends it only for a dog of 8 kg or under that rides calmly held on a lap, harnessed and leashed; for every other dog it is graded as not recommended.', { lift: t.liftAccess.name ? ` (${escapeHtml(t.liftAccess.name)})` : '' })}</p>` : ''}
+  ${openChairlift ? `<p class="sp-lift-warning">${L('<strong>This route depends on an open chairlift{lift}.</strong> A dog that is not used to one can panic and fall, which can be fatal. ORMA recommends it only for a dog of 8 kg or under that rides calmly held on a lap, harnessed and on a lead; for every other dog it is graded as not recommended.', { lift: t.liftAccess.name ? ` (${escapeHtml(t.liftAccess.name)})` : '' })}</p>` : ''}
   ${t.imageIcon ? `<figure class="sp-photo">${photoHtml(t)}${photoCreditHtml(t)}</figure>` : routeHtml}
   ${!t.imageIcon && t.imagePlaceholder ? `<p class="sp-src" style="display:flex;align-items:center;gap:8px;margin:-6px 0 14px;"><img src="${up}logo.svg" alt="" width="22" height="22" style="flex:none;"> ${L('We\'re working on adding photos of this trail.')}</p>` : ''}
   ${paragraphs(pageDesc)}
@@ -1267,7 +1277,7 @@ ${reviewRecord}
   <div class="hp-footer-grid">
     <div>
       <div class="hp-footer-brand"><img src="${up}logo.svg?v=5" alt=""><span>ORMA</span></div>
-      <p class="hp-footer-blurb">${L('The personalised trail guide for dogs and their humans, so every footprint left on the mountain is a safe one.')}</p>
+      <p class="hp-footer-blurb">${L('The personalised trail guide for dogs and their humans: what each walk asks of your dog, so you can choose well.')}</p>
       <div class="hp-footer-get">
         <div class="hp-footer-h">${L('Get the app')}</div>
         <div class="hp-footer-apps">

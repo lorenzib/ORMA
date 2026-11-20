@@ -53,17 +53,24 @@ describe('what ORMA can say about its own record',()=>{
     expect(value).not.toContain('official-route-page');
     expect(value).toContain('101, 105');
     // And it declines to claim what the map cannot establish.
-    expect(value).toContain('not confirmed how they appear on local signs');
+    expect(value).toContain('not checked how they are shown on local signs');
+  });
+
+  test('one number is "it" and many are "they", never both in one line',()=>{
+    expect(recordedStatus({routeRefs:['3']},[]))
+      .toBe('This route follows trail 3. Look for that number at junctions; ORMA has not checked how it is shown on local signs.');
+    expect(recordedStatus({routeRefs:['3A','24']},[]))
+      .toBe('This route follows trails 3A, 24. Look for those numbers at junctions; ORMA has not checked how they are shown on local signs.');
   });
 
   test('a walk with no numbers anywhere says to follow the line and the signs',()=>{
     expect(recordedStatus({routeRefs:[]},[]))
-      .toContain('Follow the mapped ORMA line and local destination signs');
+      .toContain('Follow the ORMA line on the map and local destination signs');
   });
 
   test('the measured numbers beat the catalogue’s sparser copy',()=>{
     expect(recordedStatus({routeRefs:['9']},['101','105'])).toContain('101, 105');
-    expect(recordedStatus({routeRefs:['9']},[])).toContain('number 9');
+    expect(recordedStatus({routeRefs:['9']},[])).toContain('trail 9.');
   });
 
   test('a walk with no recorded start gets no start claim',()=>{
@@ -164,6 +171,8 @@ describe('directions approved in the old wording are published in the new one',(
     const next=inCurrentWording(bulla,startPoint);
     expect(next.start).toBe(`Start at Panider Sattel / Passo Pinei, Pas Pinëi bus stop (line 172), by Hotel Pinei Nature & Spirit, marked on the map. ${ORMA_SUGGESTION} ${CHECK_ACCESS}`);
     expect(next.status).toContain(ORMA_SUGGESTION);
+    // And the old line's "look for them … how they appear" is rewritten too.
+    expect(next.status).toBe(`This route follows trails 3A, 24. Look for those numbers at junctions; ORMA has not checked how they are shown on local signs. ${ORMA_SUGGESTION}`);
     expect(JSON.stringify(next)).not.toContain(LEGACY_ORMA_SUGGESTION);
     expect(next.start).not.toMatch(/46\.58020/);
     // What the map answered is left as it was.

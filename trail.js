@@ -254,7 +254,7 @@ function initLoopComposer(map, t){
       return;
     }
     busy = true;
-    status.textContent = closeRequested ? tx('Closing the loop on mapped walking paths…') : tx('Connecting the selected points…');
+    status.textContent = closeRequested ? tx('Closing the loop on footpaths…') : tx('Connecting the selected points…');
     render();
     const graph = await loadGraph();
     if(version !== calculationVersion) return;
@@ -274,7 +274,7 @@ function initLoopComposer(map, t){
       closed = false;
       drawRoute([]);
       status.textContent = graph
-        ? tx('These points cannot form a bounded mapped route. Remove a point and choose a closer path.')
+        ? tx('These points cannot form a route. Remove a point and choose a closer path.')
         : tx('ORMA’s walking graph is unavailable here right now. Your points have been kept.');
       render();
       return;
@@ -283,10 +283,10 @@ function initLoopComposer(map, t){
     closed = closeRequested;
     drawRoute(preview.path);
     status.textContent = closed
-      ? tx('Loop ready. Review mapped access, signs, and current conditions before saving.')
+      ? tx('Loop ready. Check access, signs, and current conditions before saving.')
       : points.length < MAX_POINTS
-        ? tx('Mapped preview ready. Add another must-pass point.')
-        : tx('Mapped preview ready. Close the loop when the shape looks right.');
+        ? tx('Preview ready. Add another must-pass point.')
+        : tx('Preview ready. Close the loop when the shape looks right.');
     render();
     if(closed) fitPreview();
   }
@@ -357,7 +357,7 @@ function initLoopComposer(map, t){
       saveButton.disabled = true;
       status.textContent = tx('Loop saved on this device. Review local signs and conditions before walking.');
     }catch(error){
-      status.textContent = tx('This browser could not save the loop. The mapped preview is still available.');
+      status.textContent = tx('This browser could not save the loop. The preview is still available.');
     }
   }
 
@@ -540,7 +540,7 @@ function initNearestTrailDirections(map, t){
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');
     clearSteps();
-    setPanelMessage(tx('Connecting your location to the selected mapped route…'));
+    setPanelMessage(tx('Connecting your location to the selected route…'));
     try{
       const origin = await window.DoloPawsTrailAccess.currentPosition(navigator);
       if(Number.isFinite(origin.accuracyM) && origin.accuracyM > window.DoloPawsTrailAccess.MAX_GPS_ACCURACY_M){
@@ -579,7 +579,7 @@ function initNearestTrailDirections(map, t){
         const targetSnap = plan.targetSnapDistanceM > 20
           ? ' ' + tx('The selected point was snapped {distance} to a connected path.', { distance: formatApproachDistance(plan.targetSnapDistanceM / 1000) })
           : '';
-        setPanelMessage(tx('Mapped walking route · {distance} to the selected route point.', { distance: formatApproachDistance(plan.distanceKm) })
+        setPanelMessage(tx('Walking route · {distance} to the selected route point.', { distance: formatApproachDistance(plan.distanceKm) })
           + targetSnap + ' ' + tx('Check local signs and temporary closures.'));
         setButtonLabel(defaultLabel);
         return;
@@ -590,7 +590,7 @@ function initNearestTrailDirections(map, t){
         setButtonLabel(tx('Open directions to selected point'));
         return;
       }
-      setPanelMessage(tx('That point is outside ORMA’s current walking coverage. Choose a closer mapped route point.'));
+      setPanelMessage(tx('That point is outside ORMA’s current walking coverage. Choose a closer point on the route.'));
       setButtonLabel(defaultLabel);
     }catch(error){
       setPanelMessage(tx('We could not calculate a route to that point. Check your location signal and try again.'));
@@ -611,7 +611,7 @@ function initNearestTrailDirections(map, t){
     button.setAttribute('aria-busy', 'true');
     setButtonLabel(tx('Calculating directions…'));
     clearSteps();
-    setPanelMessage(tx('Checking your location against mapped walking paths…'));
+    setPanelMessage(tx('Checking your location against the footpaths…'));
     try{
       const graph = await loadRoutingGraph();
       const plan = await window.DoloPawsTrailAccess.planTrailEntry(
@@ -632,9 +632,9 @@ function initNearestTrailDirections(map, t){
         showPlan(plan, true);
         renderSteps(plan.instructions);
         const snapNote = plan.snapDistanceM > 20
-          ? ' ' + tx('Your GPS is about {distance} from the mapped path.', { distance: formatApproachDistance(plan.snapDistanceM / 1000) })
+          ? ' ' + tx('Your GPS is about {distance} from the path.', { distance: formatApproachDistance(plan.snapDistanceM / 1000) })
           : '';
-        setPanelMessage(tx('Mapped footpath route · {distance} to the trail.', { distance: formatApproachDistance(plan.distanceKm) })
+        setPanelMessage(tx('Footpath route · {distance} to the trail.', { distance: formatApproachDistance(plan.distanceKm) })
           + snapNote + ' ' + tx('Check local signs and temporary closures.'));
         setButtonLabel(tx('Refresh walking route'));
         return;
@@ -645,7 +645,7 @@ function initNearestTrailDirections(map, t){
         const distanceM = plan.distanceKm * 1000;
         const overlapsFix = Number.isFinite(plan.accuracyM) && distanceM <= plan.accuracyM;
         setPanelMessage(overlapsFix
-          ? tx('Your location overlaps this trail. Open your maps app for the nearest mapped point, and check local signs before joining.')
+          ? tx('Your location overlaps this trail. Open your maps app for the nearest point on the trail, and check local signs before joining.')
           : tx('The nearest point on this trail is about {distance} away. Your maps app will calculate the walk; check local signs and access before joining.', { distance: formatApproachDistance(plan.distanceKm) }));
         setButtonLabel(tx('Open directions to nearest trail point'));
         return;
@@ -694,11 +694,21 @@ function sampledTrailPath(trail, maxPoints = 30){
   return sampled;
 }
 
+// A walk the site publishes. The runtime data still carries held walks (a
+// withdrawal pending review, or past the 50 km limit), which have no page a
+// reader could switch to, so they are never offered as a neighbour.
+function isPublicNearbyTrail(trail){
+  if(!trail || trail.withdrawal) return false;
+  const km = Number(trail.distance);
+  return !(Number.isFinite(km) && km > 50);
+}
+
 function nearbyTrailCandidates(currentTrail, allTrails, radiusKm = 25, limit = 5){
   const currentPath = sampledTrailPath(currentTrail);
   if(!currentPath.length) return [];
   return (allTrails || [])
     .filter(trail => trail && trail.id !== currentTrail.id && Array.isArray(trail.path) && trail.path.length > 1)
+    .filter(isPublicNearbyTrail)
     .map(trail => {
       const candidatePath = sampledTrailPath(trail);
       let distanceKm = Infinity;
@@ -710,11 +720,82 @@ function nearbyTrailCandidates(currentTrail, allTrails, radiusKm = 25, limit = 5
           mapPoint = candidatePoint;
         }
       }));
-      return { trail, distanceKm, mapPoint };
+      // The pin goes where the walk starts: that is where a reader would go.
+      return { trail, distanceKm, mapPoint, startPoint: trail.path[0] };
     })
     .filter(item => item.distanceKm <= radiusKm)
     .sort((a, b) => a.distanceKm - b.distanceKm)
     .slice(0, limit);
+}
+
+// How a neighbour suits the dog: the signed-in dog once its profile is in
+// (paintMatch sets the subject), else the medium-dog guest profile the page
+// already scores against. The engine's category, not a rebuilt one.
+function nearbyWalkMatch(trail){
+  if(typeof recommendTrail !== 'function') return null;
+  const subject = window._dolopawsNearbySubject
+    || (window.DoloPawsScoring && window.DoloPawsScoring.GUEST_SUBJECT) || {};
+  try{
+    const rec = recommendTrail(trail, subject,
+      window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(trail));
+    if(!rec || !Number.isFinite(rec.score)) return null;
+    const verdict = window.OrmaMatchVerdict
+      ? window.OrmaMatchVerdict.verdictFor({ score: rec.score, category: rec.category })
+      : { label: '' };
+    return {
+      score: rec.score,
+      approx: trail.curated === false,
+      colour: detailRouteColorForScore(rec.score),
+      label: verdict.label || '',
+    };
+  }catch(error){ return null; }
+}
+
+function nearbyWalkHref(id){
+  const slug = window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor
+    ? window.DoloPawsRegionalData.slugFor(id) : id;
+  return `trail.html?id=${encodeURIComponent(slug)}`;
+}
+
+function escapeNearbyHtml(value){
+  return String(value == null ? '' : value).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+}
+
+// "92% · Strong option", or nothing when no score could be made.
+function nearbyMatchText(match){
+  if(!match) return '';
+  const pct = `${match.approx ? '≈' : ''}${match.score}%`;
+  return match.label ? `${pct} · ${match.label}` : pct;
+}
+
+// The short list under the map: every walk the map pins, with its match and a
+// way to see it on the map or open it. Re-runnable, for the region's late
+// arrival and for a signed-in dog's scores.
+function renderNearbyWalkList(currentTrail){
+  const wrap = document.getElementById('nearbyWalks');
+  const list = document.getElementById('nearbyWalksList');
+  if(!wrap || !list || !currentTrail) return;
+  const items = nearbyTrailCandidates(currentTrail, typeof trails !== 'undefined' ? trails : []);
+  if(!items.length){ wrap.hidden = true; return; }
+  list.innerHTML = items.map(item => {
+    const trail = item.trail;
+    const match = nearbyWalkMatch(trail);
+    const away = Math.round(item.distanceKm * 10) / 10;
+    const facts = away < 0.1
+      ? tx('{km} km · starts close by', { km: num(trail.distance) })
+      : tx('{km} km · {away} km away', { km: num(trail.distance), away: num(away) });
+    return `<li class="td2-nearby-walk">
+      <a class="td2-nearby-walk-link" href="${nearbyWalkHref(trail.id)}">
+        <span class="td2-nearby-walk-dot" style="background:${match ? match.colour : '#8A938D'}" aria-hidden="true"></span>
+        <span class="td2-nearby-walk-text">
+          <span class="td2-nearby-walk-name">${escapeNearbyHtml(trailDisplayName(trail))}</span>
+          <span class="td2-nearby-walk-meta">${escapeNearbyHtml(facts)}${match ? ` · <strong style="color:${match.colour}">${escapeNearbyHtml(nearbyMatchText(match))}</strong>` : ''}</span>
+        </span>
+      </a>
+      <button type="button" class="td2-nearby-walk-show" data-nearby-show="${escapeNearbyHtml(trail.id)}">${escapeNearbyHtml(tx('Show on map'))}</button>
+    </li>`;
+  }).join('');
+  wrap.hidden = false;
 }
 
 // Finds the real point along an actual GPS path at a given fraction of its
@@ -1171,9 +1252,10 @@ function accessPathLine(trail){
 
 function accessPathWords(trail){
   const lengthM = Number(trail && trail.accessPath && trail.accessPath.lengthM);
-  const metres = Number.isFinite(lengthM) ? Math.max(10, Math.round(lengthM / 10) * 10) : null;
-  return metres
-    ? tx('Grey line: about {metres} m on foot from the start flag to the walk. Not part of the walk’s distance.', { metres })
+  const distance = !Number.isFinite(lengthM) ? null
+    : lengthM >= 1000 ? `${num(Math.round(lengthM / 100) / 10)} km` : `${Math.max(10, Math.round(lengthM / 10) * 10)} m`;
+  return distance
+    ? tx('Grey line: about {distance} on foot from the start flag to the walk. Not part of the walk’s distance.', { distance })
     : tx('Grey line: on foot from the start flag to the walk. Not part of the walk’s distance.');
 }
 
@@ -1749,7 +1831,7 @@ function renderTrail(t){
       ? window.DoloPawsIcons.renderIconSvg(provStyle, { mode:'inline', color:'currentColor', size:16 })
       : '';
     box.style.cssText = 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #2E4034;background:#eef3ef;border-radius:6px;font-size:13px;line-height:1.5;';
-    box.innerHTML = provenanceIcon + '<strong>' + tx('Trail planning information.') + '</strong> ' + tx('Based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.');
+    box.innerHTML = provenanceIcon + '<strong>' + tx('Trail planning information.') + '</strong> ' + tx('Based on map data and ORMA’s own sources. Conditions can change, so check locally before setting out.');
     descEl.parentNode.insertBefore(box, descEl);
 
     // Trail hazards, surfaceHazards used to feed only the match scoring;
@@ -1868,6 +1950,10 @@ function renderTrail(t){
           window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(t));
         const n = recommendation.score;
         applyDetailRouteColor(detailRouteColorForScore(n));
+        // The walks nearby are matched to the same dog.
+        window._dolopawsNearbySubject = effectiveOverrides(profile, null);
+        renderNearbyWalkList(t);
+        if(typeof window._dolopawsRefreshNearbyMatches === 'function') window._dolopawsRefreshNearbyMatches();
         const actions = document.querySelector('.td-actions');
         if(actions) actions.classList.remove('guest-actions');
         const name = profile.name || window.t('trail.yourDog');
@@ -2353,6 +2439,14 @@ function renderTrail(t){
         const nearbyTrails = nearbyTrailCandidates(t, typeof trails !== 'undefined' ? trails : []);
         const otherTrails = nearbyTrails.map(item => item.trail);
         const nearbyToggleBtn = document.getElementById('nearbyToggle');
+        const nearbyMapBtn = document.getElementById('nearbyMapBtn');
+        const nearbyMapLabel = on => on
+          ? tx('Back to this walk')
+          : tx('Walks nearby ({n})', { n: nearbyTrails.length });
+        if(nearbyMapBtn){
+          nearbyMapBtn.hidden = nearbyTrails.length === 0;
+          if(nearbyTrails.length) nearbyMapBtn.textContent = nearbyMapLabel(false);
+        }
         if(nearbyToggleBtn){
           nearbyToggleBtn.hidden = nearbyTrails.length === 0;
           if(nearbyTrails.length){
@@ -2364,17 +2458,40 @@ function renderTrail(t){
           // the style refuses them.
           nearbyLayersAdded = true;
           try {
+          const nearbyMatches = new Map(nearbyTrails.map(item => [item.trail.id, nearbyWalkMatch(item.trail)]));
+          const matchColour = id => (nearbyMatches.get(id) || {}).colour || '#8A938D';
+          // Over the marked network, under the walk on this page. Neighbours
+          // mostly follow numbered routes, and under the network's plum line
+          // and its white edge their dashes were hidden. Under the walk's own
+          // line when it is already drawn, else where its corridor will go,
+          // which the walk then takes above them.
+          const neighbourLinesBeforeId = () => map.getLayer('single-trail-path-line-casing')
+            ? 'single-trail-path-line-casing'
+            : window.ORMAMapStyle.walkCorridorBeforeId(map);
+          const nearbySourceData = {};
           map.addSource('other-trails', {
             type: 'geojson',
-            data: {
+            data: nearbySourceData['other-trails'] = {
               type: 'FeatureCollection',
               features: otherTrails.map(x => ({
                 type: 'Feature',
-                properties: { id: x.id, name: trailDisplayName(x), safetyLevel: x.safetyLevel, distance: x.distance },
+                properties: { id: x.id, name: trailDisplayName(x), safetyLevel: x.safetyLevel, distance: x.distance, colour: matchColour(x.id) },
                 geometry: { type: 'LineString', coordinates: x.path.map(([lat, lng]) => [lng, lat]) },
               })),
             },
           });
+          // A neighbour's line shows only when asked for: the one a reader
+          // tapped, or all of them in the overview. A thinner, paler solid line in
+          // its own match colour on a white edge (no dashes, owner 20 Nov), so
+          // it never reads as the walk on this page.
+          map.addLayer({
+            id: 'other-trails-casing',
+            type: 'line',
+            source: 'other-trails',
+            minzoom: 9,
+            layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
+            paint: { 'line-color': '#FFFFFF', 'line-width': 5, 'line-opacity': 0.85 },
+          }, neighbourLinesBeforeId());
           map.addLayer({
             id: 'other-trails-line',
             type: 'line',
@@ -2382,12 +2499,11 @@ function renderTrail(t){
             minzoom: 9,
             layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
             paint: {
-              'line-color': '#858D88',
-              'line-width': 3.5,
-              'line-opacity': 0.52,
-              'line-dasharray': [1.5, 1.25],
+              'line-color': ['get', 'colour'],
+              'line-width': 2.25,
+              'line-opacity': 0.65,
             },
-          }, window.ORMAMapStyle.networkLayerId(map));
+          }, neighbourLinesBeforeId());
           // Wide invisible twin so the thin neighbour lines are easy to hit.
           map.addLayer({
             id: 'other-trails-hit',
@@ -2396,10 +2512,10 @@ function renderTrail(t){
             minzoom: 9,
             layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
             paint: { 'line-color': '#000', 'line-width': 16, 'line-opacity': 0.01 },
-          }, window.ORMAMapStyle.networkLayerId(map));
+          }, neighbourLinesBeforeId());
           map.addSource('nearby-trail-points', {
             type: 'geojson',
-            data: {
+            data: nearbySourceData['nearby-trail-points'] = {
               type: 'FeatureCollection',
               features: nearbyTrails.map(item => ({
                 type: 'Feature',
@@ -2409,43 +2525,117 @@ function renderTrail(t){
                   safetyLevel: item.trail.safetyLevel,
                   distance: item.trail.distance,
                   awayKm: Math.round(item.distanceKm * 10) / 10,
+                  colour: matchColour(item.trail.id),
                 },
-                geometry: { type: 'Point', coordinates: [item.mapPoint[1], item.mapPoint[0]] },
+                geometry: { type: 'Point', coordinates: [item.startPoint[1], item.startPoint[0]] },
               })),
             },
           });
+          // Every neighbour's start, on from the first paint so a reader sees
+          // there are other walks here: a small dot in its match colour, named
+          // once the map is close enough for names to fit.
           map.addLayer({
             id: 'nearby-trail-points-circle',
             type: 'circle',
             source: 'nearby-trail-points',
-            layout: { visibility: 'none' },
+            layout: { visibility: 'visible' },
             paint: {
-              'circle-radius': 6,
-              'circle-color': '#929A95',
+              'circle-radius': ['interpolate', ['linear'], ['zoom'], 9, 5, 14, 7.5],
+              'circle-color': ['get', 'colour'],
               'circle-stroke-color': '#ffffff',
-              'circle-stroke-width': 2,
+              'circle-stroke-width': 2.5,
             },
           });
           map.addLayer({
             id: 'nearby-trail-points-label',
             type: 'symbol',
             source: 'nearby-trail-points',
-            minzoom: 8,
+            minzoom: 11,
             layout: {
-              visibility: 'none',
+              visibility: 'visible',
               'text-field': ['get', 'name'],
-              'text-size': 11,
-              'text-font': ['Noto Sans Regular'],
-              'text-offset': [0, 1.25],
+              'text-size': 11.5,
+              'text-font': ['Noto Sans Bold'],
+              'text-offset': [0, 1.05],
               'text-anchor': 'top',
+              'text-max-width': 9,
+              'text-optional': true,
             },
             paint: {
-              'text-color': '#59615C',
+              'text-color': '#2E4034',
               'text-halo-color': '#ffffff',
               'text-halo-width': 2,
             },
           });
-          const escName = s => String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+          const NEIGHBOUR_LINES = ['other-trails-casing', 'other-trails-line', 'other-trails-hit'];
+          let showingNearbyOverview = false;
+          let nearbyPopup = null;
+          const showNeighbourLines = id => {
+            const filter = id ? ['==', ['get', 'id'], id] : null;
+            NEIGHBOUR_LINES.forEach(layer => {
+              if(!map.getLayer(layer)) return;
+              map.setFilter(layer, filter);
+              map.setLayoutProperty(layer, 'visibility', id || showingNearbyOverview ? 'visible' : 'none');
+            });
+          };
+          const popupHtml = item => {
+            const trail = item.trail;
+            const match = nearbyMatches.get(trail.id);
+            const away = Math.round(item.distanceKm * 10) / 10;
+            const facts = tx('{km} km trail · {away} km away', { km: num(trail.distance), away: num(away) });
+            return `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${escapeNearbyHtml(trailDisplayName(trail))}</div>` +
+              `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${escapeNearbyHtml(facts)}</div>` +
+              (match ? `<div style="font:700 12px 'Inter',sans-serif;color:${match.colour};margin-top:5px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${match.colour};margin-right:6px;"></span>${escapeNearbyHtml(nearbyMatchText(match))}</div>` : '') +
+              `<a href="${nearbyWalkHref(trail.id)}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">${tx('Open this trail')} →</a>`;
+          };
+          // Show one neighbour: its line, its card at its start, and (from the
+          // list under the map) a view that holds both walks.
+          const focusNearbyWalk = (id, options) => {
+            const item = nearbyTrails.find(entry => entry.trail.id === id);
+            if(!item) return false;
+            const opts = options || {};
+            // Close the last card first: its close handler hides the lines.
+            if(nearbyPopup) nearbyPopup.remove();
+            showNeighbourLines(id);
+            const at = opts.lngLat || [item.startPoint[1], item.startPoint[0]];
+            const popup = new maplibregl.Popup({ offset: 12, maxWidth: '260px' })
+              .setLngLat(at)
+              .setHTML(popupHtml(item))
+              .addTo(map);
+            nearbyPopup = popup;
+            popup.on('close', () => {
+              if(nearbyPopup !== popup) return;
+              nearbyPopup = null;
+              showNeighbourLines(null);
+            });
+            if(opts.fit){
+              const bounds = new maplibregl.LngLatBounds();
+              t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
+              item.trail.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
+              map.fitBounds(bounds, { padding: { top: 120, bottom: 96, left: 48, right: 64 }, maxZoom: 14 });
+            }
+            return true;
+          };
+          window._dolopawsFocusNearbyWalk = id => focusNearbyWalk(id, { fit: true });
+          if(window._dolopawsPendingNearbyFocus){
+            const pending = window._dolopawsPendingNearbyFocus;
+            window._dolopawsPendingNearbyFocus = null;
+            // After this tick: the page's own first fit to the walk follows
+            // these layers, and would otherwise undo this view.
+            setTimeout(() => focusNearbyWalk(pending, { fit: true }), 0);
+          }
+          // A signed-in dog's profile arrives after the paint: re-colour the
+          // pins and lines for that dog.
+          window._dolopawsRefreshNearbyMatches = () => {
+            nearbyTrails.forEach(item => nearbyMatches.set(item.trail.id, nearbyWalkMatch(item.trail)));
+            ['other-trails', 'nearby-trail-points'].forEach(sourceId => {
+              const source = map.getSource(sourceId);
+              const data = nearbySourceData[sourceId];
+              if(!source || !data) return;
+              data.features.forEach(feature => { feature.properties.colour = matchColour(feature.properties.id); });
+              source.setData(data);
+            });
+          };
           const openNearbyPopup = (e) => {
             // If this click also lands on the current trail's own route,
             // let the main route win, no neighbour popup on top of it.
@@ -2455,15 +2645,8 @@ function renderTrail(t){
             }
             const f = e.features && e.features[0];
             if(!f) return;
-            const p = f.properties;
-            new maplibregl.Popup({ offset: 12, maxWidth: '260px' })
-              .setLngLat(e.lngLat)
-              .setHTML(
-                `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${escName(p.name)}</div>` +
-                `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${p.awayKm != null ? tx('{km} km trail · {away} km away', { km: escName(String(p.distance)), away: escName(String(p.awayKm)) }) : tx('{km} km trail', { km: escName(String(p.distance)) })}</div>` +
-                `<a href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(p.id) : (p.id)))}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">${tx('Open this trail')} →</a>`
-              )
-              .addTo(map);
+            const onLine = f.geometry.type === 'LineString';
+            focusNearbyWalk(f.properties.id, { lngLat: onLine ? e.lngLat : f.geometry.coordinates });
           };
           map.on('click', 'other-trails-hit', openNearbyPopup);
           map.on('click', 'nearby-trail-points-circle', openNearbyPopup);
@@ -2472,21 +2655,31 @@ function renderTrail(t){
           map.on('mouseenter', 'nearby-trail-points-circle', () => { map.getCanvas().style.cursor = 'pointer'; });
           map.on('mouseleave', 'nearby-trail-points-circle', () => { map.getCanvas().style.cursor = ''; });
 
+          // The map's own button does what the Layers chip does.
+          if(nearbyMapBtn && nearbyToggleBtn){
+            nearbyMapBtn.addEventListener('click', event => {
+              event.stopPropagation();
+              nearbyToggleBtn.click();
+            });
+          }
           if(nearbyToggleBtn){
-            let showingNearbyOverview = false;
             nearbyToggleBtn.addEventListener('click', () => {
               showingNearbyOverview = !showingNearbyOverview;
               nearbyToggleBtn.classList.toggle('on', showingNearbyOverview);
               nearbyToggleBtn.setAttribute('aria-pressed', showingNearbyOverview ? 'true' : 'false');
-              ['other-trails-line', 'other-trails-hit', 'nearby-trail-points-circle', 'nearby-trail-points-label'].forEach(id => {
-                if(map.getLayer(id)) map.setLayoutProperty(id, 'visibility', showingNearbyOverview ? 'visible' : 'none');
-              });
+              if(nearbyPopup) nearbyPopup.remove();
+              showNeighbourLines(null);
               const bounds = new maplibregl.LngLatBounds();
               t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
+              if(nearbyMapBtn){
+                nearbyMapBtn.textContent = nearbyMapLabel(showingNearbyOverview);
+                nearbyMapBtn.setAttribute('aria-pressed', showingNearbyOverview ? 'true' : 'false');
+              }
               if(showingNearbyOverview){
                 otherTrails.forEach(trail => trail.path.forEach(([lat, lng]) => bounds.extend([lng, lat])));
                 setLayerChipLabel(nearbyToggleBtn, 'routes', tx('Focus this trail'));
-                map.fitBounds(bounds, { padding: 54, maxZoom: 13 });
+                // Extra room at the top and bottom, where the map's buttons sit.
+                map.fitBounds(bounds, { padding: { top: 64, bottom: 96, left: 48, right: 64 }, maxZoom: 13 });
               } else {
                 setLayerChipLabel(nearbyToggleBtn, 'nearby', tx('Nearby trails ({n})', { n: nearbyTrails.length }));
                 map.fitBounds(bounds, { padding: 60, maxZoom: 17 });
@@ -2499,7 +2692,7 @@ function renderTrail(t){
             // thing that can fail, and a partial add is cleaned up by removing
             // whatever went in before the throw.
             nearbyLayersAdded = false;
-            ['other-trails-line', 'other-trails-hit', 'nearby-trail-points-circle', 'nearby-trail-points-label']
+            ['other-trails-casing', 'other-trails-line', 'other-trails-hit', 'nearby-trail-points-circle', 'nearby-trail-points-label']
               .forEach(id => { if(map.getLayer(id)) map.removeLayer(id); });
             ['other-trails', 'nearby-trail-points']
               .forEach(id => { if(map.getSource(id)) map.removeSource(id); });
@@ -2719,6 +2912,29 @@ function renderTrail(t){
   } else {
     window.DoloPawsStartTrailMap = () => Promise.resolve(initDetailMap());
     initDetailMap();
+  }
+
+  // The walks pinned on the map, listed under it so a reader who would rather
+  // walk somewhere else nearby can see the choice without hunting the map.
+  renderNearbyWalkList(t);
+  window.addEventListener('dolopaws-region-loaded', () => renderNearbyWalkList(t));
+  const nearbyWalksList = document.getElementById('nearbyWalksList');
+  if(nearbyWalksList){
+    nearbyWalksList.addEventListener('click', async event => {
+      const button = event.target.closest('[data-nearby-show]');
+      if(!button) return;
+      const id = button.getAttribute('data-nearby-show');
+      const box = document.getElementById('trailMapBox');
+      if(box) box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if(!window._dolopawsTrailMap && window.DoloPawsStartTrailMap) await window.DoloPawsStartTrailMap();
+      // The map and its neighbour layers can still be on their way (a cold
+      // map, or the region landing late): leave the walk waiting, and the map
+      // shows it as soon as its neighbour layers are in.
+      window._dolopawsPendingNearbyFocus = id;
+      if(typeof window._dolopawsFocusNearbyWalk === 'function' && window._dolopawsFocusNearbyWalk(id)){
+        window._dolopawsPendingNearbyFocus = null;
+      }
+    });
   }
 
   // Save button, reflects and updates real account state, same pattern as the trail cards.

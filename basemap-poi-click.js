@@ -135,7 +135,7 @@ function buildDetailLines(tags){
   if (tags.cuisine)
     html += `<br>🍴 ${escHtml(String(tags.cuisine).split(';').join(', ').replace(/_/g,' '))}`;
   if (tags.dog === 'yes') html += `<br>🐕 ${tx('Dogs welcome')}`;
-  else if (tags.dog === 'leashed') html += `<br>🦮 ${tx('Dogs on leash')}`;
+  else if (tags.dog === 'leashed') html += `<br>🦮 ${tx('Dogs on a lead')}`;
   else if (tags.dog === 'no') html += `<br>🚫 ${tx('No dogs')}`;
   // e.g. "it:Lago di Braies" → link to Italian Wikipedia article
   if (tags.wikipedia && /^[a-z]{2,3}:./.test(tags.wikipedia)){

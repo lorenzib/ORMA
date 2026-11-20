@@ -21,6 +21,9 @@
     'altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt': "La Villa – Lech da Sompunt",
     'altabadia-passeggiata-borest-cascate-del-pisciadu': "Borest – Pisciadú waterfall",
     'altabadia-sentiero-degli-artisti-tru-di-artisc': "Tru di artisć",
+    'altogarda-nasce-formaggio-tombea': "Cima Rest, where Tombea cheese is made",
+    'altogarda-santuario-montecastello': "Tignale to the Montecastello sanctuary",
+    'altogarda-valle-cartiere': "Valle delle Cartiere, the paper-mill valley",
     'aosta-champoluc-cascata-mascognaz': "Champoluc – Mascognaz waterfall",
     'aosta-periasc-antagnod': "Périasc – Antagnod",
     'aosta-ru-courtaud': "Rû Courtaud",
@@ -140,6 +143,7 @@
     'giudicarie-san-vigilio-senter-dei-cavai': "San Vigilio and the Senter dei Cavai",
     'giudicarie-senter-dei-popi-madonna-del-lares': "Senter dei Popi – Madonna del Lares",
     'giudicarie-tione-bolbeno-madonna-del-lares': "Tione – Bolbeno – Madonna del Lares",
+    'iseo-colmi': "Santa Maria del Giogo to I Colmi",
     'isere-boucle-du-couzon': "Couzon loop from Saint-Pierre-de-Chartreuse",
     'isere-circuit-pedestre-alpage-des-cloutons': "Alpage des Cloutons loop from Saint-Honoré 1500",
     'isere-de-st-pierre-dentremont-a-corbel': "Saint-Pierre-d’Entremont to Corbel loop",
@@ -1164,7 +1168,7 @@
         availability.reason === 'imported'
           ? tr(
             'offlinePanel.unavailable.imported',
-            'Offline map download is not enabled yet for imported trails.'
+            'Offline map download is not available yet for trails ORMA has not verified.'
           )
           : tr(
             'offlinePanel.unavailable.verified',

@@ -39,7 +39,7 @@
   function accessWords(){
     return {
       allowed:tx('Dogs allowed'),
-      'leash-required':tx('Dogs allowed on leash'),
+      'leash-required':tx('Dogs allowed on a lead'),
       'seasonal-restrictions':tx('Seasonal restrictions'),
       prohibited:tx('Dogs prohibited'),
     };
@@ -173,10 +173,10 @@
         terrain: terrainKnown
           ? cell(TERRAIN[suitability.terrainRank] || tx('Terrain level {n}', { n:suitability.terrainRank }),
             categoryVerified(parts, 'surfaceHazards') ? 'known' : 'mapped',
-            categoryVerified(parts, 'surfaceHazards') ? tx('Surface evidence reviewed') : tx('Mapped terrain; surface hazards not reviewed'))
+            categoryVerified(parts, 'surfaceHazards') ? tx('Surface checked by ORMA') : tx('Terrain from map data; surface not checked yet'))
           : unknown(tx('terrain')),
         exposure: categoryVerified(parts, 'exposure')
-          ? cell(suitability.exposure ? tx('Exposed sections recorded') : tx('No exposure recorded in reviewed evidence'),
+          ? cell(suitability.exposure ? tx('Exposed sections recorded') : tx('No exposed sections found in our review'),
             suitability.exposure ? 'caution' : 'known')
           : unknown(tx('exposure')),
         shade: categoryVerified(parts, 'heat') && Number.isFinite(suitability.shadePercent)
@@ -185,9 +185,9 @@
           : unknown(tx('shade')),
         heat: categoryVerified(parts, 'heat') && ['low','moderate','high'].includes(suitability.heatRisk)
           ? cell({
-            low:tx('Low baseline heat risk'),
-            moderate:tx('Moderate baseline heat risk'),
-            high:tx('High baseline heat risk'),
+            low:tx('Usually stays cool'),
+            moderate:tx('Can get warm'),
+            high:tx('Gets hot'),
           }[suitability.heatRisk],
             suitability.heatRisk === 'high' ? 'caution' : 'known')
           : unknown(tx('heat')),
@@ -200,7 +200,7 @@
           reviewedWater ? 'known' : 'caution')
           : unknown(tx('water')),
         hazards: categoryVerified(parts, 'surfaceHazards')
-          ? cell(hazards && hazards.length ? hazards.join(' · ') : tx('No material surface hazards in reviewed evidence'),
+          ? cell(hazards && hazards.length ? hazards.join(' · ') : tx('No surface hazards found in our review'),
             hazards && hazards.length ? 'caution' : 'known')
           : unknown(tx('surface hazards')),
         restrictions: categoryVerified(parts, 'access') && ACCESS[access]

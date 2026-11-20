@@ -139,7 +139,7 @@ function initHikeMode(map, trail, options){
   const hikeButtonHtml = label => `<svg viewBox="0 0 24 24" aria-hidden="true" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px;fill:currentColor;"><path d="M12 18.2c-2.4 0-4.2-1.5-4.2-3.6 0-1.4 1.1-2.5 2.5-2.5.7 0 1.2.3 1.7.7.5-.4 1-.7 1.7-.7 1.4 0 2.5 1.1 2.5 2.5 0 2.1-1.8 3.6-4.2 3.6Z"></path><circle cx="6.7" cy="10.4" r="1.7"></circle><circle cx="10.2" cy="8" r="1.7"></circle><circle cx="13.8" cy="8" r="1.7"></circle><circle cx="17.3" cy="10.4" r="1.7"></circle></svg>${label}`;
   startBtn.type = 'button';
   startBtn.id = 'mapStartHikeBtn';
-  startBtn.innerHTML = hikeButtonHtml(hikeLabel('hike.start', 'Start hike'));
+  startBtn.innerHTML = hikeButtonHtml(hikeLabel('hike.start', 'Record this walk'));
   startBtn.style.cssText = 'position:absolute;top:10px;left:10px;z-index:6;padding:9px 18px;border-radius:14px;background:var(--ink);color:#fff;border:none;font-size:12.5px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3);';
   container.appendChild(startBtn);
 
@@ -343,7 +343,7 @@ function initHikeMode(map, trail, options){
       return;
     }
     if(!footpathGraph){
-      rejoinBtn.textContent = hikeLabel('hike.rejoinNoMap', 'No mapped rejoin path available');
+      rejoinBtn.textContent = hikeLabel('hike.rejoinNoMap', 'No path back to the trail found');
       return;
     }
     rejoinBtn.disabled = false;
@@ -955,7 +955,7 @@ function initHikeMode(map, trail, options){
     if (watchId !== null){ navigator.geolocation.clearWatch(watchId); watchId = null; }
     if (wakeLock){ try { wakeLock.release(); } catch (e) {} wakeLock = null; }
     hideLiveDot();
-    setStartLabel('hike.start', 'Start hike');
+    setStartLabel('hike.start', 'Record this walk');
     startBtn.style.background = 'var(--ink)';
     pauseBtn.hidden = true;
     if (!keepPanel){
@@ -1644,7 +1644,7 @@ function initHikeMode(map, trail, options){
       panel.style.display = 'none';
       container.classList.remove('hike-status-visible');
       startBtn.disabled = false;
-      setStartLabel('hike.start', 'Start hike');
+      setStartLabel('hike.start', 'Record this walk');
     });
     actions.appendChild(discard);
     panel.appendChild(actions);
@@ -1675,7 +1675,7 @@ function initHikeMode(map, trail, options){
         panel.style.display = 'none';
         container.classList.remove('hike-status-visible');
         startBtn.disabled = false;
-        setStartLabel('hike.start', 'Start hike');
+        setStartLabel('hike.start', 'Record this walk');
       }
       return;
     }
