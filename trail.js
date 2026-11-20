@@ -2461,6 +2461,14 @@ function renderTrail(t){
           try {
           const nearbyMatches = new Map(nearbyTrails.map(item => [item.trail.id, nearbyWalkMatch(item.trail)]));
           const matchColour = id => (nearbyMatches.get(id) || {}).colour || '#8A938D';
+          // Over the marked network, under the walk on this page. Neighbours
+          // mostly follow numbered routes, and under the network's plum line
+          // and its white edge their dashes were hidden. Under the walk's own
+          // line when it is already drawn, else where its corridor will go,
+          // which the walk then takes above them.
+          const neighbourLinesBeforeId = () => map.getLayer('single-trail-path-line-casing')
+            ? 'single-trail-path-line-casing'
+            : window.ORMAMapStyle.walkCorridorBeforeId(map);
           const nearbySourceData = {};
           map.addSource('other-trails', {
             type: 'geojson',
@@ -2483,7 +2491,7 @@ function renderTrail(t){
             minzoom: 9,
             layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
             paint: { 'line-color': '#FFFFFF', 'line-width': 6, 'line-opacity': 0.85 },
-          }, window.ORMAMapStyle.networkLayerId(map));
+          }, neighbourLinesBeforeId());
           map.addLayer({
             id: 'other-trails-line',
             type: 'line',
@@ -2496,7 +2504,7 @@ function renderTrail(t){
               'line-opacity': 0.9,
               'line-dasharray': [1.6, 1.1],
             },
-          }, window.ORMAMapStyle.networkLayerId(map));
+          }, neighbourLinesBeforeId());
           // Wide invisible twin so the thin neighbour lines are easy to hit.
           map.addLayer({
             id: 'other-trails-hit',
@@ -2505,7 +2513,7 @@ function renderTrail(t){
             minzoom: 9,
             layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
             paint: { 'line-color': '#000', 'line-width': 16, 'line-opacity': 0.01 },
-          }, window.ORMAMapStyle.networkLayerId(map));
+          }, neighbourLinesBeforeId());
           map.addSource('nearby-trail-points', {
             type: 'geojson',
             data: nearbySourceData['nearby-trail-points'] = {
