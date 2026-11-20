@@ -200,6 +200,23 @@
         11
       ]
     },
+    "taser": {
+      "name": "Taser cable car",
+      "operator": "Seilbahn Taser",
+      "url": "https://www.taser-seilbahn.com/en/",
+      "accessedAt": "2026-11-20",
+      "datesFor": "2026/27",
+      "periods": [
+        {
+          "from": "03-28",
+          "to": "11-08"
+        },
+        {
+          "from": "12-25",
+          "to": "01-06"
+        }
+      ]
+    },
     "verdins-tall": {
       "name": "Verdins–Tall cable car",
       "operator": "Seilbahn Verdins",
@@ -515,6 +532,12 @@
         "puflatsch-telemix"
       ]
     },
+    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
+      "lifts": [
+        "taser",
+        "verdins-tall"
+      ]
+    },
     "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": {
       "lifts": [
         "verdins-tall"
@@ -640,8 +663,7 @@
     }
   },
   "held": {
-    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": "Taser cable car: no operator site (taser.it is for sale); only tourist-board event pages for Nov 2026 – Jan 2027, partly conflicting, and no dated summer 2026 season (checked 10 Nov 2026). Rechecked 11 Nov 2026: the Schenna tourist page gives periods with no year (summer 9 June – 1 September) and taseralm.com none; the Verdins–Tall cable car down also has no dates.",
     "osm-11855879": "Cherz I chairlift (optional for this walk): no summer dates published; Dolomiti Superski has no Arabba summer page and arabba.it shows only the live lift status (checked 18 Nov 2026).",
-    "osm-14376573": "Vinouve chairlift: karellis.com gives only 2025 dates (5 July – 23 August 2025, Mon, Tue, Wed and Fri); no 2026 dates on the operator's site (checked 11 Nov 2026)."
+    "osm-14376573": "Vinouve chairlift: on 11 Nov 2026 karellis.com gave only 2025 dates (5 July – 23 August 2025, Mon, Tue, Wed and Fri). Rechecked 20 Nov 2026: the summer page now gives only the resort's 2026 season (4 July – 29 August 2026), with no Vinouve chairlift dates or days, and no 2026 lift guide is listed (checked 20 Nov 2026)."
   }
 }
