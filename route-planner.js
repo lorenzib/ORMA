@@ -734,7 +734,7 @@
   function failureMessage(error){
     if(error && error.code === 'too-long') return error.message;
     if(error && error.code === 'network') return tx('The live walking network is unavailable and the local fallback could not connect those points. Try again shortly.');
-    return tx('No mapped walking route connects those points. Undo the last point and choose a nearby path.');
+    return tx('No footpath connects those points. Undo the last point and choose a nearby path.');
   }
 
   async function recalculate(finishRequested){
@@ -751,7 +751,7 @@
       return;
     }
     busy = true;
-    status.textContent = finishRequested ? tx('Finishing the draft on mapped walking paths…') : tx('Connecting your selected points…');
+    status.textContent = finishRequested ? tx('Finishing the draft on footpaths…') : tx('Connecting your selected points…');
     render();
     updateAdjust();
 

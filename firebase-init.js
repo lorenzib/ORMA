@@ -468,7 +468,7 @@ async function setDogProfile(dogObj, targetDogId) {
 async function addDogProfile(dogObj) {
   lastDogProfileError = null;
   if (!currentUser) {
-    lastDogProfileError = { code:'not-signed-in', message:tx('Sign in again before saving this dog.') };
+    lastDogProfileError = { code:'not-signed-in', message:tx('Log in again before saving this dog.') };
     return false;
   }
   let limitReached = false;
@@ -770,7 +770,7 @@ function friendlyError(code) {
     "auth/user-not-found": tx('No account found with that email.'),
     "auth/wrong-password": tx('Incorrect password.'),
     "auth/invalid-credential": tx('Incorrect email or password.'),
-    "auth/popup-closed-by-user": tx('Google sign-in was closed before finishing.'),
+    "auth/popup-closed-by-user": tx('The Google login window was closed before finishing.'),
     "auth/requires-recent-login": tx('For security, please confirm your identity again before this action.'),
     "auth/too-many-requests": tx('Too many attempts. Wait a moment, then try again.'),
   };
@@ -831,8 +831,8 @@ async function deleteAccount(password) {
         ? "account.delete.partialPrivateData"
         : "account.delete.privateDataError",
       message: removedOutcomes > 0 || removedJournalEntries > 0
-        ? "Some private hike records were removed, but server cleanup did not finish. Your sign-in has not been deleted. Please try again."
-        : "Your private server data could not be removed, so your sign-in was not deleted. Please try again.",
+        ? "Some private hike records were removed, but server cleanup did not finish. Your login has not been deleted. Please try again."
+        : "Your private server data could not be removed, so your login was not deleted. Please try again.",
     };
   }
 
@@ -845,7 +845,7 @@ async function deleteAccount(password) {
       partial: true,
       server: { removedOutcomes, removedJournalEntries, removedProfile, removedPublicProfile },
       messageKey: "account.delete.authenticationError",
-      message: "Your private profile was removed, but the sign-in could not be deleted. Sign in again and retry account deletion, or contact support.",
+      message: "Your private profile was removed, but your login could not be deleted. Log in again and retry account deletion, or contact support.",
     };
   }
   return {

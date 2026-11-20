@@ -101,7 +101,7 @@ function initDetailPois(map, trail){
     const site = props.website || props['contact:website'];
     if (site && /^https?:\/\//.test(site)) html += `<a href="${esc(site)}" target="_blank" rel="noopener">${tx('Website')}</a>`;
     if (props.dog === 'yes') html += `<span class="dp-poi-dog">${tx('Dogs welcome')}</span>`;
-    else if (props.dog === 'leashed') html += `<span class="dp-poi-dog">${tx('Dogs on leash')}</span>`;
+    else if (props.dog === 'leashed') html += `<span class="dp-poi-dog">${tx('Dogs on a lead')}</span>`;
     else if (props.dog === 'no') html += `<span class="dp-poi-dog">${tx('No dogs')}</span>`;
     if (props.outdoor_seating && props.outdoor_seating !== 'no') html += `<span>${tx('Outdoor seating')}</span>`;
     return html + '</div>';

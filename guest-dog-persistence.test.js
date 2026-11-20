@@ -36,7 +36,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
   test('a small dog is asked about open chairlifts and the answer is stored on the profile', () => {
     expect(controller).toContain("function asksChairlift(w) { return w.size === 'small'; }");
     expect(controller).toContain("{ label: t('hp.wizard.chairlift.never', 'Not for us, or never tried'), v: 'never' }");
-    expect(controller).toContain("{ label: t('hp.wizard.chairlift.ok', 'Yes, held on my lap with harness and leash'), v: 'ok' }");
+    expect(controller).toContain("{ label: t('hp.wizard.chairlift.ok', 'Yes, held on my lap with harness and lead'), v: 'ok' }");
     expect(controller).toContain("optBtns(chairliftOpts(), w.chairlift, 'chairlift', true)");
     expect(controller).toContain("behaviour.chairlift = w.chairlift;");
     expect(controller).toContain('behaviour: behaviour,');

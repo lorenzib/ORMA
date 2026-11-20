@@ -95,7 +95,7 @@
     const tier = tierOf(trail);
     if (tier === 'dolopaws-walked' || tier === 'route-audited') return translated('tier.routeAudited', 'Verified by ORMA');
     if (tier === 'route-reviewed') return translated('tier.reviewed', 'Reviewed by ORMA');
-    return translated('tier.imported', 'Imported trail');
+    return translated('tier.imported', 'Not yet verified');
   }
 
   // Badge visual style per tier. Only an earned verification gets the green
@@ -226,7 +226,7 @@
       return tx('Suggested start, {place}. Check current access before travelling.', { place: plainStartLabel(label) });
     }
     if (!imported(trail)) return withoutOsmTag(label);
-    return tx('Mapped start suggestion, {place}. Check current access before travelling.', { place: plainStartLabel(label) });
+    return tx('Suggested start from map data, {place}. Check current access before travelling.', { place: plainStartLabel(label) });
   }
 
   function waterAssessment(trail) {
@@ -393,7 +393,7 @@
   }
 
   function assessmentNote(trail) {
-    return '<strong style="color: var(--ink);">' + tx('Trail planning information:') + '</strong> ' + tx('based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.');
+    return '<strong style="color: var(--ink);">' + tx('Trail planning information:') + '</strong> ' + tx('based on map data and ORMA’s own sources. Conditions can change, so check locally before setting out.');
   }
 
   root.DoloPawsTrailTrust = Object.freeze({

@@ -112,7 +112,7 @@
     back.href = returnTarget;
     context.textContent = activeProfile && activeProfile.name
       ? tx('Compared for {name}', { name:activeProfile.name })
-      : tx('Unpersonalized comparison');
+      : tx('General comparison: no dog added');
 
     const selected = selectedIds
       .map(id => trails.find(trail => trail.id === id))
