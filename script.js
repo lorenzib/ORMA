@@ -3342,7 +3342,7 @@ function renderLiControls(){
       { label: tx('Any'), v: 'any' }, { label: tx('Under 5 km'), v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' },
     ], liFilters.dist, v => { liFilters.dist = v; });
     seg('liRiskSeg', [
-      { label: tx('Any'), v: 'any' }, { label: tx('Low risk'), v: 'low-risk' }, { label: tx('Moderate'), v: 'moderate' }, { label: tx('Caution'), v: 'caution' },
+      { label: tx('Any'), v: 'any' }, { label: tx('Low risk'), v: 'low-risk' }, { label: tx('Moderate risk'), v: 'moderate' }, { label: tx('Higher risk'), v: 'caution' },
     ], liFilters.risk, v => { liFilters.risk = v; });
     seg('liTerrainSeg', [
       { label: tx('Any'), v: 'any' }, { label: tx('Gentle only'), v: 'soft' }, { label: tx('Up to moderate'), v: 'mixed' }, { label: tx('Steep is okay'), v: 'rocky' },
@@ -3386,7 +3386,7 @@ function renderLiChips(){
   const DIST_OPTS = [['any',tx('Any')], ['u5',tx('Under 5 km')], ['5to10','5–10 km'], ['10p','10 km+']];
   const TERRAIN_OPTS = [['any',tx('Any')], ['soft',tx('Gentle only')], ['mixed',tx('Up to moderate')], ['rocky',tx('Steep is okay')]];
   const SHADE_OPTS = [['any',tx('Any')], ['40',tx('Over 40%')], ['60',tx('Over 60%')]];
-  const RISK_OPTS = [['any',tx('Any')], ['low-risk',tx('Low risk')], ['moderate',tx('Moderate')], ['caution',tx('Caution')]];
+  const RISK_OPTS = [['any',tx('Any')], ['low-risk',tx('Low risk')], ['moderate',tx('Moderate risk')], ['caution',tx('Higher risk')]];
   const MATCH_OPTS = [[0,tx('Any')], [60,'60%+'], [75,'75%+'], [85,'85%+']];
   const label = (opts, v) => (opts.find(([k]) => k === v) || opts[0])[1];
 

@@ -95,7 +95,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     // The trail-shadowed renderers use the `tr` alias, never a bare `t(` that would resolve to the trail.
     expect(controller).toContain('var tr = t;');
     expect(controller).toContain("tr('hp.sug.topFor', 'Top matches for {name}', { name: esc(m.name) })");
-    expect(controller).toContain("'low-risk': { label: tr('hp.difficulty.lowRisk', 'Low-risk'), dot: '#2C5C34' }");
+    expect(controller).toContain("'low-risk': { label: tr('hp.difficulty.lowRisk', 'Low risk'), dot: '#2C5C34' }");
   });
 
   test('the Browse page carries Italian copy for its controls, cards, tray and empty states', () => {
