@@ -982,8 +982,13 @@
 <a href="/it/trails/carbonaie-path-talucco.html" style="display:block;color:inherit;">Sentiero delle Carbonaie al Talucco</a>
 <a href="/it/trails/fondo-tissone-tallorno-loop.html" style="display:block;color:inherit;">Anello Fondo, Tissone e Tallorno in Valchiusella</a>
 <a href="/it/trails/giro-del-ginepro-carcoforo.html" style="display:block;color:inherit;">Giro del Ginepro da Carcoforo</a>
+<a href="/it/trails/juniper-trail-foresto.html" style="display:block;color:inherit;">Sentiero dei Ginepri a Foresto</a>
+<a href="/it/trails/lower-owl-trail-venaus.html" style="display:block;color:inherit;">Sentiero dei Gufi basso a Venaus, andata e ritorno</a>
 <a href="/it/trails/mulino-turcin-loop-lanzo.html" style="display:block;color:inherit;">Anello del Mulino Turcin a Lanzo Torinese</a>
+<a href="/it/trails/orrido-chouque-margrit-chianocco.html" style="display:block;color:inherit;">L’Orrido e il Chouqué di Margrit a Chianocco</a>
+<a href="/it/trails/geat-montebenedetto-loop-san-giorio.html" style="display:block;color:inherit;">Anello del Rifugio GEAT e della Certosa di Montebenedetto</a>
 <a href="/it/trails/sentiero-delle-anime-traversella.html" style="display:block;color:inherit;">Sentiero delle Anime a Traversella</a>
+<a href="/it/trails/vineyards-almond-trees-loop-giaglione.html" style="display:block;color:inherit;">Le alture delle viti e dei mandorli a Giaglione</a>
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Tirolo e Carinzia, Austria</p>
 <a href="/it/trails/alpine-cheese-walk-sonnenalpe-nassfeld.html" style="display:block;color:inherit;">Passeggiata dei formaggi d’alpeggio, Sonnenalpe Nassfeld</a>
 <a href="/it/trails/auernig-ridge-walk-nassfeld.html" style="display:block;color:inherit;">Passeggiata in cresta sull’Auernig, Nassfeld</a>
@@ -1099,7 +1104,7 @@
 </footer>
 
 <script src="/mobile-nav.js?v=20261030-1"></script>
-<script src="/i18n.js?v=20261119-9"></script>
+<script src="/i18n.js?v=20261120-1"></script>
 <script src="/trust/evidence-v1.js?v=20261006-2"></script>
 <script src="/trail-trust.js?v=20261118-1"></script>
 <script src="/scoring/recommendation-v1.js?v=20260917-1"></script>
@@ -1122,7 +1127,7 @@
 <script src="/area-dropdown.js?v=20260823-2"></script>
 <script src="/map-runtime.js?v=20260908-2"></script>
 <script src="/match-verdict.js?v=20261002-1"></script>
-<script src="/map-style.js?v=20261119-8"></script>
+<script src="/map-style.js?v=20261120-2"></script>
 <script src="/browse-map.js?v=20261111-1"></script>
 <script>
   // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
@@ -1472,10 +1477,37 @@
     // personalisation that did not happen, on the one line the reader is meant
     // to trust. A real dog keeps its name; the default says what it is, in the
     // same words recommendation-decision.js and the trail page already use.
-    function scoredSubjectLabel(){
+    function scoredSubjectName(){
       const dog = dogValue === 'custom' ? deviceDogProfile() : null;
-      if(dog && dog.name) return bt('browse.card.forDog', 'For {name}', { name: dog.name });
-      return bt('browse.card.forDog', 'For {name}', { name: window.t ? window.t('recommendation.subject.guest') : 'a medium dog' });
+      if(dog && dog.name) return dog.name;
+      return window.t ? window.t('recommendation.subject.guest') : 'a medium dog';
+    }
+
+    function scoredSubjectLabel(){
+      return bt('browse.card.forDog', 'For {name}', { name: scoredSubjectName() });
+    }
+
+    // The steepness caution, when it is part of what lowered the match. A
+    // gentle-only dog moves a third of the walks down a band, and a card that
+    // then only says "Water access listed at 2 points" gives no reason for it.
+    function steepnessCaution(recommendation){
+      const cautions = recommendation && Array.isArray(recommendation.cautions) ? recommendation.cautions : [];
+      const entry = cautions.find(item => item && item.code === 'trail.terrain.above-tolerance');
+      if(!entry) return null;
+      const steepest = Number(entry.vars && entry.vars.steepest);
+      return { steepest: Number.isFinite(steepest) && steepest > 0 ? Math.round(steepest) : null };
+    }
+
+    // Said in the trail page's words (recommendation-decision.js), which the
+    // Italian phrase file already carries.
+    function steepnessReason(steepness){
+      const phrase = window.DoloPawsI18n && typeof window.DoloPawsI18n.phrase === 'function'
+        ? window.DoloPawsI18n.phrase
+        : (text, vars) => String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m));
+      const name = scoredSubjectName();
+      return steepness.steepest
+        ? phrase('Steeper than {name} likes, up to {steepest}% in places.', { name, steepest: steepness.steepest })
+        : phrase('Steeper than {name} likes.', { name });
     }
 
     function matchScore(trail){
@@ -1491,8 +1523,9 @@
         const recommendation=window.DoloPawsScoring.recommendTrail(
           trail, effectiveOverrides(activeDogProfile(), null),
           window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(trail));
-        return verdict ? verdict.verdictFor(recommendation)
+        const result = verdict ? verdict.verdictFor(recommendation)
           : { score:recommendation.score, label:'', color:'', tone:'check' };
+        return { ...result, steepness:steepnessCaution(recommendation) };
       } catch(e){
         return verdict ? verdict.verdictFor(0) : { score:0, label:'', color:'', tone:'check' };
       }
@@ -1924,7 +1957,9 @@
         const tier = verdict.label;
         const tierClass = verdict.tone;
         const reasonIsWater = !!(t.waterSources && t.waterSources.length);
-        const reason = reasonIsWater
+        // A strong option keeps its water or shade line: "Steeper than Teo likes"
+        // under "Strong option" reads as a contradiction.
+        const reason = verdict.steepness && verdict.category !== 'strong-option' ? steepnessReason(verdict.steepness) : reasonIsWater
           ? (t.waterSources.length === 1 ? bt('browse.card.waterOne', 'Water access listed at one point') : bt('browse.card.waterMany', 'Water access listed at {n} points', { n: t.waterSources.length }))
           : (t.shadeCoverage >= 50 ? bt('browse.card.shade', '{pct}% shade along the route', { pct: t.shadeCoverage }) : '');
         const openHref = `trail.html?id=${encodeURIComponent(t.id)}&from=${encodeURIComponent(browseStateTarget())}`;

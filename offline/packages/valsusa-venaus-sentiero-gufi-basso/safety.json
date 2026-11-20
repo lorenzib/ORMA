@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-venaus-sentiero-gufi-basso",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 6.1,
+    "ascentM": 294,
+    "highestPointM": 877,
+    "expectedDuration": "2 h",
+    "difficulty": "Hard",
+    "shadePercent": 75
+  },
+  "trailhead": {
+    "lat": 45.151336,
+    "lng": 7.015962,
+    "label": "The Sentiero dei Gufi board, Via Roma, Venaus, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "A short road crossing by the cemetery: keep your dog on a short lead there.",
+    "The upper part is a mountain path (T2) for a short way: watch your dog’s footing on loose stones.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Lower Owl Trail, Venaus": "Sentiero dei Gufi basso a Venaus, andata e ritorno",
+    "The Sentiero dei Gufi board, Via Roma, Venaus, the board’s start": "Il pannello del Sentiero dei Gufi, via Roma, Venaus, la partenza ufficiale",
+    "A short road crossing by the cemetery: keep your dog on a short lead there.": "Un breve attraversamento di strada vicino al cimitero: lì tieni il cane al guinzaglio corto.",
+    "The upper part is a mountain path (T2) for a short way: watch your dog’s footing on loose stones.": "La parte alta è per un breve tratto un sentiero di montagna (T2): attenzione all’appoggio del cane sui sassi smossi."
+  }
+}

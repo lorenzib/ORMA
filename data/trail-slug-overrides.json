@@ -2080,6 +2080,31 @@
       "name": "Fondo, Tissone and Tallorno Loop, Valchiusella",
       "slug": "fondo-tissone-tallorno-loop",
       "gloss": "a loop between three stone hamlets and two old bridges"
+    },
+    "valsusa-giaglione-vigne-mandorli": {
+      "name": "Vineyards and Almond Trees Loop, Giaglione",
+      "slug": "vineyards-almond-trees-loop-giaglione",
+      "gloss": "a sunny loop through vineyards and hamlets above the Dora gorges"
+    },
+    "valsusa-venaus-sentiero-gufi-basso": {
+      "name": "Lower Owl Trail, Venaus",
+      "slug": "lower-owl-trail-venaus",
+      "gloss": "an easy track through owl woods to a viewpoint chapel, there and back"
+    },
+    "valsusa-foresto-sentiero-ginepri": {
+      "name": "Juniper Trail, Foresto",
+      "slug": "juniper-trail-foresto",
+      "gloss": "a rocky loop among junipers in the Orrido di Foresto reserve"
+    },
+    "valsusa-chianocco-orrido-chouque": {
+      "name": "Orrido and Chouqué di Margrit, Chianocco",
+      "slug": "orrido-chouque-margrit-chianocco",
+      "gloss": "a loop past a gorge and an eroded rock tower in the Chianocco reserve"
+    },
+    "valsusa-san-giorio-geat-montebenedetto": {
+      "name": "Rifugio GEAT and Certosa di Montebenedetto Loop, San Giorio",
+      "slug": "geat-montebenedetto-loop-san-giorio",
+      "gloss": "a forest loop to a refuge and an old charterhouse in the Orsiera-Rocciavrè park"
     }
   }
 }

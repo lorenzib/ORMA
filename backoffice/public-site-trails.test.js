@@ -282,8 +282,13 @@ describe('the existing-site verification boundary',()=>{
     // e Provincia (owner decision of 19 November 2026): the Mulino Turcin loop
     // at Lanzo, the Carbonaie path at Talucco, the Sentiero delle Anime at
     // Traversella and the Fondo, Tissone and Tallorno loop.
-    expect(catalogue).toHaveLength(544);
-    expect(currentSiteTrails(catalogue)).toHaveLength(542);
+    // Then 549 and 547 with the first Val Susa walks from Val Susa Outdoor,
+    // Turismo Torino e Provincia's Val Susa channel (owner decision of 19
+    // November 2026): Giaglione's vineyards, the Sentiero dei Gufi at Venaus,
+    // the Sentiero dei Ginepri at Foresto, the Orrido di Chianocco and the
+    // Certosa di Montebenedetto loop from San Giorio.
+    expect(catalogue).toHaveLength(549);
+    expect(currentSiteTrails(catalogue)).toHaveLength(547);
   });
 
   test('requires the artwork the public trail page needs',()=>{
