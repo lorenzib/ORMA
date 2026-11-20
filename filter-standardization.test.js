@@ -6,7 +6,7 @@ const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
 describe('shared trail-filter experience', () => {
   const vocabulary = [
     'Under 5 km', '5–10 km', '10 km+',
-    'Low risk', 'Moderate', 'Caution',
+    'Low risk', 'Moderate risk', 'Higher risk',
     'Gentle only', 'Up to moderate', 'Steep is okay',
     '60%+', '75%+', '85%+',
   ];
