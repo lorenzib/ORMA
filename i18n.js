@@ -4126,7 +4126,7 @@
     const here = document.currentScript && document.currentScript.src;
     const base = here ? here.replace(/[^/]*$/, '') : '';
     document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261122-2"><\/script>');
-    document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261111-1"><\/script>');
+    document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261123-2"><\/script>');
   }
 
   // ---- Translation functions -------------------------------------------------

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "altogarda-nasce-formaggio-tombea",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.6,
+    "ascentM": 139,
+    "highestPointM": 1339,
+    "expectedDuration": "1 h 15 min",
+    "difficulty": "Moderate",
+    "shadePercent": 3
+  },
+  "trailhead": {
+    "lat": 45.781019,
+    "lng": 10.629199,
+    "label": "The car park of the Museo Etnografico della Valvestino at Cima Rest, Magasa, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Summer pastures with cows around the malghe: keep your dog on a lead and give the herds room.",
+    "Open pastures with almost no shade: on a hot day go early and bring water.",
+    "The first stretch at Cima Rest is on a small asphalt road with some cars: keep your dog close there.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Cima Rest, where Tombea cheese is made": "Cima Rest, dove nasce il formaggio Tombea, andata e ritorno",
+    "The car park of the Museo Etnografico della Valvestino at Cima Rest, Magasa, the published start": "Il parcheggio del Museo Etnografico della Valvestino a Cima Rest, Magasa, la partenza indicata",
+    "Summer pastures with cows around the malghe: keep your dog on a lead and give the herds room.": "Pascoli estivi con mucche intorno alle malghe: tenete il cane al guinzaglio e lasciate spazio alle mandrie.",
+    "Open pastures with almost no shade: on a hot day go early and bring water.": "Pascoli aperti quasi senza ombra: nelle giornate calde partite presto e portate acqua.",
+    "The first stretch at Cima Rest is on a small asphalt road with some cars: keep your dog close there.": "Il primo tratto a Cima Rest è su una stradina asfaltata con qualche auto: lì tenete il cane vicino."
+  }
+}
