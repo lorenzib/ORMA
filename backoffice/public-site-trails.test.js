@@ -282,8 +282,11 @@ describe('the existing-site verification boundary',()=>{
     // e Provincia (owner decision of 19 November 2026): the Mulino Turcin loop
     // at Lanzo, the Carbonaie path at Talucco, the Sentiero delle Anime at
     // Traversella and the Fondo, Tissone and Tallorno loop.
-    expect(catalogue).toHaveLength(544);
-    expect(currentSiteTrails(catalogue)).toHaveLength(542);
+    // Then 546 and 544 with the first Veneto walks from UM.PASUBIO (owner
+    // decision of 19 November 2026): the Archeovia from the Campetto to Cima
+    // Marana (there and back) and the Mucciòn loop above Valdagno.
+    expect(catalogue).toHaveLength(546);
+    expect(currentSiteTrails(catalogue)).toHaveLength(544);
   });
 
   test('requires the artwork the public trail page needs',()=>{

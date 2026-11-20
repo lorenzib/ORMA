@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-19T19:52:03.622Z",
+  "generatedAt": "2026-11-20T11:12:01.332Z",
   "regions": {
     "dolomites": {
       "trailCount": 383,
-      "trails": "data/regions/dolomites-trails.js?v=d6699971dd6e",
+      "trails": "data/regions/dolomites-trails.js?v=043c0951cbf8",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -569,6 +569,18 @@
       },
       "water": "data/regions/piedmont-water.geojson",
       "hutsBars": "data/regions/piedmont-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
+      "optional": []
+    },
+    "veneto": {
+      "trailCount": 2,
+      "trails": "data/regions/veneto-trails.js?v=109680cbffd0",
+      "details": {
+        "veneto-archeovia-campetto-cima-marana": "data/trail-details/veneto-archeovia-campetto-cima-marana.js?v=e2bd1bee34db",
+        "veneto-anello-del-muccion": "data/trail-details/veneto-anello-del-muccion.js?v=2ea10667fa72"
+      },
+      "water": "data/regions/veneto-water.geojson",
+      "hutsBars": "data/regions/veneto-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     },
@@ -1138,6 +1150,8 @@
     "talucco-ecomuseo-carbonaie": "piedmont",
     "traversella-sentiero-delle-anime": "piedmont",
     "valchiusella-fondo-tissone-tallorno": "piedmont",
+    "veneto-archeovia-campetto-cima-marana": "veneto",
+    "veneto-anello-del-muccion": "veneto",
     "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
     "osttirol-naturkraftweg-umbalfaelle": "tyrol",
     "osttirol-kulturweg-koednitz": "tyrol",
@@ -1727,6 +1741,8 @@
     "talucco-ecomuseo-carbonaie": "carbonaie-path-talucco",
     "traversella-sentiero-delle-anime": "sentiero-delle-anime-traversella",
     "valchiusella-fondo-tissone-tallorno": "fondo-tissone-tallorno-loop",
+    "veneto-archeovia-campetto-cima-marana": "archeovia-campetto-cima-marana",
+    "veneto-anello-del-muccion": "muccion-loop-valdagno",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2273,6 +2289,8 @@
     "carbonaie-path-talucco": "talucco-ecomuseo-carbonaie",
     "sentiero-delle-anime-traversella": "traversella-sentiero-delle-anime",
     "fondo-tissone-tallorno-loop": "valchiusella-fondo-tissone-tallorno",
+    "archeovia-campetto-cima-marana": "veneto-archeovia-campetto-cima-marana",
+    "muccion-loop-valdagno": "veneto-anello-del-muccion",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

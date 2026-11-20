@@ -2080,6 +2080,16 @@
       "name": "Fondo, Tissone and Tallorno Loop, Valchiusella",
       "slug": "fondo-tissone-tallorno-loop",
       "gloss": "a loop between three stone hamlets and two old bridges"
+    },
+    "veneto-archeovia-campetto-cima-marana": {
+      "name": "Archeovia Campetto to Cima Marana",
+      "slug": "archeovia-campetto-cima-marana",
+      "gloss": "a high grassy ridge with archaeology panels to the Cima Marana cross and back"
+    },
+    "veneto-anello-del-muccion": {
+      "name": "Mucciòn Loop above Valdagno",
+      "slug": "muccion-loop-valdagno",
+      "gloss": "a hill loop between old hamlets to the little Mucciòn church"
     }
   }
 }
