@@ -307,7 +307,7 @@
     // Safety rating as the same coloured pill the browse cards use.
     const riskLine = $('tdRiskLine');
     if (riskLine && t.safetyLevel) {
-      const labels = { 'low-risk': tx('Low-risk terrain'), 'moderate': tx('Moderate terrain'), 'caution': tx('Caution terrain') };
+      const labels = { 'low-risk': tx('Low risk'), 'moderate': tx('Moderate risk'), 'caution': tx('Higher risk') };
       const baseRisk = labels[t.safetyLevel] || '';
       const riskText = trust ? trust.riskLabel(t, baseRisk) : baseRisk;
       riskLine.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
@@ -904,10 +904,19 @@
       card.hidden = false;
       return;
     }
+    // The walk-in, when the owner asked for it to be named here
+    // (data/start-access-paths.json, overCap): how far and how far up.
+    const access = t.accessPath;
+    const accessLine = access && access.startLine && Number.isFinite(access.lengthM) && Number.isFinite(access.climbM)
+      ? ' ' + tx('From the start it’s about {distance} on foot and {climb} m up to the walk. This is not included in the walk’s figures.', {
+        distance: access.lengthM >= 1000 ? `${num(Math.round(access.lengthM / 100) / 10)} km` : `${Math.round(access.lengthM / 10) * 10} m`,
+        climb: Math.round(access.climbM / 10) * 10,
+      })
+      : '';
     const cards = [{
       ic:pin,
       t:'Recommended starting point',
-      s:tx('Head to {place}. Use the directions link to navigate to the route start.', { place: esc(startLabel) }),
+      s:tx('Head to {place}. Use the directions link to navigate to the route start.', { place: esc(startLabel) }) + esc(accessLine),
     }];
     grid.innerHTML = renderCards(cards);
     if (maps) maps.hidden = false;
@@ -972,18 +981,27 @@
           // Six days of hourly data are already in hand, so answering for
           // Saturday costs no extra request -- only the decision to use it.
           const planned = window.ORMAPlannedWalkDate || '';
-          const win = window.DoloPawsWeatherWindow
-            ? window.DoloPawsWeatherWindow.recommendation({
-              currentTime:d.current.time,
-              durationHours:t.hours,
-              dailyDates:d.daily.time,
-              sunrises:d.daily.sunrise,
-              sunsets:d.daily.sunset,
-              hourlyTimes:d.hourly && d.hourly.time,
-              hourlyTemps:d.hourly && d.hourly.temperature_2m,
-              preferredDate:planned,
-            })
-            : null;
+          // The walking time of the version the reader is looking at: a
+          // one-way walk seen there and back takes longer (route-return.js).
+          // An out-and-back walk seen one way has no published time, so the
+          // window keeps the round trip's rather than guessing a shorter one.
+          const windowFor = () => {
+            const routeReturn = window.ORMARouteReturn;
+            const shown = routeReturn && routeReturn.forView ? routeReturn.forView(t) : t;
+            return window.DoloPawsWeatherWindow
+              ? window.DoloPawsWeatherWindow.recommendation({
+                currentTime:d.current.time,
+                durationHours:shown.hours || t.hours,
+                dailyDates:d.daily.time,
+                sunrises:d.daily.sunrise,
+                sunsets:d.daily.sunset,
+                hourlyTimes:d.hourly && d.hourly.time,
+                hourlyTemps:d.hourly && d.hourly.temperature_2m,
+                preferredDate:planned,
+              })
+              : null;
+          };
+          const win = windowFor();
           // Today's heat, in the vocabulary the recommendation engine reads.
           // Until now nothing supplied currentConditions, so the score never
           // reflected the day it was being read on.
@@ -1018,9 +1036,17 @@
           }
 
           const winEl = $('sideCondWindow');
-          if (winEl) winEl.innerHTML = window.DoloPawsWeatherWindow
-            ? window.DoloPawsWeatherWindow.markup(win)
-            : tx('No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.');
+          const paintWindow = result => {
+            if (winEl) winEl.innerHTML = window.DoloPawsWeatherWindow
+              ? window.DoloPawsWeatherWindow.markup(result)
+              : tx('No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.');
+          };
+          paintWindow(win);
+          // The start and finish times follow the One way / There and back switch.
+          window.addEventListener('orma-route-view-changed', event => {
+            if (event.detail && event.detail.id && event.detail.id !== String(t.id)) return;
+            paintWindow(windowFor());
+          });
         }
         const hasWater = Array.isArray(t.waterSources) && t.waterSources.length > 0;
         const waterEl = $('tdCondWater');

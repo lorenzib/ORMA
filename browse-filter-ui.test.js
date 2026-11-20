@@ -52,9 +52,9 @@ function setup(url, trailOverrides = {}, prepare = null){
   window.t = (key, params) => {
     if(key === 'page.of') return `${params.a}/${params.b}`;
     const labels = {
-      'legend.low':'Low-risk terrain',
-      'legend.moderate':'Moderate terrain',
-      'legend.caution':'Caution terrain',
+      'legend.low':'Low risk',
+      'legend.moderate':'Moderate risk',
+      'legend.caution':'Higher risk',
     };
     if(labels[key]) return labels[key];
     return key;
@@ -196,9 +196,9 @@ describe('Browse filter UI', () => {
 
   test('each trail rating links to its explanation', () => {
     [
-      ['low-risk', 'rating-low-risk', 'Low-risk terrain'],
-      ['moderate', 'rating-moderate', 'Moderate terrain'],
-      ['caution', 'rating-caution', 'Caution terrain'],
+      ['low-risk', 'rating-low-risk', 'Low risk'],
+      ['moderate', 'rating-moderate', 'Moderate risk'],
+      ['caution', 'rating-caution', 'Higher risk'],
     ].forEach(([safetyLevel, anchor, label]) => {
       const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites', { safetyLevel });
       const link = window.document.querySelector('.simple-card__facts .browse-rating-link');
@@ -251,14 +251,14 @@ describe('Browse filter UI', () => {
     const html = source('browse-trails.html');
     const i18n = source('i18n.js');
 
-    expect(i18n).toContain("'legend.low': 'Low-risk terrain'");
-    expect(i18n).toContain("'legend.moderate': 'Moderate terrain'");
-    expect(i18n).toContain("'legend.caution': 'Caution terrain'");
+    expect(i18n).toContain("'legend.low': 'Low risk'");
+    expect(i18n).toContain("'legend.moderate': 'Moderate risk'");
+    expect(i18n).toContain("'legend.caution': 'Higher risk'");
 
     [
-      ['low-risk', 'Low-risk terrain'],
-      ['moderate', 'Moderate terrain'],
-      ['caution', 'Caution terrain'],
+      ['low-risk', 'Low risk'],
+      ['moderate', 'Moderate risk'],
+      ['caution', 'Higher risk'],
     ].forEach(([safetyLevel, label]) => {
       const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites', { safetyLevel });
       const card = window.document.querySelector('.simple-card');

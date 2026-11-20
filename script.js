@@ -4353,7 +4353,7 @@ function liPickFacts(trail, profile){
     inSeason: !outOfSeason,
     // "We don't know the local rules for dogs" on the card.
     knownDogRules: !flags(recommendation.unknowns, 'trail.dog-access.unknown'),
-    // The card's trail rating: anything not low-risk or moderate reads "Caution terrain".
+    // The card's trail rating: anything not low-risk or moderate reads "Higher risk".
     notCaution: safetyClass(trail && trail.safetyLevel) !== 'safety-caution',
     strongOption: liRecommendationPresentation(trail, profile).category === 'strong-option',
   };

@@ -1253,9 +1253,10 @@ function accessPathLine(trail){
 
 function accessPathWords(trail){
   const lengthM = Number(trail && trail.accessPath && trail.accessPath.lengthM);
-  const metres = Number.isFinite(lengthM) ? Math.max(10, Math.round(lengthM / 10) * 10) : null;
-  return metres
-    ? tx('Dashed line: about {metres} m on foot from the start flag to the walk. Not part of the walk’s distance.', { metres })
+  const distance = !Number.isFinite(lengthM) ? null
+    : lengthM >= 1000 ? `${num(Math.round(lengthM / 100) / 10)} km` : `${Math.max(10, Math.round(lengthM / 10) * 10)} m`;
+  return distance
+    ? tx('Dashed line: about {distance} on foot from the start flag to the walk. Not part of the walk’s distance.', { distance })
     : tx('Dashed line: on foot from the start flag to the walk. Not part of the walk’s distance.');
 }
 
