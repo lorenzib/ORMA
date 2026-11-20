@@ -1723,8 +1723,8 @@
         6.336686
       ],
       "gapM": 54,
-      "reason": "the mapped paths go the long way round: about 252 m on foot for a start 54 m from the line",
-      "auto": true
+      "reason": "Loop visible 54 m from the La Combe car park; the only mapped way is about 250 m round, so not drawn (owner, 19 Nov 2026: “leave it as it is”).",
+      "reviewed": "owner, 19 Nov 2026"
     }
   }
 }
