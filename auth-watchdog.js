@@ -20,7 +20,7 @@
     var text = doc.createElement('p');
     text.style.margin = '0 0 10px';
     text.textContent = say('auth.unavailable',
-      'We can’t reach ORMA’s sign-in right now. Check your signal and try again.');
+      'We can’t reach ORMA’s login right now. Check your signal and try again.');
     var button = doc.createElement('button');
     button.type = 'button';
     button.className = 'empty-state__action';

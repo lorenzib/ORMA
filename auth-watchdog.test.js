@@ -20,7 +20,7 @@ describe('a page that waits for sign-in does not wait forever', () => {
     expect(win.document.getElementById('savedLoading').hidden).toBe(true);
     const box = win.document.querySelector('.auth-unavailable');
     expect(box.getAttribute('role')).toBe('alert');
-    expect(box.textContent).toContain('We can’t reach ORMA’s sign-in right now');
+    expect(box.textContent).toContain('We can’t reach ORMA’s login right now');
     expect(box.querySelector('button').textContent).toBe('Try again');
     expect(box.nextElementSibling.tagName).toBe('H1');
     expect(win.DoloPawsAuthUnavailable).toBe(true);

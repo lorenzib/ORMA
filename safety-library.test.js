@@ -113,7 +113,7 @@ describe('Safety library', () => {
     expect(guideImages.every(image => !image.hasAttribute('loading'))).toBe(true);
     const pawImage = document.querySelector('a[href="guides/paw-protection.html"] img');
     expect(pawImage.classList.contains('sg-guide-image-paw')).toBe(true);
-    expect(pawImage.getAttribute('alt')).toMatch(/dog.*leash-free.*forest trail/i);
+    expect(pawImage.getAttribute('alt')).toMatch(/dog.*off-lead.*forest trail/i);
     expect(html).toMatch(/\.sg-guide-card img\{[^}]*border-radius:10px;[^}]*object-fit:cover/s);
     expect(html).not.toMatch(/\.sg-guide-card img\{[^}]*filter:/s);
     expect(html).toContain('.sg-guide-card img.sg-guide-image-paw{object-position:center 72%;}');

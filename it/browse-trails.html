@@ -401,9 +401,9 @@
       <label class="browse-field"><span data-i18n="browse.filters.rating">Valutazione del sentiero</span>
         <select id="browseRisk" aria-label="Filtra per valutazione del sentiero" data-i18n-aria-label="browse.filters.filterRating">
           <option value="all">Valutazione del sentiero</option>
-          <option value="low-risk">Basso rischio</option>
-          <option value="moderate" data-i18n="hp.difficulty.moderate">Moderato</option>
-          <option value="caution">Attenzione</option>
+          <option value="low-risk" data-i18n="hp.filters.lowRisk">Basso rischio</option>
+          <option value="moderate" data-i18n="hp.filters.moderate">Rischio moderato</option>
+          <option value="caution" data-i18n="hp.filters.caution">Rischio più alto</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="browse.filters.terrain">Pendenza</span>
@@ -469,7 +469,7 @@
       <aside class="browse-compare-note" data-i18n="page.browseTrails.decidingBetweenTrailsPickCompare"><b>Indeciso tra più sentieri?</b> Scegli <em>Confronta</em> su due o tre e mettiamo a confronto distanza, terreno, ombra, acqua e adattabilità al cane.</aside>
       <div class="browse-results-meta">
         <span id="browseResultCount" aria-live="polite"></span>
-        <span class="browse-result-accessible" data-i18n="browse.trustNote">Le informazioni sui sentieri combinano i dati del percorso mappato e le fonti ORMA disponibili.</span>
+        <span class="browse-result-accessible" data-i18n="browse.trustNote">Le informazioni sui sentieri vengono dai dati della mappa e dalle fonti di ORMA.</span>
         <button type="button" id="browseClear" class="browse-clear" hidden data-i18n="browse.clearFilters">Azzera i filtri</button>
       </div>
       <div class="simple-grid" id="simpleTrailsList"></div>
@@ -1746,7 +1746,7 @@
         { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.under5', 'Under 5 km'), v:'u5' }, { label:bt('hp.filters.5to10', '5–10 km'), v:'5to10' }, { label:bt('hp.filters.10plus', '10 km+'), v:'10p' },
       ], distance.value, v => { distance.value = v; });
       brSeg('brRiskSeg', [
-        { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.lowRisk', 'Low risk'), v:'low-risk' }, { label:bt('hp.filters.moderate', 'Moderate'), v:'moderate' }, { label:bt('hp.filters.caution', 'Caution'), v:'caution' },
+        { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.lowRisk', 'Low risk'), v:'low-risk' }, { label:bt('hp.filters.moderate', 'Moderate risk'), v:'moderate' }, { label:bt('hp.filters.caution', 'Higher risk'), v:'caution' },
       ], risk.value, v => { risk.value = v; });
       brSeg('brTerrainSeg', [
         { label:bt('hp.filters.any', 'Any'), v:'' }, { label:bt('hp.filters.gentle', 'Gentle only'), v:'soft' }, { label:bt('hp.filters.mixed', 'Up to moderate'), v:'mixed' }, { label:bt('hp.filters.rocky', 'Steep is okay'), v:'rocky' },

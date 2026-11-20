@@ -88,14 +88,14 @@
     }finally{
       if(timeout) clearTimeout(timeout);
     }
-    if(!response || !response.ok) throw routeError('No mapped walking route connects those points.', 'no-route');
+    if(!response || !response.ok) throw routeError('No footpath connects those points.', 'no-route');
 
     const geojson = await response.json();
     const feature = geojson && Array.isArray(geojson.features) ? geojson.features[0] : null;
     const coordinates = feature && feature.geometry && feature.geometry.type === 'LineString'
       ? feature.geometry.coordinates : null;
     if(!Array.isArray(coordinates) || coordinates.length < 2){
-      throw routeError('No mapped walking route connects those points.', 'no-route');
+      throw routeError('No footpath connects those points.', 'no-route');
     }
     // BRouter adds each point's height as a third coordinate. They are kept
     // beside the line, so an adjusted walk can be scored on its own profile.
