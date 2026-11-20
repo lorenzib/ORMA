@@ -31,7 +31,7 @@ describe('account-management translation boundary', () => {
     expect(account).not.toContain("subline.textContent = tKey('account.signedOut'");
     expect(account).toContain('const signedOutCopy = loggedOutState.querySelector(\'[data-i18n="account.signedOut"]\');');
     expect(account).toMatch(/if\(!user\)\{[\s\S]*?subline\.hidden = true;/);
-    expect(accountHtml).toContain('account.js?v=20260917-1');
+    expect(accountHtml).toContain('account.js?v=20261125-5');
   });
 
   test('verification and credential-management outcomes use stable keys', () => {

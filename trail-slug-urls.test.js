@@ -157,7 +157,7 @@ describe('the static pages and the app agree on the slug', () => {
   test('the manifest and loader are pinned to the same new version', () => {
     for (const page of ['trail.html', 'browse-trails.html', 'collections.html', 'compare.html']) {
       const html = fs.readFileSync(path.join(root, page), 'utf8');
-      expect(html).toContain('regions-runtime-manifest.js?v=20261121-7');
+      expect(html).toContain('regions-runtime-manifest.js?v=20261125-5');
       expect(html).toContain('regional-trails-loader.js?v=20261104-1');
     }
   });
@@ -172,9 +172,9 @@ describe('the static pages and the app agree on the slug', () => {
     // the expected token is per script rather than one shared value.
     const SLUG_AWARE = {
       'discovery-state': '20261007-1', 'regional-trails-loader': '20261104-1',
-      'browse-map': '20261119-1', 'compare-page': '20261007-1',
-      'collections-page': '20261119-9', 'homepage-search': '20261123-1',
-      'mobile-nav': '20261030-1', 'notifications-feed': '20261023-1',
+      'browse-map': '20261119-1', 'compare-page': '20261125-5',
+      'collections-page': '20261119-9', 'homepage-search': '20261125-5',
+      'mobile-nav': '20261030-1', 'notifications-feed': '20261125-5',
     };
     const stale = [];
     for (const name of fs.readdirSync(root).filter(file => file.endsWith('.html'))) {

@@ -290,7 +290,7 @@
         }
         if(typeof gondolas !== 'undefined'){ build(); return; }
         var script = document.createElement('script');
-        script.src = 'trails-data.js?v=20260810';
+        script.src = 'trails-data.js?v=20261125-5';
         script.onload = build;
         script.onerror = function(){ reject(new Error('Lift layer unavailable')); };
         document.head.appendChild(script);
