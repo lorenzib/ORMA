@@ -1074,7 +1074,6 @@ function renderAllLifts(map, options){
       'line-color': ['match', ['get', 'status'], 'summer', '#4E90A8', 'no-summer', '#9C3A25', '#5A5548'],
       'line-width': 1.5,
       'line-opacity': 0.9,
-      'line-dasharray': ['match', ['get', 'status'], 'summer', ['literal', [1, 0]], ['literal', [2, 1]]],
     },
   });
   map.addSource('detail-gondola-stations', { type: 'geojson', data: { type: 'FeatureCollection', features: stationFeatures } });
@@ -1174,8 +1173,8 @@ function accessPathWords(trail){
   const lengthM = Number(trail && trail.accessPath && trail.accessPath.lengthM);
   const metres = Number.isFinite(lengthM) ? Math.max(10, Math.round(lengthM / 10) * 10) : null;
   return metres
-    ? tx('Dashed line: about {metres} m on foot from the start flag to the walk. Not part of the walk’s distance.', { metres })
-    : tx('Dashed line: on foot from the start flag to the walk. Not part of the walk’s distance.');
+    ? tx('Grey line: about {metres} m on foot from the start flag to the walk. Not part of the walk’s distance.', { metres })
+    : tx('Grey line: on foot from the start flag to the walk. Not part of the walk’s distance.');
 }
 
 function nearestPathIndex(path, pt){
@@ -2295,7 +2294,7 @@ function renderTrail(t){
 
 
       // The marked hiking network, drawn by us from OSM route data: every
-      // route a dashed grey line with its number, so the walk is the only
+      // route a solid grey line on a white edge with its number, so the walk is the only
       // coloured line on the map. Waymarked's raster used to sit here in its
       // own colours; map-style.js puts it back if our tiles cannot load.
       // The walk's path lets the routes it follows be numbered beside it.
@@ -2521,10 +2520,10 @@ function renderTrail(t){
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
-        // The route is a pale match-colour corridor edged in white, under the
-        // contours and the dashed routes, so the path a walker follows and
-        // its numbers draw over it. (Under Waymarked's raster instead, when
-        // the page has fallen back to it.)
+        // The route is a thin match-colour line edged in white, drawn
+        // over the contours and the marked routes, so nothing is drawn across
+        // the path a walker follows; the route numbers still draw over it.
+        // (Under Waymarked's raster instead, when the page has fallen back.)
         window.ORMAMapStyle.addRouteLine(map, {
           id: 'single-trail-path-line',
           source: 'single-trail-path',
@@ -2537,7 +2536,7 @@ function renderTrail(t){
         }
 
         // The walk-in from the start flag to the walk, where the flag sits off
-        // the line (a car park or bus stop): thin and dashed, under the walk,
+        // the line (a car park or bus stop): thin solid grey, under the walk,
         // and never counted in its distance, climb or time.
         const accessLine = accessPathLine(t);
         if(accessLine){
@@ -2548,10 +2547,9 @@ function renderTrail(t){
           window.ORMAMapStyle.addAccessLine(map, {
             id: 'single-trail-access-line',
             source: 'single-trail-access',
-            color: selectedRouteColor,
             beforeId: 'single-trail-path-line-casing',
           });
-          // A wide, invisible twin so a fingertip finds the thin dashed line.
+          // A wide, invisible twin so a fingertip finds the thin line.
           map.addLayer({
             id: 'single-trail-access-hit', type: 'line', source: 'single-trail-access',
             paint: { 'line-color': '#000', 'line-opacity': 0, 'line-width': 18 },

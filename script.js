@@ -146,9 +146,10 @@ function rankWidth(top, other) {
   ];
 }
 
-// The marked network is drawn from here up. Below it a reader is choosing a
-// valley, and the route numbers are not yet the question.
-const BROWSE_NETWORK_MIN_ZOOM = 12.5;
+// The marked network is drawn from here up, faint until zoom 13 (map-style.js)
+// and with its numbers only from 12. Owner, 20 Nov 2026: the homepage map
+// should read like the trail page, so the network shows a little earlier.
+const BROWSE_NETWORK_MIN_ZOOM = 11.5;
 
 // The relief was a flat 0.45 (#468), set so the map would not read as flat.
 // At region zoom that strength is the loudest thing on a calm base and it
@@ -1793,12 +1794,11 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
     const legend = document.getElementById('trailMapLegend');
     if(!legend) return;
     const line = (color, label) => `<span><span style="width:14px;height:3px;background:${color};display:inline-block;border-radius:2px;margin-right:4px;vertical-align:middle;"></span>${label}</span>`;
-    const dash = (color, label) => `<span><span style="width:14px;height:0;border-top:2px dashed ${color};display:inline-block;margin-right:4px;vertical-align:middle;"></span>${label}</span>`;
     const category = (iconKey, color, label) => icons
       ? icons.legendItemHtml(iconKey, label, { color })
       : `<span><span style="width:9px;height:9px;background:${color};display:inline-block;border-radius:50%;margin-right:4px;vertical-align:middle;border:1px solid #fff;"></span>${label}</span>`;
     let html = line('#2C5C34', t('legend.low')) + line('#8A5A16', t('legend.moderate')) + line('#9C3A25', t('legend.caution'));
-    if(overlayStates.lifts) html += line('#4E90A8', t('legend.liftConfirmed')) + dash('#5A5548', t('legend.liftUnknown'));
+    if(overlayStates.lifts) html += line('#4E90A8', t('legend.liftConfirmed')) + line('#5A5548', t('legend.liftUnknown'));
     if(overlayStates.fountains) html += category('water', '#4E90A8', t('legend.water'));
     if(overlayStates.huts) html += category('hut', '#8A5A16', t('legend.hut'));
     if(overlayStates.barsCafes) html += category('food', '#C4652F', t('legend.food'));
@@ -1844,7 +1844,6 @@ function renderGondolas(map, sourceId, options){
       ],
       'line-width': 1.5,
       'line-opacity': 0.9,
-      'line-dasharray': ['match', ['get', 'status'], 'summer', ['literal', [1, 0]], ['literal', [2, 1]]],
     },
   });
 
@@ -2066,9 +2065,9 @@ function initTrailMap(){
     // that join later without rebuilding the controls.
     const allLiftMarkers = [];
     
-    // The marked hiking network, drawn by us from OSM route data: dashed grey
-    // routes with their numbers, so the match-coloured rails are the only
-    // colour on the map. Waymarked's raster comes back if our tiles cannot
+    // The marked hiking network, drawn by us from OSM route data: solid grey
+    // routes on a white edge with their numbers, so the match-coloured rails
+    // are the only colour on the map. Waymarked's raster comes back if our tiles cannot
     // load. See map-style.js.
     const firstLabelLayer = { id: window.ORMAMapStyle.firstLabelLayerId(trailMapInstance) };
     window.ORMAMapStyle.quietBasemap(trailMapInstance);
@@ -2082,7 +2081,13 @@ function initTrailMap(){
       beforeId: firstLabelLayer.id, visible: true, minzoom: BROWSE_NETWORK_MIN_ZOOM,
     });
     addBaseHillshade(trailMapInstance, window.ORMAMapStyle.networkLayerId(trailMapInstance));
-    // Rails and the chosen walk go over the dashed routes and under their
+    // Contour lines, as on the trail page: under the network, from zoom 11.
+    if(window.DoloPawsMapRuntime && window.DoloPawsMapRuntime.loadContour){
+      window.DoloPawsMapRuntime.loadContour()
+        .then(() => window.ORMAMapStyle.addContours(trailMapInstance))
+        .catch(() => {});
+    }
+    // Rails and the chosen walk go over the marked routes and under their
     // numbers (under the raster, if the page has fallen back to it).
     const railsBeforeId = window.ORMAMapStyle.walkLineBeforeId(trailMapInstance);
     
@@ -2157,7 +2162,7 @@ function initTrailMap(){
       type:'geojson', data:{ type:'FeatureCollection', features:[] },
     });
     // The chosen walk matches the detail page: a thin match-colour line on a
-    // white edge, under the contours and the dashed routes, and the
+    // white edge, over the contours and the marked routes, and the
     // routes it follows numbered beside it (setSelectedTrailRoute).
     // The catalogue rails above remain subdued; the selected route is the
     // only corridor that should read as the walk the owner has chosen.
@@ -2179,13 +2184,13 @@ function initTrailMap(){
       },
     }, corridorBeforeId);
     // The chosen walk's walk-in from its start flag (trail.accessPath): thin
-    // and dashed under the walk, as on the trail page (map-style.js).
+    // solid grey under the walk, as on the trail page (map-style.js).
     trailMapInstance.addSource('trail-selected-access', {
       type:'geojson', data:{ type:'FeatureCollection', features:[] },
     });
     window.ORMAMapStyle.addAccessLine(trailMapInstance, {
       id:'trail-selected-access-line', source:'trail-selected-access',
-      color:['coalesce',['get','routeColor'],'#4A7856'], beforeId:'trail-selected-route-casing',
+      beforeId:'trail-selected-route-casing',
     });
     trailMapInstance.addLayer({
       id:'trail-selected-route-arrows', type:'symbol', source:'trail-selected-route',
@@ -2233,7 +2238,9 @@ function initTrailMap(){
           window.ORMAMapStyle.matchColourExpression('score'), '#9AA19C',
         ],
         'circle-radius': [
-          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 11, 4,
+          // Smaller than they were (11 / 4): the walks' lines lead, as on
+          // the trail page, and the pins mark where each one starts.
+          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 8, 3,
         ],
         'circle-opacity': [
           'case',
@@ -2242,7 +2249,7 @@ function initTrailMap(){
         ],
         'circle-stroke-opacity': ['case', ['==', ['coalesce', ['get', 'out'], 0], 1], 0.3, 1],
         'circle-stroke-width': [
-          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 2.5, 1,
+          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 2, 1,
         ],
         'circle-stroke-color': [
           'case', ['==', ['coalesce', ['get', 'saved'], 0], 1], '#9C3A25', '#fff',
@@ -2257,7 +2264,7 @@ function initTrailMap(){
       layout: {
         'text-field': ['to-string', ['get', 'rank']],
         'text-font': window.ORMAMapStyle.FONT_BOLD,
-        'text-size': 11,
+        'text-size': 9.5,
         'text-allow-overlap': true,
         'text-ignore-placement': true,
       },
@@ -2275,8 +2282,8 @@ function initTrailMap(){
       filter: ['==', ['get', 'id'], '__none__'],
       paint: {
         'circle-color': 'rgba(0,0,0,0)',
-        'circle-radius': 15,
-        'circle-stroke-width': 4,
+        'circle-radius': 12,
+        'circle-stroke-width': 3.5,
         'circle-stroke-color': '#fff',
       },
     });
