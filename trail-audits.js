@@ -44595,9 +44595,10 @@
       // No Natura 2000 site, park or reserve on the line. Out and back: the APT
       // returns the same way, and the line retraces 97% of itself.
       area: 'Monte Vederna – Croce degli Alpini, Imer',
-      distance: 8.2,
-      elevation: 300,
+      distance: 6.4,
+      elevation: 216,
       hours: '2',
+      elevationProfile: [{ km: 0, elev: 1334 }, { km: 0.5, elev: 1362 }, { km: 1, elev: 1417 }, { km: 1.5, elev: 1460 }, { km: 2, elev: 1482 }, { km: 2.5, elev: 1527 }, { km: 3, elev: 1558 }, { km: 3.5, elev: 1556 }, { km: 4, elev: 1516 }, { km: 4.5, elev: 1481 }, { km: 5, elev: 1443 }, { km: 5.5, elev: 1410 }, { km: 6, elev: 1359 }, { km: 6.4, elev: 1334 }],
       routeShape: 'out-and-back',
       routeShapeNote: 'Out and back: from the Rifugio Vederna up the forest road signed for the Croce degli Alpini to the meadows by Cima Vederna, a short marked path to the great metal cross above the Primiero valley, and back the same way.',
       routeNumberGuidance: {
@@ -44636,26 +44637,26 @@
         ]
       },
       curated: true,
-      tier: 'under-review',
-      reviewedAt: '2026-10-26',
+      tier: 'route-audited',
+      reviewedAt: '2026-11-20',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'The huts of Vederna in July, below the forest road the walk takes (Tn4196, CC BY-SA 3.0), 60 m from the line.',
-        route: 'Official out-and-back walk 8.2 km from the Rifugio Vederna (1,324 m), as the APT San Martino di Castrozza publishes it; the stored line is drawn on 6 OSM ways along the APT’s published line, 8 km, with 100% of the APT line within 25 m of it.',
+        route: 'Out and back from the Rifugio Vederna (1,324 m) to the Croce degli Alpini, on the APT San Martino di Castrozza’s published line: drawn on 5 OSM ways, 6.4 km, with 100% of the APT’s way out within 25 m of it. The APT’s own track (8.2 km) goes back over itself and wanders on after returning; those stretches and a 64 m spur are left off, and the distance is measured on the line (owner’s decision, 20 November 2026).',
         routeNumbers: 'No route number: from the Rifugio Vederna take the forest road signed “Croce degli Alpini” on a gentle climb to the meadows near Cima Vederna, keeping to the left of the clearing; on the level meadow follow the comfortable marked path to the right to the great metal cross, the Croce degli Alpini, above the Primiero valley. Back the same way.',
         mapPoints: 'Start at the Rifugio Vederna (1,324 m), the APT’s start; drinking water at the start (OSM nodes 2184716287).',
-        elevation: 'Official 8.2 km, 300 m up and 300 m down, 2 h, highest point 1,535 m, lowest 1,332 m (APT San Martino di Castrozza).'
+        elevation: 'Measured by ORMA on the line (owner’s decision, 20 November 2026): 6.4 km, 216 m up and 216 m down (25 m EU-DEM heights every 100 m, 10 m threshold), 2 h by DIN 33466, which matches the APT’s 2 h. The APT lists 8.2 km and 300 m for its longer track.'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 4.80 (176 m), km 4.98 (176 m), km 6.75 (1282 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
           'APT San Martino di Castrozza, Passo Rolle, Primiero e Vanoi, Passeggiata a Monte Vederna – Croce degli Alpini (sanmartino.com and its Outdooractive page)',
           'Comune di Imer, Regolamento di Polizia Urbana (2018), Art. 26 and 28',
           'Natura 2000 sites (Ministry of the Environment register and the Province of Trento’s ZSC and ZPS layers), the Paneveggio – Pale di San Martino nature park and Trentino’s provincial and local reserves (none on the line)',
-          'OpenStreetMap ways along the APT line (6 ways), road, surface, woodland and water data'
+          'OpenStreetMap ways along the APT line (5 ways), road, surface, woodland and water data; climb measured on the 25 m EU-DEM (opentopodata.org)'
         ],
-        date: '2026-10-26'
+        date: '2026-11-20'
       },
       shadeCoverage: 57,
       heatRisk: 'moderate',
@@ -44666,7 +44667,7 @@
       terrainDescription: 'A walk at 1,332–1,535 m from the Rifugio Vederna, below Monte Pavione and the Vette Feltrine, to the Croce degli Alpini with its view over the Primiero valley and the Pale di San Martino.',
       waterDescription: 'Drinking fountain and the Rifugio Vederna at the start; none on the way.',
       dogNotes: 'Imer’s rules apply: a lead of at most 1.5 m on streets and in public places, a muzzle in public buildings and in crowds, bags to pick up after your dog, and no dogs in playgrounds, schools or churches. Keep your dog close at the Croce degli Alpini, a viewpoint above the valley.',
-      tips: 'Start at the Rifugio Vederna, reached by long forest roads from Pontet or the Val Noana (ask the rifugio about their state): 8.2 km there and back, 300 m of climbing, two hours. Water at the rifugio; carry some for your dog on the way.',
+      tips: 'Start at the Rifugio Vederna, reached by long forest roads from Pontet or the Val Noana (ask the rifugio about their state): 6.4 km there and back, about 220 m of climbing, two hours. Water at the rifugio; carry some for your dog on the way.',
       sourceLinks: [
         { label: 'APT San Martino di Castrozza, Passeggiata a Monte Vederna – Croce degli Alpini', url: 'https://www.sanmartino.com/it/itinerari/passeggiata-a-monte-vederna-croce-degli-alpini' },
         { label: 'Outdooractive, Passeggiata a Monte Vederna – Croce degli Alpini (APT San Martino di Castrozza)', url: 'https://www.outdooractive.com/it/r/21373844' },
@@ -44680,7 +44681,7 @@
       rifugi: [
         { km: 0, lat: 46.121, lng: 11.79517, osmId: 'way/59721521', name: 'Rifugio Vederna' }
       ],
-      desc: 'A walk from the Rifugio Vederna along a forest road and meadows to the Croce degli Alpini, a great cross above the Primiero valley with views of the Pale di San Martino and the Vette Feltrine. The APT lists 8.2 km and 300 m of ascent.'
+      desc: 'A walk from the Rifugio Vederna along a forest road and meadows to the Croce degli Alpini, a great cross above the Primiero valley with views of the Pale di San Martino and the Vette Feltrine. There and back it is 6.4 km with about 220 m of climbing, measured by ORMA on the line.'
     },
     'fiemme-sentiero-botanico': {
       // Hand audit: 26 October 2026, verified on arrival (Val di Fiemme batch 4).

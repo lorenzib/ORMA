@@ -2471,7 +2471,12 @@ resting and rejection are unchanged.
    of. On 12 November 2026 it was extended to St. Agatha Rundweg
    (Deutschnofen), climb and time both measured, and to Anello dei Colli
    (Lozzo di Cadore), where the CAI publishes the climb and only the time is
-   worked out by DIN 33466. The rule stands for every other walk.
+   worked out by DIN 33466. On 20 November 2026 it was extended to the
+   Passeggiata a Monte Vederna (Imer): the APT's own track goes back over
+   itself and wanders on past the start, so its 8.2 km and 300 m are for a
+   longer track than the walk; ours is the clean out-and-back to the Croce
+   degli Alpini, distance and climb measured (6.4 km, 216 m), and the APT's
+   2 h matches DIN 33466. The rule stands for every other walk.
 2. **Every municipality the line crosses.** The Ranger is given sample points
    along the whole line -- the start, one every kilometre, the point farthest
    from the start, and the end -- because a loop often crosses into the next

@@ -203,9 +203,10 @@ describe('a live recording on a line that doubles back', () => {
   });
 
   // Drawn out and back, but the ends do not meet: Malga Crel comes home past
-  // the campsite (116 m apart), Monte Vederna 616 m. Treating these as one
-  // leg halved the walk: 2.2 km at Malga Crel's turnaround, 4.6 km at home.
-  test.each(['primiero-malga-crel','primiero-monte-vederna'])('%s: a whole walk that does not close is not halved', id => {
+  // the campsite (116 m apart). Treating it as one leg halved the walk: 2.2 km
+  // at its turnaround. (Monte Vederna was the second case, 616 m apart, until
+  // it was redrawn as a closed out-and-back on 20 November 2026.)
+  test.each(['primiero-malga-crel'])('%s: a whole walk that does not close is not halved', id => {
     const trail=realTrail(id);
     expect(trail.routeShape).toBe('out-and-back');
     expect(metres(trail.path[0], trail.path[trail.path.length-1])).toBeGreaterThan(75);
