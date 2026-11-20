@@ -157,7 +157,7 @@ describe('the static pages and the app agree on the slug', () => {
   test('the manifest and loader are pinned to the same new version', () => {
     for (const page of ['trail.html', 'browse-trails.html', 'collections.html', 'compare.html']) {
       const html = fs.readFileSync(path.join(root, page), 'utf8');
-      expect(html).toContain('regions-runtime-manifest.js?v=20261007-1');
+      expect(html).toContain('regions-runtime-manifest.js?v=20261121-7');
       expect(html).toContain('regional-trails-loader.js?v=20261104-1');
     }
   });
