@@ -254,6 +254,16 @@ describe('the trail page breakdown, one row per factor', () => {
     ]);
   });
 
+  test('a steep walk that fits says so in its chip, not "Steep" alone under "Fits Teo"', () => {
+    expect(view.fitChips).toContain('Moderately steep, fine for Teo');
+    const gentle = decision.present({
+      ...recommendation, category:'strong-option', score:100,
+      factors:[{ code:'trail.terrain.within-tolerance', message:'Fine.', impact:0, vars:{ terrain:0, tolerance:2 } }],
+      positiveReasons:[{ code:'trail.terrain.within-tolerance', message:'Fine.', vars:{ terrain:0, tolerance:2 } }],
+    }, { dogName:'Teo' });
+    expect(gentle.fitChips).toContain('Gentle');
+  });
+
   test('a row that fits states the fact, not a verdict', () => {
     const detail = topic => view.factorRows.find(row => row.topic === topic).detail;
     expect(detail('Distance')).toBe('9.6 km');
@@ -271,11 +281,19 @@ describe('the trail page breakdown, one row per factor', () => {
   test('what the score could not look at is kept apart from the rows', () => {
     const unknown = decision.present({
       ...recommendation, factors:[],
-      unknowns:[{ code:'trail.dog-access.unknown', message:'Unknown.' }, { code:'dog.weight.unknown', message:'Weight.' }],
+      unknowns:[{ code:'trail.terrain.unknown', message:'Unknown.' }, { code:'dog.weight.unknown', message:'Weight.' }],
     }, { dogName:'Teo' });
     expect(unknown.factorRows).toEqual([]);
     // A dog gap becomes the profile prompt instead, so it is not listed here.
-    expect(unknown.notChecked).toEqual(['We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.']);
+    expect(unknown.notChecked).toEqual(['We don’t know how steep the path is.']);
+  });
+
+  test('an unknown dog rule is not said: every ORMA walk should take dogs', () => {
+    const unknown = decision.present({
+      ...recommendation, factors:[],
+      unknowns:[{ code:'trail.dog-access.unknown', message:'Unknown.' }],
+    }, { dogName:'Teo' });
+    expect(unknown.notChecked).toEqual([]);
   });
 });
 

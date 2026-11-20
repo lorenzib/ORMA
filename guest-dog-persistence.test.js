@@ -113,7 +113,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     expect(browse).toContain('data-browse-view="list" aria-pressed="true" data-i18n="browse.view.list">List</button>');
     expect(browse).toContain("bt('browse.compare.count', '{n} of 3 selected', { n: selected.length })");
     expect(browse).toContain("bt('browse.results.ofTotal', '{n} of {total} trails', { n: pool.length, total: trails.length })");
-    expect(browse).toContain("bt('browse.card.forDog', 'For {name}', { name: dog.name })");
+    expect(browse).toContain("bt('browse.card.forDog', 'For {name}', { name: scoredSubjectName() })");
     // Segment options reuse the homepage vocabulary keys so both panels say the same thing.
     expect(browse).toContain("{ label:bt('hp.filters.rocky', 'Steep is okay'), v:'rocky' }");
   });
@@ -141,7 +141,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     const page = read('collections-page.js');
     expect(page).toMatch(/if\(!auth \|\| !auth\.currentUser[^\n]*\)\{\s*const device = deviceDogProfile\(\);\s*if\(device\) applyMatchSubject\(subjectFor\(device\)\);/);
     expect(page).toContain('matchSubject || scoring.GUEST_SUBJECT');
-    expect(read('collections.html')).toContain('collections-page.js?v=20261108-1');
+    expect(read('collections.html')).toContain('collections-page.js?v=20261119-9');
   });
 
   test('the homepage ships the new controller and guest-context versions', () => {
