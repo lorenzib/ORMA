@@ -18623,6 +18623,7 @@ function renderTrail(t){
       setLayerChipLabel(document.getElementById('routesToggle'), 'routes', tx('Trail routes'));
       setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', tx('Lift stations'));
       setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', tx('Nearby trails'));
+      setLayerChipLabel(document.getElementById('contoursToggle'), 'mountain', tx('Contour lines'));
       addTerrainSource(map);
       increaseLabelDensity(map);
       addTerrainToggle(map, 'trailDetailMap', 1.5, 45,

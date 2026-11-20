@@ -597,6 +597,7 @@ window.ORMA_PHRASES_IT = {
   "Less water than listed": "Meno acqua di quella indicata",
   "Lift": "Impianto",
   "Lift stations": "Impianti di risalita",
+  "Contour lines": "Curve di livello",
   "Lift-assisted Dolomites week": "Settimana nelle Dolomiti con gli impianti",
   "Lift-assisted Savoy days": "Giornate in Savoia con gli impianti",
   "Lift-assisted access": "Accesso con gli impianti",
