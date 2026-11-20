@@ -254,7 +254,7 @@ function initLoopComposer(map, t){
       return;
     }
     busy = true;
-    status.textContent = closeRequested ? tx('Closing the loop on mapped walking paths…') : tx('Connecting the selected points…');
+    status.textContent = closeRequested ? tx('Closing the loop on footpaths…') : tx('Connecting the selected points…');
     render();
     const graph = await loadGraph();
     if(version !== calculationVersion) return;
@@ -274,7 +274,7 @@ function initLoopComposer(map, t){
       closed = false;
       drawRoute([]);
       status.textContent = graph
-        ? tx('These points cannot form a bounded mapped route. Remove a point and choose a closer path.')
+        ? tx('These points cannot form a route. Remove a point and choose a closer path.')
         : tx('ORMA’s walking graph is unavailable here right now. Your points have been kept.');
       render();
       return;
@@ -283,10 +283,10 @@ function initLoopComposer(map, t){
     closed = closeRequested;
     drawRoute(preview.path);
     status.textContent = closed
-      ? tx('Loop ready. Review mapped access, signs, and current conditions before saving.')
+      ? tx('Loop ready. Check access, signs, and current conditions before saving.')
       : points.length < MAX_POINTS
-        ? tx('Mapped preview ready. Add another must-pass point.')
-        : tx('Mapped preview ready. Close the loop when the shape looks right.');
+        ? tx('Preview ready. Add another must-pass point.')
+        : tx('Preview ready. Close the loop when the shape looks right.');
     render();
     if(closed) fitPreview();
   }
@@ -357,7 +357,7 @@ function initLoopComposer(map, t){
       saveButton.disabled = true;
       status.textContent = tx('Loop saved on this device. Review local signs and conditions before walking.');
     }catch(error){
-      status.textContent = tx('This browser could not save the loop. The mapped preview is still available.');
+      status.textContent = tx('This browser could not save the loop. The preview is still available.');
     }
   }
 
@@ -540,7 +540,7 @@ function initNearestTrailDirections(map, t){
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');
     clearSteps();
-    setPanelMessage(tx('Connecting your location to the selected mapped route…'));
+    setPanelMessage(tx('Connecting your location to the selected route…'));
     try{
       const origin = await window.DoloPawsTrailAccess.currentPosition(navigator);
       if(Number.isFinite(origin.accuracyM) && origin.accuracyM > window.DoloPawsTrailAccess.MAX_GPS_ACCURACY_M){
@@ -579,7 +579,7 @@ function initNearestTrailDirections(map, t){
         const targetSnap = plan.targetSnapDistanceM > 20
           ? ' ' + tx('The selected point was snapped {distance} to a connected path.', { distance: formatApproachDistance(plan.targetSnapDistanceM / 1000) })
           : '';
-        setPanelMessage(tx('Mapped walking route · {distance} to the selected route point.', { distance: formatApproachDistance(plan.distanceKm) })
+        setPanelMessage(tx('Walking route · {distance} to the selected route point.', { distance: formatApproachDistance(plan.distanceKm) })
           + targetSnap + ' ' + tx('Check local signs and temporary closures.'));
         setButtonLabel(defaultLabel);
         return;
@@ -590,7 +590,7 @@ function initNearestTrailDirections(map, t){
         setButtonLabel(tx('Open directions to selected point'));
         return;
       }
-      setPanelMessage(tx('That point is outside ORMA’s current walking coverage. Choose a closer mapped route point.'));
+      setPanelMessage(tx('That point is outside ORMA’s current walking coverage. Choose a closer point on the route.'));
       setButtonLabel(defaultLabel);
     }catch(error){
       setPanelMessage(tx('We could not calculate a route to that point. Check your location signal and try again.'));
@@ -611,7 +611,7 @@ function initNearestTrailDirections(map, t){
     button.setAttribute('aria-busy', 'true');
     setButtonLabel(tx('Calculating directions…'));
     clearSteps();
-    setPanelMessage(tx('Checking your location against mapped walking paths…'));
+    setPanelMessage(tx('Checking your location against the footpaths…'));
     try{
       const graph = await loadRoutingGraph();
       const plan = await window.DoloPawsTrailAccess.planTrailEntry(
@@ -632,9 +632,9 @@ function initNearestTrailDirections(map, t){
         showPlan(plan, true);
         renderSteps(plan.instructions);
         const snapNote = plan.snapDistanceM > 20
-          ? ' ' + tx('Your GPS is about {distance} from the mapped path.', { distance: formatApproachDistance(plan.snapDistanceM / 1000) })
+          ? ' ' + tx('Your GPS is about {distance} from the path.', { distance: formatApproachDistance(plan.snapDistanceM / 1000) })
           : '';
-        setPanelMessage(tx('Mapped footpath route · {distance} to the trail.', { distance: formatApproachDistance(plan.distanceKm) })
+        setPanelMessage(tx('Footpath route · {distance} to the trail.', { distance: formatApproachDistance(plan.distanceKm) })
           + snapNote + ' ' + tx('Check local signs and temporary closures.'));
         setButtonLabel(tx('Refresh walking route'));
         return;
@@ -645,7 +645,7 @@ function initNearestTrailDirections(map, t){
         const distanceM = plan.distanceKm * 1000;
         const overlapsFix = Number.isFinite(plan.accuracyM) && distanceM <= plan.accuracyM;
         setPanelMessage(overlapsFix
-          ? tx('Your location overlaps this trail. Open your maps app for the nearest mapped point, and check local signs before joining.')
+          ? tx('Your location overlaps this trail. Open your maps app for the nearest point on the trail, and check local signs before joining.')
           : tx('The nearest point on this trail is about {distance} away. Your maps app will calculate the walk; check local signs and access before joining.', { distance: formatApproachDistance(plan.distanceKm) }));
         setButtonLabel(tx('Open directions to nearest trail point'));
         return;
@@ -1750,7 +1750,7 @@ function renderTrail(t){
       ? window.DoloPawsIcons.renderIconSvg(provStyle, { mode:'inline', color:'currentColor', size:16 })
       : '';
     box.style.cssText = 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #2E4034;background:#eef3ef;border-radius:6px;font-size:13px;line-height:1.5;';
-    box.innerHTML = provenanceIcon + '<strong>' + tx('Trail planning information.') + '</strong> ' + tx('Based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.');
+    box.innerHTML = provenanceIcon + '<strong>' + tx('Trail planning information.') + '</strong> ' + tx('Based on map data and ORMA’s own sources. Conditions can change, so check locally before setting out.');
     descEl.parentNode.insertBefore(box, descEl);
 
     // Trail hazards, surfaceHazards used to feed only the match scoring;

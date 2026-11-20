@@ -79,7 +79,7 @@ describe('a walk with no number says how to follow it',()=>{
     for(const id of ['route-number-sequence','route-number-switches']){
       const value=followedByLandmark(BARE,id);
       expect(value).toContain('no landmark sequence recorded');
-      expect(value).toContain('follow the walk’s name on local signs and the mapped ORMA line');
+      expect(value).toContain('follow the walk’s name on local signs and the ORMA line on this page’s map');
       // And it does not also claim the walk is followed by landmark, which
       // would be two sentences arguing with each other.
       expect(value).not.toContain('followed by name and by landmark');
