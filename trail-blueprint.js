@@ -307,7 +307,7 @@
     // Safety rating as the same coloured pill the browse cards use.
     const riskLine = $('tdRiskLine');
     if (riskLine && t.safetyLevel) {
-      const labels = { 'low-risk': tx('Low-risk terrain'), 'moderate': tx('Moderate terrain'), 'caution': tx('Caution terrain') };
+      const labels = { 'low-risk': tx('Low risk'), 'moderate': tx('Moderate risk'), 'caution': tx('Higher risk') };
       const baseRisk = labels[t.safetyLevel] || '';
       const riskText = trust ? trust.riskLabel(t, baseRisk) : baseRisk;
       riskLine.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
