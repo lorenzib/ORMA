@@ -250,7 +250,7 @@
       return [
         shown.distance ? (back ? tt('card.thereAndBack', { km: shown.distance }, '{km} km there and back')
           : oneWayWalk ? tt('card.oneWay', { km: num(shown.distance) }, '{km} km one way')
-          : `${num(shown.distance)} km`) : null,
+          : `${num(Math.round(Number(shown.distance) * 10) / 10)} km`) : null,
         shown.elevation != null ? tt('card.climb', { m: shown.elevation }, '{m} m climb') : null,
         shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null,
       ].filter(Boolean).join(' · ');
