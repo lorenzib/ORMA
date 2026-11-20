@@ -45,9 +45,9 @@
   let renderGeneration = 0;
   const themes = new Set();
   const difficultyLabel = value => ({
-    'low-risk':tx('Low-risk terrain'),
-    moderate:tx('Moderate terrain'),
-    caution:tx('Caution terrain'),
+    'low-risk':tx('Low risk'),
+    moderate:tx('Moderate risk'),
+    caution:tx('Higher risk'),
   })[value] || tx('Difficulty not rated');
   // Route colour answers "how well does this walk suit the dog", never "how
   // hard is this trail", the same question, palette and thresholds as the
@@ -518,7 +518,7 @@
           ${expandedCollectionView === 'trails' ? `<div class="collection-inline-trails">${collectionTrails.map(trailRow).join('')}</div>` : ''}
           ${expandedCollectionView === 'map' ? `<div class="collection-inline-map-wrap is-visible" id="collection-inline-map-wrap-${esc(collection.id)}">
             <div id="collection-inline-map-${esc(collection.id)}" class="collection-trail-map collection-inline-map" aria-label="${tx('Map showing the trails in {title}', { title:esc(collection.title) })}"><div class="collection-map-loading">${tx('Loading collection map…')}</div></div>
-            <div class="collection-inline-map-key" aria-label="${tx('Difficulty colours')}"><span><i data-difficulty="low-risk"></i>${tx('Low-risk')}</span><span><i data-difficulty="moderate"></i>${tx('Moderate')}</span><span><i data-difficulty="caution"></i>${tx('Caution')}</span></div>
+            <div class="collection-inline-map-key" aria-label="${tx('Difficulty colours')}"><span><i data-difficulty="low-risk"></i>${tx('Low risk')}</span><span><i data-difficulty="moderate"></i>${tx('Moderate risk')}</span><span><i data-difficulty="caution"></i>${tx('Higher risk')}</span></div>
           </div>` : ''}
         </div>
         ` : ''}

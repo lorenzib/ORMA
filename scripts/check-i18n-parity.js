@@ -64,7 +64,7 @@ function referencedKeys(root = ROOT){
   for(const file of files){
     const source = fs.readFileSync(file, 'utf8');
     if(file.endsWith('.html')){
-      for(const match of source.matchAll(/data-i18n(?:-placeholder|-title|-aria-label)?\s*=\s*["']([^"']+)["']/g)){
+      for(const match of source.matchAll(/data-i18n(?:-placeholder|-ph|-title|-aria-label|-alt)?\s*=\s*["']([^"']+)["']/g)){
         references.push({ key:match[1], file:path.relative(root, file) });
       }
     }

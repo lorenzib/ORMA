@@ -36,7 +36,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
   test('a small dog is asked about open chairlifts and the answer is stored on the profile', () => {
     expect(controller).toContain("function asksChairlift(w) { return w.size === 'small'; }");
     expect(controller).toContain("{ label: t('hp.wizard.chairlift.never', 'Not for us, or never tried'), v: 'never' }");
-    expect(controller).toContain("{ label: t('hp.wizard.chairlift.ok', 'Yes, held on my lap with harness and leash'), v: 'ok' }");
+    expect(controller).toContain("{ label: t('hp.wizard.chairlift.ok', 'Yes, held on my lap with harness and lead'), v: 'ok' }");
     expect(controller).toContain("optBtns(chairliftOpts(), w.chairlift, 'chairlift', true)");
     expect(controller).toContain("behaviour.chairlift = w.chairlift;");
     expect(controller).toContain('behaviour: behaviour,');
@@ -95,7 +95,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     // The trail-shadowed renderers use the `tr` alias, never a bare `t(` that would resolve to the trail.
     expect(controller).toContain('var tr = t;');
     expect(controller).toContain("tr('hp.sug.topFor', 'Top matches for {name}', { name: esc(m.name) })");
-    expect(controller).toContain("'low-risk': { label: tr('hp.difficulty.lowRisk', 'Low-risk'), dot: '#2C5C34' }");
+    expect(controller).toContain("'low-risk': { label: tr('hp.difficulty.lowRisk', 'Low risk'), dot: '#2C5C34' }");
   });
 
   test('the Browse page carries Italian copy for its controls, cards, tray and empty states', () => {
@@ -146,7 +146,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
 
   test('the homepage ships the new controller and guest-context versions', () => {
     const html = read('index.html');
-    expect(html).toContain('homepage-search.js?v=20261120-1');
+    expect(html).toContain('homepage-search.js?v=20261123-1');
     expect(html).toContain('guest-context.js?v=20261030-1');
     expect(read('browse-trails.html')).toContain('guest-context.js?v=20261030-1');
   });

@@ -10004,6 +10004,90 @@
         "likelihood": "possible",
         "highPoint": 544
       }
+    },
+    "iseo-colmi": {
+      "highPoint": 967,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 967
+      }
+    },
+    "altogarda-santuario-montecastello": {
+      "highPoint": 731,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806982564",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "altogarda-valle-cartiere": {
+      "highPoint": 182,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806981779",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "altogarda-nasce-formaggio-tombea": {
+      "highPoint": 1339,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806982416",
+          "accessedAt": "2026-11-19"
+        }
+      }
     }
   }
 }

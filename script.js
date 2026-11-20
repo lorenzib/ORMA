@@ -1955,6 +1955,9 @@ function initTrailMap(){
     const centre = trailMapInstance.getCenter();
     const view = `lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}`;
     drawLink.href = `route-planner.html?${view}`;
+    // The toolbar's Draw a route opens on the same place.
+    const toolbarDraw = document.getElementById('liDrawRouteBtn');
+    if(toolbarDraw) toolbarDraw.href = drawLink.href;
     // The app plans from the Record tab, which opens the planner here too.
     try{ sessionStorage.setItem('orma-explore-map-view', view); }catch(error){}
   };
@@ -3072,35 +3075,6 @@ function liToggleHeadMenu(button){
   button.setAttribute('aria-expanded', 'true');
 }
 
-// "New: Draw your own route", said once under Record a walk. Seen means any
-// of: closed it, tried it, opened the menu it points at, or used the map's
-// own "Draw a route here". localStorage, so it stays gone next visit.
-const LI_NEW_CALLOUT_KEY = 'orma-new-draw-route-callout-v1';
-
-function liWireNewFeatureCallout(){
-  const callout = document.getElementById('liNewCallout');
-  if(!callout) return;
-  let seen = false;
-  try{ seen = localStorage.getItem(LI_NEW_CALLOUT_KEY) === '1'; }catch(error){}
-  callout.hidden = seen;
-  const markSeen = () => {
-    callout.hidden = true;
-    try{ localStorage.setItem(LI_NEW_CALLOUT_KEY, '1'); }catch(error){}
-  };
-  const close = document.getElementById('liNewCalloutClose');
-  if(close) close.addEventListener('click', (e) => { e.stopPropagation(); markSeen(); });
-  // "Try it" opens the planner where the map is, like the map's own button.
-  const tryIt = document.getElementById('liNewCalloutTry');
-  if(tryIt) tryIt.addEventListener('click', () => {
-    const fromMap = document.getElementById('homeMapDrawBtn');
-    if(fromMap) tryIt.href = fromMap.href;
-    markSeen();
-  });
-  ['liNewBtn', 'homeMapDrawBtn'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el) el.addEventListener('click', markSeen);
-  });
-}
 
 function liCloseMenus(){
   ['liFiltersMenu', 'liNewMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu', 'liAreaMenu', 'liDayMenu', 'liSortMenu'].forEach(id => {
@@ -3368,7 +3342,7 @@ function renderLiControls(){
       { label: tx('Any'), v: 'any' }, { label: tx('Under 5 km'), v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' },
     ], liFilters.dist, v => { liFilters.dist = v; });
     seg('liRiskSeg', [
-      { label: tx('Any'), v: 'any' }, { label: tx('Low risk'), v: 'low-risk' }, { label: tx('Moderate'), v: 'moderate' }, { label: tx('Caution'), v: 'caution' },
+      { label: tx('Any'), v: 'any' }, { label: tx('Low risk'), v: 'low-risk' }, { label: tx('Moderate risk'), v: 'moderate' }, { label: tx('Higher risk'), v: 'caution' },
     ], liFilters.risk, v => { liFilters.risk = v; });
     seg('liTerrainSeg', [
       { label: tx('Any'), v: 'any' }, { label: tx('Gentle only'), v: 'soft' }, { label: tx('Up to moderate'), v: 'mixed' }, { label: tx('Steep is okay'), v: 'rocky' },
@@ -3412,7 +3386,7 @@ function renderLiChips(){
   const DIST_OPTS = [['any',tx('Any')], ['u5',tx('Under 5 km')], ['5to10','5–10 km'], ['10p','10 km+']];
   const TERRAIN_OPTS = [['any',tx('Any')], ['soft',tx('Gentle only')], ['mixed',tx('Up to moderate')], ['rocky',tx('Steep is okay')]];
   const SHADE_OPTS = [['any',tx('Any')], ['40',tx('Over 40%')], ['60',tx('Over 60%')]];
-  const RISK_OPTS = [['any',tx('Any')], ['low-risk',tx('Low risk')], ['moderate',tx('Moderate')], ['caution',tx('Caution')]];
+  const RISK_OPTS = [['any',tx('Any')], ['low-risk',tx('Low risk')], ['moderate',tx('Moderate risk')], ['caution',tx('Higher risk')]];
   const MATCH_OPTS = [[0,tx('Any')], [60,'60%+'], [75,'75%+'], [85,'85%+']];
   const label = (opts, v) => (opts.find(([k]) => k === v) || opts[0])[1];
 
@@ -3740,7 +3714,6 @@ function initLoggedInShell(){
   const newBtn = document.getElementById('liNewBtn');
   const newMenu = document.getElementById('liNewMenu');
   if(newBtn && newMenu) wireMenu(newBtn, newMenu);
-  liWireNewFeatureCallout();
   // Recently viewed moved under the dog pill, so it is filled when that opens.
   const accountBtn = document.getElementById('liAccountBtn');
   wireMenu(accountBtn, document.getElementById('liAccountMenu'));
@@ -4380,7 +4353,7 @@ function liPickFacts(trail, profile){
     inSeason: !outOfSeason,
     // "We don't know the local rules for dogs" on the card.
     knownDogRules: !flags(recommendation.unknowns, 'trail.dog-access.unknown'),
-    // The card's trail rating: anything not low-risk or moderate reads "Caution terrain".
+    // The card's trail rating: anything not low-risk or moderate reads "Higher risk".
     notCaution: safetyClass(trail && trail.safetyLevel) !== 'safety-caution',
     strongOption: liRecommendationPresentation(trail, profile).category === 'strong-option',
   };
@@ -4419,7 +4392,7 @@ function liEmptyStateHtml(buttonId){
     : (liQuery.trim() || liActiveFilterCount() > 0)
       ? tx('Try widening your search or filters.')
       : liLocationContext && liLocationContext.kind === 'current'
-        ? tx('No ORMA trails are mapped within {km} km yet.', { km:liLocationContext.radiusKm })
+        ? tx('No ORMA trails within {km} km yet.', { km:liLocationContext.radiusKm })
         : t('home.noTrailsValley', {label});
   return {
     html: `
@@ -5763,7 +5736,7 @@ async function updateRegionalMapData(map, regionSelection) {
 function placeDogPolicyLabel(policy) {
   return {
     welcome: tx('Dogs welcome'),
-    leashed: tx('Dogs welcome on leash'),
+    leashed: tx('Dogs welcome on a lead'),
     'not-allowed': tx('Dogs not allowed'),
   }[policy] || tx('Dog policy recorded');
 }
@@ -5785,7 +5758,7 @@ function ensurePlaceDogVerificationDialog() {
         <fieldset>
           <legend>${tx('Dog policy')}</legend>
           <label><input type="radio" name="policy" value="welcome" required> ${tx('Dogs welcome')}</label>
-          <label><input type="radio" name="policy" value="leashed"> ${tx('Dogs welcome on leash')}</label>
+          <label><input type="radio" name="policy" value="leashed"> ${tx('Dogs welcome on a lead')}</label>
           <label><input type="radio" name="policy" value="not-allowed"> ${tx('Dogs not allowed')}</label>
         </fieldset>
         <label class="place-dog-field">${tx('How do you know?')}
@@ -5879,7 +5852,7 @@ async function hydratePlaceDogVerification(host, place) {
   }
   if(!host.isConnected) return;
   host.innerHTML = verified
-    ? `<span class="orma-verified-badge">${productIcon('dog')} ${tx('ORMA verified')}</span><span class="orma-verified-policy">${placeDogPolicyLabel(verified.policy)}</span><button type="button" class="orma-place-verify-btn">${tx('Report a change')}</button>`
+    ? `<span class="orma-verified-badge">${productIcon('dog')} ${tx('Verified by ORMA')}</span><span class="orma-verified-policy">${placeDogPolicyLabel(verified.policy)}</span><button type="button" class="orma-place-verify-btn">${tx('Report a change')}</button>`
     : `<span class="orma-place-prompt">${tx('Know if dogs are welcome here?')}</span><button type="button" class="orma-place-verify-btn">${tx('Help ORMA verify')}</button>`;
   host.querySelector('.orma-place-verify-btn').addEventListener('click', () => {
     openPlaceDogVerification(place, () => {
@@ -5996,7 +5969,7 @@ function addPoiLayerSet(map, sourceId, prefix, circleColor, clusterColor, iconGr
       content += `<br>🔗 <a href="${url}" target="_blank" rel="noopener">${tx('Website')}</a>`;
     }
     if (props.dog === 'yes') content += `<br><span class="dp-inline-status">${productIcon('dog')}<span>${tx('Dogs welcome')}</span></span>`;
-    else if (props.dog === 'leashed') content += `<br>🦮 ${tx('Dogs on leash')}`;
+    else if (props.dog === 'leashed') content += `<br>🦮 ${tx('Dogs on a lead')}`;
     else if (props.dog === 'no') content += `<br>🚫 ${tx('No dogs')}`;
     if (props.outdoor_seating && props.outdoor_seating !== 'no') content += `<br>🪑 ${tx('Outdoor seating')}`;
     const coordinates = feature.geometry.coordinates.slice(0, 2);

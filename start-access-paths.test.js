@@ -31,7 +31,8 @@ describe('the walk-in from a start flag that sits off the line', () => {
       const line = record.path;
       expect(metres(point(line[0]), trail.startPoint)).toBeLessThanOrEqual(START_MATCH_M);
       expect(nearestOnLine(point(line[line.length - 1]), trail.path).distanceM).toBeLessThan(2);
-      expect(record.lengthM).toBeLessThanOrEqual(MAX_LENGTH_M);
+      const overCap = (data.overCap || {})[id];
+      expect(record.lengthM).toBeLessThanOrEqual(overCap ? overCap.maxLengthM : MAX_LENGTH_M);
       expect(Math.abs(lineLength(line) - record.lengthM)).toBeLessThanOrEqual(2);
     });
   });
@@ -45,6 +46,23 @@ describe('the walk-in from a start flag that sits off the line', () => {
         ? `${trail.id}: label ${statedM} m, walk-in ${trail.accessPath.lengthM} m` : null;
     }).filter(Boolean);
     expect(disagree).toEqual([]);
+  });
+
+  test('a walk-in over the cap is the owner’s call and is named under Where to start', () => {
+    Object.entries(data.overCap || {}).forEach(([id, entry]) => {
+      expect(entry.decision).toMatch(/Owner/);
+      const record = data.paths[id];
+      expect({ id, drawn:Boolean(record) }).toEqual({ id, drawn:true });
+      if(entry.startLine){
+        expect(Number.isFinite(record.climbM)).toBe(true);
+        const trail = trails.find(item => item.id === id);
+        expect(trail.accessPath).toMatchObject({ startLine:true, climbM:record.climbM });
+      }
+    });
+    const line = 'From the start it’s about {distance} on foot and {climb} m up to the walk. This is not included in the walk’s figures.';
+    expect(fs.readFileSync(path.join(root, 'trail-blueprint.js'), 'utf8')).toContain(line);
+    expect(fs.readFileSync(path.join(root, 'scripts', 'generate-trail-pages.js'), 'utf8')).toContain(line);
+    expect(fs.readFileSync(path.join(root, 'i18n-phrases-it.js'), 'utf8')).toContain(JSON.stringify(line));
   });
 
   test('the walk-in never changes the walk’s own figures', () => {
@@ -73,7 +91,7 @@ describe('the walk-in from a start flag that sits off the line', () => {
     const home = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
     expect(home).toContain("beforeId:'trail-selected-route-casing'");
     const italian = fs.readFileSync(path.join(root, 'i18n-phrases-it.js'), 'utf8');
-    expect(italian).toContain('"Dashed line: about {metres} m on foot from the start flag to the walk. Not part of the walk’s distance."');
+    expect(italian).toContain('"Dashed line: about {distance} on foot from the start flag to the walk. Not part of the walk’s distance."');
 
     const route = {
       type:'FeatureCollection',
@@ -87,5 +105,8 @@ describe('the walk-in from a start flag that sits off the line', () => {
     expect(svg.indexOf('class="access"')).toBeGreaterThan(-1);
     expect(svg.indexOf('class="access"')).toBeLessThan(svg.indexOf('class="route"'));
     expect(svg).toContain('~180 m');
+    const long = JSON.parse(JSON.stringify(route));
+    long.features[1].properties.lengthM = 2124;
+    expect(renderOfflineMap({ trailId:'test-walk', xml, route:long, height:600 }).svg).toContain('~2.1 km');
   });
 });

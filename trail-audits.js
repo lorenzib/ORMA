@@ -325,8 +325,8 @@
       shadeDescription: 'The official description records pine, juniper, larch and spruce along the first climb, followed by a more open view beyond Lago d’Aosto.',
       terrainDescription: 'The marked loop climbs gently toward Lago d’Aosto on mostly natural ground. The official description rates the wider route collection E and names no equipped or alpine-grade section on route 5.',
       waterDescription: 'No drinking-water point is mapped on the loop. Carry a full supply; the marsh at Lago d’Aosto is not a drinking source.',
-      dogNotes: 'Dogs must be on a leash: Lozzo di Cadore requires one on all public places, trails included, and the western end of the loop lies in Domegge di Cadore, which requires a leash of at most 1.3 m or a muzzle. No pasture is described or mapped along the loop, but two farm buildings stand beside the path, so animals may be kept close by.',
-      tips: 'Start at Niante Aze outside Lozzo and follow route 5 toward Lago d’Aosto. The official route is about 3 km with 250 m ascent; carry all water you need. Keep your dog on a leash throughout: Lozzo di Cadore requires one on its trails, Domegge di Cadore (the western end of the loop) a leash of at most 1.3 m or a muzzle, and the path passes two farm buildings where animals may be kept.',
+      dogNotes: 'Dogs must be on a leash: Lozzo di Cadore requires one on all public places, trails included, and the western end of the loop lies in Domegge di Cadore, which requires a lead of at most 1.3 m or a muzzle. No pasture is described or mapped along the loop, but two farm buildings stand beside the path, so animals may be kept close by.',
+      tips: 'Start at Niante Aze outside Lozzo and follow route 5 toward Lago d’Aosto. The official route is about 3 km with 250 m ascent; carry all water you need. Keep your dog on a lead throughout: Lozzo di Cadore requires one on its trails, Domegge di Cadore (the western end of the loop) a lead of at most 1.3 m or a muzzle, and the path passes two farm buildings where animals may be kept.',
       sourceLinks: [
         {
           label: 'Lozzo di Cadore, Anello del Sole',
@@ -14934,7 +14934,7 @@
       "imageCreditText": "Tramin parish church and the Etsch valley by Plentn",
       "imageAlt": "The tall Gothic spire of Tramin parish church above red roofs, with the Etsch valley floor and the mountains across the valley behind",
       "imageSourceType": "licensed-source",
-      "routeNumberGuidance": {"mode": "numbered", "start": "Start at the bus stop Tramin, Altersheim, 14 m from the route, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.", "status": "The mapped route carries trail numbers VR, 6; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.", "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails VR and then 6, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "switches": "On the mapped route, trail VR gives way to trail 6 about 0.8 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "establishedBy": {"start": "orma-record", "status": "orma-record", "sequence": "route-relations", "switches": "route-relations"}, "sources": [{"label": "OpenStreetMap route 6", "url": "https://www.openstreetmap.org/relation/12363193", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.092Z"}, {"label": "OpenStreetMap route VR", "url": "https://www.openstreetmap.org/relation/13347902", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.092Z"}]},
+      "routeNumberGuidance": {"mode": "numbered", "start": "Start at the bus stop Tramin, Altersheim, 14 m from the route, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.", "status": "This route follows trails VR, 6. Look for those numbers at junctions; ORMA has not checked how they are shown on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.", "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails VR and then 6, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "switches": "On the mapped route, trail VR gives way to trail 6 about 0.8 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "establishedBy": {"start": "orma-record", "status": "orma-record", "sequence": "route-relations", "switches": "route-relations"}, "sources": [{"label": "OpenStreetMap route 6", "url": "https://www.openstreetmap.org/relation/12363193", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.092Z"}, {"label": "OpenStreetMap route VR", "url": "https://www.openstreetmap.org/relation/13347902", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.092Z"}]},
       "terrainType": "Sparsely mapped: paved (100%), gravel (0%), from OSM surface data",
       "terrainRank": 2,
       "safetyLevel": "caution",
@@ -16605,12 +16605,12 @@
       "imageCreditText": "Alpenrose on the Cherz pasture by Mike Noren",
       "imageAlt": "Alpenrose in flower on the Cherz pasture at about 2080 m, the meadow rising to a Dolomite skyline behind",
       "imageSourceType": "licensed-source",
-      "routeNumberGuidance": {"mode": "numbered", "start": "Start at Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs about 220 m from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.", "status": "The mapped route carries trail numbers 022, 045; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.", "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails 022, 045 and then 022, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "switches": "On the mapped route, trail 022 gives way to trail 045 about 0.1 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "establishedBy": {"start": "orma-record", "status": "orma-record", "sequence": "route-relations", "switches": "route-relations"}, "sources": [{"label": "OpenStreetMap route 022", "url": "https://www.openstreetmap.org/relation/19266004", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.221Z"}, {"label": "OpenStreetMap route 045", "url": "https://www.openstreetmap.org/relation/19267819", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.221Z"}]},
+      "routeNumberGuidance": {"mode": "numbered", "start": "Start at Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.", "status": "This route follows trails 022, 045. Look for those numbers at junctions; ORMA has not checked how they are shown on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.", "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails 022, 045 and then 022, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "switches": "On the mapped route, trail 022 gives way to trail 045 about 0.1 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "establishedBy": {"start": "orma-record", "status": "orma-record", "sequence": "route-relations", "switches": "route-relations"}, "sources": [{"label": "OpenStreetMap route 022", "url": "https://www.openstreetmap.org/relation/19266004", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.221Z"}, {"label": "OpenStreetMap route 045", "url": "https://www.openstreetmap.org/relation/19267819", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.221Z"}]},
       "terrainType": "Surface not yet field-verified",
       "terrainRank": 0,
       "safetyLevel": "low-risk",
       "waterSources": [],
-      "startPoint": {"lat": 46.52004, "lng": 11.87393, "label": "Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs about 220 m from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs"},
+      "startPoint": {"lat": 46.52004, "lng": 11.87393, "label": "Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs"},
       "path": [[46.5155873, 11.8856421], [46.5155965, 11.885872], [46.5155877, 11.8860373], [46.5155631, 11.8861767], [46.5155432, 11.8862649], [46.5155199, 11.8863356], [46.5154754, 11.8864091], [46.5153453, 11.8864929], [46.515301, 11.8866022], [46.515241, 11.8866934], [46.5152174, 11.8867739], [46.5151911, 11.8868154], [46.5151607, 11.8869033], [46.5150845, 11.8869878], [46.5150545, 11.8870877], [46.5149433, 11.8872875], [46.514912, 11.8874317], [46.5148058, 11.8877193], [46.5147703, 11.8879131], [46.5145626, 11.888296], [46.5142405, 11.8888351], [46.513959, 11.8891751], [46.5138912, 11.889334], [46.5137459, 11.8894722], [46.5135054, 11.8896438], [46.5127702, 11.890039], [46.512601, 11.890254], [46.5124305, 11.8903824], [46.5121473, 11.8905397], [46.5120283, 11.8906999], [46.5119055, 11.8908294], [46.511846, 11.8909413], [46.5116762, 11.8911023], [46.5115986, 11.8912692], [46.5115211, 11.8914033], [46.5114085, 11.8915227], [46.5113863, 11.8915918], [46.5111671, 11.8918989], [46.5109687, 11.8922462], [46.5108021, 11.8924789], [46.5107477, 11.8925004], [46.5104675, 11.8928041], [46.5103725, 11.8929979], [46.5103674, 11.8931186], [46.5102608, 11.8933211], [46.5102488, 11.8934016], [46.5102026, 11.8934754], [46.5101283, 11.8937623], [46.5099333, 11.8941269], [46.5097518, 11.8943873], [46.5097005, 11.8945456], [46.5096452, 11.8945643], [46.5095496, 11.8946683], [46.5094989, 11.894795], [46.5094548, 11.8948307], [46.5093313, 11.89486], [46.5091949, 11.8949594], [46.5088984, 11.8952852], [46.5085097, 11.8955688], [46.5081743, 11.8957626], [46.5080484, 11.8957894], [46.5079256, 11.8957753], [46.5078047, 11.895721], [46.5077082, 11.8956151], [46.5074013, 11.8956064], [46.5073653, 11.8955205], [46.5069643, 11.895546], [46.5069329, 11.8956117], [46.5066784, 11.8956976], [46.506578, 11.8956633], [46.5065484, 11.8956203], [46.5068734, 11.8953457], [46.506976, 11.8952531], [46.5070132, 11.8950954], [46.5071101, 11.8950203], [46.5073261, 11.8948232], [46.5075661, 11.8946193], [46.5085029, 11.893525], [46.5089252, 11.8925922], [46.5089451, 11.8924943], [46.5089215, 11.8922167], [46.5089248, 11.8920974], [46.5089538, 11.8919606], [46.5091703, 11.8913296], [46.5093641, 11.8909031], [46.5094924, 11.890537], [46.5095325, 11.8902983], [46.5095972, 11.8901145], [46.5096978, 11.8899053], [46.5098985, 11.8896706], [46.5100614, 11.889503], [46.5101583, 11.8893595], [46.510306, 11.8892475], [46.5105884, 11.8891188], [46.5107135, 11.8890135], [46.5108109, 11.8888962], [46.5109207, 11.8887406], [46.5110084, 11.8885978], [46.5110601, 11.8884737], [46.5111538, 11.8881076], [46.5112565, 11.8878613], [46.5113687, 11.887681], [46.5116046, 11.8874377], [46.5117957, 11.8873096], [46.5119955, 11.8872929], [46.5125816, 11.88738], [46.5127445, 11.8874793], [46.5129111, 11.8875088], [46.5130693, 11.8874209], [46.5132138, 11.8873344], [46.5140859, 11.8870888], [46.5143979, 11.8868798], [46.5146821, 11.8868744], [46.5148833, 11.8867111], [46.5150047, 11.8866364], [46.5151141, 11.886517], [46.5152299, 11.8864265], [46.5152631, 11.8863601], [46.5152849, 11.8862476], [46.5154205, 11.8861402], [46.5155139, 11.8860158], [46.515561, 11.8859611], [46.5155965, 11.885872]],
       "curated": true,
       "tier": "route-audited",
@@ -72023,6 +72023,298 @@
       ],
       startPoint: { lat: 45.105342, lng: 7.187053, label: "Borgata Adret, San Giorio di Susa, the board’s start" },
       desc: "A shady forest loop from Borgata Adret through chestnut and beech woods to the Rifugio GEAT Val Gravio and the old Certosa di Montebenedetto, on the edge of the Orsiera-Rocciavrè park. The board lists 7.2 km and 361 m up."
+    },
+    'iseo-colmi': {
+      // Hand audit: 19 November 2026, verified on arrival (Lake Iseo + Alto Garda batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Visit Lake Iseo: “Passeggiata tra I Colmi” on Outdooractive, drawn there and back on 99 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Communes: Sulzano (start; no dog rule found online, so the national rule applies), Polaveno (Ordinanza n. 73/2024 of 5 December 2024: lead in places open to the public) and Iseo (Regolamento di Polizia Urbana, CC n. 3 of 24 February 2025, art. 8: lead in public places). No park, reserve or Natura 2000 site on the line. About 1.4 km each way graded T2 in OSM: flagged as a caution (owner rule of 18 November 2026). No road on the line beyond a crossing near the closed Trattoria I Colmi.
+      // The stored line follows the published line, 100% each way.
+      area: "Santa Maria del Giogo – I Colmi – Punta dell’Orto (Sulzano, Polaveno, Iseo)",
+      distance: 7.2,
+      elevation: 252,
+      hours: '2.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: "Visit Lake Iseo publishes the walk one way, from Santa Maria del Giogo to Punta dell’Orto (3.6 km, 150 m up, 102 m down, 1 h 10), and gives no return. ORMA walks it there and back on the same path: 7.2 km with 252 m up and down. The time, about 2 h 30, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Località Santa Maria del Giogo (about 900 m), a terrace above Lake Iseo reached by road from Sulzano, by the bar-trattoria car park, the published start.",
+        "sequence": "Follow the white and blue 3V signs for a few minutes to the sanctuary of Santa Maria del Giogo. Past the church the path drops a little and runs straight on above the Val Trompia, easy and well marked, to I Colmi (about 30 minutes), one of the finest viewpoints on the lake, over Monte Isola and the Val Camonica. Carry on to the road by the closed Trattoria I Colmi, cross it and follow the signs for Punta dell’Orto into the woods, past a clearing with a small pond, then left up to the summit with the CAI Iseo cross. Come back the same way.",
+        "switches": "White and blue 3V signs (CAI 393) from Santa Maria del Giogo past the sanctuary to I Colmi; across the road by the closed Trattoria I Colmi; signs for Punta dell’Orto past the pond to the cross; back the same way.",
+        "sources": [
+          {
+            "label": "Visit Lake Iseo, Passeggiata tra I Colmi (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/800088421",
+            "authority": "Visit Lake Iseo",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Monte Isola and Lake Iseo from the meadows at I Colmi, on the walk (xlyz on Mapillary, CC BY-SA 4.0), 19 May 2024, 3 m from the line.",
+        route: "Official one-way walk of 3.6 km from Località Santa Maria del Giogo above Sulzano, by the bar-trattoria, as Visit Lake Iseo, the tourism association of the Lake Iseo communes and the provinces of Brescia and Bergamo publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 99 OSM ways along the published line out and back, 7.2 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "White and blue 3V signs (Sentiero 3V, CAI 393) from Santa Maria del Giogo past the sanctuary to I Colmi; across the road by the closed Trattoria I Colmi; signs for Punta dell’Orto past a small pond to the CAI Iseo cross; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 3.6 km, 150 m up, 102 m down, 1 h 10, between 871 m and 974 m (Visit Lake Iseo, Outdooractive). There and back on the same path: 7.2 km, 252 m up and 252 m down; about 2 h 30 measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Visit Lake Iseo, “Passeggiata tra I Colmi” (Outdooractive tour with its line and figures)",
+          "Comune di Sulzano publishes no dog regulation online (searched its regulations in Amministrazione Trasparente and the site), so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Comune di Polaveno, Ordinanza sindacale n. 73/2024 of 5 December 2024: dogs may not roam free in places public or open to the public; lead required",
+          "Comune di Iseo, Regolamento di Polizia Urbana (CC n. 3, 24 February 2025), art. 8 c. 1: dogs on a lead in places public or open to the public",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): no protected area on the line; European Environment Agency Natura 2000 service: no site on the line",
+          "OpenStreetMap ways along the board’s line (99 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 10,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 1.4 km of the path each way is mountain path (T2): rough grass and stony ground, steeper near Punta dell’Orto; sure footing needed","Open grassy ridge with little shade: on a hot day go early and bring plenty of water","You cross a road by the closed Trattoria I Colmi: keep your dog on a short lead there","A few short flights of concrete steps on the path"],
+      terrainType: "Grassy ridge paths and farm tracks",
+      shadeDescription: "Mostly open meadows along the ridge; a short wooded stretch on the way to Punta dell’Orto. OSM maps no woodland on the line.",
+      terrainDescription: "A short, mostly level balcony path at about 900 m above Lake Iseo, from the sanctuary of Santa Maria del Giogo along grassy ridges and farm tracks to the I Colmi viewpoint over Monte Isola, then through a little wood to the cross on Punta dell’Orto, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The bar-trattoria at Santa Maria del Giogo is at the start; the Trattoria I Colmi on the way is closed. Bring water and a bowl for your dog.",
+      dogNotes: "Iseo (Regolamento di Polizia Urbana, 2025, art. 8) and Polaveno (mayor’s ordinance 73/2024) ask for dogs on a lead in places open to the public; Sulzano, at the start, publishes no rule of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried.",
+      tips: "Drive up from Sulzano to Santa Maria del Giogo and park by the bar-trattoria: 3.6 km on the 3V path to Punta dell’Orto, about 1 h 10 as the board gives, and the same way back, about 2 h 30 in all by ORMA’s DIN 33466 estimate. Go early on a sunny day, keep your dog on a lead and carry a muzzle.",
+      sourceLinks: [
+        { label: "Visit Lake Iseo, Passeggiata tra I Colmi (Outdooractive)", url: "https://www.outdooractive.com/it/r/800088421" },
+        { label: "Visit Lake Iseo, who we are (association of 23 Lake Iseo communes and the provinces of Brescia and Bergamo)", url: "https://www.visitlakeiseo.info/chi-siamo/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Comune di Iseo, Regolamento di Polizia Urbana (2025)", url: "https://www.comune.iseo.bs.it/ocmultibinary/download/7603/212084/1/83945ee85d6843c664ef3854ed51af2a.PDF/file/Regolamento_Polizia_Urbana_24-02-2025.PDF" },
+        { label: "Comune di Polaveno, Ordinanza n. 73/2024", url: "https://www.comune.polaveno.bs.it/ocmultibinary/download/516/9730/3/8a6404b4a18afb5d7c794414d5c226f3.pdf/file/o000073.pdf" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.678319, lng: 10.135857, label: "Località Santa Maria del Giogo above Sulzano, by the bar-trattoria, the published start" },
+      desc: "An easy balcony walk at about 900 m above Lake Iseo, from the sanctuary of Santa Maria del Giogo along the 3V path over grassy ridges to the I Colmi viewpoint, with Monte Isola below, and on through a little wood to the cross on Punta dell’Orto, and back the same way. Visit Lake Iseo lists 3.6 km one way; there and back it is 7.2 km with 252 m up and down, about 2 h 30."
+    },
+    'altogarda-santuario-montecastello': {
+      // Hand audit: 19 November 2026, verified on arrival (Lake Iseo + Alto Garda batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Comunità Montana Parco Alto Garda Bresciano: “Il Santuario di Montecastello” on Outdooractive, drawn on 28 OSM ways along its published line (data/board-line-routes.geojson).
+      // Commune: Tignale (no dog rule of its own found online; the 2019 decoro regulation only asks for waste bags), so the national rule applies. Alto Garda Bresciano regional park and ZPS IT2070402 on the line: no dog clause found for either outside the four SICs. About 0.5 km of mountain path (T2) flagged as a caution; the board grades the walk T2. About 10 m along the SP38 in Gardola (a crossing).
+      // The stored line follows the published line, 100% each way.
+      area: "Gardola – Santuario di Montecastello, Tignale",
+      distance: 4.9,
+      elevation: 283,
+      hours: '1.9',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from Gardola up to the sanctuary of Montecastello and back, as the Comunità Montana Parco Alto Garda Bresciano publishes it: 4.9 km, 283 m up and down, 1 h 55.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in the centre of Gardola, the main village of Tignale, where there are car parks, the published start.",
+        "sequence": "From Gardola climb on the waymarked paths (204 and the Bassa Via del Garda) through woods and past viewpoints to the sanctuary of Montecastello, perched on a rocky spur at about 700 m above Lake Garda, with fourteenth-century frescoes, a small guest house and terraces looking over to Monte Baldo. Come back down by the other side of the loop and through the lanes of Gardola to the start.",
+        "switches": "Paths 204 and BVG (Bassa Via del Garda) from Gardola up to the sanctuary; back down on the other side of the loop through the lanes of Gardola.",
+        "sources": [
+          {
+            "label": "Comunità Montana Parco Alto Garda Bresciano, Il Santuario di Montecastello (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/806982564",
+            "authority": "Comunità Montana Parco Alto Garda Bresciano",
+            "tag": "park authority",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The forecourt of the Montecastello sanctuary, at the top of the walk (Jürgen Schneider on Wikimedia Commons, CC BY-SA 3.0), 11 July 2006, 26 m from the line.",
+        route: "Official loop of 4.9 km from The centre of Gardola, Tignale, as the Comunità Montana Parco Alto Garda Bresciano, the public body that runs the Alto Garda Bresciano regional park publishes it; the stored line is drawn on 28 OSM ways along the published line, 4.8 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Paths 204 (Comune di Tignale) and BVG (Bassa Via del Garda, Comunità Montana Parco Alto Garda Bresciano) from Gardola up to the sanctuary of Montecastello; back down on the other side of the loop through the lanes of Gardola.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official loop: 4.9 km, 283 m up and down, 1 h 55, between 503 m and 773 m (Comunità Montana Parco Alto Garda Bresciano, Outdooractive). The stored line follows the park’s own Outdooractive tour."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Comunità Montana Parco Alto Garda Bresciano, “Il Santuario di Montecastello” (Outdooractive tour with its line and figures)",
+          "Comune di Tignale publishes no dog regulation online (searched its regulations, general acts and ordinances; the Regolamento del decoro urbano, CC n. 14 of 3 April 2019, art. 14, only asks for waste bags), so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Parco Alto Garda Bresciano: no visitor regulation with a dog clause published online for the park outside its Natura 2000 sites, so no park rule beyond the national one there",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco Alto Garda Bresciano on the line; European Environment Agency Natura 2000 service: ZPS IT2070402 Alto Garda Bresciano",
+          "OpenStreetMap ways along the board’s line (28 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 53,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 0.5 km of mountain path (T2) on the climb to the sanctuary: stony and steeper in places; sure footing needed","About a third on village lanes and cobbled streets in Gardola, with a crossing of the SP38: keep your dog on a short lead there","The sanctuary sits on a rocky spur with drops beside the terraces: keep your dog close at the top","Sunny lower slopes above Lake Garda: on a hot day go early and bring water"],
+      terrainType: "Woodland paths and village lanes",
+      shadeDescription: "About half shaded: woods on the climb to the sanctuary; the lanes of Gardola and the viewpoints are open.",
+      terrainDescription: "A short loop from Gardola, the main village of Tignale on its terrace high above Lake Garda, up woodland paths past viewpoints to the sanctuary of Montecastello on its rocky spur, one of the landmarks of the Alto Garda Bresciano park, and back down through the lanes of Gardola.",
+      waterDescription: "No drinking water is mapped on the line (OSM). Gardola has bars and shops at the start; the sanctuary has a small guest house. Bring water and a bowl for your dog.",
+      dogNotes: "Tignale publishes no dog rule of its own, so the national rule applies: a lead of at most 1.5 m in places open to the public and a muzzle carried. The walk is in the Alto Garda Bresciano regional park, also a Natura 2000 bird area: keep your dog on the path.",
+      tips: "Park in Gardola, the centre of Tignale: 4.9 km and 283 m up and down, about 1 h 55 as the park gives. Stop on the sanctuary terrace for one of the best views over Lake Garda. Keep your dog on a lead in the village and carry a muzzle.",
+      sourceLinks: [
+        { label: "Comunità Montana Parco Alto Garda Bresciano, Il Santuario di Montecastello (Outdooractive)", url: "https://www.outdooractive.com/it/r/806982564" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.741714, lng: 10.733015, label: "The centre of Gardola, Tignale, the published start" },
+      desc: "A short loop from Gardola, Tignale’s main village high above Lake Garda, up woodland paths to the sanctuary of Montecastello, perched on a rocky spur at about 700 m with frescoes and a terrace over the lake and Monte Baldo, and back down through the village lanes. The park lists 4.9 km, 283 m up and down, 1 h 55."
+    },
+    'altogarda-valle-cartiere': {
+      // Hand audit: 19 November 2026, verified on arrival (Lake Iseo + Alto Garda batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Comunità Montana Parco Alto Garda Bresciano: “Nella Valle delle Cartiere” on Outdooractive, drawn there and back on 37 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Commune: Toscolano Maderno, Regolamento di Polizia Urbana (CC n. 32/2010), art. 51: dogs always on a lead except in places set aside for them. Alto Garda Bresciano regional park on the line, no Natura 2000 site: no park dog clause found. About 1.9 km of the 4.1 km is the asphalt Via Valle delle Cartiere to the museum (a quiet lane, under half the walk); no main road.
+      // The stored line follows the published line, 100% each way.
+      area: "Toscolano – Museo della Carta – Maina Inferiore – Maina Superiore, Toscolano Maderno",
+      distance: 4.2,
+      elevation: 67,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Comunità Montana Parco Alto Garda Bresciano publishes the walk one way, from Toscolano to Maina Superiore (2.1 km, 62 m up, 40 min), and gives no return. ORMA walks it there and back on the same way: 4.2 km with 67 m up and down. The time, about 1 h 15, is measured by ORMA (DIN 33466), not the park’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start by the old bridge over the Toscolano stream in Toscolano, Toscolano Maderno, where the Via Valle delle Cartiere begins, the published start.",
+        "sequence": "Follow the Via Valle delle Cartiere up the narrow valley of the Toscolano stream to the Museo della Carta, in an old paper mill. Carry on along the stream between steep rock walls and the ruins of the mills to the former mill of Maina Inferiore and the hamlet of Vago, then to Maina Superiore, once the largest mill in the valley and now an archaeological site. Come back the same way.",
+        "switches": "Via Valle delle Cartiere (path 217E, Bassa Via del Garda) from the old bridge past the Museo della Carta to Maina Inferiore, Vago and Maina Superiore; back the same way.",
+        "sources": [
+          {
+            "label": "Comunità Montana Parco Alto Garda Bresciano, Nella Valle delle Cartiere (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/806981779",
+            "authority": "Comunità Montana Parco Alto Garda Bresciano",
+            "tag": "park authority",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The path past the ruined paper mills of Maina in the Valle delle Cartiere (maists115 on Mapillary, CC BY-SA 4.0), 2 September 2024, 18 m from the line.",
+        route: "Official one-way walk of 2.1 km from The old bridge in Toscolano, Toscolano Maderno, as the Comunità Montana Parco Alto Garda Bresciano, the public body that runs the Alto Garda Bresciano regional park publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 37 OSM ways along the published line out and back, 4.1 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Via Valle delle Cartiere (path 217E “Valle delle Cartiere” and the Bassa Via del Garda) from the old bridge in Toscolano past the Museo della Carta to Maina Inferiore, Vago and Maina Superiore; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 2.1 km, 62 m up, 5 m down, 40 min, between 85 m and 146 m (Comunità Montana Parco Alto Garda Bresciano, Outdooractive). There and back on the same way: 4.2 km, 67 m up and 67 m down; about 1 h 15 measured by ORMA (DIN 33466), since the park times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Comunità Montana Parco Alto Garda Bresciano, “Nella Valle delle Cartiere” (Outdooractive tour with its line and figures)",
+          "Comune di Toscolano Maderno, Regolamento di Polizia Urbana (CC n. 32/2010), art. 51: dogs always on a lead except in places set aside for them; dogs barred from children’s play areas",
+          "Parco Alto Garda Bresciano: no visitor regulation with a dog clause published online for the park outside its Natura 2000 sites, so no park rule beyond the national one there",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco Alto Garda Bresciano on the line; European Environment Agency Natura 2000 service: no site on the line",
+          "OpenStreetMap ways along the board’s line (37 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 87,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The first half is the asphalt Via Valle delle Cartiere, open to cars going to the museum: keep your dog on a short lead there","The ruins of the mills are fragile and the stream runs beside the path: keep your dog out of the ruins and away from the water after rain","A low valley by Lake Garda: in high summer go early, though the gorge is mostly shaded"],
+      terrainType: "Valley lane and gravel track",
+      shadeDescription: "Mostly shaded: the narrow gorge and its woods keep the sun off most of the way.",
+      terrainDescription: "An easy, nearly level walk up the narrow gorge of the Toscolano stream, between steep rock walls and woods, along the lane to the Museo della Carta and on a gravel track past the ruins of the paper mills that made Toscolano famous across Europe, to Maina Superiore, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The Museo della Carta has facilities when open; Toscolano has bars at the start. Bring water and a bowl for your dog.",
+      dogNotes: "Toscolano Maderno’s Regolamento di Polizia Urbana (art. 51) asks for dogs always on a lead except in areas set aside for them; the national rule adds a lead of at most 1.5 m and a muzzle carried. The valley is in the Alto Garda Bresciano regional park.",
+      tips: "Park near the old bridge in Toscolano: 2.1 km up the valley to Maina Superiore, about 40 min as the park gives, and the same way back, about 1 h 15 in all by ORMA’s DIN 33466 estimate. Leave time for the Museo della Carta. Keep your dog on a lead all the way and carry a muzzle.",
+      sourceLinks: [
+        { label: "Comunità Montana Parco Alto Garda Bresciano, Nella Valle delle Cartiere (Outdooractive)", url: "https://www.outdooractive.com/it/r/806981779" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Comune di Toscolano Maderno, Regolamento di Polizia Urbana", url: "https://toscolano.maggiolicloud.it/atti/AmministrazioneTrasparenteDett.aspx?ID_INCA=13759" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.64258, lng: 10.609018, label: "The old bridge in Toscolano, Toscolano Maderno, the published start" },
+      desc: "An easy walk up the shaded gorge of the Toscolano stream, in the Alto Garda Bresciano park, past the Paper Museum and the ruined mills that made Toscolano’s paper famous across Europe, to the archaeological site of Maina Superiore, and back the same way. The park lists 2.1 km one way; there and back it is 4.2 km with 67 m up and down, about 1 h 15."
+    },
+    'altogarda-nasce-formaggio-tombea': {
+      // Hand audit: 19 November 2026, verified on arrival (Lake Iseo + Alto Garda batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Comunità Montana Parco Alto Garda Bresciano: “Dove nasce il formaggio di Tombea” on Outdooractive, drawn there and back on 9 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Commune: Magasa, Regolamento di convivenza con gli animali, art. 4 c. 1: lead or muzzle in areas open to the public. SIC IT2070021 Valvestino and ZPS IT2070402 on the line: the park’s SIC rules (art. 22) ask for dogs on a lead and closely watched. Summer pastures with cows (malghe). About 0.5 km of asphalt at Cima Rest; the rest is forest track. The start is reached by car.
+      // The stored line follows the published line, 100% each way.
+      area: "Cima Rest – Malga Alvezza, Magasa (Valvestino)",
+      distance: 3.6,
+      elevation: 139,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Comunità Montana Parco Alto Garda Bresciano publishes the walk one way, from Cima Rest towards Malga Alvezza (1.8 km, 139 m up, 45 min), and gives no return. ORMA walks it there and back on the same track: 3.6 km with 139 m up and down. The time, about 1 h 15, is measured by ORMA (DIN 33466), not the park’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the free car park of the Museo Etnografico della Valvestino at Cima Rest (about 1,200 m), above Magasa in the Valvestino, the published start; Cima Rest is reached by a signed turn off the road just before Magasa.",
+        "sequence": "Walk past the old thatched barns of Cima Rest and the ethnographic museum, then follow the track (path 299) that climbs gently through pastures and beech woods towards Malga Alvezza, among the summer farms where Tombea cheese is made, to the top of the walk at about 1,330 m. Come back the same way.",
+        "switches": "Past the barns of Cima Rest and the museum; path 299 up the track through pastures and beech woods towards Malga Alvezza; back the same way.",
+        "sources": [
+          {
+            "label": "Comunità Montana Parco Alto Garda Bresciano, Dove nasce il formaggio di Tombea (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/806982416",
+            "authority": "Comunità Montana Parco Alto Garda Bresciano",
+            "tag": "park authority",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The track past the thatched barns of Cima Rest at the start (zonta72 on Mapillary, CC BY-SA 4.0), 15 September 2019, 9 m from the line.",
+        route: "Official one-way walk of 1.8 km from The car park of the Museo Etnografico della Valvestino at Cima Rest, Magasa, as the Comunità Montana Parco Alto Garda Bresciano, the public body that runs the Alto Garda Bresciano regional park publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 9 OSM ways along the published line out and back, 3.5 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Path 299 (Comune di Magasa, also the CamminaForeste route) from Cima Rest past the thatched barns and the museum up the track through pastures and beech woods towards Malga Alvezza; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 1.8 km, 139 m up, 45 min, between 1,187 m and 1,326 m (Comunità Montana Parco Alto Garda Bresciano, Outdooractive). There and back on the same track: 3.6 km, 139 m up and 139 m down; about 1 h 15 measured by ORMA (DIN 33466), since the park times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Comunità Montana Parco Alto Garda Bresciano, “Dove nasce il formaggio di Tombea” (Outdooractive tour with its line and figures)",
+          "Comune di Magasa, Regolamento di convivenza con gli animali, art. 4 c. 1: lead or muzzle in areas open to the public",
+          "Parco Alto Garda Bresciano, Norme tecniche dei SIC (Monte Cas – Punta Corlor, Cima Comer, Valvestino, Corno della Marogna), art. 22: dogs on a lead and closely watched",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco Alto Garda Bresciano on the line; European Environment Agency Natura 2000 service: SIC IT2070021 Valvestino and ZPS IT2070402 Alto Garda Bresciano",
+          "OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["Summer pastures with cows around the malghe: keep your dog on a lead and give the herds room","Open pastures with almost no shade: on a hot day go early and bring water","The first stretch at Cima Rest is on a small asphalt road with some cars: keep your dog close there"],
+      terrainType: "Pasture and forest tracks",
+      shadeDescription: "Almost all open: pastures around Cima Rest and along the track; a little shade at the edge of the beech woods.",
+      terrainDescription: "A short, gentle walk at about 1,200–1,300 m in the Valvestino, from the thatched barns and ethnographic museum of Cima Rest along a track through summer pastures and beech woods towards Malga Alvezza, where the Tombea mountain cheese is made, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM). In summer the malghe on the way sell their cheese; there is no other refreshment. Bring water and a bowl for your dog.",
+      dogNotes: "Magasa’s rule on living with animals (art. 4) asks for a lead or a muzzle in areas open to the public, and the Valvestino Natura 2000 site’s rules ask for dogs on a lead and closely watched; the national rule adds a lead of at most 1.5 m and a muzzle carried. Cows graze the pastures in summer: keep your dog on a lead.",
+      tips: "Drive to Cima Rest above Magasa and park at the ethnographic museum: 1.8 km up the track towards Malga Alvezza, about 45 min as the park gives, and the same way back, about 1 h 15 in all by ORMA’s DIN 33466 estimate. In summer buy Tombea cheese at the malghe. Keep your dog on a lead among the cows and carry a muzzle.",
+      sourceLinks: [
+        { label: "Comunità Montana Parco Alto Garda Bresciano, Dove nasce il formaggio di Tombea (Outdooractive)", url: "https://www.outdooractive.com/it/r/806982416" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Comune di Magasa, Amministrazione trasparente (Regolamento di convivenza con gli animali)", url: "https://servizionline.hspromilaprod.hypersicapp.net/cmsmagasa/portale/trasparenza/trasparenzaamministrativadettaglio.aspx?CP=5&CDOC=30" },
+        { label: "Parco Alto Garda Bresciano, Norme tecniche dei SIC Monte Cas – Punta Corlor, Cima Comer, Valvestino e Corno della Marogna, art. 22", url: "https://ww2.gazzettaamministrativa.it/opencms/export/sites/default/_gazzetta_amministrativa/amministrazione_trasparente/_lombardia/_comunita___montana_parco_alto_garda_bresciano/190_pia_gov_ter/2015/Documenti_1441802376633/1441802386280_130520309.pdf" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.781019, lng: 10.629199, label: "The car park of the Museo Etnografico della Valvestino at Cima Rest, Magasa, the published start" },
+      desc: "A short, gentle walk high in the Valvestino, from the old thatched barns and ethnographic museum of Cima Rest along a track through summer pastures and beech woods towards Malga Alvezza, where the Tombea mountain cheese is made, and back the same way. The park lists 1.8 km one way; there and back it is 3.6 km with 139 m up and down, about 1 h 15."
     }
   };
 

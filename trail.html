@@ -22,8 +22,8 @@
   }, { once:true });
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="styles.css?v=20261120-2">
-<link rel="stylesheet" href="trail-mobile.css?v=20261120-1">
+<link rel="stylesheet" href="styles.css?v=20261123-7">
+<link rel="stylesheet" href="trail-mobile.css?v=20261123-7">
 <link rel="stylesheet" href="pre-hike-readiness.css?v=20260815-4">
 <style>
 /* ---- Companion reference tokens, trail detail (design-handoff fidelity) ---- */
@@ -593,7 +593,7 @@ body{background:#EFECE2;}
      over; the detailed status shows above the panel only when it has
      something to say (.hk-routine means it would only repeat the panel). */
   .td2 .trail-map-box.map-fs:has(.hk-live){--hk-dock:calc(168px + env(safe-area-inset-bottom));}
-  .td2 .trail-map-box.map-fs:has(.hk-live) :is(#detailLayersBtn,.map-panel,.maplibregl-ctrl-top-right,#mapExpandBtn,.td2-elev,.td-layer-switch,.map-nearest-directions,.map-nearest-directions-panel,.mobile-map-hike-slot,#mapPauseHikeBtn,#mapStartHikeBtn,.td-live-pill){display:none!important;}
+  .td2 .trail-map-box.map-fs:has(.hk-live) :is(#detailLayersBtn,#nearbyMapBtn,.map-panel,.maplibregl-ctrl-top-right,#mapExpandBtn,.td2-elev,.td-layer-switch,.map-nearest-directions,.map-nearest-directions-panel,.mobile-map-hike-slot,#mapPauseHikeBtn,#mapStartHikeBtn,.td-live-pill){display:none!important;}
   .td2 .trail-map-box.map-fs:has(.hk-live) .map-hazard-report-btn{top:max(12px,env(safe-area-inset-top))!important;right:12px!important;bottom:auto!important;}
   .td2 .trail-map-box.map-fs:has(.hk-live) #mapHikeDock:not([hidden]){display:block;}
   .td2 .trail-map-box.map-fs:has(.hk-live.hk-routine) #mapHikeStatus{display:none!important;}
@@ -964,6 +964,29 @@ body{background:#EFECE2;}
 .td2-fit-shell .td2-safety-card>.td2-kick{margin-bottom:8px;}
 .td2-fit-shell .dog-safety-rows{grid-template-columns:1fr;}
 .td2-map-stack>.td2-elev{padding:18px 20px;border-top:0;}
+/* The way into the other walks from the map itself: beside Layers, on from
+   the first paint, because their pins usually start outside the first view. */
+.td2 .map-nearby-btn{position:absolute;top:12px;left:96px;z-index:6;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:none;border-radius:9px;font:700 11.5px 'Inter',sans-serif;color:#2E4034;background:rgba(255,255,255,.95);box-shadow:0 2px 8px rgba(23,42,28,.16);cursor:pointer;white-space:nowrap;}
+.td2 .map-nearby-btn[hidden]{display:none;}
+.td2 .map-nearby-btn::before{content:"";width:9px;height:9px;border-radius:50%;background:#4A7856;box-shadow:0 0 0 2px #fff,0 0 0 3px rgba(46,64,52,.25);}
+.td2 .map-nearby-btn[aria-pressed="true"]{background:#2E4034;color:#fff;}
+.td2 .map-nearby-btn[aria-pressed="true"]::before{display:none;}
+.td2 .trail-map-box.map-fs .map-nearby-btn{top:max(12px,env(safe-area-inset-top));}
+/* Walks nearby: the neighbours pinned on the map, one line each. */
+.td2-nearby-walks{padding:16px 20px 10px;}
+.td2-nearby-walks[hidden]{display:none!important;}
+.td2-nearby-walks h2{margin:0 0 6px;}
+.td2-nearby-walks-list{list-style:none;margin:0;padding:0;}
+.td2-nearby-walk{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid #ECE8DF;}
+.td2-nearby-walk:first-child{border-top:0;}
+.td2-nearby-walk-link{display:flex;align-items:flex-start;gap:10px;flex:1;min-width:0;text-decoration:none;color:inherit;}
+.td2-nearby-walk-dot{flex:none;width:11px;height:11px;border-radius:50%;margin-top:4px;box-shadow:0 0 0 2px #fff,0 0 0 3px rgba(46,64,52,.18);}
+.td2-nearby-walk-text{display:flex;flex-direction:column;min-width:0;}
+.td2-nearby-walk-name{font-weight:700;font-size:14px;color:#2E4034;line-height:1.3;}
+.td2-nearby-walk-link:hover .td2-nearby-walk-name{text-decoration:underline;}
+.td2-nearby-walk-meta{font-size:12.5px;color:#6B7A6E;margin-top:2px;}
+.td2-nearby-walk-show{flex:none;font:700 12px 'Inter',sans-serif;color:#2E4034;background:#F2EFE8;border:1px solid #E2DDD2;border-radius:999px;padding:6px 12px;cursor:pointer;}
+.td2-nearby-walk-show:hover{background:#E9E5DB;}
 .td2-map-stack #elevProf{height:128px;}
 .td2-map-stack .td2-elev-figs{justify-content:space-between;gap:10px;}
 
@@ -1224,11 +1247,11 @@ body.trail-photo-viewer-open{overflow:hidden;}
              continue to own behavior. -->
         <div class="td-actions td2-hero-actions">
           <div class="td2-actrow">
-            <button id="heroStartHike" class="td2-btn-p" type="button" hidden><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start hike</button>
+            <button id="heroStartHike" class="td2-btn-p" type="button" hidden><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Record this walk</button>
             <button id="detailSaveBtn" class="td2-btn-g" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.4S4.2 14.5 4.2 9.2A4.3 4.3 0 0 1 12 6.6a4.3 4.3 0 0 1 7.8 2.6c0 5.3-7.8 11.2-7.8 11.2z"/></svg> Save</button>
             <a id="adjustWalkBtn" class="td2-btn-g" href="route-planner.html" data-i18n-title="page.trail.adjustWalkTitle" title="Edit the route of this walk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span data-i18n="page.trail.adjustWalk">Edit</span></a>
             <a id="getDirectionsBtn" class="td2-textlink" href="#"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg><span data-i18n="page.trail.directionsLink">Directions</span></a>
-            <a id="logWalkBtn" class="td2-textlink" href="journal.html" data-i18n="page.trail.logWalk">Log walk</a>
+            <a id="logWalkBtn" class="td2-textlink" href="journal.html" data-i18n="page.trail.logWalk">Add a past walk</a>
             <button id="exportGpxBtn" class="td2-textlink" type="button" data-i18n="page.trail.exportGpx">Export GPX</button>
             <button id="detailShareBtn" class="td2-textlink" type="button" aria-haspopup="true" aria-expanded="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2"></path><path d="M12 3v12"></path><path d="M8 7l4-4 4 4"></path></svg><span data-i18n="page.trail.shareLink">Share</span></button>
             <section id="offlinePackagePanel" class="offline-package" aria-labelledby="offlinePackageTitle" hidden>
@@ -1298,6 +1321,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
         <button id="mobileMapLoadBtn" type="button" class="mobile-map-load" data-i18n="page.trail.loadInteractiveMap">Load interactive map</button>
         <p id="routeDataNotice" class="route-data-notice" hidden></p>
         <button id="detailLayersBtn" type="button" class="map-btn" aria-expanded="false" data-i18n="map.layers">Layers</button>
+        <button id="nearbyMapBtn" type="button" class="map-nearby-btn" aria-pressed="false" hidden>Walks nearby</button>
         <div id="detailLayersPanel" class="map-panel">
           <button id="routesToggle" type="button" class="map-chip on" aria-pressed="true" data-i18n="chips.routes">Trail routes</button>
           <button id="fountainsToggle" type="button" class="map-chip on" aria-pressed="true" data-i18n="legend.water">Drinking water</button>
@@ -1343,6 +1367,11 @@ body.trail-photo-viewer-open{overflow:hidden;}
         </div>
       </div>
     </div>
+
+    <section class="td2-card td2-nearby-walks" id="nearbyWalks" aria-labelledby="nearbyWalksTitle" hidden>
+      <h2 class="td2-kick" id="nearbyWalksTitle" data-i18n="page.trail.walksNearby">Walks nearby</h2>
+      <ul class="td2-nearby-walks-list" id="nearbyWalksList"></ul>
+    </section>
 
     <div id="mobileWeatherSlot" aria-label="Trail weather" data-i18n-aria-label="page.trail.trailWeather"></div>
     </div>
@@ -1443,7 +1472,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
   <div class="hp-footer-grid">
     <div>
       <div class="hp-footer-brand"><img src="logo.svg?v=5" alt=""><span>ORMA</span></div>
-      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans, so every footprint left on the mountain is a safe one.</p>
+      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans: what each walk asks of your dog, so you can choose well.</p>
       <div class="hp-footer-get">
         <div class="hp-footer-h">Get the app</div>
         <div class="hp-footer-apps">
@@ -1504,7 +1533,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 
 <script src="device-handoff.js?v=20260904-1"></script>
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261120-1"></script>
+<script src="i18n.js?v=20261123-2"></script>
 <script>
   // Account services are useful after the page is interactive, but loading
   // the Firebase app/auth/Firestore graph during navigation keeps mobile
@@ -1531,7 +1560,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
     else window.addEventListener('load', scheduleTrailFirebase, { once:true });
   })();
 </script>
-<script src="regions-runtime-manifest.js?v=20261007-1"></script>
+<script src="regions-runtime-manifest.js?v=20261121-7"></script>
 <script>
   // The homepage has already loaded the selected public trail. Reuse that
   // small, public payload during the hand-off instead of fetching it again.
@@ -1590,6 +1619,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20261120-3" defer></script>
+<script src="trail-app.bundle.js?v=20261123-7" defer></script>
 </body>
 </html>
